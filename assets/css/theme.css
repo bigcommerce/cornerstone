@@ -1,0 +1,565 @@
+@import url(//fonts.googleapis.com/css?family=Clicker+Script|Karla);
+/**
+ *   Bigcommerce Blueprint with Less
+ *   – For the Less variables and functions that you don't want available in the Style Editor, declare them in this file.
+ */
+/**
+ *   CSS Assignments
+ */
+/**
+ *   Bigcommerce Blueprint with Less
+ *
+ *   For compatability with the Bigcommerce Style Editor:
+ *    + Import your Google fonts first
+ *
+ *    + Declare your fonts for use in the editor by using '@font-declaration' (JSON format)
+ *      eg @font-declaration: '{ "Open Sans":["Open Sans","Arial","sans-serif"], "Freckle Face":["Freckle Face","cursive"] }'
+ *
+ *    + Declare your color palette for use in the editor by using '@color-declaration'
+ *      eg @color-declaration: '["#333", "#1399BE", "#EDEDED", "#FFF"]';
+ *
+ *    + Create sections in the editor by wrapping variables in a comment of "! @section: [SectionName]"
+ *      and ending them with a comment of "! @endsection"
+ */
+/**
+ *   Import Google Fonts
+ */
+/**
+ *   Declarations
+ */
+body {
+  font-family: "Karla", Arial, Sans-serif;
+}
+.header {
+  background: #88F;
+}
+#LogoContainer h1 a {
+  color: #ffffff;
+  font-family: "Clicker Script", serif;
+}
+#LogoContainer h1 a:hover {
+  color: #e54;
+}
+#Header .PageMenu .sf-menu > li > a,
+#Header .PageMenu .sf-menu > li > a::before {
+  color: #ffffff;
+}
+.PageMenu li a::after,
+.SideCategoryListClassic .category-list li a::after {
+  background: #e54 !important;
+}
+.PageMenu li ul {
+  background: #f5f3ed;
+}
+.PageMenu li ul:before {
+  border-color: transparent transparent #f5f3ed transparent;
+}
+.PageMenu li ul li a,
+.SubCategoryList li a,
+.PageMenu li.sfHover ul li a {
+  color: #695a49;
+}
+.SubCategoryList li a:hover {
+  border-bottom-color: #e54;
+}
+.SideCategoryListClassic li a {
+  color: #f5f3ed;
+}
+#SearchForm input.Textbox {
+  background-color: #f5f3ed;
+}
+#SearchForm {
+  background-color: rgba(255, 255, 255, 0.95);
+}
+.slide-button .btn {
+  color: #695a49;
+  border-color: #ffffff;
+}
+.slide-button .btn:hover {
+  background-color: #ffffff;
+  border-color: #ffffff;
+  color: #695a49;
+}
+.TopMenu {
+  background: #e54;
+  color: #f2ede5;
+}
+.TopMenu a:hover {
+  color: #ab9a86;
+}
+.TopMenu .CartBorder {
+  border: solid 3px #fff;
+}
+.TopMenu li .icon {
+  color: #fff;
+}
+.main .inner {
+  background: #FFF;
+}
+.page {
+  background: #fff;
+}
+.footer-main {
+  background: #EEE;
+  color: #695a49;
+}
+.newsletter-subscription {
+  background: #e54;
+  color: #695a49;
+}
+.footer-links {
+  background: #dbccb5;
+  color: #695a49;
+}
+.footer-links a {
+  color: #695a49;
+}
+.footer-links a:hover {
+  color: #e54;
+}
+/* Homepage-specific variables */
+#HomeFeaturedProducts h3,
+#HomeNewProducts h3,
+#SideTopSellers h3 {
+  color: #695a49;
+  border-bottom: solid 2px #fff;
+}
+#home .ProductList .ProductDetails a {
+  color: #726454;
+}
+#home .ProductList .p-price {
+  color: #695a49;
+}
+#home .ProductList .btn {
+  background-color: #f5f3ed;
+  border-color: #695a49;
+  color: #695a49;
+}
+#home .ProductList .btn:hover {
+  background-color: #695a49;
+  color: #f5f3ed;
+}
+/* Product page specific variables */
+#ProductDetails h1 {
+  color: #695a49;
+}
+#prodAccordion .subtitle {
+  color: #695a49;
+}
+#prodAccordion .ProductDescriptionContainer,
+.ProductDetailsGrid.ProductAddToCart {
+  color: #695a49;
+}
+.productAddToCartRight .add-to-cart.strongCta {
+  color: #695a49;
+  border-color: #695a49;
+}
+.productAddToCartRight .add-to-cart.strongCta:hover {
+  background-color: #695a49;
+  color: #f5f3ed;
+}
+/* Category page specific variables */
+#CategoryHeading .TitleHeading {
+  color: #695a49;
+}
+#CategoryContent .ProductList .pname,
+#CategoryContent .ProductList .p-name a {
+  color: #726454;
+}
+#CategoryContent .ProductList .p-price {
+  color: #695a49;
+}
+#CategoryContent .ProductList .ProductActionAdd .btn {
+  color: #695a49;
+  border-color: #695a49;
+}
+#CategoryContent .ProductList .ProductActionAdd .btn:hover {
+  background-color: #695a49;
+  color: #f5f3ed;
+}
+#CategoryContent .CompareButton .btn {
+  color: #695a49;
+  border-color: #695a49;
+}
+#CategoryContent .CompareButton .btn:hover {
+  background-color: #695a49;
+  color: #f5f3ed;
+}
+/* Footer specific variables */
+.footer-main h4 {
+  color: #695a49;
+}
+.footer-main,
+.footer-main a {
+  color: #695a49;
+}
+.footer-main a:hover {
+  color: #e54;
+}
+/***************************************/
+body,
+input,
+select,
+textarea,
+input.Textbox,
+input[type="text"],
+#SearchForm input,
+.HorizontalFormContainer dd .selector span,
+.fastCartTop div,
+.list-icon li {
+  color: #695a49;
+}
+#ModalContent,
+.ModalContent,
+.CurrencyChooser a span {
+  color: #695a49 !important;
+}
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6 {
+  font-family: "Karla", Arial, Sans-serif;
+  color: #695a49;
+}
+h1,
+.h1 {
+  color: #695a49;
+}
+.Left li a.active,
+a:hover,
+a.alt,
+p a,
+a.NextLink,
+.BulkDiscountLink a,
+.currency-converter p span,
+.BlockContent.PageContent a,
+.page-content #LayoutColumn2 a,
+.footer a:hover,
+.Left #SideCategoryList li a:hover,
+.Left .slist li a:hover,
+.Left .afterSideShopByBrand a:hover,
+.Left #GiftCertificatesMenu li a:hover,
+.Left #SideAccountMenu li a:hover,
+.PageMenu li ul li a:hover {
+  color: #e54;
+}
+.recaptchatable a:hover,
+.page-content #LayoutColumn2 a.pname:hover,
+#ModalContent a:hover,
+.ModalContent a:hover {
+  color: #e54 !important;
+}
+#ModalContent a,
+.ModalContent a,
+a.alt:hover,
+.page-content #LayoutColumn2 a:hover,
+p a:hover {
+  color: #695a49;
+}
+a,
+.header-logo a,
+.Left li li a,
+.Left #SideCategoryList li a,
+.Left .slist li a,
+.Left .afterSideShopByBrand a,
+.Left #GiftCertificatesMenu li a,
+.Left #SideAccountMenu li a,
+.Left #SideCategoryList li li a,
+.Left .slist li li a,
+.TabNav li.Active a,
+.ModalContent h4 a:hover {
+  color: #695a49;
+}
+.page-content #LayoutColumn2 a.pname,
+#ModalContent a,
+.ModalContent a,
+.recaptchatable a {
+  color: #695a49 !important;
+}
+.Left li a.active:hover {
+  border-color: #695a49;
+}
+.icon-add:hover {
+  background-color: #695a49 !important;
+}
+.multiStep li a {
+  color: #ab9a86;
+}
+a.alt:hover {
+  background-color: #ffffff;
+  color: #695a49;
+}
+.ModalContent .ProductList a.pname:hover {
+  color: #ffffff !important;
+}
+.multiStep li.ActivePage h4 {
+  border-bottom: 4px solid #e54;
+}
+.icon-add {
+  background: #e54 url("../images/add.png") no-repeat scroll 50% 50%;
+}
+.btn {
+  background-color: #f5f3ed;
+  border-color: #695a49;
+  color: #695a49;
+}
+.btn:hover {
+  background-color: #695a49;
+  color: #f5f3ed;
+}
+.btn.alt {
+  background: none;
+  border-color: #e54;
+  color: #e54;
+}
+.newsletter-subscription .btn.alt {
+  background: none;
+  border-color: #ffffff;
+  color: #ffffff;
+}
+a.btn.alt {
+  color: #695a49;
+}
+.btn.alt:hover {
+  background-color: #ffffff;
+  color: #695a49;
+}
+.btn.text {
+  color: #695a49;
+}
+.QuickView .QuickViewBtn {
+  color: #e54 !important;
+  border-color: #e54;
+}
+.SortBox,
+.AddToWishlistLink .wishlist-button {
+  color: #695a49;
+}
+.productOptionViewProductPickListWithImage td {
+  border-bottom: 1px dotted #dfd9d2;
+}
+.TopMenu li.Flag img.Selected {
+  border: 2px solid #dfd9d2;
+}
+.productOptionViewRectangle .option.selectedValue label {
+  border: 1px solid #b6a795 !important;
+}
+.productOptionPickListSwatch .selectedValue .textureContainer,
+.productOptionPickListSwatch .selectedValue .swatchColours {
+  border: 1px solid #dfd9d2 !important;
+  border-color: #3c332a !important;
+}
+.productOptionPickListSwatch .textureContainer,
+.productOptionPickListSwatch .swatchColours,
+.productOptionViewRectangle .option label,
+.recaptchatable #recaptcha_response_field,
+.zoomWrapper,
+#ProductDetails .ProductTinyImageList ul li.selected {
+  border: 1px solid #dfd9d2 !important;
+}
+.CurrencyList dd,
+#SearchForm .Button,
+#SearchForm input.Textbox,
+select,
+hr,
+input.Textbox,
+textarea,
+input[type="text"],
+input[type="password"],
+.QuickSearch,
+.SharePublicWishList,
+.ExpressCheckoutBlock .ExpressCheckoutTitle,
+.HowToPay,
+.NotifyMessage,
+.QuickSearchResult .QuickSearchResultImage,
+.CurrencyChooser,
+.selected-currency,
+div.uploader,
+div.selector,
+.recaptchatable {
+  border: 1px solid #dfd9d2;
+}
+.ExpressCheckoutBlockCompleted .ExpressCheckoutCompletedContent,
+div.uploader span.action {
+  border-left: 1px solid #dfd9d2;
+}
+.TitleHeading {
+  border-bottom: 1px solid #dfd9d2;
+}
+.ProductList.List .ProductDetails {
+  border-top: 1px solid #dfd9d2;
+}
+.main > .inner,
+.footer-main > .inner,
+.footer-links > .inner,
+.newsletter-subscription > .inner {
+  max-width: 960px;
+  width: 80%;
+}
+#home .ProductList li,
+.productPage .ProductList li {
+  width: 25%;
+}
+/* Product list */
+.ProductList .ProductDetails a {
+  color: #695a49;
+}
+.ProductList em {
+  color: #695a49;
+}
+.ProductList .ProductImage a {
+  background-color: #f5f3ed;
+}
+#SimilarProductsByCustomerViews,
+#SideProductRelated,
+.productAddToCartRight,
+#prodAccordion,
+#prodAccordion .Block {
+  border-color: #ffffff;
+}
+/* Product Details */
+#ProductTabs {
+  border-color: #ffffff;
+}
+.Breadcrumb li a {
+  color: #e54;
+}
+.newslatter .btn {
+  border-color: #ffffff;
+}
+.newslatter .btn:hover {
+  background-color: #ffffff;
+}
+.newsletter-subscription .Textbox:focus {
+  color: #695a49;
+}
+.footer-main > .inner,
+.footer-links > .inner {
+  border-color: #ffffff;
+}
+.btn.strongCta {
+  background-color: #f5f3ed;
+  color: #e54;
+  border-color: #e54;
+}
+.btn.strongCta:hover {
+  background-color: #e54;
+  color: #f5f3ed;
+}
+.btn:hover.ToggleSearchFormLink a {
+  color: #f5f3ed;
+}
+.AdvancedSearch .AdvancedSearch h3 {
+  border-color: #ffffff;
+}
+.TabNav li.Active a {
+  border-color: #e54;
+}
+.SearchContainer .ProductList li #SearchPage,
+#SearchResultsProduct .ProductList.List li,
+.AdvancedSearch h5 {
+  border-color: #ffffff;
+}
+.jstree-interspire.jstree-focused {
+  background-color: #dbccb5;
+}
+.shareSlide {
+  background-color: #f5f3ed;
+  border-color: #e54;
+}
+.ComparisonTable thead {
+  background: #e54;
+}
+.ComparisonTable thead th a {
+  color: #f5f3ed;
+}
+table.CartContents {
+  border: 0;
+}
+table.CartContents th.sep {
+  border-color: #f5f3ed;
+}
+.ExpressCheckoutBlock .ExpressCheckoutTitle span.stepNocnt,
+.ExpressCheckoutBlock.ExpressCheckoutBlockCollapsed .ExpressCheckoutTitle span.stepNocnt {
+  background-color: #e54;
+  color: #f5f3ed;
+  border-color: #e54;
+}
+.ExpressCheckoutBlock.ExpressCheckoutBlockCollapsed .ExpressCheckoutTitle span.stepNocnt {
+  background-color: #dbccb5;
+  color: #e54;
+}
+/* --- Responsive --- */
+@media screen and (max-width: 1024px) {
+  #home .ProductList li {
+    width: 25% !important;
+  }
+}
+/* 600px */
+@media screen and (max-width: 767px) {
+  #home .ProductList li {
+    width: 50% !important;
+  }
+  #Header {
+    background: #695a49 !important;
+  }
+  #ToggleMenu {
+    background-color: #4b4034 !important;
+  }
+  #cart-amount,
+  .slide-show .slide-overlay {
+    background: #e54 !important;
+  }
+}
+@media screen and (max-width: 600px) {
+  .BillingDetails,
+  .ShippingDetails {
+    border-top: 1px solid #dfd9d2;
+  }
+}
+/* 480px */
+@media screen and (max-width: 480px) {
+  #home .ProductList li {
+    width: 100% !important;
+  }
+  #cart-amount .Cart .total {
+    background: #695a49;
+    color: #ffffff;
+  }
+  #cart-amount .Cart .bag-handle {
+    border: 2px solid #695a49;
+  }
+}
+/* --- Faceted Search --- */
+.facet-container {
+  border-top: 1px solid #dfd9d2;
+}
+.facet-container [class^="js-facet-clear"] {
+  color: #cbc0b3;
+}
+.facet-container [class^="js-facet-clear"]:hover {
+  color: #a18d77;
+}
+.facet-container .btn-facet-more-options.more {
+  color: #695a49;
+}
+.facet-container .btn-facet-more-options.more:hover {
+  color: #695a49;
+}
+.facet-container .facet-option:hover {
+  background: #dfd9d2;
+}
+.facet-container .facet-option .facet-option-product-count {
+  color: #cbc0b3;
+}
+.js-faceted-search-container > [class^='js-facet-']:last-of-type .facet-container {
+  border-bottom: 1px solid #dfd9d2;
+}

@@ -1,0 +1,310 @@
+/* this file contains shared admin / storefront attributes css */
+
+/*
+ * structural code for form display with some basic colours/styles
+ */
+
+/* simple required-asterisk colour style */
+.productAttributeList .required {
+	color: #f22732;
+}
+
+/* consistent sizing for elements which expand to the container width, mainly when the display type is set to 'below' */
+.productAttributeValue .productAttributeFluidWidth {
+	width: 98%;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+}
+
+/* set up the row for css table-like alignment */
+
+/* position the label in the left-padding area of the row */
+.productAttributeList .productAttributeLabel {
+	margin: 0 0 6px -140px;
+	float: left;
+	width: 130px;
+	font-weight: normal;
+	padding-top: 1px;
+	display: inline;
+	position: relative;
+}
+
+/* force the value (input) container to display inline */
+.productAttributeList .productAttributeValue {
+	display: inline;
+}
+
+/* storefront formatting of attribute labels */
+
+/*
+ * attribute-type- or view-specific css
+ */
+
+/* fix radio-list indentation for wrapped values */
+.productOptionViewProductPickList label,
+.productOptionViewRectangle label,
+.productOptionViewRadio label {
+	display: block;
+	padding-left: 18px;
+	min-height: 18px;
+}
+
+/* fix radio-list indentation for wrapped values */
+.productOptionViewProductPickList input,
+.productOptionViewRectangle input,
+.productOptionViewRadio input {
+	float: left;
+	width: 18px;
+	margin-left: -18px;
+	margin-top: 1px;
+	position: relative;
+}
+
+/* remove padding and bullets from semantic UL/LI tags in picklist, swatches and product lists */
+.productAttributeConfigurablePickListSet ul,
+.productAttributeConfigurablePickListSet li,
+.productAttributeConfigurablePickListSwatch ul,
+.productAttributeConfigurablePickListSwatch li,
+.productAttributeConfigurablePickListProduct ul,
+.productAttributeConfigurablePickListProduct li {
+	margin-left: 0;
+	padding-left: 0;
+	list-style-type: none;
+}
+
+/* set up the visible border for all swatch types */
+.productOptionPickListSwatch .textureContainer,
+.productOptionPickListSwatch .swatchColours {
+	position: relative;
+	display: inline-block;
+	border: solid 1px #d6d6d6; /* template colour */
+	padding: 1px;
+	margin-bottom: 5px;
+}
+
+/* highlighting of the border for the currently selected swatch value */
+.productOptionPickListSwatch .selectedValue .textureContainer,
+.productOptionPickListSwatch .selectedValue .swatchColours {
+	border-color: #292929; /* template colour */
+	border-width: 2px;
+	padding: 0;
+}
+
+/* sizing and positioning of the inside part of a swatch */
+.productOptionPickListSwatch .thumbnail,
+.productOptionPickListSwatch .swatchColour {
+	display: inline-block;
+	width: 25px;
+	height: 25px;
+}
+
+/* positioning of the swatch thumbnail image as a background - the url is set inline via templates */
+.productOptionPickListSwatch .thumbnail {
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-color: #fff; /* template colour */
+}
+
+/* adjust swatch widths to fit two colours */
+.productOptionPickListSwatch .swatchTwoColour .swatchColour {
+	width: 9px;
+}
+
+/* adjust swatch widths to fit three colours */
+.productOptionPickListSwatch .swatchThreeColour .swatchColour {
+	width: 6px;
+}
+
+/* visible border around product image pick list */
+.productOptionViewProductPickListWithImage {
+	border: solid 1px #dcdcdc; /* template colour if necessary */
+}
+
+/* max-height and scrolling behaviour of product image pick list */
+.productOptionViewProductPickListWithImage .scrollContainer {
+	position: relative; /* this is needed so that jQuery.position works on the inputs */
+	max-height: 100px;
+	overflow-y: auto;
+	padding: 1px;
+}
+
+.productOptionViewProductPickListWithImage table {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+/* vertical positioning of product image pick list elements */
+.productOptionViewProductPickListWithImage td {
+	vertical-align: top;
+	padding: 3px;
+	white-space: nowrap;
+}
+
+.productOptionViewProductPickListWithImage td.name {
+	width: 100%;
+	white-space: normal;
+}
+
+.productOptionViewProductPickListWithImage .selectedValue td {
+	background-color: #292929; /* template colour */
+	color: #fff; /* template colour */
+}
+
+.productOptionViewProductPickListWithImage .none.selectedValue td {
+	background-color: transparent;
+	color: inherit;
+}
+
+/* vertical positioning of product image pick list elements */
+.productOptionViewProductPickListWithImage td.input {
+	padding-top: 5px;
+	white-space: nowrap;
+}
+
+/*
+ * attribute-type- or view-specific css for when javascript is available
+ */
+
+/* vertical positioning of the date picker icon */
+html.javascript .productAttributeConfigurableEntryDate .ui-datepicker-trigger {
+	vertical-align: middle;
+}
+
+/* give labels a pointer cursor for swatch and rectangle options when javascript is enabled */
+html.javascript .productOptionViewRectangle label,
+html.javascript .productOptionPickListSwatch label {
+	cursor: pointer;
+	position: relative;
+}
+
+/* hide radio inputs for swatch and rectangle options when javascript is enabled */
+html.javascript .productOptionViewRectangle input,
+html.javascript .productOptionPickListSwatch input {
+	height: 0;
+	overflow: hidden;
+	z-index: -10000;
+	position: absolute;
+	float: none;
+}
+
+/*
+ * styles for rectangle option view
+ */
+
+/* place rectangles in a horizontal line */
+html.javascript .productOptionViewRectangle li {
+	display: inline;
+}
+
+/* set up the label as a container for a bordered rectangle display of the option */
+html.javascript .productOptionViewRectangle label {
+	display: inline-block;
+	padding: 2px 5px;
+	margin: 0;
+	color: #333;
+}
+
+/* the actual visible border */
+html.javascript .productOptionViewRectangle .option label {
+	border: solid 1px #d6d6d6; /* template colour */
+}
+html.javascript .productOptionViewRectangle .option label:hover {
+	border: solid 1px #333;
+}
+
+/* highlighting of the border for the currently selected rectangle value */
+html.javascript .productOptionViewRectangle .selectedValue label {
+	background: #e6514f!important;
+	color: #ffffff!important;
+	border-color: #e6514f;
+}
+
+/* styling specifically for the 'none' option when a rectangle is not required */
+html.javascript .productOptionViewRectangle .none label,
+html.javascript .productOptionViewRectangle .selectedValue.none label {
+	padding: 3px 0;
+	text-decoration: underline;
+	color: #292929; /* template colour */
+}
+
+/*
+ * styles for swatch option type
+ */
+
+/* place swatches in a horizontal line */
+html.javascript .productOptionPickListSwatch li {
+	display: inline-block;
+}
+
+/* hide the name for swatches when js is available */
+html.javascript .productOptionPickListSwatch .swatch .name {
+	display: none;
+}
+
+/* make the 'none' option for swatches look like a link */
+html.javascript .productOptionPickListSwatch .swatchNone .name {
+	text-decoration: underline;
+	color: #292929; /* template colour */
+}
+
+/*
+ * swatch / product preview display
+ */
+
+/* set up the container */
+.productOptionPreviewDisplay {
+	position: absolute;
+	display: none;
+	border: solid 1px #dcdcdc; /* template colour if necessary */
+	background: #fff;  /* template colour if necessary */
+	padding: 1px;
+	z-index: 10000;
+	margin: 5px 0 0 5px;
+}
+
+/* specific styles for larger colour swatches inside previews */
+.productOptionPreviewDisplay .swatchColour {
+	display: inline-block;
+	width: 150px;
+	height: 150px;
+}
+
+/* specific styles for larger colour swatches inside previews */
+.productOptionPreviewDisplay .swatchTwoColour .swatchColour {
+	width: 75px;
+}
+
+/* specific styles for larger colour swatches inside previews */
+.productOptionPreviewDisplay .swatchThreeColour .swatchColour {
+	width: 50px;
+}
+
+/*
+ * control-panel-specific styles
+ */
+
+#orderCustomizeItem .productAttributeLabel {
+	font-weight: normal;
+}
+
+/* most form styles are the same as the front end except for widths */
+
+#orderCustomizeItem .productAttributeLabel {
+	margin: 4px 0 4px -180px;
+	padding-top: 0;
+	width: 180px;
+}
+
+/*
+ * firefox specific styles
+ */
+
+@-moz-document url-prefix() {
+	/* firefox won't hide elements with z-index values but we can render them offscreen without scrolling issues */
+	html.javascript .productOptionViewRectangle input,
+	html.javascript .productOptionPickListSwatch input {
+		left: -10000px;
+	}
+}

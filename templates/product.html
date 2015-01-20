@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+<title>{{ head.title }}</title>
+
+<meta charset="UTF-8">
+<meta name="description" content="{{ head.meta.description }}" />
+<meta name="keywords" content="{{ head.meta.description }}" />
+
+{{{ head.meta.tags }}}
+    
+
+<link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:400,200,200italic,300,300italic,600,400italic,600italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+
+
+<link rel="shortcut icon" href="{{ head.favicon }}" />
+
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+<script>
+//<![CDATA[ 
+    (function(){
+        // this happens before external dependencies (and dom ready) to reduce page flicker
+        var node, i;
+        for (i = window.document.childNodes.length; i--;) {
+            node = window.document.childNodes[i];
+            if (node.nodeName == 'HTML') {
+                node.className += ' javascript';
+            }
+        }
+    })();
+//]]>
+</script>
+
+<link href="/assets/css/iselector.css" media="all" type="text/css" rel="stylesheet" />
+<link href="/assets/css/flexslider.css" media="all" type="text/css" rel="stylesheet" />
+<link href="/assets/css/slide-show.css" media="all" type="text/css" rel="stylesheet" />
+<link href="/assets/css/styles-slide-show.css" media="all" type="text/css" rel="stylesheet" />
+<link href="/assets/css/social.css" media="all" type="text/css" rel="stylesheet" />
+<link href="/assets/css/styles.css" media="all" type="text/css" rel="stylesheet" />
+<link href="/assets/css/light.css" media="all" type="text/css" rel="stylesheet" />
+<link href="/assets/css/theme.css" media="all" type="text/css" rel="stylesheet" />
+<link href="/assets/css/grid.css" media="all" type="text/css" rel="stylesheet" />
+<link href="/assets/css/responsive.css" media="all" type="text/css" rel="stylesheet" />
+{{{ head.stylesheets }}}
+
+<!-- Tell the browsers about our RSS feeds -->
+{{{ head.rsslinks }}}
+
+
+<!-- Include visitor tracking code (if any) -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script src="http://cdn.bcapp.dev/vagrant/bigcommerce/javascript/menudrop.js?"></script>
+<script src="http://cdn.bcapp.dev/vagrant/bigcommerce/javascript/iselector.js?"></script>
+<script src="http://cdn.bcapp.dev/vagrant/bigcommerce/javascript/jquery/plugins/jquery.flexslider.js"></script>
+<script src="http://cdn.bcapp.dev/vagrant/bigcommerce/javascript/viewport.js??"></script>
+
+<!-- Theme bespoke js -->
+<script src="/assets/js/matchMedia.js"></script>
+<script src="/assets/js/common.js"></script>
+<script src="/assets/js/jquery.autobox.js"></script>
+<script src="/assets/js/init.js"></script>
+<script src="/assets/js/jquery.uniform.min.js"></script>
+<script src="/assets/js/main.js?"></script>
+
+<script>
+    //<![CDATA[
+    config.ShopPath = 'http://s1418669927.bcapp.dev';
+    config.AppPath = ''; // BIG-8939: Deprecated, do not use.
+    config.FastCart = 1;
+    config.ShowCookieWarning = !!0;
+    var ThumbImageWidth = 190;
+    var ThumbImageHeight = 250;
+    //]]>
+</script>
+{{{ head.scripts }}}
+<script type="text/javascript" src="http://cdn.bcapp.dev/vagrant/bigcommerce/javascript/quicksearch.js"></script>
+
+
+<!--[if lt IE 9]>
+<script src="/assets/js/html5shiv.js"></script>
+<![endif]-->
+</head>
+
+<body class="productPage">
+<script type="text/javascript" src="http://cdn.bcapp.dev/vagrant/bigcommerce/javascript/jquery/plugins/validate/jquery.validate.js?"></script>
+<script type="text/javascript" src="/assets/js/product.functions.js?"></script>
+<script type="text/javascript" src="http://cdn.bcapp.dev/vagrant/bigcommerce/javascript/product.js?"></script>
+          
+<!-- What is this DrawerMenu it's not visible. -->
+<div id="DrawerMenu">
+    <div class="inner">
+        <ul class="sf-menu main-menu">
+            <li>
+                <div class="slidePanelSearch">
+                    <form action="/search.php" method="get" onsubmit="return check_small_search_form()">
+                        <input type="text" name="search_query" class="Textbox autobox" value="Search" />
+                        <input type="submit" value="" name="Search" title="Search" />
+                    </form>
+                </div>
+            </li>
+        </ul>
+        <div class="top_border"></div>
+        <div class="CategoryList" id="SideCategoryList">
+            <h3>Categories</h3>
+            <div class="BlockContent">
+                <div class="SideCategoryListFlyout">
+                    <ul class="sf-menu sf-horizontal">
+
+                        {{#each navigation}}
+                        <li>
+                            <a href="{{url}}" data-hover="{{label}}">{{label}}</a>
+                            <ul>
+                                {{#each children}}
+                                <li>
+                                    <a href="{{url}}" data-hover="{{label}}">{{label}}</a>
+                                    <ul>
+                                        {{#each children}}
+                                        <li> <a href="{{url}}" data-hover="{{label}}">{{label}}</a> </li>
+                                        {{/each}}
+                                    </ul>
+                                </li>
+                                {{/each}}
+                            </ul>
+                        </li>
+                        {{/each}}
+
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+
+        <ul class="sf-menu topmenu-options" style="display:" id="DrawerMenuLastPart">
+            <li><a href="/">Home</a></li>
+            <li><a href="/brands/">All Brands</a></li>
+            <li style="display:none" class="HeaderLiveChat">
+                
+            </li>
+            <li style="display:">
+                <a href="/account.php" class="fa fa-user"><span>My Account</span></a>
+            </li>
+        </ul>
+    </div>
+</div>
+<script>
+//<![CDATA[ 
+    $().ready(function(){
+        if($('#GiftCertificatesMenu').get(0)){
+            var liItem = $('#GiftCertificatesMenu').clone();
+            $(liItem).find('a').attr('class', 'fa fa-tag');
+            
+            var spanItem = $('<span />', { text: $(liItem).find('a').text() });
+            $(liItem).find('a').html(spanItem);
+            
+            $(liItem).appendTo('#DrawerMenuLastPart');
+        }
+        
+        if($('#LoginOrLogoutText').get(0)){
+            var LoginOrLogoutTextCss = $('#LoginOrLogoutText').css('display');
+            $('#LoginOrLogoutText div a').each(function(){
+                var linkItem = $(this).clone();
+                
+                if($(this).text().toLowerCase()=='sign in'){
+                    $(linkItem).attr('class', 'fa fa-sign-in');
+                }
+                else if($(this).text().toLowerCase()=='create an account'){
+                    $(linkItem).attr('class', 'fa fa-plus-square');
+                }
+                else if($(this).text().toLowerCase()=='sign out'){
+                    $(linkItem).attr('class', 'fa fa-sign-out');
+                }
+                
+                var spanItem = $('<span />', { text: $(linkItem).text() });
+                $(linkItem).html(spanItem);
+                
+                var liItem = $('<li />', {html: linkItem});
+                $(liItem).css('display', LoginOrLogoutTextCss);
+                var dynamicClass = $(this).text().replace(/ /g,'');
+                $(liItem).attr('class', dynamicClass);
+                
+                $(liItem).appendTo('#DrawerMenuLastPart');
+            });
+        }
+        
+        if($('#StorePhoneNumber').get(0)){
+            var StorePhoneNumberCss = $('#StorePhoneNumber').css('display');
+            var StorePhoneNumber = $('#StorePhoneNumber div').text();
+            
+            var spanItem = $('<span />', { text: 'Call '+StorePhoneNumber });
+            
+            var linkItem = $('<a>',{
+                html: spanItem,
+                href: 'tel:'+StorePhoneNumber,
+                class: 'fa fa-phone'
+            });
+            
+            var liItem = $('<li />', {html: linkItem});
+            $(liItem).css('display', StorePhoneNumberCss);
+            
+            $(liItem).appendTo('#DrawerMenuLastPart');
+        }
+    });
+//]]>
+</script>
+
+<div class="page">
+    <div class="header">
+        <div class="inner">
+
+            <div id="AjaxLoading">
+                <div class="ajax-loader">
+                    <img src="/assets/images/loader.png" alt="" />&nbsp;Loading... Please wait...
+                </div>
+            </div>
+
+                
+            <div id="Header">
+                <div class="inner">
+                    <div id="ToggleMenu" class="fa-menu">
+                    </div>
+                    <div class="header-secondary">
+                        <!--<div class="currency-converter">
+                            <p>All prices are in <a href="#">All prices are in <span title='US Dollars'>USD</span></a></p>
+                            <div class="Block Moveable Panel" id="SideCurrencySelector" style="display:none;"></div>
+                        </div>-->
+                    </div>
+                    <div class="PageMenu">
+                        <div class="inner">
+                             <div class="CategoryList" id="SideCategoryList">
+                                <h3>Categories</h3>
+                                <div class="BlockContent">
+                                    <div class="SideCategoryListFlyout">
+                                        {{> includes/navigation}}
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="header-logo">
+                        <div id="LogoContainer">
+                            <h1><a href="/"><span class="Logo1stWord">s1418669927</span></a></h1>
+                        </div>
+                    </div>
+                    <div id="cart-amount">
+                       <a href="/cart.php" class="Cart"><span class="bag-handle"></span><span class="total fa-cart">&nbsp;</span></a>
+                    </div>
+                </div>
+            </div>
+                        
+            <div class="TopMenu">
+                <div class="inner">
+                    <ul class="sf-menu sf-horizontal sf-js-enabled" style="display:">
+                        <li class="CartLink" style="display:">
+                            <span class="icon icon-cart fa-cart" title="View Cart">&nbsp;</span><a href="/cart.php" title="View Cart"><span class="item"> (1 item)</span></a>
+                        </li>
+                        <li><a href="javascript: void(0);" onclick="toggleSearchPanel();" title="search" class="icon search-icon fa-search"></a></li>
+                        <li class="last">
+                            <span class="hasSub sf-with-ul icon icon-tov-nav fa-menu" title="More">&nbsp;</span>
+                            <ul style="display:none;">
+                                <li style="display:none" class="HeaderLiveChat">
+                                    
+                                </li>
+                                <li style="display:" class="First">
+                                    <a href="/account.php">My Account</a>
+                                </li>
+                                <li id="GiftCertificatesMenu"><a href="/giftcertificates.php">Gift Certificates</a></li>
+                                <li style="display:" id="LoginOrLogoutText">
+                                    <div><a href='/login.php?action=logout'>Sign out</a></div>
+                                </li>
+                                <li style="display: none;" id="StorePhoneNumber">
+                                    <div class="phoneIcon"></div>
+                                </li>
+                                 <li style="display:">
+                                    <div class="currency-converter">
+                                        <p>All prices are in <a href="#">All prices are in <span title='US Dollars'>USD</span></a></p>
+                                        <div class="Block Moveable Panel" id="SideCurrencySelector" style="display:none;"></div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="SearchForm" class="searchWindow" style="display:none;">
+            <form action="/search.php" method="get" onsubmit="return check_small_search_form()">
+                <label for="search_query">Search</label>
+                <input type="text" name="search_query" id="search_query" class="Textbox autobox" value="Search" />
+                <!--<input type="submit" class="Button" value="" name="Search" title="Search" />-->
+                <input type="button" class="search-close" value="" onclick="toggleSearchPanel();" name="close" title="Close" />
+            </form>
+        </div>
+
+        <script type="text/javascript">
+            var QuickSearchAlignment = 'right';
+            var QuickSearchWidth = '390px';
+            lang.EmptySmallSearch = "You forgot to enter some search keywords.";
+            $(document).ajaxComplete(function() {
+                $('input[type=checkbox], select').not('.UniApplied').uniform();
+            });
+        </script>
+    </div>
+
+    <div class="main">
+        <div class="inner">
+            <div class="Block Moveable Panel Breadcrumb" id="ProductBreadcrumb" >
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/accessories-3/">Accessories</a></li>
+                    <li>{{ product.title }}</li>
+                </ul>
+            </div>
+
+            <link rel="stylesheet" type="text/css" href="http://cdn.bcapp.dev/vagrant/bigcommerce/javascript/jquery/themes/cupertino/ui.all.css?" />
+            <link rel="stylesheet" type="text/css" media="screen" href="http://cdn.bcapp.dev/vagrant/bigcommerce/templates/__master/Styles/product.attributes.css?" />
+            <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.js"></script>
+            <script type="text/javascript" src="http://cdn.bcapp.dev/vagrant/bigcommerce/javascript/jquery/plugins/jquery.form.js?"></script>
+            <script type="text/javascript" src="http://cdn.bcapp.dev/vagrant/bigcommerce/javascript/product.attributes.js?"></script>
+            <script type="text/javascript" src="http://cdn.bcapp.dev/vagrant/bigcommerce/javascript/jquery/plugins/jCarousel/jCarousel.js?"></script>
+            <link rel="stylesheet" type="text/css" href="/assets/js/zoomie/jquery.zoomie.css?" />
+            <script type="text/javascript" src="/assets/js/zoomie/jquery.zoomie.js?"></script>
+            <script type="text/javascript">
+            //<![CDATA[
+                var ZoomImageURLs = new Array();
+                
+                    ZoomImageURLs[0] = "http:\/\/cdn.bcapp.dev\/bcapp\/xergyqdz\/products\/33\/images\/239\/cocolee_anna_92851__19446.1412112686.1280.1280.jpg?c=1";
+                
+                    ZoomImageURLs[1] = "http:\/\/cdn.bcapp.dev\/bcapp\/xergyqdz\/products\/33\/images\/240\/cocolee_anna_92852__63752.1412112686.1280.1280.jpg?c=1";
+                
+                    ZoomImageURLs[2] = "http:\/\/cdn.bcapp.dev\/bcapp\/xergyqdz\/products\/33\/images\/241\/cocolee_anna_92853__67951.1412112686.1280.1280.jpg?c=1";
+                
+                    ZoomImageURLs[3] = "http:\/\/cdn.bcapp.dev\/bcapp\/xergyqdz\/products\/33\/images\/243\/cocolee_anna_92854__10682.1412112686.1280.1280.jpg?c=1";
+                
+                    ZoomImageURLs[4] = "http:\/\/cdn.bcapp.dev\/bcapp\/xergyqdz\/products\/33\/images\/244\/cocolee_anna_92855__77555.1412112686.1280.1280.jpg?c=1";
+                
+                    ZoomImageURLs[5] = "http:\/\/cdn.bcapp.dev\/bcapp\/xergyqdz\/products\/33\/images\/245\/HERO_cocolee_anna_92865__20303.1412112686.1280.1280.jpg?c=1";
+                                
+            //]]>
+            </script>
+            <script type="text/javascript">
+            //<![CDATA[
+                var ThumbURLs = new Array();
+                var ProductImageDescriptions = new Array();
+                var CurrentProdThumbImage = 0;
+                var ShowVariationThumb =false;
+                var ProductThumbWidth = 500;
+                var ProductThumbHeight =  659;
+                var ProductMaxZoomWidth = 1280;
+                var ProductMaxZoomHeight =  1280;
+                var ProductTinyWidth = 60;
+                var ProductTinyHeight =  79;
+                    ThumbURLs[0] = "http:\/\/cdn.bcapp.dev\/bcapp\/xergyqdz\/products\/33\/images\/239\/cocolee_anna_92851__19446.1412112686.500.659.jpg?c=1";
+                    ProductImageDescriptions[0] = "Image 1";
+                
+                    ThumbURLs[1] = "http:\/\/cdn.bcapp.dev\/bcapp\/xergyqdz\/products\/33\/images\/240\/cocolee_anna_92852__63752.1412112686.500.659.jpg?c=1";
+                    ProductImageDescriptions[1] = "Image 2";
+                
+                    ThumbURLs[2] = "http:\/\/cdn.bcapp.dev\/bcapp\/xergyqdz\/products\/33\/images\/241\/cocolee_anna_92853__67951.1412112686.500.659.jpg?c=1";
+                    ProductImageDescriptions[2] = "Image 3";
+                
+                    ThumbURLs[3] = "http:\/\/cdn.bcapp.dev\/bcapp\/xergyqdz\/products\/33\/images\/243\/cocolee_anna_92854__10682.1412112686.500.659.jpg?c=1";
+                    ProductImageDescriptions[3] = "Image 4";
+                
+                    ThumbURLs[4] = "http:\/\/cdn.bcapp.dev\/bcapp\/xergyqdz\/products\/33\/images\/244\/cocolee_anna_92855__77555.1412112686.500.659.jpg?c=1";
+                    ProductImageDescriptions[4] = "Image 5";
+                
+                    ThumbURLs[5] = "http:\/\/cdn.bcapp.dev\/bcapp\/xergyqdz\/products\/33\/images\/245\/HERO_cocolee_anna_92865__20303.1412112686.500.659.jpg?c=1";
+                    ProductImageDescriptions[5] = "Image 6";
+                                    
+
+                //Don't enable Zoomie (product image zoom) if on touch device
+                //Mouseenter/Mouseover events are not ideal for touch devices
+                //for more info search for this code in /script/main.js
+                if (('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0)){   
+                    var ShowImageZoomer = 0;
+                } else {
+                    var ShowImageZoomer = 1;
+                }
+
+                var productId = 33;
+            //]]>
+            </script>
+
+            <div class="Block Moveable Panel PrimaryProductDetails no-ptop" id="ProductDetails">
+                <div class="BlockContent">
+            
+                    <div class="DetailRow">
+                    </div>
+
+                    <!-- left-content -->
+                    <div class="left-content">
+                        <script type="text/javascript" src="/assets/js/fancybox/fancybox.js?"></script>
+                        <link rel="stylesheet" type="text/css" href="/assets/js/fancybox/fancybox.css" media="screen" />
+
+                        <div id="LightBoxImages" style="display: none;"><!--  -->
+                            <a class="iframe" href="/productimage.php?product_id=33"></a>
+                        </div>
+
+                        <script type="text/javascript">
+                            //<![CDATA[
+                            var originalImages = '';
+                            function showProductImageLightBox(TargetedImage) {
+                                var currentImage=0;
+                                if(TargetedImage) {
+                                    currentImage = TargetedImage;
+                                } else if(CurrentProdThumbImage!='undefined'){
+                                    currentImage = CurrentProdThumbImage;
+                                }
+                                if(ShowVariationThumb) {
+                                    var url = "/productimage.php?product_id=33&image_rule_id=" + encodeURIComponent(ShowVariationThumb);
+                                } else {
+                                    var url = "/productimage.php?product_id=33&current_image="+currentImage;
+                                }
+                                $('#LightBoxImages a').attr("href", url);
+
+                                initProductLightBox();
+
+                                $('#LightBoxImages a').trigger('click');
+                            }
+
+                            function initProductLightBox() {
+
+                                var w = $(window).width();
+                                var h = $(window).height();
+
+                                // tiny image box width plus 3 px margin, times the number of tiny images, plus the arrows width
+                                var carouselWidth = (64 + 3) * Math.min(10, 7) + 70;
+
+                                //the width of the prev and next link
+                                var navLinkWidth = 250;
+
+                                var requiredNavWidth = Math.max(carouselWidth, navLinkWidth);
+
+                                // calculate the width of the widest image after resized to fit the screen.
+                                // 200 is the space betewn the window frame and the light box frame.
+                                var wr = Math.min(w-200, 500) / 500;
+                                var hr = Math.min(h-200, 750) / 750;
+
+                                var r = Math.min(wr, hr);
+
+                                var imgResizedWidth = Math.round(r * 500);
+                                var imgResizedHeight = Math.round(r * 750);
+
+                                //calculate the width required for lightbox window
+                                var horizontalPadding = 100;
+                                var width = Math.min(w-100, Math.max(requiredNavWidth, imgResizedWidth+ horizontalPadding));
+                                var height = h-100;
+
+                                $('#LightBoxImages a').fancybox({
+                                    'frameWidth'    : width,
+                                    'frameHeight'   : height,
+                                    callbackOnStart : function(){
+                           $('.zoomPad').css('z-index',0);
+                                   },
+                                   callbackOnClose : function(){
+                                       $('.zoomPad').css('z-index',90);
+                                   }
+                                });
+                            }
+
+                            $(document).ready(function() { originalImages = $('#LightBoxImages').html(); });
+                            //]]>
+                        </script>
+
+                        <div class="ProductThumbImage">
+                            <a rel="prodImage" style="margin:auto;" href="{{ product.images.zoom_image }}"  onclick="showProductImageLightBox(); return false; return false;">
+                                <img src="{{ product.images.image }}" alt="Image 1" title="Image 1" />
+                            </a>
+                        </div>
+
+                        <div class="ProductThumb device_only" style="" id="ProductThumbDesktop">
+                            <div class="ImageCarouselBox" style="margin:0 auto; ">
+                                <a id="ImageScrollPrev" class="prev" href="#"><img src="/assets/images/LeftArrow.png" alt="" width="20" height="20" /></a>
+                                <div class="ProductTinyImageList">
+                                    <ul>
+                                        {{#each product.images.variants}}
+                                        <li style = "height:83px; width:64px;"  onclick="showProductImageLightBox(0); return false;" onmouseover="showProductThumbImage(0, this)" id="TinyImageBox_0">
+                                            <div class="TinyOuterDiv" style = "height:79px; width:60px;">
+                                                <div style = "height:79px; width:60px;">
+                                                    <a href="javascript:void(0);" rel='{"gallery": "prodImage", "smallimage": "{{ small }}", "largeimage": "{{ large }}"}'><img id="TinyImage_0" style="padding-top:6px;" width="44" height="66" src="{{ thumb }}" alt="Image 1" title="Image 1" /></a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        {{/each}}
+                                    </ul>
+                                </div>
+                                <a id="ImageScrollNext" class="next" href="#"><img src="/assets/images/RightArrow.png" alt="" width="20" height="20" /></a>
+                            </div>
+                            <div style="display:none;" class="SeeMorePicturesLink">
+                                <a href="#" onclick="showProductImageLightBox(); return false; return false;" class="ViewLarger">See 5 more pictures</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product Details Content -->
+                    <div class="ProductMain">
+                        <div class="ProductDetailsGrid">
+                            <div class="Value" style="display: ">
+                                <h6 class="BrandName"><a  href="{{ product.brand.link }}">{{ product.brand.name }}</a></h6>
+                            </div>
+                            <h1>{{ product.title }}</h1>
+                            <div class="DetailRow PriceRow p-price" style="">
+                                <div class="Value">
+                                    <span class="ProductPrice RetailPrice"></span>
+                                    <span class="ProductPrice VariationProductPrice">$59.00</span>
+                                </div>
+                            </div>
+                            <div class="s-price">
+                                 
+                            </div>
+                            
+                            <!--Small Device Only-->
+                            <div class="left-content">
+                                <div class="ProductThumb only_mobile" style="" id="ProductThumbMobile"></div>
+                             </div>
+                            <!--Small Device Only-->
+                        </div>
+
+                        
+
+                        <div class="clear"></div> 
+
+                        <div class="productAddToCartRight">
+                        <form method="post" action="/cart.php" onsubmit="return check_add_to_cart(this, false) " enctype="multipart/form-data" id="productDetailsAddToCartForm">
+                            <input type="hidden" name="action" value="add" />
+                            <input type="hidden" name="product_id" value="{{ product.id }}" />
+                            <input type="hidden" name="variation_id" class="CartVariationId" value="" />
+                            <input type="hidden" name="currency_id" value="" />
+                            <div class="ProductDetailsGrid ProductAddToCart">
+                                <!-- details grid -->
+
+                                <div class="DetailRow ProductSKU" style="display: ">
+                                    <div class="Label">SKU:</div>
+                                    <div class="Value">
+                                        <span class="VariationProductSKU">
+                                            {{ product.sku }}
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="DetailRow" style="display: none">
+                                    <div class="Label">Vendor:</div>
+                                    <div class="Value">
+                                        {{ product.vendor }}
+                                    </div>
+                                </div>
+
+                                <div class="DetailRow" style="display: none">
+                                    <div class="Label">Condition:</div>
+                                    <div class="Value">
+                                        {{ product.condition }}
+                                    </div>
+                                </div>
+
+                                <div class="DetailRow" style="display: ">
+                                    <div class="Label">Weight:</div>
+                                    <div class="Value">
+                                        <span class="VariationProductWeight">
+                                            {{ product.weight }}
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="DetailRow" style="display: none">
+                                    <div class="Label">Availability:</div>
+                                    <div class="Value">
+                                            {{ product.availability }}
+
+                                    </div>
+                                </div>
+
+                                <div class="DetailRow" style="display: ">
+                                    <div class="Label">Shipping:</div>
+                                    <div class="Value">
+                                        Calculated at checkout (??)
+                                    </div>
+                                </div>
+
+                                <div class="DetailRow" style="display:none;">
+                                    <div class="Label">Minimum Purchase:</div>
+                                    <div class="Value">
+                                        unit(s)
+                                    </div>
+                                </div>
+
+                                <div class="DetailRow" style="display:none;">
+                                    <div class="Label">Maximum Purchase:</div>
+                                    <div class="Value">
+                                        {{ product.maxqty }} unit(s) (not implemented yet)
+                                    </div>
+                                </div>
+
+                                <div class="DetailRow InventoryLevel" style="display: none;">
+                                    <div class="Label">:</div>
+                                    <div class="Value">
+                                        <span class="VariationProductInventory">
+                                                                    
+                                                                </span>
+                                    </div>
+                                </div>
+
+                                <div class="DetailRow" style="display: none">
+                                    <div class="Label">Gift Wrapping:</div>
+                                    <div class="Value">
+
+                                    </div>
+                                </div>
+
+
+                                <!-- details grid -->
+
+
+
+                                <div class="ProductOptionList">
+
+                                </div>
+
+                                <div class="productAttributeList" style="">
+                                    {{{ product.attributes }}}
+                                </div>
+
+
+                                <div class="DetailRow qty" style="display: ">
+                                    <div class="Label QuantityInput">Quantity:</div>
+                                    <div class="Value AddCartButton">
+                                        <span style="display: ;" class="quantity">
+                                            <select id="qty_" name="qty[]" class="Field45 quantityInput" style="">
+                                                <option selected="selected" value="1">1</option>
+                                                <option  value="2">2</option>
+                                                <option  value="3">3</option>
+                                                <option  value="4">4</option>
+                                                <option  value="5">5</option>
+                                                <option  value="6">6</option>
+                                                <option  value="7">7</option>
+                                                <option  value="8">8</option>
+                                                <option  value="9">9</option>
+                                                <option  value="10">10</option>
+                                                <option  value="11">11</option>
+                                                <option  value="12">12</option>
+                                                <option  value="13">13</option>
+                                                <option  value="14">14</option>
+                                                <option  value="15">15</option>
+                                                <option  value="16">16</option>
+                                                <option  value="17">17</option>
+                                                <option  value="18">18</option>
+                                                <option  value="19">19</option>
+                                                <option  value="20">20</option>
+                                                <option  value="21">21</option>
+                                                <option  value="22">22</option>
+                                                <option  value="23">23</option>
+                                                <option  value="24">24</option>
+                                                <option  value="25">25</option>
+                                                <option  value="26">26</option>
+                                                <option  value="27">27</option>
+                                                <option  value="28">28</option>
+                                                <option  value="29">29</option>
+                                                <option  value="30">30</option>
+                                            </select>
+                                        </span>
+                                        <div class="clear"></div>
+                                    </div>
+                                </div>
+
+                                <div class="OutOfStockMessage InfoMessage ErrorMessage">
+
+                                </div>
+
+                                <div class="addto">
+                                    <div class="BulkDiscountLink" style="display: none;">
+                                        <a href="#" onclick="$.iModal({data: $('#ProductDetailsBulkDiscountThickBox').html(), width: 600}); return false;">
+                                                                    Buy in bulk and save
+                                                                </a>
+                                    </div>
+
+                                    <div class="BulkDiscount DetailRow" style="display: ">
+
+                                        <input type="submit" class="btn strongCta large add-to-cart add-to-cart-large AddCartButton" value="Add To Cart" />
+
+                                    </div>
+
+                                    <!-- //Custom Add to Wishlist -->
+                                </div>
+                                <!-- addto -->
+                                <!-- Add to Wishlist  -->
+                                <div style="display:" id="SideProductAddToWishList" class="Block Moveable Panel AddToWishlistLink">
+                                    <input value="Add to Wishlist" type="button" class="btn alt wishTrigger" title="Add to Wishlist" />
+
+                                    <div class="shareSlide" id="slidemarginleft">
+                                        <div class="inner" style="margin-left: 300px;" id="share_btns">
+                                            <div class="Clear AddThisButtonBox">
+                                                <!-- AddThis Button BEGIN -->
+                                                <div class="addthis_toolbox addthis_default_style ">
+                                                    <a class="addthis_button_facebook"></a>
+                                                    <a class="addthis_button_email"></a>
+                                                    <a class="addthis_button_print"></a>
+                                                </div>
+                                                <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4e94ed470ee51e32"></script>
+                                                <!-- AddThis Button END -->
+                                            </div>
+                                        </div>
+                                        <div class="inner" id="share_txt">Share</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+
+                        <!-- Add to Wishlist -->
+
+                        <div class="Block Moveable Panel AddToWishlistLink" id="SideProductAddToWishList" style="display: none">
+                            <div class="BlockContent">
+                                <form name="frmWishList" id="frmWishList" action="/wishlist.php" method="get">
+                                    <input type="hidden" name="action" value="add" />
+                                    <input type="hidden" name="product_id" value="33" />
+                                    <input type="hidden" name="variation_id" value="" class="WishListVariationId"/>
+                                    <input type="submit" class="wishlist-button" value="Add to wishlist" alt="Add to Wish List" />
+                                </form>
+                            </div>
+                        </div>
+
+                        <!-- //Custom Add to Wishlist -->
+
+
+
+                        <script language="javascript" type="text/javascript">
+                        //<![CDATA[
+                            lang.OptionMessage = "";
+                            lang.VariationSoldOutMessage = "The selected product combination is currently unavailable.";
+                            lang.InvalidQuantity = "Please enter a valid product quantity.";
+                            lang.EnterRequiredField = "Please enter the required field(s).";
+                            lang.InvalidFileTypeJS = "The file type of the file you are trying to upload is not allowed for this field.";
+                            var ShowAddToCartQtyBox = "1";
+                            productMinQty=0;productMaxQty=Number.POSITIVE_INFINITY;
+                        //]]>
+                        </script>
+                        <script language="javascript" type="text/javascript">
+                        //<![CDATA[
+                            $(document).ready(function() {
+                                $('#share_txt').click(function() {
+                                    
+                                    $('#share_txt').fadeOut();
+                                    var $marginLefty = $('#share_btns');
+                                    $marginLefty.stop(false, true).animate({
+                                        marginLeft: 0
+                                    });
+                                });
+                            });
+                        //]]>
+                        </script>
+
+                    </div>
+
+            
+            
+                    <div class="clear"></div>
+                    
+                    <div class="DetailRow starRatingCnt" style="display: none">
+                        <div class="Value">
+                            <span>
+                                <img  src="/assets/images/IcoRating0.png" alt="" />
+                                <span style="display:none">
+                                    <a href="#ProductReviews" onclick="">
+                                        
+                                    </a>
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+            
+                    <div class="clear"></div>
+            
+                    <div class="PinterestButtonContainer">
+                        <a href="http://pinterest.com/pin/create/button/?url=http://s1418669927.bcapp.dev/sample-anna-multi-colored-bangles/&media={{ product.images.zoom_image }}&description=s1418669927 - {{ product.title }}, $59.00 (http://s1418669927.bcapp.dev/sample-anna-multi-colored-bangles/)" data-pin-do="buttonPin" target="_blank">
+                            <img src="../../../custom/pinit3.png" alt="Pin It" />
+                        </a>
+                    </div>
+           
+            
+                    <div class="clear"></div>
+
+            <div class="Content" id="prodAccordion">
+                <div class="Block Moveable Panel" id="ProductTabs" style="display:none;"></div>
+                <div class="Block Moveable Panel ProductDescription" id="ProductDescription">
+                    <h2 class="subtitle">Product Description</h2>
+                    <div class="ProductDescriptionContainer prodAccordionContent">
+                        
+                        {{{ product.description }}}
+                        
+                    </div>
+                    <!--<hr style="" class="ProductSectionSeparator" />-->
+                </div>
+
+                <div class="Block Moveable Panel" id="ProductVideos" style="display:none;"></div>        
+                <div class="Block Moveable Panel" id="ProductWarranty" style="display:none;"></div>
+                <div class="Block Moveable Panel" id="ProductOtherDetails" style="display:none;"></div>
+                <div class="Block Moveable Panel" id="SimilarProductsByTag" style="display:none;"></div>
+                <div class="Block Moveable Panel" id="ProductReviews">
+                    <h2 class="subtitle">Product Reviews</h2>
+                    <div class="prodAccordionContent">
+                        <a href="#" onclick="show_product_review_form(); return false;" class="btn">Write Review</a>
+
+                        <div class="BlockContent">
+    
+                            <a id="write_review"></a>
+                            <script type="text/javascript">
+                                lang.ReviewNoRating = "Please select a rating.";
+                                lang.ReviewNoTitle = "Please enter a title for your review.";
+                                lang.ReviewNoText = "Please enter some text for your review.";
+                                lang.ReviewNoCaptcha = "Please enter the code shown.";
+                                lang.ReviewNoEmail = "Please enter your email address.";
+                                var RecaptchaOptions = {
+                                    theme : 'clean'
+                                };
+                            </script>
+                            <form action="/postreview.php" style="display: none;" method="post" class="ProductReviewForm" id="rating_box" onsubmit="return check_product_review_form();">
+                                <input type="hidden" name="action" value="post_review"/>
+                                <input type="hidden" name="product_id" value="33"/>
+                                <input type="hidden" name="throttleToken" value=""/>
+                                <h4>Write Your Own Review</h4>
+                                <div class="FormContainer VerticalFormContainer">
+                                    <dl class="ProductReviewFormContainer">
+                                        <dt><label>How do you rate this product?</label></dt>
+                                        <dd>
+                                            <select name="revrating" id="revrating">
+                                                <option value=""> </option>
+                                                <option value="5"
+                                                >5 stars (best)</option>
+                                                <option value="4"
+                                                >4 stars</option>
+                                                <option value="3"
+                                                >3 stars (average)</option>
+                                                <option value="2"
+                                                >2 stars</option>
+                                                <option value="1"
+                                                >1 star (worst)</option>
+                                            </select>
+                                        </dd>
+
+                                        <dt><label>Write a headline for your review here:</label></dt>
+                                        <dd><input name="revtitle" id="revtitle" type="text" class="Textbox" value=""/></dd>
+
+                                        <dt><label>Write your review here:</label></dt>
+                                        <dd><textarea name="revtext" id="revtext" rows="8" cols="50"></textarea></dd>
+
+                                        <dt style="display: "><label>Your email:</label></dt>
+                                        <dd style="display: ">
+                                            <input type="text" name="email" id="email" class="Textbox" value="mcampa@gmail.com">
+                                            <p class="ReviewEmailHint">We promise to never spam you, and just use your email address to identify you as a valid customer.</p>
+                                        </dd>
+
+                                        <dt><label>Enter your name: (optional)</label></dt>
+                                        <dd><input name="revfromname" id="revfromname" type="text" class="Textbox" value="Mario Campa"/></dd>
+
+                                        <dt style="display: "><label>Enter the code below:</label></dt>
+                                        <dd style="display: ">
+                                            <script type="text/javascript" src="https://www.google.com/recaptcha/api/challenge?k=6LdWf8gSAAAAAI83aRectJhbwidegZKk8PzWBltH"></script>
+                                            <noscript>
+                                                <iframe src="https://www.google.com/recaptcha/api/noscript?k=6LdWf8gSAAAAAI83aRectJhbwidegZKk8PzWBltH" height="300" width="500" frameborder="0"></iframe>
+                                                <textarea name="recaptcha_challenge_field" rows="3" cols="40">
+                                                </textarea>
+                                                <input type="hidden" name="recaptcha_response_field" value="manual_challenge">
+                                            </noscript>
+                                        </dd>
+                                    </dl>
+                                    <p class="Submit">
+                                        <input type="submit" value="Save My Review" class="btn" />
+                                    </p>
+                                </div>
+                            </form>
+
+                            <p style="display: ">
+                                This product hasn't received any reviews yet. Be the first to review this product!
+                            </p>
+
+
+                            <script type="text/javascript">
+                                //<![CDATA[
+                                var HideReviewCaptcha = "";
+
+                                // Should we automatically open the review form?
+                                if ("" == "1") {
+                                    show_product_review_form();
+                                }
+
+                                if ("" == "1") {
+                                    jump_to_product_reviews();
+                                }
+                                //]]>
+                            </script>
+    
+                        </div>
+                    </div>
+                </div>
+                 <!--Panel.ProductVendorsOtherProducts -->
+            </div>
+
+        </div>
+        <div class="clear"></div>
+        
+    </div>
+</div>
+<div class="Block Moveable Panel" id="SimilarProductsByCustomerViews" style="display:none;">
+</div>
+<div class="Block SideRelatedProducts Moveable Panel" style="display:" id="SideProductRelated">
+    <h3>Related Products</h3>
+    <div class="BlockContent">
+        <ul class="ProductList">
+            {{#each product.realted_products}}
+            <li>
+                <div class="ProductImage">
+                    {{{ thumb }}}
+                    </a>
+                </div>
+                <div class="ProductDetails">
+                    <input type="hidden" name="ProductDetailsID" class="ProductDetailsID" value="{{ id }}" />
+                    <a href="{{ link }}" class="pname">{{ name }}</a>
+                    <em>{{ price }}</em>
+                    <span class="Rating Rating{{ rating }}"><img src="/assets/images/IcoRating0.gif" alt="" style="" /></span>
+                </div>
+            </li>
+            {{/each}}
+        </ul>
+    </div>
+</div>
+<div class="clear"></div>
+</div>
+</div>
+<div class="footer">
+    <div class="inner">
+        <div class="footer-main">
+            <div class="inner">
+                <div class="footer-columns grid">
+                    <div class="grid__item one-quarter">
+                        <ul class="pages-menu sf-menu sf-horizontal sf-js-enabled">
+                            <li class=" ">
+                                <a href="/blog/"><span>Blog</span></a>
+
+                            </li>
+                            <li class=" ">
+                                <a href="/shipping-returns/"><span>Shipping &amp; Returns</span></a>
+
+                            </li>
+                            <li class=" ">
+                                <a href="/rss-syndication/"><span>RSS Syndication</span></a>
+
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="grid__item one-quarter">
+                        <div class="Block CategoryList Panel">
+                            <h4>Categories</h4>
+                            <div class="BlockContent">
+                                <ul class="sf-menu sf-horizontal">
+                                    <li><a href="/ladies/" data-hover="Ladies">Ladies</a>
+                                        <ul>
+                                            <li><a href="/ladies-1/" data-hover="Bags">Bags</a>
+                                            </li>
+                                            <li><a href="/accessories-2/" data-hover="Dresses">Dresses</a>
+                                            </li>
+                                            <li><a href="/shoes/" data-hover="Shoes">Shoes</a>
+                                            </li>
+
+                                        </ul>
+                                    </li>
+                                    <li><a href="/mens/" data-hover="Mens">Mens</a>
+                                        <ul>
+                                            <li><a href="/new-category/" data-hover="Bags">Bags</a>
+                                            </li>
+
+                                        </ul>
+                                    </li>
+                                    <li><a href="/accessories-3/" data-hover="Accessories">Accessories</a>
+                                    </li>
+                                    <li><a href="/sale/" data-hover="Sale">Sale</a>
+                                    </li>
+
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid__item one-quarter">
+                        <div class="BrandList Moveable Panel slist" id="SideShopByBrand" style="display: ">
+                            <h4>Brands</h4>
+                            <div class="BlockContent">
+                                <ul>
+                                    <li><a href="/brands/Coco-Lee.html">Coco Lee</a>
+                                    </li>
+                                    <li><a href="/brands/Collette.html">Collette</a>
+                                    </li>
+                                    <li><a href="/brands/Anna.html">Anna</a>
+                                    </li>
+                                    <li><a href="/brands/French-Connection.html">French Connection</a>
+                                    </li>
+                                    <li><a href="/brands/GANTT.html">GANTT</a>
+                                    </li>
+                                    <li><a href="/brands/Jimmy-Choo.html">Jimmy Choo</a>
+                                    </li>
+                                    <li><a href="/brands/Mango.html">Mango</a>
+                                    </li>
+                                    <li><a href="/brands/Sass-%26-Bide.html">Sass &amp; Bide</a>
+                                    </li>
+                                    <li><a href="/brands/Benjamin-Button.html">Benjamin Button</a>
+                                    </li>
+                                    <li><a href="/brands/Burberry.html">Burberry</a>
+                                    </li>
+                                </ul>
+                                <strong class="afterSideShopByBrand"><a href="/brands/">View all brands</a></strong>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid__item one-fifth">
+                        <div id="socnet" class="Block SocialConnect Moveable Panel">
+                            <h4>Connect with us</h4>
+                            <ul>
+                                <li><a href="http://www.facebook.com/Bigcommerce" class="icon-social icon-social-theme icon-facebook" title="Facebook">Facebook</a>
+                                </li>
+                                <li><a href="http://twitter.com/Bigcommerce" class="icon-social icon-social-theme icon-twitter" title="Twitter">Twitter</a>
+                                </li>
+                                <li><a href="http://pinterest.com/bigcommerce/" class="icon-social icon-social-theme icon-pinterest" title="Pinterest">Pinterest</a>
+                                </li>
+                                <li><a href="https://plus.google.com/+bigcommerce" class="icon-social icon-social-theme icon-googleplus" title="GooglePlus">GooglePlus</a>
+                                </li>
+                                <li><a href="http://www.youtube.com/BigcommerceDotCom" class="icon-social icon-social-theme icon-youtube" title="YouTube">YouTube</a>
+                                </li>
+                                <li><a href="http://www.linkedin.com/company/bigcommerce_2" class="icon-social icon-social-theme icon-linkedin" title="LinkedIn">LinkedIn</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="newsletter-subscription" id="SideNewsletterBox">
+            <div class="inner">
+                <div class="grid">
+                    <div class="grid__item one-quarter">
+
+                        <h4>newsletter Signup</h4>
+                    </div>
+                    <div class="grid__item three-quarters">
+
+
+                        <form action="/subscribe.php" method="post" id="subscribe_form" class="subscribe_form" name="subscribe_form">
+                            <input type="hidden" name="action" value="subscribe" />
+                            <ul>
+                                <li class="inputForm">
+                                    <label for="nl_first_name">Name</label>
+                                    <input class="Textbox autobox" value="Name" id="nl_first_name" name="nl_first_name" type="text" />
+                                </li>
+                                <li class="inputForm">
+                                    <label for="nl_email">Email</label>
+                                    <input class="Textbox autobox" value="Email" id="nl_email" name="nl_email" type="text" />
+                                </li>
+                                <li>
+
+                                    <input value="Submit" class="btn alt" type="submit" />
+
+                                </li>
+                            </ul>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            // <!--
+            $('#subscribe_form').submit(function() {
+                if ($('#nl_first_name').val() == '') {
+                    alert('You forgot to type in your first name.');
+                    $('#nl_first_name').focus();
+                    return false;
+                }
+
+                if ($('#nl_email').val() == '') {
+                    alert('You forgot to type in your email address.');
+                    $('#nl_email').focus();
+                    return false;
+                }
+
+                if ($('#nl_email').val().indexOf('@') == -1 || $('#nl_email').val().indexOf('.') == -1) {
+                    alert('Please enter a valid email address, such as john@example.com.');
+                    $('#nl_email').focus();
+                    $('#nl_email').select();
+                    return false;
+                }
+
+                // Set the action of the form to stop spammers
+                $('#subscribe_form').append("<input type=\"hidden\" name=\"check\" value=\"1\" \/>");
+                return true;
+
+            });
+            // -->
+        </script>
+
+
+        <div class="footer-links">
+            <div class="inner">
+                <p><span id="currencyPrices">All prices are in <span title='US Dollars'>USD</span>.</span> &copy; 2015 s1418669927. <span class="pipe">|</span>
+                    <a href="/sitemap/"><span>Sitemap</span></a>
+                    <span class="pipe">|</span> <span class="powered-by">Powered by <a rel="nofollow" href="http://www.bigcommerce.com">Bigcommerce</a></span>
+                </p>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+<script type="text/javascript" src="http://cdn.bcapp.dev/vagrant/bigcommerce/javascript/bc_pinstrumentation.min.js"></script>
+<script type="text/javascript" src="http://cdn.bcapp.dev/vagrant/bigcommerce/javascript/superfish/js/jquery.bgiframe.min.js"></script>
+<script type="text/javascript" src="http://cdn.bcapp.dev/vagrant/bigcommerce/javascript/superfish/js/superfish.js"></script>
+<script type="text/javascript">
+    $(function() {
+        if (typeof $.fn.superfish == "function") {
+            $("ul.sf-menu").superfish({
+                    delay: 800,
+                    dropShadows: false,
+                    speed: "fast"
+                })
+                .find("ul")
+                .bgIframe();
+        }
+    })
+</script>
+
+<script type="text/javascript" src="http://cdn.bcapp.dev/vagrant/bigcommerce/javascript/bc_pinterest.min.js"></script>
+
+<script type="text/javascript" src="http://cdn.bcapp.dev/vagrant/bigcommerce/javascript/superfish/js/jquery.bgiframe.min.js"></script>
+<script type="text/javascript" src="http://cdn.bcapp.dev/vagrant/bigcommerce/javascript/superfish/js/superfish.js?bcf2c"></script>
+<script type="text/javascript">
+    $(function() {
+        if (typeof $.fn.superfish == "function") {
+            $("ul.sf-menu").superfish({
+                    delay: 800,
+                    dropShadows: false,
+                    speed: "fast"
+                })
+                .find("ul")
+                .bgIframe();
+        }
+    })
+</script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        // attach fast cart event to all 'add to cart' link
+        $(".ProductActionAdd a[href*='cart.php?action=add']").click(function(event) {
+            fastCartAction($(this).attr('href'));
+            return false;
+        });
+    });
+</script>
+
+
+
+<script type="text/javascript">
+    function initiateImageZoomer() {
+        // clone the A tag and save it for reuse later
+        if (!$('.ProductThumbImage').data('originalAElement')) {
+            $('.ProductThumbImage').data('originalAElement', $('.ProductThumbImage').html());
+        }
+
+        if (ShowImageZoomer) {
+            var fullSrc = $('.ProductThumbImage a').attr('href');
+            $('.ProductThumbImage img').data('full-src', fullSrc).zoomie();
+        }
+
+    }
+    $(document).ready(function() {
+        if ($('.videoRow').size() > 0) {
+            $('.videoRow').bind('click', function() {
+                var videoId = $(this).attr('id').replace('video_', '');
+                $('#FeaturedVideo').html('<object width="398" height="330">' + '<param name="movie" value="//www.youtube.com/v/' + videoId + '?fs=1"></param>' + '<param name="allowFullScreen" value="true"></param>' + '<param name="allowscriptaccess" value="always"></param>' + '<embed src="//www.youtube.com/v/' + videoId + '?&fs=1&autoplay=1" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="398" height="330"></embed>' + '</object>');
+                selectCurrentVideo(videoId);
+            });
+        }
+        if (location.hash === '#ProductReviews') {
+            ActiveProductTab("ProductReviews_Tab");
+        }
+    });
+</script>
+</div>
+</body>
+</html>

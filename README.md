@@ -1,3 +1,3 @@
-# Master Theme
+# Stencil
 
-The base Bigcommerce theme from which 3rd party developers can model new themes from.
+The building block for Bigcommerce theme developers to get started quickly developing premium quality themes on the Bigcommerce platform.

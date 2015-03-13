@@ -1,14 +1,18 @@
-Base Layout Here
-{{ head.title }}<br>
-{{ head.meta.description }}<br>
-{{ head.meta.tags }}<br>
-{{ head.favicon }}<br>
-{{ head.stylesheets }}<br>
-{{ head.rsslinks }}<br>
-{{ head.scripts }}<br>
-{{ type }} <br>
-{{> includes/navigation}}<br>
-End Base Layout
-{{#block "page"}}
-DEFAULT BLOCK
-{{/block}}
+<!DOCTYPE html>
+<html>
+<head>
+	{{ head.meta.tags }}
+	<title>{{ head.title }}</title>
+	{{ head.meta.description }}
+	{{ head.favicon }}
+	{{ head.stylesheets }}
+	{{ head.rsslinks }}
+	{{ head.scripts }}
+</head>
+<body>
+	{{> includes/header }}
+	{{#block "page"}} {{/block}}
+	{{> includes/footer }}
+	{{footer.scripts}}
+</body>
+</html>

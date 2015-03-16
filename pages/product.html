@@ -1,78 +1,25 @@
 ---
-relatedProducts: 1
+related_products: 1
 ---
 {{#partial "page"}}
-
-    CRUMBS: {{ breadcrumbs }}<br>
-    ID: {{ product.id }}<br>
-    SKU: {{ product.sku }}<br>
-    UPC: {{ product.upc }}<br>
-    TITLE: {{ product.title }}<br>
-    DESC: <p>{{ product.description }}</p>
-    DETAIL_MESSAGES: {{product.detail_messages}}<br>
-    Minimum Purchase: {{ product.min_purchase_quantity }} units<br>
-    Maximum Purchase: {{ product.max_purchase_quantity }} units<br>
-    Quantity in Cart: {{ product.cart_quantity }} units<br>
-    Show AddToCart: {{ product.show_add_to_cart }}<br>
-    CartLink: {{ product.cart_link }}<br>
-    Show Quantity: {{ product.show_quantity_input }}<br>
-    Quantity Input Type: {{ product.quantity_input_type }}<br>
-    <div class="productAttributeList" style="">
-        {{ product.attributes }}
-    </div><br>
-    {{ product.configurable_fields }}<br>
-    Price: {{ product.price.base }}<br>
-    Retail Price: {{ product.price.retail }}<br>
-    You Save: {{ product.price.you_save }}<br>
-
-    Weight: {{ product.weight }}<br>
-    Height: {{ product.height }}<br>
-    Width: {{ product.width }}<br>
-    Depth: {{ product.depth }}<br>
-    Rating: {{ product.rating }}<br>
-    Show Rating: {{ product.show_rating }}<br>
-    Num Reviews: {{ product.num_reviews }}<br>
-    Bulk Discount Title: {{ product.bulk_discount_title }}<br>
-    Bulk Discount Rates: {{ product.bulk_discount_rates }}<br>
-    Condition: {{ product.condition }}<br>
-    Availability: {{ product.availability }}<br>
-    Brand Name: {{ product.brand.name }}<br>
-    Brand Link: {{ product.brand.link }}<br>
-    Zoom Image: {{ product.images.zoom_image }}<br>
-    Thumbnail: {{ product.image }}<br>
-    Show Thumbnail Carousel: {{ product.show_carousel }}<br>
-    <a href="{{ product.images.zoom_image }}">
-        <img src="{{ product.images.image }}">
-    </a><br>
-    {{#if product.show_carousel}}
-    <ul>
-        {{#each product.images.variants}}
-        <li style = "height:83px; width:64px;"  onclick="showProductImageLightBox(0); return false;" onmouseover="showProductThumbImage(0, this)" id="TinyImageBox_0">
-            <div class="TinyOuterDiv" style = "height:79px; width:60px;">
-                <div style = "height:79px; width:60px;">
-                    <a href="javascript:void(0);" rel='{"gallery": "prodImage", "smallimage": "{{ small }}", "largeimage": "{{ large }}"}'><img id="TinyImage_0" style="padding-top:6px;" width="44" height="66" src="{{ thumb }}" alt="Image 1" title="Image 1" /></a>
-                </div>
-            </div>
-        </li>
-        {{/each}}
-    </ul>
-    {{/if}}
-    {{ product.id }}<br>
-
-
-
-    <p>{{ product.videos }}</p>
-    <p>{{ product.warranty }}</p>
-    <ul>
-        {{#each product.related_products}}
-        <li>
-            {{{ thumb }}}
-            <input type="hidden" name="ProductDetailsID" class="ProductDetailsID" value="{{ id }}" />
-            <a href="{{ link }}" class="pname">{{ name }}</a>
-            <em>{{ price }}</em>
-            <span class="Rating Rating{{ rating }}"></span>
-        </li>
-        {{/each}}
-    </ul>
+    {{> components/common/breadcrumbs breadcrumbs}}
+    {{product.detail_messages}}
+    <h1>{{ product.title }}</h1>
+    <h2>{{ product.price.base }}</h2>
+    <a href="{{ product.images.initial_zoom_image }}">
+        <img src="{{ product.images.initial }}">
+    </a>
+    <p>{{{ product.description }}}</p>
+<h2>Related Products</h2>
+<ul>
+    {{#each product.related_products}}
+    <li>
+        {{{ image }}}
+        <a href="{{ url }}" class="pname">{{ name }}</a>
+        <em>{{ price }}</em>
+        <span class="Rating Rating{{ rating }}"></span>
+    </li>
+    {{/each}}
+</ul>
 {{/partial}}
 {{> layout/base}}

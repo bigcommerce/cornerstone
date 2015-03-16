@@ -1,0 +1,17 @@
+{{#if previous}}
+    <a href="{{previous}}" alt="Previous">Previous</a>
+{{/if}}
+<ul>
+    {{#each this.links}}
+    <li>
+        {{#if current}}
+            {{number}}
+        {{else}}
+            <a href="{{url}}" alt="Page {{number}}">{{number}}</a>
+        {{/if}}
+    </li>
+    {{/each}}
+</ul>
+{{#if next}}
+    <a href="{{next}}" alt="Next">Next</a>
+{{/if}}

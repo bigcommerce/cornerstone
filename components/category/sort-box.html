@@ -1,0 +1,14 @@
+<form action="{{this.url}}" method="get">
+    {{ hidden_sort_fields }}
+    <label for="sort">Sort By:</label>
+    <select name="sort" id="sort" onchange="this.form.submit()">
+        <option value="featured">Featured Items</option>
+        <option value="newest">Newest Items</option>
+        <option value="bestselling">Best Selling</option>
+        <option value="alphaasc">A to Z</option>
+        <option value="alphadesc">Z to A</option>
+        <option value="avgcustomerreview">By Review</option>
+        <option value="priceasc">Price: Ascending</option>
+        <option value="pricedesc">Price: Descending</option>
+    </select>
+</form>

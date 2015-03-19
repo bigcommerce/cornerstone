@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 <html>
-<head>
-	{{ head.meta.tags }}
-	<title>{{ head.title }}</title>
-	{{ head.meta.description }}
-	{{ head.favicon }}
-	{{ head.stylesheets }}
-	{{ head.rsslinks }}
-	{{ head.scripts }}
-</head>
-<body>
-	{{> includes/header }}
-	{{#block "page"}} {{/block}}
-	{{> includes/footer }}
-	{{footer.scripts}}
-</body>
+    <head>
+        {{{ head.meta.meta_tags }}}
+        <title>{{ head.title }}</title>
+        <link rel="shortcut icon" href="{{ head.favicon }}">
+        {{{ head.stylesheets }}}
+        {{{ head.rsslinks }}}
+        {{{ head.scripts }}}
+    </head>
+    <body>
+        {{> components/common/header }}
+        {{#block "page"}} {{/block}}
+        {{> components/common/footer }}
+        {{footer.scripts}}
+    </body>
 </html>

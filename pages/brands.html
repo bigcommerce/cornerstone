@@ -1,1 +1,21 @@
-brands.html
+{{#partial "page"}}
+<div class="main">
+    <h1>All Brands</h1>
+    <ul>
+        {{#each brand_list.brands}}
+        <li>
+            <a href="{{brand_link}}" alt="{{brand_name}}">{{brand_name}}
+            {{#if brand_list.show_images}}
+                <img src="{{brand_image}}" alt="{{brand_name}}">
+            {{/if}}
+            <span>{{brand_name}}</span>
+            </a>
+        {{/each}}
+        </li>
+    </ul>
+    <div>
+        {{#each
+    </div>
+</div>
+{{/partial}}
+{{> layout/base}}

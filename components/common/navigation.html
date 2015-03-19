@@ -1,15 +1,15 @@
 {{#each navigation}}
 <li>
-    <a href="{{url}}" data-hover="{{label}}">{{label}}</a>
+    <a href="{{url}}" data-hover="{{name}}">{{name}}</a>
     {{#if children}}
     <ul>
         {{#each children}}
         <li>
-            <a href="{{url}}" data-hover="{{label}}">{{label}}</a>
+            <a href="{{url}}" data-hover="{{name}}">{{name}}</a>
             {{#if children}}
             <ul>
                 {{#each children}}
-                <li> <a href="{{url}}" data-hover="{{label}}">{{label}}</a> </li>
+                <li> <a href="{{url}}" data-hover="{{name}}">{{name}}</a> </li>
                 {{/each}}
             </ul>
             {{/if}}

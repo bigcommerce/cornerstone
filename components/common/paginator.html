@@ -1,9 +1,10 @@
-{{#if previous}}
-    <a href="{{previous}}" alt="Previous">Previous</a>
-{{/if}}
 <ul>
+    {{#if previous}}
+    <li style="display: inline-block;"><a href="{{previous}}" alt="Previous">Previous</a></li>
+    {{/if}}
+
     {{#each this.links}}
-    <li>
+    <li style="display: inline-block;">
         {{#if current}}
             {{number}}
         {{else}}
@@ -11,7 +12,8 @@
         {{/if}}
     </li>
     {{/each}}
+
+    {{#if next}}
+    <li style="display: inline-block;"><a href="{{next}}" alt="Next">Next</a></li>
+    {{/if}}
 </ul>
-{{#if next}}
-    <a href="{{next}}" alt="Next">Next</a>
-{{/if}}

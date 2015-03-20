@@ -1,9 +1,27 @@
 <header>
-    {{#if show_logo}}
-    <img src="{{store.logo}}" alt="{{store.name}}">
-    {{else}}
-    <h1>{{common.store_name}}</h1>
-    {{/if}}
-    {{> components/common/currency-selector}}
+    <div class="row">
+        <div class="col-md-5">
+            <a href="/">{{#if show_logo}}
+            <img src="{{store.logo}}" alt="{{store.name}}">
+            {{else}}
+            <h1>{{common.store_name}}</h1></a>
+        </div>
+
+        {{/if}}
+        <div class="col-md-3">
+        {{#if customer }}
+        <a href="/account.php">My Account</a>
+        <a href="/login.php?action=logout">Sign Out</a>
+        {{else}}
+        <a href="/login.php">Login</a>
+        <a href="/login.php?action=create_account">Sign Up</a>
+        {{/if}}
+        <a href="/cart.php">View Cart</a>
+        </div>
+        <div class="col-md-3">
+            {{> components/common/currency-selector}}
+
+        </div>
+    </div>
     {{> components/common/navigation}}
 </header>

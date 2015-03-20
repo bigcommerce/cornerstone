@@ -1,11 +1,15 @@
 <ul>
     {{#each this}}
-    <li>
+
+    <li style="display: inline-block;">
         {{#if url}}
             <a href="{{url}}" alt="{{name}}">{{name}}</a>
         {{else}}
             {{name}}
         {{/if}}
     </li>
+    {{#unless @last }}
+    <li  style="display: inline-block;">→</li>
+    {{/unless}}
     {{/each}}
 </ul>

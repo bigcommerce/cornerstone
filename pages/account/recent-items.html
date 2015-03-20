@@ -1,1 +1,25 @@
-brand.html
+{{#partial "page"}}
+<div class="main row">
+    {{> components/common/breadcrumbs breadcrumbs}}
+    <div class="col-md-3">
+        {{>components/account/menu}}
+    </div>
+    <ul class="col-md-9">
+        {{#each recently_viewed_products.items}}
+        <li class="col-md-3">
+            <div><a href="{{{url}}}" alt="{{name}}">{{name}}</a></div>
+            <div>{{rating}}</div>
+            <div>{{{price}}}</div>
+            <div>{{{image}}}</div>
+            <div>{{date_added}}</div>
+            <div>{{pre_order}}</div>
+            <div>{{release_date}}</div>
+            <div>{{add_to_cart_text}}</div>
+            <div>{{show_add_to_cart}}</div>
+            <div>{{summary}}</div>
+        </li>
+        {{/each}}
+    </ul>
+</div>
+{{/partial}}
+{{> layout/base}}

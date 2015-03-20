@@ -1,9 +1,11 @@
 {{#partial "page"}}
 <div class="main">
     <h1>Cart</h1>
+    {{#each cart.status_messages}}
+    <div class="alert alert-info" role="alert">{{{message}}}</div>
+    {{/each}}
     {{#each cart.items}}
-        <div>{{name}}</div>
-
+    <div>{{quantity}} x {{name}} @ {{price}} = {{total}} <a href="/cart.php?action=remove&item={{id}}">Remove</a></div>
     {{/each}}
 </div>
 {{/partial}}

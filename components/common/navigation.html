@@ -1,21 +1,23 @@
-{{#each navigation}}
-<li>
-    <a href="{{url}}" data-hover="{{name}}">{{name}}</a>
-    {{#if children}}
-    <ul>
-        {{#each children}}
-        <li>
-            <a href="{{url}}" data-hover="{{name}}">{{name}}</a>
-            {{#if children}}
-            <ul>
-                {{#each children}}
-                <li> <a href="{{url}}" data-hover="{{name}}">{{name}}</a> </li>
-                {{/each}}
-            </ul>
-            {{/if}}
-        </li>
-        {{/each}}
-    </ul>
-    {{/if}}
-</li>
-{{/each}}
+<ul>
+    {{#each navigation}}
+    <li style="display: inline-block;">
+        <a href="{{url}}" data-hover="{{name}}">{{name}}</a>
+        {{#if children}}
+        <ul>
+            {{#each children}}
+            <li>
+                <a href="{{url}}" data-hover="{{name}}">{{name}}</a>
+                {{#if children}}
+                <ul>
+                    {{#each children}}
+                    <li> <a href="{{url}}" data-hover="{{name}}">{{name}}</a> </li>
+                    {{/each}}
+                </ul>
+                {{/if}}
+            </li>
+            {{/each}}
+        </ul>
+        {{/if}}
+    </li>
+    {{/each}}
+</ul>

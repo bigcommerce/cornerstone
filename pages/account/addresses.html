@@ -1,1 +1,28 @@
-brand.html
+{{#partial "page"}}
+<div class="main row">
+    {{> components/common/breadcrumbs breadcrumbs}}
+    <div class="col-md-3">
+        {{>components/account/menu}}
+    </div>
+    <div class="col-md-9">
+        <ul>
+            {{#each account.addresses}}
+            <li class="col-md-3">
+                <div>
+                    <a href="/account.php?action=edit_shipping_address&address_id={{ id }}&from={{ from_url }}">Edit</a>
+                    <a href="/account.php?action=delete_shipping_address&address_id={{ id }}&from={{ from_url }}">Delete</a>
+                </div>
+                <div>{{ first_name }} {{ last_name }}</div>
+                <div>{{ company }}</div>
+                <div>{{ address1 }}</div>
+                <div>{{ address2 }}</div>
+                <div>{{ city }}, {{ state }} {{ zip }}</div>
+                <div>{{ country }}</div>
+                <div>Phone: {{ phone }}</div>
+            </li>
+            {{/each}}
+        </ul>
+    </div>
+</div>
+{{/partial}}
+{{> layout/base}}

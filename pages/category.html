@@ -3,36 +3,39 @@ num_products: 20
 shop_by_price: true
 ---
 {{#partial "page"}}
-	<div class="main">
-		{{> components/common/breadcrumbs breadcrumbs}}
+<div class="main">
+    {{> components/common/breadcrumbs breadcrumbs}}
+
+    <aside class="col-md-3">
+        <ul>
+            {{#each category.subcategories}}
+            <li><a href="{{{url}}}" alt="{{name}}">{{name}}</a></li>
+            {{/each}}
+        </ul>
+        {{> components/category/shop-by-price category.shop_by_price}}
+    </aside>
+    <div class="col-md-9">
         {{> components/common/paginator category.pager}}
         {{> components/category/sort-box category}}
-		<aside>
-			<ul>
-			{{#each category.subcategories}}
-				<li><a href="{{{url}}}" alt="{{name}}">{{name}}</a></li>
-			{{/each}}
-			</ul>
-			
-			{{#unless faceted_search_enabled}}
-			{{> components/category/shop-by-price shop_by_price}}
-			{{/unless}}
-		</aside>
-		{{#each category.products}}
-			<div>
-				<div><a href="{{{url}}}" alt="{{name}}">{{name}}</a></div>
-				<div>{{rating}}</div>
-				<div>{{price}}</div>
-				<div>{{{image}}}</div>
-				<div>{{date_added}}</div>
-				<div>{{pre_order}}</div>
-				<div>{{release_date}}</div>
-				<div>{{add_to_cart_text}}</div>
-				<div>{{show_add_to_cart}}</div>
-				<div>{{summary}}</div>
-			</div>
-		{{/each}}
-		{{> components/common/paginator category.pager}}
-	</div>
+        <ul class="row">
+            {{#each category.products}}
+            <li class="col-md-3">
+                <div><a href="{{{url}}}" alt="{{name}}">{{name}}</a></div>
+                <div>{{rating}}</div>
+                <div>{{{price}}}</div>
+                <div>{{{image}}}</div>
+                <div>{{date_added}}</div>
+                <div>{{pre_order}}</div>
+                <div>{{release_date}}</div>
+                <div>{{add_to_cart_text}}</div>
+                <div>{{show_add_to_cart}}</div>
+                <div>{{summary}}</div>
+            </li>
+            {{/each}}
+        </ul>
+        {{> components/common/paginator category.pager}}
+    </div>
+
+</div>
 {{/partial}}
 {{> layout/base}}

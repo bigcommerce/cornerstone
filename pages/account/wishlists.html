@@ -1,1 +1,27 @@
-brand.html
+{{#partial "page"}}
+<div class="main row">
+    {{> components/common/breadcrumbs breadcrumbs}}
+    <div class="col-md-3">
+        {{>components/account/menu}}
+    </div>
+    <div class="col-md-9">
+        <h3>My Wishlists</h3>
+        <ul>
+            {{#each account_wishlists}}
+            <li>
+                <div>{{wishlist_name}}</div>
+
+                <div>Num Items: {{wishlist_num_of_items}}</div>
+                <div>{{#if wishlist_is_public }}Public{{else}}Private{{/if}}</div>
+                <div>
+                    <a href="/wishlist.php?action=editwishlist&wishlistid={{wishlist_id}}">Edit</a>
+                    <a href="/wishlist.php?action=deletewishlist&wishlistid={{wishlist_id}}">Delete</a>
+                    <a href="/wishlist.php?action=sharewishlist&wishlistid={{wishlist_id}}">Share</a>
+                </div>
+            </li>
+            {{/each}}
+        </ul>
+    </div>
+</div>
+{{/partial}}
+{{> layout/base}}

@@ -1,1 +1,11 @@
-brand.html
+{{#partial "page"}}
+<div class="main">
+    <h1>Login</h1>
+    <form action="/login.php?action=check_login" method="post">
+        Email: <input type="email" name="login_email">
+        Password: <input type="password" name="login_pass">
+        <input type="submit">
+    </form>
+</div>
+{{/partial}}
+{{> layout/base}}

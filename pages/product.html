@@ -3,9 +3,21 @@
     {{product.detail_messages}}
     <h1>{{ product.title }}</h1>
     <h2>{{ product.price.base }}</h2>
-    <a href="{{ product.images.initial_zoom_image }}">
-        <img src="{{ product.images.initial }}">
+    <a href="{{ product.initial_zoom_image }}">
+        <img src="{{ product.initial_image }}">
     </a>
+    {{#each product.images}}
+        <img src="{{tiny_url}}">
+    {{/each}}
+    <form method="post" action="/cart.php?action=add&product_id={{product.id}}">
+        <p>{{{ product.attributes }}}</p>
+        <p>{{{ product.customizations }}}</p>
+        <input type="submit" class="btn btn-success" value="Add To Cart">
+    </form>
+
+    <form method="post" action="/wishlist.php?action=add&product_id={{product.id}}">
+        <input type="submit" class="btn btn-primary" value="Add To Wishlist">
+    </form>
     <p>{{{ product.description }}}</p>
 {{/partial}}
 {{> layout/base}}

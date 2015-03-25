@@ -1,12 +1,13 @@
 ---
-carousel:
-    - param1:   foo
-      param2:   ba
+carousel: true
+featured_products: 2
+new_products: 1
 ---
 {{#partial "page"}}
-	<div class="main">
-		<h1>Home Page has no required resources</h1>
-		{{> components/carousel}}
-	</div>
+    <div class="main">
+        {{> components/carousel}}
+        {{> components/products/featured featured_products}}
+        {{> components/products/new new_products}}
+    </div>
 {{/partial}}
 {{> layout/base}}

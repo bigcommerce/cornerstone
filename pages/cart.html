@@ -5,8 +5,22 @@
     <div class="alert alert-info" role="alert">{{{message}}}</div>
     {{/each}}
     {{#each cart.items}}
-    <div>{{quantity}} x {{name}} @ {{price}} = {{total}} <a href="/cart.php?action=remove&item={{id}}">Remove</a></div>
+    <div>{{quantity}} x {{name}}
+        {{#if options}}({{#each options}}{{{name}}} {{value}}{{# unless @last}}, {{/unless}}{{/each}}){{/if}}
+        @ {{price}} = {{total}} <a href="/cart.php?action=remove&item={{id}}">Remove</a></div>
     {{/each}}
+
+    {{# if cart.items.length}}
+    <div>
+        <a class="btn btn-success" href="/checkout.php" onclick="" title="Click here to proceed to checkout">Proceed To Checkout</a>
+    </div>
+    <div class="AlternativeCheckout" style="">
+        <p class="PTB20"><span style=""> or </span><a href="/checkout.php?action=multiple"><strong>check out with multiple addresses</strong></a></p>
+    </div>
+    {{/if}}
+    <div>
+        <a class="btn btn-primary" href="/">Continue Shopping</a>
+    </div>
 </div>
 {{/partial}}
 {{> layout/base}}

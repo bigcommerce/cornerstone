@@ -6,6 +6,7 @@
     </div>
     <div class="col-md-9">
         <h3>My Wishlists</h3>
+        <a class="icon-add" title="Add Wishlist" href="/wishlist.php?action=addwishlist">Add Wishlist</a>
         <ul>
             {{#each account_wishlists}}
             <li>
@@ -15,7 +16,7 @@
                 <div>{{#if wishlist_is_public }}Public{{else}}Private{{/if}}</div>
                 <div>
                     <a href="/wishlist.php?action=editwishlist&wishlistid={{wishlist_id}}">Edit</a>
-                    <a href="/wishlist.php?action=deletewishlist&wishlistid={{wishlist_id}}">Delete</a>
+                    <form method="post" action="/wishlist.php?action=deletewishlist&wishlistid={{wishlist_id}}"><input type="submit" value="Delete"></form>
                     <a href="/wishlist.php?action=sharewishlist&wishlistid={{wishlist_id}}">Share</a>
                 </div>
             </li>

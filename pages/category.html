@@ -33,6 +33,19 @@ shop_by_price: true
                     <div>{{show_add_to_cart}}</div>
                     <div>{{summary}}</div>
                     Compare <input type="checkbox" name="compare_product_ids" value="{{id}}">
+                    {{#if show_cart_button}}
+                        {{#if has_options}}
+                            <a href="{{{url}}}" class="btn btn-primary">{{add_to_cart_text}}</a>
+                        {{else}}
+                            {{#if out_of_stock }}
+                                <span class="btn btn-warning">{{add_to_cart_text}}</span>
+                            {{else}}
+                                <a href="/cart.php?action=add&product_id={{id}}" class="btn btn-success">
+                                    {{add_to_cart_text}}
+                                </a>
+                            {{/if}}
+                        {{/if}}
+                    {{/if}}
                 </li>
                 {{/each}}
             </ul>

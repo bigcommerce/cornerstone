@@ -5,14 +5,19 @@
         {{>components/account/menu}}
     </div>
     <div class="col-md-9">
-        All orders
+        <h1>All Orders</h1>
+        {{#unless account_orders}}
+        <div class="alert alert-info" role="alert">You have not placed any orders</div>
+        {{/unless}}
 
         <ul>
             {{#each account_orders}}
             <li>
                 <div>
                     <span>Order #{{order_id}}</span>
-                    <a href="/account.php?action=new_return&order_id={{order_id}}" class="btn">Return Item</a>
+                    <form method="post" action="/account.php?action=reorder&order_id={{order_id}}">
+                        <input type="submit" value="Reorder" class="btn">
+                    </form>
                     <a href="/account.php?action=view_order&order_id={{order_id}}" class="btn">View Details</a>
                 </div>
                 <div>Order Date: {{order_date}}</div>

@@ -5,8 +5,10 @@
         {{>components/account/menu}}
     </div>
     <div class="col-md-9">
-        Completed orders
-
+        <h1>Completed Orders</h1>
+        {{#unless account_completed_orders}}
+        <div class="alert alert-info" role="alert">You have no completed orders</div>
+        {{/unless}}
         <ul>
             {{#each account_completed_orders}}
             <li>

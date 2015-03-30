@@ -1,5 +1,7 @@
 {{#partial "page"}}
-    {{> components/common/breadcrumbs breadcrumbs}}
+    {{#each breadcrumbs }}
+        {{> components/common/breadcrumbs this}}
+    {{/each}}
     {{product.detail_messages}}
     <h1>{{ product.title }}</h1>
     <h2>{{ product.price.base }}</h2>
@@ -9,6 +11,9 @@
     {{#each product.images}}
         <img src="{{tiny_url}}">
     {{/each}}
+    {{#if product.release_date }}
+    <span class="alert alert-warning">{{product.release_date}}</span>
+    {{/if}}
     <form method="post" action="/cart.php?action=add&product_id={{product.id}}">
         <p>{{{ product.attributes }}}</p>
         <p>{{{ product.customizations }}}</p>
@@ -19,5 +24,6 @@
         <input type="submit" class="btn btn-primary" value="Add To Wishlist">
     </form>
     <p>{{{ product.description }}}</p>
+
 {{/partial}}
 {{> layout/base}}

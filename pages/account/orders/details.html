@@ -5,7 +5,34 @@
         {{>components/account/menu}}
     </div>
     <div class="col-md-9">
-        Order Details
+        <h1>Order Details</h1>
+        <div>
+            <span>Order #{{order.order_id}}</span>
+            <form method="post" action="/account.php?action=reorder&order_id={{order.order_id}}">
+                <input type="submit" value="Reorder" class="btn">
+            </form>
+            <a onclick="window.open('/account.php?action=print_invoice&order_id={{order.order_id}}', 'newwindow', 'width=800, height=600');" class="btn">Print Invoice</a>
+        </div>
+        <div>Order Date: {{order_date}}</div>
+        <div><strong>Your Order Contains</strong></div>
+        {{#each order.order_item_rows}}
+        <ul>
+            <li>{{quantity}} &times; {{name}}</li>
+            {{#if product_attributes}}
+            <li>(
+                {{#each product_attributes}}
+                {{name}}: {{value}}{{#unless @last}},{{/unless}}
+                {{/each}}
+                )
+            </li>
+            {{/if}}
+        </ul>
+        {{/each}}
+        <ul>
+            {{#each order.order_total_rows}}
+                <li>{{class_name}}: {{value}}</li>
+            {{/each}}
+        </ul>
     </div>
 </div>
 {{/partial}}

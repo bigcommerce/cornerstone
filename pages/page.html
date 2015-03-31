@@ -1,4 +1,16 @@
 {{#partial "page"}}
-<h1>Custom Web Page</h1>
+{{> components/common/breadcrumbs breadcrumbs}}
+<h1>{{ page.title }}</h1>
+<div class="col-md-3">
+    <ul>
+    {{#each page.sub_pages}}
+        <li><a href="{{{url}}}">{{title}}</a></li>
+    {{/each}}
+    </ul>
+</div>
+<div class="col-md-9">
+    <p>{{{ page.content }}}</p>
+</div>
+
 {{/partial}}
 {{> layout/base}}

@@ -5,7 +5,14 @@
         {{>components/account/menu}}
     </div>
     <div class="col-md-9">
-        Address Form Page
+        <h1>{{forms.address.page_title}}</h1>
+        {{#if forms.address.message}}
+        <div class="alert alert-warning" role="alert">{{{forms.address.message}}}</div>
+        {{/if}}
+        <form action="/account.php?action={{forms.address.submit_action}}" method="post">
+            {{{ forms.address.shipping_fields }}}
+            <input type="submit">
+        </form>
     </div>
 </div>
 {{/partial}}

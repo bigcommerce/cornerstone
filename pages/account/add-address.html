@@ -10,6 +10,9 @@
         <div class="alert alert-warning" role="alert">{{{forms.address.message}}}</div>
         {{/if}}
         <form action="/account.php?action={{forms.address.submit_action}}" method="post">
+            {{#if forms.address.address_id }}
+                <input type="hidden" name="shipid" value="{{forms.address.address_id}}">
+            {{/if}}
             {{{ forms.address.shipping_fields }}}
             <input type="submit">
         </form>

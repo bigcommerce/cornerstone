@@ -5,7 +5,17 @@
         {{>components/account/menu}}
     </div>
     <div class="col-md-9">
-        Wishlist
+        <h1>{{wishlist_items.name}}</h1>
+        <h4>{{#if is_public }}Public{{else}}Private{{/if}}</h4>
+        <ul>
+            {{#each wishlist_items.items}}
+            <li>
+                <div><a href="{{url}}">{{name}}</a></div>
+                <div>{{price}}</div>
+                <div>{{rating}}</div>
+            </li>
+            {{/each}}
+        </ul>
     </div>
 </div>
 {{/partial}}

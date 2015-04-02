@@ -8,9 +8,9 @@
         <h3>My Wishlists</h3>
         <a class="icon-add" title="Add Wishlist" href="/wishlist.php?action=addwishlist">Add Wishlist</a>
         <ul>
-            {{#each account_wishlists}}
+            {{#each customer.wishlists}}
             <li>
-                <div>{{wishlist_name}}</div>
+                <div><a href="/wishlist.php?action=viewwishlistitems&wishlistid={{wishlist_id}}">{{wishlist_name}}</a></div>
 
                 <div>Num Items: {{wishlist_num_of_items}}</div>
                 <div>{{#if wishlist_is_public }}Public{{else}}Private{{/if}}</div>

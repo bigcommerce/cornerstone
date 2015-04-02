@@ -6,18 +6,18 @@
     </div>
     <div class="col-md-9">
         <h3>My Wishlists</h3>
-        <a class="icon-add" title="Add Wishlist" href="/wishlist.php?action=addwishlist">Add Wishlist</a>
+        <a class="icon-add" title="Add Wishlist" href="{{urls.account.add_wishlist}}">Add Wishlist</a>
         <ul>
             {{#each customer.wishlists}}
             <li>
-                <div><a href="/wishlist.php?action=viewwishlistitems&wishlistid={{wishlist_id}}">{{wishlist_name}}</a></div>
+                <div><a href="{{view_url}}">{{name}}</a></div>
 
-                <div>Num Items: {{wishlist_num_of_items}}</div>
-                <div>{{#if wishlist_is_public }}Public{{else}}Private{{/if}}</div>
+                <div>Num Items: {{num_items}}</div>
+                <div>{{#if is_public }}Public{{else}}Private{{/if}}</div>
                 <div>
-                    <a href="/wishlist.php?action=editwishlist&wishlistid={{wishlist_id}}">Edit</a>
-                    <form method="post" action="/wishlist.php?action=deletewishlist&wishlistid={{wishlist_id}}"><input type="submit" value="Delete"></form>
-                    <a href="/wishlist.php?action=sharewishlist&wishlistid={{wishlist_id}}">Share</a>
+                    <a href="{{edit_url}}">Edit</a>
+                    <form method="post" action="{{delete_url}}"><input type="submit" value="Delete"></form>
+                    <a href="{{share_url}}">Share</a>
                 </div>
             </li>
             {{/each}}

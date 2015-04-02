@@ -14,13 +14,13 @@
     {{#if product.release_date }}
     <span class="alert alert-warning">{{product.release_date}}</span>
     {{/if}}
-    <form method="post" action="/cart.php?action=add&product_id={{product.id}}">
+    <form method="post" action="{{product.cart_url}}">
         <p>{{{ product.attributes }}}</p>
         <p>{{{ product.customizations }}}</p>
         <input type="submit" class="btn btn-success" value="Add To Cart">
     </form>
 
-    <form method="post" action="/wishlist.php?action=add&product_id={{product.id}}">
+    <form method="post" action="{{product.add_to_wishlist_url}}">
         <input type="submit" class="btn btn-primary" value="Add To Wishlist">
     </form>
     <p>{{{ product.description }}}</p>

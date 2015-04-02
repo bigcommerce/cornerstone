@@ -5,11 +5,16 @@
         {{>components/account/menu}}
     </div>
     <div class="col-md-9">
-        Add a Wishlist
-        <form action="/wishlist.php?action=addwishlist" method="post">
+        <h1>{{forms.wishlist.title}}</h1>
+        {{#if forms.wishlist.errors}}
+        <div class="alert alert-danger" role="alert">{{{forms.wishlist.errors}}}</div>
+        {{/if}}
+        <form action="{{forms.wishlist.action}}" method="post">
             <input type="hidden" name="submit">
-            <div>Wishlist Name: <input name="wishlistname"></div>
-            <div>Make Public? <input type="checkbox" name="publicwishlist"></div>
+            <div>Wishlist Name: <input name="wishlistname" value="{{forms.wishlist.name}}"></div>
+            <div>Make Public?
+                <input type="checkbox" name="publicwishlist" {{#if forms.wishlist.is_public}}checked{{/if}}>
+            </div>
             <input type="submit">
         </form>
     </div>

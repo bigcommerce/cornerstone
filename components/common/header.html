@@ -13,15 +13,15 @@
 
         <div class="col-md-3">
             {{#if customer }}
-            <a href="/account.php">Welcome Back {{ customer.name }}</a>
-            <a href="/login.php?action=logout">Sign Out</a>
+            <a href="{{urls.account.account}}">Welcome Back {{ customer.name }}</a>
+            <a href="{{urls.auth.logout}}">Sign Out</a>
             {{else}}
-            <a href="/login.php">Login</a>
-            <a href="/login.php?action=create_account">Sign Up</a>
+            <a href="{{urls.auth.login}}">Login</a>
+            <a href="{{urls.auth.create_account}}">Sign Up</a>
             {{/if}}
-            <a href="/giftcertificates.php">Gift Certificates</a>
-            <a href="/wishlist.php">Wishlists</a>
-            <a href="/cart.php">View Cart</a>
+            <a href="{{urls.gift_certificate.purchase}}">Gift Certificates</a>
+            <a href="{{urls.account.wishlists}}">Wishlists</a>
+            <a href="{{urls.cart}}">View Cart</a>
         </div>
         <div class="col-md-3">
             {{> components/common/currency-selector}}

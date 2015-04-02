@@ -15,10 +15,10 @@
             <li>
                 <div>
                     <span>Order #{{id}}</span>
-                    <form method="post" action="/account.php?action=reorder&order_id={{id}}">
+                    <form method="post" action="{{reorder_url}}">
                         <input type="submit" value="Reorder" class="btn">
                     </form>
-                    <a href="/account.php?action=view_order&order_id={{id}}" class="btn">View Details</a>
+                    <a href="{{details_url}}" class="btn">View Details</a>
                 </div>
                 <div>Order Date: {{date}}</div>
                 <div><strong>Your Order Contains</strong></div>

@@ -1,0 +1,18 @@
+{{#partial "page"}}
+<div class="main row">
+    {{> components/common/breadcrumbs breadcrumbs}}
+    <div class="col-md-3">
+        {{>components/account/menu}}
+    </div>
+    <div class="col-md-9">
+        Add a Wishlist
+        <form action="/wishlist.php?action=addwishlist" method="post">
+            <input type="hidden" name="submit">
+            <div>Wishlist Name: <input name="wishlistname"></div>
+            <div>Make Public? <input type="checkbox" name="publicwishlist"></div>
+            <input type="submit">
+        </form>
+    </div>
+</div>
+{{/partial}}
+{{> layout/base}}

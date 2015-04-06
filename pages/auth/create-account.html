@@ -1,19 +1,22 @@
 {{#partial "page"}}
 <div class="main">
-    <h1>Login</h1>
+    <h1>Create Account</h1>
+    {{#if forms.create_account.message}}
+    <p class="bg-danger">{{forms.create_account.message}}</p>
+    {{/if}}
     <form action="{{urls.auth.save_new_account}}" method="post">
-        {{{ create_account.account_fields }}}
+        {{{ forms.create_account.account_fields }}}
         <hr>
-        {{{ create_account.address_fields }}}
+        {{{ forms.create_account.address_fields }}}
         <div class="box">
             {{#if create_account.recaptcha.enabled }}
             <h3>Security Question</h3>
             <dl>
                 <script type="text/javascript"
-                        src="https://www.google.com/recaptcha/api/challenge?k={{create_account.recaptcha.public_key}}">
+                        src="https://www.google.com/recaptcha/api/challenge?k={{forms.create_account.recaptcha.public_key}}">
                 </script>
                 <noscript>
-                    <iframe src="https://www.google.com/recaptcha/api/noscript?k={{create_account.recaptcha.public_key}}" height="300" width="500" frameborder="0"></iframe>
+                    <iframe src="https://www.google.com/recaptcha/api/noscript?k={{forms.create_account.recaptcha.public_key}}" height="300" width="500" frameborder="0"></iframe>
                     <br>
                     <textarea name="recaptcha_challenge_field" rows="3" cols="40">
                     </textarea>

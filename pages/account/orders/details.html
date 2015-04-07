@@ -7,20 +7,20 @@
     <div class="col-md-9">
         <h1>Order Details</h1>
         <div>
-            <span>Order #{{order.order_id}}</span>
-            <form method="post" action="/account.php?action=reorder&order_id={{order.order_id}}">
+            <span>Order #{{order.id}}</span>
+            <form method="post" action="{{order.reorder_url}}">
                 <input type="submit" value="Reorder" class="btn">
             </form>
-            <a onclick="window.open('/account.php?action=print_invoice&order_id={{order.order_id}}', 'newwindow', 'width=800, height=600');" class="btn">Print Invoice</a>
+            <a onclick="window.open('{{order.invoice_url}}', 'newwindow', 'width=800, height=600');" class="btn">Print Invoice</a>
         </div>
-        <div>Order Date: {{order_date}}</div>
+        <div>Order Date: {{order.date}}</div>
         <div><strong>Your Order Contains</strong></div>
-        {{#each order.order_item_rows}}
+        {{#each order.items}}
         <ul>
             <li>{{quantity}} &times; {{name}}</li>
-            {{#if product_attributes}}
+            {{#if options}}
             <li>(
-                {{#each product_attributes}}
+                {{#each options}}
                 {{name}}: {{value}}{{#unless @last}},{{/unless}}
                 {{/each}}
                 )
@@ -29,7 +29,7 @@
         </ul>
         {{/each}}
         <ul>
-            {{#each order.order_total_rows}}
+            {{#each order.total_rows}}
                 <li>{{class_name}}: {{value}}</li>
             {{/each}}
         </ul>

@@ -5,13 +5,13 @@
         {{>components/account/menu}}
     </div>
     <div class="col-md-9">
-        <a title="Add Address" class="icon-add" href="/account.php?action=add_shipping_address&amp;address_type=&amp;from=account.php%3Faction%3Daddress_book">Add New Address</a>
+        <a title="Add Address" class="icon-add" href="{{add_address_url}}">Add New Address</a>
         <ul>
             {{#each account.addresses}}
             <li class="col-md-3">
                 <div>
-                    <a href="/account.php?action=edit_shipping_address&address_id={{ id }}&from={{ from_url }}">Edit</a>
-                    <a href="/account.php?action=delete_shipping_address&address_id={{ id }}&from={{ from_url }}">Delete</a>
+                    <a href="{{edit_url}}">Edit</a>
+                    <a href="{{delete_url}}">Delete</a>
                 </div>
                 <div>{{ first_name }} {{ last_name }}</div>
                 <div>{{ company }}</div>

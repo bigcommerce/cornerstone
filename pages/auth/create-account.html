@@ -1,7 +1,7 @@
 {{#partial "page"}}
 <div class="main">
     <h1>Login</h1>
-    <form action="/login.php?action=save_new_account" method="post">
+    <form action="{{urls.auth.save_new_account}}" method="post">
         {{{ create_account.account_fields }}}
         <hr>
         {{{ create_account.address_fields }}}
@@ -22,7 +22,7 @@
             </dl>
             {{/if}}
             <p class="Submit">
-                <input type="submit" class="btn alt" value="%%GLOBAL_CreateAccountButtonText%%" />&nbsp;&nbsp;&nbsp;<a href="%%GLOBAL_ShopPath%%/">Return to store</a>
+                <input type="submit" class="btn alt" value="Create Account" />&nbsp;&nbsp;&nbsp;<a href="{{urls.home}}">Return to store</a>
             </p>
         </div>
     </form>

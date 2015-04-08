@@ -1,6 +1,36 @@
 {{#partial "page"}}
 <div class="main">
-    <h1>Blog</h1>
+    <h1>{{ blog.name }}</h1>
+    {{> components/common/breadcrumbs breadcrumbs}}
+    <hr>
+    <aside class="col-md-3">
+        <h3>Recent Posts</h3>
+        <ul>
+            {{#each blog.recent_posts}}
+            <li><a href="{{url}}">{{title}}</a></li>
+            {{/each}}
+        </ul>
+    </aside>
+    <div class="col-md-9">
+        {{> components/common/paginator blog.pager}}
+        <ul>
+            {{#each blog.posts}}
+            <li>
+                <h4><a href="{{url}}">{{ title }}</a></h4>
+                <div>Posted By: <strong>{{ author }}</strong> on {{ date_published }}</div>
+                <div>{{{ social }}}</div>
+                <p>{{{ body }}}</p>
+                <ul>
+                    {{#each tags}}
+                    <a href="{{url}}">{{name}}</a>
+                    {{/each}}
+                </ul>
+            </li>
+            {{/each}}
+        </ul>
+        {{> components/common/paginator blog.pager}}
+    </div>
+
 </div>
 {{/partial}}
 {{> layout/base}}

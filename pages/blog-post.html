@@ -1,6 +1,28 @@
 {{#partial "page"}}
 <div class="main">
-    <h1>Blog Post</h1>
+    <h1>{{ blog.name }}</h1>
+    {{> components/common/breadcrumbs breadcrumbs}}
+    <hr>
+    <aside class="col-md-3">
+        <h3>Recent Posts</h3>
+        <ul>
+            {{#each blog.recent_posts}}
+            <li><a href="{{url}}">{{title}}</a></li>
+            {{/each}}
+        </ul>
+    </aside>
+    <div class="col-md-9">
+        <h2>{{ post.title }}</h2>
+        <div>Posted By: <strong>{{ post.author }}</strong> on {{ post.date_published }}</div>
+        <div>{{{ post.social }}}</div>
+        <p>{{{ post.body }}}</p>
+        <ul>
+            {{#each post.tags}}
+            <a href="{{url}}">{{name}}</a>
+            {{/each}}
+        </ul>
+    </div>
+
 </div>
 {{/partial}}
 {{> layout/base}}

@@ -1,0 +1,23 @@
+<div>
+    {{#if this.required }}<span class="required">*</span>{{/if}}
+    {{ this.display_name }}
+    {{#each this.values}}
+    <label>
+        {{this.label}}
+        <input type="radio" name="attribute[{{../id}}]" value="{{id}}" {{#if selected}}checked{{/if}}>
+
+        {{#if pattern}}
+        <div style="float: left; width: 32px; height: 32px; background-image: url('{{pattern}}');"></div>
+        {{/if}}
+        {{#if data.[0]}}
+        <div style="float: left; width: 32px; height: 32px; background-color: #{{data.[0]}}"></div>
+        {{/if}}
+        {{#if data.[1]}}
+        <div style="float: left; width: 32px; height: 32px; background-color: #{{data.[1]}}"></div>
+        {{/if}}
+        {{#if data.[2]}}
+        <div style="float: left; width: 32px; height: 32px; background-color: #{{data.[2]}}"></div>
+        {{/if}}
+    </label>
+    {{/each}}
+</div>

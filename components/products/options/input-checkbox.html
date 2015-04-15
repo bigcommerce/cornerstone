@@ -1,0 +1,8 @@
+<div>
+    <input type="hidden" name="attribute[{{this.id}}]" value="{{this.no_id}}">
+    <label>
+        {{#if this.required }}<span class="required">*</span>{{/if}}
+        {{ this.display_name }}
+        <input type="checkbox" name="attribute[{{this.id}}]" value="{{this.yes_id}}" {{#if this.checked}}checked{{/if}}>
+    </label>
+</div>

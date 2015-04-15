@@ -1,0 +1,11 @@
+<div>
+    <label>
+        {{#if this.required }}<span class="required">*</span>{{/if}}
+        {{ this.display_name }}
+        <select name="attribute[{{this.id}}]">
+            {{#each this.values}}
+                <option value="{{id}}"  {{#if selected}}selected{{/if}}>{{this.label}}</option>
+            {{/each}}
+        </select>
+    </label>
+</div>

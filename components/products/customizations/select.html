@@ -1,0 +1,12 @@
+<div>
+    <label>
+        {{#if this.required }}<span class="required">*</span>{{/if}}
+        {{ this.display_name }}
+        <select name="ProductFields[{{this.id}}]">
+            <option>-- Please Choose An Option --</option>
+            {{#each this.values}}
+                <option value="{{id}}" {{#if selected}}selected{{/if}}>{{label}}</option>
+            {{/each}}
+        </select>
+    </label>
+</div>

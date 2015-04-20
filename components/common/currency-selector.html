@@ -1,13 +1,13 @@
-<h2>Currency Selector</h2>
-All prices are in: {{currency_selector.active_currency_name}}
-
-<ul>
-    {{#each currency_selector.currencies}}
-    <li>
-        {{#if is_active}}Active {{/if}}
-        <a href="{{{switch_url}}}">
-            {{name}}
-        </a>
-    </li>
-    {{/each}}
-</ul>
+<div data-currency-selector>
+    <h2>Select Currency: <span >{{currency_selector.active_currency_name}}</span></h2>
+    <ul>
+        {{#each currency_selector.currencies}}
+        <li>
+            {{#if is_active}}Active {{/if}}
+            <a href="{{{switch_url}}}">
+                {{name}}
+            </a>
+        </li>
+        {{/each}}
+    </ul>
+</div>

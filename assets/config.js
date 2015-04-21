@@ -1,5 +1,5 @@
 System.config({
-  "baseURL": "assets/",
+  "baseURL": "/assets/",
   "transpiler": "babel",
   "babelOptions": {
     "optional": [

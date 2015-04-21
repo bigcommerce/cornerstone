@@ -18,7 +18,7 @@ System.config({
     "asyncly/EventEmitter2": "github:asyncly/EventEmitter2@0.4.14",
     "babel": "npm:babel@4.7.16",
     "babel-runtime": "npm:babel-runtime@4.7.16",
-    "bigcommrece/stencil-utls": "github:bigcommerce/stencil-utils@0.0.1",
+    "bigcommerce/stencil-utils": "github:bigcommerce/stencil-utils@0.0.1",
     "core-js": "npm:core-js@0.8.4",
     "jquery": "github:components/jquery@2.1.3",
     "lodash": "npm:lodash@3.7.0",

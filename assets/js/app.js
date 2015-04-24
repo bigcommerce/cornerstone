@@ -1,3 +1,4 @@
+import stencilUtils from 'bigcommerce/stencil-utils'
 import account from './theme/account';
 import auth from './theme/auth';
 import blog from './theme/blog';
@@ -17,7 +18,9 @@ import sitemap from './theme/sitemap';
 import subscribe from './theme/subscribe';
 import wishlist from './theme/wishlist';
 
-var routes = {
+stencilUtils.events.init();
+
+var modules = {
     "account": account,
     "auth": auth,
     "blog": blog,
@@ -38,4 +41,4 @@ var routes = {
     "wishlist": wishlist
 };
 
-export {routes};
+export {modules};

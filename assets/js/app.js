@@ -18,8 +18,6 @@ import sitemap from './theme/sitemap';
 import subscribe from './theme/subscribe';
 import wishlist from './theme/wishlist';
 
-stencilUtils.events.init();
-
 var modules = {
     "account": account,
     "auth": auth,

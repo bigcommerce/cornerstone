@@ -21,6 +21,7 @@ System.config({
     "bigcommerce/stencil-utils": "github:bigcommerce/stencil-utils@0.0.3",
     "core-js": "npm:core-js@0.8.4",
     "jquery": "github:components/jquery@2.1.3",
+    "knockout": "github:knockout/knockout@3.3.0",
     "lodash": "npm:lodash@3.7.0",
     "github:bigcommerce/stencil-utils@0.0.3": {
       "asyncly/EventEmitter2": "github:asyncly/EventEmitter2@0.4.14",

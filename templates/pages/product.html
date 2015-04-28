@@ -22,17 +22,22 @@
                 <div>{{{renderProductCustomization this}}}</div>
             {{/each}}
         </p>
-        <p> Options
+        <div class="product-sku">
+            <h4>SKU</h4>
+            <p class="product-skuText" data-bind="text: sku">{{ product.sku }}</p>
+        </div>
+        <div data-product-options-change>
+            Options
             {{#each product.options}}
                 <div>{{{renderProductOption this}}}</div>
             {{/each}}
-        </p>
+        </div>
         <select name="qty[]">
             {{#enumerate 1 30}}
             <option value="{{ this }}">{{ this }}</option>
             {{/enumerate}}
         </select>
-        <input type="submit" class="btn btn-success" value="Add To Cart">
+        <input type="submit" class="btn btn-success btn-addToCart" data-bind="enable: canAddToCart" value="Add To Cart">
     </form>
 
     <form method="post" action="{{product.add_to_wishlist_url}}">

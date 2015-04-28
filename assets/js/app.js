@@ -12,7 +12,7 @@ import giftCertificate from './theme/gift-certificate';
 import home from './theme/home';
 import orderComplete from './theme/order-complete';
 import page from './theme/page';
-import product from './theme/product';
+import product from './theme/product/index';
 import search from './theme/search';
 import sitemap from './theme/sitemap';
 import subscribe from './theme/subscribe';

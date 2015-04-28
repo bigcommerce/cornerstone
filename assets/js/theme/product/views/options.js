@@ -1,8 +1,8 @@
 import ko from 'knockout';
 
 let productOptionsViewModel = {
-    sku: '',
-    canAddToCart: true
+    sku: ko.observable(),
+    canAddToCart: ko.observable(true)
 }
 
 ko.applyBindings(productOptionsViewModel);

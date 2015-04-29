@@ -15,7 +15,8 @@ utils.events.on('product-options-change', (event, ele) => {
         utils.remote.productAttributes.optionChange($ele, productId, (err, data) => {
             ProductView.price(data.price);
             ProductView.sku(data.sku);
-            ProductView.canAddToCart(data.instock, data.purchasable);
+            ProductView.instock(data.instock);
+            ProductView.purchasable(data.purchasable);
         });
     }
 });

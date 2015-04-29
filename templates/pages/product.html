@@ -2,48 +2,49 @@
     {{#each breadcrumbs }}
         {{> components/common/breadcrumbs this}}
     {{/each}}
-    {{product.detail_messages}}
-    <h1>{{ product.title }}</h1>
-    <h2>{{ product.price.base }}</h2>
-    <a href="{{ product.initial_zoom_image }}">
-        <img src="{{ product.initial_image }}">
-    </a>
-    {{#each product.images}}
-        <img src="{{tiny_url}}">
-    {{/each}}
-    {{#if product.release_date }}
-    <span class="alert alert-warning">{{product.release_date}}</span>
-    {{/if}}
-    <form method="post" action="{{product.cart_url}}" enctype="multipart/form-data">
-        <input type="hidden" name="action" value="add">
-        <input type="hidden" name="product_id" value="{{product.id}}" />
-        <p>
-            {{#each product.customizations}}
-                <div>{{{renderProductCustomization this}}}</div>
-            {{/each}}
-        </p>
-        <div class="product-sku">
-            <h4>SKU</h4>
-            <p class="product-skuText" data-bind="text: product.sku">{{ product.sku }}</p>
-        </div>
-        <div data-product-options-change>
-            Options
-            {{#each product.options}}
-                <div>{{{renderProductOption this}}}</div>
-            {{/each}}
-        </div>
-        <select name="qty[]">
-            {{#enumerate 1 30}}
-            <option value="{{ this }}">{{ this }}</option>
-            {{/enumerate}}
-        </select>
-        <input type="submit" class="btn btn-success btn-addToCart" data-bind="enable: product.canAddToCart" value="Add To Cart">
-    </form>
+    <div class="productView">
+        {{product.detail_messages}}
+        <h1>{{ product.title }}</h1>
+        <h2>{{ product.price.base }}</h2>
+        <a href="{{ product.initial_zoom_image }}">
+            <img src="{{ product.initial_image }}">
+        </a>
+        {{#each product.images}}
+            <img src="{{tiny_url}}">
+        {{/each}}
+        {{#if product.release_date }}
+        <span class="alert alert-warning">{{product.release_date}}</span>
+        {{/if}}
+        <form method="post" action="{{product.cart_url}}" enctype="multipart/form-data">
+            <input type="hidden" name="action" value="add">
+            <input type="hidden" name="product_id" value="{{product.id}}" />
+            <p>
+                {{#each product.customizations}}
+                    <div>{{{renderProductCustomization this}}}</div>
+                {{/each}}
+            </p>
+            <div class="product-sku">
+                <h4>SKU</h4>
+                <p class="product-skuText" data-bind="text: sku">{{ product.sku }}</p>
+            </div>
+            <div data-product-options-change>
+                Options
+                {{#each product.options}}
+                    <div>{{{renderProductOption this}}}</div>
+                {{/each}}
+            </div>
+            <select name="qty[]">
+                {{#enumerate 1 30}}
+                <option value="{{ this }}">{{ this }}</option>
+                {{/enumerate}}
+            </select>
+            <input type="submit" class="btn btn-success btn-addToCart" data-bind="enable: canAddToCart" value="Add To Cart">
+        </form>
 
-    <form method="post" action="{{product.add_to_wishlist_url}}">
-        <input type="submit" class="btn btn-primary" value="Add To Wishlist">
-    </form>
-    <p>{{{ product.description }}}</p>
-
+        <form method="post" action="{{product.add_to_wishlist_url}}">
+            <input type="submit" class="btn btn-primary" value="Add To Wishlist">
+        </form>
+        <p>{{{ product.description }}}</p>
+    </div>
 {{/partial}}
 {{> layout/base}}

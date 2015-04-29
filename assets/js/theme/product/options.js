@@ -20,7 +20,6 @@ utils.events.on('product-options-change', (event, ele) => {
     }
 });
 
-export { ProductView };
 export default function (window) {
 
 }

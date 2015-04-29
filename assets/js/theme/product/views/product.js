@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import ko from 'knockout';
 
 let productViewModel = {
@@ -13,5 +14,7 @@ let productViewModel = {
         owner: this
     })
 };
+
+ko.applyBindings(productViewModel, $('.productView').get(0));
 
 export default productViewModel;

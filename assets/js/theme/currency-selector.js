@@ -1,15 +1,18 @@
-import utils from 'bigcommerce/stencil-utils';
+import $ from 'jquery';
 import ko from 'knockout';
+import utils from 'bigcommerce/stencil-utils';
 
 let currencySelectorViewModel = {
-    currencySelector: {
-        visible: ko.observable(false)
-    }
+    visible: ko.observable(false)
 };
-
-ko.applyBindings(currencySelectorViewModel);
 
 utils.events.on('currencySelector-toggle', (event, ele) => {
     let toggled = !currencySelectorViewModel.currencySelector.visible();
     currencySelectorViewModel.currencySelector.visible(toggled);
 });
+
+ko.applyBindings(currencySelectorViewModel, $('.currencySelectorView').get(0));
+
+export default function (window) {
+
+}

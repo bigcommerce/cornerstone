@@ -4,4 +4,5 @@
 import ProductOptions from './options';
 
 export default function (window) {
+
 }

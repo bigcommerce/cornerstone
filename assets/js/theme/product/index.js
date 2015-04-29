@@ -1,7 +1,9 @@
 /*
     Import all product specific js
  */
-import ProductOptions from './options';
+import { ProductView } from './options';
 
+export { ProductView };
 export default function (window) {
+
 }

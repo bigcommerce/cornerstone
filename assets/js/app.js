@@ -1,4 +1,5 @@
 import stencilUtils from 'bigcommerce/stencil-utils'
+import { currencySelectorView } from './theme/currency-selector';
 import account from './theme/account';
 import auth from './theme/auth';
 import blog from './theme/blog';
@@ -12,14 +13,14 @@ import giftCertificate from './theme/gift-certificate';
 import home from './theme/home';
 import orderComplete from './theme/order-complete';
 import page from './theme/page';
-//import product from './theme/product/index';
+import product, { ProductView } from './theme/product/index';
 import search from './theme/search';
 import sitemap from './theme/sitemap';
 import subscribe from './theme/subscribe';
 import wishlist from './theme/wishlist';
-import currencySelector from './theme/currency-selector';
+import ko from 'knockout';
 
-var modules = {
+let modules = {
     "account": account,
     "auth": auth,
     "blog": blog,
@@ -33,11 +34,17 @@ var modules = {
     "home": home,
     "order-complete": orderComplete,
     "page": page,
-    //"product": product,
+    "product": product,
     "search": search,
     "sitemap": sitemap,
     "subscribe": subscribe,
     "wishlist": wishlist
+}, viewModel = {
+    currencySelector: currencySelectorView,
+    product: ProductView
 };
+
+// Bind view model
+ko.applyBindings(viewModel);
 
 export {modules};

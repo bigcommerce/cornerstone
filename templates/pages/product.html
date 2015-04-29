@@ -24,7 +24,7 @@
         </p>
         <div class="product-sku">
             <h4>SKU</h4>
-            <p class="product-skuText" data-bind="text: sku">{{ product.sku }}</p>
+            <p class="product-skuText" data-bind="text: product.sku">{{ product.sku }}</p>
         </div>
         <div data-product-options-change>
             Options
@@ -37,7 +37,7 @@
             <option value="{{ this }}">{{ this }}</option>
             {{/enumerate}}
         </select>
-        <input type="submit" class="btn btn-success btn-addToCart" data-bind="enable: canAddToCart" value="Add To Cart">
+        <input type="submit" class="btn btn-success btn-addToCart" data-bind="enable: product.canAddToCart" value="Add To Cart">
     </form>
 
     <form method="post" action="{{product.add_to_wishlist_url}}">

@@ -34,7 +34,7 @@ let pageTypes = {
     "home": home,
     "order-complete": orderComplete,
     "page": page,
-    //"product": product,
+//    "product": product,
     "search": search,
     "sitemap": sitemap,
     "subscribe": subscribe,

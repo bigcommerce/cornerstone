@@ -1,7 +1,6 @@
-import $ from 'jquery';
+import utils from 'bigcommerce/stencil-utils';
 import ko from 'knockout';
 import PageManager from '../page-manager';
-import utils from 'bigcommerce/stencil-utils';
 
 export default class CurrencySelector extends PageManager {
     constructor() {
@@ -21,5 +20,5 @@ export default class CurrencySelector extends PageManager {
         });
 
     }
-}
+};
 

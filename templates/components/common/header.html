@@ -26,7 +26,8 @@
         <div class="col-md-3">
             {{> components/common/currency-selector}}
         </div>
-        <form action="/search.php"><label>Search<input name="search_query" placeholder="Search"></label></form>
+        <form action="/search.php"><label>Search<input name="search_query" placeholder="Search" autocomplete="off" data-quick-search></label></form>
+        <ul class="quickSearchResults" data-bind="html: results"></ul>
 
     </div>
     {{> components/common/navigation}}

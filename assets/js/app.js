@@ -1,4 +1,5 @@
 import stencilUtils from 'bigcommerce/stencil-utils'
+import async from 'caolan/async';
 import account from './theme/account';
 import auth from './theme/auth';
 import blog from './theme/blog';
@@ -19,7 +20,7 @@ import subscribe from './theme/subscribe';
 import wishlist from './theme/wishlist';
 import currencySelector from './theme/currency-selector';
 
-var modules = {
+let pageTypes = {
     "account": account,
     "auth": auth,
     "blog": blog,
@@ -33,11 +34,31 @@ var modules = {
     "home": home,
     "order-complete": orderComplete,
     "page": page,
-    //"product": product,
+//    "product": product,
     "search": search,
     "sitemap": sitemap,
     "subscribe": subscribe,
     "wishlist": wishlist
 };
 
-export {modules};
+export default function (templateFile) {
+    return {
+        load() {
+            let pageTypeFn = pageTypes[templateFile];
+            let pageType = new pageTypeFn();
+            return this.loader(pageType);
+        },
+
+        loader(pageFunc) {
+            async.series([
+                pageFunc.before,
+                pageFunc.loaded,
+                pageFunc.after
+            ], function (err) {
+                if (err) {
+                    throw new Error(err)
+                }
+            });
+        }
+    }
+};

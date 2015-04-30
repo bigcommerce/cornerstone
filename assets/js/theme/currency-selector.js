@@ -1,18 +1,25 @@
 import $ from 'jquery';
 import ko from 'knockout';
+import PageManager from '../page-manager';
 import utils from 'bigcommerce/stencil-utils';
 
-let currencySelectorViewModel = {
-    visible: ko.observable(false)
-};
+export default class CurrencySelector extends PageManager {
+    constructor() {
+        this.currencySelectorViewModel = {
+            currencySelector: {
+                visible: ko.observable(false)
+            }
+        };
+    }
 
-utils.events.on('currencySelector-toggle', (event, ele) => {
-    let toggled = !currencySelectorViewModel.currencySelector.visible();
-    currencySelectorViewModel.currencySelector.visible(toggled);
-});
+    loaded() {
+        ko.applyBindings(this.currencySelectorViewModel);
 
-ko.applyBindings(currencySelectorViewModel, $('.currencySelectorView').get(0));
+        utils.events.on('currencySelector-toggle', (event, ele) => {
+            let toggled = !this.currencySelectorViewModel.currencySelector.visible();
+            this.currencySelectorViewModel.currencySelector.visible(toggled);
+        });
 
-export default function (window) {
-
+    }
 }
+

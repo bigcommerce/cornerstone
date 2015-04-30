@@ -1,5 +1,5 @@
 import stencilUtils from 'bigcommerce/stencil-utils'
-import currencySelector from './theme/currency-selector';
+import async from 'caolan/async';
 import account from './theme/account';
 import auth from './theme/auth';
 import blog from './theme/blog';
@@ -13,13 +13,14 @@ import giftCertificate from './theme/gift-certificate';
 import home from './theme/home';
 import orderComplete from './theme/order-complete';
 import page from './theme/page';
-import product from './theme/product/index';
+//import product from './theme/product/index';
 import search from './theme/search';
 import sitemap from './theme/sitemap';
 import subscribe from './theme/subscribe';
 import wishlist from './theme/wishlist';
+import currencySelector from './theme/currency-selector';
 
-let modules = {
+let pageTypes = {
     "account": account,
     "auth": auth,
     "blog": blog,
@@ -33,11 +34,31 @@ let modules = {
     "home": home,
     "order-complete": orderComplete,
     "page": page,
-    "product": product,
+    //"product": product,
     "search": search,
     "sitemap": sitemap,
     "subscribe": subscribe,
     "wishlist": wishlist
 };
 
-export {modules};
+export default function (templateFile) {
+    return {
+        load() {
+            let pageTypeFn = pageTypes[templateFile];
+            let pageType = new pageTypeFn();
+            return this.loader(pageType);
+        },
+
+        loader(pageFunc) {
+            async.series([
+                pageFunc.before,
+                pageFunc.loaded,
+                pageFunc.after
+            ], function (err) {
+                if (err) {
+                    throw new Error(err)
+                }
+            });
+        }
+    }
+};

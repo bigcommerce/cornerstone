@@ -1,24 +1,26 @@
+import _ from 'lodash';
 import utils from 'bigcommerce/stencil-utils';
 import ko from 'knockout';
 import PageManager from '../page-manager';
 
 export default class CurrencySelector extends PageManager {
     constructor() {
-        this.currencySelectorViewModel = {
-            currencySelector: {
+        this.viewModel = {
                 visible: ko.observable(false)
-            }
         };
+
+
+        this.element = $('[data-model="CurrencySelector"]');
     }
 
     loaded() {
-        ko.applyBindings(this.currencySelectorViewModel);
-
-        utils.events.on('currencySelector-toggle', (event, ele) => {
-            let toggled = !this.currencySelectorViewModel.currencySelector.visible();
-            this.currencySelectorViewModel.currencySelector.visible(toggled);
-        });
-
+        if (_.isArray(this.element)) {
+            _.forEach(this.element, function (el) {
+                ko.applyBindings(this.viewModel, el);
+            });
+        }
     }
+
+
 };
 

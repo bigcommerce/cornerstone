@@ -7,4 +7,8 @@ import PageManager from '../page';
 export default class Product extends PageManager {
     constructor() {
     }
+
+    loaded(){
+        ProductOptions();
+    }
 }

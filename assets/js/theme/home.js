@@ -1,6 +1,6 @@
 import PageManager from '../page-manager';
 
-export default class Home extends PageManager{
+export default class Home extends PageManager {
     constructor() {
     }
 }

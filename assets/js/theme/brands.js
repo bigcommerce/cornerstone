@@ -1,6 +1,6 @@
 import PageManager from '../page-manager';
 
-export default class Brands extends PageManager{
+export default class Brands extends PageManager {
     constructor() {
     }
 }

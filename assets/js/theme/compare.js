@@ -1,6 +1,6 @@
 import PageManager from '../page-manager';
 
-export default class Compare extends PageManager{
+export default class Compare extends PageManager {
     constructor() {
     }
 }

@@ -6,7 +6,7 @@ import PageManager from '../page-manager';
 export default class CurrencySelector extends PageManager {
     constructor() {
         this.viewModel = {
-                visible: ko.observable(false)
+            visible: ko.observable(false)
         };
 
 

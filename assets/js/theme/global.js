@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import PageManager from '../page-manager';
 
-export default class Auth extends PageManager {
+export default class Global extends PageManager {
     constructor() {
     }
 }

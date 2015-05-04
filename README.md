@@ -39,9 +39,10 @@ page types available to you.
 
 And these page types will correspond to the pages within your your theme. Each one of these page types in a specific ES6 class that extends the base `PageManager` abstract class.
 ```javascript
+    let internals = {}
     export default class Auth extends PageManager {
         constructor() {
-            //Set up code goes here
+            //Set up code goes here, attach to internals and use internals as you would 'this'
         }
     }
 ```

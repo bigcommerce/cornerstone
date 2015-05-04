@@ -21,8 +21,8 @@ import subscribe from './theme/subscribe';
 import wishlist from './theme/wishlist';
 import currencySelector from './theme/currency-selector';
 
-function PageClasses() {
-    this.mapping = {
+let PageClasses = {
+    mapping: {
         "account": account,
         "auth": auth,
         "blog": blog,
@@ -42,19 +42,19 @@ function PageClasses() {
         "sitemap": sitemap,
         "subscribe": subscribe,
         "wishlist": wishlist
-    };
+    },
     /**
      * Getter method to ensure a good page type is accessed.
      * @param page
      * @returns {*}
      */
-    this.get = (page) => {
+    get: function(page) {
         if (this.mapping[page]) {
             return this.mapping[page];
         }
         return false;
-    };
-}
+    }
+};
 
 /**
  *
@@ -102,7 +102,7 @@ function loader(pageFunc, pages) {
  * @returns {*}
  */
 export default function (templateFile) {
-    let pages = new PageClasses(); // Instantiate the pageClasses
+    let pages = PageClasses;
 
     return {
         load() {

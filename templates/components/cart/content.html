@@ -26,10 +26,9 @@
                     </div>
                 </td>
                 <td>
-                    <input type="hidden" name="qty[{{id}}]" value="{{quantity}}">
-                    <button data-quantity-inc="{{id}}">+</button>
+                    <button data-cart-update="{{id}}" data-action="inc">+</button>
                     <div id="qty-{{id}}">{{quantity}}</div>
-                    <button data-quantity-dec="{{id}}">-</button>
+                    <button data-cart-update="{{id}}" data-action="dec">-</button>
                     <a href="{{remove_url}}">Remove</a>
                 </td>
                 <td>{{money price}}</td>

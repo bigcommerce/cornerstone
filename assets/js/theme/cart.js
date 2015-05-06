@@ -6,36 +6,27 @@ export default class Cart extends PageManager {
     constructor() {
         super();
 
-        $(document.body).on('click', '[data-quantity-inc]', (event) => {
-            let itemId = $(event.target).attr('data-quantity-inc'),
-                el = $('#qty-' + itemId);
+        utils.events.on('cart-item-update', (event, button) => {
+            let itemId = $(button).data('cart-update'),
+                el = $('#qty-' + itemId),
+                oldQty = parseInt(el.html()),
+                newQty;
 
             event.preventDefault();
-            this.changeQty(el, itemId, parseInt(el.html()) + 1);            
-        });
 
-        $(document.body).on('click', '[data-quantity-dec]', (event) => {
-            let itemId = $(event.target).attr('data-quantity-dec'),
-                el = $('#qty-' + itemId);
-
-            event.preventDefault();
-            this.changeQty(el, itemId, parseInt(el.html()) - 1);            
-        });
-    }
-
-    changeQty(el, itemId, qty) {
-        var oldQty = el.html();
-        el.html(qty);
-        // utils.events.emit('cart-update');
-        utils.remote.cart.cartItemUpdate(itemId, qty, (err, response) => {
-            if (response.status === 'succeed') {
-                utils.remote.cart.cartContent({render_with: 'cart/content'}, (err, content) => {
-                    $('[data-cart-content]').html(content);
-                });
-            } else {
-                el.html(oldQty);
-                alert(response.errors.join('\n'));
-            }
+            newQty = $(button).data('action') === 'inc' ? oldQty + 1 : oldQty - 1;
+            el.html(newQty);
+        
+            utils.remote.cart.cartItemUpdate(itemId, newQty, (err, response) => {
+                if (response.status === 'succeed') {
+                    utils.remote.cart.cartContent({render_with: 'cart/content'}, (err, content) => {
+                        $('[data-cart-content]').html(content);
+                    });
+                } else {
+                    el.html(oldQty);
+                    alert(response.errors.join('\n'));
+                }
+            });         
         });
     }
 }

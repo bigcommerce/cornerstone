@@ -1,0 +1,86 @@
+{{# if cart.items.length}}
+    <form enctype="multipart/form-data" name="cartForm" method="post" action="{{urls.cart}}">
+        <table>
+            <thead>
+            <tr>
+                <th></th>
+                <th>Cart Items</th>
+                <th>Qty</th>
+                <th>Item Price</th>
+                <th>Total</th>
+            </tr>
+            </thead>
+            <tbody>
+                {{#each cart.items}}
+                <tr>
+                <td><a href="{{url}}"><img src="{{image}}" alt=""></a></td>
+                <td>
+                    <div>{{name}}</div>
+                    <div>
+                    {{#if options}}
+                        <ul>
+                            {{#each options}}<li>{{name}}: <b>{{{value}}}</b></li>{{/each}}
+                        </ul>
+                        <a href="#" data-item-edit="{{id}}">Change</a>
+                    {{/if}}
+                    </div>
+                </td>
+                <td>
+                    <input type="hidden" name="qty[{{id}}]" value="{{quantity}}">
+                    <button data-quantity-inc="{{id}}">+</button>
+                    <div id="qty-{{id}}">{{quantity}}</div>
+                    <button data-quantity-dec="{{id}}">-</button>
+                    <a href="{{remove_url}}">Remove</a>
+                </td>
+                <td>{{money price}}</td>
+                <td>{{money total}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4">Subtotal</td>
+                    <td><div class="subtotal">{{money cart.sub_total}}</div></td>
+                </tr>
+                {{#if cart.gift_wrapping_cost}}
+                <tr>
+                    <td colspan="4">Gift Wrapping</td>
+                    <td><div class="subtotal">{{money cart.gift_wrapping_cost}}</div></td>
+                </tr>
+                {{/if}}
+                {{#if cart.discount}}
+                <tr>
+                    <td colspan="4">Discount</td>
+                    <td><div class="subtotal">{{money price cart.discount}}</div></td>
+                </tr>
+                {{/if}}
+                {{#if cart.shipping_handling.cost}}
+                <tr>
+                    <td colspan="4">Shipping</td>
+                    <td><div class="subtotal">{{money cart.shipping_handling.cost}}</div></td>
+                </tr>
+                {{/if}}
+                {{#each cart.taxes}}
+                <tr>
+                    <td colspan="4">{{name}}</td>
+                    <td><div class="subtotal">{{money cost}}</div></td>
+                </tr>
+                {{/each}}
+                <tr>
+                    <td colspan="4">GRAND TOTAL</td>
+                    <td><div class="total">{{money cart.grand_total}}</div></td>
+                </tr>
+            </tfoot>
+        </table>
+    </form>
+    <div>
+        <a class="btn btn-success" href="{{urls.checkout.single_address}}" onclick="" title="Click here to proceed to checkout">Checkout</a>
+    </div>
+    {{#if show_multiple_address_shipping}}
+    <div class="AlternativeCheckout" style="">
+        <p class="PTB20"><span style=""> or </span><a href="{{urls.checkout.multiple_address}}"><strong>check out with multiple addresses</strong></a></p>
+    </div>
+    {{/if}}
+{{else}}
+    <h3>Your Cart is empty</h3>
+{{/if}}

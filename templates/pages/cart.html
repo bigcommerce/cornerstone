@@ -1,29 +1,29 @@
 {{#partial "page"}}
-<div class="main">
+<style type="text/css">
+    table {
+        width: 100%;
+    }
+    td {
+        padding: 20px;
+    }
+</style>
+<div class="main" data-cart>
     <h1>Cart</h1>
+
+    {{{pre cart}}}
+
     {{#each cart.status_messages}}
-    <div class="alert alert-info" role="alert">{{{message}}}</div>
-    {{/each}}
-    {{#each cart.items}}
-    <div>{{quantity}} x {{name}}
-        {{#if options}}({{#each options}}{{{name}}} {{value}}{{# unless @last}}, {{/unless}}{{/each}}){{/if}}
-        @ {{price}} = {{total}} <a href="{{remove_url}}">Remove</a></div>
-        {{#if edit_url }}
-        <a href="{{edit_url}}">(Edit)</a>
-        {{/if}}
+        <div class="alert alert-info" role="alert" data-bind="text: message">{{{message}}}</div>
     {{/each}}
 
-    {{# if cart.items.length}}
-    <div>
-        <a class="btn btn-success" href="{{urls.checkout.single_address}}" onclick="" title="Click here to proceed to checkout">Proceed To Checkout</a>
+    <div data-cart-content>
+        {{> components/cart/content}}
     </div>
-    <div class="AlternativeCheckout" style="">
-        <p class="PTB20"><span style=""> or </span><a href="{{urls.checkout.multiple_address}}"><strong>check out with multiple addresses</strong></a></p>
-    </div>
-    {{/if}}
-    <div>
-        <a class="btn btn-primary" href="{{urls.home}}">Continue Shopping</a>
-    </div>
+
 </div>
+<script type="text/javascript">
+    
+
+</script>
 {{/partial}}
 {{> layout/base}}

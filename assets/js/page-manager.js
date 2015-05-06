@@ -2,16 +2,16 @@ export default class PageManager {
     constructor() {
     }
 
-    before(callback) {
-        callback();
+    before(next) {
+        next();
     }
 
-    loaded(callback) {
-        callback();
+    loaded(next) {
+        next();
     }
 
-    after(callback) {
-        callback();
+    after(next) {
+        next();
     }
 
     type() {

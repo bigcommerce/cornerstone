@@ -8,6 +8,8 @@ let internals = {};
 
 export default class Product extends PageManager {
     constructor() {
+        super();
+
         let productViewModel = { // The knockout.js view model
                 price: ko.observable(),
                 sku: ko.observable(),
@@ -42,7 +44,8 @@ export default class Product extends PageManager {
         };
     }
 
-    loaded() {
+    loaded(next) {
         internals.ProductOptions();
+        next();
     }
 }

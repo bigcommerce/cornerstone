@@ -28,7 +28,6 @@ export default class Cart extends PageManager {
         el.html(qty);
         // utils.events.emit('cart-update');
         utils.remote.cart.cartItemUpdate(itemId, qty, (err, response) => {
-            console.log(response);
             if (response.status === 'succeed') {
                 utils.remote.cart.cartContent({render_with: 'cart/content'}, (err, content) => {
                     $('[data-cart-content]').html(content);

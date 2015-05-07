@@ -9,24 +9,42 @@ export default class Cart extends PageManager {
         utils.events.on('cart-item-update', (event, button) => {
             let itemId = $(button).data('cart-update'),
                 el = $('#qty-' + itemId),
-                oldQty = parseInt(el.html()),
+                oldQty = parseInt(el.text()),
                 newQty;
 
             event.preventDefault();
 
             newQty = $(button).data('action') === 'inc' ? oldQty + 1 : oldQty - 1;
-            el.html(newQty);
+            el.text(newQty);
         
             utils.remote.cart.cartItemUpdate(itemId, newQty, (err, response) => {
                 if (response.status === 'succeed') {
-                    utils.remote.cart.cartContent({render_with: 'cart/content'}, (err, content) => {
-                        $('[data-cart-content]').html(content);
-                    });
+                    this.refreshCartContent();
                 } else {
-                    el.html(oldQty);
+                    el.text(oldQty);
                     alert(response.errors.join('\n'));
                 }
             });         
+        });
+
+        utils.events.on('cart-item-remove', (event, el) => {
+            let itemId = $(el).data('cart-remove');
+
+            event.preventDefault();
+
+            utils.remote.cart.cartItemRemove(itemId, (err, response) => {
+                if (response.status === 'succeed') {
+                    this.refreshCartContent();
+                } else {
+                    alert(response.errors.join('\n'));
+                }
+            });        
+        });
+    }
+
+    refreshCartContent() {
+        utils.remote.cart.cartContent({render_with: 'cart/content'}, (err, content) => {
+            $('[data-cart-content]').html(content);
         });
     }
 }

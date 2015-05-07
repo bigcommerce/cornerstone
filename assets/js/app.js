@@ -57,13 +57,13 @@ let PageClasses = {
 
 /**
  *
- * @param {function} func
+ * @param {Object} pageObj
  */
-function series(func) {
+function series(pageObj) {
     async.series([
-        func.before, // Executed first after constructor()
-        func.loaded, // Main module logic
-        func.after // Clean up method that can be overridden for cleanup.
+        pageObj.before.bind(pageObj), // Executed first after constructor()
+        pageObj.loaded.bind(pageObj), // Main module logic
+        pageObj.after.bind(pageObj) // Clean up method that can be overridden for cleanup.
     ], function (err) {
         if (err) {
             throw new Error(err);

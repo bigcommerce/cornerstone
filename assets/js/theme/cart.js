@@ -3,9 +3,7 @@ import $ from 'jquery';
 import utils from 'bigcommerce/stencil-utils';
 
 export default class Cart extends PageManager {
-    constructor() {
-        super();
-
+    loaded(next) {
         utils.events.on('cart-item-update', (event, button) => {
             let itemId = $(button).data('cart-update'),
                 el = $('#qty-' + itemId),
@@ -16,10 +14,10 @@ export default class Cart extends PageManager {
 
             newQty = $(button).data('action') === 'inc' ? oldQty + 1 : oldQty - 1;
             el.text(newQty);
-        
+            self = this;
             utils.remote.cart.itemUpdate(itemId, newQty, (err, response) => {
                 if (response.status === 'succeed') {
-                    this.refreshContent();
+                    self.refreshContent();
                 } else {
                     el.text(oldQty);
                     alert(response.errors.join('\n'));
@@ -32,14 +30,17 @@ export default class Cart extends PageManager {
 
             event.preventDefault();
 
+            self = this;
             utils.remote.cart.itemRemove(itemId, (err, response) => {
                 if (response.status === 'succeed') {
-                    this.refreshContent();
+                    self.refreshContent();
                 } else {
                     alert(response.errors.join('\n'));
                 }
             });        
         });
+
+        next();
     }
 
     refreshContent() {

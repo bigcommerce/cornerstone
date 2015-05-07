@@ -1,29 +1,15 @@
 {{#partial "page"}}
-<style type="text/css">
-    table {
-        width: 100%;
-    }
-    td {
-        padding: 20px;
-    }
-</style>
 <div class="main" data-cart>
     <h1>Cart</h1>
 
-    {{{pre cart}}}
-
-    {{#each cart.status_messages}}
-        <div class="alert alert-info" role="alert" data-bind="text: message">{{{message}}}</div>
-    {{/each}}
-
+    <div data-cart-status>
+        {{#each cart.status_messages}}
+            <div class="alert alert-info" role="alert" data-bind="text: message">{{{message}}}</div>
+        {{/each}}
+    </div>
     <div data-cart-content>
         {{> components/cart/content}}
     </div>
-
 </div>
-<script type="text/javascript">
-    
-
-</script>
 {{/partial}}
 {{> layout/base}}

@@ -1,12 +1,13 @@
 {{#partial "page"}}
 <div class="main row">
     {{> components/common/breadcrumbs breadcrumbs}}
-    <div class="col-md-3">
+    <div>
         {{>components/account/menu}}
     </div>
-    <ul class="col-md-9">
-        {{#each recently_viewed_products.items}}
-        <li class="col-md-3">
+    <form action="/compare" method="post">
+    <ul>
+        {{#each customer.recently_viewed_products.items}}
+        <li>
             <div><a href="{{{url}}}" alt="{{name}}">{{name}}</a></div>
             <div>{{rating}}</div>
             <div>{{{price}}}</div>
@@ -17,9 +18,12 @@
             <div>{{add_to_cart_text}}</div>
             <div>{{show_add_to_cart}}</div>
             <div>{{summary}}</div>
+            <input type="checkbox" name="products[]" value="{{id}}">
         </li>
         {{/each}}
     </ul>
+    <input type="submit" value="Compare Products">
+    </form>
 </div>
 {{/partial}}
 {{> layout/base}}

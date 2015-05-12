@@ -8,7 +8,7 @@ let internals = {};
 
 export default class Product extends PageManager {
     constructor() {
-        super()
+        super();
 
         this.productId = $('[name="product_id"]').val();
         this.$productView = $('.productView');
@@ -56,11 +56,18 @@ export default class Product extends PageManager {
                 options;
 
             options = this.getOptionValues($optionsContainer);
+            console.log(utils.remote)
 
             // add item to cart
             utils.remote.cart.itemAdd(this.productId, quantity, options, (err, data) => {
+                // if there is an error
+                if (err || data.error) {
+                    // TODO: display error
+                    return;
+                }
+
                 // fetch cart to display in cart preview
-                utils.remote.cart.getContent({render_with: 'cart/content-preview'}, (err, content) => {
+                utils.remote.cart.getContent({render_with: 'cart/preview'}, (err, content) => {
                     $('[data-cart-preview]').html(content);
                 });
             });

@@ -7,19 +7,26 @@ import PageManager from '../page-manager';
 let internals = {};
 
 export default class Product extends PageManager {
+    constructor() {
+        super()
+
+        this.productId = $('[name="product_id"]').val();
+        this.$productView = $('.productView');
+    }
+
     loaded(next) {
         let viewModel = { // The knockout.js view model
-                price: ko.observable(),
-                sku: ko.observable(),
-                instock: ko.observable(true),
-                purchasable: ko.observable(true),
-                canAddToCart: ko.pureComputed(() => {
-                    let self = viewModel;
-                    return self.instock() && self.purchasable();
-                })
-            };
+            price: ko.observable(),
+            sku: ko.observable(),
+            instock: ko.observable(true),
+            purchasable: ko.observable(true),
+            canAddToCart: ko.pureComputed(() => {
+                let self = viewModel;
+                return self.instock() && self.purchasable();
+            })
+        };
 
-        ko.applyBindings(viewModel, $('.productView').get(0));
+        ko.applyBindings(viewModel, this.$productView.get(0));
 
         utils.events.on('product-options-change', (event, ele) => {
             let $target = $(event.target), // actual element that is clicked

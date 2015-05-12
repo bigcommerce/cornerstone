@@ -5,7 +5,21 @@
         {{>components/account/menu}}
     </div>
     <div class="col-md-9">
-        Download an item
+        Below you can download the files for {{downloads.product_name}}
+        <ul>
+            {{#each downloads.items}}
+                <li>
+                    {{#if expired}}
+                        {{name}}&nbsp;{{size}}
+                        <div>This file can not be downloaded because it has already expired</div>
+                    {{else}}
+                        <a href="{{url}}">{{name}}</a>&nbsp;{{size}}
+                        <div>{{expiry_info}}</div>
+                    {{/if}}
+                    <div>{{description}}</div>
+                </li>
+            {{/each}}
+        </ul>
     </div>
 </div>
 {{/partial}}

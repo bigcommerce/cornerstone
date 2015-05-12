@@ -19,12 +19,15 @@
         <ul>
             <li>{{quantity}} &times; {{name}}</li>
             {{#if options}}
-            <li>(
-                {{#each options}}
-                {{name}}: {{value}}{{#unless @last}},{{/unless}}
-                {{/each}}
-                )
-            </li>
+                <li>(
+                    {{#each options}}
+                    {{name}}: {{value}}{{#unless @last}},{{/unless}}
+                    {{/each}}
+                    )
+                </li>
+            {{/if}}
+            {{#if download_link}}
+                <a href="{{download_link}}">Download Items</a>
             {{/if}}
         </ul>
         {{/each}}

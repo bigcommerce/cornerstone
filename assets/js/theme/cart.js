@@ -8,13 +8,13 @@ export default class Cart extends PageManager {
             let itemId = $(button).data('cart-update'),
                 el = $('#qty-' + itemId),
                 oldQty = parseInt(el.text()),
-                newQty;
+                newQty,
+                self = this;
 
             event.preventDefault();
 
             newQty = $(button).data('action') === 'inc' ? oldQty + 1 : oldQty - 1;
             el.text(newQty);
-            self = this;
             utils.remote.cart.itemUpdate(itemId, newQty, (err, response) => {
                 if (response.status === 'succeed') {
                     self.refreshContent();
@@ -22,22 +22,22 @@ export default class Cart extends PageManager {
                     el.text(oldQty);
                     alert(response.errors.join('\n'));
                 }
-            });         
+            });
         });
 
         utils.events.on('cart-item-remove', (event, el) => {
-            let itemId = $(el).data('cart-remove');
+            let itemId = $(el).data('cart-remove'),
+                self = this;
 
             event.preventDefault();
 
-            self = this;
             utils.remote.cart.itemRemove(itemId, (err, response) => {
                 if (response.status === 'succeed') {
                     self.refreshContent();
                 } else {
                     alert(response.errors.join('\n'));
                 }
-            });        
+            });
         });
 
         next();

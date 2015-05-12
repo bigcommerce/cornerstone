@@ -38,7 +38,7 @@
                 <option value="{{ this }}">{{ this }}</option>
                 {{/enumerate}}
             </select>
-            <input type="submit" class="btn btn-success btn-addToCart" data-bind="enable: canAddToCart" value="Add To Cart">
+            <input data-cart-add type="submit" class="btn btn-success btn-addToCart" data-bind="enable: canAddToCart" value="Add To Cart">
         </form>
 
         <form method="post" action="{{product.add_to_wishlist_url}}">

@@ -14,15 +14,14 @@ export default class Cart extends PageManager {
 
             newQty = $(button).data('action') === 'inc' ? oldQty + 1 : oldQty - 1;
             el.text(newQty);
-            self = this;
             utils.remote.cart.itemUpdate(itemId, newQty, (err, response) => {
                 if (response.status === 'succeed') {
-                    self.refreshContent();
+                    this.refreshContent();
                 } else {
                     el.text(oldQty);
                     alert(response.errors.join('\n'));
                 }
-            });         
+            });
         });
 
         utils.events.on('cart-item-remove', (event, el) => {
@@ -30,14 +29,13 @@ export default class Cart extends PageManager {
 
             event.preventDefault();
 
-            self = this;
             utils.remote.cart.itemRemove(itemId, (err, response) => {
                 if (response.status === 'succeed') {
-                    self.refreshContent();
+                    this.refreshContent();
                 } else {
                     alert(response.errors.join('\n'));
                 }
-            });        
+            });
         });
 
         next();

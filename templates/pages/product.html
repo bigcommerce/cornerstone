@@ -5,7 +5,7 @@
     <div class="productView">
         {{product.detail_messages}}
         <h1>{{ product.title }}</h1>
-        <h2>{{ product.price.base }}</h2>
+        <h2 data-bind="text: price">{{ product.price.base }}</h2>
         <a href="{{ product.initial_zoom_image }}">
             <img src="{{ product.initial_image }}">
         </a>
@@ -33,7 +33,7 @@
                     <div>{{{renderProductOption this}}}</div>
                 {{/each}}
             </div>
-            <select name="qty[]">
+            <select name="qty[]" data-product-quantity-change data-bind="enable: canAddToCart">
                 {{#enumerate 1 30}}
                 <option value="{{ this }}">{{ this }}</option>
                 {{/enumerate}}
@@ -44,6 +44,37 @@
         <form method="post" action="{{product.add_to_wishlist_url}}">
             <input type="submit" class="btn btn-primary" value="Add To Wishlist">
         </form>
+
+        <div class="Clear AddThisButtonBox" data-product-share>
+            <!-- AddThis Button BEGIN -->
+            <div class="addthis_toolbox addthis_default_style ">
+                <a class="addthis_button_facebook at300b" title="Facebook" href="#">
+                    <span class="at4-icon aticon-facebook" style="background-color: rgb(48, 88, 145);">
+                    <span class="at_a11y">Share on facebook</span></span></a>
+                    <a class="addthis_button_twitter at300b" title="Tweet" href="#">
+                    <span class="at4-icon aticon-twitter" style="background-color: rgb(44, 168, 210);">
+                    <span class="at_a11y">Share on twitter</span></span>
+                </a>
+                <a class="addthis_button_google at300b" target="_blank" title="Google" href="#">
+                    <span class="at4-icon aticon-google" style="background-color: rgb(8, 104, 185);">
+                        <span class="at_a11y">Share on google</span>
+                    </span>
+                </a>
+                <a class="addthis_button_email at300b" target="_blank" title="Email" href="#">
+                    <span class="at4-icon aticon-email" style="background-color: rgb(115, 138, 141);">
+                        <span class="at_a11y">Share on email</span>
+                    </span>
+                </a>
+                <a class="addthis_button_print at300b" title="Print" href="#">
+                    <span class="at4-icon aticon-print" style="background-color: rgb(115, 138, 141);">
+                        <span class="at_a11y">Share on print</span>
+                    </span>
+                </a>
+                <div class="atclear"></div>
+            </div>
+            <script type="text/javascript" src="//s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4e94ed470ee51e32"></script>
+            <!-- AddThis Button END -->
+        </div>
         <p>{{{ product.description }}}</p>
     </div>
 {{/partial}}

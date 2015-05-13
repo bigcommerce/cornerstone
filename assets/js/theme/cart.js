@@ -4,7 +4,7 @@ import utils from 'bigcommerce/stencil-utils';
 
 export default class Cart extends PageManager {
     loaded(next) {
-        utils.events.on('cart-item-update', (event, button) => {
+        utils.events.on('click', 'cart-item-update', (event, button) => {
             let itemId = $(button).data('cart-update'),
                 el = $('#qty-' + itemId),
                 oldQty = parseInt(el.text()),
@@ -24,7 +24,7 @@ export default class Cart extends PageManager {
             });
         });
 
-        utils.events.on('cart-item-remove', (event, el) => {
+        utils.events.on('click', 'cart-item-remove', (event, el) => {
             let itemId = $(el).data('cart-remove');
 
             event.preventDefault();

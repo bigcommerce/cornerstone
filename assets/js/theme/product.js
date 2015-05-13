@@ -28,7 +28,7 @@ export default class Product extends PageManager {
 
         ko.applyBindings(viewModel, this.$productView.get(0));
 
-        utils.events.on('product-options-change', (event, ele) => {
+        utils.events.on('click', 'product-options-change', (event, ele) => {
             let $target = $(event.target), // actual element that is clicked
                 $ele = $(ele),             // the element that has the data-tag
                 targetVal = $target.val(), // value of the target
@@ -47,7 +47,7 @@ export default class Product extends PageManager {
             }
         });
 
-        utils.events.on('cart-item-add', (event, ele) => {
+        utils.events.on('click', 'cart-item-add', (event, ele) => {
             // prevent form from submitting
             event.preventDefault();
 
@@ -56,7 +56,6 @@ export default class Product extends PageManager {
                 options;
 
             options = this.getOptionValues($optionsContainer);
-            console.log(utils.remote)
 
             // add item to cart
             utils.remote.cart.itemAdd(this.productId, quantity, options, (err, data) => {

@@ -20,7 +20,7 @@ export default function () {
         });
     }, 400);
 
-    utils.events.on('search-quick', (event, ele) => {
+    utils.events.on('input', 'search-quick', (event, ele) => {
         let searchQuery = $(ele).val();
 
         if (searchQuery.length < 3) return; //server will only perform search with at least 3 characters

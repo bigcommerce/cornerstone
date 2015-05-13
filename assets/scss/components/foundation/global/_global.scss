@@ -1,0 +1,25 @@
+// =============================================================================
+// GLOBAL (CSS)
+// =============================================================================
+//
+// 1. If set to false, there is no outputted CSS for this component.
+//
+// -----------------------------------------------------------------------------
+
+@if $exportCSS--global { // 1
+
+    figure {
+        margin-top: $figure-marginTop;
+        margin-bottom: $figure-marginBottom;
+
+        > figcaption {
+            margin-bottom: $figure-figcaption-marginBottom;
+        }
+    }
+
+    figcaption {
+        color: $figcaption-color;
+        font-size: $figcaption-fontSize;
+        margin-top: $figcaption-marginTop;
+    }
+}

@@ -1,0 +1,42 @@
+// =============================================================================
+// TYPE (CSS)
+// =============================================================================
+
+// Stencil type component additions
+// -----------------------------------------------------------------------------
+//
+// 1. If set to false, there is no outputted CSS for this component.
+//
+// -----------------------------------------------------------------------------
+
+
+@if $exportCSS--type { // 1
+
+    .blockquote {
+        font-size: $blockquote-fontSize;
+        line-height: $blockquote-lineHeight;
+    }
+
+    .blockquote-cite {
+        line-height: $blockquote-cite-lineHeight;
+        margin: $blockquote-cite-margin;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        margin-top: $heading-marginTop;
+    }
+
+    h5,
+    h6 {
+        text-transform: $heading-textTransform;
+    }
+
+    a {
+        transition: $anchor-transition;
+    }
+}

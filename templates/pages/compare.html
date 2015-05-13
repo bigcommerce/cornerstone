@@ -1,7 +1,37 @@
 {{#partial "page"}}
 <div class="main">
-    <h1>Compare Products</h1>
-    TODO
+    <h1>Comparing Products</h1>
+    <ul class="row">
+        {{#each comparisons}}
+        <li>
+            <div><a href="{{remove_url}}">Remove</a></div>
+            <div><a href="{{{url}}}">{{name}}</a></div>
+            <div><img src="{{{image}}}" alt="{{name}}"></div>
+            <div><a href="{{brand_url}}">{{brand_name}}</a></div>
+            <div>{{{price}}}</div>
+            {{#if availability}}
+                <div>{{availability}}</div>
+            {{else}}
+                <div>N/A</div>
+            {{/if}}
+            {{#if rating}}
+                <div>{{rating}}</div>
+            {{else}}
+                <div>No Reviews</div>
+            {{/if}}
+            <div>{{summary}}</div>
+            {{#if custom_fields}}
+                <div>
+                    {{#each custom_fields}}
+                    <span>{{name}}: {{value}},</span>
+                    {{/each}}
+                </div>
+            {{else}}
+                <div>N/A</div>
+            {{/if}}
+        </li>
+        {{/each}}
+    </ul>
 </div>
 {{/partial}}
 {{> layout/base}}

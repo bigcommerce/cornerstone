@@ -7,11 +7,11 @@
     <form action="{{urls.auth.save_new_account}}" method="post" class="form">
         <fieldset class="form-fieldset">
             {{#each forms.create_account.account_fields }}
-                {{{form this}}}
+                {{{field this}}}
             {{/each}}
             <hr>
             {{#each forms.create_account.address_fields }}
-                {{{form this}}}
+                {{{field this}}}
             {{/each}}
             <div class="box">
                 {{#if create_account.recaptcha.enabled }}

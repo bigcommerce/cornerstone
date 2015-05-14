@@ -6,22 +6,15 @@
     </div>
     <div class="col-md-9">
         <h1>All Orders</h1>
-        {{#unless customer.orders}}
+        {{#unless customer.orders.items}}
         <div class="alert alert-info" role="alert">You have not placed any orders</div>
         {{/unless}}
-
         <ul>
-            {{#each customer.orders}}
+            {{#each customer.orders.items}}
             <li>
-                <div>
-                    <span>Order #{{id}}</span>
-                    <form method="post" action="{{reorder_url}}">
-                        <input type="submit" value="Reorder" class="btn">
-                    </form>
-                    <a href="{{details_url}}" class="btn">View Details</a>
-                </div>
+                <h3>Order #{{id}}</h3>
                 <div>Order Date: {{date}}</div>
-                <div><strong>Your Order Contains</strong></div>
+                <div>Your Order Contains</div>
                 {{#each item_list}}
                 <ul>
                     <li>{{qty}} x {{name}}</li>
@@ -35,9 +28,30 @@
                     {{/if}}
                 </ul>
                 {{/each}}
+                <div>
+                    <a href="{{reorder_url}}" class="btn">Reorder</a>
+                    <a href="{{return_url}}" class="btn">Return</a>
+                    <a href="{{details_url}}" class="btn">View Details</a>
+                </div>
             </li>
             {{/each}}
         </ul>
+        <ul class="pagination">
+            {{#if customer.orders.pager.previous}}
+                <li><a href="{{customer.orders.pager.previous}}">Previous</a></li>
+            {{/if}}
+            {{#each customer.orders.pager.links}}
+                <li>
+                    {{#if this.current}}
+                        {{this.number}}
+                    {{else}}
+                        <a href="{{this.url}}">{{this.number}}</a>
+                    {{/if}}
+                </li>
+            {{/each}}
+            {{#if customer.orders.pager.next}}
+                <li><a href="{{customer.orders.pager.next}}">Next</a></li>
+            {{/if}}
         </ul>
     </div>
 </div>

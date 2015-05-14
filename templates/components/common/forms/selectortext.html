@@ -1,0 +1,13 @@
+<noscript>
+    <input type="text" name="{{name}}" value="{{value}}" class="{{class}}" aria-required="{{required}}" {{#if style}}style="{{style}}" {{/if}} />
+</noscript>
+
+<label class="form-label" for="{{id}}">{{label}}</label>
+<select name="{{name}}" class="{{class}}" aria-required="{{required}}" id="{{id}}" {{#if style}}style="{{style}}" {{/if}}>
+    {{#if options}}
+        <option value="">{{chooseprefix}}</option>
+        {{#each options}}
+            <option {{#equals ../options.value value}} selected {{/equals}}value="{{value}}">{{label}}</option>
+        {{/each}}
+    {{/if}}
+</select>

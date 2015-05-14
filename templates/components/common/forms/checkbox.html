@@ -1,0 +1,10 @@
+<label class="form-label" for="{{id}}">{{label}}</label>
+
+{{#if checkboxes}}
+    {{#each checkboxes}}
+    <li>
+        <input type="checkbox" value="{{value}}" name="{{name}}" id="{{id}}" class="{{class}} form-checkbox" {{#if style}}style="{{style}}" {{/if}}>
+        <label class="{{class}} form-label" for="{{label}}">{{label}}</label>
+    </li>
+    {{/each}}
+{{/if}}

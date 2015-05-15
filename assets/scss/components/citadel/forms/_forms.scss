@@ -1,0 +1,72 @@
+// =============================================================================
+// FORMS (CSS)
+// =============================================================================
+
+
+// Citadel field states
+// -----------------------------------------------------------------------------
+
+.form-field--error {
+
+    .form-inlineMessage {
+
+        &:before {
+            background: $form-field--error-icon no-repeat;
+            background-size: 100%;
+            content: "";
+            display: inline-block;
+            height: 14px;
+            left: -2px;
+            margin-right: 1px;
+            position: relative;
+            top: 3px;
+            width: 14px;
+        }
+    }
+}
+
+.form-field--success {
+    position: relative;
+
+    .form-label {
+
+        &:after {
+            background: $form-field--success-icon no-repeat;
+            background-size: 100%;
+            content: "";
+            display: inline-block;
+            height: remCalc(24px);
+            pointer-events: none;
+            position: absolute;
+            top: remCalc(37px);
+            right: spacing("third") + spacing("eighth");
+            width: remCalc(24px);
+        }
+    }
+}
+
+
+// Citadel checkbox/radio positioning
+// -----------------------------------------------------------------------------
+
+.form-checkbox,
+.form-radio {
+
+    + .form-label {
+
+        &::before {
+            top: 3px;
+        }
+    }
+}
+
+.form-checkbox,
+.form-radio {
+
+    + .form-label {
+
+        &::after {
+            top: 4px;
+        }
+    }
+}

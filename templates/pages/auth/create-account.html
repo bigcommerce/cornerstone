@@ -4,30 +4,36 @@
     {{#if forms.create_account.message}}
     <p class="bg-danger">{{forms.create_account.message}}</p>
     {{/if}}
-    <form action="{{urls.auth.save_new_account}}" method="post">
-        {{{ forms.create_account.account_fields }}}
-        <hr>
-        {{{ forms.create_account.address_fields }}}
-        <div class="box">
-            {{#if create_account.recaptcha.enabled }}
-            <h3>Security Question</h3>
-            <dl>
-                <script type="text/javascript"
-                        src="https://www.google.com/recaptcha/api/challenge?k={{forms.create_account.recaptcha.public_key}}">
-                </script>
-                <noscript>
-                    <iframe src="https://www.google.com/recaptcha/api/noscript?k={{forms.create_account.recaptcha.public_key}}" height="300" width="500" frameborder="0"></iframe>
-                    <br>
+    <form action="{{urls.auth.save_new_account}}" method="post" class="form">
+        <fieldset class="form-fieldset">
+            {{#each forms.create_account.account_fields }}
+                {{{field this}}}
+            {{/each}}
+            <hr>
+            {{#each forms.create_account.address_fields }}
+                {{{field this}}}
+            {{/each}}
+            <div class="box">
+                {{#if create_account.recaptcha.enabled }}
+                <h3>Security Question</h3>
+                <dl>
+                    <script type="text/javascript"
+                            src="https://www.google.com/recaptcha/api/challenge?k={{forms.create_account.recaptcha.public_key}}">
+                    </script>
+                    <noscript>
+                        <iframe src="https://www.google.com/recaptcha/api/noscript?k={{forms.create_account.recaptcha.public_key}}" height="300" width="500" frameborder="0"></iframe>
+                        <br>
                     <textarea name="recaptcha_challenge_field" rows="3" cols="40">
                     </textarea>
-                    <input type="hidden" name="recaptcha_response_field" value="manual_challenge">
-                </noscript>
-            </dl>
-            {{/if}}
-            <p class="Submit">
-                <input type="submit" class="btn alt" value="Create Account" />&nbsp;&nbsp;&nbsp;<a href="{{urls.home}}">Return to store</a>
-            </p>
-        </div>
+                        <input type="hidden" name="recaptcha_response_field" value="manual_challenge">
+                    </noscript>
+                </dl>
+                {{/if}}
+                <p class="Submit">
+                    <input type="submit" class="btn alt" value="Create Account" />&nbsp;&nbsp;&nbsp;<a href="{{urls.home}}">Return to store</a>
+                </p>
+            </div>
+        </fieldset>
     </form>
 </div>
 {{/partial}}

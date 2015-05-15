@@ -1,0 +1,11 @@
+<div class="form-field">
+    <label class="form-label" for="{{id}}">{{label}}</label>
+    <select class="{{class}} form-select" id="{{id}}" aria-required="{{required}}" {{#if style}}style="{{style}}" {{/if}}>
+        {{#if options}}
+            <option value="">{{chooseprefix}}</option>
+            {{#each options}}
+                <option {{#equals ../options.value value}} selected {{/equals}}value="{{value}}">{{label}}</option>
+            {{/each}}
+        {{/if}}
+    </select>
+</div>

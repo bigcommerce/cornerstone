@@ -1,0 +1,25 @@
+<div class="form-field">
+    <label class="form-label" for="{{id}}" {{#if style}}style="{{style}}" {{/if}}>{{label}}</label>
+    <div class="field-group">
+        <select name="{{day.name}}" id="{{id}}" aria-required="{{required}}">
+            {{#each day.items}}
+            <option {{#equals ../day.value value}} selected {{/equals}}value="{{value}}">{{label}}</option>
+            {{/each}}
+
+        </select>
+
+        <select name="{{month.name}}" id="{{id}}"  aria-required="{{required}}">
+            {{#each month.items}}
+            <option {{#equals ../month.value value}} selected {{/equals}}value="{{value}}">{{label}}</option>
+            {{/each}}
+
+        </select>
+
+        <select name="{{year.name}}" id="{{id}}" aria-required="{{required}}">
+            {{#each year.items}}
+            <option {{#equals ../year.value value}} selected {{/equals}}value="{{value}}">{{label}}</option>
+            {{/each}}
+
+        </select>
+    </div>
+</div>

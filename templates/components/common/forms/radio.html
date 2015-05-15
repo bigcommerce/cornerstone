@@ -1,11 +1,13 @@
-<ul aria-required="{{require}}" class="{{class}}">
-    {{#if radios}}
-        {{#each radios}}
-        <li>
-            <input type="radio" {{#if name}}name="{{name}}"{{/if}} id="{{id}}" class="form-radio" aria-required="{{required}}" {{#if style}}style="{{style}}"{{/if}}>
-            <label for="{{id}}">{{label}}</label>
-        </li>
-        {{/each}}
+<div class="form-field">
+    <ul aria-required="{{require}}" class="{{class}}">
+        {{#if radios}}
+            {{#each radios}}
+                <li>
+                    <input type="radio" {{#if name}}name="{{name}}"{{/if}} id="{{id}}" class="form-radio" aria-required="{{required}}" {{#if style}}style="{{style}}"{{/if}}>
+                    <label for="{{id}}">{{label}}</label>
+                </li>
+            {{/each}}
 
-    {{/if}}
-</ul>
+        {{/if}}
+    </ul>
+</div>

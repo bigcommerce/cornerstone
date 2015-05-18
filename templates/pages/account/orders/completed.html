@@ -6,20 +6,16 @@
     </div>
     <div class="col-md-9">
         <h1>Completed Orders</h1>
-        {{#unless customer.orders}}
-        <div class="alert alert-info" role="alert">You have no completed orders</div>
+        {{#unless customer.orders.list}}
+        <div class="alert alert-info" role="alert">You have not placed any orders</div>
         {{/unless}}
         <ul>
-            {{#each customer.orders}}
+            {{#each customer.orders.list}}
             <li>
-                <div>
-                    <span>Order #{{id}}</span>
-                    <a href="{{return_url}}" class="btn">Return Item</a>
-                    <a href="{{details_url}}" class="btn">View Details</a>
-                </div>
+                <h3>Order #{{id}}</h3>
                 <div>Order Date: {{date}}</div>
-                <div><strong>Your Order Contains</strong></div>
-                {{#each item_list}}
+                <div>Your Order Contains</div>
+                {{#each items}}
                 <ul>
                     <li>{{qty}} x {{name}}</li>
                     {{#if options}}
@@ -32,9 +28,28 @@
                     {{/if}}
                 </ul>
                 {{/each}}
+                <div>
+                    <a href="{{details_url}}" class="btn">View Details</a>
+                </div>
             </li>
             {{/each}}
         </ul>
+        <ul class="pagination">
+            {{#if customer.orders.pager.previous}}
+                <li><a href="{{customer.orders.pager.previous}}">Previous</a></li>
+            {{/if}}
+            {{#each customer.orders.pager.links}}
+                <li>
+                    {{#if this.current}}
+                        {{this.number}}
+                    {{else}}
+                        <a href="{{this.url}}">{{this.number}}</a>
+                    {{/if}}
+                </li>
+            {{/each}}
+            {{#if customer.orders.pager.next}}
+                <li><a href="{{customer.orders.pager.next}}">Next</a></li>
+            {{/if}}
         </ul>
     </div>
 </div>

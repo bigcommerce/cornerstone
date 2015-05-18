@@ -6,16 +6,16 @@
     </div>
     <div class="col-md-9">
         <h1>All Orders</h1>
-        {{#unless customer.orders.items}}
+        {{#unless customer.orders.list}}
         <div class="alert alert-info" role="alert">You have not placed any orders</div>
         {{/unless}}
         <ul>
-            {{#each customer.orders.items}}
+            {{#each customer.orders.list}}
             <li>
                 <h3>Order #{{id}}</h3>
                 <div>Order Date: {{date}}</div>
                 <div>Your Order Contains</div>
-                {{#each item_list}}
+                {{#each items}}
                 <ul>
                     <li>{{qty}} x {{name}}</li>
                     {{#if options}}

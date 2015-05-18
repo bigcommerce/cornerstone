@@ -14,11 +14,9 @@
                 {{/if}}
             </a>
         </div>
-
-
         <div class="col-md-3">
             {{#if customer }}
-            <a href="{{urls.account.index}}">Welcome Back {{ customer.name }}</a>
+            <a href="{{urls.account.index}}">{{lang 'header.welcome_back' name=customer.name }}</a>
             <a href="{{urls.auth.logout}}">Sign Out</a>
             {{else}}
             <a href="{{urls.auth.login}}">Login</a>

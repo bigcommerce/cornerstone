@@ -5,7 +5,13 @@
         {{>components/account/menu}}
     </div>
     <div class="col-md-9">
-        <h1>{{forms.address.page_title}}</h1>
+        {{#if forms.address.address_id}}
+            <h1>{{lang 'forms.address.edit.heading'}}</h1>
+            <p>{{lang 'forms.address.edit.description'}}</p>
+        {{else}}
+            <h1>{{lang 'forms.address.add.heading'}}</h1>
+            <p>{{lang 'forms.address.add.description'}}</p>
+        {{/if}}
         {{#if forms.address.message}}
         <div class="alert alert-warning" role="alert">{{{forms.address.message}}}</div>
         {{/if}}
@@ -14,7 +20,7 @@
                 <input type="hidden" name="shipid" value="{{forms.address.address_id}}">
             {{/if}}
             {{{ forms.address.shipping_fields }}}
-            <input type="submit">
+            <input type="submit" value="{{lang 'forms.address.submit_value'}}">
         </form>
     </div>
 </div>

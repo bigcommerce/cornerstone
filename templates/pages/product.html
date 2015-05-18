@@ -15,7 +15,7 @@
         {{#if product.release_date }}
         <span class="alert alert-warning">{{product.release_date}}</span>
         {{/if}}
-        <form method="post" action="{{product.cart_url}}" enctype="multipart/form-data">
+        <form method="post" action="{{product.cart_url}}" enctype="multipart/form-data" data-cart-item-add>
             <input type="hidden" name="action" value="add">
             <input type="hidden" name="product_id" value="{{product.id}}" />
             <p>
@@ -27,7 +27,7 @@
                 <h4>SKU</h4>
                 <p class="product-skuText" data-bind="text: sku">{{ product.sku }}</p>
             </div>
-            <div data-product-options-change>
+            <div id="product-options">
                 Options
                 {{#each product.options}}
                     <div>{{{renderProductOption this}}}</div>
@@ -38,7 +38,7 @@
                 <option value="{{ this }}">{{ this }}</option>
                 {{/enumerate}}
             </select>
-            <input data-cart-add type="submit" class="btn btn-success btn-addToCart" data-bind="enable: canAddToCart" value="Add To Cart">
+            <input type="submit" class="btn btn-success btn-addToCart" data-bind="enable: canAddToCart" value="Add To Cart">
         </form>
 
         <form method="post" action="{{product.add_to_wishlist_url}}">

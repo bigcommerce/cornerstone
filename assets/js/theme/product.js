@@ -1,10 +1,10 @@
 /*
  Import all product specific js
  */
-import utils from 'bigcommerce/stencil-utils'
+import $ from 'jquery';
 import ko from 'knockout';
 import PageManager from '../page-manager';
-let internals = {};
+import utils from 'bigcommerce/stencil-utils'
 
 export default class Product extends PageManager {
     constructor() {
@@ -28,17 +28,18 @@ export default class Product extends PageManager {
 
         ko.applyBindings(viewModel, this.$productView.get(0));
 
-        utils.events.on('product-options-change', (event, ele) => {
-            let $target = $(event.target), // actual element that is clicked
-                $ele = $(ele),             // the element that has the data-tag
-                targetVal = $target.val(), // value of the target
+        // product options
+        $('body').on('change', '#product-options', (event) => {
+            let $target = $(event.target),     // actual element that is clicked
+                $ele = $(event.currentTarget), // the element that has the data-tag
+                targetVal = $target.val(),     // value of the target
                 options = {};
 
             if (targetVal) {
                 options = this.getOptionValues($ele);
 
                 // check inventory when the option has changed
-                utils.remote.productAttributes.optionChange(options, this.productId, (err, data) => {
+                utils.productAttributes.optionChange(options, this.productId, (err, data) => {
                     viewModel.price(data.price);
                     viewModel.sku(data.sku);
                     viewModel.instock(data.instock);
@@ -47,19 +48,17 @@ export default class Product extends PageManager {
             }
         });
 
-        utils.events.on('cart-item-add', (event, ele) => {
-            // prevent form from submitting
+        utils.hooks.on('cart-item-add', (event, ele) => {
             event.preventDefault();
 
             let quantity = this.$productView.find('[data-product-quantity]').val(),
-                $optionsContainer = this.$productView.find('[data-product-options-change]'),
+                $optionsContainer = this.$productView.find('#product-options'),
                 options;
 
             options = this.getOptionValues($optionsContainer);
-            console.log(utils.remote)
 
             // add item to cart
-            utils.remote.cart.itemAdd(this.productId, quantity, options, (err, data) => {
+            utils.cart.itemAdd(this.productId, quantity, options, (err, data) => {
                 // if there is an error
                 if (err || data.error) {
                     // TODO: display error
@@ -67,7 +66,7 @@ export default class Product extends PageManager {
                 }
 
                 // fetch cart to display in cart preview
-                utils.remote.cart.getContent({render_with: 'cart/preview'}, (err, content) => {
+                utils.cart.getContent({render_with: 'cart/preview'}, (err, content) => {
                     $('[data-cart-preview]').html(content);
                 });
             });

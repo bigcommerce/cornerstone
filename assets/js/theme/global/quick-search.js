@@ -15,15 +15,15 @@ export default function () {
 
     //stagger searching for 400ms after last input
     let doSearch = _.debounce((searchQuery) => {
-        utils.remote.search.search(searchQuery, params, (err, data) => {
+        utils.search.search(searchQuery, params, (err, data) => {
             quickSearchViewModel.results(data);
         });
     }, 400);
 
-    utils.events.on('search-quick', (event, ele) => {
-        let searchQuery = $(ele).val();
+    utils.hooks.on('search-quick', (event) => {
+        let searchQuery = $(event.currentTarget).val();
 
-        if (searchQuery.length < 3) return; //server will only perform search with at least 3 characters
+        if (searchQuery.length < 3) return; // server will only perform search with at least 3 characters
 
         doSearch(searchQuery);
     });

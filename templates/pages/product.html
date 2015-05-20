@@ -1,3 +1,6 @@
+---
+related_products: 5
+---
 {{#partial "page"}}
     {{#each breadcrumbs }}
         {{> components/common/breadcrumbs this}}
@@ -77,5 +80,6 @@
         </div>
         <p>{{{ product.description }}}</p>
     </div>
+    {{> components/products/related product.related_products}}
 {{/partial}}
 {{> layout/base}}

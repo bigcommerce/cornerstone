@@ -12,22 +12,37 @@ export default class Product extends PageManager {
 
         this.productId = $('[name="product_id"]').val();
         this.$productView = $('.productView');
-    }
 
-    loaded(next) {
-        let viewModel = { // The knockout.js view model
+        this.viewModel = { // The knockout.js view model
+            quantity: ko.observable(1),
             price: ko.observable(),
             sku: ko.observable(),
             instock: ko.observable(true),
             purchasable: ko.observable(true),
             canAddToCart: ko.pureComputed(() => {
-                let self = viewModel;
-                return self.instock() && self.purchasable();
+                return this.viewModel.instock() && this.viewModel.purchasable();
             })
         };
+    }
 
-        ko.applyBindings(viewModel, this.$productView.get(0));
+    loaded(next) {
+        ko.applyBindings(this.viewModel, this.$productView.get(0));
 
+        this.productOptions();
+
+        this.quantityChange();
+
+        this.addProductToCart();
+
+        next();
+    }
+
+    /**
+     *
+     * Handle product options changes
+     *
+     */
+    productOptions() {
         // product options
         $('body').on('change', '#product-options', (event) => {
             let $target = $(event.target),     // actual element that is clicked
@@ -40,18 +55,46 @@ export default class Product extends PageManager {
 
                 // check inventory when the option has changed
                 utils.productAttributes.optionChange(options, this.productId, (err, data) => {
-                    viewModel.price(data.price);
-                    viewModel.sku(data.sku);
-                    viewModel.instock(data.instock);
-                    viewModel.purchasable(data.purchasable);
+                    this.viewModel.price(data.price);
+                    this.viewModel.sku(data.sku);
+                    this.viewModel.instock(data.instock);
+                    this.viewModel.purchasable(data.purchasable);
                 });
             }
         });
+    }
 
+    /**
+     *
+     * Handle action when the shopper clicks on + / - for quantity
+     *
+     */
+    quantityChange() {
+        $('#product-quantity').on('click', 'button', (event) => {
+            event.preventDefault();
+            let qty = this.viewModel.quantity(),
+                $target = $(event.target);
+
+            if ($target.data('action') === 'inc') {
+                qty++;
+            } else if (qty > 1) {
+                qty--;
+            }
+
+            this.viewModel.quantity(qty);
+        });
+    }
+
+    /**
+     *
+     * Add a product to cart
+     *
+     */
+    addProductToCart() {
         utils.hooks.on('cart-item-add', (event, ele) => {
             event.preventDefault();
 
-            let quantity = this.$productView.find('[data-product-quantity]').val(),
+            let quantity = this.$productView.find('#product-quantity [name=qty\\[\\]]').val(),
                 $optionsContainer = this.$productView.find('#product-options'),
                 options;
 
@@ -71,8 +114,6 @@ export default class Product extends PageManager {
                 });
             });
         });
-
-        next();
     }
 
     /**

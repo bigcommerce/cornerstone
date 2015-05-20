@@ -33,11 +33,12 @@
                     <div>{{{renderProductOption this}}}</div>
                 {{/each}}
             </div>
-            <select name="qty[]" data-product-quantity-change data-bind="enable: canAddToCart">
-                {{#enumerate 1 30}}
-                <option value="{{ this }}">{{ this }}</option>
-                {{/enumerate}}
-            </select>
+            <div id="product-quantity" data-bind="enable: canAddToCart">
+                <button class="product-qty-update" data-action="dec">-</button>
+                <button class="product-qty-update" data-action="inc">+</button>
+                <span class="product-qty" data-bind="text: quantity">1</span>
+                <input type="hidden" name="qty[]" data-bind="value: quantity" value="1">
+            </div>
             <input type="submit" class="btn btn-success btn-addToCart" data-bind="enable: canAddToCart" value="Add To Cart">
         </form>
 

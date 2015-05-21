@@ -1,6 +1,6 @@
 import $ from 'jquery';
 import PageManager from '../page-manager';
-import utils from 'stencil-utils';
+import utils from 'bigcommerce/stencil-utils';
 import _ from 'lodash';
 
 export default class Auth extends PageManager {

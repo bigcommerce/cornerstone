@@ -3,24 +3,52 @@
 // =============================================================================
 
 
+// Citadel inline messages
+// -----------------------------------------------------------------------------
+
+.form-checkbox,
+.form-radio {
+
+    + .form-label {
+
+        &:last-child {
+            display: block;
+            margin-bottom: $form-checkRadio-label-last-marginBottom;
+        }
+    }
+}
+
+
+// Citadel inline messages
+// -----------------------------------------------------------------------------
+
+.form-inlineMessage {
+    display: block;
+}
+
+
 // Citadel field states
 // -----------------------------------------------------------------------------
 
 .form-field--error {
 
+    .form-input {
+        float: none;
+    }
+
     .form-inlineMessage {
 
         &:before {
-            background: $form-field--error-icon no-repeat;
-            background-size: 100%;
+            background: $form-error-icon no-repeat;
+            background-size: $form-inlineMessage-backgroundSize;
             content: "";
             display: inline-block;
-            height: 14px;
-            left: -2px;
-            margin-right: 1px;
+            height: $form-error-icon-height;
+            left: $form-error-icon-left;
+            margin-right: $form-error-icon-marginRight;
             position: relative;
-            top: 3px;
-            width: 14px;
+            top: $form-error-icon-top;
+            width: $form-error-icon-width;
         }
     }
 }
@@ -31,21 +59,21 @@
     .form-label {
 
         &:after {
-            background: $form-field--success-icon no-repeat;
-            background-size: 100%;
+            background: $form-success-icon no-repeat;
+            background-size: $form-inlineMessage-backgroundSize;
             content: "";
             display: inline-block;
-            height: remCalc(24px);
+            height: $form-success-icon-height;
             pointer-events: none;
             position: absolute;
-            top: remCalc(37px);
-            right: spacing("third") + spacing("eighth");
-            width: remCalc(24px);
+            top: $form-success-icon-top;
+            right: $form-success-icon-right;
+            width: $form-success-icon-width;
         }
     }
 
     .form-input {
-        padding-right: spacing("double");
+        padding-right: $form-success-input-paddingRight;
     }
 }
 
@@ -59,7 +87,7 @@
     + .form-label {
 
         &::before {
-            top: 3px;
+            top: $form-checkRadio-labelBefore-top;
         }
     }
 }
@@ -70,7 +98,7 @@
     + .form-label {
 
         &::after {
-            top: 4px;
+            top: $form-checkRadio-labelAfter-top;
         }
     }
 }

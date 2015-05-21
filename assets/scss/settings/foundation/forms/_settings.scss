@@ -24,7 +24,7 @@ $form-label-font-size:              fontSize("base");
 $form-label-font-weight:            null;
 $form-label-line-height:            lineHeight("base");
 $form-label-font-color:             color("greys", "dark");
-$form-label-small-transform:        none;
+$form-label-small-transform:        uppercase;
 $form-label-bottom-margin:          spacing("third");
 
 $input-font-family:                 inherit;
@@ -55,7 +55,7 @@ $legend-font-weight:                null;
 $legend-padding:                    0;
 
 // Select variables
-$select-bg-color:                   color("whites", "bright");
+$select-bg-color:                   color("whites");
 $select-hover-bg-color:             null;
 
 
@@ -84,7 +84,7 @@ $formField-maxWidth:                none;
 $formField-margin:                  0 0 $form-verticalSpacing;
 
 $form-label-small-color:            color("greys", "light");
-$form-label-small-fontSize:         fontSize("tiny");
+$form-label-small-fontSize:         remCalc(10px);
 $form-label-small-fontWeight:       null;
 
 $input-placeholder-color:           color("greys", "light");
@@ -107,7 +107,15 @@ $select-outline:                    0;
 $select-paddingRight:               null;
 $select-focus-borderColor:          null;
 $select-focus-boxShadow:            null;
+
+
+// Stencil Variables
+// -----------------------------------------------------------------------------
+
 $select-padding:                    $input-verticalPadding (spacing("double")) $input-verticalPadding $input-horizontalPadding;
 $select-borderRadius:               $global-radius;
 $select-hover-borderColor:          color("greys", "lighter");
 $select-backgroundImage:            url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z" fill="#{color("greys", "medium")}" /></svg>');
+$select-backgroundPosition:         right (spacing("quarter") + spacing("eighth")) top spacing("third") + spacing("eighth");
+
+$form-label-small-marginTop:        spacing("quarter");

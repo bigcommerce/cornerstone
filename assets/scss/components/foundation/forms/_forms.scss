@@ -8,7 +8,7 @@
 
 .form-select {
     background-image: $select-backgroundImage;
-    background-position: right (spacing("quarter") + spacing("eighth")) top spacing("third") + spacing("eighth");
+    background-position: $select-backgroundPosition;
     border-radius: $select-borderRadius;
     padding: $select-padding;
 
@@ -24,9 +24,7 @@
 .form-label {
 
     small {
-        float: right;
-        font-size: remCalc(10px);
-        margin-top: spacing("quarter");
-        text-transform: uppercase;
+        float: $opposite-direction;
+        margin-top: $form-label-small-marginTop;
     }
 }

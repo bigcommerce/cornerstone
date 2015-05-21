@@ -3,11 +3,10 @@
         {{#if radios}}
             {{#each radios}}
                 <li>
-                    <input type="radio" {{#if name}}name="{{name}}"{{/if}} id="{{id}}" class="form-radio" aria-required="{{required}}" {{#if style}}style="{{style}}"{{/if}}>
+                    <input type="radio" {{#if name}}name="{{name}}"{{/if}} id="{{id}}" data-label="{{label}}" class="form-radio" aria-required="{{required}}" {{#if style}}style="{{style}}"{{/if}}>
                     <label for="{{id}}">{{label}}</label>
                 </li>
             {{/each}}
-
         {{/if}}
     </ul>
 </div>

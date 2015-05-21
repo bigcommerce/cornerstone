@@ -1,7 +1,9 @@
-<div>
-    <label>
-        {{#if this.required }}<span class="required">*</span>{{/if}}
-        {{ this.display_name }}
-        <textarea name="attribute[{{this.id}}]">{{this.prefill}}</textarea>
+<div class="form-field">
+    <label class="form-label option-label" for="attribute_{{this.id}}">
+        {{#if this.required }}
+        <span class="required">*</span>
+        {{/if}}
+        {{this.display_name}}
     </label>
+    <textarea class="form-input" id="attribute_{{this.id}}" name="attribute[{{this.id}}]">{{this.prefill}}</textarea>
 </div>

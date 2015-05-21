@@ -1,0 +1,14 @@
+
+.productView {
+    .upper {
+        @include grid-row();
+
+        .images, .information {
+            @include grid-column(12);
+
+            @include breakpoint("medium") {
+                @include grid-column(6);
+            }
+        }
+    }
+}

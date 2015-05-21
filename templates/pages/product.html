@@ -7,48 +7,55 @@ reviews: true
         {{> components/common/breadcrumbs this}}
     {{/each}}
     <div class="productView">
-        {{product.detail_messages}}
-        <h1>{{ product.title }}</h1>
-        <h2 data-bind="text: price">{{ product.price.base }}</h2>
-        <a href="{{ product.initial_zoom_image }}">
-            <img src="{{ product.initial_image }}">
-        </a>
-        {{#each product.images}}
-            <img src="{{tiny_url}}">
-        {{/each}}
-        {{#if product.release_date }}
-        <span class="alert alert-warning">{{product.release_date}}</span>
-        {{/if}}
-        <form method="post" action="{{product.cart_url}}" enctype="multipart/form-data" data-cart-item-add>
-            <input type="hidden" name="action" value="add">
-            <input type="hidden" name="product_id" value="{{product.id}}" />
-            <p>
-                {{#each product.customizations}}
-                    <div>{{{renderProductCustomization this}}}</div>
-                {{/each}}
-            </p>
-            <div class="product-sku">
-                <h4>SKU</h4>
-                <p class="product-skuText" data-bind="text: sku">{{ product.sku }}</p>
-            </div>
-            <div id="product-options">
-                Options
-                {{#each product.options}}
-                    <div>{{{renderProductOption this}}}</div>
+        <div class="upper">
+            <div class="images">
+                <a href="{{ product.initial_zoom_image }}">
+                    <img src="{{ product.initial_image }}">
+                </a>
+                {{#each product.images}}
+                <img src="{{tiny_url}}">
                 {{/each}}
             </div>
-            <div id="product-quantity" data-bind="enable: canAddToCart">
-                <button class="product-qty-update" data-action="dec">-</button>
-                <button class="product-qty-update" data-action="inc">+</button>
-                <span class="product-qty" data-bind="text: quantity">1</span>
-                <input type="hidden" name="qty[]" data-bind="value: quantity" value="1">
-            </div>
-            <input type="submit" class="btn btn-success btn-addToCart" data-bind="enable: canAddToCart" value="Add To Cart">
-        </form>
+            <div class="information">
+                {{product.detail_messages}}
+                <h4>{{ product.title }}</h4>
+                <h5><a href="{{product.brand.link}}">{{product.brand.name}}</a></h5>
+                <h5 data-bind="text: price">{{ product.price.base }}</h5>
 
-        <form method="post" action="{{product.add_to_wishlist_url}}">
-            <input type="submit" class="btn btn-primary" value="Add To Wishlist">
-        </form>
+                {{#if product.release_date }}
+                <span class="alert alert-warning">{{product.release_date}}</span>
+                {{/if}}
+                <form method="post" action="{{product.cart_url}}" enctype="multipart/form-data" data-cart-item-add>
+                    <input type="hidden" name="action" value="add">
+                    <input type="hidden" name="product_id" value="{{product.id}}" />
+                    <p>
+                        {{#each product.customizations}}
+                            <div>{{{renderProductCustomization this}}}</div>
+                        {{/each}}
+                    </p>
+                    <div class="product-sku">
+                        <h4>SKU</h4>
+                        <p class="product-skuText" data-bind="text: sku">{{ product.sku }}</p>
+                    </div>
+                    <div id="product-options">
+                        {{#each product.options}}
+                            <div>{{{renderProductOption this}}}</div>
+                        {{/each}}
+                    </div>
+                    <div id="product-quantity" data-bind="enable: canAddToCart">
+                        <button class="product-qty-update" data-action="dec">-</button>
+                        <button class="product-qty-update" data-action="inc">+</button>
+                        <span class="product-qty" data-bind="text: quantity">1</span>
+                        <input type="hidden" name="qty[]" data-bind="value: quantity" value="1">
+                    </div>
+                    <input type="submit" class="btn btn-success btn-addToCart" data-bind="enable: canAddToCart" value="Add To Cart">
+                </form>
+
+                <form method="post" action="{{product.add_to_wishlist_url}}">
+                    <input type="submit" class="btn btn-primary" value="Add To Wishlist">
+                </form>
+            </div>
+        </div>
 
         <div class="Clear AddThisButtonBox" data-product-share>
             <!-- AddThis Button BEGIN -->

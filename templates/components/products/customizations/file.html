@@ -1,7 +1,7 @@
-<div>
-    <label>
+<div class="form-field">
+    <label class="form-label option-label" for="customization_{{this.id}}">
         {{#if this.required }}<span class="required">*</span>{{/if}}
         {{ this.display_name }}
-        <input type="file" name="ProductFields[{{this.id}}]">
     </label>
+    <input type="file" id="customization_{{this.id}}" name="ProductFields[{{this.id}}]">
 </div>

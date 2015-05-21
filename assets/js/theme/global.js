@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import PageManager from '../page-manager';
 import quickSearch from './global/quick-search';
+import quickView from './global/quick-view';
 import currencySelector from './global/currency-selector';
 
 export default class Global extends PageManager {
@@ -15,6 +16,7 @@ export default class Global extends PageManager {
      */
     loaded(next) {
         quickSearch();
+        quickView();
         currencySelector();
         next();
     }

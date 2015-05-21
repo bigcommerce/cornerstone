@@ -1,5 +1,6 @@
 ---
 related_products: 5
+reviews: true
 ---
 {{#partial "page"}}
     {{#each breadcrumbs }}
@@ -82,5 +83,6 @@ related_products: 5
         <p>{{{ product.description }}}</p>
     </div>
     {{> components/products/related product.related_products}}
+    {{> components/products/reviews product.reviews}}
 {{/partial}}
 {{> layout/base}}

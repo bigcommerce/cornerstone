@@ -1,19 +1,17 @@
-<ul>
+<ul class="pagination">
     {{#if previous}}
-    <li style="display: inline-block;"><a href="{{previous}}" alt="Previous">Previous</a></li>
+        <li><a href="{{previous}}">{{lang 'common.previous'}}</a></li>
     {{/if}}
-
-    {{#each this.links}}
-    <li style="display: inline-block;">
-        {{#if current}}
-            {{number}}
-        {{else}}
-            <a href="{{url}}" alt="Page {{number}}">{{number}}</a>
-        {{/if}}
-    </li>
+    {{#each links}}
+        <li>
+            {{#if this.current}}
+                {{this.number}}
+            {{else}}
+                <a href="{{this.url}}">{{this.number}}</a>
+            {{/if}}
+        </li>
     {{/each}}
-
     {{#if next}}
-    <li style="display: inline-block;"><a href="{{next}}" alt="Next">Next</a></li>
+        <li><a href="{{next}}">{{lang 'common.next'}}</a></li>
     {{/if}}
 </ul>

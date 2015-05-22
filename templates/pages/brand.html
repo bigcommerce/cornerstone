@@ -6,19 +6,10 @@ shop_by_price: true
 <div class="main">
     {{> components/common/breadcrumbs breadcrumbs}}
 
-    <aside class="col-md-3">
-        <ul>
-            {{#each category.subcategories}}
-            <li><a href="{{{url}}}" alt="{{name}}">{{name}}</a></li>
-            {{/each}}
-        </ul>
-        {{> components/category/shop-by-price category.shop_by_price}}
-    </aside>
     <div class="col-md-9">
-        {{> components/common/paginator category.pager}}
-        {{> components/category/sort-box category}}
+        {{> components/common/paginator pagination.brand}}
         <ul class="row">
-            {{#each category.products}}
+            {{#each brand.products}}
             <li class="col-md-3">
                 <div><a href="{{{url}}}" alt="{{name}}">{{name}}</a></div>
                 <div>{{rating}}</div>
@@ -33,7 +24,7 @@ shop_by_price: true
             </li>
             {{/each}}
         </ul>
-        {{> components/common/paginator category.pager}}
+        {{> components/common/paginator pagination.brand}}
     </div>
 
 </div>

@@ -1,0 +1,37 @@
+<div class="facet-container facet-container-range js-accordion-container">
+    <div class="facet-header js-facet-accordion-action">
+        <h6 class="facet-header-title">{{ title }}</h6>
+    </div>
+    <div class="facet-body">
+        <form method="get" id="facet-range-form" class="facet-form js-facet-range-from">
+            {{#each current_selected_items}}
+            <input type="hidden" name="{{param_name}}" value="{{param_value}}"/>
+            {{/each}}
+            <fieldset>
+                <input
+                        name="min_price"
+                        placeholder="{{lang 'search.faceted.range.min-placeholder'}}"
+                        min="0"
+                        class="js-facet-range-input-from"
+                        required
+                        type="number"
+                        value="{{ min_price }}"
+                />
+                -
+                <input
+                        name="max_price"
+                        placeholder="{{lang 'search.faceted.range.max-placeholder'}}"
+                        min="0"
+                        class="js-facet-range-input-to"
+                        required
+                        type="number"
+                        value="{{ max_price }}"
+                />
+                <button class="btn js-btn-facet-range-update" type="submit">{{lang 'search.faceted.range.update'}}</button>
+                {{#if selected}}
+                <a href="{{remove_url}}" class="btn js-btn-facet-range-clear">{{lang 'search.faceted.clear'}}</a>
+                {{/if}}
+            </fieldset>
+        </form>
+    </div>
+</div>

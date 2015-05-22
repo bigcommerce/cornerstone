@@ -1,0 +1,18 @@
+<div><a href="{{url}}" alt="{{name}}">{{name}}</a></div>
+<div>{{{price}}}</div>
+<div>{{{image}}}</div>
+<div>{{summary}}</div>
+Compare <input type="checkbox" name="products[]" value="{{id}}">
+{{#unless hide_add_to_cart}}
+    {{#if has_options}}
+    <a href="{{url}}" class="btn btn-primary">{{lang "products.choose_options"}}</a>
+    {{else}}
+        {{#if out_of_stock_message }}
+        <span class="btn btn-warning">{{out_of_stock_message}}</span>
+        {{else}}
+        <a href="{{add_to_cart_url}}" class="btn btn-success">
+            {{lang "products.add_to_cart"}}
+        </a>
+        {{/if}}
+    {{/if}}
+{{/unless}}

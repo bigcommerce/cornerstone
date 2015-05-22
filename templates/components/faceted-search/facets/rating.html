@@ -1,0 +1,29 @@
+<div class="facet-container facet-container-rating js-accordion-container {{ facetState }}">
+    <div class="facet-header js-facet-accordion-action">
+        <h6 class="facet-header-title">{{ title }}</h6>
+        {{#if selected}}
+            <a href="{{remove_url}}" class="js-facet-clear">{{lang 'search.faceted.clear'}}</a>
+        {{/if}}
+    </div>
+    <div class="facet-body">
+        <ul class="facet-options-list">
+            {{#each items}}
+            <li class="facet-option js-facet-option {{#if selected }} selected {{/if}}" >
+                <a href="{{url}}">
+                    <img
+                            class="facet-option-rating-stars"
+                            src="/assets/img/IcoRating{{ title }}.png"
+                            alt="{{ title }}"
+                            />
+                    {{lang 'search.faceted.rating.and-up'}}
+                    {{#if ../show_product_counts}}
+                            <span class="facet-option-product-count">
+                                ({{ count }})
+                            </span>
+                    {{/if}}
+                </a>
+            </li>
+            {{/each}}
+        </ul>
+    </div>
+</div>

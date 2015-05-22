@@ -3,24 +3,20 @@ num_products: 20
 shop_by_price: true
 ---
 {{#partial "page"}}
-<div class="main">
+<div class="container">
     {{> components/common/breadcrumbs breadcrumbs}}
-
-    <div class="col-md-9">
+    <aside class="aside">
+        {{#if brand.faceted_search_enabled}}
+            {{> components/faceted-search/index brand}}
+        {{/if}}
+    </aside>
+    <div class="main">
         {{> components/common/paginator pagination.brand}}
+        {{> components/category/sort-box category}}
         <ul class="row">
             {{#each brand.products}}
             <li class="col-md-3">
-                <div><a href="{{{url}}}" alt="{{name}}">{{name}}</a></div>
-                <div>{{rating}}</div>
-                <div>{{{price}}}</div>
-                <div>{{{image}}}</div>
-                <div>{{date_added}}</div>
-                <div>{{pre_order}}</div>
-                <div>{{release_date}}</div>
-                <div>{{add_to_cart_text}}</div>
-                <div>{{show_add_to_cart}}</div>
-                <div>{{summary}}</div>
+                {{> components/products/card}}
             </li>
             {{/each}}
         </ul>

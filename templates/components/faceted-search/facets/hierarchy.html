@@ -1,0 +1,33 @@
+<div class="facet-container facet-container-category">
+    <div class="facet-header js-facet-accordion-action">
+        <h6 class="facet-header-title">{{ title }}</h6>
+        {{#if selected}}
+            <a href="{{remove_url}}" class="js-facet-clear">{{lang 'search.faceted.clear'}}</a>
+        {{/if}}
+    </div>
+    <div class="facet-body">
+        <ul class="facet-options-list">
+            {{#each items}}
+                <li class="facet-option js-facet-option{{#if selected }} selected {{/if}}">
+                    <a data-id="{{ id }}"
+                       href="{{url}}"
+                       class="facet-category-option js-facet-category-option {{#if has_sub_categories }} facet-category-option-has-children {{/if}}" >
+                        {{ title }}
+                        {{#if ../show_product_counts}}
+                            {{#if count}}
+                                <span class="facet-option-product-count">
+                                    ({{ count }})
+                                </span>
+                            {{/if}}
+                        {{/if}}
+                    </a>
+                </li>
+            {{/each}}
+        </ul>
+        {{#if show_more_toggle}}
+            <div class="js-facet-more-options">
+                <button type="button" class="btn btn-facet-more-options">{{lang 'search.faceted.show-more'}}</button>
+            </div>
+        {{/if}}
+    </div>
+</div>

@@ -16,7 +16,7 @@ shop_by_price: true
         {{> components/category/shop-by-price category.shop_by_price}}
     </aside>
     <div class="col-md-9">
-        {{> components/common/paginator category.pager}}
+        {{> components/common/paginator pagination.category}}
         {{> components/category/sort-box category}}
         <form action="/compare" method='POST'>
             <ul class="row">
@@ -52,7 +52,7 @@ shop_by_price: true
 
             <input type="submit" value="Compare Products" class="btn btn-primary">
         </form>
-        {{> components/common/paginator category.pager}}
+        {{> components/common/paginator pagination.category}}
     </div>
 
 </div>

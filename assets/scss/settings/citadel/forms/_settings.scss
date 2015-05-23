@@ -1,0 +1,230 @@
+// =============================================================================
+// BC FORMS (Settings)
+// =============================================================================
+
+
+// Bigcommerce Variables
+// -----------------------------------------------------------------------------
+//
+// These scoped variables are created by Bigcommerce.
+// All variables that are not from Foundation should be placed here.
+// BC variables can take the value of Foundation variables if related to a wider
+// component.
+//
+// 1. Choose whether to include the Bigcommerce class names
+//
+// NOTE: All commented out variables are not needed within the theme.
+//
+// -----------------------------------------------------------------------------
+
+$exportCSS--bcForms:                        true; // 1
+
+
+// =============================================================================
+// FORM LAYOUT
+// =============================================================================
+
+// $formBody-backgroundColor:                  container("fill");
+// $formBody-border:                           container("border", "dark");
+// $formBody-boxShadow:                        container("dropShadow");
+// $formBody-marginBottom:                     container("margin");
+// $formBody-maxWidth:                         none;
+// $formBody-padding:                          container("padding");
+
+// $formRow-modernBrowsers:                    true;
+// $formRow-flex-gutter:                       $column-gutter;
+
+
+// =============================================================================
+// CHECKS AND RADIOS
+// =============================================================================
+
+$checkRadio-borderStyle:                    solid;
+$checkRadio-borderWidth:                    1px;
+$checkRadio-borderColor:                    $input-border-color;
+// sizing
+$checkRadio-baseDimension:                  16px;
+$checkRadio-pip-scale:                      $checkRadio-borderWidth * 2;
+$checkRadio-outerSize:                      remCalc($checkRadio-baseDimension);
+$checkRadio-pip-size:                       remCalc($checkRadio-baseDimension - $checkRadio-pip-scale);
+$checkRadio-pip-zoomStart:                  scale(0);
+$checkRadio-pip-zoomEnd:                    scale(1);
+// label
+$checkRadio-label-fontSize:                 fontSize("base");
+$checkRadio-label-fontWeight:               fontWeight("normal");
+$checkRadio-label-lineHeight:               null;
+$checkRadio-label-spacing:                  spacing("single") + spacing("quarter");
+$checkRadio-label-marginBottom:             spacing("quarter");
+// visual
+$checkRadio-bg:                             color("whites");
+$checkRadio-boxShadow:                      null;
+$checkRadio-focus-borderColor:              null;
+$checkRadio-focus-boxShadow:                null;
+$checkRadio-disabled-bg:                    $input-disabled-bg;
+$checkRadio-disabled-opacity:               null;
+
+$check-radius:                              $global-radius;
+$check-pip-color:                           color("greys");
+$check-pip-backgroundImage:                 url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" fill="#{$check-pip-color}" /></svg>');
+$check-pip-content:                         "";
+$check-pip-size:                            $checkRadio-pip-size;
+
+$radio-radius:                              50%;
+$radio-pip-color:                           color("greys", "dark");
+$radio-pipInset:                            3px;
+$radio-pipInset-color:                      $checkRadio-bg;
+$radio-pip-size:                            $checkRadio-pip-size;
+
+
+// =============================================================================
+// INPUT ACTIONS
+// =============================================================================
+
+// float direction
+// $inputAction-floatDirection:                $default-float;
+// $inputAction-backgroundColor:               transparent;
+// $inputAction-borderRadius:                  0 $input-border-radius $input-border-radius 0;
+// $inputAction-borderWidth:                   $input-border-width;
+// // form spacing minus top and bottom border width
+// $inputAction-button-width:                  ($form-spacing * 2) - remCalc($input-border-width * 2);
+// // padding the same as the button with
+// $inputAction-input-paddingRight:            $inputAction-button-width;
+// // Negative margin can't use the button width as we only need to deal with 1 border on the right
+// $inputAction-button-marginLeft:             - ($form-spacing * 2) + remCalc($input-border-width);
+// $inputAction-margin:                        remCalc($inputAction-borderWidth) 0 0 $inputAction-button-marginLeft;
+
+
+
+// =============================================================================
+// PREFIXPOSTFIX
+// =============================================================================
+
+// $prefixPostfix-inputClassName:              "form-input";
+// $prefixPostfix-buttonClassName:             "button";
+// $prefixPostfix-borderRadius:                $input-border-radius;
+
+// $prefixPostfix-input-height:                $input-height;
+// $prefixPostfix-input-borderRadius:          $input-border-radius 0 0 $input-border-radius;
+
+// $prefixPostfix-label-backgroundColor:       color("whites");
+// $prefixPostfix-label-borderStyle:           $input-border-style;
+// $prefixPostfix-label-borderColor:           $input-border-color;
+// $prefixPostfix-label-borderWidth:           $input-border-width;
+// $prefixPostfix-label-fontWeight:            fontWeight("thin");
+// $prefixPostfix-label-height:                $prefixPostfix-input-height;
+// $prefixPostfix-label-padding:               ($form-spacing / 2) $form-spacing;
+
+// // Prefixed labels to input
+// $prefix-label-borderRadius:                 $prefixPostfix-borderRadius 0 0 $prefixPostfix-borderRadius;
+// $prefix-label-borderWidth:                  $input-border-width 0 $input-border-width $input-border-width;
+// $prefix-input-borderRadius:                 0 $prefixPostfix-borderRadius $prefixPostfix-borderRadius 0;
+
+// // Postfixed labels to input
+// $postfix-label-borderRadius:                0 $prefixPostfix-borderRadius $prefixPostfix-borderRadius 0;
+// $postfix-label-borderWidth:                 $input-border-width $input-border-width $input-border-width 0;
+
+
+// =============================================================================
+// SWITCHES
+// =============================================================================
+
+// $switch-baseSize:                           28px; // magic design number
+// $switch-baseWidth:                          60px; // magic design number
+// $switch-height:                             remCalc($switch-baseSize);
+// $switch-lineHeight:                         ($switch-baseSize - 1) / $fontSize-root;
+// $switch-borderRadius:                       $switch-height;
+// $switch-marginBottom:                       $form-spacing;
+// $switch-width:                              remCalc($switch-baseWidth);
+// $switch-transition:                         $input-transition;
+
+// $switch-backgroundColor:                    color("greys", "medium");
+
+// $switch-borderColor:                        $switch-backgroundColor;
+// $switch-borderSize:                         1px;
+// $switch-borderStyle:                        solid;
+
+// $switch-checked-backgroundColor:            color("success");
+// $switch-checked-borderColor:                color("success");
+// $switch-focus-borderColor:                  color("primary");
+// $switch-focus-BoxShadow:                    0 0 4px rgba(color("primary"), 0.4);
+// $switch-important-checked-backgroundColor:  color("warning");
+// $switch-important-checked-borderColor:      $switch-important-checked-backgroundColor;
+
+// // SWITCH DESCRIPTIONS
+// $switch-description-unselected-color:       color("greys", "medium");
+// $switch-description-selected-color:         color("greys", "darkest");
+// $switch-description-spacing:                5px;
+
+// // SWITCH INDICATOR
+// $switch-indicator-scale:                    0.7143; // bit magic-y (20px / 28px)
+// $switch-indicator-baseSize:                 $switch-baseSize * $switch-indicator-scale;
+// $switch-indicator-height:                   remCalc($switch-indicator-baseSize);
+// $switch-indicator-width:                    $switch-indicator-height;
+// $switch-indicator-borderRadius:             $switch-indicator-height;
+// $switch-indicator-offSet:                   (($switch-baseSize - ($switch-borderSize * 2)) - $switch-indicator-baseSize) / 2;
+// $switch-indicator-on-offSet:                (($switch-baseWidth - ($switch-borderSize * 2)) - $switch-indicator-baseSize) - $switch-indicator-offSet;
+// $switch-indicator-color:                    color("whites");
+// $switch-indicator-boxShadow:                0 1px 1px rgba(0, 0, 0, 0.1);
+
+// // SWITCH LABEL SETTINGS
+// $switch-label-text-color:                   color("whites");
+// $switch-label-height: $switch-baseSize      - ($switch-borderSize * 2); // minus the top/bottom border
+// $switch-label-text-rightPosition:           remCalc(6px);
+// $switch-label-text-onFontWeight:            fontWeight("semibold");
+
+
+// =============================================================================
+// FORM ACTIONS
+// =============================================================================
+
+// $form-actions-background:                   none;
+// $form-actions-border:                       0;
+// $form-actions-margin:                       0 0 0 spacing("half");
+// $form-actions-padding:                      spacing("base") 0;
+// $form-actions-textAlign:                    left;
+
+// $form-actions--fixed-background:            container("fill");
+// $form-actions--fixed-border:                container("border", "dark");
+// $form-actions--fixed-padding:               container("padding") container("padding", "large");
+// $form-actions--fixed-zIndex:                zIndex("low");
+// $form-actions--fixed-textAlign:             right;
+
+
+// =============================================================================
+// ERROR STATES
+// =============================================================================
+
+// $form-success-color:                        color("success");
+// $form-error-color:                          color("error");
+// $form-warning-color:                        color("warning");
+
+// $form-inputIndicator-margin:                0 0 0 (- remCalc(30px));
+// $form-inputIndicator-size:                  22px;
+// $form-inputIndicator-top:                   remCalc(10px);
+
+$form-inlineMessage-fontWeight:             null;
+$form-inlineMessage-margin:                 spacing("quarter") 0 (-(spacing("third")));
+
+
+// Stencil Variables
+// -----------------------------------------------------------------------------
+
+$form-success-icon:                         url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"  fill="#{color("success")}" /></svg>');
+$form-success-icon-height:                  remCalc(24px);
+$form-success-icon-top:                     remCalc(37px);
+$form-success-icon-right:                   spacing("third") + spacing("eighth");
+$form-success-icon-width:                   remCalc(24px);
+$form-success-input-paddingRight:           spacing("double");
+
+$form-error-icon:                           url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" fill="#{color("error")}" /></svg>');
+$form-error-icon-height:                    remCalc(14px);
+$form-error-icon-left:                      remCalc(-2px);
+$form-error-icon-marginRight:               remCalc(1px);
+$form-error-icon-top:                       remCalc(3px);
+$form-error-icon-width:                     remCalc(14px);
+
+$form-inlineMessage-backgroundSize:         100%;
+
+$form-checkRadio-label-last-marginBottom:   -(spacing("fifth"));
+$form-checkRadio-labelBefore-top:           remCalc(3px);
+$form-checkRadio-labelAfter-top:            remCalc(4px);

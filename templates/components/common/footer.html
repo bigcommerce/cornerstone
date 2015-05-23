@@ -1,29 +1,81 @@
-<div class="row">
-    {{#each banners.bottom}}
-    {{{this}}}
-    {{/each}}
-</div>
-<div class="row">
-    <div class="col-md-3 col-md-offset-3">
-    {{>components/common/subscription-form}}
+<footer class="footer" role="contentinfo">
+    <div class="layout-fixed">
+        <section class="footer-info">
+            <article class="footer-info-col footer-info-col--small">
+                <h5 class="footer-info-heading">Navigate</h5>
+                <ul>
+                    {{#each pages_menu}}
+                    <li>
+                        <a href="{{url}}" alt="{{name}}">{{name}}</a>
+                    </li>
+                    {{/each}}
+                </ul>
+            </article>
+            <article class="footer-info-col footer-info-col--small">
+                <h5 class="footer-info-heading">Categories</h5>
+                <ul>
+                    <li>
+                        <a href="#">Art</a>
+                    </li>
+                    <li>
+                        <a href="#">Bath</a>
+                    </li>
+                    <li>
+                        <a href="#">Publications</a>
+                    </li>
+                    <li>
+                        <a href="#">Planters</a>
+                    </li>
+                    <li>
+                        <a href="#">Birds</a>
+                    </li>
+                    <li>
+                        <a href="#">Seeds</a>
+                    </li>
+                    <li>
+                        <a href="#">Tools</a>
+                    </li>
+                    <li>
+                        <a href="#">Vases</a>
+                    </li>
+                </ul>
+            </article>
+            <article class="footer-info-col">
+                <h5 class="footer-info-heading">Info</h5>
+                <p>Fapessenger bag chillwave kogi. Mumblecore PBR PBR&B, gentrify sartorial skateboard heirloom leggings disrupt Neutra +1 raw denim. Wayfarers VHS meggings butcher.</p>
+                <address>Luna Rossa 1f<br>1-19-2 Tomigaya Shibuya-ku<br>Tokyo 151-0063</address>
+            </article>
+            <article class="footer-info-col">
+                <h5 class="footer-info-heading">Subscribe to our newsletter</h5>
+                <p>Pork belly flannel Pinterest, literally Truffaut gentrify blog iPhone. Chambray Echo Park beard Godard.</p>
+            </article>
+        </section>
     </div>
-</div>
-<div class="row">
-    <ul class="col-md-3 col-md-offset-1">
-        {{#each pages_menu}}
-        <li>
-            <a href="{{url}}" alt="{{name}}">{{name}}</a>
-        </li>
-        {{/each}}
-    </ul>
-    <ul class="col-md-3">
-        {{#each shop_by_brand.links}}
-        <li>
-            <a href="{{url}}" alt="{{name}}">{{name}} ({{count}})</a>
-        </li>
-        {{/each}}
-            <li>
-            <a href="{{shop_by_brand.all_brands_url}}" alt="View All">View All</a>
-        </li>
-    </ul>
-</div>
+</footer>
+
+
+
+
+
+
+<!-- {{#each banners.bottom}}
+{{{this}}}
+{{/each}}
+
+
+{{#each pages_menu}}
+<li>
+    <a href="{{url}}" alt="{{name}}">{{name}}</a>
+</li>
+{{/each}}
+
+
+{{#each shop_by_brand.links}}
+<li>
+    <a href="{{url}}" alt="{{name}}">{{name}} ({{count}})</a>
+</li>
+{{/each}}
+<a href="{{shop_by_brand.all_brands_url}}" alt="View All">View All</a>
+
+
+{{>components/common/subscription-form}} -->

@@ -1,0 +1,104 @@
+// =============================================================================
+// FORMS (CSS)
+// =============================================================================
+
+
+// Citadel inline messages
+// -----------------------------------------------------------------------------
+
+.form-checkbox,
+.form-radio {
+
+    + .form-label {
+
+        &:last-child {
+            display: block;
+            margin-bottom: $form-checkRadio-label-last-marginBottom;
+        }
+    }
+}
+
+
+// Citadel inline messages
+// -----------------------------------------------------------------------------
+
+.form-inlineMessage {
+    display: block;
+}
+
+
+// Citadel field states
+// -----------------------------------------------------------------------------
+
+.form-field--error {
+
+    .form-input {
+        float: none;
+    }
+
+    .form-inlineMessage {
+
+        &:before {
+            background: $form-error-icon no-repeat;
+            background-size: $form-inlineMessage-backgroundSize;
+            content: "";
+            display: inline-block;
+            height: $form-error-icon-height;
+            left: $form-error-icon-left;
+            margin-right: $form-error-icon-marginRight;
+            position: relative;
+            top: $form-error-icon-top;
+            width: $form-error-icon-width;
+        }
+    }
+}
+
+.form-field--success {
+    position: relative;
+
+    .form-label {
+
+        &:after {
+            background: $form-success-icon no-repeat;
+            background-size: $form-inlineMessage-backgroundSize;
+            content: "";
+            display: inline-block;
+            height: $form-success-icon-height;
+            pointer-events: none;
+            position: absolute;
+            top: $form-success-icon-top;
+            right: $form-success-icon-right;
+            width: $form-success-icon-width;
+        }
+    }
+
+    .form-input {
+        padding-right: $form-success-input-paddingRight;
+    }
+}
+
+
+// Citadel checkbox/radio positioning
+// -----------------------------------------------------------------------------
+
+.form-checkbox,
+.form-radio {
+
+    + .form-label {
+
+        &::before {
+            top: $form-checkRadio-labelBefore-top;
+        }
+    }
+}
+
+.form-checkbox,
+.form-radio {
+
+    + .form-label {
+
+        &::after {
+            top: $form-checkRadio-labelAfter-top;
+        }
+    }
+}

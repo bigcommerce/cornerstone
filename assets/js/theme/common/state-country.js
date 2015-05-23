@@ -26,7 +26,7 @@ function changeInputToSelect(stateElement) {
 function addOptions(statesArray, $selectElement) {
     if (!_.isEmpty($selectElement)){
         let container = _.map(statesArray, (stateObj)  => {
-            return `<option value="${stateObj.state}">${stateObj.state}</option>`;
+            return `<option value="${stateObj.name}">${stateObj.name}</option>`;
         });
 
         $selectElement.html(container.join(' '));

@@ -19,7 +19,9 @@
             {{#if forms.address.address_id }}
                 <input type="hidden" name="shipid" value="{{forms.address.address_id}}">
             {{/if}}
-            {{{ forms.address.shipping_fields }}}
+            {{#each forms.address.shipping_fields }}
+                {{{field this}}}
+            {{/each}}
             <input type="submit" value="{{lang 'forms.address.submit_value'}}">
         </form>
     </div>

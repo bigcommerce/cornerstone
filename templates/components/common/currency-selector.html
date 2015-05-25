@@ -1,6 +1,6 @@
-<div class="currencySelectorView">
-    <h2>Select Currency: <span data-currency-selector-toggle>{{currency_selector.active_currency_name}}</span></h2>
-    <ul class="currency-selector" data-bind="css: { active: visible }">
+<a class="currencySelector" href="#">
+    <span>Select Currency:</span><span class="currency-selector-code">{{currency_selector.active_currency_code}}</span>
+    <ul class="currency-selection-list">
         {{#each currency_selector.currencies}}
         <li>
             {{#if is_active}}Active {{/if}}
@@ -10,4 +10,4 @@
         </li>
         {{/each}}
     </ul>
-</div>
+</a>

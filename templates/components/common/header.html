@@ -1,40 +1,48 @@
 <header>
-    <div class="row">
-        {{#each banners.top}}
-        {{{this}}}
-        {{/each}}
-    </div>
-    <div class="row">
-        <div class="col-md-5">
-            <a href="/">
-                {{#if settings.store_logo}}
-                <img src="{{settings.store_logo}}">
+    {{#if banners.top}}
+        <div class="banner">
+            {{#each banners.top}}
+            {{{this}}}
+            {{/each}}
+        </div>
+    {{/if}}
+    <nav class="top-nav">
+        {{> components/common/currency-selector}}
+        <ul class="top-nav-side-items">
+            <li>
+                <a class="nav-search">Search</a>
+            </li>
+            <li>
+                <a href="{{urls.gift_certificate.purchase}}">Gift Certificates</a>
+            </li>
+            <li>
+                <a href="{{urls.account.wishlists}}">Wishlists</a>
+            </li>
+            <li>
+                {{#if customer}}
+                    <a class="nav-account" href="{{urls.account.index}}">Account</a>
                 {{else}}
-                <h1>{{settings.store_name}}</h1>
+                    <a class="nav-login" href="{{urls.auth.login}}">Login</a>
+                    <span>or</span>
+                    <a href="{{urls.auth.create_account}}">Sign Up</a>
                 {{/if}}
-            </a>
-        </div>
-        <div class="col-md-3">
-            {{#if customer }}
-            <a href="{{urls.account.index}}">{{lang 'header.welcome_back' name=customer.name }}</a>
-            <a href="{{urls.auth.logout}}">Sign Out</a>
+            </li>
+            <li>
+                <a class="nav-cart" href="{{urls.cart}}">Cart <b class="cart-count">2</b></a>
+            </li>
+        </ul>
+    </nav>
+    <div class="logo">
+        <a href="{{urls.home}}">
+            {{#unless settings.store_logo}}
+            <img src="{{settings.store_logo}}" alt="{{settings.store_name}}">
             {{else}}
-            <a href="{{urls.auth.login}}">Login</a>
-            <a href="{{urls.auth.create_account}}">Sign Up</a>
-            {{/if}}
-            <a href="{{urls.gift_certificate.purchase}}">Gift Certificates</a>
-            <a href="{{urls.account.wishlists}}">Wishlists</a>
-            <a href="{{urls.cart}}">View Cart</a>
-            <div data-cart-preview>
-
-            </div>
-        </div>
-        <div class="col-md-3">
-            {{> components/common/currency-selector}}
-        </div>
-        <form action="/search.php"><label>Search<input data-search-quick name="search_query" placeholder="Search" autocomplete="off"></label></form>
-        <ul class="quickSearchResults" data-bind="html: results"></ul>
-
+            <span>{{settings.store_name}}</span>
+            {{/unless}}
+        </a>
     </div>
+    <form action="/search.php"><label>Search<input data-search-quick name="search_query" placeholder="Search" autocomplete="off"></label></form>
+    <ul class="quickSearchResults" data-bind="html: results"></ul>
+
     {{> components/common/navigation}}
 </header>

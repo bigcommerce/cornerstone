@@ -1,0 +1,33 @@
+<ul class="account-address-list">
+    {{#each account.addresses}}
+        <li class="account-address-item">
+            <div class="address-item-inner">
+                <span class="address-item-heading">{{ first_name }} {{ last_name }}</span>
+                <ul class="address-item-address">
+                    <li class="address-line">{{ company }}</li>
+                    <li class="address-line">{{ address1 }}</li>
+                    <li class="address-line">{{ address2 }}</li>
+                    <li class="address-line">{{ city }}, {{ state }} {{ zip }}</li>
+                    <li class="address-line">
+                        <span class="address-description">{{lang 'account.addresses.phone' }}</span>
+                        <span class="address-value">{{ phone }}</span>
+                    </li>
+                </ul>
+                <div class="address-button-bar">
+                    <a class="button" href="{{edit_url}}">{{lang 'common.edit' }}</a>
+                    <a class="button secondary" href="{{delete_url}}">{{lang 'common.delete' }}</a>
+                </div>
+            </div>
+        </li>
+    {{/each}}
+    <li class="account-address-item new-address">
+        <a href="{{add_address_url}}">
+            <div class="address-item-inner new-address-link">
+                <div class="new-address-content">
+                    <div class="new-address-plus">&plus;</div>
+                    {{lang 'account.addresses.new_address' }}
+                </div>
+            </div>
+        </a>
+    </li>
+</ul>

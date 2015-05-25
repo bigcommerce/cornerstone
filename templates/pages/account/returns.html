@@ -1,12 +1,15 @@
 {{#partial "page"}}
-<div class="main row">
-    {{> components/common/breadcrumbs breadcrumbs}}
-    <div class="col-md-3">
-        {{>components/account/menu}}
-    </div>
-    <div class="col-md-9">
-        View Returns
-    </div>
+<div class="account">
+    <ul class="breadcrumbs">
+        <li class="breadcrumb">
+            <a class="breadcrumb-label" href="{{urls.home}}">{{lang 'home.heading'}}</a>
+        </li>
+        <li class="breadcrumb">
+            <span class="breadcrumb-label">{{lang 'account.heading' }}</span>
+        </li>
+    </ul>
+    <h2 class="page-heading">{{lang 'account.returns.heading' }}</h2>
+    {{> components/account/navigation account_page='returns'}}
 </div>
 {{/partial}}
 {{> layout/base}}

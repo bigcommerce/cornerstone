@@ -1,0 +1,15 @@
+<div class="pagination light">
+    {{#if previous}}
+        <span class="pagination-previous light"><a href="{{previous}}">{{lang 'common.previous'}}</a></span>
+    {{/if}}
+
+    {{#if this.links.length}}
+        <span class="pagination-details light">{{lang 'common.paginator.page_of' current=1 total=this.links.length}}</span>
+    {{else}}
+        <span class="pagination-details light">{{lang 'common.paginator.page_of' current=1 total=1}}</span>
+    {{/if}}
+    {{#if next}}
+        <span class="pagination-next light"><a href="{{next}}">{{lang 'common.next'}}</a></span>
+    {{/if}}
+</div>
+

@@ -1,28 +1,25 @@
 {{#partial "page"}}
-<div class="main row">
-    {{> components/common/breadcrumbs breadcrumbs}}
-    <div>
-        {{>components/account/menu}}
-    </div>
-    <form action="/compare" method="post">
-    <ul>
-        {{#each customer.recently_viewed_products.items}}
-        <li>
-            <div><a href="{{{url}}}" alt="{{name}}">{{name}}</a></div>
-            <div>{{rating}}</div>
-            <div>{{{price}}}</div>
-            <div>{{{image}}}</div>
-            <div>{{date_added}}</div>
-            <div>{{pre_order}}</div>
-            <div>{{release_date}}</div>
-            <div>{{add_to_cart_text}}</div>
-            <div>{{show_add_to_cart}}</div>
-            <div>{{summary}}</div>
-            <input type="checkbox" name="products[]" value="{{id}}">
+<div class="account">
+    <ul class="breadcrumbs">
+        <li class="breadcrumb">
+            <a class="breadcrumb-label" href="{{urls.home}}">{{lang 'home.heading'}}</a>
         </li>
-        {{/each}}
+        <li class="breadcrumb">
+            <span class="breadcrumb-label">{{lang 'account.heading' }}</span>
+        </li>
     </ul>
-    <input type="submit" value="Compare Products">
+    <h2 class="page-heading">{{lang 'account.recent_items.heading' }}</h2>
+    {{> components/account/navigation account_page='recent_items'}}
+
+    <form action="/compare" method="post">
+        <ul class="product-list">
+            {{#each customer.recently_viewed_products.items}}
+            <li class="recent-item product-card">
+                {{> components/products/card}}
+            {{/each}}
+            </li>
+        </ul>
+        <input type="submit" value="Compare Products">
     </form>
 </div>
 {{/partial}}

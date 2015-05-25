@@ -1,12 +1,19 @@
 {{#partial "page"}}
 <h1>Search Page</h1>
+<div class="container">
+    <aside class="aside">
+        {{#if product_results.faceted_search_enabled}}
+            {{> components/faceted-search/index product_results}}
+        {{/if}}
+    </aside>
+    <div class="main">
         <h3>Advanced Search</h3>
         <form>
             <label>Search Keyword:<input name="search_query_adv" value="{{forms.search.query}}"></label>
             <label>Brand Name:
-                <select>
+                <select name="brand">
                     <option>No Preference</option>
-                    {{#each forms.search.brands}}
+                    {{#each forms.search.brands_list}}
                     <option value="{{id}}">{{name}}</option>
                     {{/each}}
                 </select>
@@ -15,7 +22,7 @@
         </form>
         <h3>Search Results</h3>
         <ul>
-            {{#each search.products }}
+            {{#each product_results.products }}
             <li class="col-md-3">
                 <div><a href="{{{url}}}" alt="{{name}}">{{name}}</a></div>
                 <div>{{rating}}</div>
@@ -44,7 +51,8 @@
             </li>
             {{/each}}
         </ul>
-
+    </div>
+</div>
 
 {{/partial}}
 {{> layout/base}}

@@ -1,0 +1,11 @@
+<a href="{{url}}" data-hover="{{name}}">{{name}}</a>
+
+{{#if children}}
+<ul>
+    {{#each children}}
+    <li>
+        {{> components/common/navigation-list}}
+    </li>
+    {{/each}}
+</ul>
+{{/if}}

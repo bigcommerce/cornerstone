@@ -3,49 +3,30 @@ num_products: 20
 shop_by_price: true
 ---
 {{#partial "page"}}
-<div class="main">
+<div class="container">
     {{> components/common/breadcrumbs breadcrumbs}}
     <h1>{{category.name}}</h1>
     <hr>
-    <aside class="col-md-3">
+    <aside class="aside">
         <ul>
             {{#each category.subcategories}}
             <li><a href="{{url}}" alt="{{name}}">{{name}}</a></li>
             {{/each}}
         </ul>
-        {{> components/category/shop-by-price category.shop_by_price}}
+        {{#if category.faceted_search_enabled}}
+            {{> components/faceted-search/index category}}
+        {{else}}
+            {{> components/category/shop-by-price category.shop_by_price}}
+        {{/if}}
     </aside>
-    <div class="col-md-9">
+    <div class="main">
         {{> components/common/paginator pagination.category}}
         {{> components/category/sort-box category}}
         <form action="/compare" method='POST'>
             <ul class="row">
                 {{#each category.products}}
                 <li class="col-md-3">
-                    <div><a href="{{{url}}}" alt="{{name}}">{{name}}</a></div>
-                    <div>{{rating}}</div>
-                    <div>{{{price}}}</div>
-                    <div>{{{image}}}</div>
-                    <div>{{date_added}}</div>
-                    <div>{{pre_order}}</div>
-                    <div>{{release_date}}</div>
-                    <div>{{add_to_cart_text}}</div>
-                    <div>{{show_add_to_cart}}</div>
-                    <div>{{summary}}</div>
-                    Compare <input type="checkbox" name="products[]" value="{{id}}">
-                    {{#if show_cart_button}}
-                        {{#if has_options}}
-                            <a href="{{{url}}}" class="btn btn-primary">{{add_to_cart_text}}</a>
-                        {{else}}
-                            {{#if out_of_stock }}
-                                <span class="btn btn-warning">{{add_to_cart_text}}</span>
-                            {{else}}
-                                <a href="{{add_to_cart_url}}" class="btn btn-success">
-                                    {{add_to_cart_text}}
-                                </a>
-                            {{/if}}
-                        {{/if}}
-                    {{/if}}
+                    {{> components/products/card}}
                 </li>
                 {{/each}}
             </ul>

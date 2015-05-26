@@ -1,0 +1,28 @@
+<ul>
+    <li>
+        <a class="nav-search">Search</a>
+        <form action="/search.php">
+            <label>Search</label>
+            <input data-search-quick name="search_query" placeholder="Search" autocomplete="off">
+        </form>
+        <ul class="quickSearchResults" data-bind="html: results"></ul>
+    </li>
+    <li>
+        <a href="{{urls.gift_certificate.purchase}}">Gift Certificates</a>
+    </li>
+    <li>
+        <a href="{{urls.account.wishlists}}">Wishlists</a>
+    </li>
+    <li>
+        {{#if customer}}
+            <a class="nav-account" href="{{urls.account.index}}">Account</a>
+        {{else}}
+            <a class="nav-login" href="{{urls.auth.login}}">Login</a>
+            <span>or</span>
+            <a href="{{urls.auth.create_account}}">Sign Up</a>
+        {{/if}}
+    </li>
+    <li>
+        <a class="nav-cart" href="{{urls.cart}}">Cart <b class="cart-count">2</b></a>
+    </li>
+</ul>

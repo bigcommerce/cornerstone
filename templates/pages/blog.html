@@ -1,36 +1,22 @@
 {{#partial "page"}}
-<div class="main">
-    <h1>{{ blog.name }}</h1>
+<div>
+    <h2 class="page-heading">{{ blog.name }}</h2>
     {{> components/common/breadcrumbs breadcrumbs}}
-    <hr>
-    <aside class="col-md-3">
-        <h3>Recent Posts</h3>
-        <ul>
-            {{#each blog.recent_posts}}
-            <li><a href="{{url}}">{{title}}</a></li>
-            {{/each}}
-        </ul>
-    </aside>
-    <div class="col-md-9">
-        {{> components/common/paginator pagination.blog}}
-        <ul>
-            {{#each blog.posts}}
-            <li>
-                <h4><a href="{{url}}">{{ title }}</a></h4>
-                <div>Posted By: <strong>{{ author }}</strong> on {{ date_published }}</div>
-                <div>{{{ social }}}</div>
-                <p>{{{ body }}}</p>
-                <ul>
-                    {{#each tags}}
-                    <a href="{{url}}">{{name}}</a>
-                    {{/each}}
-                </ul>
+    <ul class="blog-post-list">
+        {{#each blog.posts}}
+            <li class="blog-post">
+                <a href="{{url}}">
+                    {{#if this.thumbnail}}
+                        <img class="blog-post-image" src="{{thumbnail}}">
+                    {{/if}}
+                    <h3 class="blog-post-title">{{title}}</h3>
+                </a>
+                <span class="blog-post-date">{{date_published}}</span>
+                <div class="blog-post-content">{{{body}}}</div>
             </li>
-            {{/each}}
-        </ul>
-        {{> components/common/paginator pagination.blog}}
-    </div>
-
+        {{/each}}
+    </ul>
+    {{> components/common/paginator pagination.blog}}
 </div>
 {{/partial}}
 {{> layout/base}}

@@ -1,28 +1,21 @@
 {{#partial "page"}}
-<div class="main">
-    <h1>{{ blog.name }}</h1>
-    {{> components/common/breadcrumbs breadcrumbs}}
-    <hr>
-    <aside class="col-md-3">
-        <h3>Recent Posts</h3>
+{{> components/common/breadcrumbs breadcrumbs}}
+<div class="blog-post">
+    <h2 class="page-heading">{{ blog.post.name }}</h2>
+    {{#if blog.post.thumbnail}}
+        <img class="blog-post-image" src="{{blog.post.thumbnail}}">
+    {{/if}}
+    <h3 class="blog-post-title">{{blog.post.title}}</h3>
+    <span class="blog-post-date">{{blog.post.date_published}}</span>
+    <span class="blog-post-author">{{blog.post.author}}</span>
+    <div class="blog-post-content">{{{blog.post.body}}}</div>
+    {{#if blog.post.tags}}
         <ul>
-            {{#each blog.recent_posts}}
-            <li><a href="{{url}}">{{title}}</a></li>
+            {{#each blog.post.tags}}
+                <a class="blog-post-tag" href="{{url}}">#{{name}}</a>
             {{/each}}
         </ul>
-    </aside>
-    <div class="col-md-9">
-        <h2>{{ post.title }}</h2>
-        <div>Posted By: <strong>{{ post.author }}</strong> on {{ post.date_published }}</div>
-        <div>{{{ post.social }}}</div>
-        <p>{{{ post.body }}}</p>
-        <ul>
-            {{#each post.tags}}
-            <a href="{{url}}">{{name}}</a>
-            {{/each}}
-        </ul>
-    </div>
-
+    {{/if}}
 </div>
 {{/partial}}
 {{> layout/base}}

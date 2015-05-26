@@ -1,7 +1,7 @@
-<div>
-    <label>
+<div class="form-field">
+    <label class="form-label option-label" for="attribute_{{this.id}}">
         {{#if this.required }}<span class="required">*</span>{{/if}}
         {{ this.display_name }}
-        <input type="file" name="attribute[{{this.id}}]">
     </label>
+    <input type="file" id="attribute_{{this.id}}" name="attribute[{{this.id}}]">
 </div>

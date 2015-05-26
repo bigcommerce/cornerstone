@@ -1,24 +1,33 @@
-<div>
-    {{#if this.required }}<span class="required">*</span>{{/if}}
-        {{ this.display_name }}
+<div class="form-field swatch">
+    <div class="form-label option-label">
+        {{#if this.required }}
+            <span class="required">*</span>
+        {{/if}}
+        {{this.display_name}}: <span data-option-value></span>
+    </div>
     {{#each this.values}}
-    <label>
-        <input type="radio" name="attribute[{{../id}}]" value="{{id}}" {{#if selected}}checked{{/if}}>
-
-        {{this.label}}
-
-        {{#if pattern}}
-        <div style="float: left; width: 32px; height: 32px; background-image: url('{{pattern}}');"></div>
-        {{/if}}
-        {{#if data.[0]}}
-        <div style="float: left; width: 32px; height: 32px; background-color: #{{data.[0]}}"></div>
-        {{/if}}
-        {{#if data.[1]}}
-        <div style="float: left; width: 32px; height: 32px; background-color: #{{data.[1]}}"></div>
-        {{/if}}
-        {{#if data.[2]}}
-        <div style="float: left; width: 32px; height: 32px; background-color: #{{data.[2]}}"></div>
-        {{/if}}
-    </label>
+        <label for="attribute_{{../id}}_{{this.id}}">
+            <span class="label">{{this.label}}</span>
+            <input type="radio" name="attribute[{{../id}}]" value="{{id}}" id="attribute_{{../id}}_{{this.id}}" {{#if selected}}checked{{/if}}>
+            <span class="picker">
+            {{#if pattern}}
+                <span class='pattern' title="{{this.label}}" style="background-image: url('{{pattern}}');"></span>
+            {{/if}}
+            {{#if data.[2]}}
+                <span class='triple' title="{{this.label}}" style="background-color: #{{data.[0]}}"></span>
+                <span class='triple' title="{{this.label}}" style="background-color: #{{data.[1]}}"></span>
+                <span class='triple' title="{{this.label}}" style="background-color: #{{data.[2]}}"></span>
+            {{else}}
+                {{#if data.[1]}}
+                    <span class='double' title="{{this.label}}" style="background-color: #{{data.[0]}}"></span>
+                    <span class='double' title="{{this.label}}" style="background-color: #{{data.[1]}}"></span>
+                {{else}}
+                    {{#if data.[0]}}
+                        <span class='single' title="{{this.label}}" style="background-color: #{{data.[0]}}"></span>
+                    {{/if}}
+                {{/if}}
+            {{/if}}
+            </span>
+        </label>
     {{/each}}
 </div>

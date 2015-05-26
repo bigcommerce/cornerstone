@@ -1,7 +1,7 @@
-<div>
-    <label>
+<div class="form-field">
+    <label class="form-label option-label" for="customization_{{this.id}}">
         {{#if this.required }}<span class="required">*</span>{{/if}}
         {{ this.display_name }}
-        <input type="checkbox" name="ProductFields[{{this.id}}]" {{#if this.checked}}checked{{/if}}>
     </label>
+    <input type="checkbox" id="customization_{{this.id}}" {{#if this.checked}}checked{{/if}}>
 </div>

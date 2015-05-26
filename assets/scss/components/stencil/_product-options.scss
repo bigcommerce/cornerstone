@@ -1,0 +1,86 @@
+.option-label {
+    /* Size: Medium: */
+    font-family: Montserrat-Regular;
+    font-size: 13px;
+    color: #454545;
+    cursor: default;
+    letter-spacing: 0.3px;
+    line-height: 16px;
+}
+
+.rectangle {
+    label {
+        span {
+            display: inline-block;
+            cursor: pointer;
+            min-width: 41px;
+            height: 27px;
+            line-height: 26px;
+            margin: 3px;
+            border: 1px solid #e8e8e8;
+            text-align: center;
+            color: 494949;
+        }
+
+        input[type="radio"] {
+            border: 0;
+            clip: rect(0 0 0 0);
+            height: 1px; margin: -1px;
+            overflow: hidden;
+            padding: 0;
+            position: absolute;
+            left: -9999px;
+            width: 1px;
+        }
+
+        input[type="radio"]:checked + span {
+            border: 2px solid #454545;
+            height: 29px;
+        }
+    }
+}
+
+.swatch {
+    label {
+        span.picker {
+            display: inline-block;
+            cursor: pointer;
+            border: 1px solid #D4D4D4;
+            height: 25px;
+            padding-top: 0px;
+            margin: 3px;
+
+            span.pattern {
+                background-position: center;
+                background-repeat: no-repeat;
+            }
+
+            span {
+                display: inline-block;
+                padding: 0;
+                margin: 0;
+                width: 23px;
+                height: 23px;
+            }
+        }
+
+        span.label {
+            display: none;
+        }
+
+        input[type="radio"] {
+            border: 0;
+            clip: rect(0 0 0 0);
+            height: 1px; margin: -1px;
+            overflow: hidden;
+            padding: 0;
+            position: absolute;
+            width: 1px;
+        }
+
+        input[type="radio"]:checked + span.picker {
+            border: 1px solid white;
+            outline: 2px solid #454545;
+        }
+    }
+}

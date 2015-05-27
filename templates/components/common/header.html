@@ -1,7 +1,7 @@
 <header class="header" role="banner">
 
     {{#if banners.top}}
-    <div class="banner">
+    <div class="header-banner">
         <div class="layout-fixed">
             {{#each banners.top}}
             {{{this}}}
@@ -10,21 +10,25 @@
     </div>
     {{/if}}
 
-    <nav class="navTop">
-        {{> components/common/currency-selector}}
-        {{> components/common/navigation-user}}
-    </nav>
+    <div class="layout-fixed">
 
-    <div class="logo">
-        <a href="{{urls.home}}">
-            {{#unless settings.store_logo}}
-            <img class="logo-image" src="{{settings.store_logo}}" alt="{{settings.store_name}}">
-            {{else}}
-            <span class="logo-title">{{settings.store_name}}</span>
-            {{/unless}}
-        </a>
+        <nav class="navBar navBar--user">
+            {{> components/common/currency-selector}}
+            {{> components/common/navigation-user}}
+        </nav>
+
+        <div class="header-logo">
+            <a href="{{urls.home}}">
+                {{#unless settings.store_logo}}
+                <img class="header-logo-image" src="{{settings.store_logo}}" alt="{{settings.store_name}}">
+                {{else}}
+                <span class="header-logo-title">{{settings.store_name}}</span>
+                {{/unless}}
+            </a>
+        </div>
+
+        {{> components/common/navigation}}
+
     </div>
-
-    {{> components/common/navigation}}
 
 </header>

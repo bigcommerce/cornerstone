@@ -1,0 +1,21 @@
+// =============================================================================
+// Create Account (CSS)
+// =============================================================================
+
+.create-account-fields {
+    @include grid-row();
+}
+
+.create-account-field {
+    @include grid-column(12);
+
+    @include breakpoint("medium") {
+        @include grid-column(6);
+    }
+}
+
+.create-account-submit {
+    margin-top: spacing("double");
+    margin-bottom: spacing("double")*2;
+    text-align: center;
+}

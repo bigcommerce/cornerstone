@@ -23,9 +23,9 @@ shop_by_price: true
         {{> components/common/paginator pagination.category}}
         {{> components/category/sort-box category}}
         <form action="/compare" method='POST'>
-            <ul class="row">
+            <ul class="product-list">
                 {{#each category.products}}
-                <li class="col-md-3">
+                <li class="product-card">
                     {{> components/products/card}}
                 </li>
                 {{/each}}

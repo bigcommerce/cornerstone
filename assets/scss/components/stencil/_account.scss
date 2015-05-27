@@ -1,0 +1,426 @@
+// =============================================================================
+// Account Overview (CSS)
+// =============================================================================
+
+.account {
+    a {
+        text-decoration: none;
+    }
+
+    margin: spacing("double") auto spacing("double")*2;
+}
+
+.account-main-section, .account-supporting-section {
+    @include grid-column(12);
+    @include breakpoint("medium") {
+        @include grid-column(6);
+
+        max-width: 90%;
+    }
+}
+
+.account-supporting-section {
+    .account-section {
+        margin-left: auto;
+        margin-right: 0;
+    }
+
+    @include breakpoint("small") {
+        .account-section {
+            max-width: 100%;
+        }
+    }
+
+
+    @include breakpoint("medium") {
+        .account-section {
+            max-width: 84%;
+        }
+
+        margin-top: 0;
+    }
+}
+
+.account-row {
+    @include grid-row();
+
+    @include breakpoint("medium") {
+        max-width: remCalc(790px);
+    }
+
+    @include breakpoint("large") {
+        max-width: layout("max");
+    }
+}
+
+.account-navigation {
+    display: none;
+    margin-bottom: spacing("double")*2;
+    text-align: center;
+
+    @include breakpoint("medium") {
+        display: block;
+    }
+}
+
+.account-navigation-item {
+    display: inline-block;
+    margin-left: spacing("quarter");
+    margin-right: spacing("quarter");
+    letter-spacing: letterSpacing("large");
+
+    &.active {
+        border-bottom: 1px solid black;
+        color: color("greys", "dark");
+    }
+
+    a {
+        color: color("greys", "light");
+    }
+}
+
+.account-section {
+    &:first-of-type {
+        margin-top: 0;
+    }
+
+    margin-top: spacing("double")*2;
+    text-align: left;
+}
+
+.account-heading {
+    border-bottom: 1px solid color("greys", "lighter");
+    color: color("greys", "darker");
+    margin: 0;
+    padding-bottom: spacing("single");
+}
+
+.account-section-list {
+    li {
+        list-style-type: none;
+    }
+
+    margin-left: 0;
+}
+
+.account-section-item-heading {
+    color: color("greys", "darker");
+    font-size: fontSize("smaller");
+    margin: 0;
+}
+
+.account-order-item-date {
+    display: block;
+
+    @include breakpoint("large") {
+        display: inline;
+    }
+}
+
+.account-order-separator {
+    display: none;
+
+    @include breakpoint("large") {
+        display: inline;
+    }
+}
+
+.account-section-item {
+
+    p {
+        color: color("greys", "dark");
+        letter-spacing: letterSpacing("large");
+        margin: 0;
+    }
+
+    .information {
+        margin-left: spacing("double")*2;
+        min-height: 51px;
+    }
+
+    border-bottom: 1px solid color("greys", "lighter");
+    position: relative;
+    padding-top: spacing("single");
+    padding-bottom: spacing("single");
+}
+
+.account-info-status {
+    background: color("greys", "medium");
+    color: color("whites");
+    display: inline-block;
+    font-size: fontSize("tiny");
+    line-height: lineHeight("smallest");
+    margin: spacing("single") 0 0 spacing("double")*2;
+    padding: spacing("eighth") spacing("half") spacing("eighth") spacing("half");
+
+    @include breakpoint("small") {
+        margin: 0;
+        position: absolute;
+        right: 0;
+        top: spacing("single");
+    }
+
+    @include breakpoint("medium") {
+        margin: spacing("half") 0 0 spacing("double")*2;
+        position: static;
+    }
+
+    @include breakpoint("large") {
+        margin: 0;
+        position: absolute;
+        right: 0;
+        top: 20px;
+    }
+}
+
+
+// =============================================================================
+// Account Orders List (CSS)
+// =============================================================================
+
+.orders-row {
+    max-width: remCalc(790px);
+}
+
+.order-preview-image {
+    float: left;
+    height: 73px;
+}
+
+.orders {
+    @include grid-column(12);
+}
+
+.order-sub-item {
+    display: inline-block;
+    width: 193px;
+}
+
+.order-item {
+    .information, .account-info-status {
+        margin-left: spacing("single")+remCalc(73px);
+    }
+}
+
+.order-sub-item-title {
+    color: color("greys", "light");
+    font-family: fontFamily("sans");
+    font-size: fontSize("tiny");
+    letter-spacing: letterSpacing("large");
+}
+
+.order-sub-item-text {
+    color: color("greys", "darker");
+}
+
+.order-info-status {
+    @include breakpoint("small") {
+        margin: 0;
+        position: absolute;
+        right: 0;
+        top: spacing("single");
+    }
+}
+
+.order-return-items {
+    font-family: Karla-Italic;
+    font-size: fontSize("tiny");
+    color: color("greys", "dark");
+    letter-spacing: letterSpacing("large");
+
+    @include breakpoint("small") {
+        margin: 0;
+        margin-top: spacing("half");
+        position: absolute;
+        right: 0;
+        top: spacing("double");
+    }
+
+    @include breakpoint("large") {
+        margin: 0;
+        margin-top: spacing("half");
+        position: absolute;
+        right: 0;
+        top: spacing("double");
+    }
+}
+
+// =============================================================================
+// Account Order Details (CSS)
+// =============================================================================
+
+.order-contents {
+    @include grid-row();
+    margin-top: remCalc(20px);
+}
+
+.order-contents-item {
+    @include grid-column(6);
+
+    padding-left: none;
+    list-style-type: none;
+
+    @include breakpoint("small") {
+        @include grid-column(4);
+    }
+}
+
+.order-contents-image {
+    display: block;
+    height: auto;
+    width: 100%;
+}
+
+.order-contents-name {
+    color: color("greys", "darkest");
+    font-size: fontSize("tiny");
+    letter-spacing: letterSpacing("large");
+    margin-top: spacing("half");
+    text-transform: none;
+}
+
+.order-contents-price {
+    color: color("greys", "light");
+    display: block;
+}
+
+.order-contents-return {
+    display: inline-block;
+    margin-top: spacing("double");
+}
+
+.order-address {
+    .order-address-item {
+        list-style-type: none;
+    }
+
+    .order-address-item-content {
+        color: color("greys", "darker");
+        letter-spacing: letterSpacing("large")
+    }
+
+    margin-top: spacing("single");
+    margin-left: 0;
+}
+
+.order-details {
+    margin-top: spacing("double");
+}
+
+.order-payment-description, .order-payment-value {
+    color: color("greys", "light");
+}
+
+.order-payment-value {
+    color: color("greys", "darker");
+}
+
+.order-details-contact {
+    margin-top: spacing("single");
+    font-size: fontSize("smaller");
+}
+
+// =============================================================================
+// Account Address Book (CSS)
+// =============================================================================
+
+
+.addresses-row {
+    max-width: remCalc(893px);
+}
+
+.account-address-list {
+    margin-left: 0;
+}
+
+.account-address-item {
+    @include grid-column(12);
+
+    list-style-type: none;
+    margin-top: spacing("single");
+
+    @include breakpoint("small") {
+        @include grid-column(6);
+    }
+
+    @include breakpoint("medium") {
+        @include grid-column(4);
+    }
+}
+
+.address-item-inner {
+    &.new-address-link {
+
+        background: color("whites");
+        border: 1px solid color("greys", "lighter");
+        display: flex;
+        font-size: fontSize("small");
+        align-items: center;
+        justify-content: center;
+    }
+
+    background-color: color("greys", "lightest");
+    padding: spacing("single");
+    height: remCalc(253px);
+    position: relative;
+}
+
+.new-address-plus {
+    font-size: fontSize("hero");
+    color: color("greys", "dark");
+    text-align: center;
+    line-height: lineHeight("hero");
+}
+
+.address-item-heading {
+    font-family: Montserrat-Regular;
+    font-size: fontSize("smaller");
+    color: color("greys", "dark");
+}
+
+.address-item-address {
+    margin-left: 0;
+    margin-top: spacing("half");
+}
+
+.address-line {
+    list-style-type: none;
+}
+
+.address-button-bar {
+    position: absolute;
+    bottom: spacing("single");
+    left: spacing("single");
+}
+
+// =============================================================================
+// Add & Update Address (CSS)
+// =============================================================================
+
+.address-form {
+    @include grid-row();
+
+    margin-left: auto;
+    margin-right: auto;
+    max-width: remCalc(790px);
+}
+
+.address-form-field {
+    @include grid-row(12);
+
+    @include breakpoint("medium") {
+        @include grid-column(6);
+    }
+}
+
+
+
+// =============================================================================
+// Recent Items (CSS)
+// =============================================================================
+
+.recent-item {
+    &.product-card {
+        @include grid-column(2);
+    }
+}

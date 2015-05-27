@@ -1,0 +1,32 @@
+<table class="table wishlists-table">
+    <thead class="table-thead">
+    <tr>
+        <td class="wishlists-table-heading">{{lang 'account.wishlists.name' }}</td>
+        <td class="wishlists-table-heading">{{lang 'account.wishlists.num_items' }}</td>
+        <td class="wishlists-table-heading">{{lang 'account.wishlists.shared' }}</td>
+        <td class="wishlists-table-heading">{{lang 'account.wishlists.action' }}</td>
+    </tr>
+    </thead>
+    <tbody class="table-tbody">
+        {{#each customer.wishlists }}
+            <tr>
+                <td>{{name}}</td>
+                <td>{{num_items}}</td>
+                <td>
+                    {{#if is_public }}
+                        {{lang 'common.yes' }}
+                    {{else}}
+                        {{lang 'common.no' }}
+                    {{/if}}
+                </td>
+                <td>
+                    <a href="{{edit_url}}">{{lang 'common.edit' }}</a>
+                    <form method="post" action="{{delete_url}}">
+                        <input type="submit" value="{{lang 'common.delete' }}">
+                    </form>
+                    <a href="{{share_url}}">{{lang 'common.share' }}</a>
+                </td>
+            </tr>
+        {{/each}}
+    </tbody>
+</table>

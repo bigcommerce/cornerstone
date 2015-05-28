@@ -38,7 +38,7 @@ export default function (stateElement) {
     $('select[data-label="Country"]').on('change', (event) => {
         let countryName = $(event.currentTarget).val();
 
-        utils.country.getByName(countryName, (err, statesArray) => {
+        utils.api.country.getByName(countryName, (err, statesArray) => {
             if (err) {
                 alert('There was an error');
             }

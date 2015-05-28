@@ -2,14 +2,14 @@
     <div class="facet-header js-facet-accordion-action">
         <h6 class="facet-header-title">{{ title }}</h6>
         {{#if selected}}
-            <a href="{{remove_url}}" class="js-facet-clear">{{lang 'search.faceted.clear'}}</a>
+            <a href="{{remove_url}}" data-faceted-search-facet class="js-facet-clear">{{lang 'search.faceted.clear'}}</a>
         {{/if}}
     </div>
     <div class="facet-body">
         <ul class="facet-options-list">
             {{#each items}}
                 <li class="facet-option js-facet-option {{#if selected }} selected {{/if}}" >
-                    <a href="{{url}}">
+                    <a data-faceted-search-facet href="{{url}}" {{#if selected}}style="font-weight: bold"{{/if}}>
                         {{ title }}
                         {{#if ../show_product_counts}}
                             <span class="facet-option-product-count">

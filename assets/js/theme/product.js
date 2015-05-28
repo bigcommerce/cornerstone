@@ -54,7 +54,7 @@ export default class Product extends PageManager {
                 options = this.getOptionValues($ele);
 
                 // check inventory when the option has changed
-                utils.productAttributes.optionChange(options, this.productId, (err, data) => {
+                utils.api.productAttributes.optionChange(options, this.productId, (err, data) => {
                     this.viewModel.price(data.price);
                     this.viewModel.sku(data.sku);
                     this.viewModel.instock(data.instock);
@@ -91,7 +91,7 @@ export default class Product extends PageManager {
      *
      */
     addProductToCart() {
-        utils.hooks.on('cart-item-add', (event, ele) => {
+        utils.hooks.on('cart-item-add', (event) => {
             event.preventDefault();
 
             let quantity = this.$productView.find('#product-quantity [name=qty\\[\\]]').val(),
@@ -101,7 +101,7 @@ export default class Product extends PageManager {
             options = this.getOptionValues($optionsContainer);
 
             // add item to cart
-            utils.cart.itemAdd(this.productId, quantity, options, (err, data) => {
+            utils.api.cart.itemAdd(this.productId, quantity, options, (err, data) => {
                 // if there is an error
                 if (err || data.error) {
                     // TODO: display error
@@ -109,7 +109,7 @@ export default class Product extends PageManager {
                 }
 
                 // fetch cart to display in cart preview
-                utils.cart.getContent({render_with: 'cart/preview'}, (err, content) => {
+                utils.api.cart.getContent({render_with: 'cart/preview'}, (err, content) => {
                     $('[data-cart-preview]').html(content);
                 });
             });

@@ -5,24 +5,9 @@ shop_by_price: true
 {{#partial "page"}}
 <div class="container">
     {{> components/common/breadcrumbs breadcrumbs}}
-    <aside class="aside">
-        {{#if brand.faceted_search_enabled}}
-            {{> components/faceted-search/index brand}}
-        {{/if}}
-    </aside>
-    <div class="main">
-        {{> components/common/paginator pagination.brand}}
-        {{> components/category/sort-box category}}
-        <ul class="row">
-            {{#each brand.products}}
-            <li class="col-md-3">
-                {{> components/products/card}}
-            </li>
-            {{/each}}
-        </ul>
-        {{> components/common/paginator pagination.brand}}
+    <div id="product-listing">
+        {{> components/brand/product-listing}}
     </div>
-
 </div>
 {{/partial}}
 {{> layout/base}}

@@ -1,4 +1,6 @@
 <div class="form-field">
-    <label class="form-label" for="{{id}}">{{label}}</label>
+    <label class="form-label" for="{{id}}">{{label}}
+        {{#if required}}<small>{{lang 'common.required' }}</small>{{/if}}
+    </label>
     <input type="text" class="{{class}}" data-label="{{label}}" data-rule="lowerThan" min="{{limitfrom}}" max="{{limitto}}" title="You need to enter numbers only between: {{limitfrom}} and {{limitto}}" value="{{value}}" id="{{id}}" name="{{name}}" {{#if style}}style="{{style}}" {{/if}} aria-required="{{required}}">
 </div>

@@ -6,7 +6,7 @@
         <ul class="facet-labels-list">
             {{#each this.items}}
                 <li class="facet-label">
-                    <a href="{{ url }}" class="js-facet-label">
+                    <a href="{{ url }}" data-faceted-search-facet class="js-facet-label">
                         {{#compare facet 'rating' operator="==="}}
                             {{lang 'search.faceted.selected.rating-label' rating=title}}
                         {{else}}
@@ -19,7 +19,9 @@
             {{/each}}
         </ul>
         {{#if this.remove_all_url}}
-            <a class="js-facet-clear-all" href="{{this.remove_all_url}}">{{lang 'search.faceted.selected.clear-all'}}</a>
+            <a class="js-facet-clear-all" href="{{this.remove_all_url}}" data-faceted-search-facet>
+                {{lang 'search.faceted.selected.clear-all'}}
+            </a>
         {{/if}}
     </div>
 </div>

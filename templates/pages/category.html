@@ -7,35 +7,9 @@ shop_by_price: true
     {{> components/common/breadcrumbs breadcrumbs}}
     <h1>{{category.name}}</h1>
     <hr>
-    <aside class="aside">
-        <ul>
-            {{#each category.subcategories}}
-            <li><a href="{{url}}" alt="{{name}}">{{name}}</a></li>
-            {{/each}}
-        </ul>
-        {{#if category.faceted_search_enabled}}
-            {{> components/faceted-search/index category}}
-        {{else}}
-            {{> components/category/shop-by-price category.shop_by_price}}
-        {{/if}}
-    </aside>
-    <div class="main">
-        {{> components/common/paginator pagination.category}}
-        {{> components/category/sort-box category}}
-        <form action="/compare" method='POST'>
-            <ul class="product-list">
-                {{#each category.products}}
-                <li class="product-card">
-                    {{> components/products/card}}
-                </li>
-                {{/each}}
-            </ul>
-
-            <input type="submit" value="Compare Products" class="btn btn-primary">
-        </form>
-        {{> components/common/paginator pagination.category}}
+    <div id="product-listing">
+        {{> components/category/product-listing}}
     </div>
-
 </div>
 {{/partial}}
 {{> layout/base}}

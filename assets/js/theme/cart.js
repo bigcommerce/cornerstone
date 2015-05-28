@@ -17,7 +17,7 @@ export default class Cart extends PageManager {
 
             newQty = $target.data('action') === 'inc' ? oldQty + 1 : oldQty - 1;
             el.text(newQty);
-            utils.cart.itemUpdate(itemId, newQty, (err, response) => {
+            utils.api.cart.itemUpdate(itemId, newQty, (err, response) => {
                 if (response.status === 'succeed') {
                     this.refreshContent();
                 } else {
@@ -32,7 +32,7 @@ export default class Cart extends PageManager {
 
             event.preventDefault();
 
-            utils.cart.itemRemove(itemId, (err, response) => {
+            utils.api.cart.itemRemove(itemId, (err, response) => {
                 if (response.status === 'succeed') {
                     this.refreshContent();
                 } else {
@@ -45,7 +45,7 @@ export default class Cart extends PageManager {
     }
 
     refreshContent() {
-        utils.cart.getContent({render_with: 'cart/content'}, (err, content) => {
+        utils.api.cart.getContent({render_with: 'cart/content'}, (err, content) => {
             $('[data-cart-content]').html(content);
         });
     }

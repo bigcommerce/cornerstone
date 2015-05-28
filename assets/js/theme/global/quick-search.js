@@ -15,7 +15,7 @@ export default function () {
 
     //stagger searching for 400ms after last input
     let doSearch = _.debounce((searchQuery) => {
-        utils.search.search(searchQuery, params, (err, data) => {
+        utils.api.search.search(searchQuery, params, (err, data) => {
             quickSearchViewModel.results(data);
         });
     }, 400);

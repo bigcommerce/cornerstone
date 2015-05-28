@@ -45,3 +45,32 @@
     margin-left: spacing("double");
     text-decoration: none;
 }
+
+
+.forgot-password-section {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: remCalc(550px);
+}
+
+.forgot-password-intro {
+    text-align: center;
+}
+
+.forgot-password-fields {
+    @include grid-row();
+}
+
+.forgot-password-email {
+    @include grid-column(12);
+    @include breakpoint("medium") {
+        @include grid-column(8);
+    }
+}
+
+.forgot-password-submit {
+    @include grid-column(12);
+    @include breakpoint("medium") {
+        @include grid-column(4);
+    }
+}

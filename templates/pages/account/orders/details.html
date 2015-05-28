@@ -1,41 +1,93 @@
 {{#partial "page"}}
-<div class="main row">
-    {{> components/common/breadcrumbs breadcrumbs}}
-    <div class="col-md-3">
-        {{>components/account/menu}}
-    </div>
-    <div class="col-md-9">
-        <h1>Order Details</h1>
-        <div>
-            <span>Order #{{order.id}}</span>
-            <form method="post" action="{{order.reorder_url}}">
-                <input type="submit" value="Reorder" class="btn">
-            </form>
-            <a onclick="window.open('{{order.invoice_url}}', 'newwindow', 'width=800, height=600');" class="btn">Print Invoice</a>
+<div class="account">
+    <ul class="breadcrumbs">
+        <li class="breadcrumb">
+            <a class="breadcrumb-label" href="{{urls.home}}">{{lang 'home.heading'}}</a>
+        </li>
+        <li class="breadcrumb">
+            <span class="breadcrumb-label">{{lang 'account.heading' }}</span>
+        </li>
+    </ul>
+    <h2 class="page-heading title">{{lang 'account.orders.details.heading' number=order.id }}</h2>
+    {{> components/account/navigation account_page='orders'}}
+    <div class="account-row">
+        <div class="main-section">
+            {{> components/account/order-contents order}}
         </div>
-        <div>Order Date: {{order.date}}</div>
-        <div><strong>Your Order Contains</strong></div>
-        {{#each order.items}}
-        <ul>
-            <li>{{quantity}} &times; {{name}}</li>
-            {{#if options}}
-                <li>(
-                    {{#each options}}
-                    {{name}}: {{value}}{{#unless @last}},{{/unless}}
-                    {{/each}}
-                    )
-                </li>
-            {{/if}}
-            {{#if download_link}}
-                <a href="{{download_link}}">Download Items</a>
-            {{/if}}
-        </ul>
-        {{/each}}
-        <ul>
-            {{#each order.total_rows}}
-                <li>{{class_name}}: {{value}}</li>
-            {{/each}}
-        </ul>
+        <div class="supporting-section">
+            <section class="account-section order-details">
+                <h3 class="account-heading">{{lang 'account.orders.details.ship_to' }}</h3>
+                <ul class="order-address">
+                    <li class="order-address-item">
+                        <span class="order-address-item-content">{{order.shipping_address.full_name}}</span>
+                    </li>
+                    <li class="order-address-item">
+                        <span class="order-address-item-content">{{order.shipping_address.company}}</span>
+                    </li>
+                    <li class="order-address-item">
+                        <span class="order-address-item-content">{{order.shipping_address.address_lines.[0]}}</span>
+                    </li>
+                    <li class="order-address-item">
+                        <span class="order-address-item-content">{{order.shipping_address.address_lines.[1]}}</span>
+                    </li>
+                    <li class="order-address-item">
+                        <span class="order-address-item-content">{{order.shipping_address.city}},</span>
+                        <span class="order-address-item-content">{{order.shipping_address.state}}</span>
+                        <span class="order-address-item-content"> &nbsp;{{order.shipping_address.zip}}</span>
+                    </li>
+                    <li class="order-address-item">
+                        <span class="order-address-item-content">{{order.shipping_address.country}}</span>
+                    </li>
+                </ul>
+            </section>
+            <section class="account-section order-details">
+                <h3 class="account-heading">{{lang 'account.orders.details.bill_to' }}</h3>
+                <ul class="order-address">
+                    <li class="order-address-item">
+                        <span class="order-address-item-content">{{order.billing_address.full_name}}</span>
+                    </li>
+                    <li class="order-address-item">
+                        <span class="order-address-item-content">{{order.billing_address.company}}</span>
+                    </li>
+                    <li class="order-address-item">
+                        <span class="order-address-item-content">{{order.billing_address.address_lines.[0]}}</span>
+                    </li>
+                    <li class="order-address-item">
+                        <span class="order-address-item-content">{{order.billing_address.address_lines.[1]}}</span>
+                    </li>
+                    <li class="order-address-item">
+                        <span class="order-address-item-content">{{order.billing_address.city}},</span>
+                        <span class="order-address-item-content">{{order.billing_address.state}}</span>
+                        <span class="order-address-item-content">{{order.billing_address.zip}}</span>
+                    </li>
+                    <li class="order-address-item">
+                        <span class="order-address-item-content">{{order.billing_address.country}}</span>
+                    </li>
+                </ul>
+            </section>
+            <section class="account-section order-details">
+                <h3 class="account-heading">{{lang 'account.orders.details.payment_details' }}</h3>
+                <ul class="order-address">
+                    <li class="order-address-item">
+                        <span class="order-payment-description">{{lang 'account.orders.details.order_total' }}</span>
+                        <span class="order-payment-value">{{order.total}}</span>
+                    </li>
+                    <li class="order-address-item">
+                        <span class="order-payment-description">{{lang 'account.orders.details.payment_date' }}</span>
+                        <span class="order-payment-value">{{order.date}}</span>
+                    </li>
+                    <li class="order-address-item">
+                        <span class="order-payment-description">{{lang 'account.orders.details.payment_method' }}</span>
+                        <span class="order-payment-value">Bitcoin</span>
+                    </li>
+                </ul>
+            </section>
+            <section class="account-section order-details">
+                <h3 class="account-heading">{{lang 'account.orders.details.contact_us' }}</h3>
+                <p class="order-details-contact">{{lang 'account.orders.details.contact_text' }}</p>
+                <a href="#" class="button view-all">{{lang 'account.orders.details.contact_us' }}</a>
+            </section>
+        </div>
     </div>
 </div>
 {{/partial}}

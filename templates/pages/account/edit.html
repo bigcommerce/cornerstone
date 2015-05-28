@@ -1,31 +1,54 @@
 {{#partial "page"}}
-<div class="main row">
-    {{> components/common/breadcrumbs breadcrumbs}}
-    <div class="col-md-3">
-        {{>components/account/menu}}
-    </div>
-    <div class="col-md-9">
-        <h1>Account Details</h1>
-        <form action="{{urls.account.update_action}}" method="post">
-            <dt><span class="Required">*</span> First Name:</dt>
-            <dd><input type="text" class="Textbox Field200" name="account_firstname" id="account_firstname" value="{{account.edit.first_name}}"></dd>
+<div class="account">
+    <ul class="breadcrumbs">
+        <li class="breadcrumb">
+            <a class="breadcrumb-label" href="{{urls.home}}">{{lang 'home.heading'}}</a>
+        </li>
+        <li class="breadcrumb">
+            <span class="breadcrumb-label">{{lang 'account.settings.heading' }}</span>
+        </li>
+    </ul>
+    <h2 class="page-heading">{{lang 'account.settings.heading' }}</h2>
+    {{> components/account/navigation account_page='settings'}}
 
-            <dt><span class="Required">*</span> Last Name:</dt>
-            <dd><input type="text" class="Textbox Field200" name="account_lastname" id="account_lastname" value="{{account.edit.last_name}}"></dd>
+    <form action="{{urls.account.update_action}}" class="account-row form" method="post">
+        <div class="main-section">
+            <div class="form-field">
+                <label class="form-label" for="account_firstname">
+                    {{lang 'account.settings.first_name' }}
+                    <small>{{lang 'common.required' }}</small>
+                </label>
+                <input type="text" class="form-input" name="account_firstname" id="account_firstname" value="{{account.edit.first_name}}">
+            </div>
+            <div class="form-field">
+                <label class="form-label" for="account_lastname">
+                    {{lang 'account.settings.last_name' }}
+                    <small>{{lang 'common.required' }}</small>
+                </label>
+                <input type="text" class="form-input" name="account_lastname" id="account_lastname" value="{{account.edit.last_name}}">
+            </div>
+            <div class="form-field">
+                <label class="form-label" for="account_companyname">
+                    {{lang 'account.settings.company' }}
+                </label>
+                <input type="text" class="form-input" name="account_companyname" id="account_companyname" value="{{account.edit.company_name}}">
+            </div>
 
-            <dt>Company Name:</dt>
-            <dd><input type="text" class="Textbox Field200" name="account_companyname" id="account_companyname" value="{{account.edit.company_name}}"></dd>
-
-            <dt><span class="Required">*</span> Phone Number:</dt>
-            <dd><input type="text" class="Textbox Field200" name="account_phone" id="account_phone" value="{{account.edit.phone}}"></dd>
-
-        {{#each account.edit.fields}}
-            {{{field this}}}
-        {{/each}}
+            <div class="form-field">
+                <label class="form-label" for="account_phone">
+                    {{lang 'account.settings.phone' }}
+                </label>
+                <input type="text" class="form-input" name="account_phone" id="account_phone" value="{{account.edit.phone}}">
+            </div>
+        </div>
+        <div class="supporting-section">
+            {{#each account.edit.fields}}
+                {{{field this}}}
+            {{/each}}
+        </div>
 
         <input type="submit">
-        </form>
-    </div>
+    </form>
 </div>
 {{/partial}}
 {{> layout/base}}

@@ -1,10 +1,9 @@
 <footer class="footer" role="contentinfo">
     <div class="layout-fixed">
         <section class="footer-info">
-
             <article class="footer-info-col footer-info-col--small">
                 <h5 class="footer-info-heading">Navigate</h5>
-                <ul>
+                <ul class="footer-info-list">
                     {{#each pages_menu}}
                     <li>
                         <a href="{{url}}" alt="{{name}}">{{name}}</a>
@@ -15,7 +14,7 @@
 
             <article class="footer-info-col footer-info-col--small">
                 <h5 class="footer-info-heading">Brands</h5>
-                <ul>
+                <ul class="footer-info-list">
                     {{#each shop_by_brand.links}}
                     <li>
                         <a href="{{url}}" alt="{{name}}">{{name}} ({{count}})</a>
@@ -34,12 +33,13 @@
             </article>
 
             <article class="footer-info-col">
-                <h5 class="footer-info-heading">Subscribe to our newsletter</h5>
-                <p>Pork belly flannel Pinterest, literally Truffaut gentrify blog iPhone. Chambray Echo Park beard Godard.</p>
                 {{>components/common/subscription-form}}
             </article>
-
         </section>
+
+        <div class="footer-copyright">
+            <p class="powered-by">Powered by <a href="http://bigcommerce.com">Bigcommerce</a></p>
+        </div>
     </div>
 
     {{#each banners.bottom}}

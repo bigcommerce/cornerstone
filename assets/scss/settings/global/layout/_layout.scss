@@ -11,7 +11,7 @@
 // -----------------------------------------------------------------------------
 
 // Max Width
-$layout-widthMax:               1200px;
+$layout-widthMax:               remCalc(1200px);
 
 // Fixed Width
 $layout-widthFixed:             100%;
@@ -39,3 +39,33 @@ $spacing-quarter:               $spacingRhythm / 4;
 $spacing-fifth:                 $spacingRhythm / 5;
 $spacing-sixth:                 $spacingRhythm / 6;
 $spacing-eighth:                $spacingRhythm / 8;
+
+
+
+
+// Stencil grid widths
+// -----------------------------------------------------------------------------
+
+$widthMap: (
+    "12/12":                    100%,
+    "11/12":                    91.66667%,
+    "10/12":                    83.33334%,
+    "9/12":                     75%,
+    "8/12":                     66.66667%,
+    "7/12":                     58.33334%,
+    "6/12":                     50%,
+    "5/12":                     41.66667%,
+    "4/12":                     33.33334%,
+    "3/12":                     25%,
+    "2/12":                     16.66667%,
+    "1/12":                     8.33334%
+);
+
+@function width($key) {
+    @if map-has-key($widthMap, $key) {
+        @return map-get($widthMap, $key);
+    }
+
+    @warn "Unknown width `#{$key}` in width function.";
+    @return null;
+}

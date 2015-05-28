@@ -1,13 +1,15 @@
-<h3>Subscribe</h3>
-<form action="{{urls.subscribe.action}}" method="post">
-    <input type="hidden" name="action" value="subscribe">
+<h5 class="footer-info-heading">Subscribe to our newsletter</h5>
+<p>Pork belly flannel Pinterest, literally Truffaut gentrify blog iPhone Godard.</p>
 
-    <label for="nl_first_name">Name</label>
-    <input class="Textbox autobox default" value="{{customer.name}}" id="nl_first_name" name="nl_first_name" type="text">
-
-    <label for="nl_email">Email</label>
-    <input class="Textbox autobox default" id="nl_email" name="nl_email" type="email">
-
-    <input value="Submit" class="btn" type="submit">
-
+<form class="form" action="{{urls.subscribe.action}}" method="post">
+    <fieldset class="form-fieldset">
+        <input type="hidden" name="action" value="subscribe">
+        <div class="form-field">
+            <label class="form-label u-hiddenVisually" for="nl_email">Email</label>
+            <div class="form-prefixPostfix">
+                <input class="form-input" id="nl_email" name="nl_email" type="email" value="{{customer.name}}" placeholder="Your email address">
+                <input class="button form-prefixPostfix-button--postfix" type="submit" value="Submit">
+            </div>
+        </div>
+    </fieldset>
 </form>

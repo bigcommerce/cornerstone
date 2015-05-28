@@ -1,0 +1,74 @@
+// =============================================================================
+// Account Order Details (CSS)
+// =============================================================================
+
+.order-contents {
+    @include grid-row();
+    margin-top: remCalc(20px);
+}
+
+.order-contents-item {
+    @include grid-column(6);
+
+    padding-left: none;
+    list-style-type: none;
+
+    @include breakpoint("small") {
+        @include grid-column(4);
+    }
+}
+
+.order-contents-image {
+    display: block;
+    height: auto;
+    width: 100%;
+}
+
+.order-contents-name {
+    color: color("greys", "darkest");
+    font-size: fontSize("tiny");
+    letter-spacing: letterSpacing("large");
+    margin-top: spacing("half");
+    text-transform: none;
+}
+
+.order-contents-price {
+    color: color("greys", "light");
+    display: block;
+}
+
+.order-contents-return {
+    display: inline-block;
+    margin-top: spacing("double");
+}
+
+.order-address {
+    .order-address-item {
+        list-style-type: none;
+    }
+
+    .order-address-item-content {
+        color: color("greys", "darker");
+        letter-spacing: letterSpacing("large")
+    }
+
+    margin-top: spacing("single");
+    margin-left: 0;
+}
+
+.order-details {
+    margin-top: spacing("double");
+}
+
+.order-payment-description, .order-payment-value {
+    color: color("greys", "light");
+}
+
+.order-payment-value {
+    color: color("greys", "darker");
+}
+
+.order-details-contact {
+    margin-top: spacing("single");
+    font-size: fontSize("smaller");
+}

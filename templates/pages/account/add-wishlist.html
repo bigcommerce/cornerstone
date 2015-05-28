@@ -1,23 +1,42 @@
 {{#partial "page"}}
-<div class="main row">
-    {{> components/common/breadcrumbs breadcrumbs}}
-    <div class="col-md-3">
-        {{>components/account/menu}}
-    </div>
-    <div class="col-md-9">
-        <h1>{{forms.wishlist.title}}</h1>
-        {{#if forms.wishlist.errors}}
-        <div class="alert alert-danger" role="alert">{{{forms.wishlist.errors}}}</div>
-        {{/if}}
-        <form action="{{forms.wishlist.action}}" method="post">
-            <input type="hidden" name="submit">
-            <div>Wishlist Name: <input name="wishlistname" value="{{forms.wishlist.name}}"></div>
-            <div>Make Public?
-                <input type="checkbox" name="publicwishlist" {{#if forms.wishlist.is_public}}checked{{/if}}>
-            </div>
+<div class="account">
+    <ul class="breadcrumbs">
+        <li class="breadcrumb">
+            <a class="breadcrumb-label" href="{{urls.home}}">{{lang 'home.heading'}}</a>
+        </li>
+        <li class="breadcrumb">
+            <span class="breadcrumb-label">{{lang 'account.wishlists.heading' }}</span>
+        </li>
+    </ul>
+    <h2 class="page-heading">{{lang 'account.wishlists.heading' }}</h2>
+    {{> components/account/navigation account_page='wishlists'}}
+
+    {{#if forms.wishlist.id}}
+        <h1>{{lang 'account.wishlists.edit' }}</h1>
+    {{else}}
+        <h1>{{lang 'account.wishlists.add' }}</h1>
+    {{/if}}
+    {{#if forms.wishlist.errors}}
+    <div class="alert alert-danger" role="alert">{{{forms.wishlist.errors}}}</div>
+    {{/if}}
+    <form action="{{forms.wishlist.action}}" class="form wishlist-form" method="post">
+        <input type="hidden" name="submit">
+        <div class="form-field">
+            <label class="form-label" for="wishlistname">
+                {{lang 'forms.wishlist.name'}}
+                <small>{{lang 'common.required' }}</small>
+            </label>
+            <input class="form-input" name="wishlistname" id="wishlistname">
+        </div>
+        <div class="form-field">
+            <label class="form-label" for="publicwishlist">{{lang 'forms.wishlist.public' }}</label>
+            <input type="checkbox" name="publicwishlist" id="publicwishlist" {{#if forms.wishlist.is_public}}checked{{/if}}>
+        </div>
+        <div class="form-field">
             <input type="submit">
-        </form>
-    </div>
+        </div>
+
+    </form>
 </div>
 {{/partial}}
 {{> layout/base}}

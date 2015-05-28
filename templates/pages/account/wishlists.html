@@ -1,28 +1,16 @@
 {{#partial "page"}}
-<div class="main row">
-    {{> components/common/breadcrumbs breadcrumbs}}
-    <div class="col-md-3">
-        {{>components/account/menu}}
-    </div>
-    <div class="col-md-9">
-        <h3>My Wishlists</h3>
-        <a class="icon-add" title="Add Wishlist" href="{{urls.account.add_wishlist}}">Add Wishlist</a>
-        <ul>
-            {{#each customer.wishlists}}
-            <li>
-                <div><a href="{{view_url}}">{{name}}</a></div>
-
-                <div>Num Items: {{num_items}}</div>
-                <div>{{#if is_public }}Public{{else}}Private{{/if}}</div>
-                <div>
-                    <a href="{{edit_url}}">Edit</a>
-                    <form method="post" action="{{delete_url}}"><input type="submit" value="Delete"></form>
-                    <a href="{{share_url}}">Share</a>
-                </div>
-            </li>
-            {{/each}}
-        </ul>
-    </div>
+<div class="account">
+    <ul class="breadcrumbs">
+        <li class="breadcrumb">
+            <a class="breadcrumb-label" href="{{urls.home}}">{{lang 'home.heading'}}</a>
+        </li>
+        <li class="breadcrumb">
+            <span class="breadcrumb-label">{{lang 'account.wishlists.heading' }}</span>
+        </li>
+    </ul>
+    <h2 class="page-heading">{{lang 'account.wishlists.heading' }}</h2>
+    {{> components/account/navigation account_page='wishlists'}}
+    {{>components/account/wishlist-list }}
 </div>
 {{/partial}}
 {{> layout/base}}

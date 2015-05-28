@@ -5,26 +5,22 @@
             <a class="breadcrumb-label" href="{{urls.home}}">{{lang 'home.heading'}}</a>
         </li>
         <li class="breadcrumb">
-            <span class="breadcrumb-label">{{lang 'account.heading' }}</span>
+            <span class="breadcrumb-label">{{lang 'account.wishlists.heading' }}</span>
         </li>
     </ul>
-    <h2 class="page-heading">{{lang 'account.wishlists.heading' }}</h2>
+    <h2 class="page-heading">{{lang 'account.wishlists.view_heading' name=wishlist.name }}</h2>
     {{> components/account/navigation account_page='wishlists'}}
 
-    <h1>{{wishlist.name}}</h1>
-    <h4>
-        {{#if wishlist.is_public }}
-            {{lang 'common.public' }}
-        {{else}}
-            {{lang 'common.private' }}
-        {{/if}}
-    </h4>
-    <ul>
+    {{#if wishlist.is_public}}
+    <div class="panel share-wishlist">
+        <h3>{{lang 'account.wishlists.share_intro' }}</h3>
+        <input class="form-input" value="{{share_url}}">
+    </div>
+    {{/if}}
+    <ul class="product-list">
         {{#each wishlist.items}}
-        <li>
-            <div><a href="{{url}}">{{name}}</a></div>
-            <div>{{price}}</div>
-            <div>{{rating}}</div>
+        <li class="product-card">
+            {{>components/products/card }}
         </li>
         {{/each}}
     </ul>

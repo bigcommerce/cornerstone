@@ -1,13 +1,17 @@
-<a class="currencySelector" href="#">
-    <span>Select Currency:</span><span class="currency-selector-code">{{currency_selector.active_currency_code}}</span>
-    <ul class="currency-selection-list">
-        {{#each currency_selector.currencies}}
-        <li>
-            {{#if is_active}}Active {{/if}}
-            <a href="{{{switch_url}}}">
-                {{name}}
-            </a>
-        </li>
-        {{/each}}
-    </ul>
-</a>
+<ul class="navUser-section">
+    <li class="navUser-item">
+        <a class="navUser-action currencySelector" href="#">
+            <span>Select Currency:</span><span class="currency-selector-code">{{currency_selector.active_currency_code}}</span>
+            <ul class="currency-selection-list">
+                {{#each currency_selector.currencies}}
+                <li>
+                    {{#if is_active}}Active {{/if}}
+                    <a href="{{{switch_url}}}">
+                        {{name}}
+                    </a>
+                </li>
+                {{/each}}
+            </ul>
+        </a>
+    </li>
+</ul>

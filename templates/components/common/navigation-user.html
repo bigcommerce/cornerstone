@@ -1,28 +1,38 @@
-<ul>
-    <li>
-        <a class="nav-search">Search</a>
-        <form action="/search.php">
-            <label>Search</label>
-            <input data-search-quick name="search_query" placeholder="Search" autocomplete="off">
-        </form>
-        <ul class="quickSearchResults" data-bind="html: results"></ul>
-    </li>
-    <li>
-        <a href="{{urls.gift_certificate.purchase}}">Gift Certificates</a>
-    </li>
-    <li>
-        <a href="{{urls.account.wishlists}}">Wishlists</a>
-    </li>
-    <li>
-        {{#if customer}}
-            <a class="nav-account" href="{{urls.account.index}}">Account</a>
-        {{else}}
-            <a class="nav-login" href="{{urls.auth.login}}">Login</a>
-            <span>or</span>
-            <a href="{{urls.auth.create_account}}">Sign Up</a>
-        {{/if}}
-    </li>
-    <li>
-        <a class="nav-cart" href="{{urls.cart}}">Cart <b class="cart-count">2</b></a>
-    </li>
-</ul>
+<nav class="navUser">
+    {{> components/common/currency-selector}}
+
+    <ul class="navUser-section navUser-section--alt">
+        <li class="navUser-item">
+            <a class="navUser-action nav-search">Search</a>
+            <div class="quickSearch u-hiddenVisually">
+                <form class="form" action="/search.php">
+                    <fieldset class="form-fieldset">
+                        <div class="form-field">
+                            <label class="u-hiddenVisually">Search</label>
+                            <input class="form-input" data-search-quick name="search_query" placeholder="Search the store" autocomplete="off">
+                        </div>
+                    </fieldset>
+                </form>
+                <ul class="quickSearchResults" data-bind="html: results"></ul>
+            </div>
+        </li>
+        <li class="navUser-item">
+            <a class="navUser-action" href="{{urls.gift_certificate.purchase}}">Gift Certificates</a>
+        </li>
+        <li class="navUser-item">
+            <a class="navUser-action" href="{{urls.account.wishlists}}">Wishlists</a>
+        </li>
+        <li class="navUser-item navUser-item--account">
+            {{#if customer}}
+                <a class="navUser-action nav-account" href="{{urls.account.index}}">Account</a>
+            {{else}}
+                <a class="navUser-action nav-login" href="{{urls.auth.login}}">Login</a>
+                <span class="navUser-or">or</span>
+                <a class="navUser-action" href="{{urls.auth.create_account}}">Sign Up</a>
+            {{/if}}
+        </li>
+        <li class="navUser-item">
+            <a class="navUser-action" href="{{urls.cart}}">Cart <span class="cart-count">3</span></a>
+        </li>
+    </ul>
+</nav>

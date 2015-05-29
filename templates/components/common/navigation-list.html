@@ -1,9 +1,9 @@
-<a class="navBar-action" href="{{url}}" data-hover="{{name}}">{{name}}</a>
+<a class="navPages-action has-dropdown" href="{{url}}" data-hover="{{name}}">{{name}}</a>
 {{#if children}}
-<ul>
+<ul class="dropdown-menu">
     {{#each children}}
-    <li>
-        {{> components/common/navigation-list}}
+    <li class="dropdown-menu-item">
+        <a href="{{url}}" data-hover="{{name}}">{{name}}</a>
     </li>
     {{/each}}
 </ul>

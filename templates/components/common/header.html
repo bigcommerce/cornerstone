@@ -9,22 +9,19 @@
     </div>
     {{/if}}
 
-    <div class="layout-fixed">
-        <nav class="navBar navBar--user">
-            {{> components/common/currency-selector}}
-            {{> components/common/navigation-user}}
-        </nav>
+    {{> components/common/navigation-user}}
 
+    <div class="layout-fixed">
         <div class="header-logo">
             <a href="{{urls.home}}">
                 {{#unless settings.store_logo}}
                 <img class="header-logo-image" src="{{settings.store_logo}}" alt="{{settings.store_name}}">
                 {{else}}
-                <span class="header-logo-title">{{settings.store_name}}</span>
+                <span class="header-logo-text">{{settings.store_name}}</span>
                 {{/unless}}
             </a>
         </div>
 
-        {{> components/common/navigation}}
+        {{> components/common/navigation-pages}}
     </div>
 </header>

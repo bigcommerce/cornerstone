@@ -1,24 +1,31 @@
-<div>
-    {{#if this.required }}<span class="required">*</span>{{/if}}
-        {{ this.display_name }}
+<div class="form-field">
+    <div class="form-label">
+        {{#if this.required }}
+            <small>{{lang 'common.required'}}</small>
+        {{/if}}
+        {{this.display_name}}: <span data-option-value></span>
+    </div>
     {{#each this.values}}
-    <label>
-        <input type="radio" name="attribute[{{../id}}]" value="{{id}}" {{#if selected}}checked{{/if}}>
+        <input class="form-input form-radio" type="radio" name="attribute[{{../id}}]" value="{{id}}" id="attribute_{{../id}}_{{this.id}}" {{#if selected}}checked{{/if}}>
+        <label class="form-option" for="attribute_{{../id}}_{{this.id}}">
 
-        {{this.label}}
-
-        {{#if pattern}}
-        <div style="float: left; width: 32px; height: 32px; background-image: url('{{pattern}}');"></div>
-        {{/if}}
-        {{#if data.[0]}}
-        <div style="float: left; width: 32px; height: 32px; background-color: #{{data.[0]}}"></div>
-        {{/if}}
-        {{#if data.[1]}}
-        <div style="float: left; width: 32px; height: 32px; background-color: #{{data.[1]}}"></div>
-        {{/if}}
-        {{#if data.[2]}}
-        <div style="float: left; width: 32px; height: 32px; background-color: #{{data.[2]}}"></div>
-        {{/if}}
-    </label>
+            {{#if pattern}}
+                <span class='form-option-variant form-option-variant--pattern' title="{{this.label}}" style="background-image: url('{{pattern}}');"></span>
+            {{/if}}
+            {{#if data.[2]}}
+                <span class='form-option-variant form-option-variant--color' title="{{this.label}}" style="background-color: #{{data.[0]}}"></span>
+                <span class='form-option-variant form-option-variant--color' title="{{this.label}}" style="background-color: #{{data.[1]}}"></span>
+                <span class='form-option-variant form-option-variant--color' title="{{this.label}}" style="background-color: #{{data.[2]}}"></span>
+            {{else}}
+                {{#if data.[1]}}
+                    <span class='form-option-variant form-option-variant--color' title="{{this.label}}" style="background-color: #{{data.[0]}}"></span>
+                    <span class='form-option-variant form-option-variant--color' title="{{this.label}}" style="background-color: #{{data.[1]}}"></span>
+                {{else}}
+                    {{#if data.[0]}}
+                        <span class='form-option-variant form-option-variant--color' title="{{this.label}}" style="background-color: #{{data.[0]}}"></span>
+                    {{/if}}
+                {{/if}}
+            {{/if}}
+        </label>
     {{/each}}
 </div>

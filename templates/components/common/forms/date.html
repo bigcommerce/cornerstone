@@ -2,19 +2,18 @@
     <label class="form-label" for="{{id}}" {{#if style}}style="{{style}}" {{/if}}>{{label}}
     {{#if required}}<small>{{lang 'common.required' }}</small>{{/if}}</label>
     <div class="field-group">
-        <select name="{{month.name}}" id="{{id}}" data-label="month"  aria-required="{{required}}">
+        <select class="form-select" name="{{month.name}}" id="{{id}}" data-label="month"  aria-required="{{required}}">
             {{#each month.items}}
                 <option {{#equals ../month.value value}} selected {{/equals}}value="{{value}}">{{label}}</option>
             {{/each}}
         </select>
 
-        <select name="{{day.name}}" id="{{id}}" data-label="day" aria-required="{{required}}">
+        <select class="form-select" name="{{day.name}}" id="{{id}}" data-label="day" aria-required="{{required}}">
             {{#each day.items}}
                 <option {{#equals ../day.value value}} selected {{/equals}}value="{{value}}">{{label}}</option>
             {{/each}}
         </select>
-
-        <select name="{{year.name}}" id="{{id}}" data-label="year" aria-required="{{required}}">
+        <select class="form-select" name="{{year.name}}" id="{{id}}" data-label="year" aria-required="{{required}}">
             {{#each year.items}}
                 <option {{#equals ../year.value value}} selected {{/equals}}value="{{value}}">{{label}}</option>
             {{/each}}

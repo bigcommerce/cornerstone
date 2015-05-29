@@ -8,6 +8,7 @@
 
 .header {
     border-bottom: 1px solid lighten(color("greys", "lighter"), 7.5%);
+    margin-bottom: spacing("double");
 }
 
 .header-banner {
@@ -17,10 +18,12 @@
 }
 
 .header-logo {
-    margin: spacing("double") auto;
+    margin: (spacing("double") + spacing("single")) auto;
     text-align: center;
 
     > a {
+        display: inline-block;
+        line-height: 1;
         text-decoration: none;
     }
 }
@@ -33,23 +36,118 @@
 }
 
 
-// Navigation
+// User navigation
 // -----------------------------------------------------------------------------
 
-.navBar--user {
-
+.navUser {
+    @include nav($style: "navBar", $wrapper: "nav");
+    padding: 0 spacing("single");
 }
 
-.navBar--pages {
-    text-align: center;
+.navUser-action {
+    font-weight: fontWeight("bold");
+    padding: spacing("base") spacing("half");
+    text-decoration: none;
+    text-transform: uppercase;
+}
 
-    .navBar-section {
+.navUser-item--account {
+
+    .navUser-action {
         display: inline-block;
-        float: none;
+    }
+}
+
+.navUser-or {
+    cursor: default;
+    display: inline-block;
+    margin: 0 -10px;
+    padding: 0 2px;
+    position: relative;
+    z-index: 1;
+}
+
+
+// Page navigation
+// -----------------------------------------------------------------------------
+//
+// 1. Reduce font-size: 0; to remove display: inline-block; white-space. Just
+//    make sure that font-size is reset again on child elements.
+//
+// -----------------------------------------------------------------------------
+
+.navPages {
+    @include nav($style: "navBar", $wrapper: "nav");
+    font-size: 0; // 1
+    text-align: center;
+}
+
+.navPages-section {
+    display: inline-block;
+    float: none;
+}
+
+.navPages-action {
+    color: color("greys", "darkest");
+    font-size: fontSize("smaller");
+    font-weight: fontWeight("bold");
+    padding: spacing("half") (spacing("half") + spacing("quarter")) (spacing("half") + spacing("quarter"));
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+        color: color("greys", "medium");
     }
 
-    .navBar-action {
-        font-weight: $navBar-action-fontWeight;
-        text-transform: uppercase;
+    &.has-dropdown {
+
+        &:hover {
+            color: color("greys", "darkest");
+            background-color: color("greys", "lightest");
+        }
+    }
+}
+
+
+// Cart counter
+// -----------------------------------------------------------------------------
+//
+// 1. Hardcoded intentionally for precise pixels.
+//
+// -----------------------------------------------------------------------------
+
+.cart-count {
+    background-color: color("greys", "darker");
+    border-radius: 50%;
+    color: color("whites");
+    display: inline-block;
+    height: 18px; // 1
+    line-height: 18px; // 1
+    text-align: center;
+    width: 18px; // 1
+}
+
+
+.quickSearch {
+    background-color: color("greys", "lightest");
+    left: 0;
+    padding: spacing("double");
+    position: absolute;
+    right: 0;
+    top: spacing("double") + spacing("third");
+
+    .form {
+        margin: auto;
+        max-width: 30rem;
+    }
+
+    .form,
+    .form-field {
+        margin-bottom: 0;
+    }
+
+    .form-input {
+        font-size: fontSize("small");
     }
 }

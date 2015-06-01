@@ -1,0 +1,34 @@
+// =============================================================================
+// DROPDOWN (CSS)
+// =============================================================================
+
+
+.dropdown {
+    left: -9999px;
+    outline: none;
+    position: absolute;
+}
+
+.dropdown-menu-item {
+    text-align: left;
+
+    &:first-child {
+
+        > a {
+            padding-top: spacing("half");
+        }
+    }
+
+    &:last-child {
+
+        > a {
+            padding-bottom: spacing("base");
+        }
+    }
+
+    > a {
+        margin: 0;
+        padding: spacing("sixth") (spacing("half") + spacing("quarter"));
+        text-decoration: none;
+    }
+}

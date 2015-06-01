@@ -3,8 +3,8 @@
 
     <ul class="navUser-section navUser-section--alt">
         <li class="navUser-item">
-            <a class="navUser-action nav-search">Search</a>
-            <div class="quickSearch u-hiddenVisually">
+            <a class="navUser-action" href="#" data-dropdown="quickSearch" aria-controls="quickSearch" aria-expanded="false">Search</a>
+            <div class="dropdown dropdown--quickSearch" id="quickSearch" data-dropdown-content aria-hidden="true" tabindex="-1">
                 <form class="form" action="/search.php">
                     <fieldset class="form-fieldset">
                         <div class="form-field">
@@ -19,16 +19,11 @@
         <li class="navUser-item">
             <a class="navUser-action" href="{{urls.gift_certificate.purchase}}">Gift Certificates</a>
         </li>
-        <li class="navUser-item">
-            <a class="navUser-action" href="{{urls.account.wishlists}}">Wishlists</a>
-        </li>
         <li class="navUser-item navUser-item--account">
             {{#if customer}}
-                <a class="navUser-action nav-account" href="{{urls.account.index}}">Account</a>
+                <a class="navUser-action" href="{{urls.account.index}}">Account</a>
             {{else}}
-                <a class="navUser-action nav-login" href="{{urls.auth.login}}">Login</a>
-                <span class="navUser-or">or</span>
-                <a class="navUser-action" href="{{urls.auth.create_account}}">Sign Up</a>
+                <a class="navUser-action" href="{{urls.auth.login}}">Login</a> <span class="navUser-or">or</span> <a class="navUser-action" href="{{urls.auth.create_account}}">Sign Up</a>
             {{/if}}
         </li>
         <li class="navUser-item">

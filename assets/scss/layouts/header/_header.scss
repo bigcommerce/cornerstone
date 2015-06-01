@@ -38,6 +38,10 @@
 
 // User navigation
 // -----------------------------------------------------------------------------
+//
+// 1. Corrects the spacing added by .navUser-or
+//
+// -----------------------------------------------------------------------------
 
 .navUser {
     @include nav($style: "navBar", $wrapper: "nav");
@@ -49,9 +53,47 @@
     padding: spacing("base") spacing("half");
     text-decoration: none;
     text-transform: uppercase;
+
+    &.is-open {
+        position: relative;
+
+        &:before {
+            @include css-triangle(
+                $triangle-direction: "bottom",
+                $triangle-size: 10px,
+                $triangle-color: color("greys", "lightest")
+            );
+            bottom: 0;
+            left: 50%;
+            position: absolute;
+            transform: translateX(-50%);
+        }
+    }
+
+    &.has-dropdown {
+
+        &:after {
+            background: $dropdown-icon no-repeat;
+            background-size: 100%;
+            content: "";
+            display: inline-block;
+            height: remCalc(13px);
+            margin-left: spacing("eighth");
+            position: relative;
+            top: remCalc(1px);
+            width: remCalc(13px);
+        }
+    }
 }
 
 .navUser-item--account {
+
+    .navUser-or {
+
+        + .navUser-action {
+            margin-right: -0.5rem; // 1
+        }
+    }
 
     .navUser-action {
         display: inline-block;
@@ -61,52 +103,10 @@
 .navUser-or {
     cursor: default;
     display: inline-block;
-    margin: 0 -10px;
+    margin: 0 remCalc(-12px);
     padding: 0 2px;
     position: relative;
     z-index: 1;
-}
-
-
-// Page navigation
-// -----------------------------------------------------------------------------
-//
-// 1. Reduce font-size: 0; to remove display: inline-block; white-space. Just
-//    make sure that font-size is reset again on child elements.
-//
-// -----------------------------------------------------------------------------
-
-.navPages {
-    @include nav($style: "navBar", $wrapper: "nav");
-    font-size: 0; // 1
-    text-align: center;
-}
-
-.navPages-section {
-    display: inline-block;
-    float: none;
-}
-
-.navPages-action {
-    color: color("greys", "darkest");
-    font-size: fontSize("smaller");
-    font-weight: fontWeight("bold");
-    padding: spacing("half") (spacing("half") + spacing("quarter")) (spacing("half") + spacing("quarter"));
-    text-decoration: none;
-    text-transform: uppercase;
-    transition: background-color 0.2s ease;
-
-    &:hover {
-        color: color("greys", "medium");
-    }
-
-    &.has-dropdown {
-
-        &:hover {
-            color: color("greys", "darkest");
-            background-color: color("greys", "lightest");
-        }
-    }
 }
 
 
@@ -129,13 +129,22 @@
 }
 
 
-.quickSearch {
+// Quick search
+// -----------------------------------------------------------------------------
+//
+// 1. Overriding the inline styles from Foundation as this is a unique dropdown.
+//
+// -----------------------------------------------------------------------------
+
+.dropdown--quickSearch {
     background-color: color("greys", "lightest");
-    left: 0;
     padding: spacing("double");
-    position: absolute;
-    right: 0;
-    top: spacing("double") + spacing("third");
+
+    &.is-open {
+        left: 0 !important; // 1
+        outline: none;
+        right: 0 !important; // 1
+    }
 
     .form {
         margin: auto;
@@ -149,5 +158,73 @@
 
     .form-input {
         font-size: fontSize("small");
+    }
+}
+
+
+// Page navigation
+// -----------------------------------------------------------------------------
+//
+// 1. Reduce font-size: 0; to remove display: inline-block; white-space. Just
+//    make sure that font-size is reset again on child elements.
+// 2. Trusty important tag... Because we're using display: inline-block; and
+//    text-align: center; to center the nav, the Foundation JS messes up the
+//    positioning of the menu. We correct that by overriding their inline style.
+//
+// -----------------------------------------------------------------------------
+
+.navPages {
+    @include nav($style: "navBar", $wrapper: "nav");
+    font-size: 0; // 1
+    text-align: center;
+
+    .dropdown-menu {
+        min-width: 160px;
+
+        &.is-open {
+            left: 0 !important; // 2
+        }
+    }
+}
+
+.navPages-section {
+    display: inline-block;
+    float: none;
+}
+
+.navPages-item {
+    position: relative;
+}
+
+.navPages-action {
+    color: color("greys", "darkest");
+    font-size: fontSize("smaller");
+    font-weight: fontWeight("bold");
+    padding: spacing("half") (spacing("half") + spacing("quarter")) (spacing("half") + spacing("quarter"));
+    text-decoration: none;
+    text-transform: uppercase;
+
+    &:hover {
+        color: color("greys", "medium");
+    }
+
+    &.is-open {
+        color: color("greys", "darkest");
+        background-color: color("greys", "lightest");
+    }
+
+    &.has-dropdown {
+
+        &:after {
+            background: $dropdown-icon no-repeat;
+            background-size: 100%;
+            content: "";
+            display: inline-block;
+            height: remCalc(17px);
+            margin: 0 (-(spacing("quarter"))) 0 spacing("eighth");
+            position: relative;
+            top: remCalc(3px);
+            width: remCalc(17px);
+        }
     }
 }

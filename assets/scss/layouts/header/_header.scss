@@ -1,0 +1,266 @@
+// =============================================================================
+// HEADER (CSS)
+// =============================================================================
+
+
+// Header
+// -----------------------------------------------------------------------------
+
+.header {
+    border-bottom: 1px solid color("greys", "lightest");
+    margin-bottom: spacing("double");
+}
+
+.header-banner {
+    background-color: color("greys", "darker");
+    color: color("whites", "bright");
+    text-align: center;
+}
+
+.header-logo {
+    margin: (spacing("double") + spacing("single")) auto;
+    text-align: center;
+
+    > a {
+        display: inline-block;
+        line-height: 1;
+        text-decoration: none;
+    }
+}
+
+.header-logo-text {
+    font-family: UniversLTStd-LightCn;
+    font-size: fontSize("largest");
+    letter-spacing: remCalc(9px);
+    text-transform: uppercase;
+}
+
+
+// User navigation
+// -----------------------------------------------------------------------------
+//
+// 1. Corrects the spacing added by .navUser-or
+//
+// -----------------------------------------------------------------------------
+
+.navUser {
+    @include nav($style: "navBar", $wrapper: "nav");
+    padding: 0 spacing("single");
+
+    .dropdown-menu {
+        background-color: color("whites", "bright");
+        border: 1px solid color("greys", "lightest");
+        box-shadow: container("dropShadow");
+
+        &.is-open {
+            margin-left: spacing("half");
+            position: relative;
+
+            &:before {
+                @include css-triangle(
+                    $triangle-direction: "bottom",
+                    $triangle-size: 10px,
+                    $triangle-color: color("greys", "lightest")
+                );
+                bottom: 100%;
+                left: spacing("base");
+                position: absolute;
+            }
+
+            &:after {
+                @include css-triangle(
+                    $triangle-direction: "bottom",
+                    $triangle-size: 8px,
+                    $triangle-color: color("whites", "bright")
+                );
+                bottom: 100%;
+                left: spacing("base") + remCalc(2px);
+                position: absolute;
+            }
+        }
+    }
+}
+
+.navUser-action {
+    font-weight: fontWeight("bold");
+    padding: spacing("base") spacing("half");
+    text-decoration: none;
+    text-transform: uppercase;
+
+    &.has-dropdown {
+
+        &:after {
+            background: $dropdown-icon no-repeat;
+            background-size: 100%;
+            content: "";
+            display: inline-block;
+            height: remCalc(13px);
+            margin-left: spacing("eighth");
+            position: relative;
+            top: remCalc(1px);
+            width: remCalc(13px);
+        }
+    }
+}
+
+.navUser-item--account {
+
+    .navUser-or {
+
+        + .navUser-action {
+            margin-right: -0.5rem; // 1
+        }
+    }
+
+    .navUser-action {
+        display: inline-block;
+    }
+}
+
+.navUser-or {
+    cursor: default;
+    display: inline-block;
+    margin: 0 remCalc(-12px);
+    padding: 0 2px;
+    position: relative;
+    z-index: 1;
+}
+
+
+// Cart counter
+// -----------------------------------------------------------------------------
+//
+// 1. Hardcoded intentionally for precise pixels.
+//
+// -----------------------------------------------------------------------------
+
+.cart-count {
+    background-color: color("greys", "darker");
+    border-radius: 50%;
+    color: color("whites", "bright");
+    display: inline-block;
+    height: 18px; // 1
+    line-height: 18px; // 1
+    text-align: center;
+    width: 18px; // 1
+}
+
+
+// Quick search
+// -----------------------------------------------------------------------------
+//
+// 1. Overriding the inline styles from Foundation as this is a unique dropdown.
+//
+// -----------------------------------------------------------------------------
+
+.navUser-action--quickSearch {
+
+    &.is-open {
+        position: relative;
+
+        &:before {
+            @include css-triangle(
+                $triangle-direction: "bottom",
+                $triangle-size: 10px,
+                $triangle-color: color("greys", "lightest")
+            );
+            bottom: 0;
+            left: 50%;
+            position: absolute;
+              transform: translateX(-50%);
+        }
+    }
+}
+
+.dropdown--quickSearch {
+    background-color: color("greys", "lightest");
+    padding: spacing("double");
+
+    &.is-open {
+        left: 0 !important; // 1
+        outline: none;
+        right: 0 !important; // 1
+    }
+
+    .form {
+        margin: auto;
+        max-width: 30rem;
+    }
+
+    .form,
+    .form-field {
+        margin-bottom: 0;
+    }
+
+    .form-input {
+        font-size: fontSize("small");
+    }
+}
+
+
+// Page navigation
+// -----------------------------------------------------------------------------
+//
+// 1. Reduce font-size: 0; to remove display: inline-block; white-space. Just
+//    make sure that font-size is reset again on child elements.
+// 2. Trusty important tag... Because we're using display: inline-block; and
+//    text-align: center; to center the nav, the Foundation JS messes up the
+//    positioning of the menu. We correct that by overriding their inline style.
+//
+// -----------------------------------------------------------------------------
+
+.navPages {
+    @include nav($style: "navBar", $wrapper: "nav");
+    font-size: 0; // 1
+    text-align: center;
+
+    .dropdown-menu {
+        min-width: 160px;
+
+        &.is-open {
+            left: 0 !important; // 2
+        }
+    }
+}
+
+.navPages-section {
+    display: inline-block;
+    float: none;
+}
+
+.navPages-item {
+    position: relative;
+}
+
+.navPages-action {
+    color: color("greys", "darkest");
+    font-size: fontSize("smaller");
+    font-weight: fontWeight("bold");
+    padding: spacing("half") (spacing("half") + spacing("quarter")) (spacing("half") + spacing("quarter"));
+    text-decoration: none;
+    text-transform: uppercase;
+
+    &:hover {
+        color: color("greys", "medium");
+    }
+
+    &.is-open {
+        color: color("greys", "darkest");
+        background-color: color("greys", "lightest");
+    }
+
+    &.has-dropdown {
+
+        &:after {
+            background: $dropdown-icon no-repeat;
+            background-size: 100%;
+            content: "";
+            display: inline-block;
+            height: remCalc(17px);
+            margin: 0 (-(spacing("quarter"))) 0 spacing("eighth");
+            position: relative;
+            top: remCalc(3px);
+            width: remCalc(17px);
+        }
+    }
+}

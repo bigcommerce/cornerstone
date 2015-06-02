@@ -1,13 +1,18 @@
-<div class="currencySelectorView">
-    <h2>Select Currency: <span data-currency-selector-toggle>{{currency_selector.active_currency_name}}</span></h2>
-    <ul class="currency-selector" data-bind="css: { active: visible }">
-        {{#each currency_selector.currencies}}
-        <li>
-            {{#if is_active}}Active {{/if}}
-            <a href="{{{switch_url}}}">
-                {{name}}
-            </a>
-        </li>
-        {{/each}}
-    </ul>
-</div>
+<ul class="navUser-section">
+    <li class="navUser-item">
+        <a class="navUser-action has-dropdown" href="#" data-dropdown="currencySelection" aria-controls="currencySelection" aria-expanded="false">Select currency: {{currency_selector.active_currency_code}}</a>
+        <ul class="dropdown-menu" id="currencySelection" data-dropdown-content aria-hidden="true" tabindex="-1">
+            {{#each currency_selector.currencies}}
+            <li class="dropdown-menu-item">
+                <a href="{{{switch_url}}}">
+                    {{#if is_active}}
+                    <strong>{{name}}</strong>
+                    {{else}}
+                    {{name}}
+                    {{/if}}
+                </a>
+            </li>
+            {{/each}}
+        </ul>
+    </li>
+</ul>

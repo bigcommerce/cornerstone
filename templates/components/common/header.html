@@ -1,40 +1,27 @@
-<header>
-    <div class="row">
-        {{#each banners.top}}
-        {{{this}}}
-        {{/each}}
+<header class="header" role="banner">
+    {{#if banners.top}}
+    <div class="header-banner">
+        <div class="container">
+            {{#each banners.top}}
+            {{{this}}}
+            {{/each}}
+        </div>
     </div>
-    <div class="row">
-        <div class="col-md-5">
-            <a href="/">
-                {{#if settings.store_logo}}
-                <img src="{{settings.store_logo}}">
+    {{/if}}
+
+    {{> components/common/navigation-user}}
+
+    <div class="container">
+        <div class="header-logo">
+            <a href="{{urls.home}}">
+                {{#unless settings.store_logo}}
+                <img class="header-logo-image" src="{{settings.store_logo}}" alt="{{settings.store_name}}">
                 {{else}}
-                <h1>{{settings.store_name}}</h1>
-                {{/if}}
+                <span class="header-logo-text">{{settings.store_name}}</span>
+                {{/unless}}
             </a>
         </div>
-        <div class="col-md-3">
-            {{#if customer }}
-            <a href="{{urls.account.index}}">{{lang 'header.welcome_back' name=customer.name }}</a>
-            <a href="{{urls.auth.logout}}">Sign Out</a>
-            {{else}}
-            <a href="{{urls.auth.login}}">Login</a>
-            <a href="{{urls.auth.create_account}}">Sign Up</a>
-            {{/if}}
-            <a href="{{urls.gift_certificate.purchase}}">Gift Certificates</a>
-            <a href="{{urls.account.wishlists}}">Wishlists</a>
-            <a href="{{urls.cart}}">View Cart</a>
-            <div data-cart-preview>
 
-            </div>
-        </div>
-        <div class="col-md-3">
-            {{> components/common/currency-selector}}
-        </div>
-        <form action="/search.php"><label>Search<input data-search-quick name="search_query" placeholder="Search" autocomplete="off"></label></form>
-        <ul class="quickSearchResults" data-bind="html: results"></ul>
-
+        {{> components/common/navigation-pages}}
     </div>
-    {{> components/common/navigation}}
 </header>

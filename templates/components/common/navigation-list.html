@@ -1,11 +1,12 @@
-<a href="{{url}}" data-hover="{{name}}">{{name}}</a>
-
 {{#if children}}
-<ul>
+<a class="navPages-action has-dropdown" href="{{url}}" data-dropdown="{{name}}" aria-controls="{{name}}" aria-expanded="false">{{name}}</a>
+<ul class="dropdown-menu" id="{{name}}" data-dropdown-content aria-hidden="true" tabindex="-1">
     {{#each children}}
-    <li>
-        {{> components/common/navigation-list}}
+    <li class="dropdown-menu-item">
+        <a href="{{url}}">{{name}}</a>
     </li>
     {{/each}}
 </ul>
+{{else}}
+<a class="navPages-action" href="{{url}}">{{name}}</a>
 {{/if}}

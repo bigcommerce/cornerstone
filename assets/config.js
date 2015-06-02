@@ -23,6 +23,7 @@ System.config({
     "browserstate/history.js": "github:browserstate/history.js@1.8.0",
     "caolan/async": "github:caolan/async@0.9.2",
     "core-js": "npm:core-js@0.8.4",
+    "foundation": "github:zurb/bower-foundation@5.5.2",
     "jquery": "github:components/jquery@2.1.4",
     "knockout": "github:knockout/knockout@3.3.0",
     "lodash": "npm:lodash@3.9.3",
@@ -43,6 +44,9 @@ System.config({
     },
     "github:jspm/nodelibs-util@0.1.0": {
       "util": "npm:util@0.10.3"
+    },
+    "github:zurb/bower-foundation@5.5.2": {
+      "jquery": "github:components/jquery@2.1.4"
     },
     "npm:assert@1.3.0": {
       "util": "npm:util@0.10.3"

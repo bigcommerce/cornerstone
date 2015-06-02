@@ -18,7 +18,7 @@ System.config({
     "asyncly/EventEmitter2": "github:asyncly/EventEmitter2@0.4.14",
     "babel": "npm:babel@4.7.16",
     "babel-runtime": "npm:babel-runtime@4.7.16",
-    "bigcommerce/citadel": "github:bigcommerce/citadel@2.2.1",
+    "bigcommerce/citadel": "github:bigcommerce/citadel@2.2.2",
     "bigcommerce/stencil-utils": "github:bigcommerce/stencil-utils@0.0.10",
     "browserstate/history.js": "github:browserstate/history.js@1.8.0",
     "caolan/async": "github:caolan/async@0.9.2",

@@ -10,6 +10,11 @@
     </ul>
     <h2 class="page-heading">{{lang 'account.returns.heading' }}</h2>
     {{> components/account/navigation account_page='returns'}}
+    <div class="account-row orders-row">
+        <section class="orders">
+            {{> components/account/returns-list returns=customer.returns}}
+        </section>
+    </div>
 </div>
 {{/partial}}
 {{> layout/base}}

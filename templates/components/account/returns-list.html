@@ -1,0 +1,26 @@
+<h3 class="account-heading">{{lang 'account.orders.heading' }}</h3>
+<ul class="orders-list">
+    {{#each returns}}
+    <li class="account-section-item order-item">
+        <img class="order-preview-image" src="http://placehold.it/73x73" alt="{{this.items.[0].name}}">
+        <div class="information">
+            <h4 class="order-item-heading">{{lang 'account.returns.list.return_number' id=this.id}}</h4>
+            <p>
+                {{lang 'account.returns.list.product_details' num_products=this.quantity name=this.product.name}}
+            </p>
+            <div class="order-sub-information">
+                <div class="order-sub-item">
+                    <h6 class="order-sub-item-title">{{lang 'account.returns.date_requested' }}</h6>
+                    <span class="order-sub-item-text">{{this.date_requested}}</span>
+                </div>
+                <div class="order-sub-item">
+                    <h6 class="order-sub-item-title">{{lang 'account.returns.last_update' }}</h6>
+                    <span class="order-sub-item-text">February 20th 2015</span>
+                </div>
+            </div>
+        </div>
+
+        <h6 class="account-info-status order-info-status">{{this.status}}</h6>
+    </li>
+    {{/each}}
+</ul>

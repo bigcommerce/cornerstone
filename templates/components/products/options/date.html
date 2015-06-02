@@ -1,20 +1,19 @@
-<div>
-    <label>
-        {{#if this.required }}<span class="required">*</span>{{/if}}
-        {{ this.display_name }}
-        <select name="attribute[{{this.id}}][month]">
+<div class="form-field">
+    <label class="form-label form-label--alternate" {{#if style}}style="{{style}}" {{/if}}>{{#if this.required }}<span class="required">*</span>{{/if}}{{this.display_name}}</label>
+
+        <select class="form-select option-date" name="attribute[{{this.id}}][month]">
             <option></option>
             {{#enumerate 1 12}}
             <option value="{{ this }}" {{#equals ../selected_date.month this}}selected="selected"{{/equals}}>{{getShortMonth this }}</option>
             {{/enumerate}}
         </select>
-        <select name="attribute[{{this.id}}][day]">
+        <select class="form-select option-date" name="attribute[{{this.id}}][day]">
             <option></option>
             {{#enumerate 1 31}}
             <option value="{{ this }}" {{#equals ../selected_date.day this}}selected="selected"{{/equals}}>{{ this }}</option>
             {{/enumerate}}
         </select>
-        <select name="attribute[{{this.id}}][year]">
+        <select class="form-select option-date" name="attribute[{{this.id}}][year]">
             <option></option>
             {{#enumerate earliest_year latest_year}}
             <option value="{{ this }}" {{#equals ../selected_date.year this}}selected="selected"{{/equals}}>{{ this }}</option>

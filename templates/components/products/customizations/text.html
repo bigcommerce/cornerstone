@@ -1,7 +1,7 @@
-<div>
-    <label>
+<div class="form-field">
+    <label class="form-label form-label--alternate" for="customization_{{this.id}}">
         {{#if this.required }}<span class="required">*</span>{{/if}}
         {{ this.display_name }}
-        <input type="text" name="ProductFields[{{this.id}}]" value="{{this.prefill}}">
     </label>
+    <input class="form-input" id="customization_{{this.id}}" type="text" value="{{this.prefill}}">
 </div>

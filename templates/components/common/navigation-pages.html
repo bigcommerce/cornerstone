@@ -1,9 +1,14 @@
 <nav class="navPages">
     <ul class="navPages-section">
-    {{#each navigation}}
+        {{#each navigation}}
+            <li class="navPages-item">
+                {{> components/common/navigation-list}}
+            </li>
+        {{/each}}
+        {{#each pages_menu}}
         <li class="navPages-item">
-            {{> components/common/navigation-list}}
+            <a class="navPages-action" href="{{url}}">{{name}}</a>
         </li>
-    {{/each}}
+        {{/each}}
     </ul>
 </nav>

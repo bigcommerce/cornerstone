@@ -4,7 +4,13 @@
         <ul class="dropdown-menu dropdown--currencySelection" id="currencySelection" data-dropdown-content aria-hidden="true" tabindex="-1">
             {{#each currency_selector.currencies}}
             <li class="dropdown-menu-item">
-                <a href="{{{switch_url}}}">{{name}}</a><span>{{#if is_active}}(Active){{/if}}</span>
+                <a href="{{{switch_url}}}">
+                    {{#if is_active}}
+                    <strong>{{name}}</strong>
+                    {{else}}
+                    {{name}}
+                    {{/if}}
+                </a>
             </li>
             {{/each}}
         </ul>

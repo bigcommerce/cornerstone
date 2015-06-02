@@ -5,15 +5,7 @@
         <li class="navUser-item">
             <a class="navUser-action navUser-action--quickSearch" href="#" data-dropdown="quickSearch" aria-controls="quickSearch" aria-expanded="false">Search</a>
             <div class="dropdown dropdown--quickSearch" id="quickSearch" data-dropdown-content aria-hidden="true" tabindex="-1">
-                <form class="form" action="/search.php">
-                    <fieldset class="form-fieldset">
-                        <div class="form-field">
-                            <label class="u-hiddenVisually">Search</label>
-                            <input class="form-input" data-search-quick name="search_query" placeholder="Search the store" autocomplete="off">
-                        </div>
-                    </fieldset>
-                </form>
-                <ul class="quickSearchResults" data-bind="html: results"></ul>
+                {{> components/common/quick-search}}
             </div>
         </li>
         <li class="navUser-item">

@@ -10,37 +10,40 @@
 // -----------------------------------------------------------------------------
 
 
-@if $exportCSS--type { // 1
+body {
+    font-size: $body-fontSize;
+}
 
-    body {
-        font-size: $body-fontSize;
-    }
+.blockquote {
+    font-size: $blockquote-fontSize;
+    line-height: $blockquote-lineHeight;
+}
 
-    .blockquote {
-        font-size: $blockquote-fontSize;
-        line-height: $blockquote-lineHeight;
-    }
+.blockquote-cite {
+    line-height: $blockquote-cite-lineHeight;
+    margin: $blockquote-cite-margin;
+}
 
-    .blockquote-cite {
-        line-height: $blockquote-cite-lineHeight;
-        margin: $blockquote-cite-margin;
-    }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-top: $heading-marginTop;
+}
 
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-        margin-top: $heading-marginTop;
-    }
+h5,
+h6 {
+    text-transform: $heading-textTransform;
+}
 
-    h5,
-    h6 {
-        text-transform: $heading-textTransform;
-    }
+a {
+    transition: $anchor-transition;
+}
 
-    a {
-        transition: $anchor-transition;
-    }
+.page-heading {
+    font-size: fontSize("largest");
+    margin: spacing("single") 0 spacing("double") 0;
+    text-align: center;
 }

@@ -1,7 +1,7 @@
 <header class="header" role="banner">
     {{#if banners.top}}
     <div class="header-banner">
-        <div class="layout-fixed">
+        <div class="container">
             {{#each banners.top}}
             {{{this}}}
             {{/each}}
@@ -11,7 +11,7 @@
 
     {{> components/common/navigation-user}}
 
-    <div class="layout-fixed">
+    <div class="container">
         <div class="header-logo">
             <a href="{{urls.home}}">
                 <span class="header-logo-text">{{settings.store_name}}</span>

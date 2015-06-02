@@ -1,9 +1,9 @@
-<aside class="aside">
+<aside class="sidebar">
     {{#if brand.faceted_search_enabled}}
         {{> components/faceted-search/index brand}}
     {{/if}}
 </aside>
-<div class="main">
+<main class="content">
     {{> components/common/paginator pagination.brand}}
     {{> components/category/sort-box brand}}
     <ul class="product-list">
@@ -14,4 +14,4 @@
         {{/each}}
     </ul>
     {{> components/common/paginator pagination.brand}}
-</div>
+</main>

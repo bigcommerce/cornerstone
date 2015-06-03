@@ -4,8 +4,13 @@ shop_by_price: true
 ---
 {{#partial "page"}}
 {{> components/common/breadcrumbs breadcrumbs}}
-<div id="product-listing">
-    {{> components/brand/product-listing}}
+<div class="container">
+    <aside class="aside" id="faceted-search-container">
+        {{> components/brand/sidebar}}
+    </aside>
+    <div class="main" id="product-listing-container">
+        {{> components/brand/product-listing}}
+    </div>
 </div>
 {{/partial}}
 {{> layout/base}}

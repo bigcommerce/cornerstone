@@ -54,11 +54,11 @@ export default class Product extends PageManager {
                 options = this.getOptionValues($ele);
 
                 // check inventory when the option has changed
-                utils.api.productAttributes.optionChange(options, this.productId, (err, data) => {
-                    this.viewModel.price(data.price);
-                    this.viewModel.sku(data.sku);
-                    this.viewModel.instock(data.instock);
-                    this.viewModel.purchasable(data.purchasable);
+                utils.api.productAttributes.optionChange(options, this.productId, (err, response) => {
+                    this.viewModel.price(response.data.price);
+                    this.viewModel.sku(response.data.sku);
+                    this.viewModel.instock(response.data.instock);
+                    this.viewModel.purchasable(response.data.purchasable);
                 });
             }
         });
@@ -101,16 +101,20 @@ export default class Product extends PageManager {
             options = this.getOptionValues($optionsContainer);
 
             // add item to cart
-            utils.api.cart.itemAdd(this.productId, quantity, options, (err, data) => {
+            utils.api.cart.itemAdd(this.productId, quantity, options, (err, response) => {
+                let options = {
+                    template: 'cart/preview'
+                };
+
                 // if there is an error
-                if (err || data.error) {
+                if (err || response.data.error) {
                     // TODO: display error
                     return;
                 }
 
                 // fetch cart to display in cart preview
-                utils.api.cart.getContent({render_with: 'cart/preview'}, (err, content) => {
-                    $('[data-cart-preview]').html(content);
+                utils.api.cart.getContent(options, (err, response) => {
+                    $('[data-cart-preview]').html(response.content);
                 });
             });
         });

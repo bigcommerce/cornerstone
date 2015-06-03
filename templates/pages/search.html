@@ -1,7 +1,14 @@
 {{#partial "page"}}
 <h1>Search Page</h1>
-<div id="product-listing">
-    {{> components/search/product-listing}}
+<div class="container">
+    <aside class="aside" id="faceted-search-container">
+        {{#if product_results.faceted_search_enabled}}
+        {{> components/faceted-search/index product_results}}
+        {{/if}}
+    </aside>
+    <div class="main" id="product-listing-container">
+        {{> components/search/product-listing}}
+    </div>
 </div>
 
 {{/partial}}

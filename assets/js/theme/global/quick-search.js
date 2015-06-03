@@ -7,16 +7,16 @@ export default function () {
     let quickSearchViewModel = {
             results: ko.observable('')
         },
-        params = {
-            render_with: 'search/quick-results'
+        options = {
+            template: 'search/quick-results'
         };
 
     ko.applyBindings(quickSearchViewModel, $('.quickSearchResults').get(0));
 
     //stagger searching for 400ms after last input
     let doSearch = _.debounce((searchQuery) => {
-        utils.api.search.search(searchQuery, params, (err, data) => {
-            quickSearchViewModel.results(data);
+        utils.api.search.search(searchQuery, options, (err, response) => {
+            quickSearchViewModel.results(response.content);
         });
     }, 400);
 

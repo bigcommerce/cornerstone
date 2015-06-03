@@ -1,11 +1,10 @@
-import { hooks } from 'bigcommerce/stencil-utils';
+import { hooks, api } from 'bigcommerce/stencil-utils';
 import $ from 'jquery';
+import _ from 'lodash';
 import Url from 'url';
 import History from 'browserstate/history.js/scripts/bundled-uncompressed/html4+html5/jquery.history';
 
-export default function(template) {
-    let $productListingContainer = $('#product-listing');
-
+export default function(templates, callback) {
     function goToUrl(url) {
         History.pushState({}, document.title, url);
     }
@@ -39,8 +38,12 @@ export default function(template) {
     });
 
     $(window).on('statechange', () => {
-        $.ajax(History.getState().url, {data: {render_with: template}}).success((html) => {
-            $productListingContainer.html(html);
+        api.getPage(History.getState().url, {template: templates}, (err, content) => {
+            if (err) {
+                throw new Error(err);
+            }
+
+            callback(content);
         });
     });
 }

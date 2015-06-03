@@ -1,13 +1,17 @@
 ---
+products:
+    new:
+        limit: 3
+    featured:
+        limit: 3
+
 carousel: true
-featured_products: 2
-new_products: 1
 ---
 {{#partial "page"}}
 <div class="main full">
     {{> components/carousel}}
-    {{> components/products/featured featured_products}}
-    {{> components/products/new new_products}}
+    {{> components/products/featured products.featured}}
+    {{> components/products/new products.new}}
 </div>
 {{/partial}}
 {{> layout/base}}

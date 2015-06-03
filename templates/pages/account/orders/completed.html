@@ -5,14 +5,7 @@ limit: 3
 ---
 {{#partial "page"}}
 <div class="account">
-    <ul class="breadcrumbs">
-        <li class="breadcrumb">
-            <a class="breadcrumb-label" href="{{urls.home}}">{{lang 'home.heading'}}</a>
-        </li>
-        <li class="breadcrumb">
-            <span class="breadcrumb-label">{{lang 'account.orders.heading' }}</span>
-        </li>
-    </ul>
+    {{> components/common/breadcrumbs breadcrumbs}}
     <h2 class="account-heading title">{{lang 'account.orders.heading' }}</h2>
     {{> components/account/navigation account_page='orders'}}
     <div class="account-row orders-row">

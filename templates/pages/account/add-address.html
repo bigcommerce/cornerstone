@@ -1,27 +1,19 @@
 {{#partial "page"}}
 <div class="account">
-    <ul class="breadcrumbs">
-        <li class="breadcrumb">
-            <a class="breadcrumb-label" href="{{urls.home}}">{{lang 'home.heading'}}</a>
-        </li>
-        <li class="breadcrumb">
-            <a class="breadcrumb-label" href="{{urls.account.addresses}}">{{lang 'account.addresses.heading'}}</a>
-        </li>
-    </ul>
-    <h2 class="page-heading">{{lang 'account.addresses.heading' }}</h2>
-    {{> components/account/navigation account_page='addresses'}}
-
+    {{> components/common/breadcrumbs breadcrumbs}}
     {{#if forms.address.address_id}}
         <h2 class="page-heading">{{lang 'forms.address.edit.heading'}}</h2>
     {{else}}
         <h2 class="page-heading">{{lang 'forms.address.add.heading'}}</h2>
     {{/if}}
+    {{> components/account/navigation account_page='addresses'}}
+
     {{#if forms.address.message}}
     <div class="alert alert-warning" role="alert">{{{forms.address.message}}}</div>
     {{/if}}
     <form action="{{forms.address.action}}" class="form address-form" method="post">
         {{#if forms.address.address_id }}
-        <input type="hidden" name="shipid" value="{{forms.address.address_id}}">
+            <input type="hidden" name="shipid" value="{{forms.address.address_id}}">
         {{/if}}
         {{#each forms.address.shipping_fields }}
             <div class="address-form-field">

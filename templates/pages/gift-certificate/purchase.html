@@ -1,77 +1,83 @@
 {{#partial "page"}}
-    <main class="content">
-        <h1>Purchase a Gift Certificate</h1>
+<main class="container full">
+    <ul class="breadcrumbs">
+        <li class="breadcrumb">
+            <a class="breadcrumb-label" href="{{urls.home}}">{{lang 'home.heading'}}</a>
+        </li>
+        <li class="breadcrumb">
+            <span class="breadcrumb-label">{{lang 'gift_certificate.purchase.heading' }}</span>
+        </li>
+    </ul>
+    <h2 class="page-heading">{{lang 'gift_certificate.purchase.heading' }}</h2>
+    {{> components/gift-certificate/navigation gift_page='purchase'}}
 
-        {{#each forms.gift_certificate.errors}}
-        <p class="bg-danger">{{this}}</p>
-        {{/each}}
+    {{#each forms.gift_certificate.errors}}
+        <p class="alert alert-danger">{{this}}</p>
+    {{/each}}
 
-        <form class="form-horizontal" method="post" action="{{forms.gift_certificate.action}}">
+    <form class="form-horizontal" method="post" action="{{forms.gift_certificate.action}}">
+        <div class="main-section">
             {{#if forms.gift_certificate.cart_item_id}}
-                <input type="hidden" name="cartitemid" value="{{forms.gift_certificate.cart_item_id}}">
+            <input type="hidden" name="cartitemid" value="{{forms.gift_certificate.cart_item_id}}">
             {{/if}}
-            <div class="form-group">
-                <label for="to_name" class="col-sm-2 control-label">Recipient's Name</label>
-                <div class="col-sm-10">
-                    <input name="to_name" class="form-control" id="to_name" value="{{forms.gift_certificate.values.to_name}}">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="to_email" class="col-sm-2 control-label">Recipient's Email</label>
-                <div class="col-sm-10">
-                    <input name="to_email" type="email" class="form-control" id="to_email" value="{{forms.gift_certificate.values.to_email}}">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="from_name" class="col-sm-2 control-label">Your Name</label>
-                <div class="col-sm-10">
-                    <input name="from_name" class="form-control" id="from_name" value="{{forms.gift_certificate.values.from_name}}">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="from_email" class="col-sm-2 control-label">Your Email</label>
-                <div class="col-sm-10">
-                    <input name="from_email" class="form-control" id="from_email" type="email" value="{{forms.gift_certificate.values.from_email}}">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="from_email" class="col-sm-2 control-label">Your Message (Optional)</label>
-                <div class="col-sm-10">
-                    <textarea name="message" id="message" rows="3" cols="40">{{forms.gift_certificate.values.message}}</textarea>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="certificate_amount" class="col-sm-2 control-label">Amount</label>
-                <div class="col-sm-10">
-                    <input name="certificate_amount" class="form-control" id="certificate_amount" type="number" value="{{forms.gift_certificate.values.amount}}">
-                    <span>(Value must be between {{forms.gift_certificate.minimum_formatted}} and {{forms.gift_certificate.maximum_formatted}})</span>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                    <div class="checkbox">
-                        <label>
-                            <input name="agree2" type="checkbox">* I understand that gift certificates are non-refundable
-                        </label>
-                    </div>
-                </div>
-            </div>
 
-            {{#each forms.gift_certificate.themes}}
-            <div class="radio">
-                <label>
-                    <input type="radio" name="certificate_theme" value="{{this}}.html">
-                    {{this}}
+            <div class="form-field">
+                <label class="form-label" for="to_name">
+                    {{lang 'forms.gift_certificate.purchase.to_name' }}
+                    <small>{{lang 'common.required' }}</small>
                 </label>
+                <input type="text" class="form-input" name="to_name" id="to_name" value="{{forms.gift_certificate.values.to_name}}">
             </div>
-            {{/each}}
+            <div class="form-field">
+                <label class="form-label" for="to_email">
+                    {{lang 'forms.gift_certificate.purchase.to_email' }}
+                    <small>{{lang 'common.required' }}</small>
+                </label>
+                <input type="text" class="form-input" name="to_email" id="to_email" value="{{forms.gift_certificate.values.to_email}}">
+            </div>
+            <div class="form-field">
+                <label class="form-label" for="from_name">
+                    {{lang 'forms.gift_certificate.purchase.from_name' }}
+                    <small>{{lang 'common.required' }}</small>
+                </label>
+                <input type="text" class="form-input" name="from_name" id="from_name" value="{{forms.gift_certificate.values.from_name}}">
+            </div>
+            <div class="form-field">
+                <label class="form-label" for="from_email">
+                    {{lang 'forms.gift_certificate.purchase.from_email' }}
+                    <small>{{lang 'common.required' }}</small>
+                </label>
+                <input type="text" class="form-input" name="from_email" id="from_email" value="{{forms.gift_certificate.values.from_email}}">
+            </div>
+        </div>
+        <div class="supporting-section">
+            <div class="form-field">
+                <label class="form-label" for="message">{{lang 'forms.gift_certificate.purchase.message' }}</label>
+                <textarea class="form-input" name="message" id="message" rows="3" >{{forms.gift_certificate.values.message}}</textarea>
+            </div>
+            <div class="form-field">
+                <label class="form-label" for="certificate_amount">
+                    {{lang 'forms.gift_certificate.purchase.amount' }}
+                    <small>{{lang 'common.required' }}</small>
+                </label>
+                <input type="text" class="form-input" name="certificate_amount" id="certificate_amount" value="{{forms.gift_certificate.values.amount}}">
+            </div>
+            <div class="form-field">
+                {{#each forms.gift_certificate.themes}}
+                    <input type="radio" class="form-radio" name="certificate_theme" id="theme_{{this}}" value="{{this}}.html">
+                    <label class="form-label" for="theme_{{this}}">{{this}}</label>
+                {{/each}}
+            </div>
 
-            <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" class="btn btn-default">Add Gift Certificate to Cart</button>
-                </div>
+            <div class="form-field">
+                <input type="checkbox" class="form-checkbox" name="agree2" id="agree2">
+                <label class="form-label" for="agree2">{{lang 'forms.gift_certificate.purchase.agree' }}</label>
             </div>
-        </form>
-    </main>
+        </div>
+        <div class="form-field">
+                <input class="button" type="submit" value="{{lang 'forms.gift_certificate.purchase.submit_value'}}">
+        </div>
+    </form>
+</main>
 {{/partial}}
 {{> layout/base}}

@@ -1,10 +1,17 @@
 // =============================================================================
 // BREADCRUMBS (CSS)
 // =============================================================================
+//
+// 1. Since our breadcrumbs are centred with a variable width, we need to use
+//    display: inline-block; on the breadcrumbs. Hence needing to remove the
+//    white-space with font-size: 0;
+//    The font-size is reset in the breadcrumb settings file.
+//
+// -----------------------------------------------------------------------------
 
 
 .breadcrumbs {
-    font-size: 0;
+    font-size: 0; // 1
     text-align: center;
 }
 

@@ -1,13 +1,6 @@
 {{#partial "page"}}
 <div class="account">
-    <ul class="breadcrumbs">
-        <li class="breadcrumb">
-            <a class="breadcrumb-label" href="{{urls.home}}">{{lang 'home.heading'}}</a>
-        </li>
-        <li class="breadcrumb">
-            <span class="breadcrumb-label">{{lang 'account.wishlists.heading' }}</span>
-        </li>
-    </ul>
+    {{> components/common/breadcrumbs breadcrumbs}}
     <h2 class="page-heading">{{lang 'account.wishlists.heading' }}</h2>
     {{> components/account/navigation account_page='wishlists'}}
     {{>components/account/wishlist-list }}

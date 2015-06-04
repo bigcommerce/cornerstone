@@ -12,22 +12,21 @@
 
 @import "../jspm_packages/github/bigcommerce/citadel@2.2.2/dist/tools/_toolkit"; // 1
 
+
 // Settings
 // -----------------------------------------------------------------------------
 //
-// 1. Stencil global settings first (Must come before Citadel's globals), then
-//    import Citadel's global settings.
-// 2. Import Citadel and Foundation component settings.
-// 3. Import Citadel's version of foundation before Stencil's setting overrides.
-//    This enables the ability to "null" variables in the Stencil overrides
-//    (and therefore output).
+// 1. Stencil global settings get imported first.
+// 2. Import all Citadel and Foundation settings.
+// 3. Import Citadel's version of foundation.
+//      - This enables the ability to "null" variables in the Stencil settings.
 // 4. Import Stencil's component settings overrides.
 //
 // -----------------------------------------------------------------------------
 
 @import "settings/global/global"; // 1
-@import "../jspm_packages/github/bigcommerce/citadel@2.2.2/dist/settings/global/global"; // 1
 
+@import "../jspm_packages/github/bigcommerce/citadel@2.2.2/dist/settings/global/global"; // 2
 @import "../jspm_packages/github/bigcommerce/citadel@2.2.2/dist/settings/normalize/normalize"; // 2
 @import "../jspm_packages/github/bigcommerce/citadel@2.2.2/dist/settings/foundation/foundation"; // 2
 @import "../jspm_packages/github/bigcommerce/citadel@2.2.2/dist/settings/bigcommerce/bigcommerce"; // 2

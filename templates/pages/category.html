@@ -6,8 +6,13 @@ category:
 {{> components/common/breadcrumbs breadcrumbs}}
 <h1>{{category.name}}</h1>
 <hr>
-<div id="product-listing">
-    {{> components/category/product-listing}}
+<div class="container">
+    <aside class="aside" id="faceted-search-container">
+        {{> components/category/sidebar}}
+    </aside>
+    <div class="main" id="product-listing-container">
+        {{> components/category/product-listing}}
+    </div>
 </div>
 {{/partial}}
 {{> layout/base}}

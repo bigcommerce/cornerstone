@@ -1,0 +1,10 @@
+<ul>
+    {{#each category.subcategories}}
+    <li><a href="{{url}}" alt="{{name}}">{{name}}</a></li>
+    {{/each}}
+</ul>
+{{#if category.faceted_search_enabled}}
+{{> components/faceted-search/index category}}
+{{else}}
+{{> components/category/shop-by-price category.shop_by_price}}
+{{/if}}

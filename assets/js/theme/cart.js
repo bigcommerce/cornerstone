@@ -45,8 +45,12 @@ export default class Cart extends PageManager {
     }
 
     refreshContent() {
-        utils.api.cart.getContent({render_with: 'cart/content'}, (err, content) => {
-            $('[data-cart-content]').html(content);
+        let options = {
+            template: 'cart/content'
+        };
+
+        utils.api.cart.getContent(options, (err, response) => {
+            $('[data-cart-content]').html(response.content);
         });
     }
 }

@@ -1,28 +1,14 @@
-<aside class="sidebar">
-    <ul>
-        {{#each category.subcategories}}
-        <li><a href="{{url}}" alt="{{name}}">{{name}}</a></li>
+{{> components/common/paginator pagination.category}}
+{{> components/category/sort-box}}
+<form action="/compare" method='POST'>
+    <ul class="product-list">
+        {{#each category.products}}
+        <li class="product-card">
+            {{> components/products/card}}
+        </li>
         {{/each}}
     </ul>
-    {{#if category.faceted_search_enabled}}
-    {{> components/faceted-search/index category}}
-    {{else}}
-    {{> components/category/shop-by-price category.shop_by_price}}
-    {{/if}}
-</aside>
-<main class="content">
-    {{> components/common/paginator pagination.category}}
-    {{> components/category/sort-box}}
-    <form action="/compare" method='POST'>
-        <ul class="product-list">
-            {{#each category.products}}
-            <li class="product-card">
-                {{> components/products/card}}
-            </li>
-            {{/each}}
-        </ul>
 
-        <input type="submit" value="Compare Products" class="btn btn-primary">
-    </form>
-    {{> components/common/paginator pagination.category}}
-</main>
+    <input type="submit" value="Compare Products" class="btn btn-primary">
+</form>
+{{> components/common/paginator pagination.category}}

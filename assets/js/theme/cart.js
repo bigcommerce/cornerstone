@@ -21,7 +21,6 @@ export default class Cart extends PageManager {
 
         newQty = $target.data('action') === 'inc' ? oldQty + 1 : oldQty - 1;
         el.text(newQty);
-        console.log(this);
         utils.api.cart.itemUpdate(itemId, newQty, (err, response) => {
             if (response.data.status === 'succeed') {
                 this.refreshContent();
@@ -44,7 +43,6 @@ export default class Cart extends PageManager {
 
     refreshContent() {
         utils.api.cart.getContent('cart/content', (err, response) => {
-            console.log(response);
             $('[data-cart-content]').html(response.content);
             this.bindEvents();
         });
@@ -73,35 +71,39 @@ export default class Cart extends PageManager {
         });
 
         $('.shipping-estimate-submit').on('click', (event) => {
-            let params = {
-                country_id: $('.shipping-estimate [name="country"]').val(),
-                state_id: $('.shipping-estimate [name="state"]').val(),
-                zip_code: $('.shipping-estimate [name="zip"]').val()
-            };
+            let $form = $('.shipping-estimate'),
+                params = {
+                    country_id: $('[name="country"]', $form).val(),
+                    state_id: $('[name="state"]', $form).val(),
+                    zip_code: $('[name="zip"]', $form).val()
+                };
 
             event.preventDefault();
 
             utils.api.cart.getShippingQuotes(params, 'cart/shipping-quotes', (err, response) => {
                 $('.shipping-quotes').html(response.content);
+
+                // bind the select button
+                $('.select-shipping-quote').on('click', (event) => {
+                    let quoteId = $('.shipping-quote:checked').val();
+                    event.preventDefault();
+                    utils.api.cart.submitShippingQuote(quoteId, (response) => {
+                        this.refreshContent();
+                    });
+                });
             });
         });
 
-        $('body').on('click', 'select-shipping-quote', (event) => {
-            var quoteId = $('.shipping-quote:checked').val();
-            event.preventDefault();
-            console.log(quoteId);
-            utils.api.cart.submitShippingQuote(quoteId, (response) => {
-                this.refreshContent();
-            });
-        });
 
         $('.shipping-estimate-show').on('click', (event) => {
+            event.preventDefault();
             $(event.currentTarget).hide();
             $('.estimator-wrapper').show();
         });
 
 
         $('.shipping-estimate-hide').on('click', (event) => {
+            event.preventDefault();
             $('.estimator-wrapper').hide();
             $('.shipping-estimate-show').show();
         });

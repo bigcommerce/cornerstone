@@ -1,0 +1,21 @@
+{{#if errors}}
+    There was a problem with your quote
+    <ul>
+        {{#each errors}}
+            <li>{{this}}</li>
+        {{/each}}
+    </ul>
+{{else}}
+    <form>
+        
+        <ul>
+            {{#each quotes.shipping_methods}}
+                <li>
+                    <input class="shipping-quote" type="radio" name="shipping_method" value="{{id}}">
+                    {{provider_name}} <b>{{cost}}</b>
+                </li>
+            {{/each}}
+        </ul>
+        <input class="select-shipping-quote" type="submit" value="Select">
+    </form>
+{{/if}}

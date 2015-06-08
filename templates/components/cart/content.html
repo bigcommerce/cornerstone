@@ -1,8 +1,9 @@
-{{# if cart.items.length}}
+{{#if cart.items.length}}
     <form enctype="multipart/form-data" name="cartForm" method="post" action="{{urls.cart}}">
         <table>
             <thead>
             <tr>
+                <th></th>
                 <th></th>
                 <th>Cart Items</th>
                 <th>Qty</th>
@@ -13,60 +14,69 @@
             <tbody>
                 {{#each cart.items}}
                 <tr>
-                <td><a href="{{url}}"><img src="{{image}}" alt=""></a></td>
-                <td>
-                    <div>{{name}}</div>
-                    <div>
-                    {{#if options}}
-                        <ul>
-                            {{#each options}}<li>{{name}}: <b>{{{value}}}</b></li>{{/each}}
-                        </ul>
-                        <a href="#" data-item-edit="{{id}}">Change</a>
-                    {{/if}}
-                    </div>
-                </td>
-                <td>
-                    <button class="cart-update" data-cart-itemid="{{id}}" data-action="inc">+</button>
-                    <div id="qty-{{id}}">{{quantity}}</div>
-                    <button class="cart-update" data-cart-itemid="{{id}}" data-action="dec">-</button>
-                    <button class="cart-remove" data-cart-itemid="{{id}}">Remove</button>
-                </td>
-                <td>{{money price}}</td>
-                <td>{{money total}}</td>
+                    <td><button class="cart-remove" data-cart-itemid="{{id}}">Remove</button></td>
+                    <td><a href="{{url}}"><img src="{{image}}" alt=""></a></td>
+                    <td>
+                        <div>{{name}}</div>
+                        <div>
+                        {{#if options}}
+                            <ul>
+                                {{#each options}}<li>{{name}}: <b>{{{value}}}</b></li>{{/each}}
+                            </ul>
+                            <a href="#" data-item-edit="{{id}}">Change</a>
+                        {{/if}}
+                        </div>
+                    </td>
+                    <td>
+                        <button class="cart-update" data-cart-itemid="{{id}}" data-action="inc">+</button>
+                        <div id="qty-{{id}}">{{quantity}}</div>
+                        <button class="cart-update" data-cart-itemid="{{id}}" data-action="dec">-</button>
+                    </td>
+                    <td>{{money price}}</td>
+                    <td>{{money total}}</td>
                 </tr>
                 {{/each}}
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="4">Subtotal</td>
+                    <td colspan="4"></td>
+                    <td>Subtotal</td>
                     <td><div class="subtotal">{{money cart.sub_total}}</div></td>
                 </tr>
                 {{#if cart.gift_wrapping_cost}}
                 <tr>
-                    <td colspan="4">Gift Wrapping</td>
+                    <td colspan="4"></td>
+                    <td>Gift Wrapping</td>
                     <td><div class="subtotal">{{money cart.gift_wrapping_cost}}</div></td>
                 </tr>
                 {{/if}}
                 {{#if cart.discount}}
                 <tr>
-                    <td colspan="4">Discount</td>
+                    <td colspan="4"></td>
+                    <td>Discount</td>
                     <td><div class="subtotal">{{money price cart.discount}}</div></td>
                 </tr>
                 {{/if}}
-                {{#if cart.shipping_handling.cost}}
+
+                {{#if cart.shipping_handling.show_estimator}}
                 <tr>
-                    <td colspan="4">Shipping</td>
-                    <td><div class="subtotal">{{money cart.shipping_handling.cost}}</div></td>
+                    <td colspan="4"></td>
+                    <td>Estimated Shipping</td>
+                    <td>
+                        {{> components/cart/shipping-estimator cart.shipping_handling}}
+                    </td>
                 </tr>
                 {{/if}}
                 {{#each cart.taxes}}
                 <tr>
-                    <td colspan="4">{{name}}</td>
+                    <td colspan="4"></td>
+                    <td>{{name}}</td>
                     <td><div class="subtotal">{{money cost}}</div></td>
                 </tr>
                 {{/each}}
                 <tr>
-                    <td colspan="4">GRAND TOTAL</td>
+                    <td colspan="4"></td>
+                    <td>GRAND TOTAL</td>
                     <td><div class="total">{{money cart.grand_total}}</div></td>
                 </tr>
             </tfoot>

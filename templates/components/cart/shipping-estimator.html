@@ -1,0 +1,32 @@
+{{#if provider}}
+    <div class="subtotal shipping-estimate-show">
+        <a href="#" class="shipping-estimate-value">{{money shipping_cost}}</a>
+    </div>
+{{else}}
+    <button class="shipping-estimate-show">Add Info</button>
+{{/if}}
+
+<div class="estimator-wrapper" style="display: none;">
+    <div class="shipping-estimate">
+        <button class="shipping-estimate-hide">Cancel</button>
+        <select name="country">
+        <option>Select one</option>
+        {{#each countries}}
+            <option value="{{id}}" {{#if selected}}selected="selected"{{/if}}>
+                {{name}}
+            </option>
+        {{/each}}
+        </select>
+        <select name="state">
+        <option>Select one</option>
+        {{#each states}}
+            <option value="{{id}}" {{#if selected}}selected="selected"{{/if}}>
+                {{name}}
+            </option>
+        {{/each}}
+        </select>
+        <input type="text" name="zip" value="{{selected_zip}}">
+        <button class="shipping-estimate-submit">Estimate Shipping</button>
+    </div>
+    <div class="shipping-quotes"></div> 
+</div>

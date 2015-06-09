@@ -1,0 +1,26 @@
+// =============================================================================
+// RIBBON (CSS)
+// =============================================================================
+//
+// 1. A ribbon needs a container set to relative in order to position itself.
+// 2. Top right text badge. Shows "On sale" as an example.
+//
+// -----------------------------------------------------------------------------
+
+.ribbonWrap { // 1
+    position: relative;
+}
+
+.ribbon { // 2
+    background-color: $ribbon-backgroundColor;
+    color: $ribbon-color;
+    cursor: $ribbon-cursor;
+    font-weight: $ribbon-fontWeight;
+    margin: $ribbon-margin;
+    padding: $ribbon-padding;
+    position: absolute;
+    right: $ribbon-positionRight;
+    text-transform: $ribbon-textTransform;
+    top: $ribbon-positionTop;
+    z-index: 1;
+}

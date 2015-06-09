@@ -1,0 +1,57 @@
+<div id="modal-review-form" class="reveal-modal" data-reveal>
+    <div class="modal-header">
+        <h1 class="modal-title">Write a Review</h1>
+        <a class="modal-close close-reveal-modal">&#215;</a>
+    </div>
+    <form action="/postreview.php" method="post">
+        <div class="row">
+            <div class="grid-6">
+                <img src="{{ product.initial_image }}">
+                <h4>{{ product.title }}</h4>
+            </div>
+            <div class="grid-6">
+                <div class="row">
+                    Rating
+                    <!-- Stars -->
+                    <select class="form-input" name="revrating">
+                        <option value=""> </option>
+                        <option value="5">5 stars (best)</option>
+                        <option value="4">4 stars</option>
+                        <option value="3">3 stars (average)</option>
+                        <option value="2">2 stars</option>
+                        <option value="1">1 star (worst)</option>
+                    </select>
+                </div>
+                <!-- Name -->
+                <div class="row">
+                    <label class="form-label">Name</label>
+                    <input class="form-input" type="text" name="revfromname" />
+                </div>
+
+                <!-- Review Subject -->
+                <div class="row">
+                    <label class="form-label">Review Subject</label>
+                    <input class="form-input" type="text" name="revtitle" />
+                </div>
+
+                <!-- Comments -->
+                <div class="row">
+                    <label class="form-label">Email</label>
+                    <input class="form-input" name="email" />
+                </div>
+
+                <!-- Comments -->
+                <div class="row">
+                    <label class="form-label">Comments</label>
+                    <textarea class="form-input" name="revtext"></textarea>
+                </div>
+
+                <div class="row">
+                    <input type="submit" class="button button--primary" value="Submit Review">
+                </div>
+            </div>
+        </div>
+        <input type="hidden" name="product_id" value="{{ product.id }}" />
+        <input type="hidden" name="action" value="post_review" />
+    </form>
+</div>

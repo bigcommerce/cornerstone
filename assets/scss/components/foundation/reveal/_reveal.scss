@@ -3,7 +3,7 @@
 // =============================================================================
 
 .reveal-modal-bg {
-  background: $color-white;
+  background: color("whites");
   background: rgba(0, 0, 0, 0.45);
   bottom: 0;
   display: none;
@@ -14,37 +14,16 @@
   z-index: 1004;
 }
 
-.reveal-modal {
-  background-color: $color-white;
-  border: solid 1px $color-greyDark;
-  border-radius: 3px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
-  display: none;
-  left: 0;
-  margin: 0 auto;
-  padding: 2rem;
-  position: absolute;
-  right: 0;
-  top: 40px;
-  visibility: hidden;
-  width: 1000px;
-  z-index: 1005;
-
+.modal {
   .grid-6 {
     @include grid-column(6);
   }
 
   .modal-header {
+    border-bottom: none;
+
     .modal-close {
-      color: #454545;
-      cursor: pointer;
-      font-size: 3rem;
-      font-weight: 300;
-      line-height: 1;
-      position: absolute;
-      top: 0.5rem;
       text-decoration: none;
-      right: 1.2rem;
     }
 
     .modal-title {

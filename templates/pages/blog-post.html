@@ -1,21 +1,36 @@
 {{#partial "page"}}
+
 {{> components/common/breadcrumbs breadcrumbs}}
-<div class="blog-post">
-    <h2 class="page-heading">{{ blog.post.name }}</h2>
+
+<h1 class="page-heading">{{ blog.post.name }}</h1>
+
+<article class="blog">
     {{#if blog.post.thumbnail}}
-        <img class="blog-post-image" src="{{blog.post.thumbnail}}">
+    <figure class="blog-thumbnail">
+        <img src="{{blog.post.thumbnail}}">
+    </figure>
     {{/if}}
-    <h3 class="blog-post-title">{{blog.post.title}}</h3>
-    <span class="blog-post-date">{{blog.post.date_published}}</span>
-    <span class="blog-post-author">{{blog.post.author}}</span>
-    <div class="blog-post-content">{{{blog.post.body}}}</div>
+
+    <h2 class="blog-title">{{blog.post.title}}</h2>
+    <p class="blog-date">{{blog.post.date_published}}</p>
+    {{#if blog.post.author}}
+        <p class="blog-author">{{blog.post.author}}</p>
+    {{/if}}
+
+    <div class="blog-post">
+        {{{blog.post.body}}}
+    </div>
+
     {{#if blog.post.tags}}
-        <ul>
-            {{#each blog.post.tags}}
-                <a class="blog-post-tag" href="{{url}}">#{{name}}</a>
-            {{/each}}
-        </ul>
+    <ul class="tags">
+        {{#each blog.post.tags}}
+        <li class="tag">
+            <a href="{{url}}">#{{name}}</a>
+        </li>
+        {{/each}}
+    </ul>
     {{/if}}
-</div>
+</article>
+
 {{/partial}}
 {{> layout/base}}

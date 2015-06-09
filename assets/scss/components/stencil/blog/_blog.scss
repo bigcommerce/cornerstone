@@ -1,0 +1,47 @@
+// =============================================================================
+// BLOG
+// =============================================================================
+
+
+// Blog post
+// -----------------------------------------------------------------------------
+
+.blog {
+    @include grid-column(
+        $columns: 8,
+        $center: true
+    );
+}
+
+.blog-title {
+    font-size: fontSize("large");
+    margin: 0 0 spacing("quarter");
+    text-align: center;
+
+    a {
+        text-decoration: none;
+    }
+}
+
+.blog-date {
+    color: color("greys", "medium");
+    margin-bottom: spacing("single") + spacing("base");
+    text-align: center;
+}
+
+.blog-post {
+    @include grid-column(
+        $columns: 9,
+        $center: true
+    );
+
+    font-size: fontSize("smaller");
+
+    + .tags {
+        margin-top: spacing("double") * 2;
+    }
+}
+
+.blog-thumbnail {
+    margin: 0 0 (spacing("base") * 2);
+}

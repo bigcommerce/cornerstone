@@ -15,17 +15,17 @@ export default class Cart extends PageManager {
     
     cartUpdate($target) {
         let itemId = $target.data('cart-itemid'),
-            el = $('#qty-' + itemId),
-            oldQty = parseInt(el.text()),
+            $el = $('#qty-' + itemId),
+            oldQty = parseInt($el.text()),
             newQty;
 
         newQty = $target.data('action') === 'inc' ? oldQty + 1 : oldQty - 1;
-        el.text(newQty);
+        $el.text(newQty);
         utils.api.cart.itemUpdate(itemId, newQty, (err, response) => {
             if (response.data.status === 'succeed') {
                 this.refreshContent();
             } else {
-                el.text(oldQty);
+                $el.text(oldQty);
                 alert(response.data.errors.join('\n'));
             }
         });
@@ -49,6 +49,8 @@ export default class Cart extends PageManager {
     }
 
     bindEvents() {
+        let $container = $('.estimator-wrapper');
+
         // cart update
         $('.cart-update').on('click', (event) => {
             let $target = $(event.currentTarget);
@@ -88,27 +90,26 @@ export default class Cart extends PageManager {
                     let quoteId = $('.shipping-quote:checked').val();
                     event.preventDefault();
                     utils.api.cart.submitShippingQuote(quoteId, (response) => {
+
                         this.refreshContent();
                     });
                 });
             });
         });
 
-
         $('.shipping-estimate-show').on('click', (event) => {
             event.preventDefault();
             $(event.currentTarget).hide();
-            $('.estimator-wrapper').show();
+            $container.show();
         });
 
 
         $('.shipping-estimate-hide').on('click', (event) => {
             event.preventDefault();
-            $('.estimator-wrapper').hide();
+            $container.hide();
             $('.shipping-estimate-show').show();
         });
 
-
-        $('.estimator-wrapper').hide();
+        $container.hide();
     }
 }

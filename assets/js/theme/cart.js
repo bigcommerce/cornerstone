@@ -5,11 +5,7 @@ import utils from 'bigcommerce/stencil-utils';
 
 export default class Cart extends PageManager {
     loaded(next) {
-
-        this.debounceTimeout = 400;
-
         this.bindEvents();
-
         next();
     }
     
@@ -49,27 +45,26 @@ export default class Cart extends PageManager {
     }
 
     bindEvents() {
-        let $container = $('.estimator-wrapper');
+        let $container = $('.estimator-wrapper'),
+            debounceTimeout = 400,
+            cartUpdate = _.bind(_.debounce(this.cartUpdate, debounceTimeout), this),
+            cartRemoveItem = _.bind(_.debounce(this.cartRemoveItem, debounceTimeout), this);
 
         // cart update
         $('.cart-update').on('click', (event) => {
             let $target = $(event.currentTarget);
-
             // prevent form submission
             event.preventDefault();
-
             // update cart quantity
-            _.bind(_.debounce(this.cartUpdate, this.debounceTimeout), this)($target);
+            cartUpdate($target);
         });
 
         $('.cart-remove').on('click', (event) => {
             let itemId = $(event.currentTarget).data('cart-itemid');
-
             // prevent form submission
             event.preventDefault();
-
             // remove item from cart
-            this.cartRemoveItem(itemId);
+            cartRemoveItem(itemId);
         });
 
         $('.shipping-estimate-submit').on('click', (event) => {

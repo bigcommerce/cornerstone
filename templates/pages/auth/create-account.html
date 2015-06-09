@@ -1,41 +1,43 @@
 {{#partial "page"}}
-<main class="content">
     {{> components/common/breadcrumbs breadcrumbs}}
-    <h1>Create Account</h1>
+    <h1 class="page-heading">{{lang 'create_account.heading' }}</h1>
     {{#if forms.create_account.message}}
     <p class="bg-danger">{{forms.create_account.message}}</p>
     {{/if}}
     <form action="{{urls.auth.save_new_account}}" method="post" class="form">
         <fieldset class="form-fieldset">
             {{#each forms.create_account.account_fields }}
-                {{{field this}}}
+                <div class="create-account-field">
+                    {{{field this}}}
+                </div>
             {{/each}}
-            <hr>
             {{#each forms.create_account.address_fields }}
-                {{{field this}}}
+                <div class="create-account-field">
+                    {{{field this}}}
+                </div>
             {{/each}}
-            <div class="box">
-                {{#if create_account.recaptcha.enabled }}
-                <h3>Security Question</h3>
-                <dl>
-                    <script type="text/javascript"
-                            src="https://www.google.com/recaptcha/api/challenge?k={{forms.create_account.recaptcha.public_key}}">
-                    </script>
-                    <noscript>
-                        <iframe src="https://www.google.com/recaptcha/api/noscript?k={{forms.create_account.recaptcha.public_key}}" height="300" width="500" frameborder="0"></iframe>
-                        <br>
+        </fieldset>
+        {{#if forms.create_account.recaptcha.enabled }}
+        <div class="panel">
+
+            <h3 class="panel-heading">{{lang 'create_account.captcha_heading' }}</h3>
+            <div class="panel-body">
+                <script type="text/javascript"
+                        src="https://www.google.com/recaptcha/api/challenge?k={{forms.create_account.recaptcha.public_key}}">
+                </script>
+                <noscript>
+                    <iframe src="https://www.google.com/recaptcha/api/noscript?k={{forms.create_account.recaptcha.public_key}}" height="300" width="500" frameborder="0"></iframe>
+                    <br>
                     <textarea name="recaptcha_challenge_field" rows="3" cols="40">
                     </textarea>
-                        <input type="hidden" name="recaptcha_response_field" value="manual_challenge">
-                    </noscript>
-                </dl>
-                {{/if}}
-                <p class="Submit">
-                    <input type="submit" class="btn alt" value="Create Account" />&nbsp;&nbsp;&nbsp;<a href="{{urls.home}}">Return to store</a>
-                </p>
+                    <input type="hidden" name="recaptcha_response_field" value="manual_challenge">
+                </noscript>
             </div>
-        </fieldset>
+        </div>
+        {{/if}}
+        <div class="create-account-submit">
+            <input type="submit" class="button button--primary" value="{{lang 'forms.create_account.submit_value' }}" />
+        </div>
     </form>
-</main>
 {{/partial}}
 {{> layout/base}}

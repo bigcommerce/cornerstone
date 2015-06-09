@@ -1,17 +1,26 @@
 {{#partial "page"}}
 
 {{> components/common/breadcrumbs breadcrumbs}}
-<h2 class="page-heading">{{ page.title }}</h2>
-<nav class="navBar">
-    <ul class="navBar-section">
-    {{#each page.sub_pages}}
-        <li class="navBar-item"><a class="navBar-action" href="{{url}}">{{title}}</a></li>
-    {{/each}}
-    </ul>
-</nav>
-<div class="page-content">
-    <p>{{{ page.content }}}</p>
-</div>
+
+<main class="page">
+
+    {{#if page.sub_pages}}
+    <nav class="navBar">
+        <ul class="navBar-section">
+        {{#each page.sub_pages}}
+            <li class="navBar-item"><a class="navBar-action" href="{{url}}">{{title}}</a></li>
+        {{/each}}
+        </ul>
+    </nav>
+    {{/if}}
+
+    <h1 class="page-heading">{{ page.title }}</h1>
+
+    <div class="page-content page-content--centered">
+        <p>{{{ page.content }}}</p>
+    </div>
+
+</main>
 
 {{/partial}}
 

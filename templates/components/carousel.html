@@ -1,5 +1,21 @@
-<ul>
+<section class="heroCarousel"
+    data-slick='{
+        "dots": true,
+        "mobileFirst": true,
+        "slidesToShow": 1,
+        "slidesToScroll": 1
+    }'
+>
     {{#each carousel}}
-    <li><img src="{{image}}" alt=""/></li>
+    <div class="heroCarousel-slide" style="background-image: url({{image}})">
+        <img class="heroCarousel-image" src="{{image}}" alt="{{alt_text}}"/>
+        <div class="heroCarousel-content">
+            <h1 class="heroCarousel-title">{{heading}}</h1>
+            <p class="heroCarousel-description">{{text}}</p>
+            {{#if button_text}}
+                <a href="#" class="heroCarousel-action button button--primary button--large">{{button_text}}</a>
+            {{/if}}
+        </div>
+    </div>
     {{/each}}
-</ul>
+</section>

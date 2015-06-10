@@ -1,8 +1,40 @@
 <h4>{{lang 'products.new' }}</h4>
-<ul class="product-list">
+
+<section class="productCarousel"
+    data-slick='{
+        "dots": true,
+        "infinite": false,
+        "mobileFirst": true,
+        "slidesToShow": 2,
+        "slidesToScroll": 2,
+        "responsive": [
+            {
+                "breakpoint": 1260,
+                "settings": {
+                    "slidesToScroll": 3,
+                    "slidesToShow": 6
+                }
+            },
+            {
+                "breakpoint": 800,
+                "settings": {
+                    "slidesToScroll": 3,
+                    "slidesToShow": 5
+                }
+            },
+            {
+                "breakpoint": 550,
+                "settings": {
+                    "slidesToScroll": 3,
+                    "slidesToShow": 3
+                }
+            }
+        ]
+    }'
+>
     {{#each this}}
-    <li class="product-card">
+    <div class="product-card">
         {{>components/products/card }}
-    </li>
+    </div>
     {{/each}}
-</ul>
+</section>

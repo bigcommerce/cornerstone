@@ -1,0 +1,21 @@
+// Slick Carousel Tools
+// -----------------------------------------------------------------------------
+//
+// Purpose: Tools used to style the slick carousel
+//
+// 1. Plugin SASS assumes you want an icon font, to override this and not output
+// that CSS, setting the url value to null
+//
+// 2. Setting opaque background in old browsers
+//
+// -----------------------------------------------------------------------------
+
+@function image-url($url) { // 1
+    @return null;
+}
+
+
+@mixin carouselOpaqueBackgrounds() { // 2
+    background-color: $carousel-bgColor--legacy;
+    background-color: $carousel-bgColor;
+}

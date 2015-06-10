@@ -7,6 +7,7 @@
     margin-bottom: spacing("double") * 2;
 }
 
+
 .page {
     @include grid-row(
         $behavior: nest
@@ -15,19 +16,17 @@
 
 .page-content {
     @include grid-column(8);
+}
 
-    // .page-content--full
-    &--full {
-        @include grid-column(12);
-    }
+.page-content--full {
+    @include grid-column(12);
+}
 
-    // .page-content--centered
-    &--centered {
-        @include grid-column(
-            $columns: 8,
-            $center: true
-        );
-    }
+.page-content--centered {
+    @include grid-column(
+        $columns: 8,
+        $center: true
+    );
 }
 
 .page-sidebar {

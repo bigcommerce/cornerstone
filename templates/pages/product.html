@@ -17,6 +17,13 @@ product:
         {{product.detail_messages}}
         <h1>{{ product.title }}</h1>
         <h2 data-bind="text: price">{{ product.price.base }}</h2>
+        <div>
+            <div data-reveal-id="modal-review-form" class="product-reviews-stars">
+                {{> components/products/ratings rating=product.rating}}
+            </div>
+            {{lang 'products.reviews.link_to_review' total=product.reviews.total}}
+            {{> components/products/modals/reviews product=product urls=urls}}
+        </div>
         <a href="{{ product.initial_zoom_image }}">
             <img src="{{ product.initial_image }}">
         </a>

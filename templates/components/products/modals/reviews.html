@@ -1,0 +1,60 @@
+<div data-reveal id="modal-review-form" class="modal">
+    <div class="modal-header">
+        <h2 class="modal-header-title">Write a Review</h2>
+        <a class="modal-close">&#215;</a>
+    </div>
+    <div class="modal-body">
+        <form action="{{ urls.product.post_review }}" method="post">
+            <div class="row">
+                <div class="grid-6">
+                    <img src="{{ product.initial_image }}">
+                    <h5>{{ product.brand.name }}</h5>
+                    <h4>{{ product.title }}</h4>
+                </div>
+                <div class="grid-6">
+                    <div class="form-field">
+                        <label class="form-label" for="rating-rate">Rating</label>
+                        <!-- Stars -->
+                        <select id="rating-rate" class="form-select" name="revrating">
+                            <option value=""></option>
+                            <option value="5">{{lang 'products.reviews.rating.5'}}</option>
+                            <option value="4">{{lang 'products.reviews.rating.4'}}</option>
+                            <option value="3">{{lang 'products.reviews.rating.3'}}</option>
+                            <option value="2">{{lang 'products.reviews.rating.2'}}</option>
+                            <option value="1">{{lang 'products.reviews.rating.1'}}</option>
+                        </select>
+                    </div>
+                    <!-- Name -->
+                    <div class="form-field">
+                        <label class="form-label" for="rating-name">Name</label>
+                        <input id="rating-name" class="form-input" type="text" name="revfromname" />
+                    </div>
+
+                    <!-- Review Subject -->
+                    <div class="form-field">
+                        <label class="form-label" for="rating-title">Review Subject</label>
+                        <input id="rating-title" class="form-input" type="text" name="revtitle" />
+                    </div>
+
+                    <!-- Comments -->
+                    <div class="form-field">
+                        <label class="form-label" for="rating-email">Email</label>
+                        <input id="rating-email" class="form-input" name="email" />
+                    </div>
+
+                    <!-- Comments -->
+                    <div class="form-field">
+                        <label class="form-label" for="rating-comment">Comments</label>
+                        <textarea id="rating-comment" class="form-input" name="revtext"></textarea>
+                    </div>
+
+                    <div class="form-field">
+                        <input type="submit" class="button button--primary" value="Submit Review">
+                    </div>
+                </div>
+            </div>
+            <input type="hidden" name="product_id" value="{{ product.id }}" />
+            <input type="hidden" name="action" value="post_review" />
+        </form>
+    </div>
+</div>

@@ -4,7 +4,9 @@
 import $ from 'jquery';
 import ko from 'knockout';
 import PageManager from '../page-manager';
-import utils from 'bigcommerce/stencil-utils'
+import utils from 'bigcommerce/stencil-utils';
+import 'foundation/js/foundation/foundation';
+import 'foundation/js/foundation/foundation.reveal';
 
 export default class Product extends PageManager {
     constructor() {

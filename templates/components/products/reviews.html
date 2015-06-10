@@ -1,13 +1,15 @@
 {{#if this.total}}
-<h4>{{lang 'products.reviews' total=this.total}}</h4>
-<ul class="row">
-    {{#each this.list}}
-    <li class="col-md-3">
-        <div>{{ rating }}</div>
-        <div>{{ title }}</div>
-        <div>Posted on {{ date }} by {{ name }}</div>
-        <p>{{ text }}</p>
-    </li>
-    {{/each}}
-</ul>
+<div id="product-reviews">
+    <h4>{{lang 'products.reviews.header' total=this.total}}</h4>
+    <ul class="row">
+        {{#each this.list}}
+        <li class="col-md-3">
+            <div>{{ rating }}</div>
+            <div>{{ title }}</div>
+            <div>{{lang 'products.reviews.post_on_by' date=date name=name}}</div>
+            <p>{{ text }}</p>
+        </li>
+        {{/each}}
+    </ul>
+</div>
 {{/if}}

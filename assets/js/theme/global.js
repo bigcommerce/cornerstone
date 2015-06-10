@@ -2,7 +2,7 @@ import $ from 'jquery';
 import PageManager from '../page-manager';
 import quickSearch from './global/quick-search';
 import currencySelector from './global/currency-selector';
-import navigation from './global/navigation';
+import foundation from './global/foundation';
 
 export default class Global extends PageManager {
     constructor() {
@@ -17,7 +17,7 @@ export default class Global extends PageManager {
     loaded(next) {
         quickSearch();
         currencySelector();
-        navigation();
+        foundation();
         next();
     }
 }

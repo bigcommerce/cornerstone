@@ -1,4 +1,4 @@
-<div id="modal-review-form" class="modal reveal-modal" data-reveal>
+<div data-reveal id="modal-review-form" class="modal">
     <div class="modal-header">
         <h1 class="modal-title">Write a Review</h1>
         <a class="modal-close close-reveal-modal">&#215;</a>
@@ -7,6 +7,7 @@
         <div class="row">
             <div class="grid-6">
                 <img src="{{ product.initial_image }}">
+                <h5>{{ product.brand.name }}</h5>
                 <h4>{{ product.title }}</h4>
             </div>
             <div class="grid-6">
@@ -15,11 +16,11 @@
                     <!-- Stars -->
                     <select class="form-input" name="revrating">
                         <option value=""> </option>
-                        <option value="5">5 stars (best)</option>
-                        <option value="4">4 stars</option>
-                        <option value="3">3 stars (average)</option>
-                        <option value="2">2 stars</option>
-                        <option value="1">1 star (worst)</option>
+                        <option value="5">{{lang 'products.reviews.rating.5'}}</option>
+                        <option value="4">{{lang 'products.reviews.rating.4'}}</option>
+                        <option value="3">{{lang 'products.reviews.rating.3'}}</option>
+                        <option value="2">{{lang 'products.reviews.rating.2'}}</option>
+                        <option value="1">{{lang 'products.reviews.rating.1'}}</option>
                     </select>
                 </div>
                 <!-- Name -->

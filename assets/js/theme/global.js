@@ -3,6 +3,7 @@ import PageManager from '../page-manager';
 import quickSearch from './global/quick-search';
 import currencySelector from './global/currency-selector';
 import foundation from './global/foundation';
+import quickView from './global/quick-view';
 
 export default class Global extends PageManager {
     constructor() {
@@ -18,6 +19,7 @@ export default class Global extends PageManager {
         quickSearch();
         currencySelector();
         foundation();
+        quickView();
         next();
     }
 }

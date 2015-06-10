@@ -7,14 +7,28 @@
     margin-bottom: spacing("double") * 2;
 }
 
-.content {
-    @include grid-column(8);
 
-    &.full {
-        @include grid-column(12);
-    }
+.page {
+    @include grid-row(
+        $behavior: nest
+    );
 }
 
-.sidebar {
+.page-content {
+    @include grid-column(8);
+}
+
+.page-content--full {
+    @include grid-column(12);
+}
+
+.page-content--centered {
+    @include grid-column(
+        $columns: 8,
+        $center: true
+    );
+}
+
+.page-sidebar {
     @include grid-column(4);
 }

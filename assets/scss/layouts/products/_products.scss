@@ -1,0 +1,40 @@
+// =============================================================================
+// PRODUCTS (CSS)
+// =============================================================================
+
+
+// Products container
+// -----------------------------------------------------------------------------
+//
+// 1. Using the inline-block method for products means stripping white-space
+//    between each product in the grid. We're using the font-size: 0; method.
+//
+// -----------------------------------------------------------------------------
+
+.products {
+    @include u-listBullets("none");
+    @include grid-row($behavior: "nest");
+    font-size: 0; // 1
+}
+
+
+// Product grid
+// -----------------------------------------------------------------------------
+//
+// 1. Re-set the font-size, as we're reducing it to 0 in the .products class.
+// 2. When a sidebar is visible, increase the width of the product grid.
+//
+// -----------------------------------------------------------------------------
+
+.product {
+    @include grid-column(3);
+    display: inline-block;
+    float: none;
+    font-size: fontSize("base"); // 1
+    vertical-align: top;
+
+    .page-sidebar + .page-content & { // 2
+        @include grid-column(4);
+        float: none;
+    }
+}

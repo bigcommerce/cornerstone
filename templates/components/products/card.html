@@ -1,7 +1,33 @@
-<div>{{{image}}}</div>
+<article class="card">
+    <figure class="card-figure">
+        {{{image}}}
+        <figcaption class="card-figcaption">
+            <div class="card-figcaption-body">
+                <a href="#" class="button button--small card-figcaption-button">Quick view</a>
+                <a href="#" class="button button--small card-figcaption-button">Compare</a>
+                <a href="#" class="button button--small card-figcaption-button">Add to bag</a>
+            </div>
+        </figcaption>
+    </figure>
+    <div class="card-body">
+        <h4 class="card-title">
+            <a href="{{url}}">{{name}}</a>
+        </h4>
+        <p class="card-text">{{{price}}}</p>
+    </div>
+</article>
+
+
+
+
+<!-- <div>{{{image}}}</div>
+
 <div><a href="{{url}}" alt="{{name}}">{{name}}</a></div>
+
 <div>{{{price}}}</div>
+
 Compare <input type="checkbox" name="products[]" value="{{id}}">
+
 {{#unless hide_add_to_cart}}
     {{#if has_options}}
     <a href="{{url}}" class="btn btn-primary">{{lang "products.choose_options"}}</a>
@@ -14,4 +40,4 @@ Compare <input type="checkbox" name="products[]" value="{{id}}">
         </a>
         {{/if}}
     {{/if}}
-{{/unless}}
+{{/unless}} -->

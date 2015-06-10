@@ -1,8 +1,11 @@
-<ul>
+<ul class="navList">
     {{#each category.subcategories}}
-    <li><a href="{{url}}" alt="{{name}}">{{name}}</a></li>
+    <li class="navList-item">
+        <a class="navList-action" href="{{url}}" alt="{{name}}">{{name}}</a>
+    </li>
     {{/each}}
 </ul>
+
 {{#if category.faceted_search_enabled}}
 {{> components/faceted-search/index category}}
 {{else}}

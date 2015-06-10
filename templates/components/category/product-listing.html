@@ -1,9 +1,9 @@
-{{> components/common/paginator pagination.category}}
 {{> components/category/sort-box}}
+
 <form action="/compare" method='POST'>
-    <ul class="product-list">
+    <ul class="products">
         {{#each category.products}}
-        <li class="product-card">
+        <li class="product">
             {{> components/products/card}}
         </li>
         {{/each}}
@@ -11,4 +11,5 @@
 
     <input type="submit" value="Compare Products" class="btn btn-primary">
 </form>
+
 {{> components/common/paginator pagination.category}}

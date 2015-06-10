@@ -10,7 +10,8 @@ export default function() {
             active_class: 'is-open'
         },
         reveal: {
-            bg_class: 'modal-background'
+            bg_class: 'modal-background',
+            dismiss_modal_class: 'modal-close'
         }
     });
 }

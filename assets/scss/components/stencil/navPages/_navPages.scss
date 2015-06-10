@@ -1,0 +1,67 @@
+// =============================================================================
+// PAGE NAVIGATION (CSS)
+// =============================================================================
+//
+// 1. Reduce font-size: 0; to remove display: inline-block; white-space. Just
+//    make sure that font-size is reset again on child elements.
+// 2. Trusty important tag... Because we're using display: inline-block; and
+//    text-align: center; to center the nav, the Foundation JS messes up the
+//    positioning of the menu. We correct that by overriding their inline style.
+//
+// -----------------------------------------------------------------------------
+
+.navPages {
+    @include nav($style: "navBar", $wrapper: "nav");
+    font-size: 0; // 1
+    text-align: center;
+
+    .dropdown-menu {
+        min-width: 160px;
+
+        &.is-open {
+            left: 0 !important; // 2
+        }
+    }
+}
+
+.navPages-section {
+    display: inline-block;
+    float: none;
+}
+
+.navPages-item {
+    position: relative;
+}
+
+.navPages-action {
+    color: color("greys", "darkest");
+    font-size: fontSize("smaller");
+    font-weight: fontWeight("bold");
+    padding: spacing("half") (spacing("half") + spacing("quarter")) (spacing("half") + spacing("quarter"));
+    text-decoration: none;
+    text-transform: uppercase;
+
+    &:hover {
+        color: color("greys", "medium");
+    }
+
+    &.is-open {
+        color: color("greys", "darkest");
+        background-color: color("greys", "lightest");
+    }
+
+    &.has-dropdown {
+
+        &:after {
+            background: $dropdown-icon no-repeat;
+            background-size: 100%;
+            content: "";
+            display: inline-block;
+            height: remCalc(17px);
+            margin: 0 (-(spacing("quarter"))) 0 spacing("eighth");
+            position: relative;
+            top: remCalc(3px);
+            width: remCalc(17px);
+        }
+    }
+}

@@ -1,0 +1,161 @@
+// =============================================================================
+// USER NAVIGATION (CSS)
+// =============================================================================
+//
+// 1. Corrects the spacing added by .navUser-or
+//
+// -----------------------------------------------------------------------------
+
+.navUser {
+    @include nav($style: "navBar", $wrapper: "nav");
+    padding: 0 spacing("single");
+
+    .dropdown-menu {
+        background-color: color("whites", "bright");
+        border: 1px solid color("greys", "lightest");
+        box-shadow: container("dropShadow");
+
+        &.is-open {
+            margin-left: spacing("half");
+            position: relative;
+
+            &:before {
+                @include css-triangle(
+                    $triangle-direction: "bottom",
+                    $triangle-size: 10px,
+                    $triangle-color: color("greys", "lightest")
+                );
+                bottom: 100%;
+                left: spacing("base");
+                position: absolute;
+            }
+
+            &:after {
+                @include css-triangle(
+                    $triangle-direction: "bottom",
+                    $triangle-size: 8px,
+                    $triangle-color: color("whites", "bright")
+                );
+                bottom: 100%;
+                left: spacing("base") + remCalc(2px);
+                position: absolute;
+            }
+        }
+    }
+}
+
+.navUser-action {
+    font-weight: fontWeight("bold");
+    padding: spacing("base") spacing("half");
+    text-decoration: none;
+    text-transform: uppercase;
+
+    &.has-dropdown {
+
+        &:after {
+            background: $dropdown-icon no-repeat;
+            background-size: 100%;
+            content: "";
+            display: inline-block;
+            height: remCalc(13px);
+            margin-left: spacing("eighth");
+            position: relative;
+            top: remCalc(1px);
+            width: remCalc(13px);
+        }
+    }
+}
+
+.navUser-item--account {
+
+    .navUser-or {
+
+        + .navUser-action {
+            margin-right: -0.5rem; // 1
+        }
+    }
+
+    .navUser-action {
+        display: inline-block;
+    }
+}
+
+.navUser-or {
+    cursor: default;
+    display: inline-block;
+    margin: 0 remCalc(-12px);
+    padding: 0 2px;
+    position: relative;
+    z-index: 1;
+}
+
+
+// Cart counter
+// -----------------------------------------------------------------------------
+//
+// 1. Hardcoded intentionally for precise pixels.
+//
+// -----------------------------------------------------------------------------
+
+.cart-count {
+    background-color: color("greys", "darker");
+    border-radius: 50%;
+    color: color("whites", "bright");
+    display: inline-block;
+    height: 18px; // 1
+    line-height: 18px; // 1
+    text-align: center;
+    width: 18px; // 1
+}
+
+
+// Quick search
+// -----------------------------------------------------------------------------
+//
+// 1. Overriding the inline styles from Foundation as this is a unique dropdown.
+//
+// -----------------------------------------------------------------------------
+
+.navUser-action--quickSearch {
+
+    &.is-open {
+        position: relative;
+
+        &:before {
+            @include css-triangle(
+                $triangle-direction: "bottom",
+                $triangle-size: 10px,
+                $triangle-color: color("greys", "lightest")
+            );
+            bottom: 0;
+            left: 50%;
+            position: absolute;
+              transform: translateX(-50%);
+        }
+    }
+}
+
+.dropdown--quickSearch {
+    background-color: color("greys", "lightest");
+    padding: spacing("double");
+
+    &.is-open {
+        left: 0 !important; // 1
+        outline: none;
+        right: 0 !important; // 1
+    }
+
+    .form {
+        margin: auto;
+        max-width: 30rem;
+    }
+
+    .form,
+    .form-field {
+        margin-bottom: 0;
+    }
+
+    .form-input {
+        font-size: fontSize("small");
+    }
+}

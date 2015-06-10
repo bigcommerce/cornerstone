@@ -5,9 +5,9 @@ product:
     reviews:
         limit: 1
     related_products:
-        limit: 2
+        limit: 10
     similar_by_views:
-        limit: 1
+        limit: 10
 ---
 {{#partial "page"}}
     {{#each breadcrumbs }}
@@ -96,7 +96,22 @@ product:
         </div>
         <p>{{{ product.description }}}</p>
     </div>
-    {{> components/products/related product.related_products}}
+
     {{> components/products/reviews product.reviews}}
+
+    <ul class="tabs">
+        <li class="tab is-active"><a class="tab-title" href="#tab-related">{{lang 'products.related_products'}}</a></li>
+        <li class="tab"><a class="tab-title" href="#tab-similar">{{lang 'products.similar_by_views'}}</a></li>
+    </ul>
+
+    <div class="tabs-contents">
+        <div class="tab-content is-active" id="tab-related">
+            {{> components/products/list product.related_products}}
+        </div>
+        <div class="tab-content" id="tab-similar">
+            {{> components/products/list product.similar_by_views}}
+        </div>
+    </div>
+
 {{/partial}}
 {{> layout/base}}

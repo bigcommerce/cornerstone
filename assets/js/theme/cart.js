@@ -45,7 +45,8 @@ export default class Cart extends PageManager {
     }
 
     bindEvents() {
-        let $container = $('.estimator-wrapper'),
+        let $estimatorForm = $('.estimator-form'),
+            $discountForm = $('.coupon-form'),
             debounceTimeout = 400,
             cartUpdate = _.bind(_.debounce(this.cartUpdate, debounceTimeout), this),
             cartRemoveItem = _.bind(_.debounce(this.cartRemoveItem, debounceTimeout), this);
@@ -65,6 +66,18 @@ export default class Cart extends PageManager {
             event.preventDefault();
             // remove item from cart
             cartRemoveItem(itemId);
+        });
+
+        $('.coupon-code-show').on('click', (event) => {
+            event.preventDefault();
+            $(event.currentTarget).hide();
+            $discountForm.show();            
+        });
+
+        $('.coupon-code-hide').on('click', (event) => {
+            event.preventDefault();
+            $discountForm.hide();
+            $('.coupon-code-show').show();
         });
 
         $('.shipping-estimate-submit').on('click', (event) => {
@@ -95,16 +108,16 @@ export default class Cart extends PageManager {
         $('.shipping-estimate-show').on('click', (event) => {
             event.preventDefault();
             $(event.currentTarget).hide();
-            $container.show();
+            $estimatorForm.show();
         });
 
 
         $('.shipping-estimate-hide').on('click', (event) => {
             event.preventDefault();
-            $container.hide();
+            $estimatorForm.hide();
             $('.shipping-estimate-show').show();
         });
 
-        $container.hide();
+        $estimatorForm.hide();
     }
 }

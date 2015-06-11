@@ -7,29 +7,23 @@
             <div class="alert alert-info" role="alert" data-bind="text: message">{{{message}}}</div>
         {{/each}}
     </div>
-    <div data-cart-content>
-        {{> components/cart/content}}
-    </div>
 
-    <form action="{{urls.cart}}" method="post">
-        <input type="hidden" name="action" value="applycoupon">
-        <div>
-            <p>{{lang 'cart.coupon_code'}}</p>
-            <input type="text" name="couponcode" id="couponcode" value="">
-            <input type="submit" value="{{lang 'go'}}" class="btn">
+    {{#if cart.items.length}}
+        <div data-cart-content>
+            {{> components/cart/content}}
         </div>
-    </form>
-
-
-    <form action="{{urls.cart}}" method="post">
-        <h3></h3>
-        <input type="hidden" name="action" value="applygiftcertificate">
         <div>
-            <p>{{lang 'cart.gift_certificate'}}</p>
-            <input type="text" name="giftcertificatecode" id="giftcertificatecode" value="">
-            <input type="submit" value="{{lang 'go'}}" class="btn">
+            <a href="{{urls.checkout.single_address}}" title="Click here to proceed to checkout">Checkout</a>
         </div>
-    </form>
+
+        {{#if show_multiple_address_shipping}}
+            <div>
+                <p><span> or </span><a href="{{urls.checkout.multiple_address}}"><strong>check out with multiple addresses</strong></a></p>
+            </div>
+        {{/if}}
+    {{else}}
+        <h3>Your Cart is empty</h3>
+    {{/if}}
 
 </div>
 {{/partial}}

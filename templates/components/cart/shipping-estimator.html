@@ -6,9 +6,9 @@
     <button class="shipping-estimate-show">Add Info</button>
 {{/if}}
 
-<div class="estimator-wrapper" style="display: none;">
+<form class="estimator-form" style="display: none;">
     <div class="shipping-estimate">
-        <button class="shipping-estimate-hide">Cancel</button>
+        <button class="shipping-estimate-hide">{{lang 'cancel'}}</button>
         <select name="country">
         <option>Select one</option>
         {{#each countries}}
@@ -29,4 +29,4 @@
         <button class="shipping-estimate-submit">Estimate Shipping</button>
     </div>
     <div class="shipping-quotes"></div> 
-</div>
+</form>

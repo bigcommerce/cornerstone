@@ -11,7 +11,8 @@ export default function() {
         },
         reveal: {
             bg_class: 'modal-background',
-            dismiss_modal_class: 'modal-close'
+            dismiss_modal_class: 'modal-close',
+            close_on_background_click: true
         }
     });
 }

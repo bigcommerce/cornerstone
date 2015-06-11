@@ -2,35 +2,17 @@
 
 {{> components/common/breadcrumbs breadcrumbs}}
 
-<h1 class="page-heading">{{ blog.post.name }}</h1>
+{{> components/blog/post blog.post}}
 
-<article class="blog">
-    {{#if blog.post.thumbnail}}
-    <figure class="blog-thumbnail">
-        <img src="{{blog.post.thumbnail}}">
-    </figure>
-    {{/if}}
-
-    <h2 class="blog-title">{{blog.post.title}}</h2>
-    <p class="blog-date">{{blog.post.date_published}}</p>
-    {{#if blog.post.author}}
-        <p class="blog-author">{{blog.post.author}}</p>
-    {{/if}}
-
-    <div class="blog-post">
-        {{{blog.post.body}}}
-    </div>
-
-    {{#if blog.post.tags}}
-    <ul class="tags">
-        {{#each blog.post.tags}}
-        <li class="tag">
-            <a href="{{url}}">#{{name}}</a>
-        </li>
-        {{/each}}
-    </ul>
-    {{/if}}
-</article>
+{{#if blog.post.tags}}
+<ul class="tags">
+    {{#each blog.post.tags}}
+    <li class="tag">
+        <a href="{{url}}">#{{name}}</a>
+    </li>
+    {{/each}}
+</ul>
+{{/if}}
 
 {{/partial}}
 {{> layout/base}}

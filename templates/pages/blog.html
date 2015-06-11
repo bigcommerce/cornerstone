@@ -6,24 +6,7 @@
     <h1 class="page-heading">{{ blog.name }}</h1>
 
     {{#each blog.posts}}
-    <article class="blog">
-        {{#if this.thumbnail}}
-        <a href="{{url}}">
-            <figure class="blog-thumbnail">
-                <img src="{{thumbnail}}">
-            </figure>
-        </a>
-        {{/if}}
-
-        <h2 class="blog-title">
-            <a href="{{url}}">{{title}}</a>
-        </h2>
-        <p class="blog-date">{{date_published}}</p>
-
-        <div class="blog-post">
-            {{{body}}}
-        </div>
-    </article>
+    {{> components/blog/post this}}
     {{/each}}
 
     {{> components/common/paginator pagination.blog}}

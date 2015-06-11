@@ -1,0 +1,18 @@
+<article class="blog">
+    {{#if this.thumbnail}}
+    <a href="{{url}}">
+        <figure class="blog-thumbnail">
+            <img src="{{thumbnail}}">
+        </figure>
+    </a>
+    {{/if}}
+
+    <h2 class="blog-title">
+        <a href="{{url}}">{{title}}</a>
+    </h2>
+    <p class="blog-date">{{date_published}}</p>
+
+    <div class="blog-post">
+        {{{body}}}
+    </div>
+</article>

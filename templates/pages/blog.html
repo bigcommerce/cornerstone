@@ -1,22 +1,16 @@
 {{#partial "page"}}
-<div>
-    {{> components/common/breadcrumbs breadcrumbs}}
-    <h2 class="page-heading">{{ blog.name }}</h2>
-    <ul class="blog-post-list">
-        {{#each blog.posts}}
-            <li class="blog-post">
-                <a href="{{url}}">
-                    {{#if this.thumbnail}}
-                        <img class="blog-post-image" src="{{thumbnail}}">
-                    {{/if}}
-                    <h3 class="blog-post-title">{{title}}</h3>
-                </a>
-                <span class="blog-post-date">{{date_published}}</span>
-                <div class="blog-post-content">{{{body}}}</div>
-            </li>
-        {{/each}}
-    </ul>
+
+{{> components/common/breadcrumbs breadcrumbs}}
+
+<main class="page">
+    <h1 class="page-heading">{{ blog.name }}</h1>
+
+    {{#each blog.posts}}
+    {{> components/blog/post this}}
+    {{/each}}
+
     {{> components/common/paginator pagination.blog}}
-</div>
+</main>
+
 {{/partial}}
 {{> layout/base}}

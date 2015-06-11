@@ -23,6 +23,7 @@
 //
 // 1. Re-set the font-size, as we're reducing it to 0 in the .products class.
 // 2. When a sidebar is visible, increase the width of the product grid.
+// 3. Ensure images will scale to the grid's width.
 //
 // -----------------------------------------------------------------------------
 
@@ -37,4 +38,38 @@
         @include grid-column(4);
         float: none;
     }
+
+    // DEV/TESTING CODE ONLY. Use below class for realz.
+    .card-figure {
+        background-color: color("blacks");
+
+        img {
+            opacity: 0.98;
+            width: 100%;
+        }
+    }
+    // Use this method when figured out
+    // .card-image {
+    //     width: 100%; // 3
+    // }
 }
+
+
+// Product sidebar
+// -----------------------------------------------------------------------------
+
+.sidebarWidget {
+
+    + .sidebarWidget {
+        border-top: 1px solid color("greys", "lightest");
+        margin-top: spacing("single") + spacing("third");
+        padding-top: spacing("single") + spacing("third");
+    }
+}
+
+.sidebarWidget-heading {
+    margin-top: 0;
+    text-transform: inherit;
+}
+
+

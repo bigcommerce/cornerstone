@@ -4,6 +4,7 @@ import quickSearch from './global/quick-search';
 import currencySelector from './global/currency-selector';
 import foundation from './global/foundation';
 import quickView from './global/quick-view';
+import cartPreview from './global/cart-preview';
 
 export default class Global extends PageManager {
     constructor() {
@@ -20,6 +21,7 @@ export default class Global extends PageManager {
         currencySelector();
         foundation();
         quickView();
+        cartPreview();
         next();
     }
 }

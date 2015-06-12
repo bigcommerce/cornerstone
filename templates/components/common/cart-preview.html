@@ -1,0 +1,12 @@
+<ul class="cart-preview-items">
+    {{#each cart.items}}
+        <li class="dropdown-menu-item">
+            <div class="cart-preview-items-image"><img src="{{{ image }}}" /></div>
+            <div class="cart-preview-items-brand">{{ brand.name }}</div>
+            <div class="cart-preview-items-name"><a href="{{url}}" alt="{{name}}">{{ name }}</a></div>
+            <div class="cart-preview-items-price">{{ quantity }} &times; {{{money price }}}</div>
+        </li>
+    {{/each}}
+    <a href="{{urls.checkout.single_address}}" class="button button--primary">Checkout Now</a>
+    <a href="{{urls.cart}}" class="button button--action">View Cart</a>
+</ul>

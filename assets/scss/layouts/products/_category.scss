@@ -1,0 +1,75 @@
+// =============================================================================
+// PRODUCT CATEGORY (CSS)
+// =============================================================================
+
+
+// Product Category container
+// -----------------------------------------------------------------------------
+//
+// 1. Using the inline-block method for products means stripping white-space
+//    between each product in the grid. We're using the font-size: 0; method.
+//
+// -----------------------------------------------------------------------------
+
+.productCategory {
+    @include u-listBullets("none");
+    @include grid-row($behavior: "nest");
+    font-size: 0; // 1
+
+    // Product
+    // -----------------------------------------------------------------------------
+    //
+    // 1. Re-set the font-size, as we're reducing it to 0 in the .products class.
+    // 2. Ensure images will scale to the grid's width while maintaining ratio.
+    //
+    // -----------------------------------------------------------------------------
+
+    .product {
+        @include grid-column(6, $float: none);
+        display: inline-block;
+        float: none;
+        font-size: fontSize("base"); // 1
+        vertical-align: top;
+
+        @include breakpoint("small") {
+            @include grid-column(4, $float: none);
+        }
+
+        @include breakpoint("medium") {
+            @include grid-column(3, $float: none);
+        }
+
+        // #Sighmon - DEV/TESTING CODE ONLY. Don't merge this or Simon will sigh.
+        .card-figure {
+            background-color: color("blacks");
+
+            img {
+                opacity: 0.98;
+                width: 100%;
+            }
+        }
+        // Use this class instead of the above when unblocked.
+        // .card-image {
+        //     width: 100%; // 2
+        // }
+    }
+}
+
+
+// Product when sidebar is present
+// -----------------------------------------------------------------------------
+//
+// 1. When the sidebar is visible, reduce products to 3 across.
+//
+// -----------------------------------------------------------------------------
+
+.page-sidebar + .page-content {
+
+    .product { // 1
+
+        @include breakpoint("medium") {
+            @include grid-column(4);
+            float: none;
+        }
+    }
+}

@@ -22,21 +22,32 @@
 // -----------------------------------------------------------------------------
 //
 // 1. Re-set the font-size, as we're reducing it to 0 in the .products class.
-// 2. When a sidebar is visible, increase the width of the product grid.
+// 2. When a sidebar is visible, reduce products to 3 across.
 // 3. Ensure images will scale to the grid's width while maintaining ratio.
 //
 // -----------------------------------------------------------------------------
 
 .product {
-    @include grid-column(3);
+    @include grid-column(6);
     display: inline-block;
     float: none;
     font-size: fontSize("base"); // 1
     vertical-align: top;
 
-    .page-sidebar + .page-content & { // 2
+    @include breakpoint("small") {
         @include grid-column(4);
-        float: none;
+    }
+
+    @include breakpoint("medium") {
+        @include grid-column(3);
+    }
+
+    .page-sidebar + .page-content & { // 2
+
+        @include breakpoint("medium") {
+            @include grid-column(4);
+            float: none;
+        }
     }
 
     // #Sighmon - DEV/TESTING CODE ONLY. Don't merge this or Simon will sigh.
@@ -53,23 +64,3 @@
     //     width: 100%; // 3
     // }
 }
-
-
-// Product sidebar
-// -----------------------------------------------------------------------------
-
-.sidebarWidget {
-
-    + .sidebarWidget {
-        border-top: 1px solid color("greys", "lightest");
-        margin-top: spacing("single") + spacing("third");
-        padding-top: spacing("single") + spacing("third");
-    }
-}
-
-.sidebarWidget-heading {
-    margin-top: 0;
-    text-transform: inherit;
-}
-
-

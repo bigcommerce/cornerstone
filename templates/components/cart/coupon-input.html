@@ -7,10 +7,9 @@
 {{else}}
     <button class="coupon-code-show">Add Code</button>
 
-    <form class="coupon-form" action="{{urls.cart}}" method="post" style="display:none;">
+    <div class="coupon-form" style="display:none;">
         <button class="coupon-code-hide">{{lang 'cancel'}}</button>
-        <input type="hidden" name="action" value="applycoupon">
-        <input type="text" name="couponcode" id="couponcode" value="">
-        <input type="submit" value="{{lang 'go'}}">
-    </form>
+        <input type="text" name="promocode" value="">
+        <button class="apply-promo-code">{{lang 'go'}}</button>
+    </div>
 {{/if}}

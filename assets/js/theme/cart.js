@@ -80,12 +80,24 @@ export default class Cart extends PageManager {
             $('.coupon-code-show').show();
         });
 
+        $('.apply-promo-code').on('click', (event) => {
+            let code = $('[name="promocode"]').val();
+
+            utils.api.cart.applyPromoCode(code, (err, response) => {
+                console.log(response.data);
+                if (response.data.status === 'succeed') {
+                    this.refreshContent();
+                } else {
+                    alert(response.data.errors.join('\n'));
+                }
+            });
+        });
+
         $('.shipping-estimate-submit').on('click', (event) => {
-            let $form = $('.shipping-estimate'),
-                params = {
-                    country_id: $('[name="country"]', $form).val(),
-                    state_id: $('[name="state"]', $form).val(),
-                    zip_code: $('[name="zip"]', $form).val()
+                let params = {
+                    country_id: $('[name="shipping-country"]').val(),
+                    state_id: $('[name="shipping-state"]').val(),
+                    zip_code: $('[name="shipping-zip"]').val()
                 };
 
             event.preventDefault();
@@ -98,7 +110,6 @@ export default class Cart extends PageManager {
                     let quoteId = $('.shipping-quote:checked').val();
                     event.preventDefault();
                     utils.api.cart.submitShippingQuote(quoteId, (response) => {
-
                         this.refreshContent();
                     });
                 });

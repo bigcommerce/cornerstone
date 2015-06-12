@@ -1,10 +1,10 @@
 {{#partial "page"}}
     {{> components/common/breadcrumbs breadcrumbs}}
     <h1 class="page-heading">{{lang 'create_account.heading' }}</h1>
-    {{#if forms.create_account.message}}
-    <p class="bg-danger">{{forms.create_account.message}}</p>
+    {{#if forms.create_account.error}}
+        {{> components/common/alert-error forms.create_account.error}}
     {{/if}}
-    <form action="{{urls.auth.save_new_account}}" method="post" class="form">
+    <form action="{{urls.auth.save_new_account}}" method="post" class="form create-account-form">
         <fieldset class="form-fieldset">
             {{#each forms.create_account.account_fields }}
                 <div class="create-account-field">

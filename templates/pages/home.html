@@ -12,6 +12,9 @@ carousel: true
     {{> components/carousel}}
     {{> components/products/featured products.featured}}
     {{> components/products/new products.new}}
+    {{#if}}
+        {{> components/products/top products.top_sellers}}
+    {{/if}}
 </div>
 {{/partial}}
 {{> layout/base}}

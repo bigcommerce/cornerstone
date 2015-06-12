@@ -15,14 +15,18 @@
     @include u-listBullets("none");
     @include grid-row($behavior: "nest");
     font-size: 0; // 1
+}
 
-    // Product
-    // -----------------------------------------------------------------------------
-    //
-    // 1. Re-set the font-size, as we're reducing it to 0 in the .products class.
-    // 2. Ensure images will scale to the grid's width while maintaining ratio.
-    //
-    // -----------------------------------------------------------------------------
+
+// Product grid view
+// -----------------------------------------------------------------------------
+//
+// 1. Re-set the font-size, as we're reducing it to 0 in the .products class.
+// 2. Ensure images will scale to the grid's width while maintaining ratio.
+//
+// -----------------------------------------------------------------------------
+
+.productCategory--grid {
 
     .product {
         @include grid-column(6, $float: none);

@@ -1,0 +1,43 @@
+// =============================================================================
+// COMPARE (CSS)
+// =============================================================================
+
+.compare {
+  @include grid-row();
+}
+
+.column {
+  list-style: none;
+}
+
+.column-2 {
+  @include grid-column(4);
+}
+
+.column-3 {
+  @include grid-column(3);
+}
+
+.column-4 {
+  @include grid-column(2);
+}
+
+.compare-header {
+  min-height: 470px;
+  padding-bottom: 20px;
+  position: relative;
+}
+
+.compare-header-cart {
+  bottom: 10px;
+  position: absolute;
+}
+
+.compare-header-cart, .button-addToCart {
+  width: 100%;
+}
+
+.compare-body-row  {
+  border-top: 1px solid color("greys", "lightest");
+  padding: 20px 0;
+}

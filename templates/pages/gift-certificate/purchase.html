@@ -2,14 +2,14 @@
 <main class="container full">
     <ul class="breadcrumbs">
         <li class="breadcrumb">
-            <a class="breadcrumb-label" href="{{urls.home}}">{{lang 'home.heading'}}</a>
+            <a class="breadcrumb-label" href="{{urls.home}}">{{lang 'home.heading' }}</a>
         </li>
         <li class="breadcrumb">
             <span class="breadcrumb-label">{{lang 'gift_certificate.purchase.heading' }}</span>
         </li>
     </ul>
     <h2 class="page-heading">{{lang 'gift_certificate.purchase.heading' }}</h2>
-    {{> components/gift-certificate/navigation gift_page='purchase'}}
+    {{> components/gift-certificate/navigation gift_page='purchase' }}
 
     {{#each forms.gift_certificate.errors}}
         <p class="alert alert-danger">{{this}}</p>
@@ -75,7 +75,7 @@
             </div>
         </div>
         <div class="form-field">
-                <input class="button" type="submit" value="{{lang 'forms.gift_certificate.purchase.submit_value'}}">
+                <input class="button" type="submit" value="{{lang 'forms.gift_certificate.purchase.submit_value' }}">
         </div>
     </form>
 </main>

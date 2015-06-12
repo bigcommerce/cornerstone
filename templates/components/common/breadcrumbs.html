@@ -3,11 +3,13 @@
         <a class="breadcrumb-label" href="{{urls.home}}">{{lang 'home.heading'}}</a>
     </li>
     {{#each this}}
-        <li class="breadcrumb">
+        <li class="breadcrumb {{#if @last}}is-active{{/if}}">
             {{#if url}}
                 <a href="{{url}}" class="breadcrumb-label">{{name}}</a>
             {{else}}
-                <span class="breadcrumb-label">{{name}}</span>
+
+                    <span class="breadcrumb-label">{{name}}</span>
+
             {{/if}}
         </li>
     {{/each}}

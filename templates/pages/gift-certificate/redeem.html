@@ -1,6 +1,24 @@
 {{#partial "page"}}
-	<main class="content">
-		<h1>How to Redeem a Gift Certificate</h1>
-	</main>
+<main class="container full">
+    <ul class="breadcrumbs">
+        <li class="breadcrumb">
+            <a class="breadcrumb-label" href="{{urls.home}}">{{lang 'home.heading' }}</a>
+        </li>
+        <li class="breadcrumb">
+            <span class="breadcrumb-label">{{lang 'gift_certificate.redeem.heading' }}</span>
+        </li>
+    </ul>
+    <h2 class="page-heading">{{lang 'gift_certificate.redeem.heading' }}</h2>
+    {{> components/gift-certificate/navigation gift_page='redeem' }}
+    <div>
+        <p><strong>{{lang 'gift_certificate.redeem.intro' store_name=settings.store_name }}</strong></p>
+        <ol>
+            <li>{{lang 'gift_certificate.redeem.item1' }}</li>
+            <li>{{lang 'gift_certificate.redeem.item2' }}</li>
+            <li>{{lang 'gift_certificate.redeem.item3' cart_url=urls.cart }}</li>
+            <li>{{lang 'gift_certificate.redeem.item4' }}</li>
+        </ol>
+    </div>
+</main>
 {{/partial}}
 {{> layout/base}}

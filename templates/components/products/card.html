@@ -4,42 +4,29 @@
         <figcaption class="card-figcaption">
             <div class="card-figcaption-body">
                 <a href="#" class="button button--small card-figcaption-button">Quick view</a>
-                <a href="#" class="button button--small card-figcaption-button">Compare</a>
-                <a href="#" class="button button--small card-figcaption-button">Add to bag</a>
+                <label class="button button--small card-figcaption-button" for="{{id}}">
+                    Compare <input type="checkbox" name="products[]" value="{{id}}">
+                </label>
+                {{#unless hide_add_to_cart}}
+                    {{#if has_options}}
+                    <a href="{{url}}" class="button button--small card-figcaption-button">{{lang "products.choose_options"}}</a>
+                    {{else}}
+                        {{#if out_of_stock_message }}
+                        <span href="{{url}}" class="button button--small card-figcaption-button">{{out_of_stock_message}}</span>
+                        {{else}}
+                        <a href="{{add_to_cart_url}}" class="button button--small card-figcaption-button">{{lang "products.add_to_cart"}}</a>
+                        {{/if}}
+                    {{/if}}
+                {{/unless}}
             </div>
         </figcaption>
     </figure>
     <div class="card-body">
         <p class="card-text">{{> components/products/ratings rating=product.rating}}</p>
+        <p class="card-text">Product brand</p>
         <h4 class="card-title">
             <a href="{{url}}">{{name}}</a>
         </h4>
         <p class="card-text">{{{price}}}</p>
     </div>
 </article>
-
-
-
-<!-- Refactor this into the above -->
-
-<!-- <div>{{{image}}}</div>
-
-<div><a href="{{url}}" alt="{{name}}">{{name}}</a></div>
-
-<div>{{{price}}}</div>
-
-Compare <input type="checkbox" name="products[]" value="{{id}}">
-
-{{#unless hide_add_to_cart}}
-    {{#if has_options}}
-    <a href="{{url}}" class="btn btn-primary">{{lang "products.choose_options"}}</a>
-    {{else}}
-        {{#if out_of_stock_message }}
-        <span class="btn btn-warning">{{out_of_stock_message}}</span>
-        {{else}}
-        <a href="{{add_to_cart_url}}" class="btn btn-success">
-            {{lang "products.add_to_cart"}}
-        </a>
-        {{/if}}
-    {{/if}}
-{{/unless}} -->

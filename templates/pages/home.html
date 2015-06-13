@@ -4,7 +4,8 @@ products:
         limit: 3
     featured:
         limit: 3
-
+    top_sellers:
+        limit: 2
 carousel: true
 ---
 {{#partial "page"}}
@@ -12,7 +13,7 @@ carousel: true
     {{> components/carousel}}
     {{> components/products/featured products.featured}}
     {{> components/products/new products.new}}
-    {{#if}}
+    {{#if products.top_sellers}}
         {{> components/products/top products.top_sellers}}
     {{/if}}
 </div>

@@ -20,7 +20,12 @@
     margin: $card-title-margin;
 
     > a {
+        color: $card-title-color;
         text-decoration: $card-title-textDecoration;
+
+        &:hover {
+            color: $card-title-color-hover;
+        }
     }
 }
 
@@ -35,5 +40,13 @@
 
     + .card-figcaption-button {
         margin: $card-figcaption-button-margin;
+    }
+}
+
+.card-body {
+    text-align: center;
+
+    @include breakpoint("small") {
+        text-align: left;
     }
 }

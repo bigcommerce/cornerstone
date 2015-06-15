@@ -1,18 +1,23 @@
 ---
 category:
-    shop_by_price: false
+    shop_by_price: true
 ---
+
 {{#partial "page"}}
+
 {{> components/common/breadcrumbs breadcrumbs}}
-<h1>{{category.name}}</h1>
-<hr>
-<div class="container">
-    <aside class="aside" id="faceted-search-container">
+
+<h1 class="page-heading">{{category.name}}</h1>
+
+<div class="page">
+    <aside class="page-sidebar" id="faceted-search-container">
         {{> components/category/sidebar}}
     </aside>
-    <div class="main" id="product-listing-container">
+
+    <main class="page-content" id="product-listing-container">
         {{> components/category/product-listing}}
-    </div>
+    </main>
 </div>
+
 {{/partial}}
 {{> layout/base}}

@@ -14,10 +14,7 @@
     );
 }
 
-.page-content {
-    @include grid-column(8);
-}
-
+.page-content,
 .page-content--full {
     @include grid-column(12);
 }
@@ -30,5 +27,9 @@
 }
 
 .page-sidebar {
-    @include grid-column(4);
+    @include grid-column(3);
+
+    + .page-content {
+        @include grid-column(9);
+    }
 }

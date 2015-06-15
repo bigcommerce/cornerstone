@@ -44,17 +44,15 @@ export default class Cart extends PageManager {
         });
     }
 
-    bindEvents() {
-        let $estimatorForm = $('.estimator-form'),
-            $discountForm = $('.coupon-form'),
-            debounceTimeout = 400,
+    bindCartEvents() {
+        let debounceTimeout = 400,
             cartUpdate = _.bind(_.debounce(this.cartUpdate, debounceTimeout), this),
             cartRemoveItem = _.bind(_.debounce(this.cartRemoveItem, debounceTimeout), this);
 
         // cart update
         $('.cart-update').on('click', (event) => {
             let $target = $(event.currentTarget);
-            // prevent form submission
+
             event.preventDefault();
             // update cart quantity
             cartUpdate($target);
@@ -62,31 +60,58 @@ export default class Cart extends PageManager {
 
         $('.cart-remove').on('click', (event) => {
             let itemId = $(event.currentTarget).data('cart-itemid');
-            // prevent form submission
+
             event.preventDefault();
             // remove item from cart
             cartRemoveItem(itemId);
         });
+    }
+
+    bindPromoCodeEvents() {
+        let $couponContainer = $('.coupon-code'),
+            $couponForm = $('.coupon-form'),
+            $codeInput = $('[name="couponcode"]', $couponForm);
 
         $('.coupon-code-show').on('click', (event) => {
             event.preventDefault();
+
             $(event.currentTarget).hide();
-            $discountForm.show();            
+            $couponContainer.show();
+            $codeInput.focus();
         });
 
         $('.coupon-code-hide').on('click', (event) => {
             event.preventDefault();
-            $discountForm.hide();
+
+            $couponContainer.hide();
             $('.coupon-code-show').show();
         });
 
-        $('.shipping-estimate-submit').on('click', (event) => {
-            let $form = $('.shipping-estimate'),
-                params = {
-                    country_id: $('[name="country"]', $form).val(),
-                    state_id: $('[name="state"]', $form).val(),
-                    zip_code: $('[name="zip"]', $form).val()
-                };
+        $couponForm.on('submit', (event) => {
+            let code = $codeInput.val();
+
+            event.preventDefault();
+
+            utils.api.cart.applyCode(code, (err, response) => {
+                if (response.data.status === 'succeed') {
+                    this.refreshContent();
+                } else {
+                    alert(response.data.errors.join('\n'));
+                }
+            });
+        });
+    }
+
+    bindEstimatorEvents() {
+        let $estimatorContainer = $('.shipping-estimator'),
+            $estimatorForm = $('.estimator-form');
+
+        $estimatorForm.on('submit', (event) => {
+            let params = {
+                country_id: $('[name="shipping-country"]', $estimatorForm).val(),
+                state_id: $('[name="shipping-state"]', $estimatorForm).val(),
+                zip_code: $('[name="shipping-zip"]', $estimatorForm).val()
+            };
 
             event.preventDefault();
 
@@ -96,9 +121,10 @@ export default class Cart extends PageManager {
                 // bind the select button
                 $('.select-shipping-quote').on('click', (event) => {
                     let quoteId = $('.shipping-quote:checked').val();
-                    event.preventDefault();
-                    utils.api.cart.submitShippingQuote(quoteId, (response) => {
 
+                    event.preventDefault();
+
+                    utils.api.cart.submitShippingQuote(quoteId, (response) => {
                         this.refreshContent();
                     });
                 });
@@ -107,17 +133,23 @@ export default class Cart extends PageManager {
 
         $('.shipping-estimate-show').on('click', (event) => {
             event.preventDefault();
+
             $(event.currentTarget).hide();
-            $estimatorForm.show();
+            $estimatorContainer.show();
         });
 
 
         $('.shipping-estimate-hide').on('click', (event) => {
             event.preventDefault();
-            $estimatorForm.hide();
+
+            $estimatorContainer.hide();
             $('.shipping-estimate-show').show();
         });
+    }
 
-        $estimatorForm.hide();
+    bindEvents() {
+        this.bindCartEvents();
+        this.bindPromoCodeEvents();
+        this.bindEstimatorEvents();
     }
 }

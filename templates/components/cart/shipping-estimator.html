@@ -6,10 +6,10 @@
     <button class="shipping-estimate-show">Add Info</button>
 {{/if}}
 
-<form class="estimator-form" style="display: none;">
-    <div class="shipping-estimate">
+<div class="shipping-estimator" style="display: none;">
+    <form class="estimator-form">
         <button class="shipping-estimate-hide">{{lang 'cancel'}}</button>
-        <select name="country">
+        <select name="shipping-country">
         <option>Select one</option>
         {{#each countries}}
             <option value="{{id}}" {{#if selected}}selected="selected"{{/if}}>
@@ -17,7 +17,7 @@
             </option>
         {{/each}}
         </select>
-        <select name="state">
+        <select name="shipping-state">
         <option>Select one</option>
         {{#each states}}
             <option value="{{id}}" {{#if selected}}selected="selected"{{/if}}>
@@ -25,8 +25,8 @@
             </option>
         {{/each}}
         </select>
-        <input type="text" name="zip" value="{{selected_zip}}">
+        <input type="text" name="shipping-zip" value="{{selected_zip}}">
         <button class="shipping-estimate-submit">Estimate Shipping</button>
-    </div>
+    </form>
     <div class="shipping-quotes"></div> 
-</form>
+</div>

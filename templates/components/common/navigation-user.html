@@ -4,9 +4,6 @@
     <ul class="navUser-section navUser-section--alt">
         <li class="navUser-item">
             <a class="navUser-action navUser-action--quickSearch" href="#" data-dropdown="quickSearch" aria-controls="quickSearch" aria-expanded="false">Search</a>
-            <div class="dropdown dropdown--quickSearch" id="quickSearch" data-dropdown-content aria-hidden="true" tabindex="-1">
-                {{> components/common/quick-search}}
-            </div>
         </li>
         <li class="navUser-item">
             <a class="navUser-action" href="{{urls.gift_certificate.purchase}}">Gift Certificates</a>
@@ -24,3 +21,6 @@
         </li>
     </ul>
 </nav>
+<div class="dropdown dropdown--quickSearch" id="quickSearch" data-dropdown-content aria-hidden="true" tabindex="-1">
+    {{> components/common/quick-search}}
+</div>

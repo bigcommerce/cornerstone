@@ -80,8 +80,10 @@ export default class Cart extends PageManager {
             $('.coupon-code-show').show();
         });
 
-        $('.apply-promo-code').on('click', (event) => {
-            let code = $('[name="promocode"]').val();
+        $discountForm.on('submit', (event) => {
+            let code = $('[name="couponcode"]', $discountForm).val();
+
+            event.preventDefault();
 
             utils.api.cart.applyCode(code, (err, response) => {
                 console.log(response.data);
@@ -93,12 +95,12 @@ export default class Cart extends PageManager {
             });
         });
 
-        $('.shipping-estimate-submit').on('click', (event) => {
-                let params = {
-                    country_id: $('[name="shipping-country"]').val(),
-                    state_id: $('[name="shipping-state"]').val(),
-                    zip_code: $('[name="shipping-zip"]').val()
-                };
+        $estimatorForm.on('submit', (event) => {
+            let params = {
+                country_id: $('[name="shipping-country"]').val(),
+                state_id: $('[name="shipping-state"]').val(),
+                zip_code: $('[name="shipping-zip"]').val()
+            };
 
             event.preventDefault();
 
@@ -128,7 +130,5 @@ export default class Cart extends PageManager {
             $estimatorForm.hide();
             $('.shipping-estimate-show').show();
         });
-
-        $estimatorForm.hide();
     }
 }

@@ -1,18 +1,8 @@
-<h4>Top Sellers</h4>
-<ul class="row">
+<h4>{{lang 'products.top' }}</h4>
+<ul class="product-list">
     {{#each this}}
-    <li class="col-md-3">
-        <div><a href="{{{url}}}" alt="{{name}}">{{name}}</a></div>
-        <div>{{rating}}</div>
-        <div>{{{price}}}</div>
-        <div>{{{image}}}</div>
-        <div>{{date_added}}</div>
-        <div>{{pre_order}}</div>
-        <div>{{release_date}}</div>
-        <div>{{add_to_cart_text}}</div>
-        <div>{{show_add_to_cart}}</div>
-        <div>{{summary}}</div>
-    </li>
-
+        <li class="product-card">
+            {{>components/products/card }}
+        </li>
     {{/each}}
 </ul>

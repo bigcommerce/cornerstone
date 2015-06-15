@@ -1,0 +1,137 @@
+// SLICK
+// -----------------------------------------------------------------------------
+//
+// Purpose: These are the styles for the base Slick carousel
+//
+// -----------------------------------------------------------------------------
+
+
+//
+// Next and Previous buttons for all carousels
+//
+// Purpose: Override the plugin to give some Stencil styling to the js generated mark-up
+//
+// 1. Set the background again because the plugin sets the full background property on hover
+// -----------------------------------------------------------------------------
+
+.slick-next,
+.slick-prev {
+    @include carouselOpaqueBackgrounds;
+    height: remCalc(61px);
+    padding: remCalc(10px);
+    width: remCalc(40px);
+
+    &::before {
+        background-position: 50%;
+        background-repeat: no-repeat;
+        background-size: 100%;
+        display: block;
+        height: remCalc(41px);
+        width: remCalc(20px);
+    }
+
+    &:hover {
+        @include carouselOpaqueBackgrounds; // 1
+        background-position: 50%;
+        background-repeat: no-repeat;
+        background-size: 100%;
+    }
+}
+
+.slick-next {
+    right: -10px;
+    @include breakpoint("large") {
+        right: -25px;
+    }
+
+    &::before {
+        background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iNDIiIHZpZXdCb3g9IjAgMCAyNCA0MiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMS40NTY3OSAxLjAwNzQ2MTQ3bDIxIDIwLjAyNDgyMTQzTDEuNTA4ODUgNDEuMDA3NDYxNSIgc3Ryb2tlPSIjMkQyRDJEIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIi8+PC9zdmc+');
+    }
+
+    &:hover {
+        &::before {
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iNDIiIHZpZXdCb3g9IjAgMCAyNCA0MiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMS40NTY3OSAxLjAwNzQ2MTQ3bDIxIDIwLjAyNDgyMTQzTDEuNTA4ODUgNDEuMDA3NDYxNSIgc3Ryb2tlPSIjOTg5ODk4IiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIi8+PC9zdmc+');
+        }
+    }
+}
+
+.slick-prev {
+    left: -10px;
+    @include breakpoint("large") {
+        left: -25px;
+    }
+
+    &::before {
+        background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iNDIiIHZpZXdCb3g9IjAgMCAyNCA0MiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMjIuNDU3MjA3NCAxLjAwNzQ2MTQ3bC0yMSAyMC4wMjQ4MjE0MyAyMC45NDc5Mzk3IDE5Ljk3NTE3ODYiIHN0cm9rZT0iIzJEMkQyRCIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPjwvc3ZnPg==');
+    }
+
+    &:hover {
+        &::before {
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iNDIiIHZpZXdCb3g9IjAgMCAyNCA0MiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMjIuNDU3MjA3NCAxLjAwNzQ2MTQ3bC0yMSAyMC4wMjQ4MjE0MyAyMC45NDc5Mzk3IDE5Ljk3NTE3ODYiIHN0cm9rZT0iIzk4OTg5OCIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPjwvc3ZnPg==');
+        }
+    }
+}
+
+
+//
+// Carousel dots
+//
+// Purpose: Stencil overrides for the js generated carousel dots
+//
+// 2. Nesting depth due to plugin css
+// -----------------------------------------------------------------------------
+
+.slick-dots {  // 2
+    margin: 0;
+
+    li {
+        @include square(32px);
+        margin: 0;
+        padding: remCalc(5px);
+
+        button,
+        button::before {
+            @include square(15px);
+            border-radius: 50%;
+        }
+
+        button {
+            border: 1px solid $slick-dot-color;
+            display: inline-block;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            text-align: center;
+            vertical-align: middle;
+
+            &:hover {
+                &::before {
+                    background: $slick-dot-color;
+                }
+            }
+        }
+
+        button::before {
+            display: block;
+            left: -1px;
+            top: -1px;
+            transition: background 100ms ease-out;
+        }
+
+        &.slick-active {
+            button::before {
+                background: $slick-dot-color-active;
+            }
+        }
+    }
+
+}
+
+
+//
+// disabled carousel elements
+// -----------------------------------------------------------------------------
+.slick-disabled {
+    cursor: $cursor-default-value;
+    opacity: 0.1;
+}

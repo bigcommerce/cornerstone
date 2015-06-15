@@ -1,16 +1,21 @@
 ---
 products:
     new:
-        limit: 3
+        limit: 8
     featured:
-        limit: 3
+        limit: 8
     top_sellers:
-        limit: 2
+        limit: 8
 carousel: true
 ---
+{{#partial "hero"}}
+    {{#if carousel}}
+        {{> components/carousel}}
+    {{/if}}
+{{/partial}}
+
 {{#partial "page"}}
 <div class="main full">
-    {{> components/carousel}}
     {{> components/products/featured products.featured}}
     {{> components/products/new products.new}}
     {{#if products.top_sellers}}

@@ -1,0 +1,112 @@
+// HERO CAROUSEL
+// -----------------------------------------------------------------------------
+//
+// Purpose: Styles the hero carousel component, which basically adds extras to the
+// vendor slick carousel, to specifically display hero images
+//
+// 1. Hide the actual image element to allow background-size: cover treatment on
+//    large screens to scale image. Use visibility because the JS uses the height
+//    to set the slide size
+// -----------------------------------------------------------------------------
+
+.heroCarousel {
+    margin-bottom: (spacing("double") + spacing("single"));
+    margin-top: -(spacing("single") + spacing("base"));
+
+    .slick-next,
+    .slick-prev {
+        top: 20%;
+
+        @include breakpoint("medium") {
+            top: 50%;
+        }
+    }
+
+    .slick-next {
+        right: 15px;
+        @include breakpoint("medium") {
+            right: 25px;
+        }
+    }
+
+    .slick-prev {
+        left: 15px;
+        @include breakpoint("medium") {
+            left: 25px;
+        }
+    }
+
+    .slick-dots {
+        bottom: spacing("third");
+
+        @include breakpoint("medium") {
+            bottom: spacing("single");
+        }
+
+        li {
+            @include carouselOpaqueBackgrounds;
+        }
+    }
+
+}
+
+.heroCarousel-slide {
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+.heroCarousel-image {
+    @include breakpoint("medium") { // 1
+        visibility: hidden;
+    }
+}
+
+.heroCarousel-content {
+    background-color: color("whites");
+    padding: spacing("half") spacing("single") (spacing("double"));
+    text-align: center;
+
+    @include breakpoint("medium") {
+        @include carouselOpaqueBackgrounds;
+        left: 0;
+        margin:0  auto;
+        padding: spacing("single") * 1.5;
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: remCalc(700px);
+    }
+}
+
+.heroCarousel-title {
+    font-size: fontSize("small");
+    margin-top: 0;
+
+    @include breakpoint("medium") {
+        font-size: fontSize("hero");
+    }
+}
+
+.heroCarousel-description {
+    color: color("greys", "darkest");
+    font-size: fontSize("tiny");
+
+    @include breakpoint("small") {
+        font-size: fontSize("smallest");
+    }
+
+    @include breakpoint("medium") {
+        font-size: fontSize("smaller");
+    }
+}
+
+.heroCarousel-action {
+    margin: 0;
+
+    @include breakpoint("medium") {
+        margin-top: spacing("single");
+    }
+}

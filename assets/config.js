@@ -28,6 +28,7 @@ System.config({
     "jquery": "github:components/jquery@2.1.4",
     "knockout": "github:knockout/knockout@3.3.0",
     "lodash": "npm:lodash@3.9.3",
+    "slick-carousel": "github:kenwheeler/slick@1.5.5",
     "url": "github:jspm/nodelibs-url@0.1.0",
     "github:bigcommerce/stencil-utils@0.1.3": {
       "asyncly/EventEmitter2": "github:asyncly/EventEmitter2@0.4.14",

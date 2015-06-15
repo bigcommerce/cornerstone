@@ -15,7 +15,7 @@
         <p class="alert alert-danger">{{this}}</p>
     {{/each}}
 
-    <form class="form-horizontal" method="post" action="{{forms.gift_certificate.action}}">
+    <form class="form gift-certificate-form" method="post" action="{{forms.gift_certificate.action}}">
         <div class="main-section">
             {{#if forms.gift_certificate.cart_item_id}}
             <input type="hidden" name="cartitemid" value="{{forms.gift_certificate.cart_item_id}}">
@@ -56,11 +56,27 @@
                 <textarea class="form-input" name="message" id="message" rows="3" >{{forms.gift_certificate.values.message}}</textarea>
             </div>
             <div class="form-field">
+
+                {{#if forms.gift_certificate.can_use_custom_amount }}
+
                 <label class="form-label" for="certificate_amount">
                     {{lang 'forms.gift_certificate.purchase.amount' }}
                     <small>{{lang 'common.required' }}</small>
                 </label>
-                <input type="text" class="form-input" name="certificate_amount" id="certificate_amount" value="{{forms.gift_certificate.values.amount}}">
+                <input type="text" data-min="forms.gift_certificate.minimum" data-max="forms.gift_certificate.maximum" class="form-input" name="certificate_amount" id="certificate_amount" value="{{forms.gift_certificate.values.amount}}">
+                <span class="form-inlineMessage">{{lang 'forms.gift_certificate.purchase.custom_range' min=forms.gift_certificate.minimum max=forms.gift_certificate.maximum}}</span>
+                {{else}}
+                    <label class="form-label" for="selected_amount">
+                        {{lang 'forms.gift_certificate.purchase.amount' }}
+                        <small>{{lang 'common.required' }}</small>
+                    </label>
+                    <select class="form-select" name="selected_amount" id="selected_amount">
+                        {{#each forms.gift_certificate.amount_options}}
+                        <option value="{{this.value}}">{{this.display}}</option>
+                        {{/each}}
+                    </select>
+                    <span class="form-inlineMessage">{{lang 'forms.gift_certificate.purchase.custom_range' min=forms.gift_certificate.minimum max=forms.gift_certificate.maximum}}</span>
+                {{/if}}
             </div>
             <div class="form-field">
                 {{#each forms.gift_certificate.themes}}
@@ -69,13 +85,20 @@
                 {{/each}}
             </div>
 
+            {{#if forms.gift_certificate.expires_in_days }}
+                <div class="form-field">
+                    <input type="checkbox" class="form-checkbox" name="agree" id="agree">
+                    <label class="form-label" for="agree">{{lang 'forms.gift_certificate.purchase.agree' days=forms.gift_certificate.expires_in_days}}</label>
+                </div>
+            {{/if}}
+
             <div class="form-field">
                 <input type="checkbox" class="form-checkbox" name="agree2" id="agree2">
-                <label class="form-label" for="agree2">{{lang 'forms.gift_certificate.purchase.agree' }}</label>
+                <label class="form-label" for="agree2">{{lang 'forms.gift_certificate.purchase.agree2' }}</label>
             </div>
         </div>
         <div class="form-field">
-                <input class="button" type="submit" value="{{lang 'forms.gift_certificate.purchase.submit_value' }}">
+                <input class="button button--primary" type="submit" value="{{lang 'forms.gift_certificate.purchase.submit_value' }}">
         </div>
     </form>
 </main>

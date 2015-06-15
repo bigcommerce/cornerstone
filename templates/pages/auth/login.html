@@ -2,8 +2,8 @@
 <div class="login">
     {{> components/common/breadcrumbs breadcrumbs}}
     <h1 class="page-heading">{{lang 'login.heading' }}</h1>
-    {{#if forms.login.message}}
-        <p class="bg-danger">{{forms.login.message}}</p>
+    {{#if forms.login.error}}
+        {{> components/common/alert-error forms.login.error}}
     {{/if}}
     <div class="login-row">
         <form class="login-form form" action="{{urls.auth.check_login}}" method="post">

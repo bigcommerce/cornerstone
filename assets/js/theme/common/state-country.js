@@ -38,13 +38,19 @@ export default function (stateElement) {
     $('select[data-label="Country"]').on('change', (event) => {
         let countryName = $(event.currentTarget).val();
 
-        utils.api.country.getByName(countryName, (err, statesArray) => {
+        if (countryName === '') {
+            return;
+        }
+
+        utils.api.country.getByName(countryName, (err, response) => {
             if (err) {
                 alert('There was an error');
             }
-            if (!_.isEmpty(statesArray)) {
+
+
+            if (!_.isEmpty(response.data.states)) {
                 let $selectElement = changeInputToSelect(stateElement);
-                addOptions(statesArray, $selectElement);
+                addOptions(response.data.states, $selectElement);
 
             } else {
                 $('[data-label="State/Province"]').replaceWith(stateElement.get(0));

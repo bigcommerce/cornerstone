@@ -61,6 +61,11 @@
 
     .product { // 1
 
+        @include breakpoint("small") {
+            @include grid-column(6);
+            float: none;
+        }
+
         @include breakpoint("medium") {
             @include grid-column(4);
             float: none;

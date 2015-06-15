@@ -21,7 +21,7 @@ export default function () {
         // open modal
         $modal.foundation('reveal', 'open');
 
-        utils.api.product.getById(productId, {template: 'products/quick'}, (err, response) => {
+        utils.api.product.getById(productId, {template: 'products/quick-view'}, (err, response) => {
             $modalOverlay.hide();
             $modalBody.html(response);
         });

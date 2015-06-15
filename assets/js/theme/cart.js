@@ -83,7 +83,7 @@ export default class Cart extends PageManager {
         $('.apply-promo-code').on('click', (event) => {
             let code = $('[name="promocode"]').val();
 
-            utils.api.cart.applyPromoCode(code, (err, response) => {
+            utils.api.cart.applyCode(code, (err, response) => {
                 console.log(response.data);
                 if (response.data.status === 'succeed') {
                     this.refreshContent();

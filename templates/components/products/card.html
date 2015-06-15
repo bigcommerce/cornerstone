@@ -1,6 +1,6 @@
 <article class="card">
     <figure class="card-figure">
-        {{{image}}}
+        <img class="card-image" src="{{product.image.url}}" alt="{{product.image.alt}}">
         <figcaption class="card-figcaption">
             <div class="card-figcaption-body">
                 <a href="#" class="button button--small card-figcaption-button">Quick view</a>
@@ -23,7 +23,7 @@
     </figure>
     <div class="card-body">
         <p class="card-text">{{> components/products/ratings rating=product.rating}}</p>
-        <p class="card-text">Product brand</p>
+        <p class="card-text">{{product.brand.name}}</p>
         <h4 class="card-title">
             <a href="{{url}}">{{name}}</a>
         </h4>

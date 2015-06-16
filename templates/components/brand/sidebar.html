@@ -1,3 +1,16 @@
 {{#if brand.faceted_search_enabled}}
     {{> components/faceted-search/index brand}}
+{{else}}
+    {{#if brands.brands}}
+    <div class="sidebarBlock">
+        <h5 class="sidebarBlock-heading">Brands</h5>
+        <ul class="navList">
+            {{#each brands.brands}}
+            <li class="navList-item">
+                <a class="navList-action" href="{{url}}" alt="{{name}}">{{name}}</a>
+            </li>
+            {{/each}}
+        </ul>
+    </div>
+    {{/if}}
 {{/if}}

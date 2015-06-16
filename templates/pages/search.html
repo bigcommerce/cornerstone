@@ -1,15 +1,34 @@
 {{#partial "page"}}
-<h1>Search Page</h1>
-<div class="container">
-    <aside class="aside" id="faceted-search-container">
+
+<section class="page">
+    <div class="page-content page-content--centered">
+        <h1 class="page-heading">{{product_results.pagination.count}} results for &lsquo;{{forms.search.query}}&rsquo;</h1>
+
+        <form class="form">
+            <fieldset class="form-fieldset">
+                <div class="form-field">
+                    <label class="form-label u-hiddenVisually" for="search_query_adv">Search Keyword:</label>
+                    <div class="form-prefixPostfix">
+                        <input class="form-input" id="search_query_adv" name="search_query_adv" value="{{forms.search.query}}">
+                        <input class="button button--primary form-prefixPostfix-button--postfix" type="submit">
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</section>
+
+<section class="page">
+    <aside class="page-sidebar" id="faceted-search-container">
         {{#if product_results.faceted_search_enabled}}
         {{> components/faceted-search/index product_results}}
         {{/if}}
     </aside>
-    <div class="main" id="product-listing-container">
+
+    <main class="page-content" id="product-listing-container">
         {{> components/search/product-listing}}
-    </div>
-</div>
+    </main>
+</section>
 
 {{/partial}}
 {{> layout/base}}

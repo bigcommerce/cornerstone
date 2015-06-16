@@ -4,26 +4,22 @@ import ko from 'knockout';
 import utils from 'bigcommerce/stencil-utils';
 
 export default function () {
-    let quickSearchViewModel = {
-            results: ko.observable('')
-        },
-        options = {
-            template: 'search/quick-results'
-        };
-
-    ko.applyBindings(quickSearchViewModel, $('.quickSearchResults').get(0));
+    let $quickSearchResults = $('.quickSearchResults');
 
     //stagger searching for 400ms after last input
     let doSearch = _.debounce((searchQuery) => {
-        utils.api.search.search(searchQuery, options, (err, response) => {
-            quickSearchViewModel.results(response.content);
+        utils.api.search.search(searchQuery, {template: 'search/quick-results'}, (err, response) => {
+            $quickSearchResults.html(response);
         });
     }, 400);
 
     utils.hooks.on('search-quick', (event) => {
         let searchQuery = $(event.currentTarget).val();
 
-        if (searchQuery.length < 3) return; // server will only perform search with at least 3 characters
+        // server will only perform search with at least 3 characters
+        if (searchQuery.length < 3) {
+            return;
+        }
 
         doSearch(searchQuery);
     });

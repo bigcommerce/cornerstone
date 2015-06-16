@@ -1,0 +1,81 @@
+// =============================================================================
+// PRODUCT LIST (CSS)
+// =============================================================================
+
+
+// Product list container
+// -----------------------------------------------------------------------------
+
+.productList {
+    @include u-listBullets("none");
+}
+
+
+// Product list container
+// -----------------------------------------------------------------------------
+
+.list {
+    display: table; // 1
+}
+
+.list-figure,
+.list-body {
+
+    @include breakpoint("small") {
+        display: table-cell;
+        vertical-align: top;
+    }
+
+    @include breakpoint("large") {
+        vertical-align: middle;
+    }
+}
+
+.list-figure {
+    @include grid-column($columns: 3, $float: none, $collapse: true);
+    margin: 0;
+}
+
+.list-image {
+    width: 100%;
+}
+
+.list-content {
+
+    @include breakpoint("large") {
+        display: table;
+    }
+}
+
+.list-details,
+.list-actions {
+
+    @include breakpoint("large") {
+        display: table-cell;
+        vertical-align: top;
+    }
+}
+
+.list-title {
+    margin-top: 0;
+}
+
+.list-details {
+
+    @include breakpoint("small") {
+        padding-left: spacing("single");
+    }
+}
+
+.list-actions {
+    @include breakpoint("large") {
+        @include grid-column($columns: 4, $float: none, $collapse: true);
+        padding-left: spacing("double");
+        vertical-align: middle;
+    }
+
+    .button {
+        margin-bottom: 0;
+        width: 100%;
+    }
+}

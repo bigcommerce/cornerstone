@@ -1,7 +1,18 @@
-<ul class="product-list">
-    {{#each this}}
-    <li class="product-card">
-        {{>components/products/card }}
-    </li>
-    {{/each}}
-</ul>
+<article class="list">
+    <figure class="list-figure">
+        <img class="list-image" src="{{image.url}}" alt="{{image.alt}}">
+    </figure>
+    <div class="list-body">
+        <div class="list-content">
+            <div class="list-details">
+                <h4 class="list-title">
+                    <a href="{{url}}">{{name}}</a>
+                </h4>
+                <p>Locavore aesthetic meggings, Carles scenester church-key crucifix Echo Park kale chips sustainable swag pour-over salvia fap. Viral letterpress umami church-key post-ironic. Four dollar toast McSweeney's swag pop-up pork belly biodiesel food truck DIY letterpress twee heirloom sartorial.</p>
+            </div>
+            <div class="list-actions">
+                <a href="#" class="button button--small">Compare</a>
+            </div>
+        </div>
+    </div>
+</article>

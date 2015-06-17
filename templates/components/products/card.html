@@ -23,7 +23,9 @@
     </figure>
     <div class="card-body">
         <p class="card-text">{{> components/products/ratings rating=product.rating}}</p>
-        <p class="card-text">{{product.brand.name}}</p>
+        {{#if brand.name}}
+        <p class="card-text">{{brand.name}}</p>
+        {{/if}}
         <h4 class="card-title">
             <a href="{{url}}">{{name}}</a>
         </h4>

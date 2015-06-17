@@ -1,10 +1,10 @@
 {{> components/common/paginator pagination.brand}}
+
 {{> components/category/sort-box brand}}
-<ul class="product-list">
-    {{#each brand.products}}
-    <li class="product-card">
-        {{> components/products/card}}
-    </li>
-    {{/each}}
-</ul>
+
+<form action="/compare" method='POST'>
+    {{> components/products/grid brand.products}}
+    <input type="submit" value="Compare Products" class="button button--primary">
+</form>
+
 {{> components/common/paginator pagination.brand}}

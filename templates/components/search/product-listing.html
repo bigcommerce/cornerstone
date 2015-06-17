@@ -1,21 +1,6 @@
-<h3>Advanced Search</h3>
-<form>
-    <label>Search Keyword:<input name="search_query_adv" value="{{forms.search.query}}"></label>
-    <label>Brand Name:
-        <select name="brand">
-            <option>No Preference</option>
-            {{#each forms.search.brands_list}}
-            <option value="{{id}}">{{name}}</option>
-            {{/each}}
-        </select>
-    </label>
-    <input type="submit">
+{{> components/category/sort-box product_results}}
+
+<form action="/compare" method='POST'>
+    {{> components/products/grid product_results.products}}
+    <input type="submit" value="Compare Products" class="button button--primary">
 </form>
-<h3>Search Results</h3>
-<ul class="product-list">
-    {{#each product_results.products }}
-    <li class="product-card">
-        {{> components/products/card}}
-    </li>
-    {{/each}}
-</ul>

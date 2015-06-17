@@ -1,14 +1,7 @@
 {{> components/category/sort-box}}
 
 <form action="/compare" method='POST'>
-    <ul class="productCategory productCategory--grid">
-        {{#each category.products}}
-        <li class="product">
-            {{> components/products/card}}
-        </li>
-        {{/each}}
-    </ul>
-
+    {{> components/products/grid category.products}}
     <input type="submit" value="Compare Products" class="btn btn-primary">
 </form>
 

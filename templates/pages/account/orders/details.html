@@ -75,6 +75,43 @@
                     </li>
                 </ul>
             </section>
+            {{#if shipments}}
+                <section class="account-section order-shipments">
+                    <h3 class="account-heading">{{lang 'account.orders.details.shipments.header' }}</h3>
+                    <table class="table">
+                        <thead class="table-thead">
+                            <tr>
+                                <th>{{lang 'account.orders.details.shipments.date'}}</th>
+                                <th>{{lang 'account.orders.details.shipments.method'}}</th>
+                                <th>{{lang 'account.orders.details.shipments.link'}}</th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-tbody">
+                            {{#each shipments}}
+                                <tr>
+                                    <td>{{date_shipped}}</td>
+                                    <td>{{shipping_provider}}</td>
+                                    <td>
+                                        {{#if shipping_track.link}}
+                                            <a href="{{shipping_track.link}}">
+                                        {{/if}}
+
+                                        {{#if show_shipping_method}}
+                                            {{shipping_track.number}} &mdash; {{shipping_method}}
+                                        {{else}}
+                                            {{shipping_track.number}}
+                                        {{/if}}
+
+                                        {{#if shipping_track.link}}
+                                            </a>
+                                        {{/if}}
+                                    </td>
+                                </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </section>
+            {{/if}}
             <section class="account-section order-details">
                 <h3 class="account-heading">{{lang 'account.orders.details.contact_us' }}</h3>
                 <p class="order-details-contact">{{lang 'account.orders.details.contact_text' }}</p>

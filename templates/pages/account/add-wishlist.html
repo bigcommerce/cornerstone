@@ -1,35 +1,9 @@
 {{#partial "page"}}
-<div class="account">
-    {{> components/common/breadcrumbs breadcrumbs}}
-    <h2 class="page-heading">{{lang 'account.wishlists.heading' }}</h2>
-    {{> components/account/navigation account_page='wishlists'}}
-
-    {{#if forms.wishlist.id}}
-        <h1>{{lang 'account.wishlists.edit' }}</h1>
-    {{else}}
-        <h1>{{lang 'account.wishlists.add' }}</h1>
-    {{/if}}
-    {{#if forms.wishlist.errors}}
-    <div class="alert alert-danger" role="alert">{{{forms.wishlist.errors}}}</div>
-    {{/if}}
-    <form action="{{forms.wishlist.action}}" class="form wishlist-form" method="post">
-        <input type="hidden" name="submit">
-        <div class="form-field">
-            <label class="form-label" for="wishlistname">
-                {{lang 'forms.wishlist.name'}}
-                <small>{{lang 'common.required' }}</small>
-            </label>
-            <input class="form-input" name="wishlistname" id="wishlistname">
-        </div>
-        <div class="form-field">
-            <label class="form-label" for="publicwishlist">{{lang 'forms.wishlist.public' }}</label>
-            <input type="checkbox" name="publicwishlist" id="publicwishlist" {{#if forms.wishlist.is_public}}checked{{/if}}>
-        </div>
-        <div class="form-field">
-            <input type="submit">
-        </div>
-
-    </form>
-</div>
+    <div class="account">
+        {{> components/common/breadcrumbs breadcrumbs}}
+        <h2 class="page-heading">{{lang 'account.wishlists.heading' }}</h2>
+        {{> components/account/navigation account_page='wishlists'}}
+        {{> components/account/add-wishlist wishlist=forms.wishlist}}
+    </div>
 {{/partial}}
 {{> layout/base}}

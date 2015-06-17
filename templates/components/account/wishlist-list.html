@@ -8,25 +8,41 @@
     </tr>
     </thead>
     <tbody class="table-tbody">
-        {{#each customer.wishlists }}
-            <tr>
-                <td><a href="{{view_url}}">{{name}}</a></td>
-                <td>{{num_items}}</td>
-                <td>
-                    {{#if is_public }}
-                        {{lang 'common.yes' }}
-                    {{else}}
-                        {{lang 'common.no' }}
-                    {{/if}}
-                </td>
-                <td>
-                    <a href="{{edit_url}}">{{lang 'common.edit' }}</a>
-                    <form method="post" action="{{delete_url}}">
-                        <input type="submit" value="{{lang 'common.delete' }}">
-                    </form>
-                    <a href="{{share_url}}">{{lang 'common.share' }}</a>
-                </td>
-            </tr>
-        {{/each}}
+    {{#each customer.wishlists }}
+        <tr>
+            <td><a href="{{view_url}}">{{name}}</a></td>
+            <td>{{num_items}}</td>
+            <td>
+                {{#if is_public }}
+                    {{lang 'common.yes' }}
+                {{else}}
+                    {{lang 'common.no' }}
+                {{/if}}
+            </td>
+            <td>
+                <form method="post" action="{{delete_url}}" class="form table-actions">
+                    <fieldset class="form-fieldset">
+                        <a href="{{edit_url}}" class="button button--small">{{lang 'common.edit' }}</a>
+                        <input type="submit" value="{{lang 'common.delete' }}" class="button button--small">
+                        <a href="{{share_url}}" class="button button--primary button--small"
+                           role="button">{{lang 'common.share' }}</a>
+                    </fieldset>
+                </form>
+            </td>
+        </tr>
+    {{/each}}
     </tbody>
 </table>
+
+<form method="post" action="{{this.urls.wishlists.delete}}" class="form-actions">
+    <a href="{{this.urls.wishlists.add}}" class="button button--primary button--small" role="button"
+       id="wishlist-create">{{lang 'account.wishlists.new'}}</a>
+    {{#each customer.wishlists}}
+        <input type="hidden" value="{{this.id}}" name="deletewishlist[]"/>
+    {{/each}}
+    <input type="submit" value="Delete All" id="wishlist-delete" class="button button--small"/>
+</form>
+
+<div id="wishlist-modal" style="display: none">
+    {{> components/account/add-wishlist wishlist=customer.wishlists}}
+</div>

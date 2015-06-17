@@ -6,7 +6,7 @@ import utils from 'bigcommerce/stencil-utils';
 
 export default function () {
     let $modal = $('#modal'),
-        $modalBody = $('.modal-body', $modal),
+        $modalContent = $('.modal-content', $modal),
         $modalOverlay = $('.loadingOverlay', $modal);
 
     $('.quickview').on('click', (event) => {
@@ -15,7 +15,7 @@ export default function () {
         event.preventDefault();
 
         // clear the modal
-        $modalBody.html('');
+        $modalContent.html('');
         $modalOverlay.show();
 
         // open modal
@@ -23,7 +23,7 @@ export default function () {
 
         utils.api.product.getById(productId, {template: 'products/quick-view'}, (err, response) => {
             $modalOverlay.hide();
-            $modalBody.html(response);
+            $modalContent.html(response);
         });
     });
 }

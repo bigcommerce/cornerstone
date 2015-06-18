@@ -4,7 +4,7 @@
     {{#if forms.create_account.error}}
         {{> components/common/alert-error forms.create_account.error}}
     {{/if}}
-    <form action="{{urls.auth.save_new_account}}" method="post" class="form create-account-form">
+    <form action="{{urls.auth.save_new_account}}" id="create-account-form" method="post" class="form create-account-form">
         <fieldset class="form-fieldset">
             {{#each forms.create_account.account_fields }}
                 <div class="create-account-field">

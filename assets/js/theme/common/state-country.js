@@ -6,16 +6,42 @@ import _ from 'lodash';
  * If there are no options from bcapp, a text field will be sent. This will create a select element to hold options after the remote request.
  * @returns {jQuery|HTMLElement}
  */
-function changeInputToSelect(stateElement) {
-    let attrs;
+function makeStateRequired(stateElement) {
+    let attrs,
+        $newElement;
 
     attrs = _.transform(stateElement.prop('attributes'), (result, item) => {
         result[item.name] = item.value;
         return result;
     });
 
-    stateElement.replaceWith(`<select id="${attrs.id}" data-label="${attrs['data-label']}" class="${attrs.class}" name="${attrs.name}"></select>`);
-    return $('[data-label="State/Province"]');
+    stateElement.replaceWith(`<select id="${attrs.id}" data-label="${attrs['data-label']}" class="form-select" name="${attrs.name}"></select>`);
+
+    $newElement = $('[data-label="State/Province"]');
+    $newElement.prev().find('small').show();
+
+    return $newElement;
+}
+
+/**
+ * If a country with states is the default, a select will be sent,
+ * In this case we need to be able to switch to an input field and hide the required field
+ */
+function makeStateOptional(stateElement) {
+    let attrs,
+        $newElement;
+
+    attrs = _.transform(stateElement.prop('attributes'), (result, item) => {
+        result[item.name] = item.value;
+        return result;
+    });
+
+    stateElement.replaceWith(`<input type="text" id="${attrs.id}" data-label="${attrs['data-label']}" class="form-input" name="${attrs.name}">`);
+
+    $newElement = $('[data-label="State/Province"]');
+    $newElement.prev().find('small').hide();
+
+    return $newElement;
 }
 
 /**
@@ -43,17 +69,22 @@ export default function (stateElement) {
         }
 
         utils.api.country.getByName(countryName, (err, response) => {
+            let $currentInput;
             if (err) {
                 alert('There was an error');
             }
 
+            $currentInput = $('[data-label="State/Province"]');
+
 
             if (!_.isEmpty(response.data.states)) {
-                let $selectElement = changeInputToSelect(stateElement);
+                // The element may have been replaced with a select, reselect it
+                let $selectElement = makeStateRequired($currentInput);
+
                 addOptions(response.data.states, $selectElement);
 
             } else {
-                $('[data-label="State/Province"]').replaceWith(stateElement.get(0));
+                makeStateOptional($currentInput);
             }
         })
     });

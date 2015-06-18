@@ -2,7 +2,7 @@ import PageManager from '../page-manager';
 import stateCountry from './common/state-country';
 import $ from 'jquery';
 import nod from 'casperin/nod';
-import { forms } from 'bigcommerce/stencil-utils';
+import validation from './common/form-validation';
 
 export default class Auth extends PageManager {
     constructor() {
@@ -47,102 +47,17 @@ export default class Auth extends PageManager {
     }
 
     registerCreateAccountValidation($createAccountForm) {
-        let registerModel = forms.create_account;
+        let validationModel = validation($createAccountForm),
+            createAccountValidator = nod({
+                submit: '#create-account-form input[type="submit"]'
+            });
 
-        this.registerValidator = nod({
-            submit: '.create-account-form input[type="submit"]'
-        });
-
-        this.registerValidator.add([
-            {
-                selector: '.create-account-form input[data-label="Email Address"]',
-                validate: (cb, val) => {
-                    let result = registerModel.email(val);
-                    cb(result);
-                },
-                errorMessage: "You must enter a valid email address"
-            },
-            {
-                selector: '.create-account-form input[data-label="Password"]',
-                validate: (cb, val) => {
-                    let result = registerModel.password(val);
-                    cb(result);
-                },
-                errorMessage: "Your password must be at least 7 characters with letters AND numbers"
-            },
-            {
-                selector: '.create-account-form input[data-label="Confirm Password"]',
-                triggeredBy: '.create-account-form input[data-label="Password"]',
-                validate: (cb, val) => {
-                    let password1 = $('.create-account-form input[data-label="Password"]').val();
-                    let result = registerModel.passwordMatch(val, password1)
-                        && registerModel.password(val);
-                    cb(result);
-                },
-                errorMessage: "Your passwords do not match"
-            },
-            {
-                selector: '.create-account-form input[data-label="First Name"]',
-                validate: (cb, val) => {
-                    let result = registerModel.firstName(val);
-                    cb(result);
-                },
-                errorMessage: "You must enter a First Name"
-            },
-            {
-                selector: '.create-account-form input[data-label="Last Name"]',
-                validate: (cb, val) => {
-                    let result = registerModel.lastName(val);
-                    cb(result);
-                },
-                errorMessage: "You must enter a Last Name"
-            },
-            {
-                selector: '.create-account-form input[data-label="Phone Number"]',
-                validate: (cb, val) => {
-                    let result = registerModel.phone(val);
-                    cb(result);
-                },
-                errorMessage: "You must enter a Phone Number"
-            },
-            {
-                selector: '.create-account-form input[data-label="Address Line 1"]',
-                validate: (cb, val) => {
-                    let result = registerModel.address1(val);
-                    cb(result);
-                },
-                errorMessage: "You must enter an address"
-            },
-            {
-                selector: '.create-account-form input[data-label="Suburb/City"]',
-                validate: (cb, val) => {
-                    let result = registerModel.city(val);
-                    cb(result);
-                },
-                errorMessage: "You must enter a Suburb or City"
-            },
-            {
-                selector: '.create-account-form select[data-label="Country"]',
-                validate: (cb, val) => {
-                    let result = registerModel.country(val);
-                    cb(result);
-                },
-                errorMessage: "You must enter a Country"
-            },
-            {
-                selector: '.create-account-form input[data-label="Zip/Postcode]',
-                validate: (cb, val) => {
-                    let result = registerModel.postcode(val);
-                    cb(result);
-                },
-                errorMessage: "You must enter a Zip or Postcode"
-            }
-        ]);
+        createAccountValidator.add(validationModel);
 
         $createAccountForm.submit((event) => {
-            this.registerValidator.performCheck();
+            createAccountValidator.performCheck();
 
-            if (this.registerValidator.areAll('valid')) {
+            if (createAccountValidator.areAll('valid')) {
                 return;
             }
 

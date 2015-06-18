@@ -1,4 +1,4 @@
-<div class="form-field">
+<div class="form-field" id="{{id}}" data-validation="{{validation}}">
     <label class="form-label" for="{{id}}">{{label}}
         {{#if required}}
             <small>{{lang 'common.required' }}</small>
@@ -6,10 +6,8 @@
     </label>
     {{#if checkboxes}}
         {{#each checkboxes}}
-        <li>
-            <input type="checkbox" value="{{value}}" name="{{name}}" id="{{id}}" data-label="{{label}}" class="{{class}} form-checkbox" {{#if style}}style="{{style}}" {{/if}}>
-            <label class="{{class}} form-label" for="{{label}}">{{label}}</label>
-        </li>
+            <input type="checkbox" value="{{value}}" name="{{name}}" id="{{name}}" data-label="{{label}}" class="{{class}} form-checkbox" {{#if style}}style="{{style}}" {{/if}} {{#if checked}}checked{{/if}}>
+            <label class="form-label {{class}}" for="{{name}}">{{label}}</label>
         {{/each}}
     {{/if}}
 </div>

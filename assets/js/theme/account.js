@@ -1,6 +1,7 @@
 import PageManager from '../page-manager';
 import nod from 'casperin/nod';
-import { forms } from 'bigcommerce/stencil-utils';
+import validation from './common/form-validation';
+import stateCountry from './common/state-country';
 
 export default class Account extends PageManager {
     constructor() {
@@ -8,7 +9,13 @@ export default class Account extends PageManager {
     }
 
     loaded(next) {
-        let $editAccountForm = $('.edit-account-form');
+        let $stateElement = $('[data-label="State/Province"]'),
+            $editAccountForm = $('#edit-account-form'),
+            $addressForm = $('#address-form');
+
+        if ($stateElement){
+            stateCountry($stateElement);
+        }
 
         nod.classes.errorClass = 'form-field--error';
         nod.classes.successClass = 'form-field--success';
@@ -18,7 +25,30 @@ export default class Account extends PageManager {
             this.registerEditAccountValidation($editAccountForm);
         }
 
+        if ($addressForm.length) {
+            this.registerAddressValidation($addressForm);
+        }
+
         next();
+    }
+
+    registerAddressValidation($addressForm) {
+        let validationModel = validation($addressForm),
+            addressValidator = nod({
+                submit: '#address-form input[type="submit"]'
+            });
+
+        addressValidator.add(validationModel);
+
+        $addressForm.submit((event) => {
+            addressValidator.performCheck();
+
+            if (addressValidator.areAll('valid')) {
+                return;
+            }
+
+            event.preventDefault();
+        });
     }
 
     registerEditAccountValidation($editAccountForm) {

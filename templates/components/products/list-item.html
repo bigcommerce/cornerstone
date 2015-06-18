@@ -1,0 +1,33 @@
+<article class="listItem">
+    <figure class="listItem-figure">
+        <img class="listItem-image" src="{{image.url}}" alt="{{image.alt}}">
+    </figure>
+    <div class="listItem-body">
+        <div class="listItem-content">
+            <div class="listItem-details">
+                <p class="listItem-rating">{{> components/products/ratings rating=rating}}</p>
+                {{#if brand.name}}
+                <h5 class="listItem-brand">{{brand.name}}</h5>
+                {{/if}}
+                <h4 class="listItem-title">
+                    <a href="{{url}}">{{name}}</a>
+                </h4>
+                <p>Locavore aesthetic meggings, Carles scenester church-key crucifix Echo Park kale chips sustainable swag pour-over salvia fap. Viral letterpress umami church-key post-ironic. Four dollar toast McSweeney's swag pop-up pork belly biodiesel food truck DIY letterpress twee heirloom sartorial.</p>
+            </div>
+            <div class="listItem-actions">
+                {{#unless hide_add_to_cart}}
+                    {{#if has_options}}
+                        <a href="{{url}}" class="button button--primary" data-product-id="{{id}}">{{lang "products.choose_options"}}</a>
+                    {{else}}
+                        {{#if out_of_stock_message }}
+                        <span href="{{url}}" class="button button--primary">{{out_of_stock_message}}</span>
+                        {{else}}
+                        <a href="{{add_to_cart_url}}" class="button button--primary">{{lang "products.add_to_cart"}}</a>
+                        {{/if}}
+                    {{/if}}
+                {{/unless}}
+                <a href="#" class="button button--compare">Compare</a>
+            </div>
+        </div>
+    </div>
+</article>

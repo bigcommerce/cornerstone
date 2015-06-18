@@ -3,7 +3,7 @@
 // =============================================================================
 
 
-// Product list container
+// Product list
 // -----------------------------------------------------------------------------
 
 .productList {
@@ -18,10 +18,10 @@
 }
 
 
-// Product list container
+// Product list item
 // -----------------------------------------------------------------------------
 
-.list {
+.listItem {
 
     @include breakpoint("small") {
         display: table;
@@ -29,8 +29,8 @@
     }
 }
 
-.list-figure,
-.list-body {
+.listItem-figure,
+.listItem-body {
 
     @include breakpoint("small") {
         display: table-cell;
@@ -43,10 +43,10 @@
 }
 
 
-// Product list image
+// List figure
 // -----------------------------------------------------------------------------
 
-.list-figure {
+.listItem-figure {
     margin: 0 0 spacing("single");
 
     @include breakpoint("small") {
@@ -60,11 +60,11 @@
     }
 }
 
-.list-image {
+.listItem-image {
     width: 100%;
 }
 
-.list-body {
+.listItem-body {
 
     @include breakpoint("small") {
         padding-left: spacing("single");
@@ -77,15 +77,15 @@
 // List content
 // -----------------------------------------------------------------------------
 
-.list-content {
+.listItem-content {
 
     @include breakpoint("large") {
         display: table;
     }
 }
 
-.list-details,
-.list-actions {
+.listItem-details,
+.listItem-actions {
 
     @include breakpoint("large") {
         display: table-cell;
@@ -97,7 +97,7 @@
 // List details
 // -----------------------------------------------------------------------------
 
-.list-details {
+.listItem-details {
 
     @include breakpoint("large") {
         padding-right: spacing("double") * 2;
@@ -108,17 +108,17 @@
     }
 }
 
-.list-rating {
+.listItem-rating {
     margin-bottom: spacing("half");
 }
 
-.list-brand {
+.listItem-brand {
     color: color("greys", "light");
     margin: 0 0 spacing("eighth");
     text-transform: inherit;
 }
 
-.list-title {
+.listItem-title {
     margin-top: 0;
 
     > a {
@@ -130,7 +130,7 @@
 // List actions
 // -----------------------------------------------------------------------------
 
-.list-actions {
+.listItem-actions {
 
     @include breakpoint("large") {
         width: 22%;
@@ -162,14 +162,14 @@
 
     .productList {
 
-        .list-details {
+        .listItem-details {
 
             @include breakpoint("large") {
                 padding-right: spacing("double");
             }
         }
 
-        .list-actions {
+        .listItem-actions {
 
             @include breakpoint("large") {
                 width: 30%;

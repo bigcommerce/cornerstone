@@ -109,20 +109,37 @@
 }
 
 .listItem-rating {
-    margin-bottom: spacing("half");
+    margin-bottom: spacing("quarter");
 }
 
 .listItem-brand {
     color: color("greys", "light");
+    font-size: fontSize("base");
     margin: 0 0 spacing("eighth");
-    text-transform: inherit;
+
+    @include breakpoint("medium") {
+        font-size: fontSize("smaller");
+    }
 }
 
 .listItem-title {
-    margin-top: 0;
+    font-size: fontSize("smaller");
+    margin: 0 0 spacing("eighth");
+
+    @include breakpoint("medium") {
+        font-size: fontSize("small");
+    }
 
     > a {
         text-decoration: none;
+    }
+}
+
+.listItem-price {
+    margin-bottom: spacing("base");
+
+    @include breakpoint("medium") {
+        font-size: fontSize("small");
     }
 }
 

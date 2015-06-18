@@ -85,7 +85,7 @@ export default class Account extends PageManager {
                     if (password1 === '') {
                         result = true;
                     }
-                    
+
                     cb(result);
                 },
                 errorMessage: "Your passwords do not match"

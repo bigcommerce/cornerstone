@@ -98,9 +98,19 @@ export default class Product extends PageManager {
 
             let quantity = this.$productView.find('#product-quantity [name=qty\\[\\]]').val(),
                 $optionsContainer = this.$productView.find('#product-options'),
-                options;
+                options,
+                $modal = $('#modal'),
+                $modalContent = $('.modal-content', $modal),
+                $modalOverlay = $('.loadingOverlay', $modal);
 
             options = this.getOptionValues($optionsContainer);
+            
+            // clear the modal
+            $modalContent.html('');
+            $modalOverlay.show();
+
+            // open modal
+            $modal.foundation('reveal', 'open');
 
             // add item to cart
             utils.api.cart.itemAdd(this.productId, quantity, options, (err, response) => {
@@ -116,7 +126,8 @@ export default class Product extends PageManager {
 
                 // fetch cart to display in cart preview
                 utils.api.cart.getContent(options, (err, response) => {
-                    $('[data-cart-preview]').html(response.content);
+                    $modalOverlay.hide();
+                    $modalContent.html(response.content);
                 });
             });
         });

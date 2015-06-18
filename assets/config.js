@@ -19,10 +19,9 @@ System.config({
     "babel": "npm:babel@4.7.16",
     "babel-runtime": "npm:babel-runtime@4.7.16",
     "bigcommerce/citadel": "github:bigcommerce/citadel@2.4.0",
-    "bigcommerce/stencil-utils": "github:bigcommerce/stencil-utils@0.1.5",
+    "bigcommerce/stencil-utils": "github:bigcommerce/stencil-utils@0.1.6",
     "browserstate/history.js": "github:browserstate/history.js@1.8.0",
     "caolan/async": "github:caolan/async@0.9.2",
-    "casperin/nod": "github:casperin/nod@2.0.4",
     "core-js": "npm:core-js@0.8.4",
     "foundation": "github:zurb/bower-foundation@5.5.2",
     "jquery": "github:components/jquery@2.1.4",
@@ -30,7 +29,7 @@ System.config({
     "lodash": "npm:lodash@3.9.3",
     "slick-carousel": "github:kenwheeler/slick@1.5.5",
     "url": "github:jspm/nodelibs-url@0.1.0",
-    "github:bigcommerce/stencil-utils@0.1.5": {
+    "github:bigcommerce/stencil-utils@0.1.6": {
       "asyncly/EventEmitter2": "github:asyncly/EventEmitter2@0.4.14",
       "jquery": "github:components/jquery@2.1.4",
       "lodash": "npm:lodash@3.9.3"

@@ -54,3 +54,35 @@
         text-align: left;
     }
 }
+
+
+//
+// Alternate card
+//
+// Purpose: Used to give the card alternative styling
+// -----------------------------------------------------------------------------
+
+.card--alternate {
+    border: 3px solid color("whites", "bright");
+
+    .card-body {
+        background-color: color("whites", "bright");
+        padding: spacing("half");
+
+        @include breakpoint("small") {
+            padding: spacing("single");
+        }
+    }
+
+    &:hover {
+        border-color: color("greys", "darker");
+
+        .card-body {
+            background-color: color("greys", "darker");
+        }
+
+        .card-title > a {
+            color: color("whites", "bright");
+        }
+    }
+}

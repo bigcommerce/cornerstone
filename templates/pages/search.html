@@ -2,15 +2,17 @@
 
 <section class="page">
     <div class="page-content page-content--centered">
-        <h1 class="page-heading">{{product_results.pagination.count}} results for &lsquo;{{forms.search.query}}&rsquo;</h1>
+        <h1 class="page-heading">
+            {{lang 'search.results.count' num_products=product_results.pagination.count search_query=forms.search.query}}
+        </h1>
 
         <form class="form">
             <fieldset class="form-fieldset">
                 <div class="form-field">
-                    <label class="form-label u-hiddenVisually" for="search_query_adv">Search Keyword:</label>
+                    <label class="form-label u-hiddenVisually" for="search_query_adv">{{lang 'search.results.form_label'}}</label>
                     <div class="form-prefixPostfix">
                         <input class="form-input" id="search_query_adv" name="search_query_adv" value="{{forms.search.query}}">
-                        <input class="button button--primary form-prefixPostfix-button--postfix" type="submit">
+                        <input class="button button--primary form-prefixPostfix-button--postfix" type="submit" value="{{lang 'search.results.form_button_text'}}">
                     </div>
                 </div>
             </fieldset>

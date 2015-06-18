@@ -8,10 +8,13 @@ export default function () {
         $cartDropdown = $('#cart-preview-dropdown');
 
     $cart.on('click', (event) => {
+        let options = {
+            template: 'common/cart-preview'
+        };
 
         event.preventDefault();
 
-        utils.api.cart.getContent('common/cart-preview', (err, response) => {
+        utils.api.cart.getContent(options, (err, response) => {
             $cartDropdown.html(response.content);
         });
     });

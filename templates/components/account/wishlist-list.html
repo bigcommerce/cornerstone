@@ -1,31 +1,31 @@
 <table class="table wishlists-table">
     <thead class="table-thead">
     <tr>
-        <td class="wishlists-table-heading">{{lang 'account.wishlists.name' }}</td>
-        <td class="wishlists-table-heading">{{lang 'account.wishlists.num_items' }}</td>
-        <td class="wishlists-table-heading">{{lang 'account.wishlists.shared' }}</td>
-        <td class="wishlists-table-heading">{{lang 'account.wishlists.action' }}</td>
+        <td class="wishlists-table-heading">{{lang 'account.wishlists.name'}}</td>
+        <td class="wishlists-table-heading">{{lang 'account.wishlists.num_items'}}</td>
+        <td class="wishlists-table-heading">{{lang 'account.wishlists.shared'}}</td>
+        <td class="wishlists-table-heading">{{lang 'account.wishlists.action'}}</td>
     </tr>
     </thead>
     <tbody class="table-tbody">
-    {{#each customer.wishlists }}
+    {{#each customer.wishlists}}
         <tr>
             <td><a href="{{view_url}}">{{name}}</a></td>
             <td>{{num_items}}</td>
             <td>
                 {{#if is_public }}
-                    {{lang 'common.yes' }}
+                    {{lang 'common.yes'}}
                 {{else}}
-                    {{lang 'common.no' }}
+                    {{lang 'common.no'}}
                 {{/if}}
             </td>
             <td>
                 <form method="post" action="{{delete_url}}" class="form table-actions">
                     <fieldset class="form-fieldset">
-                        <a href="{{edit_url}}" class="button button--small">{{lang 'common.edit' }}</a>
-                        <input type="submit" value="{{lang 'common.delete' }}" class="button button--small">
+                        <a href="{{edit_url}}" class="button button--small">{{lang 'common.edit'}}</a>
+                        <input type="submit" value="{{lang 'common.delete'}}" class="button button--small">
                         <a href="{{share_url}}" class="button button--primary button--small"
-                           role="button">{{lang 'common.share' }}</a>
+                           role="button">{{lang 'common.share'}}</a>
                     </fieldset>
                 </form>
             </td>
@@ -43,6 +43,6 @@
     <input type="submit" value="Delete All" id="wishlist-delete" class="button button--small"/>
 </form>
 
-<div id="wishlist-modal" style="display: none">
-    {{> components/account/add-wishlist wishlist=customer.wishlists}}
+<div id="wishlist-modal">
+    {{> components/account/add-wishlist}}
 </div>

@@ -47,9 +47,6 @@ export default class WishList extends PageManager {
         $modal.foundation('reveal', 'open');
 
         $modalOverlay.hide();
-        console.log(template);
         $modalContent.html(template);
-
-
     }
 }

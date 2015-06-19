@@ -1,12 +1,13 @@
-<div class="form-field">
-    <ul aria-required="{{require}}" class="{{class}}">
-        {{#if radios}}
-            {{#each radios}}
-                <li>
-                    <input type="radio" {{#if name}}name="{{name}}"{{/if}} id="{{id}}" data-label="{{label}}" class="form-radio" aria-required="{{required}}" {{#if style}}style="{{style}}"{{/if}}>
-                    <label for="{{id}}">{{label}}</label>
-                </li>
-            {{/each}}
+<div class="form-field" id="{{id}}" data-validation="{{validation}}">
+    <label class="form-label">{{label}}
+        {{#if required}}
+            <small>{{lang 'common.required' }}</small>
         {{/if}}
-    </ul>
+    </label>
+    {{#if radios}}
+        {{#each radios}}
+            <input type="radio" class="form-radio" name="{{../name}}" id="{{../name}}_{{@index}}" data-label="{{label}}" aria-required="{{required}}" {{#if style}}style="{{style}}"{{/if}}>
+            <label class="form-label" for="{{../name}}_{{@index}}">{{label}}</label>
+        {{/each}}
+    {{/if}}
 </div>

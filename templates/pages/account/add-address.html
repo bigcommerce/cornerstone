@@ -8,10 +8,10 @@
     {{/if}}
     {{> components/account/navigation account_page='addresses'}}
 
-    {{#if forms.address.message}}
-    <div class="alert alert-warning" role="alert">{{{forms.address.message}}}</div>
+    {{#if forms.address.error}}
+    {{> components/common/alert-error forms.address.error}}
     {{/if}}
-    <form action="{{forms.address.action}}" class="form address-form" method="post">
+    <form action="{{forms.address.action}}" id="address-form" class="form address-form" method="post">
         {{#if forms.address.address_id }}
             <input type="hidden" name="shipid" value="{{forms.address.address_id}}">
         {{/if}}
@@ -20,7 +20,10 @@
                 {{{field this}}}
             </div>
         {{/each}}
-        <input type="submit" value="{{lang 'forms.address.submit_value'}}">
+        <div class="create-account-submit">
+            <input type="submit" class="button button--primary" value="{{lang 'forms.address.submit_value'}}">
+            <a href="{{urls.account.addresses}}" class="button">{{lang 'common.cancel'}}</a>
+        </div>
     </form>
 </div>
 {{/partial}}

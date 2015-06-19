@@ -15,7 +15,7 @@
         <li class="product-card">
             {{>components/products/card}}
         </li>
-            <form action="/wishlist.php?wishlistid={{wishlist_id}}&action=remove&item_id={{id}}" method="post">
+            <form action="{{../urls.account.wishlists}}?wishlistid={{../wishlist.id}}&action=remove&item_id={{id}}" method="post">
                 <input type="submit" class="button button--primary button--small" value="Remove" />
             </form>
         {{/each}}

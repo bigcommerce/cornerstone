@@ -1,10 +1,11 @@
 import $ from 'jquery';
+import 'foundation/js/foundation/foundation';
+import 'foundation/js/foundation/foundation.reveal';
 import PageManager from '../page-manager';
 
 export default class WishList extends PageManager {
     constructor() {
         this.wishlistDeleteConfirm();
-        this.createWishlist();
         super();
     }
 
@@ -19,34 +20,5 @@ export default class WishList extends PageManager {
             }
             return false
         });
-    }
-
-    /**
-     * Opens modal that display add-wishlist.html component
-     */
-    createWishlist() {
-        $('#wishlist-create').on('click', (event) => {
-            event.preventDefault();
-            let $wishListModalContent = $('#wishlist-modal').html();
-            this.wishlistModal($wishListModalContent);
-        })
-    }
-
-    /**
-     * Modal code that contains the add-wishlist component
-     * @param template
-     */
-    wishlistModal(template) {
-        let $modal = $('#modal'),
-            $modalContent = $('.modal-content', $modal),
-            $modalOverlay = $('.loadingOverlay', $modal);
-
-        $modalContent.html('');
-        $modalOverlay.show();
-
-        $modal.foundation('reveal', 'open');
-
-        $modalOverlay.hide();
-        $modalContent.html(template);
     }
 }

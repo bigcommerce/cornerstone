@@ -7,12 +7,17 @@ import utils from 'bigcommerce/stencil-utils';
 export default function () {
     let $modal = $('#modal'),
         $modalContent = $('.modal-content', $modal),
-        $modalOverlay = $('.loadingOverlay', $modal);
+        $modalOverlay = $('.loadingOverlay', $modal),
+        modalModifierClasses = 'modal--large';
 
     $('.quickview').on('click', (event) => {
         let productId = $(event.currentTarget).data('product-id');
 
         event.preventDefault();
+
+        // The quickview modal is larger than our default modal.
+        // Use the modal--large modifier.
+        $modal.addClass(modalModifierClasses);
 
         // clear the modal
         $modalContent.html('');
@@ -25,5 +30,9 @@ export default function () {
             $modalOverlay.hide();
             $modalContent.html(response);
         });
+    });
+
+    $modal.on('close.fndtn.reveal', (event) => {
+        $modal.removeClass(modalModifierClasses);
     });
 }

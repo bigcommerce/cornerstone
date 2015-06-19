@@ -1,11 +1,11 @@
-<article class="card">
+<article class="card {{#if alternate}}card--alternate{{/if}}">
     <figure class="card-figure">
         <img class="card-image" src="{{image.url}}" alt="{{image.alt}}">
         <figcaption class="card-figcaption">
             <div class="card-figcaption-body">
-                <a href="#" class="button button--small card-figcaption-button quickview" data-product-id="{{id}}">Quick view</a>
+                <a href="#" class="button button--small card-figcaption-button quickview" data-product-id="{{id}}">{{lang "products.quick_view"}}</a>
                 <label class="button button--small card-figcaption-button" for="{{id}}">
-                    Compare <input type="checkbox" name="products[]" value="{{id}}">
+                    {{lang "products.compare"}} <input type="checkbox" name="products[]" value="{{id}}">
                 </label>
                 {{#unless hide_add_to_cart}}
                     {{#if has_options}}

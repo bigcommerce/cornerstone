@@ -130,19 +130,25 @@
             bottom: 0;
             left: 50%;
             position: absolute;
-              transform: translateX(-50%);
+            transform: translateX(-50%);
         }
     }
 }
 
 .dropdown--quickSearch {
     background-color: color("greys", "lightest");
-    padding: spacing("double");
+    padding: spacing("single") 0;
+
+    @include breakpoint("small") {
+        padding: spacing("double");
+    }
 
     &.is-open {
         left: 0 !important; // 1
         outline: none;
         right: 0 !important; // 1
+        width: 100% !important;
+        z-index: zIndex("high");
     }
 
     .form {
@@ -157,5 +163,13 @@
 
     .form-input {
         font-size: fontSize("small");
+    }
+
+    .quickSearchResults .productGrid {
+        padding: spacing("single") 0;
+
+        @include breakpoint("small") {
+            padding: spacing("double") 0;
+        }
     }
 }

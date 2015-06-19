@@ -1,7 +1,6 @@
 import PageManager from '../page-manager';
 import nod from 'casperin/nod';
 import Wishlist from './wishlist';
-import { forms } from 'bigcommerce/stencil-utils';
 import validation from './common/form-validation';
 import stateCountry from './common/state-country';
 

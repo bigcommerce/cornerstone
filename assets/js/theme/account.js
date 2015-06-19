@@ -1,5 +1,6 @@
 import PageManager from '../page-manager';
 import nod from 'casperin/nod';
+import Wishlist from './wishlist';
 import validation from './common/form-validation';
 import stateCountry from './common/state-country';
 
@@ -24,6 +25,9 @@ export default class Account extends PageManager {
         if ($editAccountForm.length) {
             this.registerEditAccountValidation($editAccountForm);
         }
+
+        // Instantiates wish list JS
+        new Wishlist();
 
         if ($addressForm.length) {
             this.registerAddressValidation($addressForm);

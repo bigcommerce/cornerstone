@@ -1,0 +1,201 @@
+// =============================================================================
+// PRODUCT LIST (CSS)
+// =============================================================================
+
+
+// Product list
+// -----------------------------------------------------------------------------
+
+.productList {
+    @include u-listBullets("none");
+
+    .product {
+
+        + .product {
+            margin-top: spacing("base") * 4;
+        }
+    }
+}
+
+
+// Product list item
+// -----------------------------------------------------------------------------
+
+.listItem {
+
+    @include breakpoint("small") {
+        display: table;
+        @include grid-row($behavior: "nest");
+    }
+}
+
+.listItem-figure,
+.listItem-body {
+
+    @include breakpoint("small") {
+        display: table-cell;
+        vertical-align: top;
+    }
+
+    @include breakpoint("large") {
+        vertical-align: middle;
+    }
+}
+
+
+// List figure
+// -----------------------------------------------------------------------------
+
+.listItem-figure {
+    margin: 0 0 spacing("single");
+
+    @include breakpoint("small") {
+        margin-bottom: 0;
+
+        @include breakpoint("small") {
+            padding-left: spacing("half");
+            padding-right: spacing("half");
+            width: grid-calc(3, $total-columns);
+        }
+    }
+}
+
+.listItem-image {
+    width: 100%;
+}
+
+.listItem-body {
+
+    @include breakpoint("small") {
+        padding-left: spacing("base") + spacing("sixth");
+        padding-right: spacing("half");
+        width: grid-calc(9, $total-columns);
+    }
+}
+
+
+// List content
+// -----------------------------------------------------------------------------
+
+.listItem-content {
+
+    @include breakpoint("large") {
+        display: table;
+    }
+}
+
+.listItem-details,
+.listItem-actions {
+
+    @include breakpoint("large") {
+        display: table-cell;
+        vertical-align: top;
+    }
+}
+
+
+// List details
+// -----------------------------------------------------------------------------
+
+.listItem-details {
+
+    @include breakpoint("large") {
+        padding-right: spacing("double") * 2;
+
+        > :last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+
+.listItem-rating {
+    margin-bottom: spacing("quarter");
+}
+
+.listItem-brand {
+    color: color("greys", "light");
+    font-size: fontSize("base");
+    margin: 0 0 spacing("eighth");
+
+    @include breakpoint("medium") {
+        font-size: fontSize("smaller");
+        margin-bottom: 0;
+    }
+}
+
+.listItem-title {
+    font-size: fontSize("smaller");
+    margin: 0 0 spacing("eighth");
+
+    @include breakpoint("medium") {
+        font-size: fontSize("small");
+    }
+
+    > a {
+        text-decoration: none;
+    }
+}
+
+.listItem-price {
+    margin-bottom: spacing("base");
+
+    @include breakpoint("medium") {
+        font-size: fontSize("small");
+    }
+}
+
+
+// List actions
+// -----------------------------------------------------------------------------
+//
+// 1. Magic number width to align closer to the intended design.
+//
+// -----------------------------------------------------------------------------
+
+.listItem-actions {
+
+    @include breakpoint("large") {
+        width: 22%; // 1
+        vertical-align: middle;
+
+        .button--compare {
+            @include buttonSize("small");
+        }
+    }
+
+    .button {
+        margin-bottom: 0;
+
+        @include breakpoint("large") {
+            width: 100%;
+
+            + .button {
+                margin: spacing("half") 0 0;
+            }
+        }
+    }
+}
+
+
+// Product list when sidebar is present
+// -----------------------------------------------------------------------------
+
+.page-sidebar + .page-content {
+
+    .productList {
+
+        .listItem-details {
+
+            @include breakpoint("large") {
+                padding-right: spacing("double");
+            }
+        }
+
+        .listItem-actions {
+
+            @include breakpoint("large") {
+                width: 30%;
+            }
+        }
+    }
+}

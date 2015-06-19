@@ -8,10 +8,10 @@
             <p>{{lang 'account.wishlists.tag_line'}}</p>
         {{/if}}
         {{#if wishlist.errors}}
-            <div class="alert alert-danger" role="alert">{{{wishlist.errors}}}</div>
+            {{> components/common/alert-error wishlist.errors}}
         {{/if}}
     </header>
-    <form action="{{this.urls.wishlists.add}}" class="form wishlist-form" method="post">
+    <form action="{{urls.wishlists.add}}" class="form wishlist-form" method="post">
         <input type="hidden" name="submit">
 
         <div class="form-field">

@@ -12,10 +12,10 @@
     {{> components/gift-certificate/navigation gift_page='purchase' }}
 
     {{#each forms.gift_certificate.errors}}
-        <p class="alert alert-danger">{{this}}</p>
+        {{> components/common/alert-error this}}
     {{/each}}
 
-    <form class="form gift-certificate-form" method="post" action="{{forms.gift_certificate.action}}">
+    <form class="form gift-certificate-form" method="post" id="gift-certificate-form" action="{{forms.gift_certificate.action}}">
         <div class="main-section">
             {{#if forms.gift_certificate.cart_item_id}}
             <input type="hidden" name="cartitemid" value="{{forms.gift_certificate.cart_item_id}}">
@@ -63,8 +63,8 @@
                     {{lang 'forms.gift_certificate.purchase.amount' }}
                     <small>{{lang 'common.required' }}</small>
                 </label>
-                <input type="text" data-min="forms.gift_certificate.minimum" data-max="forms.gift_certificate.maximum" class="form-input" name="certificate_amount" id="certificate_amount" value="{{forms.gift_certificate.values.amount}}">
-                <span class="form-inlineMessage">{{lang 'forms.gift_certificate.purchase.custom_range' min=forms.gift_certificate.minimum max=forms.gift_certificate.maximum}}</span>
+                <input type="text" data-min="{{forms.gift_certificate.minimum}}" data-max="{{forms.gift_certificate.maximum}}" data-min-formatted="{{forms.gift_certificate.minimum_formatted}}" data-max-formatted="{{forms.gift_certificate.maximum_formatted}}" class="form-input" name="certificate_amount" id="certificate_amount" value="{{forms.gift_certificate.values.amount}}">
+                <span class="form-inlineMessage">{{lang 'forms.gift_certificate.purchase.custom_range' min=forms.gift_certificate.minimum_formatted max=forms.gift_certificate.maximum_formatted}}</span>
                 {{else}}
                     <label class="form-label" for="selected_amount">
                         {{lang 'forms.gift_certificate.purchase.amount' }}
@@ -75,7 +75,6 @@
                         <option value="{{this.value}}">{{this.display}}</option>
                         {{/each}}
                     </select>
-                    <span class="form-inlineMessage">{{lang 'forms.gift_certificate.purchase.custom_range' min=forms.gift_certificate.minimum max=forms.gift_certificate.maximum}}</span>
                 {{/if}}
             </div>
             <div class="form-field">

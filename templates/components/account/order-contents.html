@@ -2,12 +2,12 @@
 <ul class="order-contents">
     {{#each this.items}}
     <li class="order-contents-item">
-        <img class="order-contents-image" src="http://placehold.it/175x175">
+        <img class="order-contents-image" src="{{image.url}}">
         <h6 class="order-contents-name">{{name}}</h6>
         <span class="order-contents-price">{{price}}</span>
         <a href="#" class="order-contents-return button secondary">{{lang 'account.orders.return' }}</a>
         {{#if download_link}}
-            <a href="{{download_link}}">{{lang 'account.order.details.download_items' }}</a>
+            <a href="{{download_link}}" class="button button--primary">{{lang 'account.orders.details.download_items' }}</a>
         {{/if}}
     </li>
     {{/each}}

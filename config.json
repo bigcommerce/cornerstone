@@ -1,10 +1,27 @@
 {
-    "name": "Stencil",
-    "version": "1.0",
-    "css_compiler": "scss",
-    "shop_by_brand": {
-        "limit": 10
+  "name": "Stencil",
+  "version": "1.0",
+  "css_compiler": "scss",
+  "autoprefixer_cascade": true,
+  "autoprefixer_browsers": ["> 5% in US"],
+  "variations": [
+    {
+      "name": "Bold",
+      "settings": {
+        "homepage-numOfNewProducts": 8,
+        "homepage-numOfFeaturedProducts": 8,
+        "homepage-numOfTopProducts": 8,
+        "homepage-showCarousel": true
+      }
     },
-    "social_links": true,
-    "cart": true
+    {
+      "name": "Light",
+      "settings": {
+        "homepage-numOfNewProducts": 4,
+        "homepage-numOfFeaturedProducts": 4,
+        "homepage-numOfTopProducts": 4,
+        "homepage-showCarousel": false
+      }
+    }
+  ]
 }

@@ -11,6 +11,7 @@
         <li class="navUser-item navUser-item--account">
             {{#if customer}}
             <a class="navUser-action" href="{{urls.account.index}}">Account</a>
+            <a class="navUser-action" href="{{urls.auth.logout}}">Logout</a>
             {{else}}
             <a class="navUser-action" href="{{urls.auth.login}}">Login</a> <span class="navUser-or">or</span> <a class="navUser-action" href="{{urls.auth.create_account}}">Sign Up</a>
             {{/if}}

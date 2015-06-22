@@ -35,64 +35,110 @@ export default class GiftCertificate extends PageManager {
                     return found;
                 }
             },
-            customAmounts = $('.gift-certificate-form input[name="certificate_amount"]'),
-            amountValidator;
+            $purchaseForm = $('#gift-certificate-form'),
+            $customAmounts = $purchaseForm.find('input[name="certificate_amount"]'),
+            purchaseValidator = nod({
+                submit: '#gift-certificate-form input[type="submit"]',
+                delay: 300
+            });
 
         nod.classes.errorClass = 'form-field--error';
         nod.classes.successClass = 'form-field--success';
         nod.classes.errorMessageClass = 'form-inlineMessage';
 
-        this.purchaseValidator = nod({
-            submit: '.gift-certificate-form input[type="submit"]',
-            disableSubmit: true,
-            delay: 300
-        });
+        if ($customAmounts.length) {
+            let $element = $purchaseForm.find('input[name="certificate_amount"]'),
+                min = $element.data('min'),
+                minFormatted = $element.data('min-formatted'),
+                max = $element.data('max'),
+                maxFormatted = $element.data('max-formatted');
 
-        if (customAmounts.length) {
-            amountValidator = {
-                selector: '.gift-certificate-form input[name="certificate_amount"]',
+            purchaseValidator.add({
+                selector: '#gift-certificate-form input[name="certificate_amount"]',
                 validate: (cb, val) => {
-                    var result = purchaseModel.recipientEmail(val);
-                    cb(result);
+                    val = Number(val);
+
+                    if (!val) {
+                        cb(false);
+                    }
+                    cb(val >= min && val <= max);
                 },
-                errorMessage: "You must enter a certificate amount"
-            };
+                errorMessage: `You must enter a certificate amount between ${minFormatted} and ${maxFormatted}`
+            });
         }
 
-
-        this.purchaseValidator.add([
+        purchaseValidator.add([
             {
-                selector: '.gift-certificate-form input[name="to_name"]',
+                selector: '#gift-certificate-form input[name="to_name"]',
                 validate: (cb, val) => {
-                    var result = purchaseModel.recipientName(val);
+                    let result = purchaseModel.recipientName(val);
                     cb(result);
                 },
                 errorMessage: "You must enter a valid recipient name"
             },
             {
-                selector: '.gift-certificate-form input[name="to_email"]',
+                selector: '#gift-certificate-form input[name="to_email"]',
                 validate: (cb, val) => {
-                    var result = purchaseModel.recipientEmail(val);
+                    let result = purchaseModel.recipientEmail(val);
                     cb(result);
                 },
                 errorMessage: "You must enter a valid recipient email"
             },
             {
-                selector: '.gift-certificate-form input[name="from_name"]',
+                selector: '#gift-certificate-form input[name="from_name"]',
                 validate: (cb, val) => {
-                    var result = purchaseModel.recipientEmail(val);
+                    let result = purchaseModel.senderName(val);
                     cb(result);
                 },
                 errorMessage: "You must enter your name"
             },
             {
-                selector: '.gift-certificate-form input[name="from_email"]',
+                selector: '#gift-certificate-form input[name="from_email"]',
                 validate: (cb, val) => {
-                    var result = purchaseModel.recipientEmail(val);
+                    let result = purchaseModel.senderEmail(val);
                     cb(result);
                 },
                 errorMessage: "You must enter your email"
+            },
+            {
+                selector: '#gift-certificate-form input[name="certificate_theme"]:first-of-type',
+                triggeredBy: '#gift-certificate-form input[name="certificate_theme"]',
+                validate: (cb, val) => {
+                    val = $purchaseForm.find('input[name="certificate_theme"]:checked').val();
+
+                    cb(typeof(val) === 'string');
+                },
+                errorMessage: "You must select a gift certificate theme"
+            },
+            {
+                selector: '#gift-certificate-form input[name="agree"]',
+                validate: (cb, val) => {
+                    val = $purchaseForm.find('input[name="agree"]').get(0).checked;
+
+                    cb(val);
+                },
+                errorMessage: "You must agree to these terms"
+            },
+            {
+                selector: '#gift-certificate-form input[name="agree2"]',
+                validate: (cb, val) => {
+                    val = $purchaseForm.find('input[name="agree2"]').get(0).checked;
+
+                    cb(val);
+                },
+                errorMessage: "You must agree to these terms"
             }
         ]);
+
+
+        $purchaseForm.submit((event) => {
+            purchaseValidator.performCheck();
+
+            if (purchaseValidator.areAll('valid')) {
+                return;
+            }
+
+            event.preventDefault();
+        });
     }
 }

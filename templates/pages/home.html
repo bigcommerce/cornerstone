@@ -1,12 +1,12 @@
 ---
 products:
     new:
-        limit: 8
+        limit: {{themeSettings.homepage-numOfNewProducts}}
     featured:
-        limit: 8
+        limit: {{themeSettings.homepage-numOfFeaturedProducts}}
     top_sellers:
-        limit: 8
-carousel: true
+        limit: {{themeSettings.homepage-numOfTopProducts}}
+carousel: {{themeSettings.homepage-showCarousel}}
 ---
 {{#partial "hero"}}
     {{#if carousel}}

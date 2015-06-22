@@ -1,19 +1,25 @@
 <div class="pagination">
     <ul class="pagination-list">
         {{#if previous}}
-            <a class="pagination-link pagination-link-previous" href="{{previous}}">{{lang 'common.previous'}}</a>
+        <li class="pagination-item pagination-item--previous">
+            <a class="pagination-link" href="{{previous}}">{{lang 'common.previous'}}</a>
+        </li>
         {{/if}}
         {{#each links}}
-            <li class="">
-                {{#if this.current}}
-                    {{this.number}}
-                {{else}}
-                    <a class="pagination-link" href="{{this.url}}">{{this.number}}</a>
-                {{/if}}
-            </li>
+        {{#if this.current}}
+        <li class="pagination-item pagination-item--current">
+            <a class="pagination-link" href="{{this.url}}">{{this.number}}</a>
+        </li>
+        {{else}}
+        <li class="pagination-item">
+            <a class="pagination-link" href="{{this.url}}">{{this.number}}</a>
+        </li>
+        {{/if}}
         {{/each}}
         {{#if next}}
-            <a class="pagination-link pagination-link-next" href="{{next}}">{{lang 'common.next'}}</a>
+        <li class="pagination-item">
+            <a class="pagination-link" href="{{next}}">{{lang 'common.next'}}</a>
+        </li>
         {{/if}}
     </ul>
 </div>

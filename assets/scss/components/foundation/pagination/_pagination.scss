@@ -1,0 +1,63 @@
+// =============================================================================
+// PAGINATION (CSS)
+// =============================================================================
+
+
+.pagination-list {
+    font-size: 0;
+    text-align: center;
+}
+
+
+// Pagination list items
+// -----------------------------------------------------------------------------
+//
+// 1. Specificity overrides for Foundation's inadequate selectors.
+//
+// -----------------------------------------------------------------------------
+
+.pagination-item {
+    border: 1px solid transparent;
+    font-size: fontSize("base");
+    line-height: 1;
+
+    &.pagination-item--current { // 1
+        border-color: color("greys", "lighter");
+        border-radius: 4px;
+        margin: 0 spacing("quarter") 0 spacing("half");
+
+        > a {
+            color: color("greys", "darker");
+        }
+    }
+
+    &.pagination-item--previous, // 1
+    &.pagination-item--next { // 1
+
+        > a {
+            color: color("greys", "darker");
+        }
+    }
+
+    &.pagination-item--previous { // 1
+        float: left;
+    }
+
+    &.pagination-item--next { // 1
+        float: right;
+    }
+
+    .pagination-link {
+        text-decoration: none;
+        transition: color 0.2s ease;
+
+        &:hover {
+            color: color("greys", "darker");
+        }
+    }
+
+}
+
+li.pagination-item { // 1
+    display: inline-block;
+}

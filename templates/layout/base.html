@@ -11,6 +11,13 @@
         <link href='http://fonts.googleapis.com/css?family=Montserrat|Karla:700,400,400italic,700italic|Oswald:300' rel='stylesheet' type='text/css'>
 
         {{{ head.scripts }}}
+        <!--TODO Need CDN asset Helper-->
+        <script src="/assets/jspm_packages/system.js"></script>
+        <script src="/assets/config.js"></script>
+        <!--TODO Need Bundled JS Helper-->
+        <!--Loads JSPM main application, then instantiates each page type module when needed.  -->
+        <script>System.import("js/app").then(function(data){ data.default("{{template_file}}").load()});</script>
+
         {{{ head.rsslinks }}}
     </head>
     <body>

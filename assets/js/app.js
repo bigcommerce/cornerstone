@@ -22,25 +22,41 @@ import wishlist from './theme/wishlist';
 
 let PageClasses = {
     mapping: {
-        "account": account,
-        "auth": auth,
-        "blog": blog,
-        "brand": brand,
-        "brands": brand,
-        "cart": cart,
-        "category": category,
-        "compare": compare,
-        "errors": errors,
-        "gift-certificate": giftCertificate,
+        "pages/account/orders/all": account,
+        "pages/account/addresses": account,
+        "pages/account/add-address": account,
+        "pages/account/add-return": account,
+        "pages/account/add-wishlist": wishlist,
+        "pages/account/recent-items": account,
+        "pages/account/download-item": account,
+        "pages/account/edit": account,
+        "pages/account/return-saved": account,
+        "pages/account/returns": account,
+        "pages/auth/login": auth,
+        "pages/auth/account-created": auth,
+        "pages/auth/create-account": auth,
+        "pages/auth/new-password": auth,
+        "pages/blog": blog,
+        "pages/blog-post": blog,
+        "pages/brand": brand,
+        "pages/brands": brand,
+        "pages/cart": cart,
+        "pages/category": category,
+        "pages/compare": compare,
+        "pages/errors": errors,
+        "pages/gift-certificate/purchase": giftCertificate,
+        "pages/gift-certificate/balance": giftCertificate,
+        "pages/gift-certificate/redeem": giftCertificate,
         "global": global,
-        "home": home,
-        "order-complete": orderComplete,
-        "page": page,
-        "product": product,
-        "search": search,
-        "sitemap": sitemap,
-        "subscribe": subscribe,
-        "wishlist": wishlist
+        "pages/home": home,
+        "pages/order-complete": orderComplete,
+        "pages/page": page,
+        "pages/product": product,
+        "pages/search": search,
+        "pages/sitemap": sitemap,
+        "pages/subscribe": subscribe,
+        "page/account/wishlist-details": wishlist,
+        "pages/account/wishlists": wishlist
     },
     /**
      * Getter method to ensure a good page type is accessed.
@@ -105,13 +121,15 @@ export default function (templateFile) {
 
     return {
         load() {
-            let pageTypeFn = pages.get(templateFile); // Finds the appropriate module from the pageType object and store the result as a function.
-            if (pageTypeFn) {
-                let pageType = new pageTypeFn();
-                return loader(pageType, pages);
-            } else {
-                throw new Error(templateFile + ' Module not found')
-            }
+            $(() => {
+                let pageTypeFn = pages.get(templateFile); // Finds the appropriate module from the pageType object and store the result as a function.
+                if (pageTypeFn) {
+                    let pageType = new pageTypeFn();
+                    return loader(pageType, pages);
+                } else {
+                    throw new Error(templateFile + ' Module not found')
+                }
+            });
         }
     }
 };

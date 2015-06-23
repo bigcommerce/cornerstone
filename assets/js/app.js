@@ -121,13 +121,15 @@ export default function (templateFile) {
 
     return {
         load() {
-            let pageTypeFn = pages.get(templateFile); // Finds the appropriate module from the pageType object and store the result as a function.
-            if (pageTypeFn) {
-                let pageType = new pageTypeFn();
-                return loader(pageType, pages);
-            } else {
-                throw new Error(templateFile + ' Module not found')
-            }
+            $(() => {
+                let pageTypeFn = pages.get(templateFile); // Finds the appropriate module from the pageType object and store the result as a function.
+                if (pageTypeFn) {
+                    let pageType = new pageTypeFn();
+                    return loader(pageType, pages);
+                } else {
+                    throw new Error(templateFile + ' Module not found')
+                }
+            });
         }
     }
 };

@@ -1,0 +1,70 @@
+// =============================================================================
+// PAGINATION (CSS)
+// =============================================================================
+
+
+// Pagination list items
+// -----------------------------------------------------------------------------
+//
+// 1. Centred list via inline-block. Font-size: 0; to remove white-space.
+// 2. Specificity overrides for Foundation's inadequate selectors.
+//
+// -----------------------------------------------------------------------------
+
+.pagination-list {
+    font-size: 0; // 1
+    text-align: center;
+
+    .pagination-item { // 2
+        display: inline-block;
+    }
+}
+
+
+// Pagination list items
+// -----------------------------------------------------------------------------
+//
+// 1. Specificity overrides for Foundation's inadequate selectors.
+//
+// -----------------------------------------------------------------------------
+
+.pagination-item {
+    border: $pagination-item-border;
+    line-height: 1;
+
+    .pagination-link {
+        text-decoration: none;
+        transition: $pagination-link-transition;
+
+        &:hover {
+            color: $pagination-link-color-hover;
+        }
+    }
+}
+
+.pagination-item.pagination-item--current { // 1
+    border-color: $pagination-link-current-borderColor;
+    border-radius: $pagination-link-current-borderRadius;
+    margin: $pagination-link-current-margin;
+}
+
+.pagination-item.pagination-item--previous, // 1
+.pagination-item.pagination-item--next { // 1
+
+    > a {
+        color: $pagination-item-previousNext-color;
+
+        &:hover {
+            color: $pagination-item-previousNext-color-hover;
+        }
+    }
+}
+
+.pagination-item--previous {
+    float: left;
+}
+
+.pagination-item--next {
+    float: right;
+}
+

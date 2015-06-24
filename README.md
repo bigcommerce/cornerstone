@@ -19,27 +19,43 @@ Once this is complete you are ready for the next step.
 When writing theme javascript there is an API in place for running javascript on a per page basis. To properly write JS for your theme you will have the following
 page types available to you.
 
-* account
-* auth
-* blog
-* brand
-* brands
-* cart
-* category
-* errors
-* gift
-* home
-* order-complete
-* page
-* product
-* search
-* sitemap
-* subscribe
-* wishlist
+* "pages/account/addresses"
+* "pages/account/add-address"
+* "pages/account/add-return"
+* "pages/account/add-wishlist"
+* "pages/account/recent-items"
+* "pages/account/download-item"
+* "pages/account/edit"
+* "pages/account/return-saved"
+* "pages/account/returns"
+* "pages/auth/login"
+* "pages/auth/account-created"
+* "pages/auth/create-account"
+* "pages/auth/new-password"
+* "pages/blog"
+* "pages/blog-post"
+* "pages/brand"
+* "pages/brands"
+* "pages/cart"
+* "pages/category"
+* "pages/compare"
+* "pages/errors"
+* "pages/gift-certificate/purchase"
+* "pages/gift-certificate/balance"
+* "pages/gift-certificate/redeem"
+* "global"
+* "pages/home"
+* "pages/order-complete"
+* "pages/page"
+* "pages/product"
+* "pages/search"
+* "pages/sitemap"
+* "pages/subscribe"
+* "page/account/wishlist-details"
+* "pages/account/wishlists"
 
-And these page types will correspond to the pages within your your theme. Each one of these page types in a specific ES6 class that extends the base `PageManager` abstract class.
+And these page types will correspond to the pages within your your theme. Each one of these page types map to an ES6 modules that extends the base `PageManager` abstract class.
 ```javascript
-    let internals = {}
     export default class Auth extends PageManager {
         constructor() {
             //Set up code goes here, attach to internals and use internals as you would 'this'

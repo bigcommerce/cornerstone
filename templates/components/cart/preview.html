@@ -1,11 +1,11 @@
 {{# if cart.items.length}}
     {{#each cart.items}}
-        <a href="{{url}}"><img src="{{image}}" alt=""></a>
+        <a href="{{url}}"><img src="{{image}}" alt="{{name}}"></a>
         {{name}}
         {{quantity}}
         {{money price}}
         {{money total}}
     {{/each}}
 {{else}}
-<h3>Your Cart is empty</h3>
+<h3>{{lang 'cart.is_empty'}}</h3>
 {{/if}}

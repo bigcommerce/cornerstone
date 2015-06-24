@@ -16,7 +16,7 @@
             {{>components/products/card}}
         </li>
             <form action="{{../urls.account.wishlists}}?wishlistid={{../wishlist.id}}&action=remove&item_id={{id}}" method="post">
-                <input type="submit" class="button button--primary button--small" value="Remove" />
+                <input type="submit" class="button button--primary button--small" value="{{lang 'account.wishlists.remove_item'}}" />
             </form>
         {{/each}}
     </ul>

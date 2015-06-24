@@ -3,14 +3,14 @@
         <a href="#" class="shipping-estimate-value">{{money shipping_cost}}</a>
     </div>
 {{else}}
-    <button class="shipping-estimate-show">Add Info</button>
+    <button class="shipping-estimate-show">{{lang 'cart.shipping_estimator.add_info'}}</button>
 {{/if}}
 
 <div class="shipping-estimator" style="display: none;">
     <form class="estimator-form">
         <button class="shipping-estimate-hide">{{lang 'cancel'}}</button>
         <select name="shipping-country">
-        <option>Select one</option>
+        <option>{{lang 'cart.shipping_estimator.select_a_country'}}</option>
         {{#each countries}}
             <option value="{{id}}" {{#if selected}}selected="selected"{{/if}}>
                 {{name}}
@@ -18,7 +18,7 @@
         {{/each}}
         </select>
         <select name="shipping-state">
-        <option>Select one</option>
+        <option>{{lang 'cart.shipping_estimator.select_a_state'}}</option>
         {{#each states}}
             <option value="{{id}}" {{#if selected}}selected="selected"{{/if}}>
                 {{name}}
@@ -26,7 +26,7 @@
         {{/each}}
         </select>
         <input type="text" name="shipping-zip" value="{{selected_zip}}">
-        <button class="shipping-estimate-submit">Estimate Shipping</button>
+        <button class="shipping-estimate-submit">{{lang 'cart.shipping_estimator.estimate_shipping'}}</button>
     </form>
     <div class="shipping-quotes"></div> 
 </div>

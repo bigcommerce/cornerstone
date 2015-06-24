@@ -27,11 +27,11 @@
             {{/each}}
         </p>
         <div class="product-sku">
-            <h4>SKU</h4>
+            <h4>{{lang 'products.sku'}}</h4>
             <p class="product-skuText" data-bind="text: sku">{{ product.sku }}</p>
         </div>
         <div id="product-options">
-            Options
+            {{lang 'products.options'}}
             {{#each product.options}}
                 <div>{{{renderProductOption this}}}</div>
             {{/each}}
@@ -46,7 +46,7 @@
     </form>
 
     <form method="post" action="{{product.add_to_wishlist_url}}">
-        <input type="submit" class="btn btn-primary" value="Add To Wishlist">
+        <input type="submit" class="btn btn-primary" value="{{lang 'account.wishlists.add_item'}}">
     </form>
 
     <div class="Clear AddThisButtonBox" data-product-share>

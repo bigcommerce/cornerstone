@@ -9,17 +9,11 @@
     @include nav($style: "navBar", $wrapper: "ul");
 
     .icon { // 1
-        display: inline-block;
-        height: $socialLinks-iconSize;
+        @include square($socialLinks-iconSize);
         text-decoration: none;
-        width: $socialLinks-iconSize;
-
-            svg {
-                fill: $socialLinks-iconColor;
-                height: 100%;
-                width: 100%;
-            }
-
+        svg {
+            fill: $socialLinks-iconColor;
+        }
     }
 }
 

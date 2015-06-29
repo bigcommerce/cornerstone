@@ -18,11 +18,11 @@
         {{lang 'products.reviews.link_to_review' total=product.num_reviews}}
         {{> components/products/modals/reviews product=product urls=urls}}
     </div>
-    <a href="{{ product.initial_zoom_image }}">
-        <img itemprop="image" src="{{ product.initial_image }}">
+    <a href="{{image product.main_image 'zoom'}}" alt="{{image.alt}}">
+        <img itemprop="image" src="{{image product.main_image 'product'}}" alt="{{image.alt}}">
     </a>
     {{#each product.images}}
-        <img src="{{tiny_url}}">
+        <img src="{{image this 'thumb'}}" alt="{{image.alt}}">
     {{/each}}
     {{#if product.release_date }}
     <span class="alert alert-warning">{{product.release_date}}</span>

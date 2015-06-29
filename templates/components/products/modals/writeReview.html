@@ -4,12 +4,12 @@
         <a class="modal-close">&#215;</a>
     </div>
     <div class="modal-body">
-        <div class="productReview-details">
+        <div class="writeReview-productDetails">
             <img src="{{ product.initial_image }}">
             <h6 class="product-brand">{{ product.brand.name }}</h6>
             <h5 class="product-title">{{ product.title }}</h5>
         </div>
-        <form class="form productReview-form" action="{{ urls.product.post_review }}" method="post">
+        <form class="form writeReview-form" action="{{ urls.product.post_review }}" method="post">
             <fieldset class="form-fieldset">
                 <div class="form-field">
                     <label class="form-label" for="rating-rate">{{lang 'products.reviews.rating'}}</label>

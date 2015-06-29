@@ -16,7 +16,7 @@
             {{> components/products/ratings rating=product.rating}}
         </div>
         {{lang 'products.reviews.link_to_review' total=product.num_reviews}}
-        {{> components/products/modals/reviews product=product urls=urls}}
+        {{> components/products/modals/writeReview product=product urls=urls}}
     </div>
     <a href="{{image product.main_image 'zoom'}}" alt="{{image.alt}}">
         <img itemprop="image" src="{{image product.main_image 'product'}}" alt="{{image.alt}}">

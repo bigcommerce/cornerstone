@@ -3,11 +3,14 @@
     <h4>{{lang 'products.reviews.header' total=this.total}}</h4>
     <ul class="row">
         {{#each this.list}}
-        <li class="col-md-3">
-            <div>{{ rating }}</div>
-            <div>{{ title }}</div>
+        <li class="col-md-3" itemprop="review" itemscope itemtype="http://schema.org/Review">
+            <div itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
+                <span itemprop="reviewValue">{{ rating }}</span>
+            </div>
+            <div itemprop="name">{{ title }}</div>
+            <meta itemprop="author" content="{{name}}">
             <div>{{lang 'products.reviews.post_on_by' date=date name=name}}</div>
-            <p>{{ text }}</p>
+            <p itemprop="reviewBody">{{ text }}</p>
         </li>
         {{/each}}
     </ul>

@@ -1,16 +1,25 @@
 <div class="productView">
     {{product.detail_messages}}
-    <h1>{{ product.title }}</h1>
-    <h2 data-bind="text: price">{{ product.price.base }}</h2>
+    <h1 itemprop="name">{{ product.title }}</h1>
+    <h4 itemprop="brand" itemscope itemtype="http://schema.org/Brand">
+        <a itemprop="url" href="{{product.brand.link}}">
+            <span itemprop="name">{{product.brand.name}}</span>
+        </a>
+    </h4>
+    <h2 data-bind="text: price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+        <meta itemprop="priceCurrency" content="{{currency_selector.active_currency_code}}">
+        <span itemprop="price">{{ product.price.base }}</span>
+    </h2>
     <div>
-        <div data-reveal-id="modal-review-form" class="product-reviews-stars">
+        <div data-reveal-id="modal-review-form" class="product-reviews-stars" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+            <meta itemprop="ratingValue" content="{{product.rating}}">
             {{> components/products/ratings rating=product.rating}}
         </div>
         {{lang 'products.reviews.link_to_review' total=product.num_reviews}}
         {{> components/products/modals/reviews product=product urls=urls}}
     </div>
     <a href="{{ product.initial_zoom_image }}">
-        <img src="{{ product.initial_image }}">
+        <img itemprop="image" src="{{ product.initial_image }}">
     </a>
     {{#each product.images}}
         <img src="{{tiny_url}}">
@@ -28,7 +37,13 @@
         </p>
         <div class="product-sku">
             <h4>{{lang 'products.sku'}}</h4>
-            <p class="product-skuText" data-bind="text: sku">{{ product.sku }}</p>
+            <p class="product-skuText" data-bind="text: sku" itemprop="sku">{{ product.sku }}</p>
+        </div>
+        <div itemprop="itemCondition">
+            {{product.condition}}
+        </div>
+        <div itemprop="weight">
+            {{product.weight}}
         </div>
         <div id="product-options">
             {{lang 'products.options'}}
@@ -79,5 +94,5 @@
         <script type="text/javascript" src="//s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4e94ed470ee51e32"></script>
         <!-- AddThis Button END -->
     </div>
-    <p>{{{ product.description }}}</p>
+    <p itemprop="description">{{{ product.description }}}</p>
 </div>

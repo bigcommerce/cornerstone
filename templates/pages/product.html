@@ -14,21 +14,23 @@ product:
         {{> components/common/breadcrumbs this}}
     {{/each}}
 
-    {{> components/products/product-view}}
+    <div itemscope itemtype="http://schema.org/Product">
+        {{> components/products/product-view}}
 
-    {{> components/products/reviews product.reviews}}
+        {{> components/products/reviews product.reviews}}
 
-    <ul class="tabs">
-        <li class="tab is-active"><a class="tab-title" href="#tab-related">{{lang 'products.related_products'}}</a></li>
-        <li class="tab"><a class="tab-title" href="#tab-similar">{{lang 'products.similar_by_views'}}</a></li>
-    </ul>
+        <ul class="tabs">
+            <li class="tab is-active"><a class="tab-title" href="#tab-related">{{lang 'products.related_products'}}</a></li>
+            <li class="tab"><a class="tab-title" href="#tab-similar">{{lang 'products.similar_by_views'}}</a></li>
+        </ul>
 
-    <div class="tabs-contents">
-        <div class="tab-content is-active" id="tab-related">
-            {{> components/products/carousel product.related_products}}
-        </div>
-        <div class="tab-content" id="tab-similar">
-            {{> components/products/list product.similar_by_views}}
+        <div class="tabs-contents">
+            <div class="tab-content is-active" id="tab-related">
+                {{> components/products/carousel product.related_products}}
+            </div>
+            <div class="tab-content" id="tab-similar">
+                {{> components/products/list product.similar_by_views}}
+            </div>
         </div>
     </div>
 

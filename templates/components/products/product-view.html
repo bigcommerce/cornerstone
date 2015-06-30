@@ -14,6 +14,8 @@
         <div data-reveal-id="modal-review-form" class="product-reviews-stars" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
             <meta itemprop="ratingValue" content="{{product.rating}}">
             {{> components/products/ratings rating=product.rating}}
+        <meta itemprop="ratingCount" content="{{product.num_reviews}}">
+        <meta itemprop="reviewCount" content="{{product.num_reviews}}">
         </div>
         {{lang 'products.reviews.link_to_review' total=product.num_reviews}}
         {{> components/products/modals/writeReview product=product urls=urls}}

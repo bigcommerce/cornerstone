@@ -17,14 +17,14 @@
         <meta itemprop="ratingCount" content="{{product.num_reviews}}">
         <meta itemprop="reviewCount" content="{{product.num_reviews}}">
         </div>
-        {{lang 'products.reviews.link_to_review' total=product.num_reviews}}
+        {{@lang 'products.reviews.link_to_review' total=product.num_reviews}}
         {{> components/products/modals/writeReview product=product urls=urls}}
     </div>
-    <a href="{{image product.main_image 'zoom'}}" alt="{{image.alt}}">
-        <img itemprop="image" src="{{image product.main_image 'product'}}" alt="{{image.alt}}">
+    <a href="{{@image product.main_image 'zoom'}}" alt="{{image.alt}}">
+        <img itemprop="image" src="{{@image product.main_image 'product'}}" alt="{{image.alt}}">
     </a>
     {{#each product.images}}
-        <img src="{{image this 'thumb'}}" alt="{{image.alt}}">
+        <img src="{{@image this 'thumb'}}" alt="{{image.alt}}">
     {{/each}}
     {{#if product.release_date }}
     <span class="alert alert-warning">{{product.release_date}}</span>
@@ -34,11 +34,11 @@
         <input type="hidden" name="product_id" value="{{product.id}}" />
         <p>
             {{#each product.customizations}}
-                <div>{{{renderProductCustomization this}}}</div>
+                <div>{{{@renderProductCustomization this}}}</div>
             {{/each}}
         </p>
         <div class="product-sku">
-            <h4>{{lang 'products.sku'}}</h4>
+            <h4>{{@lang 'products.sku'}}</h4>
             <p class="product-skuText" data-bind="text: sku" itemprop="sku">{{ product.sku }}</p>
         </div>
         <div itemprop="itemCondition">
@@ -48,9 +48,9 @@
             {{product.weight}}
         </div>
         <div id="product-options">
-            {{lang 'products.options'}}
+            {{@lang 'products.options'}}
             {{#each product.options}}
-                <div>{{{renderProductOption this}}}</div>
+                <div>{{{@renderProductOption this}}}</div>
             {{/each}}
         </div>
         <div id="product-quantity" data-bind="enable: canAddToCart">
@@ -63,7 +63,7 @@
     </form>
 
     <form method="post" action="{{product.add_to_wishlist_url}}">
-        <input type="submit" class="btn btn-primary" value="{{lang 'account.wishlists.add_item'}}">
+        <input type="submit" class="btn btn-primary" value="{{@lang 'account.wishlists.add_item'}}">
     </form>
 
     <div class="Clear AddThisButtonBox" data-product-share>

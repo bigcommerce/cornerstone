@@ -4,7 +4,7 @@
         <select class="form-select option-date" name="attribute[{{this.id}}][month]">
             <option></option>
             {{#enumerate 1 12}}
-            <option value="{{ this }}" {{#equals ../selected_date.month this}}selected="selected"{{/equals}}>{{getShortMonth this }}</option>
+            <option value="{{ this }}" {{#equals ../selected_date.month this}}selected="selected"{{/equals}}>{{@getShortMonth this }}</option>
             {{/enumerate}}
         </select>
         <select class="form-select option-date" name="attribute[{{this.id}}][day]">

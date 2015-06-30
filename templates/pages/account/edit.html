@@ -1,7 +1,7 @@
 {{#partial "page"}}
 <div class="account">
     {{> components/common/breadcrumbs breadcrumbs}}
-    <h2 class="page-heading">{{lang 'account.settings.heading' }}</h2>
+    <h2 class="page-heading">{{@lang 'account.settings.heading' }}</h2>
     {{> components/account/navigation account_page='settings'}}
     {{#if forms.edit_account.error}}
     {{> components/common/alert-error forms.edit_account.error}}
@@ -14,36 +14,36 @@
         <div class="main-section">
             <div class="form-field">
                 <label class="form-label" for="account_firstname">
-                    {{lang 'account.settings.first_name' }}
-                    <small>{{lang 'common.required' }}</small>
+                    {{@lang 'account.settings.first_name' }}
+                    <small>{{@lang 'common.required' }}</small>
                 </label>
                 <input type="text" class="form-input" name="account_firstname" id="account_firstname" value="{{forms.edit_account.first_name}}">
             </div>
             <div class="form-field">
                 <label class="form-label" for="account_lastname">
-                    {{lang 'account.settings.last_name' }}
-                    <small>{{lang 'common.required' }}</small>
+                    {{@lang 'account.settings.last_name' }}
+                    <small>{{@lang 'common.required' }}</small>
                 </label>
                 <input type="text" class="form-input" name="account_lastname" id="account_lastname" value="{{forms.edit_account.last_name}}">
             </div>
             <div class="form-field">
                 <label class="form-label" for="account_companyname">
-                    {{lang 'account.settings.company' }}
+                    {{@lang 'account.settings.company' }}
                 </label>
                 <input type="text" class="form-input" name="account_companyname" id="account_companyname" value="{{forms.edit_account.company_name}}">
             </div>
 
             <div class="form-field">
                 <label class="form-label" for="account_phone">
-                    {{lang 'account.settings.phone' }}
-                    <small>{{lang 'common.required' }}</small>
+                    {{@lang 'account.settings.phone' }}
+                    <small>{{@lang 'common.required' }}</small>
                 </label>
                 <input type="text" class="form-input" name="account_phone" id="account_phone" value="{{forms.edit_account.phone}}">
             </div>
         </div>
         <div class="supporting-section">
             {{#each forms.edit_account.fields}}
-                {{{field this}}}
+                {{{@field this}}}
             {{/each}}
         </div>
 

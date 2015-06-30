@@ -1,6 +1,6 @@
 {{#partial "page"}}
 <main class="main full">
-    <h1>{{lang 'compare.header' products=comparisons.length}}</h1>
+    <h1>{{@lang 'compare.header' products=comparisons.length}}</h1>
     <ul class="compare">
         <li class="column column-{{comparisons.length}} compare-label">
             <div class="compare-header"></div>
@@ -21,10 +21,10 @@
         <li class="column column-{{../comparisons.length}}">
             <div class="compare-header">
                 <div><a href="{{remove_url}}">&times;</a></div>
-                <div><img src="{{{image image 'product'}}}" alt="{{image.alt}}"></div>
+                <div><img src="{{{@image image 'product'}}}" alt="{{image.alt}}"></div>
                 <div><a href="{{brand_url}}">{{ brand_name }}</a></div>
                 <div><a href="{{{url}}}">{{ name }}</a></div>
-                <div>{{money price}}</div>
+                <div>{{@money price}}</div>
 
                 <form method="post" action="{{ urls.cart }}" class="compare-header-cart">
                     <input class="quickview button button--primary button-addToCart" data-product-id="{{id}}" type="submit" data-bind="enable: canAddToCart" value="Add To Cart">

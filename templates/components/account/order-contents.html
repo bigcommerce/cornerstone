@@ -1,13 +1,13 @@
-<h3 class="account-heading">{{lang 'account.orders.details.order_contents' }}</h3>
+<h3 class="account-heading">{{@lang 'account.orders.details.order_contents' }}</h3>
 <ul class="order-contents">
     {{#each this.items}}
     <li class="order-contents-item">
-        <img class="order-contents-image" src="{{image image}}" alt="image.alt">
+        <img class="order-contents-image" src="{{@image image}}" alt="image.alt">
         <h6 class="order-contents-name">{{name}}</h6>
         <span class="order-contents-price">{{price}}</span>
-        <a href="#" class="order-contents-return button secondary">{{lang 'account.orders.return' }}</a>
+        <a href="#" class="order-contents-return button secondary">{{@lang 'account.orders.return' }}</a>
         {{#if download_link}}
-            <a href="{{download_link}}" class="button button--primary">{{lang 'account.orders.details.download_items' }}</a>
+            <a href="{{download_link}}" class="button button--primary">{{@lang 'account.orders.details.download_items' }}</a>
         {{/if}}
     </li>
     {{/each}}

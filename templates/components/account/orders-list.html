@@ -1,29 +1,29 @@
-<h3 class="account-heading">{{lang 'account.orders.heading' }}</h3>
+<h3 class="account-heading">{{@lang 'account.orders.heading' }}</h3>
 <ul class="orders-list">
     {{#each orders}}
     <li class="account-section-item order-item">
         <img class="order-preview-image" src="http://placehold.it/73x73" alt="{{this.items.[0].name}}">
         <div class="information">
             <a href="{{this.details_url}}">
-                <h4 class="order-item-heading">{{lang 'account.orders.list.order_number' number=this.id}}</h4>
+                <h4 class="order-item-heading">{{@lang 'account.orders.list.order_number' number=this.id}}</h4>
             </a>
             <p>
-                {{lang 'account.orders.list.product_details' num_products=this.items.length cost=this.total}}
+                {{@lang 'account.orders.list.product_details' num_products=this.items.length cost=this.total}}
             </p>
             <div class="order-sub-information">
                 <div class="order-sub-item">
-                    <h6 class="order-sub-item-title">{{lang 'account.orders.order_placed' }}</h6>
+                    <h6 class="order-sub-item-title">{{@lang 'account.orders.order_placed' }}</h6>
                     <span class="order-sub-item-text">{{this.date}}</span>
                 </div>
                 <div class="order-sub-item">
-                    <h6 class="order-sub-item-title">{{lang 'account.orders.last_update' }}</h6>
+                    <h6 class="order-sub-item-title">{{@lang 'account.orders.last_update' }}</h6>
                     <span class="order-sub-item-text">{{this.last_update_date}}</span>
                 </div>
             </div>
         </div>
 
         <h6 class="account-info-status order-info-status">{{this.status}}</h6>
-        <a class="order-return-items" href="{{this.return_url}}">{{lang 'account.orders.return_items' }}</a>
+        <a class="order-return-items" href="{{this.return_url}}">{{@lang 'account.orders.return_items' }}</a>
     </li>
     {{/each}}
 </ul>

@@ -1,17 +1,17 @@
 
 {{#if cart.discount}}
     <div class="coupon-code-show">
-        <a href="#">{{money cart.discount}}</a>
+        <a href="#">{{@money cart.discount}}</a>
     </div>
     
 {{else}}
     <button class="coupon-code-show">Add Code</button>
 
     <div class="coupon-code" style="display:none;">
-        <button class="coupon-code-hide">{{lang 'cancel'}}</button>
+        <button class="coupon-code-hide">{{@lang 'cancel'}}</button>
         <form class="coupon-form">
             <input type="text" name="couponcode" value="">
-            <input type="submit" value="{{lang 'go'}}">
+            <input type="submit" value="{{@lang 'go'}}">
         </form>
     </div>
 {{/if}}

@@ -16,14 +16,14 @@ System.config({
 System.config({
   "map": {
     "asyncly/EventEmitter2": "github:asyncly/EventEmitter2@0.4.14",
-    "babel": "npm:babel@4.7.16",
-    "babel-runtime": "npm:babel-runtime@4.7.16",
+    "babel": "npm:babel-core@5.6.15",
+    "babel-runtime": "npm:babel-runtime@5.6.15",
     "bigcommerce/citadel": "github:bigcommerce/citadel@2.4.0",
     "bigcommerce/stencil-utils": "github:bigcommerce/stencil-utils@0.1.6",
     "browserstate/history.js": "github:browserstate/history.js@1.8.0",
     "caolan/async": "github:caolan/async@0.9.2",
     "casperin/nod": "github:casperin/nod@2.0.4",
-    "core-js": "npm:core-js@0.8.4",
+    "core-js": "npm:core-js@0.9.18",
     "foundation": "github:zurb/bower-foundation@5.5.2",
     "jquery": "github:components/jquery@2.1.4",
     "knockout": "github:knockout/knockout@3.3.0",
@@ -56,8 +56,16 @@ System.config({
     "npm:babel-runtime@4.7.16": {
       "process": "github:jspm/nodelibs-process@0.1.1"
     },
+    "npm:babel-runtime@5.6.15": {
+      "process": "github:jspm/nodelibs-process@0.1.1"
+    },
     "npm:core-js@0.8.4": {
       "process": "github:jspm/nodelibs-process@0.1.1"
+    },
+    "npm:core-js@0.9.18": {
+      "fs": "github:jspm/nodelibs-fs@0.1.2",
+      "process": "github:jspm/nodelibs-process@0.1.1",
+      "systemjs-json": "github:systemjs/plugin-json@0.1.0"
     },
     "npm:inherits@2.0.1": {
       "util": "github:jspm/nodelibs-util@0.1.0"

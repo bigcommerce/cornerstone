@@ -1,7 +1,7 @@
 {{#partial "page"}}
 <div class="account">
     {{> components/common/breadcrumbs breadcrumbs}}
-    <h2 class="page-heading">{{lang 'account.recent_items.heading' }}</h2>
+    <h2 class="page-heading">{{@lang 'account.recent_items.heading' }}</h2>
     {{> components/account/navigation account_page='recent_items'}}
 
     <form action="/compare" method="post">
@@ -12,7 +12,7 @@
             {{/each}}
             </li>
         </ul>
-        <input type="submit" value="{{lang 'compare.button'}}">
+        <input type="submit" value="{{@lang 'compare.button'}}">
     </form>
 </div>
 {{/partial}}

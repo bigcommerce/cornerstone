@@ -1,11 +1,11 @@
 <div class="wishlist-add">
     <header class="wishlist-header">
         {{#if wishlist.id}}
-            <h1>{{lang 'account.wishlists.edit'}}</h1>
+            <h1>{{@lang 'account.wishlists.edit'}}</h1>
         {{else}}
-            <h1>{{lang 'account.wishlists.new' }}</h1>
+            <h1>{{@lang 'account.wishlists.new' }}</h1>
 
-            <p>{{lang 'account.wishlists.tag_line'}}</p>
+            <p>{{@lang 'account.wishlists.tag_line'}}</p>
         {{/if}}
         {{#if wishlist.errors}}
             {{> components/common/alert-error wishlist.errors}}
@@ -16,21 +16,21 @@
 
         <div class="form-field">
             <label class="form-label" for="wishlistname">
-                {{lang 'forms.wishlist.name'}}
-                <small>{{lang 'common.required' }}</small>
+                {{@lang 'forms.wishlist.name'}}
+                <small>{{@lang 'common.required' }}</small>
             </label>
             <input class="form-input" name="wishlistname" id="wishlistname" value="{{wishlist.name}}">
         </div>
         <div class="form-field">
-            <label class="form-label" for="publicwishlist">{{lang 'forms.wishlist.public' }}</label>
+            <label class="form-label" for="publicwishlist">{{@lang 'forms.wishlist.public' }}</label>
             <input type="checkbox" name="publicwishlist" id="publicwishlist" {{#if wishlist.is_public}}checked{{/if}}>
         </div>
         <div class="form-field">
             {{#if wishlist.id}}
-                <input type="submit" class="button button--primary button--small" value="{{lang 'account.wishlists.save'}}">
+                <input type="submit" class="button button--primary button--small" value="{{@lang 'account.wishlists.save'}}">
             {{else}}
                 <input type="submit" class="button button--primary button--small"
-                       value="{{lang 'account.wishlists.create'}}">
+                       value="{{@lang 'account.wishlists.create'}}">
             {{/if}}
         </div>
     </form>

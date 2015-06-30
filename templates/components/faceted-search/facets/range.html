@@ -10,7 +10,7 @@
             <fieldset>
                 <input
                         name="min_price"
-                        placeholder="{{lang 'search.faceted.range.min-placeholder'}}"
+                        placeholder="{{@lang 'search.faceted.range.min-placeholder'}}"
                         min="0"
                         class="js-facet-range-input-from"
                         required
@@ -20,17 +20,17 @@
                 -
                 <input
                         name="max_price"
-                        placeholder="{{lang 'search.faceted.range.max-placeholder'}}"
+                        placeholder="{{@lang 'search.faceted.range.max-placeholder'}}"
                         min="0"
                         class="js-facet-range-input-to"
                         required
                         type="number"
                         value="{{ max_price }}"
                 />
-                <button class="btn js-btn-facet-range-update" type="submit">{{lang 'search.faceted.range.update'}}</button>
+                <button class="btn js-btn-facet-range-update" type="submit">{{@lang 'search.faceted.range.update'}}</button>
                 {{#if selected}}
                 <a href="{{remove_url}}" class="btn js-btn-facet-range-clear" data-faceted-search-facet>
-                    {{lang 'search.faceted.clear'}}
+                    {{@lang 'search.faceted.clear'}}
                 </a>
                 {{/if}}
             </fieldset>

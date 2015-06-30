@@ -1,10 +1,10 @@
 <table class="table wishlists-table">
     <thead class="table-thead">
         <tr>
-            <th>{{lang 'account.wishlists.name'}}</th>
-            <th>{{lang 'account.wishlists.num_items'}}</th>
-            <th>{{lang 'account.wishlists.shared'}}</th>
-            <th>{{lang 'account.wishlists.action'}}</th>
+            <th>{{@lang 'account.wishlists.name'}}</th>
+            <th>{{@lang 'account.wishlists.num_items'}}</th>
+            <th>{{@lang 'account.wishlists.shared'}}</th>
+            <th>{{@lang 'account.wishlists.action'}}</th>
         </tr>
     </thead>
     <tbody class="table-tbody">
@@ -14,18 +14,18 @@
             <td>{{num_items}}</td>
             <td>
                 {{#if is_public }}
-                    {{lang 'common.yes'}}
+                    {{@lang 'common.yes'}}
                 {{else}}
-                    {{lang 'common.no'}}
+                    {{@lang 'common.no'}}
                 {{/if}}
             </td>
             <td class="table-actions">
                 <form method="post" action="{{delete_url}}" class="form form-actions--center">
                     <fieldset class="form-fieldset">
-                        <a href="{{edit_url}}" class="button button--small">{{lang 'common.edit'}}</a>
-                        <input type="submit" value="{{lang 'common.delete'}}" class="button button--small">
+                        <a href="{{edit_url}}" class="button button--small">{{@lang 'common.edit'}}</a>
+                        <input type="submit" value="{{@lang 'common.delete'}}" class="button button--small">
                         <a href="{{share_url}}" class="button button--primary button--small"
-                           role="button">{{lang 'common.share'}}</a>
+                           role="button">{{@lang 'common.share'}}</a>
                     </fieldset>
                 </form>
             </td>
@@ -35,11 +35,11 @@
 </table>
 
 <form method="post" action="{{this.urls.wishlists.delete}}" class="form-actions">
-    <a href="{{this.urls.wishlists.add}}" data-reveal-id="wishlist-modal" class="button button--primary button--small" role="button">{{lang 'account.wishlists.new'}}</a>
+    <a href="{{this.urls.wishlists.add}}" data-reveal-id="wishlist-modal" class="button button--primary button--small" role="button">{{@lang 'account.wishlists.new'}}</a>
     {{#each customer.wishlists}}
         <input type="hidden" value="{{this.id}}" name="deletewishlist[]"/>
     {{/each}}
-    <input type="submit" value="{{lang 'account.wishlists.delete_all'}}" id="wishlist-delete" class="button button--small"/>
+    <input type="submit" value="{{@lang 'account.wishlists.delete_all'}}" id="wishlist-delete" class="button button--small"/>
 </form>
 
 <div id="wishlist-modal" class="modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">

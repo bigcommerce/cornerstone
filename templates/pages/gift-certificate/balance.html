@@ -2,26 +2,26 @@
 <main class="container full">
     <ul class="breadcrumbs">
         <li class="breadcrumb">
-            <a class="breadcrumb-label" href="{{urls.home}}">{{lang 'home.heading' }}</a>
+            <a class="breadcrumb-label" href="{{urls.home}}">{{@lang 'home.heading' }}</a>
         </li>
         <li class="breadcrumb">
-            <span class="breadcrumb-label">{{lang 'gift_certificate.balance.heading' }}</span>
+            <span class="breadcrumb-label">{{@lang 'gift_certificate.balance.heading' }}</span>
         </li>
     </ul>
-    <h2 class="page-heading">{{lang 'gift_certificate.balance.heading' }}</h2>
+    <h2 class="page-heading">{{@lang 'gift_certificate.balance.heading' }}</h2>
     {{> components/gift-certificate/navigation gift_page='balance' }}
     <div>
         <p>
-            <strong>{{lang 'gift_certificate.balance.intro' }}</strong>
+            <strong>{{@lang 'gift_certificate.balance.intro' }}</strong>
         </p>
         <form method="post" action="{{urls.gift_certificate.balance}}">
             <div class="form-field">
-                <label class="form-label" for="giftcertificatecode">{{lang 'forms.gift_certificate.balance.code' }}
-                    <small>{{lang 'common.required' }}</small></label>
+                <label class="form-label" for="giftcertificatecode">{{@lang 'forms.gift_certificate.balance.code' }}
+                    <small>{{@lang 'common.required' }}</small></label>
                 <input class="form-input" id="giftcertificatecode" name="giftcertificatecode">
             </div>
             <div class="form-field">
-                <input type="submit" class="button button--primary" value="{{lang 'forms.gift_certificate.balance.submit_value' }}">
+                <input type="submit" class="button button--primary" value="{{@lang 'forms.gift_certificate.balance.submit_value' }}">
             </div>
         </form>
     </div>

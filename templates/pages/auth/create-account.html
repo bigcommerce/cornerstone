@@ -1,6 +1,6 @@
 {{#partial "page"}}
     {{> components/common/breadcrumbs breadcrumbs}}
-    <h1 class="page-heading">{{lang 'create_account.heading' }}</h1>
+    <h1 class="page-heading">{{@lang 'create_account.heading' }}</h1>
     {{#if forms.create_account.error}}
         {{> components/common/alert-error forms.create_account.error}}
     {{/if}}
@@ -8,19 +8,19 @@
         <fieldset class="form-fieldset">
             {{#each forms.create_account.account_fields }}
                 <div class="create-account-field">
-                    {{{field this}}}
+                    {{{@field this}}}
                 </div>
             {{/each}}
             {{#each forms.create_account.address_fields }}
                 <div class="create-account-field">
-                    {{{field this}}}
+                    {{{@field this}}}
                 </div>
             {{/each}}
         </fieldset>
         {{#if forms.create_account.recaptcha.enabled }}
         <div class="panel">
 
-            <h3 class="panel-heading">{{lang 'create_account.captcha_heading' }}</h3>
+            <h3 class="panel-heading">{{@lang 'create_account.captcha_heading' }}</h3>
             <div class="panel-body">
                 <script type="text/javascript"
                         src="https://www.google.com/recaptcha/api/challenge?k={{forms.create_account.recaptcha.public_key}}">
@@ -36,7 +36,7 @@
         </div>
         {{/if}}
         <div class="create-account-submit">
-            <input type="submit" class="button button--primary" value="{{lang 'forms.create_account.submit_value' }}" />
+            <input type="submit" class="button button--primary" value="{{@lang 'forms.create_account.submit_value' }}" />
         </div>
     </form>
 {{/partial}}

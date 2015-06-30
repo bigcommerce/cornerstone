@@ -2,9 +2,9 @@
 <div class="account">
     {{> components/common/breadcrumbs breadcrumbs}}
     {{#if forms.address.address_id}}
-        <h2 class="page-heading">{{lang 'forms.address.edit.heading'}}</h2>
+        <h2 class="page-heading">{{@lang 'forms.address.edit.heading'}}</h2>
     {{else}}
-        <h2 class="page-heading">{{lang 'forms.address.add.heading'}}</h2>
+        <h2 class="page-heading">{{@lang 'forms.address.add.heading'}}</h2>
     {{/if}}
     {{> components/account/navigation account_page='addresses'}}
 
@@ -17,12 +17,12 @@
         {{/if}}
         {{#each forms.address.shipping_fields }}
             <div class="address-form-field">
-                {{{field this}}}
+                {{{@field this}}}
             </div>
         {{/each}}
         <div class="create-account-submit">
-            <input type="submit" class="button button--primary" value="{{lang 'forms.address.submit_value'}}">
-            <a href="{{urls.account.addresses}}" class="button">{{lang 'common.cancel'}}</a>
+            <input type="submit" class="button button--primary" value="{{@lang 'forms.address.submit_value'}}">
+            <a href="{{urls.account.addresses}}" class="button">{{@lang 'common.cancel'}}</a>
         </div>
     </form>
 </div>

@@ -1,6 +1,6 @@
 {{#if this.total}}
 <div id="product-reviews" class="productReviews" data-product-reviews>
-    <a href="#" class="productReviews">Hide reviews</a>
+    <a href="#" class="productReviews-hide">{{lang 'products.reviews.hide'}}</a>
     <!-- TODO: Make sure that Hide reviews actually hides reviews -->
     <h5>{{lang 'products.reviews.header' total=this.total}}</h5>
     <ul class="productReviews-list">
@@ -12,7 +12,7 @@
                         <span class="productReview-rating" itemprop="ratingValue">{{ rating }}</span>
                     </span>
                     <h5 itemprop="name" class="productReview-title">{{ title }}</h5>
-                    <meta itemprop="author" content"{{name}}">
+                    <meta itemprop="author" content="{{name}}">
                     <p class="productReview-author">
                         {{lang 'products.reviews.post_on_by' date=date name=name}}
                     </p>

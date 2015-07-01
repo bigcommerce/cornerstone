@@ -1,3 +1,7 @@
+{{#unless customer.addresses}}
+    {{> components/common/alert-info (@lang 'account.addresses.no_addresses')}}
+{{/unless}}
+
 <ul class="account-address-list">
     {{#each customer.addresses}}
         <li class="account-address-item">
@@ -15,7 +19,9 @@
                 </ul>
                 <div class="address-button-bar">
                     <a class="button button--primary button--small" href="{{edit_url}}">{{@lang 'common.edit' }}</a>
-                    <a class="button secondary button--small" href="{{delete_url}}">{{@lang 'common.delete' }}</a>
+                    <form action="{{delete_url}}" method="post">
+                        <button type="submit" class="button secondary button--small">{{@lang 'common.delete' }}</button>
+                    </form>
                 </div>
             </div>
         </li>

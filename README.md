@@ -4,7 +4,7 @@ The building block for Bigcommerce theme developers to get started quickly devel
 
 ### Stencil Utils
 [Stencil-utils](https://github.com/bigcommerce/stencil-utils) is our supporting library for our events and remote interactions. It is a module that is managed by [JSPM](http://jspm.io)
-and requires installation. [Stencil-utils](https://github.com/bigcommerce/stencil-utils) is located in a private repo for now, so ensure you follow the next section. 
+and requires installation. [Stencil-utils](https://github.com/bigcommerce/stencil-utils) is located in a private repo for now, so ensure you follow the next section.
 ### Installing JSPM
 * Ensure that `npm` is installed.
 * Open a terminal and run `npm install -g jspm` this will install JSPM globally.
@@ -75,7 +75,7 @@ a shim for your code before your main implementation logic could run.
         }
         before(callback) {
             //code that should be ran before anyother code in this class
-            
+
             //Callback must be called to move on to the next method
             callback();
         }
@@ -90,7 +90,7 @@ This method will be called when the constructor has ran and `before()` has execu
         }
         loaded(callback) {
             //Main implementation logic here
-            
+
             //Callback must be called to move on to the next method
             callback();
         }
@@ -107,9 +107,41 @@ This method is for any cleanup that may need to happen and will be executed afte
         }
         after(callback) {
             //Main implementation logic here
-            
+
             //Callback must be called to move on to the next method
             callback();
         }
     }
 ```
+
+## Static assets
+Some static assets in the Stencil theme are handled with Grunt if required. This
+means you have some dependencies on grunt and npm. To get started:
+
+First make sure you have Grunt installed globally on your machine:
+```
+npm install -g grunt-cli
+```
+and run:
+```
+npm install
+```
+
+### Icons
+Icons are delivered via a single SVG sprite, which is embedded on the page in
+`templates/layout/base.html`. It is generated via a grunt task `grunt svgstore`.
+
+The task takes individual SVG files for each icon, in `assets/icons` and bundles
+them together, to be inlined on the top of the theme, inside a handlebars partial.
+Each icon can then be called in a similar way to an inline image via:
+
+```
+<svg><use xlink:href="#icon-svgFileName" /></svg>
+```
+
+The ID of the SVG icon you are calling is based on the filename of the icon you want,
+with `icon-` prepended. e.g. `xlink:href="#icon-fabeook"`.
+
+Simply add your new icon SVG file to the icons folder, and run `grunt svgstore`,
+or just `grunt`.
+

@@ -14,11 +14,11 @@
     <div class="container">
         <div class="header-logo">
             <a href="{{urls.home}}">
-                {{#compare settings.store_logo.type "image" operator="==="}}
-                    <img class="header-logo-image" src="{{settings.store_logo.url}}" alt="{{settings.store_name}}">
+                {{#if settings.store_logo.image}}
+                    <img class="header-logo-image" src="{{@image settings.store_logo.image 'logo'}}" alt="{{settings.store_logo.title}}">
                 {{else}}
-                    <span class="header-logo-text">{{settings.store_logo.value}}</span>
-                {{/compare}}
+                    <span class="header-logo-text">{{settings.store_logo.title}}</span>
+                {{/if}}
             </a>
         </div>
 

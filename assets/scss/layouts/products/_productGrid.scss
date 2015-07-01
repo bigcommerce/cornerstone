@@ -51,3 +51,34 @@
     }
 
 }
+
+
+//
+// Product Grid with masonry layout
+//
+// Purpose: Modify the base product grid to have a masonry layout effect, with
+// normal display: inline-block fallback for older browsers that don't Flexbox
+//
+// 1. Only supported in browsers that support css columns, otherwise it falls back
+// to the normal grid layout about.
+// -----------------------------------------------------------------------------
+
+.productGrid--masonry {
+    .csscolumns & { // 1
+
+        column-count: 2;
+
+        @include breakpoint("small") {
+            column-count: 3;
+        }
+
+        @include breakpoint("medium") {
+            column-count: 4;
+        }
+
+        .product {
+            width: 100%;
+        }
+
+    }
+}

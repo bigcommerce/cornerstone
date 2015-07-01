@@ -1,43 +1,76 @@
-// =============================================================================
-// PAGE NAVIGATION (CSS)
-// =============================================================================
+// Page Navigation
+// -----------------------------------------------------------------------------
 //
-// 1. Reduce font-size: 0; to remove display: inline-block; white-space. Just
-//    make sure that font-size is reset again on child elements.
-// 2. Trusty important tag... Because we're using display: inline-block; and
-//    text-align: center; to center the nav, the Foundation JS messes up the
-//    positioning of the menu. We correct that by overriding their inline style.
+// Purpose: Contains the styles for the page navigation, deals with 2 viewsdue to
+// responsive layout of that navigation
+//
+// 1. It's not exactly a grid row, as it's a little further down the DOM tree, but
+// I use it here to grab the max width centering.
 //
 // -----------------------------------------------------------------------------
 
-.navPages {
-    @include nav($style: "navBar", $wrapper: "nav");
-    font-size: 0; // 1
-    text-align: center;
+.navPages-container {
+    background-color: color("greys", "lightest");
+    bottom: 0;
+    display: none;
+    left: 0;
+    height: 100%;
+    overflow-y: scroll;
+    padding: spacing("single");
+    position: absolute;
+    right: 0;
+    z-index: zIndex("lower");
 
-    .dropdown-menu {
-        min-width: 160px;
+    &.is-open {
+        display: block;
+    }
 
-        &.is-open {
-            left: 0 !important; // 2
-        }
+    @include breakpoint("medium") {
+        background: transparent;
+        display: block;
+        height: auto;
+        overflow-y: visible;
+        padding: 0;
+        position: relative;
+        top: auto;
     }
 }
 
-.navPages-section {
-    display: inline-block;
-    float: none;
+//
+// Top level Pages navigation list styles
+// -----------------------------------------------------------------------------
+
+.navPages {
+    position: relative;
+
+    ul {
+        list-style: none;
+    }
+
+    @include breakpoint("medium") {
+        @include grid-row(); // 1
+        @include nav($style: "navBar", $wrapper: "nav");
+        font-size: 0; // 1
+        text-align: center;
+    }
+
 }
 
-.navPages-item {
-    position: relative;
+.navPages-list {
+    margin:0;
+
+    @include breakpoint("medium") {
+        display: inline-block;
+        float: none;
+    }
 }
 
 .navPages-action {
     color: color("greys", "darkest");
+    display: inline-block;
     font-size: fontSize("smaller");
     font-weight: fontWeight("bold");
-    padding: spacing("half") (spacing("half") + spacing("quarter")) (spacing("half") + spacing("quarter"));
+    padding: spacing("half") 0;
     text-decoration: none;
     text-transform: uppercase;
 
@@ -45,23 +78,181 @@
         color: color("greys", "medium");
     }
 
-    &.is-open {
-        color: color("greys", "darkest");
-        background-color: color("greys", "lightest");
+    @include breakpoint("medium") {
+        padding: spacing("half") (spacing("half") + spacing("quarter")) (spacing("half") + spacing("quarter"));
+
+        &.is-open {
+            color: color("greys", "darkest");
+            background-color: color("greys", "lightest");
+        }
+
+    }
+}
+
+.navPages-action-moreIcon {
+    @include square(8px);
+    margin-left: spacing("quarter");
+    transform: rotate(-90deg);
+
+    .has-subMenu.is-open & {
+        transform: rotate(0);
     }
 
-    &.has-dropdown {
+    @include breakpoint("medium") {
+        transform: none;
+    }
 
-        &:after {
-            background: $dropdown-icon no-repeat;
-            background-size: 100%;
-            content: "";
-            display: inline-block;
-            height: remCalc(17px);
-            margin: 0 (-(spacing("quarter"))) 0 spacing("eighth");
-            position: relative;
-            top: remCalc(3px);
-            width: remCalc(17px);
+    svg {
+        stroke: color("greys", "darker");
+    }
+}
+
+
+//
+// Sub page navigation and children of sub pages
+// -----------------------------------------------------------------------------
+
+.navPage-subMenu,
+.navPage-childList {
+    border-left: 1px solid color("greys", "lighter");
+    margin: spacing("quarter") spacing("half");
+    padding-left: spacing("half");
+
+    @include breakpoint("medium") {
+        border: none;
+    }
+}
+
+
+//
+// Sub menu, first level down from top level categories
+//
+// 1. navBar mixin has lots of decendant child selectors to deal with
+// -----------------------------------------------------------------------------
+
+.navPage-subMenu {
+    display: none;
+
+    &.is-open {
+        display: block;
+    }
+
+    .navPages-action-moreIcon {
+        transform: none;
+    }
+
+    @include breakpoint("medium") {
+        @include grid-row();
+        background-color: color("greys", "lightest");
+        padding: spacing("single") spacing("single") (spacing("single")+spacing("half"))!important;
+        position: absolute;
+        text-align: left;
+
+        &.is-open {
+            display: block;
+            left: 0;
+            max-width: layout("max");
+        }
+
+        .navPages-action-moreIcon {
+            display: none;
         }
     }
 }
+
+.navPage-subMenu-item {
+    @include breakpoint("medium") {
+        @include grid-column(3);
+        padding: 0 0.75rem !important; // 1
+
+        .navPages-action {
+            text-transform: none;
+            width: 100%;
+        }
+
+        > .navPage-subMenu-action {
+            border-bottom: solid 1px color("greys", "lighter");
+            margin-bottom: spacing("half") + spacing("quarter");
+        }
+
+    }
+}
+
+.navPage-subMenu-action {
+    padding: spacing("half") 0 (spacing("half") + spacing("quarter"));
+}
+
+
+//
+// Child pages of sub pages navigation lists
+// -----------------------------------------------------------------------------
+
+.navPage-childList-item {
+    @include breakpoint("medium") {
+    }
+}
+
+.navPage-childList-action {
+    font-weight: fontWeight("normal");
+    padding: 0 0 spacing("quarter");
+}
+
+
+//
+// Quick search inside the mobile nav
+// -----------------------------------------------------------------------------
+
+.navPages-quickSearch {
+
+    border-bottom: solid 1px color("greys", "lighter");
+    margin-bottom: spacing("half");
+
+    > .container {
+        padding: 0;
+    }
+
+    .form {
+        margin: 0;
+    }
+
+    .form-field {
+        margin-bottom: spacing("half") + spacing("quarter");
+    }
+
+    @include breakpoint("medium") {
+        display: none;
+    }
+}
+
+
+//
+// NavPages account section for mobile nav panel
+// -----------------------------------------------------------------------------
+
+.navPages-list--account {
+    border-top: solid 1px color("greys", "lighter");
+    margin-top: spacing("half");
+    padding-top: spacing("quarter");
+
+    #currencySelection2 {
+        background-color: color("whites", "bright");
+        border: solid 1px color("greys", "lighter");
+
+        .dropdown-menu-item {
+            padding: 0;
+
+            &:not(:last-child) {
+                border-bottom: solid 1px color("greys", "lighter");
+            }
+        }
+
+        a {
+            padding: spacing("half") spacing("single");
+        }
+    }
+
+    @include breakpoint("medium") {
+        display: none;
+    }
+}
+

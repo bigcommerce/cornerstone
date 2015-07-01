@@ -3,10 +3,23 @@
 // =============================================================================
 //
 // 1. If set to false, there is no outputted CSS for this component.
+// 2. Create offset for the fixed position header on smaller screens.
 //
 // -----------------------------------------------------------------------------
 
 @if $exportCSS--global { // 1
+
+    html,
+    body {
+        height: auto;
+    }
+
+    body {
+        padding-top: remCalc(55px); // 2
+        @include breakpoint("medium") {
+            padding-top: 0;
+        }
+    }
 
     figure {
         margin-top: $figure-marginTop;

@@ -4,7 +4,7 @@ import 'foundation/js/foundation/foundation.dropdown';
 import utils from 'bigcommerce/stencil-utils';
 
 export default function () {
-    let $cart = $('#cart-preview'),
+    let $cart = $('[data-cart-preview]'),
         $cartDropdown = $('#cart-preview-dropdown');
 
     $cart.on('click', (event) => {

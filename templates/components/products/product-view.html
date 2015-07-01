@@ -49,12 +49,10 @@
                 <input type="hidden" name="product_id" value="{{product.id}}" />
 
                 {{#each product.customizations}}
-                    <div class="WASSIS">{{{renderProductCustomization this}}}</div>
+                    {{{renderProductCustomization this}}}
                 {{/each}}
 
-                <p class="productView-sku" data-bind="text: sku"><strong>SKU:</strong> {{product.sku}}</p>
-
-                <div class="product-sku">
+                <div class="productView-sku">
                     <h4>{{@lang 'products.sku'}}</h4>
                     <p class="product-skuText" data-bind="text: sku" itemprop="sku">{{ product.sku }}</p>
                 </div>
@@ -117,5 +115,8 @@
         <script type="text/javascript" src="//s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4e94ed470ee51e32"></script>
         <!-- AddThis Button END -->
     </section>
-    <p itemprop="description">{{{ product.description }}}</p>
+
+    <article class="productView-description" itemprop="description">
+        {{{ product.description }}}
+    </article>
 </div>

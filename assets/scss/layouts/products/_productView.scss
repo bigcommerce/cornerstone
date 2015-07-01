@@ -1,0 +1,37 @@
+// =============================================================================
+// PRODUCT VIEW (CSS)
+// =============================================================================
+
+
+// Product view layout
+// -----------------------------------------------------------------------------
+
+.productView {
+    @include grid-row($behavior: "nest");
+}
+
+.productView-images {
+    @include grid-column(12);
+
+    @include breakpoint("medium") {
+        width: grid-calc(6, $total-columns);
+    }
+}
+
+.productView-details {
+    @include grid-column(12);
+
+    @include breakpoint("medium") {
+        float: right;
+        width: grid-calc(6, $total-columns);
+    }
+}
+
+.productView-description {
+    @include grid-column(12);
+
+    @include breakpoint("large") {
+        float: right;
+        width: grid-calc(6, $total-columns);
+    }
+}

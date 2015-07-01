@@ -40,7 +40,7 @@
 
     <section class="productView-details productView-details--options">
         {{#if product.release_date }}
-        <span class="alert alert-warning">{{product.release_date}}</span>
+        <p>{{product.release_date}}</p>
         {{/if}}
 
         <form class="form" method="post" action="{{product.cart_url}}" enctype="multipart/form-data" data-cart-item-add>
@@ -77,18 +77,19 @@
                     <input type="hidden" name="qty[]" data-bind="value: quantity" value="1">
                 </div>
 
-                <input type="submit" class="btn btn-success btn-addToCart" data-bind="enable: canAddToCart" value="Add To Cart">
-
-                <form method="post" action="{{product.add_to_wishlist_url}}">
-                    <input class="button" type="submit" value="{{@lang 'account.wishlists.add_item'}}">
-                </form>
+                <div class="form-actions">
+                    <input class="button button--primary" type="submit" data-bind="enable: canAddToCart" value="Add to cart">
+                    <form method="post" action="{{product.add_to_wishlist_url}}">
+                        <input class="button" type="submit" value="{{@lang 'account.wishlists.add_item'}}">
+                    </form>
+                </div>
             </fieldset>
         </form>
     </section>
 
-    <div class="Clear AddThisButtonBox" data-product-share>
+    <section class="Clear AddThisButtonBox" data-product-share>
         <!-- AddThis Button BEGIN -->
-        <div class="addthis_toolbox addthis_default_style ">
+        <div class="shareProduct addthis_toolbox addthis_default_style">
             <a class="addthis_button_facebook at300b" title="Facebook" href="#">
                 <span class="at4-icon aticon-facebook" style="background-color: rgb(48, 88, 145);">
                 <span class="at_a11y">Share on facebook</span></span></a>
@@ -115,6 +116,6 @@
         </div>
         <script type="text/javascript" src="//s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4e94ed470ee51e32"></script>
         <!-- AddThis Button END -->
-    </div>
+    </section>
     <p itemprop="description">{{{ product.description }}}</p>
 </div>

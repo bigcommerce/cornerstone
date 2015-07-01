@@ -1,26 +1,28 @@
 <div class="productView">
-    <section class="productView-details productView-details--meta">
-        <h1 itemprop="name" class="productView-title">{{product.title}}</h1>
-        <h2 class="productView-brand" itemprop="brand" itemscope itemtype="http://schema.org/Brand">
-            <a itemprop="url" href="{{product.brand.url}}">
-                <span itemprop="name">{{product.brand.name}}</span>
-            </a>
-        </h2>
-        <p class="productView-price" data-bind="text: price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-            <meta itemprop="priceCurrency" content="{{currency_selector.active_currency_code}}">
-            <span itemprop="price">{{product.price.base}}</span>
-        </p>
-        <div class="productView-rating">
-            <div class="product-reviews-stars" data-reveal-id="modal-review-form" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
-                <meta itemprop="ratingValue" content="{{product.rating}}">
-                <meta itemprop="ratingCount" content="{{product.num_reviews}}">
-                <meta itemprop="reviewCount" content="{{product.num_reviews}}">
-                {{> components/products/ratings rating=product.rating}}
+    <section class="productView-details">
+        <div class="productView-meta">
+            <h1 class="productView-title" itemprop="name">{{product.title}}</h1>
+            <h2 class="productView-brand" itemprop="brand" itemscope itemtype="http://schema.org/Brand">
+                <a itemprop="url" href="{{product.brand.url}}">
+                    <span itemprop="name">{{product.brand.name}}</span>
+                </a>
+            </h2>
+            <p class="productView-price" data-bind="text: price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                <meta itemprop="priceCurrency" content="{{currency_selector.active_currency_code}}">
+                <span itemprop="price">{{product.price.base}}</span>
+            </p>
+            <div class="productView-rating">
+                <div class="product-reviews-stars" data-reveal-id="modal-review-form" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+                    <meta itemprop="ratingValue" content="{{product.rating}}">
+                    <meta itemprop="ratingCount" content="{{product.num_reviews}}">
+                    <meta itemprop="reviewCount" content="{{product.num_reviews}}">
+                    {{> components/products/ratings rating=product.rating}}
+                </div>
+                {{@lang 'products.reviews.link_to_review' total=product.num_reviews}}
+                {{> components/products/modals/writeReview product=product urls=urls}}
             </div>
-            {{@lang 'products.reviews.link_to_review' total=product.num_reviews}}
-            {{> components/products/modals/writeReview product=product urls=urls}}
+            {{product.detail_messages}}
         </div>
-        {{product.detail_messages}}
     </section>
 
     <section class="productView-images">

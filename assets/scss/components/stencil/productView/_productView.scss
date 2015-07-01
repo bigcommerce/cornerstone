@@ -1,0 +1,129 @@
+// =============================================================================
+// PRODUCT VIEW (CSS)
+// =============================================================================
+
+
+// Container
+// -----------------------------------------------------------------------------
+
+.productView {
+    padding-bottom: spacing("base");
+    padding-top: spacing("base");
+}
+
+
+// Images
+// -----------------------------------------------------------------------------
+
+.productView-images {
+
+}
+
+.productView-image {
+    margin: 0;
+
+    img {
+        width: 100%;
+    }
+}
+
+
+// Details
+// -----------------------------------------------------------------------------
+
+.productView-details {
+    margin-bottom: spacing("single") + spacing("third");
+}
+
+
+// Details - Base information
+// -----------------------------------------------------------------------------
+
+.productView-meta {
+    border-bottom: 1px solid color("greys", "lightest");
+    padding-bottom: spacing("single") + spacing("third");
+}
+
+.productView-title {
+    margin: 0;
+
+    @include breakpoint("medium") {
+        margin-top: spacing("single");
+    }
+}
+
+.productView-brand {
+    color: color("greys", "medium");
+    font-size: fontSize("small");
+    margin: -(spacing("eighth")) 0 spacing("base");
+
+    a {
+        color: color("greys", "medium");
+
+        &:hover {
+            color: color("greys", "darker");
+        }
+    }
+}
+
+.productView-price {
+    font-size: fontSize("larger");
+    margin-bottom: spacing("base");
+}
+
+
+// Description
+// -----------------------------------------------------------------------------
+
+.productView-description {
+
+}
+
+
+
+
+
+
+
+
+
+.form-label--alternate {
+    font-weight: fontWeight("bold");
+}
+
+.form-option {
+    border: 1px solid color('greys', 'lighter');
+    color: color('greys', 'dark');
+    cursor: pointer;
+    display: inline-block;
+}
+
+.form-radio:checked + .form-option {
+    border: 2px solid color('greys', 'darker');
+    padding: 0;
+}
+
+.form-option-variant {
+    line-height: 26px;
+    min-width: 41px;
+    display: inline-block;
+    padding-left: spacing('half');
+    padding-right: spacing('half');
+    text-align: center;
+}
+
+.form-option-variant--color, .form-option-variant--pattern {
+    @include square(23);
+    min-width: initial;
+    float: left;
+    padding: 0;
+}
+
+.form-option-variant--pattern {
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.option-date {
+    width: initial;
+}

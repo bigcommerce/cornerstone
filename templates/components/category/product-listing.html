@@ -1,8 +1,10 @@
 {{> components/category/sort-box sort=pagination.category.sort}}
 
 <form action="/compare" method='POST'>
-    {{> components/products/list category.products}}
-    <input type="submit" value="{{@lang 'compare.button'}}" class="btn btn-primary">
+    {{> components/products/list products=category.products show_compare=category.show_compare}}
+    {{#if category.show_compare}}
+        <input type="submit" value="{{@lang 'compare.button'}}" class="button button--primary">
+    {{/if}}
 </form>
 
 {{> components/common/paginator pagination.category}}

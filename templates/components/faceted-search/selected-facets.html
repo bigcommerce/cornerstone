@@ -1,27 +1,32 @@
-<div class="facet-container">
-    <div class="facet-header">
-        <h4 class="facet-header-title">{{@lang 'search.faceted.selected.title'}}</h4>
-    </div>
-    <div class="facet-body">
-        <ul class="facet-labels-list">
-            {{#each this.items}}
-                <li class="facet-label">
-                    <a href="{{ url }}" data-faceted-search-facet class="js-facet-label">
-                        {{#compare facet 'rating' operator="==="}}
-                            {{@lang 'search.faceted.selected.rating-label' rating=title}}
-                        {{else}}
-                            {{ title }}
-                        {{/compare}}
-                    </a>
-                </li>
-            {{else}}
-                <li>{{@lang 'search.faceted.selected.no-filters'}}</li>
-            {{/each}}
-        </ul>
-        {{#if this.remove_all_url}}
-            <a class="js-facet-clear-all" href="{{this.remove_all_url}}" data-faceted-search-facet>
-                {{@lang 'search.faceted.selected.clear-all'}}
-            </a>
-        {{/if}}
-    </div>
+<div class="sidebarBlock">
+    <h5 class="sidebarBlock-heading">
+        {{@lang 'search.faceted.selected.title'}}
+    </h5>
+
+    <ul class="navList">
+        {{#each this.items}}
+            <li class="navList-item">
+                <a
+                    href="{{ url }}"
+                    class="navList-action navList-action--checkbox {{#if selected }} is-selected {{/if}}"
+                    data-faceted-search-facet>
+                    {{#compare facet 'rating' operator="==="}}
+                        {{@lang 'search.faceted.selected.rating-label' rating=title}}
+                    {{else}}
+                        {{ title }}
+                    {{/compare}}
+                </a>
+            </li>
+        {{else}}
+            <li class="navList-item">
+                {{@lang 'search.faceted.selected.no-filters'}}
+            </li>
+        {{/each}}
+    </ul>
+
+    {{#if this.remove_all_url}}
+        <a href="{{this.remove_all_url}}" data-faceted-search-facet>
+            {{@lang 'search.faceted.selected.clear-all'}}
+        </a>
+    {{/if}}
 </div>

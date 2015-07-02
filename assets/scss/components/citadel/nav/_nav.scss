@@ -19,3 +19,45 @@
 .navBar-action {
     text-decoration: none;
 }
+
+
+// NavList action checkbox
+// -----------------------------------------------------------------------------
+//
+// Purpose: Display a checkbox next to an actionable link, without actually using
+// a checkbox element.
+//
+// 1. Position checkbox so it is vertically centered
+//
+// -----------------------------------------------------------------------------
+
+.navList-action--checkbox {
+    @include checkRadioBase();
+    @include checkBox-base();
+
+    &:before,
+    &:after {
+        top: 50%; // 1
+    }
+
+    &:before {
+        margin-top: -$checkRadio-outerSize / 2;
+    }
+
+    &:after {
+        margin-top: -$checkRadio-outerSize / 2 + remCalc(1);
+    }
+
+    &:focus {
+        @include checkRadioBase--focus();
+    }
+
+    &.is-disabled {
+        @include checkRadioBase--disabled();
+    }
+
+    &.is-checked,
+    &.is-selected {
+        @include checkRadioBase--checked();
+    }
+}

@@ -1,39 +1,50 @@
-<div class="facet-container facet-container-range js-accordion-container">
-    <div class="facet-header js-facet-accordion-action">
-        <h6 class="facet-header-title">{{ title }}</h6>
-    </div>
-    <div class="facet-body">
-        <form method="get" id="facet-range-form" class="facet-form js-facet-range-from" data-faceted-search-range>
-            {{#each current_selected_items}}
-            <input type="hidden" name="{{param_name}}" value="{{param_value}}"/>
-            {{/each}}
-            <fieldset>
-                <input
+<div class="sidebarBlock">
+    <h5 class="sidebarBlock-heading">
+        {{ title }}
+    </h5>
+
+    <form id="facet-range-form" class="form" method="get" data-faceted-search-range>
+        {{#each current_selected_items}}
+            <input type="hidden" name="{{ param_name }}" value="{{ param_value }}"/>
+        {{/each}}
+
+        <fieldset class="form-fieldset">
+            <!-- FIXME: Not sure if becomes a rangeslider -->
+            <div class="form-minMaxRow">
+                <div class="form-field">
+                    <input
                         name="min_price"
                         placeholder="{{@lang 'search.faceted.range.min-placeholder'}}"
                         min="0"
-                        class="js-facet-range-input-from"
+                        class="form-input"
                         required
                         type="number"
                         value="{{ min_price }}"
-                />
-                -
-                <input
+                    />
+                </div>
+
+                <div class="form-field">
+                    <input
                         name="max_price"
                         placeholder="{{@lang 'search.faceted.range.max-placeholder'}}"
                         min="0"
-                        class="js-facet-range-input-to"
+                        class="form-input"
                         required
                         type="number"
                         value="{{ max_price }}"
-                />
-                <button class="btn js-btn-facet-range-update" type="submit">{{@lang 'search.faceted.range.update'}}</button>
-                {{#if selected}}
-                <a href="{{remove_url}}" class="btn js-btn-facet-range-clear" data-faceted-search-facet>
-                    {{@lang 'search.faceted.clear'}}
-                </a>
-                {{/if}}
-            </fieldset>
-        </form>
-    </div>
+                    />
+                </div>
+            </div>
+
+            <button class="button button--small" type="submit">
+                {{@lang 'search.faceted.range.update'}}
+            </button>
+
+            {{#if selected}}
+            <a href="{{remove_url}}" data-faceted-search-facet>
+                {{@lang 'search.faceted.clear'}}
+            </a>
+            {{/if}}
+        </fieldset>
+    </form>
 </div>

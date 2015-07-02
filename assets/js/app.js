@@ -23,6 +23,7 @@ import wishlist from './theme/wishlist';
 let PageClasses = {
     mapping: {
         "pages/account/orders/all": account,
+        "pages/account/orders/details": account,
         "pages/account/addresses": account,
         "pages/account/add-address": account,
         "pages/account/add-return": account,

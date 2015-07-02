@@ -1,20 +1,26 @@
 // =============================================================================
 // Account Order Details (CSS)
 // =============================================================================
+//
+// 1. Reduce font-size: 0; to remove display: inline-block; white-space. Just
+//    make sure that font-size is reset again on child elements.
+//
+// -----------------------------------------------------------------------------
 
 .order-contents {
-    @include grid-row();
+    @include u-listReset;
+
+    font-size: 0;   // 1.
     margin-top: remCalc(20px);
 }
 
 .order-contents-item {
-    @include grid-column(6);
-
-    padding-left: none;
-    list-style-type: none;
+    display: inline-block;
+    font-size: $body-fontSize;
+    width: 50%;
 
     @include breakpoint("small") {
-        @include grid-column(4);
+        width: 33.33%;
     }
 }
 

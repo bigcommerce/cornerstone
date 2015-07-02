@@ -53,31 +53,28 @@
     }
 }
 
-.form-field--success {
+.form-field--success.form-field--input {
     position: relative;
 
-    // #Sighmon
-    // Re-visit this when we've got a real solution to adding green ticks to text fields only
+    .form-label {
 
-    // .form-label {
+        &:first-of-type:after {
+            background: $form-success-icon no-repeat;
+            background-size: $form-inlineMessage-backgroundSize;
+            content: "";
+            display: inline-block;
+            height: $form-success-icon-height;
+            pointer-events: none;
+            position: absolute;
+            top: $form-success-icon-top;
+            right: $form-success-icon-right;
+            width: $form-success-icon-width;
+        }
+    }
 
-    //     &:first-of-type:after {
-    //         background: $form-success-icon no-repeat;
-    //         background-size: $form-inlineMessage-backgroundSize;
-    //         content: "";
-    //         display: inline-block;
-    //         height: $form-success-icon-height;
-    //         pointer-events: none;
-    //         position: absolute;
-    //         top: $form-success-icon-top;
-    //         right: $form-success-icon-right;
-    //         width: $form-success-icon-width;
-    //     }
-    // }
-
-    // .form-input {
-    //     padding-right: $form-success-input-paddingRight;
-    // }
+    .form-input {
+        padding-right: $form-success-input-paddingRight;
+    }
 }
 
 

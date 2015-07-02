@@ -3,6 +3,7 @@ import nod from 'casperin/nod';
 import Wishlist from './wishlist';
 import validation from './common/form-validation';
 import stateCountry from './common/state-country';
+import {classifyForm} from './common/form-utils';
 
 export default class Account extends PageManager {
     constructor() {
@@ -11,8 +12,8 @@ export default class Account extends PageManager {
 
     loaded(next) {
         let $stateElement = $('[data-label="State/Province"]'),
-            $editAccountForm = $('#edit-account-form'),
-            $addressForm = $('#address-form');
+            $editAccountForm = classifyForm($('#edit-account-form')),
+            $addressForm = classifyForm($('#address-form'));
 
         if ($stateElement){
             stateCountry($stateElement);

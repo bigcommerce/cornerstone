@@ -3,6 +3,7 @@ import stateCountry from './common/state-country';
 import $ from 'jquery';
 import nod from 'casperin/nod';
 import validation from './common/form-validation';
+import {classifyForm} from './common/form-utils';
 
 export default class Auth extends PageManager {
     constructor() {
@@ -71,8 +72,8 @@ export default class Auth extends PageManager {
      */
     loaded(next) {
         let $stateElement = $('[data-label="State/Province"]'),
-            $createAccountForm = $('.create-account-form'),
-            $loginForm = $('.login-form');
+            $createAccountForm = classifyForm($('.create-account-form')),
+            $loginForm = classifyForm($('.login-form'));
 
         if ($stateElement){
             stateCountry($stateElement);

@@ -1,34 +1,35 @@
-<div class="facet-container facet-container-category">
-    <div class="facet-header js-facet-accordion-action">
-        <h6 class="facet-header-title">{{ title }}</h6>
+<div class="sidebarBlock">
+    <h5 class="sidebarBlock-heading">
+        {{ title }}
+
         {{#if selected}}
-            <a href="{{remove_url}}" data-faceted-search-facet class="js-facet-clear">{{@lang 'search.faceted.clear'}}</a>
+            <a href="{{remove_url}}" class="sidebarBlock-heading-link" data-faceted-search-facet>
+                {{@lang 'search.faceted.clear'}}
+            </a>
         {{/if}}
-    </div>
-    <div class="facet-body">
-        <ul class="facet-options-list">
-            {{#each items}}
-                <li class="facet-option js-facet-option{{#if selected }} selected {{/if}}">
-                    <a data-id="{{ id }}"
-                       href="{{url}}"
-                       data-faceted-search-facet
-                       class="facet-category-option js-facet-category-option {{#if has_sub_categories }} facet-category-option-has-children {{/if}}" >
-                        {{ title }}
-                        {{#if ../show_product_counts}}
-                            {{#if count}}
-                                <span class="facet-option-product-count">
-                                    ({{ count }})
-                                </span>
-                            {{/if}}
+    </h5>
+
+    <ul class="navList">
+        {{#each items}}
+            <li class="navList-item">
+                <a
+                    href="{{url}}"
+                    class="navList-action navList-action--checkbox {{#if selected }} is-selected {{/if}} {{#if has_sub_categories }} has-children {{/if}}"
+                    data-id="{{ id }}"
+                    data-faceted-search-facet>
+                    {{ title }}
+                    {{#if ../show_product_counts}}
+                        {{#if count}}
+                            <span>({{ count }})</span>
                         {{/if}}
-                    </a>
-                </li>
-            {{/each}}
-        </ul>
-        {{#if show_more_toggle}}
-            <div class="js-facet-more-options">
-                <button type="button" class="btn btn-facet-more-options">{{@lang 'search.faceted.show-more'}}</button>
-            </div>
-        {{/if}}
-    </div>
+                    {{/if}}
+                </a>
+            </li>
+        {{/each}}
+    </ul>
+
+    <!-- FIXME: Not implemented -->
+    {{#if show_more_toggle}}
+        <a href="#">{{@lang 'search.faceted.show-more'}}</a>
+    {{/if}}
 </div>

@@ -1,29 +1,26 @@
-<div class="facet-container facet-container-rating js-accordion-container {{ facetState }}">
-    <div class="facet-header js-facet-accordion-action">
-        <h6 class="facet-header-title">{{ title }}</h6>
+<div class="sidebarBlock {{ facetState }}">
+    <h5 class="sidebarBlock-heading">
+        {{ title }}
+
         {{#if selected}}
-            <a href="{{remove_url}}" data-faceted-search-facet class="js-facet-clear">{{@lang 'search.faceted.clear'}}</a>
+            <a href="{{remove_url}}" class="sidebarBlock-heading-link" data-faceted-search-facet>
+                {{@lang 'search.faceted.clear'}}
+            </a>
         {{/if}}
-    </div>
-    <div class="facet-body">
-        <ul class="facet-options-list">
-            {{#each items}}
-            <li class="facet-option js-facet-option {{#if selected }} selected {{/if}}" >
+    </h5>
+
+    <ul class="navList">
+        {{#each items}}
+            <li class="navList-item {{#if selected }} is-selected {{/if}}">
+                <!-- FIXME: Styling -->
                 <a href="{{url}}" data-faceted-search-facet>
-                    <img
-                            class="facet-option-rating-stars"
-                            src="/assets/img/IcoRating{{ title }}.png"
-                            alt="{{ title }}"
-                            />
+                    <img src="/assets/img/IcoRating{{ title }}.png" alt="{{ title }}" />
                     {{@lang 'search.faceted.rating.and-up'}}
                     {{#if ../show_product_counts}}
-                            <span class="facet-option-product-count">
-                                ({{ count }})
-                            </span>
+                            <span>({{ count }})</span>
                     {{/if}}
                 </a>
             </li>
-            {{/each}}
-        </ul>
-    </div>
+        {{/each}}
+    </ul>
 </div>

@@ -3,33 +3,12 @@
 @import "orders-list";
 @import "address";
 
+.edit-account {
+    @include grid-row();
 
-.main-section, .supporting-section {
-    @include grid-column(12);
-    @include breakpoint("medium") {
-        @include grid-column(6);
-
-        max-width: 90%;
-    }
-}
-
-.supporting-section {
-    .section {
-        margin-left: auto;
-        margin-right: 0;
-    }
-
-    @include breakpoint("small") {
-        .section {
-            max-width: 100%;
+    .form-field {
+        @include breakpoint("medium") {
+            @include grid-column(6);
         }
-    }
-
-    @include breakpoint("medium") {
-        .section {
-            max-width: 84%;
-        }
-
-        margin-top: 0;
     }
 }

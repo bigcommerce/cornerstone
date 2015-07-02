@@ -1,14 +1,16 @@
+---
+brands: true
+---
 {{#partial "page"}}
 <main class="content">
     <h1>All Brands</h1>
     <ul>
-        {{#each brand_list.brands}}
+        {{#each brands.brands}}
         <li>
-            <a href="{{brand_link}}" alt="{{brand_name}}">{{brand_name}}
-            {{#if brand_list.show_images}}
-                <img src="{{brand_image}}" alt="{{brand_name}}">
+            <a href="{{url}}">{{name}}
+            {{#if brand.image}}
+                <img src="{{@image image 'thumbnail'}}" alt="{{name}}">
             {{/if}}
-            <span>{{brand_name}}</span>
             </a>
         {{/each}}
         </li>

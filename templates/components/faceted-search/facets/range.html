@@ -10,7 +10,7 @@
 
         <fieldset class="form-fieldset">
             <!-- FIXME: Not sure if becomes a rangeslider -->
-            <div class="form-row">
+            <div class="form-minMaxRow">
                 <div class="form-field">
                     <input
                         name="min_price"
@@ -22,6 +22,7 @@
                         value="{{ min_price }}"
                     />
                 </div>
+
                 <div class="form-field">
                     <input
                         name="max_price"
@@ -35,7 +36,7 @@
                 </div>
             </div>
 
-            <button class="button" type="submit">
+            <button class="button button--small" type="submit">
                 {{@lang 'search.faceted.range.update'}}
             </button>
 

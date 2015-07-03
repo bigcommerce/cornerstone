@@ -3,7 +3,7 @@
         {{ title }}
 
         {{#if selected}}
-            <a href="{{remove_url}}" class="sidebarBlock-heading-link" data-faceted-search-facet>
+            <a href="{{ remove_url }}" class="sidebarBlock-heading-link" data-faceted-search-facet>
                 {{@lang 'search.faceted.clear'}}
             </a>
         {{/if}}
@@ -12,12 +12,11 @@
     <ul class="navList">
         {{#each items}}
             <li class="navList-item {{#if selected }} is-selected {{/if}}">
-                <!-- FIXME: Styling -->
-                <a href="{{url}}" data-faceted-search-facet>
+                <a href="{{ url }}" class="navList-action" data-faceted-search-facet>
                     <img src="/assets/img/IcoRating{{ title }}.png" alt="{{ title }}" />
                     {{@lang 'search.faceted.rating.and-up'}}
                     {{#if ../show_product_counts}}
-                            <span>({{ count }})</span>
+                        <span>({{ count }})</span>
                     {{/if}}
                 </a>
             </li>

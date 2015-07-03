@@ -3,6 +3,67 @@
     {{> components/common/breadcrumbs breadcrumbs}}
     <h2 class="page-heading">{{@lang 'account.returns.new_return' }}</h2>
     {{> components/account/navigation account_page='returns'}}
+
+    <form action="{{urls.account.orders.save_new_return}}" class="form" method="post">
+        <fieldset class="form-fieldset">
+            <input type="hidden" name="order_id" value="{{account_new_return.order_id}}">
+            <table class="table">
+                <thead class="table-thead">
+                    <tr>
+                        <th>{{@lang 'account.orders.return.order_item'}}</th>
+                        <th class="table-header--numericData" scope="column">{{@lang 'account.orders.return.item_price'}}</th>
+                        <th>{{@lang 'account.orders.return.quantity'}}</th>
+                    </tr>
+                </thead>
+                <tbody class="table-tbody">
+                    {{#each account_new_return.order_products}}
+                        <tr>
+                            <td>{{name}}</td>
+                            <td class="table-cell--numericData">{{price}}</td>
+                            <td class="form-field">
+                                <select class="form-select" name="return_qty[{{id}}]">
+                                    {{#each select}}
+                                        <option value="{{this}}">{{this}}</option>
+                                    {{/each}}
+                                </select>
+                            </td>
+                        </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </fieldset>
+        <fieldset class="form-fieldset">
+            <h2>{{@lang 'account.orders.return.why'}}</h2>
+            <div class="form-field">
+                <label for="return_reason" class="form-label">
+                    {{@lang 'account.orders.return.reason'}}
+                    <small>{{@lang 'common.required'}}</small>
+                </label>
+                <select name="return_reason" id="return_reason" class="form-select">
+                    {{#each account_new_return.reasons}}
+                        <option value="{{this}}">{{this}}</option>
+                    {{/each}}
+                </select>
+            </div>
+            <div class="form-field">
+                <label for="return_action" class="form-label">
+                    {{@lang 'account.orders.return.action'}}
+                </label>
+                <select name="return_action" id="return_action" class="form-select">
+                    {{#each account_new_return.actions}}
+                    <option value="{{this}}">{{this}}</option>
+                    {{/each}}
+                </select>
+            </div>
+            <div class="form-field">
+                <label for="return_comments" class="form-label">
+                    {{@lang 'account.orders.return.comments'}}
+                </label>
+                <textarea class="form-input" name="return_comments" id="return_comments"></textarea>
+            </div>
+            <input class="button button--primary" type="submit" value="Submit Return Request" />
+        </fieldset>
+    </form>
 </div>
 {{/partial}}
 {{> layout/base}}

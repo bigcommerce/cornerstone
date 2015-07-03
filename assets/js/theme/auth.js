@@ -72,8 +72,8 @@ export default class Auth extends PageManager {
      */
     loaded(next) {
         let $stateElement = $('[data-label="State/Province"]'),
-            $createAccountForm = classifyForm($('.create-account-form')),
-            $loginForm = classifyForm($('.login-form'));
+            $createAccountForm = classifyForm('.create-account-form'),
+            $loginForm = classifyForm('.login-form');
 
         if ($stateElement){
             stateCountry($stateElement);

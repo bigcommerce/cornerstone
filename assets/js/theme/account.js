@@ -12,8 +12,8 @@ export default class Account extends PageManager {
 
     loaded(next) {
         let $stateElement = $('[data-label="State/Province"]'),
-            $editAccountForm = classifyForm($('#edit-account-form')),
-            $addressForm = classifyForm($('#address-form'));
+            $editAccountForm = classifyForm('#edit-account-form'),
+            $addressForm = classifyForm('#address-form');
 
         if ($stateElement){
             stateCountry($stateElement);

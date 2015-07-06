@@ -1,8 +1,5 @@
 <div class="form-field">
-    <label class="form-label form-label--alternate" for="attribute_{{this.id}}">
-        {{#if this.required }}<span class="required">*</span>{{/if}}
-        {{ this.display_name }}
-    </label>
-    <input type="file" id="attribute_{{this.id}}" name="attribute[{{this.id}}]">
-    <p>Maximum Size ({{file_size}}), File Types: {{file_types}}</p>
+    <label class="form-label form-label--alternate" for="attribute_{{this.id}}">{{ this.display_name }}</label>
+    <input class="form-file" type="file" id="attribute_{{this.id}}" name="attribute[{{this.id}}]">
+    <p class="form-fileDescription">{{@lang 'products.max_filesize'}} <strong>{{file_size}}</strong>, {{@lang 'products.filetypes'}} <strong>{{file_types}}</strong></p>
 </div>

@@ -1,10 +1,7 @@
 <div class="form-field">
-    <label class="form-label form-label--alternate" for="customization_{{this.id}}">
-        {{#if this.required }}<span class="required">*</span>{{/if}}
-        {{ this.display_name }}
-    </label>
+    <label class="form-label form-label--alternate" for="customization_{{this.id}}">{{ this.display_name }}</label>
     <select class="form-select" name="ProductFields[{{this.id}}]" id="customization_{{this.id}}">
-        <option>-- Please Choose An Option --</option>
+        <option>{{@lang 'products.choose_an_option'}}</option>
         {{#each this.values}}
         <option value="{{id}}" {{#if selected}}selected{{/if}}>{{label}}</option>
         {{/each}}

@@ -1,9 +1,7 @@
 <div class="form-field">
-    <label class="form-label form-label--alternate">{{display_name}}
-        {{#if required}}
-        <small>{{@lang 'common.required' }}</small>
-        {{/if}}
-    </label>
-    <input type="checkbox" class="form-checkbox" name="attribute[{{this.id}}]" id="attribute_{{this.id}}" {{#if this.checked}}checked{{/if}}>
-    <label class="{{class}} form-label form-label--alternate" for="attribute_{{this.id}}">{{label}}</label>
+    <label class="form-label form-label--alternate">{{display_name}}:</label>
+    {{#each this.values}}
+    <input class="form-checkbox" type="checkbox" name="attribute[{{this.id}}]" id="attribute_{{this.id}}" {{#if this.checked}}checked{{/if}}>
+    <label class="form-label {{class}}" for="attribute_{{this.id}}">{{label}}</label>
+    {{/each}}
 </div>

@@ -36,10 +36,10 @@
 }
 
 
-// Details - Base information
+// Details - Product details
 // -----------------------------------------------------------------------------
 
-.productView-meta {
+.productView-product {
     border-bottom: 1px solid color("greys", "lightest");
     padding-bottom: spacing("single") + spacing("third");
 }
@@ -71,59 +71,36 @@
     margin-bottom: spacing("base");
 }
 
+.productView-reviewCount {
+    color: color("greys", "light");
+    display: inline-block;
+    margin-left: spacing("half");
+    vertical-align: middle;
+}
+
+// Details - Product options
+// -----------------------------------------------------------------------------
+
+.productView-options {
+
+    .form-actions {
+        text-align: left;
+
+        .button {
+            margin-left: 0;
+            text-align: center;
+
+            + .button {
+                margin-left: spacing("half");
+            }
+        }
+    }
+}
+
 
 // Description
 // -----------------------------------------------------------------------------
 
 .productView-description {
 
-}
-
-
-
-
-
-
-
-
-
-.form-label--alternate {
-    font-weight: fontWeight("bold");
-}
-
-.form-option {
-    border: 1px solid color('greys', 'lighter');
-    color: color('greys', 'dark');
-    cursor: pointer;
-    display: inline-block;
-}
-
-.form-radio:checked + .form-option {
-    border: 2px solid color('greys', 'darker');
-    padding: 0;
-}
-
-.form-option-variant {
-    line-height: 26px;
-    min-width: 41px;
-    display: inline-block;
-    padding-left: spacing('half');
-    padding-right: spacing('half');
-    text-align: center;
-}
-
-.form-option-variant--color, .form-option-variant--pattern {
-    @include square(23);
-    min-width: initial;
-    float: left;
-    padding: 0;
-}
-
-.form-option-variant--pattern {
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.option-date {
-    width: initial;
 }

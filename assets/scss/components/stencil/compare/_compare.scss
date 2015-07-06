@@ -1,0 +1,103 @@
+// =============================================================================
+// COMPARE (CSS)
+// =============================================================================
+
+
+.compareTable {
+    border-top: 1px solid color("greys", "lightest");
+    table-layout: fixed;
+    width: 100%;
+}
+
+.compareTable-product,
+.compareTable-heading {
+    font-weight: fontWeight("normal");
+}
+
+.compareTable-heading {
+    font-family: fontFamily("headingSans");
+    font-size: fontSize("smaller");
+    position: relative;
+    text-align: right;
+    width: 0;
+
+    @include breakpoint("large") {
+        width: 20%;
+    }
+}
+
+.compareTable-headingText {
+    position: absolute;
+    top: spacing("base") + spacing("sixth");
+
+    @include breakpoint("large") {
+        position: inherit;
+        top: inherit;
+    }
+}
+
+.compareTable-row {
+    vertical-align: top;
+
+    + .compareTable-row {
+
+        .compareTable-heading,
+        .compareTable-item {
+            border-top: 1px solid color("greys", "lightest");
+        }
+    }
+
+    .compareTable-heading {
+        padding: (spacing("base") + spacing("sixth")) spacing("base");
+    }
+
+    .compareTable-product {
+        padding: spacing("single") + spacing("third") spacing("base") (spacing("base") + spacing("sixth"));
+    }
+
+    .compareTable-item {
+        padding: spacing("double") + spacing("sixth") spacing("base") (spacing("base") + spacing("sixth"));
+
+        @include breakpoint("large") {
+            padding-top: spacing("base") + spacing("sixth");
+        }
+    }
+}
+
+.compareTable-removeProduct {
+    background-color: color("greys", "lightest");
+    border-radius: 50%;
+    height: spacing("single") + spacing("base");
+    position: absolute;
+    top: -(spacing("base"));
+    transition: background-color 0.15s ease;
+    right: -(spacing("base"));
+    width: spacing("single") + spacing("base");
+
+    &:hover {
+        background-color: color("greys", "lighter");
+    }
+
+    .icon {
+        height: spacing("single");
+        margin-top: spacing("third");
+        width: spacing("single");
+    }
+}
+
+.compareTable-product {
+
+    .card {
+        margin-bottom: spacing("base");
+    }
+
+    .card-body {
+        min-height: spacing("single") * 4;
+        padding-top: spacing("base");
+    }
+
+    .button {
+        display: block;
+        width: 100%;
+    }
+}

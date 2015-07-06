@@ -2,20 +2,49 @@
 // PRODUCT REVIEWS (CSS)
 // =============================================================================
 
-.productReviews-list {
-    @include grid-row();
-    @include u-listHorizontal;
+
+.productReviews {
+    border-top: 1px solid color("greys", "lightest");
 }
 
-.productReviews-hide {
-    float: right;
+.productReviews-heading {
+    margin-bottom: spacing("single") + spacing("eighth");
 }
+
+.productReviews-displayToggle {
+    color: color("greys", "light");
+    float: right;
+    margin-top: spacing("single") + spacing("base");
+
+    &:hover {
+        color: color("greys", "darker");
+    }
+}
+
+
+// Review list
+// -----------------------------------------------------------------------------
+
+.productReviews-list {
+    @include u-listHorizontal;
+    @include grid-row($behavior: "nest");
+}
+
+
+// Review item
+// -----------------------------------------------------------------------------
 
 .productReview {
-    @include grid-column(4);
+    @include grid-column(12);
     margin-bottom: spacing("single");
-    padding-left: 0;
-    padding-right: 0;
+
+    @include breakpoint("medium") {
+        width: grid-calc(6, $total-columns);
+    }
+
+    @include breakpoint("large") {
+        width: grid-calc(4, $total-columns);
+    }
 }
 
 .productReview-title {
@@ -25,4 +54,14 @@
 
 .productReview-author {
     color: color("greys", "light");
+    margin-bottom: spacing("base");
+}
+
+.productReview-rating {
+    display: inline-block;
+    margin-bottom: spacing("quarter");
+}
+
+.productReview-ratingNumber {
+    @include u-hidden("visually");
 }

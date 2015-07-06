@@ -1,18 +1,20 @@
-{{#if category.subcategories}}
-<div class="sidebarBlock">
-    <h5 class="sidebarBlock-heading">{{category.name}}</h5>
-    <ul class="navList">
-        {{#each category.subcategories}}
-        <li class="navList-item">
-            <a class="navList-action" href="{{url}}" alt="{{name}}">{{name}}</a>
-        </li>
-        {{/each}}
-    </ul>
-</div>
-{{/if}}
+<nav>
+    {{#if category.subcategories}}
+    <div class="sidebarBlock">
+        <h5 class="sidebarBlock-heading">{{category.name}}</h5>
+        <ul class="navList">
+            {{#each category.subcategories}}
+            <li class="navList-item">
+                <a class="navList-action" href="{{url}}" alt="{{name}}">{{name}}</a>
+            </li>
+            {{/each}}
+        </ul>
+    </div>
+    {{/if}}
 
-{{#if category.faceted_search_enabled}}
-{{> components/faceted-search/index category}}
-{{else}}
-{{> components/category/shop-by-price category.shop_by_price}}
-{{/if}}
+    {{#if category.faceted_search_enabled}}
+        {{> components/faceted-search/index category}}
+    {{else}}
+        {{> components/category/shop-by-price category.shop_by_price}}
+    {{/if}}
+</nav>

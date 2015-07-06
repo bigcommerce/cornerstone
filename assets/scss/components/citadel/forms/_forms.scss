@@ -117,3 +117,19 @@
 .form-actions--center {
     text-align: center;
 }
+
+
+// Form min/max input row
+// -----------------------------------------------------------------------------
+.form-minMaxRow {
+    @include clearfix();
+    @include grid-row;
+    margin-left: -$form-minMaxRow-column-gutter;
+    margin-right: -$form-minMaxRow-column-gutter;
+
+    .form-field {
+        @include grid-column(6);
+        padding-left: $form-minMaxRow-column-gutter;
+        padding-right: $form-minMaxRow-column-gutter;
+    }
+}

@@ -1,10 +1,5 @@
-<div class="js-faceted-search-column">
-    {{> components/faceted-search/selected-facets this.selected}}
-    <div class="js-faceted-search-container">
-        {{#each this.facets}}
-            <div class="js-facet-wrapper">
-                {{{@field this}}}
-            </div>
-        {{/each}}
-    </div>
-</div>
+{{> components/faceted-search/selected-facets this.selected}}
+
+{{#each this.facets}}
+    {{{@field this}}}
+{{/each}}

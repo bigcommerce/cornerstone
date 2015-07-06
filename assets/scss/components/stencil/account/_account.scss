@@ -3,6 +3,8 @@
 @import "orders-list";
 @import "address";
 
+// TODO: Componentize the accounts section, this is inconsistent with the rest of stencil.
+
 .edit-account {
     @include grid-row();
 
@@ -10,5 +12,24 @@
         @include breakpoint("medium") {
             @include grid-column(6);
         }
+    }
+}
+
+.account-row {
+    @include grid-row();
+}
+
+.main-section {
+    @include breakpoint("medium") {
+        @include grid-column(7);
+    }
+}
+
+.supporting-section {
+    @include breakpoint("medium") {
+        @include grid-column(
+            $columns: 4,
+            $offset: 1
+        );
     }
 }

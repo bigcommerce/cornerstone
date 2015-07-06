@@ -64,10 +64,14 @@
                     </div>
 
                     <div class="form-actions">
-                        <input class="button button--primary" type="submit" data-bind="enable: canAddToCart" value="Add to cart">
-                        <form method="post" action="{{product.add_to_wishlist_url}}">
-                            <input class="button" type="submit" value="{{@lang 'account.wishlists.add_item'}}">
-                        </form>
+                        <div class="form-action">
+                            <input class="button button--primary" type="submit" data-bind="enable: canAddToCart" value="Add to cart">
+                        </div>
+                        <div class="form-action">
+                            <form method="post" action="{{product.add_to_wishlist_url}}">
+                                <input class="button" type="submit" value="{{@lang 'account.wishlists.add_item'}}">
+                            </form>
+                        </div>
                     </div>
                 </fieldset>
             </form>

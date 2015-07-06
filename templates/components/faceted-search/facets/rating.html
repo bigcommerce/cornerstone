@@ -1,25 +1,27 @@
-<div class="sidebarBlock {{ facetState }}">
-    <h5 class="sidebarBlock-heading">
-        {{ title }}
+<li class="accordion-navigation {{#unless ../start_collapsed }} is-open {{/unless}}">
+    <a href="#facet-content-{{ facet }}" class="accordion-title">
+        <h5 class="accordion-heading">{{ title }}</h5>
+    </a>
 
+    <div class="accordion-navigation-actions">
         {{#if selected}}
-            <a href="{{ remove_url }}" class="sidebarBlock-heading-link" data-faceted-search-facet>
-                {{@lang 'search.faceted.clear'}}
-            </a>
+            <a href="{{ remove_url }}" data-faceted-search-facet>{{@lang 'search.faceted.clear'}}</a>
         {{/if}}
-    </h5>
+    </div>
 
-    <ul class="navList">
-        {{#each items}}
-            <li class="navList-item {{#if selected }} is-selected {{/if}}">
-                <a href="{{ url }}" class="navList-action" data-faceted-search-facet>
-                    <img src="/assets/img/IcoRating{{ title }}.png" alt="{{ title }}" />
-                    {{@lang 'search.faceted.rating.and-up'}}
-                    {{#if ../show_product_counts}}
-                        <span>({{ count }})</span>
-                    {{/if}}
-                </a>
-            </li>
-        {{/each}}
-    </ul>
-</div>
+    <div id="facet-content-{{ facet }}" class="accordion-content {{#unless ../start_collapsed }} is-open {{/unless}}">
+        <ul class="navList">
+            {{#each items}}
+                <li class="navList-item {{#if selected }} is-selected {{/if}}">
+                    <a href="{{ url }}" class="navList-action" data-faceted-search-facet>
+                        <img src="/assets/img/IcoRating{{ title }}.png" alt="{{ title }}" />
+                        {{@lang 'search.faceted.rating.and-up'}}
+                        {{#if ../show_product_counts}}
+                            <span>({{ count }})</span>
+                        {{/if}}
+                    </a>
+                </li>
+            {{/each}}
+        </ul>
+    </div>
+</li>

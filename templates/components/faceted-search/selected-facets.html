@@ -3,29 +3,29 @@
         {{@lang 'search.faceted.selected.title'}}
     </h5>
 
-    <ul class="navList">
-        {{#each this.items}}
-            <li class="navList-item">
-                <a
-                    href="{{ url }}"
-                    class="navList-action navList-action--checkbox {{#if selected }} is-selected {{/if}}"
-                    data-faceted-search-facet>
-                    {{#compare facet 'rating' operator="==="}}
-                        {{@lang 'search.faceted.selected.rating-label' rating=title}}
-                    {{else}}
-                        {{ title }}
-                    {{/compare}}
-                </a>
-            </li>
-        {{else}}
-            <li class="navList-item">
-                {{@lang 'search.faceted.selected.no-filters'}}
-            </li>
-        {{/each}}
-    </ul>
+    {{#if this.items}}
+        <ul class="inlineList inlineList--labels">
+            {{#each this.items}}
+                <li>
+                    <a
+                        href="{{ url }}"
+                        class="facetLabel"
+                        data-faceted-search-facet>
+                        {{#compare facet 'rating' operator="==="}}
+                            {{@lang 'search.faceted.selected.rating-label' rating=title}}
+                        {{else}}
+                            {{ title }}
+                        {{/compare}}
+                    </a>
+                </li>
+            {{/each}}
+        </ul>
+    {{else}}
+        {{@lang 'search.faceted.selected.no-filters'}}
+    {{/if}}
 
-    {{#if this.remove_all_url}}
-        <a href="{{this.remove_all_url}}" data-faceted-search-facet>
+    {{#if remove_all_url}}
+        <a href="{{ remove_all_url }}" data-faceted-search-facet>
             {{@lang 'search.faceted.selected.clear-all'}}
         </a>
     {{/if}}

@@ -1,50 +1,60 @@
-<div class="sidebarBlock">
-    <h5 class="sidebarBlock-heading">
-        {{ title }}
-    </h5>
+<li class="accordion-navigation {{#unless ../start_collapsed }} is-open {{/unless}}">
+    <a href="#facet-content-{{ facet }}" class="accordion-title">
+        <h5 class="accordion-heading">{{ title }}</h5>
+    </a>
 
-    <form id="facet-range-form" class="form" method="get" data-faceted-search-range>
-        {{#each current_selected_items}}
-            <input type="hidden" name="{{ param_name }}" value="{{ param_value }}"/>
-        {{/each}}
+    <div class="accordion-navigation-actions">
+        {{#if selected}}
+            <a href="{{ remove_url }}" data-faceted-search-facet>{{@lang 'search.faceted.clear'}}</a>
+        {{/if}}
+    </div>
 
-        <fieldset class="form-fieldset">
-            <!-- FIXME: Not sure if becomes a rangeslider -->
-            <div class="form-minMaxRow">
-                <div class="form-field">
-                    <input
-                        name="min_price"
-                        placeholder="{{@lang 'search.faceted.range.min-placeholder'}}"
-                        min="0"
-                        class="form-input"
-                        required
-                        type="number"
-                        value="{{ min_price }}"
-                    />
+    <div id="facet-content-{{ facet }}" class="accordion-content {{#unless ../start_collapsed }} is-open {{/unless}}">
+        <form id="facet-range-form" class="form" method="get" data-faceted-search-range>
+            {{#each current_selected_items}}
+                <input type="hidden" name="{{ param_name }}" value="{{ param_value }}"/>
+            {{/each}}
+
+            <fieldset class="form-fieldset">
+                <!-- FIXME: Not sure if becomes a rangeslider -->
+                <div class="form-minMaxRow">
+                    <div class="form-field">
+                        <input
+                            name="min_price"
+                            placeholder="{{@lang 'search.faceted.range.min-placeholder'}}"
+                            min="0"
+                            class="form-input form-input--small"
+                            required
+                            type="number"
+                            value="{{ min_price }}"
+                        />
+                    </div>
+
+                    <div class="form-field">
+                        <input
+                            name="max_price"
+                            placeholder="{{@lang 'search.faceted.range.max-placeholder'}}"
+                            min="0"
+                            class="form-input form-input--small"
+                            required
+                            type="number"
+                            value="{{ max_price }}"
+                        />
+                    </div>
+
+                    <div class="form-field">
+                        <button class="button button--small" type="submit">
+                            {{@lang 'search.faceted.range.update'}}
+                        </button>
+                    </div>
                 </div>
 
-                <div class="form-field">
-                    <input
-                        name="max_price"
-                        placeholder="{{@lang 'search.faceted.range.max-placeholder'}}"
-                        min="0"
-                        class="form-input"
-                        required
-                        type="number"
-                        value="{{ max_price }}"
-                    />
-                </div>
-            </div>
-
-            <button class="button button--small" type="submit">
-                {{@lang 'search.faceted.range.update'}}
-            </button>
-
-            {{#if selected}}
-            <a href="{{remove_url}}" data-faceted-search-facet>
-                {{@lang 'search.faceted.clear'}}
-            </a>
-            {{/if}}
-        </fieldset>
-    </form>
-</div>
+                {{#if selected}}
+                <a href="{{remove_url}}" data-faceted-search-facet>
+                    {{@lang 'search.faceted.clear'}}
+                </a>
+                {{/if}}
+            </fieldset>
+        </form>
+    </div>
+</li>

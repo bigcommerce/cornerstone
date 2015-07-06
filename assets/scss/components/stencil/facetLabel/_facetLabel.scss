@@ -1,0 +1,19 @@
+// FACET LABEL (CSS)
+// -----------------------------------------------------------------------------
+
+.facetLabel {
+    background: color("greys", "lightest");
+    border-radius: $facetLabel-borderRadius;
+    padding: spacing("eighth") spacing("quarter");
+    text-decoration: none;
+
+    &:after {
+        background: $facetLabel-removeIcon-backgroundImage no-repeat 50% 50%;
+        content: ".";
+        display: inline-block;
+        height: $facetLabel-removeIcon-width;
+        line-height: 1;
+        text-indent: -9999px;
+        width: $facetLabel-removeIcon-height;
+    }
+}

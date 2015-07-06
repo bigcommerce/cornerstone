@@ -1,5 +1,7 @@
 {{> components/faceted-search/selected-facets this.selected}}
 
-{{#each this.facets}}
-    {{{@field this}}}
-{{/each}}
+<ul class="accordion accordion--sidebar sidebarBlock" data-accordion>
+    {{#each this.facets}}
+        {{{@field this}}}
+    {{/each}}
+</ul>

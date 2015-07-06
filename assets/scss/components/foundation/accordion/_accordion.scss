@@ -1,0 +1,53 @@
+// =============================================================================
+// ACCORDION (CSS)
+// =============================================================================
+
+.accordion--sidebar {
+    border: 0;
+    box-shadow: none;
+
+    .accordion-content {
+        padding: 0;
+        border: 0;
+    }
+
+    .accordion-navigation {
+        border: 0;
+        margin-top: spacing("single") + spacing("third");
+        position: relative;
+
+        &:first-child {
+            margin-top: 0;
+        }
+
+        &.is-open .accordion-heading {
+            background: $accordion-title-backgroundImage--is-open no-repeat 100% 50%;
+        }
+    }
+
+    .accordion-navigation-actions {
+        position: absolute;
+        right: convert-to-rem($accordion-indicator-width) + spacing("third");
+        top: 0;
+    }
+
+    .accordion-title {
+        padding: 0;
+        text-decoration: none;
+
+        &:hover {
+            background: none;
+        }
+    }
+
+    .accordion-heading {
+        background: $accordion-title-backgroundImage--is-close no-repeat 100% 50%;
+        margin-top: 0;
+        text-transform: inherit;
+    }
+
+    .accordion-indicator {
+        margin-left: spacing("third");
+        margin-right: spacing("third");
+    }
+}

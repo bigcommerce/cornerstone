@@ -1,0 +1,173 @@
+// =============================================================================
+// PRODUCT VIEW (CSS)
+// =============================================================================
+
+
+// Container
+// -----------------------------------------------------------------------------
+
+.productView {
+    padding-top: spacing("base");
+}
+
+
+// Images
+// -----------------------------------------------------------------------------
+//
+// 1. Thumbnails are not used in mobile/tablet, and can be hidden via display.
+//
+// -----------------------------------------------------------------------------
+
+.productView-images {
+    margin-bottom: spacing("double");
+}
+
+.productView-image {
+    margin: 0;
+
+    img {
+        width: 100%;
+    }
+
+    + .productView-thumbnails {
+        margin-top: spacing("half");
+    }
+}
+
+.productView-thumbnails {
+    display: none; // 1
+
+    @include breakpoint("medium") {
+        @include u-listBullets("none");
+        @include grid-row($behavior: "nest");
+        display: block;
+        margin-left: -(spacing("quarter"));
+        margin-right: -(spacing("quarter"));
+    }
+}
+
+.productView-thumbnail {
+    @include grid-column(3);
+    padding-left: spacing("quarter");
+    padding-right: spacing("quarter");
+
+    @include breakpoint("large") {
+        width: 20%;
+    }
+
+    &.is-active {
+
+        > img {
+            border: 2px solid color("greys", "darker");
+            padding: 2px;
+        }
+    }
+
+    > img {
+        width: 100%;
+    }
+}
+
+
+// Details
+// -----------------------------------------------------------------------------
+
+.productView-details {
+    margin-bottom: spacing("single") + spacing("third");
+}
+
+
+// Details - Product details
+// -----------------------------------------------------------------------------
+
+.productView-product {
+    border-bottom: 1px solid color("greys", "lightest");
+    padding-bottom: spacing("single") + spacing("third");
+}
+
+.productView-title {
+    margin: 0;
+
+    @include breakpoint("medium") {
+        margin-top: spacing("single");
+    }
+}
+
+.productView-brand {
+    color: color("greys", "medium");
+    font-size: fontSize("small");
+    margin: -(spacing("eighth")) 0 spacing("base");
+
+    a {
+        color: color("greys", "medium");
+
+        &:hover {
+            color: color("greys", "darker");
+        }
+    }
+}
+
+.productView-price {
+    font-size: fontSize("larger");
+    margin-bottom: spacing("base");
+}
+
+.productView-reviewCount {
+    color: color("greys", "light");
+    display: inline-block;
+    margin-left: spacing("half");
+    vertical-align: middle;
+}
+
+// Details - Product options
+// -----------------------------------------------------------------------------
+//
+// 1. Remove default margin-left.
+//
+// -----------------------------------------------------------------------------
+
+.productView-options {
+    text-align: center;
+
+    @include breakpoint("small") {
+        text-align: left;
+    }
+
+    .form-actions {
+        @include grid-row($behavior: "nest");
+        display: block;
+
+        @include breakpoint("large") {
+            margin-left: -(spacing("quarter"));
+            margin-right: -(spacing("quarter"));
+        }
+
+        .button {
+            display: block;
+            width: 100%;
+        }
+    }
+
+    .form-action {
+        @include grid-column(12);
+        margin-left: 0; // 1
+
+        @include breakpoint("small") {
+            width: grid-calc(6, $total-columns);
+        }
+
+        @include breakpoint("large") {
+            width: auto;
+            padding-left: spacing("quarter");
+            padding-right: spacing("quarter");
+        }
+    }
+}
+
+
+// Share products
+// -----------------------------------------------------------------------------
+
+.shareProduct {
+    text-align: center;
+}

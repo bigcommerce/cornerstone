@@ -1,8 +1,5 @@
 <div class="form-field">
-    <label class="form-label form-label--alternate" for="attribute_{{this.id}}">
-        {{#if this.required }}<span class="required">*</span>{{/if}}
-        {{ this.display_name }}
-    </label>
+    <label class="form-label form-label--alternate" for="attribute_{{this.id}}">{{ this.display_name }}</label>
     <select class="form-select" name="attribute[{{this.id}}]" id="attribute_{{this.id}}">
         {{#each this.values}}
         <option value="{{id}}" {{#if selected}}selected{{/if}}>{{label}}</option>

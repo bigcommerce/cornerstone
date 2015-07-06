@@ -1,15 +1,16 @@
 {{#if this.total}}
-<div id="product-reviews" class="productReviews" data-product-reviews>
-    <a href="#" class="productReviews-hide">{{@lang 'products.reviews.hide'}}</a>
+<div class="productReviews" id="product-reviews" data-product-reviews>
+    <a href="#" class="productReviews-displayToggle">{{@lang 'products.reviews.hide'}}</a>
     <!-- TODO: Make sure that Hide reviews actually hides reviews -->
-    <h5>{{@lang 'products.reviews.header' total=this.total}}</h5>
+    <h4 class="productReviews-heading">{{@lang 'products.reviews.header' total=this.total}}</h4>
     <ul class="productReviews-list">
         {{#each this.list}}
         <li class="productReview">
             <article itemprop="review" itemscope itemtype="http://schema.org/Review">
                 <header>
-                    <span itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
-                        <span class="productReview-rating" itemprop="ratingValue">{{ rating }}</span>
+                    <span class="productReview-rating" itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
+                        {{> components/products/ratings rating=rating}}
+                        <span class="productReview-ratingNumber" itemprop="ratingValue">{{ rating }}</span>
                     </span>
                     <h5 itemprop="name" class="productReview-title">{{ title }}</h5>
                     <meta itemprop="author" content="{{name}}">

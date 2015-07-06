@@ -1,80 +1,93 @@
 <div class="productView">
-    {{product.detail_messages}}
-    <h1 itemprop="name">{{ product.title }}</h1>
-    <h4 itemprop="brand" itemscope itemtype="http://schema.org/Brand">
-        <a itemprop="url" href="{{product.brand.url}}">
-            <span itemprop="name">{{product.brand.name}}</span>
-        </a>
-    </h4>
-    <h2 data-bind="text: price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-        <meta itemprop="priceCurrency" content="{{currency_selector.active_currency_code}}">
-        <span itemprop="price">{{ product.price.base }}</span>
-    </h2>
-    <div>
-        <div data-reveal-id="modal-review-form" class="product-reviews-stars" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
-            <meta itemprop="ratingValue" content="{{product.rating}}">
-            {{> components/products/ratings rating=product.rating}}
-        <meta itemprop="ratingCount" content="{{product.num_reviews}}">
-        <meta itemprop="reviewCount" content="{{product.num_reviews}}">
+    <section class="productView-details">
+        <div class="productView-product">
+            <h1 class="productView-title" itemprop="name">{{product.title}}</h1>
+            <h2 class="productView-brand" itemprop="brand" itemscope itemtype="http://schema.org/Brand">
+                <a href="{{product.brand.url}}" itemprop="url" itemprop="name">{{product.brand.name}}</a>
+            </h2>
+            <p class="productView-price" data-bind="text: price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                <meta itemprop="priceCurrency" content="{{currency_selector.active_currency_code}}">
+                <span itemprop="price">{{product.price.base}}</span>
+            </p>
+            <div class="productView-rating" data-reveal-id="modal-review-form" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+                <meta itemprop="ratingValue" content="{{product.rating}}">
+                <meta itemprop="ratingCount" content="{{product.num_reviews}}">
+                <meta itemprop="reviewCount" content="{{product.num_reviews}}">
+                {{> components/products/ratings rating=product.rating}} <span class="productView-reviewCount">{{@lang 'products.reviews.link_to_review' total=product.num_reviews}}</span>
+            </div>
+            {{product.detail_messages}}
         </div>
-        {{@lang 'products.reviews.link_to_review' total=product.num_reviews}}
-        {{> components/products/modals/writeReview product=product urls=urls}}
-    </div>
-    <a href="{{@image product.main_image 'zoom'}}" alt="{{image.alt}}">
-        <img itemprop="image" src="{{@image product.main_image 'product'}}" alt="{{image.alt}}">
-    </a>
-    {{#each product.images}}
-        <img src="{{@image this 'thumb'}}" alt="{{image.alt}}">
-    {{/each}}
-    {{#if product.release_date }}
-    <span class="alert alert-warning">{{product.release_date}}</span>
-    {{/if}}
-    <form method="post" action="{{product.cart_url}}" enctype="multipart/form-data" data-cart-item-add>
-        <input type="hidden" name="action" value="add">
-        <input type="hidden" name="product_id" value="{{product.id}}" />
-        <p>
-            {{#each product.customizations}}
-                <div>{{{@renderProductCustomization this}}}</div>
-            {{/each}}
-        </p>
-        <div class="product-sku">
-            <h4>{{@lang 'products.sku'}}</h4>
-            <p class="product-skuText" data-bind="text: sku" itemprop="sku">{{ product.sku }}</p>
-        </div>
-        <div itemprop="itemCondition">
-            {{product.condition}}
-        </div>
-        <div itemprop="weight">
-            {{product.weight}}
-        </div>
-        <div id="product-options">
-            {{@lang 'products.options'}}
-            {{#each product.options}}
-                <div>{{{@renderProductOption this}}}</div>
-            {{/each}}
-        </div>
-        <div id="product-quantity" data-bind="enable: canAddToCart">
-            <button class="product-qty-update" data-action="dec">-</button>
-            <button class="product-qty-update" data-action="inc">+</button>
-            <span class="product-qty" data-bind="text: quantity">1</span>
-            <input type="hidden" name="qty[]" data-bind="value: quantity" value="1">
-        </div>
-        <input type="submit" class="btn btn-success btn-addToCart" data-bind="enable: canAddToCart" value="Add To Cart">
-    </form>
+    </section>
 
-    <form method="post" action="{{product.add_to_wishlist_url}}">
-        <input type="submit" class="btn btn-primary" value="{{@lang 'account.wishlists.add_item'}}">
-    </form>
+    <section class="productView-images">
+        <figure class="productView-image">
+            <a href="{{@image product.main_image 'zoom'}}" alt="{{image.alt}}">
+                <img itemprop="image" src="{{@image product.main_image 'product'}}" alt="{{image.alt}}">
+            </a>
+        </figure>
+        <ul class="productView-thumbnails">
+            {{#each product.images}}
+            <li class="productView-thumbnail">
+                <img src="{{@image this 'thumb'}}" alt="{{image.alt}}">
+            </li>
+            {{/each}}
+        </ul>
+    </section>
 
-    <div class="Clear AddThisButtonBox" data-product-share>
+    <section class="productView-details">
+        <div class="productView-options">
+            {{#if product.release_date }}
+            <p>{{product.release_date}}</p>
+            {{/if}}
+
+            <form class="form" method="post" action="{{product.cart_url}}" enctype="multipart/form-data" data-cart-item-add>
+                <fieldset class="form-fieldset">
+                    <input type="hidden" name="action" value="add">
+                    <input type="hidden" name="product_id" value="{{product.id}}" />
+
+                    {{#each product.customizations}}
+                        {{{renderProductCustomization this}}}
+                    {{/each}}
+
+                    {{#each product.options}}
+                        {{{@renderProductOption this}}}
+                    {{/each}}
+
+                    <div class="form-field form-field--increments" data-bind="enable: canAddToCart">
+                        <label class="form-label form-label--alternate">Quantity:</label>
+                        <div class="buttonGroup">
+                            <button class="button button--small" data-action="dec">-</button>
+                            <button class="button button--small" data-action="inc">+</button>
+                        </div>
+                        <span class="incrementTotal" data-bind="text: quantity">1</span>
+                        <input type="hidden" name="qty[]" data-bind="value: quantity" value="1">
+                    </div>
+
+                    <div class="form-actions">
+                        <div class="form-action">
+                            <input class="button button--primary" type="submit" data-bind="enable: canAddToCart" value="Add to cart">
+                        </div>
+                        <div class="form-action">
+                            <form method="post" action="{{product.add_to_wishlist_url}}">
+                                <input class="button" type="submit" value="{{@lang 'account.wishlists.add_item'}}">
+                            </form>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+
         <!-- AddThis Button BEGIN -->
-        <div class="addthis_toolbox addthis_default_style ">
+        <article class="shareProduct addthis_toolbox addthis_default_style" data-product-share>
             <a class="addthis_button_facebook at300b" title="Facebook" href="#">
                 <span class="at4-icon aticon-facebook" style="background-color: rgb(48, 88, 145);">
-                <span class="at_a11y">Share on facebook</span></span></a>
-                <a class="addthis_button_twitter at300b" title="Tweet" href="#">
+                    <span class="at_a11y">Share on facebook</span>
+                </span>
+            </a>
+            <a class="addthis_button_twitter at300b" title="Tweet" href="#">
                 <span class="at4-icon aticon-twitter" style="background-color: rgb(44, 168, 210);">
-                <span class="at_a11y">Share on twitter</span></span>
+                    <span class="at_a11y">Share on twitter</span>
+                </span>
             </a>
             <a class="addthis_button_google at300b" target="_blank" title="Google" href="#">
                 <span class="at4-icon aticon-google" style="background-color: rgb(8, 104, 185);">
@@ -92,9 +105,21 @@
                 </span>
             </a>
             <div class="atclear"></div>
-        </div>
+        </article>
         <script type="text/javascript" src="//s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4e94ed470ee51e32"></script>
         <!-- AddThis Button END -->
-    </div>
-    <p itemprop="description">{{{ product.description }}}</p>
+    </section>
+
+    <article class="productView-description" itemprop="description">
+        <ul class="tabs">
+            <li class="tab is-active">
+                <a class="tab-title" href="#tab-description">{{@lang 'products.description'}}</a>
+            </li>
+        </ul>
+        <div class="tabs-contents">
+            <div class="tab-content is-active" id="tab-description">
+                {{{ product.description }}}
+            </div>
+        </div>
+    </article>
 </div>

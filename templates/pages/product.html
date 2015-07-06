@@ -3,7 +3,7 @@ product:
     videos:
         limit: 2
     reviews:
-        limit: 1
+        limit: 9
     related_products:
         limit: 10
     similar_by_views:
@@ -20,8 +20,12 @@ product:
         {{> components/products/reviews product.reviews}}
 
         <ul class="tabs">
-            <li class="tab is-active"><a class="tab-title" href="#tab-related">{{@lang 'products.related_products'}}</a></li>
-            <li class="tab"><a class="tab-title" href="#tab-similar">{{@lang 'products.similar_by_views'}}</a></li>
+            <li class="tab is-active">
+                <a class="tab-title" href="#tab-related">{{@lang 'products.related_products'}}</a>
+            </li>
+            <li class="tab">
+                <a class="tab-title" href="#tab-similar">{{@lang 'products.similar_by_views'}}</a>
+            </li>
         </ul>
 
         <div class="tabs-contents">

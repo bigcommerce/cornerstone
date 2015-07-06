@@ -1,7 +1,4 @@
 <div class="form-field">
-    <label class="form-label form-label--alternate" for="customization_{{this.id}}">
-        {{#if this.required }}<span class="required">*</span>{{/if}}
-        {{ this.display_name }}
-    </label>
-    <input type="checkbox" id="customization_{{this.id}}" {{#if this.checked}}checked{{/if}}>
+    <label class="form-label form-label--alternate" for="customization_{{this.id}}">{{ this.display_name }}</label>
+    <input class="form-checkbox" type="checkbox" id="customization_{{this.id}}" {{#if this.checked}}checked{{/if}}>
 </div>

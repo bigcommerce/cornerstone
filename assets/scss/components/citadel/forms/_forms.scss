@@ -105,6 +105,8 @@
         }
     }
 }
+
+
 // Citadel form-actions
 // -----------------------------------------------------------------------------
 
@@ -116,4 +118,92 @@
 
 .form-actions--center {
     text-align: center;
+}
+
+
+// Stencil form additions
+// -----------------------------------------------------------------------------
+
+.form-label--alternate {
+    font-weight: fontWeight("bold");
+}
+
+.form-select--date {
+    width: initial;
+
+    + .form-select--date {
+        margin-left: spacing("quarter");
+    }
+}
+
+.form-select--small,
+.form-select--date {
+    padding: spacing("third") (spacing("single") + spacing("half")) spacing("third") spacing("half");
+    height: spacing("single") + spacing("half");
+    max-width: 20rem;
+    background-size: remCalc(18px);
+    background-position: right spacing("third") top spacing("third");
+}
+
+.form-field--increments {
+
+    .button {
+        padding: spacing("quarter") spacing("base");
+    }
+
+    .incrementTotal {
+        display: inline-block;
+        font-size: fontSize("smaller");
+        font-weight: fontWeight("bold");
+        padding: spacing("fifth") spacing("base");
+        vertical-align: top;
+    }
+}
+
+.form-file {
+    margin-bottom: spacing("third");
+}
+
+.form-fileDescription {
+    color: color("greys", "light");
+    font-size: fontSize("smallest");
+}
+
+
+// Stencil form options
+// -----------------------------------------------------------------------------
+
+.form-option {
+    border: 1px solid color("greys", "lighter");
+    color: color("greys", "dark");
+    cursor: pointer;
+    display: inline-block;
+    margin-right: spacing("quarter");
+    padding: 1px;
+    transition: all 0.15s ease;
+
+    .form-radio:checked + & {
+        border-color: color("greys", "darker");
+        box-shadow: 0 0 0 1px color("greys", "darker");
+    }
+}
+
+.form-option-variant {
+    display: inline-block;
+    min-width: remCalc(38px);
+    padding: 1px spacing("quarter");
+    text-align: center;
+}
+
+.form-option-variant--color,
+.form-option-variant--pattern {
+    @include square(20);
+    float: left;
+    min-width: initial;
+    padding: 0;
+}
+
+.form-option-variant--pattern {
+    background-position: center;
+    background-repeat: no-repeat;
 }

@@ -111,6 +111,15 @@
     </section>
 
     <article class="productView-description" itemprop="description">
-        {{{ product.description }}}
+        <ul class="tabs">
+            <li class="tab is-active">
+                <a class="tab-title" href="#tab-description">{{@lang 'products.description'}}</a>
+            </li>
+        </ul>
+        <div class="tabs-contents">
+            <div class="tab-content is-active" id="tab-description">
+                {{{ product.description }}}
+            </div>
+        </div>
     </article>
 </div>

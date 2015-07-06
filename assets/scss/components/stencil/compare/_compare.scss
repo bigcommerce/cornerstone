@@ -3,11 +3,30 @@
 // =============================================================================
 
 
+// Compare table layout
+// -----------------------------------------------------------------------------
+
 .compareTable {
     border-top: 1px solid color("greys", "lightest");
     table-layout: fixed;
     width: 100%;
 }
+
+.compareTable-row {
+    vertical-align: top;
+
+    + .compareTable-row {
+
+        .compareTable-heading,
+        .compareTable-item {
+            border-top: 1px solid color("greys", "lightest");
+        }
+    }
+}
+
+
+// Compare table headings and spacing
+// -----------------------------------------------------------------------------
 
 .compareTable-product,
 .compareTable-heading {
@@ -22,7 +41,7 @@
     width: 0;
 
     @include breakpoint("large") {
-        width: 20%;
+        width: 15.75%;
     }
 }
 
@@ -36,33 +55,25 @@
     }
 }
 
-.compareTable-row {
-    vertical-align: top;
+.compareTable-heading {
+    padding: (spacing("base") + spacing("sixth")) spacing("base");
+}
 
-    + .compareTable-row {
+.compareTable-product {
+    padding: spacing("single") + spacing("third") spacing("base") (spacing("base") + spacing("sixth"));
+}
 
-        .compareTable-heading,
-        .compareTable-item {
-            border-top: 1px solid color("greys", "lightest");
-        }
-    }
+.compareTable-item {
+    padding: spacing("double") + spacing("sixth") spacing("base") (spacing("base") + spacing("sixth"));
 
-    .compareTable-heading {
-        padding: (spacing("base") + spacing("sixth")) spacing("base");
-    }
-
-    .compareTable-product {
-        padding: spacing("single") + spacing("third") spacing("base") (spacing("base") + spacing("sixth"));
-    }
-
-    .compareTable-item {
-        padding: spacing("double") + spacing("sixth") spacing("base") (spacing("base") + spacing("sixth"));
-
-        @include breakpoint("large") {
-            padding-top: spacing("base") + spacing("sixth");
-        }
+    @include breakpoint("large") {
+        padding-top: spacing("base") + spacing("sixth");
     }
 }
+
+
+// Remove product
+// -----------------------------------------------------------------------------
 
 .compareTable-removeProduct {
     background-color: color("greys", "lightest");
@@ -84,6 +95,10 @@
         width: spacing("single");
     }
 }
+
+
+// Compare product card
+// -----------------------------------------------------------------------------
 
 .compareTable-product {
 

@@ -1,6 +1,6 @@
 {{> components/category/sort-box sort=search.sort}}
 
 <form action="/compare" method='POST'>
-    {{> components/products/grid product_results.products}}
+    {{> components/products/grid products=product_results.products}}
     <input type="submit" value="{{@lang 'compare.button'}}" class="button button--primary">
 </form>

@@ -114,6 +114,35 @@ This method is for any cleanup that may need to happen and will be executed afte
     }
 ```
 
+### JS Template Context Injection
+Occasionally you may need to use dynamic data from in the template context within your clientside theme application code.
+
+Two helpers are provided to help achieve this.
+
+The inject helper allows you to compose a json object with a subset of the template context to be sent to the browser.
+```
+{{@inject "stringBasedKey" contextValue}}
+```
+
+To retrieve the parsable json object, just call `{{jsContext}}` after all of the `{{@inject}}` calls.
+
+For example, to setup the product name in your clientside app, you can do this if you're in the context of a product.
+```html
+{{@inject "myProductName" product.title}}
+
+<script>
+// Note the lack of quotes around the jsContext handlebars helper, it becomes a string automatically.
+var jsContext = JSON.parse({{jsContext}}); //jsContext would output "{\"myProductName\": \"Sample Product\"}" which can feed directly into your javascript
+
+console.log(jsContext.myProductName); // Will output: Sample Product
+</script>
+```
+
+You can compose your json object across multiple pages to create a different set of clientside data depending on the currently loaded template context.
+
+The stencil theme makes the jsContext available on both the active page scoped and global PageManager objects as `this.context`
+
+
 ## Static assets
 Some static assets in the Stencil theme are handled with Grunt if required. This
 means you have some dependencies on grunt and npm. To get started:

@@ -106,7 +106,10 @@ function loadGlobal(pages) {
  */
 function loader(pageFunc, pages) {
     if (pages.get('global')) {
-        series(loadGlobal(pages));
+        let globalPageManager = loadGlobal(pages);
+        globalPageManager.context = pageFunc.context;
+
+        series(globalPageManager);
     }
     series(pageFunc);
 }
@@ -115,10 +118,14 @@ function loader(pageFunc, pages) {
  * This is the function that gets exported to JSPM
  * Gets the templateFile name passed in from the JSPM loader
  * @param templateFile String
+ * @param context
  * @returns {*}
  */
-export default function (templateFile) {
+export default function (templateFile, context) {
     let pages = PageClasses;
+
+    context = context || '{}';
+    context = JSON.parse(context);
 
     return {
         load() {
@@ -126,6 +133,7 @@ export default function (templateFile) {
                 let pageTypeFn = pages.get(templateFile); // Finds the appropriate module from the pageType object and store the result as a function.
                 if (pageTypeFn) {
                     let pageType = new pageTypeFn();
+                    pageType.context = context;
                     return loader(pageType, pages);
                 } else {
                     throw new Error(templateFile + ' Module not found')

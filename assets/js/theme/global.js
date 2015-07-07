@@ -5,6 +5,7 @@ import currencySelector from './global/currency-selector';
 import foundation from './global/foundation';
 import quickView from './global/quick-view';
 import cartPreview from './global/cart-preview';
+import privacyCookieNotification from './global/cookieNotification';
 import carousel from './common/carousel';
 
 export default class Global extends PageManager {
@@ -24,6 +25,8 @@ export default class Global extends PageManager {
         quickView();
         cartPreview();
         carousel();
+        privacyCookieNotification();
+
         next();
     }
 }

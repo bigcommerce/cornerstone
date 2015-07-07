@@ -5,6 +5,10 @@
 
 // Compare table layout
 // -----------------------------------------------------------------------------
+//
+// 1. Foundation Magellan plugin.
+//
+// -----------------------------------------------------------------------------
 
 .compareTable {
     border-top: 1px solid color("greys", "lightest");
@@ -41,7 +45,7 @@
     width: 0;
 
     @include breakpoint("large") {
-        width: 15.75%;
+        width: grid-calc(2, $total-columns);
     }
 }
 
@@ -60,11 +64,11 @@
 }
 
 .compareTable-product {
-    padding: spacing("single") + spacing("third") spacing("base") (spacing("base") + spacing("sixth"));
+    padding: (spacing("single") + spacing("third")) spacing("base") (spacing("base") + spacing("sixth"));
 }
 
 .compareTable-item {
-    padding: spacing("double") + spacing("sixth") spacing("base") (spacing("base") + spacing("sixth"));
+    padding: (spacing("double") + spacing("sixth")) spacing("base") (spacing("base") + spacing("sixth"));
 
     @include breakpoint("large") {
         padding-top: spacing("base") + spacing("sixth");
@@ -90,6 +94,7 @@
     }
 
     .icon {
+        fill: color("greys", "dark");
         height: spacing("single");
         margin-top: spacing("third");
         width: spacing("single");

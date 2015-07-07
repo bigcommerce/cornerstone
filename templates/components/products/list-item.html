@@ -30,7 +30,9 @@
                     {{/if}}
                 {{/unless}}
                 {{#if show_compare}}
-                    <a href="#" class="button button--compare">Compare</a>
+                    <label class="button button--small" for="{{id}}">
+                        {{@lang "products.compare"}} <input type="checkbox" name="products[]" value="{{id}}">
+                    </label>
                 {{/if}}
             </div>
         </div>

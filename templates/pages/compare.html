@@ -73,14 +73,14 @@
                 {{/each}}
             </tr>
             {{#if custom_fields}}
-            {{#each custom_fields}}
-            <tr class="compareTable-row">
-                <th class="compareTable-heading">{{ name }}</th>
-                {{#each comparisons}}
-                <td class="compareTable-item">{{ value }}</td>
+                {{#each custom_fields}}
+                <tr class="compareTable-row">
+                    <th class="compareTable-heading">{{ name }}</th>
+                    {{#each comparisons}}
+                        <td class="compareTable-item">{{ value }}</td>
+                    {{/each}}
+                </tr>
                 {{/each}}
-            </tr>
-            {{/each}}
             {{/if}}
         </table>
 

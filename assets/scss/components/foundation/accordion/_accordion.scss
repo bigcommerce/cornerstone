@@ -3,50 +3,103 @@
 // =============================================================================
 
 .accordion--navList {
-    border: 0;
+    @include breakpoint("medium") {
+        border: 0;
+    }
+
+    border-radius: $accordion-navList-borderRadius;
+    border-width: $accordion-navList-borderWidth;
     box-shadow: none;
 
     .sidebarBlock + & {
-        margin-top: $accordion-sidebar-spacing;
+        margin-top: $accordion-navList-spacing;
     }
 
     .accordion-content {
-        padding: 0;
+        @include breakpoint("medium") {
+            padding: 0;
+        }
+
         border: 0;
+        padding: spacing("base");
+
+        .form:only-child {
+            margin-bottom: 0;
+        }
     }
 
     .accordion-navigation {
+        @include breakpoint("medium") {
+            margin-top: $accordion-navList-spacing;
+        }
+
         border: 0;
-        margin-top: $accordion-sidebar-spacing;
         position: relative;
 
         &:first-child {
             margin-top: 0;
+
+            .accordion-title {
+                border-radius: $accordion-navList-borderRadius $accordion-navList-borderRadius 0 0;
+            }
         }
 
-        &.is-open .accordion-heading {
-            background: $accordion-title-backgroundImage--is-open no-repeat 100% 50%;
+        &:last-child {
+            .accordion-title,
+            .accordion-content {
+                border-radius: 0 0 $accordion-navList-borderRadius $accordion-navList-borderRadius;
+            }
+
+            .accordion-title {
+                border-bottom-width: 0;
+            }
+        }
+
+        &.is-open {
+            .accordion-heading {
+                background: $accordion-title-backgroundImage--is-open no-repeat 100% 50%;
+            }
+
+            &:last-child .accordion-title {
+                border-bottom-width: 1px;
+                border-radius: 0;
+            }
         }
     }
 
     .accordion-navigation-actions {
+        @include breakpoint("medium") {
+            right: convert-to-rem($accordion-indicator-width) + spacing("third");
+            top: 0;
+        }
+
         position: absolute;
-        right: convert-to-rem($accordion-indicator-width) + spacing("third");
-        top: 0;
+        right: convert-to-rem($accordion-indicator-width) + spacing("single");
+        top: spacing("base") + spacing("eighth");
     }
 
     .accordion-title {
-        padding: 0;
-        text-decoration: none;
+        @include breakpoint("medium") {
+            border: 0;
+            margin-bottom: spacing("half");
+            margin-top: 0;
+            padding: 0;
 
-        &:hover {
-            background: none;
+            &:hover {
+                background: none;
+            }
         }
+
+        border: $accordion-border;
+        border-width: 1px 0;
+        margin-top: -1px;
+        padding: spacing("base");
+        text-decoration: none;
     }
 
     .accordion-heading {
         background: $accordion-title-backgroundImage--is-close no-repeat 100% 50%;
-        margin-top: 0;
+        margin: 0;
         text-transform: inherit;
     }
 

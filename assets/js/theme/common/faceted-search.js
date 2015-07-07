@@ -8,7 +8,28 @@ function goToUrl(url) {
     History.pushState({}, document.title, url);
 }
 
+/**
+ * Faceted search view component
+ */
 export default class FacetedSearch {
+    /**
+     * @param {object} templates - Map of templates to fetch
+     * @param {function} callback - Function to execute after fetching templates
+     * @param {object} options - Configurable options
+     * @example
+     *
+     * let templates = {
+     *     productListing: 'category/product-listing',
+     *     sidebar: 'category/sidebar'
+     * };
+     *
+     * let templatesDidLoad = function(content) {
+     *     $productListingContainer.html(content.productListing);
+     *     $facetedSearchContainer.html(content.sidebar);
+     * };
+     *
+     * let facetedSearch = new FacetedSearch(templates, templatesDidLoad);
+     */
     constructor(templates, callback, options) {
         let defaultOptions = {
            loadingIndicatorSelector: '#loadingNotification',

@@ -17,13 +17,12 @@
         <script src="/assets/config.js"></script>
         <!--TODO Need Bundled JS Helper-->
         <!--Loads JSPM main application, then instantiates each page type module when needed.  -->
-        <script>System.import("js/app").then(function(data){ data.default("{{template_file}}").load()});</script>
+        <script>System.import("js/app").then(function(data){ data.default("{{template_file}}", {{jsContext}}).load()});</script>
 
         {{{ head.rsslinks }}}
     </head>
     <body>
         {{> components/common/icons/icon-defs }}
-
         {{> components/common/header }}
         {{> components/common/body }}
         {{> components/common/footer }}

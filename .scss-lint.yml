@@ -1,0 +1,60 @@
+# BC configuration
+linters:
+
+  #Cos we use maps with keywords, this produces noise
+  ColorKeyword:
+    enabled: false
+
+  #Cos we now use block comments for documentation
+  Comment:
+    enabled: false
+
+  ElsePlacement:
+    enabled: true
+    style: new_line # or 'same_line'
+
+  EmptyLineBetweenBlocks:
+    enabled: true
+    ignore_single_line_blocks: false
+
+  Indentation:
+    enabled: true
+    character: space # or 'tab'
+    width: 4
+
+  LeadingZero:
+    enabled: true
+    style: include_zero # or 'exclude_zero'
+
+  NameFormat:
+    enabled: false
+    convention: hyphenated_lowercase # or 'BEM', or a regex pattern
+
+  SelectorDepth:
+    enabled: true
+    max_depth: 2
+
+  NestingDepth:
+    enabled: true
+    max_depth: 2
+
+# For example
+# http://www.regexr.com/39qql
+  SelectorFormat:
+    enabled: true
+    # convention: camel_case # or 'snake_case', or 'hyphenated_lowercase', or a regex pattern
+    convention: ^[a-z][a-z0-9]*([A-Z0-9][a-z0-9]*)*((\.is-|-+)[a-z0-9][a-z0-9]*([A-Z0-9][a-z0-9]*)*)*$
+
+  StringQuotes:
+    enabled: true
+    style: double_quotes # or single_quotes
+
+  TrailingZero:
+    enabled: true
+
+# This is a new linting rule as of 0.30 and the per-file disablement syntax seems to failing, so turn it off
+  QualifyingElement:
+    enabled: false
+
+MergeableSelector:
+    force_nesting: false

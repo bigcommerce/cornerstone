@@ -1,65 +1,91 @@
 {{#partial "page"}}
-<main class="main full">
-    <h1>{{@lang 'compare.header' products=comparisons.length}}</h1>
-    <ul class="compare">
-        <li class="column column-{{comparisons.length}} compare-label">
-            <div class="compare-header"></div>
-            <div class="compare-body">
-                <div class="compare-body-row compare-body-description">Description</div>
-                <div class="compare-body-row compare-body-rating">Rating</div>
-                <div class="compare-body-row compare-body-availability">Availability</div>
-                {{#if custom_fields}}
-                    {{#each custom_fields}}
-                        <div class="compare-body-row compare-body-{{ name }}">
-                            {{ name }}
-                        </div>
-                    {{/each}}
-                {{/if}}
-            </div>
-        </li>
-        {{#each comparisons}}
-        <li class="column column-{{../comparisons.length}}">
-            <div class="compare-header">
-                <div><a href="{{remove_url}}">&times;</a></div>
-                <div><img src="{{{@image image 'product'}}}" alt="{{image.alt}}"></div>
-                <div><a href="{{brand_url}}">{{ brand_name }}</a></div>
-                <div><a href="{{{url}}}">{{ name }}</a></div>
-                <div>{{@money price}}</div>
 
-                <form method="post" action="{{ urls.cart }}" class="compare-header-cart">
-                    <input class="quickview button button--primary button-addToCart" data-product-id="{{id}}" type="submit" data-bind="enable: canAddToCart" value="Add To Cart">
-                </form>
-            </div>
-            <div class="compare-body">
-                <div class="compare-body-row compare-body-description">
-                    {{ summary }}
-                </div>
-                <div class="compare-body-row compare-body-rating">
+{{> components/common/breadcrumbs breadcrumbs}}
+<h1 class="page-heading">{{@lang 'compare.header' products=comparisons.length}}</h1>
+
+<div class="page">
+    <main class="page-content">
+
+        <table class="compareTable">
+            <tr class="compareTable-row">
+                <th class="compareTable-heading"></th>
+                {{#each comparisons}}
+                <th class="compareTable-product">
+                    <article class="card">
+                        <figure class="card-figure">
+                            <img class="card-image" src="{{{@image image 'product'}}}" alt="{{image.alt}}">
+                            <a class="compareTable-removeProduct" href="{{remove_url}}">
+                                <svg class="icon">
+                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use>
+                                </svg>
+                            </a>
+                        </figure>
+                        <div class="card-body">
+                            {{#if brand_name}}
+                            <p class="card-text">{{ brand_name }}</p>
+                            {{/if}}
+                            <h4 class="card-title">
+                                <a href="{{url}}">{{ name }}</a>
+                            </h4>
+                            <p class="card-text">{{{ price }}}</p>
+                        </div>
+                    </article>
+                    <form action="{{ urls.cart }}" method="post">
+                        <input class="button button--primary" data-product-id="{{id}}" type="submit" data-bind="enable: canAddToCart" value="{{@lang "compare.add_to_cart"}}">
+                    </form>
+                </th>
+                {{/each}}
+            </tr>
+            <tr class="compareTable-row">
+                <th class="compareTable-heading">
+                    <span class="compareTable-headingText">Description</span>
+                </th>
+                {{#each comparisons}}
+                <td class="compareTable-item">{{ summary }}</td>
+                {{/each}}
+            </tr>
+            <tr class="compareTable-row">
+                <th class="compareTable-heading">
+                    <span class="compareTable-headingText">Rating</span>
+                </th>
+                {{#each comparisons}}
+                <td class="compareTable-item">
                     {{#if rating}}
                         {{> components/products/ratings rating=rating}}
                     {{else}}
                         No Reviews
                     {{/if}}
-                </div>
-                <div class="compare-body-row compare-body-availability">
+                </td>
+                {{/each}}
+            </tr>
+            <tr class="compareTable-row">
+                <th class="compareTable-heading">
+                    <span class="compareTable-headingText">Availability</span>
+                </th>
+                {{#each comparisons}}
+                <td class="compareTable-item">
                     {{#if availability}}
                         {{ availability }}
                     {{else}}
                         Not Available
                     {{/if}}
-                </div>
-
-                {{#if custom_fields}}
-                    {{#each custom_fields}}
-                        <div class="compare-body-row compare-body-{{ name }}">
-                            {{ value }}
-                        </div>
+                </td>
+                {{/each}}
+            </tr>
+            {{#if custom_fields}}
+                {{#each custom_fields}}
+                <tr class="compareTable-row">
+                    <th class="compareTable-heading">{{ name }}</th>
+                    {{#each comparisons}}
+                        <td class="compareTable-item">{{ value }}</td>
                     {{/each}}
-                {{/if}}
-            </div>
-        </li>
-        {{/each}}
-    </ul>
-</main>
+                </tr>
+                {{/each}}
+            {{/if}}
+        </table>
+
+    </main>
+</div>
+
 {{/partial}}
 {{> layout/base}}

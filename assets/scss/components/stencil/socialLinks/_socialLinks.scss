@@ -6,7 +6,9 @@
 //
 // -----------------------------------------------------------------------------
 .socialLinks {
-    @include nav($style: "navBar", $wrapper: "ul");
+    @include clearfix;
+    @include u-listReset;
+    margin: 0 auto;
 
     .icon { // 1
         @include square($socialLinks-iconSize);
@@ -19,8 +21,13 @@
 
 .socialLinks-item {
     font-size: 0; // 1
+    display: inline-block;
 
     & + .socialLinks-item {
-        margin-#{$navBar-item-floatDirection}: spacing("half") + spacing("quarter");
+        margin-left: spacing("double");
+
+        @include breakpoint("small") {
+            margin-left: spacing("half") + spacing("quarter");
+        }
     }
 }

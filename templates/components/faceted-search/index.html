@@ -1,7 +1,11 @@
-{{> components/faceted-search/selected-facets this.selected}}
+<div id="facetedSearch" class="blocker-container sidebarBlock">
+    {{> components/faceted-search/selected-facets this.selected}}
 
-<ul class="accordion accordion--sidebar sidebarBlock" data-accordion>
-    {{#each this.facets}}
-        {{{@field this}}}
-    {{/each}}
-</ul>
+    <ul class="accordion accordion--navList" data-accordion>
+        {{#each this.facets}}
+            {{{@field this}}}
+        {{/each}}
+    </ul>
+
+    <div class="blocker" style="display: none;"></div>
+</div>

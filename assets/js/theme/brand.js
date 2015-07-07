@@ -8,7 +8,7 @@ export default class Brand extends PageManager {
 
         super();
 
-        FacetedSearch({
+        new FacetedSearch({
             productListing: 'brand/product-listing',
             sidebar: 'brand/sidebar'
         }, function(content) {

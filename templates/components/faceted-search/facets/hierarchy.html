@@ -29,9 +29,11 @@
             {{/each}}
         </ul>
 
-        <!-- FIXME: Not implemented -->
         {{#if show_more_toggle}}
-            <a href="#" role="button">{{@lang 'search.faceted.show-more'}}</a>
+            <a href="#facet-content-nav-list-{{ facet }}" role="button" class="toggleLink">
+                <span class="toggleLink-text toggleLink-text--on">{{@lang 'search.faceted.show-more'}}</span>
+                <span class="toggleLink-text toggleLink-text--off">{{@lang 'search.faceted.show-less'}}</span>
+            </a>
         {{/if}}
     </div>
 </li>

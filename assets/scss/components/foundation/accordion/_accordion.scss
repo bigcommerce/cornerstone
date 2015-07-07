@@ -2,9 +2,13 @@
 // ACCORDION (CSS)
 // =============================================================================
 
-.accordion--sidebar {
+.accordion--navList {
     border: 0;
     box-shadow: none;
+
+    .sidebarBlock + & {
+        margin-top: $accordion-sidebar-spacing;
+    }
 
     .accordion-content {
         padding: 0;
@@ -13,7 +17,7 @@
 
     .accordion-navigation {
         border: 0;
-        margin-top: spacing("single") + spacing("third");
+        margin-top: $accordion-sidebar-spacing;
         position: relative;
 
         &:first-child {

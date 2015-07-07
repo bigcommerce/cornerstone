@@ -1,5 +1,5 @@
 <li class="accordion-navigation {{#unless ../start_collapsed }} is-open {{/unless}}">
-    <a href="#facet-content-{{ facet }}" class="accordion-title">
+    <a href="#facet-content-{{ facet }}" role="button" class="accordion-title">
         <h5 class="accordion-heading">{{ title }}</h5>
     </a>
 
@@ -10,7 +10,7 @@
     </div>
 
     <div id="facet-content-{{ facet }}" class="accordion-content {{#unless ../start_collapsed }} is-open {{/unless}}">
-        <ul class="navList">
+        <ul id="facet-content-nav-list-{{ facet }}" class="navList" data-count="{{ items_count }}">
             {{#each items}}
                 <li class="navList-item">
                     <a
@@ -26,9 +26,11 @@
             {{/each}}
         </ul>
 
-        <!-- FIXME: Not implemented -->
         {{#if show_more_toggle}}
-            <a href="#" role="button">{{@lang 'search.faceted.show-more'}}</a>
+            <a href="#facet-content-nav-list-{{ facet }}" role="button" class="toggleLink">
+                <span class="toggleLink-text toggleLink-text--on">{{@lang 'search.faceted.show-more'}}</span>
+                <span class="toggleLink-text toggleLink-text--off">{{@lang 'search.faceted.show-less'}}</span>
+            </a>
         {{/if}}
     </div>
 </li>

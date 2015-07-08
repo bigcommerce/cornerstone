@@ -36,6 +36,8 @@ export default class Product extends PageManager {
 
         this.addProductToCart();
 
+        this.addProductToWishlist();
+
         next();
     }
 
@@ -130,6 +132,24 @@ export default class Product extends PageManager {
                     $modalContent.html(response.content);
                 });
             });
+        });
+    }
+
+    /**
+     * Add to wishlist form submission javascript workaround
+     *
+     * In order for the wishlist button to be next to the add cart button and not we cannot have nested forms,
+     * we have to use javascript to perform a different form submission
+     */
+    addProductToWishlist() {
+        let $wishListForm = $('#form-wishlish-add');
+
+        $('#form-wishlish-submit').click((e) => {
+            // stop form submission
+            e.preventDefault();
+
+            // submit wishlist form
+            $wishListForm.submit();
         });
     }
 

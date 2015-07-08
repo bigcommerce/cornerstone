@@ -36,7 +36,7 @@ export default class FacetedSearch {
            blockerSelector: '#facetedSearch .blocker',
            showMoreToggleSelector: '#facetedSearch .toggleLink',
            facetNavListSelector: '#facetedSearch .navList',
-           accordionToggleSelector: '#facetedSearch .accordion-title'
+           accordionToggleSelector: '#facetedSearch .accordion-navigation'
         };
 
         // Private properties

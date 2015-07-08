@@ -1,6 +1,6 @@
-<li class="accordion-navigation {{#unless ../start_collapsed }} is-open {{/unless}}">
-    <a href="#facet-content-{{ facet }}" class="accordion-title">
-        <h5 class="accordion-heading">{{ title }}</h5>
+<li class="accordion-block {{#unless ../start_collapsed }} is-open {{/unless}}">
+    <a href="#facet-content-{{ facet }}" role="button" class="accordion-navigation">
+        <h5 class="accordion-title">{{ title }}</h5>
     </a>
 
     <div class="accordion-navigation-actions">
@@ -15,7 +15,7 @@
                 <li class="navList-item">
                     <a
                         href="{{url}}"
-                        class="navList-action navList-action--checkbox {{#if selected }} is-selected {{/if}} {{#if has_sub_categories }} has-children {{/if}}"
+                        class="navList-action {{#if selected }} is-selected {{/if}} {{#if has_sub_categories }} has-children {{/if}}"
                         data-id="{{ id }}"
                         data-faceted-search-facet>
                         {{ title }}

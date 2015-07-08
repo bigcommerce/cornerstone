@@ -1,6 +1,6 @@
-<li class="accordion-navigation {{#unless ../start_collapsed }} is-open {{/unless}}">
-    <a href="#facet-content-{{ facet }}" class="accordion-title">
-        <h5 class="accordion-heading">{{ title }}</h5>
+<li class="accordion-block {{#unless ../start_collapsed }} is-open {{/unless}}">
+    <a href="#facet-content-{{ facet }}" role="button" class="accordion-navigation">
+        <h5 class="accordion-title">{{ title }}</h5>
     </a>
 
     <div class="accordion-navigation-actions">
@@ -16,7 +16,6 @@
             {{/each}}
 
             <fieldset class="form-fieldset">
-                <!-- FIXME: Not sure if becomes a rangeslider -->
                 <div class="form-minMaxRow">
                     <div class="form-field">
                         <input

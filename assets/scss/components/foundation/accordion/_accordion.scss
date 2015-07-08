@@ -15,6 +15,46 @@
         margin-top: $accordion-navList-spacing;
     }
 
+    .accordion-block {
+        @include breakpoint("medium") {
+            margin-top: $accordion-navList-spacing;
+        }
+
+        border: 0;
+        position: relative;
+        list-style: none;
+    }
+
+    .accordion-block:first-child {
+        margin-top: 0;
+
+        .accordion-navigation {
+            border-radius: $accordion-navList-borderRadius $accordion-navList-borderRadius 0 0;
+        }
+    }
+
+    .accordion-block:last-child {
+        .accordion-navigation,
+        .accordion-content {
+            border-radius: 0 0 $accordion-navList-borderRadius $accordion-navList-borderRadius;
+        }
+
+        .accordion-navigation {
+            border-bottom-width: 0;
+        }
+    }
+
+    .accordion-block.is-open {
+        .accordion-title {
+            background-image: $accordion-title-backgroundImage--is-open;
+        }
+
+        &:last-child .accordion-navigation {
+            border-bottom-width: 1px;
+            border-radius: 0;
+        }
+    }
+
     .accordion-content {
         @include breakpoint("medium") {
             padding: 0;
@@ -30,41 +70,13 @@
 
     .accordion-navigation {
         @include breakpoint("medium") {
-            margin-top: $accordion-navList-spacing;
+            border: 0;
         }
 
-        border: 0;
-        position: relative;
-
-        &:first-child {
-            margin-top: 0;
-
-            .accordion-title {
-                border-radius: $accordion-navList-borderRadius $accordion-navList-borderRadius 0 0;
-            }
-        }
-
-        &:last-child {
-            .accordion-title,
-            .accordion-content {
-                border-radius: 0 0 $accordion-navList-borderRadius $accordion-navList-borderRadius;
-            }
-
-            .accordion-title {
-                border-bottom-width: 0;
-            }
-        }
-
-        &.is-open {
-            .accordion-heading {
-                background: $accordion-title-backgroundImage--is-open no-repeat 100% 50%;
-            }
-
-            &:last-child .accordion-title {
-                border-bottom-width: 1px;
-                border-radius: 0;
-            }
-        }
+        border: $accordion-border;
+        border-width: 1px 0;
+        margin-top: -1px;
+        text-decoration: none;
     }
 
     .accordion-navigation-actions {
@@ -80,26 +92,15 @@
 
     .accordion-title {
         @include breakpoint("medium") {
-            border: 0;
             margin-bottom: spacing("half");
             margin-top: 0;
             padding: 0;
-
-            &:hover {
-                background: none;
-            }
+            background-position: right 0 top 50%;
         }
 
-        border: $accordion-border;
-        border-width: 1px 0;
-        margin-top: -1px;
-        padding: spacing("base");
-        text-decoration: none;
-    }
-
-    .accordion-heading {
-        background: $accordion-title-backgroundImage--is-close no-repeat 100% 50%;
+        background: $accordion-title-backgroundImage--is-close no-repeat right spacing("base") top 50%;
         margin: 0;
+        padding: spacing("base");
         text-transform: inherit;
     }
 

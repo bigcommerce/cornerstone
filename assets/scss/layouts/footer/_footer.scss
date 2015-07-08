@@ -24,16 +24,16 @@
 
 .footer-info-col {
     @include grid-column(12);
+    display: inline-block;
     float: none;
     font-size: fontSize("base"); // 2
-    display: inline-block;
-    vertical-align: top;
     margin-bottom: spacing("double");
     text-align: center;
+    vertical-align: top;
 
     @include breakpoint("small") {
-        width: width("6/12");
         text-align: left;
+        width: width("6/12");
     }
 
     @include breakpoint("medium") {

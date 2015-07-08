@@ -14,6 +14,7 @@
                 <meta itemprop="ratingCount" content="{{product.num_reviews}}">
                 <meta itemprop="reviewCount" content="{{product.num_reviews}}">
                 {{> components/products/ratings rating=product.rating}} <span class="productView-reviewCount">{{@lang 'products.reviews.link_to_review' total=product.num_reviews}}</span>
+                {{> components/products/modals/writeReview product=product urls=urls}}
             </div>
             {{product.detail_messages}}
         </div>

@@ -127,39 +127,43 @@
 // -----------------------------------------------------------------------------
 
 .productView-options {
+    @include clearfix;
+    margin-bottom: spacing("single");
     text-align: center;
 
     @include breakpoint("small") {
         text-align: left;
     }
 
-    .form-actions {
-        @include grid-row($behavior: "nest");
-        display: block;
-
-        @include breakpoint("large") {
-            margin-left: -(spacing("quarter"));
-            margin-right: -(spacing("quarter"));
-        }
-
-        .button {
-            display: block;
-            width: 100%;
-        }
+    .form {
+        display: inline;
     }
 
     .form-action {
-        @include grid-column(12);
-        margin-left: 0; // 1
 
         @include breakpoint("small") {
-            width: grid-calc(6, $total-columns);
+            float: left;
+            padding: 0 remCalc(10);
+            width: 50%;
+        }
+
+        @include breakpoint("medium") {
+            float: none;
+            padding: 0;
+            width: auto;
         }
 
         @include breakpoint("large") {
-            width: auto;
-            padding-left: spacing("quarter");
-            padding-right: spacing("quarter");
+            display: inline;
+        }
+
+        .button {
+            width: 100%;
+
+            @include breakpoint("large") {
+                margin-right: spacing("half");
+                width: auto;
+            }
         }
     }
 }

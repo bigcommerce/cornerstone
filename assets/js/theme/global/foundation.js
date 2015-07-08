@@ -2,6 +2,7 @@ import $ from 'jquery';
 import 'foundation/js/foundation/foundation';
 import 'foundation/js/foundation/foundation.dropdown';
 import 'foundation/js/foundation/foundation.reveal';
+import 'foundation/js/foundation/foundation.tab';
 
 export default function() {
     $(document).foundation({
@@ -13,6 +14,9 @@ export default function() {
             bg_class: 'modal-background',
             dismiss_modal_class: 'modal-close',
             close_on_background_click: true
+        },
+        tab: {
+            active_class: 'is-active'
         }
     });
 }

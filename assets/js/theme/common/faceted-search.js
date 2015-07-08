@@ -35,6 +35,7 @@ export default class FacetedSearch {
            loadingIndicatorSelector: '#loadingNotification',
            blockerSelector: '#facetedSearch .blocker',
            showMoreToggleSelector: '#facetedSearch .toggleLink',
+           componentSelector: '#facetedSearch-navList',
            facetNavListSelector: '#facetedSearch .navList',
            accordionToggleSelector: '#facetedSearch .accordion-navigation'
         };
@@ -58,6 +59,14 @@ export default class FacetedSearch {
 
             if (!$(selector).hasClass('is-open')) {
                 this.collapsedFacets.push(id);
+            }
+        });
+
+        // Collapse all facets if initially hidden
+        // NOTE: Need to execute after foundation.accordion.js gets bootstrapped
+        setTimeout(() => {
+            if ($(this.options.componentSelector).is(':hidden')) {
+                this.collapseAllFacets();
             }
         });
 
@@ -85,7 +94,7 @@ export default class FacetedSearch {
         $navItems.show();
 
         // Set toggle state
-        $toggle.addClass('is-off');
+        $toggle.addClass('is-on');
 
         // Remove
         this.collapsedFacetItems = _.without(this.collapsedFacetItems, id);
@@ -101,7 +110,7 @@ export default class FacetedSearch {
         $navItems.show();
 
         // Set toggle state
-        $toggle.removeClass('is-off');
+        $toggle.removeClass('is-on');
 
         // Show only limited number of items, hide the rest
         if (itemsCount > maxItemsCount) {

@@ -2,6 +2,16 @@
 // ACCORDION (CSS)
 // =============================================================================
 
+
+// Accordion nav list
+// -----------------------------------------------------------------------------
+//
+// Purpose: Used as navigation menu, for example: faceted search menu.
+//
+// 1. Need to be specific because accordions can be nested
+// 2. Same as above
+//
+// -----------------------------------------------------------------------------
 .accordion--navList {
     @include breakpoint("medium") {
         border: 0;
@@ -12,7 +22,14 @@
     box-shadow: none;
 
     .sidebarBlock + & {
-        margin-top: $accordion-navList-spacing;
+        @include breakpoint("medium") {
+            margin-top: $accordion-navList-spacing;
+        }
+    }
+
+    .accordion--navList {
+        border: 0;
+        margin-bottom: 0;
     }
 
     .accordion-block {
@@ -21,35 +38,37 @@
         }
 
         border: 0;
-        position: relative;
         list-style: none;
+        position: relative;
     }
 
-    .accordion-block:first-child {
+    > .accordion-block.is-open {
+        > .accordion-navigation {
+            background-image: $accordion-title-backgroundImage--is-open;
+        }
+    }
+
+    // 1
+    > .accordion-block:first-child {
         margin-top: 0;
 
-        .accordion-navigation {
+        > .accordion-navigation {
             border-radius: $accordion-navList-borderRadius $accordion-navList-borderRadius 0 0;
         }
     }
 
-    .accordion-block:last-child {
-        .accordion-navigation,
-        .accordion-content {
+    // 2
+    > .accordion-block:last-child {
+        > .accordion-navigation,
+        > .accordion-content {
             border-radius: 0 0 $accordion-navList-borderRadius $accordion-navList-borderRadius;
         }
 
-        .accordion-navigation {
+        > .accordion-navigation {
             border-bottom-width: 0;
         }
-    }
 
-    .accordion-block.is-open {
-        .accordion-title {
-            background-image: $accordion-title-backgroundImage--is-open;
-        }
-
-        &:last-child .accordion-navigation {
+        &.is-open > .accordion-navigation {
             border-bottom-width: 1px;
             border-radius: 0;
         }
@@ -73,6 +92,7 @@
             border: 0;
         }
 
+        background: $accordion-title-backgroundImage--is-close no-repeat right spacing("base") top 50%;
         border: $accordion-border;
         border-width: 1px 0;
         margin-top: -1px;
@@ -98,7 +118,6 @@
             background-position: right 0 top 50%;
         }
 
-        background: $accordion-title-backgroundImage--is-close no-repeat right spacing("base") top 50%;
         margin: 0;
         padding: spacing("base");
         text-transform: inherit;
@@ -108,4 +127,24 @@
         margin-left: spacing("third");
         margin-right: spacing("third");
     }
+}
+
+
+// Accordion content (plain)
+// -----------------------------------------------------------------------------
+//
+// Purpose: Attempt to reset .accordion-content styling
+// Foundation.js looks for this class when toggling an accordion, therefore,
+// cannot use a different class
+//
+// -----------------------------------------------------------------------------
+.accordion-content--plain {
+    &,
+    .accordion--navList & {
+        padding: 0;
+    }
+}
+
+.accordion-navigation--plain {
+    background: none !important;
 }

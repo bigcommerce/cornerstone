@@ -1,16 +1,16 @@
 <li class="accordion-block {{#unless ../start_collapsed }} is-open {{/unless}}">
-    <a href="#facet-content-{{ facet }}" role="button" class="accordion-navigation">
+    <a href="#facetedSearch-content--{{ facet }}" role="button" class="accordion-navigation">
         <h5 class="accordion-title">{{ title }}</h5>
     </a>
 
-    <div class="accordion-navigation-actions">
-        {{#if selected}}
+    {{#if selected}}
+        <div class="accordion-navigation-actions">
             <a href="{{ remove_url }}" data-faceted-search-facet>{{@lang 'search.faceted.clear'}}</a>
-        {{/if}}
-    </div>
+        </div>
+    {{/if}}
 
-    <div id="facet-content-{{ facet }}" class="accordion-content {{#unless ../start_collapsed }} is-open {{/unless}}">
-        <ul id="facet-content-nav-list-{{ facet }}" class="navList" data-count="{{ items_count }}">
+    <div id="facetedSearch-content--{{ facet }}" class="accordion-content {{#unless ../start_collapsed }} is-open {{/unless}}">
+        <ul id="facetedSearch-navList--{{ facet }}" class="navList" data-count="{{ items_count }}">
             {{#each items}}
                 <li class="navList-item">
                     <a
@@ -27,9 +27,9 @@
         </ul>
 
         {{#if show_more_toggle}}
-            <a href="#facet-content-nav-list-{{ facet }}" role="button" class="toggleLink">
-                <span class="toggleLink-text toggleLink-text--on">{{@lang 'search.faceted.show-more'}}</span>
-                <span class="toggleLink-text toggleLink-text--off">{{@lang 'search.faceted.show-less'}}</span>
+            <a href="#facetedSearch-navList--{{ facet }}" role="button" class="toggleLink">
+                <span class="toggleLink-text toggleLink-text--on">{{@lang 'search.faceted.show-less'}}</span>
+                <span class="toggleLink-text toggleLink-text--off">{{@lang 'search.faceted.show-more'}}</span>
             </a>
         {{/if}}
     </div>

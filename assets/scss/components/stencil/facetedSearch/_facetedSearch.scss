@@ -1,0 +1,75 @@
+// =============================================================================
+// FACET SEARCH (CSS)
+// =============================================================================
+
+
+// Faceted search toggle
+// -----------------------------------------------------------------------------
+//
+// 1. Do not show if viewport is over "medium" breakpoint
+//
+// -----------------------------------------------------------------------------
+.facetedSearch-toggle {
+    @include breakpoint("medium") {
+        display: none !important; // 1
+    }
+
+    @include grid-row;
+    display: block;
+
+    .is-open & {
+        .toggleLink-text--off {
+            display: none;
+        }
+
+        .toggleLink-text--on {
+            display: inherit;
+        }
+    }
+}
+
+.facetedSearch-toggle-text,
+.facetedSearch-toggle-indicator {
+    display: block;
+    font-weight: normal;
+}
+
+.facetedSearch-toggle-text {
+    @include grid-column(8);
+    padding: 0;
+}
+
+.facetedSearch-toggle-indicator {
+    @include grid-column(4);
+    font-weight: bold;
+    padding: 0;
+    text-align: right;
+}
+
+
+// Faceted search nav list
+// -----------------------------------------------------------------------------
+//
+// 1. Do not show if viewport is over "medium" breakpoint
+//
+// -----------------------------------------------------------------------------
+.facetedSearch-navList {
+    @include breakpoint("medium") {
+        display: block !important; // 1
+    }
+}
+
+
+// Faceted search refine filters
+// -----------------------------------------------------------------------------
+//
+// 1. Only show if viewport is over "medium" breakpoint
+//
+// -----------------------------------------------------------------------------
+.facetedSearch-refineFilters {
+    @include breakpoint("medium") {
+        display: block; // 1
+    }
+
+    display: none;
+}

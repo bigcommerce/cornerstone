@@ -39,7 +39,6 @@
             {{#if product.release_date }}
             <p>{{product.release_date}}</p>
             {{/if}}
-
             <form class="form" method="post" action="{{product.cart_url}}" enctype="multipart/form-data" data-cart-item-add>
                 <fieldset class="form-fieldset">
                     <input type="hidden" name="action" value="add">
@@ -68,12 +67,16 @@
                             <input class="button button--primary" type="submit" data-bind="enable: canAddToCart" value="Add to cart">
                         </div>
                         <div class="form-action">
-                            <form method="post" action="{{product.add_to_wishlist_url}}">
-                                <input class="button" type="submit" value="{{@lang 'account.wishlists.add_item'}}">
-                            </form>
+                            <input id="form-wishlish-submit" class="button" type="submit" value="{{@lang 'account.wishlists.add_item'}}">
                         </div>
                     </div>
                 </fieldset>
+            </form>
+
+            <!-- Add to wishlist form -->
+            <form id="form-wishlish-add" method="post" action="{{product.add_to_wishlist_url}}">
+                <input type="hidden" name="action" value="add">
+                <input type="hidden" name="product_id" value="{{product.id}}">
             </form>
         </div>
 

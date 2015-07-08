@@ -60,7 +60,7 @@ function classifyInput(input, formFieldClass) {
  *
  * @param {string|object} formSelector - selector or element
  * @param {object} options
- * @return {object} Element itself
+ * @return {jQuery} Element itself
  */
 export function classifyForm(formSelector, options = {}) {
     let $form = $(formSelector),

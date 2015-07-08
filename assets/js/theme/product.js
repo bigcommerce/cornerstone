@@ -46,7 +46,7 @@ export default class Product extends PageManager {
      */
     productOptions() {
         // product options
-        $('body').on('change', '.product-options', (event) => {
+        $('body').on('change', '[data-product-options]', (event) => {
             let $target = $(event.target),     // actual element that is clicked
                 $ele = $(event.currentTarget), // the element that has the data-tag
                 targetVal = $target.val(),     // value of the target
@@ -97,7 +97,7 @@ export default class Product extends PageManager {
             event.preventDefault();
 
             let quantity = this.$productView.find('[name=qty\\[\\]]').val(),
-                $optionsContainer = this.$productView.find('.product-options'),
+                $optionsContainer = this.$productView.find('[data-product-options]'),
                 options,
                 $modal = $('#modal'),
                 $modalContent = $('.modal-content', $modal),

@@ -5,7 +5,7 @@
             <h2 class="productView-brand" itemprop="brand" itemscope itemtype="http://schema.org/Brand">
                 <a href="{{product.brand.url}}" itemprop="url" itemprop="name">{{product.brand.name}}</a>
             </h2>
-            <p class="productView-price" data-bind="text: price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+            <p class="productView-price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
                 <meta itemprop="priceCurrency" content="{{currency_selector.active_currency_code}}">
                 <span itemprop="price">{{{product.price.base}}}</span>
             </p>
@@ -55,18 +55,18 @@
                     {{/each}}
                 </div>
 
-                <div class="form-field form-field--increments" data-bind="enable: canAddToCart">
+                <div class="form-field form-field--increments">
                     <label class="form-label form-label--alternate">Quantity:</label>
                     <div class="buttonGroup">
                         <button class="button button--small" data-action="dec">-</button>
                         <button class="button button--small" data-action="inc">+</button>
                     </div>
-                    <span class="incrementTotal" data-bind="text: quantity">1</span>
-                    <input type="hidden" name="qty[]" data-bind="value: quantity" value="1">
+                    <span class="incrementTotal">1</span>
+                    <input type="hidden" name="qty[]" value="1">
                 </div>
 
                 <div class="form-action">
-                    <input class="button button--primary" type="submit" data-bind="enable: canAddToCart" value="Add to cart">
+                    <input id="form-action-addToCart" class="button button--primary" type="submit" value="{{@lang 'products.add_to_cart'}}">
                 </div>
 
             </form>

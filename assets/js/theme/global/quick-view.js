@@ -2,6 +2,7 @@ import $ from 'jquery';
 import 'foundation/js/foundation/foundation';
 import 'foundation/js/foundation/foundation.dropdown';
 import 'foundation/js/foundation/foundation.reveal';
+import product from '../common/product';
 import utils from 'bigcommerce/stencil-utils';
 
 export default function () {
@@ -9,6 +10,9 @@ export default function () {
         $modalContent = $('.modal-content', $modal),
         $modalOverlay = $('.loadingOverlay', $modal),
         modalModifierClasses = 'modal--large';
+
+    // init shared product functionality
+    new product();
 
     $('.quickview').on('click', (event) => {
         let productId = $(event.currentTarget).data('product-id');

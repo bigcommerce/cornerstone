@@ -45,13 +45,15 @@
                 <input type="hidden" name="action" value="add">
                 <input type="hidden" name="product_id" value="{{product.id}}" />
 
-                {{#each product.customizations}}
-                    {{{renderProductCustomization this}}}
-                {{/each}}
+                    <div class="product-options">
+                        {{#each product.customizations}}
+                            {{{renderProductCustomization this}}}
+                        {{/each}}
 
-                {{#each product.options}}
-                    {{{@renderProductOption this}}}
-                {{/each}}
+                        {{#each product.options}}
+                            {{{@renderProductOption this}}}
+                        {{/each}}
+                    </div>
 
                 <div class="form-field form-field--increments" data-bind="enable: canAddToCart">
                     <label class="form-label form-label--alternate">Quantity:</label>

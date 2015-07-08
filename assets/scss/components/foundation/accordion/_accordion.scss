@@ -13,13 +13,13 @@
 //
 // -----------------------------------------------------------------------------
 .accordion--navList {
-    @include breakpoint("medium") {
-        border: 0;
-    }
-
     border-radius: $accordion-navList-borderRadius;
     border-width: $accordion-navList-borderWidth;
     box-shadow: none;
+
+    @include breakpoint("medium") {
+        border: 0;
+    }
 
     .sidebarBlock + & {
         @include breakpoint("medium") {
@@ -75,12 +75,12 @@
     }
 
     .accordion-content {
+        border: 0;
+        padding: spacing("base");
+
         @include breakpoint("medium") {
             padding: 0;
         }
-
-        border: 0;
-        padding: spacing("base");
 
         .form:only-child {
             margin-bottom: 0;
@@ -88,39 +88,39 @@
     }
 
     .accordion-navigation {
-        @include breakpoint("medium") {
-            border: 0;
-        }
-
         background: $accordion-title-backgroundImage--is-close no-repeat right spacing("base") top 50%;
         border: $accordion-border;
         border-width: 1px 0;
         margin-top: -1px;
         text-decoration: none;
+
+        @include breakpoint("medium") {
+            background-position: right 0 top 50%;
+            border: 0;
+        }
     }
 
     .accordion-navigation-actions {
+        position: absolute;
+        right: convert-to-rem($accordion-indicator-width) + spacing("single");
+        top: spacing("base") + spacing("eighth");
+
         @include breakpoint("medium") {
             right: convert-to-rem($accordion-indicator-width) + spacing("third");
             top: 0;
         }
-
-        position: absolute;
-        right: convert-to-rem($accordion-indicator-width) + spacing("single");
-        top: spacing("base") + spacing("eighth");
     }
 
     .accordion-title {
+        margin: 0;
+        padding: spacing("base");
+        text-transform: inherit;
+
         @include breakpoint("medium") {
             margin-bottom: spacing("half");
             margin-top: 0;
             padding: 0;
-            background-position: right 0 top 50%;
         }
-
-        margin: 0;
-        padding: spacing("base");
-        text-transform: inherit;
     }
 
     .accordion-indicator {

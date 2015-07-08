@@ -10,12 +10,12 @@
 //
 // -----------------------------------------------------------------------------
 .facetedSearch-toggle {
+    @include grid-row;
+    display: block;
+
     @include breakpoint("medium") {
         display: none !important; // 1
     }
-
-    @include grid-row;
-    display: block;
 
     .is-open & {
         .toggleLink-text--off {
@@ -67,9 +67,9 @@
 //
 // -----------------------------------------------------------------------------
 .facetedSearch-refineFilters {
+    display: none;
+
     @include breakpoint("medium") {
         display: block; // 1
     }
-
-    display: none;
 }

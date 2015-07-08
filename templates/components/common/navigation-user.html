@@ -16,12 +16,12 @@
             <a class="navUser-action" href="{{urls.auth.login}}">Login</a> <span class="navUser-or">or</span> <a class="navUser-action" href="{{urls.auth.create_account}}">Sign Up</a>
             {{/if}}
         </li>
-        <li class="navUser-item">
-            <a id="cart-preview" class="navUser-action" data-dropdown="cart-preview-dropdown" href="{{urls.cart}}">Cart {{#if cart.items}}<span class="cart-count">{{cart.items.length}}</span>{{/if}}</a>
+        <li class="navUser-item navUser-item--cart">
+            <a class="navUser-action" data-cart-preview data-dropdown="cart-preview-dropdown" href="{{urls.cart}}">Cart {{#if cart.items}}<span class="cart-count">{{cart.items.length}}</span>{{/if}}</a>
             <div class="dropdown-menu" id="cart-preview-dropdown" data-dropdown-content aria-hidden="true"></div>
         </li>
     </ul>
+    <div class="dropdown dropdown--quickSearch" id="quickSearch" data-dropdown-content aria-hidden="true" tabindex="-1">
+        {{> components/common/quick-search}}
+    </div>
 </nav>
-<div class="dropdown dropdown--quickSearch" id="quickSearch" data-dropdown-content aria-hidden="true" tabindex="-1">
-    {{> components/common/quick-search}}
-</div>

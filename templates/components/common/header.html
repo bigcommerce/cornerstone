@@ -1,27 +1,32 @@
-<header class="header" role="banner">
-    {{#if banners.top}}
-    <div class="header-banner">
-        <div class="container">
-            {{#each banners.top}}
-            {{{this}}}
-            {{/each}}
-        </div>
+{{#if banners.top}}
+<div class="header-banner">
+    <div class="container">
+        {{#each banners.top}}
+        {{{this}}}
+        {{/each}}
     </div>
-    {{/if}}
+</div>
+{{/if}}
+<header class="header" role="banner">
+    <a href="#" class="mobileMenu-toggle" data-mobilemenu aria-controls="mobile-menu" aria-expanded="false">
+        <span class="mobileMenu-toggleIcon">Toggle menu</span>
+    </a>
 
     {{> components/common/navigation-user}}
 
-    <div class="container">
-        <div class="header-logo">
-            <a href="{{urls.home}}">
-                {{#if settings.store_logo.image}}
-                    <img class="header-logo-image" src="{{@image settings.store_logo.image 'logo'}}" alt="{{settings.store_logo.title}}">
-                {{else}}
-                    <span class="header-logo-text">{{settings.store_logo.title}}</span>
-                {{/if}}
-            </a>
-        </div>
+    <div class="header-logo">
+        <a href="{{urls.home}}">
+            {{#if settings.store_logo.image}}
+                <img class="header-logo-image" src="{{@image settings.store_logo.image 'logo'}}" alt="{{settings.store_logo.title}}">
+            {{else}}
+                <span class="header-logo-text">{{settings.store_logo.title}}</span>
+            {{/if}}
+        </a>
+    </div>
 
+    <div class="navPages-container" id="mobile-menu">
         {{> components/common/navigation-pages}}
     </div>
+
 </header>
+

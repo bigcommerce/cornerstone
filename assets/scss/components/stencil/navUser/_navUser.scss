@@ -8,7 +8,19 @@
 
 .navUser {
     @include nav($style: "navBar", $wrapper: "nav");
-    padding: 0 spacing("single");
+    @include verticalPositionMiddle("absolute");
+    right: 0;
+    width: 100%;
+    z-index: zIndex("lowest");
+
+    @include breakpoint("medium") {
+        padding: 0 spacing("single");
+        position: relative;
+        right: auto;
+        top: auto;
+        transform: none;
+        z-index: zIndex("high");
+    }
 
     .dropdown-menu {
         background-color: color("whites", "bright");
@@ -54,7 +66,8 @@
 
         &:after {
             background: $dropdown-icon no-repeat;
-            background-size: 100%;
+            background-position: 50%;
+            background-size: 60%;
             content: "";
             display: inline-block;
             height: remCalc(13px);
@@ -64,6 +77,18 @@
             width: remCalc(13px);
         }
     }
+}
+
+.navUser-item {
+    display: none;
+
+    @include breakpoint("medium") {
+        display: block;
+    }
+}
+
+.navUser-item--cart {
+    display: block;
 }
 
 .navUser-item--account {
@@ -102,10 +127,12 @@
     border-radius: 50%;
     color: color("whites", "bright");
     display: inline-block;
-    height: 18px; // 1
-    line-height: 18px; // 1
+    font-size: fontSize("tiny");
+    font-weight: fontWeight("bold");
+    height: 20px; // 1
+    line-height: 20px; // 1
     text-align: center;
-    width: 18px; // 1
+    width: 20px; // 1
 }
 
 

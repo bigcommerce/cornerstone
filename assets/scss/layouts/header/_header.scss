@@ -3,8 +3,17 @@
 // =============================================================================
 
 .header {
+    background-color: color("whites", "bright");
     border-bottom: 1px solid color("greys", "lightest");
-    margin-bottom: spacing("single") + spacing("base");
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: zIndex("low");
+
+    @include breakpoint("medium") {
+        overflow: visible;
+        position: relative;
+    }
 }
 
 .header-banner {
@@ -25,20 +34,114 @@
 }
 
 .header-logo {
-    margin: (spacing("double") + spacing("base")) auto (spacing("double") + spacing("single"));
+    margin: spacing("half") auto;
     text-align: center;
+
+    @include breakpoint("medium") {
+        margin: (spacing("double") + spacing("base")) auto (spacing("double") + spacing("single"));
+
+        .header.fixed & {
+            background-color: color("greys", "lightest");
+            margin: 0;
+            padding: spacing("quarter") 0;
+            position: absolute;
+            top: 0;
+            width: 100%
+        }
+    }
 
     > a {
         display: inline-block;
-        line-height: 1;
+        position: relative;
         text-decoration: none;
+        z-index: zIndex("low");
     }
 }
 
 .header-logo-text {
     font-family: $fontFamily-hero;
-    font-size: fontSize("largest");
+    font-size: fontSize("large");
     font-weight: fontWeight("thin");
     letter-spacing: remCalc(9px);
     text-transform: uppercase;
+
+    @include breakpoint("medium") {
+        font-size: fontSize("largest");
+
+        .header.fixed & {
+            font-size: fontSize("larger");
+        }
+    }
+}
+
+
+//
+// Mobile Menu Toggle
+//
+// 1. Animate lines from 'x' to hamburger
+// -----------------------------------------------------------------------------
+
+.mobileMenu-toggle {
+    @include square(60);
+    display: inline-block;
+    font-size: 0;
+    left: 0;
+    overflow: hidden;
+    padding: 0 remCalc(18);
+    position: absolute;
+    z-index: zIndex("high");
+
+    @include breakpoint("medium") {
+        display: none;
+    }
+
+    .mobileMenu-toggleIcon,
+    .mobileMenu-toggleIcon::before,
+    .mobileMenu-toggleIcon::after {
+        background: color("greys", "darker");
+        content: "";
+        display: block;
+        height: 2px;
+        position: absolute;
+        transform: rotate(0deg);
+        transition: transform 100ms ease-in, top 100ms ease-in 150ms, bottom 100ms ease-in 150ms; // 1
+        width: remCalc(20);
+    }
+
+    .mobileMenu-toggleIcon {
+        top: remCalc(27);
+        transition: background-color 10ms ease-in 100ms;
+    }
+
+    .mobileMenu-toggleIcon::before {
+        top: -0.5rem;
+    }
+
+    .mobileMenu-toggleIcon::after {
+        bottom: -0.5rem;
+    }
+
+    &.is-open .mobileMenu-toggleIcon {
+        background-color: transparent;
+        transition-delay: 100ms;
+
+        &::before,
+        &::after {
+            background-color: color("greys", "darker");
+            bottom: auto;
+            top: auto;
+            transition: transform 100ms ease-in 150ms, top 100ms ease-in, bottom 100ms ease-in; // Animate lines from hamburger to 'x'
+        }
+
+        &::before {
+            top: 0;
+            transform: rotate(45deg);
+        }
+
+        &::after {
+            bottom: 0;
+            transform: rotate(-45deg);
+        }
+
+    }
 }

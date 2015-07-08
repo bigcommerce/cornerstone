@@ -1,5 +1,8 @@
 <nav class="navPages">
-    <ul class="navPages-section">
+    <div class="navPages-quickSearch">
+        {{> components/common/quick-search}}
+    </div>
+    <ul class="navPages-list">
         {{#each navigation}}
             <li class="navPages-item">
                 {{> components/common/navigation-list}}
@@ -10,5 +13,35 @@
             <a class="navPages-action" href="{{url}}">{{name}}</a>
         </li>
         {{/each}}
+    </ul>
+    <ul class="navPages-list navPages-list--account">
+        {{#if customer}}
+        <li class="navPages-item">
+            <a class="navPages-action" href="{{urls.account.index}}">Account</a>
+        </li>
+        <li class="navPages-item">
+            <a class="navPages-action" href="{{urls.auth.logout}}">Logout</a>
+        </li>
+        {{else}}
+        <li class="navPages-item">
+            <a class="navPages-action" href="{{urls.auth.login}}">Login</a> or <a class="navPages-action" href="{{urls.auth.create_account}}">Sign Up</a>
+        </li>
+        {{/if}}
+        <li class="navPages-item">
+            <a class="navPages-action has-dropdown" href="#" data-dropdown="currencySelection2" aria-controls="currencySelection2" aria-expanded="false">Currency: {{currency_selector.active_currency_code}}</a>
+            <ul class="dropdown-menu" id="currencySelection2" data-dropdown-content aria-hidden="true" tabindex="-1">
+                {{#each currency_selector.currencies}}
+                <li class="dropdown-menu-item">
+                    <a href="{{{switch_url}}}">
+                        {{#if is_active}}
+                        <strong>{{name}}</strong>
+                        {{else}}
+                        {{name}}
+                        {{/if}}
+                    </a>
+                </li>
+                {{/each}}
+            </ul>
+        </li>
     </ul>
 </nav>

@@ -3,6 +3,7 @@ import stateCountry from './common/state-country';
 import $ from 'jquery';
 import nod from 'casperin/nod';
 import validation from './common/form-validation';
+import forms from './common/models/forms'
 import {classifyForm} from './common/form-utils';
 
 export default class Auth extends PageManager {
@@ -11,7 +12,7 @@ export default class Auth extends PageManager {
     }
 
     registerLoginValidation($loginForm) {
-        let loginModel = forms.login;
+        let loginModel = forms;
 
         this.loginValidator = nod({
             submit: '.login-form input[type="submit"]'

@@ -19,21 +19,21 @@ product:
 
         {{> components/products/reviews product.reviews}}
 
-        <ul class="tabs">
-            <li class="tab is-active">
-                <a class="tab-title" href="#tab-related">{{@lang 'products.related_products'}}</a>
+        <ul class="tabs" data-tab role="tablist">
+            <li class="tab is-active" role="presentational">
+                <a class="tab-title" href="#tab-related" role="tab" tabindex="0" aria-selected="true" controls="tab-related">{{@lang 'products.related_products'}}</a>
             </li>
-            <li class="tab">
-                <a class="tab-title" href="#tab-similar">{{@lang 'products.similar_by_views'}}</a>
+            <li class="tab" role="presentational">
+                <a class="tab-title" href="#tab-similar" role="tab" tabindex="0" aria-selected="false" controls="tab-similar">{{@lang 'products.similar_by_views'}}</a>
             </li>
         </ul>
 
         <div class="tabs-contents">
-            <div class="tab-content is-active" id="tab-related">
+            <div role="tabpanel" aria-hidden="false" class="tab-content is-active" id="tab-related">
                 {{> components/products/carousel product.related_products}}
             </div>
-            <div class="tab-content" id="tab-similar">
-                {{> components/products/list product.similar_by_views}}
+            <div role="tabpanel" aria-hidden="true" class="tab-content" id="tab-similar">
+                {{> components/products/carousel product.similar_by_views}}
             </div>
         </div>
     </div>

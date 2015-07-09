@@ -25,26 +25,26 @@ $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-sp
 // -----------------------------------------------------------------------------
 
 .cart {
-    border-top: 1px solid color("greys", "lightest");
     display: block; // 1
+    margin-bottom: spacing("single");
     width: 100%;
 
-    // @include breakpoint("medium") {
-    //     display: table; // 1
-    //     table-layout: fixed;
-    // }
+    @include breakpoint("medium") {
+        display: table; // 1
+    }
 }
 
 .cart-header {
     display: none; // 2
 
-    // @include breakpoint("medium") {
-    //     display: table-header-group; // 2
-    //     text-align: left;
-    // }
+    @include breakpoint("medium") {
+        display: table-header-group; // 2
+        text-align: left;
+    }
 }
 
 .cart-header-item {
+    padding-bottom: spacing("base");
 
     &:last-child {
         text-align: right;
@@ -52,11 +52,12 @@ $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-sp
 }
 
 .cart-list {
+    border-top: 1px solid color("greys", "lightest");
     display: block; // 1
 
-    // @include breakpoint("medium") {
-    //     display: table-row-group; // 1
-    // }
+    @include breakpoint("medium") {
+        display: table-row-group; // 1
+    }
 }
 
 .cart-item {
@@ -65,17 +66,28 @@ $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-sp
     display: block; // 1
     padding: $cart-item-spacing 0;
 
-    // @include breakpoint("medium") {
-    //     display: table-row; // 1
-    // }
+    @include breakpoint("small") {
+        @include clearfix;
+        padding-left: grid-calc(3, $total-columns);
+    }
+
+    @include breakpoint("medium") {
+        display: table-row; // 1
+        padding-left: 0;
+
+        &:before,
+        &:after {
+            display: none;
+        }
+    }
 }
 
 .cart-item-block {
     display: block; // 1
 
-    // @include breakpoint("medium") {
-    //     display: table-cell; // 1
-    // }
+    @include breakpoint("medium") {
+        display: table-cell; // 1
+    }
 }
 
 .cart-item-figure {
@@ -85,16 +97,35 @@ $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-sp
     text-align: right;
     width: grid-calc(4, $total-columns);
 
-    // @include breakpoint("medium") {
-    //     float: none;
-    //     width: grid-calc(1, $total-columns);
-    // }
+    @include breakpoint("small") {
+        // height: auto;
+        margin-bottom: 0;
+        margin-left: -(grid-calc(4, $total-columns));
+        width: grid-calc(4, $total-columns);
+    }
+
+    @include breakpoint("medium") {
+        float: none;
+        text-align: left;
+        width: grid-calc(1, $total-columns);
+    }
 }
 
 .cart-item-title {
     display: table-cell;
     height: $cart-thumbnail-height;
     padding-left: $cart-item-spacing;
+
+    @include breakpoint("small") {
+        display: block;
+        height: auto;
+        margin-bottom: $cart-item-spacing;
+        overflow: hidden;
+    }
+
+    @include breakpoint("medium") {
+        display: table-cell;
+    }
 }
 
 .cart-item-info {
@@ -105,21 +136,24 @@ $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-sp
         margin-top: spacing("half");
     }
 
-    // @include breakpoint("medium") {
+    @include breakpoint("small") {
+        clear: none;
+        float: left;
+        overflow: hidden;
+        width: grid-calc(4, $total-columns);
 
-    //     &:last-child {
-    //         text-align: right;
-    //     }
-    // }
-}
+        + .cart-item-info {
+            margin-top: 0;
+        }
+    }
 
-.cart-footer {
-    display: block;
-    padding: $cart-item-spacing 0;
+    @include breakpoint("medium") {
+        float: none;
+        width: grid-calc(2, $total-columns);
 
-    .cart-item {
-        border: none;
-        padding: ($cart-item-spacing / 3) 0;
+        &:last-child {
+            text-align: right;
+        }
     }
 }
 
@@ -127,19 +161,38 @@ $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-sp
 // Cart content
 // -----------------------------------------------------------------------------
 
+.cart-header-quantity,
+.cart-item-quantity {
+
+    @include breakpoint("medium") {
+        text-align: center;
+    }
+}
+
 .cart-item-label {
     color: color("greys", "light");
     float: left;
     text-align: right;
     width: grid-calc(4, $total-columns);
 
-    // @include breakpoint("medium") {
-    //     display: none;
-    // }
+    @include breakpoint("small") {
+        display: block;
+        padding-left: $cart-item-spacing;
+        text-align: left;
+        width: 100%;
+    }
+
+    @include breakpoint("medium") {
+        display: none;
+    }
 }
 
 .cart-item-value {
     padding-left: $cart-item-spacing;
+
+    @include breakpoint("medium") {
+        padding-left: 0;
+    }
 }
 
 .cart-item-brand {
@@ -160,12 +213,86 @@ $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-sp
 }
 
 
+// Cart totals
+// -----------------------------------------------------------------------------
+
+.cart-totals {
+    text-align: right;
+    margin-bottom: $cart-item-spacing;
+    width: 100%;
+
+    @include breakpoint("small") {
+        float: right;
+        width: grid-calc(8, $total-columns);
+    }
+
+    @include breakpoint("medium") {
+        margin-bottom: spacing("base");
+        width: grid-calc(6, $total-columns);
+    }
+
+    @include breakpoint("large") {
+        width: grid-calc(4, $total-columns);
+    }
+}
+
+.cart-total-label {
+    color: color("greys", "medium");
+    width: grid-calc(4, $total-columns);
+
+    @include breakpoint("small") {
+        width: grid-calc(6, $total-columns);
+    }
+
+    @include breakpoint("medium") {
+        display: block;
+        padding-left: 0;
+        text-align: left;
+    }
+}
+
+.cart-total-value {
+    padding: spacing("third") 0 spacing("third") $cart-item-spacing;
+    text-align: left;
+
+    @include breakpoint("small") {
+        text-align: right;
+    }
+}
+
+.cart-total-label,
+.cart-total-value {
+
+    @include breakpoint("medium") {
+        padding: spacing("base") 0;
+    }
+}
+
+.cart-total {
+    border-bottom: 0;
+
+    @include breakpoint("medium") {
+        border-bottom: 1px solid color("greys", "lightest");
+
+        &:last-child {
+            border-bottom: 0;
+        }
+    }
+}
+
+
 // Cart actions
 // -----------------------------------------------------------------------------
 
 .cart-actions {
+    clear: both;
 
     .button {
         display: block;
+
+        @include breakpoint("small") {
+            display: inline-block;
+            float: right;
+        }
     }
 }

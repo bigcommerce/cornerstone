@@ -2,7 +2,7 @@
 <ul class="orders-list">
     {{#each returns}}
     <li class="account-section-item order-item">
-        <img class="order-preview-image" src="http://placehold.it/73x73" alt="{{this.items.[0].name}}">
+        <img class="order-preview-image" src="http://placehold.it/73x73" alt="{{this.product.name}}">
         <div class="information">
             <h4 class="order-item-heading">{{@lang 'account.returns.list.return_number' id=this.id}}</h4>
             <p>
@@ -16,7 +16,27 @@
             </div>
         </div>
 
-        <h6 class="account-info-status order-info-status">{{this.status}}</h6>
+        {{#compare this.status 'ReturnStatusPending' operator='===' }}
+            <h6 class="account-info-status order-info-status">{{@lang 'account.returns.status.pending'}}</h6>
+        {{/compare}}
+        {{#compare this.status 'ReturnStatusReceived' operator='===' }}
+            <h6 class="account-info-status order-info-status">{{@lang 'account.returns.status.received'}}</h6>
+        {{/compare}}
+        {{#compare this.status 'ReturnStatusAuthorized' operator='===' }}
+            <h6 class="account-info-status order-info-status">{{@lang 'account.returns.status.authorized'}}</h6>
+        {{/compare}}
+        {{#compare this.status 'ReturnStatusRepaired' operator='===' }}
+            <h6 class="account-info-status order-info-status">{{@lang 'account.returns.status.repaired'}}</h6>
+        {{/compare}}
+        {{#compare this.status 'ReturnStatusRefunded' operator='===' }}
+            <h6 class="account-info-status order-info-status">{{@lang 'account.returns.status.refunded'}}</h6>
+        {{/compare}}
+        {{#compare this.status 'ReturnStatusRejected' operator='===' }}
+            <h6 class="account-info-status order-info-status">{{@lang 'account.returns.status.rejected'}}</h6>
+        {{/compare}}
+        {{#compare this.status 'ReturnStatusCancelled' operator='===' }}
+            <h6 class="account-info-status order-info-status">{{@lang 'account.returns.status.cancelled'}}</h6>
+        {{/compare}}
     </li>
     {{/each}}
 </ul>

@@ -1,9 +1,17 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>403 Error</title>
-</head>
-<body>
-    <h1>This is a <b style="color:red">403</b> error</h1>
-</body>
-</html>
+{{#partial "page"}}
+
+{{> components/common/breadcrumbs breadcrumbs}}
+
+<main class="page">
+    <section class="page-content page-content--centered">
+        <h1 class="page-heading">{{@lang 'forbidden.page_heading'}}</h1>
+        <p class="u-textAlignCenter">
+            {{@lang 'forbidden.message'}}
+        </p>
+
+        {{> components/common/search-box}}
+    </section>
+</main>
+
+{{/partial}}
+{{> layout/base}}

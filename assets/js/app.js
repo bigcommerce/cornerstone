@@ -7,8 +7,9 @@ import brand from './theme/brand';
 import brands from './theme/brands';
 import cart from './theme/cart';
 import category from './theme/category';
-import compare from './theme/compare'
+import compare from './theme/compare';
 import errors from './theme/errors';
+import errors404 from './theme/404-error';
 import giftCertificate from './theme/gift-certificate';
 import global from './theme/global';
 import home from './theme/home';
@@ -45,6 +46,7 @@ let PageClasses = {
         "pages/category": category,
         "pages/compare": compare,
         "pages/errors": errors,
+        "pages/errors/404": errors404,
         "pages/gift-certificate/purchase": giftCertificate,
         "pages/gift-certificate/balance": giftCertificate,
         "pages/gift-certificate/redeem": giftCertificate,

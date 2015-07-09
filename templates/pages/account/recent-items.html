@@ -5,14 +5,10 @@
     {{> components/account/navigation account_page='recent_items'}}
 
     <form action="/compare" method="post">
-        <ul class="product-list">
-            {{#each customer.recently_viewed_products.items}}
-            <li class="recent-item product-card">
-                {{> components/products/card}}
-            {{/each}}
-            </li>
-        </ul>
-        <input type="submit" value="{{@lang 'compare.button'}}">
+        {{> components/products/grid products=customer.recently_viewed_products.items}}
+        {{#if show_compare}}
+            <button class="button button--primary" type="submit">{{@lang 'compare.button'}}</button>
+        {{/if}}
     </form>
 </div>
 {{/partial}}

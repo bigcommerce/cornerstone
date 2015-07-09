@@ -1,85 +1,141 @@
-<table>
-    <thead>
-    <tr>
-        <th colspan="2"></th>
-        <th>Cart Items</th>
-        <th>Qty</th>
-        <th>Item Price</th>
-        <th>Total</th>
-    </tr>
+<table class="cart" data-cart-content>
+    <thead class="cart-header">
+        <th class="cart-header-item">Item</th>
+        <th class="cart-header-item">Name</th>
+        <th class="cart-header-item">Price</th>
+        <th class="cart-header-item">Quantity</th>
+        <th class="cart-header-item">Total</th>
     </thead>
-    <tbody>
+
+    <tbody class="cart-list">
         {{#each cart.items}}
-        <tr data-item-row>
-            <td><button class="cart-remove" data-cart-itemid="{{id}}">Remove</button></td>
-            <td><a href="{{url}}"><img src="{{@image image 'thumb'}}" alt="{{image.alt}}"></a></td>
-            <td>
-                <div>{{name}}</div>
-                <div>
-                {{#if options}}
-                    <ul>
-                        {{#each options}}
+            <tr class="cart-item" data-item-row>
+                <td class="cart-item-block cart-item-figure">
+                    <img class="cart-item-image" src="{{@image image 'thumb'}}" alt="{{image.alt}}">
+                </td>
+                <td class="cart-item-block cart-item-title">
+                    {{#if brand.name}}
+                        <p class="cart-item-brand">{{brand.name}}</p>
+                    {{/if}}
+                    <h4 class="cart-item-name">{{name}}</h4>
+                    {{#if options}}
+                        <ul class="cart-item-options">
+                            {{#each options}}
+                                <li>
+                                    <p class="cart-item-label">{{name}}: {{{value}}}</p>
+                                </li>
+                            {{/each}}
                             <li>
-                                {{name}}: <b>{{{value}}}</b>
+                                <a href="#" data-item-edit="{{id}}">Change</a>
                             </li>
-                        {{/each}}
-                    </ul>
-                    <a href="#" data-item-edit="{{id}}">Change</a>
-                {{/if}}
-                </div>
-            </td>
-            <td>
-                <button class="cart-update" data-cart-itemid="{{id}}" data-action="inc">+</button>
-                <div id="qty-{{id}}">{{quantity}}</div>
-                <button class="cart-update" data-cart-itemid="{{id}}" data-action="dec">-</button>
-            </td>
-            <td>{{@money price}}</td>
-            <td>{{@money total}}</td>
-        </tr>
+                        </ul>
+                    {{/if}}
+                </td>
+                <td class="cart-item-block cart-item-info">
+                    <span class="cart-item-label">Price</span> <span class="cart-item-value">{{@money price}}</span>
+                </td>
+
+                <td class="cart-item-block cart-item-info">
+                    <span class="cart-item-label">Quantity</span> <span class="cart-item-value" id="qty-{{id}}">{{quantity}}</span>
+                </td>
+
+                <td class="cart-item-block cart-item-info">
+                    <span class="cart-item-label">Total</span> <strong class="cart-item-value">{{@money total}}</strong>
+                </td>
+            </tr>
         {{/each}}
     </tbody>
-    <tfoot>
-        <tr>
-            <td colspan="4"></td>
-            <td>Subtotal</td>
-            <td><div class="subtotal">{{@money cart.sub_total}}</div></td>
-        </tr>
-        {{#if cart.gift_wrapping_cost}}
-        <tr>
-            <td colspan="4"></td>
-            <td>Gift Wrapping</td>
-            <td><div class="subtotal">{{@money cart.gift_wrapping_cost}}</div></td>
-        </tr>
-        {{/if}}
-        <tr>
-            <td colspan="4"></td>
-            <td>Promo Code {{code}}</td>
-            <td>
-                {{> components/cart/coupon-input}}
-            </td>
+
+    <tfoot class="cart-footer">
+        <tr class="cart-item">
+            <td class="cart-item-label" colspan="2">Subtotal:</td>
+            <td class="cart-item-value" colspan="3">{{@money cart.sub_total}}</td>
         </tr>
 
-        {{#if cart.shipping_handling.show_estimator}}
-        <tr>
-            <td colspan="4"></td>
-            <td>Estimated Shipping</td>
-            <td>
-                {{> components/cart/shipping-estimator cart.shipping_handling}}
-            </td>
+        <tr class="cart-item">
+            <td class="cart-item-label" colspan="2">Promo code:</td>
+            <td class="cart-item-value" colspan="3">{{> components/cart/coupon-input}}</td>
         </tr>
+
+        {{#if cart.gift_wrapping_cost}}
+            <tr class="cart-item">
+                <td class="cart-item-label" colspan="2">Gift wrapping:</td>
+                <td class="cart-item-value" colspan="3">{{@money cart.gift_wrapping_cost}}</td>
+            </tr>
         {{/if}}
+
+        {{#if cart.shipping_handling.show_estimator}}
+            <tr class="cart-item">
+                <td class="cart-item-label" colspan="2">Shipping:</td>
+                <td class="cart-item-value" colspan="3">{{> components/cart/shipping-estimator cart.shipping_handling}}</td>
+            </tr>
+        {{/if}}
+
         {{#each cart.taxes}}
-        <tr>
-            <td colspan="4"></td>
-            <td>{{name}}</td>
-            <td><div class="subtotal">{{@money cost}}</div></td>
-        </tr>
+            <tr class="cart-item">
+                <td class="cart-item-label" colspan="2">{{name}}:</td>
+                <td class="cart-item-value" colspan="3">{{@money cost}}</td>
+            </tr>
         {{/each}}
-        <tr>
-            <td colspan="4"></td>
-            <td>GRAND TOTAL</td>
-            <td><div class="total">{{@money cart.grand_total}}</div></td>
+
+        <tr class="cart-item">
+            <td class="cart-item-label" colspan="2">Grand total:</td>
+            <td class="cart-item-value cart-item-grandTotal" colspan="3">{{@money cart.grand_total}}</td>
         </tr>
     </tfoot>
 </table>
+
+
+
+
+
+<!-- {{#each cart.items}}
+    <tr class="cart-item">
+        <td class="cart-item-figure">
+            <img class="cart-item-image" src="{{@image image 'thumb'}}" alt="{{image.alt}}">
+        </td>
+
+        <td class="cart-item-details">
+            <div class="cart-item-content">
+                <div class="cart-item-title">
+                    <p class="cart-item-smallText">{{brand.name}}</p>
+                    <h4 class="cart-item-name">{{name}}</h4>
+                    {{#if options}}
+                        <ul class="cart-item-options">
+                            {{#each options}}
+                                <li>
+                                    <p class="cart-item-smallText">{{name}}: {{{value}}}</p>
+                                </li>
+                            {{/each}}
+                            <li>
+                                <a href="#" data-item-edit="{{id}}">Change</a>
+                            </li>
+                        </ul>
+                    {{/if}}
+                </div>
+                <div class="cart-item-detailsGroup">
+                    <div class="cart-item-detailsWrapper">
+                        <div class="cart-item-detail cart-item-price">
+                            <span class="cart-item-label">Price</span> {{@money price}}
+                        </div>
+                        <div class="cart-item-detail cart-item-quantity">
+                            <span class="cart-item-label">Quantity</span>
+                            <div class="buttonGroup">
+                                <button class="button button--small" data-cart-itemid="{{id}}" data-action="dec">-</button>
+                                <button class="button button--small" data-cart-itemid="{{id}}" data-action="inc">+</button>
+                            </div>
+                            <span id="qty-{{id}}">{{quantity}}</span>
+                        </div>
+                        <div class="cart-item-detail cart-item-total">
+                            <span class="cart-item-label">Total</span> <strong>{{@money total}}</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </td>
+    </tr>
+{{/each}} -->
+
+
+
 

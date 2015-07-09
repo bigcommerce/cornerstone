@@ -1,0 +1,171 @@
+// =============================================================================
+// CART (CSS)
+// =============================================================================
+
+
+// Cart variables
+// -----------------------------------------------------------------------------
+
+$cart-item-spacing:                     spacing("single");
+
+$cart-thumbnail-maxWidth:               remCalc(100px);
+$cart-thumbnail-height:                 remCalc(100px);
+
+$cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-spacing;
+
+
+// Cart layout
+// -----------------------------------------------------------------------------
+//
+// 1. On mobile and tablet we need to re-structure the table to appear more like
+//    a list, then visually show it as a table on larger screens only.
+//
+// 2. Hide the table headings on mobile and tablet, show them for larger screens.
+//
+// -----------------------------------------------------------------------------
+
+.cart {
+    border-top: 1px solid color("greys", "lightest");
+    display: block; // 1
+    width: 100%;
+
+    // @include breakpoint("medium") {
+    //     display: table; // 1
+    //     table-layout: fixed;
+    // }
+}
+
+.cart-header {
+    display: none; // 2
+
+    // @include breakpoint("medium") {
+    //     display: table-header-group; // 2
+    //     text-align: left;
+    // }
+}
+
+.cart-header-item {
+
+    &:last-child {
+        text-align: right;
+    }
+}
+
+.cart-list {
+    display: block; // 1
+
+    // @include breakpoint("medium") {
+    //     display: table-row-group; // 1
+    // }
+}
+
+.cart-item {
+    border-bottom: 1px solid color("greys", "lightest");
+    clear: both;
+    display: block; // 1
+    padding: $cart-item-spacing 0;
+
+    // @include breakpoint("medium") {
+    //     display: table-row; // 1
+    // }
+}
+
+.cart-item-block {
+    display: block; // 1
+
+    // @include breakpoint("medium") {
+    //     display: table-cell; // 1
+    // }
+}
+
+.cart-item-figure {
+    float: left;
+    height: $cart-thumbnail-height;
+    margin-bottom: $cart-item-spacing;
+    text-align: right;
+    width: grid-calc(4, $total-columns);
+
+    // @include breakpoint("medium") {
+    //     float: none;
+    //     width: grid-calc(1, $total-columns);
+    // }
+}
+
+.cart-item-title {
+    display: table-cell;
+    height: $cart-thumbnail-height;
+    padding-left: $cart-item-spacing;
+}
+
+.cart-item-info {
+    clear: both;
+    width: 100%;
+
+    + .cart-item-info {
+        margin-top: spacing("half");
+    }
+
+    // @include breakpoint("medium") {
+
+    //     &:last-child {
+    //         text-align: right;
+    //     }
+    // }
+}
+
+.cart-footer {
+    display: block;
+    padding: $cart-item-spacing 0;
+
+    .cart-item {
+        border: none;
+        padding: ($cart-item-spacing / 3) 0;
+    }
+}
+
+
+// Cart content
+// -----------------------------------------------------------------------------
+
+.cart-item-label {
+    color: color("greys", "light");
+    float: left;
+    text-align: right;
+    width: grid-calc(4, $total-columns);
+
+    // @include breakpoint("medium") {
+    //     display: none;
+    // }
+}
+
+.cart-item-value {
+    padding-left: $cart-item-spacing;
+}
+
+.cart-item-brand {
+    color: color("greys", "light");
+    margin-bottom: spacing("eighth");
+}
+
+.cart-item-name {
+    font-size: fontSize("smaller");
+    margin: 0;
+}
+
+.cart-item-grandTotal {
+    font-family: fontFamily("headingSans");
+    font-size: fontSize("small");
+    position: relative;
+    top: -(spacing("sixth"));
+}
+
+
+// Cart actions
+// -----------------------------------------------------------------------------
+
+.cart-actions {
+
+    .button {
+        display: block;
+    }
+}

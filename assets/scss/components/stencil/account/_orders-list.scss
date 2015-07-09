@@ -1,6 +1,15 @@
 // =============================================================================
 // Account Orders List (CSS)
 // =============================================================================
+//
+// TODO: Componentize this, and make it consumable by both the orders list and the
+// returns component. We should only do this once we expose the media object variables
+// to the mixin.
+//
+// 1. Resetting the left margin of both figures, which was used to space them away
+// from the product image.
+//
+// -----------------------------------------------------------------------------
 
 .orders-row {
     max-width: remCalc(790px);
@@ -31,7 +40,7 @@
 
 .order-item {
     .information, .account-info-status {
-        margin-left: spacing("single")+remCalc(73px);
+        margin-left: 0; // 1
     }
 
     .information {

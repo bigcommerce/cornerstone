@@ -42,39 +42,37 @@
             {{/if}}
 
             <form class="form" method="post" action="{{product.cart_url}}" enctype="multipart/form-data" data-cart-item-add>
-                <fieldset class="form-fieldset">
-                    <input type="hidden" name="action" value="add">
-                    <input type="hidden" name="product_id" value="{{product.id}}" />
+                <input type="hidden" name="action" value="add">
+                <input type="hidden" name="product_id" value="{{product.id}}" />
 
-                    {{#each product.customizations}}
-                        {{{renderProductCustomization this}}}
-                    {{/each}}
+                {{#each product.customizations}}
+                    {{{renderProductCustomization this}}}
+                {{/each}}
 
-                    {{#each product.options}}
-                        {{{@renderProductOption this}}}
-                    {{/each}}
+                {{#each product.options}}
+                    {{{@renderProductOption this}}}
+                {{/each}}
 
-                    <div class="form-field form-field--increments" data-bind="enable: canAddToCart">
-                        <label class="form-label form-label--alternate">Quantity:</label>
-                        <div class="buttonGroup">
-                            <button class="button button--small" data-action="dec">-</button>
-                            <button class="button button--small" data-action="inc">+</button>
-                        </div>
-                        <span class="incrementTotal" data-bind="text: quantity">1</span>
-                        <input type="hidden" name="qty[]" data-bind="value: quantity" value="1">
+                <div class="form-field form-field--increments" data-bind="enable: canAddToCart">
+                    <label class="form-label form-label--alternate">Quantity:</label>
+                    <div class="buttonGroup">
+                        <button class="button button--small" data-action="dec">-</button>
+                        <button class="button button--small" data-action="inc">+</button>
                     </div>
+                    <span class="incrementTotal" data-bind="text: quantity">1</span>
+                    <input type="hidden" name="qty[]" data-bind="value: quantity" value="1">
+                </div>
 
-                    <div class="form-actions">
-                        <div class="form-action">
-                            <input class="button button--primary" type="submit" data-bind="enable: canAddToCart" value="Add to cart">
-                        </div>
-                        <div class="form-action">
-                            <form method="post" action="{{product.add_to_wishlist_url}}">
-                                <input class="button" type="submit" value="{{@lang 'account.wishlists.add_item'}}">
-                            </form>
-                        </div>
-                    </div>
-                </fieldset>
+                <div class="form-action">
+                    <input class="button button--primary" type="submit" data-bind="enable: canAddToCart" value="Add to cart">
+                </div>
+
+            </form>
+
+            <form class="form" method="post" action="{{product.add_to_wishlist_url}}">
+                <div class="form-action">
+                    <input class="button" type="submit" value="{{@lang 'account.wishlists.add_item'}}">
+                </div>
             </form>
         </div>
 

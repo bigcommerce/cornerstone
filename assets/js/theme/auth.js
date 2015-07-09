@@ -54,7 +54,8 @@ export default class Auth extends PageManager {
                 submit: '#create-account-form input[type="submit"]'
             });
 
-        return createAccountValidator.add(validationModel);
+        createAccountValidator.add(validationModel);
+        return createAccountValidator;
     }
 
     createAccountValidation(validator, $accountForm) {
@@ -67,6 +68,18 @@ export default class Auth extends PageManager {
 
             event.preventDefault();
         });
+    }
+
+    stateCountryValidation(validator, textInput, selectInput) {
+        if (selectInput) {
+            validator.add({
+                selector: selectInput,
+                validate: 'presence',
+                errorMessage: "The 'State/Province field can not be blank"
+            });
+        } else {
+            validator.remove(textInput);
+        }
     }
 
     /**
@@ -90,17 +103,8 @@ export default class Auth extends PageManager {
             let createAccountValidator = this.registerCreateAccountValidator($createAccountForm);
 
             if ($stateElement) {
-                stateCountry($stateElement, function (textInput, selectInput) {
-                    if (selectInput) {
-                        createAccountValidator.remove($stateElement);
-                        createAccountValidator.add({
-                            selector: selectInput,
-                            validate: 'presence',
-                            errorMessage: "The 'State/Province field can not be blank"
-                        });
-                    } else {
-                        createAccountValidator.remove(textInput);
-                    }
+                stateCountry($stateElement, (textInput, selectInput) => {
+                    this.stateCountryValidation(createAccountValidator, textInput, selectInput);
                 });
             }
             this.createAccountValidation(createAccountValidator, $createAccountForm);

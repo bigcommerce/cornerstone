@@ -1,8 +1,8 @@
-<h3 class="account-heading">{{@lang 'account.orders.heading' }}</h3>
+<h3 class="account-heading">{{@lang 'account.returns.heading' }}</h3>
 <ul class="orders-list">
     {{#each returns}}
     <li class="account-section-item order-item">
-        <img class="order-preview-image" src="http://placehold.it/73x73" alt="{{this.items.[0].name}}">
+        <!-- TODO: Reinsert product image when available to context -->
         <div class="information">
             <h4 class="order-item-heading">{{@lang 'account.returns.list.return_number' id=this.id}}</h4>
             <p>
@@ -13,14 +13,30 @@
                     <h6 class="order-sub-item-title">{{@lang 'account.returns.date_requested' }}</h6>
                     <span class="order-sub-item-text">{{this.date_requested}}</span>
                 </div>
-                <div class="order-sub-item">
-                    <h6 class="order-sub-item-title">{{@lang 'account.returns.last_update' }}</h6>
-                    <span class="order-sub-item-text">February 20th 2015</span>
-                </div>
             </div>
         </div>
 
-        <h6 class="account-info-status order-info-status">{{this.status}}</h6>
+        {{#compare this.status 'ReturnStatusPending' operator='===' }}
+            <h6 class="account-info-status order-info-status">{{@lang 'account.returns.status.pending'}}</h6>
+        {{/compare}}
+        {{#compare this.status 'ReturnStatusReceived' operator='===' }}
+            <h6 class="account-info-status order-info-status">{{@lang 'account.returns.status.received'}}</h6>
+        {{/compare}}
+        {{#compare this.status 'ReturnStatusAuthorized' operator='===' }}
+            <h6 class="account-info-status order-info-status">{{@lang 'account.returns.status.authorized'}}</h6>
+        {{/compare}}
+        {{#compare this.status 'ReturnStatusRepaired' operator='===' }}
+            <h6 class="account-info-status order-info-status">{{@lang 'account.returns.status.repaired'}}</h6>
+        {{/compare}}
+        {{#compare this.status 'ReturnStatusRefunded' operator='===' }}
+            <h6 class="account-info-status order-info-status">{{@lang 'account.returns.status.refunded'}}</h6>
+        {{/compare}}
+        {{#compare this.status 'ReturnStatusRejected' operator='===' }}
+            <h6 class="account-info-status order-info-status">{{@lang 'account.returns.status.rejected'}}</h6>
+        {{/compare}}
+        {{#compare this.status 'ReturnStatusCancelled' operator='===' }}
+            <h6 class="account-info-status order-info-status">{{@lang 'account.returns.status.cancelled'}}</h6>
+        {{/compare}}
     </li>
     {{/each}}
 </ul>

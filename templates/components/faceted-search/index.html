@@ -3,8 +3,13 @@
 
     <a href="#facetedSearch-navList" role="button" class="facetedSearch-toggle toggleLink" data-collapsible>
         <span class="facetedSearch-toggle-text">
-            <!-- FIXME: Dummy text for now -->
-            Browse by Category, Price and more
+            {{#compare facets.length 2 operator='>' }}
+                {{@lang 'search.faceted.browse-by'}} {{ @join (@pluck facets 'title') ', ' limit=2 }} &amp; {{ @toLowerCase (@lang 'search.faceted.more') }}
+            {{/compare}}
+
+            {{#compare facets.length 2 operator='<=' }}
+                {{@lang 'search.faceted.browse-by'}} {{ @join (@pluck facets 'title') ', ' lastSeparator=' & ' }}
+            {{/compare}}
         </span>
 
         <span class="facetedSearch-toggle-indicator">

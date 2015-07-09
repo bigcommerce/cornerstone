@@ -172,7 +172,7 @@ $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-sp
 .cart-item-quantity {
 
     .buttonGroup {
-        margin: 0 spacing("half") 1px spacing("single");
+        margin: 0 spacing("eighth") 1px spacing("single");
         vertical-align: middle;
 
         @include breakpoint("medium") {
@@ -185,7 +185,9 @@ $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-sp
     }
 
     .cart-item-value {
+        display: inline-block;
         padding-left: 0;
+        width: spacing("single");
     }
 }
 
@@ -277,7 +279,9 @@ $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-sp
 
 .cart-total-label {
     color: color("greys", "medium");
+    vertical-align: top;
     width: grid-calc(4, $total-columns);
+    white-space: nowrap;
 
     @include breakpoint("small") {
         width: grid-calc(6, $total-columns);
@@ -296,6 +300,10 @@ $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-sp
 
     @include breakpoint("small") {
         text-align: right;
+    }
+
+    @include breakpoint("medium") {
+        width: grid-calc(6, $total-columns);
     }
 }
 
@@ -329,6 +337,66 @@ $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-sp
 
 // Cart actions
 // -----------------------------------------------------------------------------
+
+.cart-totals {
+
+    .form-input {
+        display: inline-block;
+        height: remCalc(32px);
+        padding: spacing("third");
+        vertical-align: top;
+        width: grid-calc(9, $total-columns);
+    }
+
+    .form-select {
+        background-position: right remCalc(5px) top remCalc(7px);
+        background-size: remCalc(20px) remCalc(20px);
+        height: remCalc(32px);
+        margin-bottom: spacing("half");
+        padding: spacing("third") spacing("half");
+    }
+}
+
+.coupon-code-show,
+.shipping-estimate-show {
+    padding: 0;
+    text-decoration: underline;
+    transition: color 0.15s ease;
+
+    &:hover {
+        color: color("greys", "light");
+    }
+}
+
+.coupon-code-hide,
+.shipping-estimate-hide {
+    float: none;
+    margin-bottom: spacing("half");
+}
+
+.coupon-form {
+    font-size: 0;
+    margin-bottom: spacing("third");
+
+    .button {
+        margin: 0 0 0 spacing("quarter");
+        padding-left: spacing("half");
+        padding-right: spacing("half");
+    }
+}
+
+.estimator-form {
+    margin-bottom: 0;
+
+    .form-input {
+        margin-bottom: spacing("half");
+        width: 100%;
+    }
+
+    .button--primary {
+        width: 100%;
+    }
+}
 
 .cart-actions {
     clear: both;

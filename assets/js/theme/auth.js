@@ -3,7 +3,7 @@ import stateCountry from './common/state-country';
 import $ from 'jquery';
 import nod from 'casperin/nod';
 import validation from './common/form-validation';
-import forms from './common/models/forms'
+import forms from './common/models/forms';
 import {classifyForm} from './common/form-utils';
 
 export default class Auth extends PageManager {
@@ -48,18 +48,20 @@ export default class Auth extends PageManager {
         });
     }
 
-    registerCreateAccountValidation($createAccountForm) {
+    registerCreateAccountValidator($createAccountForm) {
         let validationModel = validation($createAccountForm),
             createAccountValidator = nod({
                 submit: '#create-account-form input[type="submit"]'
             });
 
-        createAccountValidator.add(validationModel);
+        return createAccountValidator.add(validationModel);
+    }
 
-        $createAccountForm.submit((event) => {
-            createAccountValidator.performCheck();
+    createAccountValidation(validator, $accountForm) {
+        $accountForm.submit((event) => {
+            validator.performCheck();
 
-            if (createAccountValidator.areAll('valid')) {
+            if (validator.areAll('valid')) {
                 return;
             }
 
@@ -76,10 +78,6 @@ export default class Auth extends PageManager {
             $createAccountForm = classifyForm('.create-account-form'),
             $loginForm = classifyForm('.login-form');
 
-        if ($stateElement){
-            stateCountry($stateElement);
-        }
-
         nod.classes.errorClass = 'form-field--error';
         nod.classes.successClass = 'form-field--success';
         nod.classes.errorMessageClass = 'form-inlineMessage';
@@ -89,7 +87,23 @@ export default class Auth extends PageManager {
         }
 
         if ($createAccountForm.length) {
-            this.registerCreateAccountValidation($createAccountForm);
+            let createAccountValidator = this.registerCreateAccountValidator($createAccountForm);
+
+            if ($stateElement) {
+                stateCountry($stateElement, function (textInput, selectInput) {
+                    if (selectInput) {
+                        createAccountValidator.remove($stateElement);
+                        createAccountValidator.add({
+                            selector: selectInput,
+                            validate: 'presence',
+                            errorMessage: "The 'State/Province field can not be blank"
+                        });
+                    } else {
+                        createAccountValidator.remove(textInput);
+                    }
+                });
+            }
+            this.createAccountValidation(createAccountValidator, $createAccountForm);
         }
 
         next();

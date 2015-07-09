@@ -59,7 +59,7 @@ function addOptions(statesArray, $selectElement) {
     }
 }
 
-export default function (stateElement) {
+export default function (stateElement, callback) {
 
     $('select[data-label="Country"]').on('change', (event) => {
         let countryName = $(event.currentTarget).val();
@@ -80,11 +80,12 @@ export default function (stateElement) {
             if (!_.isEmpty(response.data.states)) {
                 // The element may have been replaced with a select, reselect it
                 let $selectElement = makeStateRequired($currentInput);
-
                 addOptions(response.data.states, $selectElement);
+                callback(null, $selectElement);
 
             } else {
                 makeStateOptional($currentInput);
+                callback($currentInput);
             }
         })
     });

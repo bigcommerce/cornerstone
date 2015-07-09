@@ -35,7 +35,7 @@ export default class FacetedSearch {
         let defaultOptions = {
            loadingIndicatorSelector: '#loadingNotification',
            blockerSelector: '#facetedSearch .blocker',
-           showMoreToggleSelector: '#facetedSearch .navList .toggleLink',
+           showMoreToggleSelector: '#facetedSearch .accordion-content .toggleLink',
            componentSelector: '#facetedSearch-navList',
            facetNavListSelector: '#facetedSearch .navList',
            accordionToggleSelector: '#facetedSearch .accordion-navigation, #facetedSearch .facetedSearch-toggle'
@@ -55,10 +55,10 @@ export default class FacetedSearch {
 
         // Mark initially collapsed accordions
         $(this.options.accordionToggleSelector).each((index, accordionToggle) => {
-            let selector = $(accordionToggle).attr('href'),
-                id = selector.replace(/^#/, '');
+            let $accordionToggle = $(accordionToggle),
+                collapsible = $accordionToggle.data('collapsible');
 
-            if (!$(selector).hasClass('is-open')) {
+            if (collapsible.isCollapsed) {
                 this.collapsedFacets.push(id);
             }
         });

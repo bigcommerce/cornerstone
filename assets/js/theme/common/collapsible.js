@@ -110,7 +110,7 @@ export default function() {
             return;
         }
 
-        targetId = $toggle.attr('href');
+        targetId = $toggle.attr('href') || $toggle.data('target');
         collapsible = new Collapsible($toggle, $(targetId));
 
         $toggle.data(pluginKey, collapsible);

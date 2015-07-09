@@ -10,14 +10,6 @@
 //
 // -----------------------------------------------------------------------------
 .toggleLink {
-    .toggleLink-text--off {
-        display: inherit;
-    }
-
-    .toggleLink-text--on {
-        display: none;
-    }
-
     &.is-open,
     &.is-on {
         .toggleLink-text--off {
@@ -25,7 +17,15 @@
         }
 
         .toggleLink-text--on {
-            display: inherit;
+            display: inline-block;
         }
     }
+}
+
+.toggleLink-text--off {
+    display: inline-block;
+}
+
+.toggleLink-text--on {
+    display: none;
 }

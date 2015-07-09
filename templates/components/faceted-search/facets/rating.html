@@ -1,17 +1,25 @@
-<li class="accordion-block">
-    <a
-        href="#facetedSearch-content--{{ facet }}"
+<div class="accordion-block">
+    <div
+        class="accordion-navigation toggleLink {{#unless ../start_collapsed }} is-open {{/unless}}"
         role="button"
-        class="accordion-navigation {{#unless ../start_collapsed }} is-open {{/unless}}"
+        data-target="#facetedSearch-content--{{ facet }}"
         data-collapsible>
-        <h5 class="accordion-title">{{ title }}</h5>
-    </a>
+        <h5 class="accordion-title">
+            {{ title }}
+        </h5>
 
-    {{#if selected}}
         <div class="accordion-navigation-actions">
-            <a href="{{ remove_url }}" data-faceted-search-facet>{{@lang 'search.faceted.clear'}}</a>
+            {{#if selected}}
+                <a href="{{ remove_url }}" data-faceted-search-facet>{{@lang 'search.faceted.clear'}}</a>
+            {{/if}}
+            <svg class="icon accordion-indicator toggleLink-text toggleLink-text--off">
+                <use xlink:href="#icon-add" />
+            </svg>
+            <svg class="icon accordion-indicator toggleLink-text toggleLink-text--on">
+                <use xlink:href="#icon-remove" />
+            </svg>
         </div>
-    {{/if}}
+    </div>
 
     <div id="facetedSearch-content--{{ facet }}" class="accordion-content {{#unless ../start_collapsed }} is-open {{/unless}}">
         <ul class="navList">
@@ -28,4 +36,4 @@
             {{/each}}
         </ul>
     </div>
-</li>
+</div>

@@ -106,7 +106,6 @@ function buildValidation($formElement, $formFieldElement) {
                 inputName = $inputElement.attr('name'),
                 dataLabel = $inputElement.attr('data-label'),
                 elementSelector = `${formFieldSelector} ${tagName}[name="${inputName}"]`;
-            console.log($inputElement.attr('data-label'));
 
             if (validation.type === 'numberonly') {
                 fieldValidations.push(buildNumberRangeValidation(validation, formFieldSelector));

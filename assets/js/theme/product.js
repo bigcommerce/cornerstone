@@ -46,7 +46,7 @@ export default class Product extends PageManager {
      */
     productOptions() {
         // product options
-        $('body').on('change', '#product-options', (event) => {
+        $('body').on('change', '[data-product-options]', (event) => {
             let $target = $(event.target),     // actual element that is clicked
                 $ele = $(event.currentTarget), // the element that has the data-tag
                 targetVal = $target.val(),     // value of the target
@@ -96,8 +96,8 @@ export default class Product extends PageManager {
         utils.hooks.on('cart-item-add', (event) => {
             event.preventDefault();
 
-            let quantity = this.$productView.find('#product-quantity [name=qty\\[\\]]').val(),
-                $optionsContainer = this.$productView.find('#product-options'),
+            let quantity = this.$productView.find('[name=qty\\[\\]]').val(),
+                $optionsContainer = this.$productView.find('[data-product-options]'),
                 options,
                 $modal = $('#modal'),
                 $modalContent = $('.modal-content', $modal),
@@ -119,9 +119,10 @@ export default class Product extends PageManager {
                 };
 
                 // if there is an error
-                if (err || response.data.error) {
-                    // TODO: display error
-                    return;
+                if (err) {
+                    return alert(err);
+                } else if (response.data.error) {
+                    return alert(response.data.error);
                 }
 
                 // fetch cart to display in cart preview

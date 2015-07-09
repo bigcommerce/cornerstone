@@ -3,6 +3,7 @@ import $ from 'jquery';
 import _ from 'lodash';
 import Url from 'url';
 import History from 'browserstate/history.js/scripts/bundled-uncompressed/html4+html5/jquery.history';
+import collapsible from './collapsible';
 
 function goToUrl(url) {
     History.pushState({}, document.title, url);
@@ -34,10 +35,10 @@ export default class FacetedSearch {
         let defaultOptions = {
            loadingIndicatorSelector: '#loadingNotification',
            blockerSelector: '#facetedSearch .blocker',
-           showMoreToggleSelector: '#facetedSearch .toggleLink',
+           showMoreToggleSelector: '#facetedSearch .navList .toggleLink',
            componentSelector: '#facetedSearch-navList',
            facetNavListSelector: '#facetedSearch .navList',
-           accordionToggleSelector: '#facetedSearch .accordion-navigation'
+           accordionToggleSelector: '#facetedSearch .accordion-navigation, #facetedSearch .facetedSearch-toggle'
         };
 
         // Private properties
@@ -63,7 +64,7 @@ export default class FacetedSearch {
         });
 
         // Collapse all facets if initially hidden
-        // NOTE: Need to execute after foundation.accordion.js gets bootstrapped
+        // NOTE: Need to execute after Collapsible gets bootstrapped
         setTimeout(() => {
             if ($(this.options.componentSelector).is(':hidden')) {
                 this.collapseAllFacets();
@@ -79,6 +80,8 @@ export default class FacetedSearch {
         if (content) {
             this.callback(content);
         }
+
+        collapsible();
 
         // Restore view state
         this.restoreCollapsedFacets();
@@ -140,19 +143,15 @@ export default class FacetedSearch {
     }
 
     expandFacet($accordionToggle) {
-        let selector = $accordionToggle.attr('href');
+        let collapsible = $accordionToggle.data('collapsible');
 
-        if (!$(selector).hasClass('is-open')) {
-            $accordionToggle.trigger('click.fndtn.accordion');
-        }
+        collapsible.open();
     }
 
     collapseFacet($accordionToggle) {
-        let selector = $accordionToggle.attr('href');
+        let collapsible = $accordionToggle.data('collapsible');
 
-        if ($(selector).hasClass('is-open')) {
-            $accordionToggle.trigger('click.fndtn.accordion');
-        }
+        collapsible.close();
     }
 
     collapseAllFacets() {
@@ -198,7 +197,8 @@ export default class FacetedSearch {
 
         $accordionToggles.each((index, accordionToggle) => {
             let $accordionToggle = $(accordionToggle),
-                id = $accordionToggle.attr('href').replace(/^#/, ''),
+                collapsible = $accordionToggle.data('collapsible'),
+                id = collapsible.targetId,
                 shouldCollapse = _.contains(this.collapsedFacets, id);
 
             if (shouldCollapse) {
@@ -213,13 +213,7 @@ export default class FacetedSearch {
         // DOM events
         $(window).on('statechange', this.onStateChange.bind(this));
         $(document).on('click', this.options.showMoreToggleSelector, this.onToggleClick.bind(this));
-
-        // Foundation events
-        $(document).foundation({
-            accordion: {
-                callback: this.onAccordionToggle.bind(this)
-            }
-        });
+        $(document).on('toggle.collapsible', this.options.accordionToggleSelector, this.onAccordionToggle.bind(this))
 
         // Hooks
         hooks.on('facetedSearch-facet-clicked', this.onFacetClick.bind(this));
@@ -275,26 +269,27 @@ export default class FacetedSearch {
         $(this.options.blockerSelector).show();
 
         api.getPage(History.getState().url, { template: this.templates }, (err, content) => {
+            $(this.options.loadingIndicatorSelector).hide();
+            $(this.options.blockerSelector).hide();
+
             if (err) {
                 throw new Error(err);
             }
-
-            $(this.options.loadingIndicatorSelector).hide();
-            $(this.options.blockerSelector).hide();
 
             // Refresh view with new content
             this.refreshView(content);
         });
     }
 
-    onAccordionToggle(accordion) {
-        let $accordion = $(accordion),
-            id = $accordion.attr('id');
+    onAccordionToggle(event) {
+        let $accordionToggle = $(event.currentTarget),
+            collapsible = $accordionToggle.data('collapsible'),
+            id = collapsible.targetId;
 
-        if ($accordion.hasClass('is-open')) {
-            this.collapsedFacets = _.without(this.collapsedFacets, id);
-        } else {
+        if (collapsible.isCollapsed) {
             this.collapsedFacets = _.union(this.collapsedFacets, [id]);
+        } else {
+            this.collapsedFacets = _.without(this.collapsedFacets, id);
         }
     }
 }

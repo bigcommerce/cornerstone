@@ -1,46 +1,40 @@
 <div id="facetedSearch" class="facetedSearch sidebarBlock">
     {{> components/faceted-search/selected-facets this.selected}}
 
-    <ul class="accordion accordion--navList" data-accordion>
-        <li class="accordion-block">
-            <a href="#facetedSearch-navList" role="button" class="accordion-navigation accordion-navigation--plain">
-                <span class="accordion-title facetedSearch-toggle">
-                    <span class="facetedSearch-toggle-text">
-                        <!-- FIXME: Dummy text for now -->
-                        Browse by Category, Price and more
-                    </span>
+    <a href="#facetedSearch-navList" role="button" class="facetedSearch-toggle toggleLink" data-collapsible>
+        <span class="facetedSearch-toggle-text">
+            <!-- FIXME: Dummy text for now -->
+            Browse by Category, Price and more
+        </span>
 
-                    <span class="facetedSearch-toggle-indicator toggleLink">
-                        <span class="toggleLink-text toggleLink-text--on">
-                            {{@lang 'search.faceted.hide-filters'}}
+        <span class="facetedSearch-toggle-indicator">
+            <span class="toggleLink-text toggleLink-text--on">
+                {{@lang 'search.faceted.hide-filters'}}
 
-                            <i class="icon" aria-hidden="true">
-                                <svg><use xlink:href="#icon-keyboard-arrow-up"/></svg>
-                            </i>
-                        </span>
+                <i class="icon" aria-hidden="true">
+                    <svg><use xlink:href="#icon-keyboard-arrow-up"/></svg>
+                </i>
+            </span>
 
-                        <span class="toggleLink-text toggleLink-text--off">
-                            {{@lang 'search.faceted.show-filters'}}
+            <span class="toggleLink-text toggleLink-text--off">
+                {{@lang 'search.faceted.show-filters'}}
 
-                            <i class="icon" aria-hidden="true">
-                                <svg><use xlink:href="#icon-keyboard-arrow-down"/></svg>
-                            </i>
-                        </span>
-                    </span>
-                </span>
-            </a>
+                <i class="icon" aria-hidden="true">
+                    <svg><use xlink:href="#icon-keyboard-arrow-down"/></svg>
+                </i>
+            </span>
+        </span>
+    </a>
 
-            <div
-                id="facetedSearch-navList"
-                class="facetedSearch-navList accordion-content accordion-content--plain blocker-container">
-                <ul class="accordion accordion--navList accordion--borderless" data-accordion>
-                    {{#each this.facets}}
-                        {{{@field this}}}
-                    {{/each}}
-                </ul>
+    <div
+        id="facetedSearch-navList"
+        class="facetedSearch-navList blocker-container">
+        <ul class="accordion accordion--navList">
+            {{#each this.facets}}
+                {{{@field this}}}
+            {{/each}}
+        </ul>
 
-                <div class="blocker" style="display: none;"></div>
-            </div>
-        </li>
-    </ul>
+        <div class="blocker" style="display: none;"></div>
+    </div>
 </div>

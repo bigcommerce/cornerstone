@@ -11,20 +11,21 @@
 // -----------------------------------------------------------------------------
 .facetedSearch-toggle {
     @include grid-row;
+    border-radius: $facetedSearch-toggle-borderRadius;
+    border: $facetedSearch-toggle-border;
+    border-width: $facetedSearch-toggle-borderWidth;
     display: block;
+    margin-bottom: $facetedSearch-toggle-verticalSpacing;
+    padding: $facetedSearch-toggle-padding;
 
     @include breakpoint("medium") {
         display: none !important; // 1
     }
 
-    .is-open & {
-        .toggleLink-text--off {
-            display: none;
-        }
-
-        .toggleLink-text--on {
-            display: inherit;
-        }
+    &.is-open {
+        margin-bottom: 0;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
     }
 }
 
@@ -37,6 +38,7 @@
 .facetedSearch-toggle-text {
     @include grid-column(8);
     padding: 0;
+    text-align: left;
 }
 
 .facetedSearch-toggle-indicator {
@@ -54,8 +56,35 @@
 //
 // -----------------------------------------------------------------------------
 .facetedSearch-navList {
+    display: none;
+
     @include breakpoint("medium") {
         display: block !important; // 1
+    }
+
+    &.is-open {
+        display: block;
+
+        .accordion--navList,
+        .accordion-block:first-child .accordion-navigation {
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+        }
+    }
+
+    .facetedSearch-toggle + &,
+    .sidebarBlock + & {
+        margin-top: $facetedSearch-toggle-verticalSpacing;
+    }
+
+
+    .facetedSearch-toggle + &.is-open,
+    .sidebarBlock + &.is-open {
+        margin-top: -1px;
+
+        @include breakpoint("medium") {
+            margin-top: $facetedSearch-toggle-verticalSpacing;
+        }
     }
 }
 

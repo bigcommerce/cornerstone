@@ -2,11 +2,7 @@ import $ from 'jquery';
 import 'foundation/js/foundation/foundation';
 import 'foundation/js/foundation/foundation.dropdown';
 import 'foundation/js/foundation/foundation.reveal';
-<<<<<<< HEAD
 import 'foundation/js/foundation/foundation.tab';
-=======
-import 'foundation/js/foundation/foundation.accordion';
->>>>>>> BIG-16069: Implement Foundation accordion and refine facet styling
 
 export default function() {
     $(document).foundation({

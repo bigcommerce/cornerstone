@@ -4,12 +4,14 @@
 @import "address";
 
 // TODO: Componentize the accounts section, this is inconsistent with the rest of stencil.
+// Possibly make the accounts section a layout or component on it's own, with common components
+// consumable across all accounts pages?
 
 .edit-account {
     @include grid-row();
 
     .form-field {
-        @include breakpoint("medium") {
+        @include breakpoint("small") {
             @include grid-column(6);
         }
     }

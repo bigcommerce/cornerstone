@@ -4,24 +4,22 @@
 
 // Stencil table component additions
 // -----------------------------------------------------------------------------
-//
-// 1. If set to false, there is no outputted CSS for this component.
-//
-// -----------------------------------------------------------------------------
 
 
-@if $exportCSS--tables { // 1
+.table {
+    margin-top: $table-marginTop;
 
-    .table {
-        margin-top: $table-marginTop;
-
-        td + td {
-            border-left: $table-td-borderLeft;
-        }
+    td + td {
+        border-left: $table-td-borderLeft;
     }
 }
 
 .table-actions {
     text-align: center;
     margin: spacing('single');
+
+    .form,
+    .button {
+        margin-bottom: 0;
+    }
 }

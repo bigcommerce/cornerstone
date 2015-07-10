@@ -108,15 +108,14 @@
 // -----------------------------------------------------------------------------
 
 .form-actions {
-    text-align: right;
-    display: inline-block;
-    width: 100%;
-}
-
-.form-actions--center {
+    @include grid-row();
+    display: block;
     text-align: center;
-}
 
+    @include breakpoint("small") {
+        margin-top: spacing("single");
+    }
+}
 
 // Stencil form additions
 // -----------------------------------------------------------------------------

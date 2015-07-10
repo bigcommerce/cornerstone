@@ -81,7 +81,7 @@ export default class Auth extends PageManager {
             validator.add({
                 selector: field,
                 validate: 'presence',
-                errorMessage: 'The State/Province field can not be bla'
+                errorMessage: 'The State/Province field cannot be blank'
             })
         }
     }
@@ -93,7 +93,7 @@ export default class Auth extends PageManager {
     cleanUpStateValidation(field) {
         let $fieldClassElement = $((`div#${field.attr('id')}`));
 
-        _.each(nod.classes, (value) => {
+        Object.keys(nod.classes).forEach(function (value) {
             if ($fieldClassElement.hasClass(nod.classes[value])) {
                 $fieldClassElement.removeClass(nod.classes[value]);
             }
@@ -127,16 +127,14 @@ export default class Auth extends PageManager {
                 stateCountry($stateElement, (field) => {
                     let $field = $(field);
 
+                    if ($last) {
+                        createAccountValidator.remove($last);
+                    }
+
                     if ($field.is('select')) {
-                        if ($last) {
-                            createAccountValidator.remove($last);
-                        }
                         $last = field;
                         this.setStateCountryValidation(createAccountValidator, field);
                     } else {
-                        if ($last) {
-                            createAccountValidator.remove($last);
-                        }
                         this.cleanUpStateValidation(field);
                     }
                 });

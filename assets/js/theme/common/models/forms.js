@@ -9,7 +9,7 @@ export default {
      * @param value
      * @returns {boolean}
      */
-        password(value) {
-            return value.length > 0;
+    password(value) {
+        return value.length > 0;
     }
 }

@@ -15,10 +15,6 @@ export default class Account extends PageManager {
             $editAccountForm = classifyForm('#edit-account-form'),
             $addressForm = classifyForm('#address-form');
 
-        if ($stateElement){
-            stateCountry($stateElement);
-        }
-
         nod.classes.errorClass = 'form-field--error';
         nod.classes.successClass = 'form-field--success';
         nod.classes.errorMessageClass = 'form-inlineMessage';
@@ -31,7 +27,27 @@ export default class Account extends PageManager {
         new Wishlist();
 
         if ($addressForm.length) {
-            this.registerAddressValidation($addressForm);
+            let addressValidator = this.registerAddressValidation($addressForm);
+
+            if ($stateElement) {
+                let $last;
+
+                stateCountry($stateElement, (field) => {
+                    let $field = $(field);
+
+                    if ($last) {
+                        addressValidator.remove($last);
+                    }
+
+                    if ($field.is('select')) {
+                        $last = field;
+                        this.setStateCountryValidation(addressValidator, field);
+                    } else {
+                        this.cleanUpStateValidation(field);
+                    }
+                });
+            }
+            this.addressValidation(addressValidator, $addressForm);
         }
 
         next();
@@ -44,16 +60,48 @@ export default class Account extends PageManager {
             });
 
         addressValidator.add(validationModel);
+        return addressValidator;
+    }
 
+    addressValidation(validator, $addressForm) {
         $addressForm.submit((event) => {
-            addressValidator.performCheck();
+            validator.performCheck();
 
-            if (addressValidator.areAll('valid')) {
+            if (validator.areAll('valid')) {
                 return;
             }
 
             event.preventDefault();
         });
+    }
+
+    /**
+     * Sets up a new validation when the form is dirty
+     * @param validator
+     * @param field
+     */
+    setStateCountryValidation(validator, field) {
+        if (field) {
+            validator.add({
+                selector: field,
+                validate: 'presence',
+                errorMessage: 'The State/Province field cannot be blank'
+            })
+        }
+    }
+
+    /**
+     * Removes classes from dirty form if previously checked
+     * @param field
+     */
+    cleanUpStateValidation(field) {
+        let $fieldClassElement = $((`div#${field.attr('id')}`));
+
+        Object.keys(nod.classes).forEach(function (value) {
+            if ($fieldClassElement.hasClass(nod.classes[value])) {
+                $fieldClassElement.removeClass(nod.classes[value]);
+            }
+        })
     }
 
     registerEditAccountValidation($editAccountForm) {
@@ -116,7 +164,7 @@ export default class Account extends PageManager {
                 validate: (cb, val) => {
                     let password1 = $('.edit-account-form input[data-label="Password"]').val(),
                         result = editModel.passwordMatch(val, password1)
-                        && editModel.password(val);
+                            && editModel.password(val);
                     if (password1 === '') {
                         result = true;
                     }

@@ -8,7 +8,7 @@ export default class Category extends PageManager {
 
         super();
 
-        new FacetedSearch({
+        FacetedSearch({
             productListing: 'category/product-listing',
             sidebar: 'category/sidebar'
         }, function(content) {

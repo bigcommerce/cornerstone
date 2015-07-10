@@ -10,6 +10,7 @@
             <table class="table">
                 <thead class="table-thead">
                     <tr>
+                        <th></th>
                         <th>{{@lang 'account.orders.return.order_item'}}</th>
                         <th class="table-header--numericData" scope="column">{{@lang 'account.orders.return.item_price'}}</th>
                         <th>{{@lang 'account.orders.return.quantity'}}</th>
@@ -18,6 +19,7 @@
                 <tbody class="table-tbody">
                     {{#each account_new_return.order_products}}
                         <tr>
+                            <td><img src="{{@image image 'thumb'}}" alt="{{image.alt}}"></td>
                             <td>{{name}}</td>
                             <td class="table-cell--numericData">{{price}}</td>
                             <td class="form-field">

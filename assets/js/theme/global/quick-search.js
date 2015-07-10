@@ -1,6 +1,5 @@
 import $ from 'jquery';
 import _ from 'lodash';
-import ko from 'knockout';
 import utils from 'bigcommerce/stencil-utils';
 
 export default function () {

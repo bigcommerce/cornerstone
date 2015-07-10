@@ -24,12 +24,14 @@ System.config({
     "caolan/async": "github:caolan/async@0.9.2",
     "casperin/nod": "github:casperin/nod@2.0.4",
     "core-js": "npm:core-js@0.9.18",
-    "foundation": "github:zurb/bower-foundation@5.5.2",
+    "foundation": "github:bigcommerce-labs/foundation@5.5.3",
     "jquery": "github:components/jquery@2.1.4",
-    "knockout": "github:knockout/knockout@3.3.0",
     "lodash": "npm:lodash@3.9.3",
     "slick-carousel": "github:kenwheeler/slick@1.5.5",
     "url": "github:jspm/nodelibs-url@0.1.0",
+    "github:bigcommerce-labs/foundation@5.5.3": {
+      "jquery": "github:components/jquery@2.1.4"
+    },
     "github:bigcommerce/stencil-utils@0.1.7": {
       "asyncly/EventEmitter2": "github:asyncly/EventEmitter2@0.4.14",
       "jquery": "github:components/jquery@2.1.4",
@@ -46,9 +48,6 @@ System.config({
     },
     "github:jspm/nodelibs-util@0.1.0": {
       "util": "npm:util@0.10.3"
-    },
-    "github:zurb/bower-foundation@5.5.2": {
-      "jquery": "github:components/jquery@2.1.4"
     },
     "npm:assert@1.3.0": {
       "util": "npm:util@0.10.3"

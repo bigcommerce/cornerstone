@@ -3,6 +3,34 @@
 // =============================================================================
 
 
+.accordion {
+    border-radius: $accordion-borderRadius;
+    box-shadow: none;
+
+    .navList {
+        margin-bottom: 0;
+    }
+}
+
+.accordion-content {
+    border: 0;
+
+    .form:only-child {
+        margin-bottom: 0;
+    }
+}
+
+.accordion-title {
+    margin: 0;
+}
+
+.accordion-navigation {
+    margin-top: -1px;
+    text-decoration: none;
+    position: relative;
+}
+
+
 // Accordion nav list
 // -----------------------------------------------------------------------------
 //
@@ -10,16 +38,8 @@
 //
 // -----------------------------------------------------------------------------
 .accordion--navList {
-    border-radius: $accordion-navList-borderRadius;
-    border-width: $accordion-navList-borderWidth;
-    box-shadow: none;
-
     @include breakpoint("medium") {
         border: 0;
-    }
-
-    .navList {
-        margin-bottom: 0;
     }
 
     .sidebarBlock + & {
@@ -28,26 +48,21 @@
         }
     }
 
+    .accordion-block {
+        @include breakpoint("medium") {
+            margin-top: $accordion-navList-spacing;
+        }
+    }
+
     .accordion-content {
-        border: 0;
         padding: $accordion-navList-padding;
 
         @include breakpoint("medium") {
             padding: 0;
         }
-
-        .form:only-child {
-            margin-bottom: 0;
-        }
     }
 
     .accordion-navigation {
-        border: $accordion-navList-border;
-        border-width: 1px 0;
-        margin-top: -1px;
-        position: relative;
-        text-decoration: none;
-
         @include breakpoint("medium") {
             background-position: right 0 top 50%;
             border: 0;
@@ -56,7 +71,6 @@
 
     .accordion-title {
         font-weight: normal;
-        margin: 0;
         padding: $accordion-navList-padding;
         text-decoration: none;
         text-transform: inherit;
@@ -71,26 +85,37 @@
     .accordion-indicator {
         fill: color("greys", "light");
     }
-}
 
-.accordion-block {
-    @include breakpoint("medium") {
-        margin-top: $accordion-navList-spacing;
+    .accordion-navigation-actions {
+        right: $accordion-navList-padding;
+        top: $accordion-navList-padding + spacing("eighth");
+
+        @include breakpoint("medium") {
+            right: 0;
+            top: 0;
+        }
     }
 }
 
+
+// Accordion block
+// -----------------------------------------------------------------------------
+//
+// Purpose: Child blocks of an accordion
+//
+// -----------------------------------------------------------------------------
 .accordion-block:first-child {
     margin-top: 0;
 
     .accordion-navigation {
-        border-radius: $accordion-navList-borderRadius $accordion-navList-borderRadius 0 0;
+        border-radius: $accordion-borderRadius $accordion-borderRadius 0 0;
     }
 }
 
 .accordion-block:last-child {
     .accordion-navigation,
     .accordion-content {
-        border-radius: 0 0 $accordion-navList-borderRadius $accordion-navList-borderRadius;
+        border-radius: 0 0 $accordion-borderRadius $accordion-borderRadius;
     }
 
     .accordion-navigation {
@@ -103,14 +128,14 @@
     }
 }
 
+// Accordion navigation actions
+// -----------------------------------------------------------------------------
+//
+// Purpose: Action links, usually aligned to the right of .accordion-navigation
+//
+// -----------------------------------------------------------------------------
 .accordion-navigation-actions {
-    font-size: 1rem;
     position: absolute;
-    right: $accordion-navList-padding;
-    top: $accordion-navList-padding + spacing("eighth");
-
-    @include breakpoint("medium") {
-        right: 0;
-        top: 0;
-    }
+    right: $accordion-navigation-paddingHorizontal;
+    top: $accordion-navigation-paddingVertical;
 }

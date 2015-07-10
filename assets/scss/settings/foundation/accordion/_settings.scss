@@ -17,13 +17,13 @@ $exportCSS--accordion:                          true; // 1
 
 $accordion-borderColor:                         container("borderColor", "base");
 $accordion-borderStyle:                         container("borderStyle");
-$accordion-borderWidth:                         0;
+$accordion-borderWidth:                         1px;
 $accordion-border:                              $accordion-borderColor $accordion-borderStyle;
 $accordion-margin:                              0 0 spacing("single");
 
 $accordion-navigation-borderColor:              $accordion-borderColor;
 $accordion-navigation-borderStyle:              $accordion-borderStyle;
-$accordion-navigation-borderWidth:              0 0 1px;
+$accordion-navigation-borderWidth:              1px 0;
 $accordion-navigation-border:                   $accordion-border;
 $accordion-navigation-paddingHorizontal:        (container("padding") + spacing("quarter"));
 $accordion-navigation-paddingVertical:          container("padding");
@@ -63,16 +63,11 @@ $accordion-content-active-bg-color:             container("fill");
 
 // Stencil Variables
 // -----------------------------------------------------------------------------
-//
-// 1. ic-add
-// 2. ic-remove
-//
-// -----------------------------------------------------------------------------
+
+$accordion-borderRadius:                        $global-radius;
 
 $accordion-navList-border:                      $accordion-border;
-$accordion-navList-borderRadius:                $global-radius;
+$accordion-navList-borderRadius:                $accordion-borderRadius;
 $accordion-navList-borderWidth:                 1px;
 $accordion-navList-spacing:                     spacing("single") + spacing("third");
 $accordion-navList-padding:                     spacing("base");
-$accordion-indicator-width:                     18px;
-$accordion-indicator-height:                    18px;

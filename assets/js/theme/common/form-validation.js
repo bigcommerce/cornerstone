@@ -92,7 +92,6 @@ function buildNumberRangeValidation(validation, formFieldSelector) {
 function buildValidation($formElement, $formFieldElement) {
     let validation = $formFieldElement.data('validation'),
         fieldValidations = [],
-        fieldName = validation.name,
         formFieldSelector = `#${$formFieldElement.attr('id')}`;
 
     if (validation.type === 'datechooser') {
@@ -104,14 +103,12 @@ function buildValidation($formElement, $formFieldElement) {
             let $inputElement = $(element),
                 tagName = $inputElement.get(0).tagName,
                 inputName = $inputElement.attr('name'),
-                dataLabel = $inputElement.attr('data-label'),
                 elementSelector = `${formFieldSelector} ${tagName}[name="${inputName}"]`;
 
             if (validation.type === 'numberonly') {
                 fieldValidations.push(buildNumberRangeValidation(validation, formFieldSelector));
             }
-            //State/Province needs it own validation since it actively changes from text input to select input.
-            if (validation.required && dataLabel !== 'State/Province') {
+            if (validation.required) {
                 fieldValidations.push(buildRequiredValidation(validation, elementSelector));
             }
         });

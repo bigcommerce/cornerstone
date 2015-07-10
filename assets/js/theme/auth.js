@@ -1,4 +1,5 @@
 import PageManager from '../page-manager';
+import _ from 'lodash';
 import stateCountry from './common/state-country';
 import $ from 'jquery';
 import nod from 'casperin/nod';
@@ -70,16 +71,33 @@ export default class Auth extends PageManager {
         });
     }
 
-    stateCountryValidation(validator, textInput, selectInput) {
-        if (selectInput) {
+    /**
+     * Sets up a new validation when the form is dirty
+     * @param validator
+     * @param field
+     */
+    setStateCountryValidation(validator, field) {
+        if (field) {
             validator.add({
-                selector: selectInput,
+                selector: field,
                 validate: 'presence',
-                errorMessage: "The 'State/Province field can not be blank"
-            });
-        } else {
-            validator.remove(textInput);
+                errorMessage: 'The State/Province field can not be bla'
+            })
         }
+    }
+
+    /**
+     * Removes classes from dirty form if previously checked
+     * @param field
+     */
+    cleanUpStateValidation(field) {
+        let $fieldClassElement = $((`div#${field.attr('id')}`));
+
+        _.each(nod.classes, (value) => {
+            if ($fieldClassElement.hasClass(nod.classes[value])) {
+                $fieldClassElement.removeClass(nod.classes[value]);
+            }
+        })
     }
 
     /**
@@ -103,8 +121,24 @@ export default class Auth extends PageManager {
             let createAccountValidator = this.registerCreateAccountValidator($createAccountForm);
 
             if ($stateElement) {
-                stateCountry($stateElement, (textInput, selectInput) => {
-                    this.stateCountryValidation(createAccountValidator, textInput, selectInput);
+                createAccountValidator.remove($stateElement);
+                let $last;
+
+                stateCountry($stateElement, (field) => {
+                    let $field = $(field);
+
+                    if ($field.is('select')) {
+                        if ($last) {
+                            createAccountValidator.remove($last);
+                        }
+                        $last = field;
+                        this.setStateCountryValidation(createAccountValidator, field);
+                    } else {
+                        if ($last) {
+                            createAccountValidator.remove($last);
+                        }
+                        this.cleanUpStateValidation(field);
+                    }
                 });
             }
             this.createAccountValidation(createAccountValidator, $createAccountForm);

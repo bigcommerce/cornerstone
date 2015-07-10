@@ -50,11 +50,12 @@ function makeStateOptional(stateElement) {
  * @param $selectElement
  */
 function addOptions(statesArray, $selectElement) {
-    if (!_.isEmpty($selectElement)) {
-        let container = _.map(statesArray, (stateObj)  => {
-            return `<option value="${stateObj.name}">${stateObj.name}</option>`;
+    let container = [];
+    container.push(`<option>${statesArray.prefix}</option>`);
+    if (!_.isEmpty($selectElement)){
+        _.each(statesArray.states, (stateObj)  => {
+            container.push(`<option value="${stateObj.name}">${stateObj.name}</option>`);
         });
-
         $selectElement.html(container.join(' '));
     }
 }
@@ -80,7 +81,7 @@ export default function (stateElement, callback) {
             if (!_.isEmpty(response.data.states)) {
                 // The element may have been replaced with a select, reselect it
                 let $selectElement = makeStateRequired($currentInput);
-                addOptions(response.data.states, $selectElement);
+                addOptions(response.data, $selectElement);
                 callback($selectElement);
 
             } else {

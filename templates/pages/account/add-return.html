@@ -4,73 +4,79 @@
     <h2 class="page-heading">{{@lang 'account.returns.new_return' }}</h2>
     {{> components/account/navigation account_page='returns'}}
     <h3 class="account-heading">{{@lang 'account.returns.from_order' id=account_new_return.order_id}}</h3>
-    <form action="{{urls.account.orders.save_new_return}}" class="form form-addReturn" method="post">
-        <fieldset class="form-fieldset">
-            <input type="hidden" name="order_id" value="{{account_new_return.order_id}}">
-            <table class="table">
-                <thead class="table-thead">
-                    <tr>
-                        <th></th>
-                        <th>{{@lang 'account.orders.return.order_item'}}</th>
-                        <th class="table-header--numericData" scope="column">{{@lang 'account.orders.return.item_price'}}</th>
-                        <th>{{@lang 'account.orders.return.quantity'}}</th>
-                    </tr>
-                </thead>
-                <tbody class="table-tbody">
-                    {{#each account_new_return.order_products}}
+
+    {{#if account_new_return.order_products.length}}
+        <form action="{{urls.account.orders.save_new_return}}" class="form form-addReturn" method="post">
+            <fieldset class="form-fieldset">
+                <input type="hidden" name="order_id" value="{{account_new_return.order_id}}">
+                <table class="table">
+                    <thead class="table-thead">
                         <tr>
-                            <td><img src="{{@image image 'thumb'}}" alt="{{image.alt}}"></td>
-                            <td>{{name}}</td>
-                            <td class="table-cell--numericData">{{price}}</td>
-                            <td class="form-field">
-                                <select class="form-select" name="return_qty[{{id}}]">
-                                    {{#each select}}
-                                        <option value="{{this}}">{{this}}</option>
-                                    {{/each}}
-                                </select>
-                            </td>
+                            <th></th>
+                            <th>{{@lang 'account.orders.return.order_item'}}</th>
+                            <th class="table-header--numericData" scope="column">{{@lang 'account.orders.return.item_price'}}</th>
+                            <th>{{@lang 'account.orders.return.quantity'}}</th>
                         </tr>
-                    {{/each}}
-                </tbody>
-            </table>
-        </fieldset>
-        <div class="form-addReturn-row">
-            <fieldset class="form-fieldset form-addReturn-column">
-                <div class="form-field">
-                    <label for="return_reason" class="form-label">
-                        {{@lang 'account.orders.return.reason'}}
-                        <small>{{@lang 'common.required'}}</small>
-                    </label>
-                    <select name="return_reason" id="return_reason" class="form-select">
-                        {{#each account_new_return.reasons}}
-                            <option value="{{this}}">{{this}}</option>
+                    </thead>
+                    <tbody class="table-tbody">
+                        {{#each account_new_return.order_products}}
+                            <tr>
+                                <td><img src="{{@image image 'thumb'}}" alt="{{image.alt}}"></td>
+                                <td>{{name}}</td>
+                                <td class="table-cell--numericData">{{price}}</td>
+                                <td class="form-field">
+                                    <select class="form-select" name="return_qty[{{id}}]">
+                                        {{#each select}}
+                                            <option value="{{this}}">{{this}}</option>
+                                        {{/each}}
+                                    </select>
+                                </td>
+                            </tr>
                         {{/each}}
-                    </select>
-                </div>
-                <div class="form-field">
-                    <label for="return_action" class="form-label">
-                        {{@lang 'account.orders.return.action'}}
-                    </label>
-                    <select name="return_action" id="return_action" class="form-select">
-                        {{#each account_new_return.actions}}
-                            <option value="{{this}}">{{this}}</option>
-                        {{/each}}
-                    </select>
-                </div>
+                    </tbody>
+                </table>
             </fieldset>
-            <fieldset class="form-fieldset form-addReturn-column">
-                <div class="form-field">
-                    <label for="return_comments" class="form-label">
-                        {{@lang 'account.orders.return.comments'}}
-                    </label>
-                    <textarea class="form-input" rows="8" name="return_comments" id="return_comments"></textarea>
-                </div>
-            </fieldset>
-        </div>
-        <div class="form-actions">
-            <input class="button button--primary" type="submit" value="Submit Return Request" />
-        </div>
-    </form>
+            <div class="form-addReturn-row">
+                <fieldset class="form-fieldset form-addReturn-column">
+                    <div class="form-field">
+                        <label for="return_reason" class="form-label">
+                            {{@lang 'account.orders.return.reason'}}
+                            <small>{{@lang 'common.required'}}</small>
+                        </label>
+                        <select name="return_reason" id="return_reason" class="form-select">
+                            {{#each account_new_return.reasons}}
+                                <option value="{{this}}">{{this}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                    <div class="form-field">
+                        <label for="return_action" class="form-label">
+                            {{@lang 'account.orders.return.action'}}
+                        </label>
+                        <select name="return_action" id="return_action" class="form-select">
+                            {{#each account_new_return.actions}}
+                                <option value="{{this}}">{{this}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                </fieldset>
+                <fieldset class="form-fieldset form-addReturn-column">
+                    <div class="form-field">
+                        <label for="return_comments" class="form-label">
+                            {{@lang 'account.orders.return.comments'}}
+                        </label>
+                        <textarea class="form-input" rows="8" name="return_comments" id="return_comments"></textarea>
+                    </div>
+                </fieldset>
+            </div>
+            <div class="form-actions">
+                <input class="button button--primary" type="submit" value="Submit Return Request" />
+            </div>
+        </form>
+    {{else}}
+        <p>{{@lang 'account.orders.return.already_returned'}}</p>
+        <a href="{{urls.account.orders.all}}" class="button">{{@lang 'account.orders.return.back_button'}}</a>
+    {{/if}}
 </div>
 {{/partial}}
 {{> layout/base}}

@@ -26,9 +26,9 @@
                                 <td class="table-cell--numericData">{{price}}</td>
                                 <td class="form-field">
                                     <select class="form-select" name="return_qty[{{id}}]">
-                                        {{#each select}}
+                                        {{#enumerate 0 quantity}}
                                             <option value="{{this}}">{{this}}</option>
-                                        {{/each}}
+                                        {{/enumerate}}
                                     </select>
                                 </td>
                             </tr>

@@ -204,3 +204,33 @@
     background-position: center;
     background-repeat: no-repeat;
 }
+
+
+// Form input (small)
+// -----------------------------------------------------------------------------
+.form-input--small {
+    height: $input-small-height;
+    padding: $input-small-padding;
+}
+
+
+// Form min/max input row
+// -----------------------------------------------------------------------------
+.form-minMaxRow {
+    @include clearfix();
+    margin-left: -$form-minMaxRow-column-gutter;
+    margin-right: -$form-minMaxRow-column-gutter;
+
+    .form-field {
+        @include grid-column(4);
+        margin-bottom: 0;
+        padding-left: $form-minMaxRow-column-gutter;
+        padding-right: $form-minMaxRow-column-gutter;
+    }
+
+    .button {
+        padding-left: 0;
+        padding-right: 0;
+        width: 100%;
+    }
+}

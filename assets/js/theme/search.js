@@ -8,7 +8,7 @@ export default class Search extends PageManager {
 
         super();
 
-        FacetedSearch({
+        new FacetedSearch({
             productListing: 'search/product-listing',
             sidebar: 'search/sidebar'
         }, function(content) {

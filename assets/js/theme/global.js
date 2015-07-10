@@ -9,6 +9,7 @@ import quickView from './global/quick-view';
 import cartPreview from './global/cart-preview';
 import privacyCookieNotification from './global/cookieNotification';
 import carousel from './common/carousel';
+import collapsible from './common/collapsible';
 
 export default class Global extends PageManager {
     constructor() {
@@ -29,6 +30,7 @@ export default class Global extends PageManager {
         carousel();
         toggleMenu();
         mobileMenu();
+        collapsible();
         privacyCookieNotification();
         next();
     }

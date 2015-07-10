@@ -2,23 +2,23 @@
     <ul class="pagination-list">
         {{#if previous}}
         <li class="pagination-item pagination-item--previous">
-            <a class="pagination-link" href="{{previous}}">{{@lang 'common.previous'}}</a>
+            <a class="pagination-link" href="{{previous}}" data-faceted-search-facet>{{@lang 'common.previous'}}</a>
         </li>
         {{/if}}
         {{#each links}}
         {{#if this.current}}
         <li class="pagination-item pagination-item--current">
-            <a class="pagination-link" href="{{this.url}}">{{this.number}}</a>
+            <a class="pagination-link" href="{{this.url}}" data-faceted-search-facet>{{this.number}}</a>
         </li>
         {{else}}
         <li class="pagination-item">
-            <a class="pagination-link" href="{{this.url}}">{{this.number}}</a>
+            <a class="pagination-link" href="{{this.url}}" data-faceted-search-facet>{{this.number}}</a>
         </li>
         {{/if}}
         {{/each}}
         {{#if next}}
         <li class="pagination-item pagination-item--next">
-            <a class="pagination-link" href="{{next}}">{{@lang 'common.next'}}</a>
+            <a class="pagination-link" href="{{next}}" data-faceted-search-facet>{{@lang 'common.next'}}</a>
         </li>
         {{/if}}
     </ul>

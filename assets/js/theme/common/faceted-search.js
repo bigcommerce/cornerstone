@@ -258,6 +258,7 @@ export default class FacetedSearch {
             queryParams = $(event.currentTarget).serialize().split('=');
 
         url.query[queryParams[0]] = queryParams[1];
+        delete url.query['page'];
 
         event.preventDefault();
 

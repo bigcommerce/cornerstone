@@ -1,38 +1,28 @@
-<div class="accordion-block">
-    <div
-        class="accordion-navigation toggleLink {{#unless ../start_collapsed }} is-open {{/unless}}"
-        role="button"
-        data-target="#facetedSearch-content--{{ facet }}"
-        data-collapsible>
-        <h5 class="accordion-title">
-            {{ title }}
-        </h5>
-
-        <div class="accordion-navigation-actions">
-            {{#if selected}}
-                <a href="{{ remove_url }}" data-faceted-search-facet>{{@lang 'search.faceted.clear'}}</a>
-            {{/if}}
-            <svg class="icon accordion-indicator toggleLink-text toggleLink-text--off">
-                <use xlink:href="#icon-add" />
-            </svg>
-            <svg class="icon accordion-indicator toggleLink-text toggleLink-text--on">
-                <use xlink:href="#icon-remove" />
-            </svg>
-        </div>
+<div class="facet-container facet-container-rating js-accordion-container {{ facetState }}">
+    <div class="facet-header js-facet-accordion-action">
+        <h6 class="facet-header-title">{{ title }}</h6>
+        {{#if selected}}
+            <a href="{{remove_url}}" data-faceted-search-facet class="js-facet-clear">{{@lang 'search.faceted.clear'}}</a>
+        {{/if}}
     </div>
-
-    <div id="facetedSearch-content--{{ facet }}" class="accordion-content {{#unless ../start_collapsed }} is-open {{/unless}}">
-        <ul class="navList">
+    <div class="facet-body">
+        <ul class="facet-options-list">
             {{#each items}}
-                <li class="navList-item {{#if selected }} is-selected {{/if}}">
-                    <a href="{{ url }}" class="navList-action navList-action--checkbox" data-faceted-search-facet>
-                        {{> components/products/ratings rating=title}}
-                        {{@lang 'search.faceted.rating.and-up'}}
-                        {{#if ../show_product_counts}}
-                            <span>({{ count }})</span>
-                        {{/if}}
-                    </a>
-                </li>
+            <li class="facet-option js-facet-option {{#if selected }} selected {{/if}}" >
+                <a href="{{url}}" data-faceted-search-facet>
+                    <img
+                            class="facet-option-rating-stars"
+                            src="/assets/img/IcoRating{{ title }}.png"
+                            alt="{{ title }}"
+                            />
+                    {{@lang 'search.faceted.rating.and-up'}}
+                    {{#if ../show_product_counts}}
+                            <span class="facet-option-product-count">
+                                ({{ count }})
+                            </span>
+                    {{/if}}
+                </a>
+            </li>
             {{/each}}
         </ul>
     </div>

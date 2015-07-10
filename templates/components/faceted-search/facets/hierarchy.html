@@ -1,51 +1,34 @@
-<div class="accordion-block">
-    <div
-        class="accordion-navigation toggleLink {{#unless ../start_collapsed }} is-open {{/unless}}"
-        role="button"
-        data-target="#facetedSearch-content--{{ facet }}"
-        data-collapsible>
-        <h5 class="accordion-title">
-            {{ title }}
-        </h5>
-
-        <div class="accordion-navigation-actions">
-            {{#if selected}}
-                <a href="{{ remove_url }}" data-faceted-search-facet>{{@lang 'search.faceted.clear'}}</a>
-            {{/if}}
-            <svg class="icon accordion-indicator toggleLink-text toggleLink-text--off">
-                <use xlink:href="#icon-add" />
-            </svg>
-            <svg class="icon accordion-indicator toggleLink-text toggleLink-text--on">
-                <use xlink:href="#icon-remove" />
-            </svg>
-        </div>
+<div class="facet-container facet-container-category">
+    <div class="facet-header js-facet-accordion-action">
+        <h6 class="facet-header-title">{{ title }}</h6>
+        {{#if selected}}
+            <a href="{{remove_url}}" data-faceted-search-facet class="js-facet-clear">{{@lang 'search.faceted.clear'}}</a>
+        {{/if}}
     </div>
-
-    <div id="facetedSearch-content--{{ facet }}" class="accordion-content {{#unless ../start_collapsed }} is-open {{/unless}}">
-        <ul class="navList">
+    <div class="facet-body">
+        <ul class="facet-options-list">
             {{#each items}}
-                <li class="navList-item">
-                    <a
-                        href="{{url}}"
-                        class="navList-action {{#if selected }} is-selected {{/if}} {{#if has_sub_categories }} has-children {{/if}}"
-                        data-id="{{ id }}"
-                        data-faceted-search-facet>
+                <li class="facet-option js-facet-option{{#if selected }} selected {{/if}}">
+                    <a data-id="{{ id }}"
+                       href="{{url}}"
+                       data-faceted-search-facet
+                       class="facet-category-option js-facet-category-option {{#if has_sub_categories }} facet-category-option-has-children {{/if}}" >
                         {{ title }}
                         {{#if ../show_product_counts}}
                             {{#if count}}
-                                <span>({{ count }})</span>
+                                <span class="facet-option-product-count">
+                                    ({{ count }})
+                                </span>
                             {{/if}}
                         {{/if}}
                     </a>
                 </li>
             {{/each}}
         </ul>
-
         {{#if show_more_toggle}}
-            <a href="#facetedSearch-navList--{{ facet }}" role="button" class="toggleLink">
-                <span class="toggleLink-text toggleLink-text--on">{{@lang 'search.faceted.show-less'}}</span>
-                <span class="toggleLink-text toggleLink-text--off">{{@lang 'search.faceted.show-more'}}</span>
-            </a>
+            <div class="js-facet-more-options">
+                <button type="button" class="btn btn-facet-more-options">{{@lang 'search.faceted.show-more'}}</button>
+            </div>
         {{/if}}
     </div>
 </div>

@@ -1,45 +1,10 @@
-<div id="facetedSearch" class="facetedSearch sidebarBlock">
+<div class="js-faceted-search-column">
     {{> components/faceted-search/selected-facets this.selected}}
-
-    <a href="#facetedSearch-navList" role="button" class="facetedSearch-toggle toggleLink" data-collapsible>
-        <span class="facetedSearch-toggle-text">
-            {{#compare facets.length 2 operator='>' }}
-                {{@lang 'search.faceted.browse-by'}} {{ @join (@pluck facets 'title') ', ' limit=2 }} &amp; {{ @toLowerCase (@lang 'search.faceted.more') }}
-            {{/compare}}
-
-            {{#compare facets.length 2 operator='<=' }}
-                {{@lang 'search.faceted.browse-by'}} {{ @join (@pluck facets 'title') ', ' lastSeparator=' & ' }}
-            {{/compare}}
-        </span>
-
-        <span class="facetedSearch-toggle-indicator">
-            <span class="toggleLink-text toggleLink-text--on">
-                {{@lang 'search.faceted.hide-filters'}}
-
-                <i class="icon" aria-hidden="true">
-                    <svg><use xlink:href="#icon-keyboard-arrow-up"/></svg>
-                </i>
-            </span>
-
-            <span class="toggleLink-text toggleLink-text--off">
-                {{@lang 'search.faceted.show-filters'}}
-
-                <i class="icon" aria-hidden="true">
-                    <svg><use xlink:href="#icon-keyboard-arrow-down"/></svg>
-                </i>
-            </span>
-        </span>
-    </a>
-
-    <div
-        id="facetedSearch-navList"
-        class="facetedSearch-navList blocker-container">
-        <div class="accordion accordion--navList">
-            {{#each this.facets}}
+    <div class="js-faceted-search-container">
+        {{#each this.facets}}
+            <div class="js-facet-wrapper">
                 {{{@field this}}}
-            {{/each}}
-        </div>
-
-        <div class="blocker" style="display: none;"></div>
+            </div>
+        {{/each}}
     </div>
 </div>

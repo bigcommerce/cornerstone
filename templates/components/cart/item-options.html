@@ -2,12 +2,12 @@
     <input type="hidden" name="item_id" value="{{item.id}}">
     <p>
         {{#each product.customizations}}
-            <div>{{{@renderProductCustomization item}}}</div>
+            <div>{{{@dynamicComponent 'components/products/customizations'}}}</div>
         {{/each}}
     </p>
     <p> Options
         {{#each product.options}}
-            <div>{{{@renderProductOption item}}}</div>
+            <div>{{{@dynamicComponent 'components/products/options'}}}</div>
         {{/each}}
     </p>
     <input type="submit" class="btn btn-success" value="Save">

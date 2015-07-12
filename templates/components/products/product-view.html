@@ -47,11 +47,11 @@
 
                 <div data-product-options>
                     {{#each product.customizations}}
-                        {{{renderProductCustomization this}}}
+                        {{{@dynamicComponent 'components/products/customizations'}}}
                     {{/each}}
 
                     {{#each product.options}}
-                        {{{@renderProductOption this}}}
+                        {{{@dynamicComponent 'components/products/options'}}}
                     {{/each}}
                 </div>
 

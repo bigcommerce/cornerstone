@@ -4,6 +4,7 @@ import 'foundation/js/foundation/foundation.dropdown';
 import 'foundation/js/foundation/foundation.reveal';
 import product from '../common/product';
 import utils from 'bigcommerce/stencil-utils';
+import imageGallery from '../product/image-gallery';
 
 export default function () {
     let $modal = $('#modal'),
@@ -14,7 +15,7 @@ export default function () {
     // init shared product functionality
     new product();
 
-    $('.quickview').on('click', (event) => {
+    $('body').on('click', '.quickview', (event) => {
         let productId = $(event.currentTarget).data('product-id');
 
         event.preventDefault();
@@ -33,10 +34,15 @@ export default function () {
         utils.api.product.getById(productId, {template: 'products/quick-view'}, (err, response) => {
             $modalOverlay.hide();
             $modalContent.html(response);
+            setNewImageGallery();
         });
     });
 
     $modal.on('close.fndtn.reveal', (event) => {
         $modal.removeClass(modalModifierClasses);
     });
+
+    function setNewImageGallery() {
+        new imageGallery($modalContent.find('[data-image-gallery]'));
+    };
 }

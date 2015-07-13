@@ -5,6 +5,7 @@ import $ from 'jquery';
 import utils from 'bigcommerce/stencil-utils';
 import 'foundation/js/foundation/foundation';
 import 'foundation/js/foundation/foundation.reveal';
+import imageGallery from '../product/image-gallery';
 
 export default class Product {
     constructor() {
@@ -12,6 +13,7 @@ export default class Product {
         this.productOptions();
         this.quantityChange();
         this.addProductToCart();
+        this.setImageGallery();
     }
 
     /**
@@ -174,5 +176,13 @@ export default class Product {
         });
 
         return params;
+    }
+
+    setImageGallery() {
+        let $gallery = $('[data-image-gallery]');
+
+        if ($gallery.length) {
+            new imageGallery($gallery);
+        }
     }
 }

@@ -20,16 +20,26 @@
         </div>
     </section>
 
-    <section class="productView-images">
-        <figure class="productView-image">
-            <a href="{{@image product.main_image 'zoom'}}" alt="{{image.alt}}">
-                <img itemprop="image" src="{{@image product.main_image 'product'}}" alt="{{image.alt}}">
+    <section class="productView-images" data-image-gallery>
+        <figure class="productView-image"
+            data-image-gallery-main
+            data-zoom-image="{{@image product.main_image 'zoom'}}"
+        >
+            <a href="{{@image product.main_image 'zoom'}}">
+                <img src="{{@image product.main_image 'product'}}" alt="{{image.alt}}">
             </a>
         </figure>
         <ul class="productView-thumbnails">
             {{#each product.images}}
             <li class="productView-thumbnail">
-                <img src="{{@image this 'thumb'}}" alt="{{image.alt}}">
+                <a
+                    class="productView-thumbnail-link"
+                    href="{{@image this 'product'}}"
+                    data-image-gallery-item
+                    data-image-gallery-new-image-url="{{@image this 'product'}}"
+                    data-image-gallery-zoom-image-url="{{@image this 'zoom'}}">
+                    <img src="{{@image this 'thumb'}}" alt="{{image.alt}}">
+                </a>
             </li>
             {{/each}}
         </ul>

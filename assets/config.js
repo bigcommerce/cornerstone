@@ -25,6 +25,7 @@ System.config({
     "casperin/nod": "github:casperin/nod@2.0.4",
     "core-js": "npm:core-js@0.9.18",
     "foundation": "github:bigcommerce-labs/foundation@5.5.3",
+    "jackmoore/zoom": "github:jackmoore/zoom@1.7.14",
     "jquery": "github:components/jquery@2.1.4",
     "lodash": "npm:lodash@3.9.3",
     "slick-carousel": "github:kenwheeler/slick@1.5.5",

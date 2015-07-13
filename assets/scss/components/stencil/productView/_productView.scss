@@ -54,17 +54,18 @@
     @include breakpoint("large") {
         width: 20%;
     }
+}
 
+.productView-thumbnail-link {
+    border: 2px solid transparent;
+    display: inline-block;
+    padding: 2px;
+    text-align: center;
+    width: 100%;
+
+    &:hover,
     &.is-active {
-
-        > img {
-            border: 2px solid color("greys", "darker");
-            padding: 2px;
-        }
-    }
-
-    > img {
-        width: 100%;
+        border-color: color("greys", "darker");
     }
 }
 

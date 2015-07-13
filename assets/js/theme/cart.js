@@ -39,7 +39,7 @@ export default class Cart extends PageManager {
         this.$overlay.show();
         utils.api.cart.itemRemove(itemId, (err, response) => {
             if (response.data.status === 'succeed') {
-                this.refreshContent(remove);
+                this.refreshContent(true);
             } else {
                 alert(response.data.errors.join('\n'));
             }

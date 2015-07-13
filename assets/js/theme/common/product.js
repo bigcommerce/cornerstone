@@ -24,7 +24,11 @@ export default class Product {
         return {
             $price: $('.productView-price', $productView),
             $increments: $('.form-field--increments :input', $productView),
-            $addToCart: $('#form-action-addToCart', $productView)
+            $addToCart: $('#form-action-addToCart', $productView),
+            quantity: {
+                $text: $('.incrementTotal', $productView),
+                $input: $('[name=qty\\[\\]]', $productView)
+            }
         }
     }
 
@@ -69,10 +73,12 @@ export default class Product {
      *
      */
     quantityChange() {
-        $('#product-quantity').on('click', 'button', (event) => {
+        $('[data-quantity-change]').on('click', 'button', (event) => {
             event.preventDefault();
-            let qty = this.viewModel.quantity(),
-                $target = $(event.target);
+            let $target = $(event.currentTarget),
+                $productView = $target.parents('.productView'),
+                viewModel = this.getViewModel($productView),
+                qty = viewModel.quantity.$input.val();
 
             if ($target.data('action') === 'inc') {
                 qty++;
@@ -80,7 +86,10 @@ export default class Product {
                 qty--;
             }
 
-            this.viewModel.quantity(qty);
+            // update hidden input
+            viewModel.quantity.$input.val(qty);
+            // update text
+            viewModel.quantity.$text.text(qty);
         });
     }
 

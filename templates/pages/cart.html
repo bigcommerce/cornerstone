@@ -9,20 +9,26 @@
     </div>
 
     {{#if cart.items.length}}
+        <div class="loadingOverlay"></div>
         <div data-cart-content>
             {{> components/cart/content}}
         </div>
         <div>
-            <a href="{{urls.checkout.single_address}}" title="Click here to proceed to checkout">Checkout</a>
+            <a href="{{urls.checkout.single_address}}" title="{{@lang 'cart.checkout.title'}}">{{@lang 'cart.checkout.button'}}</a>
         </div>
 
         {{#if show_multiple_address_shipping}}
             <div>
-                <p><span> or </span><a href="{{urls.checkout.multiple_address}}"><strong>check out with multiple addresses</strong></a></p>
+                <p>
+                    <span> {{@lang 'cart.checkout.address.or'}} </span>
+                    <a href="{{urls.checkout.multiple_address}}">
+                        <strong>{{@lang 'cart.checkout.address.multiple'}}</strong>
+                    </a>
+                </p>
             </div>
         {{/if}}
     {{else}}
-        <h3>Your Cart is empty</h3>
+        <h3>{{@lang 'cart.checkout.empty_cart'}}</h3>
     {{/if}}
 
 </div>

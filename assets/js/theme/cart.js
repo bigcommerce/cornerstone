@@ -5,6 +5,10 @@ import utils from 'bigcommerce/stencil-utils';
 
 export default class Cart extends PageManager {
     loaded(next) {
+        this.$cartContent = $('[data-cart-content]');
+        this.$overlay = $('[data-cart] .loadingOverlay')
+            .hide(); // TODO: temporary until roper pulls in his cart components
+
         this.bindEvents();
         next();
     }
@@ -12,14 +16,18 @@ export default class Cart extends PageManager {
     cartUpdate($target) {
         let itemId = $target.data('cart-itemid'),
             $el = $('#qty-' + itemId),
-            oldQty = parseInt($el.text()),
+            oldQty = parseInt($el.text(), 10),
             newQty;
 
+        this.$overlay.show();
         newQty = $target.data('action') === 'inc' ? oldQty + 1 : oldQty - 1;
-        $el.text(newQty);
         utils.api.cart.itemUpdate(itemId, newQty, (err, response) => {
+            this.$overlay.hide();
+
             if (response.data.status === 'succeed') {
-                this.refreshContent();
+                // if the quantity is changed "1" from "0", we have to remove the row.
+                let remove = (newQty === 0);
+                this.refreshContent(remove);
             } else {
                 $el.text(oldQty);
                 alert(response.data.errors.join('\n'));
@@ -28,19 +36,28 @@ export default class Cart extends PageManager {
     }
 
     cartRemoveItem(itemId) {
+        this.$overlay.show();
         utils.api.cart.itemRemove(itemId, (err, response) => {
             if (response.data.status === 'succeed') {
-                this.refreshContent();
+                this.refreshContent(remove);
             } else {
                 alert(response.data.errors.join('\n'));
             }
         });
     }
 
-    refreshContent() {
-        utils.api.cart.getContent('cart/content', (err, response) => {
-            $('[data-cart-content]').html(response.content);
+    refreshContent(remove) {
+        let $cartItemsRows = $('[data-item-row]', this.$cartContent);
+
+        // Remove last item from cart? Reload
+        if (remove && $cartItemsRows.length == 1) {
+            return window.location.reload();
+        }
+
+        utils.api.cart.getContent({template: 'cart/content'}, (err, response) => {
+            this.$cartContent.html(response.content);
             this.bindEvents();
+            this.$overlay.hide();
         });
     }
 
@@ -50,7 +67,7 @@ export default class Cart extends PageManager {
             cartRemoveItem = _.bind(_.debounce(this.cartRemoveItem, debounceTimeout), this);
 
         // cart update
-        $('.cart-update').on('click', (event) => {
+        $('.cart-update', this.$cartContent).on('click', (event) => {
             let $target = $(event.currentTarget);
 
             event.preventDefault();
@@ -58,7 +75,7 @@ export default class Cart extends PageManager {
             cartUpdate($target);
         });
 
-        $('.cart-remove').on('click', (event) => {
+        $('.cart-remove', this.$cartContent).on('click', (event) => {
             let itemId = $(event.currentTarget).data('cart-itemid');
 
             event.preventDefault();

@@ -73,7 +73,7 @@ export default class Product {
      *
      */
     quantityChange() {
-        $('[data-quantity-change]').on('click', 'button', (event) => {
+        $('body').on('click', '[data-quantity-change] button', (event) => {
             event.preventDefault();
             let $target = $(event.currentTarget),
                 $productView = $target.parents('.productView'),

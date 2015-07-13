@@ -13,9 +13,6 @@
     .icon { // 1
         @include square($socialLinks-iconSize);
         text-decoration: none;
-        svg {
-            fill: $socialLinks-iconColor;
-        }
     }
 }
 
@@ -29,5 +26,20 @@
         @include breakpoint("small") {
             margin-left: spacing("half") + spacing("quarter");
         }
+    }
+}
+
+
+//
+// Alternate social link styles
+// -----------------------------------------------------------------------------
+
+.socialLinks--alt {
+    .icon {
+        @include square($socialLinks-alt-iconSize);
+    }
+
+    svg {
+        fill: $socialLinks-alt-iconColor;
     }
 }

@@ -93,37 +93,46 @@
             </form>
         </div>
 
-        <!-- AddThis Button BEGIN -->
-        <article class="shareProduct addthis_toolbox addthis_default_style" data-product-share>
-            <a class="addthis_button_facebook at300b" title="Facebook" href="#">
-                <span class="at4-icon aticon-facebook" style="background-color: rgb(48, 88, 145);">
-                    <span class="at_a11y">Share on facebook</span>
-                </span>
-            </a>
-            <a class="addthis_button_twitter at300b" title="Tweet" href="#">
-                <span class="at4-icon aticon-twitter" style="background-color: rgb(44, 168, 210);">
-                    <span class="at_a11y">Share on twitter</span>
-                </span>
-            </a>
-            <a class="addthis_button_google at300b" target="_blank" title="Google" href="#">
-                <span class="at4-icon aticon-google" style="background-color: rgb(8, 104, 185);">
-                    <span class="at_a11y">Share on google</span>
-                </span>
-            </a>
-            <a class="addthis_button_email at300b" target="_blank" title="Email" href="#">
-                <span class="at4-icon aticon-email" style="background-color: rgb(115, 138, 141);">
-                    <span class="at_a11y">Share on email</span>
-                </span>
-            </a>
-            <a class="addthis_button_print at300b" title="Print" href="#">
-                <span class="at4-icon aticon-print" style="background-color: rgb(115, 138, 141);">
-                    <span class="at_a11y">Share on print</span>
-                </span>
-            </a>
-            <div class="atclear"></div>
-        </article>
+        <div class="addthis_toolbox addthis_32x32_style" addthis:url="{{product.url}}" addthis:title="{{product.title}}">
+            <ul class="socialLinks">
+                {{#each product.add_this}}
+                <li class="socialLinks-item">
+                    <a class="addthis_button_{{service}} icon icon--{{service}}" {{{annotation}}}>
+                        {{#compare service 'google_plusone' operator='==='}}
+                        <!-- No custom icons allowed with g+ -->
+                        {{/compare}}
 
-        <!-- AddThis Button END -->
+                        {{#compare service 'facebook' operator='==='}}
+                        <svg><use xlink:href="#icon-facebook" /></svg>
+                        {{/compare}}
+
+                        {{#compare service 'email' operator='==='}}
+                        <svg><use xlink:href="#icon-envelope" /></svg>
+                        {{/compare}}
+
+                        {{#compare service 'print' operator='==='}}
+                        <svg><use xlink:href="#icon-print" /></svg>
+                        {{/compare}}
+
+                        {{#compare service 'twitter' operator='==='}}
+                        <svg><use xlink:href="#icon-twitter" /></svg>
+                        {{/compare}}
+
+                        {{#compare service 'linkedin' operator='==='}}
+                        <svg><use xlink:href="#icon-linkedin" /></svg>
+                        {{/compare}}
+                    </a>
+                </li>
+                {{/each}}
+            </ul>
+            <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4e94ed470ee51e32"></script>
+            <script>
+                if(typeof(addthis) === "object") {
+                    addthis.toolbox('.addthis_toolbox');
+                }
+            </script>
+        </div>
+
     </section>
 
     <article class="productView-description" itemprop="description">

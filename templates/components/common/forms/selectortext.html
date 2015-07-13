@@ -3,11 +3,11 @@
         <label class="form-label" for="{{id}}_input">{{label}}
             {{#if required}}<small>{{@lang 'common.required' }}</small>{{/if}}
         </label>
-        <input type="text" id="{{id}}_input" name="{{name}}" value="{{value}}" class="{{class}}" aria-required="{{required}}" data-label="{{label}}" {{#if style}}style="{{style}}" {{/if}} />
+        <input type="text" id="{{id}}_input" name="{{name}}" value="{{value}}" class="form-input" aria-required="{{required}}" data-label="{{label}}" />
     </noscript>
 
     <label class="form-label" for="{{id}}_select">{{label}}{{#if required}}<small>required</small>{{/if}}</label>
-    <select name="{{name}}" class="{{class}} form-select" aria-required="{{required}}" id="{{id}}_select" data-label="{{label}}" {{#if style}}style="{{style}}" {{/if}}>
+    <select name="{{name}}" class="form-select" aria-required="{{required}}" id="{{id}}_select" data-label="{{label}}">
         {{#if options}}
             <option value="">{{chooseprefix}}</option>
             {{#each options}}

@@ -50,16 +50,17 @@ function makeStateOptional(stateElement) {
  * @param $selectElement
  */
 function addOptions(statesArray, $selectElement) {
+    let container = [];
+    container.push(`<option>${statesArray.prefix}</option>`);
     if (!_.isEmpty($selectElement)){
-        let container = _.map(statesArray, (stateObj)  => {
-            return `<option value="${stateObj.name}">${stateObj.name}</option>`;
+        _.each(statesArray.states, (stateObj)  => {
+            container.push(`<option value="${stateObj.name}">${stateObj.name}</option>`);
         });
-
         $selectElement.html(container.join(' '));
     }
 }
 
-export default function (stateElement) {
+export default function (stateElement, callback) {
 
     $('select[data-label="Country"]').on('change', (event) => {
         let countryName = $(event.currentTarget).val();
@@ -70,21 +71,22 @@ export default function (stateElement) {
 
         utils.api.country.getByName(countryName, (err, response) => {
             let $currentInput;
+
             if (err) {
                 alert('There was an error');
             }
 
             $currentInput = $('[data-label="State/Province"]');
 
-
             if (!_.isEmpty(response.data.states)) {
                 // The element may have been replaced with a select, reselect it
                 let $selectElement = makeStateRequired($currentInput);
-
-                addOptions(response.data.states, $selectElement);
+                addOptions(response.data, $selectElement);
+                callback($selectElement);
 
             } else {
-                makeStateOptional($currentInput);
+                let newElement = makeStateOptional($currentInput);
+                callback(newElement);
             }
         })
     });

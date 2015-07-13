@@ -92,7 +92,6 @@ function buildNumberRangeValidation(validation, formFieldSelector) {
 function buildValidation($formElement, $formFieldElement) {
     let validation = $formFieldElement.data('validation'),
         fieldValidations = [],
-        fieldName = validation.name,
         formFieldSelector = `#${$formFieldElement.attr('id')}`;
 
     if (validation.type === 'datechooser') {
@@ -109,7 +108,6 @@ function buildValidation($formElement, $formFieldElement) {
             if (validation.type === 'numberonly') {
                 fieldValidations.push(buildNumberRangeValidation(validation, formFieldSelector));
             }
-
             if (validation.required) {
                 fieldValidations.push(buildRequiredValidation(validation, elementSelector));
             }

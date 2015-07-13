@@ -8,12 +8,12 @@
         <fieldset class="form-fieldset">
             {{#each forms.create_account.account_fields }}
                 <div class="create-account-field">
-                    {{{@field this}}}
+                    {{{@dynamicComponent 'components/common/forms'}}}
                 </div>
             {{/each}}
             {{#each forms.create_account.address_fields }}
                 <div class="create-account-field">
-                    {{{@field this}}}
+                    {{{@dynamicComponent 'components/common/forms'}}}
                 </div>
             {{/each}}
         </fieldset>

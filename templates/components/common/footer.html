@@ -1,3 +1,12 @@
+{{#if banners.bottom}}
+<div class="banners">
+    {{#each banners.bottom}}
+    <div class="banner">
+        {{{this}}}
+    </div>
+    {{/each}}
+</div>
+{{/if}}
 <footer class="footer" role="contentinfo">
     <div class="container">
         <section class="footer-info">
@@ -41,8 +50,4 @@
             <p class="powered-by">Powered by <a href="http://bigcommerce.com">Bigcommerce</a></p>
         </div>
     </div>
-
-    {{#each banners.bottom}}
-    {{{this}}}
-    {{/each}}
 </footer>

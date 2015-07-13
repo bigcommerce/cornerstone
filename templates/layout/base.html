@@ -24,8 +24,9 @@
         <script src="/assets/jspm_packages/system.js"></script>
         <script src="/assets/config.js"></script>
         <!--TODO Need Bundled JS Helper-->
+        {{footer.scripts}}
         <!--Loads JSPM main application, then instantiates each page type module when needed.  -->
         <script>System.import("js/app").then(function(data){ data.default("{{template_file}}", {{jsContext}}).load()});</script>
-        {{footer.scripts}}
+
     </body>
 </html>

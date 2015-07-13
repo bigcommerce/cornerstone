@@ -14,7 +14,7 @@ export class Collapsible {
     /**
      * @param {jQuery} $toggle - Trigger button
      * @param {jQuery} $target - Content to collapse / expand
-     * @param {object} options - Configurable options
+     * @param {object} [options] - Configurable options
      * @example
      *
      * <a href="#more">Collapse</a>
@@ -93,12 +93,15 @@ export class Collapsible {
 /*
  * Convenience method for constructing Collapsible instance
  *
+ * @example
  * <a href="#more" data-collapsible>Collapse</a>
  * <div id="content">...</div>
+ *
+ * collapsible();
  */
-export default function() {
-    let pluginKey = 'collapsible';
-    let $collapsibles = $(`[data-${ pluginKey }]`);
+export default function collapsible() {
+    let pluginKey = 'collapsible',
+        $collapsibles = $(`[data-${ pluginKey }]`);
 
     $collapsibles.each((index, element) => {
         let $toggle = $(element),

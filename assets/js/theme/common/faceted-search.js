@@ -48,6 +48,9 @@ export default class FacetedSearch {
         this.collapsedFacets = [];
         this.collapsedFacetItems = [];
 
+        // Init collapsibles
+        collapsible();
+
         // Show limited items by default
         $(this.options.facetNavListSelector).each((index, navList) => {
             this.collapseFacetItems($(navList));

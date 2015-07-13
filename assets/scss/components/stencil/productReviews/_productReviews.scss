@@ -28,7 +28,12 @@
 .productReviews-list {
     @include u-listHorizontal;
     @include grid-row($behavior: "nest");
+    display: none;
     margin-bottom: spacing("single");
+
+    &.is-open {
+        display: block;
+    }
 }
 
 

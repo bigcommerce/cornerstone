@@ -1,9 +1,16 @@
 {{#if this.total}}
 <div class="productReviews" id="product-reviews" data-product-reviews>
-    <a href="#" class="productReviews-displayToggle">{{@lang 'products.reviews.hide'}}</a>
-    <!-- TODO: Make sure that Hide reviews actually hides reviews -->
+    <a href="#productReviews-list" class="productReviews-displayToggle toggleLink is-open" data-collapsible>
+        <span class="toggleLink-text toggleLink-text--on">
+            {{@lang 'products.reviews.hide'}}
+        </span>
+        <span class="toggleLink-text toggleLink-text--off">
+            {{@lang 'products.reviews.show'}}
+        </span>
+    </a>
+
     <h4 class="productReviews-heading">{{@lang 'products.reviews.header' total=this.total}}</h4>
-    <ul class="productReviews-list">
+    <ul id="productReviews-list" class="productReviews-list is-open">
         {{#each this.list}}
         <li class="productReview">
             <article itemprop="review" itemscope itemtype="http://schema.org/Review">

@@ -59,7 +59,7 @@ export default class FacetedSearch {
                 collapsible = $accordionToggle.data('collapsible');
 
             if (collapsible.isCollapsed) {
-                this.collapsedFacets.push(id);
+                this.collapsedFacets.push(collapsible.targetId);
             }
         });
 

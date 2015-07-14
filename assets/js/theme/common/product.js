@@ -5,6 +5,7 @@ import $ from 'jquery';
 import utils from 'bigcommerce/stencil-utils';
 import 'foundation/js/foundation/foundation';
 import 'foundation/js/foundation/foundation.reveal';
+import imageGallery from '../product/image-gallery';
 
 export default class Product {
     constructor() {
@@ -12,6 +13,7 @@ export default class Product {
         this.productOptions();
         this.quantityChange();
         this.addProductToCart();
+        this.setImageGallery();
     }
 
     /**
@@ -40,9 +42,9 @@ export default class Product {
     productOptions() {
         // product options
         $('body').on('change', '[data-product-options]', (event) => {
-            let $productView = $('.productView'),
-                $target = $(event.target),     // actual element that is clicked
+            let $target = $(event.target),     // actual element that is clicked
                 $ele = $(event.currentTarget), // the element that has the data-tag
+                $productView = $target.parents('.productView'), // find the productView in context of what was clicked.
                 targetVal = $target.val(),     // value of the target
                 options = {},
                 productId = $('[name="product_id"]', $productView).val();
@@ -174,5 +176,13 @@ export default class Product {
         });
 
         return params;
+    }
+
+    setImageGallery() {
+        let $gallery = $('[data-image-gallery]');
+
+        if ($gallery.length) {
+            new imageGallery($gallery);
+        }
     }
 }

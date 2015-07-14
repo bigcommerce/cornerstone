@@ -1,6 +1,127 @@
+// =============================================================================
+// ACCOUNT (CSS)
+// =============================================================================
+
+
+// Account headings
+// -----------------------------------------------------------------------------
+
+.account-heading {
+    border-bottom: 1px solid color("greys", "lightest");
+    color: color("greys", "darker");
+    margin: 0;
+    padding-bottom: spacing("base");
+}
+
+
+// Account list
+// -----------------------------------------------------------------------------
+
+.account-list {
+    @include u-listBullets("none");
+}
+
+.account-listItem {
+    border-bottom: 1px solid color("greys", "lightest");
+    padding: spacing("single") 0;
+    position: relative;
+}
+
+.account-listItem-title {
+    margin: 0 0 spacing("eighth");
+    text-transform: inherit;
+
+    > a {
+        text-decoration: none;
+    }
+}
+
+.account-listItem-details {
+    @include grid-row($behavior: "nest");
+}
+
+.account-listItem-detail {
+    @include grid-column(3);
+}
+
+.account-listItem-detail-title {
+    color: color("greys", "light");
+    font-family: fontFamily("sans");
+    font-size: fontSize("tiny");
+    margin: 0 0 spacing("quarter");
+}
+
+
+// Account status
+// -----------------------------------------------------------------------------
+
+.account-status {
+    background-color: color("greys", "medium");
+    color: color("whites");
+    display: inline-block;
+    font-size: fontSize("tiny");
+    line-height: lineHeight("smallest");
+    margin: spacing("single") 0 0 spacing("double") * 2;
+    padding: spacing("eighth") spacing("half") spacing("eighth") spacing("half");
+
+    @include breakpoint("small") {
+        margin: 0;
+        position: absolute;
+        right: 0;
+        top: spacing("single");
+    }
+
+    @include breakpoint("medium") {
+        margin: spacing("half") 0 0 spacing("double")*2;
+        position: static;
+    }
+
+    @include breakpoint("large") {
+        margin: 0;
+        position: absolute;
+        right: 0;
+        top: 20px;
+    }
+}
+
+.account-status--order {
+    @include breakpoint("small") {
+        margin: 0;
+        position: absolute;
+        right: 0;
+        top: spacing("single");
+    }
+}
+
+.account-returnItems {
+    color: color("greys", "dark");
+    font-size: fontSize("tiny");
+    font-style: italic;
+    letter-spacing: letterSpacing("large");
+    text-decoration: underline;
+
+    @include breakpoint("small") {
+        margin: 0;
+        margin-top: spacing("quarter");
+        position: absolute;
+        right: 0;
+        top: spacing("double");
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
 @import "overview";
 @import "order-details";
-@import "orders-list";
 @import "address";
 
 // TODO: Componentize the accounts section, this is inconsistent with the rest of stencil.

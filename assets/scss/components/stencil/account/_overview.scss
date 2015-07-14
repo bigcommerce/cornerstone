@@ -2,14 +2,6 @@
 // Account Overview (CSS)
 // =============================================================================
 
-.account {
-    a {
-        text-decoration: none;
-    }
-
-    margin: spacing("double") auto spacing("double")*2;
-}
-
 .account-row {
     @include grid-row();
 
@@ -60,40 +52,4 @@
 
     margin-top: spacing("double")*2;
     text-align: left;
-}
-
-.account-heading {
-    border-bottom: 1px solid color("greys", "lighter");
-    color: color("greys", "darker");
-    margin: 0;
-    padding-bottom: spacing("single");
-}
-
-.account-info-status {
-    background: color("greys", "medium");
-    color: color("whites");
-    display: inline-block;
-    font-size: fontSize("tiny");
-    line-height: lineHeight("smallest");
-    margin: spacing("single") 0 0 spacing("double")*2;
-    padding: spacing("eighth") spacing("half") spacing("eighth") spacing("half");
-
-    @include breakpoint("small") {
-        margin: 0;
-        position: absolute;
-        right: 0;
-        top: spacing("single");
-    }
-
-    @include breakpoint("medium") {
-        margin: spacing("half") 0 0 spacing("double")*2;
-        position: static;
-    }
-
-    @include breakpoint("large") {
-        margin: 0;
-        position: absolute;
-        right: 0;
-        top: 20px;
-    }
 }

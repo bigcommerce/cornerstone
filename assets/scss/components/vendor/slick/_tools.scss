@@ -15,7 +15,7 @@
 }
 
 
-@mixin carouselOpaqueBackgrounds() { // 2
-    background-color: $carousel-bgColor--legacy;
-    background-color: $carousel-bgColor;
+@mixin carouselOpaqueBackgrounds($color: $carousel-bgColor) { // 2
+    background-color: rgba($color, 1);
+    background-color: $color;
 }

@@ -55,8 +55,15 @@
                     {{/each}}
                 </div>
 
+                {{#if product.stock_level}}
+                    <div class="form-field form-field--increments">
+                        <label class="form-label form-label--alternate">{{@lang 'products.current_stock'}}</label>
+                        <span>{{product.stock_level}}</span>
+                    </div>
+                {{/if}}
+
                 <div class="form-field form-field--increments">
-                    <label class="form-label form-label--alternate">Quantity:</label>
+                    <label class="form-label form-label--alternate">{{@lang 'products.quantity'}}</label>
                     <div class="buttonGroup" data-quantity-change>
                         <button class="button button--small" data-action="dec">-</button>
                         <button class="button button--small" data-action="inc">+</button>
@@ -65,9 +72,17 @@
                     <input type="hidden" name="qty[]" value="1">
                 </div>
 
-                <div class="form-action">
-                    <input id="form-action-addToCart" class="button button--primary" type="submit" value="{{@lang 'products.add_to_cart'}}">
-                </div>
+                {{#if product.can_purchase}}
+                    <div class="form-action">
+                        <input id="form-action-addToCart" class="button button--primary" type="submit" value="{{@lang 'products.add_to_cart'}}">
+                    </div>
+                {{else}}
+                    {{#if product.out_of_stock_message}}
+                        {{>components/common/alert-error product.out_of_stock_message}}
+                    {{else}}
+                        {{>components/common/alert-error (@lang 'products.sold_out')}}
+                    {{/if}}
+                {{/if}}
 
             </form>
 
@@ -107,7 +122,7 @@
             </a>
             <div class="atclear"></div>
         </article>
-        <script type="text/javascript" src="//s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4e94ed470ee51e32"></script>
+
         <!-- AddThis Button END -->
     </section>
 

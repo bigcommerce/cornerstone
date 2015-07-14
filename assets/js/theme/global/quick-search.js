@@ -1,12 +1,13 @@
 import $ from 'jquery';
 import _ from 'lodash';
 import utils from 'bigcommerce/stencil-utils';
+import stencilDropdown from './stencil-dropdown'
 
-function hideSearch($searchDiv) {
-    $searchDiv.removeClass('is-open f-open-dropdown').attr('style', '0px').attr('aria-hidden', 'true');
+function hideDropdown($searchDiv) {
+    $searchDiv.removeClass('is-open f-open-dropdown').attr('style', 'top: 0px').attr('aria-hidden', 'true');
 }
 
-function showSearch($searchDiv) {
+function showDropdown($searchDiv, event) {
     $searchDiv.addClass('is-open f-open-dropdown').attr('style', 'top: 49px;').attr('aria-hidden', 'false');
     event.stopPropagation();
 }
@@ -15,17 +16,7 @@ export default function () {
     let $quickSearchResults = $('.quickSearchResults');
     let $quickSearchDiv = $('#quickSearch');
 
-    $('[data-search="quickSearch"]').on('click', (event) => {
-        $quickSearchDiv.hasClass('is-open') ? hideSearch($quickSearchDiv) : showSearch($quickSearchDiv);
-    });
-
-    $quickSearchDiv.click((event) => {
-        event.stopPropagation();
-    });
-
-    $('body').click(function () {
-        hideSearch($quickSearchDiv);
-    });
+    stencilDropdown.bind($('[data-search="quickSearch"]'), $quickSearchDiv, 'top: 49px;');
 
     //stagger searching for 200ms after last input
     let doSearch = _.debounce((searchQuery) => {

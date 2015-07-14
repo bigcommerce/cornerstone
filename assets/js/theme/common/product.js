@@ -42,9 +42,9 @@ export default class Product {
     productOptions() {
         // product options
         $('body').on('change', '[data-product-options]', (event) => {
-            let $productView = $('.productView'),
-                $target = $(event.target),     // actual element that is clicked
+            let $target = $(event.target),     // actual element that is clicked
                 $ele = $(event.currentTarget), // the element that has the data-tag
+                $productView = $target.parents('.productView'), // find the productView in context of what was clicked.
                 targetVal = $target.val(),     // value of the target
                 options = {},
                 productId = $('[name="product_id"]', $productView).val();

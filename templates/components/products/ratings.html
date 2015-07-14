@@ -1,11 +1,15 @@
 {{#enumerate 1 5}}
     {{#compare ../this.rating this operator='>='}}
-        <svg class="icon icon--starFull">
-            <use xlink:href="#icon-star" />
-        </svg>
+        <span class="icon icon--starFull">
+            <svg>
+                <use xlink:href="#icon-star" />
+            </svg>
+        </span>
     {{else}}
-        <svg class="icon icon--starEmpty">
-            <use xlink:href="#icon-star" />
-        </svg>
+        <span class="icon icon--starEmpty">
+            <svg>
+                <use xlink:href="#icon-star" />
+            </svg>
+        </span>
     {{/compare}}
 {{/enumerate}}

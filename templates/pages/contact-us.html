@@ -1,7 +1,33 @@
 {{#partial "page"}}
 
-<main class="content">
-    <h1>Contact Us</h1>
+{{> components/common/breadcrumbs breadcrumbs}}
+
+<main class="page">
+
+    <h1 class="page-heading">{{page.title}}</h1>
+
+    {{#if page.sub_pages}}
+        <nav class="navBar">
+            <ul class="navBar-section">
+                {{#each page.sub_pages}}
+                    <li class="navBar-item"><a class="navBar-action" href="{{url}}">{{title}}</a></li>
+                {{/each}}
+            </ul>
+        </nav>
+    {{/if}}
+
+    <div class="page-content page-content--centered">
+        {{#if forms.contact.success}}
+            {{@lang 'forms.contact_us.successful'}}
+        {{else}}
+            {{{page.content}}}
+            {{> components/page/contact-us-form}}
+        {{/if}}
+
+    </div>
+
 </main>
+
 {{/partial}}
+
 {{> layout/base}}

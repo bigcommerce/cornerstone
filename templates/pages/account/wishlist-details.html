@@ -1,5 +1,6 @@
 {{#partial "page"}}
 <div class="account">
+
     {{> components/common/breadcrumbs breadcrumbs}}
     <h2 class="page-heading">{{@lang 'account.wishlists.view_heading' name=wishlist.name}}</h2>
     {{> components/account/navigation account_page='wishlists'}}
@@ -10,16 +11,18 @@
         <input class="form-input" value="{{settings.base_url}}{{wishlist.share_url}}">
     </div>
     {{/if}}
+
     <ul class="product-list">
         {{#each wishlist.items}}
         <li class="product-card">
             {{>components/products/card}}
-        </li>
             <form action="{{../urls.account.wishlists}}?wishlistid={{../wishlist.id}}&action=remove&item_id={{id}}" method="post">
                 <input type="submit" class="button button--primary button--small" value="{{@lang 'account.wishlists.remove_item'}}" />
             </form>
+        </li>
         {{/each}}
     </ul>
+
 </div>
 {{/partial}}
 {{> layout/base}}

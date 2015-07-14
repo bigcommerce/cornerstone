@@ -1,18 +1,16 @@
 <h5 class="footer-info-heading">{{@lang 'social.connect'}}</h5>
 <ul class="socialLinks">
-    <li class="socialLinks-item">
-        <a href="//www.twitter.com" class="icon icon--twitter">
-            <svg><use xlink:href="#icon-twitter" /></svg>
-        </a>
-    </li>
-    <li class="socialLinks-item">
-        <a href="//www.facebook.com" class="icon icon--facebook">
-            <svg><use xlink:href="#icon-facebook" /></svg>
-        </a>
-    </li>
-    <li class="socialLinks-item">
-        <a href="//www.pinterest.com" class="icon icon--pinterest">
-            <svg><use xlink:href="#icon-pinterest" /></svg>
-        </a>
-    </li>
+    {{#each footer.social_media}}
+        <li class="socialLinks-item">
+            {{#compare display_name 'google+' operator='==='}}
+                <a href="{{url}}" class="icon icon--google">
+                    <svg><use xlink:href="#icon-google" /></svg>
+                </a>
+            {{else}}
+                <a href="{{url}}" class="icon icon--{{display_name}}">
+                    <svg><use xlink:href="#icon-{{display_name}}" /></svg>
+                </a>
+            {{/compare}}
+        </li>
+    {{/each}}
 </ul>

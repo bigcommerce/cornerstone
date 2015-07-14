@@ -1,67 +1,67 @@
-<nav class="navBar account-navigation">
-    <ul class="navBar-section account-navigation">
+<nav class="navBar navBar--account">
+    <ul class="navBar-section">
         {{#compare account_page 'orders' operator='==='}}
-            <li class="navBar-item account-navigation-item active">
+            <li class="navBar-item is-active">
                 {{@lang 'account.nav.orders'}}
             </li>
         {{else}}
-            <li class="navBar-item account-navigation-item">
-                <a href="{{urls.account.orders.all}}">
+            <li class="navBar-item">
+                <a class="navBar-action" href="{{urls.account.orders.all}}">
                     {{@lang 'account.nav.orders'}}
                 </a>
             </li>
         {{/compare}}
         {{#compare account_page 'returns' operator='==='}}
-            <li class="navBar-item account-navigation-item active">
+            <li class="navBar-item is-active">
                 {{@lang 'account.nav.returns'}}
             </li>
         {{else}}
-            <li class="navBar-item account-navigation-item">
-                <a href="{{urls.account.returns}}">
+            <li class="navBar-item">
+                <a class="navBar-action" href="{{urls.account.returns}}">
                     {{@lang 'account.nav.returns'}}
                 </a>
             </li>
         {{/compare}}
         {{#compare account_page 'addresses' operator='==='}}
-            <li class="navBar-item account-navigation-item active">
+            <li class="navBar-item is-active">
                 {{@lang 'account.nav.addresses'}}
             </li>
         {{else}}
-            <li class="navBar-item account-navigation-item">
-                <a href="{{urls.account.addresses}}">
+            <li class="navBar-item">
+                <a class="navBar-action" href="{{urls.account.addresses}}">
                     {{@lang 'account.nav.addresses'}}
                 </a>
             </li>
         {{/compare}}
         {{#compare account_page 'wishlists' operator='==='}}
-            <li class="navBar-item account-navigation-item active">
+            <li class="navBar-item is-active">
                 {{@lang 'account.nav.wishlists'}}
             </li>
         {{else}}
-            <li class="navBar-item account-navigation-item">
-                <a href="{{urls.account.wishlists}}">
+            <li class="navBar-item">
+                <a class="navBar-action" href="{{urls.account.wishlists}}">
                     {{@lang 'account.nav.wishlists'}}
                 </a>
             </li>
         {{/compare}}
         {{#compare account_page 'recent_items' operator='==='}}
-            <li class="navBar-item account-navigation-item active">
+            <li class="navBar-item is-active">
                 {{@lang 'account.nav.recently_viewed'}}
             </li>
         {{else}}
-            <li class="navBar-item account-navigation-item">
-                <a href="{{urls.account.recent_items}}">
+            <li class="navBar-item">
+                <a class="navBar-action" href="{{urls.account.recent_items}}">
                     {{@lang 'account.nav.recently_viewed'}}
                 </a>
             </li>
         {{/compare}}
         {{#compare account_page 'settings' operator='==='}}
-            <li class="navBar-item account-navigation-item active">
+            <li class="navBar-item is-active">
                 {{@lang 'account.nav.settings'}}
             </li>
         {{else}}
-            <li class="navBar-item account-navigation-item">
-                <a href="{{urls.account.details}}">
+            <li class="navBar-item">
+                <a class="navBar-action" href="{{urls.account.details}}">
                     {{@lang 'account.nav.settings'}}
                 </a>
             </li>

@@ -30,3 +30,56 @@
 .account-sidebar {
     @include grid-column(4);
 }
+
+
+// Account navigation
+// -----------------------------------------------------------------------------
+
+.navBar--account {
+    display: none;
+    margin-bottom: spacing("single") * 3;
+    text-align: center;
+
+    @include breakpoint("medium") {
+        display: block;
+    }
+
+    .navBar-section {
+        float: none;
+    }
+
+    .navBar-item {
+        display: inline-block;
+        float: none;
+        margin: 0 spacing("half");
+        letter-spacing: letterSpacing("large");
+
+        &.is-active {
+            border-bottom: 1px solid color("greys", "darker");
+
+            > .navBar-action {
+                color: color("greys", "dark");
+            }
+        }
+    }
+
+    .navBar-action {
+        color: color("greys", "light");
+        padding: 0;
+
+        &:hover {
+            color: color("greys", "darker");
+        }
+    }
+}
+
+
+// Account pagination
+// -----------------------------------------------------------------------------
+
+.account {
+
+    .pagination {
+        text-align: center;
+    }
+}

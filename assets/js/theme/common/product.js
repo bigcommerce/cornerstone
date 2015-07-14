@@ -22,7 +22,7 @@ export default class Product {
      */
     getViewModel($productView) {
         return {
-            $price: $('.productView-price', $productView),
+            $price: $('.productView-price [data-product-price]', $productView),
             $increments: $('.form-field--increments :input', $productView),
             $addToCart: $('#form-action-addToCart', $productView),
             quantity: {
@@ -53,7 +53,7 @@ export default class Product {
                 // check inventory when the option has changed
                 utils.api.productAttributes.optionChange(options, productId, (err, response) => {
                     let viewModel = this.getViewModel($productView);
-                    viewModel.$price.val(response.data.price);
+                    viewModel.$price.html(response.data.price);
 
                     if (!response.data.purchasable || !response.data.instock) {
                         viewModel.$addToCart.prop('disabled', true);

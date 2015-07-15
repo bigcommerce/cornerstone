@@ -62,7 +62,7 @@ export default class Product {
                     viewModel.$price.html(response.data.price);
 
                     // if stock view is on (CP settings)
-                    if (viewModel.stock.$container.length) {
+                    if (viewModel.stock.$container.length && response.data.stock) {
                         // if the stock container is hidden, show
                         if (viewModel.stock.$container.is(':hidden')) {
                             viewModel.stock.$container.show();
@@ -125,7 +125,8 @@ export default class Product {
                 $modal = $('#modal'),
                 $modalContent = $('.modal-content', $modal),
                 $modalOverlay = $('.loadingOverlay', $modal),
-                productId = $('[name="product_id"]', $productView).val();
+                productId = $('[name="product_id"]', $productView).val(),
+                $cartCounter = $('.navUser-action .cart-count');
 
             options = this.getOptionValues($optionsContainer);
 
@@ -154,6 +155,8 @@ export default class Product {
                 // fetch cart to display in cart preview
                 utils.api.cart.getContent(options, (err, response) => {
                     $modalOverlay.hide();
+                    $cartCounter.addClass('cart-count--positive');
+                    $cartCounter.text(response.data.cart.items.length);
                     $modalContent.html(response.content);
                 });
             });

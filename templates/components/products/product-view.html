@@ -65,12 +65,10 @@
                     {{/each}}
                 </div>
 
-                {{#if product.stock_level}}
-                    <div class="form-field form-field--increments">
-                        <label class="form-label form-label--alternate">{{@lang 'products.current_stock'}}</label>
-                        <span>{{product.stock_level}}</span>
-                    </div>
-                {{/if}}
+                <div class="form-field form-field--stock">
+                    <label class="form-label form-label--alternate">{{@lang 'products.current_stock'}}</label>
+                    <span data-product-stock>{{product.stock_level}}</span>
+                </div>
 
                 <div class="form-field form-field--increments">
                     <label class="form-label form-label--alternate">{{@lang 'products.quantity'}}</label>

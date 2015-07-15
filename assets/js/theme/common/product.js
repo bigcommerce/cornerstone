@@ -27,6 +27,10 @@ export default class Product {
             $price: $('.productView-price [data-product-price]', $productView),
             $increments: $('.form-field--increments :input', $productView),
             $addToCart: $('#form-action-addToCart', $productView),
+            stock: {
+                $container: $('.form-field--stock', $productView),
+                $input: $('[data-product-stock]', $productView)
+            },
             quantity: {
                 $text: $('.incrementTotal', $productView),
                 $input: $('[name=qty\\[\\]]', $productView)
@@ -56,6 +60,15 @@ export default class Product {
                 utils.api.productAttributes.optionChange(options, productId, (err, response) => {
                     let viewModel = this.getViewModel($productView);
                     viewModel.$price.html(response.data.price);
+
+                    // if stock view is on (CP settings)
+                    if (viewModel.stock.$container.length) {
+                        // if the stock container is hidden, show
+                        if (viewModel.stock.$container.is(':hidden')) {
+                            viewModel.stock.$container.show();
+                        }
+                        viewModel.stock.$input.text(response.data.stock);
+                    }
 
                     if (!response.data.purchasable || !response.data.instock) {
                         viewModel.$addToCart.prop('disabled', true);

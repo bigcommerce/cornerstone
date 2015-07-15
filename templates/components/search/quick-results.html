@@ -1,7 +1,14 @@
-<ul class="productGrid">
-    {{#each product_results.products}}
-    <li class="product">
-        {{> components/products/card alternate=true show_compare=../show_compare}}
-    </li>
-    {{/each}}
-</ul>
+{{#if product_results.products}}
+    <ul class="productGrid">
+
+        {{#each product_results.products}}
+        <li class="product">
+            {{> components/products/card alternate=true show_compare=../show_compare}}
+        </li>
+        {{/each}}
+    </ul>
+{{else}}
+    <h1 class="page-heading">
+        {{@lang 'search.results.count' num_products=pagination.product_results.total search_query=forms.search.query}}
+    </h1>
+{{/if}}

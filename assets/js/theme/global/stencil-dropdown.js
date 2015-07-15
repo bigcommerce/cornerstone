@@ -10,7 +10,7 @@ export default {
     },
     show($dropDown, event, style) {
         if (style) {
-            $dropDown.attr('style', style).attr('aria-hidden', 'true');
+            $dropDown.attr('style', style).attr('aria-hidden', 'false');
         }
 
         $dropDown.addClass('is-open f-open-dropdown').attr('aria-hidden', 'false');

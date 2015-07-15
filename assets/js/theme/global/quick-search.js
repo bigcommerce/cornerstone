@@ -4,10 +4,12 @@ import utils from 'bigcommerce/stencil-utils';
 import stencilDropDown from './stencil-dropdown'
 
 export default function () {
+    const TOP_STYLING = 'top: 49px;';
+
     let $quickSearchResults = $('.quickSearchResults');
     let $quickSearchDiv = $('#quickSearch');
 
-    stencilDropDown.bind($('[data-search="quickSearch"]'), $quickSearchDiv, 'top: 49px;');
+    stencilDropDown.bind($('[data-search="quickSearch"]'), $quickSearchDiv, TOP_STYLING);
 
     //stagger searching for 200ms after last input
     let doSearch = _.debounce((searchQuery) => {

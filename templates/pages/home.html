@@ -19,8 +19,12 @@ blog:
 
 {{#partial "page"}}
 <div class="main full">
-    {{> components/products/featured products.featured}}
-    {{> components/products/new products.new}}
+    {{#if products.featured}}
+        {{> components/products/featured products.featured}}
+    {{/if}}
+    {{#if products.new}}
+        {{> components/products/new products.new}}
+    {{/if}}
     {{#if products.top_sellers}}
         {{> components/products/top products.top_sellers}}
     {{/if}}

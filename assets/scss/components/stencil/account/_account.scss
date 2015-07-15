@@ -3,6 +3,48 @@
 // =============================================================================
 
 
+// Account navigation
+// -----------------------------------------------------------------------------
+
+.navBar--account {
+    display: none;
+    margin-bottom: spacing("single") * 3;
+    text-align: center;
+
+    @include breakpoint("medium") {
+        display: block;
+    }
+
+    .navBar-section {
+        float: none;
+    }
+
+    .navBar-item {
+        display: inline-block;
+        float: none;
+        margin: 0 spacing("half");
+
+        &.is-active {
+            border-bottom: 1px solid color("greys", "darker");
+
+            > .navBar-action {
+                color: color("greys", "dark");
+            }
+        }
+    }
+
+    .navBar-action {
+        color: color("greys", "light");
+        font-size: fontSize("base");
+        padding: 0;
+
+        &:hover {
+            color: color("greys", "darker");
+        }
+    }
+}
+
+
 // Account headings
 // -----------------------------------------------------------------------------
 
@@ -41,7 +83,23 @@
 }
 
 .account-listItem-detail {
-    @include grid-column(3);
+    @include grid-column(12);
+
+    + .account-listItem-detail {
+        margin-top: spacing("base");
+    }
+
+    @include breakpoint("small") {
+        width: grid-calc(4, $total-columns);
+
+        + .account-listItem-detail {
+            margin-top: 0;
+        }
+    }
+
+    @include breakpoint("large") {
+        width: grid-calc(3, $total-columns);
+    }
 }
 
 .account-listItem-detail-title {
@@ -52,61 +110,61 @@
 }
 
 
+// Account product
+// -----------------------------------------------------------------------------
+
+.account-product {
+    @include media;
+}
+
+.account-product-figure {
+    margin-right: spacing("single") + spacing("third");
+}
+
+.account-product-body {
+    overflow: hidden;
+}
+
+
+
+// Account pagination
+// -----------------------------------------------------------------------------
+
+.account {
+
+    .pagination {
+        color: color("greys", "light");
+        margin-top: spacing("double");
+        text-align: center;
+    }
+}
+
+
 // Account status
 // -----------------------------------------------------------------------------
 
-.account-status {
+.account-orderStatus {
+    float: right;
+}
+
+.account-orderStatus-label {
     background-color: color("greys", "medium");
     color: color("whites");
     display: inline-block;
     font-size: fontSize("tiny");
     line-height: lineHeight("smallest");
-    margin: spacing("single") 0 0 spacing("double") * 2;
-    padding: spacing("eighth") spacing("half") spacing("eighth") spacing("half");
-
-    @include breakpoint("small") {
-        margin: 0;
-        position: absolute;
-        right: 0;
-        top: spacing("single");
-    }
-
-    @include breakpoint("medium") {
-        margin: spacing("half") 0 0 spacing("double") * 2;
-        position: static;
-    }
-
-    @include breakpoint("large") {
-        margin: 0;
-        position: absolute;
-        right: 0;
-        top: spacing("single");
-    }
+    margin: 0 0 spacing("quarter");
+    padding: spacing("eighth") spacing("third");
 }
 
-.account-status--order {
-    @include breakpoint("small") {
-        margin: 0;
-        position: absolute;
-        right: 0;
-        top: spacing("single");
-    }
-}
-
-.account-returnItems {
+.account-orderStatus-return {
     color: color("greys", "dark");
+    display: block;
     font-size: fontSize("tiny");
     font-style: italic;
     letter-spacing: letterSpacing("large");
+    text-align: right;
     text-decoration: underline;
-
-    @include breakpoint("small") {
-        margin: 0;
-        margin-top: spacing("quarter");
-        position: absolute;
-        right: 0;
-        top: spacing("double");
-    }
 }
 
 

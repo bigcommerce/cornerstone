@@ -69,46 +69,6 @@
     position: relative;
 }
 
-.account-listItem-title {
-    margin: 0 0 spacing("eighth");
-    text-transform: inherit;
-
-    > a {
-        text-decoration: none;
-    }
-}
-
-.account-listItem-details {
-    @include grid-row($behavior: "nest");
-}
-
-.account-listItem-detail {
-    @include grid-column(12);
-
-    + .account-listItem-detail {
-        margin-top: spacing("base");
-    }
-
-    @include breakpoint("small") {
-        width: grid-calc(4, $total-columns);
-
-        + .account-listItem-detail {
-            margin-top: 0;
-        }
-    }
-
-    @include breakpoint("large") {
-        width: grid-calc(3, $total-columns);
-    }
-}
-
-.account-listItem-detail-title {
-    color: color("greys", "light");
-    font-family: fontFamily("sans");
-    font-size: fontSize("tiny");
-    margin: 0 0 spacing("quarter");
-}
-
 
 // Account product
 // -----------------------------------------------------------------------------
@@ -123,6 +83,46 @@
 
 .account-product-body {
     overflow: hidden;
+}
+
+.account-product-title {
+    margin: 0 0 spacing("eighth");
+    text-transform: inherit;
+
+    > a {
+        text-decoration: none;
+    }
+}
+
+.account-product-details {
+    @include grid-row($behavior: "nest");
+}
+
+.account-product-detail {
+    @include grid-column(12);
+
+    + .account-product-detail {
+        margin-top: spacing("base");
+    }
+
+    @include breakpoint("small") {
+        width: grid-calc(4, $total-columns);
+
+        + .account-product-detail {
+            margin-top: 0;
+        }
+    }
+
+    @include breakpoint("large") {
+        width: grid-calc(3, $total-columns);
+    }
+}
+
+.account-product-detail-heading {
+    color: color("greys", "light");
+    font-family: fontFamily("sans");
+    font-size: fontSize("tiny");
+    margin: 0 0 spacing("quarter");
 }
 
 

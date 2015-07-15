@@ -2,9 +2,11 @@
 
 <section class="page">
     <div class="page-content page-content--centered">
-        <h1 class="page-heading">
-            {{@lang 'search.results.count' num_products=pagination.product_results.total search_query=forms.search.query}}
-        </h1>
+        {{#if product_results.products}}
+            <h1 class="page-heading">
+                {{@lang 'search.results.count' num_products=pagination.product_results.total search_query=forms.search.query}}
+            </h1>
+        {{/if}}
 
         {{> components/common/search-box}}
     </div>

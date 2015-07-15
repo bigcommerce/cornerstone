@@ -1,7 +1,12 @@
 {{> components/category/sort-box sort=pagination.product_results.sort}}
 
 <form action="/compare" method='POST'>
-    {{> components/products/grid products=product_results.products}}
+    {{#compare theme_settings.product_list_display_mode 'grid'}}
+        {{> components/products/grid products=product_results.products}}
+    {{else}}
+        {{> components/products/list products=product_results.products}}
+    {{/compare}}
+
     <input type="submit" value="{{@lang 'compare.button'}}" class="button button--primary">
 </form>
 

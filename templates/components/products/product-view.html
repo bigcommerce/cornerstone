@@ -70,17 +70,17 @@
                     <span data-product-stock>{{product.stock_level}}</span>
                 </div>
 
-                <div class="form-field form-field--increments">
-                    <label class="form-label form-label--alternate">{{@lang 'products.quantity'}}</label>
-                    <div class="buttonGroup" data-quantity-change>
-                        <button class="button button--small" data-action="dec">-</button>
-                        <button class="button button--small" data-action="inc">+</button>
-                    </div>
-                    <span class="incrementTotal">1</span>
-                    <input type="hidden" name="qty[]" value="1">
-                </div>
-
                 {{#if product.can_purchase}}
+                    <div class="form-field form-field--increments">
+                        <label class="form-label form-label--alternate">{{@lang 'products.quantity'}}</label>
+                        <div class="buttonGroup" data-quantity-change>
+                            <button class="button button--small" data-action="dec">-</button>
+                            <button class="button button--small" data-action="inc">+</button>
+                        </div>
+                        <span class="incrementTotal">1</span>
+                        <input type="hidden" name="qty[]" value="1">
+                    </div>
+
                     <div class="form-action">
                         <input id="form-action-addToCart" class="button button--primary" type="submit" value="{{@lang 'products.add_to_cart'}}">
                     </div>

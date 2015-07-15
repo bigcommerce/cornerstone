@@ -1,29 +1,35 @@
 <h3 class="account-heading">{{@lang 'account.orders.heading' }}</h3>
-<ul class="orders-list">
+
+<ul class="account-list">
     {{#each orders}}
-    <li class="account-section-item order-item">
-        <!-- TODO: Reinsert product image when available to context -->
-        <div class="information">
-            <a href="{{this.details_url}}">
-                <h4 class="order-item-heading">{{@lang 'account.orders.list.order_number' number=this.id}}</h4>
-            </a>
-            <p>
-                {{@lang 'account.orders.list.product_details' num_products=this.items.length cost=this.total}}
-            </p>
-            <div class="order-sub-information">
-                <div class="order-sub-item">
-                    <h6 class="order-sub-item-title">{{@lang 'account.orders.order_placed' }}</h6>
-                    <span class="order-sub-item-text">{{this.date}}</span>
+    <li class="account-listItem">
+        <div class="account-product">
+            <div class="account-product-figure">
+                <img src="{{@image image 'thumb'}}" alt="{{image.alt}}">
+            </div>
+            <div class="account-product-body">
+                <div class="account-orderStatus">
+                    <h6 class="account-orderStatus-label">{{this.status}}</h6>
+                    <a class="account-orderStatus-return" href="{{this.return_url}}">{{@lang 'account.orders.return_items' }}</a>
                 </div>
-                <div class="order-sub-item">
-                    <h6 class="order-sub-item-title">{{@lang 'account.orders.last_update' }}</h6>
-                    <span class="order-sub-item-text">{{this.last_update_date}}</span>
+
+                <h5 class="account-product-title">
+                    <a href="{{this.details_url}}">{{@lang 'account.orders.list.order_number' number=this.id}}</a>
+                </h5>
+                <p class="account-product-description">{{@lang 'account.orders.list.product_details' num_products=this.items.length cost=this.total}}</p>
+
+                <div class="account-product-details">
+                    <div class="account-product-detail">
+                        <h6 class="account-product-detail-heading">{{@lang 'account.orders.order_placed' }}</h6>
+                        <span>{{this.date}}</span>
+                    </div>
+                    <div class="account-product-detail">
+                        <h6 class="account-product-detail-heading">{{@lang 'account.orders.last_update' }}</h6>
+                        <span>{{this.last_update_date}}</span>
+                    </div>
                 </div>
             </div>
         </div>
-
-        <h6 class="account-info-status order-info-status">{{this.status}}</h6>
-        <a class="order-return-items" href="{{this.return_url}}">{{@lang 'account.orders.return_items' }}</a>
     </li>
     {{/each}}
 </ul>

@@ -1,6 +1,240 @@
+// =============================================================================
+// ACCOUNT (CSS)
+// =============================================================================
+
+
+// Account navigation
+// -----------------------------------------------------------------------------
+
+.navBar--account {
+    display: none;
+    margin-bottom: spacing("single") * 3;
+    text-align: center;
+
+    @include breakpoint("medium") {
+        display: block;
+    }
+
+    .navBar-section {
+        float: none;
+    }
+
+    .navBar-item {
+        display: inline-block;
+        float: none;
+        margin: 0 spacing("half");
+
+        &.is-active {
+            border-bottom: 1px solid color("greys", "darker");
+
+            > .navBar-action {
+                color: color("greys", "dark");
+            }
+        }
+    }
+
+    .navBar-action {
+        color: color("greys", "light");
+        font-size: fontSize("base");
+        padding: 0;
+
+        &:hover {
+            color: color("greys", "darker");
+        }
+    }
+}
+
+
+// Account headings
+// -----------------------------------------------------------------------------
+
+.account-heading {
+    border-bottom: 1px solid color("greys", "lightest");
+    color: color("greys", "darker");
+    margin: 0;
+    padding-bottom: spacing("base");
+}
+
+
+// Account list
+// -----------------------------------------------------------------------------
+
+.account-list {
+    list-style: none;
+    margin-left: 0;
+}
+
+.account-listItem {
+    border-bottom: 1px solid color("greys", "lightest");
+    padding: spacing("single") 0;
+    position: relative;
+}
+
+
+// Account product
+// -----------------------------------------------------------------------------
+
+.account-product {
+    @include media;
+}
+
+.account-product-figure {
+    margin-right: spacing("single") + spacing("third");
+}
+
+.account-product-body {
+    overflow: hidden;
+    padding-bottom: spacing("double") + spacing("third");
+    position: relative;
+
+    @include breakpoint("small") {
+        padding-bottom: 0;
+    }
+}
+
+.account-product-title {
+    margin: 0 0 spacing("eighth");
+    text-transform: inherit;
+
+    > a {
+        text-decoration: none;
+    }
+}
+
+.account-product-details {
+    @include grid-row($behavior: "nest");
+}
+
+.account-product-detail {
+    @include grid-column(12);
+
+    + .account-product-detail {
+        margin-top: spacing("base");
+    }
+
+    @include breakpoint("small") {
+        width: grid-calc(4, $total-columns);
+
+        + .account-product-detail {
+            margin-top: 0;
+        }
+
+        + .account-product-detail--full {
+            margin-top: spacing("single");
+        }
+    }
+
+    @include breakpoint("large") {
+        width: grid-calc(3, $total-columns);
+    }
+}
+
+.account-product-detail--large {
+
+    @include breakpoint("large") {
+        width: grid-calc(6, $total-columns);
+    }
+}
+
+.account-product-detail--full {
+    width: 100%;
+}
+
+.account-product-detail-heading {
+    color: color("greys", "light");
+    font-family: fontFamily("sans");
+    font-size: fontSize("tiny");
+    margin: 0 0 spacing("quarter");
+}
+
+.account-product-options {
+    margin: -(spacing("single")) 0 spacing("single");
+}
+
+.account-product-optionLabel {
+    color: color("greys", "light");
+}
+
+
+
+// Account pagination
+// -----------------------------------------------------------------------------
+
+.account {
+
+    .pagination {
+        color: color("greys", "light");
+        margin-top: spacing("double");
+        text-align: center;
+    }
+}
+
+
+// Account status
+// -----------------------------------------------------------------------------
+
+.account-orderStatus {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+
+    @include breakpoint("small") {
+        float: right;
+        position: inherit;
+    }
+}
+
+.account-orderStatus-label {
+    background-color: color("greys", "medium");
+    color: color("whites");
+    display: inline-block;
+    font-size: fontSize("tiny");
+    line-height: lineHeight("smallest");
+    margin: 0 0 spacing("quarter");
+    padding: spacing("eighth") spacing("third");
+}
+
+.account-orderStatus-return {
+    color: color("greys", "dark");
+    display: inline-block;
+    font-size: fontSize("tiny");
+    font-style: italic;
+    letter-spacing: letterSpacing("large");
+    margin-left: spacing("half");
+    text-align: right;
+    text-decoration: underline;
+    vertical-align: top;
+
+    @include breakpoint("small") {
+        display: block;
+        margin-left: 0;
+    }
+}
+
+
+// Account panel
+// -----------------------------------------------------------------------------
+
+.account {
+
+    .panel {
+        background-color: color("greys", "lightest");
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
 @import "overview";
 @import "order-details";
-@import "orders-list";
 @import "address";
 
 // TODO: Componentize the accounts section, this is inconsistent with the rest of stencil.

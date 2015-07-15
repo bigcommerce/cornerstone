@@ -1,13 +1,16 @@
 {{#partial "page"}}
-<div class="account">
-    {{> components/common/breadcrumbs breadcrumbs}}
-    <h2 class="page-heading">{{@lang 'account.returns.heading' }}</h2>
-    {{> components/account/navigation account_page='returns'}}
-    <div class="account-row orders-row">
-        <section class="orders">
+
+{{> components/common/breadcrumbs breadcrumbs}}
+<h1 class="page-heading">{{@lang 'account.returns.heading' }}</h1>
+{{> components/account/navigation account_page='returns'}}
+
+<main class="account account--fixed">
+    <div class="account-body">
+        <section class="account-content">
             {{> components/account/returns-list returns=customer.returns}}
         </section>
     </div>
-</div>
+</main>
+
 {{/partial}}
 {{> layout/base}}

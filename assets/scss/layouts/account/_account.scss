@@ -1,0 +1,34 @@
+// =============================================================================
+// ACCOUNT
+// =============================================================================
+
+
+// Account layouts
+// -----------------------------------------------------------------------------
+
+.account {
+    margin-bottom: spacing("single");
+}
+
+.account--fixed {
+    @include breakpoint("medium") {
+        margin: 0 auto;
+        width: grid-calc(8, $total-columns);
+    }
+}
+
+.account-body {
+    @include grid-row($behavior: "nest");
+}
+
+.account-content {
+    @include grid-column(12);
+}
+
+.account-content--fixed {
+    width: grid-calc(8, $total-columns);
+}
+
+.account-sidebar {
+    @include grid-column(4);
+}

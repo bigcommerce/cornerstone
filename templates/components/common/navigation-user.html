@@ -17,7 +17,7 @@
             {{/if}}
         </li>
         <li class="navUser-item navUser-item--cart">
-            <a class="navUser-action" data-cart-preview data-dropdown="cart-preview-dropdown" href="{{urls.cart}}">Cart {{#if cart.items}}<span class="cart-count">{{cart.items.length}}</span>{{/if}}</a>
+            <a class="navUser-action" data-cart-preview data-dropdown="cart-preview-dropdown" href="{{urls.cart}}">Cart <span class="cart-count{{#if cart.items}} cart-count--positive{{/if}}">{{cart.items.length}}</span></a>
             <div class="dropdown-menu" id="cart-preview-dropdown" data-dropdown-content aria-hidden="true"></div>
         </li>
     </ul>

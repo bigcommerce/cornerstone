@@ -196,12 +196,19 @@
 
 .account-orderStatus-return {
     color: color("greys", "dark");
-    display: block;
+    display: inline-block;
     font-size: fontSize("tiny");
     font-style: italic;
     letter-spacing: letterSpacing("large");
+    margin-left: spacing("half");
     text-align: right;
     text-decoration: underline;
+    vertical-align: top;
+
+    @include breakpoint("small") {
+        display: block;
+        margin-left: 0;
+    }
 }
 
 

@@ -22,16 +22,13 @@
             </article>
 
             <article class="footer-info-col footer-info-col--small">
-                <h5 class="footer-info-heading">{{@lang 'footer.brands'}}</h5>
+                <h5 class="footer-info-heading">{{@lang 'footer.categories'}}</h5>
                 <ul class="footer-info-list">
-                    {{#each shop_by_brand.links}}
-                    <li>
-                        <a href="{{url}}">{{name}} ({{count}})</a>
-                    </li>
+                    {{#each navigation}}
+                        <li>
+                            <a href="{{url}}">{{name}}</a>
+                        </li>
                     {{/each}}
-                    <li>
-                        <a href="{{shop_by_brand.all_brands_url}}" alt="View All">View All</a>
-                    </li>
                 </ul>
             </article>
 
@@ -42,7 +39,9 @@
             </article>
 
             <article class="footer-info-col">
-                {{> components/common/subscription-form }}
+                {{#if settings.show_newsletter_box}}
+                    {{> components/common/subscription-form }}
+                {{/if}}
                 {{> components/common/social-links }}
             </article>
         </section>

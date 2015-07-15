@@ -1,75 +1,4 @@
 // =============================================================================
-// Account Address Book (CSS)
-// =============================================================================
-
-.addresses-row {
-    max-width: remCalc(893px);
-}
-
-.account-address-list {
-    margin-left: 0;
-}
-
-.account-address-item {
-    @include grid-column(12);
-
-    list-style-type: none;
-    margin-top: spacing("single");
-
-    @include breakpoint("small") {
-        @include grid-column(6);
-    }
-
-    @include breakpoint("medium") {
-        @include grid-column(4);
-    }
-}
-
-.address-item-inner {
-    background-color: color("greys", "lightest");
-    height: remCalc(253px);
-    padding: spacing("single");
-    position: relative;
-
-    &.new-address-link {
-        align-items: center;
-        background: color("whites");
-        border: 1px solid color("greys", "lighter");
-        display: flex;
-        font-size: fontSize("small");
-        justify-content: center;
-    }
-}
-
-.new-address-plus {
-    color: color("greys", "dark");
-    font-size: fontSize("hero");
-    line-height: lineHeight("hero");
-    text-align: center;
-}
-
-.address-item-heading {
-    color: color("greys", "dark");
-    font-family: $fontFamily-headings;
-    font-size: fontSize("smaller");
-}
-
-.address-item-address {
-    margin-left: 0;
-    margin-top: spacing("half");
-}
-
-.address-line {
-    list-style-type: none;
-}
-
-.address-button-bar {
-    bottom: spacing("single");
-    left: spacing("single");
-    position: absolute;
-}
-
-// =============================================================================
 // Add & Update Address (CSS)
 // =============================================================================
 
@@ -87,4 +16,10 @@
     @include breakpoint("medium") {
         @include grid-column(6);
     }
+}
+
+// TODO: This needs to be a standard layout for the Accounts pages, either set by the
+// grid or a layout modifier.
+.account-addressList .account-row {
+    max-width: remCalc(890px);
 }

@@ -1,0 +1,80 @@
+// =============================================================================
+// ADDRESS BOX (CSS)
+// =============================================================================
+
+.addressBox-list {
+    @include u-listBullets("none");
+    @include grid-row;
+}
+
+.addressBox-item {
+    @include grid-column(12);
+
+    @include breakpoint("small") {
+        width: grid-calc(6, $total-columns);
+    }
+
+    @include breakpoint("medium") {
+        width: grid-calc(4, $total-columns);
+    }
+}
+
+.addressBox {
+    background-color: color("greys", "lightest");
+    height: remCalc(253px);
+    list-style-type: none;
+    margin-top: spacing("single");
+    padding: spacing("single");
+    position: relative;
+}
+
+.addressBox .form-actions {
+    bottom: 0;
+    left: 0;
+    padding: spacing("single");
+    position: absolute;
+    right: 0;
+    text-align: left;
+
+    > * {
+        margin-left: 0;
+        margin-right: spacing("half");
+    }
+}
+
+.addressBox--newAddress {
+    display: block;
+    background: color("whites", "bright");
+    border: 1px solid color("greys", "lighter");
+    font-size: fontSize("small");
+    text-align: center;
+}
+
+.newAddress-plus {
+    color: color("greys", "dark");
+    font-size: fontSize("hero");
+    line-height: lineHeight("hero");
+}
+
+.newAddress-action {
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.addressBox-heading {
+    color: color("greys", "dark");
+    margin: 0;
+    text-transform: none;
+}
+
+.addressBox-content {
+    margin-left: 0;
+    margin-top: spacing("half");
+}
+
+.address-line {
+    list-style-type: none;
+}

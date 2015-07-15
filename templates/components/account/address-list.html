@@ -2,37 +2,43 @@
     {{> components/common/alert-info (@lang 'account.addresses.no_addresses')}}
 {{/unless}}
 
-<ul class="account-address-list">
+<ul class="addressBox-list">
     {{#each customer.addresses}}
-        <li class="account-address-item">
-            <div class="address-item-inner">
-                <span class="address-item-heading">{{first_name}} {{last_name}}</span>
-                <ul class="address-item-address">
-                    <li class="address-line">{{company}}</li>
-                    <li class="address-line">{{address1}}</li>
-                    <li class="address-line">{{address2}}</li>
-                    <li class="address-line">{{city}}, {{state}} {{zip}}</li>
+        <li class="addressBox-item">
+            <div class="addressBox">
+                <h5 class="addressBox-heading">{{first_name}} {{last_name}}</h5>
+                <ul class="addressBox-content">
+                    <li class="address-line">
+                        <span class="address-description">{{company}}</span>
+                    </li>
+                    <li class="address-line">
+                        <span class="address-description">{{address1}}</span>
+                    </li>
+                    <li class="address-line">
+                        <span class="address-description">{{address2}}</span>
+                    </li>
+                    <li class="address-line">
+                        <span class="address-description">{{city}}, {{state}} {{zip}}</span>
+                    </li>
                     <li class="address-line">
                         <span class="address-description">{{@lang 'account.addresses.phone' }}</span>
                         <span class="address-value">{{phone}}</span>
                     </li>
                 </ul>
-                <div class="address-button-bar">
-                    <a class="button button--primary button--small" href="{{edit_url}}">{{@lang 'common.edit' }}</a>
-                    <form action="{{delete_url}}" method="post">
+                <form action="{{delete_url}}" method="post">
+                    <div class="form-actions">
+                        <a class="button button--primary button--small" href="{{edit_url}}">{{@lang 'common.edit' }}</a>
                         <button type="submit" class="button secondary button--small">{{@lang 'common.delete' }}</button>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
         </li>
     {{/each}}
-    <li class="account-address-item new-address">
-        <a href="{{urls.account.add_address}}">
-            <div class="address-item-inner new-address-link">
-                <div class="new-address-content">
-                    <div class="new-address-plus">&plus;</div>
-                    {{@lang 'account.addresses.new_address' }}
-                </div>
+    <li class="addressBox-item">
+        <a class="addressBox addressBox--newAddress" href="{{urls.account.add_address}}">
+            <div class="newAddress-action">
+                <div class="newAddress-plus">&plus;</div>
+                <div class="newAddress-text">{{@lang 'account.addresses.new_address' }}</div>
             </div>
         </a>
     </li>

@@ -60,7 +60,8 @@
 // -----------------------------------------------------------------------------
 
 .account-list {
-    @include u-listBullets("none");
+    list-style: none;
+    margin-left: 0;
 }
 
 .account-listItem {
@@ -83,6 +84,12 @@
 
 .account-product-body {
     overflow: hidden;
+    padding-bottom: spacing("double") + spacing("third");
+    position: relative;
+
+    @include breakpoint("small") {
+        padding-bottom: 0;
+    }
 }
 
 .account-product-title {
@@ -111,6 +118,10 @@
         + .account-product-detail {
             margin-top: 0;
         }
+
+        + .account-product-detail--full {
+            margin-top: spacing("single");
+        }
     }
 
     @include breakpoint("large") {
@@ -118,11 +129,30 @@
     }
 }
 
+.account-product-detail--large {
+
+    @include breakpoint("large") {
+        width: grid-calc(6, $total-columns);
+    }
+}
+
+.account-product-detail--full {
+    width: 100%;
+}
+
 .account-product-detail-heading {
     color: color("greys", "light");
     font-family: fontFamily("sans");
     font-size: fontSize("tiny");
     margin: 0 0 spacing("quarter");
+}
+
+.account-product-options {
+    margin: -(spacing("single")) 0 spacing("single");
+}
+
+.account-product-optionLabel {
+    color: color("greys", "light");
 }
 
 
@@ -144,7 +174,14 @@
 // -----------------------------------------------------------------------------
 
 .account-orderStatus {
-    float: right;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+
+    @include breakpoint("small") {
+        float: right;
+        position: inherit;
+    }
 }
 
 .account-orderStatus-label {

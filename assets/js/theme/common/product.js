@@ -130,13 +130,6 @@ export default class Product {
 
             options = this.getOptionValues($optionsContainer);
 
-            // clear the modal
-            $modalContent.html('');
-            $modalOverlay.show();
-
-            // open modal
-            $modal.foundation('reveal', 'open');
-
             // add item to cart
             utils.api.cart.itemAdd(productId, quantity, options, (err, response) => {
                 let options = {
@@ -145,12 +138,17 @@ export default class Product {
 
                 // if there is an error
                 if (err) {
-                    $modal.foundation('reveal', 'close');
                     return alert(err);
                 } else if (response.data.error) {
-                    $modal.foundation('reveal', 'close');
                     return alert(response.data.error);
                 }
+
+                // clear the modal
+                $modalContent.html('');
+                $modalOverlay.show();
+
+                // open modal
+                $modal.foundation('reveal', 'open');
 
                 // fetch cart to display in cart preview
                 utils.api.cart.getContent(options, (err, response) => {

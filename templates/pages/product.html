@@ -1,7 +1,7 @@
 ---
 product:
     videos:
-        limit: 2
+        limit: 4
     reviews:
         limit: 9
     related_products:
@@ -14,6 +14,10 @@ product:
 
     <div itemscope itemtype="http://schema.org/Product">
         {{> components/products/product-view}}
+
+        {{#if product.videos.list.length}}
+        {{> components/products/videos product.videos}}
+        {{/if}}
 
         {{> components/products/reviews product.reviews}}
 

@@ -5,6 +5,7 @@ import $ from 'jquery';
 import PageManager from '../page-manager';
 import collapsible from './common/collapsible';
 import ProductDetails from './common/product-details';
+import videoGallery from './product/video-gallery';
 
 export default class Product extends PageManager {
     constructor() {
@@ -14,7 +15,10 @@ export default class Product extends PageManager {
     loaded(next) {
         // Init collapsible
         collapsible();
+
         new ProductDetails($('.productView'), this.context);
+
+        videoGallery();
 
         next();
     }

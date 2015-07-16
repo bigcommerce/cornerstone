@@ -7,13 +7,15 @@
                 <a class="navBar-action" href="{{urls.account.orders.all}}">{{@lang 'account.nav.orders'}}</a>
             </li>
         {{/compare}}
-        {{#compare account_page 'returns' operator='==='}}
-            <li class="navBar-item is-active">{{@lang 'account.nav.returns'}}</li>
-        {{else}}
-            <li class="navBar-item">
-                <a class="navBar-action" href="{{urls.account.returns}}">{{@lang 'account.nav.returns'}}</a>
-            </li>
-        {{/compare}}
+        {{#if settings.returns_enabled}}
+            {{#compare account_page 'returns' operator='==='}}
+                <li class="navBar-item is-active">{{@lang 'account.nav.returns'}}</li>
+            {{else}}
+                <li class="navBar-item">
+                    <a class="navBar-action" href="{{urls.account.returns}}">{{@lang 'account.nav.returns'}}</a>
+                </li>
+            {{/compare}}
+        {{/if}}
         {{#compare account_page 'addresses' operator='==='}}
             <li class="navBar-item is-active">{{@lang 'account.nav.addresses'}}</li>
         {{else}}

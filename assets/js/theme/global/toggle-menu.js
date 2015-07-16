@@ -14,10 +14,11 @@ export default function () {
 
     function menuClicked(e) {
         e.preventDefault();
+        e.stopPropagation();
 
         closeOtherMenus();
 
-        $targetMenuItem = $(e.target);
+        $targetMenuItem = $(e.currentTarget);
 
         if (!$targetMenuItem.hasClass('is-open')) {
             toggleThisMenu($targetMenuItem);

@@ -259,8 +259,9 @@ $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-sp
 // -----------------------------------------------------------------------------
 
 .cart-totals {
-    text-align: right;
+    @include u-listBullets("none");
     margin-bottom: $cart-item-spacing;
+    text-align: right;
     width: 100%;
 
     @include breakpoint("small") {
@@ -278,10 +279,20 @@ $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-sp
     }
 }
 
+.cart-total {
+    @include clearfix;
+    border-bottom: 0;
+
+    @include breakpoint("medium") {
+        + .cart-total {
+            border-top: 1px solid color("greys", "lightest");
+        }
+    }
+}
+
 .cart-total-label {
     color: color("greys", "medium");
     width: grid-calc(4, $total-columns);
-    white-space: nowrap;
 
     @include breakpoint("small") {
         width: grid-calc(6, $total-columns);
@@ -295,7 +306,6 @@ $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-sp
 }
 
 .cart-total-value {
-    padding: spacing("third") 0 spacing("third") $cart-item-spacing;
     text-align: left;
 
     @include breakpoint("small") {
@@ -309,30 +319,23 @@ $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-sp
 
 .cart-total-label,
 .cart-total-value {
+    float: left;
+    padding: spacing("third") 0 spacing("third") $cart-item-spacing;
 
     @include breakpoint("medium") {
         padding: spacing("base") 0;
     }
 }
 
-.cart-total {
-    border-bottom: 0;
-
-    @include breakpoint("medium") {
-        border-bottom: 1px solid color("greys", "lightest");
-
-        &:last-child {
-            border-bottom: 0;
-        }
-    }
-}
-
 .cart-total-grandTotal {
     font-family: fontFamily("headingSans");
     font-size: fontSize("small");
+    padding-bottom: spacing("eighth");
+    padding-top: spacing("eighth");
     position: relative;
 
     @include breakpoint("medium") {
+        padding: spacing("base") 0;
         top: -(spacing("sixth"));
     }
 }
@@ -360,8 +363,10 @@ $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-sp
     }
 }
 
-.coupon-code-show,
-.shipping-estimate-show {
+.coupon-code-add,
+.coupon-code-cancel,
+.shipping-estimate-show,
+.shipping-estimate-hide {
     padding: 0;
     text-decoration: underline;
     transition: color 0.15s ease;
@@ -371,10 +376,9 @@ $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-sp
     }
 }
 
-.coupon-code-hide,
+.coupon-code-cancel,
 .shipping-estimate-hide {
-    float: none;
-    margin-bottom: spacing("half");
+    font-style: italic;
 }
 
 .coupon-form {

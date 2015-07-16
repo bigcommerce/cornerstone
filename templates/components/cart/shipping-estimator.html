@@ -3,13 +3,13 @@
         <a href="#" class="shipping-estimate-value">{{@money shipping_cost}}</a>
     </div>
 {{else}}
-    <button class="shipping-estimate-show">{{@lang 'cart.shipping_estimator.add_info'}}</button>
+    <div class="cart-total-value">
+        <button class="shipping-estimate-show">{{@lang 'cart.shipping_estimator.add_info'}}</button>
+        <button class="shipping-estimate-hide" style="display: none;">Cancel</button>
+    </div>
 {{/if}}
 
 <div class="shipping-estimator" style="display: none;">
-    <svg class="icon cart-remove shipping-estimate-hide">
-        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use>
-    </svg>
     <form class="form estimator-form">
         <select class="form-select" name="shipping-country">
             <option>{{@lang 'cart.shipping_estimator.select_a_country'}}</option>

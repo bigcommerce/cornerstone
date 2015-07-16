@@ -1,16 +1,14 @@
-
 {{#if cart.discount}}
-    <div class="coupon-code-show">
+    <div class="cart-total-value coupon-code-add">
         <a href="#">{{@money cart.discount}}</a>
     </div>
-
 {{else}}
-    <button class="coupon-code-show">{{@lang 'cart.coupons.add_code'}}</button>
+    <div class="cart-total-value">
+        <button class="coupon-code-add">{{@lang 'cart.coupons.add_code'}}</button>
+        <button class="coupon-code-cancel" style="display: none;">Cancel</button>
+    </div>
 
-    <div class="coupon-code" style="display:none;">
-        <svg class="icon cart-remove coupon-code-hide">
-            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use>
-        </svg>
+    <div class="cart-form coupon-code" style="display: none;">
         <form class="form coupon-form">
             <input class="form-input" type="text" name="couponcode" value="">
             <input class="button button--primary button--small" type="submit" value="{{@lang 'cart.coupons.button'}}">

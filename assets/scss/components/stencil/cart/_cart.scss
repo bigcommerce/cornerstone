@@ -187,6 +187,7 @@ $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-sp
     .cart-item-value {
         display: inline-block;
         padding-left: 0;
+        text-align: center;
         width: spacing("single");
     }
 }
@@ -279,7 +280,6 @@ $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-sp
 
 .cart-total-label {
     color: color("greys", "medium");
-    vertical-align: top;
     width: grid-calc(4, $total-columns);
     white-space: nowrap;
 
@@ -331,7 +331,10 @@ $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-sp
     font-family: fontFamily("headingSans");
     font-size: fontSize("small");
     position: relative;
-    top: -(spacing("sixth"));
+
+    @include breakpoint("medium") {
+        top: -(spacing("sixth"));
+    }
 }
 
 

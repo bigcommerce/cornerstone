@@ -382,13 +382,24 @@ $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-sp
 }
 
 .coupon-form {
+    @include clearfix;
     font-size: 0;
-    margin-bottom: spacing("third");
+    margin-bottom: spacing("base");
+
+    .form-input,
+    .button {
+        float: left;
+    }
+
+    .form-input {
+        width: 78%;
+    }
 
     .button {
-        margin: 0 0 0 spacing("quarter");
+        margin: 0 0 0 2%;
         padding-left: spacing("half");
         padding-right: spacing("half");
+        width: 20%;
     }
 }
 

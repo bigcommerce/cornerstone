@@ -10,8 +10,9 @@
 {{/if}}
 
 <div class="shipping-estimator" style="display: none;">
-    <form class="form estimator-form">
-        <select class="form-select" name="shipping-country">
+    <form class="form form--hiddenLabels estimator-form">
+        <label class="form-label" for="shipping-country">{{@lang 'cart.shipping_estimator.select_a_country'}}</label>
+        <select class="form-select" id="shipping-country" name="shipping-country">
             <option>{{@lang 'cart.shipping_estimator.select_a_country'}}</option>
             {{#each countries}}
                 <option value="{{id}}" {{#if selected}}selected="selected"{{/if}}>
@@ -19,7 +20,8 @@
                 </option>
             {{/each}}
         </select>
-        <select class="form-select" name="shipping-state">
+        <label class="form-label" for="shipping-state">{{@lang 'cart.shipping_estimator.select_a_state'}}</label>
+        <select class="form-select" id="shipping-state" name="shipping-state">
             <option>{{@lang 'cart.shipping_estimator.select_a_state'}}</option>
             {{#each states}}
                 <option value="{{id}}" {{#if selected}}selected="selected"{{/if}}>
@@ -27,7 +29,8 @@
                 </option>
             {{/each}}
         </select>
-        <input class="form-input" type="text" name="shipping-zip" value="{{selected_zip}}">
+        <label class="form-label" for="shipping-zip">{{@lang 'cart.shipping_estimator.zip_postal_code'}}</label>
+        <input class="form-input" type="text" id="shipping-zip" name="shipping-zip" value="{{selected_zip}}" placeholder="{{@lang 'cart.shipping_estimator.zip_postal_code'}}">
         <button class="button button--primary button--small shipping-estimate-submit">{{@lang 'cart.shipping_estimator.estimate_shipping'}}</button>
     </form>
     <div class="shipping-quotes"></div>

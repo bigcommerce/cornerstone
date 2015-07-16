@@ -9,8 +9,9 @@
     </div>
 
     <div class="cart-form coupon-code" style="display: none;">
-        <form class="form coupon-form">
-            <input class="form-input" type="text" name="couponcode" value="">
+        <form class="form form--hiddenLabels coupon-form">
+            <label class="form-label" for="couponcode">{{@lang 'cart.coupons.coupon_code'}}</label>
+            <input class="form-input" id="couponcode" type="text" name="couponcode" value="" placeholder="{{@lang 'cart.coupons.coupon_code'}}">
             <input class="button button--primary button--small" type="submit" value="{{@lang 'cart.coupons.button'}}">
         </form>
     </div>

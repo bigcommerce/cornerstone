@@ -104,7 +104,7 @@
         <div class="addthis_toolbox addthis_32x32_style" addthis:url="{{product.url}}" addthis:title="{{product.title}}">
             <ul class="socialLinks">
                 {{#each product.add_this}}
-                <li class="socialLinks-item">
+                <li class="socialLinks-item socialLinks-item--{{service}}">
                     <a class="addthis_button_{{service}} icon icon--{{service}}" {{{annotation}}}>
                         {{#compare service 'google_plusone' operator='==='}}
                         <!-- No custom icons allowed with g+ -->

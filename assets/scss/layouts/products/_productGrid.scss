@@ -101,5 +101,45 @@
             font-size: fontSize("base"); // 1
             vertical-align: top;
         }
+
+        .card {
+            margin: 0;
+        }
+    }
+}
+
+
+// Product grid view variation
+// -----------------------------------------------------------------------------
+
+.productGrid--maxCol6 {
+    .no-csscolumns & { 
+        .product {
+            @include breakpoint("medium") {
+                width: grid-calc(2, $total-columns);
+            }
+        }
+    }
+
+    .csscolumns & {
+        @include breakpoint("medium") {
+            column-count: 6;
+        }
+    }
+}
+
+.productGrid--maxCol3 {
+    .no-csscolumns & { 
+        .product {
+            @include breakpoint("medium") {
+                width: grid-calc(4, $total-columns);
+            }
+        }
+    }
+
+    .csscolumns & {
+        @include breakpoint("medium") {
+            column-count: 3;
+        }
     }
 }

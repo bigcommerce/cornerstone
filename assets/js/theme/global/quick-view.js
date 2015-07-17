@@ -2,18 +2,14 @@ import $ from 'jquery';
 import 'foundation/js/foundation/foundation';
 import 'foundation/js/foundation/foundation.dropdown';
 import 'foundation/js/foundation/foundation.reveal';
-import product from '../common/product';
 import utils from 'bigcommerce/stencil-utils';
-import imageGallery from '../product/image-gallery';
+import ProductDetails from '../common/product-details';
 
-export default function () {
+export default function (context) {
     let $modal = $('#modal'),
         $modalContent = $('.modal-content', $modal),
         $modalOverlay = $('.loadingOverlay', $modal),
         modalModifierClasses = 'modal--large';
-
-    // init shared product functionality
-    new product();
 
     $('body').on('click', '.quickview', (event) => {
         let productId = $(event.currentTarget).data('product-id');
@@ -35,15 +31,11 @@ export default function () {
             $modalOverlay.hide();
             $modalContent.html(response);
             $modalContent.find('.productView').addClass('productView--quickView');
-            setNewImageGallery();
+            new ProductDetails($modalContent, context);
         });
     });
 
-    $modal.on('close.fndtn.reveal', (event) => {
+    $modal.on('close.fndtn.reveal', () => {
         $modal.removeClass(modalModifierClasses);
     });
-
-    function setNewImageGallery() {
-        new imageGallery($modalContent.find('[data-image-gallery]'));
-    };
 }

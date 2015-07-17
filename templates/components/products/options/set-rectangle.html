@@ -1,8 +1,8 @@
 <div class="form-field">
     <label class="form-label form-label--alternate">{{this.display_name}}: <span data-option-value></span></label>
     {{#each this.values}}
-    <input class="form-radio" type="radio" id="attribute[{{id}}]" name="attribute[{{../id}}]" value="{{id}}" {{#if selected}}checked{{/if}}>
-    <label class="form-option" for="attribute[{{id}}]">
+    <input class="form-radio" type="radio" id="attribute_{{id}}_{{../id}}" name="attribute[{{../id}}]" value="{{id}}" {{#if selected}}checked{{/if}}>
+    <label class="form-option" for="attribute_{{id}}_{{../id}}">
         <div class="form-option-variant">{{this.label}}</div>
     </label>
     {{/each}}

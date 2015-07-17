@@ -12,11 +12,11 @@
         <form class="form writeReview-form" action="{{ urls.product.post_review }}" method="post">
             <fieldset class="form-fieldset">
                 <div class="form-field">
-                    <label class="form-label" for="rating-rate">{{@lang 'products.reviews.rating'}}</label>
+                    <label class="form-label" for="rating-rate">{{@lang 'products.reviews.rating_label'}}</label>
                     <!-- Stars -->
                     <!-- TODO: Review Stars need to be componentised, both for display and input -->
                     <select id="rating-rate" class="form-select" name="revrating">
-                        <option value=""></option>
+                        <option value="">{{@lang 'products.reviews.select_rating'}}</option>
                         <option value="5">{{@lang 'products.reviews.rating.5'}}</option>
                         <option value="4">{{@lang 'products.reviews.rating.4'}}</option>
                         <option value="3">{{@lang 'products.reviews.rating.3'}}</option>

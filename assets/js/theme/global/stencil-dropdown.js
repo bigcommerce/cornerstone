@@ -21,11 +21,7 @@ export default {
             $container.hasClass('is-open') ? this.hide($container) : this.show($container, event, style);
         });
 
-        $container.click((event) => {
-            event.stopPropagation();
-        });
-
-        $('body').click(() => {
+        $('.body').click(() => {
             this.hide($container);
         });
     }

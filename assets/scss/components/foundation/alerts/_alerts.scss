@@ -1,0 +1,27 @@
+// =============================================================================
+// ALERTS
+// =============================================================================
+
+.alertBox {
+    border-radius: $alert-radius;
+
+    svg {
+        // fill: $alert-generic-iconColor;
+     }
+}
+
+.alertBox-icon {
+    .icon {
+        @include square(25px);
+    }
+}
+
+.alertBox--info {
+    color: color("whites", "bright");
+
+    .alertBox-close {
+        svg {
+            fill: $color-infoLight
+        }
+    }
+}

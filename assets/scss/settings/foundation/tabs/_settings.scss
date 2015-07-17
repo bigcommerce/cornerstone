@@ -17,13 +17,15 @@ $exportCSS--tabs:                                true; // 1
 
 $tab-bg-color:                                   transparent;
 
-$tabs-bottom-border:                             1px solid color("greys", "lightest");
+$tabs-border-color:                              color("greys","lightest");
+$tabs-bottom-border:                             1px solid $tabs-border-color;
 $tabs-margin:                                    0;
 
 $tab-display:                                    block;
 $tab-margin:                                     0;
 
 $tab-title-border-color:                         color("whites", "bright");
+$tab-title-border:                               1px solid $tab-title-border-color;
 $tab-title-border-bottom-style:                  null;
 $tab-title-border-bottom-height:                 null;
 $tab-title-border-bottom-offset:                 -1px;
@@ -75,5 +77,6 @@ $tabs-vertical-navigation-margin-bottom:         spacing("single");
 // Foundation Variables
 // -----------------------------------------------------------------------------
 
-$tab-active-border:                              1px solid color("greys", "lightest");
+$tab-active-border-color:                        $tabs-border-color;
+$tab-active-border:                              1px solid $tab-active-border-color;
 $tab-title-text-decoration:                      none;

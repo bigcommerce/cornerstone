@@ -56,43 +56,49 @@
 //
 // Product Grid with masonry layout
 //
-// Purpose: Modify the base product grid to have a masonry layout effect, with
-// normal display: inline-block fallback for older browsers that don't Flexbox
+// Purpose: Display products in a masonry grid, with a display inline-block for
+// older browsers that don't support css multicolumn
 //
-// 1. Only supported in browsers that support css columns, otherwise it falls back
-// to the normal grid layout about.
-//
-// 2. Padding on anything in the grid seems to add faux padding to the bottom of
-// the container in Chrome. Chrome bug.
+// 1. Some older browser support. This class comes from Modernizr
 // -----------------------------------------------------------------------------
 
-.productGrid--masonry {
-    .csscolumns & { // 1
+.productMasonry {
+    column-count: 2;
+    column-fill: auto;
+    column-gap: remCalc(20px);
+    margin: 0 0 spacing("single");
+    overflow: hidden;
 
-        column-count: 2;
-        column-fill: auto;
-        column-gap: remCalc(20px);
-        margin-bottom: spacing("single");
-        overflow: hidden;
+    @include breakpoint("small") {
+        column-count: 3;
+    }
 
-        @include breakpoint("small") {
-            column-count: 3;
-        }
+    @include breakpoint("medium") {
+        column-count: 4;
+    }
 
-        @include breakpoint("medium") {
-            column-count: 4;
-        }
+    .product {
+        break-inside: avoid;
+        display: block;
+        padding: 0;
+        margin-bottom: spacing("double");
+        width: 100%;
+    }
+
+    .card {
+        margin: 0;
+    }
+
+    .no-csscolumns & { // 1
+        @include u-listBullets("none");
+        @include grid-row($behavior: "nest");
+        font-size: 0;
 
         .product {
-            break-inside: avoid;
-            padding: 0; // 2
-            margin-bottom: spacing("double");
-            width: 100%;
+            @include grid-column(3, $float: none);
+            display: inline-block;
+            font-size: fontSize("base"); // 1
+            vertical-align: top;
         }
-
-        .card {
-            margin: 0;
-        }
-
     }
 }

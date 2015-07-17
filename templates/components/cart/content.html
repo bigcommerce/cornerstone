@@ -1,85 +1,53 @@
-<table>
-    <thead>
-    <tr>
-        <th colspan="2"></th>
-        <th>Cart Items</th>
-        <th>Qty</th>
-        <th>Item Price</th>
-        <th>Total</th>
-    </tr>
+<table class="cart" data-cart-content>
+    <thead class="cart-header">
+        <th class="cart-header-item" colspan="2">{{@lang 'cart.checkout.item'}}</th>
+        <th class="cart-header-item">{{@lang 'cart.checkout.price'}}</th>
+        <th class="cart-header-item cart-header-quantity">{{@lang 'cart.checkout.quantity'}}</th>
+        <th class="cart-header-item">{{@lang 'cart.checkout.total'}}</th>
     </thead>
-    <tbody>
+
+    <tbody class="cart-list">
         {{#each cart.items}}
-        <tr data-item-row>
-            <td><button class="cart-remove" data-cart-itemid="{{id}}">Remove</button></td>
-            <td><a href="{{url}}"><img src="{{@image image 'thumb'}}" alt="{{image.alt}}"></a></td>
-            <td>
-                <div>{{name}}</div>
-                <div>
-                {{#if options}}
-                    <ul>
-                        {{#each options}}
+            <tr class="cart-item" data-item-row>
+                <td class="cart-item-block cart-item-figure">
+                    <img class="cart-item-image" src="{{@image image 'thumb'}}" alt="{{image.alt}}">
+                </td>
+                <td class="cart-item-block cart-item-title">
+                    {{#if brand.name}}
+                        <p class="cart-item-brand">{{brand.name}}</p>
+                    {{/if}}
+                    <h4 class="cart-item-name">{{name}}</h4>
+                    {{#if options}}
+                        <ul class="cart-item-options">
+                            {{#each options}}
+                                <li>{{name}}: {{{value}}}</li>
+                            {{/each}}
                             <li>
-                                {{name}}: <b>{{{value}}}</b>
+                                <a href="#" data-item-edit="{{id}}">{{@lang 'cart.checkout.change'}}</a>
                             </li>
-                        {{/each}}
-                    </ul>
-                    <a href="#" data-item-edit="{{id}}">Change</a>
-                {{/if}}
-                </div>
-            </td>
-            <td>
-                <button class="cart-update" data-cart-itemid="{{id}}" data-action="inc">+</button>
-                <div id="qty-{{id}}">{{quantity}}</div>
-                <button class="cart-update" data-cart-itemid="{{id}}" data-action="dec">-</button>
-            </td>
-            <td>{{@money price}}</td>
-            <td>{{@money total}}</td>
-        </tr>
+                        </ul>
+                    {{/if}}
+                </td>
+                <td class="cart-item-block cart-item-info">
+                    <span class="cart-item-label">{{@lang 'cart.checkout.price'}}</span> <span class="cart-item-value">{{@money price}}</span>
+                </td>
+
+                <td class="cart-item-block cart-item-info cart-item-quantity">
+                    <span class="cart-item-label">{{@lang 'cart.checkout.quantity'}}</span>
+                    <div class="buttonGroup">
+                        <button class="button button--small cart-update" data-cart-itemid="{{id}}" data-action="dec">-</button>
+                        <button class="button button--small cart-update" data-cart-itemid="{{id}}" data-action="inc">+</button>
+                    </div>
+                    <span class="cart-item-value" id="qty-{{id}}">{{quantity}}</span>
+                </td>
+
+                <td class="cart-item-block cart-item-info">
+                    <span class="cart-item-label">{{@lang 'cart.checkout.total'}}</span> <strong class="cart-item-value">{{@money total}}</strong>
+                    <svg class="icon cart-remove" data-cart-itemid="{{id}}">
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use>
+                    </svg>
+                </td>
+            </tr>
         {{/each}}
     </tbody>
-    <tfoot>
-        <tr>
-            <td colspan="4"></td>
-            <td>Subtotal</td>
-            <td><div class="subtotal">{{@money cart.sub_total}}</div></td>
-        </tr>
-        {{#if cart.gift_wrapping_cost}}
-        <tr>
-            <td colspan="4"></td>
-            <td>Gift Wrapping</td>
-            <td><div class="subtotal">{{@money cart.gift_wrapping_cost}}</div></td>
-        </tr>
-        {{/if}}
-        <tr>
-            <td colspan="4"></td>
-            <td>Promo Code {{code}}</td>
-            <td>
-                {{> components/cart/coupon-input}}
-            </td>
-        </tr>
-
-        {{#if cart.shipping_handling.show_estimator}}
-        <tr>
-            <td colspan="4"></td>
-            <td>Estimated Shipping</td>
-            <td>
-                {{> components/cart/shipping-estimator cart.shipping_handling}}
-            </td>
-        </tr>
-        {{/if}}
-        {{#each cart.taxes}}
-        <tr>
-            <td colspan="4"></td>
-            <td>{{name}}</td>
-            <td><div class="subtotal">{{@money cost}}</div></td>
-        </tr>
-        {{/each}}
-        <tr>
-            <td colspan="4"></td>
-            <td>GRAND TOTAL</td>
-            <td><div class="total">{{@money cart.grand_total}}</div></td>
-        </tr>
-    </tfoot>
 </table>
-

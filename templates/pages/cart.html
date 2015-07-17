@@ -1,36 +1,90 @@
 {{#partial "page"}}
-<div class="main" data-cart>
-    <h1>Cart</h1>
+<div class="page">
 
-    <div data-cart-status>
-        {{#each cart.status_messages}}
-            <div class="alert alert-info" role="alert" data-bind="text: message">{{{message}}}</div>
-        {{/each}}
-    </div>
+    <main class="page-content" data-cart>
+        {{> components/common/breadcrumbs breadcrumbs}}
+        <h1 class="page-heading">Cart</h1>
 
-    {{#if cart.items.length}}
-        <div class="loadingOverlay"></div>
-        <div data-cart-content>
-            {{> components/cart/content}}
-        </div>
-        <div>
-            <a href="{{urls.checkout.single_address}}" title="{{@lang 'cart.checkout.title'}}">{{@lang 'cart.checkout.button'}}</a>
-        </div>
-
-        {{#if show_multiple_address_shipping}}
-            <div>
-                <p>
-                    <span> {{@lang 'cart.checkout.address.or'}} </span>
-                    <a href="{{urls.checkout.multiple_address}}">
-                        <strong>{{@lang 'cart.checkout.address.multiple'}}</strong>
-                    </a>
-                </p>
+        {{#if cart.status_messages}}
+            <div data-cart-status>
+                {{#each cart.status_messages}}
+                    <div class="alert alert-info" role="alert" data-bind="text: message">{{{message}}}</div>
+                {{/each}}
             </div>
         {{/if}}
-    {{else}}
-        <h3>{{@lang 'cart.checkout.empty_cart'}}</h3>
-    {{/if}}
+
+        {{#if cart.items.length}}
+            <div class="loadingOverlay"></div>
+
+            <div data-cart-content>
+                {{> components/cart/content}}
+            </div>
+
+            <ul class="cart-totals">
+                <li class="cart-total">
+                    <div class="cart-total-label">
+                        <strong>{{@lang 'cart.checkout.subtotal'}}:</strong>
+                    </div>
+                    <div class="cart-total-value">
+                        <span>{{@money cart.sub_total}}</span>
+                    </div>
+                </li>
+                <li class="cart-total">
+                    <div class="cart-total-label">
+                        <strong>{{@lang 'cart.checkout.promo_code'}}:</strong>
+                    </div>
+                    {{> components/cart/coupon-input}}
+                </li>
+                {{#if cart.gift_wrapping_cost}}
+                    <li class="cart-total">
+                        <div class="cart-total-label">
+                            <strong>{{@lang 'cart.checkout.gift_wrapping'}}:</strong>
+                        </div>
+                        <div class="cart-total-value">
+                            <span>{{@money cart.gift_wrapping_cost}}</span>
+                        </div>
+                    </li>
+                {{/if}}
+                {{#if cart.shipping_handling.show_estimator}}
+                    <li class="cart-total">
+                        <div class="cart-total-label">
+                            <strong>{{@lang 'cart.checkout.shipping'}}:</strong>
+                        </div>
+                        {{> components/cart/shipping-estimator cart.shipping_handling}}
+                    </li>
+                {{/if}}
+                {{#each cart.taxes}}
+                    <li class="cart-total">
+                        <div class="cart-total-label">
+                            <strong>{{name}}:</strong>
+                        </div>
+                        <div class="cart-total-value">
+                            <span>{{@money cost}}</span>
+                        </div>
+                    </li>
+                {{/each}}
+                <li class="cart-total">
+                    <div class="cart-total-label">
+                        <strong>{{@lang 'cart.checkout.grand_total'}}:</strong>
+                    </div>
+                    <div class="cart-total-value cart-total-grandTotal">
+                        <span>{{@money cart.grand_total}}</span>
+                    </div>
+                </li>
+            </ul>
+
+            <div class="cart-actions">
+                <a class="button button--primary" href="{{urls.checkout.single_address}}" title="{{@lang 'cart.checkout.title'}}">{{@lang 'cart.checkout.button'}}</a>
+                {{#if show_multiple_address_shipping}}
+                    <p class="cart-multiAddress">{{@lang 'cart.checkout.address.or'}} <a href="{{urls.checkout.multiple_address}}"><strong>{{@lang 'cart.checkout.address.multiple'}}</strong></a></p>
+                {{/if}}
+            </div>
+        {{else}}
+            <h3>{{@lang 'cart.checkout.empty_cart'}}</h3>
+        {{/if}}
+    </main>
 
 </div>
 {{/partial}}
 {{> layout/base}}
+`

@@ -3,30 +3,35 @@
         <a href="#" class="shipping-estimate-value">{{@money shipping_cost}}</a>
     </div>
 {{else}}
-    <button class="shipping-estimate-show">{{@lang 'cart.shipping_estimator.add_info'}}</button>
+    <div class="cart-total-value">
+        <button class="shipping-estimate-show">{{@lang 'cart.shipping_estimator.add_info'}}</button>
+        <button class="shipping-estimate-hide" style="display: none;">Cancel</button>
+    </div>
 {{/if}}
 
 <div class="shipping-estimator" style="display: none;">
-    <form class="estimator-form">
-        <button class="shipping-estimate-hide">{{@lang 'cancel'}}</button>
-        <select name="shipping-country">
-        <option>{{@lang 'cart.shipping_estimator.select_a_country'}}</option>
-        {{#each countries}}
-            <option value="{{id}}" {{#if selected}}selected="selected"{{/if}}>
-                {{name}}
-            </option>
-        {{/each}}
+    <form class="form form--hiddenLabels estimator-form">
+        <label class="form-label" for="shipping-country">{{@lang 'cart.shipping_estimator.select_a_country'}}</label>
+        <select class="form-select" id="shipping-country" name="shipping-country">
+            <option>{{@lang 'cart.shipping_estimator.select_a_country'}}</option>
+            {{#each countries}}
+                <option value="{{id}}" {{#if selected}}selected="selected"{{/if}}>
+                    {{name}}
+                </option>
+            {{/each}}
         </select>
-        <select name="shipping-state">
-        <option>{{@lang 'cart.shipping_estimator.select_a_state'}}</option>
-        {{#each states}}
-            <option value="{{id}}" {{#if selected}}selected="selected"{{/if}}>
-                {{name}}
-            </option>
-        {{/each}}
+        <label class="form-label" for="shipping-state">{{@lang 'cart.shipping_estimator.select_a_state'}}</label>
+        <select class="form-select" id="shipping-state" name="shipping-state">
+            <option>{{@lang 'cart.shipping_estimator.select_a_state'}}</option>
+            {{#each states}}
+                <option value="{{id}}" {{#if selected}}selected="selected"{{/if}}>
+                    {{name}}
+                </option>
+            {{/each}}
         </select>
-        <input type="text" name="shipping-zip" value="{{selected_zip}}">
-        <button class="shipping-estimate-submit">{{@lang 'cart.shipping_estimator.estimate_shipping'}}</button>
+        <label class="form-label" for="shipping-zip">{{@lang 'cart.shipping_estimator.zip_postal_code'}}</label>
+        <input class="form-input" type="text" id="shipping-zip" name="shipping-zip" value="{{selected_zip}}" placeholder="{{@lang 'cart.shipping_estimator.zip_postal_code'}}">
+        <button class="button button--primary button--small shipping-estimate-submit">{{@lang 'cart.shipping_estimator.estimate_shipping'}}</button>
     </form>
-    <div class="shipping-quotes"></div> 
+    <div class="shipping-quotes"></div>
 </div>

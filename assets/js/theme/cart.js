@@ -12,7 +12,7 @@ export default class Cart extends PageManager {
         this.bindEvents();
         next();
     }
-    
+
     cartUpdate($target) {
         let itemId = $target.data('cart-itemid'),
             $el = $('#qty-' + itemId),
@@ -89,19 +89,21 @@ export default class Cart extends PageManager {
             $couponForm = $('.coupon-form'),
             $codeInput = $('[name="couponcode"]', $couponForm);
 
-        $('.coupon-code-show').on('click', (event) => {
+        $('.coupon-code-add').on('click', (event) => {
             event.preventDefault();
 
             $(event.currentTarget).hide();
             $couponContainer.show();
+            $('.coupon-code-cancel').show();
             $codeInput.focus();
         });
 
-        $('.coupon-code-hide').on('click', (event) => {
+        $('.coupon-code-cancel').on('click', (event) => {
             event.preventDefault();
 
             $couponContainer.hide();
-            $('.coupon-code-show').show();
+            $('.coupon-code-cancel').hide();
+            $('.coupon-code-add').show();
         });
 
         $couponForm.on('submit', (event) => {
@@ -153,6 +155,7 @@ export default class Cart extends PageManager {
 
             $(event.currentTarget).hide();
             $estimatorContainer.show();
+            $('.shipping-estimate-hide').show();
         });
 
 
@@ -161,6 +164,7 @@ export default class Cart extends PageManager {
 
             $estimatorContainer.hide();
             $('.shipping-estimate-show').show();
+            $('.shipping-estimate-hide').hide();
         });
     }
 

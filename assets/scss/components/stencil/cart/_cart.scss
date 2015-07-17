@@ -1,0 +1,437 @@
+// =============================================================================
+// CART (CSS)
+// =============================================================================
+
+
+// Cart variables
+// -----------------------------------------------------------------------------
+
+$cart-item-spacing:                     spacing("single");
+
+$cart-thumbnail-maxWidth:               remCalc(100px);
+$cart-thumbnail-height:                 remCalc(100px);
+
+$cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-spacing;
+
+
+// Cart layout
+// -----------------------------------------------------------------------------
+//
+// 1. On mobile and tablet we need to re-structure the table to appear more like
+//    a list, then visually show it as a table on larger screens only.
+//
+// 2. Hide the table headings on mobile and tablet, show them for larger screens.
+//
+// -----------------------------------------------------------------------------
+
+.cart {
+    display: block; // 1
+    margin-bottom: spacing("single");
+    width: 100%;
+
+    @include breakpoint("medium") {
+        display: table; // 1
+    }
+}
+
+.cart-header {
+    display: none; // 2
+
+    @include breakpoint("medium") {
+        display: table-header-group; // 2
+        text-align: left;
+    }
+}
+
+.cart-header-item {
+    padding-bottom: spacing("base");
+
+    &:last-child {
+        text-align: right;
+    }
+}
+
+.cart-list {
+    border-top: 1px solid color("greys", "lightest");
+    display: block; // 1
+
+    @include breakpoint("medium") {
+        display: table-row-group; // 1
+    }
+}
+
+.cart-item {
+    border-bottom: 1px solid color("greys", "lightest");
+    clear: both;
+    display: block; // 1
+    padding: $cart-item-spacing 0;
+
+    @include breakpoint("small") {
+        @include clearfix;
+        padding-left: grid-calc(3, $total-columns);
+    }
+
+    @include breakpoint("medium") {
+        display: table-row; // 1
+        padding-left: 0;
+
+        &:before,
+        &:after {
+            display: none;
+        }
+    }
+}
+
+.cart-item-block {
+    display: block; // 1
+
+    @include breakpoint("medium") {
+        display: table-cell; // 1
+    }
+}
+
+.cart-item-figure {
+    float: left;
+    height: $cart-thumbnail-height;
+    margin-bottom: $cart-item-spacing;
+    text-align: right;
+    width: grid-calc(4, $total-columns);
+
+    @include breakpoint("small") {
+        // height: auto;
+        margin-bottom: 0;
+        margin-left: -(grid-calc(4, $total-columns));
+        width: grid-calc(4, $total-columns);
+    }
+
+    @include breakpoint("medium") {
+        float: none;
+        text-align: left;
+        width: grid-calc(1, $total-columns);
+    }
+}
+
+.cart-item-title {
+    display: table-cell;
+    height: $cart-thumbnail-height;
+    padding-left: $cart-item-spacing;
+
+    @include breakpoint("small") {
+        display: block;
+        height: auto;
+        margin-bottom: $cart-item-spacing;
+        overflow: hidden;
+    }
+
+    @include breakpoint("medium") {
+        display: table-cell;
+    }
+}
+
+.cart-item-info {
+    clear: both;
+    width: 100%;
+
+    + .cart-item-info {
+        margin-top: spacing("half");
+    }
+
+    @include breakpoint("small") {
+        clear: none;
+        float: left;
+        overflow: hidden;
+        width: grid-calc(4, $total-columns);
+
+        + .cart-item-info {
+            margin-top: 0;
+        }
+    }
+
+    @include breakpoint("medium") {
+        float: none;
+        width: grid-calc(2, $total-columns);
+
+        &:last-child {
+            text-align: right;
+        }
+    }
+}
+
+
+// Cart content
+// -----------------------------------------------------------------------------
+
+.cart-header-quantity,
+.cart-item-quantity {
+
+    @include breakpoint("medium") {
+        text-align: center;
+    }
+}
+
+.cart-item-quantity {
+
+    .buttonGroup {
+        margin: 0 spacing("eighth") 1px spacing("single");
+        vertical-align: middle;
+
+        @include breakpoint("medium") {
+            margin-left: 0;
+        }
+    }
+
+    .button--small {
+        padding: spacing("eighth") spacing("half");
+    }
+
+    .cart-item-value {
+        display: inline-block;
+        padding-left: 0;
+        text-align: center;
+        width: spacing("single");
+    }
+}
+
+.cart-item-label {
+    color: color("greys", "light");
+    float: left;
+    margin-bottom: spacing("quarter");
+    text-align: right;
+    width: grid-calc(4, $total-columns);
+
+    @include breakpoint("small") {
+        display: block;
+        padding-left: $cart-item-spacing;
+        text-align: left;
+        width: 100%;
+    }
+
+    @include breakpoint("medium") {
+        display: none;
+    }
+}
+
+.cart-item-value {
+    padding-left: $cart-item-spacing;
+
+    @include breakpoint("medium") {
+        padding-left: 0;
+    }
+}
+
+.cart-item-brand {
+    color: color("greys", "light");
+    margin-bottom: spacing("eighth");
+}
+
+.cart-item-name {
+    font-size: fontSize("smaller");
+    margin: 0;
+}
+
+.cart-item-options {
+    color: color("greys", "light");
+    font-size: fontSize("smallest");
+    list-style: none;
+    margin: spacing("eighth") 0 0;
+}
+
+.cart-remove {
+    background-color: color("greys", "lightest");
+    border-radius: 50%;
+    cursor: pointer;
+    float: right;
+    height: remCalc(18px);
+    margin-right: grid-calc(3, $total-columns);
+    margin-top: remCalc(2px);
+    padding: spacing("eighth");
+    transition: background-color 0.15s ease;
+    width: remCalc(18px);
+
+    @include breakpoint("small") {
+        margin-right: 0;
+    }
+
+    @include breakpoint("small") {
+        margin-left: spacing("base");
+    }
+
+    &:hover {
+        background-color: color("greys", "lighter");
+    }
+}
+
+
+// Cart totals
+// -----------------------------------------------------------------------------
+
+.cart-totals {
+    @include u-listBullets("none");
+    margin-bottom: $cart-item-spacing;
+    text-align: right;
+    width: 100%;
+
+    @include breakpoint("small") {
+        float: right;
+        width: grid-calc(8, $total-columns);
+    }
+
+    @include breakpoint("medium") {
+        margin-bottom: spacing("base");
+        width: grid-calc(6, $total-columns);
+    }
+
+    @include breakpoint("large") {
+        width: grid-calc(4, $total-columns);
+    }
+}
+
+.cart-total {
+    @include clearfix;
+    border-bottom: 0;
+
+    @include breakpoint("medium") {
+        + .cart-total {
+            border-top: 1px solid color("greys", "lightest");
+        }
+    }
+}
+
+.cart-total-label {
+    color: color("greys", "medium");
+    width: grid-calc(4, $total-columns);
+
+    @include breakpoint("small") {
+        width: grid-calc(6, $total-columns);
+    }
+
+    @include breakpoint("medium") {
+        display: block;
+        padding-left: 0;
+        text-align: left;
+    }
+}
+
+.cart-total-value {
+    text-align: left;
+
+    @include breakpoint("small") {
+        text-align: right;
+    }
+
+    @include breakpoint("medium") {
+        width: grid-calc(6, $total-columns);
+    }
+}
+
+.cart-total-label,
+.cart-total-value {
+    float: left;
+    padding: spacing("third") 0 spacing("third") $cart-item-spacing;
+
+    @include breakpoint("medium") {
+        padding: spacing("base") 0;
+    }
+}
+
+.cart-total-grandTotal {
+    font-family: fontFamily("headingSans");
+    font-size: fontSize("small");
+    padding-bottom: spacing("eighth");
+    padding-top: spacing("eighth");
+    position: relative;
+
+    @include breakpoint("medium") {
+        padding: spacing("base") 0;
+        top: -(spacing("sixth"));
+    }
+}
+
+
+// Cart actions
+// -----------------------------------------------------------------------------
+
+.cart-totals {
+
+    .form-input {
+        display: inline-block;
+        height: remCalc(32px);
+        padding: spacing("third");
+        vertical-align: top;
+        width: grid-calc(9, $total-columns);
+    }
+
+    .form-select {
+        background-position: right remCalc(5px) top remCalc(7px);
+        background-size: remCalc(20px) remCalc(20px);
+        height: remCalc(32px);
+        margin-bottom: spacing("half");
+        padding: spacing("third") spacing("half");
+    }
+}
+
+.coupon-code-add,
+.coupon-code-cancel,
+.shipping-estimate-show,
+.shipping-estimate-hide {
+    padding: 0;
+    text-decoration: underline;
+    transition: color 0.15s ease;
+
+    &:hover {
+        color: color("greys", "light");
+    }
+}
+
+.coupon-code-cancel,
+.shipping-estimate-hide {
+    font-style: italic;
+}
+
+.coupon-form {
+    @include clearfix;
+    font-size: 0;
+    margin-bottom: spacing("base");
+
+    .form-input,
+    .button {
+        float: left;
+    }
+
+    .form-input {
+        width: 78%;
+    }
+
+    .button {
+        margin: 0 0 0 2%;
+        padding-left: spacing("half");
+        padding-right: spacing("half");
+        width: 20%;
+    }
+}
+
+.estimator-form {
+    margin-bottom: 0;
+
+    .form-input {
+        margin-bottom: spacing("half");
+        width: 100%;
+    }
+
+    .button--primary {
+        width: 100%;
+    }
+}
+
+.cart-actions {
+    clear: both;
+
+    .button {
+        display: block;
+
+        @include breakpoint("small") {
+            display: inline-block;
+            float: right;
+        }
+    }
+}

@@ -34,6 +34,7 @@ export default function () {
         utils.api.product.getById(productId, {template: 'products/quick-view'}, (err, response) => {
             $modalOverlay.hide();
             $modalContent.html(response);
+            $modalContent.find('.productView').addClass('productView--quickView');
             setNewImageGallery();
         });
     });

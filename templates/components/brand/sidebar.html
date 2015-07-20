@@ -1,6 +1,8 @@
 <nav>
     {{#if brand.faceted_search_enabled}}
-        {{> components/faceted-search/index brand}}
+        {{#if brand.products}}
+            {{> components/faceted-search/index brand}}
+        {{/if}}
     {{else}}
         {{#if shop_by_brand.links}}
         <div class="sidebarBlock">

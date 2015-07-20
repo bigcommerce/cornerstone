@@ -12,7 +12,11 @@ shop_by_brand: true
     </aside>
 
     <main class="page-content" id="product-listing-container">
-        {{> components/brand/product-listing}}
+        {{#if brand.products}}
+            {{> components/brand/product-listing}}
+        {{else}}
+            <p>{{@lang 'brands.no_products'}}</p>
+        {{/if}}
     </main>
 </div>
 

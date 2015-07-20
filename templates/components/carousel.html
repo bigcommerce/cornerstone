@@ -3,10 +3,12 @@
         "dots": true,
         "mobileFirst": true,
         "slidesToShow": 1,
-        "slidesToScroll": 1
+        "slidesToScroll": 1,
+        "autoplay": true,
+        "autoplaySpeed": {{carousel.swap_frequency}}
     }'
 >
-    {{#each carousel}}
+    {{#each carousel.slides}}
     <div class="heroCarousel-slide" style="background-image: url({{image}})">
         <img class="heroCarousel-image" src="{{image}}" alt="{{alt_text}}"/>
         <div class="heroCarousel-content">

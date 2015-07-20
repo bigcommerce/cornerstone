@@ -15,7 +15,11 @@ category:
     </aside>
 
     <main class="page-content" id="product-listing-container">
-        {{> components/category/product-listing}}
+        {{#if category.products}}
+            {{> components/category/product-listing}}
+        {{else}}
+            <p>{{@lang 'categories.no_products'}}</p>
+        {{/if}}
     </main>
 </div>
 

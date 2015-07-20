@@ -4,24 +4,18 @@ import 'jackmoore/zoom';
 export default class ImageGallery {
 
     constructor($gallery) {
-        this.$gallery = $gallery;
         this.$mainImage = $gallery.find('[data-image-gallery-main]');
         this.$selectableImages = $gallery.find('[data-image-gallery-item]');
         this.currentImage = {};
+    }
+
+    init() {
         this.bindEvents();
         this.setImageZoom();
     }
 
-    selectNewImage(e) {
-        e.preventDefault();
-
-        let $target = $(e.currentTarget);
-
-        this.currentImage = {
-            mainImageUrl: $target.attr('data-image-gallery-new-image-url'),
-            zoomImageUrl: $target.attr('data-image-gallery-zoom-image-url'),
-            $selectedThumb: $target
-        };
+    setMainImage(imgObj) {
+        this.currentImage = imgObj;
 
         this.destroyImageZoom();
         this.setActiveThumb();
@@ -29,9 +23,24 @@ export default class ImageGallery {
         this.setImageZoom();
     }
 
+    selectNewImage(e) {
+        e.preventDefault();
+
+        let $target = $(e.currentTarget),
+            imgObj = {
+                mainImageUrl: $target.attr('data-image-gallery-new-image-url'),
+                zoomImageUrl: $target.attr('data-image-gallery-zoom-image-url'),
+                $selectedThumb: $target
+            };
+
+        this.setMainImage(imgObj);
+    }
+
     setActiveThumb() {
         this.$selectableImages.removeClass('is-active');
-        this.currentImage.$selectedThumb.addClass('is-active');
+        if (this.currentImage.$selectedThumb) {
+            this.currentImage.$selectedThumb.addClass('is-active');
+        }
     }
 
     swapMainImage() {

@@ -24,7 +24,7 @@ export default class Global extends PageManager {
         quickSearch();
         currencySelector();
         foundation();
-        quickView();
+        quickView(this.context);
         cartPreview();
         carousel();
         toggleMenu();

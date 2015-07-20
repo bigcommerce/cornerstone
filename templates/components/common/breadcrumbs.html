@@ -1,15 +1,10 @@
 <ul class="breadcrumbs">
-    <li class="breadcrumb">
-        <a class="breadcrumb-label" href="{{home}}">{{@lang 'home.heading'}}</a>
-    </li>
     {{#each this}}
         <li class="breadcrumb {{#if @last}}is-active{{/if}}">
             {{#if url}}
                 <a href="{{url}}" class="breadcrumb-label">{{name}}</a>
             {{else}}
-
-                    <span class="breadcrumb-label">{{name}}</span>
-
+                <span class="breadcrumb-label">{{name}}</span>
             {{/if}}
         </li>
     {{/each}}

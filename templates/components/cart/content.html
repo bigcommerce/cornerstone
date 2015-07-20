@@ -17,6 +17,9 @@
                         <p class="cart-item-brand">{{brand.name}}</p>
                     {{/if}}
                     <h4 class="cart-item-name">{{name}}</h4>
+                    {{#if release_date}}
+                        <p>({{release_date}})</p>
+                    {{/if}}
                     {{#if options}}
                         <ul class="cart-item-options">
                             {{#each options}}

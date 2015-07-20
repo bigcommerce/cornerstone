@@ -14,7 +14,13 @@
                         <a href="{{url}}" class="button button--small card-figcaption-button" data-product-id="{{id}}">{{@lang 'products.choose_options'}}</a>
                     {{else}}
                         {{#if can_purchase }}
-                            <a href="{{add_to_cart_url}}" class="button button--small card-figcaption-button">{{@lang 'products.add_to_cart'}}</a>
+                            <a href="{{add_to_cart_url}}" class="button button--small card-figcaption-button">
+                                {{#if pre_order}}
+                                    {{@lang 'products.pre_order'}}
+                                {{else}}
+                                    {{@lang 'products.add_to_cart'}}
+                                {{/if}}
+                            </a>
                         {{else}}
                             {{#if out_of_stock_message }}
                                 <a href="{{url}}" class="button button--small card-figcaption-button" data-product-id="{{id}}">{{out_of_stock_message}}</a>

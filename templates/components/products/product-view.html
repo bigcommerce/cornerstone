@@ -82,7 +82,7 @@
                     </div>
 
                     <div class="form-action">
-                        <input id="form-action-addToCart" class="button button--primary" type="submit" value="{{@lang 'products.add_to_cart'}}">
+                        <input id="form-action-addToCart" class="button button--primary" type="submit" value="{{#if product.pre_order}}{{@lang 'products.pre_order'}}{{else}}{{@lang 'products.add_to_cart'}}{{/if}}">
                     </div>
                 {{else}}
                     {{#if product.out_of_stock_message}}

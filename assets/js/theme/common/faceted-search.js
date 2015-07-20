@@ -14,14 +14,16 @@ function goToUrl(url) {
  */
 export default class FacetedSearch {
     /**
-     * @param {object} templates - Map of templates to fetch
+     * @param {object} requestOptions - Object with options for the ajax requests
      * @param {function} callback - Function to execute after fetching templates
      * @param {object} options - Configurable options
      * @example
      *
-     * let templates = {
-     *     productListing: 'category/product-listing',
-     *     sidebar: 'category/sidebar'
+     * let requestOptions = {
+     *      templates: {
+     *          productListing: 'category/product-listing',
+     *          sidebar: 'category/sidebar'
+     *     }
      * };
      *
      * let templatesDidLoad = function(content) {
@@ -29,9 +31,10 @@ export default class FacetedSearch {
      *     $facetedSearchContainer.html(content.sidebar);
      * };
      *
-     * let facetedSearch = new FacetedSearch(templates, templatesDidLoad);
+     * let facetedSearch = new FacetedSearch(requestOptions, templatesDidLoad);
      */
-    constructor(templates, callback, options) {
+    constructor(requestOptions, callback, options) {
+
         let defaultOptions = {
            loadingIndicatorSelector: '#loadingNotification',
            blockerSelector: '#facetedSearch .blocker',
@@ -42,7 +45,7 @@ export default class FacetedSearch {
         };
 
         // Private properties
-        this.templates = templates;
+        this.requestOptions = requestOptions;
         this.callback = callback;
         this.options = _.extend({}, defaultOptions, options);
         this.collapsedFacets = [];
@@ -272,7 +275,7 @@ export default class FacetedSearch {
         $(this.options.loadingIndicatorSelector).show();
         $(this.options.blockerSelector).show();
 
-        api.getPage(History.getState().url, { template: this.templates }, (err, content) => {
+        api.getPage(History.getState().url, this.requestOptions, (err, content) => {
             $(this.options.loadingIndicatorSelector).hide();
             $(this.options.blockerSelector).hide();
 

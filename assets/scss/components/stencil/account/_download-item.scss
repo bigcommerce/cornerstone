@@ -1,0 +1,63 @@
+// =============================================================================
+// Account Download Item (CSS)
+// =============================================================================
+//
+// 1. Maintain width even if it doesn't have content
+//
+// -----------------------------------------------------------------------------
+
+.downloads {
+    @include grid-row();
+}
+
+.downloads-image {
+    @include breakpoint("medium") {
+        @include grid-column(4);
+        margin: 0;
+        min-height: 1px; // 1
+        padding: 0;
+    }
+}
+
+.downloads-imageCaption {
+    color: $body-font-color;
+    font-weight: bold;
+}
+
+.downloads-contents {
+    @include breakpoint("medium") {
+        @include grid-column(7, $offset: 1);
+    }
+}
+
+.downloads-contentsList {
+    border-top: 1px solid container("borderColor");
+    list-style: none;
+    margin: 0;
+    margin-top: spacing("single");
+}
+
+.downloads-item {
+    margin-bottom: spacing("single");
+}
+
+.downloads-item-name {
+    text-transform: none;
+
+    &.is-expired {
+        color: $small-font-color;
+    }
+}
+
+.downloads-item-size {
+    color: $small-font-color;
+}
+
+.downloads-item-metaDescription {
+    color: $small-font-color;
+    margin-bottom: 0;
+}
+
+.downloads-item-description {
+    margin-bottom: 0;
+}

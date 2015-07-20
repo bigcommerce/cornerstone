@@ -2,12 +2,136 @@
 // ADD RETURN REQUEST (CSS)
 // =============================================================================
 
-.form-addReturn-row {
-    @include grid-row();
+
+.account--addReturn {
+
+    .table {
+        margin-bottom: spacing("double");
+        display: block;
+
+        @include breakpoint("small") {
+            display: table;
+            margin-bottom: spacing("double") * 2;
+        }
+
+        tr {
+            display: block;
+            padding: spacing("single") 0;
+
+            @include breakpoint("small") {
+                display: table-row;
+                padding: 0;
+            }
+        }
+
+        th,
+        td {
+            display: block;
+            padding: 0;
+
+            @include breakpoint("small") {
+                display: table-cell;
+                padding-bottom: spacing("half");
+                padding-top: spacing("half");
+            }
+
+            + th,
+            + td {
+                padding-left: 0;
+
+                @include breakpoint("small") {
+                    padding-left: spacing("single");
+                }
+            }
+        }
+
+        .return-itemPrice {
+            @include breakpoint("small") {
+                text-align: center;
+            }
+        }
+
+        .return-itemQuantity {
+            @include breakpoint("small") {
+                text-align: right;
+            }
+        }
+    }
+
+    .table-thead {
+        display: none;
+
+        @include breakpoint("small") {
+            display: table-header-group;
+        }
+
+        th {
+            font-size: fontSize("smaller");
+        }
+
+        th:first-child {
+            width: 60%;
+        }
+    }
+
+    .table-tbody {
+        display: block;
+
+        @include breakpoint("small") {
+            display: table-row-group;
+        }
+    }
 }
 
-.form-addReturn-column {
+
+.return-itemName {
+    font-size: fontSize("smaller");
+    font-weight: fontWeight("bold");
+
     @include breakpoint("small") {
-        @include grid-column(6);
+        font-size: fontSize("base");
+        font-weight: fontWeight("normal");
+    }
+}
+
+.return-itemPrice {
+    color: color("greys", "light");
+    margin-bottom: spacing("quarter");
+
+    @include breakpoint("small") {
+        color: inherit;
+        margin-bottom: 0;
+        text-align: center;
+    }
+}
+
+.return-itemQuantity {
+
+    .form-label {
+        display: inline;
+        margin-right: spacing("quarter");
+
+        @include breakpoint("small") {
+            @include u-hidden("visually");
+        }
+    }
+}
+
+
+
+
+
+
+.account--addReturn-row {
+    @include grid-row($behavior: "nest");
+    margin: 0 (-(spacing("base")));
+}
+
+.account--addReturn-column {
+    @include grid-column(12);
+    padding: 0 spacing("base");
+
+    @include breakpoint("small") {
+        width: grid-calc(6, $total-columns);
     }
 }

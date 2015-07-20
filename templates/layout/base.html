@@ -7,9 +7,9 @@
 
         <link href="{{ head.favicon }}" rel="shortcut icon">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-        <link href="/assets/css/theme.css" rel="stylesheet">
+        <link href="{{cdn '/assets/css/theme.css'}}" rel="stylesheet">
         <link href='//fonts.googleapis.com/css?family=Montserrat|Karla:700,400,400italic,700italic|Oswald:300' rel='stylesheet' type='text/css'>
-        <script src="/assets/js/vendor/modernizr-custom.js"></script>
+        <script src="{{cdn '/assets/js/vendor/modernizr-custom.js'}}"></script>
 
         {{{ head.scripts }}}
         {{{ head.rsslinks }}}
@@ -20,13 +20,13 @@
         {{> components/common/body }}
         {{> components/common/footer }}
 
-        <!--TODO Need CDN asset Helper-->
-        <script src="/assets/jspm_packages/system.js"></script>
-        <script src="/assets/config.js"></script>
-        <!--TODO Need Bundled JS Helper-->
+        <script src="{{cdn '/assets/jspm_packages/system.js'}}"></script>
+        <script src="{{cdn '/assets/config.js'}}"></script>
+        {{#if in_production}}
+        <script src="{{cdn '/assets/js/bundle.js'}}"></script>
+        {{/if}}
         {{footer.scripts}}
         <!--Loads JSPM main application, then instantiates each page type module when needed.  -->
         <script>System.import("js/app").then(function(data){ data.default("{{template_file}}", {{jsContext}}).load()});</script>
-
     </body>
 </html>

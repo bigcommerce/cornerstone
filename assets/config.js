@@ -25,6 +25,7 @@ System.config({
     "casperin/nod": "github:casperin/nod@2.0.4",
     "core-js": "npm:core-js@0.9.18",
     "foundation": "github:bigcommerce-labs/foundation@5.5.3",
+    "hubspot/pace": "github:hubspot/pace@1.0.2",
     "jackmoore/zoom": "github:jackmoore/zoom@1.7.14",
     "jquery": "github:components/jquery@2.1.4",
     "lodash": "npm:lodash@3.10.0",

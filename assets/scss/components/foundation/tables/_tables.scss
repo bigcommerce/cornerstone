@@ -2,9 +2,9 @@
 // TABLES (CSS)
 // =============================================================================
 
+
 // Stencil table component additions
 // -----------------------------------------------------------------------------
-
 
 .table {
     margin-top: $table-marginTop;
@@ -12,14 +12,66 @@
     td + td {
         border-left: $table-td-borderLeft;
     }
+
+    .table-alignCenter {
+        text-align: center;
+    }
+
+    .table-alignRight {
+        text-align: right;
+    }
 }
 
 .table-actions {
     text-align: center;
-    margin: spacing('single');
+    margin: spacing("single");
 
     .form,
     .button {
         margin-bottom: 0;
+    }
+}
+
+
+// Stencil table modifiers
+// -----------------------------------------------------------------------------
+
+.table--line {
+    border-width: 0 0 1px;
+    border-color: color("greys", "lightest");
+
+    .table-thead {
+        background-color: color("whites", "bright");
+        border-color: color("greys", "lightest");
+        border-width: 0 0 1px;
+
+        tr {
+
+            th {
+                padding-left: 0;
+                padding-right: 0;
+
+                + th {
+                    padding-left: spacing("single");
+                }
+            }
+        }
+    }
+
+    tr {
+        border-color: color("greys", "lightest");
+
+        td {
+            padding-left: 0;
+            padding-right: 0;
+
+            + td {
+                padding-left: spacing("single");
+            }
+        }
+    }
+
+    td + td {
+        border-left: 0;
     }
 }

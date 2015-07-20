@@ -56,15 +56,37 @@
 
         &:hover {
             color: $pagination-item-previousNext-color-hover;
+
+            .icon > svg {
+                fill: $pagination-item-previousNext-color-hover;
+            }
         }
+    }
+}
+
+.pagination-item--previous,
+.pagination-item--next {
+
+    .icon {
+        margin-top: -(spacing("eighth"));
+        width: remCalc(20px);
+        height: remCalc(20px);
     }
 }
 
 .pagination-item--previous {
     float: left;
+
+    .icon {
+        margin-left: -(remCalc(12px));
+    }
 }
 
 .pagination-item--next {
     float: right;
+
+    .icon {
+        margin-right: -(remCalc(12px));
+    }
 }
 

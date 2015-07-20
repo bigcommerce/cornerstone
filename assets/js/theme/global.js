@@ -9,6 +9,7 @@ import quickView from './global/quick-view';
 import cartPreview from './global/cart-preview';
 import privacyCookieNotification from './global/cookieNotification';
 import carousel from './common/carousel';
+import loadingProgressBar from './global/loading-progress-bar';
 
 export default class Global extends PageManager {
     constructor() {
@@ -30,6 +31,7 @@ export default class Global extends PageManager {
         toggleMenu();
         mobileMenu();
         privacyCookieNotification();
+        loadingProgressBar();
         next();
     }
 }

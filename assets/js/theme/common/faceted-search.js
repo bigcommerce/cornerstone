@@ -36,7 +36,6 @@ export default class FacetedSearch {
     constructor(requestOptions, callback, options) {
 
         let defaultOptions = {
-           loadingIndicatorSelector: '#loadingNotification',
            blockerSelector: '#facetedSearch .blocker',
            showMoreToggleSelector: '#facetedSearch .accordion-content .toggleLink',
            componentSelector: '#facetedSearch-navList',
@@ -272,11 +271,9 @@ export default class FacetedSearch {
     }
 
     onStateChange(event) {
-        $(this.options.loadingIndicatorSelector).show();
         $(this.options.blockerSelector).show();
 
         api.getPage(History.getState().url, this.requestOptions, (err, content) => {
-            $(this.options.loadingIndicatorSelector).hide();
             $(this.options.blockerSelector).hide();
 
             if (err) {

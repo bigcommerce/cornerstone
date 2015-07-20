@@ -6,9 +6,9 @@ category:
 {{#partial "page"}}
 
 {{> components/common/breadcrumbs breadcrumbs}}
-
+<img src="{{@image category.image 'zoom'}}">
 <h1 class="page-heading">{{category.name}}</h1>
-
+{{{category.description}}}
 <div class="page">
     <aside class="page-sidebar" id="faceted-search-container">
         {{> components/category/sidebar}}

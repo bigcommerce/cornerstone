@@ -6,7 +6,7 @@ export default class Brand extends PageManager {
         let $productListingContainer = $('#product-listing-container'),
             $facetedSearchContainer = $('#faceted-search-container'),
             requestOptions = {
-                templates: {
+                template: {
                     productListing: 'brand/product-listing',
                     sidebar: 'brand/sidebar'
                 }

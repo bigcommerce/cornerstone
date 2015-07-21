@@ -8,7 +8,8 @@ import _ from 'lodash';
  */
 function makeStateRequired(stateElement) {
     let attrs,
-        $newElement;
+        $newElement,
+        $hiddenInput;
 
     attrs = _.transform(stateElement.prop('attributes'), (result, item) => {
         result[item.name] = item.value;
@@ -18,6 +19,12 @@ function makeStateRequired(stateElement) {
     stateElement.replaceWith(`<select id="${attrs.id}" data-label="${attrs['data-label']}" class="form-select" name="${attrs.name}"></select>`);
 
     $newElement = $('[data-label="State/Province"]');
+    $hiddenInput = $('[name*="FormFieldIsText"]');
+
+    if ($hiddenInput.length > 0) {
+        $hiddenInput.remove();
+    }
+
     $newElement.prev().find('small').show();
 
     return $newElement;
@@ -29,16 +36,21 @@ function makeStateRequired(stateElement) {
  */
 function makeStateOptional(stateElement) {
     let attrs,
-        $newElement;
+        $newElement,
+        fieldId;
 
     attrs = _.transform(stateElement.prop('attributes'), (result, item) => {
         result[item.name] = item.value;
         return result;
     });
 
+    fieldId = attrs.name.match(/(\[.*\])/);
     stateElement.replaceWith(`<input type="text" id="${attrs.id}" data-label="${attrs['data-label']}" class="form-input" name="${attrs.name}">`);
-
     $newElement = $('[data-label="State/Province"]');
+
+    if (fieldId) {
+        $newElement.after(`<input type="hidden" name="FormFieldIsText${fieldId[0]}" value="1">`)
+    }
     $newElement.prev().find('small').hide();
 
     return $newElement;

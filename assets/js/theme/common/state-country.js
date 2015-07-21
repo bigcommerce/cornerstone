@@ -36,7 +36,10 @@ function makeStateOptional(stateElement) {
         return result;
     });
 
-    stateElement.replaceWith(`<input type="text" id="${attrs.id}" data-label="${attrs['data-label']}" class="form-input" name="${attrs.name}">`);
+    let fieldId = attrs.name.match(/(\[.*\])/);
+
+    stateElement.replaceWith(`<input type="text" id="${attrs.id}" data-label="${attrs['data-label']}" class="form-input" name="${attrs.name}">
+    <input type="hidden" name="FormFieldIsText${fieldId}" value="1">`);
 
     $newElement = $('[data-label="State/Province"]');
     $newElement.prev().find('small').hide();

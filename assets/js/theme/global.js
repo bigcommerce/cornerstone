@@ -7,6 +7,7 @@ import mobileMenu from './global/mobile-menu';
 import foundation from './global/foundation';
 import quickView from './global/quick-view';
 import cartPreview from './global/cart-preview';
+import compareProducts from './global/compare-products';
 import privacyCookieNotification from './global/cookieNotification';
 import carousel from './common/carousel';
 import loadingProgressBar from './global/loading-progress-bar';
@@ -27,6 +28,7 @@ export default class Global extends PageManager {
         foundation();
         quickView(this.context);
         cartPreview();
+        compareProducts();
         carousel();
         toggleMenu();
         mobileMenu();

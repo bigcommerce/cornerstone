@@ -2,7 +2,7 @@
 <div class="productReviews" id="product-reviews" data-product-reviews>
     <a  href="#" data-reveal-id="modal-review-form">{{@lang 'products.reviews.new'}}</a>
     {{> components/products/modals/writeReview product=product urls=urls}}
-    {{#if this.total}}
+    {{#if reviews.total}}
             <a href="#productReviews-list" class="productReviews-displayToggle toggleLink is-open" data-collapsible>
             <span class="toggleLink-text toggleLink-text--on">
                 {{@lang 'products.reviews.hide'}}
@@ -12,9 +12,9 @@
             </span>
         </a>
 
-        <h4 class="productReviews-heading">{{@lang 'products.reviews.header' total=this.total}}</h4>
+        <h4 class="productReviews-heading">{{@lang 'products.reviews.header' total=reviews.total}}</h4>
         <ul id="productReviews-list" class="productReviews-list is-open">
-            {{#each this.list}}
+            {{#each reviews.list}}
             <li class="productReview">
                 <article itemprop="review" itemscope itemtype="http://schema.org/Review">
                     <header>

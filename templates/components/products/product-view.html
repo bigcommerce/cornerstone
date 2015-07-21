@@ -13,12 +13,7 @@
                 <meta itemprop="ratingValue" content="{{product.rating}}">
                 <meta itemprop="ratingCount" content="{{product.num_reviews}}">
                 <meta itemprop="reviewCount" content="{{product.num_reviews}}">
-                {{> components/products/ratings rating=product.rating}}
-                {{#if product.num_reviews}}
-                    <span class="productView-reviewCount"><a href="{{product.url}}#product-reviews">{{@lang 'products.reviews.link_to_review' total=product.num_reviews}}</a></span>
-                {{else}}
-                    <span class="productView-reviewCount">{{@lang 'products.reviews.link_to_review' total=product.num_reviews}}</span>
-                {{/if}}
+                {{> components/products/ratings rating=product.rating}}<span class="productView-reviewCount"><a href="{{product.url}}#product-reviews">{{@lang 'products.reviews.link_to_review' total=product.num_reviews}}</a></span>
             </div>
             {{product.detail_messages}}
         </div>

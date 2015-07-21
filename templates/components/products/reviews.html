@@ -1,37 +1,37 @@
-<a  href="#" data-reveal-id="modal-review-form">{{@lang 'products.reviews.new'}}</a>
-{{> components/products/modals/writeReview product=product urls=urls}}
 
-{{#if this.total}}
 <div class="productReviews" id="product-reviews" data-product-reviews>
-    <a href="#productReviews-list" class="productReviews-displayToggle toggleLink is-open" data-collapsible>
-        <span class="toggleLink-text toggleLink-text--on">
-            {{@lang 'products.reviews.hide'}}
-        </span>
-        <span class="toggleLink-text toggleLink-text--off">
-            {{@lang 'products.reviews.show'}}
-        </span>
-    </a>
+    <a  href="#" data-reveal-id="modal-review-form">{{@lang 'products.reviews.new'}}</a>
+    {{> components/products/modals/writeReview product=product urls=urls}}
+    {{#if this.total}}
+            <a href="#productReviews-list" class="productReviews-displayToggle toggleLink is-open" data-collapsible>
+            <span class="toggleLink-text toggleLink-text--on">
+                {{@lang 'products.reviews.hide'}}
+            </span>
+            <span class="toggleLink-text toggleLink-text--off">
+                {{@lang 'products.reviews.show'}}
+            </span>
+        </a>
 
-    <h4 class="productReviews-heading">{{@lang 'products.reviews.header' total=this.total}}</h4>
-    <ul id="productReviews-list" class="productReviews-list is-open">
-        {{#each this.list}}
-        <li class="productReview">
-            <article itemprop="review" itemscope itemtype="http://schema.org/Review">
-                <header>
-                    <span class="productReview-rating" itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
-                        {{> components/products/ratings rating=rating}}
-                        <span class="productReview-ratingNumber" itemprop="ratingValue">{{ rating }}</span>
-                    </span>
-                    <h5 itemprop="name" class="productReview-title">{{ title }}</h5>
-                    <meta itemprop="author" content="{{name}}">
-                    <p class="productReview-author">
-                        {{@lang 'products.reviews.post_on_by' date=date name=name}}
-                    </p>
-                </header>
-                <p itemprop="reviewBody" class="productReview-body">{{nl2br text}}</p>
-            </article>
-        </li>
-        {{/each}}
-    </ul>
+        <h4 class="productReviews-heading">{{@lang 'products.reviews.header' total=this.total}}</h4>
+        <ul id="productReviews-list" class="productReviews-list is-open">
+            {{#each this.list}}
+            <li class="productReview">
+                <article itemprop="review" itemscope itemtype="http://schema.org/Review">
+                    <header>
+                        <span class="productReview-rating" itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
+                            {{> components/products/ratings rating=rating}}
+                            <span class="productReview-ratingNumber" itemprop="ratingValue">{{ rating }}</span>
+                        </span>
+                        <h5 itemprop="name" class="productReview-title">{{ title }}</h5>
+                        <meta itemprop="author" content="{{name}}">
+                        <p class="productReview-author">
+                            {{@lang 'products.reviews.post_on_by' date=date name=name}}
+                        </p>
+                    </header>
+                    <p itemprop="reviewBody" class="productReview-body">{{nl2br text}}</p>
+                </article>
+            </li>
+            {{/each}}
+        </ul>
+    {{/if}}
 </div>
-{{/if}}

@@ -6,6 +6,8 @@ import 'foundation/js/foundation/foundation.tab';
 import 'foundation/js/foundation/foundation.alert';
 
 export default function() {
+    let $body = $('body');
+
     $(document).foundation({
         dropdown: {
             // specify the class used for active dropdowns
@@ -19,5 +21,9 @@ export default function() {
         tab: {
             active_class: 'is-active'
         }
+    }).on('open.fndtn.reveal', '[data-reveal]', () => {
+        $body.addClass('has-activeModal');
+    }).on('close.fndtn.reveal', '[data-reveal]', () => {
+        $body.removeClass('has-activeModal');
     });
 }

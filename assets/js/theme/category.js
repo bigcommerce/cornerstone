@@ -11,7 +11,7 @@ export default class Category extends PageManager {
                         shop_by_price: true
                     }
                 },
-                templates: {
+                template: {
                     productListing: 'category/product-listing',
                     sidebar: 'category/sidebar'
                 }
@@ -20,6 +20,7 @@ export default class Category extends PageManager {
         super();
 
         new FacetedSearch(requestOptions, function(content) {
+
             $productListingContainer.html(content.productListing);
             $facetedSearchContainer.html(content.sidebar);
         });

@@ -6,7 +6,7 @@ export default class Search extends PageManager {
         let $productListingContainer = $('#product-listing-container'),
             $facetedSearchContainer = $('#faceted-search-container'),
             requestOptions = {
-                templates: {
+                template: {
                     productListing: 'search/product-listing',
                     sidebar: 'search/sidebar'
                 }

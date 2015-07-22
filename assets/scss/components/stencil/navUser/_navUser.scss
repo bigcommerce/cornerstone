@@ -91,6 +91,13 @@
     display: block;
 }
 
+.navUser-item--compare {
+    display: none;
+    &.show {
+        display: block;
+    }
+}
+
 .navUser-item--account {
 
     .navUser-or {
@@ -203,4 +210,29 @@
             padding: spacing("double") 0 0;
         }
     }
+}
+
+// Compare counter
+// -----------------------------------------------------------------------------
+//
+// 1. Hardcoded intentionally for precise pixels.
+//
+// -----------------------------------------------------------------------------
+
+
+.compare-count {
+    background-color: color("greys", "lighter");
+    border-radius: 50%;
+    color: color("greys", "darker");
+    display: none;
+    font-size: fontSize("tiny");
+    font-weight: fontWeight("bold");
+    height: 20px; // 1
+    line-height: 20px; // 1
+    text-align: center;
+    width: 20px; // 1
+}
+
+.compare-count--positive {
+    display: inline-block;
 }

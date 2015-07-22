@@ -9,8 +9,8 @@ function decrementCounter(counter, item) {
     }
 }
 
-function incrementCounter(counter, product) {
-    counter.push(product);
+function incrementCounter(counter, item) {
+    return counter.push(item);
 }
 
 function updateCounterNav(counter, $link) {

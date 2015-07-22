@@ -6,7 +6,7 @@
                 <a href="#" class="button button--small card-figcaption-button quickview" data-product-id="{{id}}">{{@lang 'products.quick_view'}}</a>
                 {{#if show_compare}}
                     <label class="button button--small card-figcaption-button" for="compare-{{id}}">
-                        {{@lang 'products.compare'}} <input type="checkbox" name="products[]" value="{{id}}" id="compare-{{id}}">
+                        {{@lang 'products.compare'}} <input type="checkbox" name="products[]" value="{{id}}" id="compare-{{id}}" data-compare-id="{{id}}">
                     </label>
                 {{/if}}
                 {{#unless hide_add_to_cart}}

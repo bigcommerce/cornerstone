@@ -121,32 +121,6 @@
     z-index: 1;
 }
 
-
-// Cart counter
-// -----------------------------------------------------------------------------
-//
-// 1. Hardcoded intentionally for precise pixels.
-//
-// -----------------------------------------------------------------------------
-
-.cart-count {
-    background-color: color("greys", "darker");
-    border-radius: 50%;
-    color: color("whites", "bright");
-    display: none;
-    font-size: fontSize("tiny");
-    font-weight: fontWeight("bold");
-    height: 20px; // 1
-    line-height: 20px; // 1
-    text-align: center;
-    width: 20px; // 1
-}
-
-.cart-count--positive {
-    display: inline-block;
-}
-
-
 // Quick search
 // -----------------------------------------------------------------------------
 //
@@ -212,18 +186,17 @@
     }
 }
 
-// Compare counter
+// Counter Pill
 // -----------------------------------------------------------------------------
 //
 // 1. Hardcoded intentionally for precise pixels.
 //
 // -----------------------------------------------------------------------------
 
-
-.compare-count {
-    background-color: color("greys", "lighter");
+.countPill {
+    background-color: color("greys", "darker");
     border-radius: 50%;
-    color: color("greys", "darker");
+    color: color("whites", "bright");
     display: none;
     font-size: fontSize("tiny");
     font-weight: fontWeight("bold");
@@ -233,6 +206,11 @@
     width: 20px; // 1
 }
 
-.compare-count--positive {
+.countPill--positive {
     display: inline-block;
+}
+
+.countPill--alt {
+    background-color: color("greys", "lighter");
+    color: color("greys", "darker");
 }

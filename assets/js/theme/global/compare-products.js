@@ -5,12 +5,12 @@ function decrementCounter(counter, item) {
     let index = counter.indexOf(item);
 
     if (index > -1) {
-        return counter.splice(index, 1);
+        counter.splice(index, 1);
     }
 }
 
 function incrementCounter(counter, item) {
-    return counter.push(item);
+    counter.push(item);
 }
 
 function updateCounterNav(counter, $link) {
@@ -19,7 +19,7 @@ function updateCounterNav(counter, $link) {
             $link.addClass('show');
         }
         $link.attr('href', `/compare/${counter.join('/')}`);
-        $('span.compare-count').html(counter.length);
+        $link.find('span.countPill').html(counter.length);
     } else {
         $link.removeClass('show');
     }
@@ -27,15 +27,15 @@ function updateCounterNav(counter, $link) {
 
 export default function () {
 
-    let $productsToCompare = $('body').find('input[name="products\[\]"]:checked'),
+    let $checked = $('body').find('input[name="products\[\]"]:checked'),
+        $compareLink = $('a[data-compare-nav]'),
         products;
 
-    if ($productsToCompare.length !== 0) {
-        products = _.map($productsToCompare, (element) => {
+    if ($checked.length !== 0) {
+        products = _.map($checked, (element) => {
             return element.value;
         });
 
-        let $compareLink = $('a[data-compare-nav]');
         updateCounterNav(products, $compareLink);
     }
 
@@ -60,9 +60,9 @@ export default function () {
     });
 
     $('body').on('click', 'a[data-compare-nav]', (event) => {
-        let $this = $('body').find('input[name="products\[\]"]:checked');
+        let $checked = $('body').find('input[name="products\[\]"]:checked');
 
-        if ($this.length <= 1) {
+        if ($checked.length <= 1) {
             alert('You must select at least two products to compare');
             return false;
         }

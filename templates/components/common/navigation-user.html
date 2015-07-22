@@ -3,7 +3,7 @@
 
     <ul class="navUser-section navUser-section--alt">
         <li class="navUser-item">
-            <a class="navUser-action navUser-item--compare" href="/compare" data-compare-nav>Compare <span class="compare-count compare-count--positive"></span></a>
+            <a class="navUser-action navUser-item--compare" href="/compare" data-compare-nav>Compare <span class="countPill countPill--positive countPill--alt"></span></a>
         </li>
         <li class="navUser-item">
             <a class="navUser-action navUser-action--quickSearch" href="#" data-search="quickSearch" aria-controls="quickSearch" aria-expanded="false">Search</a>
@@ -20,7 +20,7 @@
             {{/if}}
         </li>
         <li class="navUser-item navUser-item--cart">
-            <a class="navUser-action" data-cart-preview data-dropdown="cart-preview-dropdown" href="{{urls.cart}}">Cart <span class="cart-count{{#if cart.items}} cart-count--positive{{/if}}">{{cart.items.length}}</span></a>
+            <a class="navUser-action" data-cart-preview data-dropdown="cart-preview-dropdown" href="{{urls.cart}}">Cart <span class="countPill{{#if cart.items}} countPill--positive{{/if}}">{{cart.items.length}}</span></a>
             <div class="dropdown-menu" id="cart-preview-dropdown" data-dropdown-content aria-hidden="true"></div>
         </li>
     </ul>

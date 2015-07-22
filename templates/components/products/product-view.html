@@ -70,14 +70,20 @@
                 </div>
 
                 {{#if product.can_purchase}}
+
                     <div class="form-field form-field--increments">
-                        <label class="form-label form-label--alternate">{{@lang 'products.quantity'}}</label>
-                        <div class="buttonGroup" data-quantity-change>
-                            <button class="button button--small" data-action="dec">-</button>
-                            <button class="button button--small" data-action="inc">+</button>
+                        <label class="form-label form-label--alternate" for="qty[]">{{@lang 'products.quantity'}}</label>
+                        <div class="form-increment" data-quantity-change>
+                            <button class="button button--icon" data-action="dec">
+                                <span class="u-hiddenVisually">{{@lang 'products.quantity_decrease'}}</span>
+                                <i class="icon" aria-hidden="true"><svg><use xlink:href="#icon-keyboard-arrow-down" /></svg></i>
+                            </button>
+                            <input class="form-input form-input--incrementTotal" id="qty[]" name="qty[]" type="tel" value="1" min="1" pattern="[0-9]*" aria-live="polite">
+                            <button class="button button--icon" data-action="inc">
+                                <span class="u-hiddenVisually">{{@lang 'products.quantity_increase'}}</span>
+                                <i class="icon" aria-hidden="true"><svg><use xlink:href="#icon-keyboard-arrow-up" /></svg></i>
+                            </button>
                         </div>
-                        <span class="incrementTotal">1</span>
-                        <input type="hidden" name="qty[]" value="1">
                     </div>
 
                     <div class="form-action">

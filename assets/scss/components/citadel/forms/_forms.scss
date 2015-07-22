@@ -161,21 +161,6 @@
     display: none;
 }
 
-.form-field--increments {
-
-    .button {
-        padding: spacing("quarter") spacing("base");
-    }
-
-    .incrementTotal {
-        display: inline-block;
-        font-size: fontSize("smaller");
-        font-weight: fontWeight("bold");
-        padding: spacing("fifth") spacing("base");
-        vertical-align: top;
-    }
-}
-
 .form-file {
     margin-bottom: spacing("third");
 }
@@ -183,6 +168,30 @@
 .form-fileDescription {
     color: color("greys", "light");
     font-size: fontSize("smallest");
+}
+
+
+//
+// Increment field
+// -----------------------------------------------------------------------------
+
+.form-increment {
+    .button {
+        margin: 0;
+        padding: remCalc(3px) remCalc(5px);
+    }
+}
+
+.form-input--incrementTotal {
+    border: none;
+    display: inline-block;
+    height: auto;
+    font-size: fontSize("smaller");
+    font-weight: fontWeight("bold");
+    padding: 0;
+    text-align: center;
+    vertical-align: middle;
+    width: remCalc(35px);
 }
 
 

@@ -16,7 +16,7 @@ export default class Cart extends PageManager {
     cartUpdate($target) {
         let itemId = $target.data('cart-itemid'),
             $el = $('#qty-' + itemId),
-            oldQty = parseInt($el.text(), 10),
+            oldQty = parseInt($el.val(), 10),
             newQty;
 
         this.$overlay.show();
@@ -29,7 +29,7 @@ export default class Cart extends PageManager {
                 let remove = (newQty === 0);
                 this.refreshContent(remove);
             } else {
-                $el.text(oldQty);
+                $el.val(oldQty);
                 alert(response.data.errors.join('\n'));
             }
         });
@@ -67,7 +67,7 @@ export default class Cart extends PageManager {
             cartRemoveItem = _.bind(_.debounce(this.cartRemoveItem, debounceTimeout), this);
 
         // cart update
-        $('.cart-update', this.$cartContent).on('click', (event) => {
+        $('[data-cart-update]', this.$cartContent).on('click', (event) => {
             let $target = $(event.currentTarget);
 
             event.preventDefault();

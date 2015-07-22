@@ -8,7 +8,7 @@
         <link href="{{ head.favicon }}" rel="shortcut icon">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <link href="{{cdn '/assets/css/theme.css'}}" rel="stylesheet">
-        <link href='//fonts.googleapis.com/css?family=Montserrat|Karla:700,400,400italic,700italic|Oswald:300' rel='stylesheet' type='text/css'>
+        {{> components/common/fonts fonts=(@pick theme_settings "fontFamily-sans" "fontFamily-serif" "fontFamily-headings" "fontFamily-hero") }}
         <script src="{{cdn '/assets/js/vendor/modernizr-custom.js'}}"></script>
 
         {{{ head.scripts }}}

@@ -10,7 +10,7 @@
 // -----------------------------------------------------------------------------
 
 .navPages-container {
-    background-color: color("greys", "lightest");
+    background-color: $navPage-subMenu-backgroundColor;
     bottom: 0;
     display: none;
     left: 0;
@@ -66,7 +66,7 @@
 }
 
 .navPages-action {
-    color: color("greys", "darkest");
+    color: $navPages-action-color;
     display: inline-block;
     font-size: fontSize("smaller");
     font-weight: fontWeight("bold");
@@ -75,14 +75,14 @@
     text-transform: uppercase;
 
     &:hover {
-        color: color("greys", "medium");
+        color: $navPages-action-color--hover;
     }
 
     @include breakpoint("medium") {
         padding: spacing("half") (spacing("half") + spacing("quarter")) (spacing("half") + spacing("quarter"));
 
         &.is-open {
-            color: color("greys", "darkest");
+            color: $navPages-action-color--active;
             background-color: color("greys", "lightest");
         }
 
@@ -114,7 +114,7 @@
 
 .navPage-subMenu,
 .navPage-childList {
-    border-left: 1px solid color("greys", "lighter");
+    border-left: 1px solid $navPage-subMenu-borderColor;
     margin: spacing("quarter") spacing("half");
     padding-left: spacing("half");
 
@@ -143,7 +143,7 @@
 
     @include breakpoint("medium") {
         @include grid-row();
-        background-color: color("greys", "lightest");
+        background-color: $navPage-subMenu-backgroundColor;
         padding: spacing("single") spacing("single") (spacing("single")+spacing("half"))!important;
         position: absolute;
         text-align: left;
@@ -171,7 +171,7 @@
         }
 
         > .navPage-subMenu-action {
-            border-bottom: solid 1px color("greys", "lighter");
+            border-bottom: solid 1px $navPage-subMenu-borderColor;
             margin-bottom: spacing("half") + spacing("quarter");
         }
 
@@ -204,7 +204,7 @@
 
 .navPages-quickSearch {
 
-    border-bottom: solid 1px color("greys", "lighter");
+    border-bottom: solid 1px $navPage-subMenu-borderColor;
     margin-bottom: spacing("half");
 
     > .container {
@@ -230,19 +230,19 @@
 // -----------------------------------------------------------------------------
 
 .navPages-list--account {
-    border-top: solid 1px color("greys", "lighter");
+    border-top: solid 1px $navPage-subMenu-borderColor;
     margin-top: spacing("half");
     padding-top: spacing("quarter");
 
     #currencySelection2 {
         background-color: color("whites", "bright");
-        border: solid 1px color("greys", "lighter");
+        border: solid 1px $navPage-subMenu-borderColor;
 
         .dropdown-menu-item {
             padding: 0;
 
             &:not(:last-child) {
-                border-bottom: solid 1px color("greys", "lighter");
+                border-bottom: solid 1px $navPage-subMenu-borderColor;
             }
         }
 

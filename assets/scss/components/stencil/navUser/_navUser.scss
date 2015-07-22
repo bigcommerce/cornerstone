@@ -23,8 +23,8 @@
     }
 
     .dropdown-menu {
-        background-color: color("whites", "bright");
-        border: 1px solid color("greys", "lightest");
+        background-color: $navUser-dropdown-menu-backgroundColor;
+        border: 1px solid container("borderColor", "dark");
         box-shadow: container("dropShadow");
 
         &.is-open {
@@ -167,7 +167,7 @@
 }
 
 .dropdown--quickSearch {
-    background-color: color("greys", "lightest");
+    background-color: $dropdown--quickSearch-backgroundColor;
     padding: spacing("single") 0;
 
     @include breakpoint("small") {

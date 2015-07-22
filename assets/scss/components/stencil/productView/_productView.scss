@@ -82,7 +82,7 @@
 // -----------------------------------------------------------------------------
 
 .productView-product {
-    border-bottom: 1px solid color("greys", "lightest");
+    border-bottom: container("border");
     padding-bottom: spacing("single") + spacing("third");
 }
 
@@ -95,15 +95,15 @@
 }
 
 .productView-brand {
-    color: color("greys", "medium");
+    color: $productView-brand-link-color;
     font-size: fontSize("small");
     margin: -(spacing("eighth")) 0 spacing("base");
 
     a {
-        color: color("greys", "medium");
+        color: $productView-brand-link-color;
 
         &:hover {
-            color: color("greys", "darker");
+            color: $productView-brand-link-color--hover;
         }
     }
 }

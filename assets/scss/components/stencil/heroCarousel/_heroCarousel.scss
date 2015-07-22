@@ -44,7 +44,7 @@
         }
 
         li {
-            @include carouselOpaqueBackgrounds;
+            @include carouselOpaqueBackgrounds($slick-dot-bgColor);
         }
     }
 
@@ -82,6 +82,7 @@
 }
 
 .heroCarousel-title {
+    color: $carousel-title-color;
     font-size: fontSize("small");
     margin-top: 0;
 
@@ -91,7 +92,7 @@
 }
 
 .heroCarousel-description {
-    color: color("greys", "darkest");
+    color: $carousel-description-color;
     font-size: fontSize("tiny");
 
     @include breakpoint("small") {

@@ -15,8 +15,8 @@ $container-border-global-size:          1px;
 
 $container-border-global-style:         solid;
 
-$container-border-global-color-base:    $color-greyLightest;
-$container-border-global-color-dark:    $color-greyDarker;
+$container-border-global-color-base:    stencilColor("container-border-global-color-base");
+$container-border-global-color-dark:    stencilColor("container-border-global-color-dark");
 
 $container-border-global-base:          $container-border-global-size $container-border-global-style $container-border-global-color-base;
 $container-border-global-dark:          $container-border-global-size $container-border-global-style $container-border-global-color-dark;
@@ -25,14 +25,14 @@ $container-border-global-dark:          $container-border-global-size $container
 // Drop shadows
 // -----------------------------------------------------------------------------
 
-$container-drop-shadow-base:            0 1px 2px $color-greyLighter;
+$container-drop-shadow-base:            0 1px 2px rgba($color-black, 0.13);
 
 
 // Backgrounds
 // -----------------------------------------------------------------------------
 
-$container-fill-base:                   $color-white;
-$container-fill-dark:                   $color-greyLightest;
+$container-fill-base:                   stencilColor("container-fill-base");
+$container-fill-dark:                   stencilColor("container-fill-dark");
 
 
 // Padding

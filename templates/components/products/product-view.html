@@ -7,7 +7,7 @@
             </h2>
             <p class="productView-price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
                 <meta itemprop="priceCurrency" content="{{currency_selector.active_currency_code}}">
-                <span itemprop="price" data-product-price>{{{product.price.base}}}</span>
+                <span itemprop="price" data-product-price>{{> components/products/price price=product.price}}</span>
             </p>
             <div class="productView-rating" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
                 <meta itemprop="ratingValue" content="{{product.rating}}">

@@ -9,9 +9,9 @@
     <div class="downloads">
         <figure class="downloads-image">
             {{#if downloads.image}}
-            <img src="{{downloads.image}}" alt="{{downloads.product_name}}"/>
+                <img src="{{downloads.image}}" alt="{{downloads.product_name}}"/>
 
-            <figcaption class="downloads-imageCaption">{{downloads.product_name}}</figcaption>
+                <figcaption class="downloads-imageCaption">{{downloads.product_name}}</figcaption>
             {{/if}}
         </figure>
 
@@ -20,37 +20,37 @@
 
             <ul class="downloads-contentsList">
                 {{#each downloads.items}}
-                <li class="downloads-contentsListItem">
-                    <article class="downloads-item">
-                        {{#if expired}}
-                        <h5 class="downloads-item-name is-expired">
-                            {{name}} <span class="downloads-item-size">({{size}})</span>
-                        </h5>
+                    <li class="downloads-contentsListItem">
+                        <article class="downloads-item">
+                            {{#if expired}}
+                                <h5 class="downloads-item-name is-expired">
+                                    {{name}} <span class="downloads-item-size">({{size}})</span>
+                                </h5>
 
-                        <p class="downloads-item-metaDescription">
-                            {{@lang 'account.orders.downloads.expired_content'}}
-                        </p>
+                                <p class="downloads-item-metaDescription">
+                                    {{@lang 'account.orders.downloads.expired_content'}}
+                                </p>
 
-                        {{else}}
+                            {{else}}
 
-                        <h5 class="downloads-item-name">
-                            <a href="{{url}}">{{name}}</a> <span class="downloads-item-size">({{size}})</span>
-                        </h5>
+                            <h5 class="downloads-item-name">
+                                <a href="{{url}}">{{name}}</a> <span class="downloads-item-size">({{size}})</span>
+                            </h5>
 
-                        {{#if description}}
-                        <p class="downloads-item-description">
-                            {{description}}
-                        </p>
-                        {{/if}}
-                        
-                        {{#if expiry_info}}
-                        <p class="downloads-item-metaDescription">
-                            {{expiry_info}}
-                        </p>
-                        {{/if}}
-                        {{/if}}
-                    </article>
-                </li>
+                            {{#if description}}
+                                <p class="downloads-item-description">
+                                    {{description}}
+                                </p>
+                            {{/if}}
+                            
+                            {{#if expiry_info}}
+                                <p class="downloads-item-metaDescription">
+                                    {{expiry_info}}
+                                </p>
+                                {{/if}}
+                            {{/if}}
+                        </article>
+                    </li>
                 {{/each}}
             </ul>
         </section>

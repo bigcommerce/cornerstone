@@ -170,6 +170,49 @@
     font-size: fontSize("smallest");
 }
 
+.form-field-group {
+    border: $input-border-width $input-border-style $input-border-color;
+    border-radius: $input-border-radius;
+    padding: spacing("single");
+}
+
+
+.form-row > .form-column {
+
+    @if $formRow-modernBrowsers {
+        @include breakpoint("medium") {
+            flex: 1;
+            padding-left: $formColumn-gutter;
+
+            &:first-of-type {
+                padding-left: 0;
+            }
+        }
+    }
+
+    @else {
+        @include grid-column(12);
+        @include breakpoint("small") {
+            &--half {
+                > .form-field {
+                    @include grid-column(6);
+                }
+            }
+
+            &--third {
+                > .form-field {
+                    @include grid-column(4);
+                }
+            }
+
+            &--quarter {
+                > .form-field {
+                    @include grid-column(3);
+                }
+            }
+        }
+    }
+}
 
 //
 // Increment field

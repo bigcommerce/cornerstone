@@ -1,0 +1,71 @@
+<p class="txt24">{{@lang 'page.rss.intro'}}</p>
+
+{{#if urls.rss.blog}}
+<div>
+    <h2>{{@lang 'page.rss.blog.heading'}}</h2>
+
+    <p class="mtop"><strong>{{@lang 'page.rss.blog.intro' limit=settings.rss_item_limit store=settings.store_name}}</strong></p>
+
+
+    <ul class="list-icon">
+        <li><a href="{{urls.rss.blog}}"><i class="icon"></i>{{@lang 'page.rss.blog.rss' limit=settings.rss_item_limit}}</a></li>
+        <li><a href="{{urls.rss.blog_atom}}"><i class="icon"></i>{{@lang 'page.rss.blog.rss_atom' limit=settings.rss_item_limit}}</a></li>
+    </ul>
+
+</div>
+{{/if}}
+
+{{#if urls.rss.products.new}}
+<div>
+    <h2>{{@lang 'page.rss.products.new.heading'}}</h2>
+
+    <p class="mtop"><strong>{{@lang 'page.rss.products.new.intro' limit=settings.rss_item_limit store=settings.store_name}}</strong></p>
+    <ul class="list-icon">
+        <li><a href="{{urls.rss.products.new}}"><i class="icon"></i>{{@lang 'page.rss.products.new.rss' limit=settings.rss_item_limit}}</a></li>
+        <li><a href="{{urls.rss.products.new_atom}}"><i class="icon"></i>{{@lang 'page.rss.products.new.rss_atom' limit=settings.rss_item_limit}}</a></li>
+    </ul>
+
+
+
+</div>
+{{/if}}
+{{#if urls.rss.products.popular}}
+<div>
+    <h2>{{@lang 'page.rss.products.popular.heading'}}</h2>
+
+    <p class="mtop"><strong>{{@lang 'page.rss.products.popular.intro' limit=settings.rss_item_limit store=settings.store_name}}</strong></p>
+
+
+    <ul class="list-icon">
+        <li><a href="{{urls.rss.products.popular}}"><i class="icon"></i>{{@lang 'page.rss.products.popular.rss' limit=settings.rss_item_limit}}</a></li>
+        <li><a href="{{urls.rss.products.popular_atom}}"><i class="icon"></i>{{@lang 'page.rss.products.popular.rss_atom' limit=settings.rss_item_limit}}</a></li>
+    </ul>
+
+
+</div>
+{{/if}}
+{{#if urls.rss.products.featured}}
+<div>
+    <h2>{{@lang 'page.rss.products.featured.heading'}}</h2>
+
+    <p class="mtop"><strong>{{@lang 'page.rss.products.featured.intro' limit=settings.rss_item_limit store=settings.store_name}}</strong></p>
+
+
+
+    <ul class="list-icon">
+        <li><a href="{{urls.rss.products.featured}}"><i class="icon"></i>{{@lang 'page.rss.products.featured.rss' limit=settings.rss_item_limit}}</a></li>
+        <li><a href="{{urls.rss.products.featured_atom}}"><i class="icon"></i>{{@lang 'page.rss.products.featured.rss_atom' limit=settings.rss_item_limit}}</a></li>
+    </ul>
+
+</div>
+{{/if}}
+
+{{#if urls.rss.products.search}}
+<div>
+    <h2>{{@lang 'page.rss.search.heading'}}</h2>
+
+    <p class="mtop"><strong>{{@lang 'page.rss.search.intro1'}}</strong></p>
+
+    <p class="mtop"><strong>{{@lang 'page.rss.search.intro2' store=settings.store_name}}</strong></p>
+</div>
+{{/if}}

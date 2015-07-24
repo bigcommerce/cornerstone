@@ -3,12 +3,15 @@
 // =============================================================================
 //
 // 1. Corrects the spacing added by .navUser-or
+// 2. Can't use top: 50% because its container `.header` changes its height to 
+//    100% when mobile menu is expanded
 //
 // -----------------------------------------------------------------------------
 
 .navUser {
     @include nav($style: "navBar", $wrapper: "nav");
     @include verticalPositionMiddle("absolute");
+    top: 26px; // 2
     right: 0;
     width: 100%;
     z-index: zIndex("lowest");
@@ -88,6 +91,10 @@
 .navUser-item--cart {
     display: block;
 
+    .dropdown-menu {
+        max-width: 300px;
+    }
+
     .dropdown-menu.is-open {
         &:before,
         &:after {
@@ -100,7 +107,16 @@
 
         &:after {
             right: spacing("single");
+            margin-bottom: -1px;
         }
+    }
+}
+
+.navUser-item-cartLabel {
+    display: none;
+
+    @include breakpoint("small") {
+        display: inline;
     }
 }
 

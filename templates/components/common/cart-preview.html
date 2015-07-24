@@ -1,13 +1,35 @@
-<ul class="cart-preview-items">
-    {{#each cart.items}}
-        <li class="dropdown-menu-item">
-            <div class="cart-preview-items-image"><img src="{{@image image 'thumb'}}" alt="{{image.alt}}" /></div>
-            <div class="cart-preview-items-brand">{{brand.name}}</div>
-            <div class="cart-preview-items-name"><a href="{{url}}" alt="{{name}}">{{name}}</a></div>
-            <div class="cart-preview-items-price">{{quantity}} &times; {{price.formatted}}</div>
-        </li>
-    {{/each}}
-</ul>
+<div class="previewCart">
+    <ul class="previewCart-list">
+        {{#each cart.items}}
+            <li class="previewCart-listItem">
+                <div class="previewCart-listItem-image">
+                    <img src="{{@image image 'thumb'}}" alt="{{image.alt}}" />
+                </div>
 
-<a href="{{urls.checkout.single_address}}" class="button button--primary">Checkout Now</a>
-<a href="{{urls.cart}}" class="button button--action">View Cart</a>
+                <div class="previewCart-listItem-content">
+                    <div class="previewCart-listItem-brand">
+                        {{brand.name}}
+                    </div>
+
+                    <h6 class="previewCart-listItem-name">
+                        <a href="{{url}}" alt="{{name}}">{{name}}</a>
+                    </h6>
+
+                    <div class="previewCart-listItem-price">
+                        {{quantity}} &times; {{price.formatted}}
+                    </div>
+                </div>
+            </li>
+        {{/each}}
+    </ul>
+
+    <div class="previewCart-listItem previewCart-listItem--action">
+        <div class="previewCart-listItem-checkout">
+            <a href="{{urls.checkout.single_address}}" class="button button--small button--primary">Checkout Now</a>
+        </div>
+
+        <div class="previewCart-listItem-viewCart">
+            <a href="{{urls.cart}}" class="button button--small button--action">View Cart</a>
+        </div>
+    </div>
+</div>

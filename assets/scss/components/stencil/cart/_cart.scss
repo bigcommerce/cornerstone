@@ -427,3 +427,82 @@ $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-sp
         }
     }
 }
+
+
+// Cart Preview
+// -----------------------------------------------------------------------------
+//
+// 1. Need to vertically align a block of text
+//
+// -----------------------------------------------------------------------------
+
+.previewCart-list {
+    display: table;
+}
+
+.previewCart-listItem {
+    @include grid-row;
+    line-height: lineHeight("smaller");
+
+    &,
+    .navUser & {
+        padding: spacing("base") spacing("quarter");
+    }
+
+    + .previewCart-listItem {
+        border-top: 1px solid color("greys", "lightest");
+    }
+}
+
+.previewCart-listItem-image,
+.previewCart-listItem-content {
+    display: table-cell; // 1
+    vertical-align: middle;
+}
+
+.previewCart-listItem-image {
+    @include grid-column(4, $float: false);
+}
+
+.previewCart-listItem-content {
+    @include grid-column(8, $float: false);
+}
+
+.previewCart-listItem-name {
+    margin: 0;
+    text-transform: none;
+
+    > a {
+        text-decoration: none;
+    }
+}
+
+.previewCart-listItem-brand,
+.previewCart-listItem-price {
+    color: $small-font-color;
+    font-size: fontSize("smallest");
+}
+
+.previewCart-listItem--action {
+    border-top: 1px solid color("greys", "lightest");
+
+    .button {
+        margin: 0;
+        padding-left: spacing("half");
+        padding-right: spacing("half");
+        width: 100%;
+    }
+}
+
+.previewCart-listItem-checkout,
+.previewCart-listItem-viewCart {
+    @include grid-column(6);
+}
+
+.previewCart-listItem-checkout {
+    padding-right: spacing("quarter");
+}
+
+.previewCart-listItem-viewCart {
+    padding-left: spacing("quarter");
+}

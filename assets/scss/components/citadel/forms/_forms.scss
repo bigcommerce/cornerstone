@@ -193,26 +193,11 @@
     @else {
         @include grid-column(12);
         @include breakpoint("small") {
-            &--half {
-                > .form-field {
-                    @include grid-column(6);
-                }
-            }
-
-            &--third {
-                > .form-field {
-                    @include grid-column(4);
-                }
-            }
-
-            &--quarter {
-                > .form-field {
-                    @include grid-column(3);
-                }
-            }
+            @include grid-column(6);
         }
     }
 }
+
 
 //
 // Increment field

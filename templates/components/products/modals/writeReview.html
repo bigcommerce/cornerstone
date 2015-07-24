@@ -31,10 +31,12 @@
                 </div>
 
                 <!-- Email -->
-                <div class="form-field">
-                    <label class="form-label" for="rating-email">{{@lang 'products.reviews.form_write.email'}}</label>
-                    <input id="rating-email" class="form-input" name="email" />
-                </div>
+                {{#if product.reviews.show_review_email}}
+                    <div class="form-field">
+                        <label class="form-label" for="rating-email">{{@lang 'products.reviews.form_write.email'}}</label>
+                        <input id="rating-email" class="form-input" name="email" />
+                    </div>
+                {{/if}}
 
                 <!-- Review Subject -->
                 <div class="form-field">

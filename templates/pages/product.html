@@ -10,7 +10,9 @@ product:
         limit: 10
 ---
 {{#partial "page"}}
-    {{> components/common/breadcrumbs breadcrumbs}}
+    {{#each breadcrumbs}}
+        {{> components/common/breadcrumbs this}}
+    {{/each}}
 
     <div itemscope itemtype="http://schema.org/Product">
         {{> components/products/product-view}}

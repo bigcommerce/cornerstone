@@ -1,27 +1,11 @@
-{{#if products}}
-    {{#each products}}
-        <ul class="breadcrumbs">
-            {{#each this}}
-                <li class="breadcrumb {{#if @last}}is-active{{/if}}">
-                    {{#if url}}
-                        <a href="{{url}}" class="breadcrumb-label">{{name}}</a>
-                    {{else}}
-                        <span class="breadcrumb-label">{{name}}</span>
-                    {{/if}}
-                </li>
-            {{/each}}
-        </ul>
+<ul class="breadcrumbs">
+    {{#each this}}
+        <li class="breadcrumb {{#if @last}}is-active{{/if}}">
+            {{#if url}}
+                <a href="{{url}}" class="breadcrumb-label">{{name}}</a>
+            {{else}}
+                <span class="breadcrumb-label">{{name}}</span>
+            {{/if}}
+        </li>
     {{/each}}
-{{else}}
-    <ul class="breadcrumbs">
-        {{#each this}}
-            <li class="breadcrumb {{#if @last}}is-active{{/if}}">
-                {{#if url}}
-                    <a href="{{url}}" class="breadcrumb-label">{{name}}</a>
-                {{else}}
-                    <span class="breadcrumb-label">{{name}}</span>
-                {{/if}}
-            </li>
-        {{/each}}
-    </ul>
-{{/if}}
+</ul>

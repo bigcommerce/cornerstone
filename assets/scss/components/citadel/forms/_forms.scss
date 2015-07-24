@@ -178,26 +178,21 @@
 
 
 .form-row > .form-column {
+    @include grid-column(12);
 
-    @if $formRow-modernBrowsers {
-        @include breakpoint("medium") {
-            flex: 1;
-            padding-left: $formColumn-gutter;
-
-            &:first-of-type {
-                padding-left: 0;
-            }
-        }
+    @include breakpoint("small") {
+        @include grid-column(6);
     }
 
-    @else {
-        @include grid-column(12);
-        @include breakpoint("small") {
-            @include grid-column(6);
+    @include breakpoint("medium") {
+        flex: 1;
+        padding-left: $formColumn-gutter;
+
+        &:first-of-type {
+            padding-left: 0;
         }
     }
 }
-
 
 //
 // Increment field

@@ -9,12 +9,15 @@
                 <meta itemprop="priceCurrency" content="{{currency_selector.active_currency_code}}">
                 <span itemprop="price" data-product-price>{{> components/products/price price=product.price}}</span>
             </p>
-            <div class="productView-rating" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
-                <meta itemprop="ratingValue" content="{{product.rating}}">
-                <meta itemprop="ratingCount" content="{{product.num_reviews}}">
-                <meta itemprop="reviewCount" content="{{product.num_reviews}}">
-                {{> components/products/ratings rating=product.rating}}<span class="productView-reviewCount"><a href="{{product.url}}#product-reviews">{{@lang 'products.reviews.link_to_review' total=product.num_reviews}}</a></span>
-            </div>
+            {{#if settings.show_product_rating}}
+                <div class="productView-rating" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+                    <meta itemprop="ratingValue" content="{{product.rating}}">
+                    <meta itemprop="ratingCount" content="{{product.num_reviews}}">
+                    <meta itemprop="reviewCount" content="{{product.num_reviews}}">
+                    {{> components/products/ratings rating=product.rating}}<span class="productView-reviewLink"><a href="{{product.url}}#product-reviews">{{@lang 'products.reviews.link_to_review' total=product.num_reviews}}</a></span><span class="productView-reviewLink"><a href="{{product.url}}" {{#if product.reviews}}data-reveal-id="modal-review-form"{{/if}}>{{@lang 'products.reviews.new'}}</a></span>
+                    {{> components/products/modals/writeReview product=product urls=urls}}
+                </div>
+            {{/if}}
             {{product.detail_messages}}
         </div>
     </section>

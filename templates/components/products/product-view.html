@@ -15,7 +15,7 @@
                     <meta itemprop="ratingCount" content="{{product.num_reviews}}">
                     <meta itemprop="reviewCount" content="{{product.num_reviews}}">
                     {{> components/products/ratings rating=product.rating}}<span class="productView-reviewLink"><a href="{{product.url}}#product-reviews">{{@lang 'products.reviews.link_to_review' total=product.num_reviews}}</a></span><span class="productView-reviewLink"><a href="{{product.url}}" {{#if product.reviews}}data-reveal-id="modal-review-form"{{/if}}>{{@lang 'products.reviews.new'}}</a></span>
-                    {{> components/products/modals/writeReview product=product urls=urls}}
+                    {{> components/products/modals/writeReview}}
                 </div>
             {{/if}}
             {{product.detail_messages}}

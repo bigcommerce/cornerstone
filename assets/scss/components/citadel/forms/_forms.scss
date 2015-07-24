@@ -176,21 +176,12 @@
     padding: spacing("single");
 }
 
-
-.form-row > .form-column {
+// This component should live inside a .form-row
+.form-column {
     @include grid-column(12);
 
     @include breakpoint("small") {
         @include grid-column(6);
-    }
-
-    @include breakpoint("medium") {
-        flex: 1;
-        padding-left: $formColumn-gutter;
-
-        &:first-of-type {
-            padding-left: 0;
-        }
     }
 }
 

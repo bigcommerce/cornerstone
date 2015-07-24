@@ -125,6 +125,7 @@ $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-sp
 
     @include breakpoint("medium") {
         display: table-cell;
+        padding: $cart-item-spacing;
     }
 }
 
@@ -171,7 +172,8 @@ $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-sp
 
 .cart-item-quantity {
 
-    .buttonGroup {
+    .form-increment {
+        display: inline-block;
         margin: 0 spacing("eighth") 1px spacing("single");
         vertical-align: middle;
 
@@ -180,16 +182,6 @@ $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-sp
         }
     }
 
-    .button--small {
-        padding: spacing("eighth") spacing("half");
-    }
-
-    .cart-item-value {
-        display: inline-block;
-        padding-left: 0;
-        text-align: center;
-        width: spacing("single");
-    }
 }
 
 .cart-item-label {

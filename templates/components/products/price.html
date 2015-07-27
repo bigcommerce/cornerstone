@@ -1,21 +1,28 @@
-{{#if price.retail_price}}
+{{#if retail_price}}
     <div id="retail-price" style="color:red">
-        {{@lang 'products.retail_price' price=price.retail_price.formatted}}
+        {{@lang 'products.retail_price' price=retail_formatted}}
     </div>
 {{/if}}
 
-{{#if price.without_tax}}
+{{#if without_tax}}
     <div id="price-without-tax">
-        {{@lang 'products.price_without_tax' price=price.without_tax.formatted tax_label=price.tax_label}}
+        {{#if rrp_without_tax}}
+            <s>{{rrp_without_tax.formatted}}</s>
+        {{/if}}
+        {{@lang 'products.price_without_tax' price=without_tax.formatted tax_label=tax_label}}
+        }
     </div>
 {{/if}}
-{{#if price.with_tax}}
-    <div id="price-without-tax">
-        {{@lang 'products.price_with_tax' price=price.with_tax.formatted tax_label=price.tax_label}}
+{{#if with_tax}}
+    <div id="price-with-tax">
+        {{#if rrp_without_tax}}
+            <s>{{rrp_with_tax.formatted}}</s>
+        {{/if}}
+        {{@lang 'products.price_with_tax' price=with_tax.formatted tax_label=tax_label}}
     </div>
 {{/if}}
-{{#if price.saved}}
+{{#if saved}}
     <div id="you-save-amount">
-        {{@lang 'products.you_save' amount=price.saved.formatted}}
+        {{@lang 'products.you_save' amount=saved.formatted}}
     </div>
 {{/if}}

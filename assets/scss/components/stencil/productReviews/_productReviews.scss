@@ -23,12 +23,15 @@
 
 
 // Review list
+//
+// 1. Kill extra display inline-block spacing
 // -----------------------------------------------------------------------------
 
 .productReviews-list {
-    @include u-listHorizontal;
+    @include u-listBullets("none");
     @include grid-row($behavior: "nest");
     display: none;
+    font-size: 0; // 1
     margin-bottom: spacing("single");
 
     &.is-open {
@@ -42,7 +45,11 @@
 
 .productReview {
     @include grid-column(12);
+    display: inline-block;
+    float: none;
+    font-size: fontSize("base");
     margin-bottom: spacing("single");
+    vertical-align: top;
 
     @include breakpoint("medium") {
         width: grid-calc(6, $total-columns);

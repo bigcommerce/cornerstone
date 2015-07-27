@@ -1,22 +1,22 @@
 <div class="previewCart">
     {{#if cart.items.length}}
-        <ul class="previewCart-list">
+        <ul class="previewCartList">
             {{#each cart.items}}
-                <li class="previewCart-listItem">
-                    <div class="previewCart-listItem-image">
+                <li class="previewCartItem">
+                    <div class="previewCartItem-image">
                         <img src="{{@image image 'thumb'}}" alt="{{image.alt}}" />
                     </div>
 
-                    <div class="previewCart-listItem-content">
-                        <div class="previewCart-listItem-brand">
+                    <div class="previewCartItem-content">
+                        <div class="previewCartItem-brand">
                             {{brand.name}}
                         </div>
 
-                        <h6 class="previewCart-listItem-name">
+                        <h6 class="previewCartItem-name">
                             <a href="{{url}}" alt="{{name}}">{{name}}</a>
                         </h6>
 
-                        <div class="previewCart-listItem-price">
+                        <div class="previewCartItem-price">
                             {{quantity}} &times; {{price.formatted}}
                         </div>
                     </div>
@@ -24,12 +24,12 @@
             {{/each}}
         </ul>
 
-        <div class="previewCart-listItem previewCart-listItem--action">
-            <div class="previewCart-listItem-checkout">
+        <div class="previewCartItem previewCartItem--action">
+            <div class="previewCartItem-checkout">
                 <a href="{{urls.checkout.single_address}}" class="button button--small button--primary">Checkout Now</a>
             </div>
 
-            <div class="previewCart-listItem-viewCart">
+            <div class="previewCartItem-viewCart">
                 <a href="{{urls.cart}}" class="button button--small button--action">View Cart</a>
             </div>
         </div>

@@ -436,11 +436,11 @@ $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-sp
 //
 // -----------------------------------------------------------------------------
 
-.previewCart-list {
+.previewCartList {
     display: table;
 }
 
-.previewCart-listItem {
+.previewCartItem {
     @include grid-row;
     line-height: lineHeight("smaller");
 
@@ -449,26 +449,26 @@ $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-sp
         padding: spacing("base") spacing("quarter");
     }
 
-    + .previewCart-listItem {
+    + .previewCartItem {
         border-top: 1px solid color("greys", "lightest");
     }
 }
 
-.previewCart-listItem-image,
-.previewCart-listItem-content {
+.previewCartItem-image,
+.previewCartItem-content {
     display: table-cell; // 1
     vertical-align: middle;
 }
 
-.previewCart-listItem-image {
+.previewCartItem-image {
     @include grid-column(4, $float: false);
 }
 
-.previewCart-listItem-content {
+.previewCartItem-content {
     @include grid-column(8, $float: false);
 }
 
-.previewCart-listItem-name {
+.previewCartItem-name {
     margin: 0;
     text-transform: none;
 
@@ -477,13 +477,13 @@ $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-sp
     }
 }
 
-.previewCart-listItem-brand,
-.previewCart-listItem-price {
+.previewCartItem-brand,
+.previewCartItem-price {
     color: $small-font-color;
     font-size: fontSize("smallest");
 }
 
-.previewCart-listItem--action {
+.previewCartItem--action {
     border-top: 1px solid color("greys", "lightest");
 
     .button {
@@ -494,16 +494,16 @@ $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-sp
     }
 }
 
-.previewCart-listItem-checkout,
-.previewCart-listItem-viewCart {
+.previewCartItem-checkout,
+.previewCartItem-viewCart {
     @include grid-column(6);
 }
 
-.previewCart-listItem-checkout {
+.previewCartItem-checkout {
     padding-right: spacing("quarter");
 }
 
-.previewCart-listItem-viewCart {
+.previewCartItem-viewCart {
     padding-left: spacing("quarter");
 }
 

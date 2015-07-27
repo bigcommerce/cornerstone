@@ -25,6 +25,10 @@
         .compareTable-item {
             border-top: 1px solid color("greys", "lightest");
         }
+
+        .compareTable-heading:empty {
+            border-top: 0;
+        }
     }
 }
 
@@ -75,6 +79,10 @@
     }
 }
 
+.compareTable-action {
+    padding: 0 spacing("base") spacing("base");
+}
+
 
 // Remove product
 // -----------------------------------------------------------------------------
@@ -108,16 +116,25 @@
 .compareTable-product {
 
     .card {
-        margin-bottom: spacing("base");
+        margin-bottom: 0;
     }
 
     .card-body {
         min-height: spacing("single") * 4;
         padding-top: spacing("base");
     }
+}
+
+
+// Compare action
+// -----------------------------------------------------------------------------
+
+.compareTable-action {
 
     .button {
         display: block;
+        padding-left: spacing("half");
+        padding-right: spacing("half");
         width: 100%;
     }
 }

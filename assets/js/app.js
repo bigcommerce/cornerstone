@@ -124,13 +124,13 @@ function loader(pageFunc, pages) {
 }
 
 /**
- * This is the function that gets exported to JSPM
- * Gets the templateFile name passed in from the JSPM loader
+ * This function gets added to the global window and then called
+ * on page load with the current template loaded and JS Context passed in
  * @param templateFile String
  * @param context
  * @returns {*}
  */
-export default function (templateFile, context) {
+window.stencilBootstrap = function stencilBootstrap(templateFile, context) {
     let pages = PageClasses;
 
     context = context || '{}';

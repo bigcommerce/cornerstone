@@ -1,4 +1,13 @@
 <div class="productView">
+    {{#each product.reviews.messages}}
+        {{#if error}}
+            {{>components/common/alert-error error}}
+        {{/if}}
+        {{#if success}}
+            {{>components/common/alert-success success}}
+        {{/if}}
+    {{/each}}
+
     <section class="productView-details">
         <div class="productView-product">
             <h1 class="productView-title" itemprop="name">{{product.title}}</h1>

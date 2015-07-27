@@ -3,8 +3,8 @@
         <a href="{{url}}"><img src="{{@image image 'thumb'}}" alt="{{image.alt}}"></a>
         {{name}}
         {{quantity}}
-        {{@money price}}
-        {{@money total}}
+        {{price.formatted}}
+        {{total.formatted}}
     {{/each}}
 {{else}}
 <h3>{{@lang 'cart.is_empty'}}</h3>

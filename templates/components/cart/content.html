@@ -32,7 +32,7 @@
                     {{/if}}
                 </td>
                 <td class="cart-item-block cart-item-info">
-                    <span class="cart-item-label">{{@lang 'cart.checkout.price'}}</span> <span class="cart-item-value">{{@money price}}</span>
+                    <span class="cart-item-label">{{@lang 'cart.checkout.price'}}</span> <span class="cart-item-value">{{price.formatted}}</span>
                 </td>
 
                 <td class="cart-item-block cart-item-info cart-item-quantity">
@@ -55,7 +55,7 @@
                 </td>
 
                 <td class="cart-item-block cart-item-info">
-                    <span class="cart-item-label">{{@lang 'cart.checkout.total'}}</span> <strong class="cart-item-value">{{@money total}}</strong>
+                    <span class="cart-item-label">{{@lang 'cart.checkout.total'}}</span> <strong class="cart-item-value">{{total.formatted}}</strong>
                     <svg class="icon cart-remove" data-cart-itemid="{{id}}">
                         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use>
                     </svg>

@@ -6,12 +6,12 @@
 
 {{#if price.without_tax}}
     <div id="price-without-tax">
-        {{@lang 'products.price_without_tax' price=price.without_tax.formatted tax_label=settings.tax_label}}
+        {{@lang 'products.price_without_tax' price=price.without_tax.formatted tax_label=price.tax_label}}
     </div>
 {{/if}}
 {{#if price.with_tax}}
     <div id="price-without-tax">
-        {{@lang 'products.price_with_tax' price=price.with_tax.formatted tax_label=settings.tax_label}}
+        {{@lang 'products.price_with_tax' price=price.with_tax.formatted tax_label=price.tax_label}}
     </div>
 {{/if}}
 {{#if price.saved}}

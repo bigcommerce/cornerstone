@@ -1,4 +1,13 @@
 <div class="form-field">
-    <label class="form-label form-label--alternate" for="attribute_{{this.id}}_{{../id}}">{{this.display_name}}</label>
-    <textarea class="form-input" id="attribute_{{this.id}}_{{../id}}" name="attribute[{{this.id}}]">{{this.prefill}}</textarea>
+    <label class="form-label form-label--alternate" for="attribute_{{this.id}}_{{../id}}">
+        {{this.display_name}}
+
+        {{#if required}}
+            <small>{{@lang 'common.required'}}</small>
+        {{/if}}
+    </label>
+
+    <textarea class="form-input" id="attribute_{{this.id}}_{{../id}}" name="attribute[{{this.id}}]" {{#if required}}required{{/if}}>
+        {{this.prefill}}
+    </textarea>
 </div>

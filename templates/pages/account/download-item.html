@@ -18,35 +18,33 @@
         <section class="downloads-contents">
             {{@lang 'account.orders.downloads.download_files_below'}} <strong>{{downloads.product_name}}</strong>
 
-            <ul class="downloads-contentsList">
+            <ul class="downloadsList">
                 {{#each downloads.items}}
-                    <li class="downloads-contentsListItem">
-                        <article class="downloads-item">
+                    <li>
+                        <article class="download">
                             {{#if expired}}
-                                <h5 class="downloads-item-name is-expired">
-                                    {{name}} <span class="downloads-item-size">({{size}})</span>
+                                <h5 class="download-name is-expired">
+                                    {{name}} <span class="download-size">({{size}})</span>
                                 </h5>
 
-                                <p class="downloads-item-metaDescription">
+                                <p class="download-meta">
                                     {{@lang 'account.orders.downloads.expired_content'}}
                                 </p>
-
                             {{else}}
+                                <h5 class="download-name">
+                                    <a href="{{url}}">{{name}}</a> <span class="download-size">({{size}})</span>
+                                </h5>
 
-                            <h5 class="downloads-item-name">
-                                <a href="{{url}}">{{name}}</a> <span class="downloads-item-size">({{size}})</span>
-                            </h5>
-
-                            {{#if description}}
-                                <p class="downloads-item-description">
-                                    {{description}}
-                                </p>
-                            {{/if}}
-                            
-                            {{#if expiry_info}}
-                                <p class="downloads-item-metaDescription">
-                                    {{expiry_info}}
-                                </p>
+                                {{#if description}}
+                                    <p class="download-description">
+                                        {{description}}
+                                    </p>
+                                {{/if}}
+                                
+                                {{#if expiry_info}}
+                                    <p class="download-meta">
+                                        {{expiry_info}}
+                                    </p>
                                 {{/if}}
                             {{/if}}
                         </article>

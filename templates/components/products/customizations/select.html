@@ -3,7 +3,7 @@
     <select class="form-select" name="ProductFields[{{this.id}}]" id="customization_{{this.id}}_{{../id}}">
         <option>{{@lang 'products.choose_an_option'}}</option>
         {{#each this.values}}
-        <option value="{{id}}" {{#if selected}}selected{{/if}}>{{label}}</option>
+            <option value="{{this}}">{{this}}</option>
         {{/each}}
     </select>
 </div>

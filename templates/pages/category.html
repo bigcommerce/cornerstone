@@ -6,7 +6,9 @@ category:
 {{#partial "page"}}
 
 {{> components/common/breadcrumbs breadcrumbs}}
-<img src="{{@image category.image 'zoom'}}">
+{{#if category.image}}
+    <img src="{{@image category.image 'zoom'}}">
+{{/if}}
 <h1 class="page-heading">{{category.name}}</h1>
 {{{category.description}}}
 <div class="page">

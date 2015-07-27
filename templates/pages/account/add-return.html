@@ -8,12 +8,12 @@
     <div class="account-body">
         <section class="account-content">
 
-            <h3 class="account-heading">{{@lang 'account.returns.from_order' id=account_new_return.order_id}}</h3>
+            <h3 class="account-heading">{{@lang 'account.returns.from_order' id=forms.return.order_id}}</h3>
 
-            {{#if account_new_return.order_products.length}}
+            {{#if forms.return.order_products.length}}
                 <form action="{{urls.account.orders.save_new_return}}" class="form" method="post">
                     <fieldset class="form-fieldset">
-                        <input type="hidden" name="order_id" value="{{account_new_return.order_id}}">
+                        <input type="hidden" name="order_id" value="{{forms.return.order_id}}">
                         <table class="table table--line">
                             <thead class="table-thead">
                                 <tr>
@@ -23,7 +23,7 @@
                                 </tr>
                             </thead>
                             <tbody class="table-tbody">
-                                {{#each account_new_return.order_products}}
+                                {{#each forms.return.order_products}}
                                     <tr>
                                         <td class="return-itemName">{{name}}</td>
                                         <td class="return-itemPrice">{{price}}</td>
@@ -48,7 +48,7 @@
                                     <small>{{@lang 'common.required'}}</small>
                                 </label>
                                 <select name="return_reason" id="return_reason" class="form-select">
-                                    {{#each account_new_return.reasons}}
+                                    {{#each forms.return.reasons}}
                                         <option value="{{this}}">{{this}}</option>
                                     {{/each}}
                                 </select>
@@ -58,7 +58,7 @@
                                     {{@lang 'account.orders.return.action'}}
                                 </label>
                                 <select name="return_action" id="return_action" class="form-select">
-                                    {{#each account_new_return.actions}}
+                                    {{#each forms.return.actions}}
                                         <option value="{{this}}">{{this}}</option>
                                     {{/each}}
                                 </select>

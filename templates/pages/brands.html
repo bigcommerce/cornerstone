@@ -1,16 +1,16 @@
 ---
-brands: true
+brands:
 ---
+
 {{#partial "page"}}
 <main class="content">
     <h1>All Brands</h1>
-    <ul>
-        {{#each brands.brands}}
-        <li>
-            <a href="{{url}}">{{name}}
-            {{#if brand.image}}
-                <img src="{{@image image 'thumbnail'}}" alt="{{name}}">
-            {{/if}}
+    <ul class="productGrid">
+        {{#each brands}}
+        <li class="product">
+            <a href="{{url}}">
+                <img class="card-image" src="{{@image image 'gallery' (cdn ../theme_settings.default_image_brand)}}" alt="{{name}}">
+            {{name}}
             </a>
         {{/each}}
         </li>

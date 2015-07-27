@@ -170,6 +170,20 @@
     font-size: fontSize("smallest");
 }
 
+.form-field-group {
+    border: $input-border-width $input-border-style $input-border-color;
+    border-radius: $input-border-radius;
+    padding: spacing("single");
+}
+
+// This component should live inside a .form-row
+.form-column {
+    @include grid-column(12);
+
+    @include breakpoint("small") {
+        @include grid-column(6);
+    }
+}
 
 //
 // Increment field

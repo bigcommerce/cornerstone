@@ -26,7 +26,7 @@
                         <strong>{{@lang 'cart.checkout.subtotal'}}:</strong>
                     </div>
                     <div class="cart-total-value">
-                        <span>{{@money cart.sub_total}}</span>
+                        <span>{{cart.sub_total.formatted}}</span>
                     </div>
                 </li>
                 <li class="cart-total">
@@ -41,7 +41,7 @@
                             <strong>{{@lang 'cart.checkout.gift_wrapping'}}:</strong>
                         </div>
                         <div class="cart-total-value">
-                            <span>{{@money cart.gift_wrapping_cost}}</span>
+                            <span>{{cart.gift_wrapping_cost.formatted}}</span>
                         </div>
                     </li>
                 {{/if}}
@@ -59,7 +59,7 @@
                             <strong>{{name}}:</strong>
                         </div>
                         <div class="cart-total-value">
-                            <span>{{@money cost}}</span>
+                            <span>{{cost.formatted}}</span>
                         </div>
                     </li>
                 {{/each}}
@@ -68,7 +68,7 @@
                         <strong>{{@lang 'cart.checkout.grand_total'}}:</strong>
                     </div>
                     <div class="cart-total-value cart-total-grandTotal">
-                        <span>{{@money cart.grand_total}}</span>
+                        <span>{{cart.grand_total.formatted}}</span>
                     </div>
                 </li>
             </ul>

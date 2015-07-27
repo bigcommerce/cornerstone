@@ -2,9 +2,9 @@
     {{#each cart.items}}
         <li class="dropdown-menu-item">
             <div class="cart-preview-items-image"><img src="{{@image image 'thumb'}}" alt="{{image.alt}}" /></div>
-            <div class="cart-preview-items-brand">{{ brand.name }}</div>
-            <div class="cart-preview-items-name"><a href="{{url}}" alt="{{name}}">{{ name }}</a></div>
-            <div class="cart-preview-items-price">{{ quantity }} &times; {{{@money price }}}</div>
+            <div class="cart-preview-items-brand">{{brand.name}}</div>
+            <div class="cart-preview-items-name"><a href="{{url}}" alt="{{name}}">{{name}}</a></div>
+            <div class="cart-preview-items-price">{{quantity}} &times; {{price.formatted}}</div>
         </li>
     {{/each}}
     <a href="{{urls.checkout.single_address}}" class="button button--primary">Checkout Now</a>

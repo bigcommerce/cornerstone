@@ -2,9 +2,9 @@
 
 <form action="/compare" method='POST' data-product-compare>
     {{#compare theme_settings.product_list_display_mode 'grid'}}
-        {{> components/products/grid products=product_results.products}}
+        {{> components/products/grid products=product_results.products theme_settings=theme_settings}}
     {{else}}
-        {{> components/products/list products=product_results.products}}
+        {{> components/products/list products=product_results.products theme_settings=theme_settings}}
     {{/compare}}
 
     <input type="submit" value="{{@lang 'compare.button'}}" class="button button--primary">

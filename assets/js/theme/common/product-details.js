@@ -46,56 +46,58 @@ export default class Product {
      *
      */
     productOptions() {
-        // product options
-        this.$scope.on('change', '[data-product-options]', (event) => {
-            let $target = $(event.target),     // actual element that is clicked
-                $ele = $(event.currentTarget), // the element that has the data-tag
-                targetVal = $target.val(),     // value of the target
-                options = {},
-                productId = $('[name="product_id"]', this.$scope).val();
+        utils.hooks.on('product-option-change', (event, changedOption) => {
+            var $changedOption = $(changedOption),
+                $form = $changedOption.parents('form').clone(),
+                productId = $('[name="product_id"]', $form).val();
 
-            if (targetVal) {
-                options = this.getOptionValues($ele);
-
-                // check inventory when the option has changed
-                utils.api.productAttributes.optionChange(options, productId, (err, response) => {
-                    let viewModel = this.getViewModel(this.$scope);
-                    viewModel.$price.html(response.data.price);
-
-                    if (response.data.image) {
-                        let zoomImageUrl = utils.tools.image.getSrc(
-                                response.data.image.data,
-                                this.context.themeImageSizes.zoom
-                            ),
-                            mainImageUrl = utils.tools.image.getSrc(
-                                response.data.image.data,
-                                this.context.themeImageSizes.product
-                            );
-
-                        this.imageGallery.setMainImage({
-                            mainImageUrl: mainImageUrl,
-                            zoomImageUrl: zoomImageUrl
-                        });
-                    }
-
-                    // if stock view is on (CP settings)
-                    if (viewModel.stock.$container.length && response.data.stock) {
-                        // if the stock container is hidden, show
-                        if (viewModel.stock.$container.is(':hidden')) {
-                            viewModel.stock.$container.show();
-                        }
-                        viewModel.stock.$input.text(response.data.stock);
-                    }
-
-                    if (!response.data.purchasable || !response.data.instock) {
-                        viewModel.$addToCart.prop('disabled', true);
-                        viewModel.$increments.prop('disabled', true);
-                    } else {
-                        viewModel.$addToCart.prop('disabled', false);
-                        viewModel.$increments.prop('disabled', false);
-                    }
-                });
+            // Do not trigger an ajax request if it's a file or if the browser doesn't support FormData
+            if ($changedOption.attr('type') === 'file' || window.FormData === undefined) {
+                return;
             }
+
+            // Don't want to send file data along because it's not needed to determine
+            // the outcome of product option rules
+            $form.find('input[type="file"]').remove();
+
+            utils.api.productAttributes.optionChange(productId, new FormData($form[0]), (err, response) => {
+                let viewModel = this.getViewModel(this.$scope);
+
+                viewModel.$price.html(response.data.price);
+
+                if (response.data.image) {
+                    let zoomImageUrl = utils.tools.image.getSrc(
+                        response.data.image.data,
+                        this.context.themeImageSizes.zoom
+                    ),
+                    mainImageUrl = utils.tools.image.getSrc(
+                        response.data.image.data,
+                        this.context.themeImageSizes.product
+                    );
+
+                    this.imageGallery.setMainImage({
+                        mainImageUrl: mainImageUrl,
+                        zoomImageUrl: zoomImageUrl
+                    });
+                }
+
+                // if stock view is on (CP settings)
+                if (viewModel.stock.$container.length && response.data.stock) {
+                    // if the stock container is hidden, show
+                    if (viewModel.stock.$container.is(':hidden')) {
+                        viewModel.stock.$container.show();
+                    }
+                    viewModel.stock.$input.text(response.data.stock);
+                }
+
+                if (!response.data.purchasable || !response.data.instock) {
+                    viewModel.$addToCart.prop('disabled', true);
+                    viewModel.$increments.prop('disabled', true);
+                } else {
+                    viewModel.$addToCart.prop('disabled', false);
+                    viewModel.$increments.prop('disabled', false);
+                }
+            });
         });
     }
 
@@ -130,22 +132,22 @@ export default class Product {
      *
      */
     addProductToCart() {
-        utils.hooks.on('cart-item-add', (event) => {
+        utils.hooks.on('cart-item-add', (event, form) => {
+
+            // Do not do AJAX if browser doesn't support FormData
+            if (window.FormData === undefined) {
+                return;
+            }
+
             event.preventDefault();
 
-            let quantity = this.$scope.find('[name=qty\\[\\]]').val(),
-                $optionsContainer = this.$scope.find('[data-product-options]'),
-                options,
-                $modal = $('#modal'),
+            let $modal = $('#modal'),
                 $modalContent = $('.modal-content', $modal),
                 $modalOverlay = $('.loadingOverlay', $modal),
-                $cartCounter = $('.navUser-action .cart-count'),
-                productId = $('[name="product_id"]', this.$scope).val();
-
-            options = this.getOptionValues($optionsContainer);
+                $cartCounter = $('.navUser-action .cart-count');
 
             // add item to cart
-            utils.api.cart.itemAdd(productId, quantity, options, (err, response) => {
+            utils.api.cart.itemAdd(new FormData(form), (err, response) => {
                 let options = {
                     template: 'cart/preview'
                 };
@@ -173,35 +175,5 @@ export default class Product {
                 });
             });
         });
-    }
-
-    /**
-     *
-     * Get product options
-     *
-     * @param {jQuery} $container
-     * @returns Object
-     */
-    getOptionValues($container) {
-        // What does this query mean?
-        //
-        // :input:radio:checked
-        //      Get all radios that are checked (since they are grouped together by name).
-        //      If the query is just :input alone, it will return all radios (even the ones that aren't selected).
-        //
-        // :input:not(:radio)
-        //      This is to retrieve all text, hidden, dropdown fields that don't have "groups".
-        let $optionValues = $container.find(':input:radio:checked, :input:not(:radio)'),
-            params = {};
-
-        // iterate over values
-        $optionValues.each((index, ele) => {
-            let $ele = $(ele),
-                name = $ele.attr('name');
-
-            params[name] = $ele.val();
-        });
-
-        return params;
     }
 }

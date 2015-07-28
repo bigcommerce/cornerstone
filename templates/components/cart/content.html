@@ -1,9 +1,11 @@
 <table class="cart" data-cart-content>
     <thead class="cart-header">
-        <th class="cart-header-item" colspan="2">{{@lang 'cart.checkout.item'}}</th>
-        <th class="cart-header-item">{{@lang 'cart.checkout.price'}}</th>
-        <th class="cart-header-item cart-header-quantity">{{@lang 'cart.checkout.quantity'}}</th>
-        <th class="cart-header-item">{{@lang 'cart.checkout.total'}}</th>
+        <tr>
+            <th class="cart-header-item" colspan="2">{{@lang 'cart.checkout.item'}}</th>
+            <th class="cart-header-item">{{@lang 'cart.checkout.price'}}</th>
+            <th class="cart-header-item cart-header-quantity">{{@lang 'cart.checkout.quantity'}}</th>
+            <th class="cart-header-item">{{@lang 'cart.checkout.total'}}</th>
+        </tr>
     </thead>
 
     <tbody class="cart-list">
@@ -16,15 +18,31 @@
                     {{#if brand.name}}
                         <p class="cart-item-brand">{{brand.name}}</p>
                     {{/if}}
-                    <h4 class="cart-item-name">{{name}}</h4>
+                    <h4 class="cart-item-name"><a href="{{link}}">{{name}}</a></h4>
                     {{#if release_date}}
                         <p>({{release_date}})</p>
                     {{/if}}
                     {{#if options}}
                         <dl class="cart-item-options">
+                            {{#each configurable_fields}}
+                                <dt class="cart-item-option-title">{{name}}:</dt>
+                                <dd class="cart-item-option-description">
+                                    {{#if is_file}}
+                                        <a href="/viewfile.php?prodfield={{../id}}&cartitem={{../../id}}">{{{value}}}</a>
+                                    {{else}}
+                                        {{{value}}}
+                                    {{/if}}
+                                </dd>
+                            {{/each}}
                             {{#each options}}
                                 <dt class="cart-item-option-title">{{name}}:</dt>
-                                <dd class="cart-item-option-description">{{{value}}}</dd>
+                                <dd class="cart-item-option-description">
+                                    {{#if is_file}}
+                                        <a href="/viewfile.php?attributeId={{../id}}&cartitem={{../../id}}">{{{value}}}</a>
+                                    {{else}}
+                                        {{{value}}}
+                                    {{/if}}
+                                </dd>
                             {{/each}}
                         </dl>
                         <a href="#" data-item-edit="{{id}}">{{@lang 'cart.checkout.change'}}</a>

@@ -1,37 +1,39 @@
-{{#if retail_price}}
-    <div class="price-section">
-        <span class="price price--retail">
-            {{@lang 'products.retail_price' price=retail_formatted}}
+{{#if price.retail_price}}
+    <div class="price-section price-section--retail">
+        <span class="price">
+            {{@lang 'products.retail_price' price=price.retail_formatted}}
         </span>
     </div>
 {{/if}}
 
-{{#if without_tax}}
-    <div class="price-section">
-        {{#if rrp_without_tax}}
-            <span class="price price--rrp">{{rrp_without_tax.formatted}}</span>
+{{#if price.with_tax}}
+    <div class="price-section price-section--withTax">
+        {{#if price.rrp_with_tax}}
+            <span class="price price--rrp">{{price.rrp_with_tax.formatted}}</span>
         {{/if}}
-        <span itemprop="price" data-product-price  class="price price--withoutTax">
-            {{@lang 'products.price_without_tax' price=without_tax.formatted tax_label=tax_label}}
+        <span itemprop="price" data-product-price class="price">
+            {{@lang 'products.price_with_tax' price=price.with_tax.formatted tax_label=price.tax_label}}
         </span>
     </div>
 {{/if}}
 
-{{#if with_tax}}
-    <div class="price-section">
-        {{#if rrp_with_tax}}
-            <span class="price price--rrp">{{rrp_with_tax.formatted}}</span>
+{{#if price.without_tax}}
+    <div class="price-section price-section--withoutTax {{#if price.with_tax}}price-section--minor{{/if}}">
+        {{#if price.rrp_without_tax}}
+            <span class="price price--rrp">{{price.rrp_without_tax.formatted}}</span>
         {{/if}}
-        <span itemprop="price" data-product-price  class="price price--withTax">
-            {{@lang 'products.price_with_tax' price=with_tax.formatted tax_label=tax_label}}
+        <span itemprop="price" data-product-price class="price price--withoutTax">
+            {{@lang 'products.price_without_tax' price=price.without_tax.formatted tax_label=price.tax_label}}
         </span>
     </div>
 {{/if}}
 
-{{#if saved}}
-    <div class="price-section">
-        <span class="price price--saving">
-            {{@lang 'products.you_save' amount=saved.formatted}}
-        </span>
-    </div>
-{{/if}}
+{{#compare page_type 'product' operator='==='}}
+    {{#if price.saved}}
+        <div class="price-section price-section--saving">
+            <span class="price">
+                {{@lang 'products.you_save' amount=price.saved.formatted}}
+            </span>
+        </div>
+    {{/if}}
+{{/compare}}

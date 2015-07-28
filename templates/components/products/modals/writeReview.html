@@ -12,11 +12,13 @@
         <form class="form writeReview-form" action="{{ urls.product.post_review }}" method="post">
             <fieldset class="form-fieldset">
                 <div class="form-field">
-                    <label class="form-label" for="rating-rate">{{@lang 'products.reviews.rating_label'}} <small>{{@lang 'common.required' }}</small></label>
+                    <label class="form-label" for="rating-rate">{{@lang 'products.reviews.rating_label'}}
+                        <small>{{@lang 'common.required' }}</small>
+                    </label>
                     <!-- Stars -->
                     <!-- TODO: Review Stars need to be componentised, both for display and input -->
                     <select id="rating-rate" class="form-select" name="revrating">
-                        <option value="">{{@lang 'products.reviews.select_rating'}}
+                    <option value="">{{@lang 'products.reviews.select_rating'}}
                         {{#enumerate 1 5}}
                             <option value="{{this}}">{{@lang (concat 'products.reviews.rating.' this) }}</option>
                         {{/enumerate}}
@@ -39,12 +41,14 @@
 
                 {{#if product.reviews.captcha}}
                     <h3 class="panel-heading">{{@lang 'products.reviews.captcha_heading' }}</h3>
+
                     <div class="panel-body">
                         <script type="text/javascript"
                                 src="https://www.google.com/recaptcha/api/challenge?k={{product.reviews.captcha}}">
                         </script>
                         <noscript>
-                            <iframe src="https://www.google.com/recaptcha/api/noscript?k={{product.reviews.captcha}}" height="300" width="500" frameborder="0"></iframe>
+                            <iframe src="https://www.google.com/recaptcha/api/noscript?k={{product.reviews.captcha}}"
+                                    height="300" width="500" frameborder="0"></iframe>
                             <br>
                     <textarea name="recaptcha_challenge_field" rows="3" cols="40">
                     </textarea>

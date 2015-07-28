@@ -12,49 +12,57 @@
         <form class="form writeReview-form" action="{{ urls.product.post_review }}" method="post">
             <fieldset class="form-fieldset">
                 <div class="form-field">
-                    <label class="form-label" for="rating-rate">{{@lang 'products.reviews.rating_label'}}</label>
+                    <label class="form-label" for="rating-rate">{{@lang 'products.reviews.rating_label'}}
+                        <small>{{@lang 'common.required' }}</small>
+                    </label>
                     <!-- Stars -->
                     <!-- TODO: Review Stars need to be componentised, both for display and input -->
                     <select id="rating-rate" class="form-select" name="revrating">
-                        <option value="">{{@lang 'products.reviews.select_rating'}}</option>
-                        <option value="5">{{@lang 'products.reviews.rating.5'}}</option>
-                        <option value="4">{{@lang 'products.reviews.rating.4'}}</option>
-                        <option value="3">{{@lang 'products.reviews.rating.3'}}</option>
-                        <option value="2">{{@lang 'products.reviews.rating.2'}}</option>
-                        <option value="1">{{@lang 'products.reviews.rating.1'}}</option>
+                    <option value="">{{@lang 'products.reviews.select_rating'}}
+                        {{#enumerate 1 5}}
+                            <option value="{{this}}">{{@lang (concat 'products.reviews.rating.' this) }}</option>
+                        {{/enumerate}}
                     </select>
                 </div>
-                <!-- Name -->
-                <div class="form-field">
-                    <label class="form-label" for="rating-name">{{@lang 'products.reviews.form_write.name'}}</label>
-                    <input id="rating-name" class="form-input" type="text" name="revfromname" />
-                </div>
 
-                <!-- Email -->
+                <!-- Name -->
+                {{> components/common/forms/text name="revfromname" label=(@lang 'products.reviews.form_write.name') value=customer.name}}
+
                 {{#if product.reviews.show_review_email}}
-                    <div class="form-field">
-                        <label class="form-label" for="rating-email">{{@lang 'products.reviews.form_write.email'}}</label>
-                        <input id="rating-email" class="form-input" name="email" />
-                    </div>
+                    <!-- Email -->
+                    {{> components/common/forms/text name="email" required="false" label=(@lang 'products.reviews.form_write.email') value=customer.email}}
                 {{/if}}
 
                 <!-- Review Subject -->
-                <div class="form-field">
-                    <label class="form-label" for="rating-title">{{@lang 'products.reviews.form_write.subject'}}</label>
-                    <input id="rating-title" class="form-input" type="text" name="revtitle" />
-                </div>
+                {{> components/common/forms/text name="revtitle" required="true" label=(@lang 'products.reviews.form_write.subject')}}
 
                 <!-- Comments -->
-                <div class="form-field">
-                    <label class="form-label" for="rating-comment">{{@lang 'products.reviews.form_write.comments'}}</label>
-                    <textarea id="rating-comment" class="form-input" name="revtext"></textarea>
-                </div>
+                {{> components/common/forms/text name="revtext" required="true" label=(@lang 'products.reviews.form_write.comments')}}
+
+                {{#if product.reviews.captcha}}
+                    <h3 class="panel-heading">{{@lang 'products.reviews.captcha_heading' }}</h3>
+
+                    <div class="panel-body">
+                        <script type="text/javascript"
+                                src="https://www.google.com/recaptcha/api/challenge?k={{product.reviews.captcha}}">
+                        </script>
+                        <noscript>
+                            <iframe src="https://www.google.com/recaptcha/api/noscript?k={{product.reviews.captcha}}"
+                                    height="300" width="500" frameborder="0"></iframe>
+                            <br>
+                    <textarea name="recaptcha_challenge_field" rows="3" cols="40">
+                    </textarea>
+                            <input type="hidden" name="recaptcha_response_field" value="manual_challenge">
+                        </noscript>
+                    </div>
+                {{/if}}
 
                 <div class="form-field">
-                    <input type="submit" class="button button--primary" value="{{@lang 'products.reviews.form_write.submit_value'}}">
+                    <input type="submit" class="button button--primary"
+                           value="{{@lang 'products.reviews.form_write.submit_value' }}">
                 </div>
-                <input type="hidden" name="product_id" value="{{ product.id }}" />
-                <input type="hidden" name="action" value="post_review" />
+                <input type="hidden" name="product_id" value="{{ product.id }}">
+                <input type="hidden" name="action" value="post_review">
             </fieldset>
         </form>
     </div>

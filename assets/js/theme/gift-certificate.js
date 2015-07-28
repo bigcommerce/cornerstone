@@ -1,5 +1,5 @@
 import PageManager from '../page-manager';
-import nod from 'github:casperin/nod@2.0.4/nod';
+import nod from 'casperin/nod';
 export default class GiftCertificate extends PageManager {
     constructor() {
         super();

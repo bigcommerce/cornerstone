@@ -1,23 +1,57 @@
 {{#partial "page"}}
-<div class="main row">
+<div class="account">
     {{> components/common/breadcrumbs breadcrumbs}}
 
-    <div class="col-md-9">
-        Below you can download the files for {{downloads.product_name}}
-        <ul>
-            {{#each downloads.items}}
-                <li>
-                    {{#if expired}}
-                        {{name}}&nbsp;{{size}}
-                        <div>This file can not be downloaded because it has already expired</div>
-                    {{else}}
-                        <a href="{{url}}">{{name}}</a>&nbsp;{{size}}
-                        <div>{{expiry_info}}</div>
-                    {{/if}}
-                    <div>{{description}}</div>
-                </li>
-            {{/each}}
-        </ul>
+    <h2 class="page-heading">{{@lang 'account.orders.downloads.heading' number=downloads.order_id}}</h2>
+
+    {{> components/account/navigation account_page='orders'}}
+
+    <div class="downloads">
+        <figure class="downloads-image">
+            {{#if downloads.image}}
+                <img src="{{downloads.image}}" alt="{{downloads.product_name}}"/>
+
+                <figcaption class="downloads-imageCaption">{{downloads.product_name}}</figcaption>
+            {{/if}}
+        </figure>
+
+        <section class="downloads-contents">
+            {{@lang 'account.orders.downloads.download_files_below'}} <strong>{{downloads.product_name}}</strong>
+
+            <ul class="downloadsList">
+                {{#each downloads.items}}
+                    <li>
+                        <article class="download">
+                            {{#if expired}}
+                                <h5 class="download-name is-expired">
+                                    {{name}} <span class="download-size">({{size}})</span>
+                                </h5>
+
+                                <p class="download-meta">
+                                    {{@lang 'account.orders.downloads.expired_content'}}
+                                </p>
+                            {{else}}
+                                <h5 class="download-name">
+                                    <a href="{{url}}">{{name}}</a> <span class="download-size">({{size}})</span>
+                                </h5>
+
+                                {{#if description}}
+                                    <p class="download-description">
+                                        {{description}}
+                                    </p>
+                                {{/if}}
+                                
+                                {{#if expiry_info}}
+                                    <p class="download-meta">
+                                        {{expiry_info}}
+                                    </p>
+                                {{/if}}
+                            {{/if}}
+                        </article>
+                    </li>
+                {{/each}}
+            </ul>
+        </section>
     </div>
 </div>
 {{/partial}}

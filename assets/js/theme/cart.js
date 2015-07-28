@@ -168,9 +168,47 @@ export default class Cart extends PageManager {
         });
     }
 
+
+    bindGiftWrappingEvents() {
+
+
+        $('[data-add-giftwrap]').on('click', (event) => {
+            let itemId = $(event.currentTarget).data('add-giftwrap'),
+                options = {
+                    template: 'cart/modals/gift-wrapping-form'
+                }
+
+            event.preventDefault();
+
+            utils.api.cart.getItemGiftWrappingOptions(itemId, options, (err, response) => {
+                $('.shipping-quotes').html(response.content);
+
+                // bind the select button
+                $('.select-shipping-quote').on('click', (event) => {
+                    let quoteId = $('.shipping-quote:checked').val();
+
+                    event.preventDefault();
+
+                    utils.api.cart.submitShippingQuote(quoteId, (response) => {
+                        this.refreshContent();
+                    });
+                });
+        });
+
+
+        $('.shipping-estimate-hide').on('click', (event) => {
+            event.preventDefault();
+
+            $estimatorContainer.hide();
+            $('.shipping-estimate-show').show();
+            $('.shipping-estimate-hide').hide();
+        });
+    }
+
     bindEvents() {
         this.bindCartEvents();
         this.bindPromoCodeEvents();
         this.bindEstimatorEvents();
+        this.bindGiftWrappingEvents();
     }
 }

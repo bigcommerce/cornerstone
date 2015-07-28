@@ -14,10 +14,17 @@
             <h2 class="productView-brand" itemprop="brand" itemscope itemtype="http://schema.org/Brand">
                 <a href="{{product.brand.url}}" itemprop="url" itemprop="name">{{product.brand.name}}</a>
             </h2>
-            <p class="productView-price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-                <meta itemprop="priceCurrency" content="{{currency_selector.active_currency_code}}">
-                <span itemprop="price" data-product-price>{{> components/products/price product.price}}</span>
-            </p>
+            {{#if product.call_for_price}}
+                <p class="productView-price">
+                    <span data-product-price>{{product.call_for_price}}</span>
+                </p>
+            {{/if}}
+            {{#if product.price}}
+                <p class="productView-price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                    <meta itemprop="priceCurrency" content="{{currency_selector.active_currency_code}}">
+                    <span itemprop="price" data-product-price>{{> components/products/price product.price}}</span>
+                </p>
+            {{/if}}
             {{#if settings.show_product_rating}}
                 <div class="productView-rating" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
                     <meta itemprop="ratingValue" content="{{product.rating}}">
@@ -101,7 +108,8 @@
                     <div class="form-action">
                         <input id="form-action-addToCart" class="button button--primary" type="submit" value="{{#if product.pre_order}}{{@lang 'products.pre_order'}}{{else}}{{@lang 'products.add_to_cart'}}{{/if}}">
                     </div>
-                {{else}}
+                {{/if}}
+                {{#if product.out_of_stock}}
                     {{#if product.out_of_stock_message}}
                         {{>components/common/alert-error product.out_of_stock_message}}
                     {{else}}

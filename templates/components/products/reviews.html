@@ -23,7 +23,11 @@
                         <h5 itemprop="name" class="productReview-title">{{ title }}</h5>
                         <meta itemprop="author" content="{{name}}">
                         <p class="productReview-author">
-                            {{@lang 'products.reviews.post_on_by' date=date name=name}}
+                            {{#if name}}
+                                {{@lang 'products.reviews.post_on_by' date=date name=name }}
+                            {{else}}
+                                {{@lang 'products.reviews.post_on_by' date=date name='Unknown'}}
+                            {{/if}}
                         </p>
                     </header>
                     <p itemprop="reviewBody" class="productReview-body">{{nl2br text}}</p>

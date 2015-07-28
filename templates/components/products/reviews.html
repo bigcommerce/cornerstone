@@ -21,14 +21,17 @@
                             <span class="productReview-ratingNumber" itemprop="ratingValue">{{ rating }}</span>
                         </span>
                         <h5 itemprop="name" class="productReview-title">{{ title }}</h5>
-                        <meta itemprop="author" content="{{name}}">
-                        <p class="productReview-author">
-                            {{#if name}}
+                        {{#if name}}
+                            <meta itemprop="author" content="{{name}}">
+                            <p class="productReview-author">
                                 {{@lang 'products.reviews.post_on_by' date=date name=name }}
-                            {{else}}
+                            </p>
+                        {{else}}
+                            <meta itemprop="author" content="{{@lang 'products.reviews.anonymous_poster'}}">
+                            <p class="productReview-author">
                                 {{@lang 'products.reviews.post_on_by' date=date name=(@lang 'products.reviews.anonymous_poster')}}
-                            {{/if}}
-                        </p>
+                            </p>
+                        {{/if}}
                     </header>
                     <p itemprop="reviewBody" class="productReview-body">{{nl2br text}}</p>
                 </article>

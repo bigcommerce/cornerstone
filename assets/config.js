@@ -22,7 +22,7 @@ System.config({
     "bigcommerce/stencil-utils": "github:bigcommerce/stencil-utils@0.2.0",
     "browserstate/history.js": "github:browserstate/history.js@1.8.0",
     "caolan/async": "github:caolan/async@0.9.2",
-    "casperin/nod": "github:casperin/nod@2.0.4",
+    "casperin/nod": "github:casperin/nod@2.0.10",
     "core-js": "npm:core-js@0.9.18",
     "foundation": "github:bigcommerce-labs/foundation@5.5.3",
     "hubspot/pace": "github:hubspot/pace@1.0.2",

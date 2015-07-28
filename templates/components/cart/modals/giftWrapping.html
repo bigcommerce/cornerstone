@@ -1,0 +1,31 @@
+<div id="modal-giftWrapping-form" class="modal" data-reveal>
+    <div class="modal-header">
+        <h2 class="modal-header-title">Gift Wrapping</h2>
+        <a href="#" class="modal-close" aria-label="Close"><span aria-hidden="true">&#215;</span></a>
+    </div>
+    <div class="modal-body">
+        <p>Please choose how you'd like to have this item giftwrapped.</p>
+        <!-- TODO: form needs an action-->
+        <form class="form" action="" method="post">
+            <fieldset class="form-fieldset">
+                <!-- TODO: Needs giftwrapping options in context -->
+                <div class="form-field">
+                    <label class="form-label" for="giftWrapping-select">Gift Wrapping</label>
+                    <select class="form-select" name="giftWrapping-select" id="giftWrapping-select">
+                        <option>Please choose a type of giftwrapping</option>
+                        <option value="1">Boss</option>
+                        <option value="2">Pleb</option>
+                    </select>
+                </div>
+                <!-- TODO: Needs conditional in context. The message can be enabled/disabled in control panel for each giftwrapping option -->
+                <div class="form-field">
+                    <label class="form-label" for="giftMessage">Gift Message</label>
+                    <textarea class="form-input" name="giftMessage" id="giftMessage" rows="3"></textarea>
+                </div>
+            </fieldset>
+            <div class="form-actions">
+                <button class="button button--primary" type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>

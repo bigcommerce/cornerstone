@@ -30,6 +30,13 @@
                             <p class="card-text">{{{ price }}}</p>
                         </div>
                     </article>
+                </th>
+                {{/each}}
+            </tr>
+            <tr class="compareTable-row">
+                <th class="compareTable-heading"></th>
+                {{#each comparisons}}
+                <td class="compareTable-action">
                     {{#unless hide_add_to_cart}}
                         {{#if has_options}}
                             <a href="{{url}}" class="button button--primary" data-product-id="{{id}}">{{@lang 'products.choose_options'}}</a>
@@ -49,7 +56,7 @@
                             {{/if}}
                         {{/if}}
                     {{/unless}}
-                </th>
+                </td>
                 {{/each}}
             </tr>
             <tr class="compareTable-row">

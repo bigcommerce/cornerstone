@@ -35,6 +35,16 @@
                 </div>
             {{/if}}
             {{product.detail_messages}}
+            <dl class="productView-info">
+                {{#if product.sku}}
+                    <dt class="productView-info-name">{{@lang 'products.sku'}}:</dt>
+                    <dt class="productView-info-value">{{product.sku}}</dt>
+                {{/if}}
+                {{#each product.custom_fields}}
+                    <dt class="productView-info-name">{{name}}:</dt>
+                    <dt class="productView-info-value">{{value}}</dd>
+                {{/each}}
+            </dl>
         </div>
     </section>
 

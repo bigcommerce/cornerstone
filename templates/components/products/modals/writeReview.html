@@ -18,10 +18,10 @@
                     <!-- Stars -->
                     <!-- TODO: Review Stars need to be componentised, both for display and input -->
                     <select id="rating-rate" class="form-select" name="revrating">
-                    <option value="">{{@lang 'products.reviews.select_rating'}}
-                        {{#enumerate 1 5}}
-                            <option value="{{this}}">{{@lang (concat 'products.reviews.rating.' this) }}</option>
-                        {{/enumerate}}
+                        <option value="">{{@lang 'products.reviews.select_rating'}}</option>
+                            {{#enumerate 1 5}}
+                                <option value="{{this}}">{{@lang (concat 'products.reviews.rating.' this) }}</option>
+                            {{/enumerate}}
                     </select>
                 </div>
 

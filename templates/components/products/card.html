@@ -32,7 +32,9 @@
         </figcaption>
     </figure>
     <div class="card-body">
-        <p class="card-text">{{> components/products/ratings rating=rating}}</p>
+        {{#if show_rating}}
+            <p class="card-text">{{> components/products/ratings rating=rating}}</p>
+        {{/if}}
         {{#if brand.name}}
         <p class="card-text">{{brand.name}}</p>
         {{/if}}

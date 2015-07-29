@@ -19,7 +19,7 @@ System.config({
     "babel": "npm:babel-core@5.6.15",
     "babel-runtime": "npm:babel-runtime@5.6.15",
     "bigcommerce/citadel": "github:bigcommerce/citadel@2.4.3",
-    "bigcommerce/stencil-utils": "github:bigcommerce/stencil-utils@0.2.0",
+    "bigcommerce/stencil-utils": "github:bigcommerce/stencil-utils@0.3.0",
     "browserstate/history.js": "github:browserstate/history.js@1.8.0",
     "caolan/async": "github:caolan/async@0.9.2",
     "casperin/nod": "github:casperin/nod@2.0.10",
@@ -34,7 +34,7 @@ System.config({
     "github:bigcommerce-labs/foundation@5.5.3": {
       "jquery": "github:components/jquery@2.1.4"
     },
-    "github:bigcommerce/stencil-utils@0.2.0": {
+    "github:bigcommerce/stencil-utils@0.3.0": {
       "asyncly/EventEmitter2": "github:asyncly/EventEmitter2@0.4.14",
       "jquery": "github:components/jquery@2.1.4",
       "lodash": "npm:lodash@3.10.0"

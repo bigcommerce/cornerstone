@@ -20,6 +20,10 @@
 
 // Form labels
 // -----------------------------------------------------------------------------
+//
+// 1. To override the styling applied by `.form-label small`
+//
+// -----------------------------------------------------------------------------
 
 .form-label {
 
@@ -27,4 +31,18 @@
         float: $opposite-direction;
         margin-top: $form-label-small-marginTop;
     }
+
+    .form-requiredLabel {
+        float: none; // 1
+        font-size: inherit; // 1
+        text-transform: none; // 1
+    }
+}
+
+
+// Form required label
+// -----------------------------------------------------------------------------
+
+.form-requiredLabel {
+    color: $small-font-color;
 }

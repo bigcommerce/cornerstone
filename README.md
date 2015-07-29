@@ -50,7 +50,7 @@ page types available to you.
 * "pages/product"
 * "pages/search"
 * "pages/sitemap"
-* "pages/subscribe"
+* "pages/subscribed"
 * "page/account/wishlist-details"
 * "pages/account/wishlists"
 

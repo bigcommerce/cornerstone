@@ -57,7 +57,7 @@ let PageClasses = {
         "pages/product": product,
         "pages/search": search,
         "pages/sitemap": sitemap,
-        "pages/subscribe": subscribe,
+        "pages/subscribed": subscribe,
         "page/account/wishlist-details": wishlist,
         "pages/account/wishlists": wishlist
     },

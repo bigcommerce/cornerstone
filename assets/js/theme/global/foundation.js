@@ -3,7 +3,6 @@ import 'foundation/js/foundation/foundation';
 import 'foundation/js/foundation/foundation.dropdown';
 import 'foundation/js/foundation/foundation.reveal';
 import 'foundation/js/foundation/foundation.tab';
-import 'foundation/js/foundation/foundation.alert';
 
 export default function() {
     let $body = $('body');

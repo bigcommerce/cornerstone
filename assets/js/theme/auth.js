@@ -49,6 +49,33 @@ export default class Auth extends PageManager {
         });
     }
 
+    registerForgotPasswordValidation($forgotPasswordForm) {
+        this.forgotPasswordValidator = nod({
+            submit: '.forgot-password-form input[type="submit"]'
+        });
+
+        this.forgotPasswordValidator.add([
+            {
+                selector: '.forgot-password-form input[name="email"]',
+                validate: (cb, val) => {
+                    let result = forms.email(val);
+                    cb(result);
+                },
+                errorMessage: "You must enter an email address"
+            }
+        ]);
+
+        $forgotPasswordForm.submit((event) => {
+            this.forgotPasswordValidator.performCheck();
+
+            if (this.forgotPasswordValidator.areAll('valid')) {
+                return;
+            }
+
+            event.preventDefault();
+        });
+    }
+
     registerCreateAccountValidator($createAccountForm) {
         let validationModel = validation($createAccountForm),
             createAccountValidator = nod({
@@ -107,7 +134,8 @@ export default class Auth extends PageManager {
     loaded(next) {
         let $stateElement = $('[data-label="State/Province"]'),
             $createAccountForm = classifyForm('.create-account-form'),
-            $loginForm = classifyForm('.login-form');
+            $loginForm = classifyForm('.login-form'),
+            $forgotPasswordForm = classifyForm('.forgot-password-form');
 
         nod.classes.errorClass = 'form-field--error';
         nod.classes.successClass = 'form-field--success';
@@ -115,6 +143,10 @@ export default class Auth extends PageManager {
 
         if ($loginForm.length) {
             this.registerLoginValidation($loginForm);
+        }
+
+        if ($forgotPasswordForm.length) {
+            this.registerForgotPasswordValidation($forgotPasswordForm);
         }
 
         if ($createAccountForm.length) {

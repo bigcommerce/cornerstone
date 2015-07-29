@@ -1,5 +1,5 @@
 import PageManager from '../page-manager';
-import nod from 'casperin/nod';
+import nod from './common/nod';
 export default class GiftCertificate extends PageManager {
     constructor() {
         super();
@@ -41,10 +41,6 @@ export default class GiftCertificate extends PageManager {
                 submit: '#gift-certificate-form input[type="submit"]',
                 delay: 300
             });
-
-        nod.classes.errorClass = 'form-field--error';
-        nod.classes.successClass = 'form-field--success';
-        nod.classes.errorMessageClass = 'form-inlineMessage';
 
         if ($customAmounts.length) {
             let $element = $purchaseForm.find('input[name="certificate_amount"]'),

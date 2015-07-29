@@ -20,10 +20,10 @@
                 </p>
             {{/if}}
             {{#if product.price}}
-                <p class="productView-price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                <div class="productView-price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
                     <meta itemprop="priceCurrency" content="{{currency_selector.active_currency_code}}">
-                    <span itemprop="price" data-product-price>{{> components/products/price product.price}}</span>
-                </p>
+                    {{> components/products/price price=product.price}}
+                </div>
             {{/if}}
             {{#if settings.show_product_rating}}
                 <div class="productView-rating" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">

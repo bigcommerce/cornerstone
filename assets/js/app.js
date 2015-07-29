@@ -38,6 +38,7 @@ let PageClasses = {
         "pages/auth/account-created": auth,
         "pages/auth/create-account": auth,
         "pages/auth/new-password": auth,
+        "pages/auth/forgot-password": auth,
         "pages/blog": blog,
         "pages/blog-post": blog,
         "pages/brand": brand,

@@ -17,7 +17,8 @@
 }
 
 .header-logo {
-    margin: spacing("half") auto;
+    margin: $header-logo-marginVertical auto;
+    max-width: grid-calc(8, $total-columns);
     text-align: center;
 
     @include breakpoint("medium") {
@@ -57,6 +58,14 @@
     }
 }
 
+.header-logo-image {
+    max-height: remCalc($header-height) - $header-logo-marginVertical * 2;
+
+    @include breakpoint("medium") {
+        max-height: none;
+    }
+}
+
 
 //
 // Mobile Menu Toggle
@@ -65,7 +74,7 @@
 // -----------------------------------------------------------------------------
 
 .mobileMenu-toggle {
-    @include square(60);
+    @include square($header-height);
     display: inline-block;
     font-size: 0;
     left: 0;

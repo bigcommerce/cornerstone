@@ -12,7 +12,7 @@
         <div class="productView-product">
             <h1 class="productView-title" itemprop="name">{{product.title}}</h1>
             <h2 class="productView-brand" itemprop="brand" itemscope itemtype="http://schema.org/Brand">
-                <a href="{{product.brand.url}}" itemprop="url" itemprop="name">{{product.brand.name}}</a>
+                <a href="{{product.brand.url}}" itemprop="url"><span itemprop="name">{{product.brand.name}}</span></a>
             </h2>
             {{#if product.call_for_price}}
                 <p class="productView-price">
@@ -40,6 +40,25 @@
                     <dt class="productView-info-name">{{@lang 'products.sku'}}:</dt>
                     <dt class="productView-info-value">{{product.sku}}</dt>
                 {{/if}}
+                {{#if product.weight}}
+                    <dt class="productView-info-name">{{@lang 'products.weight'}}:</dt>
+                    <dt class="productView-info-value">{{product.weight}}</dt>
+                {{/if}}
+                {{#if product.shipping}}
+                    {{#if product.shipping.calculated}}
+                        <dt class="productView-info-name">{{@lang 'products.shipping'}}:</dt>
+                        <dt class="productView-info-value">{{@lang 'products.shipping_calculated'}}</dt>
+                    {{else}}
+                        {{#compare product.shipping.price 0 operator='==='}}
+                            <dt class="productView-info-name">{{@lang 'products.shipping'}}:</dt>
+                            <dt class="productView-info-value">{{@lang 'products.shipping_free'}}</dt>
+                        {{else}}
+                            <dt class="productView-info-name">{{@lang 'products.shipping'}}:</dt>
+                            <dt class="productView-info-value">{{@lang 'products.shipping_fixed' amount=product.shipping.price.formatted}}</dt>
+                        {{/compare}}
+                    {{/if}}
+                {{/if}}
+
                 {{#each product.custom_fields}}
                     <dt class="productView-info-name">{{name}}:</dt>
                     <dt class="productView-info-value">{{value}}</dd>

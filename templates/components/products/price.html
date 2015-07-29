@@ -3,7 +3,8 @@
         {{#if price.rrp_with_tax}}
             <span class="price price--rrp">{{price.rrp_with_tax.formatted}}</span>
         {{/if}}
-        <span itemprop="price" data-product-price class="price">
+        <meta itemprop="price" content="{{price.with_tax.value}}">
+        <span data-product-price class="price">
             {{@lang 'products.price_with_tax' price=price.with_tax.formatted tax_label=price.tax_label}}
         </span>
     </div>
@@ -14,7 +15,8 @@
         {{#if price.rrp_without_tax}}
             <span class="price price--rrp">{{price.rrp_without_tax.formatted}}</span>
         {{/if}}
-        <span itemprop="price" data-product-price class="price price--withoutTax">
+        <meta itemprop="price" content="{{price.without_tax.value}}">
+        <span data-product-price class="price price--withoutTax">
             {{@lang 'products.price_without_tax' price=price.without_tax.formatted tax_label=price.tax_label}}
         </span>
     </div>

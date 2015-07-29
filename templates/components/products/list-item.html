@@ -5,7 +5,9 @@
     <div class="listItem-body">
         <div class="listItem-content">
             <div class="listItem-details">
-                <p class="listItem-rating">{{> components/products/ratings rating=rating}}</p>
+                {{#if show_rating}}
+                    <p class="listItem-rating">{{> components/products/ratings rating=rating}}</p>
+                {{/if}}
                 {{#if brand.name}}
                 <p class="listItem-brand">{{brand.name}}</p>
                 {{/if}}

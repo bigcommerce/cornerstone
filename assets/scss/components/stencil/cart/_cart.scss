@@ -445,3 +445,93 @@ $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-sp
         }
     }
 }
+
+
+// Cart Preview
+// -----------------------------------------------------------------------------
+//
+// 1. Need to vertically align a block of text
+//
+// -----------------------------------------------------------------------------
+
+.previewCartList {
+    @include u-listReset;
+    border-collapse: collapse;
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+}
+
+.previewCartItem {
+    @include grid-row;
+    display: table-row;
+    line-height: lineHeight("smaller");
+
+    + .previewCartItem {
+        border-top: 1px solid color("greys", "lightest");
+    }
+}
+
+.previewCartItem-image,
+.previewCartItem-content {
+    display: table-cell; // 1
+    vertical-align: middle;
+}
+
+.previewCartItem-image {
+    @include grid-column(4, $float: false);
+    padding: spacing("base");
+    text-align: center;
+}
+
+.previewCartItem-content {
+    @include grid-column(8, $float: false);
+    padding: spacing("base");
+}
+
+.previewCartItem-name {
+    margin: 0;
+    text-transform: none;
+
+    > a {
+        text-decoration: none;
+    }
+}
+
+.previewCartItem-brand,
+.previewCartItem-price {
+    color: $small-font-color;
+    font-size: fontSize("smallest");
+}
+
+.previewCartAction {
+    @include grid-row;
+    border-top: 1px solid color("greys", "lightest");
+    display: block;
+    padding: spacing("base") spacing("quarter");
+
+    .button {
+        margin: 0;
+        padding-left: spacing("half");
+        padding-right: spacing("half");
+        width: 100%;
+    }
+}
+
+.previewCartAction-checkout,
+.previewCartAction-viewCart {
+    @include grid-column(6);
+}
+
+.previewCartAction-checkout {
+    padding-right: spacing("quarter");
+}
+
+.previewCartAction-viewCart {
+    padding-left: spacing("quarter");
+}
+
+.previewCart-emptyBody {
+    padding: spacing("double");
+    text-align: center;
+}

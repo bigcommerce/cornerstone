@@ -1,12 +1,41 @@
-<ul class="cart-preview-items">
-    {{#each cart.items}}
-        <li class="dropdown-menu-item">
-            <div class="cart-preview-items-image"><img src="{{@image image 'thumb'}}" alt="{{image.alt}}" /></div>
-            <div class="cart-preview-items-brand">{{brand.name}}</div>
-            <div class="cart-preview-items-name"><a href="{{url}}" alt="{{name}}">{{name}}</a></div>
-            <div class="cart-preview-items-price">{{quantity}} &times; {{price.formatted}}</div>
-        </li>
-    {{/each}}
-    <a href="{{urls.checkout.single_address}}" class="button button--primary">Checkout Now</a>
-    <a href="{{urls.cart}}" class="button button--action">View Cart</a>
-</ul>
+<div class="previewCart">
+    {{#if cart.items.length}}
+        <ul class="previewCartList">
+            {{#each cart.items}}
+                <li class="previewCartItem">
+                    <div class="previewCartItem-image">
+                        <img src="{{@image image 'thumb'}}" alt="{{image.alt}}" />
+                    </div>
+
+                    <div class="previewCartItem-content">
+                        <div class="previewCartItem-brand">
+                            {{brand.name}}
+                        </div>
+
+                        <h6 class="previewCartItem-name">
+                            <a href="{{url}}" alt="{{name}}">{{name}}</a>
+                        </h6>
+
+                        <div class="previewCartItem-price">
+                            {{quantity}} &times; {{price.formatted}}
+                        </div>
+                    </div>
+                </li>
+            {{/each}}
+        </ul>
+
+        <div class="previewCartAction">
+            <div class="previewCartAction-checkout">
+                <a href="{{urls.checkout.single_address}}" class="button button--small button--primary">Checkout Now</a>
+            </div>
+
+            <div class="previewCartAction-viewCart">
+                <a href="{{urls.cart}}" class="button button--small button--action">View Cart</a>
+            </div>
+        </div>
+    {{else}}
+        <div class="previewCart-emptyBody">
+            {{@lang 'cart.checkout.empty_cart'}}
+        </div>
+    {{/if}}
+</div>

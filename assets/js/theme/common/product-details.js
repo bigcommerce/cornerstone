@@ -6,6 +6,7 @@ import utils from 'bigcommerce/stencil-utils';
 import 'foundation/js/foundation/foundation';
 import 'foundation/js/foundation/foundation.reveal';
 import ImageGallery from '../product/image-gallery';
+import TextTruncate from '../global/text-truncate';
 
 export default class Product {
     constructor($scope, context) {
@@ -16,6 +17,8 @@ export default class Product {
         this.addProductToCart();
         this.imageGallery = new ImageGallery($('[data-image-gallery]', this.$scope));
         this.imageGallery.init();
+        this.textTruncate = new TextTruncate($('[data-text-truncate]', this.$scope));
+        this.textTruncate.init();
     }
 
     /**

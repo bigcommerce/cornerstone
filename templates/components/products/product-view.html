@@ -209,7 +209,20 @@
         </ul>
         <div class="tabs-contents">
             <div class="tab-content is-active" id="tab-description">
-                {{{ product.description }}}
+                <div class="textTruncate textTruncate--hidden"
+                     data-text-truncate='{
+                        "css": {
+                            "max-height": "120px",
+                            "text-overflow": "ellipsis"
+                        },
+                        "text": {
+                            "viewMore": "{{@lang 'text_truncate.view_more'}}",
+                            "viewLess": "{{@lang 'text_truncate.view_less'}}"
+                        }
+                     }'
+                >
+                    {{{ product.description }}}
+                </div>
             </div>
         </div>
     </article>

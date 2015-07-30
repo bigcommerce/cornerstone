@@ -49,13 +49,15 @@ export default class Cart extends PageManager {
     refreshContent(remove) {
         let $cartItemsRows = $('[data-item-row]', this.$cartContent);
 
+        this.$overlay.show();
+
         // Remove last item from cart? Reload
         if (remove && $cartItemsRows.length == 1) {
             return window.location.reload();
         }
 
         utils.api.cart.getContent({template: 'cart/content'}, (err, response) => {
-            this.$cartContent.html(response.content);
+            this.$cartContent.html(response);
             this.bindEvents();
             this.$overlay.hide();
         });
@@ -170,7 +172,9 @@ export default class Cart extends PageManager {
 
 
     bindGiftWrappingEvents() {
-
+        let $modal = $('#modal'),
+            $modalContent = $('.modal-content', $modal),
+            $modalOverlay = $('.loadingOverlay', $modal);
 
         $('[data-add-giftwrap]').on('click', (event) => {
             let itemId = $(event.currentTarget).data('add-giftwrap'),
@@ -180,28 +184,49 @@ export default class Cart extends PageManager {
 
             event.preventDefault();
 
+            // clear the modal
+            $modalContent.html('');
+            $modalOverlay.show();
+
+            // open modal
+            $modal.foundation('reveal', 'open');
+
             utils.api.cart.getItemGiftWrappingOptions(itemId, options, (err, response) => {
-                $('.shipping-quotes').html(response.content);
+                $modalOverlay.hide();
+                $modalContent.html(response.content);
 
-                // bind the select button
-                $('.select-shipping-quote').on('click', (event) => {
-                    let quoteId = $('.shipping-quote:checked').val();
+                this.bindGiftWrappingForm();
+            });
+        });
+    }
 
-                    event.preventDefault();
+    bindGiftWrappingForm() {
+        let $form = $('.giftWrapping-form');
 
-                    utils.api.cart.submitShippingQuote(quoteId, (response) => {
-                        this.refreshContent();
-                    });
-                });
+        $('#giftWrapping-select').change((event) => {
+            let id = $(event.currentTarget).val();
+            $('.giftWrapping-preview-image a').removeClass('show');
+            $('.giftWrapping-preview-image #preview-image-' + id).addClass('show');
         });
 
+        $form.submit((event) => {
+            let itemId = $('[name="item_id"]', $form).val(),
+                params = {
+                    itemId: itemId,
+                    wrapping: $('[name="giftwrapping[all]"]', $form).val(),
+                    message: $('[name="giftMessage"]', $form).val()
+                };
 
-        $('.shipping-estimate-hide').on('click', (event) => {
             event.preventDefault();
 
-            $estimatorContainer.hide();
-            $('.shipping-estimate-show').show();
-            $('.shipping-estimate-hide').hide();
+            if (!params.wrapping) {
+                alert('Please select a gift wrapping option');
+            }
+
+            utils.api.cart.submitItemGiftWrappingOption(itemId, params, (err, response) => {
+                this.refreshContent();
+                $('#modal').foundation('reveal', 'close');
+            });
         });
     }
 

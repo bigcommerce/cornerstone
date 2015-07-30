@@ -102,7 +102,7 @@ export default class FacetedSearch {
         $navItems.show();
 
         // Set toggle state
-        $toggle.addClass('is-on');
+        $toggle.addClass('is-open');
 
         // Remove
         this.collapsedFacetItems = _.without(this.collapsedFacetItems, id);
@@ -118,7 +118,7 @@ export default class FacetedSearch {
         $navItems.show();
 
         // Set toggle state
-        $toggle.removeClass('is-on');
+        $toggle.removeClass('is-open');
 
         // Show only limited number of items, hide the rest
         if (itemsCount > maxItemsCount) {

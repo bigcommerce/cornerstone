@@ -1,32 +1,46 @@
-<section class="videoGallery" data-video-gallery>
-    <h4>Videos</h4>
-    <div class="videoGallery-main">
-        <iframe
-            id="player"
-            type="text/html"
-            width="640"
-            height="390"
-            frameborder="0"
-            webkitAllowFullScreen
-            mozallowfullscreen
-            allowFullScreen
-            src="http://www.youtube.com/embed/{{this.featured.id}}"
-            data-video-player>
-        </iframe>
+<section class="toggle videoGallery" data-video-gallery>
+    <h4 class="toggle-title">
+        {{@lang 'products.videos.header'}}
+        <a href="#videoGallery-content" class="toggleLink" data-collapsible>
+            <span class="toggleLink-text toggleLink-text--on">
+                {{@lang 'products.videos.hide'}}
+            </span>
+            <span class="toggleLink-text toggleLink-text--off">
+                {{@lang 'products.videos.show'}}
+            </span>
+        </a>
+    </h4>
+
+    <div class="toggle-content" id="videoGallery-content">
+        <div class="videoGallery-main">
+            <iframe
+                id="player"
+                type="text/html"
+                width="640"
+                height="390"
+                frameborder="0"
+                webkitAllowFullScreen
+                mozallowfullscreen
+                allowFullScreen
+                src="http://www.youtube.com/embed/{{this.featured.id}}"
+                data-video-player>
+            </iframe>
+        </div>
+        <ul class="videoGallery-list">
+        {{#each this.list}}
+            <li class="videoGallery-item">
+                <a href="#" class="video {{#if @first}}is-active{{/if}}" data-video-item data-video-id="{{id}}">
+                    <div class="video-figure">
+                        <img src="//i.ytimg.com/vi/{{id}}/default.jpg"/>
+                    </div>
+                    <div class="video-body">
+                        <h5 class="video-title">{{title_long}}</h5>
+                        <p class="video-description">{{description_short}}</p>
+                    </div>
+                </a>
+            </li>
+        {{/each}}
+        </ul>
     </div>
-    <ul class="videoGallery-list">
-    {{#each this.list}}
-        <li class="videoGallery-item">
-            <a href="#" class="video {{#if @first}}is-active{{/if}}" data-video-item data-video-id="{{id}}">
-                <div class="video-figure">
-                    <img src="//i.ytimg.com/vi/{{id}}/default.jpg"/>
-                </div>
-                <div class="video-body">
-                    <h5 class="video-title">{{title_long}}</h5>
-                    <p class="video-description">{{description_short}}</p>
-                </div>
-            </a>
-        </li>
-    {{/each}}
-    </ul>
+
 </section>

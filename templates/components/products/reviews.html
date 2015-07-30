@@ -1,7 +1,8 @@
-
-<div class="productReviews" id="product-reviews" data-product-reviews>
-    {{#if reviews.total}}
-            <a href="#productReviews-list" class="productReviews-displayToggle toggleLink is-open" data-collapsible>
+{{#if reviews.total}}
+<section class="toggle productReviews" id="product-reviews" data-product-reviews>
+    <h4 class="toggle-title">
+        {{@lang 'products.reviews.header' total=reviews.total}}
+        <a class="toggleLink" data-collapsible href="#productReviews-list">
             <span class="toggleLink-text toggleLink-text--on">
                 {{@lang 'products.reviews.hide'}}
             </span>
@@ -9,34 +10,34 @@
                 {{@lang 'products.reviews.show'}}
             </span>
         </a>
+    </h4>
 
-        <h4 class="productReviews-heading">{{@lang 'products.reviews.header' total=reviews.total}}</h4>
-        <ul id="productReviews-list" class="productReviews-list is-open">
-            {{#each reviews.list}}
-            <li class="productReview">
-                <article itemprop="review" itemscope itemtype="http://schema.org/Review">
-                    <header>
-                        <span class="productReview-rating" itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
-                            {{> components/products/ratings rating=rating}}
-                            <span class="productReview-ratingNumber" itemprop="ratingValue">{{ rating }}</span>
-                        </span>
-                        <h5 itemprop="name" class="productReview-title">{{ title }}</h5>
-                        {{#if name}}
-                            <meta itemprop="author" content="{{name}}">
-                            <p class="productReview-author">
-                                {{@lang 'products.reviews.post_on_by' date=date name=name }}
-                            </p>
-                        {{else}}
-                            <p class="productReview-author">
-                                {{@lang 'products.reviews.post_on_by' date=date name=(@lang 'products.reviews.anonymous_poster')}}
-                            </p>
-                        {{/if}}
-                    </header>
-                    <p itemprop="reviewBody" class="productReview-body">{{nl2br text}}</p>
-                </article>
-            </li>
-            {{/each}}
-        </ul>
-        {{> components/common/paginator pagination.reviews}}
-    {{/if}}
-</div>
+    <ul class="toggle-content productReviews-list" id="productReviews-list">
+        {{#each reviews.list}}
+        <li class="productReview">
+            <article itemprop="review" itemscope itemtype="http://schema.org/Review">
+                <header>
+                    <span class="productReview-rating" itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
+                        {{> components/products/ratings rating=rating}}
+                        <span class="productReview-ratingNumber" itemprop="ratingValue">{{ rating }}</span>
+                    </span>
+                    <h5 itemprop="name" class="productReview-title">{{ title }}</h5>
+                    {{#if name}}
+                        <meta itemprop="author" content="{{name}}">
+                        <p class="productReview-author">
+                            {{@lang 'products.reviews.post_on_by' date=date name=name }}
+                        </p>
+                    {{else}}
+                        <p class="productReview-author">
+                            {{@lang 'products.reviews.post_on_by' date=date name=(@lang 'products.reviews.anonymous_poster')}}
+                        </p>
+                    {{/if}}
+                </header>
+                <p itemprop="reviewBody" class="productReview-body">{{nl2br text}}</p>
+            </article>
+        </li>
+        {{/each}}
+    </ul>
+    {{> components/common/paginator pagination.reviews}}
+</section>
+{{/if}}

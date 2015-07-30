@@ -1,43 +1,48 @@
 {{#partial "page"}}
     {{> components/common/breadcrumbs breadcrumbs}}
     <h1 class="page-heading">{{@lang 'create_account.heading' }}</h1>
-    {{#if forms.create_account.error}}
-        {{> components/common/alert-error forms.create_account.error}}
-    {{/if}}
-    <form action="{{urls.auth.save_new_account}}" id="create-account-form" method="post" class="form create-account-form">
-        <fieldset class="form-fieldset">
-            {{#each forms.create_account.account_fields }}
-                <div class="create-account-field">
-                    {{{@dynamicComponent 'components/common/forms'}}}
-                </div>
-            {{/each}}
-            {{#each forms.create_account.address_fields }}
-                <div class="create-account-field">
-                    {{{@dynamicComponent 'components/common/forms'}}}
-                </div>
-            {{/each}}
-        </fieldset>
-        {{#if forms.create_account.recaptcha.enabled }}
-        <div class="panel">
 
-            <h3 class="panel-heading">{{@lang 'create_account.captcha_heading' }}</h3>
-            <div class="panel-body">
-                <script type="text/javascript"
-                        src="https://www.google.com/recaptcha/api/challenge?k={{forms.create_account.recaptcha.public_key}}">
-                </script>
-                <noscript>
-                    <iframe src="https://www.google.com/recaptcha/api/noscript?k={{forms.create_account.recaptcha.public_key}}" height="300" width="500" frameborder="0"></iframe>
-                    <br>
-                    <textarea name="recaptcha_challenge_field" rows="3" cols="40">
-                    </textarea>
-                    <input type="hidden" name="recaptcha_response_field" value="manual_challenge">
-                </noscript>
-            </div>
+    <div class="account account--fixed">
+        <div class="account-body">
+            {{#if forms.create_account.error}}
+                {{> components/common/alert-error forms.create_account.error}}
+            {{/if}}
+            <form action="{{urls.auth.save_new_account}}" id="create-account-form" method="post" class="form form--splitFields create-account-form">
+                <fieldset class="form-fieldset">
+                    {{#each forms.create_account.account_fields }}
+                        <div class="form-splitField">
+                            {{{@dynamicComponent 'components/common/forms'}}}
+                        </div>
+                    {{/each}}
+                    {{#each forms.create_account.address_fields }}
+                        <div class="form-splitField">
+                            {{{@dynamicComponent 'components/common/forms'}}}
+                        </div>
+                    {{/each}}
+                </fieldset>
+                {{#if forms.create_account.recaptcha.enabled }}
+                <div class="panel">
+
+                    <h3 class="panel-heading">{{@lang 'create_account.captcha_heading' }}</h3>
+                    <div class="panel-body">
+                        <script type="text/javascript"
+                                src="https://www.google.com/recaptcha/api/challenge?k={{forms.create_account.recaptcha.public_key}}">
+                        </script>
+                        <noscript>
+                            <iframe src="https://www.google.com/recaptcha/api/noscript?k={{forms.create_account.recaptcha.public_key}}" height="300" width="500" frameborder="0"></iframe>
+                            <br>
+                            <textarea name="recaptcha_challenge_field" rows="3" cols="40">
+                            </textarea>
+                            <input type="hidden" name="recaptcha_response_field" value="manual_challenge">
+                        </noscript>
+                    </div>
+                </div>
+                {{/if}}
+                <div class="form-actions">
+                    <input type="submit" class="button button--primary" value="{{@lang 'forms.create_account.submit_value' }}" />
+                </div>
+            </form>
         </div>
-        {{/if}}
-        <div class="form-actions">
-            <input type="submit" class="button button--primary" value="{{@lang 'forms.create_account.submit_value' }}" />
-        </div>
-    </form>
+    </div>
 {{/partial}}
 {{> layout/base}}

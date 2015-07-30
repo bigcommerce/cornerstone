@@ -276,3 +276,32 @@
         width: 100%;
     }
 }
+
+
+
+// Split fields form
+// -----------------------------------------------------------------------------
+//
+// This modifier creates forms with 50% width columns on larger screens that
+// float next to each other.
+//
+// -----------------------------------------------------------------------------
+
+.form--splitFields {
+
+    .form-actions {
+        display: inline-block;
+    }
+}
+
+.form-splitField {
+    @include grid-column(12);
+
+    @include breakpoint("medium") {
+        width: grid-calc(6, $total-columns);
+    }
+
+    &:nth-child(odd) {
+        clear: left;
+    }
+}

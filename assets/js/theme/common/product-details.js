@@ -171,10 +171,15 @@ export default class Product {
 
                 // fetch cart to display in cart preview
                 utils.api.cart.getContent(options, (err, response) => {
+                    let quantity;
+
                     $modalOverlay.hide();
                     $cartCounter.addClass('cart-count--positive');
-                    $cartCounter.text(response.data.cart.items.length);
-                    $modalContent.html(response.content);
+                    $modalContent.html(response);
+
+                    quantity = $('#cart-preview', $modalContent).data('cart-items-length') || 0;
+
+                    $cartCounter.text(quantity);
                 });
             });
         });

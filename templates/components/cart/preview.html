@@ -1,11 +1,13 @@
-{{# if cart.items.length}}
-    {{#each cart.items}}
-        <a href="{{url}}"><img src="{{@image image 'thumb'}}" alt="{{image.alt}}"></a>
-        {{name}}
-        {{quantity}}
-        {{price.formatted}}
-        {{total.formatted}}
-    {{/each}}
-{{else}}
-<h3>{{@lang 'cart.is_empty'}}</h3>
-{{/if}}
+<div id="cart-preview" data-cart-items-length="{{cart.items.length}}">
+	{{# if cart.items.length}}
+	    {{#each cart.items}}
+	        <a href="{{url}}"><img src="{{@image image 'thumb'}}" alt="{{image.alt}}"></a>
+	        {{name}}
+	        {{quantity}}
+	        {{price.formatted}}
+	        {{total.formatted}}
+	    {{/each}}
+	{{else}}
+	<h3>{{@lang 'cart.is_empty'}}</h3>
+	{{/if}}
+</div>

@@ -55,7 +55,7 @@ export default class Cart extends PageManager {
         }
 
         utils.api.cart.getContent({template: 'cart/content'}, (err, response) => {
-            this.$cartContent.html(response.content);
+            this.$cartContent.html(response);
             this.bindEvents();
             this.$overlay.hide();
         });

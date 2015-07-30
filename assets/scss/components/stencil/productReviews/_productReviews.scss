@@ -3,25 +3,6 @@
 // =============================================================================
 
 
-.productReviews {
-    border-top: 1px solid color("greys", "lightest");
-}
-
-.productReviews-heading {
-    margin-bottom: spacing("single") + spacing("eighth");
-}
-
-.productReviews-displayToggle {
-    color: color("greys", "light");
-    float: right;
-    margin-top: spacing("single") + spacing("base");
-
-    &:hover {
-        color: color("greys", "darker");
-    }
-}
-
-
 // Review list
 //
 // 1. Kill extra display inline-block spacing
@@ -30,13 +11,8 @@
 .productReviews-list {
     @include u-listBullets("none");
     @include grid-row($behavior: "nest");
-    display: none;
     font-size: 0; // 1
     margin-bottom: spacing("single");
-
-    &.is-open {
-        display: block;
-    }
 }
 
 

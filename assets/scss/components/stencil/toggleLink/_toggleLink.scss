@@ -5,27 +5,60 @@
 
 // Toggle link
 // -----------------------------------------------------------------------------
-//
-// 1. Override style in case it is nested
-//
-// -----------------------------------------------------------------------------
-.toggleLink {
-    &.is-open,
-    &.is-on {
-        .toggleLink-text--off {
-            display: none;
-        }
 
-        .toggleLink-text--on {
-            display: inline-block;
-        }
+$toggle-spacing: spacing("single") + spacing("half");
+
+.toggle {
+    border-top: container("border");
+    margin-bottom: $toggle-spacing;
+
+    &:last-of-type {
+        margin-bottom: $toggle-spacing * 2;
+    }
+}
+
+.toggle-title {
+    margin: $toggle-spacing 0 0;
+}
+
+.toggleLink {
+    .toggle-title & {
+        float: right;
+        line-height: 24px;
+    }
+}
+
+.toggleLink-text {
+    color: color("greys", "light");
+    font-size: fontSize("smallest");
+    font-weight: fontWeight("normal");
+
+    &:hover {
+        color: color("greys", "darker");
     }
 }
 
 .toggleLink-text--off {
     display: inline-block;
+
+    .toggleLink.is-open & {
+        display: none;
+    }
 }
 
 .toggleLink-text--on {
     display: none;
+
+    .toggleLink.is-open & {
+        display: inline-block;
+    }
+}
+
+.toggle-content {
+    display: none;
+    padding: $toggle-spacing 0;
+
+    &.is-open {
+        display: block;
+    }
 }

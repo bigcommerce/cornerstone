@@ -1,50 +1,49 @@
+<div class="modal-header">
+    <h2 class="modal-header-title">Gift Wrapping</h2>
+    <a href="#" class="modal-close" aria-label="Close"><span aria-hidden="true">&#215;</span></a>
+</div>
+<div class="modal-body">
+    <p>Please choose how you'd like to have this item gift wrapped.</p>
 
-    <div class="modal-header">
-        <h2 class="modal-header-title">Gift Wrapping</h2>
-        <a href="#" class="modal-close" aria-label="Close"><span aria-hidden="true">&#215;</span></a>
-    </div>
-    <div class="modal-body">
-        <p>Please choose how you'd like to have this item gift wrapped.</p>
+    <form class="giftWrapping-form" class="form" action="{{urls.cart}}" method="post">
+        <input type="hidden" name="action" value="save_giftwrapping">
+        <input type="hidden" name="giftwraptype" value="same">
+        <input type="hidden" name="item_id" value="{{item_id}}">
+        <fieldset class="form-fieldset">
 
-        <form class="giftWrapping-form" class="form" action="{{urls.cart}}" method="post">
-            <input type="hidden" name="action" value="save_giftwrapping">
-            <input type="hidden" name="giftwraptype" value="same">
-            <input type="hidden" name="item_id" value="{{item_id}}">
-            <fieldset class="form-fieldset">
-
-                <div class="form-field">
-                    <label class="form-label" for="giftWrapping-select">Gift Wrapping - {{product_name}}</label>
-                    <select class="form-select" name="giftwrapping[all]" id="giftWrapping-select">
-                        <option value="">Please choose a type of giftwrapping</option>
-                        {{#each gift_wrappings}}
-                            <option {{#if selected}}selected{{/if}} value="{{id}}">{{name}} - ({{price.formatted}})</option>
-                        {{/each}}
-                    </select>
-                </div>
-
-                <div class="giftWrapping-preview-image {{#if selected_wrapping.preview_image}}show{{/if}}">
+            <div class="form-field">
+                <label class="form-label" for="giftWrapping-select">Gift Wrapping - {{product_name}}</label>
+                <select class="form-select" name="giftwrapping[all]" id="giftWrapping-select">
+                    <option value="">Please choose a type of giftwrapping</option>
                     {{#each gift_wrappings}}
-                        {{#if preview_image}}
-                            <a id="preview-image-{{id}}" class="{{#if selected}}show{{/if}}" target="_blank" href="{{@image preview_image}}">
-                                Preview
-                            </a>
-                        {{/if}}
+                        <option {{#if selected}}selected{{/if}} value="{{id}}">{{name}} - ({{price.formatted}})</option>
                     {{/each}}
-                </div>
-
-
-                <div class="form-field">
-                    <label class="form-label" for="giftMessage">Gift Message</label>
-                    <textarea class="form-input" name="giftMessage" id="giftMessage" rows="3">{{selected_wrapping.message}}</textarea>
-                </div>
-
-            </fieldset>
-            <div class="form-actions">
-                <button class="button button--primary" type="submit">Submit</button>
+                </select>
             </div>
-        </form>
 
-        <script type="text/javascript">
+            <div class="giftWrapping-preview-image">
+                {{#each gift_wrappings}}
+                    {{#if preview_image}}
+                        <a id="preview-image-{{id}}" class="{{#if selected}}show{{/if}}" target="_blank" href="{{@image preview_image}}">
+                            Preview
+                        </a>
+                    {{/if}}
+                {{/each}}
+            </div>
 
-        </script>
-    </div>
+
+            <div class="form-field">
+                <label class="form-label" for="giftMessage">Gift Message</label>
+                <textarea class="form-input" name="giftMessage" id="giftMessage" rows="3">{{selected_wrapping.message}}</textarea>
+            </div>
+
+        </fieldset>
+        <div class="form-actions">
+            <button class="button button--primary" type="submit">Submit</button>
+        </div>
+    </form>
+
+    <script type="text/javascript">
+
+    </script>
+</div>

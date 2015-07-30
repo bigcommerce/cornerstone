@@ -1,9 +1,9 @@
 <div class="form-field">
-    <label class="form-label form-label--alternate" {{#if style}}style="{{style}}" {{/if}}>
+    <label class="form-label form-label--alternate form-label--inlineSmall" {{#if style}}style="{{style}}" {{/if}}>
         {{this.display_name}}
 
         {{#if required}}
-            <small class="form-requiredLabel">{{@lang 'common.required'}}</small>
+            <small>{{@lang 'common.required'}}</small>
         {{/if}}
     </label>
     <select class="form-select form-select--date" name="attribute[{{this.id}}][month]" {{#if required}}required{{/if}}>

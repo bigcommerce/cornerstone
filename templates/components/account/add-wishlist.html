@@ -11,7 +11,7 @@
             {{> components/common/alert-error wishlist.errors}}
         {{/if}}
     </header>
-    <form action="{{urls.wishlists.add}}" class="form wishlist-form" method="post">
+    <form action="{{#if wishlist.id}}{{urls.wishlists.edit}}{{else}}{{urls.wishlists.add}}{{/if}}" class="form wishlist-form" method="post">
         <input type="hidden" name="submit">
 
         <div class="form-field">
@@ -28,6 +28,7 @@
         <div class="form-field">
             {{#if wishlist.id}}
                 <input type="submit" class="button button--primary button--small" value="{{@lang 'account.wishlists.save'}}">
+                <input type="hidden" name="wishlistid" value="{{wishlist.id}}">
             {{else}}
                 <input type="submit" class="button button--primary button--small"
                        value="{{@lang 'account.wishlists.create'}}">

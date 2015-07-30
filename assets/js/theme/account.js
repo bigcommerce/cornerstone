@@ -1,5 +1,5 @@
 import PageManager from '../page-manager';
-import nod from 'casperin/nod';
+import nod from './common/nod';
 import Wishlist from './wishlist';
 import validation from './common/form-validation';
 import stateCountry from './common/state-country';
@@ -14,10 +14,6 @@ export default class Account extends PageManager {
         let $stateElement = $('[data-label="State/Province"]'),
             $editAccountForm = classifyForm('#edit-account-form'),
             $addressForm = classifyForm('#address-form');
-
-        nod.classes.errorClass = 'form-field--error';
-        nod.classes.successClass = 'form-field--success';
-        nod.classes.errorMessageClass = 'form-inlineMessage';
 
         if ($editAccountForm.length) {
             this.registerEditAccountValidation($editAccountForm);

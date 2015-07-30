@@ -2,7 +2,7 @@ import PageManager from '../page-manager';
 import _ from 'lodash';
 import stateCountry from './common/state-country';
 import $ from 'jquery';
-import nod from 'casperin/nod';
+import nod from './common/nod';
 import validation from './common/form-validation';
 import forms from './common/models/forms';
 import {classifyForm} from './common/form-utils';
@@ -136,10 +136,6 @@ export default class Auth extends PageManager {
             $createAccountForm = classifyForm('.create-account-form'),
             $loginForm = classifyForm('.login-form'),
             $forgotPasswordForm = classifyForm('.forgot-password-form');
-
-        nod.classes.errorClass = 'form-field--error';
-        nod.classes.successClass = 'form-field--success';
-        nod.classes.errorMessageClass = 'form-inlineMessage';
 
         if ($loginForm.length) {
             this.registerLoginValidation($loginForm);

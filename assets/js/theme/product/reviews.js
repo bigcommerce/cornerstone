@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import nod from 'casperin/nod'
+import nod from '../common/nod'
 import validation from '../common/form-validation';
 
 export default class {
@@ -8,10 +8,6 @@ export default class {
         this.validator = nod({
             submit: $reviewForm.find('input[type="submit"]')
         });
-
-        nod.classes.errorClass = 'form-field--error';
-        nod.classes.successClass = 'form-field--success';
-        nod.classes.errorMessageClass = 'form-inlineMessage';
     }
 
     registerValidation() {

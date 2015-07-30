@@ -23,7 +23,7 @@ export default function () {
         utils.api.cart.getContent(options, (err, response) => {
             $cartDropdown
                 .removeClass(loadingClass)
-                .html(response.content);
+                .html(response);
         });
     });
 }

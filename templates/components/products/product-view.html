@@ -40,6 +40,14 @@
                     <dt class="productView-info-name">{{@lang 'products.sku'}}:</dt>
                     <dt class="productView-info-value">{{product.sku}}</dt>
                 {{/if}}
+                {{#if product.condition}}
+                    <dt class="productView-info-name">{{@lang 'products.condition'}}:</dt>
+                    <dt class="productView-info-value">{{product.condition}}</dt>
+                {{/if}}
+                {{#if product.availability}}
+                    <dt class="productView-info-name">{{@lang 'products.availability'}}:</dt>
+                    <dt class="productView-info-value">{{product.availability}}</dt>
+                {{/if}}
                 {{#if product.weight}}
                     <dt class="productView-info-name">{{@lang 'products.weight'}}:</dt>
                     <dt class="productView-info-value">{{product.weight}}</dt>

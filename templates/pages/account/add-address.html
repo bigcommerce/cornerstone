@@ -1,30 +1,40 @@
 {{#partial "page"}}
-<div class="account">
+
     {{> components/common/breadcrumbs breadcrumbs}}
+
     {{#if forms.address.address_id}}
         <h2 class="page-heading">{{@lang 'forms.address.edit.heading'}}</h2>
     {{else}}
         <h2 class="page-heading">{{@lang 'forms.address.add.heading'}}</h2>
     {{/if}}
+
     {{> components/account/navigation account_page='addresses'}}
 
-    {{#if forms.address.error}}
-    {{> components/common/alert-error forms.address.error}}
-    {{/if}}
-    <form action="{{forms.address.action}}" id="address-form" class="form address-form" method="post">
-        {{#if forms.address.address_id }}
-            <input type="hidden" name="shipid" value="{{forms.address.address_id}}">
+    <div class="account account--fixed">
+
+        {{#if forms.address.error}}
+            {{> components/common/alert-error forms.address.error}}
         {{/if}}
-        {{#each forms.address.shipping_fields }}
-            <div class="address-form-field">
-                {{{@dynamicComponent 'components/common/forms'}}}
-            </div>
-        {{/each}}
-        <div class="form-actions">
-            <input type="submit" class="button button--primary" value="{{@lang 'forms.address.submit_value'}}">
-            <a href="{{urls.account.addresses}}" class="button">{{@lang 'common.cancel'}}</a>
+
+        <div class="account-body">
+
+            <form action="{{forms.address.action}}" id="address-form" class="form form--splitFields" method="post">
+                {{#if forms.address.address_id }}
+                    <input type="hidden" name="shipid" value="{{forms.address.address_id}}">
+                {{/if}}
+                {{#each forms.address.shipping_fields }}
+                    <div class="form-splitField">
+                        {{{@dynamicComponent 'components/common/forms'}}}
+                    </div>
+                {{/each}}
+                <div class="form-actions">
+                    <input type="submit" class="button button--primary" value="{{@lang 'forms.address.submit_value'}}">
+                    <a href="{{urls.account.addresses}}" class="button">{{@lang 'common.cancel'}}</a>
+                </div>
+            </form>
+
         </div>
-    </form>
-</div>
+    </div>
+
 {{/partial}}
 {{> layout/base}}

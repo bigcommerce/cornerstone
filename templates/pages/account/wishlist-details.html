@@ -15,7 +15,7 @@
     <ul class="productGrid">
         {{#each wishlist.items}}
         <li class="product">
-            {{> components/products/card theme_settings=../theme_settings}}
+            {{> components/products/card theme_settings=../theme_settings id=product_id}}
             <form action="{{remove_url}}" method="post">
                 <input type="submit" class="button button--primary button--small" value="{{@lang 'account.wishlists.remove_item'}}" />
             </form>

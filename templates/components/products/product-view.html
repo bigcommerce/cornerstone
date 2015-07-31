@@ -11,6 +11,7 @@
     <section class="productView-details">
         <div class="productView-product">
             <h1 class="productView-title" itemprop="name">{{product.title}}</h1>
+
             <h2 class="productView-brand" itemprop="brand" itemscope itemtype="http://schema.org/Brand">
                 <a href="{{product.brand.url}}" itemprop="url"><span itemprop="name">{{product.brand.name}}</span></a>
             </h2>
@@ -25,15 +26,20 @@
                     {{> components/products/price price=product.price}}
                 </div>
             {{/if}}
-            {{#if settings.show_product_rating}}
-                <div class="productView-rating" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+            <div class="productView-rating" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+                {{#if settings.show_product_rating}}
                     <meta itemprop="ratingValue" content="{{product.rating}}">
                     <meta itemprop="ratingCount" content="{{product.num_reviews}}">
                     <meta itemprop="reviewCount" content="{{product.num_reviews}}">
-                    {{> components/products/ratings rating=product.rating}}<span class="productView-reviewLink"><a href="{{product.url}}#product-reviews">{{@lang 'products.reviews.link_to_review' total=product.num_reviews}}</a></span><span class="productView-reviewLink"><a href="{{product.url}}" {{#if product.reviews}}data-reveal-id="modal-review-form"{{/if}}>{{@lang 'products.reviews.new'}}</a></span>
+                    {{> components/products/ratings rating=product.rating}}
+                    <span class="productView-reviewLink"><a href="{{product.url}}#product-reviews">{{@lang 'products.reviews.link_to_review' total=product.num_reviews}}</a></span>
+                {{/if}}
+                {{#if settings.show_product_reviews}}
+                    <span class="productView-reviewLink"><a href="{{product.url}}"
+                                                            {{#if product.reviews}}data-reveal-id="modal-review-form"{{/if}}>{{@lang 'products.reviews.new'}}</a></span>
                     {{> components/products/modals/writeReview}}
-                </div>
-            {{/if}}
+                {{/if}}
+            </div>
             {{product.detail_messages}}
             <dl class="productView-info">
                 {{#if product.sku}}
@@ -69,7 +75,8 @@
 
                 {{#each product.custom_fields}}
                     <dt class="productView-info-name">{{name}}:</dt>
-                    <dt class="productView-info-value">{{value}}</dd>
+                    <dt class="productView-info-value">
+                        {{value}}</dd>
                 {{/each}}
             </dl>
         </div>
@@ -77,25 +84,25 @@
 
     <section class="productView-images" data-image-gallery>
         <figure class="productView-image"
-            data-image-gallery-main
-            data-zoom-image="{{@image product.main_image 'zoom'}}"
-        >
+                data-image-gallery-main
+                data-zoom-image="{{@image product.main_image 'zoom'}}"
+                >
             <a href="{{@image product.main_image 'zoom'}}">
                 <img src="{{@image product.main_image 'product'}}" alt="{{image.alt}}" data-main-image>
             </a>
         </figure>
         <ul class="productView-thumbnails">
             {{#each product.images}}
-            <li class="productView-thumbnail">
-                <a
-                    class="productView-thumbnail-link"
-                    href="{{@image this 'product'}}"
-                    data-image-gallery-item
-                    data-image-gallery-new-image-url="{{@image this 'product'}}"
-                    data-image-gallery-zoom-image-url="{{@image this 'zoom'}}">
-                    <img src="{{@image this 'thumb'}}" alt="{{image.alt}}">
-                </a>
-            </li>
+                <li class="productView-thumbnail">
+                    <a
+                        class="productView-thumbnail-link"
+                        href="{{@image this 'product'}}"
+                        data-image-gallery-item
+                        data-image-gallery-new-image-url="{{@image this 'product'}}"
+                        data-image-gallery-zoom-image-url="{{@image this 'zoom'}}">
+                        <img src="{{@image this 'thumb'}}" alt="{{image.alt}}">
+                    </a>
+                </li>
             {{/each}}
         </ul>
     </section>
@@ -103,12 +110,13 @@
     <section class="productView-details">
         <div class="productView-options">
             {{#if product.release_date }}
-            <p>{{product.release_date}}</p>
+                <p>{{product.release_date}}</p>
             {{/if}}
 
-            <form class="form" method="post" action="{{product.cart_url}}" enctype="multipart/form-data" data-cart-item-add>
+            <form class="form" method="post" action="{{product.cart_url}}" enctype="multipart/form-data"
+                  data-cart-item-add>
                 <input type="hidden" name="action" value="add">
-                <input type="hidden" name="product_id" value="{{product.id}}" />
+                <input type="hidden" name="product_id" value="{{product.id}}"/>
 
                 <div data-product-option-change>
                     {{#each product.customizations}}
@@ -128,22 +136,34 @@
                 {{#if product.can_purchase}}
 
                     <div class="form-field form-field--increments">
-                        <label class="form-label form-label--alternate" for="qty[]">{{@lang 'products.quantity'}}</label>
+                        <label class="form-label form-label--alternate"
+                               for="qty[]">{{@lang 'products.quantity'}}</label>
+
                         <div class="form-increment" data-quantity-change>
                             <button class="button button--icon" data-action="dec">
                                 <span class="u-hiddenVisually">{{@lang 'products.quantity_decrease'}}</span>
-                                <i class="icon" aria-hidden="true"><svg><use xlink:href="#icon-keyboard-arrow-down" /></svg></i>
+                                <i class="icon" aria-hidden="true">
+                                    <svg>
+                                        <use xlink:href="#icon-keyboard-arrow-down"/>
+                                    </svg>
+                                </i>
                             </button>
-                            <input class="form-input form-input--incrementTotal" id="qty[]" name="qty[]" type="tel" value="1" min="1" pattern="[0-9]*" aria-live="polite">
+                            <input class="form-input form-input--incrementTotal" id="qty[]" name="qty[]" type="tel"
+                                   value="1" min="1" pattern="[0-9]*" aria-live="polite">
                             <button class="button button--icon" data-action="inc">
                                 <span class="u-hiddenVisually">{{@lang 'products.quantity_increase'}}</span>
-                                <i class="icon" aria-hidden="true"><svg><use xlink:href="#icon-keyboard-arrow-up" /></svg></i>
+                                <i class="icon" aria-hidden="true">
+                                    <svg>
+                                        <use xlink:href="#icon-keyboard-arrow-up"/>
+                                    </svg>
+                                </i>
                             </button>
                         </div>
                     </div>
 
                     <div class="form-action">
-                        <input id="form-action-addToCart" class="button button--primary" type="submit" value="{{#if product.pre_order}}{{@lang 'products.pre_order'}}{{else}}{{@lang 'products.add_to_cart'}}{{/if}}">
+                        <input id="form-action-addToCart" class="button button--primary" type="submit"
+                               value="{{#if product.pre_order}}{{@lang 'products.pre_order'}}{{else}}{{@lang 'products.add_to_cart'}}{{/if}}">
                     </div>
                 {{/if}}
                 {{#if product.out_of_stock}}
@@ -163,45 +183,59 @@
             </form>
         </div>
 
-        <div class="addthis_toolbox addthis_32x32_style" addthis:url="{{product.url}}" addthis:title="{{product.title}}">
+        <div class="addthis_toolbox addthis_32x32_style" addthis:url="{{product.url}}"
+             addthis:title="{{product.title}}">
             <ul class="socialLinks">
                 {{#each product.add_this}}
-                <li class="socialLinks-item socialLinks-item--{{service}}">
-                    <a class="addthis_button_{{service}} icon icon--{{service}}" {{{annotation}}}>
-                        {{#compare service 'google_plusone' operator='==='}}
-                        <!-- No custom icons allowed with g+ -->
-                        {{/compare}}
+                    <li class="socialLinks-item socialLinks-item--{{service}}">
+                        <a class="addthis_button_{{service}} icon icon--{{service}}" {{{annotation}}}>
+                            {{#compare service 'google_plusone' operator='==='}}
+                                <!-- No custom icons allowed with g+ -->
+                            {{/compare}}
 
-                        {{#compare service 'facebook' operator='==='}}
-                        <svg><use xlink:href="#icon-facebook" /></svg>
-                        {{/compare}}
+                            {{#compare service 'facebook' operator='==='}}
+                                <svg>
+                                    <use xlink:href="#icon-facebook"/>
+                                </svg>
+                            {{/compare}}
 
-                        {{#compare service 'email' operator='==='}}
-                        <svg><use xlink:href="#icon-envelope" /></svg>
-                        {{/compare}}
+                            {{#compare service 'email' operator='==='}}
+                                <svg>
+                                    <use xlink:href="#icon-envelope"/>
+                                </svg>
+                            {{/compare}}
 
-                        {{#compare service 'print' operator='==='}}
-                        <svg><use xlink:href="#icon-print" /></svg>
-                        {{/compare}}
+                            {{#compare service 'print' operator='==='}}
+                                <svg>
+                                    <use xlink:href="#icon-print"/>
+                                </svg>
+                            {{/compare}}
 
-                        {{#compare service 'twitter' operator='==='}}
-                        <svg><use xlink:href="#icon-twitter" /></svg>
-                        {{/compare}}
+                            {{#compare service 'twitter' operator='==='}}
+                                <svg>
+                                    <use xlink:href="#icon-twitter"/>
+                                </svg>
+                            {{/compare}}
 
-                        {{#compare service 'linkedin' operator='==='}}
-                        <svg><use xlink:href="#icon-linkedin" /></svg>
-                        {{/compare}}
+                            {{#compare service 'linkedin' operator='==='}}
+                                <svg>
+                                    <use xlink:href="#icon-linkedin"/>
+                                </svg>
+                            {{/compare}}
 
-                        {{#compare service 'google' operator='==='}}
-                        <svg><use xlink:href="#icon-google" /></svg>
-                        {{/compare}}
-                    </a>
-                </li>
+                            {{#compare service 'google' operator='==='}}
+                                <svg>
+                                    <use xlink:href="#icon-google"/>
+                                </svg>
+                            {{/compare}}
+                        </a>
+                    </li>
                 {{/each}}
             </ul>
-            <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4e94ed470ee51e32"></script>
+            <script type="text/javascript"
+                    src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4e94ed470ee51e32"></script>
             <script>
-                if(typeof(addthis) === "object") {
+                if (typeof(addthis) === "object") {
                     addthis.toolbox('.addthis_toolbox');
                 }
             </script>
@@ -228,7 +262,7 @@
                             "viewLess": "{{@lang 'text_truncate.view_less'}}"
                         }
                      }'
-                >
+                        >
                     {{{ product.description }}}
                 </div>
             </div>

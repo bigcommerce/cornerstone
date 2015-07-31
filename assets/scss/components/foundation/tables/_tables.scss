@@ -67,6 +67,18 @@
                 + th {
                     padding-left: spacing("single");
                 }
+
+                @include breakpoint("small") {
+                    text-align: center;
+
+                    &:first-child {
+                        text-align: left;
+                    }
+
+                    &:last-child {
+                        text-align: right;
+                    }
+                }
             }
         }
     }
@@ -75,11 +87,24 @@
         border-color: color("greys", "lightest");
 
         td {
+            display: block;
             padding-left: 0;
             padding-right: 0;
 
             + td {
                 padding-left: spacing("single");
+            }
+
+            @include breakpoint("small") {
+                text-align: center;
+
+                &:first-child {
+                    text-align: left;
+                }
+
+                &:last-child {
+                    text-align: right;
+                }
             }
         }
     }

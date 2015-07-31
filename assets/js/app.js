@@ -60,6 +60,7 @@ let PageClasses = {
         "pages/sitemap": sitemap,
         "pages/subscribed": subscribe,
         "pages/account/wishlist-details": wishlist,
+        "pages/account/wishlist-shared": wishlist,
         "pages/account/wishlists": wishlist
     },
     /**

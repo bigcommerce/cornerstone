@@ -13,10 +13,15 @@ export default class Account extends PageManager {
     loaded(next) {
         let $stateElement = $('[data-label="State/Province"]'),
             $editAccountForm = classifyForm('#edit-account-form'),
+            $inboxForm = classifyForm('#inbox-form'),
             $addressForm = classifyForm('#address-form');
 
         if ($editAccountForm.length) {
             this.registerEditAccountValidation($editAccountForm);
+        }
+
+        if ($inboxForm.length) {
+            this.registerInboxValidation($inboxForm);
         }
 
         // Instantiates wish list JS
@@ -182,6 +187,51 @@ export default class Account extends PageManager {
                     cb(result);
                 },
                 errorMessage: "You must enter your current password when changing passwords"
+            }
+        ]);
+
+        $editAccountForm.submit((event) => {
+            this.editValidator.performCheck();
+
+            if (this.editValidator.areAll('valid')) {
+                return;
+            }
+
+            event.preventDefault();
+        });
+    }
+
+    registerEditAccountValidation($editAccountForm) {
+        let editModel = forms.edit_account;
+
+        this.editValidator = nod({
+            submit: '.edit-account-form input[type="submit"]'
+        });
+
+        this.editValidator.add([
+            {
+                selector: '#inbox-form input[name="message_order_id"]',
+                validate: (cb, val) => {
+                    let result = Number(val) !== 0;
+                    cb(result);
+                },
+                errorMessage: "You must select an order"
+            },
+            {
+                selector: '#inbox-form input[name="message_subject"]',
+                validate: (cb, val) => {
+                    let result = val.length;
+                    cb(result);
+                },
+                errorMessage: "You must enter a subject"
+            },
+            {
+                selector: '#inbox-form input[name="message_content"]',
+                validate: (cb, val) => {
+                    let result = val.length;
+                    cb(result);
+                },
+                errorMessage: "You must enter a message"
             }
         ]);
 

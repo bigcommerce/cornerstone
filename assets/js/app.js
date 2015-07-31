@@ -32,6 +32,7 @@ let PageClasses = {
         "pages/account/recent-items": account,
         "pages/account/download-item": account,
         "pages/account/edit": account,
+        "pages/account/inbox": account,
         "pages/account/return-saved": account,
         "pages/account/returns": account,
         "pages/auth/login": auth,

@@ -34,12 +34,14 @@
     </tbody>
 </table>
 
-<form method="post" action="{{this.urls.wishlists.delete}}" class="form-actions">
-    <a href="{{this.urls.wishlists.add}}" data-reveal-id="wishlist-modal" class="button button--primary" role="button">{{@lang 'account.wishlists.new'}}</a>
-    {{#each customer.wishlists}}
-        <input type="hidden" value="{{this.id}}" name="deletewishlist[]"/>
-    {{/each}}
-    <input type="submit" value="{{@lang 'account.wishlists.delete_all'}}" id="wishlist-delete" class="button"/>
+<form method="post" action="{{this.urls.wishlists.delete}}" class="form">
+    <div class="form-actions">
+        <a href="{{this.urls.wishlists.add}}" data-reveal-id="wishlist-modal" class="button button--primary" role="button">{{@lang 'account.wishlists.new'}}</a>
+        {{#each customer.wishlists}}
+            <input type="hidden" value="{{this.id}}" name="deletewishlist[]"/>
+        {{/each}}
+        <input type="submit" value="{{@lang 'account.wishlists.delete_all'}}" id="wishlist-delete" class="button"/>
+    </div>
 </form>
 
 <div id="wishlist-modal" class="modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">

@@ -18,7 +18,7 @@ function makeStateRequired(stateElement) {
 
     stateElement.replaceWith(`<select id="${attrs.id}" data-label="${attrs['data-label']}" class="form-select" name="${attrs.name}"></select>`);
 
-    $newElement = $('[data-label="State/Province"]');
+    $newElement = $('[name="FormField[2][12]"]');
     $hiddenInput = $('[name*="FormFieldIsText"]');
 
     if ($hiddenInput.length > 0) {
@@ -46,7 +46,7 @@ function makeStateOptional(stateElement) {
 
     fieldId = attrs.name.match(/(\[.*\])/);
     stateElement.replaceWith(`<input type="text" id="${attrs.id}" data-label="${attrs['data-label']}" class="form-input" name="${attrs.name}">`);
-    $newElement = $('[data-label="State/Province"]');
+    $newElement = $('[name="FormField[2][12]"]');
 
     if (fieldId) {
         $newElement.after(`<input type="hidden" name="FormFieldIsText${fieldId[0]}" value="1">`)
@@ -74,7 +74,7 @@ function addOptions(statesArray, $selectElement) {
 
 export default function (stateElement, callback) {
 
-    $('select[data-label="Country"]').on('change', (event) => {
+    $('select[name="FormField[2][11]"]').on('change', (event) => {
         let countryName = $(event.currentTarget).val();
 
         if (countryName === '') {
@@ -88,7 +88,7 @@ export default function (stateElement, callback) {
                 alert('There was an error');
             }
 
-            $currentInput = $('[data-label="State/Province"]');
+            $currentInput = $('[name="FormField[2][12]"]');
 
             if (!_.isEmpty(response.data.states)) {
                 // The element may have been replaced with a select, reselect it

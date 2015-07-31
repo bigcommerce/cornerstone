@@ -1,33 +1,101 @@
-<div id="cart-preview" data-cart-quantity="{{cart.quantity}}">
-    <h1>Your Cart</h1>
-    <ul class="previewCartList">
-        {{#each cart.items}}
-            <li class="previewCartItem">
-                <div class="previewCartItem-image">
-                    <img src="{{getImage image 'thumb' (cdn ../theme_settings.default_image_product)}}" alt="{{image.alt}}" />
-                </div>
+<div class="modal-header">
+    <h2 class="modal-header-title">
+        {{lang 'cart.added_to_cart.what_next' num_products=cart.quantity}}
+    </h2>
 
-                <div class="previewCartItem-content">
-                    <div class="previewCartItem-brand">
+    <a href="#" class="modal-close" aria-label="{{lang 'common.close'}}" role="button">
+        <span aria-hidden="true">&#215;</span>
+    </a>
+</div>
+
+<div class="modal-body">
+    <div class="previewCart">
+        <section class="productView">
+            {{#with cart.added_item}}
+                <figure class="productView-image">
+                    <img src="{{getImage image 'product' (cdn ../theme_settings.default_image_product)}}" alt="{{image.alt}}" />
+                </figure>
+
+                <div class="productView-details">
+                    <h4 class="productView-title">
+                        {{name}}
+                    </h4>
+
+                    <div class="productView-brand">
                         {{brand.name}}
                     </div>
 
-                    <h6 class="previewCartItem-name">
-                        <a href="{{url}}" alt="{{name}}">{{name}}</a>
-                    </h6>
-
-                    <div class="previewCartItem-price">
+                    <div class="productView-price">
                         {{quantity}} &times; {{price.formatted}}
                     </div>
-                </div>
-            </li>
-        {{/each}}
-    </ul>
 
-    <h1>You may also like</h1>
-    {{#each cart.suggested_products}}
-    <div class="productCarousel-slide">
-        {{> components/products/card theme_settings=../theme_settings}}
+                    {{#each options}}
+                        <dl class="productView-info">
+                            <dt class="productView-info-name">
+                                {{name}}
+                            </dt>
+                            <dd class="productView-info-value">
+                                {{value}}
+                            </dd>
+                        </dl>
+                    {{/each}}
+                </div>
+            {{/with}}
+        </section>
+
+        <section class="previewCartCheckout">
+            <a href="{{urls.checkout.single_address}}" class="button button--primary">
+                {{lang 'cart.added_to_cart.proceed_to_checkout'}}
+            </a>
+
+            {{#if cart.show_multiple_address_shipping}}
+                <p>
+                    {{lang 'cart.checkout.address.or'}}
+                    <a href="{{urls.checkout.multiple_address}}">
+                        <strong>{{lang 'cart.checkout.address.multiple'}}</strong>
+                    </a>
+                </p>
+            {{/if}}
+
+            <div class="previewCartCheckout-additionalCheckoutButtons">
+                {{#each cart.additional_checkout_buttons}}
+                    {{{this}}}
+                {{/each}}
+            </div>
+
+            <div class="previewCartCheckout-subtotal">
+                {{lang 'cart.added_to_cart.order_subtotal'}}
+
+                <strong class="previewCartCheckout-price">
+                    {{cart.sub_total.formatted}}
+                </strong>
+            </div>
+
+            <p data-cart-quantity="{{cart.quantity}}">
+                {{lang 'cart.added_to_cart.your_cart_contains' num_products=cart.quantity}}
+            </p>
+
+            <a href="#" class="button button--primary" role="button" data-reveal-close>
+                {{lang 'cart.added_to_cart.continue_shopping'}}
+            </a>
+
+            <a href="{{urls.cart}}" class="button">
+                {{lang 'cart.added_to_cart.view_or_edit_cart'}}
+            </a>
+        </section>
     </div>
-    {{/each}}
+
+    <section class="suggestiveCart">
+        <h4>
+            {{lang 'cart.added_to_cart.you_might_also_like'}}&hellip;
+        </h4>
+
+        <ul class="productGrid">
+            {{#each cart.suggested_products}}
+                <li class="product">
+                    {{> components/products/card theme_settings=../theme_settings}}
+                </li>
+            {{/each}}
+        </ul>
+    </section>
 </div>

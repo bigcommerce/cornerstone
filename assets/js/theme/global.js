@@ -11,6 +11,7 @@ import compareProducts from './global/compare-products';
 import privacyCookieNotification from './global/cookieNotification';
 import carousel from './common/carousel';
 import loadingProgressBar from './global/loading-progress-bar';
+import {revealClose, revealReset} from './global/reveal-extension';
 
 export default class Global extends PageManager {
     constructor() {
@@ -34,6 +35,8 @@ export default class Global extends PageManager {
         mobileMenu();
         privacyCookieNotification();
         loadingProgressBar();
+        revealClose();
+        revealReset();
         next();
     }
 }

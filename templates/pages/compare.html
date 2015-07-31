@@ -2,7 +2,6 @@
 {{@inject 'comparisons' comparisons}}
 {{> components/common/breadcrumbs breadcrumbs}}
 <h1 class="page-heading">{{@lang 'compare.header' products=comparisons.length}}</h1>
-
 <div class="page">
     <main class="page-content">
 
@@ -67,20 +66,22 @@
                 <td class="compareTable-item">{{ summary }}</td>
                 {{/each}}
             </tr>
-            <tr class="compareTable-row">
-                <th class="compareTable-heading">
-                    <span class="compareTable-headingText">Rating</span>
-                </th>
-                {{#each comparisons}}
-                <td class="compareTable-item">
-                    {{#if rating}}
-                        {{> components/products/ratings rating=rating}}
-                    {{else}}
-                        No Reviews
+            {{#if settings.show_product_rating}}
+                <tr class="compareTable-row">
+                    <th class="compareTable-heading">
+                        <span class="compareTable-headingText">Rating</span>
+                    </th>
+                    {{#each comparisons}}
+                    <td class="compareTable-item">
+                        {{#if rating}}
+                            {{> components/products/ratings rating=rating}}
+                        {{else}}
+                            No Reviews
                     {{/if}}
-                </td>
-                {{/each}}
-            </tr>
+                    </td>
+                    {{/each}}
+                </tr>
+            {{/if}}
             <tr class="compareTable-row">
                 <th class="compareTable-heading">
                     <span class="compareTable-headingText">Availability</span>

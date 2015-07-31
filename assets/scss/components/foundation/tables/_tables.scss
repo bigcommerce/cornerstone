@@ -26,9 +26,22 @@
     text-align: center;
     margin: spacing("single");
 
-    .form,
-    .button {
+    .form {
         margin-bottom: 0;
+    }
+
+    .button {
+        display: block;
+        margin-left: 0;
+        margin-right: 0;
+        width: 100%;
+
+        @include breakpoint("small") {
+            display: inline-block;
+            margin-bottom: 0;
+            margin-left: spacing("half");
+            width: auto;
+        }
     }
 }
 

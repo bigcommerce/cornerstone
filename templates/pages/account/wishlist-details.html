@@ -7,8 +7,10 @@
 
     {{#if wishlist.is_public}}
     <div class="panel share-wishlist">
-        <h3>{{@lang 'account.wishlists.share_intro'}}</h3>
-        <input class="form-input" value="{{settings.base_url}}{{wishlist.share_url}}">
+        <div class="panel-body">
+            <h5>{{@lang 'account.wishlists.share_intro'}}</h5>
+            <input class="form-input" value="{{settings.base_url}}{{wishlist.share_url}}">
+        </div>
     </div>
     {{/if}}
 

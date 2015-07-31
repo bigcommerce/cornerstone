@@ -1,0 +1,38 @@
+// =============================================================================
+// BRAND GRID (CSS)
+// =============================================================================
+
+
+// Brand grid view
+// -----------------------------------------------------------------------------
+//
+// 1. Re-set the font-size, as we're reducing it to 0 in the .brandGrid class.
+//
+// -----------------------------------------------------------------------------
+
+.brandGrid {
+
+    @include u-listBullets("none");
+    @include grid-row($behavior: "nest");
+    margin-bottom: spacing("single");
+    font-size: 0; // 1
+
+    .brand {
+        @include grid-column(6, $float: none);
+        display: inline-block;
+        font-size: fontSize("base"); // 1
+        vertical-align: top;
+
+        .card-title {
+            text-align: center;
+        }
+
+        @include breakpoint("small") {
+            width: grid-calc(4, $total-columns);
+        }
+
+        @include breakpoint("medium") {
+            width: grid-calc(3, $total-columns);
+        }
+    }
+}

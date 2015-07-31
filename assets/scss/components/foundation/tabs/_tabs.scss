@@ -45,3 +45,27 @@
         padding: spacing("half") spacing("single");
     }
 }
+
+
+//
+// State for when tab-content has js generated of calculated content, like carousel
+//
+// Purpose: The content being display: none, means any js calculated dimensions
+// are incorrect as the elements inside the tab-content have no dimensions to grab.
+// Carousel is a prime example. It needs widths to calculate the layout and slides
+// -----------------------------------------------------------------------------
+
+.tab-content.has-jsContent {
+    display: block;
+    height: 0;
+    overflow: hidden;
+    padding: 0;
+    visibility: hidden;
+
+    &.is-active {
+        height: auto;
+        overflow: visible;
+        padding: $tabs-content-padding;
+        visibility: visible;
+    }
+}

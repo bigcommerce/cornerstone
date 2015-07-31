@@ -49,6 +49,8 @@ export default class Cart extends PageManager {
     refreshContent(remove) {
         let $cartItemsRows = $('[data-item-row]', this.$cartContent);
 
+        this.$overlay.show();
+
         // Remove last item from cart? Reload
         if (remove && $cartItemsRows.length == 1) {
             return window.location.reload();
@@ -168,9 +170,77 @@ export default class Cart extends PageManager {
         });
     }
 
+
+    bindGiftWrappingEvents() {
+        let $modal = $('#modal'),
+            $modalContent = $('.modal-content', $modal),
+            $modalOverlay = $('.loadingOverlay', $modal);
+
+        $('[data-item-giftwrap]').on('click', (event) => {
+            let itemId = $(event.currentTarget).data('item-giftwrap'),
+                options = {
+                    template: 'cart/modals/gift-wrapping-form'
+                }
+
+            event.preventDefault();
+
+            // clear the modal
+            $modalContent.html('');
+            $modalOverlay.show();
+
+            // open modal
+            $modal.foundation('reveal', 'open');
+
+            utils.api.cart.getItemGiftWrappingOptions(itemId, options, (err, response) => {
+                $modalOverlay.hide();
+                $modalContent.html(response.content);
+
+                this.bindGiftWrappingForm();
+            });
+        });
+    }
+
+    bindGiftWrappingForm() {
+        let $form = $('.giftWrapping-form');
+
+        $('.giftWrapping-select').change((event) => {
+            let id = $(event.currentTarget).val(),
+                index = $(event.currentTarget).data('index');
+
+            $('.giftWrapping-image-' + index).hide();
+            $('#giftWrapping-image-' + index + '-' + id).show();
+
+            if (id) {
+                $('#giftWrapping-message-' + index).show();
+            } else {
+                $('#giftWrapping-message-' + index).hide();                
+            }
+        });
+
+        function toggleViews() {
+            var value = $("input:radio[name ='giftwraptype']:checked").val(),
+                $singleForm = $('.giftWrapping-single'),
+                $multiForm = $('.giftWrapping-multiple');
+
+            if (value === 'same') {
+                $singleForm.show();
+                $multiForm.hide();
+            }  else {
+                $singleForm.hide();
+                $multiForm.show();
+            }
+        }
+
+        $('[name="giftwraptype"]').click(function(event) {
+            toggleViews();
+        });
+        toggleViews();
+    }
+
     bindEvents() {
         this.bindCartEvents();
         this.bindPromoCodeEvents();
         this.bindEstimatorEvents();
+        this.bindGiftWrappingEvents();
     }
 }

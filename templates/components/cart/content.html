@@ -47,28 +47,7 @@
                         </dl>
                         <a href="#" data-item-edit="{{id}}">{{@lang 'cart.checkout.change'}}</a>
                     {{/if}}
-                    <!-- TODO: Giftwrapping can be disabled on a per-product basis in control panel. Needs to be brought through in context.-->
-                    <dl class="cart-item-options cart-item-options--giftWrapping">
-                        <dt class="cart-item-option-title">
-                            Gift Wrapping:
-                        </dt>
-                        <dd class="cart-item-option-description">
-                            <!-- TO DO: Put this back in once there's a conditional for it
-                            Fancy Stuff <span class="cart-item-option-actions">(<a href="" data-reveal-id="modal-giftWrapping-form">Change</a> or <a href="">Remove</a>)</span>
-                            -->
-                            <a href="" data-reveal-id="modal-giftWrapping-form">Add</a>
-                        </dd>
-                        <!-- TO DO: Put this back in once there's a conditional for it - messages can be disabled from some gift wrapping options
-                        <dt class="cart-item-option-title">
-                            Gift Message:
-                        </dt>
-                        <dd class="cart-item-option-description">
-                            This also needs to break to a new line in mobile view
-                            I'm so nice to you
-                        </dd>
-                        -->
-                    </dl>
-                    {{> components/cart/modals/giftWrapping}}
+                    {{> components/cart/item-giftwrap this}}
                 </td>
                 <td class="cart-item-block cart-item-info">
                     <span class="cart-item-label">{{@lang 'cart.checkout.price'}}</span> <span class="cart-item-value">{{price.formatted}}</span>
@@ -103,3 +82,5 @@
         {{/each}}
     </tbody>
 </table>
+
+<div id="modal-giftWrapping-form" class="modal" data-reveal></div>

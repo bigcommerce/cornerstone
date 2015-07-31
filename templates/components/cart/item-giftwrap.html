@@ -1,0 +1,28 @@
+{{#if show_gift_wrapping}}
+    <dl class="cart-item-options cart-item-options--giftWrapping">
+        {{#if gift_wrapping}}
+            <dt class="cart-item-option-title">
+                Gift Wrapping:
+            </dt>
+            <dd class="cart-item-option-description">
+                {{gift_wrapping.name}}
+                <span class="cart-item-option-actions">
+                    (<a href="" data-item-giftwrap="{{id}}">Change</a> or <a href="{{gift_wrapping.remove_link}}" data-remove-giftwrap="{{id}}">Remove</a>)
+                </span>
+            </dd>
+            <dt class="cart-item-option-title">
+                Gift Message:
+            </dt>
+            <dd class="cart-item-option-description">
+                {{gift_wrapping.message}}
+            </dd>
+        {{else}}
+            <dt class="cart-item-option-title">
+                Gift Wrapping:
+            </dt>
+            <dd class="cart-item-option-description">
+                <a href="" data-item-giftwrap="{{id}}">Add</a>
+            </dd>
+        {{/if}}
+    </dl>
+{{/if}}

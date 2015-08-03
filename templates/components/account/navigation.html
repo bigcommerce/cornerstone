@@ -16,6 +16,13 @@
                 </li>
             {{/compare}}
         {{/if}}
+        {{#compare account_page 'messages' operator='==='}}
+            <li class="navBar-item is-active">{{@lang 'account.nav.messages'}}</li>
+        {{else}}
+            <li class="navBar-item">
+                <a class="navBar-action" href="{{urls.account.inbox}}">{{@lang 'account.nav.messages'}}</a>
+            </li>
+        {{/compare}}
         {{#compare account_page 'addresses' operator='==='}}
             <li class="navBar-item is-active">{{@lang 'account.nav.addresses'}}</li>
         {{else}}

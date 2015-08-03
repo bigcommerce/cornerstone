@@ -197,7 +197,7 @@ export default class Cart extends PageManager {
 
                 this.bindGiftWrappingForm();
             });
-        });
+        });        
     }
 
     bindGiftWrappingForm() {

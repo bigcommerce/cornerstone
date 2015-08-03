@@ -34,9 +34,9 @@
     </tbody>
 </table>
 
-<form method="post" action="{{this.urls.wishlists.delete}}" class="form">
+<form method="post" action="{{this.urls.account.wishlists.delete}}" class="form">
     <div class="form-actions">
-        <a href="{{this.urls.wishlists.add}}" data-reveal-id="wishlist-modal" class="button button--primary" role="button">{{@lang 'account.wishlists.new'}}</a>
+        <a href="{{this.urls.account.wishlists.add}}" data-reveal-id="wishlist-modal" class="button button--primary" role="button">{{@lang 'account.wishlists.new'}}</a>
         {{#each customer.wishlists}}
             <input type="hidden" value="{{this.id}}" name="deletewishlist[]"/>
         {{/each}}

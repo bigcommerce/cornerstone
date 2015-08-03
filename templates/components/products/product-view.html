@@ -58,6 +58,10 @@
                     <dt class="productView-info-name">{{@lang 'products.weight'}}:</dt>
                     <dt class="productView-info-value">{{product.weight}}</dt>
                 {{/if}}
+                {{#if product.gift_wrapping_available}}
+                    <dt class="productView-info-name">{{@lang 'products.gift_wrapping'}}:</dt>
+                    <dt class="productView-info-value">{{@lang 'products.gift_wrapping_available'}}</dt>
+                {{/if}}
                 {{#if product.shipping}}
                     {{#if product.shipping.calculated}}
                         <dt class="productView-info-name">{{@lang 'products.shipping'}}:</dt>

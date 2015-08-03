@@ -1,17 +1,16 @@
-<form class="form productFilter-sortBy" method="get" data-sort-by>
-    <fieldset class="form-fieldset">
-        <div class="form-field">
-            <label class="form-label" for="sort">{{@lang 'common.sorter.sort_by'}}</label>
-            <select class="form-select" name="sort" id="sort">
-                <option value="featured" {{#compare sort 'featured' operator='==='}}selected{{/compare}}>{{@lang 'common.sorter.featured'}}</option>
-                <option value="newest" {{#compare sort 'newest' operator='==='}}selected{{/compare}}>{{@lang 'common.sorter.newest'}}</option>
-                <option value="bestselling" {{#compare sort 'bestselling' operator='==='}}selected{{/compare}}>{{@lang 'common.sorter.top_sellers'}}</option>
-                <option value="alphaasc" {{#compare sort 'alphaasc' operator='==='}}selected{{/compare}}>{{@lang 'common.sorter.alpha_asc'}}</option>
-                <option value="alphadesc" {{#compare sort 'alphadesc' operator='==='}}selected{{/compare}}>{{@lang 'common.sorter.alpha_desc'}}</option>
-                <option value="avgcustomerreview" {{#compare sort 'avgcustomerreview' operator='==='}}selected{{/compare}}>{{@lang 'common.sorter.reviews'}}</option>
-                <option value="priceasc" {{#compare sort 'priceasc' operator='==='}}selected{{/compare}}>{{@lang 'common.sorter.price_asc'}}</option>
-                <option value="pricedesc" {{#compare sort 'pricedesc' operator='==='}}selected{{/compare}}>{{@lang 'common.sorter.price_desc'}}</option>
-            </select>
-        </div>
-    </fieldset>
-</form>
+<fieldset class="form-fieldset actionBar-section">
+    <div class="form-field">
+        <label class="form-label u-hiddenVisually" for="sort">{{@lang 'common.sorter.sort_by'}}</label>
+        <select class="form-select form-select--small" name="sort" id="sort">
+            <option value="featured" {{#compare sort 'featured' operator='==='}}selected{{/compare}}>{{@lang 'common.sorter.featured'}}</option>
+            <option value="newest" {{#compare sort 'newest' operator='==='}}selected{{/compare}}>{{@lang 'common.sorter.newest'}}</option>
+            <option value="bestselling" {{#compare sort 'bestselling' operator='==='}}selected{{/compare}}>{{@lang 'common.sorter.top_sellers'}}</option>
+            <option value="alphaasc" {{#compare sort 'alphaasc' operator='==='}}selected{{/compare}}>{{@lang 'common.sorter.alpha_asc'}}</option>
+            <option value="alphadesc" {{#compare sort 'alphadesc' operator='==='}}selected{{/compare}}>{{@lang 'common.sorter.alpha_desc'}}</option>
+            <option value="avgcustomerreview" {{#compare sort 'avgcustomerreview' operator='==='}}selected{{/compare}}>{{@lang 'common.sorter.reviews'}}</option>
+            <option value="priceasc" {{#compare sort 'priceasc' operator='==='}}selected{{/compare}}>{{@lang 'common.sorter.price_asc'}}</option>
+            <option value="pricedesc" {{#compare sort 'pricedesc' operator='==='}}selected{{/compare}}>{{@lang 'common.sorter.price_desc'}}</option>
+        </select>
+    </div>
+</fieldset>
+

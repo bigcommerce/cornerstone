@@ -21,9 +21,14 @@ export default function () {
         event.preventDefault();
 
         utils.api.cart.getContent(options, (err, response) => {
+            let quantity;
+
             $cartDropdown
                 .removeClass(loadingClass)
                 .html(response);
+
+            quantity = $('[data-cart-quantity]', $cartDropdown).data('cart-quantity') || 0;
+            $('.cart-quantity').text(quantity);
         });
     });
 }

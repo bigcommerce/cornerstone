@@ -1,10 +1,18 @@
 <div class="sidebarBlock">
     <h5 class="sidebarBlock-heading">{{@lang 'category.shop_by_price'}}</h5>
     <ul class="navList">
-        {{#each this}}
+        {{#each shop_by_price}}
         <li class="navList-item">
             <a class="navList-action navList-action--checkbox {{#if selected }} is-selected {{/if}}" href="{{url}}" alt="{{low.formatted}} - {{high.formatted}}">{{low.formatted}} - {{high.formatted}}</a>
         </li>
         {{/each}}
+
+        {{#any shop_by_price selected=true}}
+            <li class="navList-item">
+                <a href="{{category_url}}" class="navList-action">
+                    {{@lang 'category.reset'}}
+                </a>
+            </li>
+        {{/any}}
     </ul>
 </div>

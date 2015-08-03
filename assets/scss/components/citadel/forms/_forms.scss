@@ -293,30 +293,16 @@
 }
 
 
-
-// Split fields form
+// Form row modifications
 // -----------------------------------------------------------------------------
 //
-// This modifier creates forms with 50% width columns on larger screens that
-// float next to each other.
+// 1. If there are more than 2 fields per form-row--half, clear the left of every
+// odd one.
 //
 // -----------------------------------------------------------------------------
 
-.form--splitFields {
-
-    .form-actions {
-        display: inline-block;
-    }
-}
-
-.form-splitField {
-    @include grid-column(12);
-
-    @include breakpoint("medium") {
-        width: grid-calc(6, $total-columns);
-    }
-
-    &:nth-child(odd) {
-        clear: left;
+.form-row--half > .form-field:nth-child(odd) {
+    @include breakpoint("small") {
+                clear:left;
     }
 }

@@ -40,8 +40,9 @@
                 {{> components/common/forms/text name="revtext" required="true" label=(@lang 'products.reviews.form_write.comments')}}
 
                 {{#if product.reviews.captcha}}
-                    <h3 class="panel-heading">{{@lang 'products.reviews.captcha_heading' }}</h3>
-
+                    <header class="panel-header">
+                        <h3 class="panel-title">{{@lang 'products.reviews.captcha_heading' }}</h3>
+                    </header>
                     <div class="panel-body">
                         <script type="text/javascript"
                                 src="https://www.google.com/recaptcha/api/challenge?k={{product.reviews.captcha}}">

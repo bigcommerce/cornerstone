@@ -7,23 +7,25 @@
             {{#if forms.create_account.error}}
                 {{> components/common/alert-error forms.create_account.error}}
             {{/if}}
-            <form action="{{urls.auth.save_new_account}}" id="create-account-form" method="post" class="form form--splitFields create-account-form">
-                <fieldset class="form-fieldset">
+            <form action="{{urls.auth.save_new_account}}" id="create-account-form" method="post" class="form">
+                <div class="form-row form-row--half">
                     {{#each forms.create_account.account_fields }}
-                        <div class="form-splitField">
+                        <div class="form-field">
                             {{{@dynamicComponent 'components/common/forms'}}}
                         </div>
                     {{/each}}
                     {{#each forms.create_account.address_fields }}
-                        <div class="form-splitField">
+                        <div class="form-field">
                             {{{@dynamicComponent 'components/common/forms'}}}
                         </div>
                     {{/each}}
-                </fieldset>
+                </div>
                 {{#if forms.create_account.recaptcha.enabled }}
                 <div class="panel">
 
-                    <h3 class="panel-heading">{{@lang 'create_account.captcha_heading' }}</h3>
+                    <header class="panel-header">
+                        <h3 class="panel-title">{{@lang 'create_account.captcha_heading' }}</h3>
+                    </header>
                     <div class="panel-body">
                         <script type="text/javascript"
                                 src="https://www.google.com/recaptcha/api/challenge?k={{forms.create_account.recaptcha.public_key}}">

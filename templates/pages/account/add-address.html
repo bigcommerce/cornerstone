@@ -18,15 +18,19 @@
 
         <div class="account-body">
 
-            <form action="{{forms.address.action}}" id="address-form" class="form form--splitFields" method="post">
+            <form action="{{forms.address.action}}" id="address-form" class="form" method="post">
                 {{#if forms.address.address_id }}
                     <input type="hidden" name="shipid" value="{{forms.address.address_id}}">
                 {{/if}}
-                {{#each forms.address.shipping_fields }}
-                    <div class="form-splitField">
-                        {{{@dynamicComponent 'components/common/forms'}}}
+                <fieldset class="form-fieldset">
+                    <div class="form-row form-row--half">
+                        {{#each forms.address.shipping_fields }}
+                            <div class="form-field">
+                                {{{@dynamicComponent 'components/common/forms'}}}
+                            </div>
+                        {{/each}}
                     </div>
-                {{/each}}
+                </fieldset>
                 <div class="form-actions">
                     <input type="submit" class="button button--primary" value="{{@lang 'forms.address.submit_value'}}">
                     <a href="{{urls.account.addresses}}" class="button">{{@lang 'common.cancel'}}</a>

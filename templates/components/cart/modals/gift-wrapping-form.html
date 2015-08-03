@@ -1,0 +1,83 @@
+<div class="modal-header">
+    <h2 class="modal-header-title">{{@lang 'cart.gift_wrapping.title'}}</h2>
+    <a href="#" class="modal-close" aria-label="{{@lang 'common.close'}}"><span aria-hidden="true">&#215;</span></a>
+</div>
+<div class="modal-body">
+
+    {{#compare quantity 1 operator='>'}}
+        <p>{{@lang 'cart.gift_wrapping.choose_how'}}</p>
+    {{/compare}}
+
+    <form class="giftWrapping-form" class="form" action="{{urls.cart}}" method="post">
+        <input type="hidden" name="action" value="save_giftwrapping">
+        <input type="hidden" name="item_id" value="{{item_id}}">
+        <fieldset class="form-fieldset">
+
+            <div class="form-field" {{#compare quantity 1 operator='==='}}style="display:none"{{/compare}}>
+                <input type="radio" class="form-radio" name="giftwraptype" id="girftWrapping-radio-same" checked="checked" value="same">
+                <label class="form-label" for="girftWrapping-radio-same">{{@lang 'cart.gift_wrapping.option_same'}}</label>
+
+                <input type="radio" class="form-radio" name="giftwraptype" id="girftWrapping-radio-all" value="different">
+                <label class="form-label" for="girftWrapping-radio-all">{{@lang 'cart.gift_wrapping.option_different'}}</label>
+            </div>
+
+            <div class="giftWrapping-single">
+                <div class="form-field">
+                    <label class="form-label" for="giftWrapping-select-same">
+                        {{@lang 'cart.gift_wrapping.item_single' name=product_name}}
+                        {{#each gift_wrappings}}
+                            {{#if preview_image}}
+                                <a id="giftWrapping-image-all-{{id}}" class="giftWrapping-image-all" {{#unless selected}}style="display:none"{{/unless}} target="_blank" href="{{@image preview_image}}">
+                                    {{@lang 'cart.gift_wrapping.preview'}}
+                                </a>
+                            {{/if}}
+                        {{/each}}
+                    </label>
+                    <select class="form-select giftWrapping-select" name="giftwrapping[all]" id="giftWrapping-select-same" data-index="all">
+                        <option value="">{{@lang 'cart.gift_wrapping.choose_type'}}</option>
+                        {{#each gift_wrappings}}
+                            <option {{#if selected}}selected{{/if}} value="{{id}}">{{name}} - ({{price.formatted}})</option>
+                        {{/each}}
+                    </select>
+                </div>
+
+                <div class="form-field" id="giftWrapping-message-all" {{#unless selected_wrapping}}style="display:none"{{/unless}}>
+                    <label class="form-label" for="giftMessage">{{@lang 'cart.gift_wrapping.gift_message'}}</label>
+                    <textarea class="form-input" name="giftmessage[all]" id="giftMessage" rows="3">{{selected_wrapping.message}}</textarea>
+                </div>
+            </div>
+
+            <div class="giftWrapping-multiple">
+                {{#for quantity this}}
+                    <div class="form-field">
+                        <label class="form-label" for="giftWrapping-select-{{$index}}">
+                            {{@lang 'cart.gift_wrapping.item_multiple' index=$index name=product_name}}
+                            {{#each gift_wrappings}}
+                                {{#if preview_image}}
+                                    <a id="giftWrapping-image-{{../../$index}}-{{id}}" class="giftWrapping-image-{{../../$index}}" style="display:none" target="_blank" href="{{@image preview_image}}">
+                                        Preview
+                                    </a>
+                                {{/if}}
+                            {{/each}}
+                        </label>
+                        <select class="form-select giftWrapping-select" name="giftwrapping[{{$index}}]" id="giftWrapping-select-{{$index}}" data-index="{{$index}}">
+                            <option value="">{{@lang 'cart.gift_wrapping.choose_type'}}</option>
+                            {{#each gift_wrappings}}
+                                <option {{#if selected}}selected{{/if}} value="{{id}}">{{name}} - ({{price.formatted}})</option>
+                            {{/each}}
+                        </select>
+                    </div>
+
+                    <div class="form-field" id="giftWrapping-message-{{$index}}" style="display:none">
+                        <label class="form-label" for="giftMessage">{{@lang 'cart.gift_wrapping.gift_message'}}</label>
+                        <textarea class="form-input" name="giftmessage[{{$index}}]" id="giftMessage" rows="3">{{selected_wrapping.message}}</textarea>
+                    </div>
+                {{/for}}
+            </div>
+
+        </fieldset>
+        <div class="form-actions">
+            <button class="button button--primary" type="submit">{{@lang 'common.form_submit'}}</button>
+        </div>
+    </form>
+</div>

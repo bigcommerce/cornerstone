@@ -24,8 +24,10 @@
                     <fieldset class="form-fieldset">
                         <a href="{{edit_url}}" class="button button--small">{{@lang 'common.edit'}}</a>
                         <input type="submit" value="{{@lang 'common.delete'}}" class="button button--small">
-                        <a href="{{share_url}}" class="button button--primary button--small"
+                        {{#if is_public}}
+                            <a href="{{share_url}}" class="button button--primary button--small"
                            role="button">{{@lang 'common.share'}}</a>
+                        {{/if}}
                     </fieldset>
                 </form>
             </td>
@@ -33,14 +35,18 @@
     {{/each}}
     </tbody>
 </table>
-
 <form method="post" action="{{this.urls.account.wishlists.delete}}" class="form">
+    {{#unless customer.wishlists}}
+        <p class="form-actions">{{@lang 'account.wishlists.you_have_none'}}</p>
+    {{/unless}}
     <div class="form-actions">
         <a href="{{this.urls.account.wishlists.add}}" data-reveal-id="wishlist-modal" class="button button--primary" role="button">{{@lang 'account.wishlists.new'}}</a>
-        {{#each customer.wishlists}}
-            <input type="hidden" value="{{this.id}}" name="deletewishlist[]"/>
-        {{/each}}
-        <input type="submit" value="{{@lang 'account.wishlists.delete_all'}}" id="wishlist-delete" class="button"/>
+        {{#if customer.wishlists}}
+            {{#each customer.wishlists}}
+                <input type="hidden" value="{{this.id}}" name="deletewishlist[]"/>
+            {{/each}}
+            <input type="submit" value="{{@lang 'account.wishlists.delete_all'}}" id="wishlist-delete" class="button"/>
+        {{/if}}
     </div>
 </form>
 

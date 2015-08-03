@@ -36,6 +36,7 @@ export default class Product {
                 $container: $('.form-field--stock', $scope),
                 $input: $('[data-product-stock]', $scope)
             },
+            $sku: $('[data-product-sku]'),
             quantity: {
                 $text: $('.incrementTotal', $scope),
                 $input: $('[name=qty\\[\\]]', $scope)
@@ -67,6 +68,11 @@ export default class Product {
                 let viewModel = this.getViewModel(this.$scope);
 
                 viewModel.$price.html(response.data.price);
+
+                // If SKU is available
+                if (response.data.sku) {
+                    viewModel.$sku.text(response.data.sku);
+                }
 
                 if (response.data.image) {
                     let zoomImageUrl = utils.tools.image.getSrc(

@@ -23,7 +23,9 @@
                 {{#if forms.create_account.recaptcha.enabled }}
                 <div class="panel">
 
-                    <h3 class="panel-heading">{{@lang 'create_account.captcha_heading' }}</h3>
+                    <header class="panel-header">
+                        <h3 class="panel-title">{{@lang 'create_account.captcha_heading' }}</h3>
+                    </header>
                     <div class="panel-body">
                         <script type="text/javascript"
                                 src="https://www.google.com/recaptcha/api/challenge?k={{forms.create_account.recaptcha.public_key}}">

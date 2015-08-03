@@ -47,10 +47,14 @@ export default class TextTruncate {
     swapAnchorText() {
         if (this.$element.hasClass(this.contentClass)) {
             this.$element.css('max-height', this.maxHeight);
-            this.$viewAnchor.text(this.$options.text.viewMore);
+            this.$viewAnchor
+                .text(this.$options.text.viewMore)
+                .addClass('textTruncate-viewMore');
         } else {
             this.$element.css('max-height', '');
-            this.$viewAnchor.text(this.$options.text.viewLess);
+            this.$viewAnchor
+                .text(this.$options.text.viewLess)
+                .removeClass('textTruncate-viewMore');
         }
     }
 

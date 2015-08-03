@@ -180,7 +180,7 @@ export default class Cart extends PageManager {
             let itemId = $(event.currentTarget).data('item-giftwrap'),
                 options = {
                     template: 'cart/modals/gift-wrapping-form'
-                }
+                };
 
             event.preventDefault();
 

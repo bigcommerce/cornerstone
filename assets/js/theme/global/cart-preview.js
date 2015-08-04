@@ -10,7 +10,7 @@ export default function () {
         $cartLoading = $('<div class="loadingOverlay"></div>');
 
 
-    $('body').on('cart-quantity-update', function(event, quantity) {
+    $('body').on('cart-quantity-update', (event, quantity) => {
         $('.cart-quantity')
             .text(quantity)
             .toggleClass('countPill--positive', quantity > 0);

@@ -65,22 +65,31 @@ export default class Product {
             $form.find('input[type="file"]').remove();
 
             utils.api.productAttributes.optionChange(productId, new FormData($form[0]), (err, response) => {
-                let viewModel = this.getViewModel(this.$scope);
+                let viewModel = this.getViewModel(this.$scope),
+                    $messageBox = $('.productAttributes-message'),
+                    data = response.data || {};
 
-                viewModel.$price.html(response.data.price);
-
-                // If SKU is available
-                if (response.data.sku) {
-                    viewModel.$sku.text(response.data.sku);
+                if (data.purchasingMessage) {
+                    $('.alertBox-message', $messageBox).text(data.purchasingMessage);
+                    $messageBox.show();
+                } else {
+                    $messageBox.hide();
                 }
 
-                if (response.data.image) {
+                viewModel.$price.html(data.price);
+
+                // If SKU is available
+                if (data.sku) {
+                    viewModel.$sku.text(data.sku);
+                }
+
+                if (data.image) {
                     let zoomImageUrl = utils.tools.image.getSrc(
-                        response.data.image.data,
+                        data.image.data,
                         this.context.themeImageSizes.zoom
                     ),
                     mainImageUrl = utils.tools.image.getSrc(
-                        response.data.image.data,
+                        data.image.data,
                         this.context.themeImageSizes.product
                     );
 
@@ -91,15 +100,15 @@ export default class Product {
                 }
 
                 // if stock view is on (CP settings)
-                if (viewModel.stock.$container.length && response.data.stock) {
+                if (viewModel.stock.$container.length && data.stock) {
                     // if the stock container is hidden, show
                     if (viewModel.stock.$container.is(':hidden')) {
                         viewModel.stock.$container.show();
                     }
-                    viewModel.stock.$input.text(response.data.stock);
+                    viewModel.stock.$input.text(data.stock);
                 }
 
-                if (!response.data.purchasable || !response.data.instock) {
+                if (!data.purchasable || !data.instock) {
                     viewModel.$addToCart.prop('disabled', true);
                     viewModel.$increments.prop('disabled', true);
                 } else {

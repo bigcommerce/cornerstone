@@ -13,8 +13,12 @@ customer:
 <main class="account account--fixed">
     <div class="account-body">
         <section class="account-content">
-            {{> components/account/orders-list orders=customer.orders}}
-            {{> components/common/small-paginator pagination.orders}}
+            {{#if customers.orders.length}}
+                {{> components/account/orders-list orders=customer.orders}}
+                {{> components/common/small-paginator pagination.orders}}
+            {{else}}
+                {{@lang 'account.orders.none'}}
+            {{/if}}
         </section>
     </div>
 </main>

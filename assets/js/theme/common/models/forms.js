@@ -1,4 +1,4 @@
-export default {
+let forms = {
     email(value) {
         var re = /^.+@.+\..+/;
         return re.test(value);
@@ -10,6 +10,18 @@ export default {
      * @returns {boolean}
      */
     password(value) {
+        return this.notEmpty(value);
+    },
+
+    /**
+     * validates if a field is empty
+     * @param value
+     * @returns {boolean}
+     *
+     */
+    notEmpty(value) {
         return value.length > 0;
     }
 }
+
+export default forms;

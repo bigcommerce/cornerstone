@@ -1,4 +1,4 @@
-<form class="form" action="{{urls.contact_us_submit}}" method="post">
+<form id="contactus-form" class="form" action="{{urls.contact_us_submit}}" method="post">
     {{#if forms.contact.error}}
         {{> components/common/alert-error forms.contact.error}}
     {{/if}}
@@ -54,6 +54,8 @@
             <p>{{@lang 'forms.contact_us.captcha_desc'}}</p>
             <input class="form-input" type="text" id="captcha" name="captcha">
         </div>
+    {{else}}
+        <input class="form-input" type="hidden" id="captcha" name="captcha">
     {{/if}}
 
     <div class="form-field">

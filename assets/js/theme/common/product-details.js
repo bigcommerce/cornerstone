@@ -183,9 +183,8 @@ export default class Product {
                     $cartCounter.addClass('cart-count--positive');
                     $modalContent.html(response);
 
-                    quantity = $('#cart-preview', $modalContent).data('cart-items-length') || 0;
-
-                    $cartCounter.text(quantity);
+                    quantity = $('[data-cart-quantity]', $modalContent).data('cart-quantity') || 0;
+                    $('body').trigger('cart-quantity-update', quantity);
                 });
             });
         });

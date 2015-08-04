@@ -9,6 +9,13 @@ export default function () {
         $cartDropdown = $('#cart-preview-dropdown'),
         $cartLoading = $('<div class="loadingOverlay"></div>');
 
+
+    $('body').on('cart-quantity-update', (event, quantity) => {
+        $('.cart-quantity')
+            .text(quantity)
+            .toggleClass('countPill--positive', quantity > 0);
+    });
+
     $cart.on('click', (event) => {
         let options = {
             template: 'common/cart-preview'
@@ -21,9 +28,14 @@ export default function () {
         event.preventDefault();
 
         utils.api.cart.getContent(options, (err, response) => {
+            let quantity;
+
             $cartDropdown
                 .removeClass(loadingClass)
                 .html(response);
+
+            quantity = $('[data-cart-quantity]', $cartDropdown).data('cart-quantity') || 0;
+            $('body').trigger('cart-quantity-update', quantity);
         });
     });
 }

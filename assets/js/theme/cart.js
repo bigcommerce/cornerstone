@@ -57,9 +57,14 @@ export default class Cart extends PageManager {
         }
 
         utils.api.cart.getContent({template: 'cart/content'}, (err, response) => {
+            let quantity;
+
             this.$cartContent.html(response);
             this.bindEvents();
             this.$overlay.hide();
+
+            quantity = $('[data-cart-quantity]', this.$cartContent).data('cart-quantity') || 0;
+            $('body').trigger('cart-quantity-update', quantity);
         });
     }
 

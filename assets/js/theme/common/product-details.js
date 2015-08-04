@@ -32,6 +32,7 @@ export default class Product {
             $price: $('.productView-price [data-product-price]', $scope),
             $increments: $('.form-field--increments :input', $scope),
             $addToCart: $('#form-action-addToCart', $scope),
+            $wishlistVariation: $('[data-wishlist-add] [name="variation_id"]', $scope),
             stock: {
                 $container: $('.form-field--stock', $scope),
                 $input: $('[data-product-stock]', $scope)
@@ -73,6 +74,11 @@ export default class Product {
                 }
 
                 viewModel.$price.html(data.price);
+
+                // Set variation_id if it exists for adding to wishlist
+                if (response.data.variantId) {
+                    viewModel.$wishlistVariation.val(response.data.variantId)
+                }
 
                 // If SKU is available
                 if (data.sku) {

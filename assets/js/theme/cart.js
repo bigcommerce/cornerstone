@@ -64,7 +64,7 @@ export default class Cart extends PageManager {
             this.$overlay.hide();
 
             quantity = $('[data-cart-quantity]', this.$cartContent).data('cart-quantity') || 0;
-            $('.cart-quantity').text(quantity);
+            $('body').trigger('cart-quantity-update', quantity);
         });
     }
 

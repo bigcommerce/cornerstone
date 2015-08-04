@@ -9,6 +9,19 @@ export default function () {
         $cartDropdown = $('#cart-preview-dropdown'),
         $cartLoading = $('<div class="loadingOverlay"></div>');
 
+
+    $('body').on('cart-quantity-update', function(event, quantity) {
+        let $cartQty = $('.cart-quantity');
+        
+        $cartQty.text(quantity);
+
+        if (quantity > 0) {
+            $cartQty.addClass('countPill--positive');
+        } else {
+            $cartQty.removeClass('countPill--positive');                
+        }
+    });
+
     $cart.on('click', (event) => {
         let options = {
             template: 'common/cart-preview'
@@ -28,7 +41,7 @@ export default function () {
                 .html(response);
 
             quantity = $('[data-cart-quantity]', $cartDropdown).data('cart-quantity') || 0;
-            $('.cart-quantity').text(quantity);
+            $('body').trigger('cart-quantity-update', quantity);
         });
     });
 }

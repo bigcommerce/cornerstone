@@ -184,7 +184,7 @@ export default class Product {
                     $modalContent.html(response);
 
                     quantity = $('[data-cart-quantity]', $modalContent).data('cart-quantity') || 0;
-                    $('.cart-quantity').text(quantity);
+                    $('body').trigger('cart-quantity-update', quantity);
                 });
             });
         });

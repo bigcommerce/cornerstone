@@ -4,6 +4,10 @@
     <h2 class="page-heading">{{@lang 'account.recent_items.heading' }}</h2>
     {{> components/account/navigation account_page='recent_items'}}
 
+    {{#unless customer.recently_viewed_products.items}}
+        {{> components/common/alert-generic (@lang 'account.recent_items.no_items')}}
+    {{/unless}}
+
     <form action="/compare" method="post">
         {{> components/products/grid products=customer.recently_viewed_products.items}}
         {{#if show_compare}}

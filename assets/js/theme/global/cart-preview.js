@@ -11,15 +11,9 @@ export default function () {
 
 
     $('body').on('cart-quantity-update', function(event, quantity) {
-        let $cartQty = $('.cart-quantity');
-        
-        $cartQty.text(quantity);
-
-        if (quantity > 0) {
-            $cartQty.addClass('countPill--positive');
-        } else {
-            $cartQty.removeClass('countPill--positive');                
-        }
+        $('.cart-quantity')
+            .text(quantity)
+            .toggleClass('countPill--positive', quantity > 0);
     });
 
     $cart.on('click', (event) => {

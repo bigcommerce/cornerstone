@@ -52,7 +52,7 @@ export default class Product {
     productOptions() {
         utils.hooks.on('product-option-change', (event, changedOption) => {
             var $changedOption = $(changedOption),
-                $form = $changedOption.parents('form').clone(),
+                $form = $changedOption.parents('form'),
                 productId = $('[name="product_id"]', $form).val();
 
             // Do not trigger an ajax request if it's a file or if the browser doesn't support FormData
@@ -60,11 +60,7 @@ export default class Product {
                 return;
             }
 
-            // Don't want to send file data along because it's not needed to determine
-            // the outcome of product option rules
-            $form.find('input[type="file"]').remove();
-
-            utils.api.productAttributes.optionChange(productId, new FormData($form[0]), (err, response) => {
+            utils.api.productAttributes.optionChange(productId, $form.serialize(), (err, response) => {
                 let viewModel = this.getViewModel(this.$scope),
                     $messageBox = $('.productAttributes-message'),
                     data = response.data || {};

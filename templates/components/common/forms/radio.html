@@ -6,7 +6,15 @@
     </label>
     {{#if radios}}
         {{#each radios}}
-            <input type="radio" class="form-radio" name="{{../name}}" id="{{../name}}_{{@index}}" value="{{value}}" data-label="{{label}}" aria-required="{{required}}">
+            <input 
+                type="radio"
+                class="form-radio"
+                name="{{../name}}"
+                id="{{../name}}_{{@index}}"
+                value="{{value}}"
+                data-label="{{label}}"
+                aria-required="{{required}}"
+                {{#if checked}}checked{{/if}}>
             <label class="form-label" for="{{../name}}_{{@index}}">{{label}}</label>
         {{/each}}
     {{/if}}

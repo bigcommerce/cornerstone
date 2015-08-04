@@ -7,6 +7,7 @@ import brand from './theme/brand';
 import brands from './theme/brands';
 import cart from './theme/cart';
 import category from './theme/category';
+import contactUs from './theme/contact-us';
 import compare from './theme/compare';
 import errors from './theme/errors';
 import errors404 from './theme/404-error';
@@ -47,6 +48,7 @@ let PageClasses = {
         "pages/cart": cart,
         "pages/category": category,
         "pages/compare": compare,
+        "pages/contact-us": contactUs,
         "pages/errors": errors,
         "pages/errors/404": errors404,
         "pages/gift-certificate/purchase": giftCertificate,

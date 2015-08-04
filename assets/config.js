@@ -19,7 +19,7 @@ System.config({
     "babel": "npm:babel-core@5.6.15",
     "babel-runtime": "npm:babel-runtime@5.6.15",
     "bigcommerce/citadel": "github:bigcommerce/citadel@2.4.3",
-    "bigcommerce/stencil-utils": "github:bigcommerce/stencil-utils@0.3.1",
+    "bigcommerce/stencil-utils": "github:bigcommerce/stencil-utils@0.3.2",
     "browserstate/history.js": "github:browserstate/history.js@1.8.0",
     "caolan/async": "github:caolan/async@0.9.2",
     "casperin/nod": "github:casperin/nod@2.0.10",
@@ -28,16 +28,16 @@ System.config({
     "hubspot/pace": "github:hubspot/pace@1.0.2",
     "jackmoore/zoom": "github:jackmoore/zoom@1.7.14",
     "jquery": "github:components/jquery@2.1.4",
-    "lodash": "npm:lodash@3.10.0",
+    "lodash": "npm:lodash@3.10.1",
     "slick-carousel": "github:kenwheeler/slick@1.5.5",
     "url": "github:jspm/nodelibs-url@0.1.0",
     "github:bigcommerce-labs/foundation@5.5.3": {
       "jquery": "github:components/jquery@2.1.4"
     },
-    "github:bigcommerce/stencil-utils@0.3.1": {
+    "github:bigcommerce/stencil-utils@0.3.2": {
       "asyncly/EventEmitter2": "github:asyncly/EventEmitter2@0.4.14",
       "jquery": "github:components/jquery@2.1.4",
-      "lodash": "npm:lodash@3.10.0"
+      "lodash": "npm:lodash@3.10.1"
     },
     "github:jspm/nodelibs-assert@0.1.0": {
       "assert": "npm:assert@1.3.0"
@@ -65,7 +65,7 @@ System.config({
     "npm:inherits@2.0.1": {
       "util": "github:jspm/nodelibs-util@0.1.0"
     },
-    "npm:lodash@3.10.0": {
+    "npm:lodash@3.10.1": {
       "process": "github:jspm/nodelibs-process@0.1.1"
     },
     "npm:punycode@1.3.2": {

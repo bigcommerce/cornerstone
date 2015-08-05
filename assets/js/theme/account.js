@@ -4,7 +4,7 @@ import Wishlist from './wishlist';
 import validation from './common/form-validation';
 import stateCountry from './common/state-country';
 import forms from './common/models/forms';
-import {classifyForm} from './common/form-utils';
+import {classifyForm, Validators} from './common/form-utils';
 
 export default class Account extends PageManager {
     constructor() {
@@ -12,9 +12,9 @@ export default class Account extends PageManager {
     }
 
     loaded(next) {
-        let $stateElement = $('[data-label="State/Province"]'),
-            $editAccountForm = classifyForm('#edit-account-form'),
-            $addressForm = classifyForm('#address-form'),
+        let $editAccountForm = classifyForm('form[data-edit-account-form'),
+            $addressForm = classifyForm('form[data-address-form]'),
+            $inboxForm = classifyForm('form[data-inbox-form]'),
             $accountReturnForm = classifyForm('[data-account-return-form]');
 
         // Instantiates wish list JS
@@ -25,7 +25,11 @@ export default class Account extends PageManager {
         }
 
         if ($addressForm.length) {
-            this.initAddressFormValidation($addressForm, $stateElement);
+            this.initAddressFormValidation($addressForm);
+        }
+
+        if ($inboxForm.length) {
+            this.registerInboxValidation($inboxForm);
         }
 
         if ($accountReturnForm.length) {
@@ -35,8 +39,15 @@ export default class Account extends PageManager {
         next();
     }
 
-    initAddressFormValidation($addressForm, $stateElement) {
-        let addressValidator = this.registerAddressValidation($addressForm);
+    initAddressFormValidation($addressForm) {
+        let validationModel = validation($addressForm),
+            stateSelector = 'form[data-address-form] [name="FormField[2][12]"]',
+            $stateElement = $(stateSelector),
+            addressValidator = nod({
+                submit: 'form[data-address-form] input[type="submit"]'
+            });
+
+        addressValidator.add(validationModel);
 
         if ($stateElement) {
             let $last;
@@ -50,13 +61,22 @@ export default class Account extends PageManager {
 
                 if ($field.is('select')) {
                     $last = field;
-                    this.setStateCountryValidation(addressValidator, field);
+                    Validators.setStateCountryValidation(addressValidator, field);
                 } else {
-                    this.cleanUpStateValidation(field);
+                    Validators.cleanUpStateValidation(field);
                 }
             });
         }
-        this.addressValidation(addressValidator, $addressForm);
+
+        $addressForm.submit((event) => {
+            addressValidator.performCheck();
+
+            if (addressValidator.areAll('valid')) {
+                return;
+            }
+
+            event.preventDefault();
+        });
     }
 
     initAccountReturnFormValidation($accountReturnForm) {
@@ -82,146 +102,54 @@ export default class Account extends PageManager {
         })
     }
 
-    registerAddressValidation($addressForm) {
-        let validationModel = validation($addressForm),
-            addressValidator = nod({
-                submit: '#address-form input[type="submit"]'
-            });
-
-        addressValidator.add(validationModel);
-        return addressValidator;
-    }
-
-    addressValidation(validator, $addressForm) {
-        $addressForm.submit((event) => {
-            validator.performCheck();
-
-            if (validator.areAll('valid')) {
-                return;
-            }
-
-            event.preventDefault();
-        });
-    }
-
-    /**
-     * Sets up a new validation when the form is dirty
-     * @param validator
-     * @param field
-     */
-    setStateCountryValidation(validator, field) {
-        if (field) {
-            validator.add({
-                selector: field,
-                validate: 'presence',
-                errorMessage: 'The State/Province field cannot be blank'
-            })
-        }
-    }
-
-    /**
-     * Removes classes from dirty form if previously checked
-     * @param field
-     */
-    cleanUpStateValidation(field) {
-        let $fieldClassElement = $((`div#${field.attr('id')}`));
-
-        Object.keys(nod.classes).forEach(function (value) {
-            if ($fieldClassElement.hasClass(nod.classes[value])) {
-                $fieldClassElement.removeClass(nod.classes[value]);
-            }
-        })
-    }
-
     registerEditAccountValidation($editAccountForm) {
-        let editModel = forms.edit_account;
+        let validationModel = validation($editAccountForm),
+            editValidator = nod({
+                submit: 'form[data-edit-account-form] input[type="submit"]'
+            }),
+            emailSelector = 'form[data-edit-account-form] [name="FormField[1][1]"]',
+            $emailElement = $(emailSelector);
 
-        this.editValidator = nod({
-            submit: '.edit-account-form input[type="submit"]'
-        });
+        //This only handles the custom fields, standard fields are added below
+        editValidator.add(validationModel);
 
-        this.editValidator.add([
+        if ($emailElement) {
+            editValidator.remove(emailSelector);
+            Validators.setEmailValidation(editValidator, emailSelector);
+        }
+
+        editValidator.add([
             {
-                selector: '.edit-account-form input[name="account_firstname"]',
+                selector: 'form[data-edit-account-form] input[name="account_firstname"]',
                 validate: (cb, val) => {
-                    let result = editModel.firstName(val);
+                    let result = val.length;
                     cb(result);
                 },
                 errorMessage: "You must enter a first name"
             },
             {
-                selector: '.edit-account-form input[name="account_lastname"]',
+                selector: 'form[data-edit-account-form] input[name="account_lastname"]',
                 validate: (cb, val) => {
-                    let result = editModel.lastName(val);
+                    let result = val.length;
                     cb(result);
                 },
                 errorMessage: "You must enter a last name"
             },
             {
-                selector: '.edit-account-form input[data-label="Phone Number"]',
+                selector: 'form[data-edit-account-form] input[name="account_phone"]',
                 validate: (cb, val) => {
-                    let result = editModel.phone(val);
+                    let result = val.length;
                     cb(result);
                 },
                 errorMessage: "You must enter a Phone Number"
-            },
-            {
-                selector: '.create-account-form input[data-label="Email Address"]',
-                validate: (cb, val) => {
-                    let result = registerModel.email(val);
-                    cb(result);
-                },
-                errorMessage: "You must enter a valid email address"
-            },
-            {
-                selector: '.edit-account-form input[data-label="Password"]',
-                validate: (cb, val) => {
-                    let result = editModel.password(val);
-
-                    //if no password at all, they are not changing it
-                    if (val === '') {
-                        result = true;
-                    }
-
-                    cb(result);
-                },
-                errorMessage: "Your new password must be at least 7 characters with letters AND numbers"
-            },
-            {
-                selector: '.edit-account-form input[data-label="Confirm Password"]',
-                triggeredBy: '.edit-account-form input[data-label="Password"]',
-                validate: (cb, val) => {
-                    let password1 = $('.edit-account-form input[data-label="Password"]').val(),
-                        result = editModel.passwordMatch(val, password1)
-                            && editModel.password(val);
-                    if (password1 === '') {
-                        result = true;
-                    }
-
-                    cb(result);
-                },
-                errorMessage: "Your passwords do not match"
-            },
-            {
-                selector: '.edit-account-form input[data-label="Current Password"]',
-                validate: (cb, val) => {
-                    let password1 = $('.edit-account-form input[data-label="Password"]').val(),
-                        result = val.length;
-
-                    if (password1 === '') {
-                        result = true;
-                    }
-
-                    cb(result);
-                },
-                errorMessage: "You must enter your current password when changing passwords"
             }
         ]);
 
-        $editAccountForm.submit((event) => {
-            this.editValidator.performCheck();
 
-            if (this.editValidator.areAll('valid')) {
+        $editAccountForm.submit((event) => {
+            editValidator.performCheck();
+
+            if (editValidator.areAll('valid')) {
                 return;
             }
 
@@ -229,16 +157,15 @@ export default class Account extends PageManager {
         });
     }
 
-    registerEditAccountValidation($editAccountForm) {
-        let editModel = forms.edit_account;
+    registerInboxValidation($inboxForm) {
 
-        this.editValidator = nod({
-            submit: '.edit-account-form input[type="submit"]'
+        let inboxValidator = nod({
+            submit: 'form[data-inbox-form] input[type="submit"]'
         });
 
-        this.editValidator.add([
+        inboxValidator.add([
             {
-                selector: '#inbox-form input[name="message_order_id"]',
+                selector: 'form[data-inbox-form] select[name="message_order_id"]',
                 validate: (cb, val) => {
                     let result = Number(val) !== 0;
                     cb(result);
@@ -246,7 +173,7 @@ export default class Account extends PageManager {
                 errorMessage: "You must select an order"
             },
             {
-                selector: '#inbox-form input[name="message_subject"]',
+                selector: 'form[data-inbox-form] input[name="message_subject"]',
                 validate: (cb, val) => {
                     let result = val.length;
                     cb(result);
@@ -254,7 +181,7 @@ export default class Account extends PageManager {
                 errorMessage: "You must enter a subject"
             },
             {
-                selector: '#inbox-form input[name="message_content"]',
+                selector: 'form[data-inbox-form] textarea[name="message_content"]',
                 validate: (cb, val) => {
                     let result = val.length;
                     cb(result);
@@ -263,10 +190,10 @@ export default class Account extends PageManager {
             }
         ]);
 
-        $editAccountForm.submit((event) => {
-            this.editValidator.performCheck();
+        $inboxForm.submit((event) => {
+            inboxValidator.performCheck();
 
-            if (this.editValidator.areAll('valid')) {
+            if (inboxValidator.areAll('valid')) {
                 return;
             }
 

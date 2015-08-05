@@ -89,17 +89,17 @@ function buildNumberRangeValidation(validation, formFieldSelector) {
 }
 
 
-function buildValidation($formFieldElement) {
-    let validation = $formFieldElement.data('validation'),
+function buildValidation($validateableElement) {
+    let validation = $validateableElement.data('validation'),
         fieldValidations = [],
-        formFieldSelector = `#${$formFieldElement.attr('id')}`;
+        formFieldSelector = `#${$validateableElement.attr('id')}`;
 
     if (validation.type === 'datechooser') {
-        fieldValidations.push(buildDateValidation($formFieldElement, validation));
+        fieldValidations.push(buildDateValidation($validateableElement, validation));
     } else if (validation.required && (validation.type == 'checkboxselect' || validation.type == 'radioselect')) {
-        fieldValidations.push(buildRequiredCheckboxValidation($formFieldElement, validation));
+        fieldValidations.push(buildRequiredCheckboxValidation($validateableElement, validation));
     } else {
-        $formFieldElement.find('input, select, textarea').each(function(index, element) {
+        $validateableElement.find('input, select, textarea').each(function(index, element) {
             let $inputElement = $(element),
                 tagName = $inputElement.get(0).tagName,
                 inputName = $inputElement.attr('name'),
@@ -125,7 +125,7 @@ function buildValidation($formFieldElement) {
 export default function ($form) {
     let validationsToPerform = [];
 
-    $form.find('.form-field').each(function(index, input) {
+    $form.find('[data-validation]').each(function(index, input) {
         validationsToPerform = validationsToPerform.concat(buildValidation($(input)));
     });
 

@@ -5,7 +5,7 @@ import $ from 'jquery';
 import nod from './common/nod';
 import validation from './common/form-validation';
 import forms from './common/models/forms';
-import {classifyForm} from './common/form-utils';
+import {classifyForm, Validators} from './common/form-utils';
 
 export default class Auth extends PageManager {
     constructor() {
@@ -79,18 +79,43 @@ export default class Auth extends PageManager {
     registerCreateAccountValidator($createAccountForm) {
         let validationModel = validation($createAccountForm),
             createAccountValidator = nod({
-                submit: '#create-account-form input[type="submit"]'
-            });
+                submit: 'form[data-create-account-form] input[type="submit"]'
+            }),
+            $stateElement = $('[data-label="State/Province"]'),
+            emailSelector = 'form[data-create-account-form] [name="FormField[1][1]"]',
+            $emailElement = $(emailSelector);
 
         createAccountValidator.add(validationModel);
-        return createAccountValidator;
-    }
 
-    createAccountValidation(validator, $accountForm) {
-        $accountForm.submit((event) => {
-            validator.performCheck();
+        if ($stateElement) {
+            createAccountValidator.remove($stateElement);
+            let $last;
 
-            if (validator.areAll('valid')) {
+            stateCountry($stateElement, (field) => {
+                let $field = $(field);
+
+                if ($last) {
+                    createAccountValidator.remove($last);
+                }
+
+                if ($field.is('select')) {
+                    $last = field;
+                    Validators.setStateCountryValidation(createAccountValidator, field);
+                } else {
+                    Validators.cleanUpStateValidation(field);
+                }
+            });
+        }
+
+        if ($emailElement) {
+            createAccountValidator.remove(emailSelector);
+            Validators.setEmailValidation(createAccountValidator, emailSelector);
+        }
+
+        $createAccountForm.submit((event) => {
+            createAccountValidator.performCheck();
+
+            if (createAccountValidator.areAll('valid')) {
                 return;
             }
 
@@ -99,41 +124,11 @@ export default class Auth extends PageManager {
     }
 
     /**
-     * Sets up a new validation when the form is dirty
-     * @param validator
-     * @param field
-     */
-    setStateCountryValidation(validator, field) {
-        if (field) {
-            validator.add({
-                selector: field,
-                validate: 'presence',
-                errorMessage: 'The State/Province field cannot be blank'
-            })
-        }
-    }
-
-    /**
-     * Removes classes from dirty form if previously checked
-     * @param field
-     */
-    cleanUpStateValidation(field) {
-        let $fieldClassElement = $((`div#${field.attr('id')}`));
-
-        Object.keys(nod.classes).forEach(function (value) {
-            if ($fieldClassElement.hasClass(nod.classes[value])) {
-                $fieldClassElement.removeClass(nod.classes[value]);
-            }
-        })
-    }
-
-    /**
      * Request is made in this function to the remote endpoint and pulls back the states for country.
      * @param next
      */
     loaded(next) {
-        let $stateElement = $('[data-label="State/Province"]'),
-            $createAccountForm = classifyForm('.create-account-form'),
+        let $createAccountForm = classifyForm('form[data-create-account-form]'),
             $loginForm = classifyForm('.login-form'),
             $forgotPasswordForm = classifyForm('.forgot-password-form');
 
@@ -147,27 +142,6 @@ export default class Auth extends PageManager {
 
         if ($createAccountForm.length) {
             let createAccountValidator = this.registerCreateAccountValidator($createAccountForm);
-
-            if ($stateElement) {
-                createAccountValidator.remove($stateElement);
-                let $last;
-
-                stateCountry($stateElement, (field) => {
-                    let $field = $(field);
-
-                    if ($last) {
-                        createAccountValidator.remove($last);
-                    }
-
-                    if ($field.is('select')) {
-                        $last = field;
-                        this.setStateCountryValidation(createAccountValidator, field);
-                    } else {
-                        this.cleanUpStateValidation(field);
-                    }
-                });
-            }
-            this.createAccountValidation(createAccountValidator, $createAccountForm);
         }
 
         next();

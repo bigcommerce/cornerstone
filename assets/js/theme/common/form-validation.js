@@ -89,7 +89,7 @@ function buildNumberRangeValidation(validation, formFieldSelector) {
 }
 
 
-function buildValidation($formElement, $formFieldElement) {
+function buildValidation($formFieldElement) {
     let validation = $formFieldElement.data('validation'),
         fieldValidations = [],
         formFieldSelector = `#${$formFieldElement.attr('id')}`;
@@ -126,7 +126,7 @@ export default function ($form) {
     let validationsToPerform = [];
 
     $form.find('.form-field').each(function(index, input) {
-        validationsToPerform = validationsToPerform.concat(buildValidation($form, $(input)));
+        validationsToPerform = validationsToPerform.concat(buildValidation($(input)));
     });
 
     return validationsToPerform;

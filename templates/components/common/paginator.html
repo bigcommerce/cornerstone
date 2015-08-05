@@ -13,7 +13,7 @@
         </li>
         {{/if}}
         {{#each links}}
-        {{#if this.current}}
+        {{#compare this.number ../current}}
         <li class="pagination-item pagination-item--current">
             <a class="pagination-link" href="{{this.url}}" data-faceted-search-facet>{{this.number}}</a>
         </li>
@@ -21,7 +21,7 @@
         <li class="pagination-item">
             <a class="pagination-link" href="{{this.url}}" data-faceted-search-facet>{{this.number}}</a>
         </li>
-        {{/if}}
+        {{/compare}}
         {{/each}}
         {{#if next}}
         <li class="pagination-item pagination-item--next">

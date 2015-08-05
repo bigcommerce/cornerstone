@@ -187,8 +187,9 @@
 
             </form>
 
-            <form class="form" method="post" action="{{product.add_to_wishlist_url}}">
+            <form class="form" method="post" action="{{product.add_to_wishlist_url}}" data-wishlist-add>
                 <div class="form-action">
+                    <input type="hidden" name="variation_id" value="">
                     <input class="button" type="submit" value="{{@lang 'account.wishlists.add_item'}}">
                 </div>
             </form>

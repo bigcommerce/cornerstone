@@ -63,7 +63,7 @@
                 <ul class="order-address">
                     <li class="order-address-item">
                         <span class="order-payment-description">{{@lang 'account.orders.details.order_total'}}</span>
-                        <span class="order-payment-value">{{order.total}}</span>
+                        <span class="order-payment-value">{{order.total.formatted}}</span>
                     </li>
                     <li class="order-address-item">
                         <span class="order-payment-description">{{@lang 'account.orders.details.payment_date'}}</span>
@@ -71,7 +71,7 @@
                     </li>
                     <li class="order-address-item">
                         <span class="order-payment-description">{{@lang 'account.orders.details.payment_method'}}</span>
-                        <span class="order-payment-value">{{order.payment_method}} ending in {{order.card_number_last_four}}</span>
+                        <span class="order-payment-value">{{order.payment_method}} {{#if order.card_number_last_four}}{{@lang 'account.order.details.card_ending' card=order.card_number_last_four}}{{/if}}</span>
                     </li>
                 </ul>
             </section>

@@ -5,6 +5,15 @@
         <img class="order-contents-image" src="{{@image image}}" alt="{{image.alt}}">
         <h6 class="order-contents-name">{{name}}</h6>
         <span class="order-contents-price">{{price.formatted}}</span>
+        <ul class="order-contents-options">
+            {{#each options}}
+                <li>
+                    <span class="order-options-description">{{name}}:</span>
+                    <span class="order-options-value">{{value}}</span>
+                </li>
+            {{/each}}
+        </ul>
+
         <!--
         TODO: Add this button when we're able to specify individual items for return
             <a href="{{return_url}}" class="order-contents-return button secondary">{{@lang 'account.orders.return_item' }}</a>

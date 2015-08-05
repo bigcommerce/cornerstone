@@ -60,6 +60,7 @@ let PageClasses = {
         "pages/page": page,
         "pages/product": product,
         "pages/search": search,
+        "pages/rss": rss,
         "pages/sitemap": sitemap,
         "pages/subscribed": subscribe,
         "pages/account/wishlist-details": wishlist,

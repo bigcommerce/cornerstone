@@ -63,7 +63,7 @@ function makeStateOptional(stateElement) {
  */
 function addOptions(statesArray, $selectElement) {
     let container = [];
-    container.push(`<option>${statesArray.prefix}</option>`);
+    container.push(`<option value="">${statesArray.prefix}</option>`);
     if (!_.isEmpty($selectElement)){
         _.each(statesArray.states, (stateObj)  => {
             container.push(`<option value="${stateObj.name}">${stateObj.name}</option>`);
@@ -85,7 +85,7 @@ export default function (stateElement, callback) {
             let $currentInput;
 
             if (err) {
-                alert('There was an error');
+                alert('There was an error retrieving the states');
             }
 
             $currentInput = $('[name="FormField[2][12]"]');

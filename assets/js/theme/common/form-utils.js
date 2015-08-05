@@ -1,5 +1,7 @@
 import $ from 'jquery';
 import _ from 'lodash';
+import nod from './nod';
+import forms from './models/forms';
 
 let inputTagNames = [
     'input',
@@ -76,3 +78,54 @@ export function classifyForm(formSelector, options = {}) {
 
     return $form;
 }
+
+let Validators = {
+    /**
+     * Sets up a new validation when the form is dirty
+     * @param validator
+     * @param field
+     */
+    setEmailValidation: function (validator, field) {
+        if (field) {
+            validator.add({
+                selector: field,
+                validate: (cb, val) => {
+                    let result = forms.email(val);
+                    cb(result);
+                },
+                errorMessage: 'You must enter a valid email'
+            })
+        }
+    },
+
+    /**
+     * Sets up a new validation when the form is dirty
+     * @param validator
+     * @param field
+     */
+    setStateCountryValidation: function (validator, field) {
+        if (field) {
+            validator.add({
+                selector: field,
+                validate: 'presence',
+                errorMessage: 'The State/Province field cannot be blank'
+            })
+        }
+    },
+
+    /**
+     * Removes classes from dirty form if previously checked
+     * @param field
+     */
+    cleanUpStateValidation: function (field) {
+        let $fieldClassElement = $((`div#${field.attr('id')}`));
+
+        Object.keys(nod.classes).forEach(function (value) {
+            if ($fieldClassElement.hasClass(nod.classes[value])) {
+                $fieldClassElement.removeClass(nod.classes[value]);
+            }
+        })
+    }
+};
+
+export {Validators as Validators};

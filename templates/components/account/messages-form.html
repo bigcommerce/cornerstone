@@ -1,5 +1,5 @@
 <h2>Send a Message</h2>
-<form class="form" id="inbox-form" action="{{urls.account.send_message}}" method="post">
+<form class="form" data-inbox-form action="{{urls.account.send_message}}" method="post">
     <div class="form-field">
         <label class="form-label" for="message_order_id">
             {{@lang 'forms.inbox.order' }}
@@ -19,7 +19,11 @@
         <input type="text" class="form-input" name="message_subject" id="message_subject">
     </div>
     <div class="form-field">
-        <label class="form-label" for="message_content">{{@lang 'forms.inbox.message' }}</label>
+        <label class="form-label" for="message_content">
+            {{@lang 'forms.inbox.message' }}
+            <small>{{@lang 'common.required' }}</small>
+        </label>
+
         <textarea class="form-input" name="message_content" id="message_content" rows="7" ></textarea>
     </div>
     <div class="form-actions">

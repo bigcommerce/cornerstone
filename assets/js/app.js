@@ -15,6 +15,7 @@ import giftCertificate from './theme/gift-certificate';
 import global from './theme/global';
 import home from './theme/home';
 import orderComplete from './theme/order-complete';
+import rss from './theme/rss';
 import page from './theme/page';
 import product from './theme/product';
 import search from './theme/search';

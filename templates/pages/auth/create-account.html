@@ -7,17 +7,13 @@
             {{#if forms.create_account.error}}
                 {{> components/common/alert-error forms.create_account.error}}
             {{/if}}
-            <form action="{{urls.auth.save_new_account}}" id="create-account-form" method="post" class="form">
+            <form action="{{urls.auth.save_new_account}}" id="create-account-form" method="post" class="form create-account-form">
                 <div class="form-row form-row--half">
                     {{#each forms.create_account.account_fields }}
-                        <div class="form-field">
-                            {{{@dynamicComponent 'components/common/forms'}}}
-                        </div>
+                        {{{@dynamicComponent 'components/common/forms'}}}
                     {{/each}}
                     {{#each forms.create_account.address_fields }}
-                        <div class="form-field">
-                            {{{@dynamicComponent 'components/common/forms'}}}
-                        </div>
+                        {{{@dynamicComponent 'components/common/forms'}}}
                     {{/each}}
                 </div>
                 {{#if forms.create_account.recaptcha.enabled }}

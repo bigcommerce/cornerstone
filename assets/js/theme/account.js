@@ -3,6 +3,7 @@ import nod from './common/nod';
 import Wishlist from './wishlist';
 import validation from './common/form-validation';
 import stateCountry from './common/state-country';
+import forms from './common/models/forms';
 import {classifyForm} from './common/form-utils';
 
 export default class Account extends PageManager {
@@ -13,40 +14,72 @@ export default class Account extends PageManager {
     loaded(next) {
         let $stateElement = $('[data-label="State/Province"]'),
             $editAccountForm = classifyForm('#edit-account-form'),
-            $addressForm = classifyForm('#address-form');
+            $addressForm = classifyForm('#address-form'),
+            $accountReturnForm = classifyForm('[data-account-return-form]');
+
+        // Instantiates wish list JS
+        new Wishlist();
 
         if ($editAccountForm.length) {
             this.registerEditAccountValidation($editAccountForm);
         }
 
-        // Instantiates wish list JS
-        new Wishlist();
-
         if ($addressForm.length) {
-            let addressValidator = this.registerAddressValidation($addressForm);
+            this.initAddressFormValidation($addressForm, $stateElement);
+        }
 
-            if ($stateElement) {
-                let $last;
-
-                stateCountry($stateElement, (field) => {
-                    let $field = $(field);
-
-                    if ($last) {
-                        addressValidator.remove($last);
-                    }
-
-                    if ($field.is('select')) {
-                        $last = field;
-                        this.setStateCountryValidation(addressValidator, field);
-                    } else {
-                        this.cleanUpStateValidation(field);
-                    }
-                });
-            }
-            this.addressValidation(addressValidator, $addressForm);
+        if ($accountReturnForm.length) {
+            this.initAccountReturnFormValidation($accountReturnForm);
         }
 
         next();
+    }
+
+    initAddressFormValidation($addressForm, $stateElement) {
+        let addressValidator = this.registerAddressValidation($addressForm);
+
+        if ($stateElement) {
+            let $last;
+
+            stateCountry($stateElement, (field) => {
+                let $field = $(field);
+
+                if ($last) {
+                    addressValidator.remove($last);
+                }
+
+                if ($field.is('select')) {
+                    $last = field;
+                    this.setStateCountryValidation(addressValidator, field);
+                } else {
+                    this.cleanUpStateValidation(field);
+                }
+            });
+        }
+        this.addressValidation(addressValidator, $addressForm);
+    }
+
+    initAccountReturnFormValidation($accountReturnForm) {
+        $accountReturnForm.submit(() => {
+            let formSubmit = false;
+
+            // Iterate until we find a non-zero value in the dropdown for quantity
+            $('[name^="return_qty"]', $accountReturnForm).each((i, ele) => {
+                if ($(ele).val() != 0) {
+                    formSubmit = true;
+
+                    // Exit out of loop if we found at least one return
+                    return true;
+                }
+            });
+
+            if (formSubmit) {
+                return true;
+            } else {
+                alert('Please select one or more items to return');
+                return false;
+            }
+        })
     }
 
     registerAddressValidation($addressForm) {

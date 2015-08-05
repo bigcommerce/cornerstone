@@ -13,7 +13,7 @@ customer:
 <main class="account account--fixed">
     <div class="account-body">
         <section class="account-content">
-            {{#if customers.orders.length}}
+            {{#if customer.orders.length}}
                 {{> components/account/orders-list orders=customer.orders}}
                 {{> components/common/small-paginator pagination.orders}}
             {{else}}

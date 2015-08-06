@@ -9,6 +9,9 @@ let inputTagNames = [
     'textarea'
 ];
 
+const VALIDATION_PASSWORD_ALPHA_REGEX   = /[A-Za-z]/;
+const VALIDATION_PASSWORD_NUMERIC_REGEX = /[0-9]/;
+
 /**
  * Apply class name to an input element on its type
  * @param {object} input
@@ -85,7 +88,7 @@ let Validators = {
      * @param validator
      * @param field
      */
-    setEmailValidation: function (validator, field) {
+    setEmailValidation: (validator, field) => {
         if (field) {
             validator.add({
                 selector: field,
@@ -99,11 +102,78 @@ let Validators = {
     },
 
     /**
+     * Validate password fields
+     * @param validator
+     * @param passwordSelector
+     * @param password2Selector
+     * @param isOptional
+     */
+    setPasswordValidation: (validator, passwordSelector, password2Selector, isOptional) => {
+        let $password = $(passwordSelector),
+            $password2 = $(password2Selector),
+            passwordValidations = [
+                {
+                    selector: passwordSelector,
+                    validate: (cb, val) => {
+                        let result = val.length;
+
+                        if (isOptional) {
+                            return cb(true);
+                        }
+
+                        cb(result);
+                    },
+                    errorMessage: 'You must enter a password'
+                },
+                {
+                    selector: passwordSelector,
+                    validate: (cb, val) => {
+                        let result = val.match(VALIDATION_PASSWORD_ALPHA_REGEX)
+                            && val.match(VALIDATION_PASSWORD_NUMERIC_REGEX)
+                            && val.length >= 7;
+
+                        // If optional and nothing entered, it is valid
+                        if (isOptional && val.length === 0) {
+                            return cb(true);
+                        }
+
+                        cb(result);
+                    },
+                    errorMessage: 'Your password must contain letters, numbers, and be at least 7 characters'
+                },
+                {
+                    selector: password2Selector,
+                    validate: (cb, val) => {
+                        let result = val.length;
+
+                        if (isOptional) {
+                            return cb(true);
+                        }
+
+                        cb(result);
+                    },
+                    errorMessage: 'You must enter a password'
+                },
+                {
+                    selector: password2Selector,
+                    validate: (cb, val) => {
+                        let result = val === $password.val();
+
+                        cb(result);
+                    },
+                    errorMessage: 'Your passwords do not match'
+                }
+            ];
+
+        validator.add(passwordValidations);
+    },
+
+    /**
      * Sets up a new validation when the form is dirty
      * @param validator
      * @param field
      */
-    setStateCountryValidation: function (validator, field) {
+    setStateCountryValidation: (validator, field) => {
         if (field) {
             validator.add({
                 selector: field,
@@ -117,10 +187,10 @@ let Validators = {
      * Removes classes from dirty form if previously checked
      * @param field
      */
-    cleanUpStateValidation: function (field) {
+    cleanUpStateValidation: (field) => {
         let $fieldClassElement = $((`div#${field.attr('id')}`));
 
-        Object.keys(nod.classes).forEach(function (value) {
+        Object.keys(nod.classes).forEach((value) => {
             if ($fieldClassElement.hasClass(nod.classes[value])) {
                 $fieldClassElement.removeClass(nod.classes[value]);
             }

@@ -1,6 +1,6 @@
 <article class="listItem">
     <figure class="listItem-figure">
-        <img class="listItem-image" src="{{@image image 'product'}}" alt="{{image.alt}}">
+        <img class="listItem-image" src="{{getImage image 'product'}}" alt="{{image.alt}}">
     </figure>
     <div class="listItem-body">
         <div class="listItem-content">
@@ -24,18 +24,18 @@
                 {{/if}}
                 {{#unless hide_add_to_cart}}
                     {{#if has_options}}
-                        <a href="{{url}}" class="button button--primary" data-product-id="{{id}}">{{@lang "products.choose_options"}}</a>
+                        <a href="{{url}}" class="button button--primary" data-product-id="{{id}}">{{lang "products.choose_options"}}</a>
                     {{else}}
                         {{#if out_of_stock_message }}
                         <span href="{{url}}" class="button button--primary">{{out_of_stock_message}}</span>
                         {{else}}
-                        <a href="{{add_to_cart_url}}" class="button button--primary">{{@lang "products.add_to_cart"}}</a>
+                        <a href="{{add_to_cart_url}}" class="button button--primary">{{lang "products.add_to_cart"}}</a>
                         {{/if}}
                     {{/if}}
                 {{/unless}}
                 {{#if show_compare}}
                     <label class="button button--small" for="compare-{{id}}">
-                        {{@lang "products.compare"}} <input type="checkbox" name="products[]" value="{{id}}" id="compare-{{id}}">
+                        {{lang "products.compare"}} <input type="checkbox" name="products[]" value="{{id}}" id="compare-{{id}}">
                     </label>
                 {{/if}}
             </div>

@@ -1,5 +1,5 @@
 {{#unless customer.addresses}}
-    {{> components/common/alert-info (@lang 'account.addresses.no_addresses')}}
+    {{> components/common/alert-info (lang 'account.addresses.no_addresses')}}
 {{/unless}}
 
 <ul class="addressBox-list">
@@ -21,14 +21,14 @@
                         <span class="address-description">{{city}}, {{state}} {{zip}}</span>
                     </li>
                     <li class="address-line">
-                        <span class="address-description">{{@lang 'account.addresses.phone' }}</span>
+                        <span class="address-description">{{lang 'account.addresses.phone' }}</span>
                         <span class="address-value">{{phone}}</span>
                     </li>
                 </ul>
                 <form action="{{delete_url}}" method="post">
                     <div class="form-actions">
-                        <a class="button button--primary button--small" href="{{edit_url}}">{{@lang 'common.edit' }}</a>
-                        <button type="submit" class="button secondary button--small">{{@lang 'common.delete' }}</button>
+                        <a class="button button--primary button--small" href="{{edit_url}}">{{lang 'common.edit' }}</a>
+                        <button type="submit" class="button secondary button--small">{{lang 'common.delete' }}</button>
                     </div>
                 </form>
             </div>
@@ -38,7 +38,7 @@
         <a class="addressBox addressBox--newAddress" href="{{urls.account.add_address}}">
             <div class="newAddress-action">
                 <div class="newAddress-plus">&plus;</div>
-                <div class="newAddress-text">{{@lang 'account.addresses.new_address' }}</div>
+                <div class="newAddress-text">{{lang 'account.addresses.new_address' }}</div>
             </div>
         </a>
     </li>

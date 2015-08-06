@@ -7,7 +7,7 @@ customer:
 {{#partial "page"}}
 
 {{> components/common/breadcrumbs breadcrumbs}}
-<h1 class="page-heading">{{@lang 'account.orders.heading' }}</h1>
+<h1 class="page-heading">{{lang 'account.orders.heading' }}</h1>
 {{> components/account/navigation account_page='orders'}}
 
 <main class="account account--fixed">
@@ -17,7 +17,7 @@ customer:
                 {{> components/account/orders-list orders=customer.orders}}
                 {{> components/common/small-paginator pagination.orders}}
             {{else}}
-                {{@lang 'account.orders.none'}}
+                {{lang 'account.orders.none'}}
             {{/if}}
         </section>
     </div>

@@ -1,24 +1,24 @@
 <article class="card {{#if alternate}}card--alternate{{/if}}">
     <figure class="card-figure">
-            <img class="card-image" src="{{@image image 'gallery' (cdn theme_settings.default_image_product)}}" alt="{{image.alt}}">
+            <img class="card-image" src="{{getImage image 'gallery' (cdn theme_settings.default_image_product)}}" alt="{{image.alt}}">
         <figcaption class="card-figcaption">
             <div class="card-figcaption-body">
-                <a href="#" class="button button--small card-figcaption-button quickview" data-product-id="{{id}}">{{@lang 'products.quick_view'}}</a>
+                <a href="#" class="button button--small card-figcaption-button quickview" data-product-id="{{id}}">{{lang 'products.quick_view'}}</a>
                 {{#if show_compare}}
                     <label class="button button--small card-figcaption-button" for="compare-{{id}}">
-                        {{@lang 'products.compare'}} <input type="checkbox" name="products[]" value="{{id}}" id="compare-{{id}}" data-compare-id="{{id}}">
+                        {{lang 'products.compare'}} <input type="checkbox" name="products[]" value="{{id}}" id="compare-{{id}}" data-compare-id="{{id}}">
                     </label>
                 {{/if}}
                 {{#unless hide_add_to_cart}}
                     {{#if has_options}}
-                        <a href="{{url}}" class="button button--small card-figcaption-button" data-product-id="{{id}}">{{@lang 'products.choose_options'}}</a>
+                        <a href="{{url}}" class="button button--small card-figcaption-button" data-product-id="{{id}}">{{lang 'products.choose_options'}}</a>
                     {{else}}
                         {{#if can_purchase }}
                             <a href="{{add_to_cart_url}}" class="button button--small card-figcaption-button">
                                 {{#if pre_order}}
-                                    {{@lang 'products.pre_order'}}
+                                    {{lang 'products.pre_order'}}
                                 {{else}}
-                                    {{@lang 'products.add_to_cart'}}
+                                    {{lang 'products.add_to_cart'}}
                                 {{/if}}
                             </a>
                         {{else}}

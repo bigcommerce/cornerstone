@@ -1,6 +1,6 @@
 <div class="facetedSearch-refineFilters sidebarBlock">
     <h5 class="sidebarBlock-heading">
-        {{@lang 'search.faceted.selected.title'}}
+        {{lang 'search.faceted.selected.title'}}
     </h5>
 
     {{#if this.items}}
@@ -12,7 +12,7 @@
                         class="facetLabel"
                         data-faceted-search-facet>
                         {{#compare facet 'rating' operator="==="}}
-                            {{@lang 'search.faceted.selected.rating-label' rating=title}}
+                            {{lang 'search.faceted.selected.rating-label' rating=title}}
                         {{else}}
                             {{ title }}
                         {{/compare}}
@@ -25,12 +25,12 @@
             {{/each}}
         </ul>
     {{else}}
-        {{@lang 'search.faceted.selected.no-filters'}}
+        {{lang 'search.faceted.selected.no-filters'}}
     {{/if}}
 
     {{#if remove_all_url}}
         <a href="{{ remove_all_url }}" data-faceted-search-facet>
-            {{@lang 'search.faceted.selected.clear-all'}}
+            {{lang 'search.faceted.selected.clear-all'}}
         </a>
     {{/if}}
 </div>

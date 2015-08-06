@@ -23,7 +23,7 @@
             <ul class="cart-totals">
                 <li class="cart-total">
                     <div class="cart-total-label">
-                        <strong>{{@lang 'cart.checkout.subtotal'}}:</strong>
+                        <strong>{{lang 'cart.checkout.subtotal'}}:</strong>
                     </div>
                     <div class="cart-total-value">
                         <span>{{cart.sub_total.formatted}}</span>
@@ -31,14 +31,14 @@
                 </li>
                 <li class="cart-total">
                     <div class="cart-total-label">
-                        <strong>{{@lang 'cart.checkout.promo_code'}}:</strong>
+                        <strong>{{lang 'cart.checkout.promo_code'}}:</strong>
                     </div>
                     {{> components/cart/coupon-input}}
                 </li>
                 {{#if cart.gift_wrapping_cost}}
                     <li class="cart-total">
                         <div class="cart-total-label">
-                            <strong>{{@lang 'cart.checkout.gift_wrapping'}}:</strong>
+                            <strong>{{lang 'cart.checkout.gift_wrapping'}}:</strong>
                         </div>
                         <div class="cart-total-value">
                             <span>{{cart.gift_wrapping_cost.formatted}}</span>
@@ -48,7 +48,7 @@
                 {{#if cart.shipping_handling.show_estimator}}
                     <li class="cart-total">
                         <div class="cart-total-label">
-                            <strong>{{@lang 'cart.checkout.shipping'}}:</strong>
+                            <strong>{{lang 'cart.checkout.shipping'}}:</strong>
                         </div>
                         {{> components/cart/shipping-estimator cart.shipping_handling}}
                     </li>
@@ -65,7 +65,7 @@
                 {{/each}}
                 <li class="cart-total">
                     <div class="cart-total-label">
-                        <strong>{{@lang 'cart.checkout.grand_total'}}:</strong>
+                        <strong>{{lang 'cart.checkout.grand_total'}}:</strong>
                     </div>
                     <div class="cart-total-value cart-total-grandTotal">
                         <span>{{cart.grand_total.formatted}}</span>
@@ -74,13 +74,13 @@
             </ul>
 
             <div class="cart-actions">
-                <a class="button button--primary" href="{{urls.checkout.single_address}}" title="{{@lang 'cart.checkout.title'}}">{{@lang 'cart.checkout.button'}}</a>
+                <a class="button button--primary" href="{{urls.checkout.single_address}}" title="{{lang 'cart.checkout.title'}}">{{lang 'cart.checkout.button'}}</a>
                 {{#if show_multiple_address_shipping}}
-                    <p class="cart-multiAddress">{{@lang 'cart.checkout.address.or'}} <a href="{{urls.checkout.multiple_address}}"><strong>{{@lang 'cart.checkout.address.multiple'}}</strong></a></p>
+                    <p class="cart-multiAddress">{{lang 'cart.checkout.address.or'}} <a href="{{urls.checkout.multiple_address}}"><strong>{{lang 'cart.checkout.address.multiple'}}</strong></a></p>
                 {{/if}}
             </div>
         {{else}}
-            <h3>{{@lang 'cart.checkout.empty_cart'}}</h3>
+            <h3>{{lang 'cart.checkout.empty_cart'}}</h3>
         {{/if}}
     </main>
 

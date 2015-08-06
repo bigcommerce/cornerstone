@@ -121,14 +121,14 @@ Two helpers are provided to help achieve this.
 
 The inject helper allows you to compose a json object with a subset of the template context to be sent to the browser.
 ```
-{{@inject "stringBasedKey" contextValue}}
+{{inject "stringBasedKey" contextValue}}
 ```
 
 To retrieve the parsable json object, just call `{{jsContext}}` after all of the `{{@inject}}` calls.
 
 For example, to setup the product name in your clientside app, you can do this if you're in the context of a product.
 ```html
-{{@inject "myProductName" product.title}}
+{{inject "myProductName" product.title}}
 
 <script>
 // Note the lack of quotes around the jsContext handlebars helper, it becomes a string automatically.

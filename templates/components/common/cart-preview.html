@@ -4,7 +4,7 @@
             {{#each cart.items}}
                 <li class="previewCartItem">
                     <div class="previewCartItem-image">
-                        <img src="{{@image image 'thumb'}}" alt="{{image.alt}}" />
+                        <img src="{{getImage image 'thumb'}}" alt="{{image.alt}}" />
                     </div>
 
                     <div class="previewCartItem-content">
@@ -35,7 +35,7 @@
         </div>
     {{else}}
         <div class="previewCart-emptyBody">
-            {{@lang 'cart.checkout.empty_cart'}}
+            {{lang 'cart.checkout.empty_cart'}}
         </div>
     {{/if}}
 </div>

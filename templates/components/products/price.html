@@ -5,7 +5,7 @@
         {{/if}}
         <meta itemprop="price" content="{{price.with_tax.value}}">
         <span data-product-price class="price">
-            {{@lang 'products.price_with_tax' price=price.with_tax.formatted tax_label=price.tax_label}}
+            {{lang 'products.price_with_tax' price=price.with_tax.formatted tax_label=price.tax_label}}
         </span>
     </div>
 {{/if}}
@@ -17,7 +17,7 @@
         {{/if}}
         <meta itemprop="price" content="{{price.without_tax.value}}">
         <span data-product-price class="price price--withoutTax">
-            {{@lang 'products.price_without_tax' price=price.without_tax.formatted tax_label=price.tax_label}}
+            {{lang 'products.price_without_tax' price=price.without_tax.formatted tax_label=price.tax_label}}
         </span>
     </div>
 {{/if}}
@@ -26,7 +26,7 @@
     {{#if price.saved}}
         <div class="price-section price-section--saving">
             <span class="price">
-                {{@lang 'products.you_save' amount=price.saved.formatted}}
+                {{lang 'products.you_save' amount=price.saved.formatted}}
             </span>
         </div>
     {{/if}}

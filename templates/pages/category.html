@@ -7,7 +7,7 @@ category:
 
 {{> components/common/breadcrumbs breadcrumbs}}
 {{#if category.image}}
-    <img src="{{@image category.image 'zoom'}}">
+    <img src="{{getImage category.image 'zoom'}}">
 {{/if}}
 <h1 class="page-heading">{{category.name}}</h1>
 {{{category.description}}}
@@ -20,7 +20,7 @@ category:
         {{#if category.products}}
             {{> components/category/product-listing}}
         {{else}}
-            <p>{{@lang 'categories.no_products'}}</p>
+            <p>{{lang 'categories.no_products'}}</p>
         {{/if}}
     </main>
 </div>

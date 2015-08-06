@@ -1,7 +1,7 @@
 {{#partial "page"}}
-{{@inject 'comparisons' comparisons}}
+{{inject 'comparisons' comparisons}}
 {{> components/common/breadcrumbs breadcrumbs}}
-<h1 class="page-heading">{{@lang 'compare.header' products=comparisons.length}}</h1>
+<h1 class="page-heading">{{lang 'compare.header' products=comparisons.length}}</h1>
 <div class="page">
     <main class="page-content">
 
@@ -12,7 +12,7 @@
                 <th class="compareTable-product">
                     <article class="card">
                         <figure class="card-figure">
-                            <img class="card-image" src="{{{@image image 'product'}}}" alt="{{image.alt}}">
+                            <img class="card-image" src="{{{getImage image 'product'}}}" alt="{{image.alt}}">
                             <a class="compareTable-removeProduct" data-comparison-remove href="{{remove_url}}">
                                 <svg class="icon">
                                     <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use>
@@ -32,7 +32,7 @@
                                         <span class="price price--rrp">{{price.rrp_without_tax.formatted}}</span>
                                     {{/if}}
                                     <meta itemprop="price" content="{{price.without_tax.value}}">
-                                    <span data-product-price class="price price--withoutTax">{{@lang 'products.price_without_tax' price=price.without_tax.formatted tax_label=price.tax_label}}</span>
+                                    <span data-product-price class="price price--withoutTax">{{lang 'products.price_without_tax' price=price.without_tax.formatted tax_label=price.tax_label}}</span>
                                 </div>
                             {{/if}}
                         </div>
@@ -46,14 +46,14 @@
                 <td class="compareTable-action">
                     {{#unless hide_add_to_cart}}
                         {{#if has_options}}
-                            <a href="{{url}}" class="button button--primary" data-product-id="{{id}}">{{@lang 'products.choose_options'}}</a>
+                            <a href="{{url}}" class="button button--primary" data-product-id="{{id}}">{{lang 'products.choose_options'}}</a>
                         {{else}}
                             {{#if can_purchase }}
                                 <a href="{{add_to_cart_url}}" class="button button--primary">
                                     {{#if pre_order}}
-                                        {{@lang 'products.pre_order'}}
+                                        {{lang 'products.pre_order'}}
                                     {{else}}
-                                        {{@lang 'products.add_to_cart'}}
+                                        {{lang 'products.add_to_cart'}}
                                     {{/if}}
                                 </a>
                             {{else}}

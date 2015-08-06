@@ -1,14 +1,14 @@
 {{#partial "page"}}
 
 {{> components/common/breadcrumbs breadcrumbs}}
-<h1 class="page-heading">{{@lang 'account.returns.new_return' }}</h1>
+<h1 class="page-heading">{{lang 'account.returns.new_return' }}</h1>
 {{> components/account/navigation account_page='returns'}}
 
 <main class="account account--fixed account--addReturn">
     <div class="account-body">
         <section class="account-content">
 
-            <h3 class="account-heading">{{@lang 'account.returns.from_order' id=forms.return.order_id}}</h3>
+            <h3 class="account-heading">{{lang 'account.returns.from_order' id=forms.return.order_id}}</h3>
 
             {{#if forms.return.order_products.length}}
                 <form action="{{urls.account.orders.save_new_return}}" class="form" method="post" data-account-return-form>
@@ -17,9 +17,9 @@
                         <table class="table table--line">
                             <thead class="table-thead">
                                 <tr>
-                                    <th class="return-itemName">{{@lang 'account.orders.return.order_item'}}</th>
-                                    <th class="return-itemPrice">{{@lang 'account.orders.return.item_price'}}</th>
-                                    <th class="return-itemQuantity">{{@lang 'account.orders.return.quantity'}}</th>
+                                    <th class="return-itemName">{{lang 'account.orders.return.order_item'}}</th>
+                                    <th class="return-itemPrice">{{lang 'account.orders.return.item_price'}}</th>
+                                    <th class="return-itemQuantity">{{lang 'account.orders.return.quantity'}}</th>
                                 </tr>
                             </thead>
                             <tbody class="table-tbody">
@@ -28,7 +28,7 @@
                                         <td class="return-itemName">{{name}}</td>
                                         <td class="return-itemPrice">{{price.formatted}}</td>
                                         <td class="return-itemQuantity">
-                                            <label class="form-label">{{@lang 'account.orders.return.quantity'}}:</label>
+                                            <label class="form-label">{{lang 'account.orders.return.quantity'}}:</label>
                                             <select class="form-select form-select--small form-select--short" name="return_qty[{{id}}]">
                                                 {{#enumerate 0 quantity}}
                                                     <option value="{{this}}">{{this}}</option>
@@ -44,8 +44,8 @@
                         <fieldset class="form-fieldset account--addReturn-column">
                             <div class="form-field">
                                 <label for="return_reason" class="form-label">
-                                    {{@lang 'account.orders.return.reason'}}
-                                    <small>{{@lang 'common.required'}}</small>
+                                    {{lang 'account.orders.return.reason'}}
+                                    <small>{{lang 'common.required'}}</small>
                                 </label>
                                 <select name="return_reason" id="return_reason" class="form-select">
                                     {{#each forms.return.reasons}}
@@ -55,7 +55,7 @@
                             </div>
                             <div class="form-field">
                                 <label for="return_action" class="form-label">
-                                    {{@lang 'account.orders.return.action'}}
+                                    {{lang 'account.orders.return.action'}}
                                 </label>
                                 <select name="return_action" id="return_action" class="form-select">
                                     {{#each forms.return.actions}}
@@ -67,7 +67,7 @@
                         <fieldset class="form-fieldset account--addReturn-column">
                             <div class="form-field">
                                 <label for="return_comments" class="form-label">
-                                    {{@lang 'account.orders.return.comments'}}
+                                    {{lang 'account.orders.return.comments'}}
                                 </label>
                                 <textarea class="form-input" rows="8" name="return_comments" id="return_comments"></textarea>
                             </div>
@@ -78,8 +78,8 @@
                     </div>
                 </form>
             {{else}}
-                <p>{{@lang 'account.orders.return.already_returned'}}</p>
-                <a href="{{urls.account.orders.all}}" class="button">{{@lang 'account.orders.return.back_button'}}</a>
+                <p>{{lang 'account.orders.return.already_returned'}}</p>
+                <a href="{{urls.account.orders.all}}" class="button">{{lang 'account.orders.return.back_button'}}</a>
             {{/if}}
 
         </section>

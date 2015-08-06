@@ -1,6 +1,10 @@
 <li>
     <a href="{{url}}">{{label}}</a>
-    {{#each children}}
-        {{> components/sitemap/links}}
-    {{/each}}
+    {{#if children}}
+        <ul>
+            {{#each children}}
+                {{> components/sitemap/links}}
+            {{/each}}
+        </ul>
+    {{/if}}
 </li>

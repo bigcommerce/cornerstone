@@ -1,22 +1,22 @@
 {{#partial "page"}}
 
 {{> components/common/breadcrumbs breadcrumbs}}
-<h1 class="page-heading">{{@lang 'gift_certificate.heading' }}</h1>
+<h1 class="page-heading">{{lang 'gift_certificate.heading' }}</h1>
 {{> components/gift-certificate/navigation gift_page='balance'}}
 
 <main class="account account--fixed">
-    <h3>{{@lang 'gift_certificate.balance.heading'}}</h3>
+    <h3>{{lang 'gift_certificate.balance.heading'}}</h3>
     <p>
-        <strong>{{@lang 'gift_certificate.balance.intro' }}</strong>
+        <strong>{{lang 'gift_certificate.balance.intro' }}</strong>
     </p>
     <form class="form form--oneField" method="post" action="{{urls.gift_certificate.balance}}">
         <div class="form-field">
             <label class="form-label" for="giftcertificatecode">
-                {{@lang 'forms.gift_certificate.balance.code' }}
+                {{lang 'forms.gift_certificate.balance.code' }}
             </label>
             <div class="form-prefixPostfix">
                 <input class="form-input" id="giftcertificatecode" name="giftcertificatecode">
-                <input type="submit" class="button button--primary form-prefixPostfix-button--postfix" value="{{@lang 'forms.gift_certificate.balance.submit_value' }}">
+                <input type="submit" class="button button--primary form-prefixPostfix-button--postfix" value="{{lang 'forms.gift_certificate.balance.submit_value' }}">
             </div>
         </div>
     </form>

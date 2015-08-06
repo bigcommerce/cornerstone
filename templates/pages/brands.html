@@ -7,14 +7,14 @@ brands:
 {{> components/common/breadcrumbs breadcrumbs}}
 
 <main class="page">
-    <h1 class="page-heading">{{@lang 'brand.label'}}</h1>
+    <h1 class="page-heading">{{lang 'brand.label'}}</h1>
     <ul class="brandGrid">
         {{#each brands}}
             <li class="brand">
                 <article class="card {{#if alternate}}card--alternate{{/if}}">
                     <figure class="card-figure">
                         <a href="{{url}}">
-                            <img class="card-image" src="{{@image image 'gallery' (cdn ../theme_settings.default_image_brand)}}" alt="{{name}}">
+                            <img class="card-image" src="{{getImage image 'gallery' (cdn ../theme_settings.default_image_brand)}}" alt="{{name}}">
                         </a>
                     </figure>
                     <div class="card-body">

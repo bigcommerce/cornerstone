@@ -1,4 +1,4 @@
-<h3 class="account-heading">{{@lang 'account.messages.heading' }}</h3>
+<h3 class="account-heading">{{lang 'account.messages.heading' }}</h3>
 
 <ul class="account-list">
     {{#each messages}}
@@ -13,9 +13,9 @@
                 </h5>
                 <p class="{{#unless unread}}is-read{{/unless}}">
                     {{#if is_reply}}
-                        {{@lang 'account.messages.merchant_said' store_name=../settings.store_name}}
+                        {{lang 'account.messages.merchant_said' store_name=../settings.store_name}}
                     {{else}}
-                        {{@lang 'account.messages.customer_said'}}
+                        {{lang 'account.messages.customer_said'}}
                     {{/if}}
                     {{message}}
                 </p>

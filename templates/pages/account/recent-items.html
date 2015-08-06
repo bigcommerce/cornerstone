@@ -1,17 +1,17 @@
 {{#partial "page"}}
 <div class="account">
     {{> components/common/breadcrumbs breadcrumbs}}
-    <h2 class="page-heading">{{@lang 'account.recent_items.heading' }}</h2>
+    <h2 class="page-heading">{{lang 'account.recent_items.heading' }}</h2>
     {{> components/account/navigation account_page='recent_items'}}
 
     {{#unless customer.recently_viewed_products.items}}
-        {{> components/common/alert-generic (@lang 'account.recent_items.no_items')}}
+        {{> components/common/alert-generic (lang 'account.recent_items.no_items')}}
     {{/unless}}
 
     <form action="/compare" method="post">
         {{> components/products/grid products=customer.recently_viewed_products.items}}
         {{#if show_compare}}
-            <button class="button button--primary" type="submit">{{@lang 'compare.button'}}</button>
+            <button class="button button--primary" type="submit">{{lang 'compare.button'}}</button>
         {{/if}}
     </form>
 </div>

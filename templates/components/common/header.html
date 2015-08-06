@@ -17,7 +17,7 @@
     <div class="header-logo">
         <a href="{{urls.home}}">
             {{#if settings.store_logo.image}}
-                <img class="header-logo-image" src="{{@image settings.store_logo.image 'logo'}}" alt="{{settings.store_logo.title}}">
+                <img class="header-logo-image" src="{{getImage settings.store_logo.image 'logo'}}" alt="{{settings.store_logo.title}}">
             {{else}}
                 <span class="header-logo-text">{{settings.store_logo.title}}</span>
             {{/if}}

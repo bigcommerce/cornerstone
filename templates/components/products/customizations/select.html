@@ -1,7 +1,7 @@
 <div class="form-field">
     <label class="form-label form-label--alternate" for="customization_{{this.id}}_{{../id}}">{{ this.display_name }}</label>
     <select class="form-select" name="ProductFields[{{this.id}}]" id="customization_{{this.id}}_{{../id}}">
-        <option>{{@lang 'products.choose_an_option'}}</option>
+        <option>{{lang 'products.choose_an_option'}}</option>
         {{#each this.values}}
             <option value="{{this}}">{{this}}</option>
         {{/each}}

@@ -6,42 +6,42 @@
     <div class="form-row form-row--half">
         {{#if forms.contact.name}}
             <div class="form-field">
-                <label class="form-label" for="contact_fullname">{{@lang 'forms.contact_us.full_name'}}</label>
+                <label class="form-label" for="contact_fullname">{{lang 'forms.contact_us.full_name'}}</label>
                 <input class="form-input" type="text" id="contact_fullname" name="contact_fullname" value="{{customer.name}}">
             </div>
         {{/if}}
 
         {{#if forms.contact.phone}}
             <div class="form-field">
-                <label class="form-label" for="contact_phone">{{@lang 'forms.contact_us.phone'}}</label>
+                <label class="form-label" for="contact_phone">{{lang 'forms.contact_us.phone'}}</label>
                 <input class="form-input" type="text" id="contact_phone" name="contact_phone" value="{{customer.phone}}">
             </div>
         {{/if}}
 
         <div class="form-field">
-            <label class="form-label" for="contact_email">{{@lang 'forms.contact_us.email'}}
-                <small>{{@lang 'common.required' }}</small>
+            <label class="form-label" for="contact_email">{{lang 'forms.contact_us.email'}}
+                <small>{{lang 'common.required' }}</small>
             </label>
             <input class="form-input" type="text" id="contact_email" name="contact_email" value="{{customer.email}}">
         </div>
 
         {{#if forms.contact.order}}
             <div class="form-field">
-                <label class="form-label" for="contact_orderno">{{@lang 'forms.contact_us.order'}}</label>
+                <label class="form-label" for="contact_orderno">{{lang 'forms.contact_us.order'}}</label>
                 <input class="form-input" type="text" id="contact_orderno" name="contact_orderno">
             </div>
         {{/if}}
 
         {{#if forms.contact.company}}
             <div class="form-field">
-                <label class="form-label" for="contact_companyname">{{@lang 'forms.contact_us.company'}}</label>
+                <label class="form-label" for="contact_companyname">{{lang 'forms.contact_us.company'}}</label>
                 <input class="form-input" type="text" id="contact_companyname" name="contact_companyname">
             </div>
         {{/if}}
 
         {{#if forms.contact.rma}}
             <div class="form-field">
-                <label class="form-label" for="contact_rma">{{@lang 'forms.contact_us.rma'}}</label>
+                <label class="form-label" for="contact_rma">{{lang 'forms.contact_us.rma'}}</label>
                 <input class="form-input" type="text" id="contact_rma" name="contact_rma">
             </div>
         {{/if}}
@@ -49,9 +49,9 @@
 
     {{#if forms.contact.captcha_url}}
         <div class="form-field">
-            <label class="form-label" for="captcha">{{@lang 'forms.contact_us.captcha'}}</label>
+            <label class="form-label" for="captcha">{{lang 'forms.contact_us.captcha'}}</label>
             <img src="{{forms.contact.captcha_url}}" alt="img">
-            <p>{{@lang 'forms.contact_us.captcha_desc'}}</p>
+            <p>{{lang 'forms.contact_us.captcha_desc'}}</p>
             <input class="form-input" type="text" id="captcha" name="captcha">
         </div>
     {{else}}
@@ -59,13 +59,13 @@
     {{/if}}
 
     <div class="form-field">
-        <label class="form-label" for="contact_question">{{@lang 'forms.contact_us.question'}}
-            <small>{{@lang 'common.required' }}</small>
+        <label class="form-label" for="contact_question">{{lang 'forms.contact_us.question'}}
+            <small>{{lang 'common.required' }}</small>
         </label>
         <textarea name="contact_question" id="contact_question" rows="5" cols="50" class="form-input"></textarea>
     </div>
 
     <div class="form-actions">
-        <input class="button button--primary" type="submit" value="{{@lang 'forms.contact_us.submit' }}">
+        <input class="button button--primary" type="submit" value="{{lang 'forms.contact_us.submit' }}">
     </div>
 </form>

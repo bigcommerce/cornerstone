@@ -1,6 +1,6 @@
 {{#partial "page"}}
     {{> components/common/breadcrumbs breadcrumbs}}
-    <h1 class="page-heading">{{@lang 'create_account.heading' }}</h1>
+    <h1 class="page-heading">{{lang 'create_account.heading' }}</h1>
 
     <div class="account account--fixed">
         <div class="account-body">
@@ -10,17 +10,17 @@
             <form action="{{urls.auth.save_new_account}}" data-create-account-form method="post" class="form">
                 <div class="form-row form-row--half">
                     {{#each forms.create_account.account_fields }}
-                        {{{@dynamicComponent 'components/common/forms'}}}
+                        {{{dynamicComponent 'components/common/forms'}}}
                     {{/each}}
                     {{#each forms.create_account.address_fields }}
-                        {{{@dynamicComponent 'components/common/forms'}}}
+                        {{{dynamicComponent 'components/common/forms'}}}
                     {{/each}}
                 </div>
                 {{#if forms.create_account.recaptcha.enabled }}
                 <div class="panel">
 
                     <header class="panel-header">
-                        <h3 class="panel-title">{{@lang 'create_account.captcha_heading' }}</h3>
+                        <h3 class="panel-title">{{lang 'create_account.captcha_heading' }}</h3>
                     </header>
                     <div class="panel-body">
                         <script type="text/javascript"
@@ -37,7 +37,7 @@
                 </div>
                 {{/if}}
                 <div class="form-actions">
-                    <input type="submit" class="button button--primary" value="{{@lang 'forms.create_account.submit_value' }}" />
+                    <input type="submit" class="button button--primary" value="{{lang 'forms.create_account.submit_value' }}" />
                 </div>
             </form>
         </div>

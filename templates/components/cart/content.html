@@ -1,10 +1,10 @@
 <table class="cart" data-cart-content data-cart-quantity="{{cart.quantity}}">
     <thead class="cart-header">
         <tr>
-            <th class="cart-header-item" colspan="2">{{@lang 'cart.checkout.item'}}</th>
-            <th class="cart-header-item">{{@lang 'cart.checkout.price'}}</th>
-            <th class="cart-header-item cart-header-quantity">{{@lang 'cart.checkout.quantity'}}</th>
-            <th class="cart-header-item">{{@lang 'cart.checkout.total'}}</th>
+            <th class="cart-header-item" colspan="2">{{lang 'cart.checkout.item'}}</th>
+            <th class="cart-header-item">{{lang 'cart.checkout.price'}}</th>
+            <th class="cart-header-item cart-header-quantity">{{lang 'cart.checkout.quantity'}}</th>
+            <th class="cart-header-item">{{lang 'cart.checkout.total'}}</th>
         </tr>
     </thead>
 
@@ -12,7 +12,7 @@
         {{#each cart.items}}
             <tr class="cart-item" data-item-row>
                 <td class="cart-item-block cart-item-figure">
-                    <img class="cart-item-image" src="{{@image image 'thumb'}}" alt="{{image.alt}}">
+                    <img class="cart-item-image" src="{{getImage image 'thumb'}}" alt="{{image.alt}}">
                 </td>
                 <td class="cart-item-block cart-item-title">
                     {{#if brand.name}}
@@ -45,27 +45,27 @@
                                 </dd>
                             {{/each}}
                         </dl>
-                        <a href="#" data-item-edit="{{id}}">{{@lang 'cart.checkout.change'}}</a>
+                        <a href="#" data-item-edit="{{id}}">{{lang 'cart.checkout.change'}}</a>
                     {{/if}}
                     {{> components/cart/item-giftwrap this}}
                 </td>
                 <td class="cart-item-block cart-item-info">
-                    <span class="cart-item-label">{{@lang 'cart.checkout.price'}}</span> <span class="cart-item-value">{{price.formatted}}</span>
+                    <span class="cart-item-label">{{lang 'cart.checkout.price'}}</span> <span class="cart-item-value">{{price.formatted}}</span>
                 </td>
 
                 <td class="cart-item-block cart-item-info cart-item-quantity">
 
-                    <label class="form-label cart-item-label" for="qty-{{id}}">{{@lang 'products.quantity'}}</label>
+                    <label class="form-label cart-item-label" for="qty-{{id}}">{{lang 'products.quantity'}}</label>
                     <div class="form-increment">
                         <button class="button button--icon" data-cart-update data-cart-itemid="{{id}}" data-action="dec">
-                            <span class="u-hiddenVisually">{{@lang 'products.quantity_decrease'}}</span>
+                            <span class="u-hiddenVisually">{{lang 'products.quantity_decrease'}}</span>
                             <i class="icon" aria-hidden="true"><svg><use xlink:href="#icon-keyboard-arrow-down" /></svg></i>
                         </button>
 
                         <input class="form-input form-input--incrementTotal" id="qty-{{id}}" name="qty-{{id}}" type="tel" value="{{quantity}}" min="1" pattern="[0-9]*" aria-live="polite">
 
                         <button class="button button--icon" data-cart-update data-cart-itemid="{{id}}" data-action="inc">
-                            <span class="u-hiddenVisually">{{@lang 'products.quantity_increase'}}</span>
+                            <span class="u-hiddenVisually">{{lang 'products.quantity_increase'}}</span>
                             <i class="icon" aria-hidden="true"><svg><use xlink:href="#icon-keyboard-arrow-up" /></svg></i>
                         </button>
                     </div>
@@ -73,7 +73,7 @@
                 </td>
 
                 <td class="cart-item-block cart-item-info">
-                    <span class="cart-item-label">{{@lang 'cart.checkout.total'}}</span> <strong class="cart-item-value">{{total.formatted}}</strong>
+                    <span class="cart-item-label">{{lang 'cart.checkout.total'}}</span> <strong class="cart-item-value">{{total.formatted}}</strong>
                     <svg class="icon cart-remove" data-cart-itemid="{{id}}">
                         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use>
                     </svg>

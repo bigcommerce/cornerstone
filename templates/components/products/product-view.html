@@ -32,47 +32,47 @@
                     <meta itemprop="ratingCount" content="{{product.num_reviews}}">
                     <meta itemprop="reviewCount" content="{{product.num_reviews}}">
                     {{> components/products/ratings rating=product.rating}}
-                    <span class="productView-reviewLink"><a href="{{product.url}}#product-reviews">{{@lang 'products.reviews.link_to_review' total=product.num_reviews}}</a></span>
+                    <span class="productView-reviewLink"><a href="{{product.url}}#product-reviews">{{lang 'products.reviews.link_to_review' total=product.num_reviews}}</a></span>
                 {{/if}}
                 {{#if settings.show_product_reviews}}
                     <span class="productView-reviewLink"><a href="{{product.url}}"
-                                                            {{#if product.reviews}}data-reveal-id="modal-review-form"{{/if}}>{{@lang 'products.reviews.new'}}</a></span>
+                                                            {{#if product.reviews}}data-reveal-id="modal-review-form"{{/if}}>{{lang 'products.reviews.new'}}</a></span>
                     {{> components/products/modals/writeReview}}
                 {{/if}}
             </div>
             {{product.detail_messages}}
             <dl class="productView-info">
                 {{#if product.sku}}
-                    <dt class="productView-info-name">{{@lang 'products.sku'}}:</dt>
+                    <dt class="productView-info-name">{{lang 'products.sku'}}:</dt>
                     <dt class="productView-info-value" data-product-sku>{{product.sku}}</dt>
                 {{/if}}
                 {{#if product.condition}}
-                    <dt class="productView-info-name">{{@lang 'products.condition'}}:</dt>
+                    <dt class="productView-info-name">{{lang 'products.condition'}}:</dt>
                     <dt class="productView-info-value">{{product.condition}}</dt>
                 {{/if}}
                 {{#if product.availability}}
-                    <dt class="productView-info-name">{{@lang 'products.availability'}}:</dt>
+                    <dt class="productView-info-name">{{lang 'products.availability'}}:</dt>
                     <dt class="productView-info-value">{{product.availability}}</dt>
                 {{/if}}
                 {{#if product.weight}}
-                    <dt class="productView-info-name">{{@lang 'products.weight'}}:</dt>
+                    <dt class="productView-info-name">{{lang 'products.weight'}}:</dt>
                     <dt class="productView-info-value">{{product.weight}}</dt>
                 {{/if}}
                 {{#if product.gift_wrapping_available}}
-                    <dt class="productView-info-name">{{@lang 'products.gift_wrapping'}}:</dt>
-                    <dt class="productView-info-value">{{@lang 'products.gift_wrapping_available'}}</dt>
+                    <dt class="productView-info-name">{{lang 'products.gift_wrapping'}}:</dt>
+                    <dt class="productView-info-value">{{lang 'products.gift_wrapping_available'}}</dt>
                 {{/if}}
                 {{#if product.shipping}}
                     {{#if product.shipping.calculated}}
-                        <dt class="productView-info-name">{{@lang 'products.shipping'}}:</dt>
-                        <dt class="productView-info-value">{{@lang 'products.shipping_calculated'}}</dt>
+                        <dt class="productView-info-name">{{lang 'products.shipping'}}:</dt>
+                        <dt class="productView-info-value">{{lang 'products.shipping_calculated'}}</dt>
                     {{else}}
                         {{#compare product.shipping.price 0 operator='==='}}
-                            <dt class="productView-info-name">{{@lang 'products.shipping'}}:</dt>
-                            <dt class="productView-info-value">{{@lang 'products.shipping_free'}}</dt>
+                            <dt class="productView-info-name">{{lang 'products.shipping'}}:</dt>
+                            <dt class="productView-info-value">{{lang 'products.shipping_free'}}</dt>
                         {{else}}
-                            <dt class="productView-info-name">{{@lang 'products.shipping'}}:</dt>
-                            <dt class="productView-info-value">{{@lang 'products.shipping_fixed' amount=product.shipping.price.formatted}}</dt>
+                            <dt class="productView-info-name">{{lang 'products.shipping'}}:</dt>
+                            <dt class="productView-info-value">{{lang 'products.shipping_fixed' amount=product.shipping.price.formatted}}</dt>
                         {{/compare}}
                     {{/if}}
                 {{/if}}
@@ -89,10 +89,10 @@
     <section class="productView-images" data-image-gallery>
         <figure class="productView-image"
                 data-image-gallery-main
-                data-zoom-image="{{@image product.main_image 'zoom'}}"
+                data-zoom-image="{{getImage product.main_image 'zoom'}}"
                 >
-            <a href="{{@image product.main_image 'zoom'}}">
-                <img src="{{@image product.main_image 'product'}}" alt="{{image.alt}}" data-main-image>
+            <a href="{{getImage product.main_image 'zoom'}}">
+                <img src="{{getImage product.main_image 'product'}}" alt="{{image.alt}}" data-main-image>
             </a>
         </figure>
         <ul class="productView-thumbnails">
@@ -100,11 +100,11 @@
                 <li class="productView-thumbnail">
                     <a
                         class="productView-thumbnail-link"
-                        href="{{@image this 'product'}}"
+                        href="{{getImage this 'product'}}"
                         data-image-gallery-item
-                        data-image-gallery-new-image-url="{{@image this 'product'}}"
-                        data-image-gallery-zoom-image-url="{{@image this 'zoom'}}">
-                        <img src="{{@image this 'thumb'}}" alt="{{image.alt}}">
+                        data-image-gallery-new-image-url="{{getImage this 'product'}}"
+                        data-image-gallery-zoom-image-url="{{getImage this 'zoom'}}">
+                        <img src="{{getImage this 'thumb'}}" alt="{{image.alt}}">
                     </a>
                 </li>
             {{/each}}
@@ -124,16 +124,16 @@
 
                 <div data-product-option-change>
                     {{#each product.customizations}}
-                        {{{@dynamicComponent 'components/products/customizations'}}}
+                        {{{dynamicComponent 'components/products/customizations'}}}
                     {{/each}}
 
                     {{#each product.options}}
-                        {{{@dynamicComponent 'components/products/options'}}}
+                        {{{dynamicComponent 'components/products/options'}}}
                     {{/each}}
                 </div>
 
                 <div class="form-field form-field--stock">
-                    <label class="form-label form-label--alternate">{{@lang 'products.current_stock'}}</label>
+                    <label class="form-label form-label--alternate">{{lang 'products.current_stock'}}</label>
                     <span data-product-stock>{{product.stock_level}}</span>
                 </div>
 
@@ -141,11 +141,11 @@
 
                     <div class="form-field form-field--increments">
                         <label class="form-label form-label--alternate"
-                               for="qty[]">{{@lang 'products.quantity'}}</label>
+                               for="qty[]">{{lang 'products.quantity'}}</label>
 
                         <div class="form-increment" data-quantity-change>
                             <button class="button button--icon" data-action="dec">
-                                <span class="u-hiddenVisually">{{@lang 'products.quantity_decrease'}}</span>
+                                <span class="u-hiddenVisually">{{lang 'products.quantity_decrease'}}</span>
                                 <i class="icon" aria-hidden="true">
                                     <svg>
                                         <use xlink:href="#icon-keyboard-arrow-down"/>
@@ -155,7 +155,7 @@
                             <input class="form-input form-input--incrementTotal" id="qty[]" name="qty[]" type="tel"
                                    value="1" min="1" pattern="[0-9]*" aria-live="polite">
                             <button class="button button--icon" data-action="inc">
-                                <span class="u-hiddenVisually">{{@lang 'products.quantity_increase'}}</span>
+                                <span class="u-hiddenVisually">{{lang 'products.quantity_increase'}}</span>
                                 <i class="icon" aria-hidden="true">
                                     <svg>
                                         <use xlink:href="#icon-keyboard-arrow-up"/>
@@ -174,14 +174,14 @@
 
                     <div class="form-action">
                         <input id="form-action-addToCart" class="button button--primary" type="submit"
-                               value="{{#if product.pre_order}}{{@lang 'products.pre_order'}}{{else}}{{@lang 'products.add_to_cart'}}{{/if}}">
+                               value="{{#if product.pre_order}}{{lang 'products.pre_order'}}{{else}}{{lang 'products.add_to_cart'}}{{/if}}">
                     </div>
                 {{/if}}
                 {{#if product.out_of_stock}}
                     {{#if product.out_of_stock_message}}
                         {{>components/common/alert-error product.out_of_stock_message}}
                     {{else}}
-                        {{>components/common/alert-error (@lang 'products.sold_out')}}
+                        {{>components/common/alert-error (lang 'products.sold_out')}}
                     {{/if}}
                 {{/if}}
 
@@ -190,7 +190,7 @@
             <form class="form" method="post" action="{{product.add_to_wishlist_url}}" data-wishlist-add>
                 <div class="form-action">
                     <input type="hidden" name="variation_id" value="">
-                    <input class="button" type="submit" value="{{@lang 'account.wishlists.add_item'}}">
+                    <input class="button" type="submit" value="{{lang 'account.wishlists.add_item'}}">
                 </div>
             </form>
         </div>
@@ -258,7 +258,7 @@
     <article class="productView-description" itemprop="description">
         <ul class="tabs">
             <li class="tab is-active">
-                <a class="tab-title" href="#tab-description">{{@lang 'products.description'}}</a>
+                <a class="tab-title" href="#tab-description">{{lang 'products.description'}}</a>
             </li>
         </ul>
         <div class="tabs-contents">
@@ -270,8 +270,8 @@
                             "text-overflow": "ellipsis"
                         },
                         "text": {
-                            "viewMore": "{{@lang 'text_truncate.view_more'}}",
-                            "viewLess": "{{@lang 'text_truncate.view_less'}}"
+                            "viewMore": "{{lang 'text_truncate.view_more'}}",
+                            "viewLess": "{{lang 'text_truncate.view_less'}}"
                         }
                      }'
                         >

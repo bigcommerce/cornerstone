@@ -10,7 +10,7 @@
 
         <div class="accordion-navigation-actions">
             {{#if selected}}
-                <a href="{{ remove_url }}" data-faceted-search-facet>{{@lang 'search.faceted.clear'}}</a>
+                <a href="{{ remove_url }}" data-faceted-search-facet>{{lang 'search.faceted.clear'}}</a>
             {{/if}}
             <svg class="icon accordion-indicator toggleLink-text toggleLink-text--off">
                 <use xlink:href="#icon-add" />
@@ -27,7 +27,7 @@
                 <li class="navList-item {{#if selected }} is-selected {{/if}}">
                     <a href="{{ url }}" class="navList-action navList-action--checkbox" data-faceted-search-facet>
                         {{> components/products/ratings rating=title}}
-                        {{@lang 'search.faceted.rating.and-up'}}
+                        {{lang 'search.faceted.rating.and-up'}}
                         {{#if ../show_product_counts}}
                             <span>({{ count }})</span>
                         {{/if}}

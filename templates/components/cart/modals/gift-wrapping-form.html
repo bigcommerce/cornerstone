@@ -8,7 +8,7 @@
         <p>{{lang 'cart.gift_wrapping.choose_how'}}</p>
     {{/compare}}
 
-    <form class="giftWrapping-form" class="form" action="{{urls.cart}}" method="post">
+    <form class="form giftWrapping-form" action="{{urls.cart}}" method="post">
         <input type="hidden" name="action" value="save_giftwrapping">
         <input type="hidden" name="item_id" value="{{item_id}}">
         <fieldset class="form-fieldset">
@@ -55,7 +55,7 @@
                             {{#each gift_wrappings}}
                                 {{#if preview_image}}
                                     <a id="giftWrapping-image-{{../../$index}}-{{id}}" class="giftWrapping-image-{{../../$index}}" style="display:none" target="_blank" href="{{getImage preview_image}}">
-                                        Preview
+                                        {{lang 'cart.gift_wrapping.preview'}}
                                     </a>
                                 {{/if}}
                             {{/each}}

@@ -2,7 +2,9 @@
 <ul class="order-contents">
     {{#each this.items}}
     <li class="order-contents-item">
-        <img class="order-contents-image" src="{{@image image}}" alt="{{image.alt}}">
+        {{#if image}}
+            <img class="order-contents-image" src="{{@image image}}" alt="{{image.alt}}">
+        {{/if}}
         <h6 class="order-contents-name">{{name}}</h6>
         <span class="order-contents-price">{{price.formatted}}</span>
         <ul class="order-contents-options">

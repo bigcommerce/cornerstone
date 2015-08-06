@@ -130,7 +130,12 @@ export default class Auth extends PageManager {
         if ($passwordElement && $password2Element) {
             createAccountValidator.remove(passwordSelector);
             createAccountValidator.remove(password2Selector);
-            Validators.setPasswordValidation(createAccountValidator, passwordSelector, password2Selector);
+            Validators.setPasswordValidation(
+                createAccountValidator,
+                passwordSelector,
+                password2Selector,
+                this.passwordRequirements
+            );
         }
 
         $createAccountForm.submit((event) => {
@@ -152,6 +157,9 @@ export default class Auth extends PageManager {
         let $createAccountForm = classifyForm(this.formCreateSelector),
             $loginForm = classifyForm('.login-form'),
             $forgotPasswordForm = classifyForm('.forgot-password-form');
+
+        // Injected via auth.html
+        this.passwordRequirements = this.context.passwordRequirements;
 
         if ($loginForm.length) {
             this.registerLoginValidation($loginForm);

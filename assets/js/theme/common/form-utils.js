@@ -136,9 +136,15 @@ let Validators = {
      * @param validator
      * @param passwordSelector
      * @param password2Selector
+     * @param requirements
      * @param isOptional
      */
-    setPasswordValidation: (validator, passwordSelector, password2Selector, isOptional) => {
+    setPasswordValidation: (
+        validator,
+        passwordSelector,
+        password2Selector,
+        requirements,
+        isOptional) => {
         let $password = $(passwordSelector),
             $password2 = $(password2Selector),
             passwordValidations = [
@@ -158,9 +164,9 @@ let Validators = {
                 {
                     selector: passwordSelector,
                     validate: (cb, val) => {
-                        let result = val.match(VALIDATION_PASSWORD_ALPHA_REGEX)
-                            && val.match(VALIDATION_PASSWORD_NUMERIC_REGEX)
-                            && val.length >= 7;
+                        let result = val.match(new RegExp(requirements.alpha))
+                            && val.match(new RegExp(requirements.numeric))
+                            && val.length >= requirements.minlength;
 
                         // If optional and nothing entered, it is valid
                         if (isOptional && val.length === 0) {
@@ -169,7 +175,7 @@ let Validators = {
 
                         cb(result);
                     },
-                    errorMessage: 'Your password must contain letters, numbers, and be at least 7 characters'
+                    errorMessage: requirements.error
                 },
                 {
                     selector: password2Selector,

@@ -19,6 +19,9 @@ export default class Account extends PageManager {
             $inboxForm = classifyForm('form[data-inbox-form]'),
             $accountReturnForm = classifyForm('[data-account-return-form]'),
             $reorderForm = classifyForm('[data-account-reorder-form]');
+        
+        // Injected via template
+        this.passwordRequirements = this.context.passwordRequirements;
 
         // Instantiates wish list JS
         new Wishlist();
@@ -195,7 +198,8 @@ export default class Account extends PageManager {
                 editValidator,
                 passwordSelector,
                 password2Selector,
-                currentPasswordSelector
+                this.passwordRequirements,
+                true
             );
         }
 

@@ -104,11 +104,18 @@ export default class Account extends PageManager {
 
     registerEditAccountValidation($editAccountForm) {
         let validationModel = validation($editAccountForm),
+            formEditSelector = 'form[data-edit-account-form]',
             editValidator = nod({
-                submit: 'form[data-edit-account-form] input[type="submit"]'
+                submit: '${formEditSelector} input[type="submit"]'
             }),
-            emailSelector = 'form[data-edit-account-form] [name="FormField[1][1]"]',
-            $emailElement = $(emailSelector);
+            emailSelector = `${formEditSelector} [name="FormField[1][1]"]`,
+            $emailElement = $(emailSelector),
+            passwordSelector = `${formEditSelector} [name="FormField[1][2]"]`,
+            $passwordElement = $(passwordSelector),
+            password2Selector = `${formEditSelector} [name="FormField[1][3]"]`,
+            $password2Element = $(password2Selector),
+            currentPasswordSelector = `${formEditSelector} [name="FormField[1][24]"]`,
+            $currentPassword = $(currentPasswordSelector);
 
         //This only handles the custom fields, standard fields are added below
         editValidator.add(validationModel);
@@ -118,9 +125,36 @@ export default class Account extends PageManager {
             Validators.setEmailValidation(editValidator, emailSelector);
         }
 
+        if ($passwordElement && $password2Element) {
+            editValidator.remove(passwordSelector);
+            editValidator.remove(password2Selector);
+            Validators.setPasswordValidation(
+                editValidator,
+                passwordSelector,
+                password2Selector,
+                currentPasswordSelector
+            );
+        }
+
+        if ($currentPassword) {
+            editValidator.add({
+                selector: currentPasswordSelector,
+                validate: (cb, val) => {
+                    let result = true;
+
+                    if (val === '' && $passwordElement.val() !== '') {
+                        result = false;
+                    }
+
+                    cb(result);
+                },
+                errorMessage: "You must enter your current password"
+            });
+        }
+
         editValidator.add([
             {
-                selector: 'form[data-edit-account-form] input[name="account_firstname"]',
+                selector: `${formEditSelector} input[name="account_firstname"]`,
                 validate: (cb, val) => {
                     let result = val.length;
                     cb(result);
@@ -128,7 +162,7 @@ export default class Account extends PageManager {
                 errorMessage: "You must enter a first name"
             },
             {
-                selector: 'form[data-edit-account-form] input[name="account_lastname"]',
+                selector: `${formEditSelector} input[name="account_lastname"]`,
                 validate: (cb, val) => {
                     let result = val.length;
                     cb(result);
@@ -136,7 +170,7 @@ export default class Account extends PageManager {
                 errorMessage: "You must enter a last name"
             },
             {
-                selector: 'form[data-edit-account-form] input[name="account_phone"]',
+                selector: `${formEditSelector} input[name="account_phone"]`,
                 validate: (cb, val) => {
                     let result = val.length;
                     cb(result);

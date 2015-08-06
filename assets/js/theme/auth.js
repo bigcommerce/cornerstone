@@ -10,6 +10,7 @@ import {classifyForm, Validators} from './common/form-utils';
 export default class Auth extends PageManager {
     constructor() {
         super();
+        this.formCreateSelector = 'form[data-create-account-form]';
     }
 
     registerLoginValidation($loginForm) {
@@ -79,11 +80,15 @@ export default class Auth extends PageManager {
     registerCreateAccountValidator($createAccountForm) {
         let validationModel = validation($createAccountForm),
             createAccountValidator = nod({
-                submit: 'form[data-create-account-form] input[type="submit"]'
+                submit: `${this.formCreateSelector} input[type="submit"]`
             }),
             $stateElement = $('[data-label="State/Province"]'),
-            emailSelector = 'form[data-create-account-form] [name="FormField[1][1]"]',
-            $emailElement = $(emailSelector);
+            emailSelector = `${this.formCreateSelector} [name="FormField[1][1]"]`,
+            $emailElement = $(emailSelector),
+            passwordSelector = `${this.formCreateSelector} [name="FormField[1][2]"]`,
+            $passwordElement = $(passwordSelector),
+            password2Selector = `${this.formCreateSelector} [name="FormField[1][3]"]`,
+            $password2Element = $(password2Selector);
 
         createAccountValidator.add(validationModel);
 
@@ -112,6 +117,12 @@ export default class Auth extends PageManager {
             Validators.setEmailValidation(createAccountValidator, emailSelector);
         }
 
+        if ($passwordElement && $password2Element) {
+            createAccountValidator.remove(passwordSelector);
+            createAccountValidator.remove(password2Selector);
+            Validators.setPasswordValidation(createAccountValidator, passwordSelector, password2Selector);
+        }
+
         $createAccountForm.submit((event) => {
             createAccountValidator.performCheck();
 
@@ -128,7 +139,7 @@ export default class Auth extends PageManager {
      * @param next
      */
     loaded(next) {
-        let $createAccountForm = classifyForm('form[data-create-account-form]'),
+        let $createAccountForm = classifyForm(this.formCreateSelector),
             $loginForm = classifyForm('.login-form'),
             $forgotPasswordForm = classifyForm('.forgot-password-form');
 
@@ -141,7 +152,7 @@ export default class Auth extends PageManager {
         }
 
         if ($createAccountForm.length) {
-            let createAccountValidator = this.registerCreateAccountValidator($createAccountForm);
+            this.registerCreateAccountValidator($createAccountForm);
         }
 
         next();

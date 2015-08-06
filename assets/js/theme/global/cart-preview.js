@@ -33,9 +33,6 @@ export default function () {
             $cartDropdown
                 .removeClass(loadingClass)
                 .html(response);
-
-            quantity = $('[data-cart-quantity]', $cartDropdown).data('cart-quantity') || 0;
-            $('body').trigger('cart-quantity-update', quantity);
         });
     });
 }

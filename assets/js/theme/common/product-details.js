@@ -181,6 +181,13 @@ export default class Product {
                     template: 'cart/preview',
                     params: {
                         suggest: response.data.cart_item.id
+                    },
+                    config: {
+                        cart: {
+                            suggestions: {
+                                limit: 4
+                            }
+                        }
                     }
                 };
 

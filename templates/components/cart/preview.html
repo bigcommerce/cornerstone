@@ -1,13 +1,34 @@
 <div id="cart-preview" data-cart-quantity="{{cart.quantity}}">
-	{{# if cart.items.length}}
-	    {{#each cart.items}}
-	        <a href="{{url}}"><img src="{{getImage image 'thumb'}}" alt="{{image.alt}}"></a>
-	        {{name}}
-	        {{quantity}}
-	        {{price.formatted}}
-	        {{total.formatted}}
-	    {{/each}}
-	{{else}}
-	<h3>{{lang 'cart.is_empty'}}</h3>
-	{{/if}}
+    <h1>Your Cart</h1>
+    <ul class="previewCartList">
+        {{#each cart.items}}
+            <li class="previewCartItem">
+                <div class="previewCartItem-image">
+                {{id}}
+                    <img src="{{getImage image 'thumb'}}" alt="{{image.alt}}" />
+                </div>
+
+                <div class="previewCartItem-content">
+                    <div class="previewCartItem-brand">
+                        {{brand.name}}
+                    </div>
+
+                    <h6 class="previewCartItem-name">
+                        <a href="{{url}}" alt="{{name}}">{{name}}</a>
+                    </h6>
+
+                    <div class="previewCartItem-price">
+                        {{quantity}} &times; {{price.formatted}}
+                    </div>
+                </div>
+            </li>
+        {{/each}}
+    </ul>
+
+    <h1>You may also like</h1>
+    {{#each cart.suggested_products}}
+    <div class="productCarousel-slide">
+        {{> components/products/card theme_settings=../theme_settings}}
+    </div>
+    {{/each}}
 </div>

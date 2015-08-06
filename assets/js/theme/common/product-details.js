@@ -168,9 +168,7 @@ export default class Product {
 
             // add item to cart
             utils.api.cart.itemAdd(new FormData(form), (err, response) => {
-                let options = {
-                    template: 'cart/preview'
-                };
+                let options;
 
                 // if there is an error
                 if (err) {
@@ -178,6 +176,20 @@ export default class Product {
                 } else if (response.data.error) {
                     return alert(response.data.error);
                 }
+
+                options = {
+                    template: 'cart/preview',
+                    params: {
+                        suggest: response.data.cart_item.id
+                    },
+                    config: {
+                        cart: {
+                            suggestions: {
+                                limit: 4
+                            }
+                        }
+                    }
+                };
 
                 // clear the modal
                 $modalContent.html('');

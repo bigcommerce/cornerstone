@@ -8,31 +8,33 @@
             {{> components/account/order-contents order}}
         </div>
         <div class="supporting-section">
-            <section class="account-section order-details">
-                <h3 class="account-heading">{{@lang 'account.orders.details.ship_to'}}</h3>
-                <ul class="order-address">
-                    <li class="order-address-item">
-                        <span class="order-address-item-content">{{order.shipping_address.full_name}}</span>
-                    </li>
-                    <li class="order-address-item">
-                        <span class="order-address-item-content">{{order.shipping_address.company}}</span>
-                    </li>
-                    <li class="order-address-item">
-                        <span class="order-address-item-content">{{order.shipping_address.address_lines.[0]}}</span>
-                    </li>
-                    <li class="order-address-item">
-                        <span class="order-address-item-content">{{order.shipping_address.address_lines.[1]}}</span>
-                    </li>
-                    <li class="order-address-item">
-                        <span class="order-address-item-content">{{order.shipping_address.city}},</span>
-                        <span class="order-address-item-content">{{order.shipping_address.state}}</span>
-                        <span class="order-address-item-content"> &nbsp;{{order.shipping_address.zip}}</span>
-                    </li>
-                    <li class="order-address-item">
-                        <span class="order-address-item-content">{{order.shipping_address.country}}</span>
-                    </li>
-                </ul>
-            </section>
+            {{#if order.shipping_address}}
+                <section class="account-section order-details">
+                    <h3 class="account-heading">{{@lang 'account.orders.details.ship_to'}}</h3>
+                    <ul class="order-address">
+                        <li class="order-address-item">
+                            <span class="order-address-item-content">{{order.shipping_address.full_name}}</span>
+                        </li>
+                        <li class="order-address-item">
+                            <span class="order-address-item-content">{{order.shipping_address.company}}</span>
+                        </li>
+                        <li class="order-address-item">
+                            <span class="order-address-item-content">{{order.shipping_address.address_lines.[0]}}</span>
+                        </li>
+                        <li class="order-address-item">
+                            <span class="order-address-item-content">{{order.shipping_address.address_lines.[1]}}</span>
+                        </li>
+                        <li class="order-address-item">
+                            <span class="order-address-item-content">{{order.shipping_address.city}},</span>
+                            <span class="order-address-item-content">{{order.shipping_address.state}}</span>
+                            <span class="order-address-item-content"> &nbsp;{{order.shipping_address.zip}}</span>
+                        </li>
+                        <li class="order-address-item">
+                            <span class="order-address-item-content">{{order.shipping_address.country}}</span>
+                        </li>
+                    </ul>
+                </section>
+            {{/if}}
             <section class="account-section order-details">
                 <h3 class="account-heading">{{@lang 'account.orders.details.bill_to'}}</h3>
                 <ul class="order-address">

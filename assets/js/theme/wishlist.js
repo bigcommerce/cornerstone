@@ -11,8 +11,7 @@ export default class WishList extends PageManager {
         this.modalConfig = {
             modal: $('#modal'),
             modalContent: $('.modal-content', this.modal),
-            modalOverlay: $('.loadingOverlay', this.modal),
-            modalModifierClasses: 'modal--large'
+            modalOverlay: $('.loadingOverlay', this.modal)
         };
 
         let $addWishListForm = $('.wishlist-form');
@@ -69,8 +68,6 @@ export default class WishList extends PageManager {
     }
 
     wishListModal(url, template) {
-        this.modalConfig.modal.addClass(this.modalConfig.modalModifierClasses);
-
         // clear the modal
         this.modalConfig.modalContent.html('');
         this.modalConfig.modalOverlay.show();

@@ -22,15 +22,16 @@
             <input class="form-input" name="wishlistname" id="wishlistname" value="{{forms.wishlist.name}}">
         </div>
         <div class="form-field">
+            <input type="checkbox" class="form-checkbox" name="publicwishlist" id="publicwishlist" {{#if forms.wishlist.is_public}}checked{{/if}}>
             <label class="form-label" for="publicwishlist">{{lang 'forms.wishlist.public' }}</label>
-            <input type="checkbox" name="publicwishlist" id="publicwishlist" {{#if forms.wishlist.is_public}}checked{{/if}}>
+
         </div>
-        <div class="form-field">
+        <div class="form-actions">
             {{#if forms.wishlist.id}}
-                <input type="submit" class="button button--primary button--small" value="{{lang 'account.wishlists.save'}}">
+                <input type="submit" class="button button--primary" value="{{lang 'account.wishlists.save'}}">
                 <input type="hidden" name="wishlistid" value="{{forms.wishlist.id}}">
             {{else}}
-                <input type="submit" class="button button--primary button--small"
+                <input type="submit" class="button button--primary"
                        value="{{lang 'account.wishlists.create'}}">
             {{/if}}
         </div>

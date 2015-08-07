@@ -1,11 +1,11 @@
-<h3 class="account-heading">{{lang 'account.orders.details.order_contents' }}</h3>
+<h3 class="account-heading">{{lang 'account.orders.details.order_contents'}}</h3>
 <ul class="order-contents">
     {{#each this.items}}
     <li class="order-contents-item">
         {{#if image}}
             <img class="order-contents-image" src="{{getImage image}}" alt="{{image.alt}}">
         {{/if}}
-        <h6 class="order-contents-name">{{name}}</h6>
+        <h6 class="order-contents-name">{{quantity}} &#215; {{name}}</h6>
         <span class="order-contents-price">{{price.formatted}}</span>
         <ul class="order-contents-options">
             {{#each options}}
@@ -18,10 +18,20 @@
 
         <!--
         TODO: Add this button when we're able to specify individual items for return
-            <a href="{{return_url}}" class="order-contents-return button secondary">{{lang 'account.orders.return_item' }}</a>
+            <a href="{{return_url}}" class="order-contents-return button secondary">{{lang 'account.orders.return_item'}}</a>
         -->
-        {{#if download_url}}
-            <a href="{{download_url}}" class="button button--primary">{{lang 'account.orders.details.download_items' }}</a>
+
+        {{#if refunded}}
+            <!-- Hide download link if fully refunded -->
+            <div class="order-contents-refunded">{{lang 'account.orders.refunded_quantity' qty=refunded_qty}}</div>
+        {{else}}
+            {{#if refunded_qty}}
+                <!-- Partially refunded -->
+                <div class="order-contents-refundedQty">{{lang 'account.orders.refunded_quantity' qty=refunded_qty}}</div>
+            {{/if}}
+            {{#if download_url}}
+                <a href="{{download_url}}" class="button button--primary">{{lang 'account.orders.details.download_items'}}</a>
+            {{/if}}
         {{/if}}
     </li>
     {{/each}}

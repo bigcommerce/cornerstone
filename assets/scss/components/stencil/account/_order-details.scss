@@ -8,6 +8,7 @@
 // -----------------------------------------------------------------------------
 
 .order-contents {
+    @include grid-row;
     @include u-listReset;
 
     font-size: 0;   // 1.
@@ -15,12 +16,11 @@
 }
 
 .order-contents-item {
-    display: inline-block;
+    @include grid-column(6);
     font-size: $body-fontSize;
-    width: 50%;
 
     @include breakpoint("small") {
-        width: 33.33%;
+        @include grid-column(4);
     }
 }
 

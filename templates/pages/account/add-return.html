@@ -25,7 +25,17 @@
                             <tbody class="table-tbody">
                                 {{#each forms.return.order_products}}
                                     <tr>
-                                        <td class="return-itemName">{{name}}</td>
+                                        <td class="return-itemName">
+                                            {{name}}
+                                            {{#if options}}
+                                            <dl class="cart-item-options">
+                                                {{#each options}}
+                                                <dt class="cart-item-option-title">{{name}}:</dt>
+                                                <dd class="cart-item-option-description">{{{value}}}</dd>
+                                                {{/each}}
+                                            </dl>
+                                            {{/if}}
+                                        </td>
                                         <td class="return-itemPrice">{{price.formatted}}</td>
                                         <td class="return-itemQuantity">
                                             <label class="form-label">{{lang 'account.orders.return.quantity'}}:</label>

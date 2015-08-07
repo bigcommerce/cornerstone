@@ -36,7 +36,7 @@
                     <select class="form-select giftWrapping-select" name="giftwrapping[all]" id="giftWrapping-select-same" data-index="all">
                         <option value="">{{lang 'cart.gift_wrapping.choose_type'}}</option>
                         {{#each gift_wrappings}}
-                            <option {{#if selected}}selected{{/if}} value="{{id}}">{{name}} - ({{price.formatted}})</option>
+                            <option {{#if selected}}selected{{/if}} value="{{id}}" data-allow-message="{{allow_message}}">{{name}} - ({{price.formatted}})</option>
                         {{/each}}
                     </select>
                 </div>
@@ -63,7 +63,7 @@
                         <select class="form-select giftWrapping-select" name="giftwrapping[{{$index}}]" id="giftWrapping-select-{{$index}}" data-index="{{$index}}">
                             <option value="">{{lang 'cart.gift_wrapping.choose_type'}}</option>
                             {{#each gift_wrappings}}
-                                <option {{#if selected}}selected{{/if}} value="{{id}}">{{name}} - ({{price.formatted}})</option>
+                                <option {{#if selected}}selected{{/if}} value="{{id}}" data-allow-message="{{allow_message}}">{{name}} - ({{price.formatted}})</option>
                             {{/each}}
                         </select>
                     </div>

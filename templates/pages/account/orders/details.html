@@ -86,6 +86,23 @@
                     </li>
                 </ul>
             </section>
+            <section class="account-section order-details">
+                <h3 class="account-heading">{{lang 'account.orders.details.order_details'}}</h3>
+                <dl class="order-payments">
+                    {{#each order.total_rows}}
+                        <dt class="order-payments-description">{{label}}:</dt>
+                        <dd class="order-payments-value">{{value.formatted}}</dd>
+                    {{/each}}
+                    <dt class="order-payments-description">{{lang 'account.orders.details.payment_date'}}</dt>
+                    <dd class="order-payments-value">{{order.date}}</dd>
+                    <dt class="order-payments-description">{{lang 'account.orders.details.payment_method'}}</dt>
+                    <dd class="order-payments-value">{{order.payment_method}}
+                        {{#if order.card_number_last_four}}
+                            {{lang 'account.orders.details.card_ending' card=order.card_number_last_four}}
+                        {{/if}}
+                    </dd>
+                </dl>
+            </section>
             {{#if shipments}}
                 <section class="account-section order-shipments">
                     <h3 class="account-heading">{{lang 'account.orders.details.shipments.header'}}</h3>

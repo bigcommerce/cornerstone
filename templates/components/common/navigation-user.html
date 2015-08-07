@@ -2,6 +2,13 @@
     {{> components/common/currency-selector}}
 
     <ul class="navUser-section navUser-section--alt">
+        {{#compare customer.store_credit.value 0 operator='>'}}
+            <li class="navUser-item">
+                <span class="navUser-action navUser-action--storeCredit">
+                    <span class="navUser-action-divider">{{customer.store_credit.formatted}} Store Credit</span>
+                </span>
+            </li>
+        {{/compare}}
         <li class="navUser-item">
             <a class="navUser-action navUser-item--compare" href="/compare" data-compare-nav>Compare <span class="countPill countPill--positive countPill--alt"></span></a>
         </li>

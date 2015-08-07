@@ -1,25 +1,24 @@
 {{#if show_gift_wrapping}}
     <dl class="cart-item-options cart-item-options--giftWrapping">
+        <dt class="cart-item-option-title">
+            {{lang 'cart.gift_wrapping.title'}}:
+        </dt>
         {{#if gift_wrapping}}
-            <dt class="cart-item-option-title">
-                {{lang 'cart.gift_wrapping.title'}}
-            </dt>
             <dd class="cart-item-option-description">
                 {{gift_wrapping.name}}
                 <span class="cart-item-option-actions">
                     (<a href="" data-item-giftwrap="{{id}}">{{lang 'cart.gift_wrapping.change'}}</a> or <a href="{{gift_wrapping.remove_url}}" onclick="return confirm('{{lang 'cart.gift_wrapping.remove_confirm'}}')">{{lang 'cart.gift_wrapping.remove'}}</a>)
                 </span>
             </dd>
-            <dt class="cart-item-option-title">
-                {{lang 'cart.gift_wrapping.gift_message'}}
-            </dt>
-            <dd class="cart-item-option-description">
-                {{gift_wrapping.message}}
-            </dd>
+            {{#if gift_wrapping.message}}
+                <dt class="cart-item-option-title">
+                    {{lang 'cart.gift_wrapping.gift_message'}}:
+                </dt>
+                <dd class="cart-item-option-description">
+                    {{gift_wrapping.message}}
+                </dd>
+            {{/if}}
         {{else}}
-            <dt class="cart-item-option-title">
-                {{lang 'cart.gift_wrapping.title'}}
-            </dt>
             <dd class="cart-item-option-description">
                 <a href="" data-item-giftwrap="{{id}}">{{lang 'cart.gift_wrapping.add'}}</a>
             </dd>

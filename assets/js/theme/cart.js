@@ -202,7 +202,7 @@ export default class Cart extends PageManager {
 
                 this.bindGiftWrappingForm();
             });
-        });        
+        });
     }
 
     bindGiftWrappingForm() {
@@ -218,7 +218,7 @@ export default class Cart extends PageManager {
             if (id) {
                 $('#giftWrapping-message-' + index).show();
             } else {
-                $('#giftWrapping-message-' + index).hide();                
+                $('#giftWrapping-message-' + index).hide();
             }
         });
 

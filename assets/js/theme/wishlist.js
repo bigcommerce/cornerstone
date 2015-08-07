@@ -8,10 +8,14 @@ import PageManager from '../page-manager';
 export default class WishList extends PageManager {
     constructor() {
         super();
+
         this.modalConfig = {
             modal: $('#modal'),
             modalContent: $('.modal-content', this.modal),
             modalOverlay: $('.loadingOverlay', this.modal)
+        };
+        this.options = {
+            template: 'account/add-wishlist'
         };
 
         let $addWishListForm = $('.wishlist-form');
@@ -67,7 +71,7 @@ export default class WishList extends PageManager {
         });
     }
 
-    wishListModal(url, template) {
+    wishListModal(url, options) {
         // clear the modal
         this.modalConfig.modalContent.html('');
         this.modalConfig.modalOverlay.show();
@@ -75,7 +79,7 @@ export default class WishList extends PageManager {
         // open modal
         this.modalConfig.modal.foundation('reveal', 'open');
 
-        api.getPage(url, {template: template}, (err, content) => {
+        api.getPage(url, options, (err, content) => {
             if (err) {
                 throw new Error(err);
             }
@@ -86,9 +90,9 @@ export default class WishList extends PageManager {
     }
 
     wishListHandler() {
-        $('body').on('click','[data-wishlist]', (event) => {
+        $('body').on('click', '[data-wishlist]', (event) => {
             let $wishListUrl = event.currentTarget.href;
-            this.wishListModal($wishListUrl, 'account/add-wishlist');
+            this.wishListModal($wishListUrl, this.options);
 
             event.preventDefault();
         });

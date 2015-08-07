@@ -8,6 +8,32 @@
             {{> components/account/order-contents order}}
         </div>
         <div class="supporting-section">
+            <section class="account-section order-details">
+                <h3 class="account-heading">{{lang 'account.orders.details.order_details'}}</h3>
+                <ul class="order-address">
+                    <li class="order-address-item">
+                        <span class="order-payment-description">{{lang 'account.orders.details.order_status'}}</span>
+                        <span class="order-payment-value">{{order.status_text}}</span>
+                    </li>
+                    <li class="order-address-item">
+                        <span class="order-payment-description">{{lang 'account.orders.details.payment_date'}}</span>
+                        <span class="order-payment-value">{{order.date}}</span>
+                    </li>
+                    <li class="order-address-item">
+                        <span class="order-payment-description">{{lang 'account.orders.details.order_total'}}</span>
+                        <span class="order-payment-value">{{order.total.formatted}}</span>
+                    </li>
+                    <li class="order-address-item">
+                        <span class="order-payment-description">{{lang 'account.orders.details.payment_method'}}</span>
+                        <span class="order-payment-value">{{order.payment_method}}
+                            {{#if order.card_number_last_four}}
+                                {{lang 'account.orders.details.card_ending' card=order.card_number_last_four}}
+                            {{/if}}
+                        </span>
+                    </li>
+                </ul>
+                <a href="{{order.invoice_url}}" class="button">{{lang 'account.orders.details.print_invoice'}}</a>
+            </section>
             {{#if order.shipping_address}}
                 <section class="account-section order-details">
                     <h3 class="account-heading">{{lang 'account.orders.details.ship_to'}}</h3>
@@ -60,27 +86,6 @@
                     </li>
                 </ul>
             </section>
-            <section class="account-section order-details">
-                <h3 class="account-heading">{{lang 'account.orders.details.payment_details'}}</h3>
-                <ul class="order-address">
-                    <li class="order-address-item">
-                        <span class="order-payment-description">{{lang 'account.orders.details.order_total'}}</span>
-                        <span class="order-payment-value">{{order.total.formatted}}</span>
-                    </li>
-                    <li class="order-address-item">
-                        <span class="order-payment-description">{{lang 'account.orders.details.payment_date'}}</span>
-                        <span class="order-payment-value">{{order.date}}</span>
-                    </li>
-                    <li class="order-address-item">
-                        <span class="order-payment-description">{{lang 'account.orders.details.payment_method'}}</span>
-                        <span class="order-payment-value">{{order.payment_method}}
-                            {{#if order.card_number_last_four}}
-                                {{lang 'account.orders.details.card_ending' card=order.card_number_last_four}}
-                            {{/if}}
-                        </span>
-                    </li>
-                </ul>
-            </section>
             {{#if shipments}}
                 <section class="account-section order-shipments">
                     <h3 class="account-heading">{{lang 'account.orders.details.shipments.header'}}</h3>
@@ -126,10 +131,12 @@
                     </p>
                 </section>
             {{/if}}
-            <section class="account-section order-details order-contact">
-                <h3 class="account-heading">{{lang 'account.orders.details.contact_us'}}</h3>
-                <p class="order-details-info">{{lang 'account.orders.details.contact_text'}}</p>
-                <a href="#" class="button button--primary">{{lang 'account.orders.details.contact_us'}}</a>
+            <section class="account-section order-details">
+                <h3 class="account-heading">{{lang 'account.orders.details.actions'}}</h3>
+                <div class="order-details-info">
+                    <a href="{{order.reorder_url}}" class="button">{{lang 'account.orders.details.reorder'}}</a>
+                    <a href="{{order.return_url}}" class="button">{{lang 'account.orders.details.return'}}</a>
+                </div>
             </section>
         </div>
     </div>

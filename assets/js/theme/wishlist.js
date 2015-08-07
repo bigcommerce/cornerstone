@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import { api } from 'bigcommerce/stencil-utils';
 import 'foundation/js/foundation/foundation';
 import 'foundation/js/foundation/foundation.reveal';
 import nod from './common/nod';
@@ -7,30 +8,40 @@ import PageManager from '../page-manager';
 export default class WishList extends PageManager {
     constructor() {
         super();
+        this.modalConfig = {
+            modal: $('#modal'),
+            modalContent: $('.modal-content', this.modal),
+            modalOverlay: $('.loadingOverlay', this.modal),
+            modalModifierClasses: 'modal--large'
+        };
 
-        let $addWishlistForm = $('.wishlist-form');
+        let $addWishListForm = $('.wishlist-form');
 
         this.wishlistDeleteConfirm();
 
-        if ($addWishlistForm.length) {
-            this.registerAddWishlistValidation($addWishlistForm);
+        if ($addWishListForm.length) {
+            this.registerAddWishListValidation($addWishListForm);
         }
+
+        // Initialize wish list listener
+        this.wishListHandler();
     }
 
     /**
-     * Creates a confirm box before deleting all wishlists
+     * Creates a confirm box before deleting all wish lists
      */
     wishlistDeleteConfirm() {
-        $('#wishlist-delete').on('click',(event) => {
-            let confirmed = confirm('This will delete all your wishlists');
+        $('body').on('click', '[data-wishlist-delete]', (event) => {
+            let confirmed = confirm('Are you sure you want to delete the wish list(s)? This action cannot be undone.');
             if (confirmed) {
-                return;
+                return true;
             }
-            return false
+
+            event.preventDefault()
         });
     }
 
-    registerAddWishlistValidation($addWishlistForm) {
+    registerAddWishListValidation($addWishlistForm) {
         this.addWishlistValidator = nod({
             submit: '.wishlist-form input[type="submit"]'
         });
@@ -57,5 +68,32 @@ export default class WishList extends PageManager {
         });
     }
 
+    wishListModal(url, template) {
+        this.modalConfig.modal.addClass(this.modalConfig.modalModifierClasses);
 
+        // clear the modal
+        this.modalConfig.modalContent.html('');
+        this.modalConfig.modalOverlay.show();
+
+        // open modal
+        this.modalConfig.modal.foundation('reveal', 'open');
+
+        api.getPage(url, {template: template}, (err, content) => {
+            if (err) {
+                throw new Error(err);
+            }
+
+            this.modalConfig.modalOverlay.hide();
+            this.modalConfig.modalContent.html(content);
+        });
+    }
+
+    wishListHandler() {
+        $('body').on('click','[data-wishlist]', (event) => {
+            let $wishListUrl = event.currentTarget.href;
+            this.wishListModal($wishListUrl, 'account/add-wishlist');
+
+            event.preventDefault();
+        });
+    }
 }

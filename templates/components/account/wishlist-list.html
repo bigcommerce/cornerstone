@@ -41,6 +41,7 @@
     {{/unless}}
     <div class="form-actions">
         <a href="{{this.urls.account.wishlists.add}}" class="button button--primary" role="button" data-wishlist>{{lang 'account.wishlists.new'}}</a>
+        {{inject 'wishlistDelete' (lang 'account.wishlists.delete_alert')}}
         {{#if customer.wishlists}}
             {{#each customer.wishlists}}
                 <input type="hidden" value="{{this.id}}" name="deletewishlist[]">

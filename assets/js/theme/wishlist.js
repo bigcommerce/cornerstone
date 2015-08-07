@@ -32,7 +32,7 @@ export default class WishList extends PageManager {
      */
     wishlistDeleteConfirm() {
         $('body').on('click', '[data-wishlist-delete]', (event) => {
-            let confirmed = confirm('Are you sure you want to delete the wish list(s)? This action cannot be undone.');
+            let confirmed = confirm(this.context.wishlistDelete);
             if (confirmed) {
                 return true;
             }

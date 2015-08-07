@@ -209,18 +209,22 @@ export default class Cart extends PageManager {
         let $form = $('.giftWrapping-form');
 
         $('.giftWrapping-select').change((event) => {
-            let id = $(event.currentTarget).val(),
-                index = $(event.currentTarget).data('index');
+            let $select = $(event.currentTarget),
+                id = $select.val(),
+                index = $select.data('index'),
+                allowMessage = $select.find('option[value=' + id + ']').data('allow-message');
 
             $('.giftWrapping-image-' + index).hide();
             $('#giftWrapping-image-' + index + '-' + id).show();
 
-            if (id) {
+            if (allowMessage && id) {
                 $('#giftWrapping-message-' + index).show();
             } else {
                 $('#giftWrapping-message-' + index).hide();
             }
         });
+
+        $('.giftWrapping-select').trigger('change');
 
         function toggleViews() {
             var value = $("input:radio[name ='giftwraptype']:checked").val(),

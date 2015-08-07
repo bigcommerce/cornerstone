@@ -6,6 +6,7 @@ import utils from 'bigcommerce/stencil-utils';
 export default class Cart extends PageManager {
     loaded(next) {
         this.$cartContent = $('[data-cart-content]');
+        this.$cartTotals = $('[data-cart-totals]');
         this.$overlay = $('[data-cart] .loadingOverlay')
             .hide(); // TODO: temporary until roper pulls in his cart components
 
@@ -47,7 +48,13 @@ export default class Cart extends PageManager {
     }
 
     refreshContent(remove) {
-        let $cartItemsRows = $('[data-item-row]', this.$cartContent);
+        let $cartItemsRows = $('[data-item-row]', this.$cartContent),
+            options = {
+                template: {
+                    content: 'cart/content',
+                    totals: 'cart/totals',
+                }
+            };
 
         this.$overlay.show();
 
@@ -56,10 +63,12 @@ export default class Cart extends PageManager {
             return window.location.reload();
         }
 
-        utils.api.cart.getContent({template: 'cart/content'}, (err, response) => {
+
+        utils.api.cart.getContent(options, (err, response) => {
             let quantity;
 
-            this.$cartContent.html(response);
+            this.$cartContent.html(response.content);
+            this.$cartTotals.html(response.totals);
             this.bindEvents();
             this.$overlay.hide();
 

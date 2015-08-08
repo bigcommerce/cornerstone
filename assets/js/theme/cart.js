@@ -49,10 +49,12 @@ export default class Cart extends PageManager {
 
     refreshContent(remove) {
         let $cartItemsRows = $('[data-item-row]', this.$cartContent),
+            $cartPageTitle = $('[data-cart-page-title]'),
             options = {
                 template: {
                     content: 'cart/content',
                     totals: 'cart/totals',
+                    pageTitle: 'cart/page-title',
                 }
             };
 
@@ -69,6 +71,7 @@ export default class Cart extends PageManager {
 
             this.$cartContent.html(response.content);
             this.$cartTotals.html(response.totals);
+            $cartPageTitle.replaceWith(response.pageTitle);
             this.bindEvents();
             this.$overlay.hide();
 

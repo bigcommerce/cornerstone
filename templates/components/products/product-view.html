@@ -89,10 +89,10 @@
     <section class="productView-images" data-image-gallery>
         <figure class="productView-image"
                 data-image-gallery-main
-                data-zoom-image="{{getImage product.main_image 'zoom'}}"
+                data-zoom-image="{{getImage product.main_image 'zoom' (cdn theme_settings.default_image_product)}}"
                 >
-            <a href="{{getImage product.main_image 'zoom'}}">
-                <img src="{{getImage product.main_image 'product'}}" alt="{{image.alt}}" data-main-image>
+            <a href="{{getImage product.main_image 'zoom' (cdn theme_settings.default_image_product)}}">
+                <img src="{{getImage product.main_image 'product' (cdn theme_settings.default_image_product)}}" alt="{{image.alt}}" data-main-image>
             </a>
         </figure>
         <ul class="productView-thumbnails">
@@ -100,11 +100,11 @@
                 <li class="productView-thumbnail">
                     <a
                         class="productView-thumbnail-link"
-                        href="{{getImage this 'product'}}"
+                        href="{{getImage this 'product' (cdn ../theme_settings.default_image_product)}}"
                         data-image-gallery-item
-                        data-image-gallery-new-image-url="{{getImage this 'product'}}"
-                        data-image-gallery-zoom-image-url="{{getImage this 'zoom'}}">
-                        <img src="{{getImage this 'thumb'}}" alt="{{image.alt}}">
+                        data-image-gallery-new-image-url="{{getImage this 'product' (cdn ../theme_settings.default_image_product)}}"
+                        data-image-gallery-zoom-image-url="{{getImage this 'zoom' (cdn ../theme_settings.default_image_product)}}">
+                        <img src="{{getImage this 'thumb' (cdn ../theme_settings.default_image_product)}}" alt="{{image.alt}}">
                     </a>
                 </li>
             {{/each}}

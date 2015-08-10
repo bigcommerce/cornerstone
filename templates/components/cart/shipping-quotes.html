@@ -7,15 +7,16 @@
     </ul>
 {{else}}
     <form>
-        
         <ul>
             {{#each quotes.shipping_methods}}
                 <li>
-                    <input class="shipping-quote" type="radio" name="shipping_method" value="{{id}}">
-                    {{provider_name}} <b>{{cost}}</b>
+                    <input id="shipping-quote-{{id}}" class="shipping-quote" type="radio" name="shipping_method" value="{{id}}">
+                    <label for="shipping-quote-{{id}}">
+                        {{provider_name}} <b>{{cost.formatted}}</b>
+                    </label>
                 </li>
             {{/each}}
         </ul>
-        <input class="select-shipping-quote" type="submit" value="{{lang 'select'}}">
+        <input class="button button--small select-shipping-quote" type="submit" value="{{lang 'cart.checkout.select'}}">
     </form>
 {{/if}}

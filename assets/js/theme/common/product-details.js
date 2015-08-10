@@ -159,57 +159,85 @@ export default class Product {
                 return;
             }
 
+            const $previewModal = $('#previewModal');
+
+            // Prevent default
             event.preventDefault();
 
-            let $modal = $('#modal'),
-                $modalContent = $('.modal-content', $modal),
-                $modalOverlay = $('.loadingOverlay', $modal),
-                $cartCounter = $('.navUser-action .cart-count');
+            // Optimistic loading
+            this.openCartModal($previewModal);
 
-            // add item to cart
+            // Add item to cart
             utils.api.cart.itemAdd(new FormData(form), (err, response) => {
-                let options;
+                const errorMessage = err || response.data.error;
 
-                // if there is an error
-                if (err) {
-                    return alert(err);
-                } else if (response.data.error) {
-                    return alert(response.data.error);
+                // Guard statement
+                if (errorMessage) {
+                    alert(errorMessage);
+
+                    this.closeCartModal($previewModal);
+
+                    return;
                 }
 
-                options = {
-                    template: 'cart/preview',
-                    params: {
-                        suggest: response.data.cart_item.id
-                    },
-                    config: {
-                        cart: {
-                            suggestions: {
-                                limit: 4
-                            }
-                        }
-                    }
-                };
+                // Show modal
+                this.populateCartModal($previewModal, response.data.cart_item.id, ($modalContent) => {
+                    // Update cart counter
+                    const $body = $('body'),
+                          $cartQuantity = $('[data-cart-quantity]', $modalContent),
+                          $cartCounter = $('.navUser-action .cart-count'),
+                          quantity = $cartQuantity.data('cart-quantity') || 0;
 
-                // clear the modal
-                $modalContent.html('');
-                $modalOverlay.show();
-
-                // open modal
-                $modal.foundation('reveal', 'open');
-
-                // fetch cart to display in cart preview
-                utils.api.cart.getContent(options, (err, response) => {
-                    let quantity;
-
-                    $modalOverlay.hide();
                     $cartCounter.addClass('cart-count--positive');
-                    $modalContent.html(response);
-
-                    quantity = $('[data-cart-quantity]', $modalContent).data('cart-quantity') || 0;
-                    $('body').trigger('cart-quantity-update', quantity);
+                    $body.trigger('cart-quantity-update', quantity);
                 });
             });
+        });
+    }
+
+    /**
+     * Open cart modal
+     */
+    openCartModal($modal) {
+        $modal.foundation('reveal', 'open');
+    }
+
+    /**
+     * Close cart modal
+     */
+    closeCartModal($modal) {
+        $modal.foundation('reveal', 'close');
+    }
+
+    /**
+     * Populate cart modal
+     */
+    populateCartModal($modal, cartItemId, onComplete) {
+        // Define options
+        const $modalContent = $('.modal-content', $modal),
+              $modalOverlay = $('.loadingOverlay', $modal);
+
+        const options = {
+            template: 'cart/preview',
+            params: {
+                suggest: cartItemId
+            },
+            config: {
+                cart: {
+                    suggestions: {
+                        limit: 4
+                    }
+                }
+            }
+        };
+
+        // Fetch cart to display in modal
+        utils.api.cart.getContent(options, (err, response) => {
+            // Insert fetched content into modal
+            $modalOverlay.hide();
+            $modalContent.html(response);
+
+            onComplete($modalContent);
         });
     }
 }

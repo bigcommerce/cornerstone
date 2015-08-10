@@ -54,8 +54,8 @@
                             {{lang 'forms.gift_certificate.purchase.amount' }}
                             <small>{{lang 'common.required' }}</small>
                         </label>
-                        <input type="text" data-min="{{forms.gift_certificate.minimum}}" data-max="{{forms.gift_certificate.maximum}}" data-min-formatted="{{forms.gift_certificate.minimum_formatted}}" data-max-formatted="{{forms.gift_certificate.maximum_formatted}}" class="form-input" name="certificate_amount" id="certificate_amount" value="{{forms.gift_certificate.values.amount}}">
-                        <span class="form-inlineMessage">{{lang 'forms.gift_certificate.purchase.custom_range' min=forms.gift_certificate.minimum_formatted max=forms.gift_certificate.maximum_formatted}}</span>
+                        <input type="text" data-min="{{forms.gift_certificate.minimum.value}}" data-max="{{forms.gift_certificate.maximum.value}}" data-min-formatted="{{forms.gift_certificate.minimum.formatted}}" data-max-formatted="{{forms.gift_certificate.maximum.formatted}}" class="form-input" name="certificate_amount" id="certificate_amount" value="{{forms.gift_certificate.values.amount}}">
+                        <span class="form-inlineMessage">{{lang 'forms.gift_certificate.purchase.custom_range' min=forms.gift_certificate.minimum.formatted max=forms.gift_certificate.maximum.formatted}}</span>
                     </div>
                 {{else}}
                     <div class="form-field">

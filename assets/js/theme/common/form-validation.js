@@ -8,6 +8,11 @@ import utils from 'bigcommerce/stencil-utils';
  * @returns {{selector: string, triggeredBy: string, validate: Function, errorMessage: string}}
  */
 function buildDateValidation($formField, validation) {
+    // No date range restriction, skip
+    if (!(validation.min_date && validation.max_date)) {
+        return;
+    }
+
     let invalidMessage = `Your chosen date must fall between ${validation.min_date} and ${validation.max_date}`,
         formElementId = $formField.attr('id'),
         minSplit = validation.min_date.split('-'),
@@ -95,7 +100,11 @@ function buildValidation($validateableElement) {
         formFieldSelector = `#${$validateableElement.attr('id')}`;
 
     if (validation.type === 'datechooser') {
-        fieldValidations.push(buildDateValidation($validateableElement, validation));
+        let dateValidation = buildDateValidation($validateableElement, validation);
+
+        if (dateValidation) {
+            fieldValidations.push(dateValidation);
+        }
     } else if (validation.required && (validation.type == 'checkboxselect' || validation.type == 'radioselect')) {
         fieldValidations.push(buildRequiredCheckboxValidation($validateableElement, validation));
     } else {

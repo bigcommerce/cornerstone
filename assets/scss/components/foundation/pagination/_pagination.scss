@@ -15,7 +15,7 @@
     @include clearfix;
 
     font-size: 0; // 1
-    margin-bottom: spacing('single');
+    margin-bottom: spacing("single");
     text-align: center;
 
     .pagination-item { // 2
@@ -93,3 +93,34 @@
     }
 }
 
+
+// Simple/small pagination (Next/Previous arrows are the only way to navigate)
+// -----------------------------------------------------------------------------
+
+.pagination-list--small {
+    position: relative;
+
+    .pagination-item {
+        color: $pagination-list--small-color;
+        cursor: inherit;
+        line-height: $pagination-list--small-lineHeight;
+    }
+
+    .pagination-link {
+        padding: $pagination-list--small-link-padding;
+    }
+
+    .pagination-item--previous,
+    .pagination-item--next {
+        position: absolute;
+        top: 0;
+    }
+
+    .pagination-item--previous {
+        left: 0;
+    }
+
+    .pagination-item--next {
+        right: 0;
+    }
+}

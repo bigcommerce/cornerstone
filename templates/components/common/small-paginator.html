@@ -1,20 +1,36 @@
 <div class="pagination">
-    {{#if previous}}
-        <a class="pagination-link pagination-link-previous" href="{{previous}}">
-            « {{lang 'common.previous' }}
-        </a>
-    {{/if}}
+    <ul class="pagination-list pagination-list--small">
+        {{#if previous}}
+            <li class="pagination-item pagination-item--previous">
+                <a class="pagination-link" href="{{previous}}" data-faceted-search-facet>
+                    <i class="icon" aria-hidden="true">
+                        <svg>
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-chevron-left"></use>
+                        </svg>
+                    </i>
+                    {{lang 'common.previous'}}
+                </a>
+            </li>
+        {{/if}}
 
-    {{#if this.links.length}}
-        <span>{{lang 'common.paginator.page_of' current=this.current total=this.links.length}}</span>
-    {{else}}
-        <span>{{lang 'common.paginator.page_of' current=1 total=1}}</span>
-    {{/if}}
+        {{#if this.links.length}}
+            <li class="pagination-item">{{lang 'common.paginator.page_of' current=this.current total=this.links.length}}</li>
+        {{else}}
+            <li class="pagination-item">{{lang 'common.paginator.page_of' current=1 total=1}}</li>
+        {{/if}}
 
-    {{#if next}}
-        <a class="pagination-link pagination-link-next" href="{{next}}">
-            {{lang 'common.next' }} »
-        </a>
-    {{/if}}
+        {{#if next}}
+            <li class="pagination-item pagination-item--next">
+                <a class="pagination-link" href="{{next}}" data-faceted-search-facet>
+                    {{lang 'common.next'}}
+                    <i class="icon" aria-hidden="true">
+                        <svg>
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-chevron-right"></use>
+                        </svg>
+                    </i>
+                </a>
+            </li>
+        {{/if}}
+    </ul>
 </div>
 

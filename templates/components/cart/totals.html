@@ -7,6 +7,24 @@
             <span>{{cart.sub_total.formatted}}</span>
         </div>
     </li>
+    {{#if cart.coupons}}
+        {{#each cart.coupons}}
+            <li class="cart-total">
+                <div class="cart-total-label">
+                    <strong>{{lang 'cart.coupons.coupon_code_label' code=code}}</strong>
+                </div>
+                <div class="cart-total-value">
+                    <span>{{discount.formatted}}
+                        <a href="{{remove_url}}">
+                            <svg class="icon cart-remove">
+                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use>
+                            </svg>
+                        </a>
+                    </span>
+                </div>
+            </li>
+        {{/each}}
+    {{/if}}
     <li class="cart-total">
         <div class="cart-total-label">
             <strong>{{lang 'cart.checkout.enter_code'}}:</strong>

@@ -127,8 +127,13 @@ export default class Cart extends PageManager {
 
             event.preventDefault();
 
+            // Empty code
+            if (!code) {
+                return alert($codeInput.data('error'));
+            }
+
             utils.api.cart.applyCode(code, (err, response) => {
-                if (response.data.status === 'succeed') {
+                if (response.data.status === 'success') {
                     this.refreshContent();
                 } else {
                     alert(response.data.errors.join('\n'));

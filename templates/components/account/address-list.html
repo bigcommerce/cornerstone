@@ -18,7 +18,10 @@
                         <span class="address-description">{{address2}}</span>
                     </li>
                     <li class="address-line">
-                        <span class="address-description">{{city}}, {{state}} {{zip}}</span>
+                        <span class="address-description">{{city}}{{#if state}}, {{state}}{{/if}} {{zip}}</span>
+                    </li>
+                    <li class="address-line">
+                        <span class="address-description">{{country}}</span>
                     </li>
                     <li class="address-line">
                         <span class="address-description">{{lang 'account.addresses.phone' }}</span>

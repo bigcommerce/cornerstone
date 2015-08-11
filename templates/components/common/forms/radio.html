@@ -14,7 +14,12 @@
                 value="{{value}}"
                 data-label="{{label}}"
                 aria-required="{{required}}"
-                {{#if checked}}checked{{/if}}>
+                {{#if checked}}
+                    checked
+                {{/if}}
+                {{#if private_id}}
+                    data-field-type="{{private_id}}"
+                {{/if}}>
             <label class="form-label" for="{{../name}}_{{@index}}">{{label}}</label>
         {{/each}}
     {{/if}}

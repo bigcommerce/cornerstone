@@ -82,21 +82,24 @@ export default class Auth extends PageManager {
             createAccountValidator = nod({
                 submit: `${this.formCreateSelector} input[type="submit"]`
             }),
-            $stateElement = $('[data-label="State/Province"]'),
-            emailSelector = `${this.formCreateSelector} [name="FormField[1][1]"]`,
+            $stateElement = $('[data-field-type="State"]'),
+            emailSelector = `${this.formCreateSelector} [data-field-type="EmailAddress"]`,
             $emailElement = $(emailSelector),
-            passwordSelector = `${this.formCreateSelector} [name="FormField[1][2]"]`,
+            passwordSelector = `${this.formCreateSelector} [data-field-type="Password"]`,
             $passwordElement = $(passwordSelector),
-            password2Selector = `${this.formCreateSelector} [name="FormField[1][3]"]`,
+            password2Selector = `${this.formCreateSelector} [data-field-type="ConfirmPassword"]`,
             $password2Element = $(password2Selector);
 
         createAccountValidator.add(validationModel);
 
         if ($stateElement) {
-            createAccountValidator.remove($stateElement);
             let $last;
 
-            stateCountry($stateElement, (field) => {
+            // Requests the states for a country with AJAX
+            stateCountry($stateElement, this.context, (err, field) => {
+                if (err) {
+                    throw new Error(err);
+                }
                 let $field = $(field);
 
                 if ($last) {
@@ -107,6 +110,9 @@ export default class Auth extends PageManager {
                     $last = field;
                     Validators.setStateCountryValidation(createAccountValidator, field);
                 } else {
+                    if (createAccountValidator.getStatus($stateElement)) {
+                        createAccountValidator.remove($stateElement);
+                    }
                     Validators.cleanUpStateValidation(field);
                 }
             });

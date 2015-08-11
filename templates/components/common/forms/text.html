@@ -1,6 +1,6 @@
-<div class="form-field" id="{{id}}_input" data-validation="{{validation}}">
+<div class="form-field" id="{{id}}_input" data-validation="{{validation}}" {{#if private_id}}data-type="{{private_id}}"{{/if}}>
     <label class="form-label" for="{{id}}">{{label}}
         {{#if required}}<small>{{lang 'common.required' }}</small>{{/if}}
     </label>
-    <input type="text" id="{{id}}_input" data-label="{{label}}" name="{{name}}" {{#if value}} value="{{value}}"{{/if}} class="form-input" aria-required="{{required}}">
+    <input type="text" id="{{id}}_input" data-label="{{label}}" name="{{name}}" {{#if value}} value="{{value}}"{{/if}} class="form-input" aria-required="{{required}}" {{#if private_id}}data-field-type="{{private_id}}"{{/if}}>
 </div>

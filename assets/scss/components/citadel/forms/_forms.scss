@@ -64,26 +64,14 @@
     }
 }
 
-.form-field--success.form-field--input {
-    position: relative;
+.form-field--success {
 
-    .form-label {
-
-        &:first-of-type:after {
-            background: $form-success-icon no-repeat;
-            background-size: $form-inlineMessage-backgroundSize;
-            content: "";
-            display: inline-block;
-            height: $form-success-icon-height;
-            pointer-events: none;
-            position: absolute;
-            top: $form-success-icon-top;
-            right: $form-success-icon-right;
-            width: $form-success-icon-width;
+    .form-input[type="text"] {
+        background: {
+            image: $form-success-icon;
+            position: right $form-success-icon-right center;
+            repeat: no-repeat;
         }
-    }
-
-    .form-input {
         padding-right: $form-success-input-paddingRight;
     }
 }

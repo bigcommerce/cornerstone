@@ -1,4 +1,8 @@
 <div class="form-field">
-    <label class="form-label form-label--alternate" for="customization_{{this.id}}_{{../id}}">{{this.display_name}}</label>
+    <label class="form-label form-label--alternate form-label--inlineSmall" for="customization_{{this.id}}_{{../id}}">{{this.display_name}}
+        {{#if required}}
+            <small>{{lang 'common.required'}}</small>
+        {{/if}}
+    </label>
     <textarea class="form-input" id="customization_{{this.id}}_{{../id}}" name="ProductFields[{{this.id}}]">{{this.prefill}}</textarea>
 </div>

@@ -9,7 +9,18 @@
     <p>
         <strong>{{lang 'gift_certificate.balance.intro' }}</strong>
     </p>
-    <form class="form form--oneField" method="post" action="{{urls.gift_certificate.balance}}">
+
+    {{#if gift_certificate}}
+        {{#if gift_certificate.error}}
+            {{>components/common/alert-error gift_certificate.error}}
+        {{else}}
+            <h1>{{gift_certificate.balance.formatted}}</h1>
+            <h3>{{gift_certificate.code}}</h3>
+        {{/if}}
+    {{/if}}
+
+    <form class="form form--oneField" method="get">
+        <input type="hidden" name="action" value="balance">
         <div class="form-field">
             <label class="form-label" for="giftcertificatecode">
                 {{lang 'forms.gift_certificate.balance.code' }}

@@ -45,7 +45,7 @@ export default class PageManager {
 
         api.getPage(url, options, (err, content) => {
             if (err) {
-                callback(err);
+                return callback(err);
             }
 
             modal.overlay.hide();

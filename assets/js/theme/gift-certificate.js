@@ -128,7 +128,7 @@ export default class GiftCertificate extends PageManager {
 
 
         $purchaseForm.submit((event) => {
-            let $submitButton = $(document.activeElement);
+            let $submitElement = $(document.activeElement);
 
             purchaseValidator.performCheck();
 
@@ -136,8 +136,8 @@ export default class GiftCertificate extends PageManager {
                 return event.preventDefault();
             }
 
-            if ($submitButton.attr('id') === 'gift-certificate-preview') { 
-                let previewUrl = $submitButton.data('preview-url') + '&' + $purchaseForm.serialize();
+            if ($submitElement.attr('id') === 'gift-certificate-preview') { 
+                let previewUrl = $submitElement.data('preview-url') + '&' + $purchaseForm.serialize();
 
                 event.preventDefault();
 

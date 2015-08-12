@@ -3,6 +3,7 @@ import _ from 'lodash';
 
 export default class PageManager {
     constructor() {
+        this.genericError = 'Oops! Something went wrong.';
     }
 
     before(next) {
@@ -44,15 +45,24 @@ export default class PageManager {
         modal.element.foundation('reveal', 'open');
 
         api.getPage(url, options, (err, content) => {
+            modal.overlay.hide();
+
             if (err) {
-                return callback(err);
+                modal.content.html(this.genericError);
+
+                if (typeof callback === 'function') {
+                    return callback(err, {
+                        modal: modal
+                    });
+                } else {
+                    throw err;
+                }
             }
 
-            modal.overlay.hide();
             modal.content.html(content);
 
             if (typeof callback === 'function') {
-                callback(err, {
+                callback(null, {
                     modal: modal,
                     content: content
                 });

@@ -141,7 +141,12 @@ export default class GiftCertificate extends PageManager {
 
                 event.preventDefault();
 
-                this.getPageModal(previewUrl);
+                this.getPageModal(previewUrl, (err, data) => {
+                    if (err) {
+                        data.modal.content.html('There was a problem loading the preview. Please try again later.');
+                        throw err;
+                    }
+                });
             }
         });
     }

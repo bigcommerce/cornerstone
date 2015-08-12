@@ -128,13 +128,21 @@ export default class GiftCertificate extends PageManager {
 
 
         $purchaseForm.submit((event) => {
+            let $submitButton = $(document.activeElement);
+
             purchaseValidator.performCheck();
 
-            if (purchaseValidator.areAll('valid')) {
-                return;
+            if (!purchaseValidator.areAll('valid')) {
+                return event.preventDefault();
             }
 
-            event.preventDefault();
+            if ($submitButton.attr('id') === 'gift-certificate-preview') { 
+                let previewUrl = $submitButton.data('preview-url') + '&' + $purchaseForm.serialize();
+
+                event.preventDefault();
+
+                this.getPageModal(previewUrl);
+            }
         });
     }
 }

@@ -4,11 +4,12 @@ import Wishlist from './wishlist';
 import validation from './common/form-validation';
 import stateCountry from './common/state-country';
 import forms from './common/models/forms';
-import {classifyForm, Validators} from './common/form-utils';
+import {classifyForm, Validators, insertStateHiddenField} from './common/form-utils';
 
 export default class Account extends PageManager {
     constructor() {
         super();
+        this.$state = $('[data-field-type="State"]');
     }
 
     loaded(next) {
@@ -22,10 +23,16 @@ export default class Account extends PageManager {
 
         if ($editAccountForm.length) {
             this.registerEditAccountValidation($editAccountForm);
+            if (this.$state.is('input')) {
+                insertStateHiddenField(this.$state);
+            }
         }
 
         if ($addressForm.length) {
             this.initAddressFormValidation($addressForm);
+            if (this.$state.is('input')) {
+                insertStateHiddenField(this.$state);
+            }
         }
 
         if ($inboxForm.length) {
@@ -41,7 +48,7 @@ export default class Account extends PageManager {
 
     initAddressFormValidation($addressForm) {
         let validationModel = validation($addressForm),
-            stateSelector = 'form[data-address-form] [name="FormField[2][12]"]',
+            stateSelector = 'form[data-address-form] [data-field-type="State"]',
             $stateElement = $(stateSelector),
             addressValidator = nod({
                 submit: 'form[data-address-form] input[type="submit"]'
@@ -52,7 +59,12 @@ export default class Account extends PageManager {
         if ($stateElement) {
             let $last;
 
-            stateCountry($stateElement, (field) => {
+            // Requests the states for a country with AJAX
+            stateCountry($stateElement, this.context, (err, field) => {
+                if (err) {
+                    throw new Error(err);
+                }
+
                 let $field = $(field);
 
                 if ($last) {
@@ -108,13 +120,13 @@ export default class Account extends PageManager {
             editValidator = nod({
                 submit: '${formEditSelector} input[type="submit"]'
             }),
-            emailSelector = `${formEditSelector} [name="FormField[1][1]"]`,
+            emailSelector = `${formEditSelector} [data-field-type="EmailAddress"]`,
             $emailElement = $(emailSelector),
-            passwordSelector = `${formEditSelector} [name="FormField[1][2]"]`,
+            passwordSelector = `${formEditSelector} [data-field-type="Password"]`,
             $passwordElement = $(passwordSelector),
-            password2Selector = `${formEditSelector} [name="FormField[1][3]"]`,
+            password2Selector = `${formEditSelector} [data-field-type="ConfirmPassword"]`,
             $password2Element = $(password2Selector),
-            currentPasswordSelector = `${formEditSelector} [name="FormField[1][24]"]`,
+            currentPasswordSelector = `${formEditSelector} [data-field-type="CurrentPassword"]`,
             $currentPassword = $(currentPasswordSelector);
 
         //This only handles the custom fields, standard fields are added below

@@ -34,6 +34,8 @@
                 <div class="form-actions">
                     <input type="submit" class="button button--primary" value="{{lang 'forms.address.submit_value'}}">
                     <a href="{{urls.account.addresses}}" class="button">{{lang 'common.cancel'}}</a>
+                    {{inject 'required' (lang 'common.required')}}
+                    {{inject 'state_error' (lang 'errors.state_error')}}
                 </div>
             </form>
 

@@ -9,7 +9,7 @@ let inputTagNames = [
     'textarea'
 ];
 
-const VALIDATION_PASSWORD_ALPHA_REGEX   = /[A-Za-z]/;
+const VALIDATION_PASSWORD_ALPHA_REGEX = /[A-Za-z]/;
 const VALIDATION_PASSWORD_NUMERIC_REGEX = /[0-9]/;
 
 /**
@@ -80,6 +80,34 @@ export function classifyForm(formSelector, options = {}) {
     });
 
     return $form;
+}
+
+/**
+ * Get id from given field
+ * @param {object} $field JQuery field object
+ * @return {string}
+ */
+function getFieldId($field) {
+    let fieldId = $field.prop('name').match(/(\[.*\])/);
+
+    if (fieldId.length !== 0) {
+        return fieldId[0];
+    }
+}
+
+/**
+ * Insert hidden field after State/Province field
+ * @param {object} $stateField JQuery field object
+ */
+function insertStateHiddenField($stateField) {
+    let fieldId = getFieldId($stateField),
+        stateFieldAttrs = {
+            type: 'hidden',
+            name: `FormFieldIsText${fieldId}`,
+            value: '1'
+    };
+
+    $stateField.after($('<input />', stateFieldAttrs))
 }
 
 let Validators = {
@@ -188,7 +216,7 @@ let Validators = {
      * @param field
      */
     cleanUpStateValidation: (field) => {
-        let $fieldClassElement = $((`div#${field.attr('id')}`));
+        let $fieldClassElement = $((`[data-type="${field.data('field-type')}"]`));
 
         Object.keys(nod.classes).forEach((value) => {
             if ($fieldClassElement.hasClass(nod.classes[value])) {
@@ -198,4 +226,4 @@ let Validators = {
     }
 };
 
-export {Validators as Validators};
+export {Validators, insertStateHiddenField}

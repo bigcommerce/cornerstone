@@ -22,12 +22,12 @@
             <td class="table-actions">
                 <form method="post" action="{{delete_url}}" class="form">
                     <fieldset class="form-fieldset">
-                        <a href="{{edit_url}}" class="button button--small" data-wishlist>{{lang 'common.edit'}}</a>
-                        <input type="submit" value="{{lang 'common.delete'}}" class="button button--small" data-wishlist-delete>
                         {{#if is_public}}
                             <a href="{{share_url}}" class="button button--primary button--small"
                            role="button">{{lang 'common.share'}}</a>
                         {{/if}}
+                        <a href="{{edit_url}}" class="button button--small" data-wishlist>{{lang 'common.edit'}}</a>
+                        <input type="submit" value="{{lang 'common.delete'}}" class="button button--small" data-wishlist-delete>
                     </fieldset>
                 </form>
             </td>

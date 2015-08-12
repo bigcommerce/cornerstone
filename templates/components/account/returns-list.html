@@ -36,11 +36,12 @@
                 <p class="account-product-description">{{lang 'account.returns.list.product_details' num_products=this.quantity}} <a href="{{this.product.url}}">{{this.product.name}}</a></p>
 
                 {{#if this.product.options}}
-                    <ul class="account-product-options">
+                    <dl class="productOptionsList">
                         {{#each this.product.options}}
-                            <li><span class="account-product-optionLabel">{{name}}:</span> {{value}}</li>
+                            <dt class="productOptionsList-label">{{name}}:</dt>
+                            <dd class="productOptionsList-description">{{value}}</dd>
                         {{/each}}
-                    </ul>
+                    </dl>
                 {{/if}}
 
                 <div class="account-product-details">

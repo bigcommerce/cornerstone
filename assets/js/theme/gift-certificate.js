@@ -128,26 +128,32 @@ export default class GiftCertificate extends PageManager {
 
 
         $purchaseForm.submit((event) => {
-            let $submitElement = $(document.activeElement);
-
             purchaseValidator.performCheck();
 
             if (!purchaseValidator.areAll('valid')) {
                 return event.preventDefault();
             }
+        });
 
-            if ($submitElement.attr('id') === 'gift-certificate-preview') { 
-                let previewUrl = $submitElement.data('preview-url') + '&' + $purchaseForm.serialize();
+        $('#gift-certificate-preview').click((event) => {
+            let previewUrl;
 
-                event.preventDefault();
+            event.preventDefault();
 
-                this.getPageModal(previewUrl, (err, data) => {
-                    if (err) {
-                        data.modal.content.html('There was a problem loading the preview. Please try again later.');
-                        throw err;
-                    }
-                });
+            purchaseValidator.performCheck();
+            if (!purchaseValidator.areAll('valid')) {
+                return;
             }
+
+            previewUrl = $(event.currentTarget).data('preview-url') + '&' + $purchaseForm.serialize();
+
+            this.getPageModal(previewUrl, (err, data) => {
+                if (err) {
+                    // overwrite the generic error in PageManager
+                    data.modal.$content.text(this.context.previewError);
+                    throw err;
+                }
+            });
         });
     }
 }

@@ -99,8 +99,19 @@
             </fieldset>
         </div>
         <div class="form-actions">
-            <input id="gift-certificate-preview" class="button" type="submit" value="{{lang 'forms.gift_certificate.purchase.preview' }}" data-preview-url="{{forms.gift_certificate.preview}}">
-            <input id="gift-certificate-submit" class="button button--primary" type="submit" value="{{lang 'forms.gift_certificate.purchase.submit_value' }}">
+            {{inject 'previewError' (lang 'forms.gift_certificate.purchase.preview_error')}}
+            <input 
+                id="gift-certificate-preview"
+                class="button"
+                type="submit"
+                value="{{lang 'forms.gift_certificate.purchase.preview' }}"
+                data-preview-url="{{forms.gift_certificate.preview}}">
+
+            <input
+                id="gift-certificate-submit"
+                class="button button--primary"
+                type="submit"
+                value="{{lang 'forms.gift_certificate.purchase.submit_value' }}">
         </div>
     </form>
 </main>

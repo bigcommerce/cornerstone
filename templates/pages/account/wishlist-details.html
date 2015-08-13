@@ -14,7 +14,11 @@
     </div>
     {{/if}}
 
-    {{> components/account/wishlist-item-list show_remove=true}}
+    {{#if wishlist.items}}
+        {{> components/account/wishlist-item-list show_remove=true}}
+    {{else}}
+        {{> components/common/alert-info (lang 'account.wishlists.empty_wishlist')}}
+    {{/if}}
 
 </div>
 {{/partial}}

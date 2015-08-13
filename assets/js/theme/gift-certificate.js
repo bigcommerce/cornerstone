@@ -94,7 +94,7 @@ export default class GiftCertificate extends PageManager {
                     let result = purchaseModel.senderEmail(val);
                     cb(result);
                 },
-                errorMessage: "You must enter your email"
+                errorMessage: "You must enter a valid email"
             },
             {
                 selector: '#gift-certificate-form input[name="certificate_theme"]:first-of-type',

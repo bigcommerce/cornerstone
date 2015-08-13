@@ -111,7 +111,7 @@ export default function (stateElement, context, callback) {
 
             if (err) {
                 alert(context.state_error);
-                callback(err);
+                return callback(err);
             }
 
             $currentInput = $('[data-field-type="State"]');

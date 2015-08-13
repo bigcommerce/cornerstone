@@ -189,7 +189,6 @@ export default class Cart extends PageManager {
         });
     }
 
-
     bindGiftWrappingEvents() {
         let $modal = $('#modal'),
             $modalContent = $('.modal-content', $modal),
@@ -226,12 +225,18 @@ export default class Cart extends PageManager {
             let $select = $(event.currentTarget),
                 id = $select.val(),
                 index = $select.data('index'),
-                allowMessage = $select.find('option[value=' + id + ']').data('allow-message');
+                allowMessage;
+                
+            if (!id) {
+                return;
+            }
+
+            allowMessage = $select.find('option[value=' + id + ']').data('allow-message');
 
             $('.giftWrapping-image-' + index).hide();
             $('#giftWrapping-image-' + index + '-' + id).show();
 
-            if (allowMessage && id) {
+            if (allowMessage) {
                 $('#giftWrapping-message-' + index).show();
             } else {
                 $('#giftWrapping-message-' + index).hide();
@@ -254,9 +259,7 @@ export default class Cart extends PageManager {
             }
         }
 
-        $('[name="giftwraptype"]').click(function(event) {
-            toggleViews();
-        });
+        $('[name="giftwraptype"]').click(toggleViews);
         toggleViews();
     }
 

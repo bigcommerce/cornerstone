@@ -130,11 +130,30 @@ export default class GiftCertificate extends PageManager {
         $purchaseForm.submit((event) => {
             purchaseValidator.performCheck();
 
-            if (purchaseValidator.areAll('valid')) {
+            if (!purchaseValidator.areAll('valid')) {
+                return event.preventDefault();
+            }
+        });
+
+        $('#gift-certificate-preview').click((event) => {
+            let previewUrl;
+
+            event.preventDefault();
+
+            purchaseValidator.performCheck();
+            if (!purchaseValidator.areAll('valid')) {
                 return;
             }
 
-            event.preventDefault();
+            previewUrl = $(event.currentTarget).data('preview-url') + '&' + $purchaseForm.serialize();
+
+            this.getPageModal(previewUrl, (err, data) => {
+                if (err) {
+                    // overwrite the generic error in PageManager
+                    data.modal.$content.text(this.context.previewError);
+                    throw err;
+                }
+            });
         });
     }
 }

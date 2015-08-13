@@ -1,5 +1,4 @@
 import $ from 'jquery';
-import { api } from 'bigcommerce/stencil-utils';
 import 'foundation/js/foundation/foundation';
 import 'foundation/js/foundation/foundation.reveal';
 import nod from './common/nod';
@@ -9,11 +8,6 @@ export default class WishList extends PageManager {
     constructor() {
         super();
 
-        this.modalConfig = {
-            modal: $('#modal'),
-            modalContent: $('.modal-content', this.modal),
-            modalOverlay: $('.loadingOverlay', this.modal)
-        };
         this.options = {
             template: 'account/add-wishlist'
         };
@@ -71,30 +65,13 @@ export default class WishList extends PageManager {
         });
     }
 
-    wishListModal(url, options) {
-        // clear the modal
-        this.modalConfig.modalContent.html('');
-        this.modalConfig.modalOverlay.show();
-
-        // open modal
-        this.modalConfig.modal.foundation('reveal', 'open');
-
-        api.getPage(url, options, (err, content) => {
-            if (err) {
-                throw new Error(err);
-            }
-
-            this.modalConfig.modalOverlay.hide();
-            this.modalConfig.modalContent.html(content);
-        });
-    }
-
     wishListHandler() {
         $('body').on('click', '[data-wishlist]', (event) => {
             let $wishListUrl = event.currentTarget.href;
-            this.wishListModal($wishListUrl, this.options);
 
             event.preventDefault();
+
+            this.getPageModal($wishListUrl, this.options);
         });
     }
 }

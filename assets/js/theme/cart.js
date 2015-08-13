@@ -236,7 +236,7 @@ export default class Cart extends PageManager {
             $('.giftWrapping-image-' + index).hide();
             $('#giftWrapping-image-' + index + '-' + id).show();
 
-            if (allowMessage && id) {
+            if (allowMessage) {
                 $('#giftWrapping-message-' + index).show();
             } else {
                 $('#giftWrapping-message-' + index).hide();

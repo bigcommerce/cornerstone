@@ -76,6 +76,32 @@
                         {{/compare}}
                     {{/if}}
                 {{/if}}
+                {{#if product.bulk_discount_rates.length}}
+                    <dt class="productView-info-name">{{lang 'products.bulk_pricing.title'}}:</dt>
+                    <dt class="productView-info-value"><a href="#" data-reveal-id="bulkPricingModal">{{lang 'products.bulk_pricing.view'}}</a></dt>
+
+                    <div id="bulkPricingModal" class="modal" data-reveal>
+                        <div class="modal-content">
+                            <h2>{{lang 'products.bulk_pricing.instructions'}}</h2>
+                            <ul>
+                            {{#each product.bulk_discount_rates}}
+                                <li>
+                                    {{lang 'products.bulk_pricing.range' min=min max=max}}
+                                    {{#compare type 'percent' operator='==='}}
+                                        {{lang 'products.bulk_pricing.percent' discount=discount.formatted}}
+                                    {{/compare}}
+                                    {{#compare type 'fixed' operator='==='}}
+                                        {{lang 'products.bulk_pricing.fixed' discount=discount.formatted}}
+                                    {{/compare}}
+                                    {{#compare type 'price' operator='==='}}
+                                        {{lang 'products.bulk_pricing.price' discount=discount.formatted}}
+                                    {{/compare}}
+                                </li>
+                            {{/each}}
+                            </ul>
+                        </div>
+                    </div>
+                {{/if}}
 
                 {{#each product.custom_fields}}
                     <dt class="productView-info-name">{{name}}:</dt>

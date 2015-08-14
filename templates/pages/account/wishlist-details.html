@@ -5,16 +5,20 @@
     <h2 class="page-heading">{{lang 'account.wishlists.view_heading' name=wishlist.name}}</h2>
     {{> components/account/navigation account_page='wishlists'}}
 
-    {{#if wishlist.is_public}}
-    <div class="panel share-wishlist">
-        <div class="panel-body">
-            <h5>{{lang 'account.wishlists.share_intro'}}</h5>
-            <input class="form-input" value="{{settings.base_url}}{{wishlist.share_url}}">
+    {{#compare wishlist.is_public 0 operator='>'}}
+        <div class="panel share-wishlist">
+            <div class="panel-body">
+                <h5>{{lang 'account.wishlists.share_intro'}}</h5>
+                <input class="form-input" value="{{settings.base_url}}{{wishlist.share_url}}">
+            </div>
         </div>
-    </div>
-    {{/if}}
+    {{/compare}}
 
-    {{> components/account/wishlist-item-list show_remove=true}}
+    {{#if wishlist.items}}
+        {{> components/account/wishlist-item-list show_remove=true}}
+    {{else}}
+        {{> components/common/alert-info (lang 'account.wishlists.empty_wishlist')}}
+    {{/if}}
 
 </div>
 {{/partial}}

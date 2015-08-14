@@ -78,6 +78,14 @@ export default class FacetedSearch {
         });
 
         // Observe user events
+        this.onStateChange = this.onStateChange.bind(this);
+        this.onToggleClick = this.onToggleClick.bind(this);
+        this.onAccordionToggle = this.onAccordionToggle.bind(this);
+        this.onClearFacet = this.onClearFacet.bind(this);
+        this.onFacetClick = this.onFacetClick.bind(this);
+        this.onRangeSubmit = this.onRangeSubmit.bind(this);
+        this.onSortBySubmit = this.onSortBySubmit.bind(this);
+
         this.bindEvents();
     }
 
@@ -95,6 +103,21 @@ export default class FacetedSearch {
 
         // Bind events
         this.bindEvents();
+    }
+
+    updateView() {
+        $(this.options.blockerSelector).show();
+
+        api.getPage(History.getState().url, this.requestOptions, (err, content) => {
+            $(this.options.blockerSelector).hide();
+
+            if (err) {
+                throw new Error(err);
+            }
+
+            // Refresh view with new content
+            this.refreshView(content);
+        });
     }
 
     expandFacetItems($navList) {
@@ -117,7 +140,7 @@ export default class FacetedSearch {
             $toggle = $navList.next(this.showMoreToggleSelector),
             id = $navList.attr('id'),
             itemsCount = $navItems.length,
-            maxItemsCount = parseInt($navList.data('count'), 10);
+            maxItemsCount = parseInt($navList.data('count') || 0, 10);
 
         $navItems.show();
 
@@ -219,16 +242,32 @@ export default class FacetedSearch {
     }
 
     bindEvents() {
+        // Clean-up
+        this.unbindEvents();
+
         // DOM events
-        $(window).on('statechange', this.onStateChange.bind(this));
-        $(document).on('click', this.options.showMoreToggleSelector, this.onToggleClick.bind(this));
-        $(document).on('toggle.collapsible', this.options.accordionToggleSelector, this.onAccordionToggle.bind(this));
-        $(this.options.clearFacetSelector).on('click', this.onClearFacet.bind(this))
+        $(window).on('statechange', this.onStateChange);
+        $(document).on('click', this.options.showMoreToggleSelector, this.onToggleClick);
+        $(document).on('toggle.collapsible', this.options.accordionToggleSelector, this.onAccordionToggle);
+        $(this.options.clearFacetSelector).on('click', this.onClearFacet)
 
         // Hooks
-        hooks.on('facetedSearch-facet-clicked', this.onFacetClick.bind(this));
-        hooks.on('facetedSearch-range-submitted', this.onRangeSubmit.bind(this));
-        hooks.on('sortBy-submitted', this.onSortBySubmit.bind(this));
+        hooks.on('facetedSearch-facet-clicked', this.onFacetClick);
+        hooks.on('facetedSearch-range-submitted', this.onRangeSubmit);
+        hooks.on('sortBy-submitted', this.onSortBySubmit);
+    }
+
+    unbindEvents() {
+        // DOM events
+        $(window).off('statechange', this.onStateChange);
+        $(document).off('click', this.options.showMoreToggleSelector, this.onToggleClick);
+        $(document).off('toggle.collapsible', this.options.accordionToggleSelector, this.onAccordionToggle);
+        $(this.options.clearFacetSelector).off('click', this.onClearFacet)
+
+        // Hooks
+        hooks.off('facetedSearch-facet-clicked', this.onFacetClick);
+        hooks.off('facetedSearch-range-submitted', this.onRangeSubmit);
+        hooks.off('sortBy-submitted', this.onSortBySubmit);
     }
 
     onClearFacet(event) {
@@ -287,18 +326,7 @@ export default class FacetedSearch {
     }
 
     onStateChange(event) {
-        $(this.options.blockerSelector).show();
-
-        api.getPage(History.getState().url, this.requestOptions, (err, content) => {
-            $(this.options.blockerSelector).hide();
-
-            if (err) {
-                throw new Error(err);
-            }
-
-            // Refresh view with new content
-            this.refreshView(content);
-        });
+        this.updateView();
     }
 
     onAccordionToggle(event) {

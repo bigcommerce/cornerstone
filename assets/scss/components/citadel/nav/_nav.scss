@@ -65,3 +65,28 @@
         @include checkRadioBase--checked();
     }
 }
+
+
+// NavList action close
+// -----------------------------------------------------------------------------
+//
+.navList-action-close {
+    background: $navList-action-close-background;
+    border-radius: $navList-action-close-borderRadius;
+    display: inline-block;
+    float: right;
+    line-height: 0;
+    opacity: 0;
+    padding: $navList-action-close-padding;
+    transition: $navList-action-close-transition;
+    visibility: hidden;
+
+    .icon {
+        @include square($navList-action-close-iconSize);
+    }
+
+    .navList-action:hover & {
+        opacity: 1;
+        visibility: visible;
+    }
+}

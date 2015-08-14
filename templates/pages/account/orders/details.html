@@ -28,7 +28,12 @@
                             {{lang 'account.orders.details.card_ending' card=order.card_number_last_four}}
                         {{/if}}
                     </dd>
+                    {{#if order.order_instructions}}
+                        <dt class="order-payments-description">{{lang 'account.orders.details.how_to_pay'}}</dt>
+                        <dd class="order-payments-value order-payments-value--long">{{nl2br order.order_instructions}}</dd>
+                    {{/if}}
                 </dl>
+
                 <a href="{{order.invoice_url}}" class="button">{{lang 'account.orders.details.print_invoice'}}</a>
             </section>
             {{#if order.shipping_address}}

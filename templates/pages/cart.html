@@ -8,7 +8,7 @@
         {{#if cart.status_messages}}
             <div data-cart-status>
                 {{#each cart.status_messages}}
-                    <div class="alert alert-info" role="alert" data-bind="text: message">{{{message}}}</div>
+                    <div class="alertBox alertBox--info" role="alert" data-bind="text: message">{{{message}}}</div>
                 {{/each}}
             </div>
         {{/if}}
@@ -30,6 +30,14 @@
                     <p class="cart-multiAddress">{{lang 'cart.checkout.address.or'}} <a href="{{urls.checkout.multiple_address}}"><strong>{{lang 'cart.checkout.address.multiple'}}</strong></a></p>
                 {{/if}}
             </div>
+
+            {{#if cart.additional_checkout_buttons}}
+                <div class="cart-additionalCheckoutButtons">
+                    {{#each cart.additional_checkout_buttons}}
+                        {{{this}}}
+                    {{/each}}
+                </div>
+            {{/if}}
         {{else}}
             <h3>{{lang 'cart.checkout.empty_cart'}}</h3>
         {{/if}}

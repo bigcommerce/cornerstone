@@ -1,7 +1,10 @@
 // =============================================================================
 // CART (CSS)
 // =============================================================================
-
+//
+// 1. Override server-generated inline-css
+//
+// -----------------------------------------------------------------------------
 
 // Cart variables
 // -----------------------------------------------------------------------------
@@ -421,6 +424,7 @@ $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-sp
 }
 
 .cart-actions {
+    @include clearfix;
     clear: both;
 
     .button {
@@ -428,6 +432,24 @@ $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-sp
 
         @include breakpoint("small") {
             display: inline-block;
+            float: right;
+        }
+    }
+}
+
+.cart-additionalCheckoutButtons { // 1
+    @include clearfix;
+
+    .FloatRight {
+        @include clearfix;
+
+        p {
+            float: none !important;
+            margin-bottom: spacing("quarter");
+            text-align: right;
+        }
+
+        form {
             float: right;
         }
     }

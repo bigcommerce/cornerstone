@@ -1,13 +1,26 @@
 {{#partial "page"}}
+
+{{> components/common/breadcrumbs breadcrumbs}}
+<h2 class="page-heading title">{{lang 'account.orders.details.heading' number=order.id}}</h2>
+{{> components/account/navigation account_page='orders'}}
+
 <div class="account">
-    {{> components/common/breadcrumbs breadcrumbs}}
-    <h2 class="page-heading title">{{lang 'account.orders.details.heading' number=order.id}}</h2>
-    {{> components/account/navigation account_page='orders'}}
-    <div class="account-row">
-        <div class="main-section">
+    <div class="account-body">
+
+        <div class="account-content account-content--fixedSmall">
             {{> components/account/order-contents order}}
+
+            <dl class="order-totals">
+                {{#each order.total_rows}}
+                    {{#if value.value}}
+                        <dt class="order-totals-label">{{label}}:</dt>
+                        <dd class="order-totals-value">{{value.formatted}}</dd>
+                    {{/if}}
+                {{/each}}
+            </dl>
         </div>
-        <div class="supporting-section">
+
+        <div class="account-sidebar">
             <section class="account-section order-details">
                 <h3 class="account-heading">{{lang 'account.orders.details.order_details'}}</h3>
                 <dl class="order-payments">
@@ -141,6 +154,7 @@
                 </div>
             </section>
         </div>
+
     </div>
 </div>
 {{/partial}}

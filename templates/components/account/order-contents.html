@@ -1,38 +1,28 @@
 <h3 class="account-heading">{{lang 'account.orders.details.order_contents'}}</h3>
-<ul class="order-contents">
+
+<ul class="account-list">
     {{#each this.items}}
-    <li class="order-contents-item">
-        {{#if image}}
-            <img class="order-contents-image" src="{{getImage image}}" alt="{{image.alt}}">
-        {{/if}}
-        <h6 class="order-contents-name">{{quantity}} &#215; {{name}}</h6>
-        <span class="order-contents-price">{{price.formatted}}</span>
-        <ul class="order-contents-options">
-            {{#each options}}
-                <li>
-                    <span class="order-options-description">{{name}}:</span>
-                    <span class="order-options-value">{{value}}</span>
-                </li>
-            {{/each}}
-        </ul>
-
-        <!--
-        TODO: Add this button when we're able to specify individual items for return
-            <a href="{{return_url}}" class="order-contents-return button secondary">{{lang 'account.orders.return_item'}}</a>
-        -->
-
-        {{#if refunded}}
-            <!-- Hide download link if fully refunded -->
-            <div class="order-contents-refunded">{{lang 'account.orders.refunded_quantity' qty=refunded_qty}}</div>
-        {{else}}
-            {{#if refunded_qty}}
-                <!-- Partially refunded -->
-                <div class="order-contents-refundedQty">{{lang 'account.orders.refunded_quantity' qty=refunded_qty}}</div>
-            {{/if}}
-            {{#if download_url}}
-                <a href="{{download_url}}" class="button button--primary">{{lang 'account.orders.details.download_items'}}</a>
-            {{/if}}
-        {{/if}}
+    <li class="account-listItem">
+        <div class="account-product">
+            <figure class="account-product-figure">
+                {{#if image}}
+                    <img src="{{getImage image 'thumb'}}" alt="{{image.alt}}">
+                {{/if}}
+            </figure>
+            <div class="account-product-body">
+                <span class="account-product-price">{{price.formatted}}</span>
+                <h5 class="account-product-title">{{quantity}} &#215; {{name}}</h5>
+                {{#if brand}}
+                    <h6>{{brand.name}}</h6>
+                {{/if}}
+                <dl class="definitionList">
+                    {{#each options}}
+                        <dt>{{name}}:</dt>
+                        <dd>{{value}}</dd>
+                    {{/each}}
+                </dl>
+            </div>
+        </div>
     </li>
     {{/each}}
 </ul>

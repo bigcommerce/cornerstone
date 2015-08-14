@@ -43,6 +43,14 @@
     width: grid-calc(8, $total-columns);
 }
 
+.account-content--fixedSmall {
+    width: grid-calc(6, $total-columns);
+}
+
 .account-sidebar {
     @include grid-column(4);
+
+    .account-content--fixedSmall + & {
+        float: right;
+    }
 }

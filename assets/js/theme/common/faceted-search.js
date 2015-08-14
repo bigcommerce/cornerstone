@@ -36,11 +36,12 @@ export default class FacetedSearch {
     constructor(requestOptions, callback, options) {
 
         let defaultOptions = {
+           accordionToggleSelector: '#facetedSearch .accordion-navigation, #facetedSearch .facetedSearch-toggle',
            blockerSelector: '#facetedSearch .blocker',
-           showMoreToggleSelector: '#facetedSearch .accordion-content .toggleLink',
+           clearFacetSelector: '#facetedSearch .facetedSearch-clearLink',
            componentSelector: '#facetedSearch-navList',
            facetNavListSelector: '#facetedSearch .navList',
-           accordionToggleSelector: '#facetedSearch .accordion-navigation, #facetedSearch .facetedSearch-toggle'
+           showMoreToggleSelector: '#facetedSearch .accordion-content .toggleLink'
         };
 
         // Private properties
@@ -91,6 +92,9 @@ export default class FacetedSearch {
         // Restore view state
         this.restoreCollapsedFacets();
         this.restoreCollapsedFacetItems();
+
+        // Bind events
+        this.bindEvents();
     }
 
     expandFacetItems($navList) {
@@ -218,12 +222,24 @@ export default class FacetedSearch {
         // DOM events
         $(window).on('statechange', this.onStateChange.bind(this));
         $(document).on('click', this.options.showMoreToggleSelector, this.onToggleClick.bind(this));
-        $(document).on('toggle.collapsible', this.options.accordionToggleSelector, this.onAccordionToggle.bind(this))
+        $(document).on('toggle.collapsible', this.options.accordionToggleSelector, this.onAccordionToggle.bind(this));
+        $(this.options.clearFacetSelector).on('click', this.onClearFacet.bind(this))
 
         // Hooks
         hooks.on('facetedSearch-facet-clicked', this.onFacetClick.bind(this));
         hooks.on('facetedSearch-range-submitted', this.onRangeSubmit.bind(this));
         hooks.on('sortBy-submitted', this.onSortBySubmit.bind(this));
+    }
+
+    onClearFacet(event) {
+        let $link = $(event.currentTarget),
+            url = $link.attr('href');
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        // Update URL
+        goToUrl(url);
     }
 
     onToggleClick(event) {

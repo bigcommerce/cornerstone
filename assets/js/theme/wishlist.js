@@ -11,17 +11,6 @@ export default class WishList extends PageManager {
         this.options = {
             template: 'account/add-wishlist'
         };
-
-        let $addWishListForm = $('.wishlist-form');
-
-        this.wishlistDeleteConfirm();
-
-        if ($addWishListForm.length) {
-            this.registerAddWishListValidation($addWishListForm);
-        }
-
-        // Initialize wish list listener
-        this.wishListHandler();
     }
 
     /**
@@ -71,7 +60,29 @@ export default class WishList extends PageManager {
 
             event.preventDefault();
 
-            this.getPageModal($wishListUrl, this.options);
+            this.getPageModal($wishListUrl, this.options, (err, content) => {
+                if (err) {
+                    throw new Error(err);
+                }
+
+                let $wishListForm = $('.wishlist-form');
+
+                this.registerAddWishListValidation($wishListForm);
+            });
         });
+    }
+
+    loaded(next) {
+
+        let $addWishListForm = $('.wishlist-form');
+
+        if ($addWishListForm.length) {
+            this.registerAddWishListValidation($addWishListForm);
+        }
+
+        this.wishlistDeleteConfirm();
+        this.wishListHandler();
+
+        next();
     }
 }

@@ -10,11 +10,16 @@
 .textTruncate {
     padding-bottom: spacing("single");
     position: relative;
+    transition: max-height 100ms ease-out;
 }
 
-.textTruncate--hidden {
+.js .textTruncate {
     max-height: 110px;
     overflow: hidden;
+}
+
+.js .textTruncate--visible {
+    max-height: remCalc(1000);
 }
 
 .textTruncate-viewMore {

@@ -3,10 +3,26 @@
 <ul class="account-list">
     {{#each this.items}}
     <li class="account-listItem">
-        <div class="account-product">
+        <div class="account-product account-product--alignMiddle">
+            <div class="account-product-checkItem">
+                <input class="form-checkbox" type="checkbox" id="{{order_product_id}}">
+                <label for="{{order_product_id}}" class="form-label">
+                    <span class="u-hiddenVisually">Checkbox 1 label</span>
+                </label>
+            </div>
             <figure class="account-product-figure">
                 {{#if image}}
                     <img src="{{getImage image 'thumb'}}" alt="{{image.alt}}">
+                {{/if}}
+                {{#if download_url}}
+                    <a href="{{download_url}}" class="account-product-download button button--primary">
+                        <span class="u-hiddenVisually">{{lang 'account.orders.details.download_items'}}</span>
+                        <span class="icon">
+                            <svg>
+                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-down"></use>
+                            </svg>
+                        </span>
+                    </a>
                 {{/if}}
             </figure>
             <div class="account-product-body">
@@ -15,12 +31,21 @@
                 {{#if brand}}
                     <h6>{{brand.name}}</h6>
                 {{/if}}
+                {{#if options}}
                 <dl class="definitionList">
                     {{#each options}}
-                        <dt>{{name}}:</dt>
-                        <dd>{{value}}</dd>
+                        <dt class="definitionList-key">{{name}}:</dt>
+                        <dd class="definitionList-value">{{value}}</dd>
                     {{/each}}
                 </dl>
+                {{/if}}
+                {{#if refunded}}
+                    <p class="account-product-refundQty">{{lang 'account.orders.refunded_quantity' qty=refunded_qty}}</p>
+                {{else}}
+                    {{#if refunded_qty}}
+                        <p class="account-product-refundQty">{{lang 'account.orders.refunded_quantity' qty=refunded_qty}}</p>
+                    {{/if}}
+                {{/if}}
             </div>
         </div>
     </li>

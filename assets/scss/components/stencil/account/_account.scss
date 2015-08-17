@@ -80,7 +80,29 @@
 
 .account-product-figure {
     margin: 0 spacing("single") + spacing("third") 0 0;
+    position: relative;
     width: 70px;
+}
+
+.account-product-download {
+    border-radius: 50%;
+    height: remCalc(33px);
+    padding: 0;
+    position: absolute;
+    right: -(spacing("half"));
+    top: -(spacing("half"));
+    width: remCalc(33px);
+    z-index: 1;
+
+    .icon {
+        height: spacing("single");
+        margin-top: spacing("quarter");
+        width: spacing("single");
+    }
+
+    svg {
+        fill: color("whites", "bright");
+    }
 }
 
 .account-product-body {
@@ -93,7 +115,12 @@
     }
 
     .definitionList {
+        font-size: fontSize("smaller");
         margin-bottom: 0;
+    }
+
+    .definitionList-value {
+        color: color("greys");
     }
 }
 
@@ -106,7 +133,7 @@
     }
 
     + .definitionList {
-        margin-top: spacing("base");
+        margin-top: spacing("half");
     }
 }
 
@@ -123,8 +150,13 @@
     font-size: fontSize("smaller");
 }
 
-.account-product-description + .productOptionsList {
+.account-product-description + .definitionList {
     margin: -(spacing("base") + spacing("quarter")) 0 spacing("single");
+}
+
+.account-product-refundQty {
+    color: color("greys", "light");
+    margin-bottom: 0;
 }
 
 .account-product-details {
@@ -171,6 +203,45 @@
     font-family: fontFamily("sans");
     font-size: fontSize("tiny");
     margin: 0 0 spacing("quarter");
+}
+
+
+// Vertically aligned product view
+// -----------------------------------------------------------------------------
+
+.account-product--alignMiddle {
+    display: table;
+    width: 100%;
+
+    .account-product-checkItem {
+        display: table-cell;
+        left: -2.5rem;
+        position: relative;
+        vertical-align: middle;
+        width: 2.5rem;
+
+        .form-label {
+            height: spacing("single");
+            margin: 0;
+            padding: 0;
+            width: spacing("single");
+        }
+    }
+
+    .account-product-figure,
+    .account-product-body {
+        display: table-cell;
+    }
+
+    .account-product-figure {
+        float: none;
+        left: -2.5rem;
+        margin-right: 0;
+    }
+
+    .account-product-body {
+        vertical-align: middle;
+    }
 }
 
 
@@ -258,5 +329,4 @@
 
 
 
-@import "order-details";
 @import "download-item";

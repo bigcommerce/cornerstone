@@ -23,10 +23,10 @@
                         <p>({{release_date}})</p>
                     {{/if}}
                     {{#if options}}
-                        <dl class="productOptionsList">
+                        <dl class="definitionList">
                             {{#each configurable_fields}}
-                                <dt class="productOptionsList-label">{{name}}:</dt>
-                                <dd class="productOptionsList-description">
+                                <dt class="definitionList-key">{{name}}:</dt>
+                                <dd class="definitionList-value">
                                     {{#if is_file}}
                                         <a href="/viewfile.php?prodfield={{../id}}&cartitem={{../../id}}">{{{value}}}</a>
                                     {{else}}
@@ -35,8 +35,8 @@
                                 </dd>
                             {{/each}}
                             {{#each options}}
-                                <dt class="productOptionsList-label">{{name}}:</dt>
-                                <dd class="productOptionsList-description">
+                                <dt class="definitionList-key">{{name}}:</dt>
+                                <dd class="definitionList-value">
                                     {{#if is_file}}
                                         <a href="/viewfile.php?attributeId={{../id}}&cartitem={{../../id}}">{{{value}}}</a>
                                     {{else}}

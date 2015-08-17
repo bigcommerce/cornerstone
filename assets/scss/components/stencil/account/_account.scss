@@ -218,7 +218,7 @@
         left: -2.5rem;
         position: relative;
         vertical-align: middle;
-        width: 2.5rem;
+        width: 2rem;
 
         .form-label {
             height: spacing("single");
@@ -235,12 +235,50 @@
 
     .account-product-figure {
         float: none;
-        left: -2.5rem;
+        left: -2rem;
         margin-right: 0;
     }
 
     .account-product-body {
         vertical-align: middle;
+    }
+}
+
+
+// Account product totals
+// -----------------------------------------------------------------------------
+
+.account-orderTotal {
+    float: right;
+    font-size: fontSize("smaller");
+    margin-top: -(spacing("single"));
+    width: grid-calc(8, $total-columns);
+}
+
+.account-orderTotal-key,
+.account-orderTotal-value {
+    margin: 0;
+    padding: spacing("single") 0;
+}
+
+.account-orderTotal-key {
+    color: color("greys", "light");
+    float: left;
+    font-weight: fontWeight("normal");
+
+    &:last-of-type {
+        position: relative;
+        top: spacing("fifth");
+    }
+}
+
+.account-orderTotal-value {
+    border-bottom: container("border");
+    text-align: right;
+
+    &:last-child {
+        border-bottom: 0;
+        font-size: fontSize("small");
     }
 }
 

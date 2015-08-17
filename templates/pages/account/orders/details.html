@@ -10,11 +10,11 @@
         <div class="account-content account-content--fixedSmall">
             {{> components/account/order-contents order}}
 
-            <dl class="order-totals">
+            <dl class="account-orderTotal">
                 {{#each order.total_rows}}
                     {{#if value.value}}
-                        <dt class="order-totals-label">{{label}}:</dt>
-                        <dd class="order-totals-value">{{value.formatted}}</dd>
+                        <dt class="account-orderTotal-key">{{label}}:</dt>
+                        <dd class="account-orderTotal-value">{{value.formatted}}</dd>
                     {{/if}}
                 {{/each}}
             </dl>

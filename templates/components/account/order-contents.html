@@ -14,16 +14,18 @@
                 {{#if image}}
                     <img src="{{getImage image 'thumb'}}" alt="{{image.alt}}">
                 {{/if}}
-                {{#if download_url}}
-                    <a href="{{download_url}}" class="account-product-download button button--primary">
-                        <span class="u-hiddenVisually">{{lang 'account.orders.details.download_items'}}</span>
-                        <span class="icon">
-                            <svg>
-                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-down"></use>
-                            </svg>
-                        </span>
-                    </a>
-                {{/if}}
+                {{#unless refunded}}
+                    {{#if download_url}}
+                        <a href="{{download_url}}" class="account-product-download button button--primary">
+                            <span class="u-hiddenVisually">{{lang 'account.orders.details.download_items'}}</span>
+                            <span class="icon">
+                                <svg>
+                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-down"></use>
+                                </svg>
+                            </span>
+                        </a>
+                    {{/if}}
+                {{/unless}}
             </figure>
             <div class="account-product-body">
                 <span class="account-product-price">{{price.formatted}}</span>

@@ -215,10 +215,13 @@
 
     .account-product-checkItem {
         display: table-cell;
-        left: -2.5rem;
         position: relative;
         vertical-align: middle;
         width: 2rem;
+
+        @include breakpoint("large") {
+            left: -2.5rem;
+        }
 
         .form-label {
             height: spacing("single");
@@ -235,12 +238,20 @@
 
     .account-product-figure {
         float: none;
-        left: -2rem;
         margin-right: 0;
+
+        @include breakpoint("large") {
+            left: -2rem;
+        }
     }
 
     .account-product-body {
+        padding-left: 2rem;
         vertical-align: middle;
+
+        @include breakpoint("large") {
+            padding-left: 0;
+        }
     }
 }
 
@@ -360,11 +371,28 @@
 }
 
 
+// Account sidebar block
+// -----------------------------------------------------------------------------
 
+.account-sidebar-block {
+    font-size: fontSize("smaller");
 
+    + .account-sidebar-block {
+        margin-top: spacing("double");
+    }
 
+    .account-heading {
+        margin-bottom: spacing("single");
+    }
 
+    .definitionList-value {
+        color: color("greys");
+    }
+}
 
+.account-order-address {
+    @include u-listBullets("none");
+}
 
 
 @import "download-item";

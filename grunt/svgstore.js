@@ -2,9 +2,7 @@ module.exports = {
     'options': {
         'prefix': 'icon-',
         'cleanup': false,
-        'svg': {
-            'style': 'display: none'
-        }
+        'includeTitleElement': false
     },
     'default': {
         'files': {

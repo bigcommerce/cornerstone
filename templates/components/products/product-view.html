@@ -44,41 +44,41 @@
             <dl class="productView-info">
                 {{#if product.sku}}
                     <dt class="productView-info-name">{{lang 'products.sku'}}</dt>
-                    <dt class="productView-info-value" data-product-sku>{{product.sku}}</dt>
+                    <dd class="productView-info-value" data-product-sku>{{product.sku}}</dd>
                 {{/if}}
                 {{#if product.condition}}
                     <dt class="productView-info-name">{{lang 'products.condition'}}</dt>
-                    <dt class="productView-info-value">{{product.condition}}</dt>
+                    <dd class="productView-info-value">{{product.condition}}</dd>
                 {{/if}}
                 {{#if product.availability}}
                     <dt class="productView-info-name">{{lang 'products.availability'}}</dt>
-                    <dt class="productView-info-value">{{product.availability}}</dt>
+                    <dd class="productView-info-value">{{product.availability}}</dd>
                 {{/if}}
                 {{#if product.weight}}
                     <dt class="productView-info-name">{{lang 'products.weight'}}</dt>
-                    <dt class="productView-info-value">{{product.weight}}</dt>
+                    <dd class="productView-info-value">{{product.weight}}</dd>
                 {{/if}}
                 {{#if product.gift_wrapping_available}}
                     <dt class="productView-info-name">{{lang 'products.gift_wrapping'}}</dt>
-                    <dt class="productView-info-value">{{lang 'products.gift_wrapping_available'}}</dt>
+                    <dd class="productView-info-value">{{lang 'products.gift_wrapping_available'}}</dd>
                 {{/if}}
                 {{#if product.shipping}}
                     {{#if product.shipping.calculated}}
                         <dt class="productView-info-name">{{lang 'products.shipping'}}</dt>
-                        <dt class="productView-info-value">{{lang 'products.shipping_calculated'}}</dt>
+                        <dd class="productView-info-value">{{lang 'products.shipping_calculated'}}</dd>
                     {{else}}
                         {{#compare product.shipping.price 0 operator='==='}}
                             <dt class="productView-info-name">{{lang 'products.shipping'}}</dt>
-                            <dt class="productView-info-value">{{lang 'products.shipping_free'}}</dt>
+                            <dd class="productView-info-value">{{lang 'products.shipping_free'}}</dd>
                         {{else}}
                             <dt class="productView-info-name">{{lang 'products.shipping'}}</dt>
-                            <dt class="productView-info-value">{{lang 'products.shipping_fixed' amount=product.shipping.price.formatted}}</dt>
+                            <dd class="productView-info-value">{{lang 'products.shipping_fixed' amount=product.shipping.price.formatted}}</dd>
                         {{/compare}}
                     {{/if}}
                 {{/if}}
                 {{#if product.bulk_discount_rates.length}}
                     <dt class="productView-info-name">{{lang 'products.bulk_pricing.title'}}</dt>
-                    <dt class="productView-info-value"><a href="#" data-reveal-id="bulkPricingModal">{{lang 'products.bulk_pricing.view'}}</a></dt>
+                    <dd class="productView-info-value"><a href="#" data-reveal-id="bulkPricingModal">{{lang 'products.bulk_pricing.view'}}</a></dd>
 
                     <div id="bulkPricingModal" class="modal" data-reveal>
                         <div class="modal-content">
@@ -105,7 +105,7 @@
 
                 {{#each product.custom_fields}}
                     <dt class="productView-info-name">{{name}}:</dt>
-                    <dt class="productView-info-value">
+                    <dd class="productView-info-value">
                         {{value}}</dd>
                 {{/each}}
             </dl>

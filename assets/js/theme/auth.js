@@ -102,6 +102,10 @@ export default class Auth extends PageManager {
                 }
                 let $field = $(field);
 
+                if (createAccountValidator.getStatus($stateElement) !== undefined) {
+                    createAccountValidator.remove($stateElement);
+                }
+
                 if ($last) {
                     createAccountValidator.remove($last);
                 }

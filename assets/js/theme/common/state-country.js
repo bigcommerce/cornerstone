@@ -38,7 +38,7 @@ function makeStateRequired(stateElement, context) {
     if ($newElement.prev().find('small').length === 0) {
 
         // String is injected from localizer
-        $newElement.prev().append($('<small></small>', context.required));
+        $newElement.prev().append(`<small>${context.required}</small>`);
     } else {
         $newElement.prev().find('small').show();
     }
@@ -50,7 +50,7 @@ function makeStateRequired(stateElement, context) {
  * If a country with states is the default, a select will be sent,
  * In this case we need to be able to switch to an input field and hide the required field
  */
-function makeStateOptional(stateElement) {
+function makeStateOptional(stateElement, context) {
     let attrs,
         $newElement;
 

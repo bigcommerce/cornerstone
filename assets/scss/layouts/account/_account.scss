@@ -40,9 +40,27 @@
 }
 
 .account-content--fixed {
-    width: grid-calc(8, $total-columns);
+
+    @include breakpoint("medium") {
+        width: grid-calc(8, $total-columns);
+    }
+}
+
+.account-content--fixedSmall {
+
+    @include breakpoint("medium") {
+        width: grid-calc(6, $total-columns);
+    }
 }
 
 .account-sidebar {
-    @include grid-column(4);
+    @include grid-column(12);
+
+    @include breakpoint("medium") {
+        width: grid-calc(4, $total-columns);
+
+        .account-content--fixedSmall + & {
+            float: right;
+        }
+    }
 }

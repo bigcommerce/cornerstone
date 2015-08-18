@@ -79,8 +79,30 @@
 }
 
 .account-product-figure {
-    margin-right: spacing("single") + spacing("third");
+    margin: 0 spacing("single") + spacing("third") 0 0;
+    position: relative;
     width: 70px;
+}
+
+.account-product-download {
+    border-radius: 50%;
+    height: remCalc(33px);
+    padding: 0;
+    position: absolute;
+    right: -(spacing("half"));
+    top: -(spacing("half"));
+    width: remCalc(33px);
+    z-index: 1;
+
+    .icon {
+        height: spacing("single");
+        margin-top: spacing("quarter");
+        width: spacing("single");
+    }
+
+    svg {
+        fill: color("whites", "bright");
+    }
 }
 
 .account-product-body {
@@ -91,6 +113,15 @@
     @include breakpoint("small") {
         padding-bottom: 0;
     }
+
+    .definitionList {
+        font-size: fontSize("smaller");
+        margin-bottom: 0;
+    }
+
+    .definitionList-value {
+        color: color("greys");
+    }
 }
 
 .account-product-title {
@@ -100,10 +131,32 @@
     > a {
         text-decoration: none;
     }
+
+    + .definitionList {
+        margin-top: spacing("half");
+    }
 }
 
-.account-product-description + .productOptionsList {
+.account-product-subtitle {
+    color: color("greys", "light");
+    font-family: fontFamily("sans");
+    font-size: fontSize("smaller");
+    margin: -(spacing("eighth")) 0 spacing("base");
+    text-transform: inherit;
+}
+
+.account-product-price {
+    float: right;
+    font-size: fontSize("smaller");
+}
+
+.account-product-description + .definitionList {
     margin: -(spacing("base") + spacing("quarter")) 0 spacing("single");
+}
+
+.account-product-refundQty {
+    color: color("greys", "light");
+    margin-bottom: 0;
 }
 
 .account-product-details {
@@ -150,6 +203,94 @@
     font-family: fontFamily("sans");
     font-size: fontSize("tiny");
     margin: 0 0 spacing("quarter");
+}
+
+
+// Vertically aligned product view
+// -----------------------------------------------------------------------------
+
+.account-product--alignMiddle {
+    display: table;
+    width: 100%;
+
+    .account-product-checkItem {
+        display: table-cell;
+        position: relative;
+        vertical-align: middle;
+        width: 2rem;
+
+        @include breakpoint("large") {
+            left: -2.5rem;
+        }
+
+        .form-label {
+            height: spacing("single");
+            margin: 0;
+            padding: 0;
+            width: spacing("single");
+        }
+    }
+
+    .account-product-figure,
+    .account-product-body {
+        display: table-cell;
+    }
+
+    .account-product-figure {
+        float: none;
+        margin-right: 0;
+
+        @include breakpoint("large") {
+            left: -2rem;
+        }
+    }
+
+    .account-product-body {
+        padding-left: 2rem;
+        vertical-align: middle;
+
+        @include breakpoint("large") {
+            padding-left: 0;
+        }
+    }
+}
+
+
+// Account product totals
+// -----------------------------------------------------------------------------
+
+.account-orderTotal {
+    float: right;
+    font-size: fontSize("smaller");
+    margin-top: -(spacing("single"));
+    width: grid-calc(8, $total-columns);
+}
+
+.account-orderTotal-key,
+.account-orderTotal-value {
+    margin: 0;
+    padding: spacing("single") 0;
+}
+
+.account-orderTotal-key {
+    color: color("greys", "light");
+    float: left;
+    font-weight: fontWeight("normal");
+
+    &:last-of-type {
+        position: relative;
+        top: spacing("fifth");
+    }
+}
+
+.account-orderTotal-value {
+    border-bottom: container("border");
+    text-align: right;
+
+    &:last-child {
+        border-bottom: 0;
+        font-size: fontSize("small");
+    }
 }
 
 
@@ -218,6 +359,7 @@
     }
 }
 
+
 // Account inbox
 // -----------------------------------------------------------------------------
 
@@ -229,35 +371,28 @@
 }
 
 
+// Account sidebar block
+// -----------------------------------------------------------------------------
+
+.account-sidebar-block {
+    font-size: fontSize("smaller");
+
+    + .account-sidebar-block {
+        margin-top: spacing("double");
+    }
+
+    .account-heading {
+        margin-bottom: spacing("single");
+    }
+
+    .definitionList-value {
+        color: color("greys");
+    }
+}
+
+.account-order-address {
+    @include u-listBullets("none");
+}
 
 
-
-
-
-
-@import "overview";
-@import "order-details";
 @import "download-item";
-
-// TODO: Componentize the accounts section, this is inconsistent with the rest of stencil.
-// Possibly make the accounts section a layout or component on it's own, with common components
-// consumable across all accounts pages?
-
-.account-row {
-    @include grid-row();
-}
-
-.main-section {
-    @include breakpoint("medium") {
-        @include grid-column(7);
-    }
-}
-
-.supporting-section {
-    @include breakpoint("medium") {
-        @include grid-column(
-            $columns: 4,
-            $offset: 1
-        );
-    }
-}

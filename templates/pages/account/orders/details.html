@@ -79,38 +79,30 @@
             {{#if shipments}}
                 <section class="account-sidebar-block">
                     <h3 class="account-heading">{{lang 'account.orders.details.shipments.header'}}</h3>
-                    <table class="table">
-                        <thead class="table-thead">
-                            <tr>
-                                <th>{{lang 'account.orders.details.shipments.date'}}</th>
-                                <th>{{lang 'account.orders.details.shipments.method'}}</th>
-                                <th>{{lang 'account.orders.details.shipments.link'}}</th>
-                            </tr>
-                        </thead>
-                        <tbody class="table-tbody">
-                            {{#each shipments}}
-                                <tr>
-                                    <td>{{date_shipped}}</td>
-                                    <td>{{shipping_provider}}</td>
-                                    <td>
-                                        {{#if shipping_track.url}}
-                                            <a href="{{shipping_track.url}}">
-                                        {{/if}}
+                    {{#each shipments}}
+                        <dl class="definitionList">
+                            <dt class="definitionList-key">{{lang 'account.orders.details.shipments.date'}}</dt>
+                            <dd class="definitionList-value">{{date_shipped}}</dd>
+                            <dt class="definitionList-key">{{lang 'account.orders.details.shipments.method'}}</dt>
+                            <dd class="definitionList-value">{{shipping_provider}}</dd>
+                            <dt class="definitionList-key">{{lang 'account.orders.details.shipments.link'}}</dt>
+                            <dd class="definitionList-value">
+                                {{#if shipping_track.url}}
+                                    <a href="{{shipping_track.url}}">
+                                {{/if}}
 
-                                        {{#if show_shipping_method}}
-                                            {{shipping_track.number}} &mdash; {{shipping_method}}
-                                        {{else}}
-                                            {{shipping_track.number}}
-                                        {{/if}}
+                                {{#if show_shipping_method}}
+                                    {{shipping_track.number}} &mdash; {{shipping_method}}
+                                {{else}}
+                                    {{shipping_track.number}}
+                                {{/if}}
 
-                                        {{#if shipping_track.url}}
-                                            </a>
-                                        {{/if}}
-                                    </td>
-                                </tr>
-                            {{/each}}
-                        </tbody>
-                    </table>
+                                {{#if shipping_track.url}}
+                                    </a>
+                                {{/if}}
+                            </dd>
+                        </dl>
+                    {{/each}}
                 </section>
             {{/if}}
 

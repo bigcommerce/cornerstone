@@ -11,7 +11,9 @@
         <a href="{{url}}">{{title}}</a>
     </h2>
     <p class="blog-date">{{date_published}}</p>
-    <p class="blog-author">{{lang 'blog.posted_by' name=author}}</p>
+    {{#if author}}
+        <p class="blog-author">{{lang 'blog.posted_by' name=author}}</p>
+    {{/if}}
 
     <div class="blog-post">
         {{{body}}}

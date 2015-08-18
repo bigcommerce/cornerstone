@@ -34,13 +34,15 @@
                             <dd class="definitionList-value">{{value.formatted}}</dd>
                         {{/if}}
                     {{/each}}
-                    <dt class="definitionList-key">{{lang 'account.orders.details.payment_method'}}</dt>
-                    <dd class="definitionList-value">
-                        {{order.payment_method}}
-                        {{#if order.card_number_last_four}}
-                            {{lang 'account.orders.details.card_ending' card=order.card_number_last_four}}
-                        {{/if}}
-                    </dd>
+                    {{#if order.payment_method}}
+                        <dt class="definitionList-key">{{lang 'account.orders.details.payment_method'}}</dt>
+                        <dd class="definitionList-value">
+                            {{order.payment_method}}
+                            {{#if order.card_number_last_four}}
+                                {{lang 'account.orders.details.card_ending' card=order.card_number_last_four}}
+                            {{/if}}
+                        </dd>
+                    {{/if}}
                     {{#if order.order_instructions}}
                         <dt class="order-payments-description">{{lang 'account.orders.details.how_to_pay'}}</dt>
                         <dd class="order-payments-value order-payments-value--long">{{nl2br order.order_instructions}}</dd>

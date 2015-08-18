@@ -65,11 +65,21 @@
 }
 
 .account-listItem {
-    border-bottom: 1px solid color("greys", "lightest");
+    border-bottom: container("border");
     padding: spacing("single") 0;
     position: relative;
 }
 
+.account-listShipping {
+    border-bottom: container("border");
+    font-weight: fontWeight("bold");
+    padding: (spacing("single") + spacing("third")) 0;
+
+    .account-listShipping-title {
+        margin: 0;
+        text-transform: inherit;
+    }
+}
 
 // Account product
 // -----------------------------------------------------------------------------

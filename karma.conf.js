@@ -30,30 +30,37 @@ module.exports = function (config) {
         jspm: {
             // Edit this to your needs
             config: 'assets/config.js',
-            loadFiles: ['assets/js/test-unit/**/*.js'],
+            loadFiles: [
+                'assets/js/test-unit/**/*.spec.js'
+            ],
             serveFiles: [
-                'assets/**/*.js',
-                'assets/jspm_packages/*'
+                'assets/js/theme/app.js',
+                'assets/js/theme/page-manager.js',
+                'assets/js/theme/**/*.js'
             ]
         },
 
-        //proxies: {
-        //    '/base/client/': '/client/assets/',
-        //    '/base/jspm_packages/': '/base/public/assets/jspm_packages/'
-        //},
+        proxies: {
+            '/base/jspm_packages/': '/base/assets/jspm_packages/'
+        },
 
         // list of files to exclude
         exclude: [],
 
         // level of logging
         // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-        logLevel: config.LOG_INFO,
+        logLevel: config.LOG_ERROR,
 
         // preprocess matching files before serving them to the browser
         // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
         preprocessors: {
             'js/test-unit/**/*.js': ['babel']
-        }
+        },
 
+        babelPreprocessor: {
+            options: {
+                modules: 'ignore'
+            }
+        }
     });
 };

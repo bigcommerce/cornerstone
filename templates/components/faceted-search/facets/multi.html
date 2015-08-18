@@ -1,3 +1,4 @@
+{{#if items}}
 <div class="accordion-block">
     <div
         class="accordion-navigation toggleLink {{#unless ../start_collapsed }} is-open {{/unless}}"
@@ -10,7 +11,7 @@
 
         <div class="accordion-navigation-actions">
             {{#if selected}}
-                <a href="{{ remove_url }}" data-faceted-search-facet>{{lang 'search.faceted.clear'}}</a>
+                <a href="{{ remove_url }}" class="facetedSearch-clearLink" data-faceted-search-facet>{{lang 'search.faceted.clear'}}</a>
             {{/if}}
             <svg class="icon accordion-indicator toggleLink-text toggleLink-text--off">
                 <use xlink:href="#icon-add" />
@@ -33,6 +34,12 @@
                         {{#if ../show_product_counts}}
                             <span>({{ count }})</span>
                         {{/if}}
+
+                        <span class="navList-action-close" aria-hidden="true">
+                            <svg class="icon">
+                                <use xlink:href="#icon-close"/>
+                            </svg>
+                        </span>
                     </a>
                 </li>
             {{/each}}
@@ -46,3 +53,4 @@
         {{/if}}
     </div>
 </div>
+{{/if}}

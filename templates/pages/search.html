@@ -13,11 +13,11 @@
 </section>
 
 <section class="page">
-    <aside class="page-sidebar" id="faceted-search-container">
-        {{#if product_results.faceted_search_enabled}}
-        {{> components/faceted-search/index product_results}}
-        {{/if}}
-    </aside>
+    {{#if product_results.faceted_search_enabled}}
+        <aside class="page-sidebar" id="faceted-search-container">
+            {{> components/faceted-search/index product_results}}
+        </aside>
+    {{/if}}
 
     <main class="page-content" id="product-listing-container">
         {{> components/search/product-listing}}

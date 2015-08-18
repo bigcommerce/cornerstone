@@ -181,7 +181,7 @@ export default class Product {
                 }
 
                 // Show modal
-                this.populateCartModal($previewModal, response.data.cart_item.id, ($modalContent) => {
+                this.populateCartModal($previewModal, response.data.cart_item.hash, ($modalContent) => {
                     // Update cart counter
                     const $body = $('body'),
                           $cartQuantity = $('[data-cart-quantity]', $modalContent),
@@ -211,8 +211,12 @@ export default class Product {
 
     /**
      * Populate cart modal
+     *
+     * @param {jQuery} $modal
+     * @param {String} cartItemHash
+     * @param {Function} onComplete
      */
-    populateCartModal($modal, cartItemId, onComplete) {
+    populateCartModal($modal, cartItemHash, onComplete) {
         // Define options
         const $modalContent = $('.modal-content', $modal),
               $modalOverlay = $('.loadingOverlay', $modal);
@@ -220,7 +224,7 @@ export default class Product {
         const options = {
             template: 'cart/preview',
             params: {
-                suggest: cartItemId
+                suggest: cartItemHash
             },
             config: {
                 cart: {

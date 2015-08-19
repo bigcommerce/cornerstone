@@ -1,7 +1,17 @@
 {{#partial "page"}}
     <div class="account">
         {{> components/common/breadcrumbs breadcrumbs}}
-        <h2 class="page-heading">{{lang 'account.wishlists.heading' }}</h2>
+        <h2 class="page-heading">
+        {{#if forms.wishlist.id}}
+            {{lang 'account.wishlists.edit'}}
+        {{else}}
+            {{#if forms.wishlist.action}}
+                {{lang 'account.wishlists.new'}}
+            {{else}}
+                {{lang 'account.wishlists.heading'}}
+            {{/if}}
+        {{/if}}
+        </h2>
         {{> components/account/navigation account_page='wishlists'}}
         {{> components/account/add-wishlist}}
     </div>

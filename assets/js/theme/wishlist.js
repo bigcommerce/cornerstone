@@ -60,12 +60,12 @@ export default class WishList extends PageManager {
 
             event.preventDefault();
 
-            this.getPageModal($wishListUrl, this.options, (err, content) => {
+            this.getPageModal($wishListUrl, this.options, (err, data) => {
                 if (err) {
-                    throw new Error(err);
+                    data.modal.$content.text(err);
                 }
 
-                let $wishListForm = $('.wishlist-form');
+                let $wishListForm = $('.wishlist-form', data.modal.$content);
 
                 this.registerAddWishListValidation($wishListForm);
             });

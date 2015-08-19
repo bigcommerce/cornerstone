@@ -5,39 +5,39 @@
     <li class="account-listItem">
         <div class="account-product">
             <div class="account-product-figure">
-                <img src="{{getImage this.product.image 'thumb'}}" alt="{{this.product.image.alt}}">
+                <img src="{{getImage product.image 'thumb'}}" alt="{{product.image.alt}}">
             </div>
             <div class="account-product-body">
                 <div class="account-orderStatus">
-                    {{#compare this.status 'ReturnStatusPending' operator='===' }}
+                    {{#compare status 'ReturnStatusPending' operator='===' }}
                         <h6 class="account-orderStatus-label">{{lang 'account.returns.status.pending'}}</h6>
                     {{/compare}}
-                    {{#compare this.status 'ReturnStatusReceived' operator='===' }}
+                    {{#compare status 'ReturnStatusReceived' operator='===' }}
                         <h6 class="account-orderStatus-label">{{lang 'account.returns.status.received'}}</h6>
                     {{/compare}}
-                    {{#compare this.status 'ReturnStatusAuthorized' operator='===' }}
+                    {{#compare status 'ReturnStatusAuthorized' operator='===' }}
                         <h6 class="account-orderStatus-label">{{lang 'account.returns.status.authorized'}}</h6>
                     {{/compare}}
-                    {{#compare this.status 'ReturnStatusRepaired' operator='===' }}
+                    {{#compare status 'ReturnStatusRepaired' operator='===' }}
                         <h6 class="account-orderStatus-label">{{lang 'account.returns.status.repaired'}}</h6>
                     {{/compare}}
-                    {{#compare this.status 'ReturnStatusRefunded' operator='===' }}
+                    {{#compare status 'ReturnStatusRefunded' operator='===' }}
                         <h6 class="account-orderStatus-label">{{lang 'account.returns.status.refunded'}}</h6>
                     {{/compare}}
-                    {{#compare this.status 'ReturnStatusRejected' operator='===' }}
+                    {{#compare status 'ReturnStatusRejected' operator='===' }}
                         <h6 class="account-orderStatus-label">{{lang 'account.returns.status.rejected'}}</h6>
                     {{/compare}}
-                    {{#compare this.status 'ReturnStatusCancelled' operator='===' }}
+                    {{#compare status 'ReturnStatusCancelled' operator='===' }}
                         <h6 class="account-orderStatus-label">{{lang 'account.returns.status.cancelled'}}</h6>
                     {{/compare}}
                 </div>
 
-                <h5 class="account-product-title">{{lang 'account.returns.list.return_number' id=this.id}}</h5>
-                <p class="account-product-description">{{lang 'account.returns.list.product_details' num_products=this.quantity}} <a href="{{this.product.url}}">{{this.product.name}}</a></p>
+                <h5 class="account-product-title">{{lang 'account.returns.list.return_number' id=id}}</h5>
+                <p class="account-product-description">{{lang 'account.returns.list.product_details' num_products=quantity}} <a href="{{product.url}}">{{product.name}}</a></p>
 
-                {{#if this.product.options}}
+                {{#if product.options}}
                     <dl class="definitionList">
-                        {{#each this.product.options}}
+                        {{#each product.options}}
                             <dt class="definitionList-key">{{name}}:</dt>
                             <dd class="definitionList-value">{{value}}</dd>
                         {{/each}}
@@ -47,20 +47,20 @@
                 <div class="account-product-details">
                     <div class="account-product-detail">
                         <h6 class="account-product-detail-heading">{{lang 'account.returns.date_requested' }}</h6>
-                        <span>{{this.date_requested}}</span>
+                        <span>{{date_requested}}</span>
                     </div>
                     <div class="account-product-detail">
                         <h6 class="account-product-detail-heading">{{lang 'account.returns.action' }}</h6>
-                        <span>{{this.action}}</span>
+                        <span>{{action}}</span>
                     </div>
                     <div class="account-product-detail account-product-detail--large">
                         <h6 class="account-product-detail-heading">{{lang 'account.returns.reason' }}</h6>
-                        <span>{{this.reason}}</span>
+                        <span>{{reason}}</span>
                     </div>
-                    {{#if this.comments}}
+                    {{#if comments}}
                     <div class="account-product-detail account-product-detail--full">
                         <h6 class="account-product-detail-heading">{{lang 'account.returns.comments' }}</h6>
-                        <span>{{this.comments}}</span>
+                        <span>{{comments}}</span>
                     </div>
                     {{/if}}
                 </div>

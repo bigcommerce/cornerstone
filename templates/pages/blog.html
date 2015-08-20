@@ -13,42 +13,7 @@ blog:
     <h1 class="page-heading">{{ blog.name }}</h1>
 
     {{#each blog.posts}}
-
-       <article class="blog">
-            {{#if thumbnail}}
-            <a href="{{url}}">
-                <figure class="blog-thumbnail">
-                    <img src="{{getImage thumbnail 'gallery'}}">
-                </figure>
-            </a>
-            {{/if}}
-
-            <h2 class="blog-title">
-                <a href="{{url}}">{{title}}</a>
-            </h2>
-            <p class="blog-date">{{date_published}}</p>
-            {{#if author}}
-                <p class="blog-author">{{lang 'blog.posted_by' name=author}}</p>
-            {{/if}}
-
-            <div class="blog-post">
-                {{summary}}
-                {{#if show_read_more}}
-                    &hellip;<a href="{{url}}"> read more</a>
-                {{/if}}
-            </div>
-
-            {{#if tags}}
-                <ul class="tags">
-                    {{#each tags}}
-                        <li class="tag">
-                            <a href="{{url}}">#{{name}}</a>
-                        </li>
-                    {{/each}}
-                </ul>
-            {{/if}}
-        </article>
-
+        {{> components/blog/post this}}
     {{/each}}
 
     {{> components/common/paginator pagination.blog}}

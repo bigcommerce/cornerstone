@@ -1,10 +1,10 @@
 <article class="blog">
     {{#if this.thumbnail}}
-    <a href="{{url}}">
-        <figure class="blog-thumbnail">
-            <img src="{{getImage thumbnail 'gallery'}}">
-        </figure>
-    </a>
+        <a href="{{url}}">
+            <figure class="blog-thumbnail">
+                <img src="{{getImage thumbnail 'gallery'}}" alt="{{thumbnail.alt}}">
+            </figure>
+        </a>
     {{/if}}
 
     <h2 class="blog-title">
@@ -16,6 +16,24 @@
     {{/if}}
 
     <div class="blog-post">
-        {{{body}}}
+        {{#if body}}
+            {{{body}}}
+        {{else}}
+            {{summary}}
+            {{#if show_read_more}}
+                &hellip;<a href="{{url}}"> read more</a>
+            {{/if}}
+        {{/if}}
     </div>
+
 </article>
+
+{{#if blog.post.tags}}
+    <ul class="tags">
+        {{#each blog.post.tags}}
+        <li class="tag">
+            <a href="{{url}}">#{{name}}</a>
+        </li>
+        {{/each}}
+    </ul>
+{{/if}}

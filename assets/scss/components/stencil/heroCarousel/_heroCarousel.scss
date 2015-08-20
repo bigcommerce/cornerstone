@@ -7,11 +7,27 @@
 // 1. Hide the actual image element to allow background-size: cover treatment on
 //    large screens to scale image. Use visibility because the JS uses the height
 //    to set the slide size
+//
+// 2. With JS on, minimise the jump in content as you progressively enhance the
+//    slider. Slowly fade and slide the height, instead of a jump in collapsing
+//    hidden content.
 // -----------------------------------------------------------------------------
 
 .heroCarousel {
     margin-bottom: (spacing("double") + spacing("single"));
     margin-top: -(spacing("single") + spacing("base"));
+
+    .js & { // 2
+        max-height: remCalc(0);
+        opacity: 0;
+        overflow: hidden;
+        transition: all 600ms ease-out;
+    }
+
+    &.slick-initialized { // 2
+        max-height: remCalc(1000);
+        opacity: 1;
+    }
 
     .slick-next,
     .slick-prev {

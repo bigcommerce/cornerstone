@@ -4,7 +4,7 @@ import _ from 'lodash';
 export default class TextTruncate {
     constructor($element) {
         this.$element = $element;
-        this.contentClass = 'textTruncate--hidden';
+        this.contentClass = 'textTruncate--visible';
         this.options = $element.data('text-truncate') || {
             css: {},
             text: {
@@ -27,7 +27,6 @@ export default class TextTruncate {
         // create "view more" anchor
         this.createViewAnchor();
         this.appendViewAnchor();
-        this.toggleState();
         this.bindAnchor();
     }
 
@@ -56,9 +55,9 @@ export default class TextTruncate {
         this.$element.toggleClass(this.contentClass);
 
         if (this.$element.hasClass(this.contentClass)) {
-            this.hideText();
-        } else {
             this.showText();
+        } else {
+            this.hideText();
         }
     }
 

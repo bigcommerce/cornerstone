@@ -4,15 +4,5 @@
 
 {{> components/blog/post blog.post}}
 
-{{#if blog.post.tags}}
-<ul class="tags">
-    {{#each blog.post.tags}}
-    <li class="tag">
-        <a href="{{url}}">#{{name}}</a>
-    </li>
-    {{/each}}
-</ul>
-{{/if}}
-
 {{/partial}}
 {{> layout/base}}

@@ -1,3 +1,10 @@
+---
+blog:
+    posts:
+        limit: 5
+        pages: 3
+        summary: 200
+---
 {{#partial "page"}}
 
 {{> components/common/breadcrumbs breadcrumbs}}
@@ -6,7 +13,7 @@
     <h1 class="page-heading">{{ blog.name }}</h1>
 
     {{#each blog.posts}}
-    {{> components/blog/post this}}
+        {{> components/blog/post this}}
     {{/each}}
 
     {{> components/common/paginator pagination.blog}}

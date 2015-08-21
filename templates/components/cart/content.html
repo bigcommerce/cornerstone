@@ -74,9 +74,9 @@
 
                 <td class="cart-item-block cart-item-info">
                     <span class="cart-item-label">{{lang 'cart.checkout.total'}}</span> <strong class="cart-item-value">{{total.formatted}}</strong>
-                    <svg class="icon cart-remove" data-cart-itemid="{{id}}">
-                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use>
-                    </svg>
+                    <a class="cart-remove icon" data-cart-itemid="{{id}}" href="#">
+                        <svg><use xlink:href="#icon-close"></use></svg>
+                    </a>
                 </td>
             </tr>
         {{/each}}

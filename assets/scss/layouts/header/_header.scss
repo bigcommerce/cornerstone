@@ -35,10 +35,19 @@
     }
 
     > a {
+        color: $storeName-font-color;
         display: inline-block;
         position: relative;
         text-decoration: none;
         z-index: zIndex("low");
+
+        &:hover {
+            color: color("link", "hover");
+        }
+
+        &:active {
+            color: color("link", "active");
+        }
     }
 }
 

@@ -21,12 +21,17 @@
 // 3. Import Citadel's version of foundation.
 //      - This enables the ability to "null" variables in the Stencil settings.
 // 4. Import Stencil's component settings overrides.
+// 5. Import tools which set/reset Citadel's global settings, to be consumed by
+//    the rest of Stencil.
 //
 // -----------------------------------------------------------------------------
 
 @import "settings/global/global"; // 1
 
 @import "../jspm_packages/github/bigcommerce/citadel@2.4.3/dist/settings/global/global"; // 2
+
+@import "settings/global/tools"; // 5
+
 @import "../jspm_packages/github/bigcommerce/citadel@2.4.3/dist/settings/normalize/normalize"; // 2
 @import "../jspm_packages/github/bigcommerce/citadel@2.4.3/dist/settings/foundation/foundation"; // 2
 @import "../jspm_packages/github/bigcommerce/citadel@2.4.3/dist/settings/bigcommerce/bigcommerce"; // 2

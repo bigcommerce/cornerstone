@@ -30,7 +30,7 @@
             <a class="navPages-action" href="{{urls.auth.login}}">{{lang 'common.login'}}</a> {{lang 'common.or'}} <a class="navPages-action" href="{{urls.auth.create_account}}">{{lang 'common.sign_up'}}</a>
         </li>
         {{/if}}
-        {{#compare currency_selector.currencies.length 1 operator='>'}}
+        {{#if currency_selector.currencies.length '>' 1}}
         <li class="navPages-item">
             <a class="navPages-action has-dropdown" href="#" data-dropdown="currencySelection2" aria-controls="currencySelection2" aria-expanded="false">{{lang 'common.currency' code=currency_selector.active_currency_code}}</a>
             <ul class="dropdown-menu" id="currencySelection2" data-dropdown-content aria-hidden="true" tabindex="-1">
@@ -47,6 +47,6 @@
                 {{/each}}
             </ul>
         </li>
-        {{/compare}}
+        {{/if}}
     </ul>
 </nav>

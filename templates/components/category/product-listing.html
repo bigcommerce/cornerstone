@@ -1,11 +1,11 @@
 {{> components/products/filter sort=pagination.category.sort}}
 
 <form action="/compare" method='POST' data-product-compare>
-    {{#compare theme_settings.product_list_display_mode 'grid'}}
+    {{#if theme_settings.product_list_display_mode '==' 'grid'}}
         {{> components/products/grid products=category.products show_compare=category.show_compare theme_settings=theme_settings}}
     {{else}}
         {{> components/products/list products=category.products show_compare=category.show_compare theme_settings=theme_settings}}
-    {{/compare}}
+    {{/if}}
 
     {{#if category.show_compare}}
         <input type="submit" value="{{lang 'compare.button'}}" class="button button--primary">

@@ -9,27 +9,27 @@
             </div>
             <div class="account-product-body">
                 <div class="account-orderStatus">
-                    {{#compare status 'ReturnStatusPending' operator='===' }}
+                    {{#if status '==' ReturnStatusPending'}}
                         <h6 class="account-orderStatus-label">{{lang 'account.returns.status.pending'}}</h6>
-                    {{/compare}}
-                    {{#compare status 'ReturnStatusReceived' operator='===' }}
+                    {{/if}}
+                    {{#if status '==' ReturnStatusReceived'}}
                         <h6 class="account-orderStatus-label">{{lang 'account.returns.status.received'}}</h6>
-                    {{/compare}}
-                    {{#compare status 'ReturnStatusAuthorized' operator='===' }}
+                    {{/if}}
+                    {{#if status '==' ReturnStatusAuthorized'}}
                         <h6 class="account-orderStatus-label">{{lang 'account.returns.status.authorized'}}</h6>
-                    {{/compare}}
-                    {{#compare status 'ReturnStatusRepaired' operator='===' }}
+                    {{/if}}
+                    {{#if status '==' ReturnStatusRepaired'}}
                         <h6 class="account-orderStatus-label">{{lang 'account.returns.status.repaired'}}</h6>
-                    {{/compare}}
-                    {{#compare status 'ReturnStatusRefunded' operator='===' }}
+                    {{/if}}
+                    {{#if status '==' ReturnStatusRefunded'}}
                         <h6 class="account-orderStatus-label">{{lang 'account.returns.status.refunded'}}</h6>
-                    {{/compare}}
-                    {{#compare status 'ReturnStatusRejected' operator='===' }}
+                    {{/if}}
+                    {{#if status '==' ReturnStatusRejected'}}
                         <h6 class="account-orderStatus-label">{{lang 'account.returns.status.rejected'}}</h6>
-                    {{/compare}}
-                    {{#compare status 'ReturnStatusCancelled' operator='===' }}
+                    {{/if}}
+                    {{#if status '==' ReturnStatusCancelled'}}
                         <h6 class="account-orderStatus-label">{{lang 'account.returns.status.cancelled'}}</h6>
-                    {{/compare}}
+                    {{/if}}
                 </div>
 
                 <h5 class="account-product-title">{{lang 'account.returns.list.return_number' id=id}}</h5>

@@ -11,11 +11,11 @@
                         href="{{ url }}"
                         class="facetLabel"
                         data-faceted-search-facet>
-                        {{#compare facet 'rating' operator="==="}}
+                        {{#if facet '===' 'rating'}}
                             {{lang 'search.faceted.selected.rating-label' rating=title}}
                         {{else}}
                             {{ title }}
-                        {{/compare}}
+                        {{/if}}
 
                         <svg class="icon">
                             <use xlink:href="#icon-close" />

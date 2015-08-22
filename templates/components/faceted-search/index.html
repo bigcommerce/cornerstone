@@ -3,13 +3,13 @@
 
     <a href="#facetedSearch-navList" role="button" class="facetedSearch-toggle toggleLink" data-collapsible>
         <span class="facetedSearch-toggle-text">
-            {{#compare facets.length 2 operator='>' }}
+            {{#if facets.length '>' 2}}
                 {{lang 'search.faceted.browse-by'}} {{ join (pluck facets 'title') ', ' limit=2 }} &amp; {{ toLowerCase (lang 'search.faceted.more') }}
-            {{/compare}}
+            {{/if}}
 
-            {{#compare facets.length 2 operator='<=' }}
+            {{#if facets.length '<=' 2}}
                 {{lang 'search.faceted.browse-by'}} {{ join (pluck facets 'title') ', ' lastSeparator=' & ' }}
-            {{/compare}}
+            {{/if}}
         </span>
 
         <span class="facetedSearch-toggle-indicator">

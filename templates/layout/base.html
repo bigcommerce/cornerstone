@@ -8,7 +8,7 @@
         <link href="{{ head.favicon }}" rel="shortcut icon">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <link href="{{cdn '/assets/css/theme.css'}}" rel="stylesheet">
-        {{> components/common/fonts fonts=(pick theme_settings "fontFamily-sans" "fontFamily-serif" "fontFamily-headings" "fontFamily-hero") }}
+        {{> components/common/fonts settings=theme_settings }}
         <script src="{{cdn '/assets/modernizr-custom.js'}}"></script>
 
         {{{ head.scripts }}}

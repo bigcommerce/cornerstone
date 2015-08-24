@@ -64,6 +64,15 @@
                         <li>{{order.shipping_address.country}}</li>
                     </ul>
                 </section>
+            {{else}}
+                {{#if order.has_multiple_shipping_addresses}}
+                    <section class="account-sidebar-block">
+                        <h3 class="account-heading">{{lang 'account.orders.details.ship_to'}}</h3>
+                        <div class="account-order-address">
+                            {{lang 'account.orders.details.ship_to_multi_text'}}
+                        </div>
+                    </section>
+                {{/if}}
             {{/if}}
 
             <section class="account-sidebar-block">

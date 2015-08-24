@@ -2,6 +2,9 @@ import 'hubspot/pace';
 
 export default function () {
     Pace.start({
-        document: false
+        document: false,
+        ajax: {
+            trackMethods: ['GET', 'POST']
+        }
     });
 }

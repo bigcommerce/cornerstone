@@ -17,10 +17,10 @@
             {{/compare}}
         {{/if}}
         {{#compare account_page 'messages' operator='==='}}
-            <li class="navBar-item is-active">{{lang 'account.nav.messages'}}</li>
+            <li class="navBar-item is-active">{{lang 'account.nav.messages' num_new_messages=customer.num_new_messages}}</li>
         {{else}}
             <li class="navBar-item">
-                <a class="navBar-action" href="{{urls.account.inbox}}">{{lang 'account.nav.messages'}}</a>
+                <a class="navBar-action" href="{{urls.account.inbox}}">{{lang 'account.nav.messages' num_new_messages=customer.num_new_messages}}</a>
             </li>
         {{/compare}}
         {{#compare account_page 'addresses' operator='==='}}
@@ -31,10 +31,10 @@
             </li>
         {{/compare}}
         {{#compare account_page 'wishlists' operator='==='}}
-            <li class="navBar-item is-active">{{lang 'account.nav.wishlists'}}</li>
+            <li class="navBar-item is-active">{{lang 'account.nav.wishlists' num_wishlists=customer.num_wishlists}}</li>
         {{else}}
             <li class="navBar-item">
-                <a class="navBar-action" href="{{urls.account.wishlists.all}}">{{lang 'account.nav.wishlists'}}</a>
+                <a class="navBar-action" href="{{urls.account.wishlists.all}}">{{lang 'account.nav.wishlists' num_wishlists=customer.num_wishlists}}</a>
             </li>
         {{/compare}}
         {{#compare account_page 'recent_items' operator='==='}}

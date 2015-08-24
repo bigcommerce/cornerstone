@@ -21,16 +21,17 @@
                 </p>
             {{/if}}
             {{#if product.price}}
-                <div class="productView-price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-                    <meta itemprop="priceCurrency" content="{{currency_selector.active_currency_code}}">
-                    {{> components/products/price price=product.price}}
+                <div class="productView-price">
+                    {{> components/products/price price=product.price schema_org=true}}
                 </div>
             {{/if}}
             <div class="productView-rating" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
                 {{#if settings.show_product_rating}}
-                    <meta itemprop="ratingValue" content="{{product.rating}}">
-                    <meta itemprop="ratingCount" content="{{product.num_reviews}}">
-                    <meta itemprop="reviewCount" content="{{product.num_reviews}}">
+                    {{#if product.num_reviews '>' 0}}
+                        <meta itemprop="ratingValue" content="{{product.rating}}">
+                        <meta itemprop="ratingCount" content="{{product.num_reviews}}">
+                        <meta itemprop="reviewCount" content="{{product.num_reviews}}">
+                    {{/if}}
                     {{> components/products/ratings rating=product.rating}}
                     <span class="productView-reviewLink"><a href="{{product.url}}#product-reviews">{{lang 'products.reviews.link_to_review' total=product.num_reviews}}</a></span>
                 {{/if}}

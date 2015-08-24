@@ -2,6 +2,7 @@ import PageManager from '../page-manager';
 import $ from 'jquery';
 import _ from 'lodash';
 import utils from 'bigcommerce/stencil-utils';
+import ShippingEstimator from './cart/shipping-estimator';
 
 export default class Cart extends PageManager {
     loaded(next) {
@@ -11,6 +12,10 @@ export default class Cart extends PageManager {
             .hide(); // TODO: temporary until roper pulls in his cart components
 
         this.bindEvents();
+
+        // initiate shipping estimator module
+        new ShippingEstimator($('[data-shipping-estimator]'));
+
         next();
     }
 

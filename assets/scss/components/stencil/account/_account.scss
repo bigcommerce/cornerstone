@@ -339,7 +339,7 @@
 }
 
 
-// Account sidebar block
+// Sidebar blocks
 // -----------------------------------------------------------------------------
 
 .account-sidebar-block {
@@ -362,9 +362,46 @@
     @include u-listBullets("none");
 }
 
-
 .account-reorder-form {
     display: inline-block;
 }
 
-@import "download-item";
+
+// Product downloads
+// -----------------------------------------------------------------------------
+
+.account-downloads-summary {
+    border-bottom: container("border");
+    font-size: fontSize("smaller");
+    padding-bottom: spacing("single");
+}
+
+.account-downloadsList {
+    @include u-listBullets("none");
+}
+
+.account-downloadsItem {
+    margin-bottom: spacing("single");
+
+    > :first-child {
+        margin-top: 0;
+    }
+
+    > :last-child {
+        margin-bottom: 0;
+    }
+}
+
+.account-downloadsItem-title {
+    font-size: fontSize("smaller");
+    margin-bottom: spacing("eighth");
+    text-transform: inherit;
+}
+
+.account-downloadsItem-description {
+    margin-bottom: 0;
+}
+
+.account-downloadsItem-accent {
+    color: color("greys", "light");
+}

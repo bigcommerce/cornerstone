@@ -140,7 +140,7 @@ export default class FacetedSearch {
             $toggle = $navList.next(this.showMoreToggleSelector),
             id = $navList.attr('id'),
             itemsCount = $navItems.length,
-            maxItemsCount = parseInt($navList.data('count') || 0, 10);
+            maxItemsCount = parseInt($navList.data('count'), 10);
 
         $navItems.show();
 

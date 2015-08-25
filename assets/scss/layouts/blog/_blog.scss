@@ -23,6 +23,14 @@
     }
 }
 
+.blog-header,
+.blog-post {
+    @include grid-column(
+        $columns: 9,
+        $center: true
+    );
+}
+
 .blog-title {
     font-size: fontSize("large");
     margin: 0 0 spacing("quarter");
@@ -44,11 +52,6 @@
 }
 
 .blog-post {
-    @include grid-column(
-        $columns: 9,
-        $center: true
-    );
-
     font-size: fontSize("smaller");
 }
 

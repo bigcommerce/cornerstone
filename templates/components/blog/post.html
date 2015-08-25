@@ -7,13 +7,15 @@
         </a>
     {{/if}}
 
-    <h2 class="blog-title">
-        <a href="{{url}}">{{title}}</a>
-    </h2>
-    <p class="blog-date">{{date_published}}</p>
-    {{#if author}}
-        <p class="blog-author">{{lang 'blog.posted_by' name=author}}</p>
-    {{/if}}
+    <header class="blog-header">
+        <h2 class="blog-title">
+            <a href="{{url}}">{{title}}</a>
+        </h2>
+        <p class="blog-date">{{date_published}}</p>
+        {{#if author}}
+            <p class="blog-author">{{lang 'blog.posted_by' name=author}}</p>
+        {{/if}}
+    </header>
 
     <div class="blog-post">
         {{#if body}}

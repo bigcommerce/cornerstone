@@ -28,12 +28,8 @@
                     <dd class="definitionList-value">{{order.status_text}}</dd>
                     <dt class="definitionList-key">{{lang 'account.orders.details.payment_date'}}</dt>
                     <dd class="definitionList-value">{{order.date}}</dd>
-                    {{#each order.total_rows}}
-                        {{#if value.value}}
-                            <dt class="definitionList-key">{{label}}:</dt>
-                            <dd class="definitionList-value">{{value.formatted}}</dd>
-                        {{/if}}
-                    {{/each}}
+                    <dt class="definitionList-key">{{lang 'account.orders.details.order_total'}}</dt>
+                    <dd class="definitionList-value">{{order.total.formatted}}</dd>
                     {{#if order.payment_method}}
                         <dt class="definitionList-key">{{lang 'account.orders.details.payment_method'}}</dt>
                         <dd class="definitionList-value">

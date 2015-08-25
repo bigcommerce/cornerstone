@@ -85,17 +85,19 @@
         </section>
     </div>
 
-    <section class="suggestiveCart">
-        <h4>
-            {{lang 'cart.added_to_cart.you_might_also_like'}}&hellip;
-        </h4>
+    {{#if cart.suggested_products}}
+        <section class="suggestiveCart">
+            <h4>
+                {{lang 'cart.added_to_cart.you_might_also_like'}}&hellip;
+            </h4>
 
-        <ul class="productGrid">
-            {{#each cart.suggested_products}}
-                <li class="product">
-                    {{> components/products/card hide_product_quick_view=true theme_settings=../theme_settings}}
-                </li>
-            {{/each}}
-        </ul>
-    </section>
+            <ul class="productGrid">
+                {{#each cart.suggested_products}}
+                    <li class="product">
+                        {{> components/products/card hide_product_quick_view=true theme_settings=../theme_settings}}
+                    </li>
+                {{/each}}
+            </ul>
+        </section>
+    {{/if}}
 </div>

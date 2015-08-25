@@ -90,9 +90,11 @@ export function classifyForm(formSelector, options = {}) {
 function getFieldId($field) {
     let fieldId = $field.prop('name').match(/(\[.*\])/);
 
-    if (fieldId.length !== 0) {
+    if (fieldId && fieldId.length !== 0) {
         return fieldId[0];
     }
+
+    return '';
 }
 
 /**

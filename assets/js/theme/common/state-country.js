@@ -82,22 +82,46 @@ function makeStateOptional(stateElement, context) {
 
 /**
  * Adds the array of options from the remote request to the newly created select box.
- * @param statesArray
- * @param $selectElement
+ * @param {Object} statesArray
+ * @param {jQuery} $selectElement
+ * @param {Object} options
  */
-function addOptions(statesArray, $selectElement) {
+function addOptions(statesArray, $selectElement, options) {
     let container = [];
     container.push(`<option value="">${statesArray.prefix}</option>`);
     if (!_.isEmpty($selectElement)) {
         _.each(statesArray.states, (stateObj)  => {
-            container.push(`<option value="${stateObj.name}">${stateObj.name}</option>`);
+            if (options.useIdForStates) {
+                container.push(`<option value="${stateObj.id}">${stateObj.name}</option>`);
+            } else {
+                container.push(`<option value="${stateObj.name}">${stateObj.name}</option>`);
+            }
         });
         $selectElement.html(container.join(' '));
     }
 }
 
-export default function (stateElement, context, callback) {
+/**
+ *
+ * @param {jQuery} stateElement
+ * @param {Object} context
+ * @param {Object} options
+ * @param {Function} callback
+ */
+export default function (stateElement, context, options, callback) {
     context = context || {};
+
+    /**
+     * Backwards compatible for three parameters instead of four
+     *
+     * Available options:
+     *
+     * useIdForStates {Bool} - Generates states dropdown using id for values instead of strings
+     */
+    if (typeof options == 'function') {
+        callback = options;
+        options = {};
+    }
 
     $('select[data-field-type="Country"]').on('change', (event) => {
         let countryName = $(event.currentTarget).val();
@@ -119,7 +143,7 @@ export default function (stateElement, context, callback) {
             if (!_.isEmpty(response.data.states)) {
                 // The element may have been replaced with a select, reselect it
                 let $selectElement = makeStateRequired($currentInput, context);
-                addOptions(response.data, $selectElement);
+                addOptions(response.data, $selectElement, options);
                 callback(null, $selectElement);
 
             } else {

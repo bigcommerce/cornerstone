@@ -10,9 +10,9 @@
 {{/if}}
 
 <div class="shipping-estimator" style="display: none;">
-    <form class="form form--hiddenLabels estimator-form">
+    <form class="form form--hiddenLabels estimator-form" data-shipping-estimator>
         <label class="form-label" for="shipping-country">{{lang 'cart.shipping_estimator.select_a_country'}}</label>
-        <select class="form-select" id="shipping-country" name="shipping-country">
+        <select class="form-select" id="shipping-country" name="shipping-country" data-field-type="Country">
             <option>{{lang 'cart.shipping_estimator.select_a_country'}}</option>
             {{#each countries}}
                 <option value="{{id}}" {{#if selected}}selected="selected"{{/if}}>
@@ -21,7 +21,7 @@
             {{/each}}
         </select>
         <label class="form-label" for="shipping-state">{{lang 'cart.shipping_estimator.select_a_state'}}</label>
-        <select class="form-select" id="shipping-state" name="shipping-state">
+        <select class="form-select" id="shipping-state" name="shipping-state" data-field-type="State">
             <option>{{lang 'cart.shipping_estimator.select_a_state'}}</option>
             {{#each states}}
                 <option value="{{id}}" {{#if selected}}selected="selected"{{/if}}>

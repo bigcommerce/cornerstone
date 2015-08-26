@@ -1,6 +1,11 @@
 ---
-default:
-  - "build"
+check:
+    - check:js
+    - check:css
 
-build:
-  - "svgstore"
+check:js:
+    - eslint
+    - karma
+
+check:css:
+    - scsslint

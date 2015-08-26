@@ -21,17 +21,31 @@
                     {{#each downloads.items}}
                         <li class="account-downloadsItem">
                             {{#if expired}}
-                                <h5 class="account-downloadsItem-title">{{name}} <span class="account-downloadsItem-accent">({{size}})</span></h5>
-                                <p>{{lang 'account.orders.downloads.expired_content'}}</p>
+                                <h5 class="account-downloadsItem-title account-downloadsItem-accent">{{name}} <span class="account-downloadsItem-accent">({{size}})</span></h5>
+                                <p class="account-downloadsItem-accent">{{lang 'account.orders.downloads.expired_content'}}</p>
                             {{else}}
-                                <h5 class="account-downloadsItem-title"><a href="{{url}}">{{name}}</a> <span class="account-downloadsItem-accent">({{size}})</span></h5>
+                                <h5 class="account-downloadsItem-title">
+                                    <a href="{{url}}">{{name}}</a> <span class="account-downloadsItem-accent">({{size}})</span>
+                                </h5>
+
                                 {{#if description}}
                                     <p class="account-downloadsItem-description">{{description}}</p>
                                 {{/if}}
-                                {{#if expiry_info}}
-                                    <p class="account-downloadsItem-accent">{{expiry_info}}</p>
+
+                                {{#if days_remaining}}
+                                    <p class="account-downloadsItem-accent">
+                                        {{lang 'account.orders.downloads.days_remaining' number=days_remaining}}
+
+                                        {{#if downloads_remaining}}
+                                            {{lang 'account.orders.downloads.days_or_downloads' number=downloads_remaining}}
+                                        {{/if}}
+                                        {{lang 'account.orders.downloads.remaining'}}
+                                    </p>
+                                {{else}}
+                                    {{#if downloads_remaining}}
+                                        <p class="account-downloadsItem-accent">{{lang 'account.orders.downloads.downloads_remaining' number=downloads_remaining}}</p>
+                                    {{/if}}
                                 {{/if}}
-                                <p class="account-downloadsItem-accent">2 downloads remaining</p>
                             {{/if}}
                         </li>
                     {{/each}}

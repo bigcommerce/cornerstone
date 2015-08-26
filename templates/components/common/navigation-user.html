@@ -4,9 +4,15 @@
     <ul class="navUser-section navUser-section--alt">
         {{#compare customer.store_credit.value 0 operator='>'}}
             <li class="navUser-item">
-                <span class="navUser-action navUser-action--storeCredit">
-                    <span class="navUser-action-divider">{{customer.store_credit.formatted}} Store Credit</span>
-                </span>
+                <a class="navUser-action navUser-action--storeCredit"
+                   data-dropdown="storeCredit-dropdown"
+                   data-options="align:bottom"
+                   href="{{urls.cart}}">
+                        <span class="navUser-action-divider">{{customer.store_credit.formatted}} Store Credit</span>
+                </a>
+                <div class="dropdown-menu" id="storeCredit-dropdown" data-dropdown-content aria-hidden="true">
+                    {{{lang 'common.store_credit' store_credit=customer.store_credit.formatted}}}
+                </div>
             </li>
         {{/compare}}
         <li class="navUser-item">

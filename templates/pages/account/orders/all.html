@@ -11,6 +11,11 @@ customer:
 {{> components/account/navigation account_page='orders'}}
 
 <main class="account account--fixed">
+    <div class="account-head">
+        <div class="alertBox">
+            {{{lang 'common.store_credit' store_credit=customer.store_credit.formatted}}}
+        </div>
+    </div>
     <div class="account-body">
         <section class="account-content">
             {{#if customer.orders.length}}

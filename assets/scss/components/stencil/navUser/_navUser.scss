@@ -5,6 +5,7 @@
 // 1. Corrects the spacing added by .navUser-or
 // 2. Can't use top: 50% because its container `.header` changes its height to 
 //    100% when mobile menu is expanded
+// 3. Make the triangle for dropdown centered
 //
 // -----------------------------------------------------------------------------
 
@@ -80,14 +81,25 @@
     }
 }
 
-.navUser-action--storeCredit {
-    color: color("greys", "medium");
+.navUser-action--storeCredit + .dropdown-menu {
+    padding: spacing("single");
+    max-width: remCalc(300px);
+
+    &:before {
+        left: remCalc(140px) !important; // 3
+    }
+
+    &:after {
+        left: remCalc(142px) !important; // 3
+    }
 }
 
 .navUser-action-divider {
     border-right:  container("border");
+    color: stencilColor("color-textSecondary");
     display: inline-block;
     padding: 0 remCalc(20) 0 0;
+    text-decoration: none;
 }
 
 .navUser-item {

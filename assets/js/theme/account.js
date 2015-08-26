@@ -10,13 +10,15 @@ export default class Account extends PageManager {
     constructor() {
         super();
         this.$state = $('[data-field-type="State"]');
+        this.$body = $('body');
     }
 
     loaded(next) {
         let $editAccountForm = classifyForm('form[data-edit-account-form'),
             $addressForm = classifyForm('form[data-address-form]'),
             $inboxForm = classifyForm('form[data-inbox-form]'),
-            $accountReturnForm = classifyForm('[data-account-return-form]');
+            $accountReturnForm = classifyForm('[data-account-return-form]'),
+            $reorderForm = classifyForm('[data-account-reorder-form]');
 
         // Instantiates wish list JS
         new Wishlist();
@@ -43,7 +45,56 @@ export default class Account extends PageManager {
             this.initAccountReturnFormValidation($accountReturnForm);
         }
 
+        if ($reorderForm.length) {
+            this.initReorderForm($reorderForm);
+        }
+
+        this.bindCheckboxFields();
+
         next();
+    }
+
+    /**
+     * Binds all checkboxes in the orders list to a change event so it can
+     * fire an event for other handlers to listen to
+     */
+    bindCheckboxFields() {
+        $('.account-listItem .form-checkbox').on('change', (event) => {
+            let $ele = $(event.currentTarget),
+                id = $ele.val(),
+                eleVal = '';
+
+            if ($ele.is(':checked')) {
+                eleVal = 'on';
+            }
+
+            this.$body.trigger('orderCheckboxChanged', [id, eleVal]);
+        });
+    }
+
+    initReorderForm($reorderForm) {
+        // Update hidden form values accordingly
+        this.$body.on('orderCheckboxChanged', (event, id, eleVal) => {
+            $reorderForm.find('[name="reorderitem\[' + id + '\]"]').val(eleVal);
+        });
+
+        $reorderForm.on('submit', (event) => {
+            let $reorderItems = $reorderForm.find('[name^="reorderitem"]'),
+                submitForm = false;
+
+            // If one item has a value, submit the form.
+            $reorderItems.each((i, ele) => {
+                if ($(ele).val()) {
+                    submitForm = true;
+                    return true;
+                }
+            });
+
+            if (!submitForm) {
+                event.preventDefault();
+                alert('Please select one or more items to reorder.');
+            }
+        });
     }
 
     initAddressFormValidation($addressForm) {

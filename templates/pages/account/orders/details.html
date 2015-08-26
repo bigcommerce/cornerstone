@@ -123,7 +123,13 @@
             <section class="account-sidebar-block">
                 <h3 class="account-heading">{{lang 'account.orders.details.actions'}}</h3>
                 <div class="order-details-info">
-                    <a href="{{order.reorder_url}}" class="button">{{lang 'account.orders.details.reorder'}}</a>
+                    <form class="account-reorder-form" action="{{order.reorder_url}}" method="post" data-account-reorder-form>
+                        <input type="hidden" name="orderid" value="{{order.id}}">
+                        {{#each order.items}}
+                            <input type="hidden" name="reorderitem[{{order_product_id}}]">
+                        {{/each}}
+                        <input type="submit" class="button" value="{{lang 'account.orders.details.reorder'}}">
+                    </form>
                     <a href="{{order.return_url}}" class="button">{{lang 'account.orders.details.return'}}</a>
                 </div>
             </section>

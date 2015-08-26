@@ -1,41 +1,42 @@
 <article class="blog">
-    {{#if this.thumbnail}}
-        <a href="{{url}}">
+    {{#if post.thumbnail}}
+        <a href="{{post.url}}">
             <figure class="blog-thumbnail">
-                <img src="{{getImage thumbnail 'gallery'}}" alt="{{thumbnail.alt}}">
+                <img src="{{getImage post.thumbnail 'gallery'}}" alt="{{post.thumbnail.alt}}">
             </figure>
         </a>
     {{/if}}
 
     <header class="blog-header">
         <h2 class="blog-title">
-            <a href="{{url}}">{{title}}</a>
+            <a href="{{post.url}}">{{post.title}}</a>
         </h2>
-        <p class="blog-date">{{date_published}}</p>
-        {{#if author}}
-            <p class="blog-author">{{lang 'blog.posted_by' name=author}}</p>
+        <p class="blog-date">{{post.date_published}}</p>
+        {{#if post.author}}
+            <p class="blog-author">{{lang 'blog.posted_by' name=post.author}}</p>
         {{/if}}
     </header>
 
     <div class="blog-post">
-        {{#if body}}
-            {{{body}}}
+        {{#if post.body}}
+            {{{post.body}}}
         {{else}}
-            {{summary}}
-            {{#if show_read_more}}
+            {{post.summary}}
+            {{#if post.show_read_more}}
                 &hellip;<a href="{{url}}"> read more</a>
             {{/if}}
         {{/if}}
     </div>
 
-</article>
+    {{#if post.tags}}
+        <ul class="tags">
+            {{#each post.tags}}
+            <li class="tag">
+                <a href="{{url}}">#{{name}}</a>
+            </li>
+            {{/each}}
+        </ul>
+    {{/if}}
 
-{{#if tags}}
-    <ul class="tags">
-        {{#each tags}}
-        <li class="tag">
-            <a href="{{url}}">#{{name}}</a>
-        </li>
-        {{/each}}
-    </ul>
-{{/if}}
+    {{>components/common/share}}
+</article>

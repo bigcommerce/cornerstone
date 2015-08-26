@@ -1,0 +1,57 @@
+<div class="addthis_toolbox addthis_32x32_style" addthis:url="{{url}}"
+     addthis:title="{{title}}">
+    <ul class="socialLinks">
+        {{#each settings.add_this}}
+        <li class="socialLinks-item socialLinks-item--{{service}}">
+            <a class="addthis_button_{{service}} icon icon--{{service}}" {{{annotation}}}>
+                {{#compare service 'google_plusone' operator='==='}}
+                <!-- No custom icons allowed with g+ -->
+                {{/compare}}
+
+                {{#compare service 'facebook' operator='==='}}
+                <svg>
+                    <use xlink:href="#icon-facebook"/>
+                </svg>
+                {{/compare}}
+
+                {{#compare service 'email' operator='==='}}
+                <svg>
+                    <use xlink:href="#icon-envelope"/>
+                </svg>
+                {{/compare}}
+
+                {{#compare service 'print' operator='==='}}
+                <svg>
+                    <use xlink:href="#icon-print"/>
+                </svg>
+                {{/compare}}
+
+                {{#compare service 'twitter' operator='==='}}
+                <svg>
+                    <use xlink:href="#icon-twitter"/>
+                </svg>
+                {{/compare}}
+
+                {{#compare service 'linkedin' operator='==='}}
+                <svg>
+                    <use xlink:href="#icon-linkedin"/>
+                </svg>
+                {{/compare}}
+
+                {{#compare service 'google' operator='==='}}
+                <svg>
+                    <use xlink:href="#icon-google"/>
+                </svg>
+                {{/compare}}
+            </a>
+        </li>
+        {{/each}}
+    </ul>
+    <script type="text/javascript"
+            src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4e94ed470ee51e32"></script>
+    <script>
+        if (typeof(addthis) === "object") {
+            addthis.toolbox('.addthis_toolbox');
+        }
+    </script>
+</div>

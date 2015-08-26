@@ -152,33 +152,42 @@ export default class Product {
      *
      */
     addProductToCart() {
+        const $previewModal = $('#previewModal');
+
         utils.hooks.on('cart-item-add', (event, form) => {
+            const $addToCartBtn = $('#form-action-addToCart', $(event.target));
+            let originalBtnVal = $addToCartBtn.val(),
+                waitMessage = $addToCartBtn.data('waitMessage');
 
             // Do not do AJAX if browser doesn't support FormData
             if (window.FormData === undefined) {
                 return;
             }
 
-            const $previewModal = $('#previewModal');
-
             // Prevent default
             event.preventDefault();
 
-            // Optimistic loading
-            this.openCartModal($previewModal);
+            $addToCartBtn
+                .val(waitMessage)
+                .prop('disabled', true);
 
             // Add item to cart
             utils.api.cart.itemAdd(new FormData(form), (err, response) => {
                 const errorMessage = err || response.data.error;
 
+                $addToCartBtn
+                    .val(originalBtnVal)
+                    .prop('disabled', false);
+
                 // Guard statement
                 if (errorMessage) {
                     alert(errorMessage);
 
-                    this.closeCartModal($previewModal);
-
                     return;
                 }
+
+                // Optimistic loading
+                this.openCartModal($previewModal);
 
                 // Show modal
                 this.populateCartModal($previewModal, response.data.cart_item.hash, ($modalContent) => {

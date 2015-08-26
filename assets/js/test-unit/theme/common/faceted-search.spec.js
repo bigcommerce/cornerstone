@@ -29,7 +29,7 @@ describe('FacetedSearch', () => {
             '<div id="facetedSearch">' +
                 '<a class="facetedSearch-clearLink">Clear</a>' +
                 '<div id="facetedSearch-navList">' +
-                    '<ul class="navList" id="facet-brands">' +
+                    '<ul class="navList" id="facet-brands" data-count="2">' +
                         '<li><a href="?brand=item1">Facet Item 1</a></li>' +
                         '<li><a href="?brand=item2">Facet Item 2</a></li>' +
                         '<li><a href="?brand=item3">Facet Item 3</a></li>' +

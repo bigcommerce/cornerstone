@@ -14,15 +14,16 @@
 
     {{> components/common/navigation-user}}
 
-    <div class="header-logo">
-        <a href="{{urls.home}}">
-            {{#if settings.store_logo.image}}
-                <img class="header-logo-image" src="{{getImage settings.store_logo.image 'logo'}}" alt="{{settings.store_logo.title}}">
-            {{else}}
-                <span class="header-logo-text">{{settings.store_logo.title}}</span>
-            {{/if}}
-        </a>
-    </div>
+    {{#if template_file '===' 'pages/home'}}
+        <h1 class="header-logo">
+            {{> components/common/store-logo}}
+        </h1>
+    {{else}}
+        <div class="header-logo">
+            {{> components/common/store-logo}}
+        </div>
+    {{/if}}
+
 
     <div class="navPages-container" id="mobile-menu">
         {{> components/common/navigation-pages}}

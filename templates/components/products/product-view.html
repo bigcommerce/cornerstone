@@ -36,8 +36,12 @@
                     <span class="productView-reviewLink"><a href="{{product.url}}#product-reviews">{{lang 'products.reviews.link_to_review' total=product.num_reviews}}</a></span>
                 {{/if}}
                 {{#if settings.show_product_reviews}}
-                    <span class="productView-reviewLink"><a href="{{product.url}}"
-                                                            {{#if product.reviews}}data-reveal-id="modal-review-form"{{/if}}>{{lang 'products.reviews.new'}}</a></span>
+                    <span class="productView-reviewLink">
+                        <a href="{{product.url}}"
+                           {{#unless is_ajax }}data-reveal-id="modal-review-form"{{/unless}}>
+                           {{lang 'products.reviews.new'}}
+                        </a>
+                    </span>
                     {{> components/products/modals/writeReview}}
                 {{/if}}
             </div>
@@ -79,11 +83,20 @@
                 {{/if}}
                 {{#if product.bulk_discount_rates.length}}
                     <dt class="productView-info-name">{{lang 'products.bulk_pricing.title'}}</dt>
-                    <dd class="productView-info-value"><a href="#" data-reveal-id="bulkPricingModal">{{lang 'products.bulk_pricing.view'}}</a></dd>
+                    <dd class="productView-info-value">
+                        <a href="{{product.url}}"
+                            {{#unless is_ajax }}data-reveal-id="bulkPricingModal" {{/unless}}>
+                            {{lang 'products.bulk_pricing.view'}}
+                        </a>
+                    </dd>
 
-                    <div id="bulkPricingModal" class="modal" data-reveal>
-                        <div class="modal-content">
-                            <h2>{{lang 'products.bulk_pricing.instructions'}}</h2>
+                    <div id="bulkPricingModal" class="modal modal--small" data-reveal>
+                        <div class="modal-header">
+                            <h2 class="modal-header-title">{{lang 'products.bulk_pricing.modal_title'}}</h2>
+                            <a href="#" class="modal-close" aria-label="Close"><span aria-hidden="true">&#215;</span></a>
+                        </div>
+                        <div class="modal-body">
+                            <p>{{lang 'products.bulk_pricing.instructions'}}</p>
                             <ul>
                             {{#each product.bulk_discount_rates}}
                                 <li>

@@ -3,7 +3,7 @@
 // =============================================================================
 
 .header {
-    background-color: $body-bg;
+    background-color: $header-bg;
     border-bottom: container("border");
     position: fixed;
     top: 0;
@@ -35,10 +35,19 @@
     }
 
     > a {
+        color: $storeName-fontColor;
         display: inline-block;
         position: relative;
         text-decoration: none;
         z-index: zIndex("low");
+
+        &:hover {
+            color: color("link", "hover");
+        }
+
+        &:active {
+            color: color("link", "active");
+        }
     }
 }
 

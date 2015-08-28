@@ -20,7 +20,7 @@ $html-fontSize--smallUp:        $fontSize-root;
 $html-fontSize--mediumUp:       $fontSize-root;
 $html-fontSize--largeUp:        $fontSize-root;
 
-$body-fontSize:                 $base-font-size;
+$body-fontSize:                 fontSize("base");
 
 $code-font-size:                null;
 
@@ -68,7 +68,7 @@ $font-weight-bold:              fontWeight("bold");
 // We use these to control various global styles
 $body-bg:                       stencilColor("body-bg");
 $body-font-color:               stencilColor("body-font-color");
-$body-font-family:              fontFamily("sans");
+$body-font-family:              stencilString("body-font-family");
 $body-font-weight:              null;
 $body-font-style:               null;
 
@@ -129,8 +129,8 @@ $code-padding:                  null;
 // We use these to style anchors
 $anchor-text-decoration:        underline;
 $anchor-text-decoration-hover:  null;
-$anchor-font-color:             color("link");
-$anchor-font-color-hover:       color("link", "hover");
+$anchor-font-color:             color("link", "text");
+$anchor-font-color-hover:       color("link", "text-hover");
 
 // We use these to style the <hr> element
 $hr-border-width:               container("borderSize");

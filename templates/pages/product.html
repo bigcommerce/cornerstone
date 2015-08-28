@@ -1,13 +1,13 @@
 ---
 product:
     videos:
-        limit: 8
+        limit: {{theme_settings.productpage_videos_count}}
     reviews:
-        limit: 9
+        limit: {{theme_settings.productpage_reviews_count}}
     related_products:
-        limit: 10
+        limit: {{theme_settings.productpage_related_products_count}}
     similar_by_views:
-        limit: 10
+        limit: {{theme_settings.productpage_similar_by_views_count}}
 ---
 {{#partial "page"}}
     {{#each breadcrumbs}}

@@ -76,6 +76,11 @@
 
     &:hover {
         color: $navPages-action-color--hover;
+
+        svg {
+            fill: $navPages-action-color--hover;
+            stroke: $navPages-action-color--hover;
+        }
     }
 
     @include breakpoint("medium") {
@@ -83,7 +88,12 @@
 
         &.is-open {
             color: $navPages-action-color--active;
-            background-color: color("greys", "lightest");
+            background-color: $navPage-subMenu-backgroundColor;
+
+            svg {
+                fill: $navPages-action-color--active;
+                stroke: $navPages-action-color--active;
+            }
         }
 
     }
@@ -103,7 +113,8 @@
     }
 
     svg {
-        stroke: color("greys", "darker");
+        fill: $navPages-action-color;
+        stroke: $navPages-action-color;
     }
 }
 

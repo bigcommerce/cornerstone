@@ -10,6 +10,7 @@
 //            Instead use the maps and functions outlined below.
 //
 // 1. Set up the REM units for the rest of the framework (pixel value).
+// The stencilNumber() function outputs a pixel value by default.
 // 2. Your base font size should always start at 1rem;
 // 3. Your <body> line-height. This value is used for spacing calculations,
 //    where spacing is = $fontSize-root * $lineHeight-base.
@@ -30,15 +31,15 @@ $fontFamily-hero:               stencilString("fontFamily-hero");
 // Font sizes
 // -----------------------------------------------------------------------------
 
-$fontSize-root:                 14px; // 1
+$fontSize-root:                 stencilNumber("fontSize-root"); // 1
 $fontSize-base:                 1rem; // 2
 $fontSize-hero:                 50px;
-$fontSize-largest:              28px;
-$fontSize-larger:               24px;
-$fontSize-large:                22px;
-$fontSize-small:                20px;
-$fontSize-smaller:              15px;
-$fontSize-smallest:             13px;
+$fontSize-largest:              stencilNumber("fontSize-h1");
+$fontSize-larger:               stencilNumber("fontSize-h2");
+$fontSize-large:                stencilNumber("fontSize-h3");
+$fontSize-small:                stencilNumber("fontSize-h4");
+$fontSize-smaller:              stencilNumber("fontSize-h5");
+$fontSize-smallest:             stencilNumber("fontSize-h6");
 $fontSize-tiny:                 12px;
 
 

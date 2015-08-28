@@ -10,9 +10,7 @@ product:
         limit: {{theme_settings.productpage_similar_by_views_count}}
 ---
 {{#partial "page"}}
-    {{#each breadcrumbs}}
-        {{> components/common/breadcrumbs this}}
-    {{/each}}
+    {{> components/common/breadcrumbs breadcrumbs}}
 
     <div itemscope itemtype="http://schema.org/Product">
         {{> components/products/product-view}}

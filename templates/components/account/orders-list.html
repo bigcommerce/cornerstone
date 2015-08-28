@@ -5,7 +5,11 @@
     <li class="account-listItem">
         <div class="account-product">
             <div class="account-product-figure">
-                <img src="{{getImage image 'thumb' (cdn ../theme_settings.default_image_product)}}" alt="{{image.alt}}">
+                {{#contains items.0.name 'Gift Certificate'}}
+                    <img src="{{cdn ../../theme_settings.default_image_gift_certificate}}" alt="GiftCertificate">
+                {{else}}
+                    <img src="{{getImage image 'thumb' (cdn ../theme_settings.default_image_product)}}" alt="{{image.alt}}">
+                {{/contains}}
             </div>
             <div class="account-product-body">
                 <div class="account-orderStatus">

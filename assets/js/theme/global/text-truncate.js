@@ -13,8 +13,8 @@ export default class TextTruncate {
             }
         };
         this.defaultCssOptions = {
-            'max-height': null,
-            'text-overflow': null
+            'max-height': '',
+            'text-overflow': 'ellipsis'
         };
     }
 
@@ -34,7 +34,7 @@ export default class TextTruncate {
         this.$viewAnchor = $('<a />', {
             'href': '#',
             'class': 'textTruncate-viewMore',
-            'text': this.options.text.viewMore
+            'text': this.options.open ? this.options.text.viewLess : this.options.text.viewMore
         });
     }
 
@@ -77,10 +77,8 @@ export default class TextTruncate {
 
     parseDataAttributes() {
         // override default css options
-        _.forOwn(this.options.css, (value, key) => {
-            if (key in this.defaultCssOptions && value) {
-                this.$element.css(key, value);
-            }
+        _.forOwn(this.defaultCssOptions, (value, key) => {
+            this.$element.css(key, value);
         });
     }
 }

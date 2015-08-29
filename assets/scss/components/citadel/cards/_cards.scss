@@ -8,7 +8,12 @@
 }
 
 .card-figcaption {
+    display: none;
     margin: $card-figcaption-margin;
+
+    @include breakpoint("medium") {
+        display: block;
+    }
 }
 
 .card-figcaption-body {

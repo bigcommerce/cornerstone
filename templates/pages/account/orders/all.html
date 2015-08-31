@@ -12,9 +12,11 @@ customer:
 
 <main class="account account--fixed">
     <div class="account-head">
-        <div class="alertBox">
-            {{{lang 'common.store_credit' store_credit=customer.store_credit.formatted}}}
-        </div>
+        {{#if customer.store_credit.value '>' 0}}
+            <div class="alertBox">
+                {{{lang 'common.store_credit' store_credit=customer.store_credit.formatted}}}
+            </div>
+        {{/if}}
     </div>
     <div class="account-body">
         <section class="account-content">

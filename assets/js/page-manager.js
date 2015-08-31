@@ -23,10 +23,11 @@ export default class PageManager {
 
     getPageModal(url, options, callback) {
         let modal = {
-            $element: $('#modal'),
-            $content: $('.modal-content', this.$element),
-            $overlay: $('.loadingOverlay', this.$element)
-        };
+                $element: $('#modal'),
+                $content: $('.modal-content', this.$element),
+                $overlay: $('.loadingOverlay', this.$element)
+            },
+            closeMarkup = '<a href="#" class="modal-close" aria-label="Close"><span aria-hidden="true">&#215;</span></a>';
 
         if (typeof options === 'function') {
             callback = options;
@@ -47,7 +48,7 @@ export default class PageManager {
             modal.$overlay.hide();
 
             if (err) {
-                modal.$content.html(this.context.genericError);
+                modal.$content.html(closeMarkup + this.context.genericError);
 
                 if (typeof callback === 'function') {
                     return callback(err, {
@@ -58,12 +59,12 @@ export default class PageManager {
                 }
             }
 
-            modal.$content.html(content);
+            modal.$content.html(closeMarkup + content);
 
             if (typeof callback === 'function') {
                 callback(null, {
                     modal: modal,
-                    content: content
+                    content: closeMarkup + content
                 });
             }
         });

@@ -6,12 +6,11 @@
 
     <div class="account account--fixedLarge">
         <div class="account-body">
-
             <figure class="account-sidebar">
-                {{#if downloads.image}}
-                    <img src="{{downloads.image}}" alt="{{downloads.product_name}}"/>
-                    <figcaption>{{downloads.product_name}}</figcaption>
-                {{/if}}
+                {{#each downloads.images}}
+                    <img src="{{getImage this}}" alt="{{../downloads.product_name}}"/>
+                    <figcaption>{{../downloads.product_name}}</figcaption>
+                {{/each}}
             </figure>
 
             <section class="account-content account-content--fixed">

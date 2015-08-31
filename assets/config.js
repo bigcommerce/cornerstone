@@ -31,6 +31,7 @@ System.config({
     "lodash": "npm:lodash@3.10.1",
     "slick-carousel": "github:kenwheeler/slick@1.5.5",
     "url": "github:jspm/nodelibs-url@0.1.0",
+    "vakata/jstree": "github:vakata/jstree@3.2.1",
     "github:bigcommerce-labs/foundation@5.5.3": {
       "jquery": "github:components/jquery@2.1.4"
     },

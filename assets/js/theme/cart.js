@@ -150,53 +150,6 @@ export default class Cart extends PageManager {
         });
     }
 
-    bindEstimatorEvents() {
-        let $estimatorContainer = $('.shipping-estimator'),
-            $estimatorForm = $('.estimator-form');
-
-        $estimatorForm.on('submit', (event) => {
-            let params = {
-                country_id: $('[name="shipping-country"]', $estimatorForm).val(),
-                state_id: $('[name="shipping-state"]', $estimatorForm).val(),
-                zip_code: $('[name="shipping-zip"]', $estimatorForm).val()
-            };
-
-            event.preventDefault();
-
-            utils.api.cart.getShippingQuotes(params, 'cart/shipping-quotes', (err, response) => {
-                $('.shipping-quotes').html(response.content);
-
-                // bind the select button
-                $('.select-shipping-quote').on('click', (event) => {
-                    let quoteId = $('.shipping-quote:checked').val();
-
-                    event.preventDefault();
-
-                    utils.api.cart.submitShippingQuote(quoteId, (response) => {
-                        this.refreshContent();
-                    });
-                });
-            });
-        });
-
-        $('.shipping-estimate-show').on('click', (event) => {
-            event.preventDefault();
-
-            $(event.currentTarget).hide();
-            $estimatorContainer.show();
-            $('.shipping-estimate-hide').show();
-        });
-
-
-        $('.shipping-estimate-hide').on('click', (event) => {
-            event.preventDefault();
-
-            $estimatorContainer.hide();
-            $('.shipping-estimate-show').show();
-            $('.shipping-estimate-hide').hide();
-        });
-    }
-
     bindGiftWrappingEvents() {
         let $modal = $('#modal'),
             $modalContent = $('.modal-content', $modal),
@@ -227,8 +180,6 @@ export default class Cart extends PageManager {
     }
 
     bindGiftWrappingForm() {
-        let $form = $('.giftWrapping-form');
-
         $('.giftWrapping-select').change((event) => {
             let $select = $(event.currentTarget),
                 id = $select.val(),
@@ -274,7 +225,6 @@ export default class Cart extends PageManager {
     bindEvents() {
         this.bindCartEvents();
         this.bindPromoCodeEvents();
-        this.bindEstimatorEvents();
         this.bindGiftWrappingEvents();
     }
 }

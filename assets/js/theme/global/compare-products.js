@@ -25,8 +25,7 @@ function updateCounterNav(counter, $link) {
     }
 }
 
-export default function () {
-
+export default function() {
     let $checked = $('body').find('input[name="products\[\]"]:checked'),
         $compareLink = $('a[data-compare-nav]'),
         products;
@@ -59,12 +58,12 @@ export default function () {
         }
     });
 
-    $('body').on('click', 'a[data-compare-nav]', (event) => {
+    $('body').on('click', 'a[data-compare-nav]', () => {
         let $checked = $('body').find('input[name="products\[\]"]:checked');
 
         if ($checked.length <= 1) {
             alert('You must select at least two products to compare');
             return false;
         }
-    })
+    });
 }

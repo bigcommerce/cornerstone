@@ -1,11 +1,8 @@
 import $ from 'jquery';
 
-export default function () {
-
+export default function() {
     const $toggleMenu = $('[data-togglemenu]');
     const $body = $('body');
-    let $targetMenuItem;
-    let targetMenuItemID;
 
     function toggleMenu() {
         $toggleMenu.on('click', menuClicked);
@@ -18,23 +15,22 @@ export default function () {
 
         closeOtherMenus();
 
-        $targetMenuItem = $(e.currentTarget);
+        let $targetMenuItem = $(e.currentTarget);
 
         if (!$targetMenuItem.hasClass('is-open')) {
             toggleThisMenu($targetMenuItem);
         }
-
     }
 
     function toggleThisMenu($targetMenuItem) {
-        targetMenuItemID = $targetMenuItem.data('togglemenu');
+        let targetMenuItemID = $targetMenuItem.data('togglemenu');
 
         $targetMenuItem.toggleClass('is-open').attr('aria-expanded', (i, attr) => {
-            return attr == 'true' ? 'false' : 'true';
+            return attr === 'true' ? 'false' : 'true';
         });
 
         $(`#${targetMenuItemID}`).toggleClass('is-open').attr('aria-hidden', (i, attr) => {
-            return attr == 'true' ? 'false' : 'true';
+            return attr === 'true' ? 'false' : 'true';
         });
     }
 
@@ -54,5 +50,4 @@ export default function () {
     if ($toggleMenu.length) {
         toggleMenu();
     }
-
 }

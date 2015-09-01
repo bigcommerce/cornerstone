@@ -14,7 +14,7 @@ export default class Cart extends PageManager {
         this.bindEvents();
 
         // initiate shipping estimator module
-        new ShippingEstimator($('[data-shipping-estimator]'));
+        this.shippingEstimator = new ShippingEstimator($('[data-shipping-estimator]'));
 
         next();
     }
@@ -59,14 +59,14 @@ export default class Cart extends PageManager {
                 template: {
                     content: 'cart/content',
                     totals: 'cart/totals',
-                    pageTitle: 'cart/page-title',
+                    pageTitle: 'cart/page-title'
                 }
             };
 
         this.$overlay.show();
 
         // Remove last item from cart? Reload
-        if (remove && $cartItemsRows.length == 1) {
+        if (remove && $cartItemsRows.length === 1) {
             return window.location.reload();
         }
 
@@ -185,7 +185,7 @@ export default class Cart extends PageManager {
                 id = $select.val(),
                 index = $select.data('index'),
                 allowMessage;
-                
+
             if (!id) {
                 return;
             }
@@ -205,7 +205,7 @@ export default class Cart extends PageManager {
         $('.giftWrapping-select').trigger('change');
 
         function toggleViews() {
-            var value = $("input:radio[name ='giftwraptype']:checked").val(),
+            let value = $('input:radio[name ="giftwraptype"]:checked').val(),
                 $singleForm = $('.giftWrapping-single'),
                 $multiForm = $('.giftWrapping-multiple');
 

@@ -3,7 +3,6 @@ import nod from './common/nod';
 import Wishlist from './wishlist';
 import validation from './common/form-validation';
 import stateCountry from './common/state-country';
-import forms from './common/models/forms';
 import {classifyForm, Validators, insertStateHiddenField} from './common/form-utils';
 
 export default class Account extends PageManager {
@@ -19,12 +18,12 @@ export default class Account extends PageManager {
             $inboxForm = classifyForm('form[data-inbox-form]'),
             $accountReturnForm = classifyForm('[data-account-return-form]'),
             $reorderForm = classifyForm('[data-account-reorder-form]');
-        
+
         // Injected via template
         this.passwordRequirements = this.context.passwordRequirements;
 
         // Instantiates wish list JS
-        new Wishlist();
+        this.wishlist = new Wishlist();
 
         if ($editAccountForm.length) {
             this.registerEditAccountValidation($editAccountForm);
@@ -151,7 +150,7 @@ export default class Account extends PageManager {
 
             // Iterate until we find a non-zero value in the dropdown for quantity
             $('[name^="return_qty"]', $accountReturnForm).each((i, ele) => {
-                if ($(ele).val() != 0) {
+                if ($(ele).val() !== 0) {
                     formSubmit = true;
 
                     // Exit out of loop if we found at least one return
@@ -161,11 +160,12 @@ export default class Account extends PageManager {
 
             if (formSubmit) {
                 return true;
-            } else {
-                alert('Please select one or more items to return');
-                return false;
             }
-        })
+
+            alert('Please select one or more items to return');
+
+            return false;
+        });
     }
 
     registerEditAccountValidation($editAccountForm) {
@@ -183,7 +183,7 @@ export default class Account extends PageManager {
             currentPasswordSelector = `${formEditSelector} [data-field-type="CurrentPassword"]`,
             $currentPassword = $(currentPasswordSelector);
 
-        //This only handles the custom fields, standard fields are added below
+        // This only handles the custom fields, standard fields are added below
         editValidator.add(validationModel);
 
         if ($emailElement) {
@@ -215,34 +215,34 @@ export default class Account extends PageManager {
 
                     cb(result);
                 },
-                errorMessage: "You must enter your current password"
+                errorMessage: 'You must enter your current password'
             });
         }
 
         editValidator.add([
             {
-                selector: `${formEditSelector} input[name="account_firstname"]`,
+                selector: `${formEditSelector} input[name='account_firstname']`,
                 validate: (cb, val) => {
                     let result = val.length;
                     cb(result);
                 },
-                errorMessage: "You must enter a first name"
+                errorMessage: 'You must enter a first name'
             },
             {
-                selector: `${formEditSelector} input[name="account_lastname"]`,
+                selector: `${formEditSelector} input[name='account_lastname']`,
                 validate: (cb, val) => {
                     let result = val.length;
                     cb(result);
                 },
-                errorMessage: "You must enter a last name"
+                errorMessage: 'You must enter a last name'
             },
             {
-                selector: `${formEditSelector} input[name="account_phone"]`,
+                selector: `${formEditSelector} input[name='account_phone']`,
                 validate: (cb, val) => {
                     let result = val.length;
                     cb(result);
                 },
-                errorMessage: "You must enter a Phone Number"
+                errorMessage: 'You must enter a Phone Number'
             }
         ]);
 
@@ -259,7 +259,6 @@ export default class Account extends PageManager {
     }
 
     registerInboxValidation($inboxForm) {
-
         let inboxValidator = nod({
             submit: 'form[data-inbox-form] input[type="submit"]'
         });
@@ -271,7 +270,7 @@ export default class Account extends PageManager {
                     let result = Number(val) !== 0;
                     cb(result);
                 },
-                errorMessage: "You must select an order"
+                errorMessage: 'You must select an order'
             },
             {
                 selector: 'form[data-inbox-form] input[name="message_subject"]',
@@ -279,7 +278,7 @@ export default class Account extends PageManager {
                     let result = val.length;
                     cb(result);
                 },
-                errorMessage: "You must enter a subject"
+                errorMessage: 'You must enter a subject'
             },
             {
                 selector: 'form[data-inbox-form] textarea[name="message_content"]',
@@ -287,7 +286,7 @@ export default class Account extends PageManager {
                     let result = val.length;
                     cb(result);
                 },
-                errorMessage: "You must enter a message"
+                errorMessage: 'You must enter a message'
             }
         ]);
 

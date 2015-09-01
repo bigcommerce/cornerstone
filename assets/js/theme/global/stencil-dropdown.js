@@ -42,4 +42,4 @@ export default {
             modalOpened = false;
         });
     }
-}
+};

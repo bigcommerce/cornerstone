@@ -2,11 +2,11 @@ import _ from 'lodash';
 import $ from 'jquery';
 
 const revealCloseAttr = 'reveal-close',
-      revealResetAttr = 'reveal-onload-reset',
-      revealAttr = 'reveal',
-      revealCloseSelector = `[data-${revealCloseAttr}]`,
-      revealResetSelector = `[data-${revealResetAttr}]`,
-      revealSelector = `[data-${revealAttr}]`;
+    revealResetAttr = 'reveal-onload-reset',
+    revealAttr = 'reveal',
+    revealCloseSelector = `[data-${revealCloseAttr}]`,
+    revealResetSelector = `[data-${revealResetAttr}]`,
+    revealSelector = `[data-${revealAttr}]`;
 
 /*
  * Extend foundation.reveal with the ability to close a modal by clicking on any of its child element
@@ -22,10 +22,9 @@ const revealCloseAttr = 'reveal-close',
  * <button data-reveal-close="helloModal">Continue</button>
  */
 export function revealClose() {
-
     function onClick(event) {
         const $target = $(event.currentTarget),
-              modalId = $target.data(_.camelCase(revealCloseAttr));
+            modalId = $target.data(_.camelCase(revealCloseAttr));
 
         let $modal;
 
@@ -44,7 +43,7 @@ export function revealClose() {
 }
 
 /*
- * Extend foundation.reveal with the ability to reset a modal's content when it opens 
+ * Extend foundation.reveal with the ability to reset a modal's content when it opens
  *
  * @example
  *
@@ -54,7 +53,6 @@ export function revealClose() {
  * </div>
  */
 export function revealReset() {
-
     function onOpen(event) {
         const $modal = $(event.currentTarget);
 
@@ -63,7 +61,7 @@ export function revealReset() {
         }
 
         const $modalContent = $('.modal-content', $modal),
-              $modalOverlay = $('.loadingOverlay', $modal);
+            $modalOverlay = $('.loadingOverlay', $modal);
 
         $modalOverlay.show();
         $modalContent.html('');

@@ -1,5 +1,4 @@
 import $ from 'jquery';
-import utils from 'bigcommerce/stencil-utils';
 
 /**
  * Validate that the given date for the day/month/year select inputs is within potential range
@@ -42,15 +41,14 @@ function buildDateValidation($formField, validation) {
  * @param validation
  */
 function buildRequiredCheckboxValidation($formField, validation) {
-    let primaryName = $formField.find('input').attr('name'),
-        formFieldId = $formField.attr('id'),
+    let formFieldId = $formField.attr('id'),
         primarySelector = `#${formFieldId} input:first-of-type`,
         secondarySelector = `#${formFieldId} input`;
 
     return {
         selector: primarySelector,
         triggeredBy: secondarySelector,
-        validate: (cb, val) => {
+        validate: (cb) => {
             let result = false;
 
             $(secondarySelector).each(function(index, checkbox) {
@@ -67,7 +65,6 @@ function buildRequiredCheckboxValidation($formField, validation) {
 }
 
 function buildRequiredValidation(validation, selector) {
-
     return {
         selector: selector,
         validate: (cb, val) => {
@@ -105,7 +102,7 @@ function buildValidation($validateableElement) {
         if (dateValidation) {
             fieldValidations.push(dateValidation);
         }
-    } else if (validation.required && (validation.type == 'checkboxselect' || validation.type == 'radioselect')) {
+    } else if (validation.required && (validation.type === 'checkboxselect' || validation.type === 'radioselect')) {
         fieldValidations.push(buildRequiredCheckboxValidation($validateableElement, validation));
     } else {
         $validateableElement.find('input, select, textarea').each(function(index, element) {
@@ -131,7 +128,7 @@ function buildValidation($validateableElement) {
  * @param $form
  * @returns {Array}
  */
-export default function ($form) {
+export default function($form) {
     let validationsToPerform = [];
 
     $form.find('[data-validation]').each(function(index, input) {

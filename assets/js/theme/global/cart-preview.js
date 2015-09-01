@@ -3,7 +3,7 @@ import 'foundation/js/foundation/foundation';
 import 'foundation/js/foundation/foundation.dropdown';
 import utils from 'bigcommerce/stencil-utils';
 
-export default function () {
+export default function() {
     let loadingClass = 'is-loading',
         $cart = $('[data-cart-preview]'),
         $cartDropdown = $('#cart-preview-dropdown'),
@@ -28,8 +28,6 @@ export default function () {
         event.preventDefault();
 
         utils.api.cart.getContent(options, (err, response) => {
-            let quantity;
-
             $cartDropdown
                 .removeClass(loadingClass)
                 .html(response);

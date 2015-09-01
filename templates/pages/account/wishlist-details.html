@@ -2,7 +2,7 @@
 <div class="account">
 
     {{#if wishlist.is_editable}}
-        {{> components/common/breadcrumbs breadcrumbs}}
+        {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
     {{/if}}
     <h2 class="page-heading">{{lang 'account.wishlists.view_heading' name=wishlist.name}}</h2>
     {{#if wishlist.is_editable}}
@@ -14,7 +14,7 @@
             <div class="panel share-wishlist">
                 <div class="panel-body">
                     <h5>{{lang 'account.wishlists.share_intro'}}</h5>
-                    <input class="form-input" value="{{settings.base_url}}{{wishlist.share_url}}">
+                    <input class="form-input" value="{{settings.base_url}}{{wishlist.share_url}}" readonly>
                 </div>
             </div>
         {{/compare}}

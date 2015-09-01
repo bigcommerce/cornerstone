@@ -27,7 +27,7 @@ export default class ContactUs extends PageManager {
                     let result = forms.email(val);
                     cb(result);
                 },
-                errorMessage: "You must enter an email address"
+                errorMessage: "Please type in a valid email address, such as joe@aol.com"
             },
             {
                 selector: `${formSelector} textarea[name="contact_question"]`,

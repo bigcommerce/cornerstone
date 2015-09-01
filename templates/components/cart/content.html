@@ -7,12 +7,15 @@
             <th class="cart-header-item">{{lang 'cart.checkout.total'}}</th>
         </tr>
     </thead>
-
     <tbody class="cart-list">
         {{#each cart.items}}
             <tr class="cart-item" data-item-row>
                 <td class="cart-item-block cart-item-figure">
-                    <img class="cart-item-image" src="{{getImage image 'thumb' (cdn ../theme_settings.default_image_product)}}" alt="{{image.alt}}">
+                    {{#if type '==' 'GiftCertificate'}}
+                        <img class="cart-item-image" src="{{cdn ../../theme_settings.default_image_gift_certificate}}" alt="GiftCertificate">
+                    {{else}}
+                        <img class="cart-item-image" src="{{getImage image 'thumb' (cdn ../theme_settings.default_image_product)}}" alt="{{image.alt}}">
+                    {{/if}}
                 </td>
                 <td class="cart-item-block cart-item-title">
                     {{#if brand.name}}

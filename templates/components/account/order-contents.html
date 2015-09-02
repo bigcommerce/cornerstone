@@ -1,7 +1,7 @@
 <h3 class="account-heading">{{lang 'account.orders.details.order_contents'}}</h3>
 
 <ul class="account-list">
-    {{#each this.items}}
+    {{#each order.items}}
         {{#if shipping_rows.length}}
             {{#each shipping_rows}}
                 <li class="account-listShipping">
@@ -18,8 +18,12 @@
                 </label>
             </div>
             <figure class="account-product-figure">
-                {{#if image}}
-                    <img src="{{getImage image 'thumb'}}" alt="{{image.alt}}">
+                {{#if type '===' 'giftcertificate'}}
+                    <img class="cart-item-image" src="{{cdn ../../theme_settings.default_image_gift_certificate}}" alt="GiftCertificate">
+                {{else}}
+                    {{#if image}}
+                        <img src="{{getImage image 'thumb'}}" alt="{{image.alt}}">
+                    {{/if}}
                 {{/if}}
                 {{#unless refunded}}
                     {{#if download_url}}

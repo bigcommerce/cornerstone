@@ -12,6 +12,12 @@ product:
 {{#partial "page"}}
     {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
 
+    {{#if product.shipping_messages}}
+        {{#each product.shipping_messages}}
+            <div class="alertBox alertBox--info" role="alert" data-bind="text: message">{{{message}}}</div>
+        {{/each}}
+    {{/if}}
+
     <div itemscope itemtype="http://schema.org/Product">
         {{> components/products/product-view}}
 

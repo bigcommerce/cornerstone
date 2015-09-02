@@ -20,11 +20,11 @@ export default class Category extends PageManager {
 
         super();
 
-        new FacetedSearch(requestOptions, function(content) {
+        this.facetedSearch = new FacetedSearch(requestOptions, function(content) {
             $productListingContainer.html(content.productListing);
             $facetedSearchContainer.html(content.sidebar);
 
-            $("html, body").animate({
+            $('html, body').animate({
                 scrollTop: 0
             }, 100);
         });

@@ -19,11 +19,12 @@ export default class WishList extends PageManager {
     wishlistDeleteConfirm() {
         $('body').on('click', '[data-wishlist-delete]', (event) => {
             let confirmed = confirm(this.context.wishlistDelete);
+
             if (confirmed) {
                 return true;
             }
 
-            event.preventDefault()
+            event.preventDefault();
         });
     }
 
@@ -36,10 +37,11 @@ export default class WishList extends PageManager {
             {
                 selector: '.wishlist-form input[name="wishlistname"]',
                 validate: (cb, val) => {
-                    let result = val.length > 0;
+                    const result = val.length > 0;
+
                     cb(result);
                 },
-                errorMessage: "You must enter a wishlist name"
+                errorMessage: 'You must enter a wishlist name'
             }
         ]);
 
@@ -73,7 +75,6 @@ export default class WishList extends PageManager {
     }
 
     loaded(next) {
-
         let $addWishListForm = $('.wishlist-form');
 
         if ($addWishListForm.length) {

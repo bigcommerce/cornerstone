@@ -1,3 +1,3 @@
-export default function (window) {
+export default function() {
 
 }

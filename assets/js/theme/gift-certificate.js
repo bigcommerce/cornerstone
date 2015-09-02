@@ -1,5 +1,6 @@
 import PageManager from '../page-manager';
 import nod from './common/nod';
+
 export default class GiftCertificate extends PageManager {
     constructor() {
         super();
@@ -9,14 +10,14 @@ export default class GiftCertificate extends PageManager {
                     return val.length;
                 },
                 recipientEmail: function(value) {
-                    var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+                    const re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
                     return re.test(value);
                 },
                 senderName: function(val) {
                     return val.length;
                 },
                 senderEmail: function(value) {
-                    var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+                    const re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
                     return re.test(value);
                 },
                 customAmount: function(value, min, max) {
@@ -26,7 +27,7 @@ export default class GiftCertificate extends PageManager {
                     let found = false;
 
                     options.forEach(function(option) {
-                        if (option == value) {
+                        if (option === value) {
                             found = true;
                             return false;
                         }
@@ -70,7 +71,7 @@ export default class GiftCertificate extends PageManager {
                     let result = purchaseModel.recipientName(val);
                     cb(result);
                 },
-                errorMessage: "You must enter a valid recipient name"
+                errorMessage: 'You must enter a valid recipient name'
             },
             {
                 selector: '#gift-certificate-form input[name="to_email"]',
@@ -78,7 +79,7 @@ export default class GiftCertificate extends PageManager {
                     let result = purchaseModel.recipientEmail(val);
                     cb(result);
                 },
-                errorMessage: "You must enter a valid recipient email"
+                errorMessage: 'You must enter a valid recipient email'
             },
             {
                 selector: '#gift-certificate-form input[name="from_name"]',
@@ -86,7 +87,7 @@ export default class GiftCertificate extends PageManager {
                     let result = purchaseModel.senderName(val);
                     cb(result);
                 },
-                errorMessage: "You must enter your name"
+                errorMessage: 'You must enter your name'
             },
             {
                 selector: '#gift-certificate-form input[name="from_email"]',
@@ -94,7 +95,7 @@ export default class GiftCertificate extends PageManager {
                     let result = purchaseModel.senderEmail(val);
                     cb(result);
                 },
-                errorMessage: "You must enter a valid email"
+                errorMessage: 'You must enter a valid email'
             },
             {
                 selector: '#gift-certificate-form input[name="certificate_theme"]:first-of-type',
@@ -104,7 +105,7 @@ export default class GiftCertificate extends PageManager {
 
                     cb(typeof(val) === 'string');
                 },
-                errorMessage: "You must select a gift certificate theme"
+                errorMessage: 'You must select a gift certificate theme'
             },
             {
                 selector: '#gift-certificate-form input[name="agree"]',
@@ -113,7 +114,7 @@ export default class GiftCertificate extends PageManager {
 
                     cb(val);
                 },
-                errorMessage: "You must agree to these terms"
+                errorMessage: 'You must agree to these terms'
             },
             {
                 selector: '#gift-certificate-form input[name="agree2"]',
@@ -122,7 +123,7 @@ export default class GiftCertificate extends PageManager {
 
                     cb(val);
                 },
-                errorMessage: "You must agree to these terms"
+                errorMessage: 'You must agree to these terms'
             }
         ]);
 

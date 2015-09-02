@@ -1,9 +1,9 @@
 import $ from 'jquery';
 import _ from 'lodash';
 import utils from 'bigcommerce/stencil-utils';
-import stencilDropDown from './stencil-dropdown'
+import stencilDropDown from './stencil-dropdown';
 
-export default function () {
+export default function() {
     const TOP_STYLING = 'top: 49px;';
 
     let $quickSearchResults = $('.quickSearchResults');
@@ -11,7 +11,7 @@ export default function () {
 
     stencilDropDown.bind($('[data-search="quickSearch"]'), $quickSearchDiv, TOP_STYLING);
 
-    //stagger searching for 200ms after last input
+    // stagger searching for 200ms after last input
     let doSearch = _.debounce((searchQuery) => {
         utils.api.search.search(searchQuery, {template: 'search/quick-results'}, (err, response) => {
             if (err) {

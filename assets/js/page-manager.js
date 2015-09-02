@@ -53,9 +53,9 @@ export default class PageManager {
                     return callback(err, {
                         modal: modal
                     });
-                } else {
-                    throw err;
                 }
+
+                throw err;
             }
 
             modal.$content.html(content);

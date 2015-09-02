@@ -1,6 +1,4 @@
-import $ from 'jquery';
-import nod from '../common/nod'
-import validation from '../common/form-validation';
+import nod from '../common/nod';
 
 export default class {
     constructor($reviewForm) {

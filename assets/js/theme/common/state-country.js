@@ -27,7 +27,6 @@ function makeStateRequired(stateElement, context) {
 
     stateElement.replaceWith($('<select></select>', replacementAttributes));
 
-
     $newElement = $('[data-field-type="State"]');
     $hiddenInput = $('[name*="FormFieldIsText"]');
 
@@ -36,7 +35,6 @@ function makeStateRequired(stateElement, context) {
     }
 
     if ($newElement.prev().find('small').length === 0) {
-
         // String is injected from localizer
         $newElement.prev().append(`<small>${context.required}</small>`);
     } else {
@@ -50,7 +48,7 @@ function makeStateRequired(stateElement, context) {
  * If a country with states is the default, a select will be sent,
  * In this case we need to be able to switch to an input field and hide the required field
  */
-function makeStateOptional(stateElement, context) {
+function makeStateOptional(stateElement) {
     let attrs,
         $newElement;
 
@@ -108,7 +106,7 @@ function addOptions(statesArray, $selectElement, options) {
  * @param {Object} options
  * @param {Function} callback
  */
-export default function (stateElement, context, options, callback) {
+export default function(stateElement, context, options, callback) {
     context = context || {};
 
     /**
@@ -118,7 +116,7 @@ export default function (stateElement, context, options, callback) {
      *
      * useIdForStates {Bool} - Generates states dropdown using id for values instead of strings
      */
-    if (typeof options == 'function') {
+    if (typeof options === 'function') {
         callback = options;
         options = {};
     }
@@ -145,11 +143,10 @@ export default function (stateElement, context, options, callback) {
                 let $selectElement = makeStateRequired($currentInput, context);
                 addOptions(response.data, $selectElement, options);
                 callback(null, $selectElement);
-
             } else {
                 let newElement = makeStateOptional($currentInput, context);
                 callback(null, newElement);
             }
-        })
+        });
     });
 }

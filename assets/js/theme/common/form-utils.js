@@ -9,9 +9,6 @@ let inputTagNames = [
     'textarea'
 ];
 
-const VALIDATION_PASSWORD_ALPHA_REGEX = /[A-Za-z]/;
-const VALIDATION_PASSWORD_NUMERIC_REGEX = /[0-9]/;
-
 /**
  * Apply class name to an input element on its type
  * @param {object} input
@@ -31,10 +28,10 @@ function classifyInput(input, formFieldClass) {
 
         if (_.contains(['radio', 'checkbox', 'submit'], inputType)) {
             // ie: .form-field--checkbox, .form-field--radio
-            className = `${formFieldClass}--${_.camelCase(inputType)}`
+            className = `${formFieldClass}--${_.camelCase(inputType)}`;
         } else {
             // ie: .form-field--input .form-field--inputText
-            specificClassName = `${className}${_.capitalize(inputType)}`
+            specificClassName = `${className}${_.capitalize(inputType)}`;
         }
     }
 
@@ -107,9 +104,9 @@ function insertStateHiddenField($stateField) {
             type: 'hidden',
             name: `FormFieldIsText${fieldId}`,
             value: '1'
-    };
+        };
 
-    $stateField.after($('<input />', stateFieldAttrs))
+    $stateField.after($('<input />', stateFieldAttrs));
 }
 
 let Validators = {
@@ -127,7 +124,7 @@ let Validators = {
                     cb(result);
                 },
                 errorMessage: 'You must enter a valid email'
-            })
+            });
         }
     },
 
@@ -139,14 +136,8 @@ let Validators = {
      * @param requirements
      * @param isOptional
      */
-    setPasswordValidation: (
-        validator,
-        passwordSelector,
-        password2Selector,
-        requirements,
-        isOptional) => {
+    setPasswordValidation: (validator, passwordSelector, password2Selector, requirements, isOptional) => {
         let $password = $(passwordSelector),
-            $password2 = $(password2Selector),
             passwordValidations = [
                 {
                     selector: passwordSelector,
@@ -215,7 +206,7 @@ let Validators = {
                 selector: field,
                 validate: 'presence',
                 errorMessage: 'The State/Province field cannot be blank'
-            })
+            });
         }
     },
 
@@ -230,8 +221,8 @@ let Validators = {
             if ($fieldClassElement.hasClass(nod.classes[value])) {
                 $fieldClassElement.removeClass(nod.classes[value]);
             }
-        })
+        });
     }
 };
 
-export {Validators, insertStateHiddenField}
+export {Validators, insertStateHiddenField};

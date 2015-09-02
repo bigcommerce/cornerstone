@@ -42,7 +42,7 @@ export default class Product {
                 $text: $('.incrementTotal', $scope),
                 $input: $('[name=qty\\[\\]]', $scope)
             }
-        }
+        };
     }
 
     /**
@@ -52,7 +52,7 @@ export default class Product {
      */
     productOptions() {
         utils.hooks.on('product-option-change', (event, changedOption) => {
-            var $changedOption = $(changedOption),
+            let $changedOption = $(changedOption),
                 $form = $changedOption.parents('form'),
                 productId = $('[name="product_id"]', $form).val();
 
@@ -77,7 +77,7 @@ export default class Product {
 
                 // Set variation_id if it exists for adding to wishlist
                 if (response.data.variantId) {
-                    viewModel.$wishlistVariation.val(response.data.variantId)
+                    viewModel.$wishlistVariation.val(response.data.variantId);
                 }
 
                 // If SKU is available
@@ -86,11 +86,12 @@ export default class Product {
                 }
 
                 if (data.image) {
-                    let zoomImageUrl = utils.tools.image.getSrc(
+                    const zoomImageUrl = utils.tools.image.getSrc(
                         data.image.data,
                         this.context.themeImageSizes.zoom
-                    ),
-                    mainImageUrl = utils.tools.image.getSrc(
+                    );
+
+                    const mainImageUrl = utils.tools.image.getSrc(
                         data.image.data,
                         this.context.themeImageSizes.product
                     );
@@ -193,9 +194,9 @@ export default class Product {
                 this.populateCartModal($previewModal, response.data.cart_item.hash, ($modalContent) => {
                     // Update cart counter
                     const $body = $('body'),
-                          $cartQuantity = $('[data-cart-quantity]', $modalContent),
-                          $cartCounter = $('.navUser-action .cart-count'),
-                          quantity = $cartQuantity.data('cart-quantity') || 0;
+                        $cartQuantity = $('[data-cart-quantity]', $modalContent),
+                        $cartCounter = $('.navUser-action .cart-count'),
+                        quantity = $cartQuantity.data('cart-quantity') || 0;
 
                     $cartCounter.addClass('cart-count--positive');
                     $body.trigger('cart-quantity-update', quantity);
@@ -228,7 +229,7 @@ export default class Product {
     populateCartModal($modal, cartItemHash, onComplete) {
         // Define options
         const $modalContent = $('.modal-content', $modal),
-              $modalOverlay = $('.loadingOverlay', $modal);
+            $modalOverlay = $('.loadingOverlay', $modal);
 
         const options = {
             template: 'cart/preview',

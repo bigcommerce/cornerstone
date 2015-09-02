@@ -34,14 +34,13 @@ export default class FacetedSearch {
      * let facetedSearch = new FacetedSearch(requestOptions, templatesDidLoad);
      */
     constructor(requestOptions, callback, options) {
-
         let defaultOptions = {
-           accordionToggleSelector: '#facetedSearch .accordion-navigation, #facetedSearch .facetedSearch-toggle',
-           blockerSelector: '#facetedSearch .blocker',
-           clearFacetSelector: '#facetedSearch .facetedSearch-clearLink',
-           componentSelector: '#facetedSearch-navList',
-           facetNavListSelector: '#facetedSearch .navList',
-           showMoreToggleSelector: '#facetedSearch .accordion-content .toggleLink'
+            accordionToggleSelector: '#facetedSearch .accordion-navigation, #facetedSearch .facetedSearch-toggle',
+            blockerSelector: '#facetedSearch .blocker',
+            clearFacetSelector: '#facetedSearch .facetedSearch-clearLink',
+            componentSelector: '#facetedSearch-navList',
+            facetNavListSelector: '#facetedSearch .navList',
+            showMoreToggleSelector: '#facetedSearch .accordion-content .toggleLink'
         };
 
         // Private properties
@@ -167,11 +166,11 @@ export default class FacetedSearch {
             this.expandFacetItems($navList);
 
             return true;
-        } else {
-            this.collapseFacetItems($navList);
-
-            return false;
         }
+
+        this.collapseFacetItems($navList);
+
+        return false;
     }
 
     expandFacet($accordionToggle) {
@@ -249,7 +248,7 @@ export default class FacetedSearch {
         $(window).on('statechange', this.onStateChange);
         $(document).on('click', this.options.showMoreToggleSelector, this.onToggleClick);
         $(document).on('toggle.collapsible', this.options.accordionToggleSelector, this.onAccordionToggle);
-        $(this.options.clearFacetSelector).on('click', this.onClearFacet)
+        $(this.options.clearFacetSelector).on('click', this.onClearFacet);
 
         // Hooks
         hooks.on('facetedSearch-facet-clicked', this.onFacetClick);
@@ -262,7 +261,7 @@ export default class FacetedSearch {
         $(window).off('statechange', this.onStateChange);
         $(document).off('click', this.options.showMoreToggleSelector, this.onToggleClick);
         $(document).off('toggle.collapsible', this.options.accordionToggleSelector, this.onAccordionToggle);
-        $(this.options.clearFacetSelector).off('click', this.onClearFacet)
+        $(this.options.clearFacetSelector).off('click', this.onClearFacet);
 
         // Hooks
         hooks.off('facetedSearch-facet-clicked', this.onFacetClick);
@@ -318,14 +317,14 @@ export default class FacetedSearch {
             queryParams = $(event.currentTarget).serialize().split('=');
 
         url.query[queryParams[0]] = queryParams[1];
-        delete url.query['page'];
+        delete url.query.page;
 
         event.preventDefault();
 
         goToUrl(Url.format({ pathname: url.pathname, query: url.query }));
     }
 
-    onStateChange(event) {
+    onStateChange() {
         this.updateView();
     }
 

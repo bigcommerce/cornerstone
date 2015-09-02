@@ -5,7 +5,7 @@ import 'foundation/js/foundation/foundation.reveal';
 import utils from 'bigcommerce/stencil-utils';
 import ProductDetails from '../common/product-details';
 
-export default function (context) {
+export default function(context) {
     let $modal = $('#modal'),
         $modalContent = $('.modal-content', $modal),
         $modalOverlay = $('.loadingOverlay', $modal),
@@ -27,11 +27,12 @@ export default function (context) {
         // open modal
         $modal.foundation('reveal', 'open');
 
-        utils.api.product.getById(productId, {template: 'products/quick-view'}, (err, response) => {
+        utils.api.product.getById(productId, {template: 'products/quick-view'}, function done(err, response) {
             $modalOverlay.hide();
             $modalContent.html(response);
             $modalContent.find('.productView').addClass('productView--quickView');
-            new ProductDetails($modalContent, context);
+
+            return new ProductDetails($modalContent, context);
         });
     });
 

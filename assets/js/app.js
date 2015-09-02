@@ -1,10 +1,8 @@
-import stencilUtils from 'bigcommerce/stencil-utils';
 import async from 'caolan/async';
 import account from './theme/account';
 import auth from './theme/auth';
 import blog from './theme/blog';
 import brand from './theme/brand';
-import brands from './theme/brands';
 import cart from './theme/cart';
 import category from './theme/category';
 import contactUs from './theme/contact-us';
@@ -25,47 +23,47 @@ import wishlist from './theme/wishlist';
 
 let PageClasses = {
     mapping: {
-        "pages/account/orders/all": account,
-        "pages/account/orders/details": account,
-        "pages/account/addresses": account,
-        "pages/account/add-address": account,
-        "pages/account/add-return": account,
-        "pages/account/add-wishlist": wishlist,
-        "pages/account/recent-items": account,
-        "pages/account/download-item": account,
-        "pages/account/edit": account,
-        "pages/account/inbox": account,
-        "pages/account/return-saved": account,
-        "pages/account/returns": account,
-        "pages/auth/login": auth,
-        "pages/auth/account-created": auth,
-        "pages/auth/create-account": auth,
-        "pages/auth/new-password": auth,
-        "pages/auth/forgot-password": auth,
-        "pages/blog": blog,
-        "pages/blog-post": blog,
-        "pages/brand": brand,
-        "pages/brands": brand,
-        "pages/cart": cart,
-        "pages/category": category,
-        "pages/compare": compare,
-        "pages/contact-us": contactUs,
-        "pages/errors": errors,
-        "pages/errors/404": errors404,
-        "pages/gift-certificate/purchase": giftCertificate,
-        "pages/gift-certificate/balance": giftCertificate,
-        "pages/gift-certificate/redeem": giftCertificate,
-        "global": global,
-        "pages/home": home,
-        "pages/order-complete": orderComplete,
-        "pages/page": page,
-        "pages/product": product,
-        "pages/search": search,
-        "pages/rss": rss,
-        "pages/sitemap": sitemap,
-        "pages/subscribed": subscribe,
-        "pages/account/wishlist-details": wishlist,
-        "pages/account/wishlists": wishlist
+        'pages/account/orders/all': account,
+        'pages/account/orders/details': account,
+        'pages/account/addresses': account,
+        'pages/account/add-address': account,
+        'pages/account/add-return': account,
+        'pages/account/add-wishlist': wishlist,
+        'pages/account/recent-items': account,
+        'pages/account/download-item': account,
+        'pages/account/edit': account,
+        'pages/account/inbox': account,
+        'pages/account/return-saved': account,
+        'pages/account/returns': account,
+        'pages/auth/login': auth,
+        'pages/auth/account-created': auth,
+        'pages/auth/create-account': auth,
+        'pages/auth/new-password': auth,
+        'pages/auth/forgot-password': auth,
+        'pages/blog': blog,
+        'pages/blog-post': blog,
+        'pages/brand': brand,
+        'pages/brands': brand,
+        'pages/cart': cart,
+        'pages/category': category,
+        'pages/compare': compare,
+        'pages/contact-us': contactUs,
+        'pages/errors': errors,
+        'pages/errors/404': errors404,
+        'pages/gift-certificate/purchase': giftCertificate,
+        'pages/gift-certificate/balance': giftCertificate,
+        'pages/gift-certificate/redeem': giftCertificate,
+        'global': global,
+        'pages/home': home,
+        'pages/order-complete': orderComplete,
+        'pages/page': page,
+        'pages/product': product,
+        'pages/search': search,
+        'pages/rss': rss,
+        'pages/sitemap': sitemap,
+        'pages/subscribed': subscribe,
+        'pages/account/wishlist-details': wishlist,
+        'pages/account/wishlists': wishlist
     },
     /**
      * Getter method to ensure a good page type is accessed.
@@ -89,11 +87,11 @@ function series(pageObj) {
         pageObj.before.bind(pageObj), // Executed first after constructor()
         pageObj.loaded.bind(pageObj), // Main module logic
         pageObj.after.bind(pageObj) // Clean up method that can be overridden for cleanup.
-    ], function (err) {
+    ], function(err) {
         if (err) {
             throw new Error(err);
         }
-    })
+    });
 }
 
 /**
@@ -103,8 +101,9 @@ function series(pageObj) {
  * @returns {*}
  */
 function loadGlobal(pages) {
-    let global = pages.get('global');
-    return new global;
+    let Global = pages.get('global');
+
+    return new Global;
 }
 
 /**
@@ -138,15 +137,18 @@ window.stencilBootstrap = function stencilBootstrap(templateFile, context) {
     return {
         load() {
             $(() => {
-                let pageTypeFn = pages.get(templateFile); // Finds the appropriate module from the pageType object and store the result as a function.
-                if (pageTypeFn) {
-                    let pageType = new pageTypeFn();
+                let PageTypeFn = pages.get(templateFile); // Finds the appropriate module from the pageType object and store the result as a function.
+
+                if (PageTypeFn) {
+                    let pageType = new PageTypeFn();
+
                     pageType.context = context;
+
                     return loader(pageType, pages);
-                } else {
-                    throw new Error(templateFile + ' Module not found')
                 }
+
+                throw new Error(templateFile + ' Module not found');
             });
         }
-    }
+    };
 };

@@ -1,5 +1,4 @@
 import PageManager from '../page-manager';
-import _ from 'lodash';
 import stateCountry from './common/state-country';
 import $ from 'jquery';
 import nod from './common/nod';
@@ -27,7 +26,7 @@ export default class Auth extends PageManager {
                     let result = loginModel.email(val);
                     cb(result);
                 },
-                errorMessage: "Please type in a valid email address, such as joe@aol.com"
+                errorMessage: 'Please type in a valid email address, such as joe@aol.com'
             },
             {
                 selector: '.login-form input[name="login_pass"]',
@@ -35,7 +34,7 @@ export default class Auth extends PageManager {
                     let result = loginModel.password(val);
                     cb(result);
                 },
-                errorMessage: "You must enter a password"
+                errorMessage: 'You must enter a password'
             }
         ]);
 
@@ -62,7 +61,7 @@ export default class Auth extends PageManager {
                     let result = forms.email(val);
                     cb(result);
                 },
-                errorMessage: "Please type in a valid email address, such as joe@aol.com"
+                errorMessage: 'Please type in a valid email address, such as joe@aol.com'
             }
         ]);
 
@@ -80,14 +79,14 @@ export default class Auth extends PageManager {
     registerCreateAccountValidator($createAccountForm) {
         let validationModel = validation($createAccountForm),
             createAccountValidator = nod({
-                submit: `${this.formCreateSelector} input[type="submit"]`
+                submit: `${this.formCreateSelector} input[type='submit']`
             }),
             $stateElement = $('[data-field-type="State"]'),
-            emailSelector = `${this.formCreateSelector} [data-field-type="EmailAddress"]`,
+            emailSelector = `${this.formCreateSelector} [data-field-type='EmailAddress']`,
             $emailElement = $(emailSelector),
-            passwordSelector = `${this.formCreateSelector} [data-field-type="Password"]`,
+            passwordSelector = `${this.formCreateSelector} [data-field-type='Password']`,
             $passwordElement = $(passwordSelector),
-            password2Selector = `${this.formCreateSelector} [data-field-type="ConfirmPassword"]`,
+            password2Selector = `${this.formCreateSelector} [data-field-type='ConfirmPassword']`,
             $password2Element = $(password2Selector);
 
         createAccountValidator.add(validationModel);

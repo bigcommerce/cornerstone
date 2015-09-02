@@ -5,7 +5,7 @@ const CollapsibleEvents = {
     close: 'close.collapsible',
     toggle: 'toggle.collapsible',
     click: 'click.collapsible'
-}
+};
 
 /**
  * Collapse/Expand toggle

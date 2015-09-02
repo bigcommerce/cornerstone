@@ -1,8 +1,7 @@
 import $ from 'jquery';
 
 export class VideoGallery {
-
-    constructor($element){
+    constructor($element) {
         this.$player = $element.find('[data-video-player]');
         this.$videos = $element.find('[data-video-item]');
         this.currentVideo = {};
@@ -35,9 +34,6 @@ export class VideoGallery {
     bindEvents() {
         this.$videos.on('click', this.selectNewVideo.bind(this));
     }
-
-
-
 }
 
 export default function videoGallery() {
@@ -54,5 +50,4 @@ export default function videoGallery() {
 
         $el.data(pluginKey, new VideoGallery($el));
     });
-
 }

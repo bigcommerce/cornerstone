@@ -14,7 +14,7 @@ export default class ShippingEstimator {
 
     bindStateCountryChange() {
         // Requests the states for a country with AJAX
-        stateCountry(this.$state, this.context, {useIdForStates: true}, (err, field) => {
+        stateCountry(this.$state, this.context, {useIdForStates: true}, (err) => {
             if (err) {
                 alert(err);
                 throw new Error(err);
@@ -44,7 +44,7 @@ export default class ShippingEstimator {
 
                     event.preventDefault();
 
-                    utils.api.cart.submitShippingQuote(quoteId, (response) => {
+                    utils.api.cart.submitShippingQuote(quoteId, () => {
                         location.reload();
                     });
                 });

@@ -1,6 +1,5 @@
 import PageManager from '../page-manager';
 import FacetedSearch from './common/faceted-search';
-import jstree from 'vakata/jstree';
 import collapsible from './common/collapsible';
 
 export default class Search extends PageManager {
@@ -17,11 +16,11 @@ export default class Search extends PageManager {
 
         super();
 
-        new FacetedSearch(requestOptions, function(content) {
+        this.facetedSearch = new FacetedSearch(requestOptions, (content) => {
             $productListingContainer.html(content.productListing);
             $facetedSearchContainer.html(content.sidebar);
 
-            $("html, body").animate({
+            $('html, body').animate({
                 scrollTop: 0
             }, 100);
         });
@@ -29,12 +28,12 @@ export default class Search extends PageManager {
         // Initially hidden via JS so non JS can see it at the start
         $contentResultsContainer.addClass('u-hiddenVisually');
 
-        $('[data-product-results-toggle]').click((event) => {
+        $('[data-product-results-toggle]').click(() => {
             $productListingContainer.removeClass('u-hiddenVisually');
             $contentResultsContainer.addClass('u-hiddenVisually');
         });
 
-        $('[data-content-results-toggle]').click((event) => {
+        $('[data-content-results-toggle]').click(() => {
             $contentResultsContainer.removeClass('u-hiddenVisually');
             $productListingContainer.addClass('u-hiddenVisually');
         });
@@ -50,7 +49,7 @@ export default class Search extends PageManager {
         };
 
         if (node.state) {
-            nodeData.state.opened = node.state == 'open';
+            nodeData.state.opened = node.state === 'open';
             nodeData.children = true;
         }
 
@@ -72,18 +71,17 @@ export default class Search extends PageManager {
         collapsible();
 
         this.context.categoryTree.forEach((node) => {
-           treeData.push(this.formatCategoryTreeForJSTree(node));
+            treeData.push(this.formatCategoryTreeForJSTree(node));
         });
 
         this.categoryTreeData = treeData;
         this.createCategoryTree($categoryTreeContainer);
 
-        $searchForm.submit((event) => {
+        $searchForm.submit(() => {
             let selectedCategoryIds = $categoryTreeContainer.jstree().get_selected();
             $searchForm.find('input[name="category\[\]"]').remove();
 
             for (let categoryId of selectedCategoryIds) {
-
                 let input = $('<input>', {
                     type: 'hidden',
                     name: 'category[]',
@@ -133,7 +131,7 @@ export default class Search extends PageManager {
             checkbox: {
                 three_state: false
             },
-            plugins: [ "checkbox" ]
+            plugins: [ 'checkbox' ]
         };
 
         $container.jstree(treeOptions);

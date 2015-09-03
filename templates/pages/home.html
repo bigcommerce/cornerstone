@@ -18,6 +18,11 @@ blog:
 {{/partial}}
 
 {{#partial "page"}}
+
+    {{#each shipping_messages}}
+        <div class="alertBox alertBox--info" role="alert">{{{message}}}</div>
+    {{/each}}
+
 <div class="main full">
     {{#if products.featured}}
         {{> components/products/featured products=products.featured columns=theme_settings.homepage_featured_products_column_count}}

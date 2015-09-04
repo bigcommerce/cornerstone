@@ -1,0 +1,19 @@
+<div class="cart-total-value">
+
+    {{#compare cart.discount 0 operator='>'}}
+        <a href="#">{{cart.discount.formatted}}</a>
+    {{else}}
+        <button class="gift-certificate-add">{{lang 'cart.gift_certificates.gift_certificate'}}</button>
+    {{/compare}}
+
+    <button class="gift-certificate-cancel" style="display: none;">{{lang 'cart.coupons.cancel'}}</button>
+</div>
+
+<div class="cart-form gift-certificate-code" style="display: none;">
+    <form class="form form--hiddenLabels gift-certificate-form" method="post" action="{{urls.cart}}">
+        <label class="form-label" for="couponcode">{{lang 'cart.coupons.coupon_code'}}</label>
+        <input class="form-input" data-error="{{lang 'cart.coupons.empty_error'}}"  id="couponcode" type="text" name="certcode" value="" placeholder="{{lang 'cart.gift_certificates.add_cert_code'}}">
+        <input class="button button--primary button--small" type="submit" value="{{lang 'cart.coupons.button'}}">
+        <input type="hidden" name="action" value="applycoupon">
+    </form>
+</div>

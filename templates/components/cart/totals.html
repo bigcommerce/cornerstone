@@ -11,25 +11,41 @@
         {{#each cart.coupons}}
             <li class="cart-total">
                 <div class="cart-total-label">
-                    <strong>{{lang 'cart.coupons.coupon_code_label' code=code}}</strong>
+                    <strong>{{lang 'cart.coupons.code_label' code=code}}</strong>
+                    <div>
+                        <a href="{{remove_url}}">{{lang 'cart.coupons.remove'}}</a>
+                    </div>
                 </div>
                 <div class="cart-total-value">
-                    <span>{{discount.formatted}}
-                        <a href="{{remove_url}}">
-                            <svg class="icon cart-remove">
-                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use>
-                            </svg>
-                        </a>
-                    </span>
+                    <span>{{discount.formatted}}</span>
                 </div>
             </li>
         {{/each}}
     {{/if}}
     <li class="cart-total">
         <div class="cart-total-label">
-            <strong>{{lang 'cart.checkout.enter_code'}}:</strong>
+            <strong>{{lang 'cart.coupon_code'}}:</strong>
         </div>
         {{> components/cart/coupon-input}}
+    </li>
+    {{#each cart.gift_certificates}}
+        <li class="cart-total">
+            <div class="cart-total-label">
+                <strong>{{lang 'cart.gift_certificates.code_label' code=code}}</strong>
+                <span>
+                    {{remaining.formatted}} | <a href="{{remove_url}}">{{lang 'cart.gift_certificates.remove'}}</a>
+                </span>
+            </div>
+            <div class="cart-total-value">
+                {{used.formatted}}
+            </div>
+        </li>
+    {{/each}}
+    <li class="cart-total">
+        <div class="cart-total-label">
+            <strong>{{lang 'cart.gift_certificates.gift_certificate'}}:</strong>
+        </div>
+        {{> components/cart/gift-certificate-input}}
     </li>
     {{#if cart.gift_wrapping_cost}}
         <li class="cart-total">

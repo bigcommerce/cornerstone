@@ -18,15 +18,14 @@ export default class Product extends PageManager {
         // Init collapsible
         collapsible();
 
-        this.productDetails = new ProductDetails($('.productView'), this.context);
-
         videoGallery();
 
         let $reviewForm = classifyForm('.writeReview-form'),
-            validator;
+            validator,
+            review = new Review($reviewForm);
 
         $('body').on('click', '[data-reveal-id="modal-review-form"]', () => {
-            validator = new Review($reviewForm).registerValidation();
+            validator = review.registerValidation();
         });
 
         $reviewForm.on('submit', () => {

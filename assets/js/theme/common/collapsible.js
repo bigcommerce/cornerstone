@@ -1,6 +1,6 @@
 import $ from 'jquery';
 
-const CollapsibleEvents = {
+export const CollapsibleEvents = {
     open: 'open.collapsible',
     close: 'close.collapsible',
     toggle: 'toggle.collapsible',
@@ -38,7 +38,7 @@ export class Collapsible {
     }
 
     get isOpen() {
-        return isCollapsed;
+        return !isCollapsed;
     }
 
     open() {
@@ -46,6 +46,7 @@ export class Collapsible {
 
         this.$toggle
             .addClass(openClassName)
+            .removeClass(closeClassName)
             .attr('aria-expanded', true);
 
         this.$target

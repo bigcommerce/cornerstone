@@ -150,6 +150,43 @@ export default class Cart extends PageManager {
         });
     }
 
+    bindGiftCertificateEvents() {
+        let $certContainer = $('.gift-certificate-code'),
+            $certForm = $('.gift-certificate-form'),
+            $certInput = $('[name="certcode"]', $certForm);
+
+        $('.gift-certificate-add').on('click', (event) => {
+            event.preventDefault();
+            $(event.currentTarget).toggle();
+            $certContainer.toggle();
+            $('.gift-certificate-cancel').toggle();
+        });
+
+        $('.gift-certificate-cancel').on('click', (event) => {
+            event.preventDefault();
+            $certContainer.toggle();
+            $('.gift-certificate-add').toggle();
+            $('.gift-certificate-cancel').toggle();
+        });
+
+        $certForm.on('submit', (event) => {
+            let code = $certInput.val();
+
+            event.preventDefault();
+            if (!code) {
+                return alert($certInput.data('error'));
+            }
+
+            utils.api.cart.applyGiftCertificate(code, (err, resp) => {
+                if (resp.data.status === 'success') {
+                    this.refreshContent();
+                } else {
+                    alert(resp.data.errors.join('\n'));
+                }
+            });
+        });
+    }
+
     bindGiftWrappingEvents() {
         let $modal = $('#modal'),
             $modalContent = $('.modal-content', $modal),
@@ -226,5 +263,6 @@ export default class Cart extends PageManager {
         this.bindCartEvents();
         this.bindPromoCodeEvents();
         this.bindGiftWrappingEvents();
+        this.bindGiftCertificateEvents();
     }
 }

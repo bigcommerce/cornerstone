@@ -62,6 +62,29 @@ export default class Cart extends PageManager {
         });
     }
 
+    cartEditOptions(itemId) {
+        let $modal = $('#modal'),
+            $modalContent = $('.modal-content', $modal),
+            $modalOverlay = $('.loadingOverlay', $modal),
+            options = {
+                template: 'cart/modals/configure-product'
+            };
+
+        // clear the modal
+        $modalContent.html('');
+        $modalOverlay.show();
+
+        // open modal
+        $modal.foundation('reveal', 'open');
+
+        utils.api.productAttributes.configureInCart(itemId, options, (err, response) => {
+            $modalOverlay.hide();
+            $modalContent.html(response.content);
+
+            this.bindGiftWrappingForm();
+        });
+    }
+
     refreshContent(remove) {
         let $cartItemsRows = $('[data-item-row]', this.$cartContent),
             $cartPageTitle = $('[data-cart-page-title]'),
@@ -115,6 +138,14 @@ export default class Cart extends PageManager {
             event.preventDefault();
             // remove item from cart
             cartRemoveItem(itemId);
+        });
+
+        $('[data-item-edit]', this.$cartContent).on('click', (event) => {
+            let itemId = $(event.currentTarget).data('item-edit');
+
+            event.preventDefault();
+            // edit item in cart
+            this.cartEditOptions(itemId);
         });
     }
 

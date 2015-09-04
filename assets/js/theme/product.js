@@ -18,6 +18,8 @@ export default class Product extends PageManager {
         // Init collapsible
         collapsible();
 
+        new ProductDetails($('.productView'), this.context);
+
         videoGallery();
 
         let $reviewForm = classifyForm('.writeReview-form'),

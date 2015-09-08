@@ -7,7 +7,9 @@
         {{> components/products/list products=product_results.products show_compare=product_results.show_compare theme_settings=theme_settings}}
     {{/compare}}
 
-    <input type="submit" value="{{lang 'compare.button'}}" class="button button--primary">
+    {{#if product_results.show_compare}}
+        <input type="submit" value="{{lang 'compare.button'}}" class="button button--primary">
+    {{/if}}
 </form>
 
 {{> components/common/paginator pagination.product_results}}

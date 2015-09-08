@@ -51,6 +51,18 @@
                         <a href="#" data-item-edit="{{id}}">{{lang 'cart.checkout.change'}}</a>
                     {{/if}}
                     {{> components/cart/item-giftwrap this}}
+                    {{#if event_date}}
+                        <dl class="cart-item-options">
+                            <dt class="cart-item-option-title">
+                                {{event_date.name}}
+                            </dt>
+
+                            <dd class="cart-item-option-description">
+                                {{event_date.date}}
+                            </dd>
+                        </dl>
+                    {{/if}}
+
                 </td>
                 <td class="cart-item-block cart-item-info">
                     <span class="cart-item-label">{{lang 'cart.checkout.price'}}</span> <span class="cart-item-value">{{price.formatted}}</span>

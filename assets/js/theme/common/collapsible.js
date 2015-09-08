@@ -42,11 +42,10 @@ export class Collapsible {
     }
 
     open() {
-        let { openClassName, closeClassName } = this.options;
+        let { openClassName } = this.options;
 
         this.$toggle
             .addClass(openClassName)
-            .removeClass(closeClassName)
             .attr('aria-expanded', true);
 
         this.$target

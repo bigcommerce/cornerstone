@@ -60,7 +60,7 @@ export default class GiftCertificate extends PageManager {
                     }
                     cb(val >= min && val <= max);
                 },
-                errorMessage: `You must enter a certificate amount between ${minFormatted} and ${maxFormatted}`
+                errorMessage: `You must enter a certificate amount between ${minFormatted} and ${maxFormatted}.`
             });
         }
 
@@ -71,7 +71,7 @@ export default class GiftCertificate extends PageManager {
                     let result = purchaseModel.recipientName(val);
                     cb(result);
                 },
-                errorMessage: 'You must enter a valid recipient name'
+                errorMessage: 'You must enter a valid recipient name.'
             },
             {
                 selector: '#gift-certificate-form input[name="to_email"]',
@@ -79,7 +79,7 @@ export default class GiftCertificate extends PageManager {
                     let result = purchaseModel.recipientEmail(val);
                     cb(result);
                 },
-                errorMessage: 'You must enter a valid recipient email'
+                errorMessage: 'You must enter a valid recipient email.'
             },
             {
                 selector: '#gift-certificate-form input[name="from_name"]',
@@ -87,7 +87,7 @@ export default class GiftCertificate extends PageManager {
                     let result = purchaseModel.senderName(val);
                     cb(result);
                 },
-                errorMessage: 'You must enter your name'
+                errorMessage: 'You must enter your name.'
             },
             {
                 selector: '#gift-certificate-form input[name="from_email"]',
@@ -95,7 +95,7 @@ export default class GiftCertificate extends PageManager {
                     let result = purchaseModel.senderEmail(val);
                     cb(result);
                 },
-                errorMessage: 'You must enter a valid email'
+                errorMessage: 'You must enter a valid email.'
             },
             {
                 selector: '#gift-certificate-form input[name="certificate_theme"]:first-of-type',
@@ -105,7 +105,7 @@ export default class GiftCertificate extends PageManager {
 
                     cb(typeof(val) === 'string');
                 },
-                errorMessage: 'You must select a gift certificate theme'
+                errorMessage: 'You must select a gift certificate theme.'
             },
             {
                 selector: '#gift-certificate-form input[name="agree"]',
@@ -114,7 +114,7 @@ export default class GiftCertificate extends PageManager {
 
                     cb(val);
                 },
-                errorMessage: 'You must agree to these terms'
+                errorMessage: 'You must agree to these terms.'
             },
             {
                 selector: '#gift-certificate-form input[name="agree2"]',
@@ -123,7 +123,7 @@ export default class GiftCertificate extends PageManager {
 
                     cb(val);
                 },
-                errorMessage: 'You must agree to these terms'
+                errorMessage: 'You must agree to these terms.'
             }
         ]);
 

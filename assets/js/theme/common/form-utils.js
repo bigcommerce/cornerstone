@@ -123,7 +123,7 @@ let Validators = {
                     let result = forms.email(val);
                     cb(result);
                 },
-                errorMessage: 'You must enter a valid email'
+                errorMessage: 'You must enter a valid email.'
             });
         }
     },
@@ -150,7 +150,7 @@ let Validators = {
 
                         cb(result);
                     },
-                    errorMessage: 'You must enter a password'
+                    errorMessage: 'You must enter a password.'
                 },
                 {
                     selector: passwordSelector,
@@ -179,7 +179,7 @@ let Validators = {
 
                         cb(result);
                     },
-                    errorMessage: 'You must enter a password'
+                    errorMessage: 'You must enter a password.'
                 },
                 {
                     selector: password2Selector,
@@ -188,7 +188,7 @@ let Validators = {
 
                         cb(result);
                     },
-                    errorMessage: 'Your passwords do not match'
+                    errorMessage: 'Your passwords do not match.'
                 }
             ];
 
@@ -205,7 +205,7 @@ let Validators = {
             validator.add({
                 selector: field,
                 validate: 'presence',
-                errorMessage: 'The State/Province field cannot be blank'
+                errorMessage: 'The \'State/Province\' field cannot be blank.'
             });
         }
     },

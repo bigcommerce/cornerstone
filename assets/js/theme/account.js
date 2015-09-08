@@ -215,7 +215,7 @@ export default class Account extends PageManager {
 
                     cb(result);
                 },
-                errorMessage: 'You must enter your current password'
+                errorMessage: 'You must enter your current password.'
             });
         }
 
@@ -226,7 +226,7 @@ export default class Account extends PageManager {
                     let result = val.length;
                     cb(result);
                 },
-                errorMessage: 'You must enter a first name'
+                errorMessage: 'You must enter a first name.'
             },
             {
                 selector: `${formEditSelector} input[name='account_lastname']`,
@@ -234,7 +234,7 @@ export default class Account extends PageManager {
                     let result = val.length;
                     cb(result);
                 },
-                errorMessage: 'You must enter a last name'
+                errorMessage: 'You must enter a last name.'
             },
             {
                 selector: `${formEditSelector} input[name='account_phone']`,
@@ -242,7 +242,7 @@ export default class Account extends PageManager {
                     let result = val.length;
                     cb(result);
                 },
-                errorMessage: 'You must enter a Phone Number'
+                errorMessage: 'You must enter a phone number.'
             }
         ]);
 
@@ -270,7 +270,7 @@ export default class Account extends PageManager {
                     let result = Number(val) !== 0;
                     cb(result);
                 },
-                errorMessage: 'You must select an order'
+                errorMessage: 'You must select an order.'
             },
             {
                 selector: 'form[data-inbox-form] input[name="message_subject"]',
@@ -278,7 +278,7 @@ export default class Account extends PageManager {
                     let result = val.length;
                     cb(result);
                 },
-                errorMessage: 'You must enter a subject'
+                errorMessage: 'You must enter a subject.'
             },
             {
                 selector: 'form[data-inbox-form] textarea[name="message_content"]',
@@ -286,7 +286,7 @@ export default class Account extends PageManager {
                     let result = val.length;
                     cb(result);
                 },
-                errorMessage: 'You must enter a message'
+                errorMessage: 'You must enter a message.'
             }
         ]);
 

@@ -8,9 +8,24 @@ export default class {
         });
 
         this.$reviewsContent = $('#product-reviews');
+        this.$collapsible = $('[data-collapsible]', this.$reviewsContent);
 
+        this.initLinkBind();
         this.injectPaginationLink();
         this.collapseReviews();
+    }
+
+    /**
+     * On initial page load, the user clicks on "(12 Reviews)" link
+     * The browser jumps to the review page and should expand the reviews section
+     */
+    initLinkBind() {
+        let $content = $('#productReviews-content', this.$reviewsContent);
+        $('.productView-reviewLink').click(() => {
+            if (!$content.hasClass('is-open')) {
+                this.$collapsible.trigger(CollapsibleEvents.click);
+            }
+        });
     }
 
     collapseReviews() {
@@ -20,7 +35,7 @@ export default class {
         }
 
         // force collapse on page load
-        $('[data-collapsible]', this.$reviewsContent).trigger(CollapsibleEvents.click);
+        this.$collapsible.trigger(CollapsibleEvents.click);
     }
 
     /**

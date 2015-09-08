@@ -28,14 +28,16 @@
         {{/if}}
     </div>
 
-    {{#if post.tags}}
-        <ul class="tags">
-            {{#each post.tags}}
-            <li class="tag">
-                <a href="{{url}}">#{{name}}</a>
-            </li>
-            {{/each}}
-        </ul>
+    {{#if show_tags}}
+        {{#if post.tags}}
+            <ul class="tags">
+                {{#each post.tags}}
+                <li class="tag">
+                    <a href="{{url}}">#{{name}}</a>
+                </li>
+                {{/each}}
+            </ul>
+        {{/if}}
     {{/if}}
 
     {{>components/common/share}}

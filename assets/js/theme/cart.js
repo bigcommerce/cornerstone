@@ -13,9 +13,6 @@ export default class Cart extends PageManager {
 
         this.bindEvents();
 
-        // initiate shipping estimator module
-        this.shippingEstimator = new ShippingEstimator($('[data-shipping-estimator]'));
-
         next();
     }
 
@@ -264,5 +261,8 @@ export default class Cart extends PageManager {
         this.bindPromoCodeEvents();
         this.bindGiftWrappingEvents();
         this.bindGiftCertificateEvents();
+        
+        // initiate shipping estimator module
+        this.shippingEstimator = new ShippingEstimator($('[data-shipping-estimator]'));
     }
 }

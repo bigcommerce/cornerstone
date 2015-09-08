@@ -58,19 +58,19 @@ export default class {
         this.validator.add([{
             selector: '[name="revrating"]',
             validate: 'presence',
-            errorMessage: 'The Rating field cannot be blank'
+            errorMessage: 'The \'Rating field\' cannot be blank.'
         }, {
             selector: '[name="revtitle"]',
             validate: 'min-length:2',
-            errorMessage: 'The Review Subject field cannot be blank'
+            errorMessage: 'The \'Review Subject\' field cannot be blank.'
         }, {
             selector: '[name="revtext"]',
             validate: 'min-length:2',
-            errorMessage: 'The Comments field cannot be blank'
+            errorMessage: 'The \'Comments field\' cannot be blank.'
         }, {
             selector: '[name="email"]',
             validate: 'min-length:2',
-            errorMessage: 'The Email field cannot be blank'
+            errorMessage: 'The \'Email\' field cannot be blank.'
         }]);
 
         return this.validator;

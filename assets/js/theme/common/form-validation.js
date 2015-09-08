@@ -12,7 +12,7 @@ function buildDateValidation($formField, validation) {
         return;
     }
 
-    let invalidMessage = `Your chosen date must fall between ${validation.min_date} and ${validation.max_date}`,
+    let invalidMessage = `Your chosen date must fall between ${validation.min_date} and ${validation.max_date}.`,
         formElementId = $formField.attr('id'),
         minSplit = validation.min_date.split('-'),
         maxSplit = validation.max_date.split('-'),
@@ -60,7 +60,7 @@ function buildRequiredCheckboxValidation($formField, validation) {
 
             cb(result);
         },
-        errorMessage: `The '${validation.label}' field can not be blank`
+        errorMessage: `The '${validation.label}' field cannot be blank.`
     };
 }
 
@@ -70,12 +70,12 @@ function buildRequiredValidation(validation, selector) {
         validate: (cb, val) => {
             cb(val.length > 0);
         },
-        errorMessage: `The '${validation.label}' field can not be blank`
+        errorMessage: `The '${validation.label}' field cannot be blank.`
     };
 }
 
 function buildNumberRangeValidation(validation, formFieldSelector) {
-    let invalidMessage = `The value for ${validation.label} must be between ${validation.min} and ${validation.max}`,
+    let invalidMessage = `The value for ${validation.label} must be between ${validation.min} and ${validation.max}.`,
         min = Number(validation.min),
         max = Number(validation.max);
 

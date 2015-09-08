@@ -26,7 +26,7 @@ export default class ContactUs extends PageManager {
                     let result = forms.email(val);
                     cb(result);
                 },
-                errorMessage: 'Please type in a valid email address, such as joe@aol.com'
+                errorMessage: 'Please type in a valid email address, such as joe@aol.com.'
             },
             {
                 selector: `${formSelector} textarea[name="contact_question"]`,
@@ -34,7 +34,7 @@ export default class ContactUs extends PageManager {
                     let result = forms.notEmpty(val);
                     cb(result);
                 },
-                errorMessage: 'You must enter your question'
+                errorMessage: 'You must enter your question.'
             }
         ]);
 

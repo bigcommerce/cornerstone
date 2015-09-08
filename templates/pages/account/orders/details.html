@@ -130,7 +130,9 @@
                         {{/each}}
                         <input type="submit" class="button" value="{{lang 'account.orders.details.reorder'}}">
                     </form>
-                    <a href="{{order.return_url}}" class="button">{{lang 'account.orders.details.return'}}</a>
+                    {{#if order.is_complete}}
+                        <a href="{{order.return_url}}" class="button">{{lang 'account.orders.details.return'}}</a>
+                    {{/if}}
                 </div>
             </section>
         </aside>

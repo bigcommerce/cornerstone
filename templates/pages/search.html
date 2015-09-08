@@ -80,6 +80,15 @@
                         {{#unless @last}}, {{/unless}}
                     {{/each}}
                 {{/if}}
+
+                {{#if result_count '===' 0}}
+                    <p>{{lang 'forms.search.suggestions.title'}}</p>
+                    <ul>
+                        <li>{{lang 'forms.search.suggestions.line1'}}</li>
+                        <li>{{lang 'forms.search.suggestions.line2'}}</li>
+                        <li>{{lang 'forms.search.suggestions.line3'}}</li>
+                    </ul>
+                {{/if}}
             </div>
         </div>
     {{/if}}

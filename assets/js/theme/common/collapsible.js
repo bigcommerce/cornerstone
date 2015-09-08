@@ -42,7 +42,7 @@ export class Collapsible {
     }
 
     open() {
-        let { openClassName } = this.options;
+        let { openClassName, closeClassName } = this.options;
 
         this.$toggle
             .addClass(openClassName)

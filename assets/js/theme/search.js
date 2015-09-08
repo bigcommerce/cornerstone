@@ -1,6 +1,7 @@
 import PageManager from '../page-manager';
 import FacetedSearch from './common/faceted-search';
 import collapsible from './common/collapsible';
+import 'vakata/jstree';
 
 export default class Search extends PageManager {
     constructor() {

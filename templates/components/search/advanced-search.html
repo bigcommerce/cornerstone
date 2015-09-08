@@ -1,6 +1,6 @@
 <form action="{{forms.search.action}}" data-advanced-search-form class="toggle-content" id="advanced-search-content" aria-hidden="true">
     <input type="hidden" name="mode" value="1">
-    <h6>{{lang 'forms.search.title'}}</h6>
+    <p>{{lang 'forms.search.title'}}</p>
     <div class="form-row">
         <fieldset class="form-fieldset form-column">
             <div class="form-field">
@@ -38,17 +38,24 @@
     </div>
     <hr>
     <div class="form-row form-row--half">
-        <div class="form-field">
-            <h6>{{lang 'forms.search.by_price'}}</h6>
-            <label class="form-label" for="search-form-price_from">
+        <div class="form-field search-price-range">
+            <p>{{lang 'forms.search.by_price'}}</p>
+            <p class="form-label" for="search-form-price_from">
                 {{lang 'forms.search.price_range' }}
+            </p>
+            <label>
+                <span class="u-hiddenVisually">{{lang 'forms.search.price_range' }}</span>
+                <span>{{lang 'common.from'}}</span><input type="text" class="form-input" name="price_from" id="search-form-price_from" value="{{forms.search.values.price_from}}">
             </label>
-            <input type="text" class="form-input" name="price_from" id="search-form-price_from" value="{{forms.search.values.price_from}}">
-            <input type="text" class="form-input" name="price_to" id="search-form-price_to" value="{{forms.search.values.price_to}}">
+            <label>
+                <span class="u-hiddenVisually">{{lang 'forms.search.price_range' }}</span>
+                <span>{{lang 'common.to'}}</span><input type="text" class="form-input" name="price_to" id="search-form-price_to" value="{{forms.search.values.price_to}}">
+            </label>
         </div>
     </div>
     <hr>
     <div class="form-row form-row--half">
+        <p>{{lang 'forms.search.by_setting'}}</p>
         <div class="form-field">
             <label class="form-label" for="search-form-featured">
                 {{lang 'forms.search.featured_products.title' }}

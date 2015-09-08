@@ -15,6 +15,8 @@
     {{#if category.faceted_search_enabled}}
         {{> components/faceted-search/index category}}
     {{else}}
-        {{> components/category/shop-by-price shop_by_price=category.shop_by_price category_url=category.url}}
+        {{#if category.products.length '>' 0}}
+            {{> components/category/shop-by-price shop_by_price=category.shop_by_price category_url=category.url}}
+        {{/if}}
     {{/if}}
 </nav>

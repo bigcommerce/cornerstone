@@ -52,6 +52,7 @@ export default class Account extends PageManager {
         }
 
         this.bindCheckboxFields();
+        this.bindDeleteAddress();
 
         next();
     }
@@ -71,6 +72,19 @@ export default class Account extends PageManager {
             }
 
             this.$body.trigger('orderCheckboxChanged', [id, eleVal]);
+        });
+    }
+
+    /**
+     * Binds a submit hook to ensure the customer receives a confirmation dialog before deleting an address
+     */
+    bindDeleteAddress() {
+        $('[data-delete-address]').on('submit', (event) => {
+            let message = $(event.currentTarget).data('delete-address');
+
+            if (!confirm(message)) {
+                event.preventDefault();
+            }
         });
     }
 

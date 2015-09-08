@@ -53,11 +53,11 @@
             <div class="panel-body">
                 {{#if forms.search.suggested_query}}
                     {{lang 'forms.search.did_you_mean' suggestion=forms.search.suggested_query.query}}
-                    <a href="{{forms.search.suggested_query.url}}">{{lang 'forms.search.refine'}}</a>
+                    <a href="{{forms.search.suggested_query.url}}" class="search-refine">{{lang 'forms.search.refine'}}</a>
                 {{/if}}
 
                 {{#if category_results.length}}
-                    <h5>{{lang 'forms.search.categories'}}</h5>
+                    <p>{{lang 'forms.search.categories'}}</p>
                     <ul class="category-suggestion-list">
 
                         {{#each category_results}}
@@ -74,7 +74,7 @@
                 {{/if}}
 
                 {{#if brand_results.length}}
-                    <h5>{{lang 'forms.search.brand'}}</h5>
+                    <p>{{lang 'forms.search.brand'}}</p>
                     {{#each brand_results}}
                         <a href="{{url}}">{{name}}</a>
                         {{#unless @last}}, {{/unless}}

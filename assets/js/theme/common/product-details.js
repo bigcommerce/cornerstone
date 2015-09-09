@@ -30,6 +30,7 @@ export default class Product {
     getViewModel($scope) {
         return {
             $price: $('.productView-price [data-product-price]', $scope),
+            $weight: $('.productView-info [data-product-weight]', $scope),
             $increments: $('.form-field--increments :input', $scope),
             $addToCart: $('#form-action-addToCart', $scope),
             $wishlistVariation: $('[data-wishlist-add] [name="variation_id"]', $scope),
@@ -74,6 +75,7 @@ export default class Product {
                 }
 
                 viewModel.$price.html(data.price);
+                viewModel.$weight.html(data.weight);
 
                 // Set variation_id if it exists for adding to wishlist
                 if (response.data.variantId) {

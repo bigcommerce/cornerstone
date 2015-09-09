@@ -15,7 +15,7 @@ export default class {
 
     collapseReviews() {
         // We're in paginating state, do not collapse
-        if (window.location.hash && window.location.hash.indexOf('#product-reviews') == 0) {
+        if (window.location.hash && window.location.hash.indexOf('#product-reviews') === 0) {
             return;
         }
 
@@ -28,7 +28,7 @@ export default class {
      */
     injectPaginationLink() {
         const $nextLink = $('.pagination-item--next .pagination-link', this.$reviewsContent),
-              $prevLink = $('.pagination-item--previous .pagination-link', this.$reviewsContent);
+            $prevLink = $('.pagination-item--previous .pagination-link', this.$reviewsContent);
 
         if ($nextLink.length) {
             $nextLink.attr('href', $nextLink.attr('href') + '#product-reviews');

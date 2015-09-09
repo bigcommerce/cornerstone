@@ -199,8 +199,16 @@
                                     </svg>
                                 </i>
                             </button>
-                            <input class="form-input form-input--incrementTotal" id="qty[]" name="qty[]" type="tel"
-                                   value="1" min="1" pattern="[0-9]*" aria-live="polite">
+                            <input class="form-input form-input--incrementTotal"
+                                   id="qty[]"
+                                   name="qty[]"
+                                   type="tel"
+                                   value="{{#if product.min_purchase_quantity}}{{product.min_purchase_quantity}}{{else}}1{{/if}}"
+                                   data-quantity-min="{{product.min_purchase_quantity}}"
+                                   data-quantity-max="{{product.max_purchase_quantity}}"
+                                   min="1"
+                                   pattern="[0-9]*"
+                                   aria-live="polite">
                             <button class="button button--icon" data-action="inc">
                                 <span class="u-hiddenVisually">{{lang 'products.quantity_increase'}}</span>
                                 <i class="icon" aria-hidden="true">

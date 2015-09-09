@@ -132,12 +132,32 @@ export default class Product {
             event.preventDefault();
             let $target = $(event.currentTarget),
                 viewModel = this.getViewModel(this.$scope),
-                qty = viewModel.quantity.$input.val();
+                $input = viewModel.quantity.$input,
+                qty = parseInt($input.val(), 10),
+                quantityMin = parseInt($input.data('quantity-min'), 10),
+                quantityMax = parseInt($input.data('quantity-max'), 10);
 
+            // If action is incrementing
             if ($target.data('action') === 'inc') {
-                qty++;
+                // If quantity max option is set
+                if (quantityMax > 0) {
+                    // Check quantity does not exceed max
+                    if ((qty + 1) <= quantityMax) {
+                        qty++;
+                    }
+                } else {
+                    qty++;
+                }
             } else if (qty > 1) {
-                qty--;
+                // If quantity min option is set
+                if (quantityMin > 0) {
+                    // Check quantity does not fall below min
+                    if ((qty - 1) >= quantityMin) {
+                        qty--;
+                    }
+                } else {
+                    qty--;
+                }
             }
 
             // update hidden input

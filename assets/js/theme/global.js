@@ -8,6 +8,7 @@ import quickView from './global/quick-view';
 import cartPreview from './global/cart-preview';
 import compareProducts from './global/compare-products';
 import privacyCookieNotification from './global/cookieNotification';
+import maintenanceMode from './global/maintenanceMode';
 import carousel from './common/carousel';
 import loadingProgressBar from './global/loading-progress-bar';
 import {revealClose, revealReset} from './global/reveal-extension';
@@ -33,6 +34,7 @@ export default class Global extends PageManager {
         toggleMenu();
         mobileMenu();
         privacyCookieNotification();
+        maintenanceMode(this.context.maintenanceMode);
         loadingProgressBar();
         revealClose();
         revealReset();

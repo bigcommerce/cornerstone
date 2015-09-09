@@ -1,0 +1,44 @@
+<div class="form-field">
+    <label class="form-label form-label--alternate form-label--inlineSmall">
+        {{display_name}}:
+        <span data-option-value></span>
+
+        {{#if required}}
+            <small>{{lang 'products.select_one'}}</small>
+        {{/if}}
+    </label>
+
+    <ul>
+        <li>
+            <input 
+                class="form-input form-radio"
+                type="radio"
+                name="attribute[{{id}}]"
+                value="0"
+                id="attribute_0_{{id}}"
+                {{#if defaultValue '==' 0}}checked{{/if}}
+                {{#if required}}required{{/if}}>
+
+            <label class="form-option" for="attribute_0_{{id}}">
+                {{lang 'products.none'}}
+            </label>
+        </li>
+        {{#each values}}
+            <li>
+                <input 
+                    class="form-input form-radio"
+                    type="radio"
+                    name="attribute[{{../id}}]"
+                    value="{{id}}"
+                    id="attribute_{{id}}_{{../id}}"
+                    {{#if selected}}checked{{/if}}
+                    {{#if ../required}}required{{/if}}>
+
+                <label class="form-option" for="attribute_{{id}}_{{../id}}">
+                    <img src="{{getImage image 'thumb'}}" alt="{{image.alt}}">
+                    {{label}}
+                </label>
+            </li>
+        {{/each}}
+    </ul>
+</div>

@@ -35,11 +35,6 @@ System.config({
     "github:bigcommerce-labs/foundation@5.5.3": {
       "jquery": "github:components/jquery@2.1.4"
     },
-    "github:bigcommerce/stencil-utils@0.3.2": {
-      "asyncly/EventEmitter2": "github:asyncly/EventEmitter2@0.4.14",
-      "jquery": "github:components/jquery@2.1.4",
-      "lodash": "npm:lodash@3.10.1"
-    },
     "github:bigcommerce/stencil-utils@0.3.4": {
       "asyncly/EventEmitter2": "github:asyncly/EventEmitter2@0.4.14",
       "jquery": "github:components/jquery@2.1.4",

@@ -14,7 +14,6 @@ export default function() {
         e.preventDefault();
 
         calculateMobileMenuOffset();
-        targetMenuItemID = $mobileMenuTrigger.data('mobilemenu');
 
         $mobileMenuTrigger.toggleClass('is-open').attr('aria-expanded', (i, attr) => {
             return attr === 'true' ? 'false' : 'true';

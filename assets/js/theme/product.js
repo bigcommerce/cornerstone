@@ -12,6 +12,20 @@ import {classifyForm} from './common/form-utils';
 export default class Product extends PageManager {
     constructor() {
         super();
+        this.url = location.href;
+        this.$reviewLink = $('[data-reveal-id="modal-review-form"]');
+    }
+
+    before(next) {
+
+        // Listen for foundation modal close events to sanitize URL after review.
+        $(document).on('close.fndtn.reveal', function (event) {
+            if (event.target.baseURI.indexOf('#writeReview') !== -1) {
+                history.replaceState('', document.title, window.location.pathname);
+            }
+        });
+
+        next();
     }
 
     loaded(next) {
@@ -21,6 +35,8 @@ export default class Product extends PageManager {
         new ProductDetails($('.productView'), this.context);
 
         videoGallery();
+
+        this.productReviewHandler();
 
         let $reviewForm = classifyForm('.writeReview-form'),
             validator,
@@ -40,5 +56,11 @@ export default class Product extends PageManager {
         });
 
         next();
+    }
+
+    productReviewHandler() {
+        if (this.url.indexOf('#writeReview') !== -1) {
+            this.$reviewLink.click();
+        }
     }
 }

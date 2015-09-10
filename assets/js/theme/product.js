@@ -32,7 +32,7 @@ export default class Product extends PageManager {
         // Init collapsible
         collapsible();
 
-        new ProductDetails($('.productView'), this.context);
+        this.productDetails = new ProductDetails($('.productView'), this.context);
 
         videoGallery();
 

@@ -20,10 +20,23 @@ export default class Cart extends PageManager {
         let itemId = $target.data('cart-itemid'),
             $el = $('#qty-' + itemId),
             oldQty = parseInt($el.val(), 10),
-            newQty;
+            newQty,
+            maxQty = parseInt($el.data('quantity-max'), 10),
+            minQty = parseInt($el.data('quantity-min'), 10),
+            minError = $el.data('quantity-min-error'),
+            maxError = $el.data('quantity-max-error');
+
+        newQty = $target.data('action') === 'inc' ? oldQty + 1 : oldQty - 1;
+
+        // Does not quality for min/max quantity
+        if (newQty < minQty) {
+            return alert(minError);
+        } else if (newQty > maxQty) {
+            return alert(maxError);
+        }
 
         this.$overlay.show();
-        newQty = $target.data('action') === 'inc' ? oldQty + 1 : oldQty - 1;
+
         utils.api.cart.itemUpdate(itemId, newQty, (err, response) => {
             this.$overlay.hide();
 

@@ -77,7 +77,18 @@
                             <i class="icon" aria-hidden="true"><svg><use xlink:href="#icon-keyboard-arrow-down" /></svg></i>
                         </button>
 
-                        <input class="form-input form-input--incrementTotal" id="qty-{{id}}" name="qty-{{id}}" type="tel" value="{{quantity}}" min="1" pattern="[0-9]*" aria-live="polite">
+                        <input class="form-input form-input--incrementTotal"
+                               id="qty-{{id}}"
+                               name="qty-{{id}}"
+                               type="tel"
+                               value="{{quantity}}"
+                               data-quantity-min="{{min_purchase_quantity}}"
+                               data-quantity-max="{{max_purchase_quantity}}"
+                               data-quantity-min-error="{{lang 'products.quantity_min' quantity=min_purchase_quantity}}"
+                               data-quantity-max-error="{{lang 'products.quantity_max' quantity=max_purchase_quantity}}"
+                               min="1"
+                               pattern="[0-9]*"
+                               aria-live="polite">
 
                         <button class="button button--icon" data-cart-update data-cart-itemid="{{id}}" data-action="inc">
                             <span class="u-hiddenVisually">{{lang 'products.quantity_increase'}}</span>

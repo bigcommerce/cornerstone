@@ -2,7 +2,7 @@ import { hooks, api } from 'bigcommerce/stencil-utils';
 import $ from 'jquery';
 import _ from 'lodash';
 import Url from 'url';
-import History from 'browserstate/history.js/scripts/bundled-uncompressed/html4+html5/jquery.history';
+import 'browserstate/history.js/scripts/bundled-uncompressed/html4+html5/jquery.history';
 import collapsible from './collapsible';
 
 function goToUrl(url) {

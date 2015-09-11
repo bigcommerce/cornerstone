@@ -8,5 +8,10 @@
     </label>
 
     <input class="form-file" type="file" id="attribute_{{this.id}}_{{../id}}" name="attribute[{{this.id}}]" {{#if required}}required{{/if}}>
+    {{#if original_name}}
+        {{{lang 'products.file_option_set' url=file_url name=original_name}}}
+        <label>{{lang 'cart.remove_file'}}<input type="checkbox" name="{{file_remove}}"></label>
+    {{/if}}
     <p class="form-fileDescription">{{#if file_size}}{{lang 'products.max_filesize'}} <strong>{{file_size}}</strong>, {{/if}}{{#if file_types}}{{lang 'products.filetypes'}} <strong>{{file_types}}</strong>{{/if}}</p>
+
 </div>

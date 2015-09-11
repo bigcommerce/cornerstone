@@ -48,15 +48,6 @@
                 {{lang 'cart.added_to_cart.proceed_to_checkout'}}
             </a>
 
-            {{#if cart.show_multiple_address_shipping}}
-                <p>
-                    {{lang 'cart.checkout.address.or'}}
-                    <a href="{{urls.checkout.multiple_address}}">
-                        <strong>{{lang 'cart.checkout.address.multiple'}}</strong>
-                    </a>
-                </p>
-            {{/if}}
-
             <div class="previewCartCheckout-additionalCheckoutButtons">
                 {{#each cart.additional_checkout_buttons}}
                     {{{this}}}

@@ -1,6 +1,7 @@
 import PageManager from '../page-manager';
 import $ from 'jquery';
 import _ from 'lodash';
+import giftCertCheck from './common/gift-certificate-validator';
 import utils from 'bigcommerce/stencil-utils';
 import ShippingEstimator from './cart/shipping-estimator';
 
@@ -214,7 +215,7 @@ export default class Cart extends PageManager {
             let code = $certInput.val();
 
             event.preventDefault();
-            if (!code) {
+            if (!giftCertCheck(code)) {
                 return alert($certInput.data('error'));
             }
 

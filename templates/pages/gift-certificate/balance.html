@@ -19,13 +19,14 @@
         {{/if}}
     {{/if}}
 
-    <form class="form form--oneField" method="get">
+    <form class="form form--oneField" id="gift-certificate-balance" method="get">
         <input type="hidden" name="action" value="balance">
         <div class="form-field">
             <label class="form-label" for="giftcertificatecode">
+                <small>{{lang 'common.required' }}</small>
                 {{lang 'forms.gift_certificate.balance.code' }}
             </label>
-            <div class="form-prefixPostfix">
+            <div class="form-prefixPostfix nowrap">
                 <input class="form-input" id="giftcertificatecode" name="giftcertificatecode">
                 <input type="submit" class="button button--primary form-prefixPostfix-button--postfix" value="{{lang 'forms.gift_certificate.balance.submit_value' }}">
             </div>

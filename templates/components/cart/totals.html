@@ -7,6 +7,16 @@
             <span>{{cart.sub_total.formatted}}</span>
         </div>
     </li>
+    {{#if cart.discount}}
+        <li class="cart-total">
+            <div class="cart-total-label">
+                <strong>{{lang 'cart.discount'}}:</strong>
+            </div>
+            <div class="cart-total-value">
+                {{cart.discount.formatted}}
+            </div>
+        </li>
+    {{/if}}
     {{#if cart.coupons}}
         {{#each cart.coupons}}
             <li class="cart-total">

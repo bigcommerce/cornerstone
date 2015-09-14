@@ -80,13 +80,13 @@
                         <dt class="productView-info-name">{{lang 'products.shipping'}}</dt>
                         <dd class="productView-info-value">{{lang 'products.shipping_calculated'}}</dd>
                     {{else}}
-                        {{#compare product.shipping.price '===' 0}}
+                        {{#if product.shipping.price '===' 0}}
                             <dt class="productView-info-name">{{lang 'products.shipping'}}</dt>
                             <dd class="productView-info-value">{{lang 'products.shipping_free'}}</dd>
                         {{else}}
                             <dt class="productView-info-name">{{lang 'products.shipping'}}</dt>
                             <dd class="productView-info-value">{{lang 'products.shipping_fixed' amount=product.shipping.price.formatted}}</dd>
-                        {{/compare}}
+                        {{/if}}
                     {{/if}}
                 {{/if}}
                 {{#if product.bulk_discount_rates.length}}

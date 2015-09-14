@@ -1,10 +1,10 @@
 <div class="cart-total-value">
 
-    {{#compare cart.discount 0 operator='>'}}
+    {{#if cart.discount.amount '>' 0}}
         <a href="#">{{cart.discount.formatted}}</a>
     {{else}}
         <button class="gift-certificate-add">{{lang 'cart.gift_certificates.gift_certificate'}}</button>
-    {{/compare}}
+    {{/if}}
 
     <button class="gift-certificate-cancel" style="display: none;">{{lang 'cart.coupons.cancel'}}</button>
 </div>

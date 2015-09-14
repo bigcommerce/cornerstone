@@ -1,10 +1,12 @@
 import PageManager from '../page-manager';
 import nod from './common/nod';
+import giftCertChecker from './common/gift-certificate-validator';
 
 export default class GiftCertificate extends PageManager {
     constructor() {
         super();
 
+        let $certBalanceForm = $('#gift-certificate-balance');
         let purchaseModel = {
                 recipientName: function(val) {
                     return val.length;
@@ -127,6 +129,18 @@ export default class GiftCertificate extends PageManager {
             }
         ]);
 
+        if ($certBalanceForm.length) {
+            let balanceVal = this.checkCertBalanceValidator($certBalanceForm);
+
+            $certBalanceForm.submit((event) => {
+                balanceVal.performCheck();
+
+                if (!balanceVal.areAll('valid')) {
+                    return false;
+                }
+            })
+        }
+
 
         $purchaseForm.submit((event) => {
             purchaseValidator.performCheck();
@@ -156,5 +170,21 @@ export default class GiftCertificate extends PageManager {
                 }
             });
         });
+    }
+
+    checkCertBalanceValidator($balanceForm) {
+        let balanceValidator = nod({
+            submit: $balanceForm.find('input[type="submit"]')
+        });
+
+        balanceValidator.add({
+            selector: $balanceForm.find('input[name="giftcertificatecode"]'),
+            validate: function (cb, val) {
+                cb(giftCertChecker(val));
+            },
+            errorMessage: 'You must enter a certificate code.'
+        });
+
+        return balanceValidator;
     }
 }

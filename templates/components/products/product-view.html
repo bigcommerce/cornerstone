@@ -206,7 +206,7 @@
                     </div>
                 {{/if}}
 
-                <div class="form-field form-field--stock">
+                <div class="form-field form-field--stock{{#unless product.stock_level}} u-hiddenVisually{{/unless}}">
                     <label class="form-label form-label--alternate">{{lang 'products.current_stock'}}</label>
                     <span data-product-stock>{{product.stock_level}}</span>
                 </div>

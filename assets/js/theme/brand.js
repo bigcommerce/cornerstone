@@ -9,6 +9,9 @@ export default class Brand extends PageManager {
                 template: {
                     productListing: 'brand/product-listing',
                     sidebar: 'brand/sidebar'
+                },
+                config: {
+                    shop_by_brand: true
                 }
             };
 

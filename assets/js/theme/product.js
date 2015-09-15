@@ -19,8 +19,8 @@ export default class Product extends PageManager {
     before(next) {
 
         // Listen for foundation modal close events to sanitize URL after review.
-        $(document).on('close.fndtn.reveal', function (event) {
-            if (event.target.baseURI.indexOf('#writeReview') !== -1) {
+        $(document).on('close.fndtn.reveal', (event) => {
+            if (this.url.indexOf('#writeReview') !== -1) {
                 history.replaceState('', document.title, window.location.pathname);
             }
         });

@@ -13,7 +13,7 @@ product:
     {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
 
     {{#each product.shipping_messages}}
-        <div class="alertBox alertBox--info" role="alert">{{{message}}}</div>
+        {{> components/common/alert-info message}}
     {{/each}}
 
     <div itemscope itemtype="http://schema.org/Product">

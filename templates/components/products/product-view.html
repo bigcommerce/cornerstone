@@ -59,6 +59,10 @@
                     <dt class="productView-info-name">{{lang 'products.sku'}}</dt>
                     <dd class="productView-info-value" data-product-sku>{{product.sku}}</dd>
                 {{/if}}
+                {{#if product.upc}}
+                    <dt class="productView-info-name">{{lang 'products.upc'}}</dt>
+                    <dd class="productView-info-value" data-product-upc>{{product.upc}}</dd>
+                {{/if}}
                 {{#if product.condition}}
                     <dt class="productView-info-name">{{lang 'products.condition'}}</dt>
                     <dd class="productView-info-value">{{product.condition}}</dd>
@@ -282,15 +286,25 @@
     </section>
 
     <article class="productView-description" itemprop="description">
-        <ul class="tabs">
+        <ul class="tabs" data-tab>
             <li class="tab is-active">
                 <a class="tab-title" href="#tab-description">{{lang 'products.description'}}</a>
             </li>
+            {{#if product.warranty}}
+                <li class="tab">
+                    <a class="tab-title" href="#tab-warranty">{{lang 'products.warranty'}}</a>
+                </li>
+            {{/if}}
         </ul>
         <div class="tabs-contents">
             <div class="tab-content is-active" id="tab-description">
                 {{{product.description}}}
             </div>
+           {{#if product.warranty}}
+               <div class="tab-content" id="tab-warranty">
+                   {{{product.warranty}}}
+               </div>
+           {{/if}}
         </div>
     </article>
 </div>

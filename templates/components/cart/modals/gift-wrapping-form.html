@@ -4,16 +4,16 @@
 </div>
 <div class="modal-body">
 
-    {{#compare quantity 1 operator='>'}}
+    {{#if quantity '>' 1}}
         <p>{{lang 'cart.gift_wrapping.choose_how'}}</p>
-    {{/compare}}
+    {{/if}}
 
     <form class="form giftWrapping-form" action="{{urls.cart}}" method="post">
         <input type="hidden" name="action" value="save_giftwrapping">
         <input type="hidden" name="item_id" value="{{item_id}}">
         <fieldset class="form-fieldset">
 
-            <div class="form-field" {{#compare quantity 1 operator='==='}}style="display:none"{{/compare}}>
+            <div class="form-field" {{#if quantity '===' 1}}style="display:none"{{/if}}>
                 <input type="radio" class="form-radio" name="giftwraptype" id="girftWrapping-radio-same" checked="checked" value="same">
                 <label class="form-label" for="girftWrapping-radio-same">{{lang 'cart.gift_wrapping.option_same'}}</label>
 

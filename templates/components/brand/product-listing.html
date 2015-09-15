@@ -3,11 +3,11 @@
 {{> components/products/filter sort=brand.sort}}
 
 <form action="/compare" method='POST' data-product-compare>
-    {{#compare theme_settings.product_list_display_mode 'grid'}}
+    {{#if theme_settings.product_list_display_mode '===' 'grid'}}
         {{> components/products/grid products=brand.products show_compare=brand.show_compare theme_settings=theme_settings}}
     {{else}}
         {{> components/products/list products=brand.products show_compare=brand.show_compare theme_settings=theme_settings}}
-    {{/compare}}
+    {{/if}}
 
     {{#if brand.show_compare}}
         <input type="submit" value="{{lang 'compare.button'}}" class="button button--primary">

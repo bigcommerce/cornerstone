@@ -4,45 +4,45 @@
         {{#each settings.add_this}}
         <li class="socialLinks-item socialLinks-item--{{service}}">
             <a class="addthis_button_{{service}} icon icon--{{service}}" {{{annotation}}}>
-                {{#compare service 'google_plusone' operator='==='}}
+                {{#if service '===' 'google_plusone'}}
                 <!-- No custom icons allowed with g+ -->
-                {{/compare}}
+                {{/if}}
 
-                {{#compare service 'facebook' operator='==='}}
+                {{#if service '===' 'facebook'}}
                 <svg>
                     <use xlink:href="#icon-facebook"/>
                 </svg>
-                {{/compare}}
+                {{/if}}
 
-                {{#compare service 'email' operator='==='}}
+                {{#if service '===' 'email'}}
                 <svg>
                     <use xlink:href="#icon-envelope"/>
                 </svg>
-                {{/compare}}
+                {{/if}}
 
-                {{#compare service 'print' operator='==='}}
+                {{#if service '===' 'print'}}
                 <svg>
                     <use xlink:href="#icon-print"/>
                 </svg>
-                {{/compare}}
+                {{/if}}
 
-                {{#compare service 'twitter' operator='==='}}
+                {{#if service '===' 'twitter'}}
                 <svg>
                     <use xlink:href="#icon-twitter"/>
                 </svg>
-                {{/compare}}
+                {{/if}}
 
-                {{#compare service 'linkedin' operator='==='}}
+                {{#if service '===' 'linkedin'}}
                 <svg>
                     <use xlink:href="#icon-linkedin"/>
                 </svg>
-                {{/compare}}
+                {{/if}}
 
-                {{#compare service 'google' operator='==='}}
+                {{#if service '===' 'google'}}
                 <svg>
                     <use xlink:href="#icon-google"/>
                 </svg>
-                {{/compare}}
+                {{/if}}
             </a>
         </li>
         {{/each}}

@@ -84,13 +84,13 @@
                         <dt class="productView-info-name">{{lang 'products.shipping'}}</dt>
                         <dd class="productView-info-value">{{lang 'products.shipping_calculated'}}</dd>
                     {{else}}
-                        {{#compare product.shipping.price 0 operator='==='}}
+                        {{#if product.shipping.price '===' 0}}
                             <dt class="productView-info-name">{{lang 'products.shipping'}}</dt>
                             <dd class="productView-info-value">{{lang 'products.shipping_free'}}</dd>
                         {{else}}
                             <dt class="productView-info-name">{{lang 'products.shipping'}}</dt>
                             <dd class="productView-info-value">{{lang 'products.shipping_fixed' amount=product.shipping.price.formatted}}</dd>
-                        {{/compare}}
+                        {{/if}}
                     {{/if}}
                 {{/if}}
                 {{#if product.bulk_discount_rates.length}}
@@ -113,15 +113,15 @@
                             {{#each product.bulk_discount_rates}}
                                 <li>
                                     {{lang 'products.bulk_pricing.range' min=min max=max}}
-                                    {{#compare type 'percent' operator='==='}}
+                                    {{#if type '===' 'percent'}}
                                         {{lang 'products.bulk_pricing.percent' discount=discount.formatted}}
-                                    {{/compare}}
-                                    {{#compare type 'fixed' operator='==='}}
+                                    {{/if}}
+                                    {{#if type '===' 'fixed'}}
                                         {{lang 'products.bulk_pricing.fixed' discount=discount.formatted}}
-                                    {{/compare}}
-                                    {{#compare type 'price' operator='==='}}
+                                    {{/if}}
+                                    {{#if type '===' 'price'}}
                                         {{lang 'products.bulk_pricing.price' discount=discount.formatted}}
-                                    {{/compare}}
+                                    {{/if}}
                                 </li>
                             {{/each}}
                             </ul>

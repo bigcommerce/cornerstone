@@ -30,7 +30,7 @@
     </div>
 {{/if}}
 
-{{#compare page_type 'product' operator='==='}}
+{{#if page_type '===' 'product'}}
     {{#if price.saved}}
         <div class="price-section price-section--saving">
             <span class="price">
@@ -38,4 +38,4 @@
             </span>
         </div>
     {{/if}}
-{{/compare}}
+{{/if}}

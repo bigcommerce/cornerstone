@@ -1,5 +1,5 @@
-{{#enumerate 1 5}}
-    {{#compare ../this.rating this operator='>='}}
+{{#for 1 5}}
+    {{#if ../this.rating '>=' $index}}
         <span class="icon icon--starFull">
             <svg>
                 <use xlink:href="#icon-star" />
@@ -11,5 +11,5 @@
                 <use xlink:href="#icon-star" />
             </svg>
         </span>
-    {{/compare}}
-{{/enumerate}}
+    {{/if}}
+{{/for}}

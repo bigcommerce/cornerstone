@@ -8,20 +8,26 @@
     </label>
     <select class="form-select form-select--date" name="attribute[{{this.id}}][month]" {{#if required}}required{{/if}}>
         <option value="">{{lang 'common.month'}}</option>
-        {{#enumerate 1 12}}
-        <option value="{{ this }}" {{#equals ../selected_date.month this}}selected="selected"{{/equals}}>{{getShortMonth this }}</option>
-        {{/enumerate}}
+        {{#for 1 12}}
+            <option value="{{this}}" {{#equals ../selected_date.month this}}selected="selected"{{/equals}}>
+                {{lang (concat 'common.short_months.' $index)}}
+            </option>
+        {{/for}}
     </select>
     <select class="form-select form-select--date" name="attribute[{{this.id}}][day]" {{#if required}}required{{/if}}>
         <option value="">{{lang 'common.day'}}</option>
-        {{#enumerate 1 31}}
-        <option value="{{ this }}" {{#equals ../selected_date.day this}}selected="selected"{{/equals}}>{{ this }}</option>
-        {{/enumerate}}
+        {{#for 1 31}}
+            <option value="{{this}}" {{#equals ../selected_date.day this}}selected="selected"{{/equals}}>
+                {{this}}
+            </option>
+        {{/for}}
     </select>
     <select class="form-select form-select--date" name="attribute[{{this.id}}][year]" {{#if required}}required{{/if}}>
         <option value="">{{lang 'common.year'}}</option>
-        {{#enumerate earliest_year latest_year}}
-        <option value="{{ this }}" {{#equals ../selected_date.year this}}selected="selected"{{/equals}}>{{ this }}</option>
-        {{/enumerate}}
+        {{#for earliest_year latest_year}}
+            <option value="{{this}}" {{#equals ../selected_date.year this}}selected="selected"{{/equals}}>
+                {{this}}
+            </option>
+        {{/for}}
     </select>
 </div>

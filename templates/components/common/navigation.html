@@ -2,7 +2,7 @@
     {{> components/common/currency-selector}}
 
     <ul class="navUser-section navUser-section--alt">
-        {{#compare customer.store_credit.value 0 operator='>'}}
+        {{#if customer.store_credit.value '>' 0}}
             <li class="navUser-item">
                 <a class="navUser-action navUser-action--storeCredit"
                    data-dropdown="storeCredit-dropdown"
@@ -14,7 +14,7 @@
                     {{{lang 'common.store_credit' store_credit=customer.store_credit.formatted}}}
                 </div>
             </li>
-        {{/compare}}
+        {{/if}}
         <li class="navUser-item">
             <a class="navUser-action navUser-item--compare" href="/compare" data-compare-nav>{{lang 'common.compare'}} <span class="countPill countPill--positive countPill--alt"></span></a>
         </li>

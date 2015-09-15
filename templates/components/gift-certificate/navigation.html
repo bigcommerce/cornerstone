@@ -1,6 +1,6 @@
 <nav class="navBar navBar--sub">
     <ul class="navBar-section account-navigation">
-        {{#compare gift_page 'purchase' operator='==='}}
+        {{#if gift_page '===' 'purchase'}}
             <li class="navBar-item is-active">
                 {{lang 'gift_certificate.purchase.heading'}}
             </li>
@@ -10,8 +10,8 @@
                     {{lang 'gift_certificate.purchase.heading'}}
                 </a>
             </li>
-        {{/compare}}
-        {{#compare gift_page 'redeem' operator='==='}}
+        {{/if}}
+        {{#if gift_page '===' 'redeem'}}
             <li class="navBar-item is-active">
                 {{lang 'gift_certificate.redeem.heading'}}
             </li>
@@ -21,8 +21,8 @@
                     {{lang 'gift_certificate.redeem.heading'}}
                 </a>
             </li>
-        {{/compare}}
-        {{#compare gift_page 'balance' operator='==='}}
+        {{/if}}
+        {{#if gift_page '===' 'balance'}}
             <li class="navBar-item is-active">
                 {{lang 'gift_certificate.balance.heading'}}
             </li>
@@ -32,6 +32,6 @@
                     {{lang 'gift_certificate.balance.heading'}}
                 </a>
             </li>
-        {{/compare}}
+        {{/if}}
     </ul>
 </nav>

@@ -4,7 +4,11 @@
             {{#each cart.items}}
                 <li class="previewCartItem">
                     <div class="previewCartItem-image">
-                        <img src="{{getImage image 'thumb' (cdn ../theme_settings.default_image_product)}}" alt="{{image.alt}}" />
+                        {{#if type '==' 'GiftCertificate'}}
+                            <img src="{{cdn ../../theme_settings.default_image_gift_certificate}}" alt="GiftCertificate">
+                        {{else}}
+                            <img src="{{getImage image 'thumb' (cdn ../theme_settings.default_image_product)}}" alt="{{image.alt}}">
+                        {{/if}}
                     </div>
 
                     <div class="previewCartItem-content">

@@ -9,7 +9,7 @@
         {{#if cart.status_messages}}
             <div data-cart-status>
                 {{#each cart.status_messages}}
-                    <div class="alertBox alertBox--info" role="alert" data-bind="text: message">{{{message}}}</div>
+                    {{> components/common/alert-info message}}
                 {{/each}}
             </div>
         {{/if}}

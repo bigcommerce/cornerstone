@@ -7,11 +7,20 @@ export default function() {
     const $mobileMenu = $('#mobile-menu');
 
     function mobileMenu() {
-        $mobileMenuTrigger.on('click', toggleMobileMenu);
+        $mobileMenuTrigger.on('click', (event) => {
+            event.preventDefault();
+            toggleMobileMenu();
+        });
+
+        // Hide the mobile sidebar if the cart is opened
+        $('[data-cart-preview]').on('click', (event) => {
+            if ($mobileMenuTrigger.hasClass('is-open')) {
+                toggleMobileMenu();
+            }
+        });
     }
 
-    function toggleMobileMenu(e) {
-        e.preventDefault();
+    function toggleMobileMenu() {
 
         calculateMobileMenuOffset();
 

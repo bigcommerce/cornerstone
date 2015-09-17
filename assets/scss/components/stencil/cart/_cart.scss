@@ -425,8 +425,32 @@ $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-sp
     }
 
     .button--primary {
-        width: 100%;
+        width: 60%;
     }
+}
+
+.estimator-form-label {
+    clear: both;
+    float: left;
+    font-weight: fontWeight("normal");
+}
+
+.estimator-form-label-text {
+    margin-left: remCalc(10px);
+}
+
+.estimator-form-input {
+    float: right;
+    margin-bottom: 1em;
+    width: 60%;
+
+    .form-input, .form-select {
+        margin-bottom: 0;
+    }
+}
+
+.estimator-form-row {
+    @include clearfix;
 }
 
 .cart-actions {

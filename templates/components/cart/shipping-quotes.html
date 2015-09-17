@@ -10,14 +10,23 @@
         <ul>
             {{#if quotes.shipping_methods}}
                 {{#each quotes.shipping_methods}}
-                    <li>
-                        <input id="shipping-quote-{{id}}" class="shipping-quote" type="radio" name="shipping_method" value="{{id}}">
-                        <label for="shipping-quote-{{id}}">
-                            {{provider_name}} <b>{{cost.formatted}}</b>
-                        </label>
+                    <li class="estimator-form-row">
+                        <dl>
+                            <dt class="estimator-form-label">
+                                <input id="shipping-quote-{{id}}" class="shipping-quote" type="radio" name="shipping_method" value="{{id}}">
+                                <label class="estimator-form-label-text" for="shipping-quote-{{id}}">
+                                    {{provider_name}}
+                                </label>
+                            </dt>
+                            <dd class="estimator-form-input">
+                                <label for="shipping-quote-{{id}}">
+                                    <b>{{cost.formatted}}</b>
+                                </label>
+                            </dd>
+                        </dl>
                     </li>
                 {{/each}}
-                <input class="button button--small select-shipping-quote" type="submit" value="{{lang 'cart.checkout.select'}}">
+                <input class="button button--small button--primary select-shipping-quote" type="submit" value="{{lang 'cart.checkout.update'}}">
             {{else}}
                 <li>
                     {{lang 'cart.shipping_estimator.free_shipping'}}

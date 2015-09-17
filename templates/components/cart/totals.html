@@ -31,13 +31,14 @@
                 </div>
             </li>
         {{/each}}
+    {{else}}
+        <li class="cart-total">
+            <div class="cart-total-label">
+                <strong>{{lang 'cart.coupon_code'}}:</strong>
+            </div>
+            {{> components/cart/coupon-input}}
+        </li>
     {{/if}}
-    <li class="cart-total">
-        <div class="cart-total-label">
-            <strong>{{lang 'cart.coupon_code'}}:</strong>
-        </div>
-        {{> components/cart/coupon-input}}
-    </li>
     {{#each cart.gift_certificates}}
         <li class="cart-total">
             <div class="cart-total-label">

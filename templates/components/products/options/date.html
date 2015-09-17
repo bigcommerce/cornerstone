@@ -17,16 +17,16 @@
     <select class="form-select form-select--date" name="attribute[{{this.id}}][day]" {{#if required}}required{{/if}}>
         <option value="">{{lang 'common.day'}}</option>
         {{#for 1 31}}
-            <option value="{{this}}" {{#equals ../selected_date.day this}}selected="selected"{{/equals}}>
-                {{this}}
+            <option value="{{$index}}" {{#equals ../selected_date.day this}}selected="selected"{{/equals}}>
+                {{$index}}
             </option>
         {{/for}}
     </select>
     <select class="form-select form-select--date" name="attribute[{{this.id}}][year]" {{#if required}}required{{/if}}>
         <option value="">{{lang 'common.year'}}</option>
         {{#for earliest_year latest_year}}
-            <option value="{{this}}" {{#equals ../selected_date.year this}}selected="selected"{{/equals}}>
-                {{this}}
+            <option value="{{$index}}" {{#equals ../selected_date.year this}}selected="selected"{{/equals}}>
+                {{$index}}
             </option>
         {{/for}}
     </select>

@@ -137,6 +137,11 @@ export default class Cart extends PageManager {
             let itemId = $(event.currentTarget).data('cart-itemid');
 
             event.preventDefault();
+
+            if (!confirm($(event.currentTarget).data('confirm-delete'))) {
+                return;
+            }
+
             // remove item from cart
             cartRemoveItem(itemId);
         });

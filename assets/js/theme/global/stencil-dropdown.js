@@ -25,7 +25,7 @@ export default {
             if ($cart) {
                 $cart.click();
             }
-            
+
             $container.hasClass('is-open') ? this.hide($container) : this.show($container, event, style);
         });
 

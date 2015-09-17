@@ -25,6 +25,7 @@ System.config({
     "casperin/nod": "github:casperin/nod@2.0.10",
     "core-js": "npm:core-js@0.9.18",
     "foundation": "github:bigcommerce-labs/foundation@5.5.3",
+    "ftlabs/fastclick": "github:ftlabs/fastclick@1.0.6",
     "hubspot/pace": "github:hubspot/pace@1.0.2",
     "jackmoore/zoom": "github:jackmoore/zoom@1.7.14",
     "jquery": "github:components/jquery@2.1.4",

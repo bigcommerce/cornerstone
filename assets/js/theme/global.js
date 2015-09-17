@@ -12,6 +12,7 @@ import maintenanceMode from './global/maintenanceMode';
 import carousel from './common/carousel';
 import loadingProgressBar from './global/loading-progress-bar';
 import {revealClose, revealReset} from './global/reveal-extension';
+import FastClick from 'ftlabs/fastclick';
 
 export default class Global extends PageManager {
     constructor() {
@@ -24,6 +25,7 @@ export default class Global extends PageManager {
      * @param next
      */
     loaded(next) {
+        new FastClick(document.body);
         quickSearch();
         currencySelector();
         foundation();

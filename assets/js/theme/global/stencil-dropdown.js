@@ -5,7 +5,7 @@ export default {
         if (style) {
             $dropDown.attr('style', style);
         }
-
+        $('#search_query').blur();
         $dropDown.removeClass('is-open f-open-dropdown').attr('aria-hidden', 'true');
     },
     show($dropDown, event, style) {
@@ -21,6 +21,11 @@ export default {
         let modalOpened = false;
 
         $dropDownTrigger.on('click', (event) => {
+            let $cart = $('.is-open[data-cart-preview]');
+            if ($cart) {
+                $cart.click();
+            }
+            
             $container.hasClass('is-open') ? this.hide($container) : this.show($container, event, style);
         });
 

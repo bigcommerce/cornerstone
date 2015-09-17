@@ -11,7 +11,7 @@ and requires installation. [Stencil-utils](https://github.com/bigcommerce/stenci
 * Have Fun!
 
 ### JSPM Private Repos
-Create an access token [here](https://github.com/settings/applications) that will be used by JSPM to access the private Github repos.
+Create an access token [here](https://github.com/settings/tokens) that will be used by JSPM to access the private Github repos.
 Once you have your token run `jspm registry config github` and input your credentials. This will create a Github jspm configuration.
 Once this is complete you are ready for the next step.
 

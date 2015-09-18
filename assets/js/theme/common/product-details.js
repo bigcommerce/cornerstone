@@ -27,10 +27,10 @@ export default class Product {
      */
     getViewModel($scope) {
         return {
-            $priceWithTax: $('.price-section--withTax [data-product-price]', $scope),
-            $rrpWithTax: $('.price-section--withTax [data-product-rrp]', $scope),
-            $priceWithoutTax: $('.price-section--withoutTax [data-product-price]', $scope),
-            $rrpWithoutTax: $('.price-section--withoutTax [data-product-rrp]', $scope),
+            $priceWithTax: $('[data-product-price-with-tax]', $scope),
+            $rrpWithTax: $('[data-product-rrp-with-tax]', $scope),
+            $priceWithoutTax: $('[data-product-price-without-tax]', $scope),
+            $rrpWithoutTax: $('[data-product-rrp-without-tax]', $scope),
             $weight: $('.productView-info [data-product-weight]', $scope),
             $increments: $('.form-field--increments :input', $scope),
             $addToCart: $('#form-action-addToCart', $scope),

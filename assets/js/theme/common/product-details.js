@@ -6,6 +6,7 @@ import utils from 'bigcommerce/stencil-utils';
 import 'foundation/js/foundation/foundation';
 import 'foundation/js/foundation/foundation.reveal';
 import ImageGallery from '../product/image-gallery';
+import _ from 'lodash';
 
 export default class Product {
     constructor($scope, context) {
@@ -26,7 +27,10 @@ export default class Product {
      */
     getViewModel($scope) {
         return {
-            $price: $('.productView-price [data-product-price]', $scope),
+            $priceWithTax: $('.price-section--withTax [data-product-price]', $scope),
+            $rrpWithTax: $('.price-section--withTax [data-product-rrp]', $scope),
+            $priceWithoutTax: $('.price-section--withoutTax [data-product-price]', $scope),
+            $rrpWithoutTax: $('.price-section--withoutTax [data-product-rrp]', $scope),
             $weight: $('.productView-info [data-product-weight]', $scope),
             $increments: $('.form-field--increments :input', $scope),
             $addToCart: $('#form-action-addToCart', $scope),
@@ -71,8 +75,25 @@ export default class Product {
                     $messageBox.hide();
                 }
 
-                viewModel.$price.html(data.price);
-                viewModel.$weight.html(data.weight);
+                if (_.isObject(data.price)) {
+                    if (data.price.with_tax) {
+                        viewModel.$priceWithTax.html(data.price.with_tax.formatted);
+                    }
+                    if (data.price.without_tax) {
+                        viewModel.$priceWithoutTax.html(data.price.without_tax.formatted);
+                    }
+                    if (data.price.rrp_with_tax) {
+                        viewModel.$rrpWithTax.html(data.price.rrp_with_tax.formatted);
+                    }
+
+                    if (data.price.rrp_without_tax) {
+                        viewModel.$rrpWithoutTax.html(data.price.rrp_without_tax.formatted);
+                    }
+                }
+
+                if (_.isObject(data.weight)) {
+                    viewModel.$weight.html(data.weight.formatted);
+                }
 
                 // Set variation_id if it exists for adding to wishlist
                 if (data.variantId) {
@@ -84,7 +105,7 @@ export default class Product {
                     viewModel.$sku.text(data.sku);
                 }
 
-                if (data.image) {
+                if (_.isObject(data.image)) {
                     const zoomImageUrl = utils.tools.image.getSrc(
                         data.image.data,
                         this.context.themeImageSizes.zoom

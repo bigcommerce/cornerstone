@@ -68,8 +68,8 @@ export default class Product {
                     $messageBox = $('.productAttributes-message'),
                     data = response.data || {};
 
-                if (data.purchasingMessage) {
-                    $('.alertBox-message', $messageBox).text(data.purchasingMessage);
+                if (data.purchasing_message) {
+                    $('.alertBox-message', $messageBox).text(data.purchasing_message);
                     $messageBox.show();
                 } else {
                     $messageBox.hide();

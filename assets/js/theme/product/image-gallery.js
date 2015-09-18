@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import 'jackmoore/zoom';
+import _ from 'lodash';
 
 export default class ImageGallery {
 
@@ -15,7 +16,7 @@ export default class ImageGallery {
     }
 
     setMainImage(imgObj) {
-        this.currentImage = imgObj;
+        this.currentImage = _.clone(imgObj);
 
         this.destroyImageZoom();
         this.setActiveThumb();

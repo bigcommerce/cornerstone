@@ -21,7 +21,7 @@
                     {{#if brand.name}}
                         <p class="cart-item-brand">{{brand.name}}</p>
                     {{/if}}
-                    <h4 class="cart-item-name"><a href="{{link}}">{{name}}</a></h4>
+                    <h4 class="cart-item-name"><a href="{{url}}">{{name}}</a></h4>
                     {{#if release_date}}
                         <p>({{release_date}})</p>
                     {{/if}}
@@ -72,11 +72,12 @@
 
                     <label class="form-label cart-item-label" for="qty-{{id}}">{{lang 'products.quantity'}}</label>
                     <div class="form-increment">
-                        <button class="button button--icon" data-cart-update data-cart-itemid="{{id}}" data-action="dec">
-                            <span class="u-hiddenVisually">{{lang 'products.quantity_decrease'}}</span>
-                            <i class="icon" aria-hidden="true"><svg><use xlink:href="#icon-keyboard-arrow-down" /></svg></i>
-                        </button>
-
+                        {{# if can_modify}}
+                            <button class="button button--icon" data-cart-update data-cart-itemid="{{id}}" data-action="dec">
+                                <span class="u-hiddenVisually">{{lang 'products.quantity_decrease'}}</span>
+                                <i class="icon" aria-hidden="true"><svg><use xlink:href="#icon-keyboard-arrow-down" /></svg></i>
+                            </button>
+                        {{/if}}
                         <input class="form-input form-input--incrementTotal"
                                id="qty-{{id}}"
                                name="qty-{{id}}"
@@ -88,21 +89,27 @@
                                data-quantity-max-error="{{lang 'products.quantity_max' quantity=max_purchase_quantity}}"
                                min="1"
                                pattern="[0-9]*"
-                               aria-live="polite">
-
-                        <button class="button button--icon" data-cart-update data-cart-itemid="{{id}}" data-action="inc">
-                            <span class="u-hiddenVisually">{{lang 'products.quantity_increase'}}</span>
-                            <i class="icon" aria-hidden="true"><svg><use xlink:href="#icon-keyboard-arrow-up" /></svg></i>
-                        </button>
+                               aria-live="polite"{{#unless can_modify}} disabled{{/unless}}>
+                        {{# if can_modify}}
+                            <button class="button button--icon" data-cart-update data-cart-itemid="{{id}}" data-action="inc">
+                                <span class="u-hiddenVisually">{{lang 'products.quantity_increase'}}</span>
+                                <i class="icon" aria-hidden="true"><svg><use xlink:href="#icon-keyboard-arrow-up" /></svg></i>
+                            </button>
+                        {{/if}}
                     </div>
 
                 </td>
 
                 <td class="cart-item-block cart-item-info">
-                    <span class="cart-item-label">{{lang 'cart.checkout.total'}}</span> <strong class="cart-item-value">{{total.formatted}}</strong>
-                    <a class="cart-remove icon" data-cart-itemid="{{id}}" href="#" data-confirm-delete="{{lang 'cart.confirm_delete'}}">
-                        <svg><use xlink:href="#icon-close"></use></svg>
-                    </a>
+                    <span class="cart-item-label">{{lang 'cart.checkout.total'}}</span>
+                    <strong class="cart-item-value cart-item-value--alternate">{{total.formatted}}</strong>
+                    {{# if can_modify}}
+                        <a class="cart-remove icon" data-cart-itemid="{{id}}" href="#" data-confirm-delete="{{lang 'cart.confirm_delete'}}">
+                            <svg><use xlink:href="#icon-close"></use></svg>
+                        </a>
+                    {{else}}
+                        <span class="cart-remove cart-remove--spacer"></span>
+                    {{/if}}
                 </td>
             </tr>
         {{/each}}

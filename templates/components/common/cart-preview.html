@@ -1,32 +1,30 @@
 <div class="previewCart">
     {{#if cart.items.length}}
         <ul class="previewCartList">
-            {{#each cart.items}}
-                {{#if @index '<' 4}}
-                    <li class="previewCartItem">
-                        <div class="previewCartItem-image">
-                            {{#if type '==' 'GiftCertificate'}}
-                                <img src="{{cdn ../../theme_settings.default_image_gift_certificate}}" alt="GiftCertificate">
-                            {{else}}
-                                <img src="{{getImage image 'thumb' (cdn ../theme_settings.default_image_product)}}" alt="{{image.alt}}">
-                            {{/if}}
+            {{#each (limit cart.items 4)}}
+                <li class="previewCartItem">
+                    <div class="previewCartItem-image">
+                        {{#if type '==' 'GiftCertificate'}}
+                            <img src="{{cdn ../../theme_settings.default_image_gift_certificate}}" alt="GiftCertificate">
+                        {{else}}
+                            <img src="{{getImage image 'thumb' (cdn ../theme_settings.default_image_product)}}" alt="{{image.alt}}">
+                        {{/if}}
+                    </div>
+
+                    <div class="previewCartItem-content">
+                        <div class="previewCartItem-brand">
+                            {{brand.name}}
                         </div>
 
-                        <div class="previewCartItem-content">
-                            <div class="previewCartItem-brand">
-                                {{brand.name}}
-                            </div>
+                        <h6 class="previewCartItem-name">
+                            <a href="{{url}}" alt="{{name}}">{{name}}</a>
+                        </h6>
 
-                            <h6 class="previewCartItem-name">
-                                <a href="{{url}}" alt="{{name}}">{{name}}</a>
-                            </h6>
-
-                            <div class="previewCartItem-price">
-                                {{quantity}} &times; {{price.formatted}}
-                            </div>
+                        <div class="previewCartItem-price">
+                            {{quantity}} &times; {{price.formatted}}
                         </div>
-                    </li>
-                {{/if}}
+                    </div>
+                </li>
             {{/each}}
         </ul>
         <div class="previewCartAction">

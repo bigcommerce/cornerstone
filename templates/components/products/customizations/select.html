@@ -5,7 +5,7 @@
             <small>{{lang 'common.required'}}</small>
         {{/if}}
     </label>
-    <select class="form-select" name="ProductFields[{{id}}]" id="customization_{{id}}_{{../id}}"{{#if required}} required{{/if}}>
+    <select class="form-select form-select--small" name="ProductFields[{{id}}]" id="customization_{{id}}_{{../id}}"{{#if required}} required{{/if}}>
         <option value="">{{lang 'products.choose_an_option'}}</option>
         {{#each values}}
             <option value="{{this}}" {{#if ../value '===' this}}selected{{/if}}>{{this}}</option>

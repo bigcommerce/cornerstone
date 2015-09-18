@@ -101,7 +101,7 @@ export default class Auth extends PageManager {
                 }
                 let $field = $(field);
 
-                if (createAccountValidator.getStatus($stateElement) !== undefined) {
+                if (createAccountValidator.getStatus($stateElement) !== 'undefined') {
                     createAccountValidator.remove($stateElement);
                 }
 
@@ -113,9 +113,6 @@ export default class Auth extends PageManager {
                     $last = field;
                     Validators.setStateCountryValidation(createAccountValidator, field);
                 } else {
-                    if (createAccountValidator.getStatus($stateElement)) {
-                        createAccountValidator.remove($stateElement);
-                    }
                     Validators.cleanUpStateValidation(field);
                 }
             });

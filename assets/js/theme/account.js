@@ -134,6 +134,10 @@ export default class Account extends PageManager {
 
                 let $field = $(field);
 
+                if (addressValidator.getStatus($stateElement) !== 'undefined') {
+                    addressValidator.remove($stateElement);
+                }
+
                 if ($last) {
                     addressValidator.remove($last);
                 }

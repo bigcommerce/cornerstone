@@ -75,8 +75,8 @@ export default class Product {
                 viewModel.$weight.html(data.weight);
 
                 // Set variation_id if it exists for adding to wishlist
-                if (response.data.variantId) {
-                    viewModel.$wishlistVariation.val(response.data.variantId);
+                if (data.variantId) {
+                    viewModel.$wishlistVariation.val(data.variantId);
                 }
 
                 // If SKU is available
@@ -95,10 +95,12 @@ export default class Product {
                         this.context.themeImageSizes.product
                     );
 
-                    this.imageGallery.setMainImage({
+                    this.imageGallery.setAlternateImage({
                         mainImageUrl: mainImageUrl,
                         zoomImageUrl: zoomImageUrl
                     });
+                } else {
+                    this.imageGallery.restoreImage();
                 }
 
                 // if stock view is on (CP settings)

@@ -8,6 +8,7 @@ import ShippingEstimator from './cart/shipping-estimator';
 export default class Cart extends PageManager {
     loaded(next) {
         this.$cartContent = $('[data-cart-content]');
+        this.$cartMessages = $('[data-cart-status]');
         this.$cartTotals = $('[data-cart-totals]');
         this.$overlay = $('[data-cart] .loadingOverlay')
             .hide(); // TODO: temporary until roper pulls in his cart components
@@ -93,7 +94,8 @@ export default class Cart extends PageManager {
                 template: {
                     content: 'cart/content',
                     totals: 'cart/totals',
-                    pageTitle: 'cart/page-title'
+                    pageTitle: 'cart/page-title',
+                    statusMessages: 'cart/status-messages'
                 }
             };
 
@@ -110,6 +112,8 @@ export default class Cart extends PageManager {
 
             this.$cartContent.html(response.content);
             this.$cartTotals.html(response.totals);
+            this.$cartMessages.html(response.statusMessages);
+
             $cartPageTitle.replaceWith(response.pageTitle);
             this.bindEvents();
             this.$overlay.hide();

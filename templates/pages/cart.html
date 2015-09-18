@@ -6,13 +6,9 @@
 
         {{> components/cart/page-title}}
 
-        {{#if cart.status_messages}}
-            <div data-cart-status>
-                {{#each cart.status_messages}}
-                    {{> components/common/alert-info message}}
-                {{/each}}
-            </div>
-        {{/if}}
+        <div data-cart-status>
+            {{> components/cart/status-messages}}
+        </div>
 
         {{#if cart.items.length}}
             <div class="loadingOverlay"></div>

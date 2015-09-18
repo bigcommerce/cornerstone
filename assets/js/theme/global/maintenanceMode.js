@@ -18,8 +18,8 @@ export default function(maintenanceMode) {
 
     $element = $('<div>', {
         'id': 'maintenance-notice',
-        'class': 'maintenance-mode-notice'
-    }).html(`<div class="maintenance-mode-header">${header}</div>${notice}`);
+        'class': 'maintenanceNotice'
+    }).html(`<h6 class="maintenanceNotice-header">${header}</h6>${notice}`);
 
     $('body').append($element);
 

@@ -1,4 +1,4 @@
-<div class="addthis_toolbox addthis_32x32_style" addthis:url="{{url}}"
+<div class="addthis_toolbox addthis_32x32_style share-block" addthis:url="{{url}}"
      addthis:title="{{title}}">
     <ul class="socialLinks">
         {{#each settings.add_this}}
@@ -43,15 +43,22 @@
                     <use xlink:href="#icon-google"/>
                 </svg>
                 {{/if}}
+
+                {{#if service '===' 'pinterest'}}
+                    <svg>
+                        <use xlink:href="#icon-pinterest"/>
+                    </svg>
+                {{/if}}
             </a>
         </li>
         {{/each}}
     </ul>
-    <script type="text/javascript"
-            src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4e94ed470ee51e32"></script>
-    <script>
-        if (typeof(addthis) === "object") {
-            addthis.toolbox('.addthis_toolbox');
-        }
-    </script>
 </div>
+
+<script type="text/javascript"
+        src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4e94ed470ee51e32"></script>
+<script>
+    if (typeof(addthis) === "object") {
+        addthis.toolbox('.addthis_toolbox');
+    }
+</script>

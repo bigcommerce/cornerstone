@@ -23,6 +23,24 @@ export default class ImageGallery {
         this.setImageZoom();
     }
 
+    setAlternateImage(imgObj) {
+        if (!this.savedImage) {
+            this.savedImage = {
+                mainImageUrl: this.$mainImage.find('img').attr('src'),
+                zoomImageUrl: this.$mainImage.attr('data-zoom-image'),
+                $selectedThumb: this.currentImage.$selectedThumb
+            }
+        }
+        this.setMainImage(imgObj);
+    }
+
+    restoreImage() {
+        if (this.savedImage) {
+            this.setMainImage(this.savedImage);
+            delete this.savedImage;
+        }
+    }
+
     selectNewImage(e) {
         e.preventDefault();
 

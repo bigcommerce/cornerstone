@@ -7,10 +7,8 @@
 // -----------------------------------------------------------------------------
 
 .blog {
-    @include grid-column(
-        $columns: 8,
-        $center: true
-    );
+    margin: 0 auto spacing('single') auto;
+    width: grid-calc(8, $total-columns);
 
     + .blog {
         border-top: 1px solid color("greys", "lightest");
@@ -20,31 +18,31 @@
 
     .tags {
         margin-top: spacing("double");
+        text-align: center;
+
+        @include breakpoint("medium") {
+            text-align: left;
+            margin-left: spacing("single");
+        }
     }
 
     .socialLinks {
         text-align: center;
+
+        @include breakpoint("medium") {
+            text-align: left;
+            margin-left: spacing("single");
+        }
     }
 
     .addthis_toolbox {
         margin-top: spacing('double');
     }
-
-    margin-bottom: spacing('single');
-}
-
-.blog-header,
-.blog-post {
-    @include grid-column(
-        $columns: 9,
-        $center: true
-    );
 }
 
 .blog-title {
     font-size: fontSize("large");
-    margin: 0 0 spacing("quarter");
-    text-align: center;
+    margin: 0 spacing("single") spacing("quarter");
 
     a {
         text-decoration: none;
@@ -55,6 +53,11 @@
 .blog-author {
     color: color("greys", "medium");
     text-align: center;
+
+    @include breakpoint("medium") {
+        margin-left: spacing("single");
+        text-align: left;
+    }
 }
 
 .blog-author {
@@ -63,8 +66,34 @@
 
 .blog-post {
     font-size: fontSize("smaller");
+
+    @include breakpoint("medium") {
+        margin-left: spacing("single");
+    }
 }
 
 .blog-thumbnail {
     margin: 0 0 (spacing("base") * 2);
+}
+
+.blog-post-figure {
+    display: block;
+    text-align: center;
+
+    @include breakpoint("medium") {
+        float: left;
+        margin: 0;
+        position: relative;
+        width: 20%;
+    }
+}
+
+.blog-post-body {
+    display: block;
+    text-align: center;
+
+    @include breakpoint("medium") {
+        margin-left: 20%;
+        text-align: left;
+    }
 }

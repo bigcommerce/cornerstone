@@ -1,44 +1,50 @@
 <article class="blog">
-    {{#if post.thumbnail}}
-        <a href="{{post.url}}">
-            <figure class="blog-thumbnail">
-                <img src="{{getImage post.thumbnail 'gallery'}}" alt="{{post.thumbnail.alt}}">
-            </figure>
-        </a>
-    {{/if}}
-
-    <header class="blog-header">
-        <h2 class="blog-title">
-            <a href="{{post.url}}">{{post.title}}</a>
-        </h2>
-        <p class="blog-date">{{post.date_published}}</p>
-        {{#if post.author}}
-            <p class="blog-author">{{lang 'blog.posted_by' name=post.author}}</p>
-        {{/if}}
-    </header>
-
-    <div class="blog-post">
-        {{#if post.body}}
-            {{{post.body}}}
-        {{else}}
-            {{post.summary}}
-            {{#if post.show_read_more}}
-                &hellip;<a href="{{url}}"> read more</a>
-            {{/if}}
+    <div class="blog-post-figure">
+        {{#if post.thumbnail}}
+            <a href="{{post.url}}">
+                <figure class="blog-thumbnail">
+                    <img src="{{getImage post.thumbnail 'gallery'}}" alt="{{post.thumbnail.alt}}">
+                </figure>
+            </a>
         {{/if}}
     </div>
 
-    {{#if show_tags}}
-        {{#if post.tags}}
-            <ul class="tags">
-                {{#each post.tags}}
-                <li class="tag">
-                    <a href="{{url}}">#{{name}}</a>
-                </li>
-                {{/each}}
-            </ul>
-        {{/if}}
-    {{/if}}
+    <div class="blog-post-body">
+        <header class="blog-header">
+            <h2 class="blog-title">
+                <a href="{{post.url}}">{{post.title}}</a>
+            </h2>
+            <p class="blog-date">{{post.date_published}}</p>
+            {{#if post.author}}
+                <p class="blog-author">{{lang 'blog.posted_by' name=post.author}}</p>
+            {{/if}}
+        </header>
 
-    {{>components/common/share}}
+        <div class="blog-post">
+            {{#if post.body}}
+                {{{post.body}}}
+            {{else}}
+                {{post.summary}}
+                {{#if post.show_read_more}}
+                    &hellip;<a href="{{url}}"> read more</a>
+                {{/if}}
+            {{/if}}
+        </div>
+
+
+        {{#if show_tags}}
+            {{#if post.tags}}
+                <ul class="tags">
+                    {{#each post.tags}}
+                    <li class="tag">
+                        <a href="{{url}}">#{{name}}</a>
+                    </li>
+                    {{/each}}
+                </ul>
+            {{/if}}
+        {{/if}}
+
+        {{>components/common/share}}
+
+    </div>
 </article>

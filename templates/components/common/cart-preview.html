@@ -1,7 +1,7 @@
 <div class="previewCart">
     {{#if cart.items.length}}
         <ul class="previewCartList">
-            {{#each cart.items}}
+            {{#each (limit cart.items 4)}}
                 <li class="previewCartItem">
                     <div class="previewCartItem-image">
                         {{#if type '==' 'GiftCertificate'}}
@@ -27,14 +27,17 @@
                 </li>
             {{/each}}
         </ul>
-
         <div class="previewCartAction">
             <div class="previewCartAction-checkout">
-                <a href="{{urls.checkout.single_address}}" class="button button--small button--primary">Checkout Now</a>
+                <a href="{{urls.checkout.single_address}}" class="button button--small button--primary">
+                    {{lang 'cart.preview.checkout_now'}}
+                </a>
             </div>
 
             <div class="previewCartAction-viewCart">
-                <a href="{{urls.cart}}" class="button button--small button--action">View Cart</a>
+                <a href="{{urls.cart}}" class="button button--small button--action">
+                    {{lang 'cart.preview.view_cart'}}
+                </a>
             </div>
         </div>
     {{else}}

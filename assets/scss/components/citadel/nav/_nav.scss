@@ -96,29 +96,29 @@
 // -----------------------------------------------------------------------------
 
 .navBar--sub {
-    display: none;
     margin-bottom: spacing("single") * 3;
     text-align: center;
-
-    @include breakpoint("medium") {
-        display: block;
-    }
 
     .navBar-section {
         float: none;
     }
 
     .navBar-item {
-        display: inline-block;
         float: none;
         margin: 0 spacing("half");
 
         &.is-active {
-            border-bottom: 1px solid color("greys", "darker");
-
             > .navBar-action {
                 color: color("greys", "dark");
             }
+
+            @include breakpoint("medium") {
+                border-bottom: 1px solid color("greys", "darker");
+            }
+        }
+
+        @include breakpoint("medium") {
+            display: inline-block;
         }
     }
 

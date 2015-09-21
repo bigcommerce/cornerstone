@@ -20,8 +20,6 @@ export default class ShippingEstimator {
         this.shippingValidator = nod({
             submit: this.shippingEstimator + ' .shipping-estimate-submit'
         });
-        this.$stateSelector = $(this.shippingEstimator + ' [name="shipping-state"]');
-
 
         $('.shipping-estimate-submit', this.$element).click((event) => {
             this.shippingValidator.performCheck();
@@ -48,11 +46,18 @@ export default class ShippingEstimator {
                 errorMessage: 'The \'Country\' field cannot be blank.'
             },
             {
-                selector: $(this.shippingEstimator + ' [name="shipping-state"]'),
+                selector: $(this.shippingEstimator + ' select[name="shipping-state"]'),
                 validate: (cb, val) => {
                     // dynamic. switching between dropdown and input.
-                    let eleVal = $(this.shippingEstimator + ' [name="shipping-state"]').val(),
+                    let $ele = $(this.shippingEstimator + ' select[name="shipping-state"]'),
+                        result;
+
+                    if ($ele.length) {
+                        let eleVal = $ele.val();
                         result = eleVal && eleVal.length && eleVal !== 'State/province';
+                    } else {
+                        result = true;
+                    }
 
                     cb(result);
                 },
@@ -69,7 +74,10 @@ export default class ShippingEstimator {
                 throw new Error(err);
             }
 
-            this.shippingValidator.performCheck();
+            // When you change a country, you swap the state/province between an input and a select dropdown
+            // Not all countries require the province to be filled
+            // We have to remove this class when we swap since nod validation doesn't cleanup for us
+            $(this.shippingEstimator).find('.form-field--success').removeClass('form-field--success');
         });
     }
 

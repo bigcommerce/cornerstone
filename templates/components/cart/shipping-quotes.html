@@ -28,9 +28,28 @@
                 {{/each}}
                 <input class="button button--small button--primary select-shipping-quote" type="submit" value="{{lang 'cart.checkout.update'}}">
             {{else}}
-                <li>
-                    {{lang 'cart.shipping_estimator.free_shipping'}}
-                </li>
+                {{#if quotes.ups_shipping_methods}}
+                    {{#each quotes.ups_shipping_methods}}
+                        <li class="estimator-form-row">
+                            <dl>
+                                <dt class="estimator-form-label">
+                                    <input id="shipping-quote-{{id}}" class="shipping-quote" type="radio" name="shipping_method" value="{{id}}">
+                                    <label class="estimator-form-label-text" for="shipping-quote-{{id}}">
+                                        {{#if logo_path}}
+                                            <img src="{{logo_path}}" alt="{{description}}">
+                                        {{/if}}
+                                        {{provider_name}} &mdash; {{description}}
+                                    </label>
+                                </dt>
+                                <dd class="estimator-form-input estimator-form-input--price">
+                                    <label for="shipping-quote-{{id}}">
+                                        <b>{{cost.formatted}}</b>
+                                    </label>
+                                </dd>
+                            </dl>
+                        </li>
+                    {{/each}}
+                {{/if}}
             {{/if}}
         </ul>
     </form>

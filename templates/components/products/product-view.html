@@ -173,11 +173,11 @@
                 <input type="hidden" name="action" value="add">
                 <input type="hidden" name="product_id" value="{{product.id}}"/>
 
-                <div data-product-option-change>
+
                     {{#each product.customizations}}
                         {{{dynamicComponent 'components/products/customizations'}}}
                     {{/each}}
-
+                <div data-product-option-change>
                     {{#each product.options}}
                         {{{dynamicComponent 'components/products/options'}}}
                     {{/each}}

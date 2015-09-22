@@ -37,7 +37,8 @@
 </table>
 <form method="post" action="{{this.urls.account.wishlists.delete}}" class="form">
     {{#unless customer.wishlists}}
-        <p class="form-actions">{{lang 'account.wishlists.you_have_none'}}</p>
+        <p class="form-actions">{{> components/common/alert-info (lang 'account.wishlists.you_have_none')}}</p>
+
     {{/unless}}
     <div class="form-actions">
         <a href="{{this.urls.account.wishlists.add}}" class="button button--primary" role="button" data-wishlist>{{lang 'account.wishlists.new'}}</a>

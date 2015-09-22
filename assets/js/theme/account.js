@@ -17,7 +17,11 @@ export default class Account extends PageManager {
             $addressForm = classifyForm('form[data-address-form]'),
             $inboxForm = classifyForm('form[data-inbox-form]'),
             $accountReturnForm = classifyForm('[data-account-return-form]'),
-            $reorderForm = classifyForm('[data-account-reorder-form]');
+            $reorderForm = classifyForm('[data-account-reorder-form]'),
+            $invoiceButton = $('[data-print-invoice]');
+
+
+
 
         // Injected via template
         this.passwordRequirements = this.context.passwordRequirements;
@@ -30,6 +34,16 @@ export default class Account extends PageManager {
             if (this.$state.is('input')) {
                 insertStateHiddenField(this.$state);
             }
+        }
+
+        if ($invoiceButton.length) {
+            $invoiceButton.on('click', () => {
+                let left = screen.availWidth / 2 - 450,
+                    top = screen.availHeight / 2 - 320,
+                    url = $invoiceButton.data('print-invoice');
+
+                window.open(url, 'orderInvoice', `width=900,height=650,left=${left}',top=${top},scrollbars=1`);
+            });
         }
 
         if ($addressForm.length) {

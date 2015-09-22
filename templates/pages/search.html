@@ -57,7 +57,7 @@
                 {{/if}}
 
                 {{#if category_results.length}}
-                    <p>{{lang 'forms.search.categories'}}</p>
+                    <p class="suggestion-type">{{lang 'forms.search.categories'}}</p>
                     <ul class="category-suggestion-list">
 
                         {{#each category_results}}
@@ -74,7 +74,7 @@
                 {{/if}}
 
                 {{#if brand_results.length}}
-                    <p>{{lang 'forms.search.brand'}}</p>
+                    <p class="suggestion-type">{{lang 'forms.search.brand'}}</p>
                     {{#each brand_results}}
                         <a href="{{url}}">{{name}}</a>
                         {{#unless @last}}, {{/unless}}
@@ -82,7 +82,7 @@
                 {{/if}}
 
                 {{#if result_count '===' 0}}
-                    <p>{{lang 'forms.search.suggestions.title'}}</p>
+                    <p class="suggestion-type">{{lang 'forms.search.suggestions.title'}}</p>
                     <ul>
                         <li>{{lang 'forms.search.suggestions.line1'}}</li>
                         <li>{{lang 'forms.search.suggestions.line2'}}</li>

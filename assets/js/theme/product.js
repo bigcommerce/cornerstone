@@ -36,8 +36,6 @@ export default class Product extends PageManager {
 
         videoGallery();
 
-        this.productReviewHandler();
-
         let $reviewForm = classifyForm('.writeReview-form'),
             validator,
             review = new Review($reviewForm);
@@ -54,6 +52,12 @@ export default class Product extends PageManager {
 
             return false;
         });
+
+        next();
+    }
+
+    after(next) {
+        this.productReviewHandler();
 
         next();
     }

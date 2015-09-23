@@ -1,57 +1,87 @@
 <div class="addthis_toolbox addthis_32x32_style share-block" addthis:url="{{url}}"
      addthis:title="{{title}}">
     <ul class="socialLinks">
-        {{#each settings.add_this}}
-        <li class="socialLinks-item socialLinks-item--{{service}}">
-            <a class="addthis_button_{{service}} icon icon--{{service}}" {{{annotation}}}>
-                {{#if service '===' 'google_plusone'}}
-                <!-- No custom icons allowed with g+ -->
-                {{/if}}
+        {{#if settings.add_this.google_plusone}}
+            <li class="socialLinks-item socialLinks-item--google_plusone">
+                <a class="addthis_button_google_plusone icon icon--google_plusone" g:plusone:count="false"></a>
+            </li>
+        {{/if}}
 
-                {{#if service '===' 'facebook'}}
-                <svg>
-                    <use xlink:href="#icon-facebook"/>
-                </svg>
-                {{/if}}
+        {{#if settings.add_this.facebook}}
+            <li class="socialLinks-item socialLinks-item--pinterest">
+                <a class="addthis_button_facebook icon icon--facebook" fb:share:layout="button" >
+                    <svg>
+                        <use xlink:href="#icon-facebook"/>
+                    </svg>
+                </a>
+            </li>
+        {{/if}}
 
-                {{#if service '===' 'email'}}
-                <svg>
-                    <use xlink:href="#icon-envelope"/>
-                </svg>
-                {{/if}}
+        {{#if settings.add_this.email}}
+            <li class="socialLinks-item socialLinks-item--email">
+                <a class="addthis_button_email icon icon--email" >
+                    <svg>
+                        <use xlink:href="#icon-envelope"/>
+                    </svg>
+                </a>
+            </li>
+        {{/if}}
 
-                {{#if service '===' 'print'}}
-                <svg>
-                    <use xlink:href="#icon-print"/>
-                </svg>
-                {{/if}}
+        {{#if settings.add_this.print}}
+            <li class="socialLinks-item socialLinks-item--print">
+                <a class="addthis_button_print icon icon--print">
+                    <svg>
+                        <use xlink:href="#icon-print"/>
+                    </svg>
+                </a>
+            </li>
+        {{/if}}
 
-                {{#if service '===' 'twitter'}}
-                <svg>
-                    <use xlink:href="#icon-twitter"/>
-                </svg>
-                {{/if}}
+        {{#if settings.add_this.twitter}}
+            <li class="socialLinks-item socialLinks-item--twitter">
+                <a class="addthis_button_twitter icon icon--twitter" tw:count="none">
+                    <svg>
+                        <use xlink:href="#icon-twitter"/>
+                    </svg>
+                </a>
+            </li>
+        {{/if}}
 
-                {{#if service '===' 'linkedin'}}
-                <svg>
-                    <use xlink:href="#icon-linkedin"/>
-                </svg>
-                {{/if}}
+        {{#if settings.add_this.linkedin}}
+            <li class="socialLinks-item socialLinks-item--linkedin">
+                <a class="addthis_button_linkedin icon icon--linkedin" li:counter="none" >
+                    <svg>
+                        <use xlink:href="#icon-linkedin"/>
+                    </svg>
+                </a>
+            </li>
+        {{/if}}
 
-                {{#if service '===' 'google'}}
-                <svg>
-                    <use xlink:href="#icon-google"/>
-                </svg>
-                {{/if}}
+        {{#if settings.add_this.google}}
+            <li class="socialLinks-item socialLinks-item--google">
+                <a class="addthis_button_google icon icon--google" >
+                    <svg>
+                        <use xlink:href="#icon-google"/>
+                    </svg>
+                </a>
+            </li>
+        {{/if}}
 
-                {{#if service '===' 'pinterest'}}
+        {{#if settings.add_this.pinterest}}
+            <li class="socialLinks-item socialLinks-item--pinterest">
+                <a class="addthis_button_pinterest icon icon--pinterest" pi:pinit:layout="horizontal" >
                     <svg>
                         <use xlink:href="#icon-pinterest"/>
                     </svg>
-                {{/if}}
-            </a>
-        </li>
-        {{/each}}
+                </a>
+            </li>
+        {{/if}}
+
+        {{#if settings.add_this.facebook_like}}
+            <li class="socialLinks-item socialLinks-item--facebook_like">
+                <a class="addthis_button_facebook_like icon icon--facebook_like" fb:like:layout="button"></a>
+            </li>
+        {{/if}}
     </ul>
 </div>
 

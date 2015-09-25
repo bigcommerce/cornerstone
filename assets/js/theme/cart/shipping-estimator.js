@@ -22,7 +22,12 @@ export default class ShippingEstimator {
         });
 
         $('.shipping-estimate-submit', this.$element).click((event) => {
-            this.shippingValidator.performCheck();
+            // When switching between countries, the state/region is dynamic
+            // Only perform a check for all fields when country has a value
+            // Otherwise areAll('valid') will check country for validity
+            if ($(this.shippingEstimator + ' select[name="shipping-country"]').val()) {
+                this.shippingValidator.performCheck();
+            }
 
             if (this.shippingValidator.areAll('valid')) {
                 return;
@@ -56,7 +61,7 @@ export default class ShippingEstimator {
                         let eleVal = $ele.val();
                         result = eleVal && eleVal.length && eleVal !== 'State/province';
                     } else {
-                        result = true;
+                        return;
                     }
 
                     cb(result);

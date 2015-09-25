@@ -1,4 +1,4 @@
-// import utils from 'bigcommerce/stencil-utils';
+import utils from 'bigcommerce/stencil-utils';
 
 /**
  * European websites must notify users of cookies to comply with European Union law.
@@ -15,4 +15,13 @@ export default function() {
         event.preventDefault();
     });
     */
+
+    utils.hooks.on('cookie-privacy-notification', (event, privacyMessage) => {
+        event.preventDefault();
+
+        var $privacyDialog = $('.cookieMessage');
+        $privacyDialog.show();
+
+        $('body').on('click', '[data-privacy-accept]', () => $privacyDialog.hide());
+    });
 }

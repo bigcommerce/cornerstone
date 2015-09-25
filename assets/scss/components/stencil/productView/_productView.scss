@@ -144,6 +144,8 @@
 // -----------------------------------------------------------------------------
 
 .productView-info {
+    font-family: fontFamily("headingSans");
+    font-size: fontSize("smallest");
 
     > :last-child {
         margin-bottom: 0;
@@ -151,15 +153,16 @@
 }
 
 .productView-info-name {
-    font-weight: fontWeight("bold");
-    margin-bottom: 0;
+    font-weight: fontWeight("normal");
+    margin-bottom: spacing("eighth");
 }
 
-.productView-info-value {
-    font-size: fontSize("smaller");
-}
 
 // Details - Product options
+// -----------------------------------------------------------------------------
+//
+// 1. Align the product options list item radios vertically.
+//
 // -----------------------------------------------------------------------------
 
 .productView-options {
@@ -179,6 +182,26 @@
 
     .form {
         display: inline;
+    }
+
+    .form-field {
+        margin-bottom: 2rem;
+
+        > .form-checkbox + .form-label,
+        > .form-radio + .form-label {
+            display: inline-block;
+            margin-left: spacing("single");
+            width: auto;
+
+            @include breakpoint("small") {
+                margin-left: 0;
+                width: 100%;
+            }
+        }
+
+        > .form-label:nth-of-type(2) {
+            margin-left: 0;
+        }
     }
 
     .form-action {
@@ -208,6 +231,47 @@
             }
         }
     }
+}
+
+
+// Product list (with images)
+// -----------------------------------------------------------------------------
+
+.productOptions-list {
+    border: $productOptions-list-border;
+    list-style: none;
+    margin: 0;
+}
+
+.productOptions-list-item {
+    padding: $productOptions-list-item-padding;
+
+    &:first-child {
+        padding-left: $productOptions-list-item-firstChild-padding;
+    }
+
+    + .productOptions-list-item {
+        border-top: $productOptions-list-item-borderTop;
+    }
+
+    .form-label {
+        text-align: left;
+        top: -2px; // 1
+    }
+}
+
+.productOptions-list-item-figure,
+.productOptions-list-item-content {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.productOptions-list-item-figure {
+    width: $productOptions-list-item-figure-width;
+}
+
+.productOptions-list-item-content {
+    padding-left: $productOptions-list-item-content-paddingLeft;
 }
 
 

@@ -37,6 +37,7 @@ export default class ShippingEstimator {
         });
 
         this.bindValidation();
+        this.bindUPSRates();
     }
 
     bindValidation() {
@@ -69,6 +70,23 @@ export default class ShippingEstimator {
                 errorMessage: 'The \'State/Province\' field cannot be blank.'
             }
         ]);
+    }
+
+    /**
+     * Toggle between default shipping and ups shipping rates
+     */
+    bindUPSRates() {
+        const UPSRateToggle = '.estimator-form-toggleUPSRate';
+
+        $('body').on('click', UPSRateToggle, (event) => {
+            const $estimatorFormUps = $('.estimator-form--ups'),
+                $estimatorFormDefault = $('.estimator-form--default');
+
+            event.preventDefault();
+
+            $estimatorFormUps.toggleClass('u-hiddenVisually');
+            $estimatorFormDefault.toggleClass('u-hiddenVisually');
+        });
     }
 
     bindStateCountryChange() {

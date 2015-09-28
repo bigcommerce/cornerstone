@@ -7,51 +7,61 @@
     </ul>
 {{else}}
     <form>
-        <ul>
-            {{#if quotes.shipping_methods}}
+        {{#if quotes.shipping_methods}}
+            <div class="estimator-form--default">
+                <ul>
                 {{#each quotes.shipping_methods}}
                     <li class="estimator-form-row">
                         <dl>
                             <dt class="estimator-form-label">
-                                <input id="shipping-quote-{{id}}" class="shipping-quote" type="radio" name="shipping_method" value="{{id}}">
-                                <label class="estimator-form-label-text" for="shipping-quote-{{id}}">
+                                <input id="shipping-quote-{{type}}-{{id}}" class="shipping-quote" type="radio" name="shipping_method" value="{{id}}">
+                                <label class="estimator-form-label-text" for="shipping-quote-{{type}}-{{id}}">
                                     {{provider_name}}
                                 </label>
                             </dt>
-                            <dd class="estimator-form-input">
-                                <label for="shipping-quote-{{id}}">
+                            <dd class="estimator-form-input estimator-form-input--price">
+                                <label for="shipping-quote-{{type}}-{{id}}">
                                     <b>{{cost.formatted}}</b>
                                 </label>
                             </dd>
                         </dl>
                     </li>
                 {{/each}}
-                <input class="button button--small button--primary select-shipping-quote" type="submit" value="{{lang 'cart.checkout.update'}}">
-            {{else}}
+                </ul>
                 {{#if quotes.ups_shipping_methods}}
-                    {{#each quotes.ups_shipping_methods}}
-                        <li class="estimator-form-row">
-                            <dl>
-                                <dt class="estimator-form-label">
-                                    <input id="shipping-quote-{{id}}" class="shipping-quote" type="radio" name="shipping_method" value="{{id}}">
-                                    <label class="estimator-form-label-text" for="shipping-quote-{{id}}">
-                                        {{#if logo_path}}
-                                            <img src="{{logo_path}}" alt="{{description}}">
-                                        {{/if}}
-                                        {{provider_name}} &mdash; {{description}}
-                                    </label>
-                                </dt>
-                                <dd class="estimator-form-input estimator-form-input--price">
-                                    <label for="shipping-quote-{{id}}">
-                                        <b>{{cost.formatted}}</b>
-                                    </label>
-                                </dd>
-                            </dl>
-                        </li>
-                    {{/each}}
-                    <input class="button button--small button--primary select-shipping-quote" type="submit" value="{{lang 'cart.checkout.update'}}">
+                    <a class="estimator-form-toggleUPSRate" href="#">{{lang 'cart.shipping_estimator.show_ups_rates'}}</a>
                 {{/if}}
-            {{/if}}
-        </ul>
+            </div>
+        {{/if}}
+        {{#if quotes.ups_shipping_methods}}
+            <div {{#if quotes.shipping_methods}}class="estimator-form--ups u-hiddenVisually"{{/if}}>
+                <ul>
+                {{#each quotes.ups_shipping_methods}}
+                    <li class="estimator-form-row">
+                        <dl>
+                            <dt class="estimator-form-label">
+                                <input id="shipping-quote-{{type}}-{{id}}" class="shipping-quote" type="radio" name="shipping_method" value="{{id}}">
+                                <label class="estimator-form-label-text" for="shipping-quote-{{type}}-{{id}}">
+                                    {{#if logo_path}}
+                                        <img src="{{logo_path}}" alt="{{description}}">
+                                    {{/if}}
+                                    {{provider_name}} &mdash; {{description}}
+                                </label>
+                            </dt>
+                            <dd class="estimator-form-input estimator-form-input--price">
+                                <label for="shipping-quote-{{type}}-{{id}}">
+                                    <b>{{cost.formatted}}</b>
+                                </label>
+                            </dd>
+                        </dl>
+                    </li>
+                {{/each}}
+                </ul>
+                {{#if quotes.shipping_methods}}
+                    <a class="estimator-form-toggleUPSRate" href="#">{{lang 'cart.shipping_estimator.hide_ups_rates'}}</a>
+                {{/if}}
+            </div>
+        {{/if}}
+        <input class="button button--small button--primary select-shipping-quote" type="submit" value="{{lang 'cart.checkout.update'}}">
     </form>
 {{/if}}

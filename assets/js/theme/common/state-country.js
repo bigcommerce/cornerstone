@@ -103,9 +103,7 @@ function addOptions(statesArray, $selectElement, options) {
  * @param {Object} options
  * @param {Function} callback
  */
-export default function(stateElement, context, options, callback) {
-    context = context || {};
-
+export default function(stateElement, context = {}, options, callback) {
     /**
      * Backwards compatible for three parameters instead of four
      *
@@ -114,8 +112,10 @@ export default function(stateElement, context, options, callback) {
      * useIdForStates {Bool} - Generates states dropdown using id for values instead of strings
      */
     if (typeof options === 'function') {
+        /* eslint-disable no-param-reassign */
         callback = options;
         options = {};
+        /* eslint-enable no-param-reassign */
     }
 
     $('select[data-field-type="Country"]').on('change', (event) => {

@@ -127,14 +127,12 @@ function loader(pageFunc, pages) {
  * This function gets added to the global window and then called
  * on page load with the current template loaded and JS Context passed in
  * @param templateFile String
- * @param context
+ * @param contextJSON
  * @returns {*}
  */
-window.stencilBootstrap = function stencilBootstrap(templateFile, context) {
+window.stencilBootstrap = function stencilBootstrap(templateFile, contextJSON = '{}') {
     const pages = PageClasses;
-
-    context = context || '{}';
-    context = JSON.parse(context);
+    const context = JSON.parse(contextJSON);
 
     return {
         load() {

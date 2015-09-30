@@ -81,9 +81,9 @@ function buildNumberRangeValidation(validation, formFieldSelector) {
     return {
         selector: `${formFieldSelector} input[name="${validation.name}"]`,
         validate: (cb, val) => {
-            val = Number(val);
+            const numberVal = Number(val);
 
-            cb(val >= min && val <= max);
+            cb(numberVal >= min && numberVal <= max);
         },
         errorMessage: invalidMessage
     };

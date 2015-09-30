@@ -57,12 +57,13 @@ export default class GiftCertificate extends PageManager {
             purchaseValidator.add({
                 selector: '#gift-certificate-form input[name="certificate_amount"]',
                 validate: (cb, val) => {
-                    val = Number(val);
+                    const numberVal = Number(val);
 
-                    if (!val) {
+                    if (!numberVal) {
                         cb(false);
                     }
-                    cb(val >= min && val <= max);
+
+                    cb(numberVal >= min && numberVal <= max);
                 },
                 errorMessage: `You must enter a certificate amount between ${minFormatted} and ${maxFormatted}.`
             });
@@ -108,8 +109,8 @@ export default class GiftCertificate extends PageManager {
             {
                 selector: '#gift-certificate-form input[name="certificate_theme"]:first-of-type',
                 triggeredBy: '#gift-certificate-form input[name="certificate_theme"]',
-                validate: (cb, val) => {
-                    val = $purchaseForm.find('input[name="certificate_theme"]:checked').val();
+                validate: (cb) => {
+                    const val = $purchaseForm.find('input[name="certificate_theme"]:checked').val();
 
                     cb(typeof(val) === 'string');
                 },
@@ -117,8 +118,8 @@ export default class GiftCertificate extends PageManager {
             },
             {
                 selector: '#gift-certificate-form input[name="agree"]',
-                validate: (cb, val) => {
-                    val = $purchaseForm.find('input[name="agree"]').get(0).checked;
+                validate: (cb) => {
+                    const val = $purchaseForm.find('input[name="agree"]').get(0).checked;
 
                     cb(val);
                 },
@@ -126,8 +127,8 @@ export default class GiftCertificate extends PageManager {
             },
             {
                 selector: '#gift-certificate-form input[name="agree2"]',
-                validate: (cb, val) => {
-                    val = $purchaseForm.find('input[name="agree2"]').get(0).checked;
+                validate: (cb) => {
+                    const val = $purchaseForm.find('input[name="agree2"]').get(0).checked;
 
                     cb(val);
                 },

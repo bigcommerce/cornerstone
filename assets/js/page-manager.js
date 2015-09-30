@@ -28,6 +28,7 @@ export default class PageManager {
             $overlay: $('.loadingOverlay', this.$element)
         };
 
+        /* eslint-disable no-param-reassign */
         if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -36,6 +37,7 @@ export default class PageManager {
         if (!_.isObject(options)) {
             options = {};
         }
+        /* eslint-enable no-param-reassign */
 
         modal.$content.html('');
         modal.$overlay.show();

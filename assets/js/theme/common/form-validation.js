@@ -8,30 +8,28 @@ import $ from 'jquery';
  */
 function buildDateValidation($formField, validation) {
     // No date range restriction, skip
-    if (!(validation.min_date && validation.max_date)) {
-        return;
+    if (validation.min_date && validation.max_date) {
+        const invalidMessage = `Your chosen date must fall between ${validation.min_date} and ${validation.max_date}.`;
+        const formElementId = $formField.attr('id');
+        const minSplit = validation.min_date.split('-');
+        const maxSplit = validation.max_date.split('-');
+        const minDate = new Date(minSplit[0], minSplit[1] - 1, minSplit[2]);
+        const maxDate = new Date(maxSplit[0], maxSplit[1] - 1, maxSplit[2]);
+
+        return {
+            selector: `#${formElementId} select[data-label="year"]`,
+            triggeredBy: `#${formElementId} select:not([data-label="year"])`,
+            validate: (cb, val) => {
+                const day = Number($formField.find('select[data-label="day"]').val());
+                const month = Number($formField.find('select[data-label="month"]').val()) - 1;
+                const year = Number(val);
+                const chosenDate = new Date(year, month, day);
+
+                cb(chosenDate >= minDate && chosenDate <= maxDate);
+            },
+            errorMessage: invalidMessage
+        };
     }
-
-    const invalidMessage = `Your chosen date must fall between ${validation.min_date} and ${validation.max_date}.`;
-    const formElementId = $formField.attr('id');
-    const minSplit = validation.min_date.split('-');
-    const maxSplit = validation.max_date.split('-');
-    const minDate = new Date(minSplit[0], minSplit[1] - 1, minSplit[2]);
-    const maxDate = new Date(maxSplit[0], maxSplit[1] - 1, maxSplit[2]);
-
-    return {
-        selector: `#${formElementId} select[data-label="year"]`,
-        triggeredBy: `#${formElementId} select:not([data-label="year"])`,
-        validate: (cb, val) => {
-            const day = Number($formField.find('select[data-label="day"]').val());
-            const month = Number($formField.find('select[data-label="month"]').val()) - 1;
-            const year = Number(val);
-            const chosenDate = new Date(year, month, day);
-
-            cb(chosenDate >= minDate && chosenDate <= maxDate);
-        },
-        errorMessage: invalidMessage
-    };
 }
 
 /**

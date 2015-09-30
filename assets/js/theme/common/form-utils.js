@@ -6,7 +6,7 @@ import forms from './models/forms';
 const inputTagNames = [
     'input',
     'select',
-    'textarea'
+    'textarea',
 ];
 
 /**
@@ -104,7 +104,7 @@ function insertStateHiddenField($stateField) {
     const stateFieldAttrs = {
         type: 'hidden',
         name: `FormFieldIsText${fieldId}`,
-        value: '1'
+        value: '1',
     };
 
     $stateField.after($('<input />', stateFieldAttrs));
@@ -125,7 +125,7 @@ const Validators = {
 
                     cb(result);
                 },
-                errorMessage: 'You must enter a valid email.'
+                errorMessage: 'You must enter a valid email.',
             });
         }
     },
@@ -152,7 +152,7 @@ const Validators = {
 
                     cb(result);
                 },
-                errorMessage: 'You must enter a password.'
+                errorMessage: 'You must enter a password.',
             },
             {
                 selector: passwordSelector,
@@ -168,7 +168,7 @@ const Validators = {
 
                     cb(result);
                 },
-                errorMessage: requirements.error
+                errorMessage: requirements.error,
             },
             {
                 selector: password2Selector,
@@ -181,7 +181,7 @@ const Validators = {
 
                     cb(result);
                 },
-                errorMessage: 'You must enter a password.'
+                errorMessage: 'You must enter a password.',
             },
             {
                 selector: password2Selector,
@@ -190,8 +190,8 @@ const Validators = {
 
                     cb(result);
                 },
-                errorMessage: 'Your passwords do not match.'
-            }
+                errorMessage: 'Your passwords do not match.',
+            },
         ];
 
         validator.add(passwordValidations);
@@ -207,7 +207,7 @@ const Validators = {
             validator.add({
                 selector: field,
                 validate: 'presence',
-                errorMessage: 'The \'State/Province\' field cannot be blank.'
+                errorMessage: 'The \'State/Province\' field cannot be blank.',
             });
         }
     },
@@ -224,7 +224,7 @@ const Validators = {
                 $fieldClassElement.removeClass(nod.classes[value]);
             }
         });
-    }
+    },
 };
 
 export {Validators, insertStateHiddenField};

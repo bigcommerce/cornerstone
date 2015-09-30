@@ -40,7 +40,7 @@ export default class FacetedSearch {
             clearFacetSelector: '#facetedSearch .facetedSearch-clearLink',
             componentSelector: '#facetedSearch-navList',
             facetNavListSelector: '#facetedSearch .navList',
-            showMoreToggleSelector: '#facetedSearch .accordion-content .toggleLink'
+            showMoreToggleSelector: '#facetedSearch .accordion-content .toggleLink',
         };
 
         // Private properties

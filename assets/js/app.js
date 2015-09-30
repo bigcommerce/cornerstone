@@ -63,7 +63,7 @@ const PageClasses = {
         'pages/sitemap': sitemap,
         'pages/subscribed': subscribe,
         'pages/account/wishlist-details': wishlist,
-        'pages/account/wishlists': wishlist
+        'pages/account/wishlists': wishlist,
     },
     /**
      * Getter method to ensure a good page type is accessed.
@@ -76,7 +76,7 @@ const PageClasses = {
         }
 
         return false;
-    }
+    },
 };
 
 /**
@@ -87,7 +87,7 @@ function series(pageObj) {
     async.series([
         pageObj.before.bind(pageObj), // Executed first after constructor()
         pageObj.loaded.bind(pageObj), // Main module logic
-        pageObj.after.bind(pageObj) // Clean up method that can be overridden for cleanup.
+        pageObj.after.bind(pageObj), // Clean up method that can be overridden for cleanup.
     ], function(err) {
         if (err) {
             throw new Error(err);
@@ -149,6 +149,6 @@ window.stencilBootstrap = function stencilBootstrap(templateFile, contextJSON = 
 
                 throw new Error(templateFile + ' Module not found');
             });
-        }
+        },
     };
 };

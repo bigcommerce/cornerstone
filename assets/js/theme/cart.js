@@ -68,7 +68,7 @@ export default class Cart extends PageManager {
         const $modalContent = $('.modal-content', $modal);
         const $modalOverlay = $('.loadingOverlay', $modal);
         const options = {
-            template: 'cart/modals/configure-product'
+            template: 'cart/modals/configure-product',
         };
 
         // clear the modal
@@ -94,8 +94,8 @@ export default class Cart extends PageManager {
                 content: 'cart/content',
                 totals: 'cart/totals',
                 pageTitle: 'cart/page-title',
-                statusMessages: 'cart/status-messages'
-            }
+                statusMessages: 'cart/status-messages',
+            },
         };
 
         this.$overlay.show();
@@ -245,7 +245,7 @@ export default class Cart extends PageManager {
         $('[data-item-giftwrap]').on('click', (event) => {
             const itemId = $(event.currentTarget).data('item-giftwrap');
             const options = {
-                template: 'cart/modals/gift-wrapping-form'
+                template: 'cart/modals/gift-wrapping-form',
             };
 
             event.preventDefault();

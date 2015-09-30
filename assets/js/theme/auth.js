@@ -16,7 +16,7 @@ export default class Auth extends PageManager {
         const loginModel = forms;
 
         this.loginValidator = nod({
-            submit: '.login-form input[type="submit"]'
+            submit: '.login-form input[type="submit"]',
         });
 
         this.loginValidator.add([
@@ -27,7 +27,7 @@ export default class Auth extends PageManager {
 
                     cb(result);
                 },
-                errorMessage: 'Please type in a valid email address, such as joe@aol.com.'
+                errorMessage: 'Please type in a valid email address, such as joe@aol.com.',
             },
             {
                 selector: '.login-form input[name="login_pass"]',
@@ -36,8 +36,8 @@ export default class Auth extends PageManager {
 
                     cb(result);
                 },
-                errorMessage: 'You must enter a password.'
-            }
+                errorMessage: 'You must enter a password.',
+            },
         ]);
 
         $loginForm.submit((event) => {
@@ -53,7 +53,7 @@ export default class Auth extends PageManager {
 
     registerForgotPasswordValidation($forgotPasswordForm) {
         this.forgotPasswordValidator = nod({
-            submit: '.forgot-password-form input[type="submit"]'
+            submit: '.forgot-password-form input[type="submit"]',
         });
 
         this.forgotPasswordValidator.add([
@@ -64,8 +64,8 @@ export default class Auth extends PageManager {
 
                     cb(result);
                 },
-                errorMessage: 'Please type in a valid email address, such as joe@aol.com.'
-            }
+                errorMessage: 'Please type in a valid email address, such as joe@aol.com.',
+            },
         ]);
 
         $forgotPasswordForm.submit((event) => {
@@ -82,7 +82,7 @@ export default class Auth extends PageManager {
     registerCreateAccountValidator($createAccountForm) {
         const validationModel = validation($createAccountForm);
         const createAccountValidator = nod({
-            submit: `${this.formCreateSelector} input[type='submit']`
+            submit: `${this.formCreateSelector} input[type='submit']`,
         });
         const $stateElement = $('[data-field-type="State"]');
         const emailSelector = `${this.formCreateSelector} [data-field-type='EmailAddress']`;

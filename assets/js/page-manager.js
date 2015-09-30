@@ -25,7 +25,7 @@ export default class PageManager {
         const modal = {
             $element: $('#modal'),
             $content: $('.modal-content', this.$element),
-            $overlay: $('.loadingOverlay', this.$element)
+            $overlay: $('.loadingOverlay', this.$element),
         };
 
         /* eslint-disable no-param-reassign */
@@ -53,7 +53,7 @@ export default class PageManager {
 
                 if (typeof callback === 'function') {
                     return callback(err, {
-                        modal: modal
+                        modal: modal,
                     });
                 }
 
@@ -65,7 +65,7 @@ export default class PageManager {
             if (typeof callback === 'function') {
                 callback(null, {
                     modal: modal,
-                    content: content
+                    content: content,
                 });
             }
         });

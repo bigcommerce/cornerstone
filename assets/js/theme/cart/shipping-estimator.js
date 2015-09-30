@@ -16,7 +16,7 @@ export default class ShippingEstimator {
     initFormValidation() {
         this.shippingEstimator = 'form[data-shipping-estimator]';
         this.shippingValidator = nod({
-            submit: this.shippingEstimator + ' .shipping-estimate-submit'
+            submit: this.shippingEstimator + ' .shipping-estimate-submit',
         });
 
         $('.shipping-estimate-submit', this.$element).click((event) => {
@@ -48,7 +48,7 @@ export default class ShippingEstimator {
 
                     cb(result);
                 },
-                errorMessage: 'The \'Country\' field cannot be blank.'
+                errorMessage: 'The \'Country\' field cannot be blank.',
             },
             {
                 selector: $(this.shippingEstimator + ' select[name="shipping-state"]'),
@@ -68,8 +68,8 @@ export default class ShippingEstimator {
 
                     cb(result);
                 },
-                errorMessage: 'The \'State/Province\' field cannot be blank.'
-            }
+                errorMessage: 'The \'State/Province\' field cannot be blank.',
+            },
         ]);
     }
 
@@ -114,7 +114,7 @@ export default class ShippingEstimator {
             const params = {
                 country_id: $('[name="shipping-country"]', $estimatorForm).val(),
                 state_id: $('[name="shipping-state"]', $estimatorForm).val(),
-                zip_code: $('[name="shipping-zip"]', $estimatorForm).val()
+                zip_code: $('[name="shipping-zip"]', $estimatorForm).val(),
             };
 
             event.preventDefault();

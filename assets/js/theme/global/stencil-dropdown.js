@@ -47,5 +47,5 @@ export default {
         }).on('close.fndtn.reveal', '[data-reveal]', () => {
             modalOpened = false;
         });
-    }
+    },
 };

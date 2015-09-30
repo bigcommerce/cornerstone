@@ -9,7 +9,7 @@ export default class WishList extends PageManager {
         super();
 
         this.options = {
-            template: 'account/add-wishlist'
+            template: 'account/add-wishlist',
         };
     }
 
@@ -30,7 +30,7 @@ export default class WishList extends PageManager {
 
     registerAddWishListValidation($addWishlistForm) {
         this.addWishlistValidator = nod({
-            submit: '.wishlist-form input[type="submit"]'
+            submit: '.wishlist-form input[type="submit"]',
         });
 
         this.addWishlistValidator.add([
@@ -41,8 +41,8 @@ export default class WishList extends PageManager {
 
                     cb(result);
                 },
-                errorMessage: 'You must enter a wishlist name.'
-            }
+                errorMessage: 'You must enter a wishlist name.',
+            },
         ]);
 
         $addWishlistForm.submit((event) => {

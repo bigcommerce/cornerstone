@@ -17,7 +17,7 @@ export default function() {
 
     $cart.on('click', (event) => {
         const options = {
-            template: 'common/cart-preview'
+            template: 'common/cart-preview',
         };
 
         $cartDropdown

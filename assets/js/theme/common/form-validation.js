@@ -27,7 +27,7 @@ function buildDateValidation($formField, validation) {
 
                 cb(chosenDate >= minDate && chosenDate <= maxDate);
             },
-            errorMessage: invalidMessage
+            errorMessage: invalidMessage,
         };
     }
 }
@@ -59,7 +59,7 @@ function buildRequiredCheckboxValidation($formField, validation) {
 
             cb(result);
         },
-        errorMessage: `The '${validation.label}' field cannot be blank.`
+        errorMessage: `The '${validation.label}' field cannot be blank.`,
     };
 }
 
@@ -69,7 +69,7 @@ function buildRequiredValidation(validation, selector) {
         validate: (cb, val) => {
             cb(val.length > 0);
         },
-        errorMessage: `The '${validation.label}' field cannot be blank.`
+        errorMessage: `The '${validation.label}' field cannot be blank.`,
     };
 }
 
@@ -85,7 +85,7 @@ function buildNumberRangeValidation(validation, formFieldSelector) {
 
             cb(numberVal >= min && numberVal <= max);
         },
-        errorMessage: invalidMessage
+        errorMessage: invalidMessage,
     };
 }
 

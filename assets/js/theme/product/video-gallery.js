@@ -15,7 +15,7 @@ export class VideoGallery {
 
         this.currentVideo = {
             id: $target.data('video-id'),
-            $selectedThumb: $target
+            $selectedThumb: $target,
         };
 
         this.setMainVideo();

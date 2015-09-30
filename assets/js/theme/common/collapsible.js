@@ -4,7 +4,7 @@ export const CollapsibleEvents = {
     open: 'open.collapsible',
     close: 'close.collapsible',
     toggle: 'toggle.collapsible',
-    click: 'click.collapsible'
+    click: 'click.collapsible',
 };
 
 /**

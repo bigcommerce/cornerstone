@@ -4,7 +4,7 @@ export default function() {
     Pace.start({
         document: false,
         ajax: {
-            trackMethods: ['GET', 'POST']
-        }
+            trackMethods: ['GET', 'POST'],
+        },
     });
 }

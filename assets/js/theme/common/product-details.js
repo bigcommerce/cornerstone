@@ -37,13 +37,13 @@ export default class Product {
             $wishlistVariation: $('[data-wishlist-add] [name="variation_id"]', $scope),
             stock: {
                 $container: $('.form-field--stock', $scope),
-                $input: $('[data-product-stock]', $scope)
+                $input: $('[data-product-stock]', $scope),
             },
             $sku: $('[data-product-sku]'),
             quantity: {
                 $text: $('.incrementTotal', $scope),
-                $input: $('[name=qty\\[\\]]', $scope)
-            }
+                $input: $('[name=qty\\[\\]]', $scope),
+            },
         };
     }
 
@@ -120,7 +120,7 @@ export default class Product {
 
                     this.imageGallery.setAlternateImage({
                         mainImageUrl: mainImageUrl,
-                        zoomImageUrl: zoomImageUrl
+                        zoomImageUrl: zoomImageUrl,
                     });
                 } else {
                     this.imageGallery.restoreImage();
@@ -285,15 +285,15 @@ export default class Product {
         const options = {
             template: 'cart/preview',
             params: {
-                suggest: cartItemHash
+                suggest: cartItemHash,
             },
             config: {
                 cart: {
                     suggestions: {
-                        limit: 4
-                    }
-                }
-            }
+                        limit: 4,
+                    },
+                },
+            },
         };
 
         // Fetch cart to display in modal

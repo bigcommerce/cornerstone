@@ -9,13 +9,13 @@ export default class Category extends PageManager {
         const requestOptions = {
             config: {
                 category: {
-                    shop_by_price: true
-                }
+                    shop_by_price: true,
+                },
             },
             template: {
                 productListing: 'category/product-listing',
-                sidebar: 'category/sidebar'
-            }
+                sidebar: 'category/sidebar',
+            },
         };
 
         super();
@@ -25,7 +25,7 @@ export default class Category extends PageManager {
             $facetedSearchContainer.html(content.sidebar);
 
             $('html, body').animate({
-                scrollTop: 0
+                scrollTop: 0,
             }, 100);
         });
     }

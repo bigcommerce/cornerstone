@@ -134,7 +134,7 @@ export default class Account extends PageManager {
         const stateSelector = 'form[data-address-form] [data-field-type="State"]';
         const $stateElement = $(stateSelector);
         const addressValidator = nod({
-            submit: 'form[data-address-form] input[type="submit"]'
+            submit: 'form[data-address-form] input[type="submit"]',
         });
 
         addressValidator.add(validationModel);
@@ -206,7 +206,7 @@ export default class Account extends PageManager {
         const validationModel = validation($editAccountForm);
         const formEditSelector = 'form[data-edit-account-form]';
         const editValidator = nod({
-            submit: '${formEditSelector} input[type="submit"]'
+            submit: '${formEditSelector} input[type="submit"]',
         });
         const emailSelector = `${formEditSelector} [data-field-type="EmailAddress"]`;
         const $emailElement = $(emailSelector);
@@ -249,7 +249,7 @@ export default class Account extends PageManager {
 
                     cb(result);
                 },
-                errorMessage: 'You must enter your current password.'
+                errorMessage: 'You must enter your current password.',
             });
         }
 
@@ -261,7 +261,7 @@ export default class Account extends PageManager {
 
                     cb(result);
                 },
-                errorMessage: 'You must enter a first name.'
+                errorMessage: 'You must enter a first name.',
             },
             {
                 selector: `${formEditSelector} input[name='account_lastname']`,
@@ -270,7 +270,7 @@ export default class Account extends PageManager {
 
                     cb(result);
                 },
-                errorMessage: 'You must enter a last name.'
+                errorMessage: 'You must enter a last name.',
             },
             {
                 selector: `${formEditSelector} input[name='account_phone']`,
@@ -279,8 +279,8 @@ export default class Account extends PageManager {
 
                     cb(result);
                 },
-                errorMessage: 'You must enter a phone number.'
-            }
+                errorMessage: 'You must enter a phone number.',
+            },
         ]);
 
         $editAccountForm.submit((event) => {
@@ -296,7 +296,7 @@ export default class Account extends PageManager {
 
     registerInboxValidation($inboxForm) {
         const inboxValidator = nod({
-            submit: 'form[data-inbox-form] input[type="submit"]'
+            submit: 'form[data-inbox-form] input[type="submit"]',
         });
 
         inboxValidator.add([
@@ -307,7 +307,7 @@ export default class Account extends PageManager {
 
                     cb(result);
                 },
-                errorMessage: 'You must select an order.'
+                errorMessage: 'You must select an order.',
             },
             {
                 selector: 'form[data-inbox-form] input[name="message_subject"]',
@@ -316,7 +316,7 @@ export default class Account extends PageManager {
 
                     cb(result);
                 },
-                errorMessage: 'You must enter a subject.'
+                errorMessage: 'You must enter a subject.',
             },
             {
                 selector: 'form[data-inbox-form] textarea[name="message_content"]',
@@ -325,8 +325,8 @@ export default class Account extends PageManager {
 
                     cb(result);
                 },
-                errorMessage: 'You must enter a message.'
-            }
+                errorMessage: 'You must enter a message.',
+            },
         ]);
 
         $inboxForm.submit((event) => {

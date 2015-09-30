@@ -37,14 +37,14 @@ export default class GiftCertificate extends PageManager {
                 });
 
                 return found;
-            }
+            },
         };
 
         const $purchaseForm = $('#gift-certificate-form');
         const $customAmounts = $purchaseForm.find('input[name="certificate_amount"]');
         const purchaseValidator = nod({
             submit: '#gift-certificate-form input[type="submit"]',
-            delay: 300
+            delay: 300,
         });
 
         if ($customAmounts.length) {
@@ -65,7 +65,7 @@ export default class GiftCertificate extends PageManager {
 
                     cb(numberVal >= min && numberVal <= max);
                 },
-                errorMessage: `You must enter a certificate amount between ${minFormatted} and ${maxFormatted}.`
+                errorMessage: `You must enter a certificate amount between ${minFormatted} and ${maxFormatted}.`,
             });
         }
 
@@ -77,7 +77,7 @@ export default class GiftCertificate extends PageManager {
 
                     cb(result);
                 },
-                errorMessage: 'You must enter a valid recipient name.'
+                errorMessage: 'You must enter a valid recipient name.',
             },
             {
                 selector: '#gift-certificate-form input[name="to_email"]',
@@ -86,7 +86,7 @@ export default class GiftCertificate extends PageManager {
 
                     cb(result);
                 },
-                errorMessage: 'You must enter a valid recipient email.'
+                errorMessage: 'You must enter a valid recipient email.',
             },
             {
                 selector: '#gift-certificate-form input[name="from_name"]',
@@ -95,7 +95,7 @@ export default class GiftCertificate extends PageManager {
 
                     cb(result);
                 },
-                errorMessage: 'You must enter your name.'
+                errorMessage: 'You must enter your name.',
             },
             {
                 selector: '#gift-certificate-form input[name="from_email"]',
@@ -104,7 +104,7 @@ export default class GiftCertificate extends PageManager {
 
                     cb(result);
                 },
-                errorMessage: 'You must enter a valid email.'
+                errorMessage: 'You must enter a valid email.',
             },
             {
                 selector: '#gift-certificate-form input[name="certificate_theme"]:first-of-type',
@@ -114,7 +114,7 @@ export default class GiftCertificate extends PageManager {
 
                     cb(typeof(val) === 'string');
                 },
-                errorMessage: 'You must select a gift certificate theme.'
+                errorMessage: 'You must select a gift certificate theme.',
             },
             {
                 selector: '#gift-certificate-form input[name="agree"]',
@@ -123,7 +123,7 @@ export default class GiftCertificate extends PageManager {
 
                     cb(val);
                 },
-                errorMessage: 'You must agree to these terms.'
+                errorMessage: 'You must agree to these terms.',
             },
             {
                 selector: '#gift-certificate-form input[name="agree2"]',
@@ -132,8 +132,8 @@ export default class GiftCertificate extends PageManager {
 
                     cb(val);
                 },
-                errorMessage: 'You must agree to these terms.'
-            }
+                errorMessage: 'You must agree to these terms.',
+            },
         ]);
 
         if ($certBalanceForm.length) {
@@ -181,7 +181,7 @@ export default class GiftCertificate extends PageManager {
 
     checkCertBalanceValidator($balanceForm) {
         const balanceValidator = nod({
-            submit: $balanceForm.find('input[type="submit"]')
+            submit: $balanceForm.find('input[type="submit"]'),
         });
 
         balanceValidator.add({
@@ -189,7 +189,7 @@ export default class GiftCertificate extends PageManager {
             validate: function(cb, val) {
                 cb(giftCertChecker(val));
             },
-            errorMessage: 'You must enter a certificate code.'
+            errorMessage: 'You must enter a certificate code.',
         });
 
         return balanceValidator;

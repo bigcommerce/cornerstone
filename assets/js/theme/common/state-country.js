@@ -18,7 +18,7 @@ function makeStateRequired(stateElement, context) {
         'data-label': attrs['data-label'],
         class: 'form-select',
         name: attrs.name,
-        'data-field-type': attrs['data-field-type']
+        'data-field-type': attrs['data-field-type'],
     };
 
     stateElement.replaceWith($('<select></select>', replacementAttributes));
@@ -57,7 +57,7 @@ function makeStateOptional(stateElement) {
         'data-label': attrs['data-label'],
         class: 'form-input',
         name: attrs.name,
-        'data-field-type': attrs['data-field-type']
+        'data-field-type': attrs['data-field-type'],
     };
 
     stateElement.replaceWith($('<input />', replacementAttributes));

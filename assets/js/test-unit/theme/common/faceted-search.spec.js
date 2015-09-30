@@ -16,13 +16,13 @@ describe('FacetedSearch', () => {
         requestOptions = {
             config: {
                 category: {
-                    shop_by_price: true
-                }
+                    shop_by_price: true,
+                },
             },
             template: {
                 productListing: 'category/product-listing',
-                sidebar: 'category/sidebar'
-            }
+                sidebar: 'category/sidebar',
+            },
         };
 
         html =
@@ -99,7 +99,7 @@ describe('FacetedSearch', () => {
             spyOn(facetedSearch, 'refreshView');
 
             state = {
-                url: 'http://url.com/slug'
+                url: 'http://url.com/slug',
             };
 
             content = {};
@@ -196,7 +196,7 @@ describe('FacetedSearch', () => {
             eventName = 'facetedSearch-range-submitted';
             event = {
                 currentTarget: '#facet-range-form',
-                preventDefault: jasmine.createSpy('preventDefault')
+                preventDefault: jasmine.createSpy('preventDefault'),
             };
 
             spyOn(History, 'pushState');
@@ -223,7 +223,7 @@ describe('FacetedSearch', () => {
             eventName = 'sortBy-submitted';
             event = {
                 currentTarget: '#facet-sort',
-                preventDefault: jasmine.createSpy('preventDefault')
+                preventDefault: jasmine.createSpy('preventDefault'),
             };
 
             spyOn(History, 'pushState');
@@ -250,7 +250,7 @@ describe('FacetedSearch', () => {
             eventName = 'facetedSearch-facet-clicked';
             event = {
                 currentTarget: '[href="?brand=item1"]',
-                preventDefault: jasmine.createSpy('preventDefault')
+                preventDefault: jasmine.createSpy('preventDefault'),
             };
 
             spyOn(History, 'pushState');

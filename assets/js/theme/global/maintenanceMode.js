@@ -14,7 +14,7 @@ export default function(maintenanceMode = {}) {
 
     const $element = $('<div>', {
         'id': 'maintenance-notice',
-        'class': 'maintenanceNotice'
+        'class': 'maintenanceNotice',
     });
 
     $element.html(`<p class="maintenanceNotice-header">${header}</p>${notice}`);

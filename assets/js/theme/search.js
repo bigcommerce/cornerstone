@@ -11,8 +11,8 @@ export default class Search extends PageManager {
         const requestOptions = {
             template: {
                 productListing: 'search/product-listing',
-                sidebar: 'search/sidebar'
-            }
+                sidebar: 'search/sidebar',
+            },
         };
 
         super();
@@ -22,7 +22,7 @@ export default class Search extends PageManager {
             $facetedSearchContainer.html(content.sidebar);
 
             $('html, body').animate({
-                scrollTop: 0
+                scrollTop: 0,
             }, 100);
         });
 
@@ -45,8 +45,8 @@ export default class Search extends PageManager {
             text: node.data,
             id: node.metadata.id,
             state: {
-                selected: node.selected
-            }
+                selected: node.selected,
+            },
         };
 
         if (node.state) {
@@ -87,7 +87,7 @@ export default class Search extends PageManager {
                 const input = $('<input>', {
                     type: 'hidden',
                     name: 'category[]',
-                    value: categoryId
+                    value: categoryId,
                 });
 
                 $searchForm.append(input);
@@ -100,7 +100,7 @@ export default class Search extends PageManager {
             url: '/remote/v1/category-tree',
             data: {
                 selectedCategoryId: node.id,
-                prefix: 'category'
+                prefix: 'category',
             },
             success: (data) => {
                 const formattedResults = [];
@@ -110,7 +110,7 @@ export default class Search extends PageManager {
                 });
 
                 cb(formattedResults);
-            }
+            },
         });
     }
 
@@ -127,13 +127,15 @@ export default class Search extends PageManager {
                     }
                 },
                 themes: {
-                    icons: false
-                }
+                    icons: false,
+                },
             },
             checkbox: {
-                three_state: false
+                three_state: false,
             },
-            plugins: [ 'checkbox' ]
+            plugins: [
+                'checkbox',
+            ],
         };
 
         $container.jstree(treeOptions);

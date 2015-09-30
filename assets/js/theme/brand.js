@@ -8,11 +8,11 @@ export default class Brand extends PageManager {
         const requestOptions = {
             template: {
                 productListing: 'brand/product-listing',
-                sidebar: 'brand/sidebar'
+                sidebar: 'brand/sidebar',
             },
             config: {
-                shop_by_brand: true
-            }
+                shop_by_brand: true,
+            },
         };
 
         super();
@@ -22,7 +22,7 @@ export default class Brand extends PageManager {
             $facetedSearchContainer.html(content.sidebar);
 
             $('html, body').animate({
-                scrollTop: 0
+                scrollTop: 0,
             }, 100);
         });
     }

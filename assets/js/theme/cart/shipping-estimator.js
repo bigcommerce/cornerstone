@@ -123,10 +123,10 @@ export default class ShippingEstimator {
                 $('.shipping-quotes').html(response.content);
 
                 // bind the select button
-                $('.select-shipping-quote').on('click', (event) => {
+                $('.select-shipping-quote').on('click', (clickEvent) => {
                     const quoteId = $('.shipping-quote:checked').val();
 
-                    event.preventDefault();
+                    clickEvent.preventDefault();
 
                     utils.api.cart.submitShippingQuote(quoteId, () => {
                         location.reload();

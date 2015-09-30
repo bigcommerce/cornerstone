@@ -105,8 +105,8 @@ export default class Search extends PageManager {
             success: (data) => {
                 const formattedResults = [];
 
-                data.forEach((node) => {
-                    formattedResults.push(this.formatCategoryTreeForJSTree(node));
+                data.forEach((dataNode) => {
+                    formattedResults.push(this.formatCategoryTreeForJSTree(dataNode));
                 });
 
                 cb(formattedResults);

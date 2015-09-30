@@ -43,10 +43,10 @@ export default function() {
 
     $('body').on('click', '[data-compare-id]', (event) => {
         const product = event.currentTarget.value;
-        const $compareLink = $('a[data-compare-nav]');
+        const $clickedCompareLink = $('a[data-compare-nav]');
 
         event.currentTarget.checked ? incrementCounter(compareCounter, product) : decrementCounter(compareCounter, product);
-        updateCounterNav(compareCounter, $compareLink);
+        updateCounterNav(compareCounter, $clickedCompareLink);
     });
 
     $('body').on('submit', '[data-product-compare]', (event) => {
@@ -60,9 +60,9 @@ export default function() {
     });
 
     $('body').on('click', 'a[data-compare-nav]', () => {
-        const $checked = $('body').find('input[name="products\[\]"]:checked');
+        const $clickedCheckedInput = $('body').find('input[name="products\[\]"]:checked');
 
-        if ($checked.length <= 1) {
+        if ($clickedCheckedInput.length <= 1) {
             alert('You must select at least two products to compare');
 
             return false;

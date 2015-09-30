@@ -61,9 +61,9 @@ export default class FacetedSearch {
         // Mark initially collapsed accordions
         $(this.options.accordionToggleSelector).each((index, accordionToggle) => {
             const $accordionToggle = $(accordionToggle);
-            const collapsible = $accordionToggle.data('collapsible');
+            const collapsibleInstance = $accordionToggle.data('collapsible');
 
-            if (collapsible.isCollapsed) {
+            if (collapsibleInstance.isCollapsed) {
                 this.collapsedFacets.push(collapsible.targetId);
             }
         });
@@ -174,15 +174,15 @@ export default class FacetedSearch {
     }
 
     expandFacet($accordionToggle) {
-        const collapsible = $accordionToggle.data('collapsible');
+        const collapsibleInstance = $accordionToggle.data('collapsible');
 
-        collapsible.open();
+        collapsibleInstance.open();
     }
 
     collapseFacet($accordionToggle) {
-        const collapsible = $accordionToggle.data('collapsible');
+        const collapsibleInstance = $accordionToggle.data('collapsible');
 
-        collapsible.close();
+        collapsibleInstance.close();
     }
 
     collapseAllFacets() {
@@ -228,8 +228,8 @@ export default class FacetedSearch {
 
         $accordionToggles.each((index, accordionToggle) => {
             const $accordionToggle = $(accordionToggle);
-            const collapsible = $accordionToggle.data('collapsible');
-            const id = collapsible.targetId;
+            const collapsibleInstance = $accordionToggle.data('collapsible');
+            const id = collapsibleInstance.targetId;
             const shouldCollapse = _.contains(this.collapsedFacets, id);
 
             if (shouldCollapse) {
@@ -330,10 +330,10 @@ export default class FacetedSearch {
 
     onAccordionToggle(event) {
         const $accordionToggle = $(event.currentTarget);
-        const collapsible = $accordionToggle.data('collapsible');
-        const id = collapsible.targetId;
+        const collapsibleInstance = $accordionToggle.data('collapsible');
+        const id = collapsibleInstance.targetId;
 
-        if (collapsible.isCollapsed) {
+        if (collapsibleInstance.isCollapsed) {
             this.collapsedFacets = _.union(this.collapsedFacets, [id]);
         } else {
             this.collapsedFacets = _.without(this.collapsedFacets, id);

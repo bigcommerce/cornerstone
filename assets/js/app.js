@@ -70,10 +70,11 @@ const PageClasses = {
      * @param page
      * @returns {*}
      */
-    get: function(page) {
-        if (this.mapping[page]) {
-            return this.mapping[page];
+    get: function(pageKey) {
+        if (this.mapping[pageKey]) {
+            return this.mapping[pageKey];
         }
+
         return false;
     }
 };

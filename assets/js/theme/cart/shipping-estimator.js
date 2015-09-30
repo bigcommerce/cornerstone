@@ -1,7 +1,6 @@
 import $ from 'jquery';
 import stateCountry from '../common/state-country';
 import nod from '../common/nod';
-import validation from '../common/form-validation';
 import utils from 'bigcommerce/stencil-utils';
 
 export default class ShippingEstimator {
@@ -53,7 +52,7 @@ export default class ShippingEstimator {
             },
             {
                 selector: $(this.shippingEstimator + ' select[name="shipping-state"]'),
-                validate: (cb, val) => {
+                validate: (cb) => {
                     // dynamic. switching between dropdown and input.
                     let $ele = $(this.shippingEstimator + ' select[name="shipping-state"]'),
                         result;

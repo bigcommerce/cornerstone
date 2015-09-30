@@ -30,7 +30,7 @@ export default class ImageGallery {
                 mainImageUrl: this.$mainImage.find('img').attr('src'),
                 zoomImageUrl: this.$mainImage.attr('data-zoom-image'),
                 $selectedThumb: this.currentImage.$selectedThumb
-            }
+            };
         }
         this.setMainImage(imgObj);
     }

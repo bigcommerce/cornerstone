@@ -222,13 +222,10 @@ export default class Product {
                     .val(originalBtnVal)
                     .prop('disabled', false);
 
-
-
-
                 // Guard statement
                 if (errorMessage) {
                     // Strip the HTML from the error message
-                    var tmp = document.createElement('DIV');
+                    const tmp = document.createElement('DIV');
                     tmp.innerHTML = errorMessage;
 
                     alert(tmp.textContent || tmp.innerText);

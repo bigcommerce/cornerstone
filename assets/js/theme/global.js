@@ -14,6 +14,10 @@ import loadingProgressBar from './global/loading-progress-bar';
 import {revealClose, revealReset} from './global/reveal-extension';
 import FastClick from 'ftlabs/fastclick';
 
+function fastClick(element) {
+    return new FastClick(element);
+}
+
 export default class Global extends PageManager {
     constructor() {
         super();
@@ -25,7 +29,7 @@ export default class Global extends PageManager {
      * @param next
      */
     loaded(next) {
-        new FastClick(document.body);
+        fastClick(document.body);
         quickSearch();
         currencySelector();
         foundation();

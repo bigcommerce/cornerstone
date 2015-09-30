@@ -13,7 +13,7 @@ export default function() {
         });
 
         // Hide the mobile sidebar if the cart is opened
-        $('[data-cart-preview]').on('click', (event) => {
+        $('[data-cart-preview]').on('click', () => {
             if ($mobileMenuTrigger.hasClass('is-open')) {
                 toggleMobileMenu();
             }
@@ -21,7 +21,6 @@ export default function() {
     }
 
     function toggleMobileMenu() {
-
         calculateMobileMenuOffset();
 
         $mobileMenuTrigger.toggleClass('is-open').attr('aria-expanded', (i, attr) => {

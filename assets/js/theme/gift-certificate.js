@@ -132,13 +132,13 @@ export default class GiftCertificate extends PageManager {
         if ($certBalanceForm.length) {
             let balanceVal = this.checkCertBalanceValidator($certBalanceForm);
 
-            $certBalanceForm.submit((event) => {
+            $certBalanceForm.submit(() => {
                 balanceVal.performCheck();
 
                 if (!balanceVal.areAll('valid')) {
                     return false;
                 }
-            })
+            });
         }
 
 
@@ -179,7 +179,7 @@ export default class GiftCertificate extends PageManager {
 
         balanceValidator.add({
             selector: $balanceForm.find('input[name="giftcertificatecode"]'),
-            validate: function (cb, val) {
+            validate: function(cb, val) {
                 cb(giftCertChecker(val));
             },
             errorMessage: 'You must enter a certificate code.'

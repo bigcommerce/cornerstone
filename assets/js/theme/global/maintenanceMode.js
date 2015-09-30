@@ -1,5 +1,3 @@
-import utils from 'bigcommerce/stencil-utils';
-
 /**
  * Show the maintenance mode message to store administrators
  * @param maintenanceMode
@@ -25,9 +23,9 @@ export default function(maintenanceMode) {
 
     $(window)
         .bind('scroll', () => {
-            $element.style.top = ($('body').scrollTop() + scrollTop) + "px";
+            $element.style.top = ($('body').scrollTop() + scrollTop) + 'px';
         })
-        .bind('resize', (event) => {
+        .bind('resize', () => {
             let menuWidth = $('#maintenance-notice').width();
             if (menuWidth + $('#maintenance-notice').offset().left > $(window).width()) {
                 let newLeft = ($(window).width() - menuWidth - 50) + 'px';

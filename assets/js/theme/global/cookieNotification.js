@@ -16,10 +16,10 @@ export default function() {
     });
     */
 
-    utils.hooks.on('cookie-privacy-notification', (event, privacyMessage) => {
+    utils.hooks.on('cookie-privacy-notification', (event) => {
         event.preventDefault();
 
-        var $privacyDialog = $('.cookieMessage');
+        const $privacyDialog = $('.cookieMessage');
         $privacyDialog.show();
 
         $('body').on('click', '[data-privacy-accept]', () => $privacyDialog.hide());

@@ -20,9 +20,6 @@ export default class Account extends PageManager {
             $reorderForm = classifyForm('[data-account-reorder-form]'),
             $invoiceButton = $('[data-print-invoice]');
 
-
-
-
         // Injected via template
         this.passwordRequirements = this.context.passwordRequirements;
 

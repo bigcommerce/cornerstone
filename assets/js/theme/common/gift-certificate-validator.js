@@ -1,4 +1,4 @@
-export default function (cert) {
+export default function(cert) {
     if (typeof cert !== 'string') {
         return false;
     }

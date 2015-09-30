@@ -5,15 +5,15 @@ import 'vakata/jstree';
 
 export default class Search extends PageManager {
     constructor() {
-        let $productListingContainer = $('#product-listing-container'),
-            $contentResultsContainer = $('#search-results-content'),
-            $facetedSearchContainer = $('#faceted-search-container'),
-            requestOptions = {
-                template: {
-                    productListing: 'search/product-listing',
-                    sidebar: 'search/sidebar'
-                }
-            };
+        const $productListingContainer = $('#product-listing-container');
+        const $contentResultsContainer = $('#search-results-content');
+        const $facetedSearchContainer = $('#faceted-search-container');
+        const requestOptions = {
+            template: {
+                productListing: 'search/product-listing',
+                sidebar: 'search/sidebar'
+            }
+        };
 
         super();
 
@@ -41,7 +41,7 @@ export default class Search extends PageManager {
     }
 
     formatCategoryTreeForJSTree(node) {
-        let nodeData = {
+        const nodeData = {
             text: node.data,
             id: node.metadata.id,
             state: {
@@ -65,9 +65,9 @@ export default class Search extends PageManager {
     }
 
     loaded() {
-        let $searchForm = $('[data-advanced-search-form]'),
-            $categoryTreeContainer = $searchForm.find('[data-search-category-tree]'),
-            treeData = [];
+        const $searchForm = $('[data-advanced-search-form]');
+        const $categoryTreeContainer = $searchForm.find('[data-search-category-tree]');
+        const treeData = [];
 
         collapsible();
 
@@ -79,11 +79,12 @@ export default class Search extends PageManager {
         this.createCategoryTree($categoryTreeContainer);
 
         $searchForm.submit(() => {
-            let selectedCategoryIds = $categoryTreeContainer.jstree().get_selected();
+            const selectedCategoryIds = $categoryTreeContainer.jstree().get_selected();
+
             $searchForm.find('input[name="category\[\]"]').remove();
 
-            for (let categoryId of selectedCategoryIds) {
-                let input = $('<input>', {
+            for (const categoryId of selectedCategoryIds) {
+                const input = $('<input>', {
                     type: 'hidden',
                     name: 'category[]',
                     value: categoryId
@@ -102,7 +103,7 @@ export default class Search extends PageManager {
                 prefix: 'category'
             },
             success: (data) => {
-                let formattedResults = [];
+                const formattedResults = [];
 
                 data.forEach((node) => {
                     formattedResults.push(this.formatCategoryTreeForJSTree(node));
@@ -114,7 +115,7 @@ export default class Search extends PageManager {
     }
 
     createCategoryTree($container) {
-        let treeOptions = {
+        const treeOptions = {
             core: {
                 data: (node, cb) => {
                     // Root node

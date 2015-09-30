@@ -34,7 +34,7 @@ export default class FacetedSearch {
      * let facetedSearch = new FacetedSearch(requestOptions, templatesDidLoad);
      */
     constructor(requestOptions, callback, options) {
-        let defaultOptions = {
+        const defaultOptions = {
             accordionToggleSelector: '#facetedSearch .accordion-navigation, #facetedSearch .facetedSearch-toggle',
             blockerSelector: '#facetedSearch .blocker',
             clearFacetSelector: '#facetedSearch .facetedSearch-clearLink',
@@ -60,8 +60,8 @@ export default class FacetedSearch {
 
         // Mark initially collapsed accordions
         $(this.options.accordionToggleSelector).each((index, accordionToggle) => {
-            let $accordionToggle = $(accordionToggle),
-                collapsible = $accordionToggle.data('collapsible');
+            const $accordionToggle = $(accordionToggle);
+            const collapsible = $accordionToggle.data('collapsible');
 
             if (collapsible.isCollapsed) {
                 this.collapsedFacets.push(collapsible.targetId);
@@ -120,9 +120,9 @@ export default class FacetedSearch {
     }
 
     expandFacetItems($navList) {
-        let id = $navList.attr('id'),
-            $navItems = $navList.children(),
-            $toggle = $navList.next(this.showMoreToggleSelector);
+        const id = $navList.attr('id');
+        const $navItems = $navList.children();
+        const $toggle = $navList.next(this.showMoreToggleSelector);
 
         // Show all items
         $navItems.show();
@@ -135,11 +135,11 @@ export default class FacetedSearch {
     }
 
     collapseFacetItems($navList) {
-        let $navItems = $navList.children(),
-            $toggle = $navList.next(this.showMoreToggleSelector),
-            id = $navList.attr('id'),
-            itemsCount = $navItems.length,
-            maxItemsCount = parseInt($navList.data('count'), 10);
+        const $navItems = $navList.children();
+        const $toggle = $navList.next(this.showMoreToggleSelector);
+        const id = $navList.attr('id');
+        const itemsCount = $navItems.length;
+        const maxItemsCount = parseInt($navList.data('count'), 10);
 
         $navItems.show();
 
@@ -159,7 +159,7 @@ export default class FacetedSearch {
     }
 
     toggleFacetItems($navList) {
-        let id = $navList.attr('id');
+        const id = $navList.attr('id');
 
         // Toggle depending on `collapsed` flag
         if (_.contains(this.collapsedFacetItems, id)) {
@@ -174,32 +174,32 @@ export default class FacetedSearch {
     }
 
     expandFacet($accordionToggle) {
-        let collapsible = $accordionToggle.data('collapsible');
+        const collapsible = $accordionToggle.data('collapsible');
 
         collapsible.open();
     }
 
     collapseFacet($accordionToggle) {
-        let collapsible = $accordionToggle.data('collapsible');
+        const collapsible = $accordionToggle.data('collapsible');
 
         collapsible.close();
     }
 
     collapseAllFacets() {
-        let $accordionToggles = $(this.options.accordionToggleSelector);
+        const $accordionToggles = $(this.options.accordionToggleSelector);
 
         $accordionToggles.each((index, accordionToggle) => {
-            let $accordionToggle = $(accordionToggle);
+            const $accordionToggle = $(accordionToggle);
 
             this.collapseFacet($accordionToggle);
         });
     }
 
     expandAllFacets() {
-        let $accordionToggles = $(this.options.accordionToggleSelector);
+        const $accordionToggles = $(this.options.accordionToggleSelector);
 
         $accordionToggles.each((index, accordionToggle) => {
-            let $accordionToggle = $(accordionToggle);
+            const $accordionToggle = $(accordionToggle);
 
             this.expandFacet($accordionToggle);
         });
@@ -207,13 +207,13 @@ export default class FacetedSearch {
 
     // Private methods
     restoreCollapsedFacetItems() {
-        let $navLists = $(this.options.facetNavListSelector);
+        const $navLists = $(this.options.facetNavListSelector);
 
         // Restore collapsed state for each facet
         $navLists.each((index, navList) => {
-            let $navList = $(navList),
-                id = $navList.attr('id'),
-                shouldCollapse = _.contains(this.collapsedFacetItems, id);
+            const $navList = $(navList);
+            const id = $navList.attr('id');
+            const shouldCollapse = _.contains(this.collapsedFacetItems, id);
 
             if (shouldCollapse) {
                 this.collapseFacetItems($navList);
@@ -224,13 +224,13 @@ export default class FacetedSearch {
     }
 
     restoreCollapsedFacets() {
-        let $accordionToggles = $(this.options.accordionToggleSelector);
+        const $accordionToggles = $(this.options.accordionToggleSelector);
 
         $accordionToggles.each((index, accordionToggle) => {
-            let $accordionToggle = $(accordionToggle),
-                collapsible = $accordionToggle.data('collapsible'),
-                id = collapsible.targetId,
-                shouldCollapse = _.contains(this.collapsedFacets, id);
+            const $accordionToggle = $(accordionToggle);
+            const collapsible = $accordionToggle.data('collapsible');
+            const id = collapsible.targetId;
+            const shouldCollapse = _.contains(this.collapsedFacets, id);
 
             if (shouldCollapse) {
                 this.collapseFacet($accordionToggle);
@@ -270,8 +270,8 @@ export default class FacetedSearch {
     }
 
     onClearFacet(event) {
-        let $link = $(event.currentTarget),
-            url = $link.attr('href');
+        const $link = $(event.currentTarget);
+        const url = $link.attr('href');
 
         event.preventDefault();
         event.stopPropagation();
@@ -281,8 +281,8 @@ export default class FacetedSearch {
     }
 
     onToggleClick(event) {
-        let $toggle = $(event.currentTarget),
-            $navList = $($toggle.attr('href'));
+        const $toggle = $(event.currentTarget);
+        const $navList = $($toggle.attr('href'));
 
         // Prevent default
         event.preventDefault();
@@ -292,8 +292,8 @@ export default class FacetedSearch {
     }
 
     onFacetClick(event) {
-        let $link = $(event.currentTarget),
-            url = $link.attr('href');
+        const $link = $(event.currentTarget);
+        const url = $link.attr('href');
 
         event.preventDefault();
 
@@ -304,8 +304,8 @@ export default class FacetedSearch {
     }
 
     onRangeSubmit(event) {
-        let url = Url.parse(location.href),
-            queryParams = $(event.currentTarget).serialize();
+        const url = Url.parse(location.href);
+        const queryParams = $(event.currentTarget).serialize();
 
         event.preventDefault();
 
@@ -313,8 +313,8 @@ export default class FacetedSearch {
     }
 
     onSortBySubmit(event) {
-        let url = Url.parse(location.href, true),
-            queryParams = $(event.currentTarget).serialize().split('=');
+        const url = Url.parse(location.href, true);
+        const queryParams = $(event.currentTarget).serialize().split('=');
 
         url.query[queryParams[0]] = queryParams[1];
         delete url.query.page;
@@ -329,9 +329,9 @@ export default class FacetedSearch {
     }
 
     onAccordionToggle(event) {
-        let $accordionToggle = $(event.currentTarget),
-            collapsible = $accordionToggle.data('collapsible'),
-            id = collapsible.targetId;
+        const $accordionToggle = $(event.currentTarget);
+        const collapsible = $accordionToggle.data('collapsible');
+        const id = collapsible.targetId;
 
         if (collapsible.isCollapsed) {
             this.collapsedFacets = _.union(this.collapsedFacets, [id]);

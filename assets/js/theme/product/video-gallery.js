@@ -11,7 +11,7 @@ export class VideoGallery {
     selectNewVideo(e) {
         e.preventDefault();
 
-        let $target = $(e.currentTarget);
+        const $target = $(e.currentTarget);
 
         this.currentVideo = {
             id: $target.data('video-id'),
@@ -37,12 +37,12 @@ export class VideoGallery {
 }
 
 export default function videoGallery() {
-    let pluginKey = 'video-gallery',
-        $videoGallery = $(`[data-${ pluginKey }]`);
+    const pluginKey = 'video-gallery';
+    const $videoGallery = $(`[data-${ pluginKey }]`);
 
     $videoGallery.each((index, element) => {
-        let $el = $(element),
-            isInitialized = $el.data(pluginKey) instanceof VideoGallery;
+        const $el = $(element);
+        const isInitialized = $el.data(pluginKey) instanceof VideoGallery;
 
         if (isInitialized) {
             return;

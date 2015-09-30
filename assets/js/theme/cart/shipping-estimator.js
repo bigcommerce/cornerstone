@@ -4,7 +4,6 @@ import nod from '../common/nod';
 import utils from 'bigcommerce/stencil-utils';
 
 export default class ShippingEstimator {
-
     constructor($element) {
         this.$element = $element;
 
@@ -44,8 +43,9 @@ export default class ShippingEstimator {
             {
                 selector: this.shippingEstimator + ' select[name="shipping-country"]',
                 validate: (cb, val) => {
-                    let countryId = Number(val),
-                        result = countryId !== 0 && !isNaN(countryId);
+                    const countryId = Number(val);
+                    const result = countryId !== 0 && !isNaN(countryId);
+
                     cb(result);
                 },
                 errorMessage: 'The \'Country\' field cannot be blank.'
@@ -53,12 +53,14 @@ export default class ShippingEstimator {
             {
                 selector: $(this.shippingEstimator + ' select[name="shipping-state"]'),
                 validate: (cb) => {
+                    let result;
+
                     // dynamic. switching between dropdown and input.
-                    let $ele = $(this.shippingEstimator + ' select[name="shipping-state"]'),
-                        result;
+                    const $ele = $(this.shippingEstimator + ' select[name="shipping-state"]');
 
                     if ($ele.length) {
-                        let eleVal = $ele.val();
+                        const eleVal = $ele.val();
+
                         result = eleVal && eleVal.length && eleVal !== 'State/province';
                     } else {
                         return;
@@ -78,8 +80,8 @@ export default class ShippingEstimator {
         const UPSRateToggle = '.estimator-form-toggleUPSRate';
 
         $('body').on('click', UPSRateToggle, (event) => {
-            const $estimatorFormUps = $('.estimator-form--ups'),
-                $estimatorFormDefault = $('.estimator-form--default');
+            const $estimatorFormUps = $('.estimator-form--ups');
+            const $estimatorFormDefault = $('.estimator-form--default');
 
             event.preventDefault();
 
@@ -93,6 +95,7 @@ export default class ShippingEstimator {
         stateCountry(this.$state, this.context, {useIdForStates: true}, (err) => {
             if (err) {
                 alert(err);
+
                 throw new Error(err);
             }
 
@@ -104,11 +107,11 @@ export default class ShippingEstimator {
     }
 
     bindEstimatorEvents() {
-        let $estimatorContainer = $('.shipping-estimator'),
-            $estimatorForm = $('.estimator-form');
+        const $estimatorContainer = $('.shipping-estimator');
+        const $estimatorForm = $('.estimator-form');
 
         $estimatorForm.on('submit', (event) => {
-            let params = {
+            const params = {
                 country_id: $('[name="shipping-country"]', $estimatorForm).val(),
                 state_id: $('[name="shipping-state"]', $estimatorForm).val(),
                 zip_code: $('[name="shipping-zip"]', $estimatorForm).val()
@@ -121,7 +124,7 @@ export default class ShippingEstimator {
 
                 // bind the select button
                 $('.select-shipping-quote').on('click', (event) => {
-                    let quoteId = $('.shipping-quote:checked').val();
+                    const quoteId = $('.shipping-quote:checked').val();
 
                     event.preventDefault();
 

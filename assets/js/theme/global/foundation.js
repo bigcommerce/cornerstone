@@ -5,7 +5,7 @@ import 'foundation/js/foundation/foundation.reveal';
 import 'foundation/js/foundation/foundation.tab';
 
 export default function() {
-    let $body = $('body');
+    const $body = $('body');
 
     $(document).foundation({
         dropdown: {

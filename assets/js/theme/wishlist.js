@@ -18,7 +18,7 @@ export default class WishList extends PageManager {
      */
     wishlistDeleteConfirm() {
         $('body').on('click', '[data-wishlist-delete]', (event) => {
-            let confirmed = confirm(this.context.wishlistDelete);
+            const confirmed = confirm(this.context.wishlistDelete);
 
             if (confirmed) {
                 return true;
@@ -58,7 +58,7 @@ export default class WishList extends PageManager {
 
     wishListHandler() {
         $('body').on('click', '[data-wishlist]', (event) => {
-            let $wishListUrl = event.currentTarget.href;
+            const $wishListUrl = event.currentTarget.href;
 
             event.preventDefault();
 
@@ -67,7 +67,7 @@ export default class WishList extends PageManager {
                     data.modal.$content.text(err);
                 }
 
-                let $wishListForm = $('.wishlist-form', data.modal.$content);
+                const $wishListForm = $('.wishlist-form', data.modal.$content);
 
                 this.registerAddWishListValidation($wishListForm);
             });
@@ -75,7 +75,7 @@ export default class WishList extends PageManager {
     }
 
     loaded(next) {
-        let $addWishListForm = $('.wishlist-form');
+        const $addWishListForm = $('.wishlist-form');
 
         if ($addWishListForm.length) {
             this.registerAddWishListValidation($addWishListForm);

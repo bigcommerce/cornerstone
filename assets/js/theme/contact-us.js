@@ -13,17 +13,18 @@ export default class ContactUs extends PageManager {
     }
 
     registerContactFormValidation() {
-        let formSelector = 'form[data-contact-form]',
-            contactUsValidator = nod({
-                submit: `${formSelector} input[type="submit"]`
-            }),
-            $contactForm = $(formSelector);
+        const formSelector = 'form[data-contact-form]';
+        const contactUsValidator = nod({
+            submit: `${formSelector} input[type="submit"]`
+        });
+        const $contactForm = $(formSelector);
 
         contactUsValidator.add([
             {
                 selector: `${formSelector} input[name="contact_email"]`,
                 validate: (cb, val) => {
-                    let result = forms.email(val);
+                    const result = forms.email(val);
+
                     cb(result);
                 },
                 errorMessage: 'Please type in a valid email address, such as joe@aol.com.'
@@ -31,7 +32,8 @@ export default class ContactUs extends PageManager {
             {
                 selector: `${formSelector} textarea[name="contact_question"]`,
                 validate: (cb, val) => {
-                    let result = forms.notEmpty(val);
+                    const result = forms.notEmpty(val);
+
                     cb(result);
                 },
                 errorMessage: 'You must enter your question.'

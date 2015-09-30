@@ -22,7 +22,7 @@ export default class PageManager {
     }
 
     getPageModal(url, options, callback) {
-        let modal = {
+        const modal = {
             $element: $('#modal'),
             $content: $('.modal-content', this.$element),
             $overlay: $('.loadingOverlay', this.$element)

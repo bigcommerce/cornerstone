@@ -32,7 +32,7 @@ export class Collapsible {
     }
 
     get isCollapsed() {
-        let { openClassName } = this.options;
+        const { openClassName } = this.options;
 
         return !this.$target.hasClass(openClassName) || this.$target.is(':hidden');
     }
@@ -42,7 +42,7 @@ export class Collapsible {
     }
 
     open() {
-        let { openClassName } = this.options;
+        const { openClassName } = this.options;
 
         this.$toggle
             .addClass(openClassName)
@@ -57,7 +57,7 @@ export class Collapsible {
     }
 
     close() {
-        let { openClassName } = this.options;
+        const { openClassName } = this.options;
 
         this.$toggle
             .removeClass(openClassName)
@@ -100,21 +100,19 @@ export class Collapsible {
  * collapsible();
  */
 export default function collapsible() {
-    let pluginKey = 'collapsible',
-        $collapsibles = $(`[data-${ pluginKey }]`);
+    const pluginKey = 'collapsible';
+    const $collapsibles = $(`[data-${ pluginKey }]`);
 
     $collapsibles.each((index, element) => {
-        let $toggle = $(element),
-            isInitialized = $toggle.data(pluginKey) instanceof Collapsible,
-            collapsible,
-            targetId;
+        const $toggle = $(element);
+        const isInitialized = $toggle.data(pluginKey) instanceof Collapsible;
 
         if (isInitialized) {
             return;
         }
 
-        targetId = $toggle.attr('href') || $toggle.data('target');
-        collapsible = new Collapsible($toggle, $(targetId));
+        const targetId = $toggle.attr('href') || $toggle.data('target');
+        const collapsible = new Collapsible($toggle, $(targetId));
 
         $toggle.data(pluginKey, collapsible);
     });

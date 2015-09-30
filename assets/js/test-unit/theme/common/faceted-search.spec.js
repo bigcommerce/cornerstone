@@ -4,11 +4,11 @@ import { hooks, api } from 'bigcommerce/stencil-utils';
 import History from 'browserstate/history.js/scripts/bundled-uncompressed/html4+html5/jquery.history';
 
 describe('FacetedSearch', () => {
-    let facetedSearch,
-        requestOptions,
-        onSearchSuccess,
-        html,
-        $element;
+    let facetedSearch;
+    let requestOptions;
+    let onSearchSuccess;
+    let html;
+    let $element;
 
     beforeEach(() => {
         onSearchSuccess = jasmine.createSpy('onSearchSuccess');
@@ -90,8 +90,8 @@ describe('FacetedSearch', () => {
     });
 
     describe('updateView', () => {
-        let content,
-            state;
+        let content;
+        let state;
 
         beforeEach(() => {
             spyOn(api, 'getPage');
@@ -167,8 +167,8 @@ describe('FacetedSearch', () => {
     });
 
     describe('when location URL is changed', () => {
-        let title,
-            href;
+        let title;
+        let href;
 
         beforeEach(() => {
             title = document.title;
@@ -189,8 +189,8 @@ describe('FacetedSearch', () => {
     });
 
     describe('when price range form is submitted', () => {
-        let event,
-            eventName;
+        let event;
+        let eventName;
 
         beforeEach(() => {
             eventName = 'facetedSearch-range-submitted';
@@ -216,8 +216,8 @@ describe('FacetedSearch', () => {
     });
 
     describe('when sort filter is submitted', () => {
-        let event,
-            eventName;
+        let event;
+        let eventName;
 
         beforeEach(() => {
             eventName = 'sortBy-submitted';
@@ -243,8 +243,8 @@ describe('FacetedSearch', () => {
     });
 
     describe('when a facet is clicked', () => {
-        let event,
-            eventName;
+        let event;
+        let eventName;
 
         beforeEach(() => {
             eventName = 'facetedSearch-facet-clicked';

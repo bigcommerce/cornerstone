@@ -5,19 +5,21 @@
 export default function(maintenanceMode) {
     maintenanceMode = maintenanceMode || {};
 
-    let scrollTop = 0,
-        header = maintenanceMode.header,
-        notice = maintenanceMode.notice,
-        $element;
+    const header = maintenanceMode.header;
+    const notice = maintenanceMode.notice;
+    
+    let scrollTop = 0;
 
     if (!(header && notice)) {
         return;
     }
 
-    $element = $('<div>', {
+    const $element = $('<div>', {
         'id': 'maintenance-notice',
         'class': 'maintenanceNotice'
-    }).html(`<p class="maintenanceNotice-header">${header}</p>${notice}`);
+    });
+
+    $element.html(`<p class="maintenanceNotice-header">${header}</p>${notice}`);
 
     $('body').append($element);
 
@@ -26,13 +28,16 @@ export default function(maintenanceMode) {
             $element.style.top = ($('body').scrollTop() + scrollTop) + 'px';
         })
         .bind('resize', () => {
-            let menuWidth = $('#maintenance-notice').width();
+            const menuWidth = $('#maintenance-notice').width();
+
             if (menuWidth + $('#maintenance-notice').offset().left > $(window).width()) {
-                let newLeft = ($(window).width() - menuWidth - 50) + 'px';
+                const newLeft = ($(window).width() - menuWidth - 50) + 'px';
+
                 $('#maintenance-notice').css('left', newLeft);
             }
         });
 
     scrollTop = $('#maintenance-notice').scrollTop() - $('body').scrollTop();
+
     $(window).trigger('resize');
 }

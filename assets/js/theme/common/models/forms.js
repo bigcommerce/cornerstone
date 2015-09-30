@@ -1,4 +1,4 @@
-let forms = {
+const forms = {
     email(value) {
         const re = /^.+@.+\..+/;
         return re.test(value);

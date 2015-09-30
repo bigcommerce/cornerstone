@@ -45,12 +45,12 @@ export default class ImageGallery {
     selectNewImage(e) {
         e.preventDefault();
 
-        let $target = $(e.currentTarget),
-            imgObj = {
-                mainImageUrl: $target.attr('data-image-gallery-new-image-url'),
-                zoomImageUrl: $target.attr('data-image-gallery-zoom-image-url'),
-                $selectedThumb: $target
-            };
+        const $target = $(e.currentTarget);
+        const imgObj = {
+            mainImageUrl: $target.attr('data-image-gallery-new-image-url'),
+            zoomImageUrl: $target.attr('data-image-gallery-zoom-image-url'),
+            $selectedThumb: $target
+        };
 
         this.setMainImage(imgObj);
     }

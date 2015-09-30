@@ -28,6 +28,8 @@ export default class Product extends PageManager {
     }
 
     loaded(next) {
+        let validator;
+
         // Init collapsible
         collapsible();
 
@@ -35,9 +37,8 @@ export default class Product extends PageManager {
 
         videoGallery();
 
-        let $reviewForm = classifyForm('.writeReview-form'),
-            validator,
-            review = new Review($reviewForm);
+        const $reviewForm = classifyForm('.writeReview-form');
+        const review = new Review($reviewForm);
 
         $('body').on('click', '[data-reveal-id="modal-review-form"]', () => {
             validator = review.registerValidation();

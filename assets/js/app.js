@@ -21,7 +21,7 @@ import sitemap from './theme/sitemap';
 import subscribe from './theme/subscribe';
 import wishlist from './theme/wishlist';
 
-let PageClasses = {
+const PageClasses = {
     mapping: {
         'pages/account/orders/all': account,
         'pages/account/orders/details': account,
@@ -101,7 +101,7 @@ function series(pageObj) {
  * @returns {*}
  */
 function loadGlobal(pages) {
-    let Global = pages.get('global');
+    const Global = pages.get('global');
 
     return new Global;
 }
@@ -113,7 +113,8 @@ function loadGlobal(pages) {
  */
 function loader(pageFunc, pages) {
     if (pages.get('global')) {
-        let globalPageManager = loadGlobal(pages);
+        const globalPageManager = loadGlobal(pages);
+
         globalPageManager.context = pageFunc.context;
 
         series(globalPageManager);
@@ -129,7 +130,7 @@ function loader(pageFunc, pages) {
  * @returns {*}
  */
 window.stencilBootstrap = function stencilBootstrap(templateFile, context) {
-    let pages = PageClasses;
+    const pages = PageClasses;
 
     context = context || '{}';
     context = JSON.parse(context);
@@ -137,10 +138,10 @@ window.stencilBootstrap = function stencilBootstrap(templateFile, context) {
     return {
         load() {
             $(() => {
-                let PageTypeFn = pages.get(templateFile); // Finds the appropriate module from the pageType object and store the result as a function.
+                const PageTypeFn = pages.get(templateFile); // Finds the appropriate module from the pageType object and store the result as a function.
 
                 if (PageTypeFn) {
-                    let pageType = new PageTypeFn();
+                    const pageType = new PageTypeFn();
 
                     pageType.context = context;
 

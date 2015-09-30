@@ -20,7 +20,8 @@ export default class {
      * The browser jumps to the review page and should expand the reviews section
      */
     initLinkBind() {
-        let $content = $('#productReviews-content', this.$reviewsContent);
+        const $content = $('#productReviews-content', this.$reviewsContent);
+
         $('.productView-reviewLink').click(() => {
             if (!$content.hasClass('is-open')) {
                 this.$collapsible.trigger(CollapsibleEvents.click);
@@ -42,8 +43,8 @@ export default class {
      * Inject ID into the pagination link
      */
     injectPaginationLink() {
-        const $nextLink = $('.pagination-item--next .pagination-link', this.$reviewsContent),
-            $prevLink = $('.pagination-item--previous .pagination-link', this.$reviewsContent);
+        const $nextLink = $('.pagination-item--next .pagination-link', this.$reviewsContent);
+        const $prevLink = $('.pagination-item--previous .pagination-link', this.$reviewsContent);
 
         if ($nextLink.length) {
             $nextLink.attr('href', $nextLink.attr('href') + '#product-reviews');

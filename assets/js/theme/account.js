@@ -8,17 +8,18 @@ import {classifyForm, Validators, insertStateHiddenField} from './common/form-ut
 export default class Account extends PageManager {
     constructor() {
         super();
+
         this.$state = $('[data-field-type="State"]');
         this.$body = $('body');
     }
 
     loaded(next) {
-        let $editAccountForm = classifyForm('form[data-edit-account-form'),
-            $addressForm = classifyForm('form[data-address-form]'),
-            $inboxForm = classifyForm('form[data-inbox-form]'),
-            $accountReturnForm = classifyForm('[data-account-return-form]'),
-            $reorderForm = classifyForm('[data-account-reorder-form]'),
-            $invoiceButton = $('[data-print-invoice]');
+        const $editAccountForm = classifyForm('form[data-edit-account-form');
+        const $addressForm = classifyForm('form[data-address-form]');
+        const $inboxForm = classifyForm('form[data-inbox-form]');
+        const $accountReturnForm = classifyForm('[data-account-return-form]');
+        const $reorderForm = classifyForm('[data-account-reorder-form]');
+        const $invoiceButton = $('[data-print-invoice]');
 
         // Injected via template
         this.passwordRequirements = this.context.passwordRequirements;
@@ -35,16 +36,17 @@ export default class Account extends PageManager {
 
         if ($invoiceButton.length) {
             $invoiceButton.on('click', () => {
-                let left = screen.availWidth / 2 - 450,
-                    top = screen.availHeight / 2 - 320,
-                    url = $invoiceButton.data('print-invoice');
+                const left = screen.availWidth / 2 - 450;
+                const top = screen.availHeight / 2 - 320;
+                const url = $invoiceButton.data('print-invoice');
 
-                window.open(url, 'orderInvoice', `width=900,height=650,left=${left}',top=${top},scrollbars=1`);
+                window.open(url, 'orderInvoice', `width=900,height=650,left=${left},top=${top},scrollbars=1`);
             });
         }
 
         if ($addressForm.length) {
             this.initAddressFormValidation($addressForm);
+
             if (this.$state.is('input')) {
                 insertStateHiddenField(this.$state);
             }
@@ -74,9 +76,10 @@ export default class Account extends PageManager {
      */
     bindCheckboxFields() {
         $('.account-listItem .form-checkbox').on('change', (event) => {
-            let $ele = $(event.currentTarget),
-                id = $ele.val(),
-                eleVal = '';
+            let eleVal = '';
+
+            const $ele = $(event.currentTarget);
+            const id = $ele.val();
 
             if ($ele.is(':checked')) {
                 eleVal = 'on';
@@ -91,7 +94,7 @@ export default class Account extends PageManager {
      */
     bindDeleteAddress() {
         $('[data-delete-address]').on('submit', (event) => {
-            let message = $(event.currentTarget).data('delete-address');
+            const message = $(event.currentTarget).data('delete-address');
 
             if (!confirm(message)) {
                 event.preventDefault();
@@ -106,13 +109,15 @@ export default class Account extends PageManager {
         });
 
         $reorderForm.on('submit', (event) => {
-            let $reorderItems = $reorderForm.find('[name^="reorderitem"]'),
-                submitForm = false;
+            let submitForm = false;
+
+            const $reorderItems = $reorderForm.find('[name^="reorderitem"]');
 
             // If one item has a value, submit the form.
             $reorderItems.each((i, ele) => {
                 if ($(ele).val()) {
                     submitForm = true;
+
                     return true;
                 }
             });
@@ -125,12 +130,12 @@ export default class Account extends PageManager {
     }
 
     initAddressFormValidation($addressForm) {
-        let validationModel = validation($addressForm),
-            stateSelector = 'form[data-address-form] [data-field-type="State"]',
-            $stateElement = $(stateSelector),
-            addressValidator = nod({
-                submit: 'form[data-address-form] input[type="submit"]'
-            });
+        const validationModel = validation($addressForm);
+        const stateSelector = 'form[data-address-form] [data-field-type="State"]';
+        const $stateElement = $(stateSelector);
+        const addressValidator = nod({
+            submit: 'form[data-address-form] input[type="submit"]'
+        });
 
         addressValidator.add(validationModel);
 
@@ -143,7 +148,7 @@ export default class Account extends PageManager {
                     throw new Error(err);
                 }
 
-                let $field = $(field);
+                const $field = $(field);
 
                 if (addressValidator.getStatus($stateElement) !== 'undefined') {
                     addressValidator.remove($stateElement);
@@ -198,19 +203,19 @@ export default class Account extends PageManager {
     }
 
     registerEditAccountValidation($editAccountForm) {
-        let validationModel = validation($editAccountForm),
-            formEditSelector = 'form[data-edit-account-form]',
-            editValidator = nod({
-                submit: '${formEditSelector} input[type="submit"]'
-            }),
-            emailSelector = `${formEditSelector} [data-field-type="EmailAddress"]`,
-            $emailElement = $(emailSelector),
-            passwordSelector = `${formEditSelector} [data-field-type="Password"]`,
-            $passwordElement = $(passwordSelector),
-            password2Selector = `${formEditSelector} [data-field-type="ConfirmPassword"]`,
-            $password2Element = $(password2Selector),
-            currentPasswordSelector = `${formEditSelector} [data-field-type="CurrentPassword"]`,
-            $currentPassword = $(currentPasswordSelector);
+        const validationModel = validation($editAccountForm);
+        const formEditSelector = 'form[data-edit-account-form]';
+        const editValidator = nod({
+            submit: '${formEditSelector} input[type="submit"]'
+        });
+        const emailSelector = `${formEditSelector} [data-field-type="EmailAddress"]`;
+        const $emailElement = $(emailSelector);
+        const passwordSelector = `${formEditSelector} [data-field-type="Password"]`;
+        const $passwordElement = $(passwordSelector);
+        const password2Selector = `${formEditSelector} [data-field-type="ConfirmPassword"]`;
+        const $password2Element = $(password2Selector);
+        const currentPasswordSelector = `${formEditSelector} [data-field-type="CurrentPassword"]`;
+        const $currentPassword = $(currentPasswordSelector);
 
         // This only handles the custom fields, standard fields are added below
         editValidator.add(validationModel);
@@ -252,7 +257,8 @@ export default class Account extends PageManager {
             {
                 selector: `${formEditSelector} input[name='account_firstname']`,
                 validate: (cb, val) => {
-                    let result = val.length;
+                    const result = val.length;
+
                     cb(result);
                 },
                 errorMessage: 'You must enter a first name.'
@@ -260,7 +266,8 @@ export default class Account extends PageManager {
             {
                 selector: `${formEditSelector} input[name='account_lastname']`,
                 validate: (cb, val) => {
-                    let result = val.length;
+                    const result = val.length;
+
                     cb(result);
                 },
                 errorMessage: 'You must enter a last name.'
@@ -268,13 +275,13 @@ export default class Account extends PageManager {
             {
                 selector: `${formEditSelector} input[name='account_phone']`,
                 validate: (cb, val) => {
-                    let result = val.length;
+                    const result = val.length;
+
                     cb(result);
                 },
                 errorMessage: 'You must enter a phone number.'
             }
         ]);
-
 
         $editAccountForm.submit((event) => {
             editValidator.performCheck();
@@ -288,7 +295,7 @@ export default class Account extends PageManager {
     }
 
     registerInboxValidation($inboxForm) {
-        let inboxValidator = nod({
+        const inboxValidator = nod({
             submit: 'form[data-inbox-form] input[type="submit"]'
         });
 
@@ -296,7 +303,8 @@ export default class Account extends PageManager {
             {
                 selector: 'form[data-inbox-form] select[name="message_order_id"]',
                 validate: (cb, val) => {
-                    let result = Number(val) !== 0;
+                    const result = Number(val) !== 0;
+
                     cb(result);
                 },
                 errorMessage: 'You must select an order.'
@@ -304,7 +312,8 @@ export default class Account extends PageManager {
             {
                 selector: 'form[data-inbox-form] input[name="message_subject"]',
                 validate: (cb, val) => {
-                    let result = val.length;
+                    const result = val.length;
+
                     cb(result);
                 },
                 errorMessage: 'You must enter a subject.'
@@ -312,7 +321,8 @@ export default class Account extends PageManager {
             {
                 selector: 'form[data-inbox-form] textarea[name="message_content"]',
                 validate: (cb, val) => {
-                    let result = val.length;
+                    const result = val.length;
+
                     cb(result);
                 },
                 errorMessage: 'You must enter a message.'

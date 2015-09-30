@@ -6,13 +6,13 @@ import utils from 'bigcommerce/stencil-utils';
 import ProductDetails from '../common/product-details';
 
 export default function(context) {
-    let $modal = $('#modal'),
-        $modalContent = $('.modal-content', $modal),
-        $modalOverlay = $('.loadingOverlay', $modal),
-        modalModifierClasses = 'modal--large';
+    const $modal = $('#modal');
+    const $modalContent = $('.modal-content', $modal);
+    const $modalOverlay = $('.loadingOverlay', $modal);
+    const modalModifierClasses = 'modal--large';
 
     $('body').on('click', '.quickview', (event) => {
-        let productId = $(event.currentTarget).data('product-id');
+        const productId = $(event.currentTarget).data('product-id');
 
         event.preventDefault();
 

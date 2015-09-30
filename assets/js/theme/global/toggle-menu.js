@@ -15,7 +15,7 @@ export default function() {
 
         closeOtherMenus();
 
-        let $targetMenuItem = $(e.currentTarget);
+        const $targetMenuItem = $(e.currentTarget);
 
         if (!$targetMenuItem.hasClass('is-open')) {
             toggleThisMenu($targetMenuItem);
@@ -23,7 +23,7 @@ export default function() {
     }
 
     function toggleThisMenu($targetMenuItem) {
-        let targetMenuItemID = $targetMenuItem.data('togglemenu');
+        const targetMenuItemID = $targetMenuItem.data('togglemenu');
 
         $targetMenuItem.toggleClass('is-open').attr('aria-expanded', (i, attr) => {
             return attr === 'true' ? 'false' : 'true';
@@ -35,7 +35,8 @@ export default function() {
     }
 
     function closeOtherMenus() {
-        let $menuToClose = $toggleMenu.filter('.is-open');
+        const $menuToClose = $toggleMenu.filter('.is-open');
+
         if ($menuToClose.length) {
             toggleThisMenu($menuToClose);
         }

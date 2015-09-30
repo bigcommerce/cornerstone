@@ -21,7 +21,8 @@ export default {
         let modalOpened = false;
 
         $dropDownTrigger.on('click', (event) => {
-            let $cart = $('.is-open[data-cart-preview]');
+            const $cart = $('.is-open[data-cart-preview]');
+
             if ($cart) {
                 $cart.click();
             }

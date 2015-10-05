@@ -203,7 +203,7 @@ export default class Cart extends PageManager {
 
     bindGiftCertificateEvents() {
         let $certContainer = $('.gift-certificate-code'),
-            $certForm = $('.gift-certificate-form'),
+            $certForm = $('.cart-gift-certificate-form'),
             $certInput = $('[name="certcode"]', $certForm);
 
         $('.gift-certificate-add').on('click', (event) => {

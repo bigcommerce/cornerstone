@@ -1,6 +1,12 @@
 // =============================================================================
 // CARDS (CSS)
 // =============================================================================
+//
+// 1. Using translate3d to counter a chrome specific bug: When using a masonry
+//    styled layout via CSS column-count etc, transforms applied to descendants
+//    are made invisible, except for 3d transforms...
+//
+// -----------------------------------------------------------------------------
 
 
 .card-figure {
@@ -18,6 +24,7 @@
 
 .card-figcaption-body {
     display: $card-figcaption-body-display;
+    transform: translate3d(0, -50%, 0); // 1
 }
 
 .card-image {

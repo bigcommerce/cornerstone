@@ -21,7 +21,7 @@ import sitemap from './theme/sitemap';
 import subscribe from './theme/subscribe';
 import wishlist from './theme/wishlist';
 
-let PageClasses = {
+const PageClasses = {
     mapping: {
         'pages/account/orders/all': account,
         'pages/account/orders/details': account,
@@ -63,19 +63,20 @@ let PageClasses = {
         'pages/sitemap': sitemap,
         'pages/subscribed': subscribe,
         'pages/account/wishlist-details': wishlist,
-        'pages/account/wishlists': wishlist
+        'pages/account/wishlists': wishlist,
     },
     /**
      * Getter method to ensure a good page type is accessed.
      * @param page
      * @returns {*}
      */
-    get: function(page) {
-        if (this.mapping[page]) {
-            return this.mapping[page];
+    get: function(pageKey) {
+        if (this.mapping[pageKey]) {
+            return this.mapping[pageKey];
         }
+
         return false;
-    }
+    },
 };
 
 /**
@@ -86,7 +87,7 @@ function series(pageObj) {
     async.series([
         pageObj.before.bind(pageObj), // Executed first after constructor()
         pageObj.loaded.bind(pageObj), // Main module logic
-        pageObj.after.bind(pageObj) // Clean up method that can be overridden for cleanup.
+        pageObj.after.bind(pageObj), // Clean up method that can be overridden for cleanup.
     ], function(err) {
         if (err) {
             throw new Error(err);
@@ -101,7 +102,7 @@ function series(pageObj) {
  * @returns {*}
  */
 function loadGlobal(pages) {
-    let Global = pages.get('global');
+    const Global = pages.get('global');
 
     return new Global;
 }
@@ -113,7 +114,8 @@ function loadGlobal(pages) {
  */
 function loader(pageFunc, pages) {
     if (pages.get('global')) {
-        let globalPageManager = loadGlobal(pages);
+        const globalPageManager = loadGlobal(pages);
+
         globalPageManager.context = pageFunc.context;
 
         series(globalPageManager);
@@ -125,22 +127,20 @@ function loader(pageFunc, pages) {
  * This function gets added to the global window and then called
  * on page load with the current template loaded and JS Context passed in
  * @param templateFile String
- * @param context
+ * @param contextJSON
  * @returns {*}
  */
-window.stencilBootstrap = function stencilBootstrap(templateFile, context) {
-    let pages = PageClasses;
-
-    context = context || '{}';
-    context = JSON.parse(context);
+window.stencilBootstrap = function stencilBootstrap(templateFile, contextJSON = '{}') {
+    const pages = PageClasses;
+    const context = JSON.parse(contextJSON);
 
     return {
         load() {
             $(() => {
-                let PageTypeFn = pages.get(templateFile); // Finds the appropriate module from the pageType object and store the result as a function.
+                const PageTypeFn = pages.get(templateFile); // Finds the appropriate module from the pageType object and store the result as a function.
 
                 if (PageTypeFn) {
-                    let pageType = new PageTypeFn();
+                    const pageType = new PageTypeFn();
 
                     pageType.context = context;
 
@@ -149,6 +149,6 @@ window.stencilBootstrap = function stencilBootstrap(templateFile, context) {
 
                 throw new Error(templateFile + ' Module not found');
             });
-        }
+        },
     };
 };

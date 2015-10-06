@@ -4,11 +4,10 @@ import 'foundation/js/foundation/foundation.dropdown';
 import utils from 'bigcommerce/stencil-utils';
 
 export default function() {
-    let loadingClass = 'is-loading',
-        $cart = $('[data-cart-preview]'),
-        $cartDropdown = $('#cart-preview-dropdown'),
-        $cartLoading = $('<div class="loadingOverlay"></div>');
-
+    const loadingClass = 'is-loading';
+    const $cart = $('[data-cart-preview]');
+    const $cartDropdown = $('#cart-preview-dropdown');
+    const $cartLoading = $('<div class="loadingOverlay"></div>');
 
     $('body').on('cart-quantity-update', (event, quantity) => {
         $('.cart-quantity')
@@ -17,8 +16,8 @@ export default function() {
     });
 
     $cart.on('click', (event) => {
-        let options = {
-            template: 'common/cart-preview'
+        const options = {
+            template: 'common/cart-preview',
         };
 
         $cartDropdown

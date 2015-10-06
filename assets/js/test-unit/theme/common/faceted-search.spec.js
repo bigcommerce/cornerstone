@@ -4,11 +4,11 @@ import { hooks, api } from 'bigcommerce/stencil-utils';
 import History from 'browserstate/history.js/scripts/bundled-uncompressed/html4+html5/jquery.history';
 
 describe('FacetedSearch', () => {
-    let facetedSearch,
-        requestOptions,
-        onSearchSuccess,
-        html,
-        $element;
+    let facetedSearch;
+    let requestOptions;
+    let onSearchSuccess;
+    let html;
+    let $element;
 
     beforeEach(() => {
         onSearchSuccess = jasmine.createSpy('onSearchSuccess');
@@ -16,13 +16,13 @@ describe('FacetedSearch', () => {
         requestOptions = {
             config: {
                 category: {
-                    shop_by_price: true
-                }
+                    shop_by_price: true,
+                },
             },
             template: {
                 productListing: 'category/product-listing',
-                sidebar: 'category/sidebar'
-            }
+                sidebar: 'category/sidebar',
+            },
         };
 
         html =
@@ -90,8 +90,8 @@ describe('FacetedSearch', () => {
     });
 
     describe('updateView', () => {
-        let content,
-            state;
+        let content;
+        let state;
 
         beforeEach(() => {
             spyOn(api, 'getPage');
@@ -99,7 +99,7 @@ describe('FacetedSearch', () => {
             spyOn(facetedSearch, 'refreshView');
 
             state = {
-                url: 'http://url.com/slug'
+                url: 'http://url.com/slug',
             };
 
             content = {};
@@ -167,8 +167,8 @@ describe('FacetedSearch', () => {
     });
 
     describe('when location URL is changed', () => {
-        let title,
-            href;
+        let title;
+        let href;
 
         beforeEach(() => {
             title = document.title;
@@ -189,14 +189,14 @@ describe('FacetedSearch', () => {
     });
 
     describe('when price range form is submitted', () => {
-        let event,
-            eventName;
+        let event;
+        let eventName;
 
         beforeEach(() => {
             eventName = 'facetedSearch-range-submitted';
             event = {
                 currentTarget: '#facet-range-form',
-                preventDefault: jasmine.createSpy('preventDefault')
+                preventDefault: jasmine.createSpy('preventDefault'),
             };
 
             spyOn(History, 'pushState');
@@ -216,14 +216,14 @@ describe('FacetedSearch', () => {
     });
 
     describe('when sort filter is submitted', () => {
-        let event,
-            eventName;
+        let event;
+        let eventName;
 
         beforeEach(() => {
             eventName = 'sortBy-submitted';
             event = {
                 currentTarget: '#facet-sort',
-                preventDefault: jasmine.createSpy('preventDefault')
+                preventDefault: jasmine.createSpy('preventDefault'),
             };
 
             spyOn(History, 'pushState');
@@ -243,14 +243,14 @@ describe('FacetedSearch', () => {
     });
 
     describe('when a facet is clicked', () => {
-        let event,
-            eventName;
+        let event;
+        let eventName;
 
         beforeEach(() => {
             eventName = 'facetedSearch-facet-clicked';
             event = {
                 currentTarget: '[href="?brand=item1"]',
-                preventDefault: jasmine.createSpy('preventDefault')
+                preventDefault: jasmine.createSpy('preventDefault'),
             };
 
             spyOn(History, 'pushState');

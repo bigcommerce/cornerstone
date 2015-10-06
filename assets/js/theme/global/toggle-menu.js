@@ -4,26 +4,8 @@ export default function() {
     const $toggleMenu = $('[data-togglemenu]');
     const $body = $('body');
 
-    function toggleMenu() {
-        $toggleMenu.on('click', menuClicked);
-        $body.on('click', blurMenu);
-    }
-
-    function menuClicked(e) {
-        e.preventDefault();
-        e.stopPropagation();
-
-        closeOtherMenus();
-
-        let $targetMenuItem = $(e.currentTarget);
-
-        if (!$targetMenuItem.hasClass('is-open')) {
-            toggleThisMenu($targetMenuItem);
-        }
-    }
-
     function toggleThisMenu($targetMenuItem) {
-        let targetMenuItemID = $targetMenuItem.data('togglemenu');
+        const targetMenuItemID = $targetMenuItem.data('togglemenu');
 
         $targetMenuItem.toggleClass('is-open').attr('aria-expanded', (i, attr) => {
             return attr === 'true' ? 'false' : 'true';
@@ -35,9 +17,23 @@ export default function() {
     }
 
     function closeOtherMenus() {
-        let $menuToClose = $toggleMenu.filter('.is-open');
+        const $menuToClose = $toggleMenu.filter('.is-open');
+
         if ($menuToClose.length) {
             toggleThisMenu($menuToClose);
+        }
+    }
+
+    function menuClicked(e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        closeOtherMenus();
+
+        const $targetMenuItem = $(e.currentTarget);
+
+        if (!$targetMenuItem.hasClass('is-open')) {
+            toggleThisMenu($targetMenuItem);
         }
     }
 
@@ -45,6 +41,11 @@ export default function() {
         if (!e.target.hasAttribute('data-togglemenu')) {
             closeOtherMenus();
         }
+    }
+
+    function toggleMenu() {
+        $toggleMenu.on('click', menuClicked);
+        $body.on('click', blurMenu);
     }
 
     if ($toggleMenu.length) {

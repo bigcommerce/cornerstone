@@ -6,22 +6,17 @@ export default function() {
     const headerHeight = $('.header').outerHeight();
     const $mobileMenu = $('#mobile-menu');
 
-    function mobileMenu() {
-        $mobileMenuTrigger.on('click', (event) => {
-            event.preventDefault();
-            toggleMobileMenu();
+    function calculateMobileMenuOffset() {
+        $mobileMenu.attr('style', (i, attr) => {
+            return attr !== `top:${headerHeight}px` ? `top:${headerHeight}px` : 'top:auto';
         });
 
-        // Hide the mobile sidebar if the cart is opened
-        $('[data-cart-preview]').on('click', (event) => {
-            if ($mobileMenuTrigger.hasClass('is-open')) {
-                toggleMobileMenu();
-            }
+        $header.attr('style', (i, attr) => {
+            return attr === 'height:100%' ? 'height:auto' : 'height:100%';
         });
     }
 
     function toggleMobileMenu() {
-
         calculateMobileMenuOffset();
 
         $mobileMenuTrigger.toggleClass('is-open').attr('aria-expanded', (i, attr) => {
@@ -33,13 +28,17 @@ export default function() {
         });
     }
 
-    function calculateMobileMenuOffset() {
-        $mobileMenu.attr('style', (i, attr) => {
-            return attr !== `top:${headerHeight}px` ? `top:${headerHeight}px` : 'top:auto';
+    function mobileMenu() {
+        $mobileMenuTrigger.on('click', (event) => {
+            event.preventDefault();
+            toggleMobileMenu();
         });
 
-        $header.attr('style', (i, attr) => {
-            return attr === 'height:100%' ? 'height:auto' : 'height:100%';
+        // Hide the mobile sidebar if the cart is opened
+        $('[data-cart-preview]').on('click', () => {
+            if ($mobileMenuTrigger.hasClass('is-open')) {
+                toggleMobileMenu();
+            }
         });
     }
 

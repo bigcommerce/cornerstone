@@ -8,30 +8,28 @@ import $ from 'jquery';
  */
 function buildDateValidation($formField, validation) {
     // No date range restriction, skip
-    if (!(validation.min_date && validation.max_date)) {
-        return;
+    if (validation.min_date && validation.max_date) {
+        const invalidMessage = `Your chosen date must fall between ${validation.min_date} and ${validation.max_date}.`;
+        const formElementId = $formField.attr('id');
+        const minSplit = validation.min_date.split('-');
+        const maxSplit = validation.max_date.split('-');
+        const minDate = new Date(minSplit[0], minSplit[1] - 1, minSplit[2]);
+        const maxDate = new Date(maxSplit[0], maxSplit[1] - 1, maxSplit[2]);
+
+        return {
+            selector: `#${formElementId} select[data-label="year"]`,
+            triggeredBy: `#${formElementId} select:not([data-label="year"])`,
+            validate: (cb, val) => {
+                const day = Number($formField.find('select[data-label="day"]').val());
+                const month = Number($formField.find('select[data-label="month"]').val()) - 1;
+                const year = Number(val);
+                const chosenDate = new Date(year, month, day);
+
+                cb(chosenDate >= minDate && chosenDate <= maxDate);
+            },
+            errorMessage: invalidMessage,
+        };
     }
-
-    let invalidMessage = `Your chosen date must fall between ${validation.min_date} and ${validation.max_date}.`,
-        formElementId = $formField.attr('id'),
-        minSplit = validation.min_date.split('-'),
-        maxSplit = validation.max_date.split('-'),
-        minDate = new Date(minSplit[0], minSplit[1] - 1, minSplit[2]),
-        maxDate = new Date(maxSplit[0], maxSplit[1] - 1, maxSplit[2]);
-
-    return {
-        selector: `#${formElementId} select[data-label="year"]`,
-        triggeredBy: `#${formElementId} select:not([data-label="year"])`,
-        validate: (cb, val) => {
-            let day = Number($formField.find('select[data-label="day"]').val()),
-                month = Number($formField.find('select[data-label="month"]').val()) - 1,
-                year = Number(val),
-                chosenDate = new Date(year, month, day);
-
-            cb(chosenDate >= minDate && chosenDate <= maxDate);
-        },
-        errorMessage: invalidMessage
-    };
 }
 
 /**
@@ -41,9 +39,9 @@ function buildDateValidation($formField, validation) {
  * @param validation
  */
 function buildRequiredCheckboxValidation($formField, validation) {
-    let formFieldId = $formField.attr('id'),
-        primarySelector = `#${formFieldId} input:first-of-type`,
-        secondarySelector = `#${formFieldId} input`;
+    const formFieldId = $formField.attr('id');
+    const primarySelector = `#${formFieldId} input:first-of-type`;
+    const secondarySelector = `#${formFieldId} input`;
 
     return {
         selector: primarySelector,
@@ -54,13 +52,14 @@ function buildRequiredCheckboxValidation($formField, validation) {
             $(secondarySelector).each(function(index, checkbox) {
                 if (checkbox.checked) {
                     result = true;
+
                     return false;
                 }
             });
 
             cb(result);
         },
-        errorMessage: `The '${validation.label}' field cannot be blank.`
+        errorMessage: `The '${validation.label}' field cannot be blank.`,
     };
 }
 
@@ -70,34 +69,34 @@ function buildRequiredValidation(validation, selector) {
         validate: (cb, val) => {
             cb(val.length > 0);
         },
-        errorMessage: `The '${validation.label}' field cannot be blank.`
+        errorMessage: `The '${validation.label}' field cannot be blank.`,
     };
 }
 
 function buildNumberRangeValidation(validation, formFieldSelector) {
-    let invalidMessage = `The value for ${validation.label} must be between ${validation.min} and ${validation.max}.`,
-        min = Number(validation.min),
-        max = Number(validation.max);
+    const invalidMessage = `The value for ${validation.label} must be between ${validation.min} and ${validation.max}.`;
+    const min = Number(validation.min);
+    const max = Number(validation.max);
 
     return {
         selector: `${formFieldSelector} input[name="${validation.name}"]`,
         validate: (cb, val) => {
-            val = Number(val);
+            const numberVal = Number(val);
 
-            cb(val >= min && val <= max);
+            cb(numberVal >= min && numberVal <= max);
         },
-        errorMessage: invalidMessage
+        errorMessage: invalidMessage,
     };
 }
 
 
 function buildValidation($validateableElement) {
-    let validation = $validateableElement.data('validation'),
-        fieldValidations = [],
-        formFieldSelector = `#${$validateableElement.attr('id')}`;
+    const validation = $validateableElement.data('validation');
+    const fieldValidations = [];
+    const formFieldSelector = `#${$validateableElement.attr('id')}`;
 
     if (validation.type === 'datechooser') {
-        let dateValidation = buildDateValidation($validateableElement, validation);
+        const dateValidation = buildDateValidation($validateableElement, validation);
 
         if (dateValidation) {
             fieldValidations.push(dateValidation);
@@ -106,10 +105,10 @@ function buildValidation($validateableElement) {
         fieldValidations.push(buildRequiredCheckboxValidation($validateableElement, validation));
     } else {
         $validateableElement.find('input, select, textarea').each(function(index, element) {
-            let $inputElement = $(element),
-                tagName = $inputElement.get(0).tagName,
-                inputName = $inputElement.attr('name'),
-                elementSelector = `${formFieldSelector} ${tagName}[name="${inputName}"]`;
+            const $inputElement = $(element);
+            const tagName = $inputElement.get(0).tagName;
+            const inputName = $inputElement.attr('name');
+            const elementSelector = `${formFieldSelector} ${tagName}[name="${inputName}"]`;
 
             if (validation.type === 'numberonly') {
                 fieldValidations.push(buildNumberRangeValidation(validation, formFieldSelector));

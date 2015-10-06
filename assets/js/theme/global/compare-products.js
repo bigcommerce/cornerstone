@@ -2,7 +2,7 @@ import $ from 'jquery';
 import _ from 'lodash';
 
 function decrementCounter(counter, item) {
-    let index = counter.indexOf(item);
+    const index = counter.indexOf(item);
 
     if (index > -1) {
         counter.splice(index, 1);
@@ -26,9 +26,10 @@ function updateCounterNav(counter, $link) {
 }
 
 export default function() {
-    let $checked = $('body').find('input[name="products\[\]"]:checked'),
-        $compareLink = $('a[data-compare-nav]'),
-        products;
+    let products;
+
+    const $checked = $('body').find('input[name="products\[\]"]:checked');
+    const $compareLink = $('a[data-compare-nav]');
 
     if ($checked.length !== 0) {
         products = _.map($checked, (element) => {
@@ -38,19 +39,19 @@ export default function() {
         updateCounterNav(products, $compareLink);
     }
 
-    let compareCounter = products || [];
+    const compareCounter = products || [];
 
     $('body').on('click', '[data-compare-id]', (event) => {
-        let product = event.currentTarget.value,
-            $compareLink = $('a[data-compare-nav]');
+        const product = event.currentTarget.value;
+        const $clickedCompareLink = $('a[data-compare-nav]');
 
         event.currentTarget.checked ? incrementCounter(compareCounter, product) : decrementCounter(compareCounter, product);
-        updateCounterNav(compareCounter, $compareLink);
+        updateCounterNav(compareCounter, $clickedCompareLink);
     });
 
     $('body').on('submit', '[data-product-compare]', (event) => {
-        let $this = $(event.currentTarget),
-            productsToCompare = $this.find('input[name="products\[\]"]:checked');
+        const $this = $(event.currentTarget);
+        const productsToCompare = $this.find('input[name="products\[\]"]:checked');
 
         if (productsToCompare.length <= 1) {
             alert('You must select at least two products to compare');
@@ -59,10 +60,11 @@ export default function() {
     });
 
     $('body').on('click', 'a[data-compare-nav]', () => {
-        let $checked = $('body').find('input[name="products\[\]"]:checked');
+        const $clickedCheckedInput = $('body').find('input[name="products\[\]"]:checked');
 
-        if ($checked.length <= 1) {
+        if ($clickedCheckedInput.length <= 1) {
             alert('You must select at least two products to compare');
+
             return false;
         }
     });

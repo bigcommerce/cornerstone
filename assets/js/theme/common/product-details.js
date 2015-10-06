@@ -37,13 +37,13 @@ export default class Product {
             $wishlistVariation: $('[data-wishlist-add] [name="variation_id"]', $scope),
             stock: {
                 $container: $('.form-field--stock', $scope),
-                $input: $('[data-product-stock]', $scope)
+                $input: $('[data-product-stock]', $scope),
             },
             $sku: $('[data-product-sku]'),
             quantity: {
                 $text: $('.incrementTotal', $scope),
-                $input: $('[name=qty\\[\\]]', $scope)
-            }
+                $input: $('[name=qty\\[\\]]', $scope),
+            },
         };
     }
 
@@ -54,9 +54,9 @@ export default class Product {
      */
     productOptions() {
         utils.hooks.on('product-option-change', (event, changedOption) => {
-            let $changedOption = $(changedOption),
-                $form = $changedOption.parents('form'),
-                productId = $('[name="product_id"]', $form).val();
+            const $changedOption = $(changedOption);
+            const $form = $changedOption.parents('form');
+            const productId = $('[name="product_id"]', $form).val();
 
             // Do not trigger an ajax request if it's a file or if the browser doesn't support FormData
             if ($changedOption.attr('type') === 'file' || window.FormData === undefined) {
@@ -64,9 +64,9 @@ export default class Product {
             }
 
             utils.api.productAttributes.optionChange(productId, $form.serialize(), (err, response) => {
-                let viewModel = this.getViewModel(this.$scope),
-                    $messageBox = $('.productAttributes-message'),
-                    data = response.data || {};
+                const viewModel = this.getViewModel(this.$scope);
+                const $messageBox = $('.productAttributes-message');
+                const data = response.data || {};
 
                 if (data.purchasing_message) {
                     $('.alertBox-message', $messageBox).text(data.purchasing_message);
@@ -79,9 +79,11 @@ export default class Product {
                     if (data.price.with_tax) {
                         viewModel.$priceWithTax.html(data.price.with_tax.formatted);
                     }
+
                     if (data.price.without_tax) {
                         viewModel.$priceWithoutTax.html(data.price.without_tax.formatted);
                     }
+
                     if (data.price.rrp_with_tax) {
                         viewModel.$rrpWithTax.html(data.price.rrp_with_tax.formatted);
                     }
@@ -118,7 +120,7 @@ export default class Product {
 
                     this.imageGallery.setAlternateImage({
                         mainImageUrl: mainImageUrl,
-                        zoomImageUrl: zoomImageUrl
+                        zoomImageUrl: zoomImageUrl,
                     });
                 } else {
                     this.imageGallery.restoreImage();
@@ -130,6 +132,7 @@ export default class Product {
                     if (viewModel.stock.$container.is(':hidden')) {
                         viewModel.stock.$container.show();
                     }
+
                     viewModel.stock.$input.text(data.stock);
                 }
 
@@ -152,12 +155,14 @@ export default class Product {
     quantityChange() {
         this.$scope.on('click', '[data-quantity-change] button', (event) => {
             event.preventDefault();
-            let $target = $(event.currentTarget),
-                viewModel = this.getViewModel(this.$scope),
-                $input = viewModel.quantity.$input,
-                qty = parseInt($input.val(), 10),
-                quantityMin = parseInt($input.data('quantity-min'), 10),
-                quantityMax = parseInt($input.data('quantity-max'), 10);
+
+            const $target = $(event.currentTarget);
+            const viewModel = this.getViewModel(this.$scope);
+            const $input = viewModel.quantity.$input;
+            const quantityMin = parseInt($input.data('quantity-min'), 10);
+            const quantityMax = parseInt($input.data('quantity-max'), 10);
+
+            let qty = parseInt($input.val(), 10);
 
             // If action is incrementing
             if ($target.data('action') === 'inc') {
@@ -199,8 +204,8 @@ export default class Product {
 
         utils.hooks.on('cart-item-add', (event, form) => {
             const $addToCartBtn = $('#form-action-addToCart', $(event.target));
-            let originalBtnVal = $addToCartBtn.val(),
-                waitMessage = $addToCartBtn.data('waitMessage');
+            const originalBtnVal = $addToCartBtn.val();
+            const waitMessage = $addToCartBtn.data('waitMessage');
 
             // Do not do AJAX if browser doesn't support FormData
             if (window.FormData === undefined) {
@@ -222,13 +227,10 @@ export default class Product {
                     .val(originalBtnVal)
                     .prop('disabled', false);
 
-
-
-
                 // Guard statement
                 if (errorMessage) {
                     // Strip the HTML from the error message
-                    var tmp = document.createElement('DIV');
+                    const tmp = document.createElement('DIV');
                     tmp.innerHTML = errorMessage;
 
                     alert(tmp.textContent || tmp.innerText);
@@ -242,10 +244,10 @@ export default class Product {
                 // Show modal
                 this.populateCartModal($previewModal, response.data.cart_item.hash, ($modalContent) => {
                     // Update cart counter
-                    const $body = $('body'),
-                        $cartQuantity = $('[data-cart-quantity]', $modalContent),
-                        $cartCounter = $('.navUser-action .cart-count'),
-                        quantity = $cartQuantity.data('cart-quantity') || 0;
+                    const $body = $('body');
+                    const $cartQuantity = $('[data-cart-quantity]', $modalContent);
+                    const $cartCounter = $('.navUser-action .cart-count');
+                    const quantity = $cartQuantity.data('cart-quantity') || 0;
 
                     $cartCounter.addClass('cart-count--positive');
                     $body.trigger('cart-quantity-update', quantity);
@@ -277,21 +279,21 @@ export default class Product {
      */
     populateCartModal($modal, cartItemHash, onComplete) {
         // Define options
-        const $modalContent = $('.modal-content', $modal),
-            $modalOverlay = $('.loadingOverlay', $modal);
+        const $modalContent = $('.modal-content', $modal);
+        const $modalOverlay = $('.loadingOverlay', $modal);
 
         const options = {
             template: 'cart/preview',
             params: {
-                suggest: cartItemHash
+                suggest: cartItemHash,
             },
             config: {
                 cart: {
                     suggestions: {
-                        limit: 4
-                    }
-                }
-            }
+                        limit: 4,
+                    },
+                },
+            },
         };
 
         // Fetch cart to display in modal

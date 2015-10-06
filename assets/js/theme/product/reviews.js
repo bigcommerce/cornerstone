@@ -4,7 +4,7 @@ import {CollapsibleEvents} from '../common/collapsible';
 export default class {
     constructor($reviewForm) {
         this.validator = nod({
-            submit: $reviewForm.find('input[type="submit"]')
+            submit: $reviewForm.find('input[type="submit"]'),
         });
 
         this.$reviewsContent = $('#product-reviews');
@@ -20,7 +20,8 @@ export default class {
      * The browser jumps to the review page and should expand the reviews section
      */
     initLinkBind() {
-        let $content = $('#productReviews-content', this.$reviewsContent);
+        const $content = $('#productReviews-content', this.$reviewsContent);
+
         $('.productView-reviewLink').click(() => {
             if (!$content.hasClass('is-open')) {
                 this.$collapsible.trigger(CollapsibleEvents.click);
@@ -42,8 +43,8 @@ export default class {
      * Inject ID into the pagination link
      */
     injectPaginationLink() {
-        const $nextLink = $('.pagination-item--next .pagination-link', this.$reviewsContent),
-            $prevLink = $('.pagination-item--previous .pagination-link', this.$reviewsContent);
+        const $nextLink = $('.pagination-item--next .pagination-link', this.$reviewsContent);
+        const $prevLink = $('.pagination-item--previous .pagination-link', this.$reviewsContent);
 
         if ($nextLink.length) {
             $nextLink.attr('href', $nextLink.attr('href') + '#product-reviews');
@@ -58,19 +59,19 @@ export default class {
         this.validator.add([{
             selector: '[name="revrating"]',
             validate: 'presence',
-            errorMessage: 'The \'Rating field\' cannot be blank.'
+            errorMessage: 'The \'Rating field\' cannot be blank.',
         }, {
             selector: '[name="revtitle"]',
             validate: 'min-length:2',
-            errorMessage: 'The \'Review Subject\' field cannot be blank.'
+            errorMessage: 'The \'Review Subject\' field cannot be blank.',
         }, {
             selector: '[name="revtext"]',
             validate: 'min-length:2',
-            errorMessage: 'The \'Comments field\' cannot be blank.'
+            errorMessage: 'The \'Comments field\' cannot be blank.',
         }, {
             selector: '[name="email"]',
             validate: 'min-length:2',
-            errorMessage: 'The \'Email\' field cannot be blank.'
+            errorMessage: 'The \'Email\' field cannot be blank.',
         }]);
 
         return this.validator;

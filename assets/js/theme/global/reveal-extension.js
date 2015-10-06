@@ -1,12 +1,12 @@
 import _ from 'lodash';
 import $ from 'jquery';
 
-const revealCloseAttr = 'reveal-close',
-    revealResetAttr = 'reveal-onload-reset',
-    revealAttr = 'reveal',
-    revealCloseSelector = `[data-${revealCloseAttr}]`,
-    revealResetSelector = `[data-${revealResetAttr}]`,
-    revealSelector = `[data-${revealAttr}]`;
+const revealCloseAttr = 'reveal-close';
+const revealResetAttr = 'reveal-onload-reset';
+const revealAttr = 'reveal';
+const revealCloseSelector = `[data-${revealCloseAttr}]`;
+const revealResetSelector = `[data-${revealResetAttr}]`;
+const revealSelector = `[data-${revealAttr}]`;
 
 /*
  * Extend foundation.reveal with the ability to close a modal by clicking on any of its child element
@@ -23,8 +23,8 @@ const revealCloseAttr = 'reveal-close',
  */
 export function revealClose() {
     function onClick(event) {
-        const $target = $(event.currentTarget),
-            modalId = $target.data(_.camelCase(revealCloseAttr));
+        const $target = $(event.currentTarget);
+        const modalId = $target.data(_.camelCase(revealCloseAttr));
 
         let $modal;
 
@@ -60,8 +60,8 @@ export function revealReset() {
             return;
         }
 
-        const $modalContent = $('.modal-content', $modal),
-            $modalOverlay = $('.loadingOverlay', $modal);
+        const $modalContent = $('.modal-content', $modal);
+        const $modalOverlay = $('.loadingOverlay', $modal);
 
         $modalOverlay.show();
         $modalContent.html('');

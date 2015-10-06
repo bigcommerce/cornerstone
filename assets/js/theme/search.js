@@ -5,15 +5,15 @@ import 'vakata/jstree';
 
 export default class Search extends PageManager {
     constructor() {
-        let $productListingContainer = $('#product-listing-container'),
-            $contentResultsContainer = $('#search-results-content'),
-            $facetedSearchContainer = $('#faceted-search-container'),
-            requestOptions = {
-                template: {
-                    productListing: 'search/product-listing',
-                    sidebar: 'search/sidebar'
-                }
-            };
+        const $productListingContainer = $('#product-listing-container');
+        const $contentResultsContainer = $('#search-results-content');
+        const $facetedSearchContainer = $('#faceted-search-container');
+        const requestOptions = {
+            template: {
+                productListing: 'search/product-listing',
+                sidebar: 'search/sidebar',
+            },
+        };
 
         super();
 
@@ -22,7 +22,7 @@ export default class Search extends PageManager {
             $facetedSearchContainer.html(content.sidebar);
 
             $('html, body').animate({
-                scrollTop: 0
+                scrollTop: 0,
             }, 100);
         });
 
@@ -41,12 +41,12 @@ export default class Search extends PageManager {
     }
 
     formatCategoryTreeForJSTree(node) {
-        let nodeData = {
+        const nodeData = {
             text: node.data,
             id: node.metadata.id,
             state: {
-                selected: node.selected
-            }
+                selected: node.selected,
+            },
         };
 
         if (node.state) {
@@ -65,9 +65,9 @@ export default class Search extends PageManager {
     }
 
     loaded() {
-        let $searchForm = $('[data-advanced-search-form]'),
-            $categoryTreeContainer = $searchForm.find('[data-search-category-tree]'),
-            treeData = [];
+        const $searchForm = $('[data-advanced-search-form]');
+        const $categoryTreeContainer = $searchForm.find('[data-search-category-tree]');
+        const treeData = [];
 
         collapsible();
 
@@ -79,14 +79,15 @@ export default class Search extends PageManager {
         this.createCategoryTree($categoryTreeContainer);
 
         $searchForm.submit(() => {
-            let selectedCategoryIds = $categoryTreeContainer.jstree().get_selected();
+            const selectedCategoryIds = $categoryTreeContainer.jstree().get_selected();
+
             $searchForm.find('input[name="category\[\]"]').remove();
 
-            for (let categoryId of selectedCategoryIds) {
-                let input = $('<input>', {
+            for (const categoryId of selectedCategoryIds) {
+                const input = $('<input>', {
                     type: 'hidden',
                     name: 'category[]',
-                    value: categoryId
+                    value: categoryId,
                 });
 
                 $searchForm.append(input);
@@ -99,22 +100,22 @@ export default class Search extends PageManager {
             url: '/remote/v1/category-tree',
             data: {
                 selectedCategoryId: node.id,
-                prefix: 'category'
+                prefix: 'category',
             },
             success: (data) => {
-                let formattedResults = [];
+                const formattedResults = [];
 
-                data.forEach((node) => {
-                    formattedResults.push(this.formatCategoryTreeForJSTree(node));
+                data.forEach((dataNode) => {
+                    formattedResults.push(this.formatCategoryTreeForJSTree(dataNode));
                 });
 
                 cb(formattedResults);
-            }
+            },
         });
     }
 
     createCategoryTree($container) {
-        let treeOptions = {
+        const treeOptions = {
             core: {
                 data: (node, cb) => {
                     // Root node
@@ -126,13 +127,15 @@ export default class Search extends PageManager {
                     }
                 },
                 themes: {
-                    icons: false
-                }
+                    icons: false,
+                },
             },
             checkbox: {
-                three_state: false
+                three_state: false,
             },
-            plugins: [ 'checkbox' ]
+            plugins: [
+                'checkbox',
+            ],
         };
 
         $container.jstree(treeOptions);

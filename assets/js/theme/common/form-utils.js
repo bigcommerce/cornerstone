@@ -3,10 +3,10 @@ import _ from 'lodash';
 import nod from './nod';
 import forms from './models/forms';
 
-let inputTagNames = [
+const inputTagNames = [
     'input',
     'select',
-    'textarea'
+    'textarea',
 ];
 
 /**
@@ -16,15 +16,16 @@ let inputTagNames = [
  * @return {object} Element itself
  */
 function classifyInput(input, formFieldClass) {
-    let $input = $(input),
-        $formField = $input.parent(`.${formFieldClass}`),
-        tagName = $input.prop('tagName').toLowerCase(),
-        className = `${formFieldClass}--${tagName}`,
-        specificClassName;
+    const $input = $(input);
+    const $formField = $input.parent(`.${formFieldClass}`);
+    const tagName = $input.prop('tagName').toLowerCase();
+
+    let className = `${formFieldClass}--${tagName}`;
+    let specificClassName;
 
     // Input can be text/checkbox/radio etc...
     if (tagName === 'input') {
-        let inputType = $input.prop('type');
+        const inputType = $input.prop('type');
 
         if (_.contains(['radio', 'checkbox', 'submit'], inputType)) {
             // ie: .form-field--checkbox, .form-field--radio
@@ -65,11 +66,11 @@ function classifyInput(input, formFieldClass) {
  * @return {jQuery} Element itself
  */
 export function classifyForm(formSelector, options = {}) {
-    let $form = $(formSelector),
-        $inputs = $form.find(inputTagNames.join(', '));
+    const $form = $(formSelector);
+    const $inputs = $form.find(inputTagNames.join(', '));
 
     // Obtain options
-    let { formFieldClass = 'form-field' } = options;
+    const { formFieldClass = 'form-field' } = options;
 
     // Classify each input in a form
     $inputs.each((__, input) => {
@@ -85,7 +86,7 @@ export function classifyForm(formSelector, options = {}) {
  * @return {string}
  */
 function getFieldId($field) {
-    let fieldId = $field.prop('name').match(/(\[.*\])/);
+    const fieldId = $field.prop('name').match(/(\[.*\])/);
 
     if (fieldId && fieldId.length !== 0) {
         return fieldId[0];
@@ -99,17 +100,17 @@ function getFieldId($field) {
  * @param {object} $stateField JQuery field object
  */
 function insertStateHiddenField($stateField) {
-    let fieldId = getFieldId($stateField),
-        stateFieldAttrs = {
-            type: 'hidden',
-            name: `FormFieldIsText${fieldId}`,
-            value: '1'
-        };
+    const fieldId = getFieldId($stateField);
+    const stateFieldAttrs = {
+        type: 'hidden',
+        name: `FormFieldIsText${fieldId}`,
+        value: '1',
+    };
 
     $stateField.after($('<input />', stateFieldAttrs));
 }
 
-let Validators = {
+const Validators = {
     /**
      * Sets up a new validation when the form is dirty
      * @param validator
@@ -120,10 +121,11 @@ let Validators = {
             validator.add({
                 selector: field,
                 validate: (cb, val) => {
-                    let result = forms.email(val);
+                    const result = forms.email(val);
+
                     cb(result);
                 },
-                errorMessage: 'You must enter a valid email.'
+                errorMessage: 'You must enter a valid email.',
             });
         }
     },
@@ -137,60 +139,60 @@ let Validators = {
      * @param isOptional
      */
     setPasswordValidation: (validator, passwordSelector, password2Selector, requirements, isOptional) => {
-        let $password = $(passwordSelector),
-            passwordValidations = [
-                {
-                    selector: passwordSelector,
-                    validate: (cb, val) => {
-                        let result = val.length;
+        const $password = $(passwordSelector);
+        const passwordValidations = [
+            {
+                selector: passwordSelector,
+                validate: (cb, val) => {
+                    const result = val.length;
 
-                        if (isOptional) {
-                            return cb(true);
-                        }
+                    if (isOptional) {
+                        return cb(true);
+                    }
 
-                        cb(result);
-                    },
-                    errorMessage: 'You must enter a password.'
+                    cb(result);
                 },
-                {
-                    selector: passwordSelector,
-                    validate: (cb, val) => {
-                        let result = val.match(new RegExp(requirements.alpha))
-                            && val.match(new RegExp(requirements.numeric))
-                            && val.length >= requirements.minlength;
+                errorMessage: 'You must enter a password.',
+            },
+            {
+                selector: passwordSelector,
+                validate: (cb, val) => {
+                    const result = val.match(new RegExp(requirements.alpha))
+                        && val.match(new RegExp(requirements.numeric))
+                        && val.length >= requirements.minlength;
 
-                        // If optional and nothing entered, it is valid
-                        if (isOptional && val.length === 0) {
-                            return cb(true);
-                        }
+                    // If optional and nothing entered, it is valid
+                    if (isOptional && val.length === 0) {
+                        return cb(true);
+                    }
 
-                        cb(result);
-                    },
-                    errorMessage: requirements.error
+                    cb(result);
                 },
-                {
-                    selector: password2Selector,
-                    validate: (cb, val) => {
-                        let result = val.length;
+                errorMessage: requirements.error,
+            },
+            {
+                selector: password2Selector,
+                validate: (cb, val) => {
+                    const result = val.length;
 
-                        if (isOptional) {
-                            return cb(true);
-                        }
+                    if (isOptional) {
+                        return cb(true);
+                    }
 
-                        cb(result);
-                    },
-                    errorMessage: 'You must enter a password.'
+                    cb(result);
                 },
-                {
-                    selector: password2Selector,
-                    validate: (cb, val) => {
-                        let result = val === $password.val();
+                errorMessage: 'You must enter a password.',
+            },
+            {
+                selector: password2Selector,
+                validate: (cb, val) => {
+                    const result = val === $password.val();
 
-                        cb(result);
-                    },
-                    errorMessage: 'Your passwords do not match.'
-                }
-            ];
+                    cb(result);
+                },
+                errorMessage: 'Your passwords do not match.',
+            },
+        ];
 
         validator.add(passwordValidations);
     },
@@ -205,7 +207,7 @@ let Validators = {
             validator.add({
                 selector: field,
                 validate: 'presence',
-                errorMessage: 'The \'State/Province\' field cannot be blank.'
+                errorMessage: 'The \'State/Province\' field cannot be blank.',
             });
         }
     },
@@ -215,14 +217,14 @@ let Validators = {
      * @param field
      */
     cleanUpStateValidation: (field) => {
-        let $fieldClassElement = $((`[data-type="${field.data('field-type')}"]`));
+        const $fieldClassElement = $((`[data-type="${field.data('field-type')}"]`));
 
         Object.keys(nod.classes).forEach((value) => {
             if ($fieldClassElement.hasClass(nod.classes[value])) {
                 $fieldClassElement.removeClass(nod.classes[value]);
             }
         });
-    }
+    },
 };
 
 export {Validators, insertStateHiddenField};

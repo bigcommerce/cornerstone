@@ -13,29 +13,31 @@ export default class Auth extends PageManager {
     }
 
     registerLoginValidation($loginForm) {
-        let loginModel = forms;
+        const loginModel = forms;
 
         this.loginValidator = nod({
-            submit: '.login-form input[type="submit"]'
+            submit: '.login-form input[type="submit"]',
         });
 
         this.loginValidator.add([
             {
                 selector: '.login-form input[name="login_email"]',
                 validate: (cb, val) => {
-                    let result = loginModel.email(val);
+                    const result = loginModel.email(val);
+
                     cb(result);
                 },
-                errorMessage: 'Please type in a valid email address, such as joe@aol.com.'
+                errorMessage: 'Please type in a valid email address, such as joe@aol.com.',
             },
             {
                 selector: '.login-form input[name="login_pass"]',
                 validate: (cb, val) => {
-                    let result = loginModel.password(val);
+                    const result = loginModel.password(val);
+
                     cb(result);
                 },
-                errorMessage: 'You must enter a password.'
-            }
+                errorMessage: 'You must enter a password.',
+            },
         ]);
 
         $loginForm.submit((event) => {
@@ -51,18 +53,19 @@ export default class Auth extends PageManager {
 
     registerForgotPasswordValidation($forgotPasswordForm) {
         this.forgotPasswordValidator = nod({
-            submit: '.forgot-password-form input[type="submit"]'
+            submit: '.forgot-password-form input[type="submit"]',
         });
 
         this.forgotPasswordValidator.add([
             {
                 selector: '.forgot-password-form input[name="email"]',
                 validate: (cb, val) => {
-                    let result = forms.email(val);
+                    const result = forms.email(val);
+
                     cb(result);
                 },
-                errorMessage: 'Please type in a valid email address, such as joe@aol.com.'
-            }
+                errorMessage: 'Please type in a valid email address, such as joe@aol.com.',
+            },
         ]);
 
         $forgotPasswordForm.submit((event) => {
@@ -77,17 +80,17 @@ export default class Auth extends PageManager {
     }
 
     registerCreateAccountValidator($createAccountForm) {
-        let validationModel = validation($createAccountForm),
-            createAccountValidator = nod({
-                submit: `${this.formCreateSelector} input[type='submit']`
-            }),
-            $stateElement = $('[data-field-type="State"]'),
-            emailSelector = `${this.formCreateSelector} [data-field-type='EmailAddress']`,
-            $emailElement = $(emailSelector),
-            passwordSelector = `${this.formCreateSelector} [data-field-type='Password']`,
-            $passwordElement = $(passwordSelector),
-            password2Selector = `${this.formCreateSelector} [data-field-type='ConfirmPassword']`,
-            $password2Element = $(password2Selector);
+        const validationModel = validation($createAccountForm);
+        const createAccountValidator = nod({
+            submit: `${this.formCreateSelector} input[type='submit']`,
+        });
+        const $stateElement = $('[data-field-type="State"]');
+        const emailSelector = `${this.formCreateSelector} [data-field-type='EmailAddress']`;
+        const $emailElement = $(emailSelector);
+        const passwordSelector = `${this.formCreateSelector} [data-field-type='Password']`;
+        const $passwordElement = $(passwordSelector);
+        const password2Selector = `${this.formCreateSelector} [data-field-type='ConfirmPassword']`;
+        const $password2Element = $(password2Selector);
 
         createAccountValidator.add(validationModel);
 
@@ -99,7 +102,8 @@ export default class Auth extends PageManager {
                 if (err) {
                     throw new Error(err);
                 }
-                let $field = $(field);
+
+                const $field = $(field);
 
                 if (createAccountValidator.getStatus($stateElement) !== 'undefined') {
                     createAccountValidator.remove($stateElement);
@@ -150,9 +154,9 @@ export default class Auth extends PageManager {
      * @param next
      */
     loaded(next) {
-        let $createAccountForm = classifyForm(this.formCreateSelector),
-            $loginForm = classifyForm('.login-form'),
-            $forgotPasswordForm = classifyForm('.forgot-password-form');
+        const $createAccountForm = classifyForm(this.formCreateSelector);
+        const $loginForm = classifyForm('.login-form');
+        const $forgotPasswordForm = classifyForm('.forgot-password-form');
 
         // Injected via auth.html
         this.passwordRequirements = this.context.passwordRequirements;

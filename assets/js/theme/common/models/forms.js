@@ -1,4 +1,4 @@
-let forms = {
+const forms = {
     email(value) {
         const re = /^.+@.+\..+/;
         return re.test(value);
@@ -21,7 +21,7 @@ let forms = {
      */
     notEmpty(value) {
         return value.length > 0;
-    }
+    },
 };
 
 export default forms;

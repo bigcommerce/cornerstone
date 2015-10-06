@@ -9,12 +9,12 @@ export default class TextTruncate {
             css: {},
             text: {
                 viewMore: '',
-                viewLess: ''
-            }
+                viewLess: '',
+            },
         };
         this.defaultCssOptions = {
             'max-height': '',
-            'text-overflow': 'ellipsis'
+            'text-overflow': 'ellipsis',
         };
     }
 
@@ -34,7 +34,7 @@ export default class TextTruncate {
         this.$viewAnchor = $('<a />', {
             'href': '#',
             'class': 'textTruncate-viewMore',
-            'text': this.options.open ? this.options.text.viewLess : this.options.text.viewMore
+            'text': this.options.open ? this.options.text.viewLess : this.options.text.viewMore,
         });
     }
 

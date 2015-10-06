@@ -4,19 +4,19 @@ import FacetedSearch from './common/faceted-search';
 
 export default class Category extends PageManager {
     constructor() {
-        let $productListingContainer = $('#product-listing-container'),
-            $facetedSearchContainer = $('#faceted-search-container'),
-            requestOptions = {
-                config: {
-                    category: {
-                        shop_by_price: true
-                    }
+        const $productListingContainer = $('#product-listing-container');
+        const $facetedSearchContainer = $('#faceted-search-container');
+        const requestOptions = {
+            config: {
+                category: {
+                    shop_by_price: true,
                 },
-                template: {
-                    productListing: 'category/product-listing',
-                    sidebar: 'category/sidebar'
-                }
-            };
+            },
+            template: {
+                productListing: 'category/product-listing',
+                sidebar: 'category/sidebar',
+            },
+        };
 
         super();
 
@@ -25,7 +25,7 @@ export default class Category extends PageManager {
             $facetedSearchContainer.html(content.sidebar);
 
             $('html, body').animate({
-                scrollTop: 0
+                scrollTop: 0,
             }, 100);
         });
     }

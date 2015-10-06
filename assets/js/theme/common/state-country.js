@@ -8,27 +8,23 @@ import {insertStateHiddenField} from './form-utils';
  * @returns {jQuery|HTMLElement}
  */
 function makeStateRequired(stateElement, context) {
-    let attrs,
-        $newElement,
-        $hiddenInput;
-
-    attrs = _.transform(stateElement.prop('attributes'), (result, item) => {
+    const attrs = _.transform(stateElement.prop('attributes'), (result, item) => {
         result[item.name] = item.value;
         return result;
     });
 
-    let replacementAttributes = {
+    const replacementAttributes = {
         id: attrs.id,
         'data-label': attrs['data-label'],
         class: 'form-select',
         name: attrs.name,
-        'data-field-type': attrs['data-field-type']
+        'data-field-type': attrs['data-field-type'],
     };
 
     stateElement.replaceWith($('<select></select>', replacementAttributes));
 
-    $newElement = $('[data-field-type="State"]');
-    $hiddenInput = $('[name*="FormFieldIsText"]');
+    const $newElement = $('[data-field-type="State"]');
+    const $hiddenInput = $('[name*="FormFieldIsText"]');
 
     if ($hiddenInput.length !== 0) {
         $hiddenInput.remove();
@@ -49,26 +45,24 @@ function makeStateRequired(stateElement, context) {
  * In this case we need to be able to switch to an input field and hide the required field
  */
 function makeStateOptional(stateElement) {
-    let attrs,
-        $newElement;
-
-    attrs = _.transform(stateElement.prop('attributes'), (result, item) => {
+    const attrs = _.transform(stateElement.prop('attributes'), (result, item) => {
         result[item.name] = item.value;
+
         return result;
     });
 
-    let replacementAttributes = {
+    const replacementAttributes = {
         type: 'text',
         id: attrs.id,
         'data-label': attrs['data-label'],
         class: 'form-input',
         name: attrs.name,
-        'data-field-type': attrs['data-field-type']
+        'data-field-type': attrs['data-field-type'],
     };
 
     stateElement.replaceWith($('<input />', replacementAttributes));
 
-    $newElement = $('[data-field-type="State"]');
+    const $newElement = $('[data-field-type="State"]');
 
     if ($newElement.length !== 0) {
         insertStateHiddenField($newElement);
@@ -85,8 +79,10 @@ function makeStateOptional(stateElement) {
  * @param {Object} options
  */
 function addOptions(statesArray, $selectElement, options) {
-    let container = [];
+    const container = [];
+
     container.push(`<option value="">${statesArray.prefix}</option>`);
+
     if (!_.isEmpty($selectElement)) {
         _.each(statesArray.states, (stateObj)  => {
             if (options.useIdForStates) {
@@ -95,6 +91,7 @@ function addOptions(statesArray, $selectElement, options) {
                 container.push(`<option value="${stateObj.name}">${stateObj.name}</option>`);
             }
         });
+
         $selectElement.html(container.join(' '));
     }
 }
@@ -106,9 +103,7 @@ function addOptions(statesArray, $selectElement, options) {
  * @param {Object} options
  * @param {Function} callback
  */
-export default function(stateElement, context, options, callback) {
-    context = context || {};
-
+export default function(stateElement, context = {}, options, callback) {
     /**
      * Backwards compatible for three parameters instead of four
      *
@@ -117,34 +112,37 @@ export default function(stateElement, context, options, callback) {
      * useIdForStates {Bool} - Generates states dropdown using id for values instead of strings
      */
     if (typeof options === 'function') {
+        /* eslint-disable no-param-reassign */
         callback = options;
         options = {};
+        /* eslint-enable no-param-reassign */
     }
 
     $('select[data-field-type="Country"]').on('change', (event) => {
-        let countryName = $(event.currentTarget).val();
+        const countryName = $(event.currentTarget).val();
 
         if (countryName === '') {
             return;
         }
 
         utils.api.country.getByName(countryName, (err, response) => {
-            let $currentInput;
-
             if (err) {
                 alert(context.state_error);
+
                 return callback(err);
             }
 
-            $currentInput = $('[data-field-type="State"]');
+            const $currentInput = $('[data-field-type="State"]');
 
             if (!_.isEmpty(response.data.states)) {
                 // The element may have been replaced with a select, reselect it
-                let $selectElement = makeStateRequired($currentInput, context);
+                const $selectElement = makeStateRequired($currentInput, context);
+
                 addOptions(response.data, $selectElement, options);
                 callback(null, $selectElement);
             } else {
-                let newElement = makeStateOptional($currentInput, context);
+                const newElement = makeStateOptional($currentInput, context);
+
                 callback(null, newElement);
             }
         });

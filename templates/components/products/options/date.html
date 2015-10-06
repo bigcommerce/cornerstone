@@ -9,7 +9,7 @@
     <select class="form-select form-select--date" name="attribute[{{this.id}}][month]" {{#if required}}required{{/if}}>
         <option value="">{{lang 'common.month'}}</option>
         {{#for 1 12}}
-            <option value="{{this}}" {{#equals ../selected_date.month this}}selected="selected"{{/equals}}>
+            <option value="{{$index}}" {{#equals ../selected_date.month this}}selected="selected"{{/equals}}>
                 {{lang (concat 'common.short_months.' $index)}}
             </option>
         {{/for}}

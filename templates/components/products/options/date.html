@@ -9,7 +9,7 @@
     <select class="form-select form-select--date" name="attribute[{{this.id}}][month]" {{#if required}}required{{/if}}>
         <option value="">{{lang 'common.month'}}</option>
         {{#for 1 12}}
-            <option value="{{$index}}" {{#equals ../selected_date.month this}}selected="selected"{{/equals}}>
+            <option value="{{$index}}" {{#if ../selected_date.month '==' $index}}selected="selected"{{/if}}>
                 {{lang (concat 'common.short_months.' $index)}}
             </option>
         {{/for}}
@@ -17,7 +17,7 @@
     <select class="form-select form-select--date" name="attribute[{{this.id}}][day]" {{#if required}}required{{/if}}>
         <option value="">{{lang 'common.day'}}</option>
         {{#for 1 31}}
-            <option value="{{$index}}" {{#equals ../selected_date.day this}}selected="selected"{{/equals}}>
+            <option value="{{$index}}" {{#if ../selected_date.day '==' $index}}selected="selected"{{/if}}>
                 {{$index}}
             </option>
         {{/for}}
@@ -25,7 +25,7 @@
     <select class="form-select form-select--date" name="attribute[{{this.id}}][year]" {{#if required}}required{{/if}}>
         <option value="">{{lang 'common.year'}}</option>
         {{#for earliest_year latest_year}}
-            <option value="{{$index}}" {{#equals ../selected_date.year this}}selected="selected"{{/equals}}>
+            <option value="{{$index}}" {{#if ../selected_date.year '==' $index}}selected="selected"{{/if}}>
                 {{$index}}
             </option>
         {{/for}}

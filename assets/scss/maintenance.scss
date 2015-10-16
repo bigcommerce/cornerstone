@@ -1,0 +1,161 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  background: #888 url(../img/coming-soon.jpg) no-repeat center center;
+  background-size: cover;
+  color: #798289;
+  font-family: Helvetica, Arial, Sans-Serif;
+  font-size: .8em;
+  height: 100vh;
+  line-height: 1.5em;
+  margin: 0;
+  min-width: 320px;
+  min-height: 480px;
+  padding: 20px 30px;
+
+  -ms-box-orient: horizontal;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+
+  -webkit-justify-content: space-around;
+  -ms-flex-pack: space-around;
+  justify-content: space-around;
+
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+main {
+  box-shadow: 0 2px 0 0 rgba(0,0,0,0.07);
+  background-color: #fff;
+  display: block;
+  padding: 20px 30px;
+  text-align: center;
+}
+section {
+  margin-bottom: 40px;
+}
+fieldset {
+  border: none;
+  padding: 0;
+}
+legend {
+  overflow: hidden;
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0 0 0 0);
+}
+label, input {
+  display: block;
+  height: 30px;
+  line-height: 30px;
+  width: 100%;
+}
+label {
+  color: #313b47;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+}
+input {
+  border-radius: 2px;
+  border-style:solid;
+  width: 100%;
+  -webkit-appearance: none;
+}
+input[type=text] {
+  background-color: #F7F8F9;
+  border: 1px solid #E1E6EB;
+  margin-bottom: 1rem;
+  padding: 0 1em;
+}
+input[type=submit] {
+  cursor: pointer;
+  background: #00abc9;
+  border: none;
+  color: #fff;
+  font-size: 12px;
+  padding: 0 15px;
+}
+a {
+  text-decoration: none;
+  color: #00b9d3;
+  margin: 0 5px;
+}
+h1 {
+  color: #3C4043;
+  font-weight: 300;
+  font-size: 24px;
+  margin-top: 15px;
+}
+div p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.form-field--error {
+  margin-bottom: 1rem;
+}
+.form-field--error input[type=text] {
+  margin-bottom: 0;
+}
+.form-field--error .form-inlineMessage{
+  color: #ac0005;
+  margin-top: .375rem;
+  width: 100%;
+}
+.powered-by {
+  color: #acb3be;
+  font-size: 11px;
+  font-style: italic;
+  line-height: 24px;
+}
+.powered-by a {
+  background: url('../img/bc_logo_sprite.png') 0 -75px no-repeat;
+  display: inline-block;
+  height: 22px;
+  opacity: .7;
+  text-indent: -9999px;
+  width: 95px;
+}
+.powered-by a:hover {
+  opacity: 1;
+}
+@media screen and (min-width: 540px) {
+  body {
+    font-size: 1em;
+  }
+  main {
+    margin: 0 auto;
+    padding: 45px 60px;
+    width: 500px;
+  }
+  label, input {
+    display: inline-block;
+    margin-right: 10px;
+    width: auto;
+  }
+  label {
+    text-align: left;
+  }
+  input[type=text] {
+    margin-right: 10px;
+    margin-bottom: 0;
+  }
+  .form-field {
+    display: inline-block;
+    position: relative;
+  }
+  .form-field--error .form-inlineMessage {
+    /*color: #ac0005;*/
+    left: 100px;
+    position: absolute;
+    top: 30px;
+    /*width: 100%;*/
+  }
+}

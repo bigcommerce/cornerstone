@@ -1,13 +1,15 @@
-{{#partial "page"}}
-
-<section class="page">
-    <div class="page-content page-content--centered">
-        <h1 class="page-heading">
-            {{lang 'unavailable.maintenance_title'}}
-        </h1>
-        {{> components/common/alert-error (lang 'unavailable.maintenance_message')}}
-    </div>
-</section>
-
+{{#partial "head"}}
+    <link href="{{cdn '/assets/css/maintenance.css'}}" rel="stylesheet">
 {{/partial}}
-{{> layout/base}}
+
+{{#partial "page"}}
+    <main>
+        <header>
+            <h1>{{lang 'maintenance.down'}}</h1>
+        </header>
+        <section><p>{{settings.maintenance.message}}</p></section>
+        <section></section>
+        <footer><small></small></footer>
+    </main>
+{{/partial}}
+{{> layout/empty}}

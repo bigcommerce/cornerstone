@@ -92,8 +92,8 @@
                 </label>
                 <div class="form-field form-field-group">
                     {{#each forms.gift_certificate.themes}}
-                        <input type="radio" class="form-radio" name="certificate_theme" id="theme_{{this}}" value="{{this}}.html"{{#if this '==' ../forms.gift_certificate.values.theme}} checked{{/if}}>
-                        <label class="form-label" for="theme_{{this}}">{{this}}</label>
+                        <input type="radio" class="form-radio" name="certificate_theme" id="theme_{{this.value}}" value="{{this.value}}"{{#if this.value '==' ../forms.gift_certificate.values.theme}} checked{{/if}}>
+                        <label class="form-label" for="theme_{{this.value}}">{{this.display}}</label>
                     {{/each}}
                 </div>
             </fieldset>

@@ -20,11 +20,20 @@ export default function() {
             template: 'common/cart-preview',
         };
 
+        // Redirect to full cart page
+        //
+        // https://developer.mozilla.org/en-US/docs/Browser_detection_using_the_user_agent
+        // In summary, we recommend looking for the string 'Mobi' anywhere in the User Agent to detect a mobile device.
+        if (/Mobi/i.test(navigator.userAgent)) {
+            return event.stopPropagation();
+        }
+
+        event.preventDefault();
+
         $cartDropdown
             .addClass(loadingClass)
             .html($cartLoading);
 
-        event.preventDefault();
 
         utils.api.cart.getContent(options, (err, response) => {
             $cartDropdown

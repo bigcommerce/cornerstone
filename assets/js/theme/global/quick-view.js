@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import foundation from './foundation';
 import 'foundation/js/foundation/foundation';
 import 'foundation/js/foundation/foundation.dropdown';
 import 'foundation/js/foundation/foundation.reveal';
@@ -31,7 +32,7 @@ export default function(context) {
             $modalOverlay.hide();
             $modalContent.html(response);
             $modalContent.find('.productView').addClass('productView--quickView');
-
+            foundation($modalContent);
             return new ProductDetails($modalContent, context);
         });
     });

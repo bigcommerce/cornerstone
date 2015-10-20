@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import PageManager from '../page-manager';
 import quickSearch from './global/quick-search';
 import currencySelector from './global/currency-selector';
@@ -32,7 +33,7 @@ export default class Global extends PageManager {
         fastClick(document.body);
         quickSearch();
         currencySelector();
-        foundation();
+        foundation($(document));
         quickView(this.context);
         cartPreview();
         compareProducts();

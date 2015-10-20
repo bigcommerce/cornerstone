@@ -4,10 +4,11 @@ import 'foundation/js/foundation/foundation.dropdown';
 import 'foundation/js/foundation/foundation.reveal';
 import 'foundation/js/foundation/foundation.tab';
 
-export default function() {
+
+export default function($element) {
     const $body = $('body');
 
-    $(document).foundation({
+    $element.foundation({
         dropdown: {
             // specify the class used for active dropdowns
             active_class: 'is-open',

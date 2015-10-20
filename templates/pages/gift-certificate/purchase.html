@@ -54,7 +54,7 @@
                             {{lang 'forms.gift_certificate.purchase.amount' }}
                             <small>{{lang 'common.required' }}</small>
                         </label>
-                        <input type="text" data-min="{{forms.gift_certificate.minimum.value}}" data-max="{{forms.gift_certificate.maximum.value}}" data-min-formatted="{{forms.gift_certificate.minimum.formatted}}" data-max-formatted="{{forms.gift_certificate.maximum.formatted}}" class="form-input" name="certificate_amount" id="certificate_amount" value="{{forms.gift_certificate.values.amount}}">
+                        <input type="text" data-min="{{forms.gift_certificate.minimum.value}}" data-max="{{forms.gift_certificate.maximum.value}}" data-min-formatted="{{forms.gift_certificate.minimum.formatted}}" data-max-formatted="{{forms.gift_certificate.maximum.formatted}}" class="form-input" name="certificate_amount" id="certificate_amount" value="{{forms.gift_certificate.values.amount.value}}">
                         <span class="form-inlineMessage">{{lang 'forms.gift_certificate.purchase.custom_range' min=forms.gift_certificate.minimum.formatted max=forms.gift_certificate.maximum.formatted}}</span>
                     </div>
                 {{else}}
@@ -77,7 +77,7 @@
                     </div>
                 {{/if}}
                 <div class="form-field">
-                    <input type="checkbox" class="form-checkbox" name="agree2" id="agree2">
+                    <input type="checkbox" class="form-checkbox" name="agree2" id="agree2"{{#if forms.gift_certificate.editing}} checked{{/if}}>
                     <label class="form-label" for="agree2">{{lang 'forms.gift_certificate.purchase.agree2' }}</label>
                 </div>
             </fieldset>
@@ -92,7 +92,7 @@
                 </label>
                 <div class="form-field form-field-group">
                     {{#each forms.gift_certificate.themes}}
-                        <input type="radio" class="form-radio" name="certificate_theme" id="theme_{{this}}" value="{{this}}.html">
+                        <input type="radio" class="form-radio" name="certificate_theme" id="theme_{{this}}" value="{{this}}.html"{{#if this '==' ../forms.gift_certificate.values.theme}} checked{{/if}}>
                         <label class="form-label" for="theme_{{this}}">{{this}}</label>
                     {{/each}}
                 </div>

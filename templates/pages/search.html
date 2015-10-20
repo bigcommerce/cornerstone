@@ -1,4 +1,14 @@
 {{inject 'categoryTree' forms.search.category_options}}
+
+{{#partial "head"}}
+    {{#if pagination.product_results.previous}}
+        <link rel="prev" href="{{pagination.product_results.previous}}">
+    {{/if}}
+    {{#if pagination.product_results.next}}
+        <link rel="next" href="{{pagination.product_results.next}}">
+    {{/if}}
+{{/partial}}
+
 {{#partial "page"}}
 
 <section class="nav">

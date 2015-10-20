@@ -1,6 +1,15 @@
+{{#partial "head"}}
+    {{#if pagination.brand.previous}}
+        <link rel="prev" href="{{pagination.brand.previous}}">
+    {{/if}}
+    {{#if pagination.brand.next}}
+        <link rel="next" href="{{pagination.brand.next}}">
+    {{/if}}
+{{/partial}}
+
 {{#partial "page"}}
 {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
-
+<h1 class="page-heading">{{brand.name}}</h1>
 <div class="page">
     <aside class="page-sidebar" id="faceted-search-container">
         {{> components/brand/sidebar}}

@@ -64,29 +64,9 @@ export default class Account extends PageManager {
             this.initReorderForm($reorderForm);
         }
 
-        this.bindCheckboxFields();
         this.bindDeleteAddress();
 
         next();
-    }
-
-    /**
-     * Binds all checkboxes in the orders list to a change event so it can
-     * fire an event for other handlers to listen to
-     */
-    bindCheckboxFields() {
-        $('.account-listItem .form-checkbox').on('change', (event) => {
-            let eleVal = '';
-
-            const $ele = $(event.currentTarget);
-            const id = $ele.val();
-
-            if ($ele.is(':checked')) {
-                eleVal = 'on';
-            }
-
-            this.$body.trigger('orderCheckboxChanged', [id, eleVal]);
-        });
     }
 
     /**
@@ -103,23 +83,24 @@ export default class Account extends PageManager {
     }
 
     initReorderForm($reorderForm) {
-        // Update hidden form values accordingly
-        this.$body.on('orderCheckboxChanged', (event, id, eleVal) => {
-            $reorderForm.find('[name="reorderitem\[' + id + '\]"]').val(eleVal);
-        });
 
         $reorderForm.on('submit', (event) => {
             let submitForm = false;
+            let $productReorderCheckboxes = $('.account-listItem .form-checkbox:checked');
 
-            const $reorderItems = $reorderForm.find('[name^="reorderitem"]');
+            $reorderForm.find('[name^="reorderitem"]').remove();
 
-            // If one item has a value, submit the form.
-            $reorderItems.each((i, ele) => {
-                if ($(ele).val()) {
-                    submitForm = true;
+            $productReorderCheckboxes.each((index, productCheckbox) => {
+                let productId = $(productCheckbox).val();
+                const $input = $('<input>', {
+                    type: 'hidden',
+                    name: `reorderitem[${productId}]`,
+                    value: '1'
+                });
 
-                    return true;
-                }
+                submitForm = true;
+
+                $reorderForm.append($input);
             });
 
             if (!submitForm) {

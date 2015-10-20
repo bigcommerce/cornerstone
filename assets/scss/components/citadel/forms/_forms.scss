@@ -211,6 +211,9 @@
 
 // Stencil form options
 // -----------------------------------------------------------------------------
+//
+// 1. Issue with FastClick JS library workaround: https://github.com/ftlabs/fastclick/issues/351
+//
 
 .form-option {
     border: 1px solid color("greys", "lighter");
@@ -231,6 +234,7 @@
     display: inline-block;
     min-width: remCalc(38px);
     padding: 1px spacing("quarter");
+    pointer-events: none; // 1
     text-align: center;
 }
 

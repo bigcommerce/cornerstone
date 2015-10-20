@@ -50,6 +50,9 @@
                         </dl>
                         <a href="#" data-item-edit="{{id}}">{{lang 'cart.checkout.change'}}</a>
                     {{/if}}
+                    {{#if type '==' 'GiftCertificate'}}
+                        <a href="{{edit_url}}">{{lang 'cart.checkout.change'}}</a>
+                    {{/if}}
                     {{> components/cart/item-giftwrap this}}
                     {{#if event_date}}
                         <dl class="cart-item-options">
@@ -115,6 +118,11 @@
                             <svg><use xlink:href="#icon-close"></use></svg>
                         </a>
                     {{else}}
+                        {{#if type '==' 'GiftCertificate'}}
+                            <a class="cart-remove icon" data-cart-itemid="{{id}}" href="#" data-confirm-delete="{{lang 'cart.confirm_delete'}}">
+                                <svg><use xlink:href="#icon-close"></use></svg>
+                            </a>
+                        {{/if}}
                         <span class="cart-remove cart-remove--spacer"></span>
                     {{/if}}
                 </td>

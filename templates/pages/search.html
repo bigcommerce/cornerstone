@@ -12,43 +12,41 @@
 {{#partial "page"}}
 
 <section class="nav">
-    <div class="page-content page-content--centered">
-        {{#if forms.search.query}}
-            <h1 class="page-heading">
-                {{lang 'search.results.count' count=result_count search_query=forms.search.query}}
-            </h1>
-        {{/if}}
-        <nav class="navBar navBar--sub">
-            <ul class="navBar-section account-navigation">
+    {{#if forms.search.query}}
+        <h1 class="page-heading">
+            {{lang 'search.results.count' count=result_count search_query=forms.search.query}}
+        </h1>
+    {{/if}}
+    <nav class="navBar navBar--sub">
+        <ul class="navBar-section account-navigation">
+            <li class="navBar-item">
+                <a class="navBar-action" href="#product-listing-container" data-product-results-toggle>
+                    {{lang 'search.results.product_count' count=pagination.product_results.total}}
+                </a>
+            </li>
+            <li class="navBar-item">
+                <a class="navBar-action" href="#search-results-content" data-content-results-toggle>
+                    {{lang 'search.results.content_count' count=content_results.length}}
+                </a>
+            </li>
+            {{#unless product_results.faceted_search_enabled}}
+                <li class="navBar-item">|</li>
                 <li class="navBar-item">
-                    <a class="navBar-action" href="#product-listing-container" data-product-results-toggle>
-                        {{lang 'search.results.product_count' count=pagination.product_results.total}}
+                    <a class="navBar-action toggleLink" data-collapsible href="#advanced-search-content">
+                        <span class="toggleLink-text toggleLink-text--on">
+                            {{lang 'forms.search.hide'}}
+                        </span>
+                        <span class="toggleLink-text toggleLink-text--off">
+                            {{lang 'forms.search.show'}}
+                        </span>
                     </a>
                 </li>
-                <li class="navBar-item">
-                    <a class="navBar-action" href="#search-results-content" data-content-results-toggle>
-                        {{lang 'search.results.content_count' count=content_results.length}}
-                    </a>
-                </li>
-                {{#unless product_results.faceted_search_enabled}}
-                    <li class="navBar-item">|</li>
-                    <li class="navBar-item">
-                        <a class="navBar-action toggleLink" data-collapsible href="#advanced-search-content">
-                            <span class="toggleLink-text toggleLink-text--on">
-                                {{lang 'forms.search.hide'}}
-                            </span>
-                            <span class="toggleLink-text toggleLink-text--off">
-                                {{lang 'forms.search.show'}}
-                            </span>
-                        </a>
-                    </li>
-                {{/unless}}
-            </ul>
-        </nav>
-        {{#unless product_results.faceted_search_enabled}}
-            {{>components/search/advanced-search}}
-        {{/unless}}
-    </div>
+            {{/unless}}
+        </ul>
+    </nav>
+    {{#unless product_results.faceted_search_enabled}}
+        {{>components/search/advanced-search}}
+    {{/unless}}
 </section>
 
 <section class="page">

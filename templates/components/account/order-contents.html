@@ -11,12 +11,14 @@
         {{/if}}
     <li class="account-listItem">
         <div class="account-product account-product--alignMiddle">
-            <div class="account-product-checkItem">
-                <input class="form-checkbox" type="checkbox" id="account-product-id-{{order_product_id}}" value="{{order_product_id}}">
-                <label for="account-product-id-{{order_product_id}}" class="form-label">
-                    <span class="u-hiddenVisually">Checkbox {{order_product_id}} label</span>
-                </label>
-            </div>
+            {{#if show_reorder}}
+                <div class="account-product-checkItem">
+                    <input class="form-checkbox" type="checkbox" id="account-product-id-{{order_product_id}}" value="{{order_product_id}}">
+                    <label for="account-product-id-{{order_product_id}}" class="form-label">
+                        <span class="u-hiddenVisually">Checkbox {{order_product_id}} label</span>
+                    </label>
+                </div>
+            {{/if}}
             <figure class="account-product-figure">
                 {{#if type '===' 'giftcertificate'}}
                     <img class="cart-item-image" src="{{cdn ../../theme_settings.default_image_gift_certificate}}" alt="GiftCertificate">
@@ -64,6 +66,9 @@
                     {{#if refunded_qty}}
                         <p class="account-product-refundQty">{{lang 'account.orders.refunded_quantity' qty=refunded_qty}}</p>
                     {{/if}}
+                {{/if}}
+                {{#if reorder_message}}
+                    <p>{{reorder_message}}</p>
                 {{/if}}
             </div>
         </div>

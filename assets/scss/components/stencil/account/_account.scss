@@ -138,10 +138,6 @@
 .account-product-detail {
     @include grid-column(12);
 
-    + .account-product-detail {
-        margin-top: spacing("base");
-    }
-
     @include breakpoint("small") {
         width: grid-calc(4, $total-columns);
 
@@ -156,6 +152,10 @@
 
     @include breakpoint("large") {
         width: grid-calc(3, $total-columns);
+    }
+
+    + .account-product-detail {
+        margin-top: spacing("base");
     }
 }
 
@@ -266,19 +266,6 @@
 }
 
 
-// Account pagination
-// -----------------------------------------------------------------------------
-
-.account {
-
-    .pagination {
-        color: color("greys", "light");
-        margin-top: spacing("double");
-        text-align: center;
-    }
-}
-
-
 // Account status
 // -----------------------------------------------------------------------------
 
@@ -321,10 +308,16 @@
 }
 
 
-// Account panel
+// Account pagination & panel
 // -----------------------------------------------------------------------------
 
 .account {
+
+    .pagination {
+        color: color("greys", "light");
+        margin-top: spacing("double");
+        text-align: center;
+    }
 
     .panel {
         background-color: color("greys", "lightest");

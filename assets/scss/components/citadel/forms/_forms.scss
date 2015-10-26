@@ -17,22 +17,6 @@
 // Citadel inline messages
 // -----------------------------------------------------------------------------
 
-.form-checkbox,
-.form-radio {
-
-    + .form-label {
-
-        &:last-child {
-            display: block;
-            margin-bottom: $form-checkRadio-label-last-marginBottom;
-        }
-    }
-}
-
-
-// Citadel inline messages
-// -----------------------------------------------------------------------------
-
 .form-inlineMessage {
     display: block;
 }
@@ -85,19 +69,17 @@
 
     + .form-label {
 
-        &::before {
-            top: $form-checkRadio-labelBefore-top;
+        &:last-child {
+            display: block;
+            margin-bottom: $form-checkRadio-label-last-marginBottom;
         }
-    }
-}
-
-.form-checkbox,
-.form-radio {
-
-    + .form-label {
 
         &::after {
             top: $form-checkRadio-labelAfter-top;
+        }
+
+        &::before {
+            top: $form-checkRadio-labelBefore-top;
         }
     }
 }
@@ -116,8 +98,8 @@
     }
 
     .button {
-        width: 100%;
         margin: 0 0 spacing("half");
+        width: 100%;
 
         @include breakpoint("small") {
             margin: 0 0 0 spacing("half");
@@ -145,11 +127,11 @@
 
 .form-select--small,
 .form-select--date {
-    padding: spacing("third") (spacing("single") + spacing("half")) spacing("third") spacing("half");
+    background-position: right spacing("third") top spacing("third");
+    background-size: remCalc(18px);
     height: spacing("single") + spacing("half");
     max-width: 20rem;
-    background-size: remCalc(18px);
-    background-position: right spacing("third") top spacing("third");
+    padding: spacing("third") (spacing("single") + spacing("half")) spacing("third") spacing("half");
 }
 
 .form-select--short {
@@ -197,11 +179,11 @@
 }
 
 .form-input--incrementTotal {
-    border: none;
+    border: 0;
     display: inline-block;
-    height: auto;
     font-size: fontSize("smaller");
     font-weight: fontWeight("bold");
+    height: auto;
     padding: 0;
     text-align: center;
     vertical-align: middle;
@@ -292,6 +274,6 @@
 
 .form-row--half > .form-field:nth-child(odd) {
     @include breakpoint("small") {
-        clear:left;
+        clear: left;
     }
 }

@@ -7,7 +7,7 @@
 // -----------------------------------------------------------------------------
 
 .blog {
-    margin: 0 auto spacing('single') auto;
+    margin: 0 auto spacing("single");
     width: grid-calc(8, $total-columns);
 
     + .blog {
@@ -21,8 +21,8 @@
         text-align: center;
 
         @include breakpoint("medium") {
-            text-align: left;
             margin-left: spacing("single");
+            text-align: left;
         }
     }
 
@@ -30,14 +30,16 @@
         text-align: center;
 
         @include breakpoint("medium") {
-            text-align: left;
             margin-left: spacing("single");
+            text-align: left;
         }
     }
 
+    // scss-lint:disable SelectorFormat
     .addthis_toolbox {
-        margin-top: spacing('double');
+        margin-top: spacing("double");
     }
+    // scss-lint:enable SelectorFormat
 }
 
 .blog-title {

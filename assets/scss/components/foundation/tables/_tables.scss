@@ -23,8 +23,8 @@
 }
 
 .table-actions {
-    text-align: center;
     margin: spacing("single");
+    text-align: center;
 
     .form {
         margin-bottom: 0;
@@ -50,8 +50,8 @@
 // -----------------------------------------------------------------------------
 
 .table--line {
-    border-width: 0 0 1px;
     border-color: color("greys", "lightest");
+    border-width: 0 0 1px;
 
     .table-thead {
         background-color: color("whites", "bright");
@@ -59,14 +59,10 @@
         border-width: 0 0 1px;
 
         tr {
-
+            // scss-lint:disable SelectorDepth, NestingDepth
             th {
                 padding-left: 0;
                 padding-right: 0;
-
-                + th {
-                    padding-left: spacing("single");
-                }
 
                 @include breakpoint("small") {
                     text-align: center;
@@ -79,6 +75,10 @@
                         text-align: right;
                     }
                 }
+
+                + th {
+                    padding-left: spacing("single");
+                }
             }
         }
     }
@@ -87,13 +87,10 @@
         border-color: color("greys", "lightest");
 
         td {
+            // scss-lint:disable NestingDepth
             display: block;
             padding-left: 0;
             padding-right: 0;
-
-            + td {
-                padding-left: spacing("single");
-            }
 
             @include breakpoint("small") {
                 text-align: center;
@@ -105,6 +102,10 @@
                 &:last-child {
                     text-align: right;
                 }
+            }
+
+            + td {
+                padding-left: spacing("single");
             }
         }
     }

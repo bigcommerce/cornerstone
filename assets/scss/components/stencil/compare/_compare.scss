@@ -33,17 +33,14 @@
 }
 
 
-// Compare table headings and spacing
+// Compare table headings
 // -----------------------------------------------------------------------------
-
-.compareTable-product,
-.compareTable-heading {
-    font-weight: fontWeight("normal");
-}
 
 .compareTable-heading {
     font-family: fontFamily("headingSans");
     font-size: fontSize("smaller");
+    font-weight: fontWeight("normal");
+    padding: (spacing("base") + spacing("sixth")) spacing("base");
     position: relative;
     text-align: right;
     width: 0;
@@ -63,13 +60,9 @@
     }
 }
 
-.compareTable-heading {
-    padding: (spacing("base") + spacing("sixth")) spacing("base");
-}
 
-.compareTable-product {
-    padding: (spacing("single") + spacing("third")) spacing("base") (spacing("base") + spacing("sixth"));
-}
+// Compare table item
+// -----------------------------------------------------------------------------
 
 .compareTable-item {
     padding: (spacing("double") + spacing("sixth")) spacing("base") (spacing("base") + spacing("sixth"));
@@ -77,10 +70,6 @@
     @include breakpoint("medium") {
         padding-top: spacing("base") + spacing("sixth");
     }
-}
-
-.compareTable-action {
-    padding: 0 spacing("base") spacing("base");
 }
 
 
@@ -92,9 +81,9 @@
     border-radius: 50%;
     height: spacing("single") + spacing("base");
     position: absolute;
+    right: -(spacing("base"));
     top: -(spacing("base"));
     transition: background-color 0.15s ease;
-    right: -(spacing("base"));
     width: spacing("single") + spacing("base");
 
     &:hover {
@@ -114,6 +103,8 @@
 // -----------------------------------------------------------------------------
 
 .compareTable-product {
+    font-weight: fontWeight("normal");
+    padding: (spacing("single") + spacing("third")) spacing("base") (spacing("base") + spacing("sixth"));
 
     .card {
         margin-bottom: 0;
@@ -130,6 +121,7 @@
 // -----------------------------------------------------------------------------
 
 .compareTable-action {
+    padding: 0 spacing("base") spacing("base");
 
     .button {
         display: block;

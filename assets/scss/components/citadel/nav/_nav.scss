@@ -107,18 +107,19 @@
         float: none;
         margin: 0 spacing("half");
 
-        &.is-active {
-            > .navBar-action {
-                color: color("greys", "dark");
-            }
+        @include breakpoint("medium") {
+            display: inline-block;
+        }
 
+        &.is-active {
+            // scss-lint:disable NestingDepth
             @include breakpoint("medium") {
                 border-bottom: 1px solid color("greys", "darker");
             }
-        }
 
-        @include breakpoint("medium") {
-            display: inline-block;
+            > .navBar-action {
+                color: color("greys", "dark");
+            }
         }
     }
 

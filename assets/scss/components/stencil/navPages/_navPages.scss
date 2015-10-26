@@ -13,17 +13,13 @@
     background-color: $navPage-subMenu-backgroundColor;
     bottom: 0;
     display: none;
-    left: 0;
     height: 100%;
+    left: 0;
     overflow-y: scroll;
     padding: spacing("single");
     position: absolute;
     right: 0;
     z-index: zIndex("lower");
-
-    &.is-open {
-        display: block;
-    }
 
     @include breakpoint("medium") {
         background: transparent;
@@ -34,6 +30,10 @@
         position: relative;
         top: auto;
     }
+
+    &.is-open {
+        display: block;
+    }
 }
 
 //
@@ -43,10 +43,6 @@
 .navPages {
     position: relative;
 
-    ul {
-        list-style: none;
-    }
-
     @include breakpoint("medium") {
         @include grid-row(); // 1
         @include nav($style: "navBar", $wrapper: "nav");
@@ -54,10 +50,13 @@
         text-align: center;
     }
 
+    ul {
+        list-style: none;
+    }
 }
 
 .navPages-list {
-    margin:0;
+    margin: 0;
 
     @include breakpoint("medium") {
         display: inline-block;
@@ -74,6 +73,20 @@
     text-decoration: none;
     text-transform: uppercase;
 
+    @include breakpoint("medium") {
+        padding: spacing("half") (spacing("half") + spacing("quarter")) (spacing("half") + spacing("quarter"));
+
+        &.is-open {
+            background-color: $navPage-subMenu-backgroundColor;
+            color: $navPages-action-color--active;
+
+            svg {
+                fill: $navPages-action-color--active;
+                stroke: $navPages-action-color--active;
+            }
+        }
+    }
+
     &:hover {
         color: $navPages-action-color--hover;
 
@@ -82,21 +95,6 @@
             stroke: $navPages-action-color--hover;
         }
     }
-
-    @include breakpoint("medium") {
-        padding: spacing("half") (spacing("half") + spacing("quarter")) (spacing("half") + spacing("quarter"));
-
-        &.is-open {
-            color: $navPages-action-color--active;
-            background-color: $navPage-subMenu-backgroundColor;
-
-            svg {
-                fill: $navPages-action-color--active;
-                stroke: $navPages-action-color--active;
-            }
-        }
-
-    }
 }
 
 .navPages-action-moreIcon {
@@ -104,12 +102,12 @@
     margin-left: spacing("quarter");
     transform: rotate(-90deg);
 
-    .has-subMenu.is-open & {
-        transform: rotate(0);
-    }
-
     @include breakpoint("medium") {
         transform: none;
+    }
+
+    .has-subMenu.is-open & {
+        transform: rotate(0);
     }
 
     svg {
@@ -130,7 +128,7 @@
     padding-left: spacing("half");
 
     @include breakpoint("medium") {
-        border: none;
+        border: 0;
     }
 }
 
@@ -144,18 +142,11 @@
 .navPage-subMenu {
     display: none;
 
-    &.is-open {
-        display: block;
-    }
-
-    .navPages-action-moreIcon {
-        transform: none;
-    }
-
     @include breakpoint("medium") {
+        // scss-lint:disable ImportantRule
         @include grid-row();
         background-color: $navPage-subMenu-backgroundColor;
-        padding: spacing("single") spacing("single") (spacing("single")+spacing("half"))!important;
+        padding: spacing("single") spacing("single") (spacing("single") + spacing("half")) !important;
         position: absolute;
         text-align: left;
 
@@ -169,10 +160,19 @@
             display: none;
         }
     }
+
+    &.is-open {
+        display: block;
+    }
+
+    .navPages-action-moreIcon {
+        transform: none;
+    }
 }
 
 .navPage-subMenu-item {
     @include breakpoint("medium") {
+        // scss-lint:disable ImportantRule
         @include grid-column(3);
         padding: 0 0.75rem !important; // 1
 
@@ -185,7 +185,6 @@
             border-bottom: solid 1px $navPage-subMenu-borderColor;
             margin-bottom: spacing("half") + spacing("quarter");
         }
-
     }
 }
 
@@ -214,9 +213,12 @@
 // -----------------------------------------------------------------------------
 
 .navPages-quickSearch {
-
     border-bottom: solid 1px $navPage-subMenu-borderColor;
     margin-bottom: spacing("half");
+
+    @include breakpoint("medium") {
+        display: none;
+    }
 
     > .container {
         padding: 0;
@@ -228,10 +230,6 @@
 
     .form-field {
         margin-bottom: spacing("half") + spacing("quarter");
-    }
-
-    @include breakpoint("medium") {
-        display: none;
     }
 }
 
@@ -245,6 +243,11 @@
     margin-top: spacing("half");
     padding-top: spacing("quarter");
 
+    @include breakpoint("medium") {
+        display: none;
+    }
+
+    // scss-lint:disable IdSelector
     #currencySelection2 {
         background-color: color("whites", "bright");
         border: solid 1px $navPage-subMenu-borderColor;
@@ -252,6 +255,7 @@
         .dropdown-menu-item {
             padding: 0;
 
+            // scss-lint:disable NestingDepth
             &:not(:last-child) {
                 border-bottom: solid 1px $navPage-subMenu-borderColor;
             }
@@ -261,9 +265,4 @@
             padding: spacing("half") spacing("single");
         }
     }
-
-    @include breakpoint("medium") {
-        display: none;
-    }
 }
-

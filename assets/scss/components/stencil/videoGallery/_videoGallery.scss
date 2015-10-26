@@ -32,19 +32,19 @@
     text-decoration: none;
     transition: opacity 100ms ease-out;
 
+    @include breakpoint("medium") {
+        margin-bottom: $videoGallery-spacing;
+    }
+
     &:hover,
     &.is-active {
         color: color("greys", "darker");
         opacity: 1;
     }
-
-    @include breakpoint("medium") {
-        margin-bottom: $videoGallery-spacing;
-    }
 }
 
 .video-figure {
-    margin-right: $videoGallery-spacing
+    margin-right: $videoGallery-spacing;
 }
 
 .video-title {

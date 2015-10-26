@@ -200,7 +200,7 @@
 //
 
 .form-option {
-    border: 1px solid color("greys", "lighter");
+    border: 1px solid stencilColor("productOption-borderColor");
     color: $form-label-font-color;
     cursor: pointer;
     display: inline-block;
@@ -208,9 +208,13 @@
     padding: 1px;
     transition: all 0.15s ease;
 
+    &:hover {
+        border-color: stencilColor("productOption-borderColor-hover");
+    }
+
     .form-radio:checked + & {
-        border-color: color("greys", "darker");
-        box-shadow: 0 0 0 1px color("greys", "darker");
+        border-color: stencilColor("productOption-borderColor-active");
+        box-shadow: 0 0 0 1px stencilColor("productOption-borderColor-active");
     }
 }
 

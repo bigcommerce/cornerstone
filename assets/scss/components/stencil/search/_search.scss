@@ -5,16 +5,21 @@
 .search-price-range {
     label {
         input {
-            display: inline;
+            display: block;
             padding-left: spacing('single');
-            width: 6rem;
+
+            @include breakpoint("small") {
+                display: inline;
+                width: 6rem;
+            }
         }
 
-        display: inline;
-
         span {
-            padding-right: spacing('single');
-            padding-left: spacing('single');
+            @include breakpoint("small") {
+                display: inline;
+                padding-right: spacing('single');
+                padding-left: spacing('single');
+            }
         }
     }
 }

@@ -83,19 +83,18 @@ export default class Account extends PageManager {
     }
 
     initReorderForm($reorderForm) {
-
         $reorderForm.on('submit', (event) => {
+            const $productReorderCheckboxes = $('.account-listItem .form-checkbox:checked');
             let submitForm = false;
-            let $productReorderCheckboxes = $('.account-listItem .form-checkbox:checked');
 
             $reorderForm.find('[name^="reorderitem"]').remove();
 
             $productReorderCheckboxes.each((index, productCheckbox) => {
-                let productId = $(productCheckbox).val();
+                const productId = $(productCheckbox).val();
                 const $input = $('<input>', {
                     type: 'hidden',
                     name: `reorderitem[${productId}]`,
-                    value: '1'
+                    value: '1',
                 });
 
                 submitForm = true;

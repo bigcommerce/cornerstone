@@ -32,6 +32,7 @@
         box-shadow: container("dropShadow");
         position: absolute;
 
+        // scss-lint:disable NestingDepth
         &.is-open {
             &:before {
                 @include css-triangle(
@@ -67,6 +68,7 @@
 
     &.has-dropdown {
 
+        // scss-lint:disable NestingDepth
         &:after {
             background: $dropdown-icon no-repeat;
             background-position: 50%;
@@ -83,20 +85,22 @@
 }
 
 .navUser-action--storeCredit + .dropdown-menu {
-    padding: spacing("single");
     max-width: remCalc(300px);
+    padding: spacing("single");
 
     &:before {
+        // scss-lint:disable ImportantRule
         left: remCalc(140px) !important; // 3
     }
 
     &:after {
+        // scss-lint:disable ImportantRule
         left: remCalc(142px) !important; // 3
     }
 }
 
 .navUser-action-divider {
-    border-right:  container("border");
+    border-right: container("border");
     color: stencilColor("color-textSecondary");
     display: inline-block;
     padding: 0 remCalc(20) 0 0;
@@ -116,20 +120,21 @@
 
     .dropdown-menu {
         max-width: 300px;
-    }
 
-    .dropdown-menu.is-open {
-        &:before,
-        &:after {
-            left: auto;
-        }
+        // scss-lint:disable NestingDepth
+        &.is-open {
+            &:before,
+            &:after {
+                left: auto;
+            }
 
-        &:before {
-            right: spacing("single") - remCalc(2);
-        }
+            &:before {
+                right: spacing("single") - remCalc(2);
+            }
 
-        &:after {
-            right: spacing("single");
+            &:after {
+                right: spacing("single");
+            }
         }
     }
 }
@@ -144,6 +149,7 @@
 
 .navUser-item--compare {
     display: none;
+
     &.show {
         display: block;
     }
@@ -153,6 +159,7 @@
 
     .navUser-or {
 
+        // scss-lint:disable NestingDepth
         + .navUser-action {
             margin-right: -0.5rem; // 1
         }
@@ -185,6 +192,7 @@
     &.is-open {
         position: relative;
 
+        // scss-lint:disable NestingDepth
         &:before {
             @include css-triangle(
                 $triangle-direction: "bottom",
@@ -208,6 +216,7 @@
     }
 
     &.is-open {
+        // scss-lint:disable ImportantRule
         left: 0 !important; // 1
         outline: none;
         right: 0 !important; // 1

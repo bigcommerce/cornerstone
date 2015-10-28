@@ -9,10 +9,6 @@
 .previewCart {
     @include grid-row;
 
-    .productView {
-        display: none;
-    }
-
     @include breakpoint("medium") {
         .productView {
             @include grid-column(9);
@@ -34,6 +30,10 @@
             margin-top: 0;
         }
     }
+
+    .productView {
+        display: none;
+    }
 }
 
 .previewCartCheckout {
@@ -51,6 +51,7 @@
         margin: 0;
         width: 100%;
 
+        // scss-lint:disable NestingDepth
         + .button,
         + p {
             margin-top: spacing("half");
@@ -73,6 +74,7 @@
 
 .previewCartCheckout-additionalCheckoutButtons {
     p {
+        // scss-lint:disable ImportantRule
         float: none !important; // 1
     }
 }

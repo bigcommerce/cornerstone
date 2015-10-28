@@ -4,9 +4,12 @@
 
 .search-price-range {
     label {
+        display: inline;
+
+        // scss-lint:disable SelectorDepth, NestingDepth
         input {
             display: block;
-            padding-left: spacing('single');
+            padding-left: spacing("single");
 
             @include breakpoint("small") {
                 display: inline;
@@ -14,11 +17,12 @@
             }
         }
 
+        // scss-lint:disable SelectorDepth, NestingDepth
         span {
             @include breakpoint("small") {
                 display: inline;
-                padding-right: spacing('single');
-                padding-left: spacing('single');
+                padding-left: spacing("single");
+                padding-right: spacing("single");
             }
         }
     }
@@ -35,11 +39,11 @@
 }
 
 .search-refine {
-    margin-left: spacing('single');
+    margin-left: spacing("single");
 }
 
 .panel-body {
     .suggestion-type {
-        margin-top: spacing('half');
+        margin-top: spacing("half");
     }
 }

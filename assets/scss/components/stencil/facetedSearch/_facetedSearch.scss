@@ -19,6 +19,7 @@
     padding: $facetedSearch-toggle-padding;
 
     @include breakpoint("medium") {
+        // scss-lint:disable ImportantRule
         display: none !important; // 1
     }
 
@@ -59,12 +60,14 @@
     display: none;
 
     @include breakpoint("medium") {
+        // scss-lint:disable ImportantRule
         display: block !important; // 1
     }
 
     &.is-open {
         display: block;
 
+        // scss-lint:disable SelectorDepth, NestingDepth
         .accordion--navList,
         .accordion-block:first-child .accordion-navigation {
             border-top-left-radius: 0;

@@ -26,26 +26,27 @@
     margin-top: spacing("single");
     padding: spacing("single");
     position: relative;
-}
 
-.addressBox .form-actions {
-    bottom: 0;
-    left: 0;
-    padding: spacing("single");
-    position: absolute;
-    right: 0;
-    text-align: left;
+    .form-actions {
+        bottom: 0;
+        left: 0;
+        padding: spacing("single");
+        position: absolute;
+        right: 0;
+        text-align: left;
 
-    > * {
-        margin-left: 0;
-        margin-right: spacing("half");
+        // scss-lint:disable SelectorDepth, NestingDepth
+        > * {
+            margin-left: 0;
+            margin-right: spacing("half");
+        }
     }
 }
 
 .addressBox--newAddress {
-    display: block;
     background: color("whites", "bright");
     border: 1px solid color("greys", "lighter");
+    display: block;
     font-size: fontSize("small");
     text-align: center;
 }

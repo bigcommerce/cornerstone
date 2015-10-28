@@ -6,6 +6,9 @@ module.exports = {
     },
 
     allFiles: [
-        'assets/scss/**/*.scss'
+        'assets/scss/**/*.scss',
+        '!assets/scss/vendor/**/*.scss',
+        '!assets/scss/invoice.scss',
+        '!assets/scss/maintenance.scss'
     ]
 };

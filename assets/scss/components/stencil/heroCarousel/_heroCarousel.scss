@@ -40,6 +40,7 @@
 
     .slick-next {
         right: 15px;
+
         @include breakpoint("medium") {
             right: 25px;
         }
@@ -47,6 +48,7 @@
 
     .slick-prev {
         left: 15px;
+
         @include breakpoint("medium") {
             left: 25px;
         }
@@ -59,6 +61,7 @@
             bottom: spacing("single");
         }
 
+        // scss-lint:disable SelectorDepth, NestingDepth
         li {
             @include carouselOpaqueBackgrounds($slick-dot-bgColor);
         }
@@ -87,7 +90,7 @@
     @include breakpoint("medium") {
         @include carouselOpaqueBackgrounds;
         left: 0;
-        margin:0  auto;
+        margin: 0 auto;
         padding: spacing("single") * 1.5;
         position: absolute;
         right: 0;

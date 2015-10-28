@@ -69,10 +69,6 @@ $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-sp
     display: block; // 1
     padding: $cart-item-spacing 0;
 
-    img {
-        width: 100%;
-    }
-
     @include breakpoint("small") {
         @include clearfix;
         padding-left: grid-calc(3, $total-columns);
@@ -86,6 +82,10 @@ $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-sp
         &:after {
             display: none;
         }
+    }
+
+    img {
+        width: 100%;
     }
 }
 
@@ -144,10 +144,6 @@ $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-sp
     clear: both;
     width: 100%;
 
-    + .cart-item-info {
-        margin-top: spacing("half");
-    }
-
     @include breakpoint("small") {
         clear: none;
         float: left;
@@ -166,6 +162,10 @@ $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-sp
         &:last-child {
             text-align: right;
         }
+    }
+
+    + .cart-item-info {
+        margin-top: spacing("half");
     }
 }
 
@@ -303,6 +303,26 @@ $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-sp
             border-top: 1px solid color("greys", "lightest");
         }
     }
+
+    .form-input {
+        display: inline-block;
+        height: remCalc(32px);
+        padding: spacing("third");
+        vertical-align: top;
+        width: grid-calc(9, $total-columns);
+    }
+
+    .form-select {
+        background-position: right remCalc(5px) top remCalc(7px);
+        background-size: remCalc(20px) remCalc(20px);
+        height: remCalc(32px);
+        margin-bottom: spacing("half");
+        padding: spacing("third") spacing("half");
+    }
+
+    .form-inlineMessage {
+        text-align: left;
+    }
 }
 
 .cart-total-label {
@@ -359,29 +379,6 @@ $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-sp
 // Cart actions
 // -----------------------------------------------------------------------------
 
-.cart-totals {
-
-    .form-input {
-        display: inline-block;
-        height: remCalc(32px);
-        padding: spacing("third");
-        vertical-align: top;
-        width: grid-calc(9, $total-columns);
-    }
-
-    .form-select {
-        background-position: right remCalc(5px) top remCalc(7px);
-        background-size: remCalc(20px) remCalc(20px);
-        height: remCalc(32px);
-        margin-bottom: spacing("half");
-        padding: spacing("third") spacing("half");
-    }
-
-    .form-inlineMessage {
-        text-align: left;
-    }
-}
-
 .coupon-code-add,
 .coupon-code-cancel,
 .shipping-estimate-show,
@@ -402,7 +399,8 @@ $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-sp
     font-style: italic;
 }
 
-.coupon-form, .cart-gift-certificate-form {
+.coupon-form,
+.cart-gift-certificate-form {
     @include clearfix;
     font-size: 0;
     margin-bottom: spacing("base");
@@ -458,7 +456,8 @@ $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-sp
     margin-bottom: 1em;
     width: 60%;
 
-    .form-input, .form-select {
+    .form-input,
+    .form-select {
         margin-bottom: 0;
     }
 }
@@ -493,10 +492,13 @@ $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-sp
 .cart-additionalCheckoutButtons { // 1
     @include clearfix;
 
+    // scss-lint:disable SelectorFormat
     .FloatRight {
         @include clearfix;
 
+        // scss-lint:disable SelectorDepth, NestingDepth
         p {
+            // scss-lint:disable ImportantRule
             float: none !important;
             margin-bottom: spacing("quarter");
             text-align: right;

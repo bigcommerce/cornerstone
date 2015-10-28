@@ -14,8 +14,8 @@
 
     @include u-listBullets("none");
     @include grid-row($behavior: "nest");
-    margin-bottom: spacing("single");
     font-size: 0; // 1
+    margin-bottom: spacing("single");
 
     .product {
         @include grid-column(6, $float: none);
@@ -44,6 +44,7 @@
 .page-sidebar + .page-content {
 
     .productGrid {
+        // scss-lint:disable SelectorDepth, NestingDepth
         .product { // 1
             @include breakpoint("small") {
                 width: grid-calc(4, $total-columns);
@@ -81,8 +82,8 @@
     .product {
         break-inside: avoid;
         display: block;
-        padding: 0;
         margin-bottom: spacing("double");
+        padding: 0;
         width: 100%;
     }
 
@@ -95,6 +96,7 @@
         @include grid-row($behavior: "nest");
         font-size: 0;
 
+        // scss-lint:disable SelectorDepth, NestingDepth
         .product {
             @include grid-column(3, $float: none);
             display: inline-block;
@@ -113,7 +115,8 @@
 // -----------------------------------------------------------------------------
 
 .productGrid--maxCol6 {
-    .no-csscolumns & { 
+    .no-csscolumns & {
+        // scss-lint:disable SelectorDepth, NestingDepth
         .product {
             @include breakpoint("medium") {
                 width: grid-calc(2, $total-columns);
@@ -129,7 +132,8 @@
 }
 
 .productGrid--maxCol3 {
-    .no-csscolumns & { 
+    .no-csscolumns & {
+        // scss-lint:disable SelectorDepth, NestingDepth
         .product {
             @include breakpoint("medium") {
                 width: grid-calc(4, $total-columns);

@@ -14,8 +14,8 @@
 
     @include u-listBullets("none");
     @include grid-row($behavior: "nest");
-    margin-bottom: spacing("single");
     font-size: 0; // 1
+    margin-bottom: spacing("single");
 
     .brand {
         @include grid-column(6, $float: none);
@@ -23,16 +23,17 @@
         font-size: fontSize("base"); // 1
         vertical-align: top;
 
-        .card-title {
-            text-align: center;
-        }
-
         @include breakpoint("small") {
             width: grid-calc(4, $total-columns);
         }
 
         @include breakpoint("medium") {
             width: grid-calc(3, $total-columns);
+        }
+
+        // scss-lint:disable SelectorDepth, NestingDepth
+        .card-title {
+            text-align: center;
         }
     }
 }

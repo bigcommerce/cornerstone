@@ -107,18 +107,19 @@
         float: none;
         margin: 0 spacing("half");
 
-        &.is-active {
-            > .navBar-action {
-                color: color("greys", "dark");
-            }
+        @include breakpoint("medium") {
+            display: inline-block;
+        }
 
+        // scss-lint:disable SelectorDepth, NestingDepth
+        &.is-active {
             @include breakpoint("medium") {
                 border-bottom: 1px solid color("greys", "darker");
             }
-        }
 
-        @include breakpoint("medium") {
-            display: inline-block;
+            > .navBar-action {
+                color: color("greys", "dark");
+            }
         }
     }
 
@@ -127,6 +128,7 @@
         font-size: fontSize("base");
         padding: 0;
 
+        // scss-lint:disable NestingDepth
         &:hover {
             color: color("greys", "darker");
         }

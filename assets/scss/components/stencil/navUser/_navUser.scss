@@ -32,8 +32,8 @@
         box-shadow: container("dropShadow");
         position: absolute;
 
+        // scss-lint:disable NestingDepth
         &.is-open {
-            // scss-lint:disable NestingDepth
             &:before {
                 @include css-triangle(
                     $triangle-direction: "bottom",
@@ -68,6 +68,7 @@
 
     &.has-dropdown {
 
+        // scss-lint:disable NestingDepth
         &:after {
             background: $dropdown-icon no-repeat;
             background-position: 50%;
@@ -120,8 +121,8 @@
     .dropdown-menu {
         max-width: 300px;
 
+        // scss-lint:disable NestingDepth
         &.is-open {
-            // scss-lint:disable NestingDepth
             &:before,
             &:after {
                 left: auto;
@@ -158,6 +159,7 @@
 
     .navUser-or {
 
+        // scss-lint:disable NestingDepth
         + .navUser-action {
             margin-right: -0.5rem; // 1
         }
@@ -190,6 +192,7 @@
     &.is-open {
         position: relative;
 
+        // scss-lint:disable NestingDepth
         &:before {
             @include css-triangle(
                 $triangle-direction: "bottom",

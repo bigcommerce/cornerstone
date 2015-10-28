@@ -111,8 +111,8 @@
             display: inline-block;
         }
 
+        // scss-lint:disable SelectorDepth, NestingDepth
         &.is-active {
-            // scss-lint:disable NestingDepth
             @include breakpoint("medium") {
                 border-bottom: 1px solid color("greys", "darker");
             }
@@ -128,6 +128,7 @@
         font-size: fontSize("base");
         padding: 0;
 
+        // scss-lint:disable NestingDepth
         &:hover {
             color: color("greys", "darker");
         }

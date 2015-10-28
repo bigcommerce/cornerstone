@@ -10,7 +10,7 @@
     @include u-listBullets("none");
 
     .product {
-
+        // scss-lint:disable NestingDepth
         + .product {
             margin-top: spacing("base") * 4;
         }
@@ -169,6 +169,7 @@
         @include breakpoint("large") {
             width: 100%;
 
+            // scss-lint:disable NestingDepth
             + .button {
                 margin: spacing("half") 0 0;
             }
@@ -184,6 +185,7 @@
 
     .productList {
 
+        // scss-lint:disable SelectorDepth, NestingDepth
         .listItem-details {
 
             @include breakpoint("large") {

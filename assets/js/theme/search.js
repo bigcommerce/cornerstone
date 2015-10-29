@@ -70,7 +70,8 @@ export default class Search extends PageManager {
         const $categoryTreeContainer = $searchForm.find('[data-search-category-tree]');
         const treeData = [];
 
-        let validator = this.initValidation($searchForm).bindValidation($searchForm.find('#search_query_adv'));
+        let validator = this.initValidation($searchForm)
+            .bindValidation($searchForm.find('#search_query_adv'));
 
         collapsible();
 

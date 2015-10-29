@@ -36,7 +36,8 @@ export default function() {
     const TOP_STYLING = 'top: 49px;';
     const $quickSearchResults = $('.quickSearchResults');
     const $quickSearchDiv = $('#quickSearch');
-    let validator = internals.initValidation($quickSearchDiv).bindValidation($quickSearchDiv.find('#search_query'));
+    let validator = internals.initValidation($quickSearchDiv)
+        .bindValidation($quickSearchDiv.find('#search_query'));
 
     stencilDropDown.bind($('[data-search="quickSearch"]'), $quickSearchDiv, TOP_STYLING);
 

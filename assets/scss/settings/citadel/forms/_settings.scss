@@ -42,7 +42,8 @@ $formColumn-gutter:                         $formRow-flex-gutter;
 
 $checkRadio-borderStyle:                    solid;
 $checkRadio-borderWidth:                    1px;
-$checkRadio-borderColor:                    color("greys", "lighter");
+// $checkRadio-borderColor:                    color("greys", "lighter");
+$checkRadio-borderColor:                    stencilColor("checkRadio-borderColor");
 // sizing
 $checkRadio-baseDimension:                  16px;
 $checkRadio-pip-scale:                      $checkRadio-borderWidth * 2;
@@ -57,7 +58,8 @@ $checkRadio-label-lineHeight:               null;
 $checkRadio-label-spacing:                  spacing("single") + spacing("quarter");
 $checkRadio-label-marginBottom:             spacing("quarter");
 // visual
-$checkRadio-bg:                             color("whites", "bright");
+// $checkRadio-bg:                             color("whites", "bright");
+$checkRadio-bg:                             stencilColor("checkRadio-backgroundColor");
 $checkRadio-boxShadow:                      null;
 $checkRadio-focus-borderColor:              null;
 $checkRadio-focus-boxShadow:                null;
@@ -65,7 +67,8 @@ $checkRadio-disabled-bg:                    $input-disabled-bg;
 $checkRadio-disabled-opacity:               null;
 
 $check-radius:                              $global-radius;
-$check-pip-color:                           rgba(color("greys"), 0.999);
+// $check-pip-color:                           rgba(color("greys"), 0.999);
+$check-pip-color:                           rgba(stencilColor("checkRadio-color"), 0.999);
 $check-pip-backgroundImage:                 url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z' fill='#{$check-pip-color}' /%3E%3C/svg%3E");
 $check-pip-content:                         "";
 $check-pip-size:                            $checkRadio-pip-size;

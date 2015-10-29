@@ -39,15 +39,15 @@ $buttonStyle-primary-borderColor:            stencilColor("buttonStyle-primary-b
 $buttonStyle-primary-borderColorHover:       stencilColor("buttonStyle-primary-borderColorHover");
 $buttonStyle-primary-borderColorActive:      stencilColor("buttonStyle-primary-borderColorActive");
 
-$buttonStyle-disabled-color:                 color("whites", "bright");
-$buttonStyle-disabled-colorHover:            color("whites", "bright");
-$buttonStyle-disabled-colorActive:           color("whites", "bright");
-$buttonStyle-disabled-backgroundColor:       lighten(color("greys", "light"), 15%);
-$buttonStyle-disabled-backgroundColorHover:  lighten(color("greys", "light"), 15%);
-$buttonStyle-disabled-backgroundColorActive: lighten(color("greys", "light"), 15%);
-$buttonStyle-disabled-borderColor:           lighten(color("greys", "light"), 15%);
-$buttonStyle-disabled-borderColorHover:      lighten(color("greys", "light"), 15%);
-$buttonStyle-disabled-borderColorActive:     lighten(color("greys", "light"), 15%);
+$buttonStyle-disabled-color:                 stencilColor("buttonStyle-disabled-color");
+$buttonStyle-disabled-colorHover:            null;
+$buttonStyle-disabled-colorActive:           null;
+$buttonStyle-disabled-backgroundColor:       stencilColor("buttonStyle-disabled-backgroundColor");
+$buttonStyle-disabled-backgroundColorHover:  null;
+$buttonStyle-disabled-backgroundColorActive: null;
+$buttonStyle-disabled-borderColor:           stencilColor("buttonStyle-disabled-borderColor");
+$buttonStyle-disabled-borderColorHover:      null;
+$buttonStyle-disabled-borderColorActive:     null;
 
 $buttonStyle-tertiary-color:                 null;
 $buttonStyle-tertiary-colorHover:            null;
@@ -68,16 +68,6 @@ $buttonStyle-action-backgroundColorActive:   null;
 $buttonStyle-action-borderColor:             null;
 $buttonStyle-action-borderColorHover:        null;
 $buttonStyle-action-borderColorActive:       null;
-
-$buttonStyle-disabled-color:                 null;
-$buttonStyle-disabled-colorHover:            null;
-$buttonStyle-disabled-colorActive:           null;
-$buttonStyle-disabled-backgroundColor:       null;
-$buttonStyle-disabled-backgroundColorHover:  null;
-$buttonStyle-disabled-backgroundColorActive: null;
-$buttonStyle-disabled-borderColor:           null;
-$buttonStyle-disabled-borderColorHover:      null;
-$buttonStyle-disabled-borderColorActive:     null;
 
 
 // Size Modifiers
@@ -177,30 +167,6 @@ $buttonStyleMap: (
         borderColor:                    $buttonStyle-primary-borderColor,
         borderColorHover:               $buttonStyle-primary-borderColorHover,
         borderColorActive:              $buttonStyle-primary-borderColorActive
-    ),
-
-    tertiary: (
-        color:                          $buttonStyle-tertiary-color,
-        colorHover:                     $buttonStyle-tertiary-colorHover,
-        colorActive:                    $buttonStyle-tertiary-colorActive,
-        backgroundColor:                $buttonStyle-tertiary-backgroundColor,
-        backgroundColorHover:           $buttonStyle-tertiary-backgroundColorHover,
-        backgroundColorActive:          $buttonStyle-tertiary-backgroundColorActive,
-        borderColor:                    $buttonStyle-tertiary-borderColor,
-        borderColorHover:               $buttonStyle-tertiary-borderColorHover,
-        borderColorActive:              $buttonStyle-tertiary-borderColorActive
-    ),
-
-    action: (
-        color:                          $buttonStyle-action-color,
-        colorHover:                     $buttonStyle-action-colorHover,
-        colorActive:                    $buttonStyle-action-colorActive,
-        backgroundColor:                $buttonStyle-action-backgroundColor,
-        backgroundColorHover:           $buttonStyle-action-backgroundColorHover,
-        backgroundColorActive:          $buttonStyle-action-backgroundColorActive,
-        borderColor:                    $buttonStyle-action-borderColor,
-        borderColorHover:               $buttonStyle-action-borderColorHover,
-        borderColorActive:              $buttonStyle-action-borderColorActive
     ),
 
     disabled: (

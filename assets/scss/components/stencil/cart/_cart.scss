@@ -247,7 +247,8 @@ $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-sp
 }
 
 .cart-remove {
-    background-color: color("greys", "lightest");
+    // background-color: color("greys", "lightest");
+    background-color: container("fill", "dark");
     border-radius: 50%;
     cursor: pointer;
     float: right;
@@ -257,17 +258,16 @@ $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-sp
     transition: background-color 0.15s ease;
     width: remCalc(18px);
 
-
     @include breakpoint("small") {
         margin-left: spacing("base");
     }
 
-    &:hover {
-        background-color: color("greys", "lighter");
-    }
-
     &.cart-remove--spacer {
         visibility: hidden;
+    }
+
+    > svg {
+        fill: stencilColor("icon-color");
     }
 }
 

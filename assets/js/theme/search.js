@@ -2,6 +2,7 @@ import PageManager from '../page-manager';
 import FacetedSearch from './common/faceted-search';
 import collapsible from './common/collapsible';
 import 'vakata/jstree';
+import nod from './common/nod';
 
 export default class Search extends PageManager {
     constructor() {
@@ -69,6 +70,9 @@ export default class Search extends PageManager {
         const $categoryTreeContainer = $searchForm.find('[data-search-category-tree]');
         const treeData = [];
 
+        let validator = this.initValidation($searchForm)
+            .bindValidation($searchForm.find('#search_query_adv'));
+
         collapsible();
 
         this.context.categoryTree.forEach((node) => {
@@ -78,8 +82,12 @@ export default class Search extends PageManager {
         this.categoryTreeData = treeData;
         this.createCategoryTree($categoryTreeContainer);
 
-        $searchForm.submit(() => {
+        $searchForm.submit((event) => {
             const selectedCategoryIds = $categoryTreeContainer.jstree().get_selected();
+
+            if (!validator.check()) {
+                return event.preventDefault();
+            }
 
             $searchForm.find('input[name="category\[\]"]').remove();
 
@@ -139,5 +147,35 @@ export default class Search extends PageManager {
         };
 
         $container.jstree(treeOptions);
+    }
+
+    initValidation($form) {
+        this.$form = $form;
+        this.validator = nod({
+            submit: $form
+        });
+
+        return this;
+    }
+
+    bindValidation($element) {
+        if (this.validator) {
+            this.validator.add({
+                selector: $element,
+                validate: 'presence',
+                errorMessage: $element.data('error-message')
+            });
+        }
+
+        return this;
+    }
+
+    check() {
+        if (this.validator) {
+            this.validator.performCheck();
+            return this.validator.areAll('valid');
+        }
+
+        return false;
     }
 }

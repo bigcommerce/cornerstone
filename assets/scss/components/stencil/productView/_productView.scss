@@ -126,10 +126,17 @@
 }
 
 .productView-reviewLink {
-    color: color("greys", "light");
     display: inline-block;
     margin-left: spacing("half");
     vertical-align: middle;
+
+    > a {
+        color: stencilColor("color-textSecondary");
+
+        &:hover {
+            color: stencilColor("color-textSecondary--hover");
+        }
+    }
 }
 
 
@@ -221,7 +228,8 @@
         }
 
         @include breakpoint("large") {
-            display: inline;
+            display: inline-block;
+            margin-top: 1rem;
         }
 
         // scss-lint:disable SelectorDepth, NestingDepth

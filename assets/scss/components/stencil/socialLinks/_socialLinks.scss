@@ -8,11 +8,23 @@
 .socialLinks {
     @include clearfix;
     @include u-listReset;
-    margin: 0 auto;
+    margin: 0 auto spacing("third");
 
     .icon { // 1
         @include square($socialLinks-iconSize);
         text-decoration: none;
+
+        &:hover {
+
+            svg {
+                fill: stencilColor("icon-color-hover");
+            }
+        }
+
+        svg {
+            fill: stencilColor("icon-color");
+            transition: all 0.15s ease;
+        }
     }
 }
 

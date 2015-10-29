@@ -70,7 +70,7 @@ export default class Search extends PageManager {
         const $categoryTreeContainer = $searchForm.find('[data-search-category-tree]');
         const treeData = [];
 
-        let validator = this.initValidaition($searchForm).bindValidation('#search_query_adv');
+        let validator = this.initValidation($searchForm).bindValidation($searchForm.find('#search_query_adv'));
 
         collapsible();
 
@@ -148,7 +148,7 @@ export default class Search extends PageManager {
         $container.jstree(treeOptions);
     }
 
-    initValidaition($form) {
+    initValidation($form) {
         this.$form = $form;
         this.validator = nod({
             submit: $form
@@ -157,12 +157,12 @@ export default class Search extends PageManager {
         return this;
     }
 
-    bindValidation(element) {
+    bindValidation($element) {
         if (this.validator) {
             this.validator.add({
-                selector: this.$form.find(element),
+                selector: $element,
                 validate: 'presence',
-                errorMessage: 'Search field cannot be blank'
+                errorMessage: $element.data('error-message')
             });
         }
 

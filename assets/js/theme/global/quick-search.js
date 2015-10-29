@@ -5,19 +5,19 @@ import stencilDropDown from './stencil-dropdown';
 import nod from '../common/nod';
 
 let internals = {
-    initValidaition($form) {
+    initValidation($form) {
         this.validator = nod({
             submit: $form
         });
 
         return this;
     },
-    bindValidation($form) {
+    bindValidation(element) {
         if (this.validator) {
             this.validator.add({
-                selector: $form,
+                selector: element,
                 validate: 'presence',
-                errorMessage: 'Search field cannot be blank'
+                errorMessage: element.data('error-message')
             });
         }
 
@@ -36,7 +36,7 @@ export default function() {
     const TOP_STYLING = 'top: 49px;';
     const $quickSearchResults = $('.quickSearchResults');
     const $quickSearchDiv = $('#quickSearch');
-    let validator = internals.initValidaition($quickSearchDiv).bindValidation($quickSearchDiv.find('#search_query'));
+    let validator = internals.initValidation($quickSearchDiv).bindValidation($quickSearchDiv.find('#search_query'));
 
     stencilDropDown.bind($('[data-search="quickSearch"]'), $quickSearchDiv, TOP_STYLING);
 

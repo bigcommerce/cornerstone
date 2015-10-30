@@ -10,13 +10,14 @@
         border-radius: $actionBar-form-field-radius;
         overflow: hidden;
 
-        &:focus {
+        &:hover {
             border-color: stencilColor("input-border-color-active");
         }
     }
 
     .form-label {
         color: $actionBar-form-label-color;
+        font-size: $actionBar-form-label-fontSize;
         line-height: $actionBar-form-label-lineHeight;
         margin-bottom: 0;
         padding-left: $actionBar-form-label-padding;
@@ -37,5 +38,6 @@
 
     .form-select {
         color: stencilColor("color-textLink");
+        height: $input-small-height - remCalc($input-border-width * 2);
     }
 }

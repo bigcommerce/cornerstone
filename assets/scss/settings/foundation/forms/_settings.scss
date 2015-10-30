@@ -115,12 +115,13 @@ $select-focus-boxShadow:            null;
 
 $select-padding:                    $input-verticalPadding (spacing("double")) $input-verticalPadding $input-horizontalPadding;
 $select-borderRadius:               $global-radius;
-$select-hover-borderColor:          color("greys", "lighter");
+$select-hover-borderColor:          null;
 $select-arrow-color:                rgba(stencilColor("select-arrow-color"), 0.999);
 $select-backgroundImage:            url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z' fill='#{$select-arrow-color}' /%3E%3C/svg%3E");
 $select-backgroundPosition:         right (spacing("quarter") + spacing("eighth")) top spacing("third") + spacing("eighth");
 
 $form-label-small-marginTop:        spacing("quarter");
 
-$input-small-height:                spacing("single") + spacing("half") + remCalc($input-border-width * 2);
-$input-small-padding:               spacing("third") $input-horizontalPadding;
+$input-small-padding:               (spacing("quarter") + spacing("eighth")) (spacing("third") + spacing("sixth"));
+$input-small-height:                ((spacing("quarter") + spacing("eighth")) * 2) + 1rem + remCalc($input-border-width * 2);
+$input-small-fontSize:              fontSize("smallest");

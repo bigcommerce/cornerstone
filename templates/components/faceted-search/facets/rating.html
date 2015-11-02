@@ -27,7 +27,9 @@
             {{#each items}}
                 <li class="navList-item {{#if selected }} is-selected {{/if}}">
                     <a href="{{ url }}" class="navList-action navList-action--checkbox" data-faceted-search-facet>
-                        {{> components/products/ratings rating=title}}
+                        <span class="rating--small">
+                            {{> components/products/ratings rating=title}}
+                        </span>
                         {{lang 'search.faceted.rating.and-up'}}
                         {{#if ../show_product_counts}}
                             <span>({{ count }})</span>

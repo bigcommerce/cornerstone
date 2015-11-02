@@ -3,8 +3,13 @@ import FacetedSearch from './common/faceted-search';
 
 export default class Brand extends PageManager {
     constructor() {
+        super();
+    }
+
+    loaded() {
         const $productListingContainer = $('#product-listing-container');
         const $facetedSearchContainer = $('#faceted-search-container');
+        const productsPerPage = this.context.brandProductsPerPage;
         const requestOptions = {
             template: {
                 productListing: 'brand/product-listing',
@@ -12,10 +17,11 @@ export default class Brand extends PageManager {
             },
             config: {
                 shop_by_brand: true,
+                products: {
+                    limit: productsPerPage,
+                },
             },
         };
-
-        super();
 
         this.facetedSearch = new FacetedSearch(requestOptions, function(content) {
             $productListingContainer.html(content.productListing);

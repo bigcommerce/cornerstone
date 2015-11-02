@@ -140,7 +140,7 @@ window.stencilBootstrap = function stencilBootstrap(templateFile, contextJSON = 
                 const PageTypeFn = pages.get(templateFile); // Finds the appropriate module from the pageType object and store the result as a function.
 
                 if (PageTypeFn) {
-                    const pageType = new PageTypeFn();
+                    const pageType = new PageTypeFn(context);
 
                     pageType.context = context;
 

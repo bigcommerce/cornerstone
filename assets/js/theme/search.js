@@ -6,39 +6,7 @@ import nod from './common/nod';
 
 export default class Search extends PageManager {
     constructor() {
-        const $productListingContainer = $('#product-listing-container');
-        const $contentResultsContainer = $('#search-results-content');
-        const $facetedSearchContainer = $('#faceted-search-container');
-        const requestOptions = {
-            template: {
-                productListing: 'search/product-listing',
-                sidebar: 'search/sidebar',
-            },
-        };
-
         super();
-
-        this.facetedSearch = new FacetedSearch(requestOptions, (content) => {
-            $productListingContainer.html(content.productListing);
-            $facetedSearchContainer.html(content.sidebar);
-
-            $('html, body').animate({
-                scrollTop: 0,
-            }, 100);
-        });
-
-        // Initially hidden via JS so non JS can see it at the start
-        $contentResultsContainer.addClass('u-hiddenVisually');
-
-        $('[data-product-results-toggle]').click(() => {
-            $productListingContainer.removeClass('u-hiddenVisually');
-            $contentResultsContainer.addClass('u-hiddenVisually');
-        });
-
-        $('[data-content-results-toggle]').click(() => {
-            $contentResultsContainer.removeClass('u-hiddenVisually');
-            $productListingContainer.addClass('u-hiddenVisually');
-        });
     }
 
     formatCategoryTreeForJSTree(node) {
@@ -69,6 +37,43 @@ export default class Search extends PageManager {
         const $searchForm = $('[data-advanced-search-form]');
         const $categoryTreeContainer = $searchForm.find('[data-search-category-tree]');
         const treeData = [];
+        const $productListingContainer = $('#product-listing-container');
+        const $contentResultsContainer = $('#search-results-content');
+        const $facetedSearchContainer = $('#faceted-search-container');
+        const productsPerPage = this.context.searchProductsPerPage;
+        const requestOptions = {
+            template: {
+                productListing: 'search/product-listing',
+                sidebar: 'search/sidebar',
+            },
+            config: {
+                product_results: {
+                    limit: productsPerPage
+                }
+            }
+        };
+
+        this.facetedSearch = new FacetedSearch(requestOptions, (content) => {
+            $productListingContainer.html(content.productListing);
+            $facetedSearchContainer.html(content.sidebar);
+
+            $('html, body').animate({
+                scrollTop: 0,
+            }, 100);
+        });
+
+        // Initially hidden via JS so non JS can see it at the start
+        $contentResultsContainer.addClass('u-hiddenVisually');
+
+        $('[data-product-results-toggle]').click(() => {
+            $productListingContainer.removeClass('u-hiddenVisually');
+            $contentResultsContainer.addClass('u-hiddenVisually');
+        });
+
+        $('[data-content-results-toggle]').click(() => {
+            $contentResultsContainer.removeClass('u-hiddenVisually');
+            $productListingContainer.addClass('u-hiddenVisually');
+        });
 
         let validator = this.initValidation($searchForm)
             .bindValidation($searchForm.find('#search_query_adv'));

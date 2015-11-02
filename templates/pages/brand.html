@@ -1,3 +1,9 @@
+---
+brand:
+    products:
+        limit: {{theme_settings.brandpage_products_per_page}}
+---
+{{inject "brandProductsPerPage" theme_settings.brandpage_products_per_page}}
 {{#partial "head"}}
     {{#if pagination.brand.previous}}
         <link rel="prev" href="{{pagination.brand.previous}}">

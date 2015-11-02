@@ -1,7 +1,10 @@
 ---
 category:
     shop_by_price: true
+    products:
+        limit: {{theme_settings.categorypage_products_per_page}}
 ---
+{{inject "categoryProductsPerPage" theme_settings.categorypage_products_per_page}}
 {{#partial "head"}}
     {{#if pagination.category.previous}}
         <link rel="prev" href="{{pagination.category.previous}}">

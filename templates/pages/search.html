@@ -1,5 +1,9 @@
+---
+product_results:
+    limit: {{theme_settings.searchpage_products_per_page}}
+---
 {{inject 'categoryTree' forms.search.category_options}}
-
+{{inject 'searchProductsPerPage' theme_settings.searchpage_products_per_page}}
 {{#partial "head"}}
     {{#if pagination.product_results.previous}}
         <link rel="prev" href="{{pagination.product_results.previous}}">

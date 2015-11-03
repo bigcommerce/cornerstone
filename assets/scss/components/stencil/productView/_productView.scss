@@ -13,10 +13,6 @@
 
 // Images
 // -----------------------------------------------------------------------------
-//
-// 1. Thumbnails are not used in mobile/tablet, and can be hidden via display.
-//
-// -----------------------------------------------------------------------------
 
 .productView-images {
     margin-bottom: spacing("double");
@@ -35,15 +31,11 @@
 }
 
 .productView-thumbnails {
-    display: none; // 1
+    @include u-listBullets("none");
+    @include grid-row($behavior: "nest");
 
-    @include breakpoint("medium") {
-        @include u-listBullets("none");
-        @include grid-row($behavior: "nest");
-        display: block;
-        margin-left: -(spacing("quarter"));
-        margin-right: -(spacing("quarter"));
-    }
+    margin-left: -(spacing("quarter"));
+    margin-right: -(spacing("quarter"));
 }
 
 .productView-thumbnail {

@@ -17,8 +17,10 @@ export default class Brand extends PageManager {
             },
             config: {
                 shop_by_brand: true,
-                products: {
-                    limit: productsPerPage,
+                brand: {
+                    products: {
+                        limit: productsPerPage,
+                    },
                 },
             },
         };

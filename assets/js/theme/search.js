@@ -48,9 +48,9 @@ export default class Search extends PageManager {
             },
             config: {
                 product_results: {
-                    limit: productsPerPage
-                }
-            }
+                    limit: productsPerPage,
+                },
+            },
         };
 
         this.facetedSearch = new FacetedSearch(requestOptions, (content) => {
@@ -75,7 +75,7 @@ export default class Search extends PageManager {
             $productListingContainer.addClass('u-hiddenVisually');
         });
 
-        let validator = this.initValidation($searchForm)
+        const validator = this.initValidation($searchForm)
             .bindValidation($searchForm.find('#search_query_adv'));
 
         collapsible();
@@ -157,7 +157,7 @@ export default class Search extends PageManager {
     initValidation($form) {
         this.$form = $form;
         this.validator = nod({
-            submit: $form
+            submit: $form,
         });
 
         return this;
@@ -168,7 +168,7 @@ export default class Search extends PageManager {
             this.validator.add({
                 selector: $element,
                 validate: 'presence',
-                errorMessage: $element.data('error-message')
+                errorMessage: $element.data('error-message'),
             });
         }
 

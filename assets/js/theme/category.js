@@ -26,8 +26,6 @@ export default class Category extends PageManager {
             },
         };
 
-
-
         this.facetedSearch = new FacetedSearch(requestOptions, function(content) {
             $productListingContainer.html(content.productListing);
             $facetedSearchContainer.html(content.sidebar);

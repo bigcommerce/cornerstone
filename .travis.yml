@@ -1,0 +1,17 @@
+language: node_js
+
+node_js:
+  - 0.12
+
+sudo: required
+dist: trusty
+
+install:
+  - bundle install
+  - npm install -g grunt-cli
+  - npm install
+  - jspm config registries.github.auth YmMtc3RlbmNpbC1jaToyMTQ4ODEyMTI5NmYxZTVjOTU4ZjBkMTVlY2Q5MTcwMjFlNDRjNTli
+  - jspm install
+
+script:
+  - grunt check

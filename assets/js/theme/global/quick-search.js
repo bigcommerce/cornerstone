@@ -4,10 +4,10 @@ import utils from 'bigcommerce/stencil-utils';
 import stencilDropDown from './stencil-dropdown';
 import nod from '../common/nod';
 
-let internals = {
+const internals = {
     initValidation($form) {
         this.validator = nod({
-            submit: $form
+            submit: $form,
         });
 
         return this;
@@ -17,7 +17,7 @@ let internals = {
             this.validator.add({
                 selector: element,
                 validate: 'presence',
-                errorMessage: element.data('error-message')
+                errorMessage: element.data('error-message'),
             });
         }
 
@@ -29,14 +29,14 @@ let internals = {
             return this.validator.areAll('valid');
         }
         return false;
-    }
+    },
 };
 
 export default function() {
     const TOP_STYLING = 'top: 49px;';
     const $quickSearchResults = $('.quickSearchResults');
     const $quickSearchDiv = $('#quickSearch');
-    let validator = internals.initValidation($quickSearchDiv)
+    const validator = internals.initValidation($quickSearchDiv)
         .bindValidation($quickSearchDiv.find('#search_query'));
 
     stencilDropDown.bind($('[data-search="quickSearch"]'), $quickSearchDiv, TOP_STYLING);

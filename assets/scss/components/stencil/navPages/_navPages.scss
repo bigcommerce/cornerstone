@@ -10,7 +10,7 @@
 // -----------------------------------------------------------------------------
 
 .navPages-container {
-    background-color: $navPage-subMenu-backgroundColor;
+    background-color: container("fill", "dark");
     bottom: 0;
     display: none;
     height: 100%;
@@ -41,8 +41,6 @@
 // -----------------------------------------------------------------------------
 
 .navPages {
-    position: relative;
-
     @include breakpoint("medium") {
         @include grid-row(); // 1
         @include nav($style: "navBar", $wrapper: "nav");
@@ -52,6 +50,11 @@
 
     ul {
         list-style: none;
+    }
+
+    .navPage-subMenu-list {
+        @include grid-row();
+        margin: auto;
     }
 }
 
@@ -65,7 +68,7 @@
 }
 
 .navPages-action {
-    color: $navPages-action-color;
+    color: stencilColor("navPages-color");
     display: inline-block;
     font-size: fontSize("smaller");
     font-weight: fontWeight("bold");
@@ -77,25 +80,31 @@
         padding: spacing("half") (spacing("half") + spacing("quarter")) (spacing("half") + spacing("quarter"));
 
         &.is-open {
-            background-color: $navPage-subMenu-backgroundColor;
-            color: $navPages-action-color--active;
+            background-color: container("fill", "dark");
+            color: stencilColor("navPages-color-hover");
 
             // scss-lint:disable NestingDepth
             svg {
-                fill: $navPages-action-color--active;
-                stroke: $navPages-action-color--active;
+                fill: stencilColor("navPages-color-hover");
+                stroke: stencilColor("navPages-color-hover");
             }
         }
     }
 
     &:hover {
-        color: $navPages-action-color--hover;
+        color: stencilColor("navPages-color-hover");
 
         // scss-lint:disable NestingDepth
         svg {
-            fill: $navPages-action-color--hover;
-            stroke: $navPages-action-color--hover;
+            fill: stencilColor("navPages-color-hover");
+            stroke: stencilColor("navPages-color-hover");
         }
+    }
+
+    svg {
+        fill: stencilColor("navPages-color");
+        stroke: stencilColor("navPages-color");
+        transition: all 0.15s ease;
     }
 }
 
@@ -111,21 +120,14 @@
     .has-subMenu.is-open & {
         transform: rotate(0);
     }
-
-    svg {
-        fill: $navPages-action-color;
-        stroke: $navPages-action-color;
-    }
 }
 
 
-//
 // Sub page navigation and children of sub pages
 // -----------------------------------------------------------------------------
 
-.navPage-subMenu,
 .navPage-childList {
-    border-left: 1px solid $navPage-subMenu-borderColor;
+    border-left: container("border");
     margin: spacing("quarter") spacing("half");
     padding-left: spacing("half");
 
@@ -135,10 +137,11 @@
 }
 
 
-//
 // Sub menu, first level down from top level categories
+// -----------------------------------------------------------------------------
 //
 // 1. navBar mixin has lots of decendant child selectors to deal with
+//
 // -----------------------------------------------------------------------------
 
 .navPage-subMenu {
@@ -146,8 +149,7 @@
 
     @include breakpoint("medium") {
         // scss-lint:disable ImportantRule
-        @include grid-row();
-        background-color: $navPage-subMenu-backgroundColor;
+        background-color: container("fill", "dark");
         padding: spacing("single") spacing("single") (spacing("single") + spacing("half")) !important;
         position: absolute;
         text-align: left;
@@ -155,7 +157,8 @@
         &.is-open {
             display: block;
             left: 0;
-            max-width: layout("max");
+            max-width: 100%;
+            width: 100%;
         }
 
         .navPages-action-moreIcon {
@@ -184,7 +187,7 @@
         }
 
         > .navPage-subMenu-action {
-            border-bottom: solid 1px $navPage-subMenu-borderColor;
+            border-bottom: container("border");
             margin-bottom: spacing("half") + spacing("quarter");
         }
     }
@@ -215,7 +218,7 @@
 // -----------------------------------------------------------------------------
 
 .navPages-quickSearch {
-    border-bottom: solid 1px $navPage-subMenu-borderColor;
+    border-bottom: container("border");
     margin-bottom: spacing("half");
 
     @include breakpoint("medium") {
@@ -241,7 +244,7 @@
 // -----------------------------------------------------------------------------
 
 .navPages-list--account {
-    border-top: solid 1px $navPage-subMenu-borderColor;
+    border-top: container("border");
     margin-top: spacing("half");
     padding-top: spacing("quarter");
 
@@ -252,14 +255,14 @@
     // scss-lint:disable SelectorDepth, NestingDepth, IdSelector
     #currencySelection2 {
         background-color: color("whites", "bright");
-        border: solid 1px $navPage-subMenu-borderColor;
+        border: container("border");
 
         .dropdown-menu-item {
             padding: 0;
 
             // scss-lint:disable NestingDepth
             &:not(:last-child) {
-                border-bottom: solid 1px $navPage-subMenu-borderColor;
+                border-bottom: container("border");
             }
         }
 

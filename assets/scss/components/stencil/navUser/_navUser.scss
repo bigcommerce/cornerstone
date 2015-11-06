@@ -68,11 +68,13 @@
 
     &:hover {
         color: stencilColor("navUser-color-hover");
-    }
 
-    &:hover svg {
-        fill: stencilColor("navUser-color-hover");
-        stroke: stencilColor("navUser-color-hover");
+        // scss-lint:disable NestingDepth
+        svg {
+            fill: stencilColor("navUser-color-hover");
+            stroke: stencilColor("navUser-color-hover");
+        }
+        // scss-lint:enable NestingDepth
     }
 
     .icon {

@@ -90,9 +90,9 @@ export default class Cart extends PageManager {
             const $form = $changedOption.parents('form');
             const $submit = $('input.button', $form);
             const $messageBox = $('.alertMessageBox');
-            const itemId = $('[name="item_id"]').attr('value');
+            const item = $('[name="item_id"]').attr('value');
 
-            utils.api.productAttributes.optionChange(itemId, $form.serialize(), (err, result) => {
+            utils.api.productAttributes.optionChange(item, $form.serialize(), (err, result) => {
                 const data = result.data || {};
 
                 if (err) {
@@ -113,8 +113,7 @@ export default class Cart extends PageManager {
                 } else {
                     $submit.prop('disabled', false);
                 }
-            })
-
+            });
         });
     }
 

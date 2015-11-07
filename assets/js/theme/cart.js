@@ -99,8 +99,6 @@ export default class Cart extends PageManager {
                     return false;
                 }
 
-                console.log(data);
-
                 if (data.purchasing_message) {
                     $('p.alertBox-message', $messageBox).text(data.purchasing_message);
                     $submit.prop('disabled', true);

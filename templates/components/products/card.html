@@ -36,7 +36,11 @@
     </figure>
     <div class="card-body">
         {{#if show_rating}}
-            <p class="card-text">{{> components/products/ratings rating=rating}}</p>
+            <p class="card-text">
+                <span class="rating--small">
+                    {{> components/products/ratings rating=rating}}
+                </span>
+            </p>
         {{/if}}
         {{#if brand.name}}
             <p class="card-text">{{brand.name}}</p>

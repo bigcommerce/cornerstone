@@ -55,7 +55,7 @@ $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-sp
 }
 
 .cart-list {
-    border-top: 1px solid color("greys", "lightest");
+    border-top: container("border");
     display: block; // 1
 
     @include breakpoint("medium") {
@@ -64,7 +64,7 @@ $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-sp
 }
 
 .cart-item {
-    border-bottom: 1px solid color("greys", "lightest");
+    border-bottom: container("border");
     clear: both;
     display: block; // 1
     padding: $cart-item-spacing 0;
@@ -245,7 +245,7 @@ $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-sp
 }
 
 .cart-remove {
-    background-color: color("greys", "lightest");
+    background-color: container("fill", "dark");
     border-radius: 50%;
     cursor: pointer;
     float: right;
@@ -255,17 +255,16 @@ $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-sp
     transition: background-color 0.15s ease;
     width: remCalc(18px);
 
-
     @include breakpoint("small") {
         margin-left: spacing("base");
     }
 
-    &:hover {
-        background-color: color("greys", "lighter");
-    }
-
     &.cart-remove--spacer {
         visibility: hidden;
+    }
+
+    > svg {
+        fill: stencilColor("icon-color");
     }
 }
 
@@ -300,7 +299,7 @@ $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-sp
 
     @include breakpoint("medium") {
         + .cart-total {
-            border-top: 1px solid color("greys", "lightest");
+            border-top: container("border");
         }
     }
 

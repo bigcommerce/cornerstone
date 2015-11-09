@@ -18,6 +18,7 @@
 .slick-prev {
     @include carouselOpaqueBackgrounds($slick-arrow-bgColor);
     height: remCalc(61px);
+    margin-top: -(remCalc(30px));
     padding: remCalc(10px);
     width: remCalc(40px);
 
@@ -40,10 +41,10 @@
 }
 
 .slick-next {
-    right: -10px;
+    right: -15px;
 
     @include breakpoint("large") {
-        right: -25px;
+        right: -(spacing("double") + spacing("quarter"));
     }
 
     &::before {
@@ -59,10 +60,10 @@
 }
 
 .slick-prev {
-    left: -10px;
+    left: -15px;
 
     @include breakpoint("large") {
-        left: -25px;
+        left: -(spacing("double") + spacing("quarter"));
     }
 
     &::before {

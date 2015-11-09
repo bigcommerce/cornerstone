@@ -138,24 +138,27 @@
 .account-product-detail {
     @include grid-column(12);
 
-    + .account-product-detail {
-        margin-top: spacing("base");
-    }
-
     @include breakpoint("small") {
         width: grid-calc(4, $total-columns);
-
-        + .account-product-detail {
-            margin-top: 0;
-        }
-
-        + .account-product-detail--full {
-            margin-top: spacing("single");
-        }
     }
 
     @include breakpoint("large") {
         width: grid-calc(3, $total-columns);
+    }
+
+    + .account-product-detail {
+        margin-top: spacing("base");
+
+        @include breakpoint("small") {
+            margin-top: 0;
+        }
+    }
+
+    + .account-product-detail--full {
+
+        @include breakpoint("small") {
+            margin-top: spacing("single");
+        }
     }
 }
 

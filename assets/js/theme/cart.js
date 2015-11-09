@@ -90,7 +90,7 @@ export default class Cart extends PageManager {
             const $form = $changedOption.parents('form');
             const $submit = $('input.button', $form);
             const $messageBox = $('.alertMessageBox');
-            const item = $('[name="item_id"]').attr('value');
+            const item = $('[name="item_id"]', $form).attr('value');
 
             utils.api.productAttributes.optionChange(item, $form.serialize(), (err, result) => {
                 const data = result.data || {};

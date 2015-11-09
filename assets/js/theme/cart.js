@@ -96,6 +96,7 @@ export default class Cart extends PageManager {
                 const data = result.data || {};
 
                 if (err) {
+                    alert(err);
                     return false;
                 }
 

@@ -84,6 +84,38 @@ export default class Cart extends PageManager {
 
             this.bindGiftWrappingForm();
         });
+
+        utils.hooks.on('product-option-change', (event, option) => {
+            const $changedOption = $(option);
+            const $form = $changedOption.parents('form');
+            const $submit = $('input.button', $form);
+            const $messageBox = $('.alertMessageBox');
+            const item = $('[name="item_id"]', $form).attr('value');
+
+            utils.api.productAttributes.optionChange(item, $form.serialize(), (err, result) => {
+                const data = result.data || {};
+
+                if (err) {
+                    alert(err);
+                    return false;
+                }
+
+                if (data.purchasing_message) {
+                    $('p.alertBox-message', $messageBox).text(data.purchasing_message);
+                    $submit.prop('disabled', true);
+                    $messageBox.show();
+                } else {
+                    $submit.prop('disabled', false);
+                    $messageBox.hide();
+                }
+
+                if (!data.purchasable || !data.instock) {
+                    $submit.prop('disabled', true);
+                } else {
+                    $submit.prop('disabled', false);
+                }
+            });
+        });
     }
 
     refreshContent(remove) {

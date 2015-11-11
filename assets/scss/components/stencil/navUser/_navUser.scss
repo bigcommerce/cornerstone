@@ -27,8 +27,8 @@
     }
 
     .dropdown-menu {
-        background-color: $navUser-dropdown-menu-backgroundColor;
-        border: 1px solid container("borderColor");
+        background-color: stencilColor("navUser-dropdown-backgroundColor");
+        border: 1px solid stencilColor("navUser-dropdown-borderColor");
         box-shadow: container("dropShadow");
         position: absolute;
 
@@ -38,10 +38,10 @@
                 @include css-triangle(
                     $triangle-direction: "bottom",
                     $triangle-size: 10px,
-                    $triangle-color: color("greys", "lightest")
+                    $triangle-color: stencilColor("navUser-dropdown-backgroundColor")
                 );
                 bottom: 100%;
-                left: spacing("base");
+                left: spacing("half");
                 position: absolute;
             }
 
@@ -49,10 +49,10 @@
                 @include css-triangle(
                     $triangle-direction: "bottom",
                     $triangle-size: 8px,
-                    $triangle-color: color("whites", "bright")
+                    $triangle-color: stencilColor("navUser-dropdown-backgroundColor")
                 );
                 bottom: 100%;
-                left: spacing("base") + remCalc(2px);
+                left: spacing("half") + remCalc(2px);
                 position: absolute;
             }
         }
@@ -60,27 +60,32 @@
 }
 
 .navUser-action {
-    color: $navUser-font-color;
+    color: stencilColor("navUser-color");
     font-weight: fontWeight("bold");
     padding: spacing("base") spacing("half");
     text-decoration: none;
     text-transform: uppercase;
 
-    &.has-dropdown {
+    &:hover {
+        color: stencilColor("navUser-color-hover");
 
         // scss-lint:disable NestingDepth
-        &:after {
-            background: $dropdown-icon no-repeat;
-            background-position: 50%;
-            background-size: 60%;
-            content: "";
-            display: inline-block;
-            height: remCalc(13px);
-            margin-left: spacing("eighth");
-            position: relative;
-            top: remCalc(1px);
-            width: remCalc(13px);
+        svg {
+            fill: stencilColor("navUser-color-hover");
+            stroke: stencilColor("navUser-color-hover");
         }
+        // scss-lint:enable NestingDepth
+    }
+
+    .icon {
+        @include square(8px);
+        margin: -1px 0 0 spacing("eighth");
+    }
+
+    svg {
+        fill: stencilColor("navUser-color");
+        stroke: stencilColor("navUser-color");
+        transition: all 0.15s ease;
     }
 }
 
@@ -118,8 +123,12 @@
 .navUser-item--cart {
     display: block;
 
+    .navUser-action {
+        color: stencilColor("navPages-color");
+    }
+
     .dropdown-menu {
-        max-width: 300px;
+        max-width: remCalc(320px);
 
         // scss-lint:disable NestingDepth
         &.is-open {
@@ -129,11 +138,11 @@
             }
 
             &:before {
-                right: spacing("single") - remCalc(2);
+                right: spacing("half");
             }
 
             &:after {
-                right: spacing("single");
+                right: spacing("half") + remCalc(2px);
             }
         }
     }
@@ -171,7 +180,7 @@
 }
 
 .navUser-or {
-    color: $navUser-font-color;
+    color: stencilColor("navUser-color");
     cursor: default;
     display: inline-block;
     margin: 0 remCalc(-12px);
@@ -255,7 +264,7 @@
 // -----------------------------------------------------------------------------
 
 .countPill {
-    background-color: color("greys", "darker");
+    background-color: stencilColor("color-primary");
     border-radius: 50%;
     color: color("whites", "bright");
     display: none;
@@ -263,6 +272,7 @@
     font-weight: fontWeight("bold");
     height: 20px; // 1
     line-height: 20px; // 1
+    margin-left: spacing("eighth");
     text-align: center;
     width: 20px; // 1
 }

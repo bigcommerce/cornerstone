@@ -4,6 +4,8 @@ import _ from 'lodash';
 import Url from 'url';
 import 'browserstate/history.js/scripts/bundled-uncompressed/html4+html5/jquery.history';
 import collapsible from './collapsible';
+import { Validators } from './form-utils';
+import nod from './nod';
 
 function goToUrl(url) {
     History.pushState({}, document.title, url);
@@ -40,6 +42,11 @@ export default class FacetedSearch {
             clearFacetSelector: '#facetedSearch .facetedSearch-clearLink',
             componentSelector: '#facetedSearch-navList',
             facetNavListSelector: '#facetedSearch .navList',
+            priceRangeErrorSelector: '#facet-range-form .form-inlineMessage',
+            priceRangeFieldsetSelector: '#facet-range-form .form-fieldset',
+            priceRangeFormSelector: '#facet-range-form',
+            priceRangeMaxPriceSelector: '#facet-range-form [name=max_price]',
+            priceRangeMinPriceSelector: '#facet-range-form [name=min_price]',
             showMoreToggleSelector: '#facetedSearch .accordion-content .toggleLink',
         };
 
@@ -52,6 +59,9 @@ export default class FacetedSearch {
 
         // Init collapsibles
         collapsible();
+
+        // Init price validator
+        this.initPriceValidator();
 
         // Show limited items by default
         $(this.options.facetNavListSelector).each((index, navList) => {
@@ -94,7 +104,11 @@ export default class FacetedSearch {
             this.callback(content);
         }
 
+        // Init collapsibles
         collapsible();
+
+        // Init price validator
+        this.initPriceValidator();
 
         // Restore view state
         this.restoreCollapsedFacets();
@@ -206,6 +220,21 @@ export default class FacetedSearch {
     }
 
     // Private methods
+    initPriceValidator() {
+        const validator = nod();
+        const selectors = {
+            errorSelector: this.options.priceRangeErrorSelector,
+            fieldsetSelector: this.options.priceRangeFieldsetSelector,
+            formSelector: this.options.priceRangeFormSelector,
+            maxPriceSelector: this.options.priceRangeMaxPriceSelector,
+            minPriceSelector: this.options.priceRangeMinPriceSelector,
+        };
+
+        Validators.setMinMaxPriceValidation(validator, selectors);
+
+        this.priceRangeValidator = validator;
+    }
+
     restoreCollapsedFacetItems() {
         const $navLists = $(this.options.facetNavListSelector);
 
@@ -304,10 +333,14 @@ export default class FacetedSearch {
     }
 
     onRangeSubmit(event) {
+        event.preventDefault();
+
+        if (!this.priceRangeValidator.areAll(nod.constants.VALID)) {
+            return;
+        }
+
         const url = Url.parse(location.href);
         const queryParams = $(event.currentTarget).serialize();
-
-        event.preventDefault();
 
         goToUrl(Url.format({ pathname: url.pathname, search: '?' + queryParams }));
     }

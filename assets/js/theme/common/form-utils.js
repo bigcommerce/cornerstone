@@ -198,6 +198,68 @@ const Validators = {
     },
 
     /**
+     * Validate password fields
+     * @param {Nod} validator
+     * @param {Object} selectors
+     * @param {string} selectors.errorSelector
+     * @param {string} selectors.fieldsetSelector
+     * @param {string} selectors.formSelector
+     * @param {string} selectors.maxPriceSelector
+     * @param {string} selectors.minPriceSelector
+     */
+    setMinMaxPriceValidation: (validator, selectors) => {
+        const {
+            errorSelector,
+            fieldsetSelector,
+            formSelector,
+            maxPriceSelector,
+            minPriceSelector,
+        } = selectors;
+
+        validator.configure({
+            form: formSelector,
+            preventSubmit: true,
+            successClass: '_', // KLUDGE: Don't apply success class
+        });
+
+        validator.add({
+            errorMessage: 'Min price must be less than max. price.',
+            selector: minPriceSelector,
+            validate: `min-max:${minPriceSelector}:${maxPriceSelector}`,
+        });
+
+        validator.add({
+            errorMessage: 'Min price must be less than max. price.',
+            selector: maxPriceSelector,
+            validate: `min-max:${minPriceSelector}:${maxPriceSelector}`,
+        });
+
+        validator.add({
+            errorMessage: 'Max. price is required.',
+            selector: maxPriceSelector,
+            validate: 'presence',
+        });
+
+        validator.add({
+            errorMessage: 'Min. price is required.',
+            selector: minPriceSelector,
+            validate: 'presence',
+        });
+
+        validator.add({
+            errorMessage: 'Input must be greater than 0.',
+            selector: [minPriceSelector, maxPriceSelector],
+            validate: 'min-number:0',
+        });
+
+        validator.setMessageOptions({
+            selector: [minPriceSelector, maxPriceSelector],
+            parent: fieldsetSelector,
+            errorSpan: errorSelector,
+        });
+    },
+
+    /**
      * Sets up a new validation when the form is dirty
      * @param validator
      * @param field

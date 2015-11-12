@@ -1,4 +1,5 @@
 import FacetedSearch from '../../../theme/common/faceted-search';
+import { Validators } from '../../../theme/common/form-utils';
 import $ from 'jquery';
 import { hooks, api } from 'bigcommerce/stencil-utils';
 import History from 'browserstate/history.js/scripts/bundled-uncompressed/html4+html5/jquery.history';
@@ -68,6 +69,7 @@ describe('FacetedSearch', () => {
 
             spyOn(facetedSearch, 'restoreCollapsedFacets');
             spyOn(facetedSearch, 'restoreCollapsedFacetItems');
+            spyOn(Validators, 'setMinMaxPriceValidation');
         });
 
         it('should update view with content by firing registered callback', () => {
@@ -86,6 +88,12 @@ describe('FacetedSearch', () => {
             facetedSearch.refreshView(content);
 
             expect(facetedSearch.restoreCollapsedFacetItems).toHaveBeenCalled();
+        });
+
+        it('should re-init price range validator', function() {
+            facetedSearch.refreshView(content);
+
+            expect(Validators.setMinMaxPriceValidation).toHaveBeenCalledWith(facetedSearch.priceRangeValidator, jasmine.any(Object));
         });
     });
 
@@ -200,12 +208,20 @@ describe('FacetedSearch', () => {
             };
 
             spyOn(History, 'pushState');
+            spyOn(facetedSearch.priceRangeValidator, 'areAll').and.returnValue(true);
         });
 
-        it('should set `min_price` and `max_price` query param to corresponding form values', () => {
+        it('should set `min_price` and `max_price` query param to corresponding form values if form is valid', () => {
             hooks.emit(eventName, event);
 
             expect(History.pushState).toHaveBeenCalledWith({}, '', '/context.html?min_price=0&max_price=100');
+        });
+
+        it('should not set `min_price` and `max_price` query param to corresponding form values if form is invalid', () => {
+            facetedSearch.priceRangeValidator.areAll.and.returnValue(false);
+            hooks.emit(eventName, event);
+
+            expect(History.pushState).not.toHaveBeenCalledWith({}, '', '/context.html?min_price=0&max_price=100');
         });
 
         it('should prevent default event', function() {

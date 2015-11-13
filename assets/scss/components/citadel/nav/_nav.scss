@@ -115,7 +115,7 @@
         // scss-lint:disable SelectorDepth, NestingDepth
         &.is-active {
             @include breakpoint("medium") {
-                border-bottom: 1px solid color("greys", "darker");
+                border-bottom: container("border");
             }
 
             > .navBar-action {
@@ -125,13 +125,13 @@
     }
 
     .navBar-action {
-        color: color("greys", "light");
+        color: stencilColor("color-textSecondary");
         font-size: fontSize("base");
         padding: 0;
 
         // scss-lint:disable NestingDepth
         &:hover {
-            color: color("greys", "darker");
+            color: stencilColor("color-textSecondary--hover");
         }
     }
 }

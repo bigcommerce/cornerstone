@@ -50,12 +50,12 @@
 // -----------------------------------------------------------------------------
 
 .table--line {
-    border-color: color("greys", "lightest");
+    border-color: container("borderColor");
     border-width: 0 0 1px;
 
     .table-thead {
-        background-color: color("whites", "bright");
-        border-color: color("greys", "lightest");
+        background-color: stencilColor("body-bg");
+        border-color: container("borderColor");
         border-width: 0 0 1px;
 
         // scss-lint:disable SelectorDepth, NestingDepth
@@ -85,7 +85,7 @@
     }
 
     tr {
-        border-color: color("greys", "lightest");
+        border-color: container("border");
 
         // scss-lint:disable SelectorDepth, NestingDepth
         td {

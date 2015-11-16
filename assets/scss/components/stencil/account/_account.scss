@@ -7,8 +7,7 @@
 // -----------------------------------------------------------------------------
 
 .account-heading {
-    border-bottom: 1px solid color("greys", "lightest");
-    color: color("greys", "darker");
+    border-bottom: container("border");
     margin: 0;
     padding-bottom: spacing("base");
 }
@@ -92,7 +91,7 @@
     }
 
     .definitionList-value {
-        color: color("greys");
+        color: stencilColor("color-textSecondary");
     }
 }
 
@@ -174,7 +173,7 @@
 }
 
 .account-product-detail-heading {
-    color: color("greys", "light");
+    color: stencilColor("color-textSecondary");
     font-family: fontFamily("sans");
     font-size: fontSize("tiny");
     margin: 0 0 spacing("quarter");
@@ -281,12 +280,13 @@
     @include breakpoint("small") {
         float: right;
         position: inherit;
+        text-align: right;
     }
 }
 
 .account-orderStatus-label {
-    background-color: color("greys", "medium");
-    color: color("whites");
+    background-color: stencilColor("label-backgroundColor");
+    color: stencilColor("label-color");
     display: inline-block;
     font-size: fontSize("tiny");
     line-height: lineHeight("smallest");
@@ -295,7 +295,7 @@
 }
 
 .account-orderStatus-action {
-    color: color("greys", "dark");
+    color: stencilColor("color-textSecondary");
     display: inline-block;
     font-size: fontSize("tiny");
     font-style: italic;
@@ -308,6 +308,10 @@
     @include breakpoint("small") {
         display: block;
         margin-left: 0;
+    }
+
+    &:hover {
+        color: stencilColor("color-textSecondary--hover");
     }
 }
 
@@ -355,7 +359,7 @@
     }
 
     .definitionList-value {
-        color: color("greys");
+        color: stencilColor("color-textSecondary");
     }
 }
 

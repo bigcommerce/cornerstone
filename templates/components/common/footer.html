@@ -10,7 +10,7 @@
 <footer class="footer" role="contentinfo">
     <div class="container">
         <section class="footer-info">
-            <article class="footer-info-col footer-info-col--small">
+            <article class="footer-info-col footer-info-col--small" data-section-type="footer-webPages">
                 <h5 class="footer-info-heading">{{lang 'footer.navigate'}}</h5>
                 <ul class="footer-info-list">
                     {{#each pages}}
@@ -21,7 +21,7 @@
                 </ul>
             </article>
 
-            <article class="footer-info-col footer-info-col--small">
+            <article class="footer-info-col footer-info-col--small" data-section-type="footer-categories">
                 <h5 class="footer-info-heading">{{lang 'footer.categories'}}</h5>
                 <ul class="footer-info-list">
                     {{#each categories}}
@@ -32,7 +32,7 @@
                 </ul>
             </article>
 
-            <article class="footer-info-col footer-info-col--small">
+            <article class="footer-info-col footer-info-col--small" data-section-type="footer-brands">
                 <h5 class="footer-info-heading">{{lang 'footer.brands'}}</h5>
                 <ul class="footer-info-list">
                     {{#each shop_by_brand}}
@@ -44,7 +44,7 @@
                 </ul>
             </article>
 
-            <article class="footer-info-col footer-info-col--small">
+            <article class="footer-info-col footer-info-col--small" data-section-type="storeInfo">
                 <h5 class="footer-info-heading">{{lang 'footer.info'}}</h5>
                 <address>{{nl2br settings.address}}</address>
                 {{#if settings.phone_number}}
@@ -52,7 +52,7 @@
                 {{/if}}
             </article>
 
-            <article class="footer-info-col">
+            <article class="footer-info-col" data-section-type="newsletterSubscription">
                 {{#if settings.show_newsletter_box}}
                     {{> components/common/subscription-form }}
                 {{/if}}

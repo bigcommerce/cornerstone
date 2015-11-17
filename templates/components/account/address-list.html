@@ -2,32 +2,22 @@
     {{> components/common/alert-info (lang 'account.addresses.no_addresses')}}
 {{/unless}}
 
-<ul class="addressBox-list">
+<ul class="addressList">
     {{#each customer.addresses}}
-        <li class="addressBox-item">
-            <div class="addressBox">
-                <h5 class="addressBox-heading">{{first_name}} {{last_name}}</h5>
-                <ul class="addressBox-content">
-                    <li class="address-line">
-                        <span class="address-description">{{company}}</span>
-                    </li>
-                    <li class="address-line">
-                        <span class="address-description">{{address1}}</span>
-                    </li>
-                    <li class="address-line">
-                        <span class="address-description">{{address2}}</span>
-                    </li>
-                    <li class="address-line">
-                        <span class="address-description">{{city}}{{#if state}}, {{state}}{{/if}} {{zip}}</span>
-                    </li>
-                    <li class="address-line">
-                        <span class="address-description">{{country}}</span>
-                    </li>
-                    <li class="address-line">
-                        <span class="address-description">{{lang 'account.addresses.phone' }}</span>
-                        <span class="address-value">{{phone}}</span>
-                    </li>
+        <li class="addressItem">
+            <div class="address">
+                <h5 class="address-title">{{first_name}} {{last_name}}</h5>
+                <ul class="address-details address-details--postal">
+                    <li>{{company}}</li>
+                    <li>{{address1}}</li>
+                    <li>{{address2}}</li>
+                    <li>{{city}}{{#if state}}, {{state}}{{/if}} {{zip}}</li>
+                    <li>{{country}}</li>
                 </ul>
+                <dl class="address-details">
+                    <dt class="address-label">{{lang 'account.addresses.phone' }}</dt>
+                    <dd class="address-description">{{phone}}</dd>
+                </dl>
                 <form action="{{delete_url}}" method="post" data-delete-address="{{lang 'forms.address.confirm_delete'}}">
                     <div class="form-actions">
                         <a class="button button--primary button--small" href="{{edit_url}}">{{lang 'common.edit' }}</a>
@@ -37,12 +27,12 @@
             </div>
         </li>
     {{/each}}
-    <li class="addressBox-item">
-        <a class="addressBox addressBox--newAddress" href="{{urls.account.add_address}}">
-            <div class="newAddress-action">
-                <div class="newAddress-plus">&plus;</div>
-                <div class="newAddress-text">{{lang 'account.addresses.new_address' }}</div>
-            </div>
+    <li class="addressItem">
+        <a class="address address--add" href="{{urls.account.add_address}}">
+            <span class="address-action">
+                <span class="address-symbol">&plus;</span>
+                <h5 class="address-addTitle">{{lang 'account.addresses.new_address' }}</h5>
+            </span>
         </a>
     </li>
 </ul>

@@ -15,38 +15,42 @@
         {{/each}}
     </ul>
     <ul class="navPages-list navPages-list--account">
+        {{#if currency_selector.currencies.length '>' 1}}
+            <li class="navPages-item">
+                <a class="navPages-action has-subMenu" href="#" data-togglemenu="navPages-currency" aria-controls="navPages-currency" aria-expanded="false">
+                    {{lang 'common.currency' code=currency_selector.active_currency_code}} <i class="icon navPages-action-moreIcon" aria-hidden="true"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-chevron-down"></use></svg></i>
+                </a>
+                <div class="navPage-subMenu" id="navPages-currency" aria-hidden="true" tabindex="-1">
+                    <ul class="navPage-subMenu-list">
+                        {{#each currency_selector.currencies}}
+                        <li class="navPage-subMenu-item">
+                            <a class="navPage-subMenu-action navPages-action" href="{{{switch_url}}}">
+                                {{#if is_active}}
+                                    <strong>{{name}}</strong>
+                                {{else}}
+                                    {{name}}
+                                {{/if}}
+                            </a>
+                        </li>
+                        {{/each}}
+                    </ul>
+                </div>
+            </li>
+        {{/if}}
         <li class="navPages-item">
             <a class="navPages-action" href="{{urls.gift_certificate.purchase}}">{{lang 'common.gift_cert'}}</a>
         </li>
         {{#if customer}}
-        <li class="navPages-item">
-            <a class="navPages-action" href="{{urls.account.index}}">{{lang 'common.account'}}</a>
-        </li>
-        <li class="navPages-item">
-            <a class="navPages-action" href="{{urls.auth.logout}}">{{lang 'common.logout'}}</a>
-        </li>
+            <li class="navPages-item">
+                <a class="navPages-action" href="{{urls.account.index}}">{{lang 'common.account'}}</a>
+            </li>
+            <li class="navPages-item">
+                <a class="navPages-action" href="{{urls.auth.logout}}">{{lang 'common.logout'}}</a>
+            </li>
         {{else}}
-        <li class="navPages-item">
-            <a class="navPages-action" href="{{urls.auth.login}}">{{lang 'common.login'}}</a> {{lang 'common.or'}} <a class="navPages-action" href="{{urls.auth.create_account}}">{{lang 'common.sign_up'}}</a>
-        </li>
-        {{/if}}
-        {{#if currency_selector.currencies.length '>' 1}}
-        <li class="navPages-item">
-            <a class="navPages-action has-dropdown" href="#" data-dropdown="currencySelection2" aria-controls="currencySelection2" aria-expanded="false">{{lang 'common.currency' code=currency_selector.active_currency_code}}</a>
-            <ul class="dropdown-menu" id="currencySelection2" data-dropdown-content aria-hidden="true" tabindex="-1">
-                {{#each currency_selector.currencies}}
-                <li class="dropdown-menu-item">
-                    <a href="{{{switch_url}}}">
-                        {{#if is_active}}
-                        <strong>{{name}}</strong>
-                        {{else}}
-                        {{name}}
-                        {{/if}}
-                    </a>
-                </li>
-                {{/each}}
-            </ul>
-        </li>
+            <li class="navPages-item">
+                <a class="navPages-action" href="{{urls.auth.login}}">{{lang 'common.login'}}</a> {{lang 'common.or'}} <a class="navPages-action" href="{{urls.auth.create_account}}">{{lang 'common.sign_up'}}</a>
+            </li>
         {{/if}}
     </ul>
 </nav>

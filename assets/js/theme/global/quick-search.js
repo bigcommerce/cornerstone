@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import _ from 'lodash';
 import utils from 'bigcommerce/stencil-utils';
-import stencilDropDown from './stencil-dropdown';
+import StencilDropDown from './stencil-dropdown';
 import nod from '../common/nod';
 
 const internals = {
@@ -33,12 +33,32 @@ const internals = {
 };
 
 export default function() {
+    let stencilDropDown;
     const TOP_STYLING = 'top: 49px;';
     const $quickSearchResults = $('.quickSearchResults');
     const $quickSearchDiv = $('#quickSearch');
     const validator = internals.initValidation($quickSearchDiv)
         .bindValidation($quickSearchDiv.find('#search_query'));
+    const $searchQuery = $('#search_query');
+    const stencilDropDownExtendables = {
+        hide: () => {
+            $searchQuery.blur();
+        },
+        show: (event) => {
+            $searchQuery.focus();
+            event.stopPropagation();
+        },
+        onBodyClick: (e, $container) => {
+            // If the target element has this data tag or one of it's parents, do not close the search results
+            // We have to specify `.modal-background` because of limitations around Foundation Reveal not allowing
+            // any modification to the background element.
+            if ($(e.target).closest('[data-prevent-quick-search-close], .modal-background').length === 0) {
+                stencilDropDown.hide($container);
+            }
+        },
+    };
 
+    stencilDropDown = new StencilDropDown(stencilDropDownExtendables);
     stencilDropDown.bind($('[data-search="quickSearch"]'), $quickSearchDiv, TOP_STYLING);
 
     // stagger searching for 200ms after last input

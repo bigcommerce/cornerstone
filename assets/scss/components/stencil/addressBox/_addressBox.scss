@@ -51,14 +51,6 @@
     position: relative;
 }
 
-.address--add {
-    background-color: transparent;
-    border: container("border");
-    display: block;
-    text-align: center;
-    text-decoration: none;
-}
-
 .address-title {
     margin: 0 0 spacing("half");
     text-transform: none;
@@ -106,7 +98,19 @@
     }
 }
 
-.address-action {
+.address--add {
+    background-color: transparent;
+    border: container("border");
+    display: block;
+    text-align: center;
+    text-decoration: none;
+
+    .address-title {
+        margin-bottom: 0;
+    }
+}
+
+.address-addNew {
     left: 50%;
     position: absolute;
     top: 50%;
@@ -116,9 +120,4 @@
 .address-symbol {
     font-size: fontSize("hero");
     line-height: 1;
-}
-
-.address-addTitle {
-    margin: 0;
-    text-transform: inherit;
 }

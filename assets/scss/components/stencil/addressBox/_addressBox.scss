@@ -40,6 +40,8 @@
 // 1. Redefine the font-size as we're removing white-space on the parent by
 //    reducing the size to 0.
 // 2. Adding a min-height to improve the consistency of the address blocks.
+// 3. On larger screens we position: absolute; the .form-actions so they're
+//    consistently in line. We need to adjust padding to accommodate this.
 //
 // -----------------------------------------------------------------------------
 
@@ -47,8 +49,12 @@
     background-color: container("fill", "dark");
     font-size: fontSize("base"); // 1
     min-height: remCalc(250px); // 2
-    padding: spacing("single") spacing("single") (spacing("single") + spacing("double"));
+    padding: spacing("single");
     position: relative;
+
+    @include breakpoint("small") {
+        padding: spacing("single") spacing("single") (spacing("single") + spacing("double")); // 3
+    }
 }
 
 .address-title {
@@ -78,12 +84,15 @@
 }
 
 .address .form-actions {
-    bottom: spacing("single");
     margin-top: spacing("single");
     padding: 0;
-    position: absolute;
     text-align: left;
-    width: auto;
+
+    @include breakpoint("small") { // 3
+        bottom: spacing("single");
+        position: absolute;
+        width: auto;
+    }
 
     .button {
         margin: 0;
@@ -105,8 +114,16 @@
     text-align: center;
     text-decoration: none;
 
+    &:hover {
+
+        .address-title {
+            color: stencilColor("color-textLink--hover");
+        }
+    }
+
     .address-title {
         margin-bottom: 0;
+        transition: all 0.15s ease;
     }
 }
 

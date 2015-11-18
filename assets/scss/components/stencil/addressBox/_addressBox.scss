@@ -56,6 +56,30 @@
             padding: spacing("single") spacing("single") (spacing("single") + spacing("double")); // 3
         }
     }
+
+    .form-actions {
+        margin-top: spacing("single");
+        padding: 0;
+        text-align: left;
+
+        @include breakpoint("small") { // 3
+            bottom: spacing("single");
+            position: absolute;
+            width: auto;
+        }
+
+        .button {
+            margin: 0;
+
+            + .button {
+                margin-top: spacing("half");
+
+                @include breakpoint("small") {
+                    margin: 0 0 0 spacing("quarter");
+                }
+            }
+        }
+    }
 }
 
 .address-title {
@@ -84,30 +108,6 @@
     font-weight: fontWeight("normal");
 }
 
-.panel--address .form-actions {
-    margin-top: spacing("single");
-    padding: 0;
-    text-align: left;
-
-    @include breakpoint("small") { // 3
-        bottom: spacing("single");
-        position: absolute;
-        width: auto;
-    }
-
-    .button {
-        margin: 0;
-
-        + .button {
-            margin-top: spacing("half");
-
-            @include breakpoint("small") {
-                margin: 0 0 0 spacing("quarter");
-            }
-        }
-    }
-}
-
 .panel--newAddress {
     display: block;
     text-align: center;
@@ -115,9 +115,11 @@
 
     &:hover {
 
+        // scss-lint:disable SelectorDepth, NestingDepth
         .address-title {
             color: stencilColor("color-textLink--hover");
         }
+        // scss-lint:enable SelectorDepth, NestingDepth
     }
 
     .panel-body {

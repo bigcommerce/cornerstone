@@ -100,13 +100,20 @@
     }
 
     .button {
-        margin: 0 0 spacing("half");
         vertical-align: top;
         width: 100%;
 
         @include breakpoint("small") {
-            margin: 0 0 0 spacing("half");
             width: auto;
+            margin-bottom: 0;
+        }
+
+        + .button {
+            margin-top: spacing("half");
+
+            @include breakpoint("small") {
+                margin: 0 0 0 spacing("half");
+            }
         }
     }
 }

@@ -99,15 +99,28 @@
         margin-top: spacing("single");
     }
 
-    .button {
-        margin: 0 0 spacing("half");
+    .button,
+    input,
+    a {
         vertical-align: top;
         width: 100%;
 
         @include breakpoint("small") {
-            margin: 0 0 0 spacing("half");
+            margin-bottom: 0;
             width: auto;
         }
+
+        // scss-lint:disable NestingDepth
+        + .button,
+        + input,
+        + a {
+            margin-top: spacing("half");
+
+            @include breakpoint("small") {
+                margin: 0 0 0 spacing("half");
+            }
+        }
+        // scss-lint:enable NestingDepth
     }
 }
 

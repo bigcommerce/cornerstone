@@ -39,9 +39,17 @@
         @include breakpoint("small") {
             display: inline-block;
             margin-bottom: 0;
-            margin-left: spacing("half");
             width: auto;
         }
+
+        // scss-lint:disable NestingDepth
+        + .button {
+
+            @include breakpoint("small") {
+                margin-left: spacing("quarter");
+            }
+        }
+        // scss-lint:enable NestingDepth
     }
 }
 

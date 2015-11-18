@@ -106,10 +106,11 @@
         width: 100%;
 
         @include breakpoint("small") {
-            width: auto;
             margin-bottom: 0;
+            width: auto;
         }
 
+        // scss-lint:disable NestingDepth
         + .button,
         + input,
         + a {
@@ -119,6 +120,7 @@
                 margin: 0 0 0 spacing("half");
             }
         }
+        // scss-lint:enable NestingDepth
     }
 }
 

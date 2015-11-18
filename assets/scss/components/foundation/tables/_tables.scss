@@ -39,8 +39,14 @@
         @include breakpoint("small") {
             display: inline-block;
             margin-bottom: 0;
-            margin-left: spacing("half");
             width: auto;
+        }
+
+        + .button {
+
+            @include breakpoint("small") {
+                margin-left: spacing("quarter");
+            }
         }
     }
 }

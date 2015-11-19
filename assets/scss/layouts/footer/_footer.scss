@@ -80,18 +80,19 @@
 .footer-copyright {
 
     > .powered-by {
-        color: color("greys", "light");
+        color: stencilColor("color-textSecondary");
         font-size: fontSize("tiny");
         margin: 0;
     }
 
     a {
-        color: color("greys", "light");
+        color: stencilColor("color-textSecondary");
         text-decoration: none;
 
         // scss-lint:disable NestingDepth
         &:hover {
-            color: color("greys", "darker");
+            color: stencilColor("color-textSecondary--hover");
         }
+        // scss-lint:enable NestingDepth
     }
 }

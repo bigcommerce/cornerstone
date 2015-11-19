@@ -25,6 +25,7 @@
 
 .footer-info-col {
     @include grid-column(12);
+    color: stencilColor("color-textSecondary");
     display: inline-block;
     float: none;
     font-size: fontSize("base"); // 2
@@ -72,8 +73,12 @@
     margin-left: 0;
 
     a {
-        color: color("link");
+        color: stencilColor("color-textSecondary");
         text-decoration: none;
+
+        &:hover {
+            color: stencilColor("color-textSecondary--hover");
+        }
     }
 }
 

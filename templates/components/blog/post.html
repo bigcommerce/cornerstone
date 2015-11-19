@@ -1,11 +1,11 @@
 <article class="blog">
     <div class="blog-post-figure">
         {{#if post.thumbnail}}
-            <a href="{{post.url}}">
-                <figure class="blog-thumbnail">
+            <figure class="blog-thumbnail">
+                <a href="{{post.url}}">
                     <img src="{{getImage post.thumbnail 'gallery'}}" alt="{{post.thumbnail.alt}}">
-                </figure>
-            </a>
+                </a>
+            </figure>
         {{/if}}
     </div>
 
@@ -26,7 +26,7 @@
             {{else}}
                 {{post.summary}}
                 {{#if post.show_read_more}}
-                    &hellip;<a href="{{url}}"> read more</a>
+                    &hellip; <a href="{{url}}">read more</a>
                 {{/if}}
             {{/if}}
         </div>

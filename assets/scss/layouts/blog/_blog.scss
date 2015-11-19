@@ -7,11 +7,15 @@
 // -----------------------------------------------------------------------------
 
 .blog {
-    margin: 0 auto spacing("single");
-    width: grid-calc(8, $total-columns);
+    margin-bottom: spacing("single");
+
+    @include breakpoint("medium") {
+        margin: auto;
+        width: grid-calc(8, $total-columns);
+    }
 
     + .blog {
-        border-top: 1px solid color("greys", "lightest");
+        border-top: container("border");
         margin-top: spacing("double");
         padding-top: spacing("double");
     }
@@ -68,6 +72,7 @@
 
 .blog-post {
     font-size: fontSize("smaller");
+    text-align: left;
 
     @include breakpoint("medium") {
         margin-left: spacing("single");
@@ -92,10 +97,17 @@
 
 .blog-post-body {
     display: block;
+    margin: 0 auto;
     text-align: center;
+    width: grid-calc(12, $total-columns);
+
+    @include breakpoint("small") {
+        width: grid-calc(10, $total-columns);
+    }
 
     @include breakpoint("medium") {
         margin-left: 20%;
         text-align: left;
+        width: auto;
     }
 }

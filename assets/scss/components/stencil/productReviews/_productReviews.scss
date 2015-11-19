@@ -12,7 +12,6 @@
     @include u-listBullets("none");
     @include grid-row($behavior: "nest");
     font-size: 0; // 1
-    margin-bottom: spacing("single");
 }
 
 
@@ -24,7 +23,6 @@
     display: inline-block;
     float: none;
     font-size: fontSize("base");
-    margin-bottom: spacing("single");
     vertical-align: top;
 
     @include breakpoint("medium") {
@@ -33,6 +31,10 @@
 
     @include breakpoint("large") {
         width: grid-calc(4, $total-columns);
+    }
+
+    > :last-child {
+        margin-bottom: 0;
     }
 }
 

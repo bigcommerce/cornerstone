@@ -18,10 +18,16 @@ $toggle-spacing: spacing("single") + spacing("half");
 }
 
 .toggle-title {
-    margin: $toggle-spacing 0 0;
+    margin-bottom: $toggle-spacing;
 }
 
 .toggleLink {
+    color: stencilColor("color-textSecondary");
+
+    &:hover {
+        color: stencilColor("color-textSecondary--hover");
+    }
+
     .toggle-title & {
         float: right;
         line-height: 24px;
@@ -29,13 +35,8 @@ $toggle-spacing: spacing("single") + spacing("half");
 }
 
 .toggleLink-text {
-    color: color("greys", "light");
     font-size: fontSize("smallest");
     font-weight: fontWeight("normal");
-
-    &:hover {
-        color: color("greys", "darker");
-    }
 }
 
 .toggleLink-text--off {
@@ -56,7 +57,6 @@ $toggle-spacing: spacing("single") + spacing("half");
 
 .toggle-content {
     display: none;
-    padding: $toggle-spacing 0;
 
     &.is-open {
         display: block;

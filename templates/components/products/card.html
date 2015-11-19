@@ -36,19 +36,19 @@
     </figure>
     <div class="card-body">
         {{#if show_rating}}
-            <p class="card-text">
+            <p class="card-text" data-test-info-type="productRating">
                 <span class="rating--small">
                     {{> components/products/ratings rating=rating}}
                 </span>
             </p>
         {{/if}}
         {{#if brand.name}}
-            <p class="card-text">{{brand.name}}</p>
+            <p class="card-text" data-test-info-type="brandName">{{brand.name}}</p>
         {{/if}}
         <h4 class="card-title">
             <a href="{{url}}">{{name}}</a>
         </h4>
-        <div class="card-text">
+        <div class="card-text" data-test-info-type="price">
             {{> components/products/price price=price}}
         </div>
     </div>

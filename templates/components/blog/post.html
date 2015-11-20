@@ -1,11 +1,11 @@
 <article class="blog">
     <div class="blog-post-figure">
         {{#if post.thumbnail}}
-            <a href="{{post.url}}">
-                <figure class="blog-thumbnail">
+            <figure class="blog-thumbnail">
+                <a href="{{post.url}}">
                     <img src="{{getImage post.thumbnail 'gallery'}}" alt="{{post.thumbnail.alt}}">
-                </figure>
-            </a>
+                </a>
+            </figure>
         {{/if}}
     </div>
 
@@ -14,10 +14,7 @@
             <h2 class="blog-title">
                 <a href="{{post.url}}">{{post.title}}</a>
             </h2>
-            <p class="blog-date">{{post.date_published}}</p>
-            {{#if post.author}}
-                <p class="blog-author">{{lang 'blog.posted_by' name=post.author}}</p>
-            {{/if}}
+            <p class="blog-date">{{#if post.author}}{{lang 'blog.posted_by' name=post.author}} on {{/if}}{{post.date_published}}</p>
         </header>
 
         <div class="blog-post">
@@ -26,7 +23,7 @@
             {{else}}
                 {{post.summary}}
                 {{#if post.show_read_more}}
-                    &hellip;<a href="{{url}}"> read more</a>
+                    &hellip; <a href="{{url}}">read more</a>
                 {{/if}}
             {{/if}}
         </div>

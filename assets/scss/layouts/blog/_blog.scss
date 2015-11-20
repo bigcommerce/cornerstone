@@ -7,11 +7,15 @@
 // -----------------------------------------------------------------------------
 
 .blog {
-    margin: 0 auto spacing("single");
-    width: grid-calc(8, $total-columns);
+    margin-bottom: spacing("single");
+
+    @include breakpoint("medium") {
+        margin: auto;
+        width: 100%;
+    }
 
     + .blog {
-        border-top: 1px solid color("greys", "lightest");
+        border-top: container("border");
         margin-top: spacing("double");
         padding-top: spacing("double");
     }
@@ -19,20 +23,10 @@
     .tags {
         margin-top: spacing("double");
         text-align: center;
-
-        @include breakpoint("medium") {
-            margin-left: spacing("single");
-            text-align: left;
-        }
     }
 
     .socialLinks {
         text-align: center;
-
-        @include breakpoint("medium") {
-            margin-left: spacing("single");
-            text-align: left;
-        }
     }
 
     // scss-lint:disable SelectorFormat
@@ -53,13 +47,8 @@
 
 .blog-date,
 .blog-author {
-    color: color("greys", "medium");
+    color: stencilColor("color-textSecondary");
     text-align: center;
-
-    @include breakpoint("medium") {
-        margin-left: spacing("single");
-        text-align: left;
-    }
 }
 
 .blog-author {
@@ -68,10 +57,7 @@
 
 .blog-post {
     font-size: fontSize("smaller");
-
-    @include breakpoint("medium") {
-        margin-left: spacing("single");
-    }
+    text-align: left;
 }
 
 .blog-thumbnail {
@@ -80,22 +66,25 @@
 
 .blog-post-figure {
     display: block;
+    margin: auto;
     text-align: center;
 
     @include breakpoint("medium") {
-        float: left;
-        margin: 0;
-        position: relative;
-        width: 20%;
+        width: grid-calc(8, $total-columns);
     }
 }
 
 .blog-post-body {
     display: block;
+    margin: 0 auto;
     text-align: center;
+    width: 100%;
+
+    @include breakpoint("small") {
+        width: grid-calc(10, $total-columns);
+    }
 
     @include breakpoint("medium") {
-        margin-left: 20%;
-        text-align: left;
+        width: grid-calc(6, $total-columns);
     }
 }

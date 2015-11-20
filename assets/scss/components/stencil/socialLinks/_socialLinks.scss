@@ -8,10 +8,10 @@
 .socialLinks {
     @include clearfix;
     @include u-listReset;
-    margin: 0 auto spacing("third");
 
     .icon { // 1
         @include square($socialLinks-iconSize);
+        margin: 0;
         text-decoration: none;
 
         // scss-lint:disable NestingDepth, SelectorDepth
@@ -33,11 +33,15 @@
     display: inline-block;
     font-size: 0; // 1
 
+    .socialLinks & {
+        margin-bottom: spacing("quarter");
+    }
+
     + .socialLinks-item {
-        margin-left: spacing("single");
+        margin-left: spacing("half");
 
         @include breakpoint("small") {
-            margin-left: spacing("half") + spacing("quarter");
+            margin-left: spacing("half");
         }
     }
 }

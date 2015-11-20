@@ -25,6 +25,7 @@
 
 .footer-info-col {
     @include grid-column(12);
+    color: stencilColor("color-textSecondary");
     display: inline-block;
     float: none;
     font-size: fontSize("base"); // 2
@@ -41,19 +42,19 @@
         width: width("4/12");
     }
 
-    &--small { // .footer-info-col--small
-
-        @include breakpoint("medium") {
-            width: width("2/12");
-        }
-    }
-
     > :first-child {
         margin-top: 0;
     }
 
     > :last-child {
         margin-bottom: 0;
+    }
+}
+
+.footer-info-col--small {
+
+    @include breakpoint("medium") {
+        width: width("2/12");
     }
 }
 
@@ -72,8 +73,14 @@
     margin-left: 0;
 
     a {
-        color: color("link");
+        color: stencilColor("color-textSecondary");
         text-decoration: none;
+
+        // scss-lint:disable NestingDepth
+        &:hover {
+            color: stencilColor("color-textSecondary--hover");
+        }
+        // scss-lint:enable NestingDepth
     }
 }
 

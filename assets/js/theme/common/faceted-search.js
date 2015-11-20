@@ -299,7 +299,7 @@ export default class FacetedSearch {
     }
 
     onClearFacet(event) {
-        const $link = $(event.currentTarget);
+        const $link = $(event.target);
         const url = $link.attr('href');
 
         event.preventDefault();
@@ -310,7 +310,7 @@ export default class FacetedSearch {
     }
 
     onToggleClick(event) {
-        const $toggle = $(event.currentTarget);
+        const $toggle = $(event.target);
         const $navList = $($toggle.attr('href'));
 
         // Prevent default
@@ -321,7 +321,7 @@ export default class FacetedSearch {
     }
 
     onFacetClick(event) {
-        const $link = $(event.currentTarget);
+        const $link = $(event.target);
         const url = $link.attr('href');
 
         event.preventDefault();
@@ -340,14 +340,14 @@ export default class FacetedSearch {
         }
 
         const url = Url.parse(location.href);
-        const queryParams = $(event.currentTarget).serialize();
+        const queryParams = $(event.target).serialize();
 
         goToUrl(Url.format({ pathname: url.pathname, search: '?' + queryParams }));
     }
 
     onSortBySubmit(event) {
         const url = Url.parse(location.href, true);
-        const queryParams = $(event.currentTarget).serialize().split('=');
+        const queryParams = $(event.target).serialize().split('=');
 
         url.query[queryParams[0]] = queryParams[1];
         delete url.query.page;
@@ -362,7 +362,7 @@ export default class FacetedSearch {
     }
 
     onAccordionToggle(event) {
-        const $accordionToggle = $(event.currentTarget);
+        const $accordionToggle = $(event.target);
         const collapsibleInstance = $accordionToggle.data('collapsible');
         const id = collapsibleInstance.targetId;
 

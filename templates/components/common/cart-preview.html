@@ -21,7 +21,10 @@
                         </h6>
 
                         <div class="previewCartItem-price">
-                            {{quantity}} &times; {{price.formatted}}
+                            {{#if quantity '>' 1}}
+                                {{quantity}} &times;
+                            {{/if}}
+                            {{price.formatted}}
                         </div>
                     </div>
                 </li>

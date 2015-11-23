@@ -9,9 +9,12 @@
     position: absolute;
 }
 
-.dropdown-menu {
-    &.is-loading {
-        @include loadingOverlay-container();
+.dropdown-menu.is-loading {
+
+    .loadingOverlay {
+        background: none;
+        padding: (spacing("double") + spacing("single")) 0;
+        position: relative;
     }
 }
 

@@ -33,13 +33,15 @@ export default function() {
         $cartDropdown
             .addClass(loadingClass)
             .html($cartLoading);
-        $cartLoading.show();
+        $cartLoading
+            .show();
 
         utils.api.cart.getContent(options, (err, response) => {
             $cartDropdown
                 .removeClass(loadingClass)
                 .html(response);
-            $cartLoading.hide();
+            $cartLoading
+                .hide();
         });
     });
 }

@@ -35,13 +35,10 @@
 
     .socialLinks & {
         margin-bottom: spacing("quarter");
-    }
+        margin-right: spacing("half");
 
-    + .socialLinks-item {
-        margin-left: spacing("half");
-
-        @include breakpoint("small") {
-            margin-left: spacing("half");
+        &:last-child {
+            margin-right: 0;
         }
     }
 }

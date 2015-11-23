@@ -12,20 +12,20 @@
                     </div>
 
                     <div class="previewCartItem-content">
-                        <div class="previewCartItem-brand">
+                        <span class="previewCartItem-brand">
                             {{brand.name}}
-                        </div>
+                        </span>
 
                         <h6 class="previewCartItem-name">
                             <a href="{{url}}" alt="{{name}}">{{name}}</a>
                         </h6>
 
-                        <div class="previewCartItem-price">
+                        <span class="previewCartItem-price">
                             {{#if quantity '>' 1}}
                                 {{quantity}} &times;
                             {{/if}}
                             {{price.formatted}}
-                        </div>
+                        </span>
                     </div>
                 </li>
             {{/each}}

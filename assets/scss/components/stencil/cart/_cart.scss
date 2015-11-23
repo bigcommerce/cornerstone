@@ -562,8 +562,14 @@ $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-sp
 }
 
 .previewCartItem-brand,
+.previewCartItem-name {
+    margin-bottom: spacing("eighth");
+}
+
+.previewCartItem-brand,
 .previewCartItem-price {
     color: $small-font-color;
+    display: inline-block;
     font-size: fontSize("smallest");
 }
 
@@ -571,7 +577,7 @@ $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-sp
     @include grid-row;
     border-top: container("border");
     display: block;
-    padding: spacing("base") spacing("quarter");
+    padding: spacing("single") spacing("half");
 
     .button {
         margin: 0;

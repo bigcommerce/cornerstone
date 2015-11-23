@@ -1,87 +1,91 @@
-<form action="{{forms.search.action}}" data-advanced-search-form class="toggle-content" id="advanced-search-content" aria-hidden="true">
-    <input type="hidden" name="mode" value="1">
-    <p>{{lang 'forms.search.title'}}</p>
-    <div class="form-row">
-        <fieldset class="form-fieldset form-column">
-            <div class="form-field">
-                <label class="form-label" for="search_query_adv">
-                    {{lang 'forms.search.query' }}
-                    <small>{{lang 'common.required' }}</small>
-                </label>
-                <input type="text" class="form-input" name="search_query_adv" data-error-message="{{lang 'search.error.empty_field'}}" id="search_query_adv" value="{{forms.search.query}}">
-            </div>
+<div class="page">
+    <div class="page-content page-content--centered">
+        <form class="advancedSearch-form" action="{{forms.search.action}}" data-advanced-search-form class="toggle-content" id="advanced-search-content" aria-hidden="true">
+            <input type="hidden" name="mode" value="1">
+            <h5 class="advancedSearch-title">{{lang 'forms.search.title'}}</h5>
+            <div class="form-row">
+                <fieldset class="form-fieldset form-column">
+                    <div class="form-field">
+                        <label class="form-label" for="search_query_adv">
+                            {{lang 'forms.search.query' }}
+                            <small>{{lang 'common.required' }}</small>
+                        </label>
+                        <input type="text" class="form-input" name="search_query_adv" data-error-message="{{lang 'search.error.empty_field'}}" id="search_query_adv" value="{{forms.search.query}}">
+                    </div>
 
-            <div class="form-field">
-                <label class="form-label" for="search-form-brand">
-                    {{lang 'forms.search.brand' }}
-                </label>
-                <select class="form-select" name="brand" id="search-form-brand">
-                    <option value="">{{lang 'common.no_preference'}}</option>
-                    {{#each forms.search.brands_list}}
-                        <option value="{{id}}" {{#if ../forms.search.values.brand '==' id}}selected{{/if}}>{{name}}</option>
-                    {{/each}}
-                </select>
+                    <div class="form-field">
+                        <label class="form-label" for="search-form-brand">
+                            {{lang 'forms.search.brand' }}
+                        </label>
+                        <select class="form-select" name="brand" id="search-form-brand">
+                            <option value="">{{lang 'common.no_preference'}}</option>
+                            {{#each forms.search.brands_list}}
+                                <option value="{{id}}" {{#if ../forms.search.values.brand '==' id}}selected{{/if}}>{{name}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                </fieldset>
+                <fieldset class="form-fieldset form-column">
+                    <div class="form-field">
+                        <label class="form-label">
+                            {{lang 'forms.search.categories' }}
+                        </label>
+                        <div class="form-field-group" data-search-category-tree></div>
+                    </div>
+                    <div class="form-field">
+                        <input type="checkbox" class="form-checkbox" name="searchsubs" value="ON" id="search-form-searchsubs" checked>
+                        <label class="form-label" for="search-form-searchsubs">{{lang 'forms.search.searchsubs'}}</label>
+                    </div>
+                </fieldset>
             </div>
-        </fieldset>
-        <fieldset class="form-fieldset form-column">
-            <div class="form-field">
-                <label class="form-label">
-                    {{lang 'forms.search.categories' }}
-                </label>
-                <div class="form-field-group" data-search-category-tree></div>
+            <hr>
+            <div class="form-row">
+                <div class="form-field search-price-range">
+                    <h5 class="advancedSearch-title">{{lang 'forms.search.by_price'}}</h5>
+                    <p class="form-label" for="search-form-price_from">
+                        {{lang 'forms.search.price_range' }}
+                    </p>
+                    <label>
+                        <span class="u-hiddenVisually">{{lang 'forms.search.price_range' }}</span>
+                        <span>{{lang 'common.from'}}</span><input type="text" class="form-input" name="price_from" id="search-form-price_from" value="{{forms.search.values.price_from}}">
+                    </label>
+                    <label>
+                        <span class="u-hiddenVisually">{{lang 'forms.search.price_range' }}</span>
+                        <span>{{lang 'common.to'}}</span><input type="text" class="form-input" name="price_to" id="search-form-price_to" value="{{forms.search.values.price_to}}">
+                    </label>
+                </div>
             </div>
-            <div class="form-field">
-                <input type="checkbox" class="form-checkbox" name="searchsubs" value="ON" id="search-form-searchsubs" checked>
-                <label class="form-label" for="search-form-searchsubs">{{lang 'forms.search.searchsubs'}}</label>
+            <hr>
+            <h5 class="advancedSearch-title">{{lang 'forms.search.by_setting'}}</h5>
+            <div class="form-row form-row--half">
+                <div class="form-field">
+                    <label class="form-label" for="search-form-featured">
+                        {{lang 'forms.search.featured_products.title' }}
+                    </label>
+                    <select class="form-select" name="featured" id="search-form-featured">
+                        <option value="">{{lang 'common.no_preference'}}</option>
+                        <option value="1" {{#if forms.search.values.featured_products '===' '1'}}selected{{/if}}>{{lang 'forms.search.featured_products.enabled' }}</option>
+                        <option value="2" {{#if forms.search.values.featured_products '===' '2'}}selected{{/if}}>{{lang 'forms.search.featured_products.disabled' }}</option>
+                    </select>
+                </div>
+                <div class="form-field">
+                    <label class="form-label" for="search-form-shipping">
+                        {{lang 'forms.search.free_shipping.title' }}
+                    </label>
+                    <select class="form-select" name="shipping" id="search-form-shipping">
+                        <option value="">{{lang 'common.no_preference'}}</option>
+                        <option value="1" {{#if forms.search.values.free_shipping '===' '1'}}selected{{/if}}>{{lang 'forms.search.free_shipping.free' }}</option>
+                        <option value="2" {{#if forms.search.values.free_shipping '===' '2'}}selected{{/if}}>{{lang 'forms.search.free_shipping.paid' }}</option>
+                    </select>
+                </div>
             </div>
-        </fieldset>
+            <div class="form-actions">
+                <input
+                        id="advanced-search-submit"
+                        class="button button--primary"
+                        type="submit"
+                        value="{{lang 'forms.search.search' }}">
+            </div>
+        </form>
     </div>
-    <hr>
-    <div class="form-row">
-        <div class="form-field search-price-range">
-            <p>{{lang 'forms.search.by_price'}}</p>
-            <p class="form-label" for="search-form-price_from">
-                {{lang 'forms.search.price_range' }}
-            </p>
-            <label>
-                <span class="u-hiddenVisually">{{lang 'forms.search.price_range' }}</span>
-                <span>{{lang 'common.from'}}</span><input type="text" class="form-input" name="price_from" id="search-form-price_from" value="{{forms.search.values.price_from}}">
-            </label>
-            <label>
-                <span class="u-hiddenVisually">{{lang 'forms.search.price_range' }}</span>
-                <span>{{lang 'common.to'}}</span><input type="text" class="form-input" name="price_to" id="search-form-price_to" value="{{forms.search.values.price_to}}">
-            </label>
-        </div>
-    </div>
-    <hr>
-    <div class="form-row form-row--half">
-        <p>{{lang 'forms.search.by_setting'}}</p>
-        <div class="form-field">
-            <label class="form-label" for="search-form-featured">
-                {{lang 'forms.search.featured_products.title' }}
-            </label>
-            <select class="form-select" name="featured" id="search-form-featured">
-                <option value="">{{lang 'common.no_preference'}}</option>
-                <option value="1" {{#if forms.search.values.featured_products '===' '1'}}selected{{/if}}>{{lang 'forms.search.featured_products.enabled' }}</option>
-                <option value="2" {{#if forms.search.values.featured_products '===' '2'}}selected{{/if}}>{{lang 'forms.search.featured_products.disabled' }}</option>
-            </select>
-        </div>
-        <div class="form-field">
-            <label class="form-label" for="search-form-shipping">
-                {{lang 'forms.search.free_shipping.title' }}
-            </label>
-            <select class="form-select" name="shipping" id="search-form-shipping">
-                <option value="">{{lang 'common.no_preference'}}</option>
-                <option value="1" {{#if forms.search.values.free_shipping '===' '1'}}selected{{/if}}>{{lang 'forms.search.free_shipping.free' }}</option>
-                <option value="2" {{#if forms.search.values.free_shipping '===' '2'}}selected{{/if}}>{{lang 'forms.search.free_shipping.paid' }}</option>
-            </select>
-        </div>
-    </div>
-    <div class="form-actions">
-        <input
-                id="advanced-search-submit"
-                class="button button--primary"
-                type="submit"
-                value="{{lang 'forms.search.search' }}">
-    </div>
-</form>
+</div>

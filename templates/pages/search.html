@@ -68,8 +68,14 @@ product_results:
             <div class="panel panel--large">
                 <div class="panel-body">
                     {{#if forms.search.suggested_query}}
-                        {{lang 'forms.search.did_you_mean' suggestion=forms.search.suggested_query.query}}
-                        <a href="{{forms.search.suggested_query.url}}" class="search-refine">{{lang 'forms.search.refine'}}</a>
+                        <div class="search-suggestion">
+                            {{{lang 'forms.search.did_you_mean' suggestion=forms.search.suggested_query.query}}}
+                            <a href="{{forms.search.suggested_query.url}}" class="search-refine">{{lang 'forms.search.refine'}}</a>
+                        </div>
+
+                        <div class="search-suggestion">
+                            <p>{{{lang 'forms.search.no_match' query=forms.search.query}}}</p>
+                        </div>
                     {{/if}}
 
                     {{#if category_results.length}}

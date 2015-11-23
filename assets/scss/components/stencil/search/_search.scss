@@ -2,6 +2,19 @@
 // SEARCH
 // =============================================================================
 
+.search-suggestion {
+    margin-bottom: spacing("single") + spacing("third");
+
+    > :last-child {
+        margin-bottom: 0;
+    }
+}
+
+.suggestion-title {
+    margin-top: 0;
+    text-transform: inherit;
+}
+
 .search-price-range {
     label {
         display: inline;
@@ -29,7 +42,7 @@
 }
 
 .category-suggestion-list {
-    @include grid-row();
+    @include grid-row($behavior: "nest");
     list-style-type: none;
 }
 
@@ -40,10 +53,4 @@
 
 .search-refine {
     margin-left: spacing("single");
-}
-
-.panel-body {
-    .suggestion-type {
-        margin-top: spacing("half");
-    }
 }

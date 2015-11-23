@@ -14,7 +14,7 @@ product_results:
 {{/partial}}
 
 {{#partial "page"}}
-
+{{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
 <section class="nav">
     {{#if forms.search.query}}
         <h1 class="page-heading">
@@ -54,64 +54,76 @@ product_results:
 </section>
 
 <section class="page">
-    {{#if product_results.faceted_search_enabled}}
-        <aside class="page-sidebar" id="faceted-search-container">
-            {{> components/faceted-search/index product_results}}
-        </aside>
+    {{#if product_results.products}}
+        {{#if product_results.faceted_search_enabled}}
+            <aside class="page-sidebar" id="faceted-search-container">
+                {{> components/faceted-search/index product_results}}
+            </aside>
+        {{/if}}
+        <main class="page-content">
+    {{else}}
+        <main class="page-content page-content--centered">
     {{/if}}
+        {{#if forms.search.has_suggestions}}
+            <div class="panel panel--large">
+                <div class="panel-body">
+                    {{#if forms.search.suggested_query}}
+                        {{lang 'forms.search.did_you_mean' suggestion=forms.search.suggested_query.query}}
+                        <a href="{{forms.search.suggested_query.url}}" class="search-refine">{{lang 'forms.search.refine'}}</a>
+                    {{/if}}
 
-    {{#if forms.search.has_suggestions}}
-        <div class="panel">
-            <div class="panel-body">
-                {{#if forms.search.suggested_query}}
-                    {{lang 'forms.search.did_you_mean' suggestion=forms.search.suggested_query.query}}
-                    <a href="{{forms.search.suggested_query.url}}" class="search-refine">{{lang 'forms.search.refine'}}</a>
-                {{/if}}
+                    {{#if category_results.length}}
+                        <div class="search-suggestion">
+                            <h5 class="suggestion-title">{{lang 'forms.search.categories'}}</h5>
+                            <ul class="category-suggestion-list">
 
-                {{#if category_results.length}}
-                    <p class="suggestion-type">{{lang 'forms.search.categories'}}</p>
-                    <ul class="category-suggestion-list">
+                                {{#each category_results}}
+                                <li class="category-suggestion">
 
-                        {{#each category_results}}
-                        <li class="category-suggestion">
+                                    {{#each this}}
+                                        <a href="{{url}}">{{name}}</a>
+                                        {{#unless @last}} > {{/unless}}
+                                    {{/each}}
 
-                            {{#each this}}
+                                </li>
+                                {{/each}}
+                            </ul>
+                        </div>
+                    {{/if}}
+
+                    {{#if brand_results.length}}
+                        <div class="search-suggestion">
+                            <h5 class="suggestion-title">{{lang 'forms.search.brand'}}</h5>
+                            {{#each brand_results}}
                                 <a href="{{url}}">{{name}}</a>
-                                {{#unless @last}} > {{/unless}}
+                                {{#unless @last}}, {{/unless}}
                             {{/each}}
+                        </div>
+                    {{/if}}
 
-                        </li>
-                        {{/each}}
-                    </ul>
-                {{/if}}
-
-                {{#if brand_results.length}}
-                    <p class="suggestion-type">{{lang 'forms.search.brand'}}</p>
-                    {{#each brand_results}}
-                        <a href="{{url}}">{{name}}</a>
-                        {{#unless @last}}, {{/unless}}
-                    {{/each}}
-                {{/if}}
-
-                {{#if result_count '===' 0}}
-                    <p class="suggestion-type">{{lang 'forms.search.suggestions.title'}}</p>
-                    <ul>
-                        <li>{{lang 'forms.search.suggestions.line1'}}</li>
-                        <li>{{lang 'forms.search.suggestions.line2'}}</li>
-                        <li>{{lang 'forms.search.suggestions.line3'}}</li>
-                    </ul>
-                {{/if}}
+                    {{#if result_count '===' 0}}
+                        <div class="search-suggestion">
+                            <h5 class="suggestion-title">{{lang 'forms.search.suggestions.title'}}</h5>
+                            <ul>
+                                <li>{{lang 'forms.search.suggestions.line1'}}</li>
+                                <li>{{lang 'forms.search.suggestions.line2'}}</li>
+                                <li>{{lang 'forms.search.suggestions.line3'}}</li>
+                            </ul>
+                        </div>
+                    {{/if}}
+                </div>
             </div>
-        </div>
-    {{/if}}
+        {{/if}}
 
-    <main class="page-content">
-        <ul id="search-results-content">
-            {{#each content_results}}
-                <strong><a href="{{url}}">{{title}}</a></strong>({{type}})
-                <p>{{content}}</p>
-            {{/each}}
-        </ul>
+        {{#if content_results}}
+            <ul id="search-results-content">
+                {{#each content_results}}
+                    <strong><a href="{{url}}">{{title}}</a></strong>({{type}})
+                    <p>{{content}}</p>
+                {{/each}}
+            </ul>
+        {{/if}}
+
         <div id="product-listing-container">
             {{> components/search/product-listing}}
         </div>

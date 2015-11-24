@@ -32,20 +32,22 @@
                     {{#if order.billing_address.email}}<li>{{lang 'invoice.email' email=order.billing_address.email}}</li>{{/if}}
                 </ul>
             </div>
-            <div class="ShippingAddress">
-                <h3>{{lang 'account.orders.details.ship_to'}}</h3>
-                <ul>
-                    <li><strong>{{order.shipping_address.full_name}}</strong></li>
-                    <li>{{order.shipping_address.company}}</li>
-                    <li>{{order.shipping_address.address_lines.[0]}}</li>
-                    <li>{{order.shipping_address.address_lines.[1]}}</li>
-                    <li>{{order.shipping_address.city}}, {{order.shipping_address.state}} {{order.shipping_address.zip}}</li>
-                    <li>{{order.shipping_address.country}}</li>
-                    <li>&nbsp;</li>
-                    <li>{{lang 'invoice.phone' number=order.shipping_address.phone}}</li>
-                    {{#if order.shipping_address.email}}<li>{{lang 'invoice.email' email=order.shipping_address.email}}</li>{{/if}}
-                </ul>
-            </div>
+            {{#if order.shipping_address}}
+                <div class="ShippingAddress">
+                    <h3>{{lang 'account.orders.details.ship_to'}}</h3>
+                    <ul>
+                        <li><strong>{{order.shipping_address.full_name}}</strong></li>
+                        <li>{{order.shipping_address.company}}</li>
+                        <li>{{order.shipping_address.address_lines.[0]}}</li>
+                        <li>{{order.shipping_address.address_lines.[1]}}</li>
+                        <li>{{order.shipping_address.city}}, {{order.shipping_address.state}} {{order.shipping_address.zip}}</li>
+                        <li>{{order.shipping_address.country}}</li>
+                        <li>&nbsp;</li>
+                        <li>{{lang 'invoice.phone' number=order.shipping_address.phone}}</li>
+                        {{#if order.shipping_address.email}}<li>{{lang 'invoice.email' email=order.shipping_address.email}}</li>{{/if}}
+                    </ul>
+                </div>
+            {{/if}}
         </div>
 
         <div class="InvoiceDetails">

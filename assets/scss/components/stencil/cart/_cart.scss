@@ -325,7 +325,7 @@ $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-sp
 }
 
 .cart-total-label {
-    color: color("greys", "medium");
+    color: stencilColor("color-textSecondary");
     width: grid-calc(4, $total-columns);
 
     @include breakpoint("small") {
@@ -384,12 +384,13 @@ $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-sp
 .shipping-estimate-hide,
 .gift-certificate-add,
 .gift-certificate-cancel {
+    color: stencilColor("color-textSecondary");
     padding: 0;
     text-decoration: underline;
     transition: color 0.15s ease;
 
     &:hover {
-        color: color("greys", "light");
+        color: stencilColor("color-textSecondary--hover");
     }
 }
 

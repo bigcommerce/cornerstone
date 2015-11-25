@@ -6,10 +6,7 @@ export default function() {
     const headerHeight = $('.header').outerHeight();
     const $mobileMenu = $('#mobile-menu');
 
-    function calculateMobileMenuOffset() {
-        $mobileMenu.attr('style', (i, attr) => {
-            return attr !== `top:${headerHeight}px` ? `top:${headerHeight}px` : 'top:auto';
-        });
+    function toggleHeaderHeight() {
 
         $header.attr('style', (i, attr) => {
             return attr === 'height:100%' ? 'height:auto' : 'height:100%';
@@ -17,7 +14,7 @@ export default function() {
     }
 
     function toggleMobileMenu() {
-        calculateMobileMenuOffset();
+        toggleHeaderHeight();
 
         $mobileMenuTrigger.toggleClass('is-open').attr('aria-expanded', (i, attr) => {
             return attr === 'true' ? 'false' : 'true';

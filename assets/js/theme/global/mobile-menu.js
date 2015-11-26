@@ -5,6 +5,8 @@ export default function() {
     const $header = $('.header');
     const headerHeight = $('.header').outerHeight();
     const $mobileMenu = $('#mobile-menu');
+    const $mobileMenuScrollView = $mobileMenu.find('.navPages');
+    const $body = $('body');
 
     function toggleHeaderHeight() {
 
@@ -16,6 +18,8 @@ export default function() {
     function toggleMobileMenu() {
         toggleHeaderHeight();
 
+        $mobileMenuScrollView.scrollTop(0);
+
         $mobileMenuTrigger.toggleClass('is-open').attr('aria-expanded', (i, attr) => {
             return attr === 'true' ? 'false' : 'true';
         });
@@ -23,6 +27,8 @@ export default function() {
         $mobileMenu.toggleClass('is-open').attr('aria-hidden', (i, attr) => {
             return attr === 'true' ? 'false' : 'true';
         });
+
+        $body.toggleClass('has-activeNavPages');
     }
 
     function mobileMenu() {

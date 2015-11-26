@@ -47,12 +47,12 @@
     }
 
     > a {
-        color: $storeName-fontColor;
         background-color: $header-bg;
         border-bottom: container("border");
+        color: $storeName-fontColor;
         display: inline-block;
-        position: relative;
         padding: $header-logo-paddingVertical 0;
+        position: relative;
         text-decoration: none;
         width: 100%;
         z-index: zIndex("low");
@@ -130,7 +130,7 @@
     .mobileMenu-toggleIcon,
     .mobileMenu-toggleIcon::before,
     .mobileMenu-toggleIcon::after {
-        background: color("greys", "darker");
+        background: $header-font-color;
         content: "";
         display: block;
         height: 2px;
@@ -160,7 +160,7 @@
         // scss-lint:disable NestingDepth
         &::before,
         &::after {
-            background-color: color("greys", "darker");
+            background-color: $header-font-color;
             bottom: auto;
             top: auto;
             transition: transform 100ms ease-in 150ms, top 100ms ease-in, bottom 100ms ease-in; // Animate lines from hamburger to 'x'

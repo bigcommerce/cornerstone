@@ -6,27 +6,35 @@
 //
 // 1. It's not exactly a grid row, as it's a little further down the DOM tree, but
 // I use it here to grab the max width centering.
+// 2. Prevent document scrolling by clipping its body
+// 3. Prevent inertia scrolling of document
 //
 // -----------------------------------------------------------------------------
 
+.has-activeNavPages {
+    // scss-lint:disable VendorPrefix
+    overflow: hidden; // 2
+    position: fixed;
+    -webkit-overflow-scrolling: auto; // 3
+}
+
 .navPages-container {
+    // scss-lint:disable VendorPrefix
     bottom: 0;
     display: none;
     height: 100%;
     left: 0;
-    overflow-y: scroll;
     position: absolute;
     right: 0;
     z-index: zIndex("lower");
+    -webkit-overflow-scrolling: touch;
 
     @include breakpoint("medium") {
         background: transparent;
         display: block;
         height: auto;
-        overflow-y: visible;
         padding: 0;
         position: relative;
-        top: auto;
     }
 
     &.is-open {
@@ -41,6 +49,8 @@
 
 .navPages {
     background-color: container("fill", "dark");
+    height: 100%;
+    overflow-y: auto;
     padding: spacing("single");
 
     @include breakpoint("medium") {
@@ -48,6 +58,7 @@
         @include nav($style: "navBar", $wrapper: "nav");
         background: none;
         font-size: 0; // 1
+        overflow-y: visible;
         padding: 0;
         text-align: center;
     }

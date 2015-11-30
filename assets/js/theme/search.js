@@ -1,6 +1,6 @@
 import PageManager from '../page-manager';
 import FacetedSearch from './common/faceted-search';
-import collapsible from './common/collapsible';
+import collapsibleFactory from './common/collapsible';
 import 'vakata/jstree';
 import nod from './common/nod';
 
@@ -40,7 +40,11 @@ export default class Search extends PageManager {
         const $productListingContainer = $('#product-listing-container');
         const $contentResultsContainer = $('#search-results-content');
 
+        // Init faceted search
         this.initFacetedSearch();
+
+        // Init collapsibles
+        collapsibleFactory();
 
         // Initially hidden via JS so non JS can see it at the start
         $contentResultsContainer.addClass('u-hiddenVisually');
@@ -57,8 +61,6 @@ export default class Search extends PageManager {
 
         const validator = this.initValidation($searchForm)
             .bindValidation($searchForm.find('#search_query_adv'));
-
-        collapsible();
 
         this.context.categoryTree.forEach((node) => {
             treeData.push(this.formatCategoryTreeForJSTree(node));

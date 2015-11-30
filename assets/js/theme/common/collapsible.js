@@ -1,11 +1,21 @@
 import $ from 'jquery';
 
+const PLUGIN_KEY = 'collapsible';
+
 export const CollapsibleEvents = {
     open: 'open.collapsible',
     close: 'close.collapsible',
     toggle: 'toggle.collapsible',
     click: 'click.collapsible',
 };
+
+function prependHash(id) {
+    if (id && id.indexOf('#') === 0) {
+        return id;
+    }
+
+    return `#${id}`;
+}
 
 /**
  * Collapse/Expand toggle
@@ -17,7 +27,7 @@ export class Collapsible {
      * @param {object} [options] - Configurable options
      * @example
      *
-     * <a href="#more">Collapse</a>
+     * <button id="#more">Collapse</button>
      * <div id="content">...</div>
      *
      * new Collapsible($('#more'), $('#content'));
@@ -28,6 +38,13 @@ export class Collapsible {
         this.targetId = $target.attr('id');
         this.options = options;
 
+        // Assign
+        this.$target.attr('aria-hidden', this.isCollapsed);
+        this.$toggle
+            .attr('aria-controls', $target.attr('id'))
+            .attr('aria-expanded', this.isOpen);
+
+        // Listen
         this.bindEvents();
     }
 
@@ -38,7 +55,7 @@ export class Collapsible {
     }
 
     get isOpen() {
-        return !isCollapsed;
+        return !this.isCollapsed;
     }
 
     open() {
@@ -52,8 +69,8 @@ export class Collapsible {
             .addClass(openClassName)
             .attr('aria-hidden', false);
 
-        this.$toggle.trigger(CollapsibleEvents.open);
-        this.$toggle.trigger(CollapsibleEvents.toggle);
+        this.$toggle.trigger(CollapsibleEvents.open, [this]);
+        this.$toggle.trigger(CollapsibleEvents.toggle, [this]);
     }
 
     close() {
@@ -67,8 +84,8 @@ export class Collapsible {
             .removeClass(openClassName)
             .attr('aria-hidden', true);
 
-        this.$toggle.trigger(CollapsibleEvents.close);
-        this.$toggle.trigger(CollapsibleEvents.toggle);
+        this.$toggle.trigger(CollapsibleEvents.close, [this]);
+        this.$toggle.trigger(CollapsibleEvents.toggle, [this]);
     }
 
     toggle() {
@@ -77,6 +94,10 @@ export class Collapsible {
         } else {
             this.close();
         }
+    }
+
+    hasCollapsible(collapsibleInstance) {
+        return $.contains(this.$target.get(0), collapsibleInstance.$target.get(0));
     }
 
     bindEvents() {
@@ -94,26 +115,27 @@ export class Collapsible {
  * Convenience method for constructing Collapsible instance
  *
  * @example
- * <a href="#more" data-collapsible>Collapse</a>
+ * <a href="#content" data-collapsible>Collapse</a>
  * <div id="content">...</div>
  *
- * collapsible();
+ * collapsibleFactory();
  */
-export default function collapsible() {
-    const pluginKey = 'collapsible';
-    const $collapsibles = $(`[data-${ pluginKey }]`);
+export default function collapsibleFactory(selector = `[data-${PLUGIN_KEY}]`) {
+    const $collapsibles = $(selector);
 
-    $collapsibles.each((index, element) => {
+    return $collapsibles.map((index, element) => {
         const $toggle = $(element);
-        const isInitialized = $toggle.data(pluginKey) instanceof Collapsible;
+        let collapsible = $toggle.data(PLUGIN_KEY);
 
-        if (isInitialized) {
-            return;
+        if (collapsible instanceof Collapsible) {
+            return collapsible;
         }
 
-        const targetId = $toggle.attr('href') || $toggle.data('target');
-        const collapsibleInstance = new Collapsible($toggle, $(targetId));
+        const targetId = prependHash($toggle.data(PLUGIN_KEY) || $toggle.data('target') || $toggle.attr('href'));
 
-        $toggle.data(pluginKey, collapsibleInstance);
+        collapsible = new Collapsible($toggle, $(targetId));
+        $toggle.data(PLUGIN_KEY, collapsible);
+
+        return collapsible;
     });
 }

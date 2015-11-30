@@ -2,7 +2,6 @@ import $ from 'jquery';
 import PageManager from '../page-manager';
 import quickSearch from './global/quick-search';
 import currencySelector from './global/currency-selector';
-import toggleMenu from './global/toggle-menu';
 import mobileMenu from './global/mobile-menu';
 import foundation from './global/foundation';
 import quickView from './global/quick-view';
@@ -38,7 +37,6 @@ export default class Global extends PageManager {
         cartPreview();
         compareProducts();
         carousel();
-        toggleMenu();
         mobileMenu();
         privacyCookieNotification();
         maintenanceMode(this.context.maintenanceMode);

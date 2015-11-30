@@ -1,5 +1,5 @@
 {{#if children}}
-<a class="navPages-action has-subMenu" href="{{url}}" data-togglemenu="navPages-{{id}}" aria-controls="navPages-{{id}}" aria-expanded="false">
+<a class="navPages-action has-subMenu" href="{{url}}" data-collapsible="navPages-{{id}}">
     {{name}} <i class="icon navPages-action-moreIcon" aria-hidden="true"><svg><use xlink:href="#icon-chevron-down" /></svg></i>
 </a>
 <div class="navPage-subMenu" id="navPages-{{id}}" aria-hidden="true" tabindex="-1">
@@ -10,10 +10,10 @@
         {{#each children}}
             <li class="navPage-subMenu-item">
                 {{#if children}}
-                    <a class="navPage-subMenu-action navPages-action has-subMenu" href="{{url}}">
+                    <a class="navPage-subMenu-action navPages-action has-subMenu" href="{{url}}" data-collapsible="navPages-{{id}}">
                         {{name}} <i class="icon navPages-action-moreIcon" aria-hidden="true"><svg><use xlink:href="#icon-chevron-down" /></svg></i>
                     </a>
-                    <ul class="navPage-childList">
+                    <ul class="navPage-childList" id="navPages-{{id}}">
                         {{#each children}}
                         <li class="navPage-childList-item">
                             <a class="navPage-childList-action navPages-action" href="{{url}}">{{name}}</a>

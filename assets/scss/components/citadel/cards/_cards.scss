@@ -81,32 +81,33 @@
 // -----------------------------------------------------------------------------
 
 .card--alternate {
-    border: 3px solid color("whites", "bright");
+    border: 3px solid stencilColor("card--alternate-borderColor");
+    transition: all 0.15s ease;
 
     .card-body {
-        background-color: color("whites", "bright");
+        background-color: stencilColor("card--alternate-backgroundColor");
         padding: spacing("half");
+        transition: all 0.15s ease;
 
         @include breakpoint("small") {
             padding: spacing("single");
         }
     }
 
-    .icon--starFull,
-    .icon--starEmpty {
-        display: none;
-    }
-
     &:hover {
-        border-color: color("greys", "darker");
+        border-color: stencilColor("color-primary");
 
         // scss-lint:disable SelectorDepth, NestingDepth
         .card-body {
-            background-color: color("greys", "darker");
+            background-color: stencilColor("color-primary");
+
+            .card-text {
+                color: stencilColor("card--alternate-color--hover");
+            }
         }
 
         .card-title > a {
-            color: color("whites", "bright");
+            color: stencilColor("card--alternate-color--hover");
         }
     }
 }

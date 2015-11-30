@@ -104,16 +104,22 @@
                 </td>
                 {{/each}}
             </tr>
-            {{#if custom_fields}}
-                {{#each custom_fields}}
-                <tr class="compareTable-row">
-                    <th class="compareTable-heading">{{ name }}</th>
-                    {{#each comparisons}}
-                        <td class="compareTable-item">{{ value }}</td>
-                    {{/each}}
-                </tr>
+            <tr class="compareTable-row">
+                <th class="compareTable-heading">{{lang 'common.other_details'}}</th>
+                {{#each comparisons}}
+                    <td class="compareTable-item">
+                        {{#if custom_fields}}
+                            <ul>
+                                {{#each custom_fields}}
+                                    <li>{{name}}: {{{value}}}</li>
+                                {{/each}}
+                            </ul>
+                        {{else}}
+                            {{lang 'common.not_applicable'}}
+                        {{/if}}
+                    </td>
                 {{/each}}
-            {{/if}}
+            </tr>
         </table>
 
     </main>

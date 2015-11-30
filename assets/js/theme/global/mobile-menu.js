@@ -3,13 +3,11 @@ import $ from 'jquery';
 export default function() {
     const $mobileMenuTrigger = $('[data-mobilemenu]');
     const $header = $('.header');
-    const headerHeight = $('.header').outerHeight();
     const $mobileMenu = $('#mobile-menu');
     const $mobileMenuScrollView = $mobileMenu.find('.navPages');
     const $body = $('body');
 
     function toggleHeaderHeight() {
-
         $header.attr('style', (i, attr) => {
             return attr === 'height:100%' ? 'height:auto' : 'height:100%';
         });

@@ -14,8 +14,8 @@
 .has-activeNavPages {
     // scss-lint:disable VendorPrefix
     overflow: hidden; // 2
-    position: fixed;
     -webkit-overflow-scrolling: auto; // 3
+    position: fixed;
 }
 
 .navPages-container {
@@ -24,10 +24,10 @@
     display: none;
     height: 100%;
     left: 0;
+    -webkit-overflow-scrolling: touch;
     position: absolute;
     right: 0;
     z-index: zIndex("lower");
-    -webkit-overflow-scrolling: touch;
 
     @include breakpoint("medium") {
         background: transparent;

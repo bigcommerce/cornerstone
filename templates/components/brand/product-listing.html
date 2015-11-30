@@ -6,10 +6,6 @@
     {{else}}
         {{> components/products/list products=brand.products show_compare=brand.show_compare theme_settings=theme_settings}}
     {{/if}}
-
-    {{#if brand.show_compare}}
-        <input type="submit" value="{{lang 'compare.button'}}" class="button button--primary">
-    {{/if}}
 </form>
 
 {{> components/common/paginator pagination.brand}}

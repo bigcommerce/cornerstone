@@ -159,12 +159,14 @@ export default class Account extends PageManager {
     }
 
     initAccountReturnFormValidation($accountReturnForm) {
-        $accountReturnForm.submit(() => {
+        const errorMessage = $accountReturnForm.data('account-return-form-error');
+
+        $accountReturnForm.submit((event) => {
             let formSubmit = false;
 
             // Iterate until we find a non-zero value in the dropdown for quantity
             $('[name^="return_qty"]', $accountReturnForm).each((i, ele) => {
-                if ($(ele).val() !== 0) {
+                if (parseInt($(ele).val(), 10) !== 0) {
                     formSubmit = true;
 
                     // Exit out of loop if we found at least one return
@@ -176,9 +178,9 @@ export default class Account extends PageManager {
                 return true;
             }
 
-            alert('Please select one or more items to return');
+            alert(errorMessage);
 
-            return false;
+            return event.preventDefault();
         });
     }
 

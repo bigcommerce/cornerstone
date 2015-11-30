@@ -11,7 +11,13 @@
             <h3 class="account-heading">{{lang 'account.returns.from_order' id=forms.return.order_id}}</h3>
 
             {{#if forms.return.order_products.length}}
-                <form action="{{urls.account.orders.save_new_return}}" class="form" method="post" data-account-return-form>
+                <form
+                    action="{{urls.account.orders.save_new_return}}"
+                    class="form"
+                    method="post"
+                    data-account-return-form-error="{{lang 'account.returns.error_no_qty'}}"
+                    data-account-return-form
+                >
                     <fieldset class="form-fieldset">
                         <input type="hidden" name="order_id" value="{{forms.return.order_id}}">
                         <table class="table table--line">

@@ -10,9 +10,6 @@
 
     <form action="/compare" method="post">
         {{> components/products/grid products=customer.recently_viewed_products.items show_compare=customer.recently_viewed_products.show_compare}}
-        {{#if customer.recently_viewed_products.show_compare}}
-            <button class="button button--primary" type="submit">{{lang 'compare.button'}}</button>
-        {{/if}}
     </form>
 </div>
 {{/partial}}

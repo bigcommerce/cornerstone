@@ -169,10 +169,13 @@ export default class Cart extends PageManager {
 
         $('.cart-remove', this.$cartContent).on('click', (event) => {
             const itemId = $(event.currentTarget).data('cart-itemid');
-
+            const openTime = new Date();
+            const result = confirm($(event.currentTarget).data('confirm-delete'));
+            const delta = new Date() - openTime;
             event.preventDefault();
 
-            if (!confirm($(event.currentTarget).data('confirm-delete'))) {
+            // Delta workaround for Chrome's "prevent popup"
+            if (!result && delta > 10) {
                 return;
             }
 

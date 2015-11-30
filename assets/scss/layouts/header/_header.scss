@@ -4,7 +4,7 @@
 // 1. Setting font size of header-logo to 0, since wrapper element may vary, and
 //    inline-block whitespace messes with header height. Font-size is reset to
 //    appropriate size on header-logo-text.
-//
+// 2. Needs left/right margin so it doesn't cover left/right nav bar toggles
 //
 // =============================================================================
 //
@@ -14,6 +14,8 @@
 // -----------------------------------------------------------------------------
 
 .header {
+    background-color: $header-bg;
+    border-bottom: container("border");
     position: fixed;
     top: 0;
     width: 100%;
@@ -28,7 +30,7 @@
 
 .header-logo {
     font-size: 0;   // 1
-    margin: 0 auto;
+    margin: 0 $header-toggle-width; // 2
     text-align: center;
 
     @include breakpoint("medium") {
@@ -47,8 +49,6 @@
     }
 
     > a {
-        background-color: $header-bg;
-        border-bottom: container("border");
         color: $storeName-fontColor;
         display: inline-block;
         padding: $header-logo-paddingVertical 0;
@@ -82,7 +82,6 @@
     letter-spacing: remCalc(9px);
     margin-left: auto;
     margin-right: auto;
-    max-width: grid-calc(8, $total-columns);
     text-transform: uppercase;
 
     @include breakpoint("medium") {
@@ -114,7 +113,7 @@
 // -----------------------------------------------------------------------------
 
 .mobileMenu-toggle {
-    @include square($header-height);
+    @include square($header-toggle-width);
     display: inline-block;
     font-size: 0;
     left: 0;

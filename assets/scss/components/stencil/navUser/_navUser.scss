@@ -6,6 +6,8 @@
 // 2. Can't use top: 50% because its container `.header` changes its height to
 //    100% when mobile menu is expanded
 // 3. Make the triangle for dropdown centered
+// 4. Needs to be 100% so its dropdown can take full width in mobile viewport
+// 5. Needs to be lower than logo zIndex, otherwise, logo is not clickable
 //
 // -----------------------------------------------------------------------------
 
@@ -14,7 +16,8 @@
     @include verticalPositionMiddle("absolute");
     right: 0;
     top: 26px; // 2
-    z-index: zIndex("high");
+    width: 100%; // 4
+    z-index: zIndex("lowest"); // 5.
 
     @include breakpoint("medium") {
         padding: 0 spacing("single");
@@ -22,6 +25,7 @@
         right: auto;
         top: auto;
         transform: none;
+        z-index: zIndex("high");
     }
 
     .dropdown-menu {

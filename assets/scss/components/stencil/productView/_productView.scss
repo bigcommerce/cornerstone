@@ -74,8 +74,10 @@
 // -----------------------------------------------------------------------------
 
 .productView-product {
-    border-bottom: container("border");
-    padding-bottom: spacing("single") + spacing("third");
+    @include breakpoint("medium") {
+        border-bottom: container("border");
+        padding-bottom: spacing("single") + spacing("third");
+    }
 
     > :last-child {
         margin-bottom: 0;
@@ -83,17 +85,27 @@
 }
 
 .productView-title {
-    margin: 0;
+    font-size: fontSize("small");
+    margin: -(spacing("half")) 0 spacing("quarter");
 
     @include breakpoint("medium") {
         margin-top: spacing("single");
+    }
+
+    @include breakpoint("large") {
+        font-size: fontSize("largest");
     }
 }
 
 .productView-brand {
     color: $productView-brand-link-color;
-    font-size: fontSize("small");
-    margin: -(spacing("eighth")) 0 spacing("base");
+    font-size: fontSize("smaller");
+    margin: 0 0 spacing("half");
+
+    @include breakpoint("large") {
+        font-size: fontSize("small");
+        margin: -(spacing("eighth")) 0 spacing("base");
+    }
 
     a {
         color: $productView-brand-link-color;
@@ -109,8 +121,13 @@
 // -----------------------------------------------------------------------------
 
 .productView-price {
-    font-size: fontSize("larger");
-    margin-bottom: spacing("base");
+    font-size: fontSize("smaller");
+    margin-bottom: spacing("third");
+
+    @include breakpoint("medium") {
+        font-size: fontSize("larger");
+        margin-bottom: spacing("base");
+    }
 
     .price-section--saving {
         font-size: fontSize("smaller");
@@ -121,6 +138,14 @@
     display: inline-block;
     margin-left: spacing("half");
     vertical-align: middle;
+
+    + .productView-reviewLink {
+        display: none;
+
+        @include breakpoint("small") {
+            display: inline-block;
+        }
+    }
 
     > a {
         color: stencilColor("color-textSecondary");
@@ -133,16 +158,12 @@
 }
 
 
-// Details - Product Rating
-// -----------------------------------------------------------------------------
-
-.productView-rating {
-    margin-bottom: spacing("single");
-}
-
-
 // Details - Product Information
 // -----------------------------------------------------------------------------
+
+.productView-info > :first-child {
+    margin-top: spacing("single");
+}
 
 .productView-info > :last-child {
     margin-bottom: 0;

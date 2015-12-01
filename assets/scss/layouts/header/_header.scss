@@ -1,6 +1,11 @@
 // =============================================================================
 // HEADER (CSS)
 // =============================================================================
+//
+// 1. Offset the letter-spacing on the last character by adding a right negative
+//    margin. This centers the text logo properly.
+//
+// -----------------------------------------------------------------------------
 
 .header {
     background-color: $header-bg;
@@ -57,6 +62,7 @@
     font-size: fontSize("large");
     font-weight: fontWeight("thin");
     letter-spacing: remCalc(9px);
+    margin-right: -(remCalc(9px)); // 1
     text-transform: uppercase;
 
     @include breakpoint("medium") {

@@ -39,28 +39,8 @@ export default class Search extends PageManager {
         const treeData = [];
         const $productListingContainer = $('#product-listing-container');
         const $contentResultsContainer = $('#search-results-content');
-        const $facetedSearchContainer = $('#faceted-search-container');
-        const productsPerPage = this.context.searchProductsPerPage;
-        const requestOptions = {
-            template: {
-                productListing: 'search/product-listing',
-                sidebar: 'search/sidebar',
-            },
-            config: {
-                product_results: {
-                    limit: productsPerPage,
-                },
-            },
-        };
 
-        this.facetedSearch = new FacetedSearch(requestOptions, (content) => {
-            $productListingContainer.html(content.productListing);
-            $facetedSearchContainer.html(content.sidebar);
-
-            $('html, body').animate({
-                scrollTop: 0,
-            }, 100);
-        });
+        this.initFacetedSearch();
 
         // Initially hidden via JS so non JS can see it at the start
         $contentResultsContainer.addClass('u-hiddenVisually');
@@ -152,6 +132,36 @@ export default class Search extends PageManager {
         };
 
         $container.jstree(treeOptions);
+    }
+
+    initFacetedSearch() {
+        if ($('#facetedSearch').length === 0) {
+            return;
+        }
+
+        const $productListingContainer = $('#product-listing-container');
+        const $facetedSearchContainer = $('#faceted-search-container');
+        const productsPerPage = this.context.searchProductsPerPage;
+        const requestOptions = {
+            template: {
+                productListing: 'search/product-listing',
+                sidebar: 'search/sidebar',
+            },
+            config: {
+                product_results: {
+                    limit: productsPerPage,
+                },
+            },
+        };
+
+        this.facetedSearch = new FacetedSearch(requestOptions, (content) => {
+            $productListingContainer.html(content.productListing);
+            $facetedSearchContainer.html(content.sidebar);
+
+            $('html, body').animate({
+                scrollTop: 0,
+            }, 100);
+        });
     }
 
     initValidation($form) {

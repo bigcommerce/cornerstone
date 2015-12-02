@@ -221,6 +221,10 @@ export default class FacetedSearch {
 
     // Private methods
     initPriceValidator() {
+        if ($(this.options.priceRangeFormSelector).length === 0) {
+            return;
+        }
+
         const validator = nod();
         const selectors = {
             errorSelector: this.options.priceRangeErrorSelector,

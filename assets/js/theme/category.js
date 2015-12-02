@@ -8,6 +8,14 @@ export default class Category extends PageManager {
     }
 
     loaded() {
+        this.initFacetedSearch();
+    }
+
+    initFacetedSearch() {
+        if ($('#facetedSearch').length === 0) {
+            return;
+        }
+
         const $productListingContainer = $('#product-listing-container');
         const $facetedSearchContainer = $('#faceted-search-container');
         const productsPerPage = this.context.categoryProductsPerPage;

@@ -1,6 +1,7 @@
 import PageManager from '../page-manager';
 import nod from './common/nod';
 import giftCertChecker from './common/gift-certificate-validator';
+import formModel from './common/models/forms';
 
 export default class GiftCertificate extends PageManager {
     constructor() {
@@ -12,16 +13,14 @@ export default class GiftCertificate extends PageManager {
             recipientName: function(val) {
                 return val.length;
             },
-            recipientEmail: function(value) {
-                const re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
-                return re.test(value);
+            recipientEmail: function(...args) {
+                return formModel.email(...args);
             },
             senderName: function(val) {
                 return val.length;
             },
-            senderEmail: function(value) {
-                const re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
-                return re.test(value);
+            senderEmail: function(...args) {
+                return formModel.email(...args);
             },
             customAmount: function(value, min, max) {
                 return value && value >= min && value <= max;

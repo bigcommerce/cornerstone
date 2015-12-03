@@ -8,7 +8,7 @@
         {{/each}}
     </ul>
 {{else}}
-    <h1 class="page-heading">
-        {{lang 'search.results.count' num_products=pagination.product_results.total search_query=forms.search.query}}
-    </h1>
+    <p class="quickSearchMessage">
+        {{lang 'search.results.count' count=pagination.product_results.total search_query=forms.search.query}}
+    </p>
 {{/if}}

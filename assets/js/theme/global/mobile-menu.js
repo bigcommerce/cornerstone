@@ -3,21 +3,20 @@ import $ from 'jquery';
 export default function() {
     const $mobileMenuTrigger = $('[data-mobilemenu]');
     const $header = $('.header');
-    const headerHeight = $('.header').outerHeight();
     const $mobileMenu = $('#mobile-menu');
+    const $mobileMenuScrollView = $mobileMenu.find('.navPages');
+    const $body = $('body');
 
-    function calculateMobileMenuOffset() {
-        $mobileMenu.attr('style', (i, attr) => {
-            return attr !== `top:${headerHeight}px` ? `top:${headerHeight}px` : 'top:auto';
-        });
-
+    function toggleHeaderHeight() {
         $header.attr('style', (i, attr) => {
             return attr === 'height:100%' ? 'height:auto' : 'height:100%';
         });
     }
 
     function toggleMobileMenu() {
-        calculateMobileMenuOffset();
+        toggleHeaderHeight();
+
+        $mobileMenuScrollView.scrollTop(0);
 
         $mobileMenuTrigger.toggleClass('is-open').attr('aria-expanded', (i, attr) => {
             return attr === 'true' ? 'false' : 'true';
@@ -26,6 +25,8 @@ export default function() {
         $mobileMenu.toggleClass('is-open').attr('aria-hidden', (i, attr) => {
             return attr === 'true' ? 'false' : 'true';
         });
+
+        $body.toggleClass('has-activeNavPages');
     }
 
     function mobileMenu() {

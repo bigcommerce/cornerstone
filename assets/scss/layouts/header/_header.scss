@@ -1,5 +1,11 @@
 // =============================================================================
 // HEADER (CSS)
+//
+// 1. Setting font size of header-logo to 0, since wrapper element may vary, and
+//    inline-block whitespace messes with header height. Font-size is reset to
+//    appropriate size on header-logo-text.
+// 2. Needs left/right margin so it doesn't cover left/right nav bar toggles
+//
 // =============================================================================
 //
 // 1. Offset the letter-spacing on the last character by adding a right negative
@@ -16,18 +22,21 @@
     z-index: zIndex("low");
 
     @include breakpoint("medium") {
+        border-bottom: container("border");
         overflow: visible;
         position: relative;
     }
 }
 
 .header-logo {
-    margin: $header-logo-marginVertical auto;
-    max-width: grid-calc(8, $total-columns);
+    font-size: 0;   // 1
+    margin: 0 $header-toggle-width; // 2
     text-align: center;
 
     @include breakpoint("medium") {
         margin: (spacing("double") + spacing("base")) auto (spacing("double") + spacing("single"));
+        max-width: grid-calc(8, $total-columns);
+        padding: 0;
 
         .header.fixed & {
             background-color: color("greys", "lightest");
@@ -42,11 +51,18 @@
     > a {
         color: $storeName-fontColor;
         display: inline-block;
+        padding: $header-logo-paddingVertical 0;
         position: relative;
         text-decoration: none;
         z-index: zIndex("low");
 
         // scss-lint:disable NestingDepth
+        @include breakpoint("medium") {
+            background: none;
+            border-bottom: 0;
+            padding: 0;
+        }
+
         &:hover {
             color: color("link", "hover");
         }
@@ -58,15 +74,21 @@
 }
 
 .header-logo-text {
+    display: block;
     font-family: $fontFamily-hero;
-    font-size: fontSize("large");
+    font-size: fontSize("large");   // 1
     font-weight: fontWeight("thin");
     letter-spacing: remCalc(9px);
-    margin-right: -(remCalc(9px)); // 1
+    margin-left: auto;
+    margin-right: auto;
     text-transform: uppercase;
 
     @include breakpoint("medium") {
+        display: inline;
         font-size: fontSize("largest");
+        margin-left: 0;
+        margin-right: -(remCalc(9px)); // 1
+        max-width: none;
 
         .header.fixed & {
             font-size: fontSize("larger");
@@ -90,7 +112,7 @@
 // -----------------------------------------------------------------------------
 
 .mobileMenu-toggle {
-    @include square($header-height);
+    @include square($header-toggle-width);
     display: inline-block;
     font-size: 0;
     left: 0;
@@ -106,7 +128,7 @@
     .mobileMenu-toggleIcon,
     .mobileMenu-toggleIcon::before,
     .mobileMenu-toggleIcon::after {
-        background: color("greys", "darker");
+        background: $header-font-color;
         content: "";
         display: block;
         height: 2px;
@@ -136,7 +158,7 @@
         // scss-lint:disable NestingDepth
         &::before,
         &::after {
-            background-color: color("greys", "darker");
+            background-color: $header-font-color;
             bottom: auto;
             top: auto;
             transition: transform 100ms ease-in 150ms, top 100ms ease-in, bottom 100ms ease-in; // Animate lines from hamburger to 'x'

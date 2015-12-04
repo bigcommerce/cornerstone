@@ -21,25 +21,28 @@ describe('Modal', () => {
 
     afterEach(() => {
         $element.remove();
+        $('body').removeClass();
     });
 
     describe('when modal opens', () => {
-        beforeEach(() => {
-            spyOn(modal, 'clearContent');
-        });
-
-        it('should reset modal content', () => {
-            modal.$modal.trigger(ModalEvents.open);
-
-            expect(modal.clearContent).toHaveBeenCalled();
-        });
-
         it('should turn on pending state', () => {
             expect(modal.pending).not.toBeTruthy();
 
             modal.$modal.trigger(ModalEvents.open);
 
             expect(modal.pending).toBeTruthy();
+        });
+
+        it('should add active class to body', () => {
+            modal.$modal.trigger(ModalEvents.open);
+
+            expect($('body').hasClass('has-activeModal')).toBeTruthy();
+        });
+
+        it('should have a max-height', () => {
+            modal.$modal.trigger(ModalEvents.open);
+
+            expect(modal.$content.css('max-height')).toBeDefined();
         });
     });
 
@@ -50,6 +53,24 @@ describe('Modal', () => {
             modal.$modal.trigger(ModalEvents.close);
 
             expect(modal.size).toEqual('large');
+        });
+
+        it('should remove active class to body', () => {
+            modal.$modal.trigger(ModalEvents.close);
+
+            expect($('body').hasClass('has-activeModal')).toBeFalsy();
+        });
+    });
+
+    describe('when modal finishes closing', () => {
+        beforeEach(() => {
+            spyOn(modal, 'clearContent');
+        });
+
+        it('should reset modal content', () => {
+            modal.$modal.trigger(ModalEvents.closed);
+
+            expect(modal.clearContent).toHaveBeenCalled();
         });
     });
 

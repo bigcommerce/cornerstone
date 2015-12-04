@@ -3,6 +3,8 @@ import 'foundation/js/foundation/foundation';
 import 'foundation/js/foundation/foundation.reveal';
 import nod from './common/nod';
 import PageManager from '../page-manager';
+import { api } from 'bigcommerce/stencil-utils';
+import { defaultModal } from './global/modal';
 
 export default class WishList extends PageManager {
     constructor() {
@@ -58,19 +60,23 @@ export default class WishList extends PageManager {
 
     wishListHandler() {
         $('body').on('click', '[data-wishlist]', (event) => {
-            const $wishListUrl = event.currentTarget.href;
+            const wishListUrl = event.currentTarget.href;
+            const modal = defaultModal();
 
             event.preventDefault();
 
-            this.getPageModal($wishListUrl, this.options, (err, data) => {
+            modal.open();
+
+            api.getPage(wishListUrl, this.options, (err, content) => {
                 if (err) {
-                    data.modal.updateContent(err);
-                    return;
+                    return modal.updateContent(err);
                 }
 
-                const $wishListForm = $('.wishlist-form', data.modal.$content);
+                modal.updateContent(content, { wrap: true });
 
-                this.registerAddWishListValidation($wishListForm);
+                const $wishlistForm = $('.wishlist-form', modal.$content);
+
+                this.registerAddWishListValidation($wishlistForm);
             });
         });
     }

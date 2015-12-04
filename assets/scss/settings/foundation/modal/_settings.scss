@@ -39,12 +39,12 @@ $modal-verticalSpacing:            spacing("single");
 
 // Modal header variables
 $modal-header-horizontalSpacing:   0;
-$modal-header-verticalSpacing:     spacing("single") * 1.25;
+$modal-header-verticalSpacing:     spacing("base");
 
 $modal-header-title-margin:        0;
 
 $modal-close-size:                 20px;
-$modal-close-transformY:           $modal-transformY;
+$modal-close-transformY:           none;
 
 // Modal body variables
 $modal-body-horizontalSpacing:     0;
@@ -82,18 +82,19 @@ $reveal-modal-bg:                  $body-bg;
 $reveal-position-top:              50% !important;
 $reveal-default-width:             900px;
 $reveal-max-width:                 80%;
-$reveal-modal-paddingTop:          spacing("half");
 $reveal-modal-paddingHorizontal:   spacing("single") * 1.5;
-$reveal-modal-paddingBottom:       spacing("single") * 1.5;
-$reveal-modal-padding:             $reveal-modal-paddingTop $reveal-modal-paddingHorizontal $reveal-modal-paddingBottom;
+$reveal-modal-paddingVertical:     0;
+$reveal-modal-padding:             $reveal-modal-paddingVertical $reveal-modal-paddingHorizontal;
 $reveal-box-shadow:                none;
 
 // We use these to style the reveal close button
 $reveal-close-font-size:           fontSize("larger");
-$reveal-close-top:                 50%;
-$reveal-close-side:                $modal-header-horizontalSpacing;
+$reveal-close-top:                 $modal-verticalSpacing * 0.5;
+$reveal-close-side:                $modal-horizontalSpacing * 0.5;
 $reveal-close-color:               color("greys", "dark");
+$reveal-close-backgroundColor:     transparentize($reveal-modal-bg, 0.3);
 $reveal-close-weight:              normal;
+$reveal-close-height:              42px;
 
 // We use this to set the default radius used throughout the core.
 $reveal-radius:                    0;

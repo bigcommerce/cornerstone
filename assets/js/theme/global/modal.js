@@ -2,6 +2,8 @@ import $ from 'jquery';
 import 'foundation/js/foundation/foundation';
 import 'foundation/js/foundation/foundation.reveal';
 
+const bodyActiveClass = 'has-activeModal';
+
 const SizeClasses = {
     small: 'modal--small',
     large: 'modal--large',
@@ -27,6 +29,29 @@ function getSizeFromModal($modal) {
     return 'normal';
 }
 
+function getViewportHeight(multipler) {
+    const viewportHeight = $(window).height();
+
+    return viewportHeight * multipler;
+}
+
+function wrapModalBody(content) {
+    const $modalBody = $('<div>');
+
+    $modalBody
+        .addClass('modal-body')
+        .html(content);
+
+    return $modalBody;
+}
+
+/**
+ * Require foundation.reveal
+ * Decorate foundation.reveal with additional methods
+ * @param {jQuery} $modal
+ * @param {Object} [options]
+ * @param {string} [options.size]
+ */
 export class Modal {
     constructor($modal, {
         size = null,
@@ -39,6 +64,7 @@ export class Modal {
 
         this.onModalOpen = this.onModalOpen.bind(this);
         this.onModalClose = this.onModalClose.bind(this);
+        this.onModalClosed = this.onModalClosed.bind(this);
 
         this.bindEvents();
     }
@@ -72,11 +98,13 @@ export class Modal {
 
     bindEvents() {
         this.$modal.on(ModalEvents.close, this.onModalClose);
+        this.$modal.on(ModalEvents.closed, this.onModalClosed);
         this.$modal.on(ModalEvents.open, this.onModalOpen);
     }
 
     unbindEvents() {
         this.$modal.off(ModalEvents.close, this.onModalClose);
+        this.$modal.off(ModalEvents.closed, this.onModalClosed);
         this.$modal.off(ModalEvents.open, this.onModalOpen);
     }
 
@@ -92,10 +120,15 @@ export class Modal {
         this.$modal.foundation('reveal', 'close');
     }
 
-    updateContent(content) {
-        this.pending = false;
+    updateContent(content, { wrap = false } = {}) {
+        let $content = $(content);
 
-        this.$content.html(content);
+        if (wrap) {
+            $content = wrapModalBody(content);
+        }
+
+        this.pending = false;
+        this.$content.html($content);
     }
 
     clearContent() {
@@ -104,14 +137,30 @@ export class Modal {
 
     onModalClose() {
         this.size = this.defaultSize;
+
+        $('body').removeClass(bodyActiveClass);
+    }
+
+    onModalClosed() {
+        this.clearContent();
     }
 
     onModalOpen() {
-        this.clearContent();
         this.pending = true;
+
+        this.$content.css('max-height', getViewportHeight(0.9));
+
+        $('body').addClass(bodyActiveClass);
     }
 }
 
+/**
+ * Return an array of modals
+ * @param {string} selector
+ * @param {Object} [options]
+ * @param {string} [options.size]
+ * @returns {array}
+ */
 export default function modalFactory(selector = '[data-reveal]', options) {
     const $modals = $(selector);
 
@@ -130,6 +179,9 @@ export default function modalFactory(selector = '[data-reveal]', options) {
     });
 }
 
+/*
+ * Return the default page modal
+ */
 export function defaultModal() {
     const modal = modalFactory('#modal')[0];
 

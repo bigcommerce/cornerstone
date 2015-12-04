@@ -2,6 +2,8 @@ import PageManager from '../page-manager';
 import nod from './common/nod';
 import giftCertChecker from './common/gift-certificate-validator';
 import formModel from './common/models/forms';
+import { api } from 'bigcommerce/stencil-utils';
+import { defaultModal } from './global/modal';
 
 export default class GiftCertificate extends PageManager {
     constructor() {
@@ -156,8 +158,6 @@ export default class GiftCertificate extends PageManager {
         });
 
         $('#gift-certificate-preview').click((event) => {
-            let previewUrl;
-
             event.preventDefault();
 
             purchaseValidator.performCheck();
@@ -166,14 +166,17 @@ export default class GiftCertificate extends PageManager {
                 return;
             }
 
-            previewUrl = $(event.currentTarget).data('preview-url') + '&' + $purchaseForm.serialize();
+            const modal = defaultModal();
+            const previewUrl = $(event.currentTarget).data('preview-url') + '&' + $purchaseForm.serialize();
 
-            this.getPageModal(previewUrl, (err, data) => {
+            modal.open();
+
+            api.getPage(previewUrl, {}, (err, content) => {
                 if (err) {
-                    // overwrite the generic error in PageManager
-                    data.modal.updateContent(this.context.previewError);
-                    throw err;
+                    return modal.updateContent(this.context.previewError);
                 }
+
+                modal.updateContent(content, { wrap: true });
             });
         });
     }

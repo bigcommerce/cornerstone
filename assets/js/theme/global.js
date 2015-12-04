@@ -12,7 +12,8 @@ import privacyCookieNotification from './global/cookieNotification';
 import maintenanceMode from './global/maintenanceMode';
 import carousel from './common/carousel';
 import loadingProgressBar from './global/loading-progress-bar';
-import {revealClose, revealReset} from './global/reveal-extension';
+import modalFactory from './global/modal';
+import revealCloseFactory from './global/reveal-close';
 import FastClick from 'ftlabs/fastclick';
 
 function fastClick(element) {
@@ -43,8 +44,8 @@ export default class Global extends PageManager {
         privacyCookieNotification();
         maintenanceMode(this.context.maintenanceMode);
         loadingProgressBar();
-        revealClose();
-        revealReset();
+        modalFactory();
+        revealCloseFactory();
         next();
     }
 }

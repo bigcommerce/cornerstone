@@ -171,7 +171,7 @@ export default class GiftCertificate extends PageManager {
             this.getPageModal(previewUrl, (err, data) => {
                 if (err) {
                     // overwrite the generic error in PageManager
-                    data.modal.$content.text(this.context.previewError);
+                    data.modal.updateContent(this.context.previewError);
                     throw err;
                 }
             });

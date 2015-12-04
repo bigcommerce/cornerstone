@@ -1,4 +1,5 @@
 import { api } from 'bigcommerce/stencil-utils';
+import { defaultModal } from './theme/global/modal';
 import _ from 'lodash';
 
 export default class PageManager {
@@ -22,11 +23,7 @@ export default class PageManager {
     }
 
     getPageModal(url, options, callback) {
-        const modal = {
-            $element: $('#modal'),
-            $content: $('.modal-content', this.$element),
-            $overlay: $('.loadingOverlay', this.$element),
-        };
+        const modal = defaultModal();
 
         /* eslint-disable no-param-reassign */
         if (typeof options === 'function') {
@@ -39,17 +36,11 @@ export default class PageManager {
         }
         /* eslint-enable no-param-reassign */
 
-        modal.$content.html('');
-        modal.$overlay.show();
-
-        // open modal
-        modal.$element.foundation('reveal', 'open');
+        modal.open();
 
         api.getPage(url, options, (err, content) => {
-            modal.$overlay.hide();
-
             if (err) {
-                modal.$content.html(this.context.genericError);
+                modal.updateContent(this.context.genericError);
 
                 if (typeof callback === 'function') {
                     return callback(err, {
@@ -60,7 +51,7 @@ export default class PageManager {
                 throw err;
             }
 
-            modal.$content.html(content);
+            modal.updateContent(content);
 
             if (typeof callback === 'function') {
                 callback(null, {

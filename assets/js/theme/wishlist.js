@@ -64,7 +64,8 @@ export default class WishList extends PageManager {
 
             this.getPageModal($wishListUrl, this.options, (err, data) => {
                 if (err) {
-                    data.modal.$content.text(err);
+                    data.modal.updateContent(err);
+                    return;
                 }
 
                 const $wishListForm = $('.wishlist-form', data.modal.$content);

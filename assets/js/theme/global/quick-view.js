@@ -1,8 +1,6 @@
 import $ from 'jquery';
-import foundation from './foundation';
 import 'foundation/js/foundation/foundation';
 import 'foundation/js/foundation/foundation.dropdown';
-import 'foundation/js/foundation/foundation.reveal';
 import utils from 'bigcommerce/stencil-utils';
 import ProductDetails from '../common/product-details';
 import { defaultModal } from './modal';
@@ -21,7 +19,6 @@ export default function(context) {
             modal.updateContent(response);
 
             modal.$content.find('.productView').addClass('productView--quickView');
-            foundation(modal.$content);
 
             return new ProductDetails(modal.$content, context);
         });

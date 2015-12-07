@@ -1,8 +1,10 @@
 import $ from 'jquery';
-import 'foundation/js/foundation/foundation';
-import 'foundation/js/foundation/foundation.reveal';
+import foundation from './foundation';
 
 const bodyActiveClass = 'has-activeModal';
+const loadingOverlayClass = 'loadingOverlay';
+const modalBodyClass = 'modal-body';
+const modalContentClass = 'modal-content';
 
 const SizeClasses = {
     small: 'modal--small',
@@ -29,7 +31,7 @@ function getSizeFromModal($modal) {
     return 'normal';
 }
 
-function getViewportHeight(multipler) {
+function getViewportHeight(multipler = 1) {
     const viewportHeight = $(window).height();
 
     return viewportHeight * multipler;
@@ -39,10 +41,47 @@ function wrapModalBody(content) {
     const $modalBody = $('<div>');
 
     $modalBody
-        .addClass('modal-body')
+        .addClass(modalBodyClass)
         .html(content);
 
     return $modalBody;
+}
+
+function restrainContentHeight($content) {
+    const $body = $(`.${modalBodyClass}`, $content);
+    const bodyHeight = $body.outerHeight();
+    const contentHeight = $content.outerHeight();
+    const viewportHeight = getViewportHeight(0.9);
+    const maxHeight = viewportHeight - (contentHeight - bodyHeight);
+
+    $body.css('max-height', maxHeight);
+}
+
+function createModalContent($modal) {
+    let $content = $(`.${modalContentClass}`, $modal);
+
+    if ($content.length === 0) {
+        const existingContent = $modal.children();
+
+        $content = $('<div>')
+            .addClass(modalContentClass)
+            .append(existingContent)
+            .appendTo($modal);
+    }
+
+    return $content;
+}
+
+function createLoadingOverlay($modal) {
+    let $loadingOverlay = $(`.${loadingOverlayClass}`, $modal);
+
+    if ($loadingOverlay.length === 0) {
+        $loadingOverlay = $('<div>')
+            .addClass(loadingOverlayClass)
+            .appendTo($modal);
+    }
+
+    return $loadingOverlay;
 }
 
 /**
@@ -57,12 +96,14 @@ export class Modal {
         size = null,
     } = {}) {
         this.$modal = $modal;
-        this.$content = $('.modal-content', this.$modal);
-        this.$overlay = $('.loadingOverlay', this.$modal);
+        this.$content = createModalContent(this.$modal);
+        this.$overlay = createLoadingOverlay(this.$modal);
         this.defaultSize = size || getSizeFromModal($modal);
         this.size = this.defaultSize;
+        this.pending = false;
 
         this.onModalOpen = this.onModalOpen.bind(this);
+        this.onModalOpened = this.onModalOpened.bind(this);
         this.onModalClose = this.onModalClose.bind(this);
         this.onModalClosed = this.onModalClosed.bind(this);
 
@@ -100,17 +141,29 @@ export class Modal {
         this.$modal.on(ModalEvents.close, this.onModalClose);
         this.$modal.on(ModalEvents.closed, this.onModalClosed);
         this.$modal.on(ModalEvents.open, this.onModalOpen);
+        this.$modal.on(ModalEvents.opened, this.onModalOpened);
     }
 
     unbindEvents() {
         this.$modal.off(ModalEvents.close, this.onModalClose);
         this.$modal.off(ModalEvents.closed, this.onModalClosed);
         this.$modal.off(ModalEvents.open, this.onModalOpen);
+        this.$modal.off(ModalEvents.opened, this.onModalOpened);
     }
 
-    open({ size } = {}) {
+    open({
+        size,
+        pending = true,
+        clearContent = true,
+    } = {}) {
+        this.pending = pending;
+
         if (size) {
             this.size = size;
+        }
+
+        if (clearContent) {
+            this.clearContent();
         }
 
         this.$modal.foundation('reveal', 'open');
@@ -129,6 +182,9 @@ export class Modal {
 
         this.pending = false;
         this.$content.html($content);
+
+        restrainContentHeight(this.$content);
+        foundation(this.$content);
     }
 
     clearContent() {
@@ -136,21 +192,19 @@ export class Modal {
     }
 
     onModalClose() {
-        this.size = this.defaultSize;
-
         $('body').removeClass(bodyActiveClass);
     }
 
     onModalClosed() {
-        this.clearContent();
+        this.size = this.defaultSize;
     }
 
     onModalOpen() {
-        this.pending = true;
-
-        this.$content.css('max-height', getViewportHeight(0.9));
-
         $('body').addClass(bodyActiveClass);
+    }
+
+    onModalOpened() {
+        restrainContentHeight(this.$content);
     }
 }
 
@@ -161,8 +215,8 @@ export class Modal {
  * @param {string} [options.size]
  * @returns {array}
  */
-export default function modalFactory(selector = '[data-reveal]', options) {
-    const $modals = $(selector);
+export default function modalFactory(selector = '[data-reveal]', options = {}) {
+    const $modals = $(selector, options.$context);
 
     return $modals.map((index, element) => {
         const $modal = $(element);
@@ -176,7 +230,7 @@ export default function modalFactory(selector = '[data-reveal]', options) {
         $modal.data('modal', modal);
 
         return modal;
-    });
+    }).toArray();
 }
 
 /*

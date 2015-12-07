@@ -58,8 +58,8 @@ class RevealClose {
  * <div data-reveal id="helloModal"></div>
  * <button data-reveal-close="helloModal">Continue</button>
  */
-export default function revealCloseFactory(selector = revealCloseSelector) {
-    const $buttons = $(selector);
+export default function revealCloseFactory(selector = revealCloseSelector, options = {}) {
+    const $buttons = $(selector, options.$context);
 
     return $buttons.map((index, element) => {
         const $button = $(element);
@@ -73,5 +73,5 @@ export default function revealCloseFactory(selector = revealCloseSelector) {
         $button.data(revealCloseAttr, button);
 
         return button;
-    });
+    }).toArray();
 }

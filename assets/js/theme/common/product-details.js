@@ -7,7 +7,6 @@ import 'foundation/js/foundation/foundation';
 import 'foundation/js/foundation/foundation.reveal';
 import ImageGallery from '../product/image-gallery';
 import modalFactory from '../global/modal';
-import revealCloseFactory from '../global/reveal-close';
 import _ from 'lodash';
 
 export default class Product {
@@ -286,7 +285,6 @@ export default class Product {
             }
 
             modal.updateContent(response);
-            revealCloseFactory();
 
             // Update cart counter
             const $body = $('body');

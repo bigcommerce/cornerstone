@@ -2,7 +2,8 @@ import 'foundation/js/foundation/foundation';
 import 'foundation/js/foundation/foundation.dropdown';
 import 'foundation/js/foundation/foundation.reveal';
 import 'foundation/js/foundation/foundation.tab';
-
+import modalFactory from './modal';
+import revealCloseFactory from './reveal-close';
 
 export default function($element) {
     $element.foundation({
@@ -19,4 +20,7 @@ export default function($element) {
             active_class: 'is-active',
         },
     });
+
+    modalFactory('[data-reveal]', { $context: $element });
+    revealCloseFactory('[data-reveal-close]', { $context: $element });
 }

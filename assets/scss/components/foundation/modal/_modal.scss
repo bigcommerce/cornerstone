@@ -7,7 +7,7 @@
     // scss-lint:disable ImportantRule
     left: 0;
     margin: 0 auto;
-    max-height: none;
+    max-height: 90%;
     max-width: 95%;
     min-height: 240px;
     outline: none;
@@ -23,15 +23,24 @@
     }
 }
 
+.modal-header {
+    padding-left: $reveal-modal-paddingHorizontal;
+    padding-right: remCalc($reveal-close-height) + $reveal-close-side;
+}
+
 .modal-header-title {
+    font-size: fontSize("large");
     text-align: center;
+
+    @include breakpoint("medium") {
+        font-size: fontSize("larger");
+    }
 }
 
 .modal-close {
     @include square($reveal-close-height);
-    background: $reveal-close-backgroundColor;
     color: stencilColor("icon-color");
-    font-size: 32px;
+    font-size: 26px;
     line-height: remCalc($reveal-close-height);
     padding: 0;
     position: absolute;
@@ -39,12 +48,16 @@
     text-decoration: none;
     z-index: zIndex("high");
 
+    @include breakpoint("medium") {
+        font-size: 32px;
+    }
+
     &:hover {
         color: stencilColor("icon-color-hover");
     }
 }
 
-.modal-content {
+.modal-body {
     overflow: auto;
     -webkit-overflow-scrolling: touch;
     padding: $reveal-modal-padding;

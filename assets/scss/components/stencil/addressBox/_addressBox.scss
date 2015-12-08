@@ -58,6 +58,7 @@
     }
 
     .form-actions {
+        margin-bottom: -(spacing("half"));
         margin-top: spacing("single");
         text-align: left;
 
@@ -68,11 +69,16 @@
         }
 
         // scss-lint:disable SelectorDepth, NestingDepth
+        .button {
+            margin-bottom: spacing("half");
+        }
+
         .button + .button {
-            margin-top: spacing("half");
+            margin-left: 0;
+            margin-top: 0;
 
             @include breakpoint("small") {
-                margin: 0 0 0 spacing("quarter");
+                margin-left: spacing("quarter");
             }
         }
         // scss-lint:enable SelectorDepth, NestingDepth

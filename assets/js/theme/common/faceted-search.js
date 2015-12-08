@@ -344,7 +344,7 @@ export default class FacetedSearch {
         }
 
         const url = Url.parse(location.href);
-        const queryParams = $(event.currentTarget).serialize();
+        const queryParams = decodeURI($(event.currentTarget).serialize());
 
         goToUrl(Url.format({ pathname: url.pathname, search: '?' + queryParams }));
     }
@@ -358,7 +358,29 @@ export default class FacetedSearch {
 
         event.preventDefault();
 
-        goToUrl(Url.format({ pathname: url.pathname, query: url.query }));
+        goToUrl(Url.format({ pathname: url.pathname, search: this.buildQueryString(url.query) }));
+    }
+
+    buildQueryString(queryData) {
+        let out = '';
+        let key;
+        for (key in queryData) {
+            if (queryData.hasOwnProperty(key)) {
+                if (Array.isArray(queryData[key])) {
+                    let ndx;
+
+                    for (ndx in queryData[key]) {
+                        if (queryData[key].hasOwnProperty(ndx)) {
+                            out += `&${key}=${queryData[key][ndx]}`;
+                        }
+                    }
+                } else {
+                    out += `&${key}=${queryData[key]}`;
+                }
+            }
+        }
+
+        return out.substring(1);
     }
 
     onStateChange() {

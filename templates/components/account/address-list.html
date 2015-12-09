@@ -15,10 +15,12 @@
                         <li>{{city}}{{#if state}}, {{state}}{{/if}} {{zip}}</li>
                         <li>{{country}}</li>
                     </ul>
+                    {{#if phone}}
                     <dl class="address-details">
                         <dt class="address-label">{{lang 'account.addresses.phone' }}</dt>
                         <dd class="address-description">{{phone}}</dd>
                     </dl>
+                    {{/if}}
                     <form action="{{delete_url}}" method="post" data-delete-address="{{lang 'forms.address.confirm_delete'}}">
                         <div class="form-actions">
                             <a class="button button--primary button--small" href="{{edit_url}}">{{lang 'common.edit' }}</a>

@@ -1,10 +1,8 @@
 {{#if banners.bottom}}
 <div class="banners" data-banner-location="bottom">
-    {{#each banners.bottom}}
     <div class="banner">
-        {{{this}}}
+        {{{limit banners.bottom 1}}}
     </div>
-    {{/each}}
 </div>
 {{/if}}
 <footer class="footer" role="contentinfo">

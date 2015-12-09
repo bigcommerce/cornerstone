@@ -52,13 +52,15 @@ export class CollapsibleGroup {
     }
 }
 
-/*
+/**
  * Create new CollapsibleGroup instances
  * @param {string} [selector]
+ * @param {Object} [options]
+ * @param {Object} [options.$context]
  * @return {Array} array of CollapsibleGroup instances
  */
-export default function collapsibleGroupFactory(selector = `[data-${PLUGIN_KEY}]`) {
-    const $groups = $(selector);
+export default function collapsibleGroupFactory(selector = `[data-${PLUGIN_KEY}]`, options = {}) {
+    const $groups = $(selector, options.$context);
 
     return $groups.map((index, element) => {
         const $group = $(element);
@@ -72,5 +74,5 @@ export default function collapsibleGroupFactory(selector = `[data-${PLUGIN_KEY}]
         $group.data(PLUGIN_KEY, group);
 
         return group;
-    });
+    }).toArray();
 }

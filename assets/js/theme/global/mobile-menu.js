@@ -1,48 +1,45 @@
 import $ from 'jquery';
 import collapsibleFactory from '../common/collapsible';
 import collapsibleGroupFactory from '../common/collapsible-group';
+import mediaQueryListFactory from '../common/media-query-list';
 import { CartPreviewEvents } from './cart-preview';
 
 const PLUGIN_KEY = 'mobilemenu';
-
-function createMediaQueryList(query) {
-    if (window.matchMedia) {
-        mediaQueryList = window.matchMedia(query);
-    }
-
-    return mediaQueryList;
-}
 
 /*
  * Manage the behaviour of a mobile menu
  * @param {jQuery} $trigger
  * @param {Object} [options]
+ * @param {Object} [options.bodySelector]
+ * @param {Object} [options.headerSelector]
+ * @param {Object} [options.menuSelector]
+ * @param {Object} [options.scrollViewSelector]
  */
 export class MobileMenu {
     constructor($trigger, {
         bodySelector = 'body',
         headerSelector = '.header',
-        menuSelector = '#mobile-menu',
-        scrollViewSelector = '#mobile-menu .navPages',
+        menuSelector = '#menu',
+        scrollViewSelector = '.navPages',
     } = {}) {
         this.$body = $(bodySelector);
         this.$menu = $(menuSelector);
         this.$header = $(headerSelector);
-        this.$scrollView = $(scrollViewSelector);
+        this.$scrollView = $(scrollViewSelector, this.$menu);
         this.$trigger = $trigger;
-        this.mediumMediaQueryList = createMediaQueryList('(min-width: 801px)');
+        this.mediumMediaQueryList = mediaQueryListFactory('medium');
+
+        // Init collapsible
+        this.collapsibles = collapsibleFactory('[data-collapsible]', { $context: this.$menu });
+        this.collapsibleGroups = collapsibleGroupFactory(menuSelector);
 
         // Auto-bind
         this.onTriggerClick = this.onTriggerClick.bind(this);
-        this.onCartPreviewClick = this.onCartPreviewClick.bind(this);
+        this.onCartPreviewOpen = this.onCartPreviewOpen.bind(this);
         this.onMediumMediaQueryMatch = this.onMediumMediaQueryMatch.bind(this);
 
         // Listen
         this.bindEvents();
-
-        // Init collapsible
-        collapsibleGroupFactory(menuSelector);
-        collapsibleFactory();
     }
 
     get isOpen() {
@@ -51,18 +48,18 @@ export class MobileMenu {
 
     bindEvents() {
         this.$trigger.on('click', this.onTriggerClick);
-        this.$header.on(CartPreviewEvents.open, this.onCartPreviewClick);
+        this.$header.on(CartPreviewEvents.open, this.onCartPreviewOpen);
 
-        if (this.mediumMediaQueryList) {
+        if (this.mediumMediaQueryList && this.mediumMediaQueryList.addListener) {
             this.mediumMediaQueryList.addListener(this.onMediumMediaQueryMatch);
         }
     }
 
     unbindEvents() {
         this.$trigger.off('click', this.onTriggerClick);
-        this.$header.off(CartPreviewEvents.open, this.onCartPreviewClick);
+        this.$header.off(CartPreviewEvents.open, this.onCartPreviewOpen);
 
-        if (this.mediumMediaQueryList) {
+        if (this.mediumMediaQueryList && this.mediumMediaQueryList.addListener) {
             this.mediumMediaQueryList.removeListener(this.onMediumMediaQueryMatch);
         }
     }
@@ -111,7 +108,7 @@ export class MobileMenu {
         this.toggle();
     }
 
-    onCartPreviewClick() {
+    onCartPreviewOpen() {
         if (this.isOpen) {
             this.hide();
         }
@@ -129,14 +126,21 @@ export class MobileMenu {
 /*
  * Create a new MobileMenu instance
  * @param {string} [selector]
+ * @param {Object} [options]
+ * @param {Object} [options.bodySelector]
+ * @param {Object} [options.headerSelector]
+ * @param {Object} [options.menuSelector]
+ * @param {Object} [options.scrollViewSelector]
  * @return {MobileMenu}
  */
-export default function mobileMenuFactory(selector = `[data-${PLUGIN_KEY}]`, options) {
+export default function mobileMenuFactory(selector = `[data-${PLUGIN_KEY}]`, options = {}) {
     const $trigger = $(selector).eq(0);
     let mobileMenu = $trigger.data(PLUGIN_KEY);
 
     if (mobileMenu instanceof MobileMenu) {
         return mobileMenu;
+    } else if (typeof mobileMenu === 'string') {
+        options.menuSelector = `#${mobileMenu}`;
     }
 
     mobileMenu = new MobileMenu($trigger, options);

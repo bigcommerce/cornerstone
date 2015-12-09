@@ -8,11 +8,11 @@ describe('Collapsible', () => {
     beforeEach(() => {
         const html = `
             <div>
-                <div data-collapsible data-target="content">Toggle</div>
+                <div data-collapsible data-collapsible-target="content">Toggle</div>
                 <div id="content">Content</div>
-                <div data-collapsible data-target="content2">Toggle</div>
+                <div data-collapsible data-collapsible-target="content2">Toggle</div>
                 <div id="content2">
-                    <div data-collapsible data-target="content2-subcontent">Toggle</div>
+                    <div data-collapsible data-collapsible-target="content2-subcontent">Toggle</div>
                     <div id="content2-subcontent">Content</div>
                 </div>
             </div>
@@ -33,6 +33,7 @@ describe('Collapsible', () => {
         beforeEach(() => {
             spyOn(collapsible, 'open');
             spyOn(collapsible, 'close');
+            spyOn(collapsible, 'toggle').and.callThrough();
         });
 
         it('should open if it is closed', () => {
@@ -47,6 +48,52 @@ describe('Collapsible', () => {
             collapsible.$toggle.trigger(CollapsibleEvents.click);
 
             expect(collapsible.close).toHaveBeenCalled();
+        });
+
+        it('should not toggle if it is disabled', () => {
+            collapsible.disabled = true;
+            collapsible.$toggle.trigger(CollapsibleEvents.click);
+
+            expect(collapsible.toggle).not.toHaveBeenCalled();
+        });
+    });
+
+    describe('set disabled', () => {
+        beforeEach(() => {
+            spyOn(collapsible, 'open');
+            spyOn(collapsible, 'close');
+        });
+
+        describe('if disabled', () => {
+            it('should open if default disabled state is open', () => {
+                collapsible.disabledState = 'open';
+                collapsible.disabled = true;
+
+                expect(collapsible.open).toHaveBeenCalled();
+            });
+
+            it('should open if default disabled state is closed', () => {
+                collapsible.disabledState = 'closed';
+                collapsible.disabled = true;
+
+                expect(collapsible.close).toHaveBeenCalled();
+            });
+        });
+
+        describe('if enabled', () => {
+            it('should open if default enabled state is open', () => {
+                collapsible.enabledState = 'open';
+                collapsible.disabled = false;
+
+                expect(collapsible.open).toHaveBeenCalled();
+            });
+
+            it('should open if default enabled state is closed', () => {
+                collapsible.enabledState = 'closed';
+                collapsible.disabled = false;
+
+                expect(collapsible.close).toHaveBeenCalled();
+            });
         });
     });
 

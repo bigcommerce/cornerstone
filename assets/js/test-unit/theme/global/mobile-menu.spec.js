@@ -9,8 +9,8 @@ describe('MobileMenu', () => {
         const html = `
             <div class="body">
                 <header class="header">
-                    <a data-mobilemenu>Menu</a>
-                    <nav id="mobile-menu"></nav>
+                    <a data-mobilemenu="menu">Menu</a>
+                    <nav id="menu"></nav>
                 </header>
             </div>
         `;

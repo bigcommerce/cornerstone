@@ -9,15 +9,18 @@
 
 .login-row {
     @include grid-row();
-    margin-top: spacing("double")*2;
+    @include breakpoint("medium") {
+        margin-top: spacing("double")*2;
+    }
 }
 
 .login-form {
     @include grid-column(12);
-    margin-top: spacing("double");
 
     @include breakpoint("medium") {
         @include grid-column(6);
+
+        margin-top: spacing("double");
     }
 }
 

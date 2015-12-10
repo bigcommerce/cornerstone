@@ -120,7 +120,7 @@ export default class Search extends PageManager {
                     }
                 },
                 themes: {
-                    icons: false,
+                    icons: true,
                 },
             },
             checkbox: {

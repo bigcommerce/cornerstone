@@ -21,6 +21,12 @@ export class CollapsibleGroup {
         this.bindEvents();
     }
 
+    close() {
+        if (this.openCollapsible && !this.openCollapsible.disabled) {
+            this.openCollapsible.close();
+        }
+    }
+
     bindEvents() {
         this.$component.on(CollapsibleEvents.open, this.onCollapsibleOpen);
         this.$component.on(CollapsibleEvents.close, this.onCollapsibleClose);
@@ -36,9 +42,7 @@ export class CollapsibleGroup {
             return;
         }
 
-        if (this.openCollapsible) {
-            this.openCollapsible.close();
-        }
+        this.close();
 
         this.openCollapsible = collapsibleInstance;
     }

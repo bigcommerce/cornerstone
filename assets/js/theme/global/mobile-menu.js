@@ -35,6 +35,8 @@ export class MobileMenu {
 
         // Auto-bind
         this.onTriggerClick = this.onTriggerClick.bind(this);
+        this.onMenuClick = this.onMenuClick.bind(this);
+        this.onDocumentClick = this.onDocumentClick.bind(this);
         this.onCartPreviewOpen = this.onCartPreviewOpen.bind(this);
         this.onMediumMediaQueryMatch = this.onMediumMediaQueryMatch.bind(this);
 
@@ -48,7 +50,10 @@ export class MobileMenu {
 
     bindEvents() {
         this.$trigger.on('click', this.onTriggerClick);
+        this.$menu.on('click', this.onMenuClick);
         this.$header.on(CartPreviewEvents.open, this.onCartPreviewOpen);
+
+        $(document).on('click', this.onDocumentClick);
 
         if (this.mediumMediaQueryList && this.mediumMediaQueryList.addListener) {
             this.mediumMediaQueryList.addListener(this.onMediumMediaQueryMatch);
@@ -57,7 +62,10 @@ export class MobileMenu {
 
     unbindEvents() {
         this.$trigger.off('click', this.onTriggerClick);
+        this.$menu.off('click', this.onMenuClick);
         this.$header.off(CartPreviewEvents.open, this.onCartPreviewOpen);
+
+        $(document).off('click', this.onDocumentClick);
 
         if (this.mediumMediaQueryList && this.mediumMediaQueryList.addListener) {
             this.mediumMediaQueryList.removeListener(this.onMediumMediaQueryMatch);
@@ -106,6 +114,14 @@ export class MobileMenu {
         event.preventDefault();
 
         this.toggle();
+    }
+
+    onMenuClick(event) {
+        event.stopPropagation();
+    }
+
+    onDocumentClick() {
+        this.collapsibleGroups.forEach(group => group.close());
     }
 
     onCartPreviewOpen() {

@@ -65,17 +65,19 @@ export class CollapsibleGroup {
  */
 export default function collapsibleGroupFactory(selector = `[data-${PLUGIN_KEY}]`, options = {}) {
     const $groups = $(selector, options.$context);
+    const instanceKey = `${PLUGIN_KEY}-instance`;
 
     return $groups.map((index, element) => {
         const $group = $(element);
-        let group = $group.data(PLUGIN_KEY);
+        const cachedGroup = $group.data(instanceKey);
 
-        if (group instanceof CollapsibleGroup) {
-            return group;
+        if (cachedGroup instanceof CollapsibleGroup) {
+            return cachedGroup;
         }
 
-        group = new CollapsibleGroup($group);
-        $group.data(PLUGIN_KEY, group);
+        const group = new CollapsibleGroup($group);
+
+        $group.data(instanceKey, group);
 
         return group;
     }).toArray();

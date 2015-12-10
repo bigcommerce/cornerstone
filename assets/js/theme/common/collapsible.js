@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import _ from 'lodash';
 import mediaQueryListFactory from './media-query-list';
 
 const PLUGIN_KEY = 'collapsible';
@@ -21,6 +22,15 @@ function prependHash(id) {
     }
 
     return `#${id}`;
+}
+
+function optionsFromData($element) {
+    return {
+        disabledBreakpoint: $element.data(`${PLUGIN_KEY}-disabled-breakpoint`),
+        disabledState: $element.data(`${PLUGIN_KEY}-disabled-state`),
+        enabledState: $element.data(`${PLUGIN_KEY}-enabled-state`),
+        openClassName: $element.data(`${PLUGIN_KEY}-open-class-name`),
+    };
 }
 
 /**
@@ -206,26 +216,27 @@ export class Collapsible {
  *
  * collapsibleFactory();
  */
-export default function collapsibleFactory(selector = `[data-${PLUGIN_KEY}]`, options = {}) {
-    const $collapsibles = $(selector, options.$context);
+export default function collapsibleFactory(selector = `[data-${PLUGIN_KEY}]`, overrideOptions = {}) {
+    const $collapsibles = $(selector, overrideOptions.$context);
 
     return $collapsibles.map((index, element) => {
         const $toggle = $(element);
-        let collapsible = $toggle.data(PLUGIN_KEY);
+        const instanceKey = `${PLUGIN_KEY}-instance`;
+        const cachedCollapsible = $toggle.data(instanceKey);
 
-        if (collapsible instanceof Collapsible) {
-            return collapsible;
+        if (cachedCollapsible instanceof Collapsible) {
+            return cachedCollapsible;
         }
 
-        const targetId = prependHash($toggle.data(PLUGIN_KEY) || $toggle.data(`${PLUGIN_KEY}-target`) || $toggle.attr('href'));
+        const targetId = prependHash(
+                            $toggle.data(PLUGIN_KEY) ||
+                            $toggle.data(`${PLUGIN_KEY}-target`) ||
+                            $toggle.attr('href')
+                        );
+        const options = _.extend(optionsFromData($toggle), overrideOptions);
+        const collapsible = new Collapsible($toggle, $(targetId), options);
 
-        options.disabledBreakpoint = $toggle.data(`${PLUGIN_KEY}-disabled-breakpoint`);
-        options.disabledState = $toggle.data(`${PLUGIN_KEY}-disabled-state`);
-        options.enabledState = $toggle.data(`${PLUGIN_KEY}-enabled-state`);
-        options.openClassName = $toggle.data(`${PLUGIN_KEY}-open-class-name`);
-
-        collapsible = new Collapsible($toggle, $(targetId), options);
-        $toggle.data(PLUGIN_KEY, collapsible);
+        $toggle.data(instanceKey, collapsible);
 
         return collapsible;
     }).toArray();

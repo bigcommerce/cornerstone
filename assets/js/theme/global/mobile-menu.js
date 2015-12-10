@@ -1,10 +1,19 @@
 import $ from 'jquery';
+import _ from 'lodash';
 import collapsibleFactory from '../common/collapsible';
 import collapsibleGroupFactory from '../common/collapsible-group';
 import mediaQueryListFactory from '../common/media-query-list';
 import { CartPreviewEvents } from './cart-preview';
 
 const PLUGIN_KEY = 'mobilemenu';
+
+function optionsFromData($element) {
+   const mobileMenuId = $element.data(PLUGIN_KEY);
+
+   return {
+       menuSelector: mobileMenuId && `#${mobileMenuId}`,
+   };
+}
 
 /*
  * Manage the behaviour of a mobile menu
@@ -149,18 +158,19 @@ export class MobileMenu {
  * @param {Object} [options.scrollViewSelector]
  * @return {MobileMenu}
  */
-export default function mobileMenuFactory(selector = `[data-${PLUGIN_KEY}]`, options = {}) {
+export default function mobileMenuFactory(selector = `[data-${PLUGIN_KEY}]`, overrideOptions = {}) {
     const $trigger = $(selector).eq(0);
-    let mobileMenu = $trigger.data(PLUGIN_KEY);
+    const instanceKey = `${PLUGIN_KEY}-instance`;
+    const cachedMobileMenu = $trigger.data(instanceKey);
 
-    if (mobileMenu instanceof MobileMenu) {
-        return mobileMenu;
-    } else if (typeof mobileMenu === 'string') {
-        options.menuSelector = `#${mobileMenu}`;
+    if (cachedMobileMenu instanceof MobileMenu) {
+        return cachedMobileMenu;
     }
 
-    mobileMenu = new MobileMenu($trigger, options);
-    $trigger.data(PLUGIN_KEY, mobileMenu);
+    const options = _.extend(optionsFromData($trigger), overrideOptions);
+    const mobileMenu = new MobileMenu($trigger, options);
+
+    $trigger.data(instanceKey, mobileMenu);
 
     return mobileMenu;
 }

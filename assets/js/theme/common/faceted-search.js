@@ -71,7 +71,7 @@ export default class FacetedSearch {
         // Mark initially collapsed accordions
         $(this.options.accordionToggleSelector).each((index, accordionToggle) => {
             const $accordionToggle = $(accordionToggle);
-            const collapsible = $accordionToggle.data('collapsible');
+            const collapsible = $accordionToggle.data('collapsible-instance');
 
             if (collapsible.isCollapsed) {
                 this.collapsedFacets.push(collapsible.targetId);
@@ -188,13 +188,13 @@ export default class FacetedSearch {
     }
 
     expandFacet($accordionToggle) {
-        const collapsible = $accordionToggle.data('collapsible');
+        const collapsible = $accordionToggle.data('collapsible-instance');
 
         collapsible.open();
     }
 
     collapseFacet($accordionToggle) {
-        const collapsible = $accordionToggle.data('collapsible');
+        const collapsible = $accordionToggle.data('collapsible-instance');
 
         collapsible.close();
     }
@@ -261,7 +261,7 @@ export default class FacetedSearch {
 
         $accordionToggles.each((index, accordionToggle) => {
             const $accordionToggle = $(accordionToggle);
-            const collapsible = $accordionToggle.data('collapsible');
+            const collapsible = $accordionToggle.data('collapsible-instance');
             const id = collapsible.targetId;
             const shouldCollapse = _.contains(this.collapsedFacets, id);
 
@@ -389,7 +389,7 @@ export default class FacetedSearch {
 
     onAccordionToggle(event) {
         const $accordionToggle = $(event.currentTarget);
-        const collapsible = $accordionToggle.data('collapsible');
+        const collapsible = $accordionToggle.data('collapsible-instance');
         const id = collapsible.targetId;
 
         if (collapsible.isCollapsed) {

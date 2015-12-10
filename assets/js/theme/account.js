@@ -14,7 +14,7 @@ export default class Account extends PageManager {
     }
 
     loaded(next) {
-        const $editAccountForm = classifyForm('form[data-edit-account-form');
+        const $editAccountForm = classifyForm('form[data-edit-account-form]');
         const $addressForm = classifyForm('form[data-address-form]');
         const $inboxForm = classifyForm('form[data-inbox-form]');
         const $accountReturnForm = classifyForm('[data-account-return-form]');

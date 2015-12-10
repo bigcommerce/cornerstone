@@ -1,56 +1,52 @@
 import $ from 'jquery';
 import _ from 'lodash';
-import collapsibleFactory from '../common/collapsible';
-import collapsibleGroupFactory from '../common/collapsible-group';
 import mediaQueryListFactory from '../common/media-query-list';
 import { CartPreviewEvents } from './cart-preview';
 
-const PLUGIN_KEY = 'mobilemenu';
+const PLUGIN_KEY = 'mobile-menu-toggle';
 
 function optionsFromData($element) {
-   const mobileMenuId = $element.data(PLUGIN_KEY);
+    const mobileMenuId = $element.data(PLUGIN_KEY);
 
-   return {
-       menuSelector: mobileMenuId && `#${mobileMenuId}`,
-   };
+    return {
+        menuSelector: mobileMenuId && `#${mobileMenuId}`,
+    };
 }
 
 /*
  * Manage the behaviour of a mobile menu
- * @param {jQuery} $trigger
+ * @param {jQuery} $toggle
  * @param {Object} [options]
- * @param {Object} [options.bodySelector]
  * @param {Object} [options.headerSelector]
  * @param {Object} [options.menuSelector]
  * @param {Object} [options.scrollViewSelector]
  */
-export class MobileMenu {
-    constructor($trigger, {
-        bodySelector = 'body',
+export class MobileMenuToggle {
+    constructor($toggle, {
         headerSelector = '.header',
         menuSelector = '#menu',
         scrollViewSelector = '.navPages',
     } = {}) {
-        this.$body = $(bodySelector);
+        this.$body = $('body');
         this.$menu = $(menuSelector);
         this.$header = $(headerSelector);
         this.$scrollView = $(scrollViewSelector, this.$menu);
-        this.$trigger = $trigger;
+        this.$toggle = $toggle;
         this.mediumMediaQueryList = mediaQueryListFactory('medium');
 
-        // Init collapsible
-        this.collapsibles = collapsibleFactory('[data-collapsible]', { $context: this.$menu });
-        this.collapsibleGroups = collapsibleGroupFactory(menuSelector);
-
         // Auto-bind
-        this.onTriggerClick = this.onTriggerClick.bind(this);
-        this.onMenuClick = this.onMenuClick.bind(this);
-        this.onDocumentClick = this.onDocumentClick.bind(this);
+        this.onToggleClick = this.onToggleClick.bind(this);
         this.onCartPreviewOpen = this.onCartPreviewOpen.bind(this);
         this.onMediumMediaQueryMatch = this.onMediumMediaQueryMatch.bind(this);
 
         // Listen
         this.bindEvents();
+
+        // Assign DOM attributes
+        this.$toggle.attr('aria-controls', this.$menu.attr('id'));
+
+        // Hide by default
+        this.hide();
     }
 
     get isOpen() {
@@ -58,11 +54,8 @@ export class MobileMenu {
     }
 
     bindEvents() {
-        this.$trigger.on('click', this.onTriggerClick);
-        this.$menu.on('click', this.onMenuClick);
+        this.$toggle.on('click', this.onToggleClick);
         this.$header.on(CartPreviewEvents.open, this.onCartPreviewOpen);
-
-        $(document).on('click', this.onDocumentClick);
 
         if (this.mediumMediaQueryList && this.mediumMediaQueryList.addListener) {
             this.mediumMediaQueryList.addListener(this.onMediumMediaQueryMatch);
@@ -70,11 +63,8 @@ export class MobileMenu {
     }
 
     unbindEvents() {
-        this.$trigger.off('click', this.onTriggerClick);
-        this.$menu.off('click', this.onMenuClick);
+        this.$toggle.off('click', this.onToggleClick);
         this.$header.off(CartPreviewEvents.open, this.onCartPreviewOpen);
-
-        $(document).off('click', this.onDocumentClick);
 
         if (this.mediumMediaQueryList && this.mediumMediaQueryList.addListener) {
             this.mediumMediaQueryList.removeListener(this.onMediumMediaQueryMatch);
@@ -92,7 +82,7 @@ export class MobileMenu {
     show() {
         this.$body.addClass('has-activeNavPages');
 
-        this.$trigger
+        this.$toggle
             .addClass('is-open')
             .attr('aria-expanded', true);
 
@@ -107,7 +97,7 @@ export class MobileMenu {
     hide() {
         this.$body.removeClass('has-activeNavPages');
 
-        this.$trigger
+        this.$toggle
             .removeClass('is-open')
             .attr('aria-expanded', false);
 
@@ -119,18 +109,10 @@ export class MobileMenu {
     }
 
     // Private
-    onTriggerClick(event) {
+    onToggleClick(event) {
         event.preventDefault();
 
         this.toggle();
-    }
-
-    onMenuClick(event) {
-        event.stopPropagation();
-    }
-
-    onDocumentClick() {
-        this.collapsibleGroups.forEach(group => group.close());
     }
 
     onCartPreviewOpen() {
@@ -149,28 +131,27 @@ export class MobileMenu {
 }
 
 /*
- * Create a new MobileMenu instance
+ * Create a new MobileMenuToggle instance
  * @param {string} [selector]
  * @param {Object} [options]
- * @param {Object} [options.bodySelector]
  * @param {Object} [options.headerSelector]
  * @param {Object} [options.menuSelector]
  * @param {Object} [options.scrollViewSelector]
- * @return {MobileMenu}
+ * @return {MobileMenuToggle}
  */
-export default function mobileMenuFactory(selector = `[data-${PLUGIN_KEY}]`, overrideOptions = {}) {
-    const $trigger = $(selector).eq(0);
+export default function mobileMenuToggleFactory(selector = `[data-${PLUGIN_KEY}]`, overrideOptions = {}) {
+    const $toggle = $(selector).eq(0);
     const instanceKey = `${PLUGIN_KEY}-instance`;
-    const cachedMobileMenu = $trigger.data(instanceKey);
+    const cachedMobileMenu = $toggle.data(instanceKey);
 
-    if (cachedMobileMenu instanceof MobileMenu) {
+    if (cachedMobileMenu instanceof MobileMenuToggle) {
         return cachedMobileMenu;
     }
 
-    const options = _.extend(optionsFromData($trigger), overrideOptions);
-    const mobileMenu = new MobileMenu($trigger, options);
+    const options = _.extend(optionsFromData($toggle), overrideOptions);
+    const mobileMenu = new MobileMenuToggle($toggle, options);
 
-    $trigger.data(instanceKey, mobileMenu);
+    $toggle.data(instanceKey, mobileMenu);
 
     return mobileMenu;
 }

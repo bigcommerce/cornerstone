@@ -3,6 +3,11 @@ import 'foundation/js/foundation/foundation';
 import 'foundation/js/foundation/foundation.dropdown';
 import utils from 'bigcommerce/stencil-utils';
 
+export const CartPreviewEvents = {
+    close: 'closed.fndtn.dropdown',
+    open: 'opened.fndtn.dropdown',
+};
+
 export default function() {
     const loadingClass = 'is-loading';
     const $cart = $('[data-cart-preview]');

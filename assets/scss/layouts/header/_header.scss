@@ -26,6 +26,14 @@
         overflow: visible;
         position: relative;
     }
+
+    &.is-open {
+        height: 100%;
+
+        @include breakpoint("medium") {
+            height: auto;
+        }
+    }
 }
 
 .header-logo {
@@ -81,7 +89,9 @@
     letter-spacing: remCalc(9px);
     margin-left: auto;
     margin-right: auto;
+    overflow: hidden;
     text-transform: uppercase;
+    white-space: nowrap;
 
     @include breakpoint("medium") {
         display: inline;
@@ -89,6 +99,8 @@
         margin-left: 0;
         margin-right: -(remCalc(9px)); // 1
         max-width: none;
+        overflow: auto;
+        white-space: normal;
 
         .header.fixed & {
             font-size: fontSize("larger");

@@ -4,7 +4,7 @@
 import $ from 'jquery';
 import PageManager from '../page-manager';
 import Review from './product/reviews';
-import collapsible from './common/collapsible';
+import collapsibleFactory from './common/collapsible';
 import ProductDetails from './common/product-details';
 import videoGallery from './product/video-gallery';
 import {classifyForm} from './common/form-utils';
@@ -31,7 +31,7 @@ export default class Product extends PageManager {
         let validator;
 
         // Init collapsible
-        collapsible();
+        collapsibleFactory();
 
         this.productDetails = new ProductDetails($('.productView'), this.context);
 

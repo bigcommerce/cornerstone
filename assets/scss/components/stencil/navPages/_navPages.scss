@@ -11,11 +11,30 @@
 //
 // -----------------------------------------------------------------------------
 
+
+//
+// Shared styles for sub page navigation
+// -----------------------------------------------------------------------------
+
+%navPage-childList {
+    border-left: 1px solid $navPage-childList-borderColor;
+    margin: spacing("quarter") spacing("half");
+    padding-left: spacing("half");
+}
+
+//
+// When navPages is open
+// -----------------------------------------------------------------------------
+
 .has-activeNavPages {
     // scss-lint:disable VendorPrefix
     overflow: hidden; // 2
     -webkit-overflow-scrolling: auto; // 3
 }
+
+//
+// Top level Pages navigation container
+// -----------------------------------------------------------------------------
 
 .navPages-container {
     // scss-lint:disable VendorPrefix
@@ -48,7 +67,7 @@
 // -----------------------------------------------------------------------------
 
 .navPages {
-    background-color: container("fill", "dark");
+    background-color: $navPages-backgroundColor;
     height: 100%;
     overflow-y: auto;
     padding: spacing("single");
@@ -68,8 +87,14 @@
     }
 
     .navPage-subMenu-list {
-        @include grid-row();
-        margin: auto;
+        @extend %navPage-childList;
+
+        @include breakpoint("medium") {
+            @include grid-row();
+            border-left: 0;
+            margin: auto;
+            padding-left: 0;
+        }
     }
 }
 
@@ -84,7 +109,7 @@
 
 .navPages-action {
     color: stencilColor("navPages-color");
-    display: inline-block;
+    display: block;
     font-size: fontSize("smaller");
     font-weight: fontWeight("bold");
     padding: spacing("half") 0;
@@ -92,6 +117,7 @@
     text-transform: uppercase;
 
     @include breakpoint("medium") {
+        display: inline-block;
         padding: spacing("half") (spacing("half") + spacing("quarter")) (spacing("half") + spacing("quarter"));
 
         &.is-open {
@@ -154,12 +180,15 @@
 // -----------------------------------------------------------------------------
 
 .navPage-childList {
-    border-left: container("border");
-    margin: spacing("quarter") spacing("half");
-    padding-left: spacing("half");
+    @extend %navPage-childList;
+    display: none;
 
     @include breakpoint("medium") {
         border: 0;
+    }
+
+    &.is-open {
+        display: block;
     }
 }
 
@@ -173,6 +202,7 @@
 
 .navPage-subMenu {
     display: none;
+    outline: 0;
 
     @include breakpoint("medium") {
         // scss-lint:disable ImportantRule
@@ -195,10 +225,6 @@
     &.is-open {
         display: block;
     }
-
-    .navPages-action-moreIcon {
-        transform: none;
-    }
 }
 
 .navPage-subMenu-item {
@@ -220,7 +246,11 @@
 }
 
 .navPage-subMenu-action {
-    padding: spacing("half") 0 (spacing("half") + spacing("quarter"));
+    padding: spacing("half") 0;
+
+    @include breakpoint("medium") {
+        padding: spacing("half") 0 (spacing("half") + spacing("quarter"));
+    }
 }
 
 
@@ -260,7 +290,7 @@
     }
 
     .form-field {
-        margin-bottom: spacing("half") + spacing("quarter");
+        margin-bottom: 0;
     }
 }
 
@@ -270,7 +300,7 @@
 // -----------------------------------------------------------------------------
 
 .navPages-list--account {
-    border-top: container("border");
+    border-top: 1px solid $navPages-list--account-borderColor;
     margin-top: spacing("half");
     padding-top: spacing("quarter");
 

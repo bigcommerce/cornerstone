@@ -56,13 +56,8 @@ export default class Search extends PageManager {
         // Init collapsibles
         collapsibleFactory();
 
-        $('[data-product-results-toggle]').click(() => {
-            this.showProducts();
-        });
-
-        $('[data-content-results-toggle]').click(() => {
-            this.showContent();
-        });
+        $('[data-product-results-toggle]').click(this.showProducts.bind(this));
+        $('[data-content-results-toggle]').click(this.showContent.bind(this));
 
         if (this.$productListingContainer.find('li.product').length === 0) {
             this.showContent();

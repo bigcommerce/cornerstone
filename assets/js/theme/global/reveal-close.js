@@ -23,7 +23,7 @@ class RevealClose {
             $modal = this.$button.parents(revealSelector).eq(0);
         }
 
-        return $modal.data('modal');
+        return $modal.data('modal-instance');
     }
 
     bindEvents() {
@@ -63,14 +63,16 @@ export default function revealCloseFactory(selector = revealCloseSelector, optio
 
     return $buttons.map((index, element) => {
         const $button = $(element);
-        let button = $button.data(revealCloseAttr);
+        const instanceKey = `${revealCloseAttr}-instance`;
+        const cachedButton = $button.data(instanceKey);
 
-        if (button instanceof RevealClose) {
-            return button;
+        if (cachedButton instanceof RevealClose) {
+            return cachedButton;
         }
 
-        button = new RevealClose($button);
-        $button.data(revealCloseAttr, button);
+        const button = new RevealClose($button);
+
+        $button.data(instanceKey, button);
 
         return button;
     }).toArray();

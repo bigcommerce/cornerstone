@@ -6,17 +6,18 @@ import utils from 'bigcommerce/stencil-utils';
 import 'foundation/js/foundation/foundation';
 import 'foundation/js/foundation/foundation.reveal';
 import ImageGallery from '../product/image-gallery';
+import modalFactory from '../global/modal';
 import _ from 'lodash';
 
 export default class Product {
     constructor($scope, context) {
         this.$scope = $scope;
         this.context = context;
-        this.productOptions();
-        this.quantityChange();
-        this.addProductToCart();
         this.imageGallery = new ImageGallery($('[data-image-gallery]', this.$scope));
         this.imageGallery.init();
+        this.listenProductOptionsChange();
+        this.listenQuantityChange();
+        this.listenAddProductToCart();
     }
 
     /**
@@ -52,7 +53,7 @@ export default class Product {
      * Handle product options changes
      *
      */
-    productOptions() {
+    listenProductOptionsChange() {
         utils.hooks.on('product-option-change', (event, changedOption) => {
             const $changedOption = $(changedOption);
             const $form = $changedOption.parents('form');
@@ -152,7 +153,7 @@ export default class Product {
      * Handle action when the shopper clicks on + / - for quantity
      *
      */
-    quantityChange() {
+    listenQuantityChange() {
         this.$scope.on('click', '[data-quantity-change] button', (event) => {
             event.preventDefault();
 
@@ -199,8 +200,8 @@ export default class Product {
      * Add a product to cart
      *
      */
-    addProductToCart() {
-        const $previewModal = $('#previewModal');
+    listenAddProductToCart() {
+        const previewModal = modalFactory('#previewModal')[0];
 
         utils.hooks.on('cart-item-add', (event, form) => {
             const $addToCartBtn = $('#form-action-addToCart', $(event.target));
@@ -238,50 +239,21 @@ export default class Product {
                     return;
                 }
 
-                // Optimistic loading
-                this.openCartModal($previewModal);
+                // Open preview modal and update content
+                previewModal.open();
 
-                // Show modal
-                this.populateCartModal($previewModal, response.data.cart_item.hash, ($modalContent) => {
-                    // Update cart counter
-                    const $body = $('body');
-                    const $cartQuantity = $('[data-cart-quantity]', $modalContent);
-                    const $cartCounter = $('.navUser-action .cart-count');
-                    const quantity = $cartQuantity.data('cart-quantity') || 0;
-
-                    $cartCounter.addClass('cart-count--positive');
-                    $body.trigger('cart-quantity-update', quantity);
-                });
+                this.updateCartContent(previewModal, response.data.cart_item.hash);
             });
         });
     }
 
     /**
-     * Open cart modal
-     */
-    openCartModal($modal) {
-        $modal.foundation('reveal', 'open');
-    }
-
-    /**
-     * Close cart modal
-     */
-    closeCartModal($modal) {
-        $modal.foundation('reveal', 'close');
-    }
-
-    /**
-     * Populate cart modal
+     * Get cart content
      *
-     * @param {jQuery} $modal
      * @param {String} cartItemHash
      * @param {Function} onComplete
      */
-    populateCartModal($modal, cartItemHash, onComplete) {
-        // Define options
-        const $modalContent = $('.modal-content', $modal);
-        const $modalOverlay = $('.loadingOverlay', $modal);
-
+    getCartContent(cartItemHash, onComplete) {
         const options = {
             template: 'cart/preview',
             params: {
@@ -296,13 +268,36 @@ export default class Product {
             },
         };
 
-        // Fetch cart to display in modal
-        utils.api.cart.getContent(options, (err, response) => {
-            // Insert fetched content into modal
-            $modalOverlay.hide();
-            $modalContent.html(response);
+        utils.api.cart.getContent(options, onComplete);
+    }
 
-            onComplete($modalContent);
+    /**
+     * Update cart content
+     *
+     * @param {Modal} modal
+     * @param {String} cartItemHash
+     * @param {Function} onComplete
+     */
+    updateCartContent(modal, cartItemHash, onComplete) {
+        this.getCartContent(cartItemHash, (err, response) => {
+            if (err) {
+                return;
+            }
+
+            modal.updateContent(response);
+
+            // Update cart counter
+            const $body = $('body');
+            const $cartQuantity = $('[data-cart-quantity]', modal.$content);
+            const $cartCounter = $('.navUser-action .cart-count');
+            const quantity = $cartQuantity.data('cart-quantity') || 0;
+
+            $cartCounter.addClass('cart-count--positive');
+            $body.trigger('cart-quantity-update', quantity);
+
+            if (onComplete) {
+                onComplete(response);
+            }
         });
     }
 }

@@ -1,13 +1,11 @@
-import $ from 'jquery';
 import 'foundation/js/foundation/foundation';
 import 'foundation/js/foundation/foundation.dropdown';
 import 'foundation/js/foundation/foundation.reveal';
 import 'foundation/js/foundation/foundation.tab';
-
+import modalFactory from './modal';
+import revealCloseFactory from './reveal-close';
 
 export default function($element) {
-    const $body = $('body');
-
     $element.foundation({
         dropdown: {
             // specify the class used for active dropdowns
@@ -21,9 +19,8 @@ export default function($element) {
         tab: {
             active_class: 'is-active',
         },
-    }).on('open.fndtn.reveal', '[data-reveal]', () => {
-        $body.addClass('has-activeModal');
-    }).on('close.fndtn.reveal', '[data-reveal]', () => {
-        $body.removeClass('has-activeModal');
     });
+
+    modalFactory('[data-reveal]', { $context: $element });
+    revealCloseFactory('[data-reveal-close]', { $context: $element });
 }

@@ -1,10 +1,7 @@
 // =============================================================================
 // MODAL (CSS)
 // =============================================================================
-//
-// 1. Negate the extra-padding added by .modal, as .modal-header already has padding
-//
-// -----------------------------------------------------------------------------
+
 
 .modal {
     // scss-lint:disable ImportantRule
@@ -14,6 +11,8 @@
     max-width: 95%;
     min-height: 240px;
     outline: none;
+    overflow: hidden;
+    padding: 0;
     right: 0;
     top: 50% !important;
 }
@@ -25,27 +24,41 @@
 }
 
 .modal-header {
-    margin-top: -1 * $reveal-modal-paddingTop; // 1
+    padding-left: $reveal-modal-paddingHorizontal;
+    padding-right: remCalc($reveal-close-height) + $reveal-close-side;
 }
 
 .modal-header-title {
+    font-size: fontSize("large");
     text-align: center;
+
+    @include breakpoint("medium") {
+        font-size: fontSize("larger");
+    }
 }
 
 .modal-close {
+    @include square($reveal-close-height);
     color: stencilColor("icon-color");
-    font-size: 32px;
+    font-size: 26px;
+    line-height: remCalc($reveal-close-height);
     padding: 0;
+    position: absolute;
+    text-align: center;
     text-decoration: none;
+    z-index: zIndex("high");
+
+    @include breakpoint("medium") {
+        font-size: 32px;
+    }
 
     &:hover {
         color: stencilColor("icon-color-hover");
     }
 }
 
-.modal-body .modal-close,
-.modal-content .modal-close {
-    right: 20px;
-    top: 15px;
-    transform: none;
+.modal-body {
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: $reveal-modal-padding;
 }

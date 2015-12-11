@@ -4,6 +4,7 @@ import _ from 'lodash';
 import giftCertCheck from './common/gift-certificate-validator';
 import utils from 'bigcommerce/stencil-utils';
 import ShippingEstimator from './cart/shipping-estimator';
+import { defaultModal } from './global/modal';
 
 export default class Cart extends PageManager {
     loaded(next) {
@@ -64,23 +65,15 @@ export default class Cart extends PageManager {
     }
 
     cartEditOptions(itemId) {
-        const $modal = $('#modal');
-        const $modalContent = $('.modal-content', $modal);
-        const $modalOverlay = $('.loadingOverlay', $modal);
+        const modal = defaultModal();
         const options = {
             template: 'cart/modals/configure-product',
         };
 
-        // clear the modal
-        $modalContent.html('');
-        $modalOverlay.show();
-
-        // open modal
-        $modal.foundation('reveal', 'open');
+        modal.open();
 
         utils.api.productAttributes.configureInCart(itemId, options, (err, response) => {
-            $modalOverlay.hide();
-            $modalContent.html(response.content);
+            modal.updateContent(response.content);
 
             this.bindGiftWrappingForm();
         });
@@ -273,9 +266,7 @@ export default class Cart extends PageManager {
     }
 
     bindGiftWrappingEvents() {
-        const $modal = $('#modal');
-        const $modalContent = $('.modal-content', $modal);
-        const $modalOverlay = $('.loadingOverlay', $modal);
+        const modal = defaultModal();
 
         $('[data-item-giftwrap]').on('click', (event) => {
             const itemId = $(event.currentTarget).data('item-giftwrap');
@@ -285,16 +276,10 @@ export default class Cart extends PageManager {
 
             event.preventDefault();
 
-            // clear the modal
-            $modalContent.html('');
-            $modalOverlay.show();
-
-            // open modal
-            $modal.foundation('reveal', 'open');
+            modal.open();
 
             utils.api.cart.getItemGiftWrappingOptions(itemId, options, (err, response) => {
-                $modalOverlay.hide();
-                $modalContent.html(response.content);
+                modal.updateContent(response.content);
 
                 this.bindGiftWrappingForm();
             });

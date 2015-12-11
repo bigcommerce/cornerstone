@@ -7,6 +7,34 @@
             <span>{{cart.sub_total.formatted}}</span>
         </div>
     </li>
+    {{#if cart.gift_wrapping_cost.amount}}
+        <li class="cart-total">
+            <div class="cart-total-label">
+                <strong>{{lang 'cart.checkout.gift_wrapping'}}:</strong>
+            </div>
+            <div class="cart-total-value">
+                <span>{{cart.gift_wrapping_cost.formatted}}</span>
+            </div>
+        </li>
+    {{/if}}
+    {{#if cart.shipping_handling.show_estimator}}
+        <li class="cart-total">
+            <div class="cart-total-label">
+                <strong>{{lang 'cart.checkout.shipping'}}:</strong>
+            </div>
+            {{> components/cart/shipping-estimator cart.shipping_handling}}
+        </li>
+    {{/if}}
+    {{#each cart.taxes}}
+        <li class="cart-total">
+            <div class="cart-total-label">
+                <strong>{{name}}:</strong>
+            </div>
+            <div class="cart-total-value">
+                <span>{{cost.formatted}}</span>
+            </div>
+        </li>
+    {{/each}}
     {{#if cart.discount }}
         <li class="cart-total">
             <div class="cart-total-label">
@@ -58,34 +86,6 @@
         </div>
         {{> components/cart/gift-certificate-input}}
     </li>
-    {{#if cart.gift_wrapping_cost}}
-        <li class="cart-total">
-            <div class="cart-total-label">
-                <strong>{{lang 'cart.checkout.gift_wrapping'}}:</strong>
-            </div>
-            <div class="cart-total-value">
-                <span>{{cart.gift_wrapping_cost.formatted}}</span>
-            </div>
-        </li>
-    {{/if}}
-    {{#if cart.shipping_handling.show_estimator}}
-        <li class="cart-total">
-            <div class="cart-total-label">
-                <strong>{{lang 'cart.checkout.shipping'}}:</strong>
-            </div>
-            {{> components/cart/shipping-estimator cart.shipping_handling}}
-        </li>
-    {{/if}}
-    {{#each cart.taxes}}
-        <li class="cart-total">
-            <div class="cart-total-label">
-                <strong>{{name}}:</strong>
-            </div>
-            <div class="cart-total-value">
-                <span>{{cost.formatted}}</span>
-            </div>
-        </li>
-    {{/each}}
     <li class="cart-total">
         <div class="cart-total-label">
             <strong>{{lang 'cart.checkout.grand_total'}}:</strong>

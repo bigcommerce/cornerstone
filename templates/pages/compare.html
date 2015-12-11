@@ -44,27 +44,26 @@
             <tr class="compareTable-row">
                 <th class="compareTable-heading"></th>
                 {{#each comparisons}}
-                <td class="compareTable-action">
-                    {{#unless hide_add_to_cart}}
-                        {{#if has_options}}
-                            <a href="{{url}}" class="button button--primary" data-product-id="{{id}}">{{lang 'products.choose_options'}}</a>
-                        {{else}}
-                            {{#if can_purchase }}
-                                <a href="{{add_to_cart_url}}" class="button button--primary">
-                                    {{#if pre_order}}
-                                        {{lang 'products.pre_order'}}
-                                    {{else}}
-                                        {{lang 'products.add_to_cart'}}
-                                    {{/if}}
+                    <td class="compareTable-action">
+                        {{#if show_cart_action}}
+                            {{#if has_options}}
+                                <a href="{{url}}" class="button button--primary" data-product-id="{{id}}">{{lang 'products.choose_options'}}</a>
+                            {{/if}}
+                            {{#if pre_order}}
+                                <a href="{{url}}" class="button button--primary" data-product-id="{{id}}">
+                                    {{lang 'products.pre_order'}}
                                 </a>
-                            {{else}}
-                                {{#if out_of_stock_message }}
-                                    <a href="{{url}}" class="button button--primary" data-product-id="{{id}}">{{out_of_stock_message}}</a>
-                                {{/if}}
+                            {{/if}}
+                            {{#if add_to_cart_url}}
+                                <a href="{{add_to_cart_url}}" class="button button--primary" data-product-id="{{id}}">
+                                    {{lang 'products.add_to_cart'}}
+                                </a>
+                            {{/if}}
+                            {{#if out_of_stock_message}}
+                                <a href="{{url}}" class="button button--primary" data-product-id="{{id}}">{{out_of_stock_message}}</a>
                             {{/if}}
                         {{/if}}
-                    {{/unless}}
-                </td>
+                    </td>
                 {{/each}}
             </tr>
             <tr class="compareTable-row">

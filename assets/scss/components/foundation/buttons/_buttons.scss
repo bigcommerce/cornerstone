@@ -5,6 +5,14 @@
 .button {
     line-height: 1rem;
     transition: all 0.15s ease;
+
+    + .button {
+        margin-left: 0;
+
+        @include breakpoint("medium") {
+            margin-left: spacing("half");
+        }
+    }
 }
 
 .button[disabled] {

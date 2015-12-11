@@ -1,0 +1,26 @@
+<ul class="navPages-list">
+    <li class="navPages-item">
+        <a class="navPages-action" href="{{urls.account.orders.all}}">{{lang 'account.nav.orders'}}</a>
+    </li>
+    {{#if settings.returns_enabled}}
+        <li class="navPages-item">
+            <a class="navPages-action" href="{{urls.account.returns}}">{{lang 'account.nav.returns'}}</a>
+        </li>
+    {{/if}}
+
+    <li class="navPages-item">
+        <a class="navPages-action" href="{{urls.account.inbox}}">{{lang 'account.nav.messages' num_new_messages=customer.num_new_messages}}</a>
+    </li>
+    <li class="navPages-item">
+        <a class="navPages-action" href="{{urls.account.addresses}}">{{lang 'account.nav.addresses'}}</span></a>
+    </li>
+    <li class="navPages-item">
+        <a class="navPages-action" href="{{urls.account.wishlists.all}}">{{lang 'account.nav.wishlists' num_wishlists=customer.num_wishlists}}</a>
+    </li>
+    <li class="navPages-item">
+        <a class="navPages-action" href="{{urls.account.recent_items}}">{{lang 'account.nav.recently_viewed'}}</a>
+    </li>
+    <li class="navPages-item">
+        <a class="navPages-action" href="{{urls.account.details}}">{{lang 'account.nav.settings'}}</a>
+    </li>
+</ul>

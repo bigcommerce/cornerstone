@@ -33,12 +33,22 @@ export default class Search extends PageManager {
         return nodeData;
     }
 
+    showProducts() {
+        this.$productListingContainer.removeClass('u-hiddenVisually');
+        this.$contentResultsContainer.addClass('u-hiddenVisually');
+    }
+
+    showContent() {
+        this.$contentResultsContainer.removeClass('u-hiddenVisually');
+        this.$productListingContainer.addClass('u-hiddenVisually');
+    }
+
     loaded() {
         const $searchForm = $('[data-advanced-search-form]');
         const $categoryTreeContainer = $searchForm.find('[data-search-category-tree]');
         const treeData = [];
-        const $productListingContainer = $('#product-listing-container');
-        const $contentResultsContainer = $('#search-results-content');
+        this.$productListingContainer = $('#product-listing-container');
+        this.$contentResultsContainer = $('#search-results-content');
 
         // Init faceted search
         this.initFacetedSearch();
@@ -46,18 +56,19 @@ export default class Search extends PageManager {
         // Init collapsibles
         collapsibleFactory();
 
-        // Initially hidden via JS so non JS can see it at the start
-        $contentResultsContainer.addClass('u-hiddenVisually');
-
         $('[data-product-results-toggle]').click(() => {
-            $productListingContainer.removeClass('u-hiddenVisually');
-            $contentResultsContainer.addClass('u-hiddenVisually');
+            this.showProducts();
         });
 
         $('[data-content-results-toggle]').click(() => {
-            $contentResultsContainer.removeClass('u-hiddenVisually');
-            $productListingContainer.addClass('u-hiddenVisually');
+            this.showContent();
         });
+
+        if (this.$productListingContainer.find('li.product').length === 0) {
+            this.showContent();
+        } else {
+            this.showProducts();
+        }
 
         const validator = this.initValidation($searchForm)
             .bindValidation($searchForm.find('#search_query_adv'));

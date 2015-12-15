@@ -2,7 +2,6 @@
     <div class="navPages-quickSearch">
         {{> components/common/quick-search}}
     </div>
-    {{#block "menuNavigation"}}{{/block}}
     <ul class="navPages-list">
         {{#each categories}}
             <li class="navPages-item">
@@ -15,7 +14,7 @@
         </li>
         {{/each}}
     </ul>
-    <ul class="navPages-list">
+    <ul class="navPages-list navPages-list--account">
         {{#if currency_selector.currencies.length '>' 1}}
             <li class="navPages-item">
                 <a class="navPages-action has-subMenu" href="#" data-collapsible="navPages-currency" aria-controls="navPages-currency" aria-expanded="false">

@@ -182,10 +182,38 @@
     }
 }
 
-//TODO This probably needs to be changed in Citadel BIG-20499
-.form-prefixPostfix.nowrap {
-    flex-wrap: wrap;
+.form-prefixPostfix {
+    display: block;
+
+    @include breakpoint("small") {
+        display: flex;
+    }
+
+    //TODO This probably needs to be changed in Citadel BIG-20499
+    &.nowrap {
+        flex-wrap: wrap;
+    }
+
+    // scss-lint:disable NestingDepth, SelectorDepth
+    .form-input,
+    .button {
+        display: block;
+        width: 100%;
+
+        @include breakpoint("small") {
+            width: auto;
+        }
+    }
+
+    .button {
+        margin: spacing("half") 0 0;
+
+        @include breakpoint("small") {
+            margin: 0 0 0 spacing("half");
+        }
+    }
 }
+
 
 // Increment field
 // -----------------------------------------------------------------------------

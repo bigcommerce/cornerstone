@@ -79,6 +79,22 @@ export default class Auth extends PageManager {
         });
     }
 
+    registerNewPasswordValidation() {
+        const newPasswordForm = '.new-password-form';
+        const newPasswordValidator = nod({
+            submit: $(`${newPasswordForm} input[type="submit"]`),
+        });
+        const passwordSelector = $(`${newPasswordForm} input[name="password"]`);
+        const password2Selector = $(`${newPasswordForm} input[name="password_confirm"]`);
+
+        Validators.setPasswordValidation(
+            newPasswordValidator,
+            passwordSelector,
+            password2Selector,
+            this.passwordRequirements
+        );
+    }
+
     registerCreateAccountValidator($createAccountForm) {
         const validationModel = validation($createAccountForm);
         const createAccountValidator = nod({
@@ -157,12 +173,17 @@ export default class Auth extends PageManager {
         const $createAccountForm = classifyForm(this.formCreateSelector);
         const $loginForm = classifyForm('.login-form');
         const $forgotPasswordForm = classifyForm('.forgot-password-form');
+        const $newPasswordForm = classifyForm('.new-password-form'); // reset password
 
         // Injected via auth.html
         this.passwordRequirements = this.context.passwordRequirements;
 
         if ($loginForm.length) {
             this.registerLoginValidation($loginForm);
+        }
+
+        if ($newPasswordForm.length) {
+            this.registerNewPasswordValidation();
         }
 
         if ($forgotPasswordForm.length) {

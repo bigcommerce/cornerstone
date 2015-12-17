@@ -90,15 +90,23 @@
 .header-logo-text {
     display: block;
     font-family: $fontFamily-hero;
-    font-size: fontSize("large");   // 1
+    font-size: fontSize("small");   // 1
     font-weight: fontWeight("thin");
-    letter-spacing: remCalc(9px);
+    letter-spacing: remCalc(5px);
     margin-left: auto;
     margin-right: auto;
     overflow: hidden;
-    text-transform: uppercase;
+    padding: remCalc(3px) 0;
     text-overflow: ellipsis;
+    text-transform: uppercase;
     white-space: nowrap;
+
+    @include breakpoint("small") {
+        font-size: fontSize("large");
+        letter-spacing: remCalc(9px);
+        padding-bottom: 0;
+        padding-top: 0;
+    }
 
     @include breakpoint("medium") {
         display: inline;

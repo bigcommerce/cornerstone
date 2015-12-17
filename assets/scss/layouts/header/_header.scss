@@ -5,11 +5,10 @@
 //    inline-block whitespace messes with header height. Font-size is reset to
 //    appropriate size on header-logo-text.
 // 2. Needs left/right margin so it doesn't cover left/right nav bar toggles
-//
-// =============================================================================
-//
-// 1. Offset the letter-spacing on the last character by adding a right negative
+// 3. Offset the letter-spacing on the last character by adding a right negative
 //    margin. This centers the text logo properly.
+// 4. When the word "cart" is added to the mobile header's cart link, add more
+//    margin to compensate.
 //
 // -----------------------------------------------------------------------------
 
@@ -38,8 +37,13 @@
 
 .header-logo {
     font-size: 0;   // 1
-    margin: 0 $header-toggle-width; // 2
+    margin: 0 remCalc($header-toggle-width); // 2
     text-align: center;
+
+    @include breakpoint("small") { // 4
+        margin-left: remCalc($header-toggle-width * 1.5);
+        margin-right: remCalc($header-toggle-width * 1.5);
+    }
 
     @include breakpoint("medium") {
         margin: (spacing("double") + spacing("base")) auto (spacing("double") + spacing("single"));
@@ -57,11 +61,13 @@
     }
 
     > a {
+        @include clearfix;
         color: $storeName-fontColor;
         display: inline-block;
         padding: $header-logo-paddingVertical 0;
         position: relative;
         text-decoration: none;
+        width: 100%;
         z-index: zIndex("low");
 
         // scss-lint:disable NestingDepth
@@ -84,20 +90,29 @@
 .header-logo-text {
     display: block;
     font-family: $fontFamily-hero;
-    font-size: fontSize("large");   // 1
+    font-size: fontSize("small");   // 1
     font-weight: fontWeight("thin");
-    letter-spacing: remCalc(9px);
+    letter-spacing: remCalc(5px);
     margin-left: auto;
     margin-right: auto;
     overflow: hidden;
+    padding: remCalc(3px) 0;
+    text-overflow: ellipsis;
     text-transform: uppercase;
     white-space: nowrap;
+
+    @include breakpoint("small") {
+        font-size: fontSize("large");
+        letter-spacing: remCalc(9px);
+        padding-bottom: 0;
+        padding-top: 0;
+    }
 
     @include breakpoint("medium") {
         display: inline;
         font-size: fontSize("largest");
         margin-left: 0;
-        margin-right: -(remCalc(9px)); // 1
+        margin-right: -(remCalc(9px)); // 3
         max-width: none;
         overflow: auto;
         white-space: normal;

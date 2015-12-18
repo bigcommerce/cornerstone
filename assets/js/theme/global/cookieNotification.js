@@ -22,6 +22,9 @@ export default function() {
         const $privacyDialog = $('.cookieMessage');
         $privacyDialog.show();
 
-        $('body').on('click', '[data-privacy-accept]', () => $privacyDialog.hide());
+        $('body').on('click', '[data-privacy-accept]', () => {
+            utils.hooks.emit('cookie-privacy-accepted');
+            $privacyDialog.hide();
+        });
     });
 }

@@ -6,6 +6,37 @@
 
 <div class="modal-body">
     <div class="previewCart">
+        <section class="previewCartCheckout">
+            <a href="{{urls.checkout.single_address}}" class="button button--primary">
+                {{lang 'cart.added_to_cart.proceed_to_checkout'}}
+            </a>
+
+            <div class="previewCartCheckout-additionalCheckoutButtons">
+                {{#each cart.additional_checkout_buttons}}
+                    {{{this}}}
+                {{/each}}
+            </div>
+
+            <div class="previewCartCheckout-subtotal">
+                {{lang 'cart.added_to_cart.order_subtotal'}}
+
+                <strong class="previewCartCheckout-price">
+                    {{cart.sub_total.formatted}}
+                </strong>
+            </div>
+
+            <p data-cart-quantity="{{cart.quantity}}">
+                {{lang 'cart.added_to_cart.your_cart_contains' num_products=cart.quantity}}
+            </p>
+
+            <a href="#" class="button button--primary" role="button" data-reveal-close>
+                {{lang 'cart.added_to_cart.continue_shopping'}}
+            </a>
+
+            <a href="{{urls.cart}}" class="button">
+                {{lang 'cart.added_to_cart.view_or_edit_cart'}}
+            </a>
+        </section>
         <section class="productView">
             {{#with cart.added_item}}
                 <figure class="productView-image">
@@ -37,38 +68,6 @@
                     {{/each}}
                 </div>
             {{/with}}
-        </section>
-
-        <section class="previewCartCheckout">
-            <a href="{{urls.checkout.single_address}}" class="button button--primary">
-                {{lang 'cart.added_to_cart.proceed_to_checkout'}}
-            </a>
-
-            <div class="previewCartCheckout-additionalCheckoutButtons">
-                {{#each cart.additional_checkout_buttons}}
-                    {{{this}}}
-                {{/each}}
-            </div>
-
-            <div class="previewCartCheckout-subtotal">
-                {{lang 'cart.added_to_cart.order_subtotal'}}
-
-                <strong class="previewCartCheckout-price">
-                    {{cart.sub_total.formatted}}
-                </strong>
-            </div>
-
-            <p data-cart-quantity="{{cart.quantity}}">
-                {{lang 'cart.added_to_cart.your_cart_contains' num_products=cart.quantity}}
-            </p>
-
-            <a href="#" class="button button--primary" role="button" data-reveal-close>
-                {{lang 'cart.added_to_cart.continue_shopping'}}
-            </a>
-
-            <a href="{{urls.cart}}" class="button">
-                {{lang 'cart.added_to_cart.view_or_edit_cart'}}
-            </a>
         </section>
     </div>
 

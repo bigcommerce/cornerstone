@@ -68,7 +68,8 @@
     text-decoration: none;
     text-transform: uppercase;
 
-    &:hover {
+    &:hover,
+    &.is-open {
         color: stencilColor("navUser-color-hover");
 
         // scss-lint:disable NestingDepth
@@ -126,7 +127,13 @@
     display: block;
 
     .navUser-action {
-        color: stencilColor("navPages-color");
+        color: stencilColor("navUser-color");
+
+        // scss-lint:disable NestingDepth
+        &:hover,
+        &.is-open {
+            color: stencilColor("navUser-color-hover");
+        }
     }
 
     .dropdown-menu {

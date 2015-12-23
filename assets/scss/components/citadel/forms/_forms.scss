@@ -245,8 +245,8 @@
 //
 
 .form-option {
-    border: 1px solid stencilColor("productOption-borderColor");
-    color: $form-label-font-color;
+    border: 1px solid stencilColor("input-border-color");
+    color: stencilColor("form-label-font-color");
     cursor: pointer;
     display: inline-block;
     margin-right: spacing("quarter");
@@ -254,12 +254,12 @@
     transition: all 0.15s ease;
 
     &:hover {
-        border-color: stencilColor("productOption-borderColor-hover");
+        border-color: stencilColor("input-border-color-active");
     }
 
     .form-radio:checked + & {
-        border-color: stencilColor("productOption-borderColor-active");
-        box-shadow: 0 0 0 1px stencilColor("productOption-borderColor-active");
+        border-color: stencilColor("checkRadio-color");
+        box-shadow: 0 0 0 1px stencilColor("checkRadio-color");
     }
 }
 

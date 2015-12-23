@@ -242,6 +242,7 @@
 // -----------------------------------------------------------------------------
 //
 // 1. Issue with FastClick JS library workaround: https://github.com/ftlabs/fastclick/issues/351
+// 2. Resetting font due to inline-block whitespace issue.
 //
 
 .form-option {
@@ -249,7 +250,9 @@
     color: stencilColor("form-label-font-color");
     cursor: pointer;
     display: inline-block;
-    margin-right: spacing("quarter");
+    font-size: 0; // 2
+    margin-bottom: spacing("third");
+    margin-right: spacing("third");
     padding: 1px;
     transition: all 0.15s ease;
 
@@ -265,6 +268,7 @@
 
 .form-option-variant {
     display: inline-block;
+    font-size: $body-fontSize; // 2
     min-width: remCalc(38px);
     padding: 1px spacing("quarter");
     pointer-events: none; // 1
@@ -274,7 +278,6 @@
 .form-option-variant--color,
 .form-option-variant--pattern {
     @include square(22);
-    float: left;
     min-width: initial;
     padding: 0;
 }

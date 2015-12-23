@@ -1,4 +1,5 @@
 import PageManager from '../page-manager';
+import $ from 'jquery';
 import FacetedSearch from './common/faceted-search';
 
 export default class Brand extends PageManager {

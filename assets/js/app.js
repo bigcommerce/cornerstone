@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import async from 'caolan/async';
 import account from './theme/account';
 import auth from './theme/auth';

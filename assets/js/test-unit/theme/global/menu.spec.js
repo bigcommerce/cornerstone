@@ -1,4 +1,5 @@
 import menuFactory from '../../../theme/global/menu';
+import $ from 'jquery';
 
 describe('Menu', () => {
     let menu;

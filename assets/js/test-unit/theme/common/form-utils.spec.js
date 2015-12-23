@@ -1,4 +1,5 @@
 import { Validators } from '../../../theme/common/form-utils';
+import $ from 'jquery';
 
 describe('Validators', () => {
     let validator;

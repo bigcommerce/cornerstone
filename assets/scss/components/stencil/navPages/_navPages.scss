@@ -121,8 +121,7 @@
         padding: spacing("half") (spacing("half") + spacing("quarter")) (spacing("half") + spacing("quarter"));
 
         &.is-open {
-            background-color: container("fill", "dark");
-            color: stencilColor("navPages-color-hover");
+            background-color: stencilColor("navPages-subMenu-backgroundColor");
 
             // scss-lint:disable NestingDepth
             svg {
@@ -206,7 +205,7 @@
 
     @include breakpoint("medium") {
         // scss-lint:disable ImportantRule
-        background-color: container("fill", "dark");
+        background-color: stencilColor("navPages-subMenu-backgroundColor");
         padding: spacing("single") spacing("single") (spacing("single") + spacing("half")) !important;
         position: absolute;
         text-align: left;
@@ -239,7 +238,7 @@
         }
 
         > .navPage-subMenu-action {
-            border-bottom: 1px solid stencilColor("navPage-subMenu-borderColor");
+            border-bottom: 1px solid stencilColor("navPages-subMenu-separatorColor");
             margin-bottom: spacing("half") + spacing("quarter");
         }
     }

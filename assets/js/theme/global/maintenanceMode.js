@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 /**
  * Show the maintenance mode message to store administrators
  * @param maintenanceMode

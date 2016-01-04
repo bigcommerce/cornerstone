@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import $ from 'jquery';
 
 function minMaxValidate(minInputSelector, maxInputSelector) {
     function validate(cb) {

@@ -1,4 +1,5 @@
 import PageManager from '../page-manager';
+import $ from 'jquery';
 import nod from './common/nod';
 import giftCertChecker from './common/gift-certificate-validator';
 import formModel from './common/models/forms';

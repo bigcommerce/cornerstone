@@ -1,4 +1,5 @@
 import PageManager from '../page-manager';
+import $ from 'jquery';
 import FacetedSearch from './common/faceted-search';
 import collapsibleFactory from './common/collapsible';
 import 'vakata/jstree';

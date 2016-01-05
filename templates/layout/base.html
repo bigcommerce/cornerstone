@@ -17,6 +17,7 @@
         {{inject 'themeImageSizes' theme_settings._images}}
         {{inject 'genericError' (lang 'common.generic_error')}}
         {{inject 'maintenanceMode' settings.maintenance}}
+        {{inject 'urls' urls}}
 
     </head>
     <body>
@@ -44,7 +45,6 @@
         {{else}}
             <script src="{{cdn '/assets/jspm_packages/system.js'}}"></script>
             <script src="{{cdn '/assets/config.js'}}"></script>
-            <script src="{{cdn '/assets/js/dependency-bundle.js'}}"></script>
             <script>
                 System.import("js/app").then(function(){ startupApp(stencilBootstrap)});
             </script>

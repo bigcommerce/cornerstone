@@ -43,24 +43,21 @@
                             <use xlink:href="#icon-google"/>
                         </svg>
                     {{/if}}
+
+                    {{#if service '===' 'pinterest'}}
+                        <svg>
+                            <use xlink:href="#icon-pinterest"/>
+                        </svg>
+                    {{/if}}
+
+                    {{#if service '===' 'facebook_like'}}
+                        <svg>
+                            <use xlink:href="#icon-facebook_like"/>
+                        </svg>
+                    {{/if}}
                 </a>
             </li>
         {{/each}}
-        {{#if settings.add_this.other.pinterest}}
-            <li class="socialLinks-item socialLinks-item--pinterest">
-                <a class="addthis_button_pinterest icon icon--pinterest" pi:pinit:layout="horizontal" >
-                    <svg>
-                        <use xlink:href="#icon-pinterest"/>
-                    </svg>
-                </a>
-            </li>
-        {{/if}}
-
-        {{#if settings.add_this.other.facebook_like}}
-            <li class="socialLinks-item socialLinks-item--facebook_like">
-                <a class="addthis_button_facebook_like icon icon--facebook_like" fb:like:layout="button"></a>
-            </li>
-        {{/if}}
     </ul>
     <script type="text/javascript"
             src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4e94ed470ee51e32"></script>

@@ -13,19 +13,19 @@ function incrementCounter(counter, item) {
     counter.push(item);
 }
 
-function updateCounterNav(counter, $link) {
+function updateCounterNav(counter, $link, urlContext) {
     if (counter.length !== 0) {
         if (!$link.is('visible')) {
             $link.addClass('show');
         }
-        $link.attr('href', `compare/${counter.join('/')}`);
+        $link.attr('href', `${urlContext.compare}${counter.join('/')}`);
         $link.find('span.countPill').html(counter.length);
     } else {
         $link.removeClass('show');
     }
 }
 
-export default function() {
+export default function(urlContext) {
     let products;
 
     const $checked = $('body').find('input[name="products\[\]"]:checked');
@@ -36,7 +36,7 @@ export default function() {
             return element.value;
         });
 
-        updateCounterNav(products, $compareLink);
+        updateCounterNav(products, $compareLink, urlContext);
     }
 
     const compareCounter = products || [];
@@ -46,7 +46,7 @@ export default function() {
         const $clickedCompareLink = $('a[data-compare-nav]');
 
         event.currentTarget.checked ? incrementCounter(compareCounter, product) : decrementCounter(compareCounter, product);
-        updateCounterNav(compareCounter, $clickedCompareLink);
+        updateCounterNav(compareCounter, $clickedCompareLink, urlContext);
     });
 
     $('body').on('submit', '[data-product-compare]', (event) => {

@@ -35,7 +35,7 @@ export default class Global extends PageManager {
         foundation($(document));
         quickView(this.context);
         cartPreview();
-        compareProducts();
+        compareProducts(this.context.urls);
         carousel();
         menu();
         mobileMenuToggle();

@@ -18,7 +18,7 @@ function updateCounterNav(counter, $link) {
         if (!$link.is('visible')) {
             $link.addClass('show');
         }
-        $link.attr('href', `/compare/${counter.join('/')}`);
+        $link.attr('href', `compare/${counter.join('/')}`);
         $link.find('span.countPill').html(counter.length);
     } else {
         $link.removeClass('show');

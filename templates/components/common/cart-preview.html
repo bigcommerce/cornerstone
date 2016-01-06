@@ -31,11 +31,13 @@
             {{/each}}
         </ul>
         <div class="previewCartAction">
-            <div class="previewCartAction-checkout">
-                <a href="{{urls.checkout.single_address}}" class="button button--small button--primary">
-                    {{lang 'cart.preview.checkout_now'}}
-                </a>
-            </div>
+            {{#if cart.show_primary_checkout_button}}
+                <div class="previewCartAction-checkout">
+                    <a href="{{urls.checkout.single_address}}" class="button button--small button--primary">
+                        {{lang 'cart.preview.checkout_now'}}
+                    </a>
+                </div>
+            {{/if}}
 
             <div class="previewCartAction-viewCart">
                 <a href="{{urls.cart}}" class="button button--small button--action">

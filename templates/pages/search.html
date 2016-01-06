@@ -17,15 +17,15 @@ product_results:
 {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
 <section class="nav">
     {{#if forms.search.query}}
-        <h1 class="page-heading">
-            {{lang 'search.results.count' count=result_count search_query=forms.search.query}}
-        </h1>
+        <div id="search-results-heading">
+            {{>components/search/heading}}
+        </div>
     {{/if}}
     <nav class="navBar navBar--sub">
         <ul class="navBar-section account-navigation">
             <li class="navBar-item">
-                <a class="navBar-action" href="#" data-product-results-toggle>
-                    {{lang 'search.results.product_count' count=pagination.product_results.total}}
+                <a id="search-results-product-count" class="navBar-action" href="#" data-product-results-toggle>
+                    {{>components/search/product-count}}
                 </a>
             </li>
             <li class="navBar-item">

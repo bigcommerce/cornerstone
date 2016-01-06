@@ -150,11 +150,15 @@ export default class Search extends PageManager {
 
         const $productListingContainer = $('#product-listing-container');
         const $facetedSearchContainer = $('#faceted-search-container');
+        const $searchHeading = $('#search-results-heading');
+        const $searchCount = $('#search-results-product-count');
         const productsPerPage = this.context.searchProductsPerPage;
         const requestOptions = {
             template: {
                 productListing: 'search/product-listing',
                 sidebar: 'search/sidebar',
+                heading: 'search/heading',
+                productCount: 'search/product-count',
             },
             config: {
                 product_results: {
@@ -166,6 +170,8 @@ export default class Search extends PageManager {
         this.facetedSearch = new FacetedSearch(requestOptions, (content) => {
             $productListingContainer.html(content.productListing);
             $facetedSearchContainer.html(content.sidebar);
+            $searchHeading.html(content.heading);
+            $searchCount.html(content.productCount);
 
             $('html, body').animate({
                 scrollTop: 0,

@@ -270,6 +270,7 @@
                         <input id="form-action-addToCart" data-wait-message="{{lang 'products.adding_to_cart'}}" class="button button--primary" type="submit"
                                value="{{#if product.pre_order}}{{lang 'products.pre_order'}}{{else}}{{lang 'products.add_to_cart'}}{{/if}}">
                     </div>
+                    {{{snippet 'product_addtocart'}}}
                 {{/if}}
                 {{#if product.out_of_stock}}
                     {{#if product.out_of_stock_message}}
@@ -290,6 +291,7 @@
         </div>
 
         {{>components/common/share}}
+        {{{snippet 'product_details'}}}
     </section>
 
     <article class="productView-description" itemprop="description">
@@ -306,6 +308,7 @@
         <div class="tabs-contents">
             <div class="tab-content is-active" id="tab-description">
                 {{{product.description}}}
+                {{{snippet 'product_description'}}}
             </div>
            {{#if product.warranty}}
                <div class="tab-content" id="tab-warranty">

@@ -21,6 +21,8 @@
                 {{> components/cart/totals}}
             </div>
 
+
+
             <div class="cart-actions">
                 <a class="button button--primary" href="{{urls.checkout.single_address}}" title="{{lang 'cart.checkout.title'}}">{{lang 'cart.checkout.button'}}</a>
             </div>
@@ -35,8 +37,9 @@
         {{else}}
             <h3>{{lang 'cart.checkout.empty_cart'}}</h3>
         {{/if}}
-    </main>
 
+        {{{snippet 'cart'}}}
+    </main>
 </div>
 {{/partial}}
 {{> layout/base}}

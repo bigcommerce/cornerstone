@@ -21,11 +21,15 @@
                 {{> components/cart/totals}}
             </div>
 
-
-
-            <div class="cart-actions">
-                <a class="button button--primary" href="{{urls.checkout.single_address}}" title="{{lang 'cart.checkout.title'}}">{{lang 'cart.checkout.button'}}</a>
-            </div>
+            {{#if cart.show_primary_checkout_button}}
+                <div class="cart-actions">
+                    <a class="button button--primary" href="{{urls.checkout.single_address}}" title="{{lang 'cart.checkout.title'}}">{{lang 'cart.checkout.button'}}</a>
+                </div>
+            {{else}}
+                <div class="cart-actions">
+                    <a class="button" href="{{urls.home}}" title="{{lang 'cart.continue_shopping'}}">{{lang 'cart.continue_shopping'}}</a>
+                </div>
+            {{/if}}
 
             {{#if cart.additional_checkout_buttons}}
                 <div class="cart-additionalCheckoutButtons">

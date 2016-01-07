@@ -7,9 +7,11 @@
 <div class="modal-body">
     <div class="previewCart">
         <section class="previewCartCheckout">
-            <a href="{{urls.checkout.single_address}}" class="button button--primary">
-                {{lang 'cart.added_to_cart.proceed_to_checkout'}}
-            </a>
+            {{#if cart.show_primary_checkout_button}}
+                <a href="{{urls.checkout.single_address}}" class="button button--primary">
+                    {{lang 'cart.added_to_cart.proceed_to_checkout'}}
+                </a>
+            {{/if}}
 
             <div class="previewCartCheckout-additionalCheckoutButtons">
                 {{#each cart.additional_checkout_buttons}}

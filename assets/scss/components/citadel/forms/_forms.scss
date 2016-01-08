@@ -126,6 +126,11 @@
 
 // Stencil form additions
 // -----------------------------------------------------------------------------
+//
+// 1. Order has been placed here so that if a form error is shown, it will
+//    appear before the button.
+//
+// -----------------------------------------------------------------------------
 
 .form-label--alternate {
     font-family: fontFamily("headingSans");
@@ -183,18 +188,11 @@
 }
 
 .form-prefixPostfix {
-    display: block;
 
-    @include breakpoint("small") {
-        display: flex;
-    }
-
-    //TODO This probably needs to be changed in Citadel BIG-20499
-    &.nowrap {
+    &.wrap {
         flex-wrap: wrap;
     }
 
-    // scss-lint:disable NestingDepth, SelectorDepth
     .form-input,
     .button {
         display: block;
@@ -205,12 +203,22 @@
         }
     }
 
-    .button {
-        margin: spacing("half") 0 0;
+    .form-inlineMessage {
+        margin-bottom: spacing("quarter");
 
         @include breakpoint("small") {
-            margin: 0 0 0 spacing("half");
+            margin-bottom: 0;
         }
+    }
+}
+
+.form-prefixPostfix-button--postfix {
+    margin: spacing("half") 0 0;
+    order: 1; // 1
+
+    @include breakpoint("small") {
+        margin: 0 0 0 spacing("half");
+        order: 0; // 1
     }
 }
 

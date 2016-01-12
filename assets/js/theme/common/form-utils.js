@@ -259,10 +259,6 @@ const Validators = {
         });
     },
 
-    phoneNumberValidation: (validator, selectors) => {
-
-    },
-
     /**
      * Sets up a new validation when the form is dirty
      * @param validator

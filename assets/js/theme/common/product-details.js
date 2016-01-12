@@ -9,15 +9,31 @@ import ImageGallery from '../product/image-gallery';
 import modalFactory from '../global/modal';
 import _ from 'lodash';
 
+// We want to ensure that the events are bound to a single instance of the product details component
+const previewModal = modalFactory('#previewModal')[0];
+let productSingleton = null;
+
+utils.hooks.on('cart-item-add', (event, form) => {
+    if (productSingleton) {
+        productSingleton.addProductToCart(event, form);
+    }
+});
+
+utils.hooks.on('product-option-change', (event, changedOption) => {
+    if (productSingleton) {
+        productSingleton.productOptionsChanged(event, changedOption);
+    }
+});
+
 export default class Product {
     constructor($scope, context) {
         this.$scope = $scope;
         this.context = context;
         this.imageGallery = new ImageGallery($('[data-image-gallery]', this.$scope));
         this.imageGallery.init();
-        this.listenProductOptionsChange();
         this.listenQuantityChange();
-        this.listenAddProductToCart();
+
+        productSingleton = this;
     }
 
     /**
@@ -53,98 +69,96 @@ export default class Product {
      * Handle product options changes
      *
      */
-    listenProductOptionsChange() {
-        utils.hooks.on('product-option-change', (event, changedOption) => {
-            const $changedOption = $(changedOption);
-            const $form = $changedOption.parents('form');
-            const productId = $('[name="product_id"]', $form).val();
+    productOptionsChanged(event, changedOption) {
+        const $changedOption = $(changedOption);
+        const $form = $changedOption.parents('form');
+        const productId = $('[name="product_id"]', $form).val();
 
-            // Do not trigger an ajax request if it's a file or if the browser doesn't support FormData
-            if ($changedOption.attr('type') === 'file' || window.FormData === undefined) {
-                return;
+        // Do not trigger an ajax request if it's a file or if the browser doesn't support FormData
+        if ($changedOption.attr('type') === 'file' || window.FormData === undefined) {
+            return;
+        }
+
+        utils.api.productAttributes.optionChange(productId, $form.serialize(), (err, response) => {
+            const viewModel = this.getViewModel(this.$scope);
+            const $messageBox = $('.productAttributes-message');
+            const data = response.data || {};
+
+            if (data.purchasing_message) {
+                $('.alertBox-message', $messageBox).text(data.purchasing_message);
+                $messageBox.show();
+            } else {
+                $messageBox.hide();
             }
 
-            utils.api.productAttributes.optionChange(productId, $form.serialize(), (err, response) => {
-                const viewModel = this.getViewModel(this.$scope);
-                const $messageBox = $('.productAttributes-message');
-                const data = response.data || {};
-
-                if (data.purchasing_message) {
-                    $('.alertBox-message', $messageBox).text(data.purchasing_message);
-                    $messageBox.show();
-                } else {
-                    $messageBox.hide();
+            if (_.isObject(data.price)) {
+                if (data.price.with_tax) {
+                    viewModel.$priceWithTax.html(data.price.with_tax.formatted);
                 }
 
-                if (_.isObject(data.price)) {
-                    if (data.price.with_tax) {
-                        viewModel.$priceWithTax.html(data.price.with_tax.formatted);
-                    }
-
-                    if (data.price.without_tax) {
-                        viewModel.$priceWithoutTax.html(data.price.without_tax.formatted);
-                    }
-
-                    if (data.price.rrp_with_tax) {
-                        viewModel.$rrpWithTax.html(data.price.rrp_with_tax.formatted);
-                    }
-
-                    if (data.price.rrp_without_tax) {
-                        viewModel.$rrpWithoutTax.html(data.price.rrp_without_tax.formatted);
-                    }
+                if (data.price.without_tax) {
+                    viewModel.$priceWithoutTax.html(data.price.without_tax.formatted);
                 }
 
-                if (_.isObject(data.weight)) {
-                    viewModel.$weight.html(data.weight.formatted);
+                if (data.price.rrp_with_tax) {
+                    viewModel.$rrpWithTax.html(data.price.rrp_with_tax.formatted);
                 }
 
-                // Set variation_id if it exists for adding to wishlist
-                if (data.variantId) {
-                    viewModel.$wishlistVariation.val(data.variantId);
+                if (data.price.rrp_without_tax) {
+                    viewModel.$rrpWithoutTax.html(data.price.rrp_without_tax.formatted);
+                }
+            }
+
+            if (_.isObject(data.weight)) {
+                viewModel.$weight.html(data.weight.formatted);
+            }
+
+            // Set variation_id if it exists for adding to wishlist
+            if (data.variantId) {
+                viewModel.$wishlistVariation.val(data.variantId);
+            }
+
+            // If SKU is available
+            if (data.sku) {
+                viewModel.$sku.text(data.sku);
+            }
+
+            if (_.isObject(data.image)) {
+                const zoomImageUrl = utils.tools.image.getSrc(
+                    data.image.data,
+                    this.context.themeImageSizes.zoom
+                );
+
+                const mainImageUrl = utils.tools.image.getSrc(
+                    data.image.data,
+                    this.context.themeImageSizes.product
+                );
+
+                this.imageGallery.setAlternateImage({
+                    mainImageUrl: mainImageUrl,
+                    zoomImageUrl: zoomImageUrl,
+                });
+            } else {
+                this.imageGallery.restoreImage();
+            }
+
+            // if stock view is on (CP settings)
+            if (viewModel.stock.$container.length && data.stock) {
+                // if the stock container is hidden, show
+                if (viewModel.stock.$container.is(':hidden')) {
+                    viewModel.stock.$container.show();
                 }
 
-                // If SKU is available
-                if (data.sku) {
-                    viewModel.$sku.text(data.sku);
-                }
+                viewModel.stock.$input.text(data.stock);
+            }
 
-                if (_.isObject(data.image)) {
-                    const zoomImageUrl = utils.tools.image.getSrc(
-                        data.image.data,
-                        this.context.themeImageSizes.zoom
-                    );
-
-                    const mainImageUrl = utils.tools.image.getSrc(
-                        data.image.data,
-                        this.context.themeImageSizes.product
-                    );
-
-                    this.imageGallery.setAlternateImage({
-                        mainImageUrl: mainImageUrl,
-                        zoomImageUrl: zoomImageUrl,
-                    });
-                } else {
-                    this.imageGallery.restoreImage();
-                }
-
-                // if stock view is on (CP settings)
-                if (viewModel.stock.$container.length && data.stock) {
-                    // if the stock container is hidden, show
-                    if (viewModel.stock.$container.is(':hidden')) {
-                        viewModel.stock.$container.show();
-                    }
-
-                    viewModel.stock.$input.text(data.stock);
-                }
-
-                if (!data.purchasable || !data.instock) {
-                    viewModel.$addToCart.prop('disabled', true);
-                    viewModel.$increments.prop('disabled', true);
-                } else {
-                    viewModel.$addToCart.prop('disabled', false);
-                    viewModel.$increments.prop('disabled', false);
-                }
-            });
+            if (!data.purchasable || !data.instock) {
+                viewModel.$addToCart.prop('disabled', true);
+                viewModel.$increments.prop('disabled', true);
+            } else {
+                viewModel.$addToCart.prop('disabled', false);
+                viewModel.$increments.prop('disabled', false);
+            }
         });
     }
 
@@ -156,7 +170,6 @@ export default class Product {
     listenQuantityChange() {
         this.$scope.on('click', '[data-quantity-change] button', (event) => {
             event.preventDefault();
-
             const $target = $(event.currentTarget);
             const viewModel = this.getViewModel(this.$scope);
             const $input = viewModel.quantity.$input;
@@ -200,50 +213,46 @@ export default class Product {
      * Add a product to cart
      *
      */
-    listenAddProductToCart() {
-        const previewModal = modalFactory('#previewModal')[0];
+    addProductToCart(event, form) {
+        const $addToCartBtn = $('#form-action-addToCart', $(event.target));
+        const originalBtnVal = $addToCartBtn.val();
+        const waitMessage = $addToCartBtn.data('waitMessage');
 
-        utils.hooks.on('cart-item-add', (event, form) => {
-            const $addToCartBtn = $('#form-action-addToCart', $(event.target));
-            const originalBtnVal = $addToCartBtn.val();
-            const waitMessage = $addToCartBtn.data('waitMessage');
+        // Do not do AJAX if browser doesn't support FormData
+        if (window.FormData === undefined) {
+            return;
+        }
 
-            // Do not do AJAX if browser doesn't support FormData
-            if (window.FormData === undefined) {
+        // Prevent default
+        event.preventDefault();
+
+        $addToCartBtn
+            .val(waitMessage)
+            .prop('disabled', true);
+
+        // Add item to cart
+        utils.api.cart.itemAdd(new FormData(form), (err, response) => {
+            const errorMessage = err || response.data.error;
+
+            $addToCartBtn
+                .val(originalBtnVal)
+                .prop('disabled', false);
+
+            // Guard statement
+            if (errorMessage) {
+                // Strip the HTML from the error message
+                const tmp = document.createElement('DIV');
+                tmp.innerHTML = errorMessage;
+
+                alert(tmp.textContent || tmp.innerText);
+
                 return;
             }
 
-            // Prevent default
-            event.preventDefault();
+            // Open preview modal and update content
+            previewModal.open();
 
-            $addToCartBtn
-                .val(waitMessage)
-                .prop('disabled', true);
-
-            // Add item to cart
-            utils.api.cart.itemAdd(new FormData(form), (err, response) => {
-                const errorMessage = err || response.data.error;
-
-                $addToCartBtn
-                    .val(originalBtnVal)
-                    .prop('disabled', false);
-
-                // Guard statement
-                if (errorMessage) {
-                    // Strip the HTML from the error message
-                    const tmp = document.createElement('DIV');
-                    tmp.innerHTML = errorMessage;
-
-                    alert(tmp.textContent || tmp.innerText);
-
-                    return;
-                }
-
-                // Open preview modal and update content
-                previewModal.open();
-
-                this.updateCartContent(previewModal, response.data.cart_item.hash);
-            });
+            this.updateCartContent(previewModal, response.data.cart_item.hash);
         });
     }
 

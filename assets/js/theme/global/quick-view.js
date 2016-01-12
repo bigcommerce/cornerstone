@@ -20,7 +20,7 @@ export default function(context) {
 
             modal.$content.find('.productView').addClass('productView--quickView');
 
-            return new ProductDetails(modal.$content, context);
+            return new ProductDetails(modal.$content.find('.quickView'), context);
         });
     });
 }

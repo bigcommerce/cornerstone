@@ -1,19 +1,21 @@
 {{#partial "page"}}
     <div class="account">
-        {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
-        <h2 class="page-heading">
-        {{#if forms.wishlist.id}}
-            {{lang 'account.wishlists.edit'}}
-        {{else}}
-            {{#if forms.wishlist.action}}
-                {{lang 'account.wishlists.new'}}
-            {{else}}
-                {{lang 'account.wishlists.heading'}}
-            {{/if}}
+        {{#if settings.show_wishlist}}
+            {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+            <h2 class="page-heading">
+                {{#if forms.wishlist.id}}
+                    {{lang 'account.wishlists.edit'}}
+                {{else}}
+                    {{#if forms.wishlist.action}}
+                        {{lang 'account.wishlists.new'}}
+                    {{else}}
+                        {{lang 'account.wishlists.heading'}}
+                    {{/if}}
+                {{/if}}
+            </h2>
+            {{> components/account/navigation account_page='wishlists'}}
+            {{> components/account/add-wishlist}}
         {{/if}}
-        </h2>
-        {{> components/account/navigation account_page='wishlists'}}
-        {{> components/account/add-wishlist}}
     </div>
 {{/partial}}
 {{> layout/base}}

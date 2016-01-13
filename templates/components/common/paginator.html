@@ -2,7 +2,7 @@
     <ul class="pagination-list">
         {{#if previous}}
             <li class="pagination-item pagination-item--previous">
-                <a class="pagination-link" href="{{previous}}" data-faceted-search-facet>
+                <a class="pagination-link" href="{{previous}}" {{#unless reload}}data-faceted-search-facet{{/unless}}>
                     <i class="icon" aria-hidden="true">
                         <svg>
                             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-chevron-left"></use>
@@ -15,18 +15,18 @@
         {{#each links}}
             {{#if this.number '==' ../current}}
                 <li class="pagination-item pagination-item--current">
-                    <a class="pagination-link" href="{{this.url}}" data-faceted-search-facet>{{this.number}}</a>
+                    <a class="pagination-link" href="{{this.url}}" {{#unless reload}}data-faceted-search-facet{{/unless}}>{{this.number}}</a>
                 </li>
             {{else}}
                 <li class="pagination-item">
-                    <a class="pagination-link" href="{{this.url}}" data-faceted-search-facet>{{this.number}}</a>
+                    <a class="pagination-link" href="{{this.url}}" {{#unless reload}}data-faceted-search-facet{{/unless}}>{{this.number}}</a>
                 </li>
             {{/if}}
         {{/each}}
 
         {{#if next}}
             <li class="pagination-item pagination-item--next">
-                <a class="pagination-link" href="{{next}}" data-faceted-search-facet>
+                <a class="pagination-link" href="{{next}}" {{#unless reload}}data-faceted-search-facet{{/unless}}>
                     {{lang 'common.next'}}
                     <i class="icon" aria-hidden="true">
                         <svg>

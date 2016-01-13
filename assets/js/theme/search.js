@@ -1,6 +1,7 @@
 import PageManager from '../page-manager';
 import $ from 'jquery';
 import FacetedSearch from './common/faceted-search';
+import Url from 'url';
 import collapsibleFactory from './common/collapsible';
 import 'vakata/jstree';
 import nod from './common/nod';
@@ -36,19 +37,23 @@ export default class Search extends PageManager {
 
     showProducts() {
         this.$productListingContainer.removeClass('u-hiddenVisually');
+        this.$facetedSearchContainer.removeClass('u-hiddenVisually');
         this.$contentResultsContainer.addClass('u-hiddenVisually');
     }
 
     showContent() {
         this.$contentResultsContainer.removeClass('u-hiddenVisually');
         this.$productListingContainer.addClass('u-hiddenVisually');
+        this.$facetedSearchContainer.addClass('u-hiddenVisually');
     }
 
     loaded() {
         const $searchForm = $('[data-advanced-search-form]');
         const $categoryTreeContainer = $searchForm.find('[data-search-category-tree]');
+        const url = Url.parse(location.href, true);
         const treeData = [];
         this.$productListingContainer = $('#product-listing-container');
+        this.$facetedSearchContainer = $('#faceted-search-container');
         this.$contentResultsContainer = $('#search-results-content');
 
         // Init faceted search
@@ -60,7 +65,7 @@ export default class Search extends PageManager {
         $('[data-product-results-toggle]').click(this.showProducts.bind(this));
         $('[data-content-results-toggle]').click(this.showContent.bind(this));
 
-        if (this.$productListingContainer.find('li.product').length === 0) {
+        if (this.$productListingContainer.find('li.product').length === 0 || url.query.section === 'content') {
             this.showContent();
         } else {
             this.showProducts();

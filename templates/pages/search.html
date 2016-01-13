@@ -31,7 +31,7 @@ product_results:
             </li>
             <li class="navBar-item">
                 <a class="navBar-action" href="#" data-content-results-toggle>
-                    {{lang 'search.results.content_count' count=content_results.length}}
+                    {{lang 'search.results.content_count' count=pagination.content_results.total}}
                 </a>
             </li>
             {{#unless product_results.faceted_search_enabled}}
@@ -122,12 +122,16 @@ product_results:
         {{/if}}
 
         {{#if content_results}}
-            <ul id="search-results-content">
-                {{#each content_results}}
-                    <strong><a href="{{url}}">{{title}}</a></strong>({{type}})
-                    <p>{{content}}</p>
-                {{/each}}
-            </ul>
+            <div id="search-results-content">
+                <ul>
+                    {{#each content_results}}
+                        <strong><a href="{{url}}">{{title}}</a></strong>({{type}})
+                        <p>{{content}}</p>
+                    {{/each}}
+                </ul>
+                {{> components/common/paginator pagination.content_results reload=true}}
+            </div>
+
         {{/if}}
 
         <div id="product-listing-container">

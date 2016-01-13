@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import nod from '../common/nod';
 import {CollapsibleEvents} from '../common/collapsible';
+import forms from '../common/models/forms';
 
 export default class {
     constructor($reviewForm) {
@@ -71,8 +72,11 @@ export default class {
             errorMessage: 'The \'Comments\' field cannot be blank.',
         }, {
             selector: '[name="email"]',
-            validate: 'min-length:2',
-            errorMessage: 'The \'Email\' field cannot be blank.',
+            validate: (cb, val) => {
+                const result = forms.email(val);
+                cb(result);
+            },
+            errorMessage: 'Please type in a valid email address, such as joe@aol.com.',
         }]);
 
         return this.validator;

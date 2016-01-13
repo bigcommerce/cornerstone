@@ -128,7 +128,9 @@
                     <form class="account-reorder-form" action="{{order.reorder_url}}" method="post" data-account-reorder-form>
                         <input type="hidden" name="orderid" value="{{order.id}}">
                         {{#each order.items}}
-                            <input type="hidden" name="reorderitem[{{order_product_id}}]">
+                            {{#if show_reorder}}
+                                <input type="hidden" name="reorderitem[{{order_product_id}}]">
+                            {{/if}}
                         {{/each}}
                         <input type="submit" class="button" value="{{lang 'account.orders.details.reorder'}}">
                     </form>

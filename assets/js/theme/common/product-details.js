@@ -10,7 +10,7 @@ import modalFactory from '../global/modal';
 import _ from 'lodash';
 
 // We want to ensure that the events are bound to a single instance of the product details component
-const previewModal = modalFactory('#previewModal')[0];
+let previewModal = null;
 let productSingleton = null;
 
 utils.hooks.on('cart-item-add', (event, form) => {
@@ -33,6 +33,7 @@ export default class Product {
         this.imageGallery.init();
         this.listenQuantityChange();
 
+        previewModal = modalFactory('#previewModal')[0];
         productSingleton = this;
     }
 

@@ -10,14 +10,16 @@
 >
     {{#each carousel.slides}}
     <div class="heroCarousel-slide" style="background-image: url({{image}})">
-        <img class="heroCarousel-image" src="{{image}}" alt="{{alt_text}}"/>
-        <div class="heroCarousel-content">
-            <h1 class="heroCarousel-title">{{heading}}</h1>
-            <p class="heroCarousel-description">{{text}}</p>
-            {{#if button_text}}
-                <a href="{{url}}" class="heroCarousel-action button button--primary button--large">{{button_text}}</a>
-            {{/if}}
-        </div>
+        <a href="{{url}}">
+            <img class="heroCarousel-image" src="{{image}}" alt="{{alt_text}}"/>
+            <div class="heroCarousel-content">
+                <h1 class="heroCarousel-title">{{heading}}</h1>
+                <p class="heroCarousel-description">{{text}}</p>
+                {{#if button_text}}
+                    <a href="{{url}}" class="heroCarousel-action button button--primary button--large">{{button_text}}</a>
+                {{/if}}
+            </div>
+        </a>
     </div>
     {{/each}}
 </section>

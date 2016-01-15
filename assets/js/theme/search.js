@@ -1,4 +1,5 @@
-import PageManager from '../page-manager';
+import { hooks } from 'bigcommerce/stencil-utils';
+import CatalogPage from './catalog';
 import $ from 'jquery';
 import FacetedSearch from './common/faceted-search';
 import Url from 'url';
@@ -6,7 +7,7 @@ import collapsibleFactory from './common/collapsible';
 import 'vakata/jstree';
 import nod from './common/nod';
 
-export default class Search extends PageManager {
+export default class Search extends CatalogPage {
     constructor() {
         super();
     }
@@ -57,7 +58,12 @@ export default class Search extends PageManager {
         this.$contentResultsContainer = $('#search-results-content');
 
         // Init faceted search
-        this.initFacetedSearch();
+        if ($('#facetedSearch').length > 0) {
+            this.initFacetedSearch();
+        } else {
+            this.onSortBySubmit = this.onSortBySubmit.bind(this);
+            hooks.on('sortBy-submitted', this.onSortBySubmit);
+        }
 
         // Init collapsibles
         collapsibleFactory();
@@ -149,10 +155,6 @@ export default class Search extends PageManager {
     }
 
     initFacetedSearch() {
-        if ($('#facetedSearch').length === 0) {
-            return;
-        }
-
         const $productListingContainer = $('#product-listing-container');
         const $facetedSearchContainer = $('#faceted-search-container');
         const $searchHeading = $('#search-results-heading');

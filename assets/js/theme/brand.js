@@ -1,21 +1,23 @@
-import PageManager from '../page-manager';
+import { hooks } from 'bigcommerce/stencil-utils';
+import CatalogPage from './catalog';
 import $ from 'jquery';
 import FacetedSearch from './common/faceted-search';
 
-export default class Brand extends PageManager {
+export default class Brand extends CatalogPage {
     constructor() {
         super();
     }
 
     loaded() {
-        this.initFacetedSearch();
+        if ($('#facetedSearch').length > 0) {
+            this.initFacetedSearch();
+        } else {
+            this.onSortBySubmit = this.onSortBySubmit.bind(this);
+            hooks.on('sortBy-submitted', this.onSortBySubmit);
+        }
     }
 
     initFacetedSearch() {
-        if ($('#facetedSearch').length === 0) {
-            return;
-        }
-
         const $productListingContainer = $('#product-listing-container');
         const $facetedSearchContainer = $('#faceted-search-container');
         const productsPerPage = this.context.brandProductsPerPage;

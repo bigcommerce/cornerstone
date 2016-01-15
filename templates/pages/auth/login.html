@@ -1,47 +1,49 @@
 {{#partial "page"}}
-<div class="login">
-    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
-    <h1 class="page-heading">{{lang 'login.heading' }}</h1>
-    {{#if forms.login.error}}
-        {{> components/common/alert-error forms.login.error}}
-    {{/if}}
-    {{#if forms.login.success}}
-        {{> components/common/alert-success forms.login.success}}
-    {{/if}}
-    <div class="login-row">
-        <form class="login-form form" action="{{urls.auth.check_login}}" method="post">
-            <div class="form-field">
-                <label class="form-label" for="login_email">{{lang 'login.field_email'}}</label>
-                <input class="form-input" name="login_email" id="login_email" type="email">
-            </div>
-            <div class="form-field">
-                <label class="form-label" for="login_pass">{{lang 'login.field_password'}}</label>
-                <input class="form-input" id="login_pass" type="password" name="login_pass">
-            </div>
-            <div class="form-actions">
-                <input type="submit" class="button button--primary" value="{{lang 'login.submit_value' }}">
-                <a class="forgot-password" href="{{urls.auth.forgot_password}}">{{lang 'login.forgot_password' }}</a>
-            </div>
-        </form>
-        <div class="new-customer">
-            <div class="panel">
-                <div class="panel-header">
-                    <h2 class="panel-title">{{lang 'login.new_customer.heading' }}</h2>
+{{#if settings.account_creation_enabled}}
+    <div class="login">
+        {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+        <h1 class="page-heading">{{lang 'login.heading' }}</h1>
+        {{#if forms.login.error}}
+            {{> components/common/alert-error forms.login.error}}
+        {{/if}}
+        {{#if forms.login.success}}
+            {{> components/common/alert-success forms.login.success}}
+        {{/if}}
+        <div class="login-row">
+            <form class="login-form form" action="{{urls.auth.check_login}}" method="post">
+                <div class="form-field">
+                    <label class="form-label" for="login_email">{{lang 'login.field_email'}}</label>
+                    <input class="form-input" name="login_email" id="login_email" type="email">
                 </div>
-                <div class="panel-body">
-                    <p class="new-customer-intro">{{lang 'login.new_customer.intro' }}</p>
-                    <ul class="new-customer-fact-list">
-                        <li class="new-customer-fact">{{lang 'login.new_customer.fact1' }}</li>
-                        <li class="new-customer-fact">{{lang 'login.new_customer.fact2' }}</li>
-                        <li class="new-customer-fact">{{lang 'login.new_customer.fact3' }}</li>
-                        <li class="new-customer-fact">{{lang 'login.new_customer.fact4' }}</li>
-                        <li class="new-customer-fact">{{lang 'login.new_customer.fact5' }}</li>
-                    </ul>
-                    <a href="{{urls.auth.create_account}}"><button class="button button--primary">{{lang 'login.new_customer.create_account' }}</button></a>
+                <div class="form-field">
+                    <label class="form-label" for="login_pass">{{lang 'login.field_password'}}</label>
+                    <input class="form-input" id="login_pass" type="password" name="login_pass">
+                </div>
+                <div class="form-actions">
+                    <input type="submit" class="button button--primary" value="{{lang 'login.submit_value' }}">
+                    <a class="forgot-password" href="{{urls.auth.forgot_password}}">{{lang 'login.forgot_password' }}</a>
+                </div>
+            </form>
+            <div class="new-customer">
+                <div class="panel">
+                    <div class="panel-header">
+                        <h2 class="panel-title">{{lang 'login.new_customer.heading' }}</h2>
+                    </div>
+                    <div class="panel-body">
+                        <p class="new-customer-intro">{{lang 'login.new_customer.intro' }}</p>
+                        <ul class="new-customer-fact-list">
+                            <li class="new-customer-fact">{{lang 'login.new_customer.fact1' }}</li>
+                            <li class="new-customer-fact">{{lang 'login.new_customer.fact2' }}</li>
+                            <li class="new-customer-fact">{{lang 'login.new_customer.fact3' }}</li>
+                            <li class="new-customer-fact">{{lang 'login.new_customer.fact4' }}</li>
+                            <li class="new-customer-fact">{{lang 'login.new_customer.fact5' }}</li>
+                        </ul>
+                        <a href="{{urls.auth.create_account}}"><button class="button button--primary">{{lang 'login.new_customer.create_account' }}</button></a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+{{/if}}
 {{/partial}}
 {{> layout/base}}

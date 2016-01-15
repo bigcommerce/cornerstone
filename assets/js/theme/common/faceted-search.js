@@ -2,55 +2,16 @@ import { hooks, api } from 'bigcommerce/stencil-utils';
 import $ from 'jquery';
 import _ from 'lodash';
 import Url from 'url';
+import urlUtils from './url-utils';
 import 'browserstate/history.js/scripts/bundled-uncompressed/html4+html5/jquery.history';
 import collapsibleFactory from './collapsible';
 import { Validators } from './form-utils';
 import nod from './nod';
 
-function goToUrl(url) {
-    History.pushState({}, document.title, url);
-}
-
-function buildQueryString(queryData) {
-    let out = '';
-    let key;
-    for (key in queryData) {
-        if (queryData.hasOwnProperty(key)) {
-            if (Array.isArray(queryData[key])) {
-                let ndx;
-
-                for (ndx in queryData[key]) {
-                    if (queryData[key].hasOwnProperty(ndx)) {
-                        out += `&${key}=${queryData[key][ndx]}`;
-                    }
-                }
-            } else {
-                out += `&${key}=${queryData[key]}`;
-            }
-        }
-    }
-
-    return out.substring(1);
-}
-
-function onSortBySubmit(event) {
-    const url = Url.parse(location.href, true);
-    const queryParams = $(event.currentTarget).serialize().split('=');
-
-    url.query[queryParams[0]] = queryParams[1];
-    delete url.query.page;
-
-    event.preventDefault();
-
-    goToUrl(Url.format({ pathname: url.pathname, search: buildQueryString(url.query) }));
-}
-
-export {buildQueryString, onSortBySubmit};
-
 /**
  * Faceted search view component
  */
-export default class FacetedSearch {
+class FacetedSearch {
     /**
      * @param {object} requestOptions - Object with options for the ajax requests
      * @param {function} callback - Function to execute after fetching templates
@@ -129,7 +90,7 @@ export default class FacetedSearch {
         this.onClearFacet = this.onClearFacet.bind(this);
         this.onFacetClick = this.onFacetClick.bind(this);
         this.onRangeSubmit = this.onRangeSubmit.bind(this);
-        this.onSortBySubmit = onSortBySubmit.bind(this);
+        this.onSortBySubmit = this.onSortBySubmit.bind(this);
 
         this.bindEvents();
     }
@@ -346,7 +307,7 @@ export default class FacetedSearch {
         event.stopPropagation();
 
         // Update URL
-        goToUrl(url);
+        urlUtils.goToUrl(url);
     }
 
     onToggleClick(event) {
@@ -369,7 +330,19 @@ export default class FacetedSearch {
         $link.toggleClass('is-selected');
 
         // Update URL
-        goToUrl(url);
+        urlUtils.goToUrl(url);
+    }
+
+    onSortBySubmit(event) {
+        const url = Url.parse(location.href, true);
+        const queryParams = $(event.currentTarget).serialize().split('=');
+
+        url.query[queryParams[0]] = queryParams[1];
+        delete url.query.page;
+
+        event.preventDefault();
+
+        urlUtils.goToUrl(Url.format({ pathname: url.pathname, search: urlUtils.buildQueryString(url.query) }));
     }
 
     onRangeSubmit(event) {
@@ -382,7 +355,7 @@ export default class FacetedSearch {
         const url = Url.parse(location.href);
         const queryParams = decodeURI($(event.currentTarget).serialize());
 
-        goToUrl(Url.format({ pathname: url.pathname, search: '?' + queryParams }));
+        urlUtils.goToUrl(Url.format({ pathname: url.pathname, search: '?' + queryParams }));
     }
 
     onStateChange() {
@@ -401,3 +374,5 @@ export default class FacetedSearch {
         }
     }
 }
+
+export default FacetedSearch;

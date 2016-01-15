@@ -1,6 +1,6 @@
 import PageManager from '../page-manager';
 import $ from 'jquery';
-import {buildQueryString} from './common/faceted-search';
+import urlUtils from './common/url-utils';
 import Url from 'url';
 
 export default class CatalogPage extends PageManager {
@@ -16,6 +16,6 @@ export default class CatalogPage extends PageManager {
         delete url.query.page;
 
         event.preventDefault();
-        window.location = Url.format({ pathname: url.pathname, search: buildQueryString(url.query) });
+        window.location = Url.format({ pathname: url.pathname, search: urlUtils.buildQueryString(url.query) });
     }
 }

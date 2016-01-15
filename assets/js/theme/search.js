@@ -2,6 +2,7 @@ import { hooks } from 'bigcommerce/stencil-utils';
 import CatalogPage from './catalog';
 import $ from 'jquery';
 import FacetedSearch from './common/faceted-search';
+import urlUtils from './common/url-utils';
 import Url from 'url';
 import collapsibleFactory from './common/collapsible';
 import 'vakata/jstree';
@@ -37,15 +38,27 @@ export default class Search extends CatalogPage {
     }
 
     showProducts() {
+        const url = urlUtils.replaceParams(location.href, {
+            section: 'product',
+        });
+
         this.$productListingContainer.removeClass('u-hiddenVisually');
         this.$facetedSearchContainer.removeClass('u-hiddenVisually');
         this.$contentResultsContainer.addClass('u-hiddenVisually');
+
+        urlUtils.goToUrl(url);
     }
 
     showContent() {
+        const url = urlUtils.replaceParams(location.href, {
+            section: 'content',
+        });
+
         this.$contentResultsContainer.removeClass('u-hiddenVisually');
         this.$productListingContainer.addClass('u-hiddenVisually');
         this.$facetedSearchContainer.addClass('u-hiddenVisually');
+
+        urlUtils.goToUrl(url);
     }
 
     loaded() {
@@ -68,8 +81,15 @@ export default class Search extends CatalogPage {
         // Init collapsibles
         collapsibleFactory();
 
-        $('[data-product-results-toggle]').click(this.showProducts.bind(this));
-        $('[data-content-results-toggle]').click(this.showContent.bind(this));
+        $('[data-product-results-toggle]').click((event) => {
+            event.preventDefault();
+            this.showProducts();
+        });
+
+        $('[data-content-results-toggle]').click((event) => {
+            event.preventDefault();
+            this.showContent();
+        });
 
         if (this.$productListingContainer.find('li.product').length === 0 || url.query.section === 'content') {
             this.showContent();

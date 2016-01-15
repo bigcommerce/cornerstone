@@ -25,12 +25,12 @@ product_results:
     <nav class="navBar navBar--sub">
         <ul class="navBar-section account-navigation">
             <li class="navBar-item">
-                <a id="search-results-product-count" class="navBar-action" href="#" data-product-results-toggle>
+                <a id="search-results-product-count" class="navBar-action" href="{{forms.search.product_url}}" data-product-results-toggle>
                     {{>components/search/product-count}}
                 </a>
             </li>
             <li class="navBar-item">
-                <a class="navBar-action" href="#" data-content-results-toggle>
+                <a class="navBar-action" href="{{forms.search.content_url}}" data-content-results-toggle>
                     {{lang 'search.results.content_count' count=pagination.content_results.total}}
                 </a>
             </li>
@@ -56,7 +56,7 @@ product_results:
 <section class="page">
     {{#if product_results.products}}
         {{#if product_results.faceted_search_enabled}}
-            <aside class="page-sidebar" id="faceted-search-container">
+            <aside class="page-sidebar{{#if forms.search.section '!=' 'product'}} u-hiddenVisually{{/if}}" id="faceted-search-container">
                 {{> components/faceted-search/index product_results}}
             </aside>
         {{/if}}
@@ -122,7 +122,8 @@ product_results:
         {{/if}}
 
         {{#if content_results}}
-            <div id="search-results-content">
+            <div id="search-results-content" {{#if forms.search.section '!=' 'content'}}class="u-hiddenVisually"{{/if}}>
+                {{> components/search/content-sort-box sort=pagination.content_results.sort}}
                 <ul>
                     {{#each content_results}}
                         <strong><a href="{{url}}">{{title}}</a></strong>({{type}})
@@ -134,7 +135,7 @@ product_results:
 
         {{/if}}
 
-        <div id="product-listing-container">
+        <div id="product-listing-container" {{#if forms.search.section '!=' 'product'}}class="u-hiddenVisually"{{/if}}>
             {{> components/search/product-listing}}
         </div>
     </main>

@@ -23,9 +23,7 @@
                 {{#if type '===' 'giftcertificate'}}
                     <img class="cart-item-image" src="{{cdn ../../theme_settings.default_image_gift_certificate}}" alt="GiftCertificate">
                 {{else}}
-                    {{#if image}}
-                        <img src="{{getImage image 'thumb'}}" alt="{{image.alt}}">
-                    {{/if}}
+                    <img src="{{getImage image 'thumb' (cdn ../../theme_settings.default_image_product)}}" alt="{{image.alt}}">
                 {{/if}}
                 {{#unless refunded}}
                     {{#if download_url}}

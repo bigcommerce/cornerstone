@@ -25,7 +25,7 @@ export default function(maintenanceMode = {}) {
 
     $(window)
         .bind('scroll', () => {
-            $element.style.top = ($('body').scrollTop() + scrollTop) + 'px';
+            $element.css('top', ($('body').scrollTop() + scrollTop) + 'px');
         })
         .bind('resize', () => {
             const menuWidth = $('#maintenance-notice').width();

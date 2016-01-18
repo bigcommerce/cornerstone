@@ -10,10 +10,10 @@
 
     <section class="productView-details">
         <div class="productView-product">
-            <h1 class="productView-title" itemprop="name">{{product.title}}</h1>
+            <h1 class="productView-title" {{#if schema}}itemprop="name"{{/if}}>{{product.title}}</h1>
 
-            <h2 class="productView-brand" itemprop="brand" itemscope itemtype="http://schema.org/Brand">
-                <a href="{{product.brand.url}}" itemprop="url"><span itemprop="name">{{product.brand.name}}</span></a>
+            <h2 class="productView-brand"{{#if schema}} itemprop="brand" itemscope itemtype="http://schema.org/Brand"{{/if}}>
+                <a href="{{product.brand.url}}"{{#if schema}} itemprop="url"{{/if}}><span{{#if schema}} itemprop="name"{{/if}}>{{product.brand.name}}</span></a>
             </h2>
             {{#if product.call_for_price}}
                 <p class="productView-price">
@@ -22,15 +22,17 @@
             {{/if}}
             {{#if product.price}}
                 <div class="productView-price">
-                    {{> components/products/price price=product.price schema_org=true}}
+                    {{> components/products/price price=product.price schema_org=schema}}
                 </div>
             {{/if}}
-            <div class="productView-rating" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+            <div class="productView-rating"{{#if schema}} itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating"{{/if}}>
                 {{#if settings.show_product_rating}}
                     {{#if product.num_reviews '>' 0}}
-                        <meta itemprop="ratingValue" content="{{product.rating}}">
-                        <meta itemprop="ratingCount" content="{{product.num_reviews}}">
-                        <meta itemprop="reviewCount" content="{{product.num_reviews}}">
+                        {{#if schema}}
+                            <meta itemprop="ratingValue" content="{{product.rating}}">
+                            <meta itemprop="ratingCount" content="{{product.num_reviews}}">
+                            <meta itemprop="reviewCount" content="{{product.num_reviews}}">
+                        {{/if}}
                     {{/if}}
                     {{> components/products/ratings rating=product.rating}}
                     <span class="productView-reviewLink">
@@ -299,7 +301,7 @@
         {{{snippet 'product_details'}}}
     </section>
 
-    <article class="productView-description" itemprop="description">
+    <article class="productView-description"{{#if schema}} itemprop="description"{{/if}}>
         <ul class="tabs" data-tab>
             <li class="tab is-active">
                 <a class="tab-title" href="#tab-description">{{lang 'products.description'}}</a>

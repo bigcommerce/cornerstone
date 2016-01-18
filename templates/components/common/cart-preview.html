@@ -39,7 +39,7 @@
                 </div>
             {{/if}}
 
-            <div class="previewCartAction-viewCart">
+            <div class="previewCartAction-viewCart{{#unless cart.show_primary_checkout_button}} previewCartAction-viewCart--sole{{/unless}}">
                 <a href="{{urls.cart}}" class="button button--small button--action">
                     {{lang 'cart.preview.view_cart'}}
                 </a>

@@ -591,6 +591,10 @@ $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-sp
 .previewCartAction-checkout,
 .previewCartAction-viewCart {
     @include grid-column(6);
+
+    &.previewCartAction-viewCart--sole {
+        @include grid-column($columns: 6, $center: true);
+    }
 }
 
 .previewCartAction-checkout {

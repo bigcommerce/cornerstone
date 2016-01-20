@@ -14,7 +14,7 @@
         </li>
         {{/each}}
     </ul>
-    <ul class="navPages-list navPages-list--account">
+    <ul class="navPages-list navPages-list--user">
         {{#if currency_selector.currencies.length '>' 1}}
             <li class="navPages-item">
                 <a class="navPages-action has-subMenu" href="#" data-collapsible="navPages-currency" aria-controls="navPages-currency" aria-expanded="false">
@@ -54,7 +54,36 @@
         {{/if}}
         {{#if customer}}
             <li class="navPages-item">
-                <a class="navPages-action" href="{{urls.account.index}}">{{lang 'common.account'}}</a>
+                <a class="navPages-action has-subMenu" href="{{urls.account.index}}" data-collapsible="navPages-account">
+                    {{lang 'common.account'}} <i class="icon navPages-action-moreIcon" aria-hidden="true"><svg><use xlink:href="#icon-chevron-down" /></svg></i>
+                </a>
+                <div class="navPage-subMenu" id="navPages-account" aria-hidden="true" tabindex="-1">
+                    <ul class="navPage-subMenu-list">
+                        <li class="navPage-subMenu-item">
+                            <a class="navPage-subMenu-action navPages-action" href="{{urls.account.orders.all}}">{{lang 'account.nav.orders'}}</a>
+                        </li>
+                        {{#if settings.returns_enabled}}
+                            <li class="navPage-subMenu-item">
+                                <a class="navPage-subMenu-action navPages-action" href="{{urls.account.returns}}">{{lang 'account.nav.returns'}}</a>
+                            </li>
+                        {{/if}}
+                        <li class="navPage-subMenu-item">
+                            <a class="navPage-subMenu-action navPages-action" href="{{urls.account.inbox}}">{{lang 'account.mobile_nav.messages'}}</a>
+                        </li>
+                        <li class="navPage-subMenu-item">
+                            <a class="navPage-subMenu-action navPages-action" href="{{urls.account.addresses}}">{{lang 'account.nav.addresses'}}</span></a>
+                        </li>
+                        <li class="navPage-subMenu-item">
+                            <a class="navPage-subMenu-action navPages-action" href="{{urls.account.wishlists.all}}">{{lang 'account.mobile_nav.wishlists'}}</a>
+                        </li>
+                        <li class="navPage-subMenu-item">
+                            <a class="navPage-subMenu-action navPages-action" href="{{urls.account.recent_items}}">{{lang 'account.nav.recently_viewed'}}</a>
+                        </li>
+                        <li class="navPage-subMenu-item">
+                            <a class="navPage-subMenu-action navPages-action" href="{{urls.account.details}}">{{lang 'account.nav.settings'}}</a>
+                        </li>
+                    </ul>
+                </div>
             </li>
             <li class="navPages-item">
                 <a class="navPages-action" href="{{urls.auth.logout}}">{{lang 'common.logout'}}</a>

@@ -105,6 +105,12 @@
         display: inline-block;
         float: none;
     }
+
+    + .navPages-list {
+        border-top: 1px solid $navPages-list--user-borderColor;
+        margin-top: spacing("half");
+        padding-top: spacing("half");
+    }
 }
 
 .navPages-action {
@@ -295,14 +301,10 @@
 
 
 //
-// NavPages account section for mobile nav panel
+// NavPages user section for mobile nav panel
 // -----------------------------------------------------------------------------
 
-.navPages-list--account {
-    border-top: 1px solid $navPages-list--account-borderColor;
-    margin-top: spacing("half");
-    padding-top: spacing("quarter");
-
+.navPages-list--user {
     @include breakpoint("medium") {
         display: none;
     }

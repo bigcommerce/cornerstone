@@ -105,6 +105,12 @@
         display: inline-block;
         float: none;
     }
+
+    + .navPages-list {
+        border-top: 1px solid $navPages-list--user-borderColor;
+        margin-top: spacing("half");
+        padding-top: spacing("half");
+    }
 }
 
 .navPages-action {
@@ -299,10 +305,6 @@
 // -----------------------------------------------------------------------------
 
 .navPages-list--user {
-    border-top: 1px solid $navPages-list--user-borderColor;
-    margin-top: spacing("half");
-    padding-top: spacing("quarter");
-
     @include breakpoint("medium") {
         display: none;
     }

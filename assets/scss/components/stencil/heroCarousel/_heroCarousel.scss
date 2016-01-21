@@ -87,12 +87,13 @@
 }
 
 .heroCarousel-content {
-    background-color: color("whites");
+    background-color: rgba($carousel-bgColor, 1);
     padding: spacing("half") spacing("single") (spacing("double"));
     text-align: center;
 
     @include breakpoint("medium") {
         @include carouselOpaqueBackgrounds;
+        background-color: rgba($carousel-bgColor, 0.9);
         left: 0;
         margin: 0 auto;
         padding: spacing("single") * 1.5;

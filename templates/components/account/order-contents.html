@@ -58,6 +58,17 @@
                         <dd class="definitionList-value">{{gift_wrapping_name}}</dd>
                     </dl>
                 {{/if}}
+                {{#if event_date}}
+                    <dl class="definitionList">
+                        <dt class="definitionList-key">
+                            {{event_date.name}}
+                        </dt>
+
+                        <dd class="definitionList-value">
+                            {{event_date.date}}
+                        </dd>
+                    </dl>
+                {{/if}}
                 {{#if refunded}}
                     <p class="account-product-refundQty">{{lang 'account.orders.refunded_quantity' qty=refunded_qty}}</p>
                 {{else}}

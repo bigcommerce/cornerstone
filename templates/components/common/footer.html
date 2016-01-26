@@ -52,14 +52,16 @@
 
             <article class="footer-info-col" data-section-type="newsletterSubscription">
                 {{#if settings.show_newsletter_box}}
-                    {{> components/common/subscription-form }}
+                    {{> components/common/subscription-form}}
                 {{/if}}
-                {{> components/common/social-links }}
+                {{> components/common/social-links}}
+                {{> components/common/payment-icons}}
             </article>
         </section>
-
-        <div class="footer-copyright">
-            <p class="powered-by">Powered by <a href="http://bigcommerce.com" rel="nofollow">Bigcommerce</a></p>
-        </div>
+        {{#if theme_settings.show_powered_by}}
+            <div class="footer-copyright">
+                <p class="powered-by">Powered by <a href="http://bigcommerce.com" rel="nofollow">Bigcommerce</a></p>
+            </div>
+        {{/if}}
     </div>
 </footer>

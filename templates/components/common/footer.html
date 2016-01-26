@@ -57,9 +57,10 @@
                 {{> components/common/social-links }}
             </article>
         </section>
-
-        <div class="footer-copyright">
-            <p class="powered-by">Powered by <a href="http://bigcommerce.com" rel="nofollow">Bigcommerce</a></p>
-        </div>
+        {{#if theme_settings.show_powered_by}}
+            <div class="footer-copyright">
+                <p class="powered-by">Powered by <a href="http://bigcommerce.com" rel="nofollow">Bigcommerce</a></p>
+            </div>
+        {{/if}}
     </div>
 </footer>

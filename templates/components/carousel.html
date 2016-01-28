@@ -12,13 +12,17 @@
     <div class="heroCarousel-slide" style="background-image: url({{image}})">
         <a href="{{url}}">
             <img class="heroCarousel-image" src="{{image}}" alt="{{alt_text}}"/>
-            <div class="heroCarousel-content">
-                <h1 class="heroCarousel-title">{{heading}}</h1>
-                <p class="heroCarousel-description">{{text}}</p>
-                {{#if button_text}}
-                    <span class="heroCarousel-action button button--primary button--large">{{button_text}}</span>
+            {{#if heading}}
+                {{> components/carousel-content}}
+            {{else}}
+                {{#if text}}
+                    {{> components/carousel-content}}
+                {{else}}
+                    {{#if button_text}}
+                        {{> components/carousel-content}}
+                    {{/if}}
                 {{/if}}
-            </div>
+            {{/if}}
         </a>
     </div>
     {{/each}}

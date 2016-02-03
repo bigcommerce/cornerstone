@@ -197,8 +197,16 @@
     .button {
         display: block;
         width: 100%;
+    }
 
-        @include breakpoint("small") {
+    .form-input {
+        @include breakpoint("large") {
+            width: auto;
+        }
+    }
+
+    .button {
+        @include breakpoint("medium") {
             width: auto;
         }
     }
@@ -206,7 +214,7 @@
     .form-inlineMessage {
         margin-bottom: spacing("quarter");
 
-        @include breakpoint("small") {
+        @include breakpoint("large") {
             margin-bottom: 0;
         }
     }
@@ -216,7 +224,7 @@
     margin: spacing("half") 0 0;
     order: 1; // 1
 
-    @include breakpoint("small") {
+    @include breakpoint("large") {
         margin: 0 0 0 spacing("half");
         order: 0; // 1
     }

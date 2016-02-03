@@ -114,6 +114,7 @@ export default class ShippingEstimator {
             const params = {
                 country_id: $('[name="shipping-country"]', $estimatorForm).val(),
                 state_id: $('[name="shipping-state"]', $estimatorForm).val(),
+                city: $('[name="shipping-city"]', $estimatorForm).val(),
                 zip_code: $('[name="shipping-zip"]', $estimatorForm).val(),
             };
 

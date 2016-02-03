@@ -18,7 +18,7 @@
             <meta itemprop="priceCurrency" content="{{currency_selector.active_currency_code}}">
         {{/if}}
         <span data-product-price-without-tax class="price price--withoutTax">{{price.without_tax.formatted}}</span>
-        {{lang 'products.price_without_tax' tax_label=price.tax_label}}
+        <abbr title="{{lang 'products.excluding_tax'}}">{{lang 'products.price_without_tax' tax_label=price.tax_label}}</abbr>
     </div>
 {{/if}}
 

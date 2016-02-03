@@ -1,69 +1,71 @@
-<div class="addthis_toolbox addthis_32x32_style" addthis:url="{{url}}"
-     addthis:title="{{title}}">
-    <ul class="socialLinks">
-        {{#each settings.add_this.buttons}}
-            <li class="socialLinks-item socialLinks-item--{{service}}">
-                <a class="addthis_button_{{service}} icon icon--{{service}}" {{{annotation}}}>
-                    {{#if service '===' 'google_plusone'}}
-                        <!-- No custom icons allowed with g+ -->
-                    {{/if}}
+{{#if settings.add_this.buttons}}
+    <div class="addthis_toolbox addthis_32x32_style" addthis:url="{{url}}"
+         addthis:title="{{title}}">
+        <ul class="socialLinks">
+            {{#each settings.add_this.buttons}}
+                <li class="socialLinks-item socialLinks-item--{{service}}">
+                    <a class="addthis_button_{{service}} icon icon--{{service}}" {{{annotation}}}>
+                        {{#if service '===' 'google_plusone'}}
+                            <!-- No custom icons allowed with g+ -->
+                        {{/if}}
 
-                    {{#if service '===' 'facebook'}}
-                        <svg>
-                            <use xlink:href="#icon-facebook"/>
-                        </svg>
-                    {{/if}}
+                        {{#if service '===' 'facebook'}}
+                            <svg>
+                                <use xlink:href="#icon-facebook"/>
+                            </svg>
+                        {{/if}}
 
-                    {{#if service '===' 'email'}}
-                        <svg>
-                            <use xlink:href="#icon-envelope"/>
-                        </svg>
-                    {{/if}}
+                        {{#if service '===' 'email'}}
+                            <svg>
+                                <use xlink:href="#icon-envelope"/>
+                            </svg>
+                        {{/if}}
 
-                    {{#if service '===' 'print'}}
-                        <svg>
-                            <use xlink:href="#icon-print"/>
-                        </svg>
-                    {{/if}}
+                        {{#if service '===' 'print'}}
+                            <svg>
+                                <use xlink:href="#icon-print"/>
+                            </svg>
+                        {{/if}}
 
-                    {{#if service '===' 'twitter'}}
-                        <svg>
-                            <use xlink:href="#icon-twitter"/>
-                        </svg>
-                    {{/if}}
+                        {{#if service '===' 'twitter'}}
+                            <svg>
+                                <use xlink:href="#icon-twitter"/>
+                            </svg>
+                        {{/if}}
 
-                    {{#if service '===' 'linkedin'}}
-                        <svg>
-                            <use xlink:href="#icon-linkedin"/>
-                        </svg>
-                    {{/if}}
+                        {{#if service '===' 'linkedin'}}
+                            <svg>
+                                <use xlink:href="#icon-linkedin"/>
+                            </svg>
+                        {{/if}}
 
-                    {{#if service '===' 'google'}}
-                        <svg>
-                            <use xlink:href="#icon-google"/>
-                        </svg>
-                    {{/if}}
+                        {{#if service '===' 'google'}}
+                            <svg>
+                                <use xlink:href="#icon-google"/>
+                            </svg>
+                        {{/if}}
 
-                    {{#if service '===' 'pinterest'}}
-                        <svg>
-                            <use xlink:href="#icon-pinterest"/>
-                        </svg>
-                    {{/if}}
+                        {{#if service '===' 'pinterest'}}
+                            <svg>
+                                <use xlink:href="#icon-pinterest"/>
+                            </svg>
+                        {{/if}}
 
-                    {{#if service '===' 'facebook_like'}}
-                        <svg>
-                            <use xlink:href="#icon-facebook_like"/>
-                        </svg>
-                    {{/if}}
-                </a>
-            </li>
-        {{/each}}
-    </ul>
-    <script type="text/javascript"
-            src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4e94ed470ee51e32"></script>
-    <script>
-        if (typeof(addthis) === "object") {
-            addthis.toolbox('.addthis_toolbox');
-        }
-    </script>
-</div>
+                        {{#if service '===' 'facebook_like'}}
+                            <svg>
+                                <use xlink:href="#icon-facebook_like"/>
+                            </svg>
+                        {{/if}}
+                    </a>
+                </li>
+            {{/each}}
+        </ul>
+        <script type="text/javascript"
+                src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4e94ed470ee51e32"></script>
+        <script>
+            if (typeof(addthis) === "object") {
+                addthis.toolbox('.addthis_toolbox');
+            }
+        </script>
+    </div>
+{{/if}}

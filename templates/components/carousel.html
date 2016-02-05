@@ -13,13 +13,13 @@
         <a href="{{url}}">
             <img class="heroCarousel-image" src="{{image}}" alt="{{alt_text}}"/>
             {{#if heading}}
-                {{> components/carousel-content}}
+                {{> components/carousel-content show_background=true}}
             {{else}}
                 {{#if text}}
-                    {{> components/carousel-content}}
+                    {{> components/carousel-content show_background=true}}
                 {{else}}
                     {{#if button_text}}
-                        {{> components/carousel-content}}
+                        {{> components/carousel-content show_background=false}}
                     {{/if}}
                 {{/if}}
             {{/if}}

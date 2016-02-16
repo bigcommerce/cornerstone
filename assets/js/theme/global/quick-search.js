@@ -7,6 +7,7 @@ import nod from '../common/nod';
 const internals = {
     initValidation($form) {
         this.validator = nod({
+            delay: 1,
             submit: $form,
         });
 
@@ -30,6 +31,12 @@ const internals = {
         }
         return false;
     },
+    unBindValidation(element) {
+        if (this.validator) {
+            this.validator.remove(element);
+        }
+        return this;
+    },
 };
 
 export default function() {
@@ -37,14 +44,15 @@ export default function() {
     const TOP_STYLING = 'top: 49px;';
     const $quickSearchResults = $('.quickSearchResults');
     const $quickSearchDiv = $('#quickSearch');
-    const validator = internals.initValidation($quickSearchDiv)
-        .bindValidation($quickSearchDiv.find('#search_query'));
+    const validator = internals.initValidation($quickSearchDiv);
     const $searchQuery = $('#search_query');
     const stencilDropDownExtendables = {
         hide: () => {
+            validator.unBindValidation($quickSearchDiv.find('#search_query'));
             $searchQuery.blur();
         },
         show: (event) => {
+            validator.bindValidation($quickSearchDiv.find('#search_query'));
             $searchQuery.focus();
             event.stopPropagation();
         },

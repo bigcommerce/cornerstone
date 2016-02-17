@@ -29,12 +29,14 @@ const internals = {
             this.validator.performCheck();
             return this.validator.areAll('valid');
         }
+
         return false;
     },
     unBindValidation(element) {
         if (this.validator) {
             this.validator.remove(element);
         }
+
         return this;
     },
 };

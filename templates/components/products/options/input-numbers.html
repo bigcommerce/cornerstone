@@ -7,5 +7,5 @@
         {{/if}}
     </label>
 
-    <input class="form-input" type="number" id="attribute_{{this.id}}_{{../id}}" name="attribute[{{this.id}}]" value="{{this.prefill}}" {{#if required}}required{{/if}}>
+    <input class="form-input" type="number" id="attribute_{{this.id}}_{{../id}}" {{#unless this.integer_only}} step=".1" {{/unless}} name="attribute[{{this.id}}]" value="{{this.prefill}}" {{#if required}}required{{/if}}>
 </div>

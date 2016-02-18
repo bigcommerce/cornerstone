@@ -2,59 +2,18 @@ import $ from 'jquery';
 import _ from 'lodash';
 import utils from 'bigcommerce/stencil-utils';
 import StencilDropDown from './stencil-dropdown';
-import nod from '../common/nod';
-
-const internals = {
-    initValidation($form) {
-        this.validator = nod({
-            delay: 1,
-            submit: $form,
-        });
-
-        return this;
-    },
-    bindValidation(element) {
-        if (this.validator) {
-            this.validator.add({
-                selector: element,
-                validate: 'presence',
-                errorMessage: element.data('error-message'),
-            });
-        }
-
-        return this;
-    },
-    checkElement() {
-        if (this.validator) {
-            this.validator.performCheck();
-            return this.validator.areAll('valid');
-        }
-
-        return false;
-    },
-    unBindValidation(element) {
-        if (this.validator) {
-            this.validator.remove(element);
-        }
-
-        return this;
-    },
-};
 
 export default function() {
     let stencilDropDown;
     const TOP_STYLING = 'top: 49px;';
     const $quickSearchResults = $('.quickSearchResults');
     const $quickSearchDiv = $('#quickSearch');
-    const validator = internals.initValidation($quickSearchDiv);
     const $searchQuery = $('#search_query');
     const stencilDropDownExtendables = {
         hide: () => {
-            validator.unBindValidation($quickSearchDiv.find('#search_query'));
             $searchQuery.blur();
         },
         show: (event) => {
-            validator.bindValidation($quickSearchDiv.find('#search_query'));
             $searchQuery.focus();
             event.stopPropagation();
         },
@@ -95,7 +54,9 @@ export default function() {
 
     // Catch the submission of the quick-search
     $quickSearchDiv.on('submit', (event) => {
-        if (!validator.checkElement()) {
+        const searchQuery = $(event.currentTarget).val();
+
+        if (searchQuery.length === 0) {
             return event.preventDefault();
         }
 

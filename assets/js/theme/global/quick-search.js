@@ -54,7 +54,7 @@ export default function() {
 
     // Catch the submission of the quick-search
     $quickSearchDiv.on('submit', (event) => {
-        const searchQuery = $(event.currentTarget).val();
+        const searchQuery = $(event.currentTarget).find('input').val();
 
         if (searchQuery.length === 0) {
             return event.preventDefault();

@@ -18,13 +18,13 @@ System.config({
     "asyncly/EventEmitter2": "github:asyncly/EventEmitter2@0.4.14",
     "babel": "npm:babel-core@5.6.15",
     "babel-runtime": "npm:babel-runtime@5.6.15",
-    "bigcommerce/citadel": "github:bigcommerce/citadel@2.4.3",
+    "bigcommerce/citadel": "github:bigcommerce/citadel@2.11.4",
     "bigcommerce/stencil-utils": "github:bigcommerce/stencil-utils@0.3.8",
     "browserstate/history.js": "github:browserstate/history.js@1.8.0",
     "caolan/async": "github:caolan/async@0.9.2",
     "casperin/nod": "github:casperin/nod@2.0.10",
     "core-js": "npm:core-js@0.9.18",
-    "foundation": "github:bigcommerce-labs/foundation@5.5.3",
+    "foundation": "github:zurb/foundation-sites@5.5.3",
     "ftlabs/fastclick": "github:ftlabs/fastclick@1.0.6",
     "hubspot/pace": "github:hubspot/pace@1.0.2",
     "jackmoore/zoom": "github:jackmoore/zoom@1.7.14",
@@ -33,9 +33,6 @@ System.config({
     "slick-carousel": "github:kenwheeler/slick@1.5.5",
     "url": "github:jspm/nodelibs-url@0.1.0",
     "vakata/jstree": "github:vakata/jstree@3.2.1",
-    "github:bigcommerce-labs/foundation@5.5.3": {
-      "jquery": "github:components/jquery@2.1.4"
-    },
     "github:bigcommerce/stencil-utils@0.3.8": {
       "asyncly/EventEmitter2": "github:asyncly/EventEmitter2@0.4.14",
       "jquery": "github:components/jquery@2.1.4"

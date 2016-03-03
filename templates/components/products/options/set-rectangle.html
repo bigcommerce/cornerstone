@@ -9,8 +9,8 @@
     </label>
 
     {{#each this.values}}
-        <input class="form-radio" type="radio" id="attribute_{{id}}_{{../id}}" name="attribute[{{../id}}]" value="{{id}}" {{#if selected}}checked{{/if}} {{#if ../required}}required{{/if}}>
-        <label class="form-option" for="attribute_{{id}}_{{../id}}">
+        <input class="form-radio" type="radio" id="attribute_{{id}}" name="attribute[{{../id}}]" value="{{id}}" {{#if selected}}checked{{/if}} {{#if ../required}}required{{/if}}>
+        <label class="form-option" for="attribute_{{id}}">
             <span class="form-option-variant">{{this.label}}</span>
         </label>
     {{/each}}

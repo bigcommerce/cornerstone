@@ -32,6 +32,7 @@ export default class Product {
         this.imageGallery = new ImageGallery($('[data-image-gallery]', this.$scope));
         this.imageGallery.init();
         this.listenQuantityChange();
+        this.initRadioAttributes();
         this.updateProductAttributes(window.BCData.product_attributes);
 
         previewModal = modalFactory('#previewModal')[0];
@@ -334,5 +335,30 @@ export default class Product {
                 $('[data-product-attribute-value="' + id + '"]').removeClass('unavailable');
             });
         }
+    }
+
+    /**
+     * Allow radio buttons to get deselected
+     */
+    initRadioAttributes() {
+        $('[data-product-option-change] input[type="radio"]', this.$scope).each((i, radio) => {
+            let $radio = $(radio);
+
+            $radio.attr('data-state', $radio.prop('checked'));
+
+            $radio.click((e) => {
+                let $radio = $(e.currentTarget);
+
+                // if this was previously checked
+                if ($radio.data('state') == true) {
+                    $radio.prop('checked', false);
+                    $radio.data('state', false);
+
+                    $radio.change();
+                } else {
+                    $radio.data('state', true);
+                }
+            });
+        });
     }
 }

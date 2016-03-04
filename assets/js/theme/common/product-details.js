@@ -32,6 +32,7 @@ export default class Product {
         this.imageGallery = new ImageGallery($('[data-image-gallery]', this.$scope));
         this.imageGallery.init();
         this.listenQuantityChange();
+        this.updateProductAttributes(window.BCData.product_attributes);
 
         previewModal = modalFactory('#previewModal')[0];
         productSingleton = this;
@@ -84,6 +85,8 @@ export default class Product {
             const viewModel = this.getViewModel(this.$scope);
             const $messageBox = $('.productAttributes-message');
             const data = response.data || {};
+
+            this.updateProductAttributes(data);
 
             if (data.purchasing_message) {
                 $('.alertBox-message', $messageBox).text(data.purchasing_message);
@@ -306,5 +309,30 @@ export default class Product {
                 onComplete(response);
             }
         });
+    }
+
+    /**
+     * Hide or mark as unavailable out of stock attributes if enabled
+     * @param  {Object} data
+     */
+    updateProductAttributes(data) {
+        let $attributes = $('[data-product-attribute-value]', this.$scope);
+        let i;
+
+        if (data.out_of_stock_behavior === 'hide_option') {
+            $attributes.hide();
+
+            _.forEach(data.in_stock_attributes, (id) => {
+                $('[data-product-attribute-value="' + id + '"]').show();
+            });
+        }
+
+        if (data.out_of_stock_behavior === 'label_option') {
+            $attributes.addClass('unavailable');
+
+            _.forEach(data.in_stock_attributes, (id) => {
+                $('[data-product-attribute-value="' + id + '"]').removeClass('unavailable');
+            });
+        }
     }
 }

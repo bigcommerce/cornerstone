@@ -21,7 +21,7 @@ export default class Cart extends PageManager {
 
     cartUpdate($target) {
         const itemId = $target.data('cart-itemid');
-        const $el = $('#qty-' + itemId);
+        const $el = $(`#qty-${itemId}`);
         const oldQty = parseInt($el.val(), 10);
         const maxQty = parseInt($el.data('quantity-max'), 10);
         const minQty = parseInt($el.data('quantity-min'), 10);
@@ -296,15 +296,15 @@ export default class Cart extends PageManager {
                 return;
             }
 
-            const allowMessage = $select.find('option[value=' + id + ']').data('allow-message');
+            const allowMessage = $select.find(`option[value=${id}]`).data('allow-message');
 
-            $('.giftWrapping-image-' + index).hide();
-            $('#giftWrapping-image-' + index + '-' + id).show();
+            $(`.giftWrapping-image-${index}`).hide();
+            $(`#giftWrapping-image-${index}-${id}`).show();
 
             if (allowMessage) {
-                $('#giftWrapping-message-' + index).show();
+                $(`#giftWrapping-message-${index}`).show();
             } else {
-                $('#giftWrapping-message-' + index).hide();
+                $(`#giftWrapping-message-${index}`).hide();
             }
         });
 
@@ -318,7 +318,7 @@ export default class Cart extends PageManager {
             if (value === 'same') {
                 $singleForm.show();
                 $multiForm.hide();
-            }  else {
+            } else {
                 $singleForm.hide();
                 $multiForm.show();
             }

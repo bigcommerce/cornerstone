@@ -4,7 +4,7 @@ import nod from './common/nod';
 import Wishlist from './wishlist';
 import validation from './common/form-validation';
 import stateCountry from './common/state-country';
-import {classifyForm, Validators, insertStateHiddenField} from './common/form-utils';
+import { classifyForm, Validators, insertStateHiddenField } from './common/form-utils';
 
 export default class Account extends PageManager {
     constructor() {

@@ -5,7 +5,7 @@ import utils from 'bigcommerce/stencil-utils';
 import ProductDetails from '../common/product-details';
 import { defaultModal } from './modal';
 
-export default function(context) {
+export default function (context) {
     const modal = defaultModal();
 
     $('body').on('click', '.quickview', (event) => {
@@ -15,7 +15,7 @@ export default function(context) {
 
         modal.open({ size: 'large' });
 
-        utils.api.product.getById(productId, {template: 'products/quick-view'}, function done(err, response) {
+        utils.api.product.getById(productId, { template: 'products/quick-view' }, (err, response) => {
             modal.updateContent(response);
 
             modal.$content.find('.productView').addClass('productView--quickView');

@@ -1,7 +1,4 @@
 export default class PageManager {
-    constructor() {
-    }
-
     before(next) {
         next();
     }

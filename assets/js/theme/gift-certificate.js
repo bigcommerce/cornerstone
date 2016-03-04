@@ -13,25 +13,25 @@ export default class GiftCertificate extends PageManager {
         const $certBalanceForm = $('#gift-certificate-balance');
 
         const purchaseModel = {
-            recipientName: function(val) {
+            recipientName(val) {
                 return val.length;
             },
-            recipientEmail: function(...args) {
+            recipientEmail(...args) {
                 return formModel.email(...args);
             },
-            senderName: function(val) {
+            senderName(val) {
                 return val.length;
             },
-            senderEmail: function(...args) {
+            senderEmail(...args) {
                 return formModel.email(...args);
             },
-            customAmount: function(value, min, max) {
+            customAmount(value, min, max) {
                 return value && value >= min && value <= max;
             },
-            setAmount: function(value, options) {
+            setAmount(value, options) {
                 let found = false;
 
-                options.forEach(function(option) {
+                options.forEach((option) => {
                     if (option === value) {
                         found = true;
                         return false;
@@ -168,7 +168,7 @@ export default class GiftCertificate extends PageManager {
             }
 
             const modal = defaultModal();
-            const previewUrl = $(event.currentTarget).data('preview-url') + '&' + $purchaseForm.serialize();
+            const previewUrl = `${$(event.currentTarget).data('preview-url')}&${$purchaseForm.serialize()}`;
 
             modal.open();
 
@@ -189,7 +189,7 @@ export default class GiftCertificate extends PageManager {
 
         balanceValidator.add({
             selector: $balanceForm.find('input[name="giftcertificatecode"]'),
-            validate: function(cb, val) {
+            validate(cb, val) {
                 cb(giftCertChecker(val));
             },
             errorMessage: 'You must enter a certificate code.',

@@ -54,6 +54,7 @@ const PageClasses = {
         'pages/gift-certificate/purchase': giftCertificate,
         'pages/gift-certificate/balance': giftCertificate,
         'pages/gift-certificate/redeem': giftCertificate,
+        // eslint-disable-next-line
         'global': global,
         'pages/home': home,
         'pages/order-complete': orderComplete,
@@ -71,7 +72,7 @@ const PageClasses = {
      * @param page
      * @returns {*}
      */
-    get: function(pageKey) {
+    get(pageKey) {
         if (this.mapping[pageKey]) {
             return this.mapping[pageKey];
         }
@@ -89,7 +90,7 @@ function series(pageObj) {
         pageObj.before.bind(pageObj), // Executed first after constructor()
         pageObj.loaded.bind(pageObj), // Main module logic
         pageObj.after.bind(pageObj), // Clean up method that can be overridden for cleanup.
-    ], function(err) {
+    ], (err) => {
         if (err) {
             throw new Error(err);
         }
@@ -148,7 +149,7 @@ window.stencilBootstrap = function stencilBootstrap(templateFile, contextJSON = 
                     return loader(pageType, pages);
                 }
 
-                throw new Error(templateFile + ' Module not found');
+                throw new Error(`${templateFile} Module not found`);
             });
         },
     };

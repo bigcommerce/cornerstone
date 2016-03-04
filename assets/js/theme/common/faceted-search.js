@@ -355,7 +355,7 @@ class FacetedSearch {
         const url = Url.parse(location.href);
         const queryParams = decodeURI($(event.currentTarget).serialize());
 
-        urlUtils.goToUrl(Url.format({ pathname: url.pathname, search: '?' + queryParams }));
+        urlUtils.goToUrl(Url.format({ pathname: url.pathname, search: `?${queryParams}` }));
     }
 
     onStateChange() {

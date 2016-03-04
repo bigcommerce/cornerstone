@@ -3,7 +3,7 @@ import _ from 'lodash';
 import utils from 'bigcommerce/stencil-utils';
 import StencilDropDown from './stencil-dropdown';
 
-export default function() {
+export default function () {
     let stencilDropDown;
     const TOP_STYLING = 'top: 49px;';
     const $quickSearchResults = $('.quickSearchResults');
@@ -32,7 +32,7 @@ export default function() {
 
     // stagger searching for 200ms after last input
     const doSearch = _.debounce((searchQuery) => {
-        utils.api.search.search(searchQuery, {template: 'search/quick-results'}, (err, response) => {
+        utils.api.search.search(searchQuery, { template: 'search/quick-results' }, (err, response) => {
             if (err) {
                 return false;
             }

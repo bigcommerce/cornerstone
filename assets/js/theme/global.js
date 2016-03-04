@@ -19,10 +19,6 @@ function fastClick(element) {
 }
 
 export default class Global extends PageManager {
-    constructor() {
-        super();
-    }
-
     /**
      * You can wrap the execution in this method with an asynchronous function map using the async library
      * if your global modules need async callback handling.

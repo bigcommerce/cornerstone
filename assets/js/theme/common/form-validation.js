@@ -49,7 +49,7 @@ function buildRequiredCheckboxValidation($formField, validation) {
         validate: (cb) => {
             let result = false;
 
-            $(secondarySelector).each(function(index, checkbox) {
+            $(secondarySelector).each((index, checkbox) => {
                 if (checkbox.checked) {
                     result = true;
 
@@ -65,8 +65,8 @@ function buildRequiredCheckboxValidation($formField, validation) {
 
 function buildRequiredValidation(validation, selector) {
     return {
-        selector: selector,
-        validate: (cb, val) => {
+        selector,
+        validate(cb, val) {
             cb(val.length > 0);
         },
         errorMessage: `The '${validation.label}' field cannot be blank.`,
@@ -104,7 +104,7 @@ function buildValidation($validateableElement) {
     } else if (validation.required && (validation.type === 'checkboxselect' || validation.type === 'radioselect')) {
         fieldValidations.push(buildRequiredCheckboxValidation($validateableElement, validation));
     } else {
-        $validateableElement.find('input, select, textarea').each(function(index, element) {
+        $validateableElement.find('input, select, textarea').each((index, element) => {
             const $inputElement = $(element);
             const tagName = $inputElement.get(0).tagName;
             const inputName = $inputElement.attr('name');
@@ -127,10 +127,10 @@ function buildValidation($validateableElement) {
  * @param $form
  * @returns {Array}
  */
-export default function($form) {
+export default function ($form) {
     let validationsToPerform = [];
 
-    $form.find('[data-validation]').each(function(index, input) {
+    $form.find('[data-validation]').each((index, input) => {
         validationsToPerform = validationsToPerform.concat(buildValidation($(input)));
     });
 

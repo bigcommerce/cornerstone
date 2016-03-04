@@ -5,7 +5,7 @@ import 'foundation/js/foundation/foundation.tab';
 import modalFactory from './modal';
 import revealCloseFactory from './reveal-close';
 
-export default function($element) {
+export default function ($element) {
     $element.foundation({
         dropdown: {
             // specify the class used for active dropdowns

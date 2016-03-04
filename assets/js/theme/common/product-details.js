@@ -317,8 +317,7 @@ export default class Product {
      * @param  {Object} data
      */
     updateProductAttributes(data) {
-        let $attributes = $('[data-product-attribute-value]', this.$scope);
-        let i;
+        const $attributes = $('[data-product-attribute-value]', this.$scope);
 
         if (data.out_of_stock_behavior === 'hide_option') {
             $attributes.hide();
@@ -342,15 +341,12 @@ export default class Product {
      */
     initRadioAttributes() {
         $('[data-product-option-change] input[type="radio"]', this.$scope).each((i, radio) => {
-            let $radio = $(radio);
+            const $radio = $(radio);
 
             $radio.attr('data-state', $radio.prop('checked'));
 
-            $radio.click((e) => {
-                let $radio = $(e.currentTarget);
-
-                // if this was previously checked
-                if ($radio.data('state') == true) {
+            $radio.click(() => {
+                if ($radio.data('state') === true) {
                     $radio.prop('checked', false);
                     $radio.data('state', false);
 

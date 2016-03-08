@@ -280,11 +280,6 @@
         border-color: stencilColor("checkRadio-color");
         box-shadow: 0 0 0 1px stencilColor("checkRadio-color");
     }
-
-    &.unavailable {
-        opacity: $productOptions-disable-opacity;
-        background-color: $productOptions-disable-background-color;
-    }
 }
 
 .form-option-variant {
@@ -353,5 +348,37 @@
 .form-row--half > .form-field:nth-child(odd) {
     @include breakpoint("small") {
         clear: left;
+    }
+}
+
+// Out of stock product attributes
+[data-product-attribute] {
+    .form-option {
+        overflow: hidden;
+        position: relative;
+
+        // scss-lint:disable NestingDepth
+        &.unavailable {
+            background-color: $productOptions-disable-background-color;
+            opacity: $productOptions-disable-opacity;
+
+            &:before {
+                background-color: $productOptions-strikethrough-color;
+                content: "";
+                height: 2px;
+                left: -5px;
+                position: absolute;
+                top: 11px;
+                transform: rotate(-45deg);
+                width: 141%;
+            }
+        }
+    }
+}
+
+[data-product-attribute="set-radio"] {
+    .unavailable {
+        opacity: 1;
+        text-decoration: line-through;
     }
 }

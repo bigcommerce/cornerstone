@@ -377,18 +377,23 @@ export default class Product {
         $('[data-product-attribute] input[type="radio"]', this.$scope).each((i, radio) => {
             const $radio = $(radio);
 
+            // Only bind to click once
+            if ($radio.attr('data-state') !== undefined) {
+                $radio.click((e) => {                    
+                    if ($radio.data('state') === true) {
+                        $radio.prop('checked', false);
+                        $radio.data('state', false);
+
+                        $radio.change();
+                    } else {
+                        $radio.data('state', true);
+                    }
+
+                    this.initRadioAttributes();
+                });
+            }
+
             $radio.attr('data-state', $radio.prop('checked'));
-
-            $radio.click(() => {
-                if ($radio.data('state') === true) {
-                    $radio.prop('checked', false);
-                    $radio.data('state', false);
-
-                    $radio.change();
-                } else {
-                    $radio.data('state', true);
-                }
-            });
         });
     }
 }

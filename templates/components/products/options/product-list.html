@@ -22,7 +22,7 @@
                 </li>
             {{/unless}}
             {{#each values}}
-                <li class="productOptions-list-item">
+                <li class="productOptions-list-item" data-product-attribute-value="{{id}}">
                     {{#if image}}
                         <figure class="productOptions-list-item-figure">
                             <img class="productOptions-list-item-image" src="{{getImage image 'thumb'}}" alt="{{image.alt}}">
@@ -37,7 +37,7 @@
                             id="attribute_{{id}}"
                             {{#if selected}}checked{{/if}}
                             {{#if ../required}}required{{/if}}>
-                        <label class="form-label" for="attribute_{{id}}">{{label}}</label>
+                        <label data-product-attribute-value="{{id}}" class="form-label" for="attribute_{{id}}">{{label}}</label>
                     </div>
                 </li>
             {{/each}}
@@ -60,7 +60,7 @@
                 id="attribute_{{id}}"
                 {{#if selected}}checked{{/if}}
                 {{#if ../required}}required{{/if}}>
-            <label class="form-label" for="attribute_{{id}}">{{label}}</label>
+            <label data-product-attribute-value="{{id}}" class="form-label" for="attribute_{{id}}">{{label}}</label>
         {{/each}}
     {{/if}}
 </div>

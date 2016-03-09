@@ -354,7 +354,6 @@ export default class Product {
         if (behavior === 'hide_option') {
             $attribute.show();
         } else {
-
             if (this.getAttributeType($attribute) === 'set-select') {
                 $attribute.html($attribute.html().replace(outOfStockMessage, ''));
             } else {
@@ -378,7 +377,7 @@ export default class Product {
 
             // Only bind to click once
             if ($radio.attr('data-state') !== undefined) {
-                $radio.click((e) => {                    
+                $radio.click(() => {
                     if ($radio.data('state') === true) {
                         $radio.prop('checked', false);
                         $radio.data('state', false);

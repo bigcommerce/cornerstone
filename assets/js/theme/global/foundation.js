@@ -7,10 +7,6 @@ import revealCloseFactory from './reveal-close';
 
 export default function($element) {
     $element.foundation({
-        dropdown: {
-            // specify the class used for active dropdowns
-            active_class: 'is-open',
-        },
         reveal: {
             bg_class: 'modal-background',
             dismiss_modal_class: 'modal-close',

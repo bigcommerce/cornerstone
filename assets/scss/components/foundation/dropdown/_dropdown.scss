@@ -9,12 +9,15 @@
     position: absolute;
 }
 
-.dropdown-menu.is-loading {
-
-    .loadingOverlay {
+.dropdown-menu {
+    &.is-loading .loadingOverlay {
         background: none;
         padding: (spacing("double") + spacing("single")) 0;
         position: relative;
+    }
+
+    &.is-open {
+        display: block;
     }
 }
 

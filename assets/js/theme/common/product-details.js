@@ -339,28 +339,27 @@ export default class Product {
     }
 
     disableAttribute($attribute, behavior, outOfStockMessage) {
-        if (this.getAttributeType($attribute) === 'set-select') {
-            $attribute.html($attribute.html().replace(outOfStockMessage, '') + outOfStockMessage);
-            return;
-        }
-
         if (behavior === 'hide_option') {
             $attribute.hide();
         } else {
-            $attribute.addClass('unavailable');
+            if (this.getAttributeType($attribute) === 'set-select') {
+                $attribute.html($attribute.html().replace(outOfStockMessage, '') + outOfStockMessage);
+            } else {
+                $attribute.addClass('unavailable');
+            }
         }
     }
 
     enableAttribute($attribute, behavior, outOfStockMessage) {
-        if (this.getAttributeType($attribute) === 'set-select') {
-            $attribute.html($attribute.html().replace(outOfStockMessage, ''));
-            return;
-        }
-
         if (behavior === 'hide_option') {
             $attribute.show();
         } else {
-            $attribute.removeClass('unavailable');
+
+            if (this.getAttributeType($attribute) === 'set-select') {
+                $attribute.html($attribute.html().replace(outOfStockMessage, ''));
+            } else {
+                $attribute.removeClass('unavailable');
+            }
         }
     }
 

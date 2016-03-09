@@ -9,10 +9,6 @@ import 'vakata/jstree';
 import nod from './common/nod';
 
 export default class Search extends CatalogPage {
-    constructor() {
-        super();
-    }
-
     formatCategoryTreeForJSTree(node) {
         const nodeData = {
             text: node.data,

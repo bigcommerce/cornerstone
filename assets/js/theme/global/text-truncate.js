@@ -32,9 +32,9 @@ export default class TextTruncate {
 
     createViewAnchor() {
         this.$viewAnchor = $('<a />', {
-            'href': '#',
-            'class': 'textTruncate-viewMore',
-            'text': this.options.open ? this.options.text.viewLess : this.options.text.viewMore,
+            href: '#',
+            class: 'textTruncate-viewMore',
+            text: this.options.open ? this.options.text.viewLess : this.options.text.viewMore,
         });
     }
 

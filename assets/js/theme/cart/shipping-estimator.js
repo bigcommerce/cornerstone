@@ -16,14 +16,14 @@ export default class ShippingEstimator {
     initFormValidation() {
         this.shippingEstimator = 'form[data-shipping-estimator]';
         this.shippingValidator = nod({
-            submit: this.shippingEstimator + ' .shipping-estimate-submit',
+            submit: `${this.shippingEstimator} .shipping-estimate-submit`,
         });
 
         $('.shipping-estimate-submit', this.$element).click((event) => {
             // When switching between countries, the state/region is dynamic
             // Only perform a check for all fields when country has a value
             // Otherwise areAll('valid') will check country for validity
-            if ($(this.shippingEstimator + ' select[name="shipping-country"]').val()) {
+            if ($(`${this.shippingEstimator} select[name="shipping-country"]`).val()) {
                 this.shippingValidator.performCheck();
             }
 
@@ -41,7 +41,7 @@ export default class ShippingEstimator {
     bindValidation() {
         this.shippingValidator.add([
             {
-                selector: this.shippingEstimator + ' select[name="shipping-country"]',
+                selector: `${this.shippingEstimator} select[name="shipping-country"]`,
                 validate: (cb, val) => {
                     const countryId = Number(val);
                     const result = countryId !== 0 && !isNaN(countryId);
@@ -51,12 +51,12 @@ export default class ShippingEstimator {
                 errorMessage: 'The \'Country\' field cannot be blank.',
             },
             {
-                selector: $(this.shippingEstimator + ' select[name="shipping-state"]'),
+                selector: $(`${this.shippingEstimator} select[name="shipping-state"]`),
                 validate: (cb) => {
                     let result;
 
                     // dynamic. switching between dropdown and input.
-                    const $ele = $(this.shippingEstimator + ' select[name="shipping-state"]');
+                    const $ele = $(`${this.shippingEstimator} select[name="shipping-state"]`);
 
                     if ($ele.length) {
                         const eleVal = $ele.val();
@@ -92,7 +92,7 @@ export default class ShippingEstimator {
 
     bindStateCountryChange() {
         // Requests the states for a country with AJAX
-        stateCountry(this.$state, this.context, {useIdForStates: true}, (err) => {
+        stateCountry(this.$state, this.context, { useIdForStates: true }, (err) => {
             if (err) {
                 alert(err);
 

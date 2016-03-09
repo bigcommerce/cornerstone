@@ -2,9 +2,6 @@ import PageManager from '../page-manager';
 import $ from 'jquery';
 
 export default class Compare extends PageManager {
-    constructor() {
-        super();
-    }
 
     loaded() {
         const message = this.context.compareRemoveMessage;

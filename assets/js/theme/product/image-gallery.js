@@ -71,7 +71,7 @@ export default class ImageGallery {
     }
 
     setImageZoom() {
-        this.$mainImage.zoom({url: this.$mainImage.attr('data-zoom-image'), touch: false});
+        this.$mainImage.zoom({ url: this.$mainImage.attr('data-zoom-image'), touch: false });
     }
 
     destroyImageZoom() {

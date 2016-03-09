@@ -4,7 +4,7 @@ import $ from 'jquery';
 import nod from './common/nod';
 import validation from './common/form-validation';
 import forms from './common/models/forms';
-import {classifyForm, Validators} from './common/form-utils';
+import { classifyForm, Validators } from './common/form-utils';
 
 export default class Auth extends PageManager {
     constructor() {
@@ -27,7 +27,7 @@ export default class Auth extends PageManager {
 
                     cb(result);
                 },
-                errorMessage: 'Please type in a valid email address, such as joe@aol.com.',
+                errorMessage: 'Please use a valid email address, such as user@example.com.',
             },
             {
                 selector: '.login-form input[name="login_pass"]',
@@ -64,7 +64,7 @@ export default class Auth extends PageManager {
 
                     cb(result);
                 },
-                errorMessage: 'Please type in a valid email address, such as joe@aol.com.',
+                errorMessage: 'Please use a valid email address, such as user@example.com.',
             },
         ]);
 

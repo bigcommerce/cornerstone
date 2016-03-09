@@ -1,6 +1,6 @@
 import $ from 'jquery';
 import nod from '../common/nod';
-import {CollapsibleEvents} from '../common/collapsible';
+import { CollapsibleEvents } from '../common/collapsible';
 import forms from '../common/models/forms';
 
 export default class {
@@ -49,11 +49,11 @@ export default class {
         const $prevLink = $('.pagination-item--previous .pagination-link', this.$reviewsContent);
 
         if ($nextLink.length) {
-            $nextLink.attr('href', $nextLink.attr('href') + '#product-reviews');
+            $nextLink.attr('href', `${$nextLink.attr('href')} #product-reviews`);
         }
 
         if ($prevLink.length) {
-            $prevLink.attr('href', $prevLink.attr('href') + '#product-reviews');
+            $prevLink.attr('href', `${$prevLink.attr('href')} #product-reviews`);
         }
     }
 
@@ -76,7 +76,7 @@ export default class {
                 const result = forms.email(val);
                 cb(result);
             },
-            errorMessage: 'Please type in a valid email address, such as joe@aol.com.',
+            errorMessage: 'Please use a valid email address, such as user@example.com.',
         }]);
 
         return this.validator;

@@ -4,10 +4,6 @@ import $ from 'jquery';
 import FacetedSearch from './common/faceted-search';
 
 export default class Category extends CatalogPage {
-    constructor() {
-        super();
-    }
-
     loaded() {
         if ($('#facetedSearch').length > 0) {
             this.initFacetedSearch();
@@ -36,7 +32,7 @@ export default class Category extends CatalogPage {
             },
         };
 
-        this.facetedSearch = new FacetedSearch(requestOptions, function(content) {
+        this.facetedSearch = new FacetedSearch(requestOptions, (content) => {
             $productListingContainer.html(content.productListing);
             $facetedSearchContainer.html(content.sidebar);
 

@@ -4,10 +4,6 @@ import $ from 'jquery';
 import forms from './common/models/forms';
 
 export default class ContactUs extends PageManager {
-    constructor() {
-        super();
-    }
-
     loaded() {
         this.registerContactFormValidation();
     }
@@ -27,7 +23,7 @@ export default class ContactUs extends PageManager {
 
                     cb(result);
                 },
-                errorMessage: 'Please type in a valid email address, such as joe@aol.com.',
+                errorMessage: 'Please use a valid email address, such as user@example.com.',
             },
             {
                 selector: `${formSelector} textarea[name="contact_question"]`,

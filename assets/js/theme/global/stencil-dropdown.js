@@ -45,7 +45,11 @@ export default class StencilDropdown {
                 $cart.click();
             }
 
-            $container.hasClass('is-open') ? this.hide($container, event) : this.show($container, event, style);
+            if ($container.hasClass('is-open')) {
+                this.hide($container, event);
+            } else {
+                this.show($container, event, style);
+            }
         });
 
         $('body').click((e) => {
@@ -55,7 +59,7 @@ export default class StencilDropdown {
             }
         }).on('keyup', (e) => {
             // If they hit escape and the modal isn't open, close the search
-            if (e.which === 27 && ! modalOpened) {
+            if (e.which === 27 && !modalOpened) {
                 this.hide($container);
             }
         }).on('open.fndtn.reveal', '[data-reveal]', () => {

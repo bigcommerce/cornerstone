@@ -25,16 +25,14 @@ function updateCounterNav(counter, $link, urlContext) {
     }
 }
 
-export default function(urlContext) {
+export default function (urlContext) {
     let products;
 
     const $checked = $('body').find('input[name="products\[\]"]:checked');
     const $compareLink = $('a[data-compare-nav]');
 
     if ($checked.length !== 0) {
-        products = _.map($checked, (element) => {
-            return element.value;
-        });
+        products = _.map($checked, (element) => element.value);
 
         updateCounterNav(products, $compareLink, urlContext);
     }
@@ -45,7 +43,12 @@ export default function(urlContext) {
         const product = event.currentTarget.value;
         const $clickedCompareLink = $('a[data-compare-nav]');
 
-        event.currentTarget.checked ? incrementCounter(compareCounter, product) : decrementCounter(compareCounter, product);
+        if (event.currentTarget.checked) {
+            incrementCounter(compareCounter, product);
+        } else {
+            decrementCounter(compareCounter, product);
+        }
+
         updateCounterNav(compareCounter, $clickedCompareLink, urlContext);
     });
 

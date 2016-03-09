@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import utils from 'bigcommerce/stencil-utils';
 import _ from 'lodash';
-import {insertStateHiddenField} from './form-utils';
+import { insertStateHiddenField } from './form-utils';
 
 /**
  * If there are no options from bcapp, a text field will be sent. This will create a select element to hold options after the remote request.
@@ -9,8 +9,9 @@ import {insertStateHiddenField} from './form-utils';
  */
 function makeStateRequired(stateElement, context) {
     const attrs = _.transform(stateElement.prop('attributes'), (result, item) => {
-        result[item.name] = item.value;
-        return result;
+        const ret = result;
+        ret[item.name] = item.value;
+        return ret;
     });
 
     const replacementAttributes = {
@@ -46,9 +47,10 @@ function makeStateRequired(stateElement, context) {
  */
 function makeStateOptional(stateElement) {
     const attrs = _.transform(stateElement.prop('attributes'), (result, item) => {
-        result[item.name] = item.value;
+        const ret = result;
+        ret[item.name] = item.value;
 
-        return result;
+        return ret;
     });
 
     const replacementAttributes = {
@@ -84,7 +86,7 @@ function addOptions(statesArray, $selectElement, options) {
     container.push(`<option value="">${statesArray.prefix}</option>`);
 
     if (!_.isEmpty($selectElement)) {
-        _.each(statesArray.states, (stateObj)  => {
+        _.each(statesArray.states, (stateObj) => {
             if (options.useIdForStates) {
                 container.push(`<option value="${stateObj.id}">${stateObj.name}</option>`);
             } else {
@@ -103,7 +105,7 @@ function addOptions(statesArray, $selectElement, options) {
  * @param {Object} options
  * @param {Function} callback
  */
-export default function(stateElement, context = {}, options, callback) {
+export default function (stateElement, context = {}, options, callback) {
     /**
      * Backwards compatible for three parameters instead of four
      *

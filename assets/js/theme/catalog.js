@@ -4,10 +4,6 @@ import urlUtils from './common/url-utils';
 import Url from 'url';
 
 export default class CatalogPage extends PageManager {
-    constructor() {
-        super();
-    }
-
     onSortBySubmit(event) {
         const url = Url.parse(location.href, true);
         const queryParams = $(event.currentTarget).serialize().split('=');

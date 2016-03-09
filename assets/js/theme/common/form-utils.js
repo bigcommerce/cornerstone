@@ -289,4 +289,4 @@ const Validators = {
     },
 };
 
-export {Validators, insertStateHiddenField};
+export { Validators, insertStateHiddenField };

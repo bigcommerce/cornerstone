@@ -136,8 +136,8 @@ export default class Product {
                 );
 
                 this.imageGallery.setAlternateImage({
-                    mainImageUrl: mainImageUrl,
-                    zoomImageUrl: zoomImageUrl,
+                    mainImageUrl,
+                    zoomImageUrl,
                 });
             } else {
                 this.imageGallery.restoreImage();

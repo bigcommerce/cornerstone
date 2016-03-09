@@ -8,7 +8,7 @@ export const CartPreviewEvents = {
     open: 'opened.fndtn.dropdown',
 };
 
-export default function() {
+export default function () {
     const loadingClass = 'is-loading';
     const $cart = $('[data-cart-preview]');
     const $cartDropdown = $('#cart-preview-dropdown');

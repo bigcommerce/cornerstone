@@ -350,3 +350,36 @@
         clear: left;
     }
 }
+
+// Out of stock product attributes
+[data-product-attribute] {
+    .form-option {
+        overflow: hidden;
+        position: relative;
+
+        // scss-lint:disable NestingDepth
+        &.unavailable {
+            background-color: $productOptions-disable-background-color;
+            opacity: $productOptions-disable-opacity;
+
+            &:before {
+                background-color: $productOptions-strikethrough-color;
+                content: "";
+                height: 2px;
+                left: -5px;
+                position: absolute;
+                top: 11px;
+                transform: rotate(-45deg);
+                width: 141%;
+            }
+        }
+    }
+}
+
+[data-product-attribute="set-radio"],
+[data-product-attribute="product-list"] {
+    .unavailable {
+        opacity: $productOptions-disable-opacity * 2;
+        text-decoration: line-through;
+    }
+}

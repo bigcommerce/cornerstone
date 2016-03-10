@@ -1,4 +1,4 @@
-<div class="form-field">
+<div class="form-field" data-product-attribute="product-list">
     <label class="form-label form-label--alternate form-label--inlineSmall">
         {{display_name}}:
         <span data-option-value></span>
@@ -22,7 +22,7 @@
                 </li>
             {{/unless}}
             {{#each values}}
-                <li class="productOptions-list-item">
+                <li class="productOptions-list-item" data-product-attribute-value="{{id}}">
                     {{#if image}}
                         <figure class="productOptions-list-item-figure">
                             <img class="productOptions-list-item-image" src="{{getImage image 'thumb'}}" alt="{{image.alt}}">
@@ -34,10 +34,10 @@
                             type="radio"
                             name="attribute[{{../id}}]"
                             value="{{id}}"
-                            id="attribute_{{id}}_{{../id}}"
+                            id="attribute_{{id}}"
                             {{#if selected}}checked{{/if}}
                             {{#if ../required}}required{{/if}}>
-                        <label class="form-label" for="attribute_{{id}}_{{../id}}">{{label}}</label>
+                        <label data-product-attribute-value="{{id}}" class="form-label" for="attribute_{{id}}">{{label}}</label>
                     </div>
                 </li>
             {{/each}}
@@ -57,10 +57,10 @@
                 type="radio"
                 name="attribute[{{../id}}]"
                 value="{{id}}"
-                id="attribute_{{id}}_{{../id}}"
+                id="attribute_{{id}}"
                 {{#if selected}}checked{{/if}}
                 {{#if ../required}}required{{/if}}>
-            <label class="form-label" for="attribute_{{id}}_{{../id}}">{{label}}</label>
+            <label data-product-attribute-value="{{id}}" class="form-label" for="attribute_{{id}}">{{label}}</label>
         {{/each}}
     {{/if}}
 </div>

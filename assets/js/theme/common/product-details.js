@@ -32,6 +32,8 @@ export default class Product {
         this.imageGallery = new ImageGallery($('[data-image-gallery]', this.$scope));
         this.imageGallery.init();
         this.listenQuantityChange();
+        this.initRadioAttributes();
+        this.updateProductAttributes(window.BCData.product_attributes);
 
         previewModal = modalFactory('#previewModal')[0];
         productSingleton = this;
@@ -84,6 +86,8 @@ export default class Product {
             const viewModel = this.getViewModel(this.$scope);
             const $messageBox = $('.productAttributes-message');
             const data = response.data || {};
+
+            this.updateProductAttributes(data);
 
             if (data.purchasing_message) {
                 $('.alertBox-message', $messageBox).text(data.purchasing_message);
@@ -305,6 +309,89 @@ export default class Product {
             if (onComplete) {
                 onComplete(response);
             }
+        });
+    }
+
+    /**
+     * Hide or mark as unavailable out of stock attributes if enabled
+     * @param  {Object} data
+     */
+    updateProductAttributes(data) {
+        const behavior = data.out_of_stock_behavior;
+        const inStockIds = data.in_stock_attributes;
+        const outOfStockMessage = ` (${data.out_of_stock_message})`;
+
+        if (behavior !== 'hide_option' && behavior !== 'label_option') {
+            return;
+        }
+
+        $('[data-product-attribute-value]', this.$scope).each((i, attribute) => {
+            const $attribute = $(attribute);
+            const attrId = parseInt($attribute.data('product-attribute-value'), 10);
+
+
+            if (inStockIds.indexOf(attrId) !== -1) {
+                this.enableAttribute($attribute, behavior, outOfStockMessage);
+            } else {
+                this.disableAttribute($attribute, behavior, outOfStockMessage);
+            }
+        });
+    }
+
+    disableAttribute($attribute, behavior, outOfStockMessage) {
+        if (behavior === 'hide_option') {
+            $attribute.hide();
+        } else {
+            if (this.getAttributeType($attribute) === 'set-select') {
+                $attribute.html($attribute.html().replace(outOfStockMessage, '') + outOfStockMessage);
+            } else {
+                $attribute.addClass('unavailable');
+            }
+        }
+    }
+
+    enableAttribute($attribute, behavior, outOfStockMessage) {
+        if (behavior === 'hide_option') {
+            $attribute.show();
+        } else {
+            if (this.getAttributeType($attribute) === 'set-select') {
+                $attribute.html($attribute.html().replace(outOfStockMessage, ''));
+            } else {
+                $attribute.removeClass('unavailable');
+            }
+        }
+    }
+
+    getAttributeType($attribute) {
+        const $parent = $attribute.closest('[data-product-attribute]');
+
+        return $parent ? $parent.data('product-attribute') : null;
+    }
+
+    /**
+     * Allow radio buttons to get deselected
+     */
+    initRadioAttributes() {
+        $('[data-product-attribute] input[type="radio"]', this.$scope).each((i, radio) => {
+            const $radio = $(radio);
+
+            // Only bind to click once
+            if ($radio.attr('data-state') !== undefined) {
+                $radio.click(() => {
+                    if ($radio.data('state') === true) {
+                        $radio.prop('checked', false);
+                        $radio.data('state', false);
+
+                        $radio.change();
+                    } else {
+                        $radio.data('state', true);
+                    }
+
+                    this.initRadioAttributes();
+                });
+            }
+
+            $radio.attr('data-state', $radio.prop('checked'));
         });
     }
 }

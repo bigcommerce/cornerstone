@@ -2,9 +2,9 @@
  Import all product specific js
  */
 import $ from 'jquery';
-import utils from 'bigcommerce/stencil-utils';
-import 'foundation/js/foundation/foundation';
-import 'foundation/js/foundation/foundation.reveal';
+import utils from '@bigcommerce/stencil-utils';
+import 'foundation-sites/js/foundation/foundation';
+import 'foundation-sites/js/foundation/foundation.reveal';
 import ImageGallery from '../product/image-gallery';
 import modalFactory from '../global/modal';
 import _ from 'lodash';
@@ -263,7 +263,7 @@ export default class Product {
     }
 
     /**
-     * Get cart content
+     * Get cart contents
      *
      * @param {String} cartItemHash
      * @param {Function} onComplete

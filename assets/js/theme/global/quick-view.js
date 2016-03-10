@@ -1,7 +1,7 @@
 import $ from 'jquery';
-import 'foundation/js/foundation/foundation';
-import 'foundation/js/foundation/foundation.dropdown';
-import utils from 'bigcommerce/stencil-utils';
+import 'foundation-sites/js/foundation/foundation';
+import 'foundation-sites/js/foundation/foundation.dropdown';
+import utils from '@bigcommerce/stencil-utils';
 import ProductDetails from '../common/product-details';
 import { defaultModal } from './modal';
 

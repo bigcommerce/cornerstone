@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import 'history.js/scripts/bundled-uncompressed/html4+html5/jquery.history';
 import PageManager from '../page-manager';
 import quickSearch from './global/quick-search';
 import currencySelector from './global/currency-selector';
@@ -12,7 +13,7 @@ import privacyCookieNotification from './global/cookieNotification';
 import maintenanceMode from './global/maintenanceMode';
 import carousel from './common/carousel';
 import loadingProgressBar from './global/loading-progress-bar';
-import FastClick from 'ftlabs/fastclick';
+import FastClick from 'fastclick';
 
 function fastClick(element) {
     return new FastClick(element);

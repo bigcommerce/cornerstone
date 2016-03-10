@@ -1,9 +1,8 @@
 import FacetedSearch from '../../../theme/common/faceted-search';
 import { Validators } from '../../../theme/common/form-utils';
 import $ from 'jquery';
-import { hooks, api } from 'bigcommerce/stencil-utils';
-import History from 'browserstate/history.js/scripts/bundled-uncompressed/html4+html5/jquery.history';
-
+import { hooks, api } from '@bigcommerce/stencil-utils';
+import 'history.js/scripts/bundled-uncompressed/html4+html5/jquery.history';
 describe('FacetedSearch', () => {
     let facetedSearch;
     let requestOptions;

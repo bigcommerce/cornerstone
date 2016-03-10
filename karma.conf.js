@@ -1,3 +1,5 @@
+var webpackTestConfig = require('./webpack.conf.js');
+
 module.exports = function (config) {
     config.set({
 
@@ -6,11 +8,15 @@ module.exports = function (config) {
 
         // frameworks to use
         // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-        frameworks: ['jspm', 'jasmine', 'es6-shim'],
+        frameworks: ['jasmine', 'es6-shim'],
 
         // start these browsers
         // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-        browsers: ['PhantomJS2'],
+        browsers: ['PhantomJS'],
+
+        // level of logging
+        // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
+        logLevel: config.LOG_ERROR,
 
         // test results reporter to use
         // possible values: 'dots', 'progress'
@@ -25,42 +31,18 @@ module.exports = function (config) {
         colors: true,
 
         // list of files / patterns to load in the browser
-        files: [],
-
-        jspm: {
-            // Edit this to your needs
-            config: 'assets/config.js',
-            loadFiles: [
-                'assets/js/test-unit/**/*.spec.js'
-            ],
-            serveFiles: [
-                'assets/js/theme/app.js',
-                'assets/js/theme/page-manager.js',
-                'assets/js/theme/**/*.js'
-            ]
-        },
-
-        proxies: {
-            '/base/jspm_packages/': '/base/assets/jspm_packages/'
-        },
-
-        // list of files to exclude
-        exclude: [],
-
-        // level of logging
-        // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-        logLevel: config.LOG_ERROR,
-
+        files: [
+            {pattern: './assets/js/**/*.spec.js', watched: false }
+        ],
         // preprocess matching files before serving them to the browser
         // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
         preprocessors: {
-            'js/test-unit/**/*.js': ['babel']
+            './assets/js/**/*.spec.js': ['webpack', 'sourcemap']
         },
+        webpack: webpackTestConfig,
 
-        babelPreprocessor: {
-            options: {
-                modules: 'ignore'
-            }
+        webpackMiddleware: {
+            noInfo: true
         }
     });
 };

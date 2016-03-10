@@ -1,9 +1,8 @@
-import { hooks, api } from 'bigcommerce/stencil-utils';
+import { hooks, api } from '@bigcommerce/stencil-utils';
 import $ from 'jquery';
 import _ from 'lodash';
 import Url from 'url';
 import urlUtils from './url-utils';
-import 'browserstate/history.js/scripts/bundled-uncompressed/html4+html5/jquery.history';
 import collapsibleFactory from './collapsible';
 import { Validators } from './form-utils';
 import nod from './nod';

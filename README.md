@@ -4,17 +4,7 @@
 The building block for Bigcommerce theme developers to get started quickly developing premium quality themes on the Bigcommerce platform.
 
 ### Stencil Utils
-[Stencil-utils](https://github.com/bigcommerce/stencil-utils) is our supporting library for our events and remote interactions. It is a module that is managed by [JSPM](http://jspm.io)
-and requires installation. [Stencil-utils](https://github.com/bigcommerce/stencil-utils) is located in a private repo for now, so ensure you follow the next section.
-### Installing JSPM
-* Ensure that `npm` is installed.
-* Open a terminal and run `npm install -g jspm` this will install JSPM globally.
-* Have Fun!
-
-### JSPM Private Repos
-Create an access token [here](https://github.com/settings/tokens) that will be used by JSPM to access the private Github repos.
-Once you have your token run `jspm registry config github` and input your credentials. This will create a Github jspm configuration.
-Once this is complete you are ready for the next step.
+[Stencil-utils](https://github.com/bigcommerce/stencil-utils) is our supporting library for our events and remote interactions.
 
 ##JS API
 When writing theme javascript there is an API in place for running javascript on a per page basis. To properly write JS for your theme you will have the following

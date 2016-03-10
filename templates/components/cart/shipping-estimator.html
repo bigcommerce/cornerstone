@@ -34,14 +34,18 @@
             </dt>
 
             <dd class="estimator-form-input">
-                <select class="form-select" id="shipping-state" name="shipping-state" data-field-type="State">
-                    <option>{{lang 'cart.shipping_estimator.select_a_state'}}</option>
-                    {{#each states}}
-                        <option value="{{id}}" {{#if selected}}selected="selected"{{/if}}>
-                            {{name}}
-                        </option>
-                    {{/each}}
-                </select>
+                {{#if states.length}}
+                    <select class="form-select" id="shipping-state" name="shipping-state" data-field-type="State">
+                        <option>{{lang 'cart.shipping_estimator.select_a_state'}}</option>
+                        {{#each states}}
+                            <option value="{{id}}" {{#if selected}}selected="selected"{{/if}}>
+                                {{name}}
+                            </option>
+                        {{/each}}
+                    </select>
+                {{else}}
+                    <input class="form-input" type="text" id="shipping-state" name="shipping-state" data-field-type="State" placeholder="{{lang 'cart.shipping_estimator.select_a_state'}}">
+                {{/if}}
             </dd>
 
             <dt class="estimator-form-label">

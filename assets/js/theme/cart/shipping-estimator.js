@@ -2,6 +2,7 @@ import $ from 'jquery';
 import stateCountry from '../common/state-country';
 import nod from '../common/nod';
 import utils from 'bigcommerce/stencil-utils';
+import { classifyForm, Validators } from '../common/form-utils';
 
 export default class ShippingEstimator {
     constructor($element) {
@@ -35,6 +36,7 @@ export default class ShippingEstimator {
         });
 
         this.bindValidation();
+        this.bindStateValidation();
         this.bindUPSRates();
     }
 
@@ -50,20 +52,22 @@ export default class ShippingEstimator {
                 },
                 errorMessage: 'The \'Country\' field cannot be blank.',
             },
+        ]);
+    }
+
+    bindStateValidation() {
+        this.shippingValidator.add([
             {
                 selector: $(`${this.shippingEstimator} select[name="shipping-state"]`),
                 validate: (cb) => {
                     let result;
 
-                    // dynamic. switching between dropdown and input.
                     const $ele = $(`${this.shippingEstimator} select[name="shipping-state"]`);
 
                     if ($ele.length) {
                         const eleVal = $ele.val();
 
                         result = eleVal && eleVal.length && eleVal !== 'State/province';
-                    } else {
-                        return;
                     }
 
                     cb(result);
@@ -91,12 +95,32 @@ export default class ShippingEstimator {
     }
 
     bindStateCountryChange() {
+        let $last;
+
         // Requests the states for a country with AJAX
-        stateCountry(this.$state, this.context, { useIdForStates: true }, (err) => {
+        stateCountry(this.$state, this.context, { useIdForStates: true }, (err, field) => {
             if (err) {
                 alert(err);
 
                 throw new Error(err);
+            }
+
+            const $field = $(field);
+
+            if (this.shippingValidator.getStatus(this.$state) !== 'undefined') {
+                this.shippingValidator.remove(this.$state);
+            }
+
+            if ($last) {
+                this.shippingValidator.remove($last);
+            }
+
+            if ($field.is('select')) {
+                $last = field;
+                this.bindStateValidation();
+            } else {
+                $field.attr('placeholder', 'State/province');
+                Validators.cleanUpStateValidation(field);
             }
 
             // When you change a country, you swap the state/province between an input and a select dropdown

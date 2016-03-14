@@ -2,7 +2,7 @@ import $ from 'jquery';
 import stateCountry from '../common/state-country';
 import nod from '../common/nod';
 import utils from 'bigcommerce/stencil-utils';
-import { classifyForm, Validators } from '../common/form-utils';
+import { Validators } from '../common/form-utils';
 
 export default class ShippingEstimator {
     constructor($element) {

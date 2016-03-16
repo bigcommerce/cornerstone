@@ -27,13 +27,15 @@ utils.hooks.on('product-option-change', (event, changedOption) => {
 
 export default class Product {
     constructor($scope, context) {
+        const productAttributesData = window.BCData.product_attributes || {};
+
         this.$scope = $scope;
         this.context = context;
         this.imageGallery = new ImageGallery($('[data-image-gallery]', this.$scope));
         this.imageGallery.init();
         this.listenQuantityChange();
         this.initRadioAttributes();
-        this.updateProductAttributes(window.BCData.product_attributes);
+        this.updateProductAttributes(productAttributesData);
 
         previewModal = modalFactory('#previewModal')[0];
         productSingleton = this;
@@ -128,25 +130,6 @@ export default class Product {
                 viewModel.$sku.text(data.sku);
             }
 
-            if (_.isObject(data.image)) {
-                const zoomImageUrl = utils.tools.image.getSrc(
-                    data.image.data,
-                    this.context.themeImageSizes.zoom
-                );
-
-                const mainImageUrl = utils.tools.image.getSrc(
-                    data.image.data,
-                    this.context.themeImageSizes.product
-                );
-
-                this.imageGallery.setAlternateImage({
-                    mainImageUrl,
-                    zoomImageUrl,
-                });
-            } else {
-                this.imageGallery.restoreImage();
-            }
-
             // if stock view is on (CP settings)
             if (viewModel.stock.$container.length && _.isNumber(data.stock)) {
                 // if the stock container is hidden, show
@@ -162,6 +145,27 @@ export default class Product {
                 viewModel.$increments.prop('disabled', false);
             }
         });
+    }
+
+    showProductImage(image) {
+        if (_.isPlainObject(image)) {
+            const zoomImageUrl = utils.tools.image.getSrc(
+                image.data,
+                this.context.themeImageSizes.zoom
+            );
+
+            const mainImageUrl = utils.tools.image.getSrc(
+                image.data,
+                this.context.themeImageSizes.product
+            );
+
+            this.imageGallery.setAlternateImage({
+                mainImageUrl,
+                zoomImageUrl,
+            });
+        } else {
+            this.imageGallery.restoreImage();
+        }
     }
 
     /**
@@ -320,6 +324,8 @@ export default class Product {
         const behavior = data.out_of_stock_behavior;
         const inStockIds = data.in_stock_attributes;
         const outOfStockMessage = ` (${data.out_of_stock_message})`;
+
+        this.showProductImage(data.image);
 
         if (behavior !== 'hide_option' && behavior !== 'label_option') {
             return;

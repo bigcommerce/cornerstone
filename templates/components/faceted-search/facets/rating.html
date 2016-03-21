@@ -24,8 +24,8 @@
     <div id="facetedSearch-content--{{ facet }}" class="accordion-content {{#unless ../start_collapsed }} is-open {{/unless}}">
         <ul class="navList">
             {{#each items}}
-                <li class="navList-item {{#if selected }} is-selected {{/if}}">
-                    <a href="{{ url }}" class="navList-action navList-action--checkbox" data-faceted-search-facet>
+                <li class="navList-item">
+                    <a href="{{ url }}" class="navList-action navList-action--checkbox {{#if selected }} is-selected {{/if}}" data-faceted-search-facet>
                         <span class="rating--small">
                             {{> components/products/ratings rating=title}}
                         </span>

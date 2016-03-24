@@ -15,6 +15,9 @@ brand:
 
 {{#partial "page"}}
 {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+{{#if brand.image}}
+    <img src="{{getImage brand.image 'thumb'}}">
+{{/if}}
 <h1 class="page-heading">{{brand.name}}</h1>
 {{{snippet 'brand'}}}
 <div class="page">

@@ -1,4 +1,4 @@
-import { hooks } from 'bigcommerce/stencil-utils';
+import { hooks } from '@bigcommerce/stencil-utils';
 import CatalogPage from './catalog';
 import $ from 'jquery';
 import FacetedSearch from './common/faceted-search';

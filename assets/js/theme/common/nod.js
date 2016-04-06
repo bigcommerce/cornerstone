@@ -1,4 +1,4 @@
-import nod from 'casperin/nod';
+import nod from 'nod-validate';
 import minMaxValidate from './nod-functions/min-max-validate';
 
 // Hook our SCSS framework form field status classes into the nod validation system before use

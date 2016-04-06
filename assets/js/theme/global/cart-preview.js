@@ -1,7 +1,7 @@
 import $ from 'jquery';
-import 'foundation/js/foundation/foundation';
-import 'foundation/js/foundation/foundation.dropdown';
-import utils from 'bigcommerce/stencil-utils';
+import 'foundation-sites/js/foundation/foundation';
+import 'foundation-sites/js/foundation/foundation.dropdown';
+import utils from '@bigcommerce/stencil-utils';
 
 export const CartPreviewEvents = {
     close: 'closed.fndtn.dropdown',

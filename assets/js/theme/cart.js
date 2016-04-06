@@ -2,7 +2,7 @@ import PageManager from '../page-manager';
 import $ from 'jquery';
 import _ from 'lodash';
 import giftCertCheck from './common/gift-certificate-validator';
-import utils from 'bigcommerce/stencil-utils';
+import utils from '@bigcommerce/stencil-utils';
 import ShippingEstimator from './cart/shipping-estimator';
 import { defaultModal } from './global/modal';
 

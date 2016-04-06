@@ -1,7 +1,7 @@
-import 'foundation/js/foundation/foundation';
-import 'foundation/js/foundation/foundation.dropdown';
-import 'foundation/js/foundation/foundation.reveal';
-import 'foundation/js/foundation/foundation.tab';
+import 'foundation-sites/js/foundation/foundation';
+import 'foundation-sites/js/foundation/foundation.dropdown';
+import 'foundation-sites/js/foundation/foundation.reveal';
+import 'foundation-sites/js/foundation/foundation.tab';
 import modalFactory from './modal';
 import revealCloseFactory from './reveal-close';
 

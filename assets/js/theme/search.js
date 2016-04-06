@@ -1,11 +1,11 @@
-import { hooks } from 'bigcommerce/stencil-utils';
+import { hooks } from '@bigcommerce/stencil-utils';
 import CatalogPage from './catalog';
 import $ from 'jquery';
 import FacetedSearch from './common/faceted-search';
 import urlUtils from './common/url-utils';
 import Url from 'url';
 import collapsibleFactory from './common/collapsible';
-import 'vakata/jstree';
+import 'jstree';
 import nod from './common/nod';
 
 export default class Search extends CatalogPage {

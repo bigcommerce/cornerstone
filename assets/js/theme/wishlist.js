@@ -1,9 +1,9 @@
 import $ from 'jquery';
-import 'foundation/js/foundation/foundation';
-import 'foundation/js/foundation/foundation.reveal';
+import 'foundation-sites/js/foundation/foundation';
+import 'foundation-sites/js/foundation/foundation.reveal';
 import nod from './common/nod';
 import PageManager from '../page-manager';
-import { api } from 'bigcommerce/stencil-utils';
+import { api } from '@bigcommerce/stencil-utils';
 import { defaultModal } from './global/modal';
 
 export default class WishList extends PageManager {

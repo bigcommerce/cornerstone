@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import utils from 'bigcommerce/stencil-utils';
+import utils from '@bigcommerce/stencil-utils';
 
 /**
  * European websites must notify users of cookies to comply with European Union law.

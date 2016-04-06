@@ -32,25 +32,12 @@
         {{> components/common/body }}
         {{> components/common/footer }}
 
+        <script src="{{cdn '/assets/js/bundle.js'}}"></script>
         <script>
-            function startupApp(stencilBootstrap) {
-                stencilBootstrap("{{template_file}}", {{jsContext}}).load();
-            }
+            // Exported in app.js
+            window.stencilBootstrap("{{template_file}}", {{jsContext}}).load();
         </script>
 
-        {{#if in_production}}
-            <script src="{{cdn '/assets/js/bundle.js'}}"></script>
-            <script>
-                startupApp(stencilBootstrap);
-            </script>
-        {{else}}
-            <script src="{{cdn '/assets/jspm_packages/system.js'}}"></script>
-            <script src="{{cdn '/assets/config.js'}}"></script>
-            <script src="{{cdn '/assets/js/dependency-bundle.js'}}"></script>
-            <script>
-                System.import("js/app").then(function(){ startupApp(stencilBootstrap)});
-            </script>
-        {{/if}}
         {{{footer.scripts}}}
         {{{snippet 'footer'}}}
     </body>

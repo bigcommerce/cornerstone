@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import 'jackmoore/zoom';
+import 'jquery-zoom';
 import _ from 'lodash';
 
 export default class ImageGallery {

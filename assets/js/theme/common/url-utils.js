@@ -1,5 +1,4 @@
 import Url from 'url';
-import 'browserstate/history.js/scripts/bundled-uncompressed/html4+html5/jquery.history';
 
 const urlUtils = {
     goToUrl: (url) => {

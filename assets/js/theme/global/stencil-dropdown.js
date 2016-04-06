@@ -66,6 +66,9 @@ export default class StencilDropdown {
             modalOpened = true;
         }).on('close.fndtn.reveal', '[data-reveal]', () => {
             modalOpened = false;
+        }).on('click', '[data-drop-down-close]', () => {
+            modalOpened = false;
+            this.hide($container);
         });
     }
 }

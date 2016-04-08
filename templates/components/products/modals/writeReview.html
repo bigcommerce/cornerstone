@@ -66,6 +66,7 @@
                 </div>
                 <input type="hidden" name="product_id" value="{{ product.id }}">
                 <input type="hidden" name="action" value="post_review">
+                {{#if product.reviews.throttleToken}}<input type="hidden" name="throttleToken" value="{{product.reviews.throttleToken}}">{{/if}}
             </fieldset>
         </form>
     </div>

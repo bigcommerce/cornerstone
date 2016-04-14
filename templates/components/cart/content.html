@@ -25,7 +25,8 @@
                     {{#if release_date}}
                         <p>({{release_date}})</p>
                     {{/if}}
-                    {{#if options}}
+
+                    {{#if configurable_fields}}
                         <dl class="definitionList">
                             {{#each configurable_fields}}
                                 <dt class="definitionList-key">{{name}}:</dt>
@@ -37,6 +38,11 @@
                                     {{/if}}
                                 </dd>
                             {{/each}}
+                        </dl>
+                    {{/if}}
+
+                    {{#if options}}
+                        <dl class="definitionList">
                             {{#each options}}
                                 <dt class="definitionList-key">{{name}}:</dt>
                                 <dd class="definitionList-value">
@@ -48,8 +54,12 @@
                                 </dd>
                             {{/each}}
                         </dl>
-                        <a href="#" data-item-edit="{{id}}">{{lang 'cart.checkout.change'}}</a>
                     {{/if}}
+
+                    {{#or options configurable_fields}}
+                        <a href="#" data-item-edit="{{id}}">{{lang 'cart.checkout.change'}}</a>
+                    {{/or}}
+
                     {{#if type '==' 'GiftCertificate'}}
                         <a href="{{edit_url}}">{{lang 'cart.checkout.change'}}</a>
                     {{/if}}

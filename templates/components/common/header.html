@@ -13,11 +13,11 @@
     {{> components/common/navigation}}
 
     {{#if template_file '===' 'pages/home'}}
-        <h1 class="header-logo">
+        <h1 class="header-logo header-logo--{{theme_settings.logo-position}}">
             {{> components/common/store-logo}}
         </h1>
     {{else}}
-        <div class="header-logo">
+        <div class="header-logo header-logo--{{theme_settings.logo-position}}">
             {{> components/common/store-logo}}
         </div>
     {{/if}}

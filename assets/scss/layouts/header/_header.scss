@@ -47,7 +47,6 @@
 
     @include breakpoint("medium") {
         margin: (spacing("double") + spacing("base")) auto (spacing("double") + spacing("single"));
-        max-width: grid-calc(8, $total-columns);
         padding: 0;
 
         .header.fixed & {
@@ -85,6 +84,22 @@
         &:active {
             color: color("link", "active");
         }
+    }
+}
+
+.header-logo--left {
+    text-align: left;
+
+    @include breakpoint("medium") {
+        margin-left: remCalc(40px);
+    }
+}
+
+.header-logo--right {
+    text-align: right;
+
+    @include breakpoint("medium") {
+        margin-right: remCalc(40px);
     }
 }
 
@@ -131,7 +146,6 @@
         max-height: none;
     }
 }
-
 
 //
 // Mobile Menu Toggle

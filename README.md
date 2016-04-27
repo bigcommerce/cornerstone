@@ -165,6 +165,11 @@ with `icon-` prepended. e.g. `xlink:href="#icon-fabeook"`.
 Simply add your new icon SVG file to the icons folder, and run `grunt svgstore`,
 or just `grunt`.
 
+## Testing
+```
+npm test
+```
+
 #### License
 
 (The MIT License)

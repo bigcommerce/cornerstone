@@ -22,7 +22,7 @@
     </div>
 
     <div id="facetedSearch-content--{{ facet }}" class="accordion-content {{#unless ../start_collapsed }} is-open {{/unless}}">
-        <ul class="navList">
+        <ul id="facetedSearch-navList--{{ facet }}" class="navList" data-facet="{{facet}}" data-has-more-results="{{ has_more_results }}">
             {{#each items}}
                 <li class="navList-item">
                     <a
@@ -46,7 +46,6 @@
 
         {{#if show_more_toggle}}
             <a href="#facetedSearch-navList--{{ facet }}" role="button" class="toggleLink">
-                <span class="toggleLink-text toggleLink-text--on">{{lang 'search.faceted.show-less'}}</span>
                 <span class="toggleLink-text toggleLink-text--off">{{lang 'search.faceted.show-more'}}</span>
             </a>
         {{/if}}

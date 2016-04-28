@@ -30,6 +30,7 @@ export default class Category extends CatalogPage {
                 productListing: 'category/product-listing',
                 sidebar: 'category/sidebar',
             },
+            showMore: 'category/show-more',
         };
 
         this.facetedSearch = new FacetedSearch(requestOptions, (content) => {

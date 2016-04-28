@@ -30,6 +30,7 @@ export default class Brand extends CatalogPage {
                     },
                 },
             },
+            showMore: 'brand/show-more',
         };
 
         this.facetedSearch = new FacetedSearch(requestOptions, (content) => {

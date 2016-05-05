@@ -12,7 +12,8 @@ module.exports = {
                 query: {
                     compact: false,
                     cacheDirectory: true,
-                    presets: ['es2015']
+                    presets: ['es2015'],
+                    plugins: ['transform-object-assign']
                 }
             }
         ]

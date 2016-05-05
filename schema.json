@@ -670,6 +670,27 @@
     "name": "Logo",
     "settings": [
       {
+        "type": "imageDimension",
+        "label": "Logo size",
+        "id": "logo_size",
+        "description": "Please specify a maximum image size for desktop display. We'll automatically scale down the image for smaller devices.",
+        "force_reload": true,
+        "options": [
+          {
+            "value": "original",
+            "label": "Original (as uploaded)"
+          },
+          {
+            "value": "250x100",
+            "label": "Optimized for theme"
+          },
+          {
+            "value": "custom",
+            "label": "Specify dimensions"
+          }
+        ]
+      },
+      {
         "type": "select",
         "label": "Logo position",
         "id": "logo-position",
@@ -688,57 +709,6 @@
             "label": "Left"
           }
         ]
-      }
-    ]
-  },
-  {
-    "name": "Footer",
-    "settings": [
-      {
-        "type": "color",
-        "label": "Background color",
-        "id": "footer-backgroundColor"
-      },
-      {
-        "type": "checkbox",
-        "label": "Show Powered By",
-        "force_reload": true,
-        "id": "show_powered_by"
-      }
-    ]
-  },
-  {
-    "name": "Payment Icons",
-    "settings": [
-      {
-        "type": "checkbox",
-        "label": "American Express",
-        "force_reload": true,
-        "id": "show_accept_amex"
-      },
-      {
-        "type": "checkbox",
-        "label": "Discover",
-        "force_reload": true,
-        "id": "show_accept_discover"
-      },
-      {
-        "type": "checkbox",
-        "label": "Mastercard",
-        "force_reload": true,
-        "id": "show_accept_mastercard"
-      },
-      {
-        "type": "checkbox",
-        "label": "Paypal",
-        "force_reload": true,
-        "id": "show_accept_paypal"
-      },
-      {
-        "type": "checkbox",
-        "label": "Visa",
-        "force_reload": true,
-        "id": "show_accept_visa"
       }
     ]
   },
@@ -784,6 +754,41 @@
         "type": "color",
         "label": "Arrow background color",
         "id": "carousel-arrow-bgColor"
+      }
+    ]
+  },
+  {
+    "name": "Payment Icons",
+    "settings": [
+      {
+        "type": "checkbox",
+        "label": "American Express",
+        "force_reload": true,
+        "id": "show_accept_amex"
+      },
+      {
+        "type": "checkbox",
+        "label": "Discover",
+        "force_reload": true,
+        "id": "show_accept_discover"
+      },
+      {
+        "type": "checkbox",
+        "label": "Mastercard",
+        "force_reload": true,
+        "id": "show_accept_mastercard"
+      },
+      {
+        "type": "checkbox",
+        "label": "Paypal",
+        "force_reload": true,
+        "id": "show_accept_paypal"
+      },
+      {
+        "type": "checkbox",
+        "label": "Visa",
+        "force_reload": true,
+        "id": "show_accept_visa"
       }
     ]
   },
@@ -1344,6 +1349,95 @@
         "type": "color",
         "label": "Text hover color",
         "id": "card--alternate-color--hover"
+      },
+      {
+        "type": "heading",
+        "content": "Image sizes"
+      },
+      {
+        "type": "paragraph",
+        "content": "Please specify a maximum image size for desktop display. We'll automatically scale down the image for smaller devices."
+      },
+      {
+        "type": "imageDimension",
+        "label": "Main product images",
+        "id": "product_size",
+        "force_reload": true,
+        "options": [
+          {
+            "value": "500x659",
+            "label": "Optimized for theme"
+          },
+          {
+            "value": "custom",
+            "label": "Specify dimensions"
+          }
+        ]
+      },
+      {
+        "type": "imageDimension",
+        "label": "Thumbnail image",
+        "id": "productthumb_size",
+        "force_reload": true,
+        "options": [
+          {
+            "value": "100x100",
+            "label": "Optimized for theme"
+          },
+          {
+            "value": "custom",
+            "label": "Specify dimensions"
+          }
+        ]
+      },
+      {
+        "type": "imageDimension",
+        "label": "Zoomed image",
+        "id": "zoom_size",
+        "force_reload": true,
+        "options": [
+          {
+            "value": "1280x1280",
+            "label": "Optimized for theme"
+          },
+          {
+            "value": "custom",
+            "label": "Specify dimensions"
+          }
+        ]
+      },
+      {
+
+        "type": "imageDimension",
+        "label": "Image in gallery view",
+        "id": "productgallery_size",
+        "force_reload": true,
+        "options": [
+          {
+            "value": "300x300",
+            "label": "Optimized for theme"
+          },
+          {
+            "value": "custom",
+            "label": "Specify dimensions"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Footer",
+    "settings": [
+      {
+        "type": "color",
+        "label": "Background color",
+        "id": "footer-backgroundColor"
+      },
+      {
+        "type": "checkbox",
+        "label": "Show Powered By",
+        "force_reload": true,
+        "id": "show_powered_by"
       }
     ]
   }

@@ -1,3 +1,5 @@
+import 'babel-polyfill';
+
 import $ from 'jquery';
 import async from 'async';
 import account from './theme/account';

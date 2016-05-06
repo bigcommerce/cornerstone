@@ -13,7 +13,6 @@ module.exports = {
                     compact: false,
                     cacheDirectory: true,
                     presets: ['es2015'],
-                    plugins: ['transform-object-assign']
                 }
             }
         ]

@@ -188,6 +188,7 @@ export default class Search extends CatalogPage {
                     limit: productsPerPage,
                 },
             },
+            showMore: 'search/show-more',
         };
 
         this.facetedSearch = new FacetedSearch(requestOptions, (content) => {

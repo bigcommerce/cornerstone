@@ -29,7 +29,7 @@ describe('FacetedSearch', () => {
             '<div id="facetedSearch">' +
                 '<a class="facetedSearch-clearLink">Clear</a>' +
                 '<div id="facetedSearch-navList">' +
-                    '<ul class="navList" id="facet-brands" data-count="2">' +
+                    '<ul class="navList" id="facet-brands" data-count="2" data-has-more-results="true">' +
                         '<li><a href="?brand=item1">Facet Item 1</a></li>' +
                         '<li><a href="?brand=item2">Facet Item 2</a></li>' +
                         '<li><a href="?brand=item3">Facet Item 3</a></li>' +
@@ -152,17 +152,17 @@ describe('FacetedSearch', () => {
         let $navList;
 
         beforeEach(() => {
-            spyOn(facetedSearch, 'expandFacetItems');
+            spyOn(facetedSearch, 'getMoreFacetResults');
             spyOn(facetedSearch, 'collapseFacetItems');
 
             $navList = $('#facet-brands');
         });
 
-        it('should expand facet items if they are collapsed', function() {
+        it('should get more facet items if they are collapsed when toggled', function() {
             facetedSearch.collapsedFacetItems = ['facet-brands'];
             facetedSearch.toggleFacetItems($navList);
 
-            expect(facetedSearch.expandFacetItems).toHaveBeenCalledWith($navList);
+            expect(facetedSearch.getMoreFacetResults).toHaveBeenCalledWith($navList);
         });
 
         it('should collapse facet items if they are expaned', function() {

@@ -345,10 +345,19 @@ export default class Product {
     }
 
     disableAttribute($attribute, behavior, outOfStockMessage) {
+        const attrType = this.getAttributeType($attribute);
+        let $select;
+
         if (behavior === 'hide_option') {
             $attribute.hide();
+
+            // If the attribute is the selected option in a select dropdown, select the first option (MERC-639)
+            if (attrType === 'set-select' && $attribute.parent().val() === $attribute.attr('value')) {
+                $select = $attribute.parent();
+                $select[0].selectedIndex = 0;
+            }
         } else {
-            if (this.getAttributeType($attribute) === 'set-select') {
+            if (attrType === 'set-select') {
                 $attribute.html($attribute.html().replace(outOfStockMessage, '') + outOfStockMessage);
             } else {
                 $attribute.addClass('unavailable');

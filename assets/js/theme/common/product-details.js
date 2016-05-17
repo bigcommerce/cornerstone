@@ -346,7 +346,7 @@ export default class Product {
 
     disableAttribute($attribute, behavior, outOfStockMessage) {
         const attrType = this.getAttributeType($attribute);
-        let $select;
+        let $select = null;
 
         if (behavior === 'hide_option') {
             $attribute.hide();

@@ -36,6 +36,7 @@ export default class Product {
         this.listenQuantityChange();
         this.initRadioAttributes();
         this.updateProductAttributes(productAttributesData);
+        this.updateView(productAttributesData);
 
         previewModal = modalFactory('#previewModal')[0];
         productSingleton = this;
@@ -85,65 +86,10 @@ export default class Product {
         }
 
         utils.api.productAttributes.optionChange(productId, $form.serialize(), (err, response) => {
-            const viewModel = this.getViewModel(this.$scope);
-            const $messageBox = $('.productAttributes-message');
-            const data = response.data || {};
+            const productAttributesData = response.data || {};
 
-            this.updateProductAttributes(data);
-
-            if (data.purchasing_message) {
-                $('.alertBox-message', $messageBox).text(data.purchasing_message);
-                $messageBox.show();
-            } else {
-                $messageBox.hide();
-            }
-
-            if (_.isObject(data.price)) {
-                if (data.price.with_tax) {
-                    viewModel.$priceWithTax.html(data.price.with_tax.formatted);
-                }
-
-                if (data.price.without_tax) {
-                    viewModel.$priceWithoutTax.html(data.price.without_tax.formatted);
-                }
-
-                if (data.price.rrp_with_tax) {
-                    viewModel.$rrpWithTax.html(data.price.rrp_with_tax.formatted);
-                }
-
-                if (data.price.rrp_without_tax) {
-                    viewModel.$rrpWithoutTax.html(data.price.rrp_without_tax.formatted);
-                }
-            }
-
-            if (_.isObject(data.weight)) {
-                viewModel.$weight.html(data.weight.formatted);
-            }
-
-            // Set variation_id if it exists for adding to wishlist
-            if (data.variantId) {
-                viewModel.$wishlistVariation.val(data.variantId);
-            }
-
-            // If SKU is available
-            if (data.sku) {
-                viewModel.$sku.text(data.sku);
-            }
-
-            // if stock view is on (CP settings)
-            if (viewModel.stock.$container.length && _.isNumber(data.stock)) {
-                // if the stock container is hidden, show
-                viewModel.stock.$container.removeClass('u-hiddenVisually');
-                viewModel.stock.$input.text(data.stock);
-            }
-
-            if (!data.purchasable || !data.instock) {
-                viewModel.$addToCart.prop('disabled', true);
-                viewModel.$increments.prop('disabled', true);
-            } else {
-                viewModel.$addToCart.prop('disabled', false);
-                viewModel.$increments.prop('disabled', false);
-            }
+            this.updateProductAttributes(productAttributesData);
+            this.updateView(productAttributesData);
         });
     }
 
@@ -317,8 +263,82 @@ export default class Product {
     }
 
     /**
+     * Show an message box if a message is passed
+     * Hide the box if the message is empty
+     * @param  {String} message
+     */
+    showMessageBox(message) {
+        const $messageBox = $('.productAttributes-message');
+
+        if (message) {
+            $('.alertBox-message', $messageBox).text(message);
+            $messageBox.show();
+        } else {
+            $messageBox.hide();
+        }
+    }
+
+    /**
+     * Update the view of price, messages, SKU and stock options when a product option changes
+     * @param  {Object} data Product attribute data
+     */
+    updateView(data) {
+        const viewModel = this.getViewModel(this.$scope);
+
+        this.showMessageBox(data.stock_message || data.purchasing_message);
+
+        if (_.isObject(data.price)) {
+            if (data.price.with_tax) {
+                viewModel.$priceWithTax.html(data.price.with_tax.formatted);
+            }
+
+            if (data.price.without_tax) {
+                viewModel.$priceWithoutTax.html(data.price.without_tax.formatted);
+            }
+
+            if (data.price.rrp_with_tax) {
+                viewModel.$rrpWithTax.html(data.price.rrp_with_tax.formatted);
+            }
+
+            if (data.price.rrp_without_tax) {
+                viewModel.$rrpWithoutTax.html(data.price.rrp_without_tax.formatted);
+            }
+        }
+
+        if (_.isObject(data.weight)) {
+            viewModel.$weight.html(data.weight.formatted);
+        }
+
+        // Set variation_id if it exists for adding to wishlist
+        if (data.variantId) {
+            viewModel.$wishlistVariation.val(data.variantId);
+        }
+
+        // If SKU is available
+        if (data.sku) {
+            viewModel.$sku.text(data.sku);
+        }
+
+        // if stock view is on (CP settings)
+        if (viewModel.stock.$container.length && _.isNumber(data.stock)) {
+            // if the stock container is hidden, show
+            viewModel.stock.$container.removeClass('u-hiddenVisually');
+
+            viewModel.stock.$input.text(data.stock);
+        }
+
+        if (!data.purchasable || !data.instock) {
+            viewModel.$addToCart.prop('disabled', true);
+            viewModel.$increments.prop('disabled', true);
+        } else {
+            viewModel.$addToCart.prop('disabled', false);
+            viewModel.$increments.prop('disabled', false);
+        }
+    }
+
+    /**
      * Hide or mark as unavailable out of stock attributes if enabled
-     * @param  {Object} data
+     * @param  {Object} data Product attribute data
      */
     updateProductAttributes(data) {
         const behavior = data.out_of_stock_behavior;

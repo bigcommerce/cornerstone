@@ -1,13 +1,13 @@
 # Stencil
 [![Build Status](https://travis-ci.org/bigcommerce/stencil.svg?branch=master)](https://travis-ci.org/bigcommerce/stencil)
 
-The building block for Bigcommerce theme developers to get started quickly developing premium quality themes on the Bigcommerce platform.
+The building block for BigCommerce theme developers to get started quickly developing premium quality themes on the BigCommerce platform.
 
 ### Stencil Utils
 [Stencil-utils](https://github.com/bigcommerce/stencil-utils) is our supporting library for our events and remote interactions.
 
-##JS API
-When writing theme javascript there is an API in place for running javascript on a per page basis. To properly write JS for your theme you will have the following
+## JS API
+When writing theme javascript there is an API in place for running javascript on a per page basis. To properly write JS for your theme, you will have the following
 page types available to you.
 
 * "pages/account/addresses"
@@ -45,7 +45,7 @@ page types available to you.
 * "page/account/wishlist-details"
 * "pages/account/wishlists"
 
-And these page types will correspond to the pages within your your theme. Each one of these page types map to an ES6 modules that extends the base `PageManager` abstract class.
+And these page types will correspond to the pages within your theme. Each one of these page types map to an ES6 modules that extends the base `PageManager` abstract class.
 ```javascript
     export default class Auth extends PageManager {
         constructor() {
@@ -53,11 +53,11 @@ And these page types will correspond to the pages within your your theme. Each o
         }
     }
 ```
-Within `PageManager` you will methods that are available from all your classes, but there are three really important methods. The following methods have the signature
+Within `PageManager` you will see methods that are available from all your classes, but there are three really important methods. The following methods have the signature
 `func (callback)` and the callback takes `callback(err)` if error.
 
 #### before(callback)
-When this method is implemented in your class the code contained will be executed after the constructor but before the `loaded()` method. This will provide
+When this method is implemented in your class, the code contained will be executed after the constructor but before the `loaded()` method. This will provide
 a shim for your code before your main implementation logic could run.
 ```javascript
     export default class Auth extends PageManager {
@@ -65,7 +65,7 @@ a shim for your code before your main implementation logic could run.
             //Set up code goes here
         }
         before(callback) {
-            //code that should be ran before anyother code in this class
+            //code that should be ran before any other code in this class
 
             //Callback must be called to move on to the next method
             callback();
@@ -89,7 +89,7 @@ This method will be called when the constructor has ran and `before()` has execu
 ```
 
 #### after(callback)
-This method is for any cleanup that may need to happen and will be executed after `before()` and `loaded()`
+This method is for any cleanup that may need to happen and it will be executed after `before()` and `loaded()`.
 
 ```javascript
     export default class Auth extends PageManager {
@@ -106,7 +106,7 @@ This method is for any cleanup that may need to happen and will be executed afte
 ```
 
 ### JS Template Context Injection
-Occasionally you may need to use dynamic data from in the template context within your clientside theme application code.
+Occasionally you may need to use dynamic data from the template context within your clientside theme application code.
 
 Two helpers are provided to help achieve this.
 
@@ -131,7 +131,7 @@ console.log(jsContext.myProductName); // Will output: Sample Product
 
 You can compose your json object across multiple pages to create a different set of clientside data depending on the currently loaded template context.
 
-The stencil theme makes the jsContext available on both the active page scoped and global PageManager objects as `this.context`
+The stencil theme makes the jsContext available on both the active page scoped and global PageManager objects as `this.context`.
 
 
 ## Static assets
@@ -168,7 +168,7 @@ or just `grunt`.
 #### License
 
 (The MIT License)
-Copyright (C) 2015-2016 Bigcommerce Inc. 
+Copyright (C) 2015-2016 Bigcommerce Inc.
 All rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense,and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:

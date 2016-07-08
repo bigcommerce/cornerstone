@@ -8,7 +8,9 @@
                 {{#if items.0.type '===' 'giftcertificate'}}
                     <img src="{{cdn ../../theme_settings.default_image_gift_certificate}}" alt="GiftCertificate">
                 {{else}}
-                    <img src="{{getImage image 'productthumb_size' (cdn ../theme_settings.default_image_product)}}" alt="{{image.alt}}">
+                    <img class="account-product-image"
+                         src="{{getImage image 'productthumb_size' (cdn ../theme_settings.default_image_product)}}"
+                         alt="{{image.alt}}">
                 {{/if}}
             </div>
             <div class="account-product-body">

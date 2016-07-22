@@ -25,7 +25,10 @@
         <ul class="navList">
             {{#each items}}
                 <li class="navList-item">
-                    <a href="{{ url }}" class="navList-action navList-action--checkbox {{#if selected }} is-selected {{/if}}" data-faceted-search-facet>
+                    <a href="{{ url }}"
+                       class="navList-action navList-action--checkbox {{#if selected }} is-selected {{/if}}"
+                       rel="nofollow"
+                       data-faceted-search-facet>
                         <span class="rating--small">
                             {{> components/products/ratings rating=title}}
                         </span>

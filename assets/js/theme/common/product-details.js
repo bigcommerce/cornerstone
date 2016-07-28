@@ -112,12 +112,12 @@ export default class Product {
         if (_.isPlainObject(image)) {
             const zoomImageUrl = utils.tools.image.getSrc(
                 image.data,
-                this.context.themeImageSizes.zoom
+                this.context.themeSettings.zoom_size
             );
 
             const mainImageUrl = utils.tools.image.getSrc(
                 image.data,
-                this.context.themeImageSizes.product
+                this.context.themeSettings.product_size
             );
 
             this.imageGallery.setAlternateImage({

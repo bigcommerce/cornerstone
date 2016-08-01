@@ -35,8 +35,23 @@ export default class Product {
         this.imageGallery.init();
         this.listenQuantityChange();
         this.initRadioAttributes();
-        this.updateProductAttributes(productAttributesData);
-        this.updateView(productAttributesData);
+
+        const $form = $('form[data-cart-item-add]', $scope);
+        const hasOptions = $('[data-product-option-change]', $form).html().trim().length;
+
+        // Update product attributes. If we're in quick view and the product has options, then also update the initial view in case items are oos
+        if (_.isEmpty(productAttributesData) && hasOptions) {
+            const $productId = $('[name="product_id"]', $form).val();
+
+            utils.api.productAttributes.optionChange($productId, $form.serialize(), (err, response) => {
+                const attributesData = response.data || {};
+
+                this.updateProductAttributes(attributesData);
+                this.updateView(attributesData);
+            });
+        } else {
+            this.updateProductAttributes(productAttributesData);
+        }
 
         previewModal = modalFactory('#previewModal')[0];
         productSingleton = this;
@@ -97,12 +112,12 @@ export default class Product {
         if (_.isPlainObject(image)) {
             const zoomImageUrl = utils.tools.image.getSrc(
                 image.data,
-                this.context.themeImageSizes.zoom
+                this.context.themeSettings.zoom_size
             );
 
             const mainImageUrl = utils.tools.image.getSrc(
                 image.data,
-                this.context.themeImageSizes.product
+                this.context.themeSettings.product_size
             );
 
             this.imageGallery.setAlternateImage({

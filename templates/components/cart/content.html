@@ -12,7 +12,7 @@
             <tr class="cart-item" data-item-row>
                 <td class="cart-item-block cart-item-figure">
                     {{#if type '==' 'GiftCertificate'}}
-                        <img class="cart-item-image" src="{{cdn ../../theme_settings.default_image_gift_certificate}}" alt="GiftCertificate">
+                        <img class="cart-item-fixed-image" src="{{cdn ../../theme_settings.default_image_gift_certificate}}" alt="GiftCertificate">
                     {{else}}
                         <img class="cart-item-image" src="{{getImage image 'productthumb_size' (cdn ../../theme_settings.default_image_product)}}" alt="{{image.alt}}">
                     {{/if}}
@@ -133,7 +133,6 @@
                                 <svg><use xlink:href="#icon-close"></use></svg>
                             </a>
                         {{/if}}
-                        <span class="cart-remove cart-remove--spacer"></span>
                     {{/if}}
                 </td>
             </tr>

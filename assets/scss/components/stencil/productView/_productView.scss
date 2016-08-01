@@ -19,10 +19,22 @@
 }
 
 .productView-image {
+    align-items: center;
+    display: flex;
+    justify-content: center;
     margin: 0;
+
+    @include breakpoint("medium") {
+        min-height: 500px;
+        min-width: 500px;
+    }
 
     img {
         width: 100%;
+    }
+
+    .productView-image--default {
+        width: auto;
     }
 
     + .productView-thumbnails {

@@ -1407,7 +1407,6 @@
         ]
       },
       {
-
         "type": "imageDimension",
         "label": "Image in gallery view",
         "id": "productgallery_size",
@@ -1415,6 +1414,91 @@
         "options": [
           {
             "value": "300x300",
+            "label": "Optimized for theme"
+          },
+          {
+            "value": "custom",
+            "label": "Specify dimensions"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Checkout",
+    "settings": [
+      {
+        "type": "heading",
+        "content": "Header"
+      },
+      {
+        "type": "checkbox",
+        "label": "Use custom background",
+        "id": "uco_use_custom_background"
+      },
+      {
+        "type": "image",
+        "label": "1000 x 400px recommended",
+        "reference": "uco_use_custom_background",
+        "reference_default": false,
+        "id": "uco_custom_background_image"
+      },
+      {
+        "type": "imageDimension",
+        "description": "Please specify a maximum image size for desktop display. We'll automatically scale down the image for smaller devices.",
+        "label": "",
+        "reference": "uco_use_custom_background",
+        "reference_default": false,
+        "id": "uco_custom_background_image_size",
+        "options": [
+          {
+            "value": "1000x400",
+            "label": "Optimized for theme"
+          },
+          {
+            "value": "custom",
+            "label": "Specify dimensions"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "content": "Logo"
+      },
+      {
+        "type": "select",
+        "label": "Use Custom Logo",
+        "id": "uco_use_custom_logo",
+        "options": [
+          {
+            "value": "none",
+            "label": "None"
+          },
+          {
+            "value": "custom",
+            "label": "Custom"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "label": "250 x 100px recommended",
+        "reference": "uco_use_custom_logo",
+        "reference_default": "none",
+        "force_reload": true,
+        "id": "uco_custom_logo_image"
+      },
+      {
+        "type": "imageDimension",
+        "description": "Please specify a maximum image size for desktop display. We'll automatically scale down the image for smaller devices.",
+        "label": "",
+        "reference": "uco_use_custom_logo",
+        "reference_default": "none",
+        "id": "uco_custom_logo_image_size",
+        "force_reload": true,
+        "options": [
+          {
+            "value": "250x100",
             "label": "Optimized for theme"
           },
           {

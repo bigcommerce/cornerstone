@@ -2,7 +2,15 @@
 // Stencil Checkout  - Customize the checkout experience
 // =============================================================================
 
+@import "../../node_modules/@bigcommerce/citadel/dist/tools/toolkit"; // 1
+@import "settings/global/global"; // 1
+
+@import "../../node_modules/@bigcommerce/citadel/dist/settings/global/global"; // 2
+
 .checkoutHeader {
+    background-image: url(stencilImage('uco_custom_background_image', 'uco_custom_background_image_size'));
+    background-size: cover;
+
     // Desktop Only
     @include breakpoint("medium") {
         text-align: stencilString("uco_logo_position");
@@ -74,7 +82,13 @@ a {
 }
 
 // Form Fields
-.form-legend,
-.form-body {
+.form-input,
+.form-select {
     background-color: stencilString("uco_form-field_backgroundColor");
+}
+
+.form-select {
+    &:hover {
+        background-color: stencilString("uco_form-field_backgroundColor");
+    }
 }

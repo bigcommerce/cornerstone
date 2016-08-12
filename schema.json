@@ -1407,7 +1407,6 @@
         ]
       },
       {
-
         "type": "imageDimension",
         "label": "Image in gallery view",
         "id": "productgallery_size",
@@ -1422,6 +1421,54 @@
             "label": "Specify dimensions"
           }
         ]
+      }
+    ]
+  },
+  {
+    "name": "Checkout",
+    "settings": [
+      {
+        "type": "heading",
+        "content": "Header"
+      },
+      {
+        "type": "checkbox",
+        "label": "Use custom background",
+        "description": "1000 x 400px recommended",
+        "force_reload": true,
+        "id": "use_custom_background"
+      },
+      {
+        "type": "image",
+        "reference": "use_custom_background",
+        "force_reload": true,
+        "id": "custom_background_image"
+      },
+      {
+        "type": "heading",
+        "content": "Logo"
+      },
+      {
+        "type": "select",
+        "label": "Use Custom Logo",
+        "id": "use_custom_logo",
+        "force_reload": true,
+        "options": [
+          {
+            "value": "none",
+            "label": "None"
+          },
+          {
+            "value": "custom",
+            "label": "Custom"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "reference": "use_custom_logo",
+        "force_reload": true,
+        "id": "custom_logo_image"
       }
     ]
   },

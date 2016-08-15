@@ -1436,13 +1436,14 @@
         "label": "Use custom background",
         "description": "1000 x 400px recommended",
         "force_reload": true,
-        "id": "use_custom_background"
+        "id": "uco_use_custom_background"
       },
       {
         "type": "image",
-        "reference": "use_custom_background",
+        "reference": "uco_use_custom_background",
+        "reference_default": false,
         "force_reload": true,
-        "id": "custom_background_image"
+        "id": "uco_custom_background_image"
       },
       {
         "type": "heading",
@@ -1451,7 +1452,7 @@
       {
         "type": "select",
         "label": "Use Custom Logo",
-        "id": "use_custom_logo",
+        "id": "uco_use_custom_logo",
         "force_reload": true,
         "options": [
           {
@@ -1466,9 +1467,50 @@
       },
       {
         "type": "image",
-        "reference": "use_custom_logo",
+        "reference": "uco_use_custom_logo",
+        "reference_default": "none",
         "force_reload": true,
-        "id": "custom_logo_image"
+        "id": "uco_custom_logo_image"
+      },
+      {
+        "type": "select",
+        "label": "Position",
+        "id": "uco_logo_position",
+        "force_reload": true,
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "center",
+            "label": "Center"
+          },
+          {
+            "value": "right",
+            "label": "Right"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "label": "Size",
+        "id": "uco_logo_size",
+        "force_reload": true,
+        "options": [
+          {
+            "value": "small",
+            "label": "Small"
+          },
+          {
+            "value": "medium",
+            "label": "Medium"
+          },
+          {
+            "value": "large",
+            "label": "Large"
+          }
+        ]
       }
     ]
   },

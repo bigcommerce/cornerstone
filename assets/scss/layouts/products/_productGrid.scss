@@ -143,7 +143,12 @@
 
     .csscolumns & {
         @include breakpoint("medium") {
-            column-count: 3;
+            @include grid-column(12);
+
+            // scss-lint:disable SelectorDepth, NestingDepth
+            .product {
+                @include grid-column(4);
+            }
         }
     }
 }

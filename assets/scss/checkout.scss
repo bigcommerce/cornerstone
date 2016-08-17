@@ -8,3 +8,73 @@
         text-align: stencilString("uco_logo_position");
     }
 }
+
+// Main content
+.ng-checkout-container {
+    background-color: stencilColor("uco_main_backgroundColor");
+}
+
+// Order Summary
+.cart {
+    background-color: stencilColor("uco_cart_backgroundColor");
+}
+
+// Typography
+
+$fontFamily-headings:           stencilFontFamily("uco_headings_font"), Arial, Helvetica, sans-serif;
+$fontFamily-sans:               stencilFontFamily("uco_body_font"), Arial, Helvetica, sans-serif;
+
+// Headings
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: $fontFamily-headings;
+}
+
+// Body
+body {
+    font-family: $fontFamily-sans;
+}
+
+// Links
+a {
+    color: stencilColor("uco_links_color");
+}
+
+// Buttons
+.button {
+    background-color: stencilColor("uco_buttons_color");
+}
+
+// Errors
+.form-field--error {
+
+    .form-input,
+    .form-select,
+    .form-checkbox + .form-label::before,
+    .form-radio + .form-label::before,
+    .form-prefixPostfix-label {
+        border-color: stencilColor("uco_errors_color");
+    }
+
+    .form-field-error,
+    .form-inlineMessage {
+        color: stencilColor("uco_errors_color");
+    }
+
+    // Depth need to style svg with validation state
+    // scss-lint:disable SelectorDepth
+    .form-input-indicator > svg {
+        fill: stencilColor("uco_errors_color");
+    }
+    // scss-lint:enable SelectorDepth
+}
+
+// Form Fields
+.form-legend,
+.form-body {
+    background-color: stencilString("uco_form-field_backgroundColor");
+}

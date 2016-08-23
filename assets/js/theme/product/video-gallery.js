@@ -23,7 +23,7 @@ export class VideoGallery {
     }
 
     setMainVideo() {
-        this.$player.attr('src', `http://www.youtube.com/embed/${this.currentVideo.id}`);
+        this.$player.attr('src', `//www.youtube.com/embed/${this.currentVideo.id}`);
     }
 
     setActiveThumb() {

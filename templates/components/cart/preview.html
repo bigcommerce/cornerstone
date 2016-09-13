@@ -19,6 +19,14 @@
                 {{/each}}
             </div>
 
+            {{#if cart.show_multiple_address_shipping}}
+                <div class="previewCartAction-checkoutMultiple">
+                    <a href="{{urls.checkout.multiple_address}}">
+                        {{lang 'cart.preview.checkout_multiple'}}
+                    </a>
+                </div>
+            {{/if}}
+
             <div class="previewCartCheckout-subtotal">
                 {{lang 'cart.added_to_cart.order_subtotal'}}
 

@@ -3,15 +3,24 @@
         {{> components/common/quick-search}}
     </div>
     <ul class="navPages-list">
-        {{#each categories}}
-            <li class="navPages-item">
-                {{> components/common/navigation-list}}
-            </li>
-        {{/each}}
-        {{#each pages}}
         <li class="navPages-item">
-            <a class="navPages-action" href="{{url}}">{{name}}</a>
+            <a class="navPages-action has-subMenu" href="/" data-collapsible="navPages-shop">
+                Shop <i class="icon navPages-action-moreIcon" aria-hidden="true"><svg><use xlink:href="#icon-chevron-down" /></svg></i>
+            </a>
+            <div class="navPage-subMenu" id="navPages-shop" aria-hidden="true" tabindex="-1" data-menu>
+                <ul class="navPage-subMenu-list">
+                    {{#each categories}}
+                        <li class="navPages-item">
+                            {{> components/common/navigation-list}}
+                        </li>
+                    {{/each}}
+                </ul>
+            </div>
         </li>
+        {{#each pages}}
+            <li class="navPages-item">
+                {{> components/common/navigation-list isPage=true}}
+            </li>
         {{/each}}
     </ul>
     <ul class="navPages-list navPages-list--user">

@@ -1,6 +1,51 @@
 <nav class="navUser">
     {{> components/common/currency-selector}}
 
+    <ul class="navUser-section">
+        <li class="navUser-item">
+            <a class="navUser-action" href="{{urls.account.index}}" data-dropdown="shop-dropdown">Shop</a>
+            <div class="dropdown-menu navigation-dropdown-menu" id="shop-dropdown" data-dropdown-content aria-hidden="true">
+                <ul class="navigation-grid">
+                    {{#each categories}}
+                        {{#if children}}
+                            <li class="navigation-grid-col">
+                                <ul>
+                                    <li style="font-weight:bold;">{{name}}</li>
+                                    {{#each children}}
+                                        <li>{{name}}</li>
+                                    {{/each}}
+                                </ul>
+                            </li>
+                        {{/if}}
+                    {{/each}}
+                    <li class="navigation-grid-col">
+                        <ul>
+                            {{#each categories}}
+                                {{#unless children}}
+                                    <li style="font-weight:bold;">{{name}}</li>
+                                {{/unless}}
+                            {{/each}}
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        {{#each pages}}
+            <li class="navUser-item">
+                <a class="navUser-action" href="{{url}}"{{#if children}} data-dropdown="{{id}}-dropdown"{{/if}}>{{name}}</a>
+                {{#if children}}
+                <div class="dropdown-menu" id="{{id}}-dropdown" data-dropdown-content aria-hidden="true">
+                    <ul>
+                        {{#each children}}
+                            <li><a href="{{url}}">{{name}}</a></li>
+                        {{/each}}
+                    </ul>
+                </div>
+                {{/if}}
+            </li>
+        {{/each}}
+    </ul>
+
     <ul class="navUser-section navUser-section--alt">
         {{#if customer.store_credit.value '>' 0}}
             <li class="navUser-item">

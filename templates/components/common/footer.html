@@ -66,5 +66,11 @@
                 <p class="powered-by">Powered by <a href="http://bigcommerce.com" rel="nofollow">BigCommerce</a></p>
             </div>
         {{/if}}
+        <p class="powered-by">&copy; <span id="copyright_year"></span> {{settings.store_name}} </p>
+        <script type="text/javascript">
+            var d = new Date();
+            var n = d.getFullYear();
+            document.getElementById("copyright_year").innerHTML = n;
+        </script>
     </div>
 </footer>

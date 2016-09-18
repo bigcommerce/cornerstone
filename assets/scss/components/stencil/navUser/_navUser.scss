@@ -64,7 +64,7 @@
 .navUser-action {
     color: stencilColor("navUser-color");
     font-weight: fontWeight("bold");
-    padding: spacing("base") spacing("half");
+    padding: .5rem;
     text-decoration: none;
     text-transform: uppercase;
 
@@ -162,6 +162,16 @@
 
     @include breakpoint("small") {
         display: inline;
+    }
+}
+
+.navUser-item--cart .fi-shopping-cart  {
+    display: inline;
+    font-size: 20px;
+    margin-right: 8px;
+
+    @include breakpoint("small") {
+        display: none;
     }
 }
 
@@ -282,9 +292,16 @@
     font-weight: fontWeight("bold");
     height: 20px; // 1
     line-height: 20px; // 1
-    margin-left: spacing("eighth");
     text-align: center;
     width: 20px; // 1
+    //fixing mobile alignment issues
+    float: right;
+    margin: 5px 7px 0px 0px;
+
+    @include breakpoint("small") {
+        float: none;
+        margin: 0px 0px 0px spacing("eighth");
+    }
 }
 
 .countPill--positive {

@@ -39,6 +39,19 @@ export default class Global extends PageManager {
         privacyCookieNotification();
         maintenanceMode(this.context.maintenanceMode);
         loadingProgressBar();
+        /* Header Shrink on Scroll */
+        $(document).on("scroll", function(){
+        if
+            ($(document).scrollTop() > 100){
+                $("header").addClass("shrink");
+                updateSliderMargin();
+            }
+        else
+        {
+            $("header").removeClass("shrink");
+            updateSliderMargin();
+        }
+    });
         next();
     }
 }

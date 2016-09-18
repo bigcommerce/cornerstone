@@ -10,21 +10,18 @@
         <span class="mobileMenu-toggleIcon">Toggle menu</span>
     </a>
 
+
+    <h1 class="header-logo">
+        <a href="/"><img src="/assets/img/marucci-logo.svg" /></a>
+    </h1>
+
     {{> components/common/navigation}}
 
-    {{#if template_file '===' 'pages/home'}}
-        <h1 class="header-logo header-logo--{{theme_settings.logo-position}}">
-            {{> components/common/store-logo}}
-        </h1>
-    {{else}}
-        <div class="header-logo header-logo--{{theme_settings.logo-position}}">
-            {{> components/common/store-logo}}
-        </div>
-    {{/if}}
 
-
+    {{!-- This is the mobile nav --}}
     <div class="navPages-container" id="menu" data-menu>
         {{> components/common/navigation-menu}}
     </div>
 
 </header>
+<div class="header-spacer"></div>

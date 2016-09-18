@@ -13,17 +13,15 @@
 // -----------------------------------------------------------------------------
 
 .header {
-    background-color: $header-bg;
-    border-bottom: container("border");
+    background-color: #ffffff;
+    box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.12);
     position: fixed;
     top: 0;
     width: 100%;
     z-index: zIndex("low");
 
     @include breakpoint("medium") {
-        border-bottom: container("border");
-        overflow: visible;
-        position: relative;
+        display: table;
     }
 
     &.is-open {
@@ -37,44 +35,33 @@
 
 .header-logo {
     font-size: 0;   // 1
-    margin: 0 remCalc($header-toggle-width); // 2
-    text-align: center;
-
-    @include breakpoint("small") { // 4
-        margin-left: remCalc($header-toggle-width * 1.5);
-        margin-right: remCalc($header-toggle-width * 1.5);
-    }
+    margin: 0;
+    text-align: center; //center on mobile
 
     @include breakpoint("medium") {
-        margin: (spacing("double") + spacing("base")) auto (spacing("double") + spacing("single"));
-        padding: 0;
-
-        .header.fixed & {
-            background-color: color("greys", "lightest");
-            margin: 0;
-            padding: spacing("quarter") 0;
-            position: absolute;
-            top: 0;
-            width: 100%;
-        }
+        float: left; //left on desktop
+        margin-left: 20px;
     }
 
     > a {
-        @include clearfix;
-        color: $storeName-color;
+        position:relative;
         display: inline-block;
-        padding: $header-logo-paddingVertical 0;
-        position: relative;
         text-decoration: none;
-        width: 100%;
-        z-index: zIndex("low");
+        z-index: 51;
+        transform: skew(-12deg);
+        background-color: $brand-red;
+        height: 54px;
+        padding: 0px 15px;
+        width: 150px;
+        -webkit-transition: all 0.4s ease-in-out;
+        -moz-transition: all 0.4s ease-in-out; 
 
         // scss-lint:disable NestingDepth
         @include breakpoint("medium") {
-            background: none;
-            border-bottom: 0;
-            display: inline;
-            padding: 0;
+            margin: 0;
+            padding: 25px 15px;
+            height: 66px;
+            width: 176px;
         }
 
         &:hover {
@@ -85,65 +72,117 @@
             color: color("link", "active");
         }
     }
-}
 
-.header-logo--left {
-    text-align: left;
-
-    @include breakpoint("medium") {
-        margin-left: remCalc(40px);
-    }
-}
-
-.header-logo--right {
-    text-align: right;
-
-    @include breakpoint("medium") {
-        margin-right: remCalc(40px);
-    }
-}
-
-.header-logo-text {
-    display: block;
-    font-family: $fontFamily-hero;
-    font-size: fontSize("small");   // 1
-    font-weight: stencilFontWeight("logo-font");
-    letter-spacing: remCalc(5px);
-    margin-left: auto;
-    margin-right: auto;
-    overflow: hidden;
-    padding: remCalc(3px) 0;
-    text-overflow: ellipsis;
-    text-transform: uppercase;
-    white-space: nowrap;
-
-    @include breakpoint("small") {
-        font-size: fontSize("large");
-        letter-spacing: remCalc(9px);
-        padding-bottom: 0;
-        padding-top: 0;
-    }
-
-    @include breakpoint("medium") {
-        display: inline;
-        font-size: fontSize("largest");
-        margin-left: 0;
-        margin-right: -(remCalc(9px)); // 3
-        max-width: none;
-        overflow: auto;
-        white-space: normal;
-
-        .header.fixed & {
-            font-size: fontSize("larger");
+    img {
+        transform: skew(12deg);
+        width: 146px;
+        margin-top: 6px;
+        @include breakpoint("medium") {
+            margin-top: -15px;
         }
     }
 }
 
-.header-logo-image {
-    max-height: remCalc($header-height) - $header-logo-marginVertical * 2;
-
+header nav {
     @include breakpoint("medium") {
-        max-height: none;
+        display: table-cell;
+        vertical-align: middle;
+        height: 66px;
+        width: 100%;
+        -webkit-transition: all 0.4s ease-in-out;
+        -moz-transition: all 0.4s ease-in-out; 
+    }
+    ul li a {
+        line-height: 200%;
+    }
+    i.fi-magnifying-glass {
+        font-size: 20px;
+    }
+    .navUser-section--alt {
+        float: right;
+    }
+}
+
+header.shrink {
+
+    nav {
+        @include breakpoint("medium") {
+            height: 45px;
+            padding-top: 2px;
+        }
+    }
+
+    .header-logo > a {
+        @include breakpoint("medium") {
+            margin: 0;
+            padding: 25px 15px;
+            height: 50px;
+            width: 130px;
+        }
+    }
+
+}
+
+.header-spacer { //because the header is fixed, the page needs some extra padding on top so it doesn't get covered.
+    @include breakpoint("medium") {
+        height: 66px;
+    }
+}
+
+
+//search
+#search-bar {
+    position: relative;
+    margin-top: 6px;
+    margin-right: 6px;
+}
+#search-bar input[type=search] {
+    width: 15px;
+    padding-left: 10px;
+    color: transparent;
+    background: transparent;
+    cursor: pointer;
+    position: relative;
+    z-index: 5;
+    border: none;
+    padding: 5px;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    border-radius: 30px;
+    -webkit-transition: all 0.4s ease-in-out;
+    -moz-transition: all 0.4s ease-in-out; 
+}
+#search-bar i {
+    position: absolute;
+    top: 0px;
+    left: 10px;
+}
+#search-bar input[type=search]:hover {
+
+}
+#search-bar input[type=search]:focus {
+    width: 130px;
+    padding-left: 32px;
+    color: #000;
+    border: 1px solid #ccc;
+    cursor: auto;
+    outline: none;
+}
+#search-bar input:-moz-placeholder {
+    color: transparent;
+}
+#search-bar input::-webkit-input-placeholder {
+    color: transparent;
+}
+
+//short dropdowns
+.short-dropdowns a {
+    padding: 10px 15px;
+    min-width: 150px;
+
+    &:hover {
+        background-color: #efefef;
+        color: #111;
     }
 }
 

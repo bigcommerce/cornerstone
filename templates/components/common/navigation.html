@@ -49,13 +49,13 @@
     <ul class="navUser-section navUser-section--alt">
         <li class="navUser-item">
             {{!--<a class="navUser-action navUser-action--quickSearch" href="#" data-search="quickSearch" aria-controls="quickSearch" aria-expanded="false"><i class="fi-magnifying-glass"></i></a>--}}
-            <form id="search-bar">
+            <form id="search-bar" action="/search.php">
                 <i class="fi-magnifying-glass"></i>
-                <input type="search" placeholder="Search" class="fi-magnifying-glass">
+                <input type="search" placeholder="Search" name="search_query">
             </form>
         </li>
-        {{#if settings.account_creation_enabled}}
 
+        {{#if settings.account_creation_enabled}}
         <li class="navUser-item">
             <a class="navUser-action" href="{{urls.account.index}}" data-dropdown="account-dropdown">Account</a>
             <div class="dropdown-menu navigation-dropdown-menu short-dropdowns" id="account-dropdown" data-dropdown-content aria-hidden="true">
@@ -69,6 +69,7 @@
             </div>
         </li>
         {{/if}}
+
         <li class="navUser-item navUser-item--cart">
             <a
                 class="navUser-action"

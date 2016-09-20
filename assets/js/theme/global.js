@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import _ from 'lodash';
 import 'history.js/scripts/bundled-uncompressed/html4+html5/jquery.history';
 import PageManager from '../page-manager';
 import quickSearch from './global/quick-search';
@@ -17,6 +18,16 @@ import FastClick from 'fastclick';
 
 function fastClick(element) {
     return new FastClick(element);
+}
+
+function stretchyNavbar() {
+    $(document).on('scroll', _.throttle(() => {
+        if ($(document).scrollTop() > 100) {
+            $('header').addClass('shrink');
+        } else {
+            $('header').removeClass('shrink');
+        }
+    }, 250));
 }
 
 export default class Global extends PageManager {
@@ -39,19 +50,7 @@ export default class Global extends PageManager {
         privacyCookieNotification();
         maintenanceMode(this.context.maintenanceMode);
         loadingProgressBar();
-        /* Header Shrink on Scroll */
-        $(document).on("scroll", function(){
-        if
-            ($(document).scrollTop() > 100){
-                $("header").addClass("shrink");
-                updateSliderMargin();
-            }
-        else
-        {
-            $("header").removeClass("shrink");
-            updateSliderMargin();
-        }
-    });
+        stretchyNavbar();
         next();
     }
 }

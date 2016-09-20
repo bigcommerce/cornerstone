@@ -46,14 +46,14 @@
             {{!--<a class="navUser-action navUser-action--quickSearch" href="#" data-search="quickSearch" aria-controls="quickSearch" aria-expanded="false"><i class="fi-magnifying-glass"></i></a>--}}
             <form id="search-bar" action="/search.php">
                 <i class="fi-magnifying-glass"></i>
-                <input type="search" placeholder="Search" name="search_query">
+                <input type="search" name="search_query">
             </form>
         </li>
 
         {{#if settings.account_creation_enabled}}
         <li class="navUser-item">
-            <a class="navUser-action" href="{{urls.account.index}}" data-dropdown="account-dropdown">Account</a>
-            <div class="dropdown-menu navigation-dropdown-menu short-dropdowns" id="account-dropdown" data-dropdown-content aria-hidden="true">
+            <a class="navUser-action navUser-action--account" href="{{urls.account.index}}" data-dropdown="account-dropdown">Account</a>
+            <div class="dropdown-menu navigation-dropdown-menu" id="account-dropdown" data-dropdown-content aria-hidden="true">
                 {{#if customer}}
                     <a class="navUser-action" href="{{urls.account.index}}">Account Settings</a>
                     <a class="navUser-action" href="{{urls.auth.logout}}">Log Out</a>

@@ -12,6 +12,8 @@
 //
 // -----------------------------------------------------------------------------
 
+$transition: all 0.4s ease-in-out;
+
 .header {
     background-color: #fff;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.12);
@@ -51,6 +53,7 @@
         position: relative;
         text-decoration: none;
         transform: skew(-12deg);
+        transition: $transition;
         width: 150px;
         z-index: 51;
 
@@ -86,6 +89,7 @@ header nav {
     @include breakpoint("medium") {
         display: table-cell;
         height: 66px;
+        transition: $transition;
         vertical-align: middle;
         width: 100%;
     }

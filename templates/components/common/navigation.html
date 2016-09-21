@@ -3,8 +3,8 @@
 
     <ul class="navUser-section">
         <li class="navUser-item">
-            <a class="navUser-action" href="{{urls.account.index}}" data-dropdown="shop-dropdown">Shop</a>
-            <div class="dropdown-menu navigation-dropdown-menu" id="shop-dropdown" data-dropdown-content aria-hidden="true">
+            <a class="navUser-action" href="#" data-mega-menu="shop-mega-menu">Shop</a>
+            <div class="shop-mega-menu" id="shop-mega-menu" aria-hidden="true">
                 <ul class="navigation-grid">
                     {{#each categories}}
                         {{#if children}}
@@ -31,13 +31,12 @@
             </div>
         </li>
         <li class="navUser-item">
-            <a class="navUser-action" href="https://rundown.maruccisports.com">Rundown</a>
-        </li>
-        <li class="navUser-item">
-            <a class="navUser-action" href="/club-marucci">Club Marucci</a>
-        </li>
-        <li class="navUser-item">
-            <a class="navUser-action" href="/about">Our Story</a>
+            <a class="navUser-action" href="#" data-tether-dropdown="experience-dropdown">Experience</a>
+            <div class="tether-dropdown-element" id="experience-dropdown" data-dropdown-content aria-hidden="true">
+                {{#each pages}}
+                    <a class="navUser-action" href="{{url}}">{{name}}</a>
+                {{/each}}
+            </div>
         </li>
     </ul>
 
@@ -52,8 +51,8 @@
 
         {{#if settings.account_creation_enabled}}
         <li class="navUser-item">
-            <a class="navUser-action navUser-action--account" href="{{urls.account.index}}" data-dropdown="account-dropdown">Account</a>
-            <div class="dropdown-menu navigation-dropdown-menu" id="account-dropdown" data-dropdown-content aria-hidden="true">
+            <a class="navUser-action navUser-action--account" href="{{urls.account.index}}" data-tether-dropdown="account-dropdown" data-tether-position="right">Account</a>
+            <div class="tether-dropdown-element" id="account-dropdown" data-dropdown-content aria-hidden="true">
                 {{#if customer}}
                     <a class="navUser-action" href="{{urls.account.index}}">Account Settings</a>
                     <a class="navUser-action" href="{{urls.auth.logout}}">Log Out</a>

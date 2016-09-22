@@ -378,7 +378,6 @@ export default class Product {
             const $attribute = $(attribute);
             const attrId = parseInt($attribute.data('product-attribute-value'), 10);
 
-
             if (inStockIds.indexOf(attrId) !== -1) {
                 this.enableAttribute($attribute, behavior, outOfStockMessage);
             } else {
@@ -402,11 +401,15 @@ export default class Product {
             }
         } else {
             if (attrType === 'set-select') {
-                $attribute.removeAttr('disabled');
                 $attribute.html($attribute.html().replace(outOfStockMessage, '') + outOfStockMessage);
             } else {
                 $attribute.addClass('unavailable');
             }
+        }
+
+        if (attrType === 'set-select') {
+            // disable the option if it is a dropdown
+            $attribute.attr('disabled', 'disabled');
         }
     }
 
@@ -419,6 +422,10 @@ export default class Product {
             } else {
                 $attribute.removeClass('unavailable');
             }
+        }
+
+        if (this.getAttributeType($attribute) === 'set-select') {
+            $attribute.removeAttr('disabled');
         }
     }
 

@@ -297,27 +297,35 @@ export default class Product {
      * Update the view of price, messages, SKU and stock options when a product option changes
      * @param  {Object} data Product attribute data
      */
+    updatePriceView(viewModel, price) {
+        if (price.with_tax) {
+            viewModel.$priceWithTax.html(price.with_tax.formatted);
+        }
+
+        if (price.without_tax) {
+            viewModel.$priceWithoutTax.html(price.without_tax.formatted);
+        }
+
+        if (price.rrp_with_tax) {
+            viewModel.$rrpWithTax.html(price.rrp_with_tax.formatted);
+        }
+
+        if (price.rrp_without_tax) {
+            viewModel.$rrpWithoutTax.html(price.rrp_without_tax.formatted);
+        }
+    }
+
+    /**
+     * Update the view of price, messages, SKU and stock options when a product option changes
+     * @param  {Object} data Product attribute data
+     */
     updateView(data) {
         const viewModel = this.getViewModel(this.$scope);
 
         this.showMessageBox(data.stock_message || data.purchasing_message);
 
         if (_.isObject(data.price)) {
-            if (data.price.with_tax) {
-                viewModel.$priceWithTax.html(data.price.with_tax.formatted);
-            }
-
-            if (data.price.without_tax) {
-                viewModel.$priceWithoutTax.html(data.price.without_tax.formatted);
-            }
-
-            if (data.price.rrp_with_tax) {
-                viewModel.$rrpWithTax.html(data.price.rrp_with_tax.formatted);
-            }
-
-            if (data.price.rrp_without_tax) {
-                viewModel.$rrpWithoutTax.html(data.price.rrp_without_tax.formatted);
-            }
+            this.updatePriceView(viewModel, data.price);
         }
 
         if (_.isObject(data.weight)) {

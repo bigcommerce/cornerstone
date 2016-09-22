@@ -297,27 +297,35 @@ export default class Product {
      * Update the view of price, messages, SKU and stock options when a product option changes
      * @param  {Object} data Product attribute data
      */
+    updatePriceView(viewModel, price) {
+        if (price.with_tax) {
+            viewModel.$priceWithTax.html(price.with_tax.formatted);
+        }
+
+        if (price.without_tax) {
+            viewModel.$priceWithoutTax.html(price.without_tax.formatted);
+        }
+
+        if (price.rrp_with_tax) {
+            viewModel.$rrpWithTax.html(price.rrp_with_tax.formatted);
+        }
+
+        if (price.rrp_without_tax) {
+            viewModel.$rrpWithoutTax.html(price.rrp_without_tax.formatted);
+        }
+    }
+
+    /**
+     * Update the view of price, messages, SKU and stock options when a product option changes
+     * @param  {Object} data Product attribute data
+     */
     updateView(data) {
         const viewModel = this.getViewModel(this.$scope);
 
         this.showMessageBox(data.stock_message || data.purchasing_message);
 
         if (_.isObject(data.price)) {
-            if (data.price.with_tax) {
-                viewModel.$priceWithTax.html(data.price.with_tax.formatted);
-            }
-
-            if (data.price.without_tax) {
-                viewModel.$priceWithoutTax.html(data.price.without_tax.formatted);
-            }
-
-            if (data.price.rrp_with_tax) {
-                viewModel.$rrpWithTax.html(data.price.rrp_with_tax.formatted);
-            }
-
-            if (data.price.rrp_without_tax) {
-                viewModel.$rrpWithoutTax.html(data.price.rrp_without_tax.formatted);
-            }
+            this.updatePriceView(viewModel, data.price);
         }
 
         if (_.isObject(data.weight)) {
@@ -370,7 +378,6 @@ export default class Product {
             const $attribute = $(attribute);
             const attrId = parseInt($attribute.data('product-attribute-value'), 10);
 
-
             if (inStockIds.indexOf(attrId) !== -1) {
                 this.enableAttribute($attribute, behavior, outOfStockMessage);
             } else {
@@ -388,6 +395,7 @@ export default class Product {
 
             // If the attribute is the selected option in a select dropdown, select the first option (MERC-639)
             if (attrType === 'set-select' && $attribute.parent().val() === $attribute.attr('value')) {
+                $attribute.attr('disabled', 'disabled');
                 $select = $attribute.parent();
                 $select[0].selectedIndex = 0;
             }
@@ -397,6 +405,11 @@ export default class Product {
             } else {
                 $attribute.addClass('unavailable');
             }
+        }
+
+        if (attrType === 'set-select') {
+            // disable the option if it is a dropdown
+            $attribute.attr('disabled', 'disabled');
         }
     }
 
@@ -409,6 +422,10 @@ export default class Product {
             } else {
                 $attribute.removeClass('unavailable');
             }
+        }
+
+        if (this.getAttributeType($attribute) === 'set-select') {
+            $attribute.removeAttr('disabled');
         }
     }
 

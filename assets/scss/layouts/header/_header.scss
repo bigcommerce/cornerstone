@@ -12,18 +12,18 @@
 //
 // -----------------------------------------------------------------------------
 
+$transition: all 0.4s ease-in-out;
+
 .header {
-    background-color: $header-bg;
-    border-bottom: container("border");
+    background-color: #fff;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.12);
     position: fixed;
     top: 0;
     width: 100%;
     z-index: zIndex("low");
 
     @include breakpoint("medium") {
-        border-bottom: container("border");
-        overflow: visible;
-        position: relative;
+        display: table;
     }
 
     &.is-open {
@@ -37,44 +37,32 @@
 
 .header-logo {
     font-size: 0;   // 1
-    margin: 0 remCalc($header-toggle-width); // 2
-    text-align: center;
-
-    @include breakpoint("small") { // 4
-        margin-left: remCalc($header-toggle-width * 1.5);
-        margin-right: remCalc($header-toggle-width * 1.5);
-    }
+    margin: 0;
+    text-align: center; //center on mobile
 
     @include breakpoint("medium") {
-        margin: (spacing("double") + spacing("base")) auto (spacing("double") + spacing("single"));
-        padding: 0;
-
-        .header.fixed & {
-            background-color: color("greys", "lightest");
-            margin: 0;
-            padding: spacing("quarter") 0;
-            position: absolute;
-            top: 0;
-            width: 100%;
-        }
+        float: left; //left on desktop
+        margin-left: 20px;
     }
 
     > a {
-        @include clearfix;
-        color: $storeName-color;
+        background-color: $brand-red;
         display: inline-block;
-        padding: $header-logo-paddingVertical 0;
+        height: 54px;
+        padding: 0 15px;
         position: relative;
         text-decoration: none;
-        width: 100%;
-        z-index: zIndex("low");
+        transform: skew(-12deg);
+        transition: $transition;
+        width: 150px;
+        z-index: 51;
 
         // scss-lint:disable NestingDepth
         @include breakpoint("medium") {
-            background: none;
-            border-bottom: 0;
-            display: inline;
-            padding: 0;
+            height: 66px;
+            margin: 0;
+            padding: 25px 15px;
+            width: 176px;
         }
 
         &:hover {
@@ -85,65 +73,109 @@
             color: color("link", "active");
         }
     }
-}
 
-.header-logo--left {
-    text-align: left;
+    img {
+        margin-top: 6px;
+        transform: skew(12deg);
+        width: 146px;
 
-    @include breakpoint("medium") {
-        margin-left: remCalc(40px);
-    }
-}
-
-.header-logo--right {
-    text-align: right;
-
-    @include breakpoint("medium") {
-        margin-right: remCalc(40px);
-    }
-}
-
-.header-logo-text {
-    display: block;
-    font-family: $fontFamily-hero;
-    font-size: fontSize("small");   // 1
-    font-weight: stencilFontWeight("logo-font");
-    letter-spacing: remCalc(5px);
-    margin-left: auto;
-    margin-right: auto;
-    overflow: hidden;
-    padding: remCalc(3px) 0;
-    text-overflow: ellipsis;
-    text-transform: uppercase;
-    white-space: nowrap;
-
-    @include breakpoint("small") {
-        font-size: fontSize("large");
-        letter-spacing: remCalc(9px);
-        padding-bottom: 0;
-        padding-top: 0;
-    }
-
-    @include breakpoint("medium") {
-        display: inline;
-        font-size: fontSize("largest");
-        margin-left: 0;
-        margin-right: -(remCalc(9px)); // 3
-        max-width: none;
-        overflow: auto;
-        white-space: normal;
-
-        .header.fixed & {
-            font-size: fontSize("larger");
+        @include breakpoint("medium") {
+            margin-top: -15px;
         }
     }
 }
 
-.header-logo-image {
-    max-height: remCalc($header-height) - $header-logo-marginVertical * 2;
-
+header nav {
     @include breakpoint("medium") {
-        max-height: none;
+        display: table-cell;
+        height: 66px;
+        transition: $transition;
+        vertical-align: middle;
+        width: 100%;
+    }
+
+    ul li a {
+        line-height: 200%;
+    }
+
+    .fi-magnifying-glass {
+        font-size: 20px;
+    }
+
+    .navUser-section--alt {
+        float: right;
+    }
+}
+
+header.shrink {
+    nav {
+        @include breakpoint("medium") {
+            height: 45px;
+            padding-top: 2px;
+        }
+    }
+
+    .header-logo > a {
+        @include breakpoint("medium") {
+            height: 50px;
+            margin: 0;
+            padding: 25px 15px;
+            width: 130px;
+        }
+    }
+
+}
+
+.header-spacer { //because the header is fixed, the page needs some extra padding on top so it doesn't get covered.
+    @include breakpoint("medium") {
+        height: 66px;
+    }
+}
+
+
+//search
+#search-bar {
+    margin-right: 6px;
+    margin-top: 6px;
+    position: relative;
+
+    i {
+        left: 10px;
+        position: absolute;
+        top: 0;
+    }
+
+    input {
+        background: transparent;
+        border: 0;
+        border-radius: 30px;
+        color: transparent;
+        cursor: pointer;
+        padding: 5px;
+        padding-left: 10px;
+        position: relative;
+        width: 15px;
+        z-index: 5;
+
+        &:focus {
+            border: 1px solid #ccc;
+            color: #000;
+            cursor: auto;
+            outline: none;
+            padding-left: 32px;
+            width: 130px;
+        }
+    }
+}
+
+//short dropdowns
+.short-dropdowns a {
+    min-width: 150px;
+    padding: 10px 15px;
+
+    &:hover {
+        background-color: #efefef;
+        color: #111;
     }
 }
 

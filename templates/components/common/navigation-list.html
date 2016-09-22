@@ -4,9 +4,11 @@
 </a>
 <div class="navPage-subMenu" id="navPages-{{id}}" aria-hidden="true" tabindex="-1">
     <ul class="navPage-subMenu-list">
-        <li class="navPage-subMenu-item">
-            <a class="navPage-subMenu-action navPages-action" href="{{url}}">{{lang 'category.view_all.name' category=name}}</a>
-        </li>
+        {{#unless isPage}}
+            <li class="navPage-subMenu-item">
+                <a class="navPage-subMenu-action navPages-action" href="{{url}}">{{lang 'category.view_all.name' category=name}}</a>
+            </li>
+        {{/unless}}
         {{#each children}}
             <li class="navPage-subMenu-item">
                 {{#if children}}

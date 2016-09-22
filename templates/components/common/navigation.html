@@ -1,41 +1,69 @@
 <nav class="navUser">
     {{> components/common/currency-selector}}
 
+    <ul class="navUser-section">
+        <li class="navUser-item">
+            <a class="navUser-action" href="#" data-mega-menu="shop-mega-menu">Shop</a>
+            <div class="shop-mega-menu" id="shop-mega-menu" aria-hidden="true">
+                <ul class="navigation-grid">
+                    {{#each categories}}
+                        {{#if children}}
+                            <li class="navigation-grid-col">
+                                <ul>
+                                    <li style="font-weight:bold;">{{name}}</li>
+                                    {{#each children}}
+                                        <li>{{name}}</li>
+                                    {{/each}}
+                                </ul>
+                            </li>
+                        {{/if}}
+                    {{/each}}
+                    <li class="navigation-grid-col">
+                        <ul>
+                            {{#each categories}}
+                                {{#unless children}}
+                                    <li style="font-weight:bold;">{{name}}</li>
+                                {{/unless}}
+                            {{/each}}
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <li class="navUser-item">
+            <a class="navUser-action" href="#" data-tether-dropdown="experience-dropdown">Experience</a>
+            <div class="tether-dropdown-element" id="experience-dropdown" data-dropdown-content aria-hidden="true">
+                {{#each pages}}
+                    <a class="navUser-action" href="{{url}}">{{name}}</a>
+                {{/each}}
+            </div>
+        </li>
+    </ul>
+
     <ul class="navUser-section navUser-section--alt">
-        {{#if customer.store_credit.value '>' 0}}
-            <li class="navUser-item">
-                <a class="navUser-action navUser-action--storeCredit"
-                   data-dropdown="storeCredit-dropdown"
-                   data-options="align:bottom"
-                   href="{{urls.cart}}">
-                        <span class="navUser-action-divider">{{lang 'common.store_credit_overview' credit=customer.store_credit.formatted}}</span>
-                </a>
-                <div class="dropdown-menu" id="storeCredit-dropdown" data-dropdown-content aria-hidden="true">
-                    {{{lang 'common.store_credit' store_credit=customer.store_credit.formatted}}}
-                </div>
-            </li>
-        {{/if}}
         <li class="navUser-item">
-            <a class="navUser-action navUser-item--compare" href="{{urls.compare}}" data-compare-nav>{{lang 'common.compare'}} <span class="countPill countPill--positive countPill--alt"></span></a>
+            {{!--<a class="navUser-action navUser-action--quickSearch" href="#" data-search="quickSearch" aria-controls="quickSearch" aria-expanded="false"><i class="fi-magnifying-glass"></i></a>--}}
+            <form id="search-bar" action="/search.php">
+                <i class="fi-magnifying-glass"></i>
+                <input type="search" name="search_query">
+            </form>
         </li>
-        <li class="navUser-item">
-            <a class="navUser-action navUser-action--quickSearch" href="#" data-search="quickSearch" aria-controls="quickSearch" aria-expanded="false">{{lang 'common.search'}}</a>
-        </li>
-        {{#if settings.gift_certificates_enabled}}
-            <li class="navUser-item">
-                <a class="navUser-action" href="{{urls.gift_certificate.purchase}}">{{lang 'common.gift_cert'}}</a>
-            </li>
-        {{/if}}
+
         {{#if settings.account_creation_enabled}}
-            <li class="navUser-item navUser-item--account">
+        <li class="navUser-item">
+            <a class="navUser-action navUser-action--account" href="{{urls.account.index}}" data-tether-dropdown="account-dropdown" data-tether-position="right">Account</a>
+            <div class="tether-dropdown-element" id="account-dropdown" data-dropdown-content aria-hidden="true">
                 {{#if customer}}
-                    <a class="navUser-action" href="{{urls.account.index}}">{{lang 'common.account'}}</a>
-                    <a class="navUser-action" href="{{urls.auth.logout}}">{{lang 'common.logout'}}</a>
+                    <a class="navUser-action" href="{{urls.account.index}}">Account Settings</a>
+                    <a class="navUser-action" href="{{urls.auth.logout}}">Log Out</a>
                 {{else}}
-                    <a class="navUser-action" href="{{urls.auth.login}}">{{lang 'common.login'}}</a> <span class="navUser-or">{{lang 'common.or'}}</span> <a class="navUser-action" href="{{urls.auth.create_account}}">{{lang 'common.sign_up'}}</a>
+                    <a class="navUser-action" href="{{urls.auth.login}}">Log In</a>
+                    <a class="navUser-action" href="{{urls.auth.create_account}}">Register</a>
                 {{/if}}
-            </li>
+            </div>
+        </li>
         {{/if}}
+
         <li class="navUser-item navUser-item--cart">
             <a
                 class="navUser-action"
@@ -43,7 +71,7 @@
                 data-dropdown="cart-preview-dropdown"
                 data-options="align:right"
                 href="{{urls.cart}}">
-                <span class="navUser-item-cartLabel">{{lang 'common.cart'}}</span> <span class="countPill{{#if cart.items}} countPill--positive{{/if}} cart-quantity">{{cart.quantity}}</span>
+                <span class="navUser-item-cartLabel">{{lang 'common.cart'}}</span> <i class="fi-shopping-cart"></i> <span class="countPill{{#if cart.items}} countPill--positive{{/if}} cart-quantity">{{cart.quantity}}</span>
             </a>
 
             <div class="dropdown-menu" id="cart-preview-dropdown" data-dropdown-content aria-hidden="true"></div>

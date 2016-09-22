@@ -24,6 +24,11 @@
             {{#if cart.show_primary_checkout_button}}
                 <div class="cart-actions">
                     <a class="button button--primary" href="{{urls.checkout.single_address}}" title="{{lang 'cart.checkout.title'}}">{{lang 'cart.checkout.button'}}</a>
+                    {{#if cart.show_multiple_address_shipping}}
+                        <a class="checkoutMultiple" href="{{urls.checkout.multiple_address}}">
+                            {{lang 'cart.preview.checkout_multiple'}}
+                        </a>
+                    {{/if}}
                 </div>
             {{else}}
                 <div class="cart-actions">

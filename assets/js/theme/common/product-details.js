@@ -388,11 +388,13 @@ export default class Product {
 
             // If the attribute is the selected option in a select dropdown, select the first option (MERC-639)
             if (attrType === 'set-select' && $attribute.parent().val() === $attribute.attr('value')) {
+                $attribute.attr('disabled', 'disabled');
                 $select = $attribute.parent();
                 $select[0].selectedIndex = 0;
             }
         } else {
             if (attrType === 'set-select') {
+                $attribute.removeAttr('disabled');
                 $attribute.html($attribute.html().replace(outOfStockMessage, '') + outOfStockMessage);
             } else {
                 $attribute.addClass('unavailable');

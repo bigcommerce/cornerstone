@@ -4,6 +4,12 @@ import $ from 'jquery';
 import FacetedSearch from './common/faceted-search';
 
 export default class Category extends CatalogPage {
+    constructor(context) {
+        super();
+
+        console.log(context.productIds);
+    }
+
     loaded() {
         if ($('#facetedSearch').length > 0) {
             this.initFacetedSearch();

@@ -95,5 +95,10 @@
                 <a class="navPages-action" href="{{urls.auth.login}}">{{lang 'common.login'}}</a> {{lang 'common.or'}} <a class="navPages-action" href="{{urls.auth.create_account}}">{{lang 'common.sign_up'}}</a>
             </li>
         {{/if}}
+        {{#if theme_settings.social_icon_placement_top}}
+            <li class="navPages-item">
+                {{> components/common/social-links}}
+            </li>
+        {{/if}}
     </ul>
 </nav>

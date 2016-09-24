@@ -7,14 +7,23 @@
 {{/if}}
 <footer class="footer" role="contentinfo">
     <div class="container">
+        {{#if theme_settings.social_icon_placement_bottom '!==' 'bottom_none'}}
+            <article class="footer-info-col
+                footer-info-col--social
+                footer-info-col--{{#if theme_settings.social_icon_placement_bottom '===' 'bottom_left'}}left{{else}}right{{/if}}"
+                data-section-type="footer-webPages">
+                    <h5 class="footer-info-heading">{{lang 'social.connect'}}</h5>
+                    {{> components/common/social-links}}
+            </article>
+        {{/if}}
         <section class="footer-info">
             <article class="footer-info-col footer-info-col--small" data-section-type="footer-webPages">
                 <h5 class="footer-info-heading">{{lang 'footer.navigate'}}</h5>
                 <ul class="footer-info-list">
                     {{#each pages}}
-                    <li>
-                        <a href="{{url}}">{{name}}</a>
-                    </li>
+                        <li>
+                            <a href="{{url}}">{{name}}</a>
+                        </li>
                     {{/each}}
                     <li>
                         <a href="{{urls.sitemap}}">{{lang 'sitemap.page_title'}}</a>
@@ -59,7 +68,6 @@
                 {{#if settings.show_newsletter_box}}
                     {{> components/common/subscription-form}}
                 {{/if}}
-                {{> components/common/social-links}}
                 {{> components/common/payment-icons}}
             </article>
         </section>

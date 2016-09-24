@@ -52,9 +52,31 @@
 }
 
 .footer-info-col--small {
-
     @include breakpoint("medium") {
         width: width("2/12");
+    }
+}
+
+.footer-info-col--social {
+    width: 100%;
+}
+
+.footer-info-col--left {
+    @include breakpoint("small") {
+        padding: 0;
+    }
+}
+
+.footer-info-col--right {
+    @include breakpoint("small") {
+        left: 50%;
+        position: inherit;
+    }
+
+    @include breakpoint("medium") {
+        left: 0;
+        padding: 0;
+        text-align: right;
     }
 }
 

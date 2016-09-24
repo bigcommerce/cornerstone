@@ -1,17 +1,21 @@
-<div class="footer-payment-icons">
-    {{#if theme_settings.show_accept_amex}}
-        <svg class="footer-payment-icon"><use xlink:href="#icon-logo-american-express"></use></svg>
-    {{/if}}
-    {{#if theme_settings.show_accept_discover}}
-        <svg class="footer-payment-icon"><use xlink:href="#icon-logo-discover"></use></svg>
-    {{/if}}
-    {{#if theme_settings.show_accept_mastercard}}
-        <svg class="footer-payment-icon"><use xlink:href="#icon-logo-mastercard"></use></svg>
-    {{/if}}
-    {{#if theme_settings.show_accept_paypal}}
-        <svg class="footer-payment-icon"><use xlink:href="#icon-logo-paypal"></use></svg>
-    {{/if}}
-    {{#if theme_settings.show_accept_visa}}
-        <svg class="footer-payment-icon"><use xlink:href="#icon-logo-visa"></use></svg>
-    {{/if}}
-</div>
+{{#with theme_settings}}
+    {{#or show_accept_amex show_accept_discover show_accept_mastercard show_accept_paypal show_accept_visa}}
+        <div class="footer-payment-icons">
+            {{#if show_accept_amex}}
+                <svg class="footer-payment-icon"><use xlink:href="#icon-logo-american-express"></use></svg>
+            {{/if}}
+            {{#if show_accept_discover}}
+                <svg class="footer-payment-icon"><use xlink:href="#icon-logo-discover"></use></svg>
+            {{/if}}
+            {{#if show_accept_mastercard}}
+                <svg class="footer-payment-icon"><use xlink:href="#icon-logo-mastercard"></use></svg>
+            {{/if}}
+            {{#if show_accept_paypal}}
+                <svg class="footer-payment-icon"><use xlink:href="#icon-logo-paypal"></use></svg>
+            {{/if}}
+            {{#if show_accept_visa}}
+                <svg class="footer-payment-icon"><use xlink:href="#icon-logo-visa"></use></svg>
+            {{/if}}
+        </div>
+    {{/or}}
+{{/with}}

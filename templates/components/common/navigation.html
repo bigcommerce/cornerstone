@@ -18,6 +18,12 @@
         <li class="navUser-item">
             <a class="navUser-action navUser-item--compare" href="{{urls.compare}}" data-compare-nav>{{lang 'common.compare'}} <span class="countPill countPill--positive countPill--alt"></span></a>
         </li>
+        {{#if theme_settings.social_icon_placement_top}}
+             <li class="navUser-item" style="margin-top:10px; padding-right: 10px">    
+                {{> components/common/social-links}} 
+            </li>
+             <li class="navUser-item" style="margin-top: 8px;padding-left: 2px;font-size: 25px;">    |</li>
+        {{/if}}
         <li class="navUser-item">
             <a class="navUser-action navUser-action--quickSearch" href="#" data-search="quickSearch" aria-controls="quickSearch" aria-expanded="false">{{lang 'common.search'}}</a>
         </li>

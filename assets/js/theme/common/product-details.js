@@ -387,51 +387,45 @@ export default class Product {
     }
 
     disableAttribute($attribute, behavior, outOfStockMessage) {
-        if (this.getAttributeType($attribute) === 'set-select') {
-            return this.disableSelectOptionAttribute($attribute, behavior, outOfStockMessage);
-        }
+        const attrType = this.getAttributeType($attribute);
+        let $select = null;
 
         if (behavior === 'hide_option') {
             $attribute.hide();
-        } else {
-            $attribute.addClass('unavailable');
-        }
-    }
 
-    disableSelectOptionAttribute($attribute, behavior, outOfStockMessage) {
-        const $select = $attribute.parent();
-
-        $attribute.attr('disabled', 'disabled');
-        if (behavior === 'hide_option') {
-            $attribute.toggleOption(false);
             // If the attribute is the selected option in a select dropdown, select the first option (MERC-639)
-            if ($attribute.parent().val() === $attribute.attr('value')) {
+            if (attrType === 'set-select' && $attribute.parent().val() === $attribute.attr('value')) {
+                $attribute.attr('disabled', 'disabled');
+                $select = $attribute.parent();
                 $select[0].selectedIndex = 0;
             }
         } else {
-            $attribute.html($attribute.html().replace(outOfStockMessage, '') + outOfStockMessage);
+            if (attrType === 'set-select') {
+                $attribute.html($attribute.html().replace(outOfStockMessage, '') + outOfStockMessage);
+            } else {
+                $attribute.addClass('unavailable');
+            }
+        }
+
+        if (attrType === 'set-select') {
+            // disable the option if it is a dropdown
+            $attribute.attr('disabled', 'disabled');
         }
     }
 
     enableAttribute($attribute, behavior, outOfStockMessage) {
-        if (this.getAttributeType($attribute) === 'set-select') {
-            return this.enableSelectOptionAttribute($attribute, behavior, outOfStockMessage);
-        }
-
         if (behavior === 'hide_option') {
             $attribute.show();
         } else {
-            $attribute.removeClass('unavailable');
+            if (this.getAttributeType($attribute) === 'set-select') {
+                $attribute.html($attribute.html().replace(outOfStockMessage, ''));
+            } else {
+                $attribute.removeClass('unavailable');
+            }
         }
-    }
 
-    enableSelectOptionAttribute($attribute, behavior, outOfStockMessage) {
-        $attribute.removeAttr('disabled');
-
-        if (behavior === 'hide_option') {
-            $attribute.toggleOption(true);
-        } else {
-            $attribute.html($attribute.html().replace(outOfStockMessage, ''));
+        if (this.getAttributeType($attribute) === 'set-select') {
+            $attribute.removeAttr('disabled');
         }
     }
 

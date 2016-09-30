@@ -37,7 +37,8 @@ export default class Product {
         this.initRadioAttributes();
 
         const $form = $('form[data-cart-item-add]', $scope);
-        const hasOptions = $('[data-product-option-change]', $form).html().trim().length;
+        const $productOptionsElement = $('[data-product-option-change]', $form);
+        const hasOptions = $productOptionsElement.html().trim().length;
 
         // Update product attributes. If we're in quick view and the product has options, then also update the initial view in case items are oos
         if (_.isEmpty(productAttributesData) && hasOptions) {
@@ -52,6 +53,8 @@ export default class Product {
         } else {
             this.updateProductAttributes(productAttributesData);
         }
+
+        $productOptionsElement.show();
 
         previewModal = modalFactory('#previewModal')[0];
         productSingleton = this;
@@ -378,6 +381,7 @@ export default class Product {
             const $attribute = $(attribute);
             const attrId = parseInt($attribute.data('product-attribute-value'), 10);
 
+
             if (inStockIds.indexOf(attrId) !== -1) {
                 this.enableAttribute($attribute, behavior, outOfStockMessage);
             } else {
@@ -387,45 +391,50 @@ export default class Product {
     }
 
     disableAttribute($attribute, behavior, outOfStockMessage) {
-        const attrType = this.getAttributeType($attribute);
-        let $select = null;
+        if (this.getAttributeType($attribute) === 'set-select') {
+            return this.disableSelectOptionAttribute($attribute, behavior, outOfStockMessage);
+        }
 
         if (behavior === 'hide_option') {
             $attribute.hide();
+        } else {
+            $attribute.addClass('unavailable');
+        }
+    }
 
+    disableSelectOptionAttribute($attribute, behavior, outOfStockMessage) {
+        const $select = $attribute.parent();
+
+        if (behavior === 'hide_option') {
+            $attribute.toggleOption(false);
             // If the attribute is the selected option in a select dropdown, select the first option (MERC-639)
-            if (attrType === 'set-select' && $attribute.parent().val() === $attribute.attr('value')) {
-                $attribute.attr('disabled', 'disabled');
-                $select = $attribute.parent();
+            if ($attribute.parent().val() === $attribute.attr('value')) {
                 $select[0].selectedIndex = 0;
             }
         } else {
-            if (attrType === 'set-select') {
-                $attribute.html($attribute.html().replace(outOfStockMessage, '') + outOfStockMessage);
-            } else {
-                $attribute.addClass('unavailable');
-            }
-        }
-
-        if (attrType === 'set-select') {
-            // disable the option if it is a dropdown
             $attribute.attr('disabled', 'disabled');
+            $attribute.html($attribute.html().replace(outOfStockMessage, '') + outOfStockMessage);
         }
     }
 
     enableAttribute($attribute, behavior, outOfStockMessage) {
+        if (this.getAttributeType($attribute) === 'set-select') {
+            return this.enableSelectOptionAttribute($attribute, behavior, outOfStockMessage);
+        }
+
         if (behavior === 'hide_option') {
             $attribute.show();
         } else {
-            if (this.getAttributeType($attribute) === 'set-select') {
-                $attribute.html($attribute.html().replace(outOfStockMessage, ''));
-            } else {
-                $attribute.removeClass('unavailable');
-            }
+            $attribute.removeClass('unavailable');
         }
+    }
 
-        if (this.getAttributeType($attribute) === 'set-select') {
+    enableSelectOptionAttribute($attribute, behavior, outOfStockMessage) {
+        if (behavior === 'hide_option') {
+            $attribute.toggleOption(true);
+        } else {
             $attribute.removeAttr('disabled');
+            $attribute.html($attribute.html().replace(outOfStockMessage, ''));
         }
     }
 

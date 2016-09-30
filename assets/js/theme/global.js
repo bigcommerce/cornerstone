@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import './common/select-option-plugin';
 import 'history.js/scripts/bundled-uncompressed/html4+html5/jquery.history';
 import PageManager from '../page-manager';
 import quickSearch from './global/quick-search';

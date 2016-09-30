@@ -1,5 +1,21 @@
 <article class="card {{#if alternate}}card--alternate{{/if}}">
     <figure class="card-figure">
+        {{#if price.saved}}
+            {{#if theme_settings.product_sale_badges '===' 'sash'}}
+                <div class="sale-flag-sash">
+                    <span class="sale-text">On Sale!</span>
+                </div>
+            {{else if theme_settings.product_sale_badges '===' 'topleft'}}
+                <div class="sale-flag-side">
+                    <span class="sale-text">On Sale!</span>
+                </div>
+            {{else if theme_settings.product_sale_badges '===' 'burst'}}
+                <div class="starwrap">
+                    <span class="sale-text-burst">On Sale!</span>
+                    <div class="sale-flag-star"></div>
+                </div>
+            {{/if}}
+        {{/if}}
         <a href="{{url}}">
             <img class="card-image" src="{{getImage image 'productgallery_size' (cdn theme_settings.default_image_product)}}" alt="{{image.alt}}" title="{{image.alt}}">
         </a>

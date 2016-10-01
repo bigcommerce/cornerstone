@@ -31,18 +31,37 @@
                         {{lang 'products.compare'}} <input type="checkbox" name="products[]" value="{{id}}" id="compare-{{id}}" data-compare-id="{{id}}">
                     </label>
                 {{/if}}
-                {{#if show_cart_action}}
-                    {{#if has_options}}
-                        <a href="{{url}}" class="button button--small card-figcaption-button" data-product-id="{{id}}">{{lang 'products.choose_options'}}</a>
+                {{#if theme_settings.restrict_to_login}}      
+                    {{#if customer}}
+                        {{#if show_cart_action}}
+                            {{#if has_options}}
+                                <a href="{{url}}" class="button button--small card-figcaption-button" data-product-id="{{id}}">{{lang 'products.choose_options'}}</a>
+                            {{/if}}
+                            {{#if pre_order}}
+                                <a href="{{url}}" class="button button--small card-figcaption-button">{{lang 'products.pre_order'}}</a>
+                            {{/if}}
+                            {{#if add_to_cart_url }}
+                                <a href="{{add_to_cart_url}}" class="button button--small card-figcaption-button">{{lang 'products.add_to_cart'}}</a>
+                            {{/if}}
+                            {{#if out_of_stock_message }}
+                                <a href="{{url}}" class="button button--small card-figcaption-button" data-product-id="{{id}}">{{out_of_stock_message}}</a>
+                            {{/if}}
                     {{/if}}
-                    {{#if pre_order}}
-                        <a href="{{url}}" class="button button--small card-figcaption-button">{{lang 'products.pre_order'}}</a>
-                    {{/if}}
-                    {{#if add_to_cart_url }}
-                        <a href="{{add_to_cart_url}}" class="button button--small card-figcaption-button">{{lang 'products.add_to_cart'}}</a>
-                    {{/if}}
-                    {{#if out_of_stock_message }}
-                        <a href="{{url}}" class="button button--small card-figcaption-button" data-product-id="{{id}}">{{out_of_stock_message}}</a>
+                {{/if}}
+                {{else}}
+                    {{#if show_cart_action}}
+                        {{#if has_options}}
+                            <a href="{{url}}" class="button button--small card-figcaption-button" data-product-id="{{id}}">{{lang 'products.choose_options'}}</a>
+                        {{/if}}
+                        {{#if pre_order}}
+                            <a href="{{url}}" class="button button--small card-figcaption-button">{{lang 'products.pre_order'}}</a>
+                        {{/if}}
+                        {{#if add_to_cart_url }}
+                            <a href="{{add_to_cart_url}}" class="button button--small card-figcaption-button">{{lang 'products.add_to_cart'}}</a>
+                        {{/if}}
+                        {{#if out_of_stock_message }}
+                            <a href="{{url}}" class="button button--small card-figcaption-button" data-product-id="{{id}}">{{out_of_stock_message}}</a>
+                        {{/if}}
                     {{/if}}
                 {{/if}}
             </div>
@@ -62,8 +81,20 @@
         <h4 class="card-title">
             <a href="{{url}}">{{name}}</a>
         </h4>
-        <div class="card-text" data-test-info-type="price">
-            {{> components/products/price price=price}}
-        </div>
+        {{#if theme_settings.restrict_to_login}}      
+            {{#if customer}}
+            <div class="card-text" data-test-info-type="price">
+                {{> components/products/price price=price customer=../../customer}}
+            </div>
+            {{else}}
+            <div class="card-text" data-test-info-type="price">
+                <p translate>Log in for pricing</p>
+            </div>
+        {{/if}}
+        {{else}}
+            <div class="card-text" data-test-info-type="price">
+                {{> components/products/price price=price customer=../../customer}}
+            </div>
+        {{/if}}
     </div>
 </article>

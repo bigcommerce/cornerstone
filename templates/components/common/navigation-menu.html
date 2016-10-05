@@ -8,6 +8,7 @@
                 {{> components/common/navigation-list}}
             </li>
         {{/each}}
+<<<<<<< c7d69ae528c84201f721ed6280abc40667612cda
         {{#unless theme_settings.hide_content_navigation}}
             {{#each pages}}
                 <li class="navPages-item">
@@ -15,6 +16,15 @@
                 </li>
             {{/each}}
         {{/unless}}
+=======
+        {{#if theme_settings.show_content_navigation}}
+        {{#each pages}}
+        <li class="navPages-item">
+            <a class="navPages-action" href="{{url}}">{{name}}</a>
+        </li>
+        {{/each}}
+        {{/if}}
+>>>>>>> Added toggle to hide web content pages from main navigation with checkbox in theme editor.
     </ul>
     <ul class="navPages-list navPages-list--user">
         {{#if currency_selector.currencies.length '>' 1}}

@@ -8,11 +8,13 @@
                 {{> components/common/navigation-list}}
             </li>
         {{/each}}
+        {{#if theme_settings.show_content_navigation}}
         {{#each pages}}
         <li class="navPages-item">
             <a class="navPages-action" href="{{url}}">{{name}}</a>
         </li>
         {{/each}}
+        {{/if}}
     </ul>
     <ul class="navPages-list navPages-list--user">
         {{#if currency_selector.currencies.length '>' 1}}

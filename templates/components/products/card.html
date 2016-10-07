@@ -2,11 +2,18 @@
     <figure class="card-figure">
             {{#if price.saved}}
                 {{#if theme_settings.product_sale_badges '===' 'sash'}}
-                    <div class="sale-flag-sash"><span class="sale-text">On Sale!</span></div>
+                    <div class="sale-flag-sash">
+                        <span class="sale-text">On Sale!</span>
+                    </div>
                 {{else if theme_settings.product_sale_badges '===' 'topleft'}}
-                    <div class="sale-flag-side"><span class="sale-text">On Sale!</span></div>
+                    <div class="sale-flag-side">
+                        <span class="sale-text">On Sale!</span>
+                    </div>
                 {{else if theme_settings.product_sale_badges '===' 'burst'}}
-                    <div class="starwrap"><span class="sale-text-burst">On Sale!</span><div class="sale-flag-star"></div></div>
+                    <div class="starwrap">
+                        <span class="sale-text-burst">On Sale!</span>
+                        <div class="sale-flag-star"></div>
+                    </div>
                 {{/if}}
             {{/if}}
         <a href="{{url}}">

@@ -1,4 +1,4 @@
-import Pace from 'pace-progress';
+import Pace from 'pace';
 
 export default function () {
     // eslint-disable-next-line

@@ -8,11 +8,13 @@
                 {{> components/common/navigation-list}}
             </li>
         {{/each}}
-        {{#each pages}}
-        <li class="navPages-item">
-            <a class="navPages-action" href="{{url}}">{{name}}</a>
-        </li>
-        {{/each}}
+        {{#unless theme_settings.hide_content_navigation}}
+            {{#each pages}}
+                <li class="navPages-item">
+                    <a class="navPages-action" href="{{url}}">{{name}}</a>
+                </li>
+            {{/each}}
+        {{/unless}}
     </ul>
     <ul class="navPages-list navPages-list--user">
         {{#if currency_selector.currencies.length '>' 1}}

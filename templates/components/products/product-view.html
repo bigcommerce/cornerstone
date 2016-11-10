@@ -20,10 +20,24 @@
                     <span>{{product.call_for_price}}</span>
                 </p>
             {{/if}}
+            {{#if theme_settings.restrict_to_login}}
+            {{#if customer}}
             {{#if product.price}}
                 <div class="productView-price">
                     {{> components/products/price price=product.price schema_org=schema}}
                 </div>
+            {{/if}}
+            {{else}}
+            <div class="productView-price">
+                   <p>Login for pricing</p>
+            </div>
+            {{/if}}
+            {{else}}
+            {{#if product.price}}
+                <div class="productView-price">
+                    {{> components/products/price price=product.price schema_org=schema}}
+                </div>
+            {{/if}}
             {{/if}}
             <div class="productView-rating"{{#if schema}} itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating"{{/if}}>
                 {{#if settings.show_product_rating}}
@@ -272,12 +286,21 @@
                         </div>
                         <p class="alertBox-column alertBox-message"></p>
                     </div>
-
+                    {{#if theme_settings.restrict_to_login}}
+                    {{#if customer}}
                     <div class="form-action">
                         <input id="form-action-addToCart" data-wait-message="{{lang 'products.adding_to_cart'}}" class="button button--primary" type="submit"
                                value="{{#if product.pre_order}}{{lang 'products.pre_order'}}{{else}}{{lang 'products.add_to_cart'}}{{/if}}">
                     </div>
                     {{{snippet 'product_addtocart'}}}
+                    {{/if}}
+                    {{else}}
+                    <div class="form-action">
+                        <input id="form-action-addToCart" data-wait-message="{{lang 'products.adding_to_cart'}}" class="button button--primary" type="submit"
+                               value="{{#if product.pre_order}}{{lang 'products.pre_order'}}{{else}}{{lang 'products.add_to_cart'}}{{/if}}">
+                    </div>
+                    {{{snippet 'product_addtocart'}}}
+                    {{/if}}
                 {{/if}}
                 {{#if product.out_of_stock}}
                     {{#if product.out_of_stock_message}}

@@ -8,7 +8,13 @@
 <footer class="footer" role="contentinfo">
     <div class="container">
         <section class="footer-info">
-            <article class="footer-info-col footer-info-col--small" data-section-type="footer-webPages">
+            {{#if theme_settings.social_icon_placement_bottom '===' 'bottom_left'}}
+            <article class="footer-info-col footer-info-col" data-section-type="footer-webPages">
+                <h5 class="footer-info-heading">{{lang 'social.connect'}}</h5> 
+               {{> components/common/social-links}}
+            {{else}}
+               <article class="footer-info-col footer-info-col--small" data-section-type="footer-webPages">
+            {{/if}}
                 <h5 class="footer-info-heading">{{lang 'footer.navigate'}}</h5>
                 <ul class="footer-info-list">
                     {{#each pages}}
@@ -32,7 +38,7 @@
                     {{/each}}
                 </ul>
             </article>
-
+           
             <article class="footer-info-col footer-info-col--small" data-section-type="footer-brands">
                 <h5 class="footer-info-heading">{{lang 'footer.brands'}}</h5>
                 <ul class="footer-info-list">
@@ -44,7 +50,8 @@
                     <li><a href="{{urls.brands}}">{{lang 'common.view_all'}}</a></li>
                 </ul>
             </article>
-
+            {{#if theme_settings.social_icon_placement_bottom '===' 'bottom_left'}} 
+            {{else}}    
             <article class="footer-info-col footer-info-col--small" data-section-type="storeInfo">
                 <h5 class="footer-info-heading">{{lang 'footer.info'}}</h5>
                 <address>{{nl2br settings.address}}</address>
@@ -52,13 +59,25 @@
                     <strong>{{lang 'footer.call_us' phone_number=settings.phone_number}}</strong>
                 {{/if}}
             </article>
-
+            {{/if}}
             <article class="footer-info-col" data-section-type="newsletterSubscription">
                 {{#if settings.show_newsletter_box}}
                     {{> components/common/subscription-form}}
                 {{/if}}
-                {{> components/common/social-links}}
+                {{#if theme_settings.social_icon_placement_bottom '===' 'bottom_left'}}
+                <h5 class="footer-info-heading">{{lang 'footer.info'}}</h5>
+                <address>{{nl2br settings.address}}</address>
+                {{#if settings.phone_number}}
+                    <strong>{{lang 'footer.call_us' phone_number=settings.phone_number}}</strong>
+                {{/if}}
+                {{/if}}
                 {{> components/common/payment-icons}}
+                <h5 class="footer-info-heading">{{lang 'social.connect'}}</h5> 
+                {{#if theme_settings.social_icon_placement_bottom '===' 'bottom_right'}}
+                {{> components/common/social-links}}
+                {{/if}}
+                
+            
             </article>
         </section>
         {{#if theme_settings.show_powered_by}}

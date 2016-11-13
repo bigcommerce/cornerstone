@@ -21,11 +21,12 @@
             </div>
             <figure class="account-product-figure">
                 {{#if type '===' 'giftcertificate'}}
-                    <img src="{{cdn ../../theme_settings.default_image_gift_certificate}}" alt="GiftCertificate">
+                    <img src="{{cdn ../../theme_settings.default_image_gift_certificate}}" alt="Gift Certificate" title="Gift Certificate">
                 {{else}}
                     <img class="account-product-image"
                          src="{{getImage image 'productthumb_size' (cdn ../../theme_settings.default_image_product)}}"
-                         alt="{{image.alt}}">
+                         alt="{{image.alt}}"
+                         title="{{image.alt}}">
                 {{/if}}
                 {{#unless refunded}}
                     {{#if download_url}}

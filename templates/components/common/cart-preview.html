@@ -5,9 +5,9 @@
                 <li class="previewCartItem">
                     <div class="previewCartItem-image">
                         {{#if type '==' 'GiftCertificate'}}
-                            <img src="{{cdn ../../theme_settings.default_image_gift_certificate}}" alt="GiftCertificate">
+                            <img src="{{cdn ../../theme_settings.default_image_gift_certificate}}" alt="GiftCertificate" title="GiftCertificate">
                         {{else}}
-                            <img src="{{getImage image 'productthumb_size' (cdn ../../theme_settings.default_image_product)}}" alt="{{image.alt}}">
+                            <img src="{{getImage image 'productthumb_size' (cdn ../../theme_settings.default_image_product)}}" alt="{{image.alt}}" title="{{image.alt}}">
                         {{/if}}
                     </div>
 
@@ -17,7 +17,7 @@
                         </span>
 
                         <h6 class="previewCartItem-name">
-                            <a href="{{url}}" alt="{{name}}">{{name}}</a>
+                            <a href="{{url}}" alt="{{name}}" title="{{name}}">{{name}}</a>
                         </h6>
 
                         <span class="previewCartItem-price">

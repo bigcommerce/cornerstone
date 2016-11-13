@@ -6,11 +6,12 @@
         <div class="account-product">
             <div class="account-product-figure">
                 {{#if items.0.type '===' 'giftcertificate'}}
-                    <img src="{{cdn ../../theme_settings.default_image_gift_certificate}}" alt="GiftCertificate">
+                    <img src="{{cdn ../../theme_settings.default_image_gift_certificate}}" alt="GiftCertificate" title="GiftCertificate">
                 {{else}}
                     <img class="account-product-image"
                          src="{{getImage image 'productthumb_size' (cdn ../theme_settings.default_image_product)}}"
-                         alt="{{image.alt}}">
+                         alt="{{image.alt}}"
+                         title="{{image.alt}}">
                 {{/if}}
             </div>
             <div class="account-product-body">

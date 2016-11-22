@@ -2,7 +2,8 @@ import FacetedSearch from '../../../theme/common/faceted-search';
 import { Validators } from '../../../theme/common/form-utils';
 import $ from 'jquery';
 import { hooks, api } from '@bigcommerce/stencil-utils';
-import 'history.js/scripts/bundled-uncompressed/html4+html5/jquery.history';
+import urlUtils from '../../../theme/common/url-utils';
+
 describe('FacetedSearch', () => {
     let facetedSearch;
     let requestOptions;
@@ -98,26 +99,20 @@ describe('FacetedSearch', () => {
 
     describe('updateView', () => {
         let content;
-        let state;
+        const url = '/current/path?facet=1';
 
         beforeEach(() => {
             spyOn(api, 'getPage');
-            spyOn(History, 'getState');
             spyOn(facetedSearch, 'refreshView');
-
-            state = {
-                url: 'http://url.com/slug',
-            };
+            spyOn(urlUtils, 'getUrl').and.returnValue(url);
 
             content = {};
-
-            History.getState.and.returnValue(state);
         });
 
         it('should fetch content from remote server', function() {
             facetedSearch.updateView();
 
-            expect(api.getPage).toHaveBeenCalledWith(state.url, requestOptions, jasmine.any(Function));
+            expect(api.getPage).toHaveBeenCalledWith(url, requestOptions, jasmine.any(Function));
         });
 
         it('should refresh view', function() {
@@ -174,22 +169,20 @@ describe('FacetedSearch', () => {
     });
 
     describe('when location URL is changed', () => {
-        let title;
         let href;
 
         beforeEach(() => {
-            title = document.title;
             href = document.location.href;
 
             spyOn(facetedSearch, 'updateView');
         });
 
         afterEach(() => {
-            History.pushState({}, title, href);
+            urlUtils.goToUrl(href);
         });
 
         it('should update view', () => {
-            History.pushState({}, 'Hello World', '/hello-world');
+            urlUtils.goToUrl('/hello-world');
 
             expect(facetedSearch.updateView).toHaveBeenCalled();
         });
@@ -206,21 +199,21 @@ describe('FacetedSearch', () => {
                 preventDefault: jasmine.createSpy('preventDefault'),
             };
 
-            spyOn(History, 'pushState');
+            spyOn(urlUtils, 'goToUrl');
             spyOn(facetedSearch.priceRangeValidator, 'areAll').and.returnValue(true);
         });
 
         it('should set `min_price` and `max_price` query param to corresponding form values if form is valid', () => {
             hooks.emit(eventName, event);
 
-            expect(History.pushState).toHaveBeenCalledWith({}, '', '/context.html?min_price=0&max_price=100');
+            expect(urlUtils.goToUrl).toHaveBeenCalledWith('/context.html?min_price=0&max_price=100');
         });
 
         it('should not set `min_price` and `max_price` query param to corresponding form values if form is invalid', () => {
             facetedSearch.priceRangeValidator.areAll.and.returnValue(false);
             hooks.emit(eventName, event);
 
-            expect(History.pushState).not.toHaveBeenCalledWith({}, '', '/context.html?min_price=0&max_price=100');
+            expect(urlUtils.goToUrl).not.toHaveBeenCalled();
         });
 
         it('should prevent default event', function() {
@@ -241,13 +234,13 @@ describe('FacetedSearch', () => {
                 preventDefault: jasmine.createSpy('preventDefault'),
             };
 
-            spyOn(History, 'pushState');
+            spyOn(urlUtils, 'goToUrl');
         });
 
         it('should set `sort` query param to the value of selected option', () => {
             hooks.emit(eventName, event);
 
-            expect(History.pushState).toHaveBeenCalledWith({}, '', '/context.html?sort=featured');
+            expect(urlUtils.goToUrl).toHaveBeenCalledWith('/context.html?sort=featured');
         });
 
         it('should prevent default event', function() {
@@ -268,13 +261,13 @@ describe('FacetedSearch', () => {
                 preventDefault: jasmine.createSpy('preventDefault'),
             };
 
-            spyOn(History, 'pushState');
+            spyOn(urlUtils, 'goToUrl');
         });
 
         it('should change the URL of window to the URL of facet item', () => {
             hooks.emit(eventName, event);
 
-            expect(History.pushState).toHaveBeenCalledWith({}, '', '?brand=item1');
+            expect(urlUtils.goToUrl).toHaveBeenCalledWith('?brand=item1');
         });
 
         it('should prevent default event', function() {

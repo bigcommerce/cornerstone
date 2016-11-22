@@ -122,7 +122,7 @@ class FacetedSearch {
     updateView() {
         $(this.options.blockerSelector).show();
 
-        api.getPage(History.getState().url, this.requestOptions, (err, content) => {
+        api.getPage(urlUtils.getUrl(), this.requestOptions, (err, content) => {
             $(this.options.blockerSelector).hide();
 
             if (err) {
@@ -169,7 +169,7 @@ class FacetedSearch {
 
     getMoreFacetResults($navList) {
         const facet = $navList.data('facet');
-        const facetUrl = History.getState().url;
+        const facetUrl = urlUtils.getUrl();
 
         if (this.requestOptions.showMore) {
             api.getPage(facetUrl, {

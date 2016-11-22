@@ -1,8 +1,12 @@
+import $ from 'jquery';
 import Url from 'url';
 
 const urlUtils = {
+    getUrl: () => `${window.location.pathname}${window.location.search}`,
+
     goToUrl: (url) => {
-        History.pushState({}, document.title, url);
+        window.history.pushState({}, document.title, url);
+        $(window).trigger('statechange');
     },
 
     replaceParams: (url, params) => {

@@ -11,9 +11,24 @@
     {{{ open_sans_stylesheet }}}
     {{{ ng_checkout_stylesheet }}}
     {{{ stylesheet '/assets/css/optimized-checkout.css' }}}
+    {{ getFontsCollection }}
     {{ OptimizedCheckoutWebdavCss }}
 </head>
     <body>
+<header class="checkoutHeader optimizedCheckout-header">
+    <div class="checkoutHeader-content">
+        <h1 class="is-srOnly" translate>Checkout</h1>
+        <h2 class="checkoutHeader-heading">
+            <a class="checkoutHeader-link" href="/">
+                {{#if HeaderImage }}
+			<img alt="{{ StoreName }}" class="checkoutHeader-logo" id="logoImage" src="{{ HeaderImage }}"/>
+                {{ else }}
+			<span class="header-logo-text">{{ HeaderText }}</span>
+                {{/if}}
+            </a>
+        </h2>
+    </div>
+</header>
      {{{ checkout_content }}}
     </body>
 </html>

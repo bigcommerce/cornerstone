@@ -69,12 +69,16 @@ product_results:
                 <div class="panel-body">
                     {{#if forms.search.suggested_query}}
                         <div class="search-suggestion">
-                            {{{lang 'forms.search.did_you_mean' suggestion=forms.search.suggested_query.query}}}
+                            {{lang 'forms.search.did_you_mean'}} <strong>{{forms.search.suggested_query.query}}</strong>
                             <a href="{{forms.search.suggested_query.url}}" class="search-refine">{{lang 'forms.search.refine'}}</a>
                         </div>
 
                         <div class="search-suggestion">
-                            <p>{{{lang 'forms.search.no_match' query=forms.search.query}}}</p>
+                            <p>
+                                {{lang 'forms.search.your_search_for'}}
+                                "<strong>{{forms.search.query}}</strong>"
+                                {{lang 'forms.search.no_match'}}
+                            </p>
                         </div>
                     {{/if}}
 

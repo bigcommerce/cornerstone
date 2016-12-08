@@ -1,0 +1,38 @@
+<script async custom-element="amp-accordion" src="https://cdn.ampproject.org/v0/amp-accordion-0.1.js"></script>
+<script async custom-element="amp-carousel" src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js"></script>
+<div class="ampProductView">
+    <section class="productView-details">
+        <h1 class="productView-title">{{product.title}}</h1>
+        <div class="productView-price">
+            {{#if product.call_for_price}}
+                <span class="call-for-price">{{product.call_for_price}}</span>
+            {{/if}}
+            {{#if product.price}}
+                <span>
+                    {{> components/products/price price=product.price schema_org=schema}}
+                </span>
+            {{/if}}
+        </div>
+        <div class="productView-thumbnails">
+        <amp-carousel width=300 height=400>
+            {{#each product.images}}
+                <amp-img src="{{getImage this 'productthumb_size' (cdn ../theme_settings.default_image_product)}}" alt="{{this.alt}}" title="{{this.alt}}">
+            {{/each}}
+        </amp-carousel>
+        </div>
+        <amp-accordion>
+            <section expanded>
+                <h2>Description</h2>
+                <p>{{{snippet 'product_details'}}}</p>
+            </section>
+            <section>
+                <h2>Section 2</h2>
+                <div>Bunch of awesome content</div>
+            </section>
+            <section>
+                <h2>Section 3</h2>
+                <amp-img src="/awesome.png" width="300" height="300"></amp-img>
+            </section>
+        </amp-accordion>
+    </section>
+</div>

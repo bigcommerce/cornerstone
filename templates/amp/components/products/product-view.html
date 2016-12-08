@@ -11,7 +11,6 @@
     <section class="productView-details">
         <div class="productView-product">
             <h1 class="productView-title" {{#if schema}}itemprop="name"{{/if}}>{{product.title}}</h1>
-
             <h2 class="productView-brand"{{#if schema}} itemprop="brand" itemscope itemtype="http://schema.org/Brand"{{/if}}>
                 <a href="{{product.brand.url}}"{{#if schema}} itemprop="url"{{/if}}><span{{#if schema}} itemprop="name"{{/if}}>{{product.brand.name}}</span></a>
             </h2>
@@ -25,36 +24,6 @@
                     {{> components/products/price price=product.price schema_org=schema}}
                 </div>
             {{/if}}
-            <div class="productView-rating"{{#if schema}} itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating"{{/if}}>
-                {{#if settings.show_product_rating}}
-                    {{#if product.num_reviews '>' 0}}
-                        {{#if schema}}
-                            <meta itemprop="ratingValue" content="{{product.rating}}">
-                            <meta itemprop="ratingCount" content="{{product.num_reviews}}">
-                            <meta itemprop="reviewCount" content="{{product.num_reviews}}">
-                        {{/if}}
-                    {{/if}}
-                    {{> components/products/ratings rating=product.rating}}
-                    <span class="productView-reviewLink">
-                        {{#if product.num_reviews '>' 0}}
-                            <a href="{{product.url}}#product-reviews">
-                                {{lang 'products.reviews.link_to_review' total=product.num_reviews}}
-                            </a>
-                        {{else}}
-                            {{lang 'products.reviews.link_to_review' total=product.num_reviews}}
-                        {{/if}}
-                    </span>
-                {{/if}}
-                {{#if settings.show_product_reviews}}
-                    <span class="productView-reviewLink">
-                        <a href="{{product.url}}{{#if is_ajax}}#writeReview{{/if}}"
-                           {{#unless is_ajax }}data-reveal-id="modal-review-form"{{/unless}}>
-                           {{lang 'products.reviews.new'}}
-                        </a>
-                    </span>
-                    {{> components/products/modals/writeReview}}
-                {{/if}}
-            </div>
             {{product.detail_messages}}
             <dl class="productView-info">
                 {{#if product.sku}}
@@ -165,165 +134,25 @@
                 {{/each}}
         </amp-carousel>
     </section>
-
     <section class="productView-details">
-        <div class="productView-options">
-            {{#if product.release_date }}
-                <p>{{product.release_date}}</p>
-            {{/if}}
-
-            <form class="form" method="post" action="{{product.cart_url}}" enctype="multipart/form-data"
-                  data-cart-item-add>
-                <input type="hidden" name="action" value="add">
-                <input type="hidden" name="product_id" value="{{product.id}}"/>
-
-
-                    {{#each product.customizations}}
-                        {{{dynamicComponent 'components/products/customizations'}}}
-                    {{/each}}
-                <div data-product-option-change style="display:none;">
-                    {{#each product.options}}
-                        {{{dynamicComponent 'components/products/options'}}}
-                    {{/each}}
+        <amp-accordion>
+            <section expanded>
+                <h4>Description</h4>
+                <div>
+                    {{{product.description}}}
+                    {{{snippet 'product_description'}}}
                 </div>
-
-                {{#if product.event_date}}
-                    <div class="form-field">
-                        <label class="form-label form-label--alternate form-label--inlineSmall">
-                        {{product.event_date.name}}:
-                        <small>{{lang 'common.required'}}</small>
-                        </label>
-                        <select class="form-select form-select--date" name="EventDate[Mth]" required>
-                            <option value="">{{lang 'common.month'}}</option>
-                            {{#enumerate 1 12}}
-                                <option value="{{this}}">{{getShortMonth this}}</option>
-                            {{/enumerate}}
-                        </select>
-                        <select class="form-select form-select--date" name="EventDate[Day]" required>
-                            <option value="">{{lang 'common.day'}}</option>
-                            {{#enumerate 1 31}}
-                                <option value="{{this}}">{{this}}</option>
-                            {{/enumerate}}
-                        </select>
-                        <select class="form-select form-select--date" name="EventDate[Yr]" required>
-                            <option value="">{{lang 'common.year'}}</option>
-                            {{#enumerate product.event_date.earliest_year product.event_date.latest_year}}
-                                <option value="{{this}}" >{{this}}</option>
-                            {{/enumerate}}
-                        </select>
+            </section>
+            <section>
+                <h4>Warranty</h4>
+                <div>
+                {{#if product.warranty}}
+                    <div class="tab-content" id="tab-warranty">
+                        {{{product.warranty}}}
                     </div>
                 {{/if}}
-
-                <div class="form-field form-field--stock{{#unless product.stock_level}} u-hiddenVisually{{/unless}}">
-                    <label class="form-label form-label--alternate">
-                        {{lang 'products.current_stock'}}
-                        <span data-product-stock>{{product.stock_level}}</span>
-                    </label>
-
                 </div>
-
-                {{#if product.can_purchase}}
-
-                    <div class="form-field form-field--increments">
-                        <label class="form-label form-label--alternate"
-                               for="qty[]">{{lang 'products.quantity'}}</label>
-
-                        <div class="form-increment" data-quantity-change>
-                            <button class="button button--icon" data-action="dec">
-                                <span class="is-srOnly">{{lang 'products.quantity_decrease'}}</span>
-                                <i class="icon" aria-hidden="true">
-                                    <svg>
-                                        <use xlink:href="#icon-keyboard-arrow-down"/>
-                                    </svg>
-                                </i>
-                            </button>
-                            <input class="form-input form-input--incrementTotal"
-                                   id="qty[]"
-                                   name="qty[]"
-                                   type="tel"
-                                   value="{{#if product.min_purchase_quantity}}{{product.min_purchase_quantity}}{{else}}1{{/if}}"
-                                   data-quantity-min="{{product.min_purchase_quantity}}"
-                                   data-quantity-max="{{product.max_purchase_quantity}}"
-                                   min="1"
-                                   pattern="[0-9]*"
-                                   aria-live="polite">
-                            <button class="button button--icon" data-action="inc">
-                                <span class="is-srOnly">{{lang 'products.quantity_increase'}}</span>
-                                <i class="icon" aria-hidden="true">
-                                    <svg>
-                                        <use xlink:href="#icon-keyboard-arrow-up"/>
-                                    </svg>
-                                </i>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="alertBox productAttributes-message" style="display:none">
-                        <div class="alertBox-column alertBox-icon">
-                            <icon glyph="ic-success" class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path></svg></icon>
-                        </div>
-                        <p class="alertBox-column alertBox-message"></p>
-                    </div>
-
-                    <div class="form-action">
-                        <input id="form-action-addToCart" data-wait-message="{{lang 'products.adding_to_cart'}}" class="button button--primary" type="submit"
-                               value="{{#if product.pre_order}}{{lang 'products.pre_order'}}{{else}}{{lang 'products.add_to_cart'}}{{/if}}">
-                    </div>
-                    {{{snippet 'product_addtocart'}}}
-                {{/if}}
-                {{#if product.out_of_stock}}
-                    {{#if product.out_of_stock_message}}
-                        {{>components/common/alert-error product.out_of_stock_message}}
-                    {{else}}
-                        {{>components/common/alert-error (lang 'products.sold_out')}}
-                    {{/if}}
-                {{/if}}
-
-            </form>
-
-            {{#if settings.show_wishlist}}
-                <form class="form" method="post" action="{{product.add_to_wishlist_url}}" data-wishlist-add>
-                    <div class="form-action">
-                        <input type="hidden" name="variation_id" value="">
-                        <input class="button" type="submit" value="{{lang 'account.wishlists.add_item'}}">
-                    </div>
-                </form>
-            {{/if}}
-        </div>
-
-        {{>components/common/share}}
-        {{{snippet 'product_details'}}}
+            </section>
+        </amp-accordion>
     </section>
-
-    <article class="productView-description"{{#if schema}} itemprop="description"{{/if}}>
-        <ul class="tabs" data-tab>
-            <li class="tab is-active">
-                <a class="tab-title" href="#tab-description">{{lang 'products.description'}}</a>
-            </li>
-            {{#if product.warranty}}
-                <li class="tab">
-                    <a class="tab-title" href="#tab-warranty">{{lang 'products.warranty'}}</a>
-                </li>
-            {{/if}}
-        </ul>
-        <div class="tabs-contents">
-            <div class="tab-content is-active" id="tab-description">
-                {{{product.description}}}
-                {{{snippet 'product_description'}}}
-            </div>
-           {{#if product.warranty}}
-               <div class="tab-content" id="tab-warranty">
-                   {{{product.warranty}}}
-               </div>
-           {{/if}}
-        </div>
-    </article>
-</div>
-
-<div id="previewModal" class="modal modal--large" data-reveal>
-    <a href="#" class="modal-close" aria-label="{{lang 'common.close'}}" role="button">
-        <span aria-hidden="true">&#215;</span>
-    </a>
-    <div class="modal-content"></div>
-    <div class="loadingOverlay"></div>
 </div>

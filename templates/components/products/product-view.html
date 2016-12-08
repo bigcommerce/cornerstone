@@ -1,337 +1,38 @@
-<div class="productView">
-    {{#each product.reviews.messages}}
-        {{#if error}}
-            {{>components/common/alert-error error}}
-        {{/if}}
-        {{#if success}}
-            {{>components/common/alert-success success}}
-        {{/if}}
-    {{/each}}
-
+<script async custom-element="amp-accordion" src="https://cdn.ampproject.org/v0/amp-accordion-0.1.js"></script>
+<script async custom-element="amp-carousel" src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js"></script>
+<div class="ampProductView">
     <section class="productView-details">
-        <div class="productView-product">
-            <h1 class="productView-title" {{#if schema}}itemprop="name"{{/if}}>{{product.title}}</h1>
-
-            <h2 class="productView-brand"{{#if schema}} itemprop="brand" itemscope itemtype="http://schema.org/Brand"{{/if}}>
-                <a href="{{product.brand.url}}"{{#if schema}} itemprop="url"{{/if}}><span{{#if schema}} itemprop="name"{{/if}}>{{product.brand.name}}</span></a>
-            </h2>
+        <h1 class="productView-title">{{product.title}}</h1>
+        <div class="productView-price">
             {{#if product.call_for_price}}
-                <p class="productView-price">
-                    <span>{{product.call_for_price}}</span>
-                </p>
+                <span class="call-for-price">{{product.call_for_price}}</span>
             {{/if}}
             {{#if product.price}}
-                <div class="productView-price">
+                <span>
                     {{> components/products/price price=product.price schema_org=schema}}
-                </div>
+                </span>
             {{/if}}
-            <div class="productView-rating"{{#if schema}} itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating"{{/if}}>
-                {{#if settings.show_product_rating}}
-                    {{#if product.num_reviews '>' 0}}
-                        {{#if schema}}
-                            <meta itemprop="ratingValue" content="{{product.rating}}">
-                            <meta itemprop="ratingCount" content="{{product.num_reviews}}">
-                            <meta itemprop="reviewCount" content="{{product.num_reviews}}">
-                        {{/if}}
-                    {{/if}}
-                    {{> components/products/ratings rating=product.rating}}
-                    <span class="productView-reviewLink">
-                        {{#if product.num_reviews '>' 0}}
-                            <a href="{{product.url}}#product-reviews">
-                                {{lang 'products.reviews.link_to_review' total=product.num_reviews}}
-                            </a>
-                        {{else}}
-                            {{lang 'products.reviews.link_to_review' total=product.num_reviews}}
-                        {{/if}}
-                    </span>
-                {{/if}}
-                {{#if settings.show_product_reviews}}
-                    <span class="productView-reviewLink">
-                        <a href="{{product.url}}{{#if is_ajax}}#writeReview{{/if}}"
-                           {{#unless is_ajax }}data-reveal-id="modal-review-form"{{/unless}}>
-                           {{lang 'products.reviews.new'}}
-                        </a>
-                    </span>
-                    {{> components/products/modals/writeReview}}
-                {{/if}}
-            </div>
-            {{product.detail_messages}}
-            <dl class="productView-info">
-                {{#if product.sku}}
-                    <dt class="productView-info-name">{{lang 'products.sku'}}</dt>
-                    <dd class="productView-info-value" data-product-sku>{{product.sku}}</dd>
-                {{/if}}
-                {{#if product.upc}}
-                    <dt class="productView-info-name">{{lang 'products.upc'}}</dt>
-                    <dd class="productView-info-value" data-product-upc>{{product.upc}}</dd>
-                {{/if}}
-                {{#if product.condition}}
-                    <dt class="productView-info-name">{{lang 'products.condition'}}</dt>
-                    <dd class="productView-info-value">{{product.condition}}</dd>
-                {{/if}}
-                {{#if product.availability}}
-                    <dt class="productView-info-name">{{lang 'products.availability'}}</dt>
-                    <dd class="productView-info-value">{{product.availability}}</dd>
-                {{/if}}
-                {{#if product.weight}}
-                    <dt class="productView-info-name">{{lang 'products.weight'}}</dt>
-                    <dd class="productView-info-value" data-product-weight>{{product.weight}}</dd>
-                {{/if}}
-                {{#if product.min_purchase_quantity}}
-                    <dt class="productView-info-name">{{lang 'products.min_purchase_quantity'}}</dt>
-                    <dd class="productView-info-value">{{lang 'products.purchase_units' quantity=product.min_purchase_quantity}}</dd>
-                {{/if}}
-                {{#if product.max_purchase_quantity}}
-                    <dt class="productView-info-name">{{lang 'products.max_purchase_quantity'}}</dt>
-                    <dd class="productView-info-value">{{lang 'products.purchase_units' quantity=product.max_purchase_quantity}}</dd>
-                {{/if}}
-                {{#if product.gift_wrapping_available}}
-                    <dt class="productView-info-name">{{lang 'products.gift_wrapping'}}</dt>
-                    <dd class="productView-info-value">{{lang 'products.gift_wrapping_available'}}</dd>
-                {{/if}}
-                {{#if product.shipping}}
-                    {{#if product.shipping.calculated}}
-                        <dt class="productView-info-name">{{lang 'products.shipping'}}</dt>
-                        <dd class="productView-info-value">{{lang 'products.shipping_calculated'}}</dd>
-                    {{else}}
-                        {{#if product.shipping.price.value '===' 0}}
-                            <dt class="productView-info-name">{{lang 'products.shipping'}}</dt>
-                            <dd class="productView-info-value">{{lang 'products.shipping_free'}}</dd>
-                        {{else}}
-                            <dt class="productView-info-name">{{lang 'products.shipping'}}</dt>
-                            <dd class="productView-info-value">{{lang 'products.shipping_fixed' amount=product.shipping.price.formatted}}</dd>
-                        {{/if}}
-                    {{/if}}
-                {{/if}}
-                {{#if product.bulk_discount_rates.length}}
-                    <dt class="productView-info-name">{{lang 'products.bulk_pricing.title'}}</dt>
-                    <dd class="productView-info-value">
-                        <a href="{{product.url}}"
-                            {{#unless is_ajax }}data-reveal-id="bulkPricingModal" {{/unless}}>
-                            {{lang 'products.bulk_pricing.view'}}
-                        </a>
-                    </dd>
-
-                    <div id="bulkPricingModal" class="modal modal--small" data-reveal>
-                        <div class="modal-header">
-                            <h2 class="modal-header-title">{{lang 'products.bulk_pricing.modal_title'}}</h2>
-                            <a href="#" class="modal-close" aria-label="Close"><span aria-hidden="true">&#215;</span></a>
-                        </div>
-                        <div class="modal-body">
-                            <p>{{lang 'products.bulk_pricing.instructions'}}</p>
-                            <ul>
-                            {{#each product.bulk_discount_rates}}
-                                <li>
-                                    {{lang 'products.bulk_pricing.range' min=min max=max}}
-                                    {{#if type '===' 'percent'}}
-                                        {{lang 'products.bulk_pricing.percent' discount=discount.formatted}}
-                                    {{/if}}
-                                    {{#if type '===' 'fixed'}}
-                                        {{lang 'products.bulk_pricing.fixed' discount=discount.formatted}}
-                                    {{/if}}
-                                    {{#if type '===' 'price'}}
-                                        {{lang 'products.bulk_pricing.price' discount=discount.formatted}}
-                                    {{/if}}
-                                </li>
-                            {{/each}}
-                            </ul>
-                        </div>
-                    </div>
-                {{/if}}
-
-                {{#each product.custom_fields}}
-                    <dt class="productView-info-name">{{name}}:</dt>
-                    <dd class="productView-info-value">{{{value}}}</dd>
-                {{/each}}
-            </dl>
         </div>
-    </section>
-
-    <section class="productView-images" data-image-gallery>
-        <figure class="productView-image"
-                data-image-gallery-main
-                data-zoom-image="{{getImage product.main_image 'zoom_size' (cdn theme_settings.default_image_product)}}"
-                >
-            <a href="{{getImage product.main_image 'zoom_size' (cdn theme_settings.default_image_product)}}">
-                <img class="productView-image--default"
-                     src="{{getImage product.main_image 'product_size' (cdn theme_settings.default_image_product)}}"
-                     alt="{{product.main_image.alt}}" title="{{product.main_image.alt}}" data-main-image>
-            </a>
-        </figure>
-        <ul class="productView-thumbnails">
+        <div class="productView-thumbnails">
+        <amp-carousel width=300 height=400>
             {{#each product.images}}
-                <li class="productView-thumbnail">
-                    <a
-                        class="productView-thumbnail-link"
-                        href="{{getImage this 'product_size' (cdn ../theme_settings.default_image_product)}}"
-                        data-image-gallery-item
-                        data-image-gallery-new-image-url="{{getImage this 'product_size' (cdn ../theme_settings.default_image_product)}}"
-                        data-image-gallery-zoom-image-url="{{getImage this 'zoom_size' (cdn ../theme_settings.default_image_product)}}">
-                        <img src="{{getImage this 'productthumb_size' (cdn ../theme_settings.default_image_product)}}" alt="{{this.alt}}" title="{{this.alt}}">
-                    </a>
-                </li>
+                <amp-img src="{{getImage this 'productthumb_size' (cdn ../theme_settings.default_image_product)}}" alt="{{this.alt}}" title="{{this.alt}}">
             {{/each}}
-        </ul>
-    </section>
-
-    <section class="productView-details">
-        <div class="productView-options">
-            {{#if product.release_date }}
-                <p>{{product.release_date}}</p>
-            {{/if}}
-
-            <form class="form" method="post" action="{{product.cart_url}}" enctype="multipart/form-data"
-                  data-cart-item-add>
-                <input type="hidden" name="action" value="add">
-                <input type="hidden" name="product_id" value="{{product.id}}"/>
-
-
-                    {{#each product.customizations}}
-                        {{{dynamicComponent 'components/products/customizations'}}}
-                    {{/each}}
-                <div data-product-option-change style="display:none;">
-                    {{#each product.options}}
-                        {{{dynamicComponent 'components/products/options'}}}
-                    {{/each}}
-                </div>
-
-                {{#if product.event_date}}
-                    <div class="form-field">
-                        <label class="form-label form-label--alternate form-label--inlineSmall">
-                        {{product.event_date.name}}:
-                        <small>{{lang 'common.required'}}</small>
-                        </label>
-                        <select class="form-select form-select--date" name="EventDate[Mth]" required>
-                            <option value="">{{lang 'common.month'}}</option>
-                            {{#enumerate 1 12}}
-                                <option value="{{this}}">{{getShortMonth this}}</option>
-                            {{/enumerate}}
-                        </select>
-                        <select class="form-select form-select--date" name="EventDate[Day]" required>
-                            <option value="">{{lang 'common.day'}}</option>
-                            {{#enumerate 1 31}}
-                                <option value="{{this}}">{{this}}</option>
-                            {{/enumerate}}
-                        </select>
-                        <select class="form-select form-select--date" name="EventDate[Yr]" required>
-                            <option value="">{{lang 'common.year'}}</option>
-                            {{#enumerate product.event_date.earliest_year product.event_date.latest_year}}
-                                <option value="{{this}}" >{{this}}</option>
-                            {{/enumerate}}
-                        </select>
-                    </div>
-                {{/if}}
-
-                <div class="form-field form-field--stock{{#unless product.stock_level}} u-hiddenVisually{{/unless}}">
-                    <label class="form-label form-label--alternate">
-                        {{lang 'products.current_stock'}}
-                        <span data-product-stock>{{product.stock_level}}</span>
-                    </label>
-
-                </div>
-
-                {{#if product.can_purchase}}
-
-                    <div class="form-field form-field--increments">
-                        <label class="form-label form-label--alternate"
-                               for="qty[]">{{lang 'products.quantity'}}</label>
-
-                        <div class="form-increment" data-quantity-change>
-                            <button class="button button--icon" data-action="dec">
-                                <span class="is-srOnly">{{lang 'products.quantity_decrease'}}</span>
-                                <i class="icon" aria-hidden="true">
-                                    <svg>
-                                        <use xlink:href="#icon-keyboard-arrow-down"/>
-                                    </svg>
-                                </i>
-                            </button>
-                            <input class="form-input form-input--incrementTotal"
-                                   id="qty[]"
-                                   name="qty[]"
-                                   type="tel"
-                                   value="{{#if product.min_purchase_quantity}}{{product.min_purchase_quantity}}{{else}}1{{/if}}"
-                                   data-quantity-min="{{product.min_purchase_quantity}}"
-                                   data-quantity-max="{{product.max_purchase_quantity}}"
-                                   min="1"
-                                   pattern="[0-9]*"
-                                   aria-live="polite">
-                            <button class="button button--icon" data-action="inc">
-                                <span class="is-srOnly">{{lang 'products.quantity_increase'}}</span>
-                                <i class="icon" aria-hidden="true">
-                                    <svg>
-                                        <use xlink:href="#icon-keyboard-arrow-up"/>
-                                    </svg>
-                                </i>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="alertBox productAttributes-message" style="display:none">
-                        <div class="alertBox-column alertBox-icon">
-                            <icon glyph="ic-success" class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path></svg></icon>
-                        </div>
-                        <p class="alertBox-column alertBox-message"></p>
-                    </div>
-
-                    <div class="form-action">
-                        <input id="form-action-addToCart" data-wait-message="{{lang 'products.adding_to_cart'}}" class="button button--primary" type="submit"
-                               value="{{#if product.pre_order}}{{lang 'products.pre_order'}}{{else}}{{lang 'products.add_to_cart'}}{{/if}}">
-                    </div>
-                    {{{snippet 'product_addtocart'}}}
-                {{/if}}
-                {{#if product.out_of_stock}}
-                    {{#if product.out_of_stock_message}}
-                        {{>components/common/alert-error product.out_of_stock_message}}
-                    {{else}}
-                        {{>components/common/alert-error (lang 'products.sold_out')}}
-                    {{/if}}
-                {{/if}}
-
-            </form>
-
-            {{#if settings.show_wishlist}}
-                <form class="form" method="post" action="{{product.add_to_wishlist_url}}" data-wishlist-add>
-                    <div class="form-action">
-                        <input type="hidden" name="variation_id" value="">
-                        <input class="button" type="submit" value="{{lang 'account.wishlists.add_item'}}">
-                    </div>
-                </form>
-            {{/if}}
+        </amp-carousel>
         </div>
-
-        {{>components/common/share}}
-        {{{snippet 'product_details'}}}
+        <amp-accordion>
+            <section expanded>
+                <h2>Description</h2>
+                <p>{{{snippet 'product_details'}}}</p>
+            </section>
+            <section>
+                <h2>Section 2</h2>
+                <div>Bunch of awesome content</div>
+            </section>
+            <section>
+                <h2>Section 3</h2>
+                <amp-img src="/awesome.png" width="300" height="300"></amp-img>
+            </section>
+        </amp-accordion>
     </section>
-
-    <article class="productView-description"{{#if schema}} itemprop="description"{{/if}}>
-        <ul class="tabs" data-tab>
-            <li class="tab is-active">
-                <a class="tab-title" href="#tab-description">{{lang 'products.description'}}</a>
-            </li>
-            {{#if product.warranty}}
-                <li class="tab">
-                    <a class="tab-title" href="#tab-warranty">{{lang 'products.warranty'}}</a>
-                </li>
-            {{/if}}
-        </ul>
-        <div class="tabs-contents">
-            <div class="tab-content is-active" id="tab-description">
-                {{{product.description}}}
-                {{{snippet 'product_description'}}}
-            </div>
-           {{#if product.warranty}}
-               <div class="tab-content" id="tab-warranty">
-                   {{{product.warranty}}}
-               </div>
-           {{/if}}
-        </div>
-    </article>
-</div>
-
-<div id="previewModal" class="modal modal--large" data-reveal>
-    <a href="#" class="modal-close" aria-label="{{lang 'common.close'}}" role="button">
-        <span aria-hidden="true">&#215;</span>
-    </a>
-    <div class="modal-content"></div>
-    <div class="loadingOverlay"></div>
 </div>

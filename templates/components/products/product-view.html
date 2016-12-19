@@ -20,7 +20,17 @@
                     <span>{{product.call_for_price}}</span>
                 </p>
             {{/if}}
-            {{#if product.price}}
+            {{#if theme_settings.restrict_to_login}}
+                {{#all customer product.price}}
+                    <div class="productView-price">
+                        {{> components/products/price price=product.price schema_org=schema}}
+                    </div>
+                {{else}}
+                    <div class="productView-price">
+                        <p translate>Log in for pricing</p>
+                    </div>
+                {{/all}}
+            {{else if product.price}}
                 <div class="productView-price">
                     {{> components/products/price price=product.price schema_org=schema}}
                 </div>
@@ -272,12 +282,19 @@
                         </div>
                         <p class="alertBox-column alertBox-message"></p>
                     </div>
-
-                    <div class="form-action">
-                        <input id="form-action-addToCart" data-wait-message="{{lang 'products.adding_to_cart'}}" class="button button--primary" type="submit"
-                               value="{{#if product.pre_order}}{{lang 'products.pre_order'}}{{else}}{{lang 'products.add_to_cart'}}{{/if}}">
-                    </div>
-                    {{{snippet 'product_addtocart'}}}
+                    {{#all theme_settings.restrict_to_login customer}}
+                        <div class="form-action">
+                            <input id="form-action-addToCart" data-wait-message="{{lang 'products.adding_to_cart'}}" class="button button--primary" type="submit"
+                                value="{{#if product.pre_order}}{{lang 'products.pre_order'}}{{else}}{{lang 'products.add_to_cart'}}{{/if}}">
+                        </div>
+                        {{{snippet 'product_addtocart'}}}
+                    {{else}}
+                        <div class="form-action">
+                            <input id="form-action-addToCart" data-wait-message="{{lang 'products.adding_to_cart'}}" class="button button--primary" type="submit"
+                                value="{{#if product.pre_order}}{{lang 'products.pre_order'}}{{else}}{{lang 'products.add_to_cart'}}{{/if}}">
+                        </div>
+                        {{{snippet 'product_addtocart'}}}
+                    {{/all}}
                 {{/if}}
                 {{#if product.out_of_stock}}
                     {{#if product.out_of_stock_message}}

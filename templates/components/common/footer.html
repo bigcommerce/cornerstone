@@ -33,7 +33,7 @@
                 </ul>
             </article>
 
-            {{#unless theme_settings.shop_by_brand_hide_footer}}
+            {{#if theme_settings.shop_by_brand_show_footer}}
             <article class="footer-info-col footer-info-col--small" data-section-type="footer-brands">
                 <h5 class="footer-info-heading">{{lang 'footer.brands'}}</h5>
                 <ul class="footer-info-list">
@@ -45,7 +45,7 @@
                     <li><a href="{{urls.brands}}">{{lang 'common.view_all'}}</a></li>
                 </ul>
             </article>
-            {{/unless}}
+            {{/if}}
 
             <article class="footer-info-col footer-info-col--small" data-section-type="storeInfo">
                 <h5 class="footer-info-heading">{{lang 'footer.info'}}</h5>

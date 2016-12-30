@@ -27,7 +27,11 @@
                             <h4 class="card-title">
                                 <a href="{{url}}">{{ name }}</a>
                             </h4>
-                            {{> components/products/price price=price}}
+                            {{#or ../customer (if ../theme_settings.restrict_to_login '!==' true)}}
+                                {{> components/products/price price=price}}
+                            {{else}}
+                                {{> components/common/login-for-pricing}}
+                            {{/or}}
                         </div>
                     </article>
                 </th>

@@ -31,7 +31,11 @@
                 {{lang 'cart.added_to_cart.order_subtotal'}}
 
                 <strong class="previewCartCheckout-price">
-                    {{cart.sub_total.formatted}}
+                    {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+                        {{cart.sub_total.formatted}}
+                    {{else}}
+                        {{> components/common/login-for-pricing}}
+                    {{/or}}
                 </strong>
             </div>
 
@@ -66,7 +70,11 @@
                     </div>
 
                     <div class="productView-price">
-                        {{quantity}} &times; {{price.formatted}}
+                        {{#or ../customer (if ../theme_settings.restrict_to_login '!==' true)}}
+                            {{quantity}} &times; {{price.formatted}}
+                        {{else}}
+                            {{> components/common/login-for-pricing}}
+                        {{/or}}
                     </div>
 
                     {{#each configurable_fields}}

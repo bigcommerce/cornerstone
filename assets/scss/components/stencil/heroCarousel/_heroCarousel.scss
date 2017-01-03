@@ -15,7 +15,11 @@
 
 .heroCarousel {
     margin-bottom: (spacing("double") + spacing("single"));
-    margin-top: -(spacing("single") + spacing("base"));
+    margin-top: -(spacing("single"));
+
+    @include breakpoint("medium") {
+        margin-top: -(spacing("single") + spacing("base"));
+    }
 
     .js & { // 2
         max-height: remCalc(0);

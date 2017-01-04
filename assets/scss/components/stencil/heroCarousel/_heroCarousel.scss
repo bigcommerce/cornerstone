@@ -18,6 +18,9 @@
     margin-top: -(spacing("single"));
 
     @include breakpoint("medium") {
+        // Added to visually override the top margin for _body.scss on mobile.
+        // The '.body' top margin creates space between the header and page content.
+        // However, on the homepage, we want the carousel flush with the header.
         margin-top: -(spacing("single") + spacing("base"));
     }
 

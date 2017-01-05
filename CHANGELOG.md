@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Expose `language` object on the checkout page [#910](https://github.com/bigcommerce/stencil/pull/910)
 
 ## 1.5.3 (2017-02-23)
 - Show 'Write a Review' link for mobile [#922] (https://github.com/bigcommerce/stencil/pull/922)

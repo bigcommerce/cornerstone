@@ -47,15 +47,24 @@
         {{/if}}
     </div>
 
-    {{#if forms.contact.captcha_url}}
-        <div class="form-field">
-            <label class="form-label" for="captcha">{{lang 'forms.contact_us.captcha'}}</label>
-            <img src="{{forms.contact.captcha_url}}" alt="Verification image" title="Verification image">
-            <p>{{lang 'forms.contact_us.captcha_desc'}}</p>
-            <input class="form-input" type="text" id="captcha" name="captcha">
+    {{#if forms.contact.recaptcha.enabled}}
+        <div class="panel">
+            <header class="panel-header">
+                <h3 class="panel-title">{{lang 'forms.contact_us.captcha'}}</h3>
+            </header>
+            <div class="panel-body">
+                <script type="text/javascript"
+                        src="https://www.google.com/recaptcha/api/challenge?k={{forms.contact.recaptcha.public_key}}">
+                </script>
+                <noscript>
+                    <iframe src="https://www.google.com/recaptcha/api/noscript?k={{forms.contact.recaptcha.public_key}}" height="300" width="500" frameborder="0"></iframe>
+                    <br>
+                    <textarea name="recaptcha_challenge_field" rows="3" cols="40">
+                    </textarea>
+                    <input type="hidden" name="recaptcha_response_field" value="manual_challenge">
+                </noscript>
+            </div>
         </div>
-    {{else}}
-        <input class="form-input" type="hidden" id="captcha" name="captcha">
     {{/if}}
 
     <div class="form-field">

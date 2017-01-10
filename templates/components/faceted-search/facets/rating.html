@@ -21,12 +21,12 @@
         </div>
     </div>
 
-    <div id="facetedSearch-content--{{ facet }}" class="accordion-content {{#unless ../start_collapsed }} is-open {{/unless}}">
+    <div id="facetedSearch-content--{{ facet }}" class="accordion-content facetedSearch-content--{{ facet }} {{#unless ../start_collapsed }} is-open {{/unless}}">
         <ul class="navList">
             {{#each items}}
                 <li class="navList-item">
                     <a href="{{ url }}"
-                       class="navList-action navList-action--checkbox {{#if selected }} is-selected {{/if}}"
+                       class="navList-action {{#if selected }} is-selected {{/if}}"
                        rel="nofollow"
                        data-faceted-search-facet>
                         <span class="rating--small">

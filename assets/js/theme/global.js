@@ -1,6 +1,6 @@
 import $ from 'jquery';
 import './common/select-option-plugin';
-import 'history.js/scripts/bundled-uncompressed/html4+html5/jquery.history';
+import 'html5-history-api';
 import PageManager from '../page-manager';
 import quickSearch from './global/quick-search';
 import currencySelector from './global/currency-selector';

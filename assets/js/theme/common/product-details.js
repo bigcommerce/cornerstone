@@ -26,9 +26,7 @@ utils.hooks.on('product-option-change', (event, changedOption) => {
 });
 
 export default class Product {
-    constructor($scope, context) {
-        const productAttributesData = window.BCData.product_attributes || {};
-
+    constructor($scope, context, productAttributesData = {}) {
         this.$scope = $scope;
         this.context = context;
         this.imageGallery = new ImageGallery($('[data-image-gallery]', this.$scope));

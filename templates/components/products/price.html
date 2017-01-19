@@ -18,6 +18,8 @@
         {{#if schema_org}}
             <meta itemprop="price" content="{{price.without_tax.value}}">
             <meta itemprop="priceCurrency" content="{{currency_selector.active_currency_code}}">
+            <meta itemprop="availability" content="{{product.availability}}">
+            <meta itemprop="itemCondition" itemtype="http://schema.org/OfferItemCondition" content="http://schema.org/{{product.condition}}Condition">
         {{/if}}
         <span data-product-price-without-tax class="price price--withoutTax">{{price.without_tax.formatted}}</span>
         {{#if price.with_tax}}

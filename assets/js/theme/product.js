@@ -19,8 +19,8 @@ export default class Product extends PageManager {
     before(next) {
         // Listen for foundation modal close events to sanitize URL after review.
         $(document).on('close.fndtn.reveal', () => {
-            if (this.url.indexOf('#writeReview') !== -1) {
-                History.replaceState('', document.title, window.location.pathname);
+            if (this.url.indexOf('#writeReview') !== -1 && typeof window.history.replaceState === 'function') {
+                window.history.replaceState(null, document.title, window.location.pathname);
             }
         });
 
@@ -33,7 +33,7 @@ export default class Product extends PageManager {
         // Init collapsible
         collapsibleFactory();
 
-        this.productDetails = new ProductDetails($('.productView'), this.context);
+        this.productDetails = new ProductDetails($('.productView'), this.context, window.BCData.product_attributes);
 
         videoGallery();
 

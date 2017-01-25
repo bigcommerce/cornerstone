@@ -24,7 +24,11 @@
                             {{#if quantity '>' 1}}
                                 {{quantity}} &times;
                             {{/if}}
-                            {{price.formatted}}
+                            {{#or ../customer (if ../theme_settings.restrict_to_login '!==' true)}}
+                                {{price.formatted}}
+                            {{else}}
+                                {{> components/common/login-for-pricing}}
+                            {{/or}}
                         </span>
                     </div>
                 </li>

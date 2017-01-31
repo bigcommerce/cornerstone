@@ -71,25 +71,27 @@
             {{> components/cart/coupon-input}}
         </li>
     {{/if}}
-    {{#each cart.gift_certificates}}
+    {{#if settings.gift_certificates_enabled}}
+        {{#each cart.gift_certificates}}
+            <li class="cart-total">
+                <div class="cart-total-label">
+                    <strong>{{lang 'cart.gift_certificates.code_label' code=code}}</strong>
+                    <span>
+                        {{remaining.formatted}} | <a href="{{remove_url}}">{{lang 'cart.gift_certificates.remove'}}</a>
+                    </span>
+                </div>
+                <div class="cart-total-value">
+                    {{used.formatted}}
+                </div>
+            </li>
+        {{/each}}
         <li class="cart-total">
             <div class="cart-total-label">
-                <strong>{{lang 'cart.gift_certificates.code_label' code=code}}</strong>
-                <span>
-                    {{remaining.formatted}} | <a href="{{remove_url}}">{{lang 'cart.gift_certificates.remove'}}</a>
-                </span>
+                <strong>{{lang 'cart.gift_certificates.gift_certificate'}}:</strong>
             </div>
-            <div class="cart-total-value">
-                {{used.formatted}}
-            </div>
+            {{> components/cart/gift-certificate-input}}
         </li>
-    {{/each}}
-    <li class="cart-total">
-        <div class="cart-total-label">
-            <strong>{{lang 'cart.gift_certificates.gift_certificate'}}:</strong>
-        </div>
-        {{> components/cart/gift-certificate-input}}
-    </li>
+    {{/if}}
     <li class="cart-total">
         <div class="cart-total-label">
             <strong>{{lang 'cart.checkout.grand_total'}}:</strong>

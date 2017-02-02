@@ -8,7 +8,7 @@ module.exports = {
             {
                 test: /\.js$/,
                 loader: 'babel',
-                include: /(assets\/js|assets\\js|node_modules\/@bigcommerce\/stencil-utils|node_modules\\@bigcommerce\\stencil-utils)/,
+                include: /(assets\/js|assets\\js|stencil-utils)/,
                 query: {
                     compact: false,
                     cacheDirectory: true,

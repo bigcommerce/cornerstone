@@ -1,4 +1,4 @@
-import PageManager from '../page-manager';
+import PageManager from './page-manager';
 import $ from 'jquery';
 
 export default class Compare extends PageManager {

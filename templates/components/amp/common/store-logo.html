@@ -1,0 +1,12 @@
+<a href="{{urls.home}}" class="amp-header-link">
+    {{#if settings.store_logo.image}}
+        <amp-img
+            src="{{getImage settings.store_logo.image 'logo_size'}}"
+            width="100"
+            height="50"
+            alt="{{settings.store_logo.title}}">
+        </amp-img>
+    {{else}}
+        <span class="amp-header-logo-text">{{settings.store_logo.title}}</span>
+    {{/if}}
+</a>

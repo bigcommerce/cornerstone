@@ -1,0 +1,24 @@
+<div class="form-field">
+    <label class="form-label form-label--alternate form-label--inlineSmall">
+    {{product.event_date.name}}:
+    <small>{{lang 'common.required'}}</small>
+    </label>
+    <select class="form-select form-select--date" name="EventDate[Mth]" required>
+        <option value="">{{lang 'common.month'}}</option>
+        {{#enumerate 1 12}}
+            <option value="{{this}}">{{getShortMonth this}}</option>
+        {{/enumerate}}
+    </select>
+    <select class="form-select form-select--date" name="EventDate[Day]" required>
+        <option value="">{{lang 'common.day'}}</option>
+        {{#enumerate 1 31}}
+            <option value="{{this}}">{{this}}</option>
+        {{/enumerate}}
+    </select>
+    <select class="form-select form-select--date" name="EventDate[Yr]" required>
+        <option value="">{{lang 'common.year'}}</option>
+        {{#enumerate product.event_date.earliest_year product.event_date.latest_year}}
+            <option value="{{this}}" >{{this}}</option>
+        {{/enumerate}}
+    </select>
+</div>

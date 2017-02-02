@@ -1,0 +1,32 @@
+<div class="pagination">
+    <ul class="pagination-list">
+        {{#if previous}}
+            <li class="pagination-item pagination-item--previous">
+                <a class="pagination-link" href="{{previous}}" {{#unless reload}}data-faceted-search-facet{{/unless}}>
+                    <i class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg></i>
+                    {{lang 'common.previous'}}
+                </a>
+            </li>
+        {{/if}}
+        {{#each links}}
+            {{#if this.number '==' ../current}}
+                <li class="pagination-item pagination-item--current">
+                    <a class="pagination-link" href="{{this.url}}" {{#unless reload}}data-faceted-search-facet{{/unless}}>{{this.number}}</a>
+                </li>
+            {{else}}
+                <li class="pagination-item">
+                    <a class="pagination-link" href="{{this.url}}" {{#unless reload}}data-faceted-search-facet{{/unless}}>{{this.number}}</a>
+                </li>
+            {{/if}}
+        {{/each}}
+
+        {{#if next}}
+            <li class="pagination-item pagination-item--next">
+                <a class="pagination-link" href="{{next}}" {{#unless reload}}data-faceted-search-facet{{/unless}}>
+                    {{lang 'common.next'}}
+                    <i class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></i>
+                </a>
+            </li>
+        {{/if}}
+    </ul>
+</div>

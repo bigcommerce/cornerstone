@@ -39,9 +39,11 @@
                 </div>
             </li>
         {{/if}}
-        <li class="navPages-item">
-            <a class="navPages-action" href="{{urls.gift_certificate.purchase}}">{{lang 'common.gift_cert'}}</a>
-        </li>
+        {{#if settings.gift_certificates_enabled}}
+            <li class="navPages-item">
+                <a class="navPages-action" href="{{urls.gift_certificate.purchase}}">{{lang 'common.gift_cert'}}</a>
+            </li>
+        {{/if}}
         {{#if customer.store_credit.value '>' 0}}
             <li class="navPages-item">
                 <a class="navPages-action navPages-action--storeCredit">

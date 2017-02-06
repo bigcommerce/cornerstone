@@ -78,17 +78,19 @@
         }
     }
 
+    &.heroCarousel-slide-stretch .heroCarousel-slide {
+        @include breakpoint("large") { // 4
+            background-size: 100% 100%;
+        }
+    }
 }
+
 
 .heroCarousel-slide {
     background-position: 50%;
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
-
-    @include breakpoint("large") { // 4
-        background-size: 100% 100%;
-    }
 
     a {
         text-decoration: none;

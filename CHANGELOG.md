@@ -4,6 +4,7 @@
 - Added a setting to theme editor schema to show/hide the homepage carousel [#909](https://github.com/bigcommerce/stencil/pull/909)
 - Prevent carousel images from being cut off on large screens by adding a new setting to theme editor schema [#909](https://github.com/bigcommerce/stencil/pull/909)
 - Add schema description specifying that social media icons must be set up to see them [#920](https://github.com/bigcommerce/stencil/pull/920)
+- Show account creation links only if it is enabled in store settings [#917] (https://github.com/bigcommerce/stencil/pull/917)
 
 ## 1.5.1 (2017-02-07)
 - Fix an issue with a horizontal scroll bar showing in theme editor [#915](https://github.com/bigcommerce/stencil/pull/915)

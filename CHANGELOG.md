@@ -1,5 +1,9 @@
 # Changelog
 
+## Draft
+- Added a setting to theme editor schema to show/hide the homepage carousel [#909](https://github.com/bigcommerce/stencil/pull/909)
+- Prevent carousel images from being cut off on large screens by adding a new setting to theme editor schema [#909](https://github.com/bigcommerce/stencil/pull/909)
+
 ## 1.5.1 (2017-02-07)
 - Fix an issue with a horizontal scroll bar showing in theme editor [#915](https://github.com/bigcommerce/stencil/pull/915)
 - Hide Gift Certificates when the setting is disabled in the control panel [#914](https://github.com/bigcommerce/stencil/pull/914) & [#916](https://github.com/bigcommerce/stencil/pull/916)

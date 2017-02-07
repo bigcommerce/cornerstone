@@ -77,14 +77,7 @@
             @include carouselOpaqueBackgrounds($slick-dot-bgColor);
         }
     }
-
-    &.heroCarousel-slide-stretch .heroCarousel-slide {
-        @include breakpoint("large") { // 4
-            background-size: 100% 100%;
-        }
-    }
 }
-
 
 .heroCarousel-slide {
     background-position: 50%;
@@ -94,6 +87,12 @@
 
     a {
         text-decoration: none;
+    }
+}
+
+.heroCarousel-slide--stretch {
+    @include breakpoint("large") { // 4
+        background-size: 100% 100%;
     }
 }
 

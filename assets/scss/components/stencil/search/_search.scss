@@ -26,14 +26,14 @@
 .quickSearchResults {
     margin-top: spacing("single");
 
-    .modal-close {
-        display: none;
-    }
-
     @include breakpoint("medium") {
         margin-top: 0;
+    }
 
-        .modal-close {
+    .modal-close {
+        display: none;
+
+        @include breakpoint("medium") {
             display: block;
         }
     }

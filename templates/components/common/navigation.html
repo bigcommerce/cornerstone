@@ -32,16 +32,17 @@
                 <a class="navUser-action" href="{{urls.gift_certificate.purchase}}">{{lang 'common.gift_cert'}}</a>
             </li>
         {{/if}}
-        {{#if settings.account_creation_enabled}}
-            <li class="navUser-item navUser-item--account">
-                {{#if customer}}
-                    <a class="navUser-action" href="{{urls.account.index}}">{{lang 'common.account'}}</a>
-                    <a class="navUser-action" href="{{urls.auth.logout}}">{{lang 'common.logout'}}</a>
-                {{else}}
-                    <a class="navUser-action" href="{{urls.auth.login}}">{{lang 'common.login'}}</a> <span class="navUser-or">{{lang 'common.or'}}</span> <a class="navUser-action" href="{{urls.auth.create_account}}">{{lang 'common.sign_up'}}</a>
+        <li class="navUser-item navUser-item--account">
+            {{#if customer}}
+                <a class="navUser-action" href="{{urls.account.index}}">{{lang 'common.account'}}</a>
+                <a class="navUser-action" href="{{urls.auth.logout}}">{{lang 'common.logout'}}</a>
+            {{else}}
+                <a class="navUser-action" href="{{urls.auth.login}}">{{lang 'common.login'}}</a>
+                {{#if settings.account_creation_enabled}}
+                    <span class="navUser-or">{{lang 'common.or'}}</span> <a class="navUser-action" href="{{urls.auth.create_account}}">{{lang 'common.sign_up'}}</a>
                 {{/if}}
-            </li>
-        {{/if}}
+            {{/if}}
+        </li>
         <li class="navUser-item navUser-item--cart">
             <a
                 class="navUser-action"

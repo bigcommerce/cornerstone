@@ -94,7 +94,10 @@
             </li>
         {{else}}
             <li class="navPages-item">
-                <a class="navPages-action" href="{{urls.auth.login}}">{{lang 'common.login'}}</a> {{lang 'common.or'}} <a class="navPages-action" href="{{urls.auth.create_account}}">{{lang 'common.sign_up'}}</a>
+                <a class="navPages-action" href="{{urls.auth.login}}">{{lang 'common.login'}}</a>
+                {{#if settings.account_creation_enabled}}
+                    {{lang 'common.or'}} <a class="navPages-action" href="{{urls.auth.create_account}}">{{lang 'common.sign_up'}}</a>
+                {{/if}}
             </li>
         {{/if}}
         {{#if theme_settings.social_icon_placement_top}}

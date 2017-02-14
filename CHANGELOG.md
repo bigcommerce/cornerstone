@@ -1,5 +1,8 @@
 # Changelog
 
+## Draft
+- Show 'Write a Review' link for mobile [#922] (https://github.com/bigcommerce/stencil/pull/922)
+
 ## 1.5.2 (2017-02-14)
 - Added a setting to theme editor schema to show/hide the homepage carousel [#909](https://github.com/bigcommerce/stencil/pull/909)
 - Prevent carousel images from being cut off on large screens by adding a new setting to theme editor schema [#909](https://github.com/bigcommerce/stencil/pull/909)

@@ -71,6 +71,11 @@
                 {{> components/common/payment-icons}}
             </article>
         </section>
+        {{#if theme_settings.show_geotrust_ssl_seal}}
+            <div class="footer-geotrust-ssl-seal">
+                {{> components/common/geotrust-ssl-seal}}
+            </div>
+        {{/if}}
         {{#if theme_settings.show_powered_by}}
             <div class="footer-copyright">
                 <p class="powered-by">Powered by <a href="http://bigcommerce.com" rel="nofollow">BigCommerce</a></p>

@@ -8,6 +8,8 @@
 - Make sure product review email links automatically pop the review form [#928](https://github.com/bigcommerce/stencil/pull/928)
 - Fixes an issue where search results would incorrectly state there were no results when there were results visible [#934](https://github.com/bigcommerce/stencil/pull/934)
 - Update BC logo sprite to use current BC logo [#931](https://github.com/bigcommerce/stencil/pull/931)
+- Fix z-index for product sale badges so they aren't above the menu [#926](https://github.com/bigcommerce/stencil/pull/926)
+
 
 ## 1.5.2 (2017-02-14)
 - Added a setting to theme editor schema to show/hide the homepage carousel [#909](https://github.com/bigcommerce/stencil/pull/909)

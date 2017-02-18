@@ -5,6 +5,7 @@
 - Update text input for product review comment to be multiline so it's not too small to be usable [#921] (https://github.com/bigcommerce/stencil/pull/921)
 - Add a larger view of a swatch image when option is hovered over on the product page [#923](https://github.com/bigcommerce/stencil/pull/923)
 - Fixes an issue with file upload button not properly displaying in IE [#925](https://github.com/bigcommerce/stencil/pull/925)
+- Make sure product review email links automatically pop the review form [#928](https://github.com/bigcommerce/stencil/pull/928)
 
 ## 1.5.2 (2017-02-14)
 - Added a setting to theme editor schema to show/hide the homepage carousel [#909](https://github.com/bigcommerce/stencil/pull/909)

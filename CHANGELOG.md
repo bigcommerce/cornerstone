@@ -11,6 +11,7 @@
 - Fix z-index for product sale badges so they aren't above the menu [#926](https://github.com/bigcommerce/stencil/pull/926)
 - Auto-expand product videos on the product page if the product has at least one video [#935](https://github.com/bigcommerce/stencil/pull/935)
 - Fix an issue with special characters in search results for content pages [#933](https://github.com/bigcommerce/stencil/pull/933)
+- Fix an issue with special characters in carousel text [#932](https://github.com/bigcommerce/stencil/pull/932)
 
 
 ## 1.5.2 (2017-02-14)

@@ -9,6 +9,7 @@
 - Fixes an issue where search results would incorrectly state there were no results when there were results visible [#934](https://github.com/bigcommerce/stencil/pull/934)
 - Update BC logo sprite to use current BC logo [#931](https://github.com/bigcommerce/stencil/pull/931)
 - Fix z-index for product sale badges so they aren't above the menu [#926](https://github.com/bigcommerce/stencil/pull/926)
+- Auto-expand product videos on the product page if the product has at least one video [#935](https://github.com/bigcommerce/stencil/pull/935)
 
 
 ## 1.5.2 (2017-02-14)

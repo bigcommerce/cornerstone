@@ -16,7 +16,7 @@ export default class StencilDropdown {
 
         // callback "hide"
         if (this.extendables && this.extendables.hide) {
-            this.extendables.hide(event);
+            this.extendables.hide();
         }
 
         $dropDown.removeClass('is-open f-open-dropdown').attr('aria-hidden', 'true');

@@ -13,6 +13,7 @@
 - Fix an issue with special characters in search results for content pages [#933](https://github.com/bigcommerce/stencil/pull/933)
 - Fix an issue with special characters in carousel text [#932](https://github.com/bigcommerce/stencil/pull/932)
 - Remove an unnecessary and confusing option in theme editor [#927](https://github.com/bigcommerce/stencil/pull/927)
+- Fix an issue where required product list options would display an invalid "none" choice [#929](https://github.com/bigcommerce/stencil/pull/929)
 
 
 ## 1.5.2 (2017-02-14)

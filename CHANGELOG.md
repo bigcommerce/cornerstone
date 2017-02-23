@@ -10,6 +10,7 @@
 - Fixed homepage featured products floating left and unecessarily wrapping to next row [#948](https://github.com/bigcommerce/cornerstone/pull/948)
 - Add google recaptcha v2 support to cornerstone. [#951](https://github.com/bigcommerce/cornerstone/pull/951)
 - Added order confirmation template page [#949](https://github.com/bigcommerce/cornerstone/pull/949)
+- Added theme editor setting for product display mode (grid vs list view) [#941](https://github.com/bigcommerce/stencil/pull/941)
 
 ## 1.5.3 (2017-02-23)
 - Show 'Write a Review' link for mobile [#922](https://github.com/bigcommerce/stencil/pull/922)

@@ -16,6 +16,7 @@
 - Fix an issue where required product list options would display an invalid "none" choice [#929](https://github.com/bigcommerce/stencil/pull/929)
 - Remove unused variable causing js error with search in the nav [#938](https://github.com/bigcommerce/stencil/pull/938)
 - Add settings to theme editor schema to customize Optimized Checkout discount banners [#924] (https://github.com/bigcommerce/stencil/pull/924)
+- Added theme editor setting for product display mode (grid vs list view) [#941](https://github.com/bigcommerce/stencil/pull/941)
 
 ## 1.5.2 (2017-02-14)
 - Added a setting to theme editor schema to show/hide the homepage carousel [#909](https://github.com/bigcommerce/stencil/pull/909)

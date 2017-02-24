@@ -158,10 +158,12 @@
     vertical-align: middle;
 
     + .productView-reviewLink {
-        display: none;
+        display: block;
+        margin-left: auto;
 
         @include breakpoint("small") {
             display: inline-block;
+            margin-left: spacing("half");
         }
     }
 
@@ -234,6 +236,7 @@
 //
 // 1. Align the product options list item radios vertically.
 // 2. Resetting font due to inline-block whitespace issue.
+// 3. File upload button does not properly display in IE if font-size is 0
 //
 // -----------------------------------------------------------------------------
 
@@ -254,6 +257,10 @@
 
     .form {
         display: inline;
+    }
+
+    input[type="file"] {
+        font-size: fontSize("smallest"); // 3
     }
 
     .form-field {

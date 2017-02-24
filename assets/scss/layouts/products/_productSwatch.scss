@@ -1,0 +1,55 @@
+// =============================================================================
+// SWATCH SIZES (CSS)
+// =============================================================================
+
+
+// Swatch Size Changes
+// -----------------------------------------------------------------------------
+
+// do some math
+$value_of_swatch_size : stencilString("swatch_option_size");
+$position_of_x : str-index($value_of_swatch_size, "x");
+$first_value : str-slice($value_of_swatch_size, 0, $position_of_x - 1);
+$second_value : str-slice($value_of_swatch_size, $position_of_x + 1);
+
+[data-product-attribute] .form-option.form-option-swatch {
+    overflow: visible;
+}
+
+.form-option-variant--color,
+.form-option-variant--pattern {
+    height: $second_value +"px";
+    width: $first_value +"px";
+}
+
+.form-option-expanded {
+    background-color: stencilColor("body-bg");
+    border: 1px solid stencilColor("input-border-color-active");
+    left: calc(100% + 55px);
+    opacity: 0;
+    padding: 3px;
+    position: absolute;
+    top: calc(100% + 5px);
+    transition: opacity 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    visibility: hidden;
+}
+
+.form-option:hover {
+    .form-option-expanded {
+        opacity: 1;
+        transform: translate(-50%, 0);
+        visibility: visible;
+        z-index: 5000;
+    }
+}
+
+.form-option-image {
+    background: {
+        position: 50%;
+        repeat: no-repeat;
+        size: cover;
+    }
+    display: block;
+    height: 100px;
+    width: 100px;
+}

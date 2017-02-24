@@ -43,14 +43,15 @@
             {{/each}}
         </ul>
     {{else}}
+        {{#unless required}}
         <input class="form-radio"
                type="radio"
                name="attribute[{{id}}]"
                value="0"
                id="attribute_0_{{id}}"
                {{#if defaultValue '==' 0}}checked{{/if}}
-               {{#if required}}required{{/if}}>
         <label class="form-label" for="attribute_0_{{id}}">{{lang 'products.none'}}</label>
+        {{/unless}}
         {{#each values}}
             <input
                 class="form-radio"

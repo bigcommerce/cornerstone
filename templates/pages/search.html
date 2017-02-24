@@ -73,13 +73,15 @@ product_results:
                             <a href="{{forms.search.suggested_query.url}}" class="search-refine">{{lang 'forms.search.refine'}}</a>
                         </div>
 
-                        <div class="search-suggestion">
-                            <p>
-                                {{lang 'forms.search.your_search_for'}}
-                                "<strong>{{forms.search.query}}</strong>"
-                                {{lang 'forms.search.no_match'}}
-                            </p>
-                        </div>
+                        {{#if result_count '===' 0}}
+                            <div class="search-suggestion">
+                                <p>
+                                    {{lang 'forms.search.your_search_for'}}
+                                    "<strong>{{forms.search.query}}</strong>"
+                                    {{lang 'forms.search.no_match'}}
+                                </p>
+                            </div>
+                        {{/if}}
                     {{/if}}
 
                     {{#if category_results.length}}
@@ -130,8 +132,8 @@ product_results:
                 {{> components/search/content-sort-box sort=pagination.content_results.sort}}
                 <ul>
                     {{#each content_results}}
-                        <strong><a href="{{url}}">{{title}}</a></strong>({{type}})
-                        <p>{{content}}</p>
+                        <strong><a href="{{url}}">{{{title}}}</a></strong>({{type}})
+                        <p>{{{content}}}</p>
                     {{/each}}
                 </ul>
                 {{> components/common/paginator pagination.content_results reload=true}}

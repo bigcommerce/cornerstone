@@ -68,23 +68,6 @@
     ]
   },
   {
-    "name": "Layout Settings",
-    "settings": [
-      {
-        "type": "checkbox",
-        "label": "Show Quickview",
-        "force_reload": true,
-        "id": "show_product_quick_view"
-      },
-      {
-        "type": "checkbox",
-        "label": "Hide Content Pages in Main Menu",
-        "force_reload": true,
-        "id": "hide_content_navigation"
-      }
-    ]
-  },
-  {
     "name": "Typography & Icons",
     "settings": [
       {
@@ -676,6 +659,12 @@
         "content": "Page navigation"
       },
       {
+        "type": "checkbox",
+        "label": "Hide Content Pages in Main Menu",
+        "force_reload": true,
+        "id": "hide_content_navigation"
+      },
+      {
         "type": "color",
         "label": "Text color",
         "id": "navPages-color"
@@ -756,6 +745,18 @@
     "name": "Carousel",
     "settings": [
       {
+        "type": "checkbox",
+        "label": "Show Carousel",
+        "force_reload": true,
+        "id": "homepage_show_carousel"
+      },
+      {
+        "type": "checkbox",
+        "label": "Allows image to stretch on large screens",
+        "force_reload": true,
+        "id": "homepage_stretch_carousel_images"
+      },
+      {
         "type": "color",
         "label": "Background color",
         "id": "carousel-bgColor"
@@ -833,8 +834,53 @@
     ]
   },
   {
+    "name": "Social Media Icons",
+    "settings": [
+      {
+        "type": "heading",
+        "content": "Placement"
+      },
+      {
+        "type": "paragraph",
+        "content": "Social accounts must be set up to use this feature."
+      },
+      {
+        "type": "checkbox",
+        "label": "Top Right (Toggle On/Off)",
+        "force_reload": true,
+        "id": "social_icon_placement_top"
+      },
+      {
+        "type": "select",
+        "label": "Bottom Placement",
+        "id": "social_icon_placement_bottom",
+        "force_reload": true,
+        "options": [
+          {
+            "value": "bottom_none",
+            "label": "None"
+          },
+          {
+            "value": "bottom_right",
+            "label": "Right"
+          },
+          {
+            "value": "bottom_left",
+            "label": "Left"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "name": "Products",
     "settings": [
+      {
+        "type": "checkbox",
+        "label": "Show Quickview",
+        "force_reload": true,
+        "id": "show_product_quick_view"
+      },
       {
         "type": "heading",
         "content": "Home page"
@@ -1223,6 +1269,26 @@
         ]
       },
       {
+        "label": "Product Swatch Image Sizes",
+        "type": "imageDimension",
+        "id": "swatch_option_size",
+        "force_reload": true,
+        "options": [
+          {
+            "value": "22x22",
+            "label": "Standard"
+          },
+          {
+            "value": "custom",
+            "label": "Specify dimensions"
+         }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": "*For texture swatches, max dimensions are 150x150."
+      },
+      {
         "type": "heading",
         "content": "Category pages"
       },
@@ -1232,10 +1298,6 @@
         "id": "categorypage_products_per_page",
         "force_reload": true,
         "options": [
-          {
-            "value": 0,
-            "label": "Disable"
-          },
           {
             "value": 6,
             "label": "6"
@@ -1281,10 +1343,6 @@
         "force_reload": true,
         "options": [
           {
-            "value": 0,
-            "label": "Disable"
-          },
-          {
             "value": 6,
             "label": "6"
           },
@@ -1328,10 +1386,6 @@
         "id": "searchpage_products_per_page",
         "force_reload": true,
         "options": [
-          {
-            "value": 0,
-            "label": "Disable"
-          },
           {
             "value": 6,
             "label": "6"
@@ -1389,6 +1443,49 @@
         "type": "color",
         "label": "Button background color",
         "id": "card-figcaption-button-background"
+      },
+      {
+        "type": "heading",
+        "content": "Product Sale Badges"
+      },
+      {
+        "type": "select",
+        "label": "Display Product Sale Badges",
+        "id": "product_sale_badges",
+        "force_reload": true,
+        "options": [
+          {
+            "value": "none",
+            "label": "None"
+          },
+          {
+            "value": "topleft",
+            "label": "Top Left"
+          },
+          {
+            "value": "sash",
+            "label": "Diagonal"
+          },
+          {
+            "value": "burst",
+            "label": "Burst"
+          }
+        ]
+      },
+      {
+        "type": "color",
+        "label": "Text Color",
+        "id": "color_text_product_sale_badges"
+      },
+      {
+        "type": "color",
+        "label": "Badge Color",
+        "id": "color_badge_product_sale_badges"
+      },
+      {
+        "type": "color",
+        "label": "Hover Badge Color (Excludes 'Burst')",
+        "id": "color_hover_product_sale_badges"
       },
       {
         "type": "heading",
@@ -1630,6 +1727,25 @@
       },
       {
         "type": "heading",
+        "content": "Discount Banner"
+      },
+      {
+        "type": "color",
+        "label": "Background color",
+        "id": "optimizedCheckout-discountBanner-backgroundColor"
+      },
+      {
+        "type": "color",
+        "label": "Text color",
+        "id": "optimizedCheckout-discountBanner-textColor"
+      },
+      {
+        "type": "color",
+        "label": "Icon color",
+        "id": "optimizedCheckout-discountBanner-iconColor"
+      },
+      {
+        "type": "heading",
         "content": "Order summary"
       },
       {
@@ -1649,7 +1765,7 @@
       {
         "type": "color",
         "label": "Text color",
-        "id": "optimizedCheckout-step-text"
+        "id": "optimizedCheckout-step-textColor"
       },
       {
         "type": "heading",
@@ -2074,7 +2190,7 @@
       {
         "type": "color",
         "label": "Text Color",
-        "id": "optimizedCheckout-form-text"
+        "id": "optimizedCheckout-form-textColor"
       },
       {
         "type": "heading",
@@ -2112,15 +2228,75 @@
       },
       {
         "type": "checkbox",
-        "label": "Show Powered By",
+        "label": "Show &quot;Powered by BigCommerce&quot;",
         "force_reload": true,
         "id": "show_powered_by"
       },
       {
         "type": "checkbox",
-        "label": "Show Copyright Info",
+        "label": "Show brands in footer",
+        "force_reload": true,
+        "id": "shop_by_brand_show_footer"
+      },
+      {
+        "type": "checkbox",
+        "label": "Show &quot;&copy;&quot;, current year and store name",
         "force_reload": true,
         "id": "show_copyright_footer"
+      },
+      {
+        "type": "heading",
+        "content": "GeoTrust SSL"
+      },
+      {
+        "type": "checkbox",
+        "label": "Show Seal",
+        "force_reload": true,
+        "id": "show_geotrust_ssl_seal"
+      },
+      {
+        "type": "select",
+        "label": "Seal Size",
+        "id": "geotrust_ssl_seal_size",
+        "options": [
+          {
+            "value": "M",
+            "label": "Medium"
+          },
+          {
+            "value": "S",
+            "label": "Small"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Purchase Options",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Add 'As low as' pricing text to products with options on layout pages."
+      },
+      {
+        "type": "checkbox",
+        "label": "Add 'As low as' text",
+        "force_reload": true,
+        "id": "price_as_low_as"
+      },
+      {
+        "type": "paragraph",
+        "content": "*only recommended if default options are set to lowest price available for each product"
+      },
+      {
+        "type": "paragraph",
+        "content": "Hide prices and add to cart buttons if customers aren't logged in."
+      },
+      {
+        "type": "checkbox",
+        "label": "Restrict Purchase to Login",
+        "force_reload": true,
+        "id": "restrict_to_login"
       }
     ]
   }

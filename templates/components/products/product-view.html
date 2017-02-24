@@ -20,11 +20,13 @@
                     <span>{{product.call_for_price}}</span>
                 </p>
             {{/if}}
-            {{#if product.price}}
-                <div class="productView-price">
+            <div class="productView-price">
+                {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
                     {{> components/products/price price=product.price schema_org=schema}}
-                </div>
-            {{/if}}
+                {{else}}
+                    {{> components/common/login-for-pricing}}
+                {{/or}}
+            </div>
             <div class="productView-rating"{{#if schema}} itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating"{{/if}}>
                 {{#if settings.show_product_rating}}
                     {{#if product.num_reviews '>' 0}}
@@ -272,12 +274,13 @@
                         </div>
                         <p class="alertBox-column alertBox-message"></p>
                     </div>
-
-                    <div class="form-action">
-                        <input id="form-action-addToCart" data-wait-message="{{lang 'products.adding_to_cart'}}" class="button button--primary" type="submit"
-                               value="{{#if product.pre_order}}{{lang 'products.pre_order'}}{{else}}{{lang 'products.add_to_cart'}}{{/if}}">
-                    </div>
-                    {{{snippet 'product_addtocart'}}}
+                    {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+                        <div class="form-action">
+                            <input id="form-action-addToCart" data-wait-message="{{lang 'products.adding_to_cart'}}" class="button button--primary" type="submit"
+                                value="{{#if product.pre_order}}{{lang 'products.pre_order'}}{{else}}{{lang 'products.add_to_cart'}}{{/if}}">
+                        </div>
+                         {{{snippet 'product_addtocart'}}}
+                    {{/or}}
                 {{/if}}
                 {{#if product.out_of_stock}}
                     {{#if product.out_of_stock_message}}

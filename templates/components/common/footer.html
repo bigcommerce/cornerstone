@@ -7,14 +7,23 @@
 {{/if}}
 <footer class="footer" role="contentinfo">
     <div class="container">
+        {{#if theme_settings.social_icon_placement_bottom '!==' 'bottom_none'}}
+            <article class="footer-info-col
+                footer-info-col--social
+                footer-info-col--{{#if theme_settings.social_icon_placement_bottom '===' 'bottom_left'}}left{{else}}right{{/if}}"
+                data-section-type="footer-webPages">
+                    <h5 class="footer-info-heading">{{lang 'social.connect'}}</h5>
+                    {{> components/common/social-links}}
+            </article>
+        {{/if}}
         <section class="footer-info">
             <article class="footer-info-col footer-info-col--small" data-section-type="footer-webPages">
                 <h5 class="footer-info-heading">{{lang 'footer.navigate'}}</h5>
                 <ul class="footer-info-list">
                     {{#each pages}}
-                    <li>
-                        <a href="{{url}}">{{name}}</a>
-                    </li>
+                        <li>
+                            <a href="{{url}}">{{name}}</a>
+                        </li>
                     {{/each}}
                     <li>
                         <a href="{{urls.sitemap}}">{{lang 'sitemap.page_title'}}</a>
@@ -33,6 +42,7 @@
                 </ul>
             </article>
 
+            {{#if theme_settings.shop_by_brand_show_footer}}
             <article class="footer-info-col footer-info-col--small" data-section-type="footer-brands">
                 <h5 class="footer-info-heading">{{lang 'footer.brands'}}</h5>
                 <ul class="footer-info-list">
@@ -44,6 +54,7 @@
                     <li><a href="{{urls.brands}}">{{lang 'common.view_all'}}</a></li>
                 </ul>
             </article>
+            {{/if}}
 
             <article class="footer-info-col footer-info-col--small" data-section-type="storeInfo">
                 <h5 class="footer-info-heading">{{lang 'footer.info'}}</h5>
@@ -57,10 +68,14 @@
                 {{#if settings.show_newsletter_box}}
                     {{> components/common/subscription-form}}
                 {{/if}}
-                {{> components/common/social-links}}
                 {{> components/common/payment-icons}}
             </article>
         </section>
+        {{#if theme_settings.show_geotrust_ssl_seal}}
+            <div class="footer-geotrust-ssl-seal">
+                {{> components/common/geotrust-ssl-seal}}
+            </div>
+        {{/if}}
         {{#if theme_settings.show_powered_by}}
             <div class="footer-copyright">
                 <p class="powered-by">Powered by <a href="http://bigcommerce.com" rel="nofollow">BigCommerce</a></p>

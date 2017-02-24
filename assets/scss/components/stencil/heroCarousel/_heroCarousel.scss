@@ -2,20 +2,31 @@
 // -----------------------------------------------------------------------------
 //
 // Purpose: Styles the hero carousel component, which basically adds extras to the
-// vendor slick carousel, to specifically display hero images
+// vendor slick carousel, to specifically display hero images.
 //
 // 1. Hide the actual image element to allow background-size: cover treatment on
 //    large screens to scale image. Use visibility because the JS uses the height
-//    to set the slide size
+//    to set the slide size.
 //
 // 2. With JS on, minimise the jump in content as you progressively enhance the
 //    slider. Slowly fade and slide the height, instead of a jump in collapsing
 //    hidden content.
+//
+// 3. Visually overrides the top margin for '.body' defined in _body.scss.
+//    The '.body' top margin creates space between the header and page content.
+//    However, on the homepage, we want the carousel to be flush with the header.
+//
+// 4. Allows image to scale on large screens while preventing the top and bottom
+//    from becoming cut off.
 // -----------------------------------------------------------------------------
 
 .heroCarousel {
     margin-bottom: (spacing("double") + spacing("single"));
-    margin-top: -(spacing("single") + spacing("base"));
+    margin-top: -(spacing("single")); // 3
+
+    @include breakpoint("medium") {
+        margin-top: -(spacing("single") + spacing("base")); // 3
+    }
 
     .js & { // 2
         max-height: remCalc(0);
@@ -66,7 +77,6 @@
             @include carouselOpaqueBackgrounds($slick-dot-bgColor);
         }
     }
-
 }
 
 .heroCarousel-slide {
@@ -77,6 +87,12 @@
 
     a {
         text-decoration: none;
+    }
+}
+
+.heroCarousel-slide--stretch {
+    @include breakpoint("large") { // 4
+        background-size: 100% 100%;
     }
 }
 

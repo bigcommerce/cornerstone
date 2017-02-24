@@ -1,6 +1,8 @@
 # Changelog
 
 ## Draft
+
+## 1.5.3 (2017-02-23)
 - Show 'Write a Review' link for mobile [#922] (https://github.com/bigcommerce/stencil/pull/922)
 - Update text input for product review comment to be multiline so it's not too small to be usable [#921] (https://github.com/bigcommerce/stencil/pull/921)
 - Add a larger view of a swatch image when option is hovered over on the product page [#923](https://github.com/bigcommerce/stencil/pull/923)

@@ -2,6 +2,7 @@
 
 ## Draft
 - Expose `language` object on the checkout page [#910](https://github.com/bigcommerce/stencil/pull/910)
+- Update package.json to disambiguate Stencil and Cornerstone [#943] (https://github.com/bigcommerce/stencil/pull/943)
 
 ## 1.5.3 (2017-02-23)
 - Show 'Write a Review' link for mobile [#922] (https://github.com/bigcommerce/stencil/pull/922)

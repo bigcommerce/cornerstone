@@ -12,6 +12,7 @@ class Menu {
     constructor($menu) {
         this.$menu = $menu;
         this.$body = $('body');
+        this.hasMaxMenuDisplayDepth = this.$body.find('.navPages-list').hasClass('navPages-list-depth-max');
 
         // Init collapsible
         this.collapsibles = collapsibleFactory('[data-collapsible]', { $context: this.$menu });
@@ -26,7 +27,14 @@ class Menu {
     }
 
     collapseAll() {
+        this.collapsibles.forEach(collapsible => collapsible.close());
         this.collapsibleGroups.forEach(group => group.close());
+    }
+
+    collapseNeighbors($neighbors) {
+        const $collapsibles = collapsibleFactory('[data-collapsible]', { $context: $neighbors });
+
+        $collapsibles.forEach($collapsible => $collapsible.close());
     }
 
     bindEvents() {
@@ -41,6 +49,12 @@ class Menu {
 
     onMenuClick(event) {
         event.stopPropagation();
+
+        if (this.hasMaxMenuDisplayDepth) {
+            const $neighbors = $(event.target).parent().siblings();
+
+            this.collapseNeighbors($neighbors);
+        }
     }
 
     onDocumentClick() {

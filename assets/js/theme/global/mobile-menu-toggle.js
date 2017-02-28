@@ -29,8 +29,10 @@ export class MobileMenuToggle {
     } = {}) {
         this.$body = $('body');
         this.$menu = $(menuSelector);
+        this.$navList = $('.navPages-list.navPages-list-depth-max');
         this.$header = $(headerSelector);
         this.$scrollView = $(scrollViewSelector, this.$menu);
+        this.$subMenus = this.$navList.find('.navPages-action');
         this.$toggle = $toggle;
         this.mediumMediaQueryList = mediaQueryListFactory('medium');
 
@@ -38,6 +40,7 @@ export class MobileMenuToggle {
         this.onToggleClick = this.onToggleClick.bind(this);
         this.onCartPreviewOpen = this.onCartPreviewOpen.bind(this);
         this.onMediumMediaQueryMatch = this.onMediumMediaQueryMatch.bind(this);
+        this.onSubMenuClick = this.onSubMenuClick.bind(this);
 
         // Listen
         this.bindEvents();
@@ -56,6 +59,7 @@ export class MobileMenuToggle {
     bindEvents() {
         this.$toggle.on('click', this.onToggleClick);
         this.$header.on(CartPreviewEvents.open, this.onCartPreviewOpen);
+        this.$navList.on('click .navPages-action', this.onSubMenuClick);
 
         if (this.mediumMediaQueryList && this.mediumMediaQueryList.addListener) {
             this.mediumMediaQueryList.addListener(this.onMediumMediaQueryMatch);
@@ -92,6 +96,8 @@ export class MobileMenuToggle {
 
         this.$header.addClass('is-open');
         this.$scrollView.scrollTop(0);
+
+        this.resetSubMenus();
     }
 
     hide() {
@@ -106,6 +112,8 @@ export class MobileMenuToggle {
             .attr('aria-hidden', true);
 
         this.$header.removeClass('is-open');
+
+        this.resetSubMenus();
     }
 
     // Private
@@ -127,6 +135,31 @@ export class MobileMenuToggle {
         }
 
         this.hide();
+    }
+
+    onSubMenuClick(event) {
+        const $closestAction = $(event.target).closest('.navPages-action');
+        const $parentSiblings = $closestAction.parent().siblings();
+        const $parentAction = $closestAction.closest('.navPage-subMenu-horizontal').siblings('.navPages-action');
+
+        if (this.$subMenus.hasClass('is-open')) {
+            this.$navList.addClass('subMenu-is-open');
+        } else {
+            this.$navList.removeClass('subMenu-is-open');
+        }
+
+        if ($(event.target).hasClass('is-open')) {
+            $parentSiblings.addClass('is-hidden');
+            $parentAction.addClass('is-hidden');
+        } else {
+            $parentSiblings.removeClass('is-hidden');
+            $parentAction.removeClass('is-hidden');
+        }
+    }
+
+    resetSubMenus() {
+        this.$navList.find('.is-hidden').removeClass('is-hidden');
+        this.$navList.removeClass('subMenu-is-open');
     }
 }
 

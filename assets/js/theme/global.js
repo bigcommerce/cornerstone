@@ -13,6 +13,7 @@ import compareProducts from './global/compare-products';
 import privacyCookieNotification from './global/cookieNotification';
 import maintenanceMode from './global/maintenanceMode';
 import carousel from './common/carousel';
+import unveil from './global/unveil';
 import loadingProgressBar from './global/loading-progress-bar';
 import FastClick from 'fastclick';
 
@@ -28,6 +29,7 @@ export default class Global extends PageManager {
      */
     loaded(next) {
         fastClick(document.body);
+        unveil();
         quickSearch();
         currencySelector();
         foundation($(document));

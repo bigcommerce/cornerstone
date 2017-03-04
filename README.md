@@ -1,5 +1,5 @@
 # Stencil
-[![Build Status](https://travis-ci.org/bigcommerce/stencil.svg?branch=master)](https://travis-ci.org/bigcommerce/stencil)
+[![Build Status](https://travis-ci.org/bigcommerce/cornerstone.svg?branch=master)](https://travis-ci.org/bigcommerce/cornerstone)
 
 The building block for BigCommerce theme developers to get started quickly developing premium quality themes on the BigCommerce platform.
 

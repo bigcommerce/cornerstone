@@ -41,8 +41,13 @@ function development() {
 function production() {
     webpackConfig.watch = false;
     webpackConfig.devtool = false;
-    webpackConfig.plugins.push(new webpack.optimize.DedupePlugin());
-    webpackConfig.plugins.push(new webpack.optimize.UglifyJsPlugin({ comments: false }));
+    webpackConfig.plugins.push(new webpack.optimize.UglifyJsPlugin({
+        comments: false,
+        sourceMap: true,
+        compress: {
+            warnings: true
+        }
+    }));
 
     webpack(webpackConfig).run(err => {
         if (err) {

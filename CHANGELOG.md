@@ -5,6 +5,7 @@
 - Update package.json to disambiguate Stencil and Cornerstone [#943] (https://github.com/bigcommerce/stencil/pull/943)
 - Added support up to 8 levels for category menu depth [#939] (https://github.com/bigcommerce/stencil/pull/939)
 - Implement lazyloading for product card images to improve above-the-fold rendering [#944] (https://github.com/bigcommerce/stencil/pull/944)
+- Print a readable error instead of dumping the whole error object to the console [#950](https://github.com/bigcommerce/cornerstone/pull/950)
 
 ## 1.5.3 (2017-02-23)
 - Show 'Write a Review' link for mobile [#922] (https://github.com/bigcommerce/stencil/pull/922)

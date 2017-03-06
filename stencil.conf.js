@@ -40,7 +40,7 @@ function development(Bs) {
     // Rebuild the bundle once at bootup
     compiler.watch({}, function(err, stats) {
         if (err) {
-            console.error(err)
+            console.error(err.message, err.details);
         }
 
         Bs.reload();

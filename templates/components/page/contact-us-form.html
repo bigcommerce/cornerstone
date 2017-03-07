@@ -47,32 +47,14 @@
         {{/if}}
     </div>
 
-    {{#if forms.contact.recaptcha.enabled}}
-        <div class="panel">
-            <header class="panel-header">
-                <h3 class="panel-title">{{lang 'forms.contact_us.captcha'}}</h3>
-            </header>
-            <div class="panel-body">
-                <script type="text/javascript"
-                        src="https://www.google.com/recaptcha/api/challenge?k={{forms.contact.recaptcha.public_key}}">
-                </script>
-                <noscript>
-                    <iframe src="https://www.google.com/recaptcha/api/noscript?k={{forms.contact.recaptcha.public_key}}" height="300" width="500" frameborder="0"></iframe>
-                    <br>
-                    <textarea name="recaptcha_challenge_field" rows="3" cols="40">
-                    </textarea>
-                    <input type="hidden" name="recaptcha_response_field" value="manual_challenge">
-                </noscript>
-            </div>
-        </div>
-    {{/if}}
-
     <div class="form-field">
         <label class="form-label" for="contact_question">{{lang 'forms.contact_us.question'}}
             <small>{{lang 'common.required' }}</small>
         </label>
         <textarea name="contact_question" id="contact_question" rows="5" cols="50" class="form-input"></textarea>
     </div>
+
+    {{{forms.contact.recaptcha.markup}}}
 
     <div class="form-actions">
         <input class="button button--primary" type="submit" value="{{lang 'forms.contact_us.submit' }}">

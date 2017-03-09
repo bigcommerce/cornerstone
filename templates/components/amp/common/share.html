@@ -1,0 +1,15 @@
+{{#if settings.add_this.buttons}}
+    <ul class="socialLinks" data-addthis:url="{{url}}" data-addthis:title="{{title}}">
+        {{#each settings.add_this.buttons}}
+            {{#all (if service '!==' 'google') (if service '!==' 'print') (if service '!==' 'facebook')}}
+                <li class="socialLinks-item socialLinks-item--{{service}}">
+                  {{#if service '===' 'google_plusone'}}
+                        <amp-social-share class="amp-social-share" data-vars-product-link="{{url}}" data-vars-product-id="{{id}}" data-vars-product-name="{{name}}" data-vars-social-type="gplus" type="gplus"></amp-social-share>
+                    {{else}}
+                        <amp-social-share class="amp-social-share" data-vars-product-link="{{url}}" data-vars-product-id="{{id}}" data-vars-product-name="{{name}}" data-vars-social-type="{{service}}" type="{{service}}"></amp-social-share>
+                  {{/if}}
+                </li>
+            {{/all}}
+        {{/each}}
+    </ul>
+{{/if}}

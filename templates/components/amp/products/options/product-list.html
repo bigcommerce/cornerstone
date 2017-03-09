@@ -1,0 +1,66 @@
+<div class="form-field" data-product-attribute="product-list">
+    <label class="form-label form-label--alternate form-label--inlineSmall">
+        {{display_name}}:
+        <span data-option-value></span>
+
+        {{#if required}}
+            <small>{{lang 'common.required'}}</small>
+        {{/if}}
+    </label>
+
+    {{#if values.0.image}}
+        <ul class="productOptions-list">
+            {{#unless required}}
+                <li class="productOptions-list-item">
+                    <input class="form-radio"
+                           type="radio"
+                           name="attribute[{{id}}]"
+                           value="0"
+                           id="attribute_0_{{id}}"
+                           {{#if defaultValue '==' 0}}checked{{/if}} required>
+                    <label class="form-label" for="attribute_0_{{id}}">{{lang 'products.none'}}</label>
+                </li>
+            {{/unless}}
+            {{#each values}}
+                <li class="productOptions-list-item" data-product-attribute-value="{{id}}">
+                    {{#if image}}
+                        <figure class="productOptions-list-item-figure">
+                            <img class="productOptions-list-item-image" src="{{getImage image 'productthumb_size'}}" alt="{{image.alt}}" title="{{image.alt}}">
+                        </figure>
+                    {{/if}}
+                    <div class="productOptions-list-item-content">
+                        <input
+                            class="form-radio"
+                            type="radio"
+                            name="attribute[{{../id}}]"
+                            value="{{id}}"
+                            id="attribute_{{id}}"
+                            {{#if selected}}checked{{/if}}
+                            {{#if ../required}}required{{/if}}>
+                        <label data-product-attribute-value="{{id}}" class="form-label" for="attribute_{{id}}">{{label}}</label>
+                    </div>
+                </li>
+            {{/each}}
+        </ul>
+    {{else}}
+        <input class="form-radio"
+               type="radio"
+               name="attribute[{{id}}]"
+               value="0"
+               id="attribute_0_{{id}}"
+               {{#if defaultValue '==' 0}}checked{{/if}}
+               {{#if required}}required{{/if}}>
+        <label class="form-label" for="attribute_0_{{id}}">{{lang 'products.none'}}</label>
+        {{#each values}}
+            <input
+                class="form-radio"
+                type="radio"
+                name="attribute[{{../id}}]"
+                value="{{id}}"
+                id="attribute_{{id}}"
+                {{#if selected}}checked{{/if}}
+                {{#if ../required}}required{{/if}}>
+            <label data-product-attribute-value="{{id}}" class="form-label" for="attribute_{{id}}">{{label}}</label>
+        {{/each}}
+    {{/if}}
+</div>

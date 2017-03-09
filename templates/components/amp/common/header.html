@@ -1,0 +1,20 @@
+{{#if banners.top}}
+    <div class="banners" data-banner-location="top">
+        <div class="banner">
+            {{{limit banners.top 1}}}
+        </div>
+    </div>
+{{/if}}
+
+<header class="amp-header">
+    <button class="amp-menu-button" on="tap:amp-menu.toggle">
+        Toggle menu
+    </button>
+
+    <div class="amp-header-logo">
+        {{> components/amp/common/store-logo}}
+    </div>
+</header>
+<amp-sidebar layout="nodisplay" id="amp-menu" data-menu>
+    {{> components/amp/common/navigation-menu}}
+</amp-sidebar>

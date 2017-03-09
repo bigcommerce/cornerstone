@@ -1,4 +1,4 @@
-import PageManager from '../page-manager';
+import PageManager from './page-manager';
 import $ from 'jquery';
 import nod from './common/nod';
 import Wishlist from './wishlist';

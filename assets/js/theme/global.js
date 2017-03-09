@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import './common/select-option-plugin';
 import 'html5-history-api';
-import PageManager from '../page-manager';
+import PageManager from './page-manager';
 import quickSearch from './global/quick-search';
 import currencySelector from './global/currency-selector';
 import mobileMenuToggle from './global/mobile-menu-toggle';

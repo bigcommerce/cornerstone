@@ -1,4 +1,4 @@
-import PageManager from '../page-manager';
+import PageManager from './page-manager';
 import $ from 'jquery';
 import _ from 'lodash';
 import giftCertCheck from './common/gift-certificate-validator';

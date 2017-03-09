@@ -1,0 +1,7 @@
+{{#if theme_settings.product_list_display_mode '===' 'grid'}}
+    {{> components/amp/products/grid products=category.products}}
+{{else}}
+    {{> components/amp/products/list products=category.products}}
+{{/if}}
+
+{{> components/amp/common/paginator pagination.category}}

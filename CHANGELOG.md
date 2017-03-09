@@ -6,7 +6,7 @@
 - Added support up to 8 levels for category menu depth [#939] (https://github.com/bigcommerce/stencil/pull/939)
 - Implement lazyloading for product card images to improve above-the-fold rendering [#944] (https://github.com/bigcommerce/stencil/pull/944)
 - Print a readable error instead of dumping the whole error object to the console [#950](https://github.com/bigcommerce/cornerstone/pull/950)
-
+- Fixed homepage featured products floating left and unecessarily wrapping to next row [#948](https://github.com/bigcommerce/cornerstone/pull/948)
 ## 1.5.3 (2017-02-23)
 - Show 'Write a Review' link for mobile [#922] (https://github.com/bigcommerce/stencil/pull/922)
 - Update text input for product review comment to be multiline so it's not too small to be usable [#921] (https://github.com/bigcommerce/stencil/pull/921)

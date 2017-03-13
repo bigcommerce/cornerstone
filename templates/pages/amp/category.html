@@ -42,41 +42,43 @@ category:
     </main>
     {{> components/amp/category/subcategories}}
     {{> components/amp/common/footer }}
-    <amp-analytics type="googleanalytics">
-        <script type="application/json">
-        {
-            "vars": {
-                "account": "{{theme_settings.amp_analytics_id}}"
-            },
-            "extraUrlParams": {
-                "cd1": "{{page_type}}",
-                "cd2": "{{category.id}}",
-                "cd3": "{{category.url}}",
-                "cd4": "{{category.name}}"
-            },
-            "triggers": {
-                "trackPageview": {
-                    "on": "visible",
-                    "request": "pageview"
+    {{#if theme_settings.amp_analytics_id}}
+        <amp-analytics type="googleanalytics">
+            <script type="application/json">
+            {
+                "vars": {
+                    "account": "{{theme_settings.amp_analytics_id}}"
                 },
-                "trackClickOnProductCard" : {
-                    "on": "click",
-                    "selector": ".card-figure a, .card-title a",
-                    "request": "event",
-                    "vars": {
-                        "eventCategory": "Category",
-                        "eventAction": "Product Card"
+                "extraUrlParams": {
+                    "cd1": "{{page_type}}",
+                    "cd2": "{{category.id}}",
+                    "cd3": "{{category.url}}",
+                    "cd4": "{{category.name}}"
+                },
+                "triggers": {
+                    "trackPageview": {
+                        "on": "visible",
+                        "request": "pageview"
                     },
-                    "extraUrlParams": {
-                        "cd6": "${productLink}",
-                        "cd7": "${productId}",
-                        "cd8": "${productName}"
+                    "trackClickOnProductCard" : {
+                        "on": "click",
+                        "selector": ".card-figure a, .card-title a",
+                        "request": "event",
+                        "vars": {
+                            "eventCategory": "Category",
+                            "eventAction": "Product Card"
+                        },
+                        "extraUrlParams": {
+                            "cd6": "${productLink}",
+                            "cd7": "${productId}",
+                            "cd8": "${productName}"
+                        }
                     }
                 }
             }
-        }
-        </script>
-    </amp-analytics>
+            </script>
+        </amp-analytics>
+    {{/if}}
 {{/partial}}
 {{> layout/amp}}
 

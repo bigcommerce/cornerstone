@@ -26,47 +26,49 @@ product:
     <div itemscope itemtype="http://schema.org/Product">
         {{> components/amp/products/product-view schema=true}}
     </div>
-    <amp-analytics type="googleanalytics">
-        <script type="application/json">
-        {
-            "vars": {
-                "account": "{{theme_settings.amp_analytics_id}}"
-            },
-            "extraUrlParams": {
-                "cd1": "{{page_type}}",
-                "cd2": "{{product.id}}",
-                "cd3": "{{product.url}}",
-                "cd4": "{{product.title}}",
-                "cd5": "{{product.sku}}"
-            },
-            "triggers": {
-                "trackPageview": {
-                    "on": "visible",
-                    "request": "pageview"
+    {{#if theme_settings.amp_analytics_id}}
+        <amp-analytics type="googleanalytics">
+            <script type="application/json">
+            {
+                "vars": {
+                    "account": "{{theme_settings.amp_analytics_id}}"
                 },
-                "trackClickOnAddToCart" : {
-                    "on": "click",
-                    "selector": ".productView-action a, .card-title a",
-                    "request": "event",
-                    "vars": {
-                        "eventCategory": "Product",
-                        "eventAction": "Add to Cart"
-                    }
+                "extraUrlParams": {
+                    "cd1": "{{page_type}}",
+                    "cd2": "{{product.id}}",
+                    "cd3": "{{product.url}}",
+                    "cd4": "{{product.title}}",
+                    "cd5": "{{product.sku}}"
                 },
-                "trackClickOnSocialLink" : {
-                    "on": "click",
-                    "selector": ".amp-social-share",
-                    "request": "social",
-                    "vars": {
-                        "socialNetwork": "${socialType}",
-                        "socialAction": "Share",
-                        "socialTarget": "${productLink}"
+                "triggers": {
+                    "trackPageview": {
+                        "on": "visible",
+                        "request": "pageview"
+                    },
+                    "trackClickOnAddToCart" : {
+                        "on": "click",
+                        "selector": ".productView-action a, .card-title a",
+                        "request": "event",
+                        "vars": {
+                            "eventCategory": "Product",
+                            "eventAction": "Add to Cart"
+                        }
+                    },
+                    "trackClickOnSocialLink" : {
+                        "on": "click",
+                        "selector": ".amp-social-share",
+                        "request": "social",
+                        "vars": {
+                            "socialNetwork": "${socialType}",
+                            "socialAction": "Share",
+                            "socialTarget": "${productLink}"
+                        }
                     }
                 }
             }
-        }
-        </script>
-    </amp-analytics>
+            </script>
+        </amp-analytics>
+    {{/if}}
     {{> components/amp/common/footer }}
 {{/partial}}
 {{> layout/amp }}

@@ -1,6 +1,8 @@
 # Changelog
 
 ## Draft
+
+## 1.6.0 (2017-03-13)
 - Google AMP support for product and category pages [#946](https://github.com/bigcommerce/stencil/pull/946)
 - Expose `language` object on the checkout page [#910](https://github.com/bigcommerce/stencil/pull/910)
 - Update package.json to disambiguate Stencil and Cornerstone [#943](https://github.com/bigcommerce/stencil/pull/943)

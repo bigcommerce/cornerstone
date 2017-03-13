@@ -1,0 +1,8 @@
+<form class="form" method="get" action="{{urls.search}}" target="_top">
+    <fieldset class="form-fieldset">
+        <div class="form-field">
+            <input class="form-input" data-search-quick name="search_query" id="search_query" data-error-message="{{lang 'search.error.empty_field'}}" placeholder="{{lang 'search.quick_search.input_placeholder'}}" autocomplete="off">
+        </div>
+    </fieldset>
+</form>
+<section class="quickSearchResults" data-bind="html: results"></section>

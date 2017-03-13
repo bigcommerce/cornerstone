@@ -1,10 +1,10 @@
 <div class="productView">
     {{#each product.reviews.messages}}
         {{#if error}}
-            {{>components/common/alert-error error}}
+            {{> components/common/alert-error error}}
         {{/if}}
         {{#if success}}
-            {{>components/common/alert-success success}}
+            {{> components/common/alert-success success}}
         {{/if}}
     {{/each}}
 
@@ -181,13 +181,10 @@
             {{#if product.release_date }}
                 <p>{{product.release_date}}</p>
             {{/if}}
-
             <form class="form" method="post" action="{{product.cart_url}}" enctype="multipart/form-data"
                   data-cart-item-add>
                 <input type="hidden" name="action" value="add">
                 <input type="hidden" name="product_id" value="{{product.id}}"/>
-
-
                     {{#each product.customizations}}
                         {{{dynamicComponent 'components/products/customizations'}}}
                     {{/each}}
@@ -196,102 +193,26 @@
                         {{{dynamicComponent 'components/products/options'}}}
                     {{/each}}
                 </div>
-
                 {{#if product.event_date}}
-                    <div class="form-field">
-                        <label class="form-label form-label--alternate form-label--inlineSmall">
-                        {{product.event_date.name}}:
-                        <small>{{lang 'common.required'}}</small>
-                        </label>
-                        <select class="form-select form-select--date" name="EventDate[Mth]" required>
-                            <option value="">{{lang 'common.month'}}</option>
-                            {{#enumerate 1 12}}
-                                <option value="{{this}}">{{getShortMonth this}}</option>
-                            {{/enumerate}}
-                        </select>
-                        <select class="form-select form-select--date" name="EventDate[Day]" required>
-                            <option value="">{{lang 'common.day'}}</option>
-                            {{#enumerate 1 31}}
-                                <option value="{{this}}">{{this}}</option>
-                            {{/enumerate}}
-                        </select>
-                        <select class="form-select form-select--date" name="EventDate[Yr]" required>
-                            <option value="">{{lang 'common.year'}}</option>
-                            {{#enumerate product.event_date.earliest_year product.event_date.latest_year}}
-                                <option value="{{this}}" >{{this}}</option>
-                            {{/enumerate}}
-                        </select>
-                    </div>
+                    {{> components/products/event-date}}
                 {{/if}}
-
                 <div class="form-field form-field--stock{{#unless product.stock_level}} u-hiddenVisually{{/unless}}">
                     <label class="form-label form-label--alternate">
                         {{lang 'products.current_stock'}}
                         <span data-product-stock>{{product.stock_level}}</span>
                     </label>
-
                 </div>
-
                 {{#if product.can_purchase}}
-
-                    <div class="form-field form-field--increments">
-                        <label class="form-label form-label--alternate"
-                               for="qty[]">{{lang 'products.quantity'}}</label>
-
-                        <div class="form-increment" data-quantity-change>
-                            <button class="button button--icon" data-action="dec">
-                                <span class="is-srOnly">{{lang 'products.quantity_decrease'}}</span>
-                                <i class="icon" aria-hidden="true">
-                                    <svg>
-                                        <use xlink:href="#icon-keyboard-arrow-down"/>
-                                    </svg>
-                                </i>
-                            </button>
-                            <input class="form-input form-input--incrementTotal"
-                                   id="qty[]"
-                                   name="qty[]"
-                                   type="tel"
-                                   value="{{#if product.min_purchase_quantity}}{{product.min_purchase_quantity}}{{else}}1{{/if}}"
-                                   data-quantity-min="{{product.min_purchase_quantity}}"
-                                   data-quantity-max="{{product.max_purchase_quantity}}"
-                                   min="1"
-                                   pattern="[0-9]*"
-                                   aria-live="polite">
-                            <button class="button button--icon" data-action="inc">
-                                <span class="is-srOnly">{{lang 'products.quantity_increase'}}</span>
-                                <i class="icon" aria-hidden="true">
-                                    <svg>
-                                        <use xlink:href="#icon-keyboard-arrow-up"/>
-                                    </svg>
-                                </i>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="alertBox productAttributes-message" style="display:none">
-                        <div class="alertBox-column alertBox-icon">
-                            <icon glyph="ic-success" class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path></svg></icon>
-                        </div>
-                        <p class="alertBox-column alertBox-message"></p>
-                    </div>
-                    {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
-                        <div class="form-action">
-                            <input id="form-action-addToCart" data-wait-message="{{lang 'products.adding_to_cart'}}" class="button button--primary" type="submit"
-                                value="{{#if product.pre_order}}{{lang 'products.pre_order'}}{{else}}{{lang 'products.add_to_cart'}}{{/if}}">
-                        </div>
-                         {{{snippet 'product_addtocart'}}}
-                    {{/or}}
+                    {{> components/products/add-to-cart}}
                 {{/if}}
                 {{#if product.out_of_stock}}
                     {{#if product.out_of_stock_message}}
-                        {{>components/common/alert-error product.out_of_stock_message}}
+                        {{> components/common/alert-error product.out_of_stock_message}}
                     {{else}}
-                        {{>components/common/alert-error (lang 'products.sold_out')}}
+                        {{> components/common/alert-error (lang 'products.sold_out')}}
                     {{/if}}
                 {{/if}}
-
             </form>
-
             {{#if settings.show_wishlist}}
                 <form class="form" method="post" action="{{product.add_to_wishlist_url}}" data-wishlist-add>
                     <div class="form-action">
@@ -301,8 +222,7 @@
                 </form>
             {{/if}}
         </div>
-
-        {{>components/common/share}}
+        {{> components/common/share}}
         {{{snippet 'product_details'}}}
     </section>
 

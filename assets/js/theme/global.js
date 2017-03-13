@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import './common/select-option-plugin';
 import 'html5-history-api';
-import PageManager from '../page-manager';
+import PageManager from './page-manager';
 import quickSearch from './global/quick-search';
 import currencySelector from './global/currency-selector';
 import mobileMenuToggle from './global/mobile-menu-toggle';
@@ -13,6 +13,7 @@ import compareProducts from './global/compare-products';
 import privacyCookieNotification from './global/cookieNotification';
 import maintenanceMode from './global/maintenanceMode';
 import carousel from './common/carousel';
+import 'lazysizes';
 import loadingProgressBar from './global/loading-progress-bar';
 import FastClick from 'fastclick';
 

@@ -2,7 +2,7 @@
  Import all product specific js
  */
 import $ from 'jquery';
-import PageManager from '../page-manager';
+import PageManager from './page-manager';
 import Review from './product/reviews';
 import collapsibleFactory from './common/collapsible';
 import ProductDetails from './common/product-details';
@@ -10,8 +10,8 @@ import videoGallery from './product/video-gallery';
 import { classifyForm } from './common/form-utils';
 
 export default class Product extends PageManager {
-    constructor() {
-        super();
+    constructor(context) {
+        super(context);
         this.url = location.href;
         this.$reviewLink = $('[data-reveal-id="modal-review-form"]');
     }
@@ -33,7 +33,7 @@ export default class Product extends PageManager {
         // Init collapsible
         collapsibleFactory();
 
-        this.productDetails = new ProductDetails($('.productView'), this.context, window.BCData.product_attributes);
+        this.productDetails = new ProductDetails($('.productView-options'), this.context, window.BCData.product_attributes);
 
         videoGallery();
 

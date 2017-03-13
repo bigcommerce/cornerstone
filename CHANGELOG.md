@@ -1,8 +1,19 @@
 # Changelog
 
 ## Draft
-- Show 'Write a Review' link for mobile [#922] (https://github.com/bigcommerce/stencil/pull/922)
-- Update text input for product review comment to be multiline so it's not too small to be usable [#921] (https://github.com/bigcommerce/stencil/pull/921)
+- Google AMP support for product and category pages [#946](https://github.com/bigcommerce/stencil/pull/946)
+- Expose `language` object on the checkout page [#910](https://github.com/bigcommerce/stencil/pull/910)
+- Update package.json to disambiguate Stencil and Cornerstone [#943](https://github.com/bigcommerce/stencil/pull/943)
+- Added support up to 8 levels for category menu depth [#939](https://github.com/bigcommerce/stencil/pull/939)
+- Implement lazyloading for product card images to improve above-the-fold rendering [#944](https://github.com/bigcommerce/stencil/pull/944)
+- Print a readable error instead of dumping the whole error object to the console [#950](https://github.com/bigcommerce/cornerstone/pull/950)
+- Fixed homepage featured products floating left and unecessarily wrapping to next row [#948](https://github.com/bigcommerce/cornerstone/pull/948)
+- Add google recaptcha v2 support to cornerstone. [#951](https://github.com/bigcommerce/cornerstone/pull/951)
+- Added order confirmation template page [#949](https://github.com/bigcommerce/cornerstone/pull/949)
+
+## 1.5.3 (2017-02-23)
+- Show 'Write a Review' link for mobile [#922](https://github.com/bigcommerce/stencil/pull/922)
+- Update text input for product review comment to be multiline so it's not too small to be usable [#921](https://github.com/bigcommerce/stencil/pull/921)
 - Add a larger view of a swatch image when option is hovered over on the product page [#923](https://github.com/bigcommerce/stencil/pull/923)
 - Fixes an issue with file upload button not properly displaying in IE [#925](https://github.com/bigcommerce/stencil/pull/925)
 - Make sure product review email links automatically pop the review form [#928](https://github.com/bigcommerce/stencil/pull/928)
@@ -17,13 +28,15 @@
 - Remove unused variable causing js error with search in the nav [#938](https://github.com/bigcommerce/stencil/pull/938)
 - Add settings to theme editor schema to customize Optimized Checkout discount banners [#924] (https://github.com/bigcommerce/stencil/pull/924)
 - Added theme editor setting for product display mode (grid vs list view) [#941](https://github.com/bigcommerce/stencil/pull/941)
+- Update Optimized Checkout discount banners default values per theme variation [#942](https://github.com/bigcommerce/stencil/pull/942)
+
 
 ## 1.5.2 (2017-02-14)
 - Added a setting to theme editor schema to show/hide the homepage carousel [#909](https://github.com/bigcommerce/stencil/pull/909)
 - Prevent carousel images from being cut off on large screens by adding a new setting to theme editor schema [#909](https://github.com/bigcommerce/stencil/pull/909)
 - Add schema description specifying that social media icons must be set up to see them [#920](https://github.com/bigcommerce/stencil/pull/920)
-- Show account creation links only if it is enabled in store settings [#917] (https://github.com/bigcommerce/stencil/pull/917)
-- Add GeoTrust SSL Seal Toggle [#903] (https://github.com/bigcommerce/stencil/pull/903)
+- Show account creation links only if it is enabled in store settings [#917](https://github.com/bigcommerce/stencil/pull/917)
+- Add GeoTrust SSL Seal Toggle [#903](https://github.com/bigcommerce/stencil/pull/903)
 
 ## 1.5.1 (2017-02-07)
 - Fix an issue with a horizontal scroll bar showing in theme editor [#915](https://github.com/bigcommerce/stencil/pull/915)

@@ -1,5 +1,5 @@
 # Stencil
-[![Build Status](https://travis-ci.org/bigcommerce/stencil.svg?branch=master)](https://travis-ci.org/bigcommerce/stencil)
+[![Build Status](https://travis-ci.org/bigcommerce/cornerstone.svg?branch=master)](https://travis-ci.org/bigcommerce/cornerstone)
 
 The building block for BigCommerce theme developers to get started quickly developing premium quality themes on the BigCommerce platform.
 
@@ -46,6 +46,7 @@ page types available to you.
 * "pages/account/wishlists"
 
 And these page types will correspond to the pages within your theme. Each one of these page types map to an ES6 modules that extends the base `PageManager` abstract class.
+
 ```javascript
     export default class Auth extends PageManager {
         constructor() {
@@ -53,12 +54,13 @@ And these page types will correspond to the pages within your theme. Each one of
         }
     }
 ```
+
 Within `PageManager` you will see methods that are available from all your classes, but there are three really important methods. The following methods have the signature
 `func (callback)` and the callback takes `callback(err)` if error.
 
 #### before(callback)
-When this method is implemented in your class, the code contained will be executed after the constructor but before the `loaded()` method. This will provide
-a shim for your code before your main implementation logic could run.
+When this method is implemented in your class, the code contained will be executed after the constructor but before the `loaded()` method. This will provide a shim for your code before your main implementation logic could run.
+
 ```javascript
     export default class Auth extends PageManager {
         constructor() {
@@ -72,8 +74,10 @@ a shim for your code before your main implementation logic could run.
         }
     }
 ```
+
 #### loaded(callback)
 This method will be called when the constructor has ran and `before()` has executed. Main implementation code should live in the loaded method.
+
 ```javascript
     export default class Auth extends PageManager {
         constructor() {
@@ -111,6 +115,7 @@ Occasionally you may need to use dynamic data from the template context within y
 Two helpers are provided to help achieve this.
 
 The inject helper allows you to compose a json object with a subset of the template context to be sent to the browser.
+
 ```
 {{inject "stringBasedKey" contextValue}}
 ```
@@ -118,6 +123,7 @@ The inject helper allows you to compose a json object with a subset of the templ
 To retrieve the parsable json object, just call `{{jsContext}}` after all of the `{{@inject}}` calls.
 
 For example, to setup the product name in your clientside app, you can do this if you're in the context of a product.
+
 ```html
 {{inject "myProductName" product.title}}
 
@@ -139,10 +145,13 @@ Some static assets in the Stencil theme are handled with Grunt if required. This
 means you have some dependencies on grunt and npm. To get started:
 
 First make sure you have Grunt installed globally on your machine:
+
 ```
 npm install -g grunt-cli
 ```
+
 and run:
+
 ```
 npm install
 ```

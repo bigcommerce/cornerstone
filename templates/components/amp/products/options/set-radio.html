@@ -1,0 +1,21 @@
+<div class="form-field" data-product-attribute="set-radio">
+    <label class="form-label form-label--alternate form-label--inlineSmall">
+        {{ this.display_name }}:
+
+        {{#if required}}
+            <small>{{lang 'common.required'}}</small>
+        {{/if}}
+    </label>
+
+    {{#each this.values}}
+        <input
+            class="form-radio"
+            type="radio"
+            id="attribute_{{id}}"
+            name="attribute[{{../id}}]"
+            value="{{id}}"
+            {{#if selected}}checked{{/if}}
+            {{#if ../required}}required{{/if}}>
+        <label data-product-attribute-value="{{id}}" class="form-label" for="attribute_{{id}}">{{this.label}}</label>
+    {{/each}}
+</div>

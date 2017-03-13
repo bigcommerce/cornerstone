@@ -1,0 +1,11 @@
+<div class="form-field" data-product-attribute="input-number">
+    <label class="form-label form-label--alternate form-label--inlineSmall" for="attribute_{{id}}">
+        {{ this.display_name }}:
+
+        {{#if required}}
+            <small>{{lang 'common.required'}}</small>
+        {{/if}}
+    </label>
+
+    <input class="form-input" type="number" id="attribute_{{id}}" {{#unless this.integer_only}}step="any"{{/unless}} name="attribute[{{this.id}}]" value="{{this.prefill}}" {{#if required}}required{{/if}}>
+</div>

@@ -1,13 +1,14 @@
 var Path = require('path');
 var webpack = require('webpack');
 var webpackConfig = require('./webpack.conf.js');
-var bundleLocation = 'assets/js/bundle.js';
 
 webpackConfig.context = __dirname;
-webpackConfig.entry = './assets/js/app.js';
+webpackConfig.entry = {
+    'theme-bundle': './assets/js/app.js',
+};
 webpackConfig.output = {
-    path: __dirname + '/assets/js',
-    filename: 'bundle.js'
+    path: Path.join(__dirname, '/assets/dist'),
+    filename: '[name].js',
 };
 
 /**
@@ -18,7 +19,7 @@ var watchOptions = {
     // If files in these directories change, reload the page.
     files: [
         '/templates',
-        '/lang'
+        '/lang',
     ],
 
     //Do not watch files in these directories
@@ -38,9 +39,9 @@ function development(Bs) {
     var compiler = webpack(webpackConfig);
 
     // Rebuild the bundle once at bootup
-    compiler.watch({}, function(err, stats) {
+    compiler.watch({}, err => {
         if (err) {
-            console.error(err)
+            console.error(err.message, err.details);
         }
 
         Bs.reload();
@@ -66,7 +67,7 @@ function production(done) {
 
     compiler = webpack(webpackConfig);
 
-    compiler.run(function(err, stats) {
+    compiler.run(err => {
         if (err) {
             throw err;
         }

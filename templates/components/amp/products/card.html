@@ -1,0 +1,37 @@
+<article class="card {{#if alternate}}card--alternate{{/if}}">
+    <figure class="card-figure">
+        {{#or price.non_sale_price_with_tax price.non_sale_price_without_tax}}
+            {{#if theme_settings.product_sale_badges}}
+                <div class="sale-sash">
+                    <span class="sale-text">On Sale!</span>
+                </div>
+            {{/if}}
+        {{/or}}
+        <a data-vars-product-link="{{url}}" data-vars-product-id="{{id}}" data-vars-product-name="{{name}}" href="{{url}}">
+            <amp-img class="card-image" src="{{getImage image 'productgallery_size' (cdn theme_settings.default_image_product)}}" width="300" height="300" layout="responsive" alt="{{image.alt}}"></amp-img>
+        </a>
+    </figure>
+    <div class="card-body">
+        {{#if show_rating}}
+            <p class="card-text" data-test-info-type="productRating">
+                <span class="rating--small">
+                    {{> components/amp/products/ratings rating=rating}}
+                </span>
+            </p>
+        {{/if}}
+        {{#if brand.name}}
+            <p class="card-text" data-test-info-type="brandName">{{brand.name}}</p>
+        {{/if}}
+        <h4 class="card-title">
+            <a data-vars-product-link="{{url}}" data-vars-product-id="{{id}}" data-vars-product-name="{{name}}" href="{{url}}">{{name}}</a>
+        </h4>
+
+        <div class="card-text" data-test-info-type="price">
+            {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+                {{> components/products/price price=price customer=customer}}
+            {{else}}
+                {{> components/common/login-for-pricing}}
+            {{/or}}
+        </div>
+    </div>
+</article>

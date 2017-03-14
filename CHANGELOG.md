@@ -1,6 +1,8 @@
 # Changelog
 
 ## Draft
+
+## 1.6.1 (2017-03-14)
 - Fix a bug that was preventing opening the cart preview modal [#960](https://github.com/bigcommerce/cornerstone/pull/960)
 
 ## 1.6.0 (2017-03-13)

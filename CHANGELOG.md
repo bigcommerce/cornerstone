@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Fix a bug that was preventing opening the cart preview modal [#960](https://github.com/bigcommerce/cornerstone/pull/960)
 
 ## 1.6.0 (2017-03-13)
 - Google AMP support for product and category pages [#946](https://github.com/bigcommerce/stencil/pull/946)

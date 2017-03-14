@@ -54,7 +54,7 @@ export default class Product {
 
         $productOptionsElement.show();
 
-        this.previewModal = modalFactory('#this.previewModal')[0];
+        this.previewModal = modalFactory('#previewModal')[0];
         productSingleton = this;
     }
 

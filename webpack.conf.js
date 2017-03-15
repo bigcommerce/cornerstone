@@ -1,5 +1,6 @@
 var CleanWebpackPlugin = require('clean-webpack-plugin'),
     config = require('./config.json'),
+    LodashModuleReplacementPlugin = require('lodash-webpack-plugin'),
     path = require('path'),
     webpack = require('webpack');
 
@@ -25,12 +26,20 @@ module.exports = {
                     options: {
                         compact: false,
                         cacheDirectory: true,
-                        presets: [['es2015', {loose: true, modules: false}]],
+                        presets: [
+                            ['latest', {
+                                "es2015": {
+                                    loose: true, // Enable "loose" transformations for any plugins in this preset that allow them.
+                                    modules: false // Don't transform modules; needed for tree-shaking.
+                                },
+                                "es2016": false, // Only includes the transform-exponentiation-operator plugin, which we don't use.
+                                "es2017": true // Needed for async/await.
+                            }]
+                        ],
                         plugins: [
-                            'dynamic-import-webpack',
-                            'syntax-dynamic-import',
-                            'transform-async-to-generator',
-                            'transform-regenerator'
+                            'dynamic-import-webpack', // Needed for dynamic imports.
+                            'lodash', // Automagically tree-shakes lodash.
+                            'transform-regenerator', // Transforms async and generator functions.
                         ]
                     }
                 }
@@ -42,6 +51,7 @@ module.exports = {
             verbose: true,
             watch: false
         }),
+        new LodashModuleReplacementPlugin, // Complements 'babel-plugin-lodash by shrinking it's cherry-picked builds further.
         new webpack.ProvidePlugin({
             $: 'jquery',
             jQuery: 'jquery',
@@ -53,6 +63,6 @@ module.exports = {
                 // this assumes your vendor imports exist in the node_modules directory
                 return module.context && module.context.indexOf('node_modules') !== -1;
             }
-        })
+        }),
     ],
 };

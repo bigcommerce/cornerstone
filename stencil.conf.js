@@ -1,15 +1,5 @@
-var Path = require('path');
 var webpack = require('webpack');
 var webpackConfig = require('./webpack.conf.js');
-
-webpackConfig.context = __dirname;
-webpackConfig.entry = {
-    'theme-bundle': './assets/js/app.js',
-};
-webpackConfig.output = {
-    path: Path.join(__dirname, '/assets/dist'),
-    filename: '[name].js',
-};
 
 /**
  * Watch options for the core watcher
@@ -27,57 +17,55 @@ var watchOptions = {
         '/assets/scss',
         '/assets/less',
         '/assets/css',
+        '/assets/dist',
     ]
 };
 
 /**
- * Hook into the stencil-cli browsersync instance for rapid development of themes.
  * Watch any custom files and trigger a rebuild
- * @param {Object} Bs
  */
-function development(Bs) {
-    var compiler = webpack(webpackConfig);
-
+function development() {
     // Rebuild the bundle once at bootup
-    compiler.watch({}, err => {
+    webpack(webpackConfig).watch({}, err => {
         if (err) {
             console.error(err.message, err.details);
         }
 
-        Bs.reload();
+        process.send('reload');
     });
 }
 
-/**
-
-*/
 /**
  * Hook into the `stencil bundle` command and build your files before they are packaged as a .zip
- * Be sure to call the `done()` callback when finished
- * @param {function} done
  */
-function production(done) {
-    var compiler;
-
+function production() {
+    webpackConfig.watch = false;
     webpackConfig.devtool = false;
     webpackConfig.plugins.push(new webpack.optimize.DedupePlugin());
-    webpackConfig.plugins.push(new webpack.optimize.UglifyJsPlugin({
-        comments: false
-    }));
+    webpackConfig.plugins.push(new webpack.optimize.UglifyJsPlugin({ comments: false }));
 
-    compiler = webpack(webpackConfig);
-
-    compiler.run(err => {
+    webpack(webpackConfig).run(err => {
         if (err) {
-            throw err;
+            console.error(err.message, err.details);
         }
 
-        done();
+        process.send('done');
     });
 }
 
-module.exports = {
-    watchOptions: watchOptions,
-    development: development,
-    production: production,
-};
+if (process.send) {
+    // running as a forked worker
+    process.on('message', message => {
+        if (message === 'development') {
+            development();
+        }
+
+        if (message === 'production') {
+            production();
+        }
+    });
+
+    process.send('ready');
+}
+
+module.exports = { watchOptions };

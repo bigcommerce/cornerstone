@@ -1,6 +1,8 @@
 # Changelog
 
 ## Draft
+
+## 1.6.2 (2017-03-15)
 - Fix a bug that was not updating price and weight when an option is selected [#963](https://github.com/bigcommerce/cornerstone/pull/963)
 
 ## 1.6.1 (2017-03-14)

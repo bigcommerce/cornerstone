@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Fix a bug that was not updating price and weight when an option is selected [#963](https://github.com/bigcommerce/cornerstone/pull/963)
 
 ## 1.6.1 (2017-03-14)
 - Fix a bug that was preventing opening the cart preview modal [#960](https://github.com/bigcommerce/cornerstone/pull/960)

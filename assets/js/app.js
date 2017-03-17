@@ -1,6 +1,6 @@
 __webpack_public_path__ = window.__webpack_public_path__; // eslint-disable-line
 
-import 'babel-polyfill'; // Needed by transform-regenerator.
+import 'babel-polyfill';
 import $ from 'jquery';
 import Global from './theme/global';
 

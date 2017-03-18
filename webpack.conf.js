@@ -1,28 +1,66 @@
-var webpack = require('webpack');
+var CleanWebpackPlugin = require('clean-webpack-plugin'),
+    config = require('./config.json'),
+    LodashModuleReplacementPlugin = require('lodash-webpack-plugin'),
+    path = require('path'),
+    webpack = require('webpack'),
+    Visualizer = require('webpack-visualizer-plugin');
 
 module.exports = {
+    watch: false,
     devtool: 'source-map',
+    context: __dirname,
+    entry: {
+        main: './assets/js/app.js',
+    },
+    output: {
+        filename: 'theme-bundle.[name].js',
+        path: path.resolve(__dirname, "assets/dist"),
+    },
     bail: true,
     module: {
-        loaders: [
+        rules: [
             {
                 test: /\.js$/,
-                loader: 'babel',
                 include: /(assets\/js|assets\\js|stencil-utils)/,
-                query: {
-                    compact: false,
-                    cacheDirectory: true,
-                    presets: ['es2015-loose'],
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        compact: false,
+                        cacheDirectory: true, //TODO: use fast-async instead of Babel's async-to-gen?
+                        presets: [
+                            ['env', {
+                                loose: true, // Enable "loose" transformations for any plugins in this preset that allow them.
+                                modules: false, // Don't transform modules; needed for tree-shaking.
+                                useBuiltIns: true, // Tree-shake babel-polyfill (we need )
+                            }],
+                        ],
+                        plugins: [
+                            'dynamic-import-webpack', // Needed for dynamic imports.
+                            'lodash', // Automagically tree-shakes lodash.
+                        ],
+                    }
                 }
             }
         ]
     },
     plugins: [
+        new CleanWebpackPlugin(['assets/dist'], {
+            verbose: true,
+            watch: false
+        }),
+        new LodashModuleReplacementPlugin, // Complements 'babel-plugin-lodash by shrinking it's cherry-picked builds further.
         new webpack.ProvidePlugin({
             $: 'jquery',
             jQuery: 'jquery',
             'window.jQuery': 'jquery'
-        })
+        }),
+        new webpack.optimize.CommonsChunkPlugin({
+            name: 'vendor',
+            minChunks: function (module) {
+                // this assumes your vendor imports exist in the node_modules directory
+                return module.context && module.context.indexOf('node_modules') !== -1;
+            }
+        }),
+        new Visualizer()
     ],
-    watch: false
 };

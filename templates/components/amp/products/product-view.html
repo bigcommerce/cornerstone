@@ -65,11 +65,13 @@
         {{#if settings.show_product_reviews}}
             {{> components/amp/products/reviews reviews=product.reviews product=product urls=urls}}
         {{/if}}
-        <section expanded class="productAccordion">
-            <h4 class="productAccordion-title">Share</h4>
-            <div class="productAccordion-content social-share">
-                {{> components/amp/common/share }}
-            </div>
-        </section>
+        {{#if settings.add_this.buttons}}
+            <section expanded class="productAccordion">
+                <h4 class="productAccordion-title">Share</h4>
+                <div class="productAccordion-content social-share">
+                    {{> components/amp/common/share }}
+                </div>
+            </section>
+        {{/if}}
     </amp-accordion>
 </div>

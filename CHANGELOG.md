@@ -4,6 +4,7 @@
 
 ## 1.6.2 (2017-03-15)
 - Fix a bug that was not updating price and weight when an option is selected [#963](https://github.com/bigcommerce/cornerstone/pull/963)
+- Add `customized_checkout` feature to features list [#974] (https://github.com/bigcommerce/stencil/pull/974)
 
 ## 1.6.1 (2017-03-14)
 - Fix a bug that was preventing opening the cart preview modal [#960](https://github.com/bigcommerce/cornerstone/pull/960)

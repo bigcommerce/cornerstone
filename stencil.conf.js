@@ -47,6 +47,7 @@ function production() {
     webpack(webpackConfig).run(err => {
         if (err) {
             console.error(err.message, err.details);
+            throw err;
         }
 
         process.send('done');

@@ -117,7 +117,7 @@
     width: 1px
 }
 .productView-details {
-    margin-bottom: 2rem
+    margin-bottom: 1rem
 }
 .productView-product >:last-child {
     margin-bottom: 0
@@ -152,24 +152,18 @@
 .productView-info {
     margin-top: .78571rem
 }
-.productView-info:before,
-.productView-info:after {
-    content: " ";
-    display: table
-}
 .productView-info >:last-child {
     margin-bottom: 0
 }
 .productView-info-name,
 .productView-info-value {
-    float: left
+    display: inline;
+    margin: 0;
 }
 .productView-info-name {
-    clear: both;
-    margin-bottom: .21429rem;
-    margin-right: .35714rem
+    margin-right: 5px;
 }
-.productView-info-value {
-    margin-bottom: .35714rem;
-    margin-left: 0;
+.productView-info-value::after {
+    content: "\A";
+    white-space: pre;
 }

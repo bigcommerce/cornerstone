@@ -4,7 +4,7 @@
 - `stencil.conf.js` was refactored to support webpack2 builds [961](https://github.com/bigcommerce/cornerstone/pull/961)
 - Load amp social share JS only when we have share icons enabled. [#968](https://github.com/bigcommerce/cornerstone/pull/968)
 - Escape html for product summaries in product list view [#980](https://github.com/bigcommerce/cornerstone/pull/980)
-- Add `customized_checkout` feature to features list [#974] (https://github.com/bigcommerce/stencil/pull/974)
+- Add `customized_checkout` feature to features list [#974](https://github.com/bigcommerce/stencil/pull/974)
 
 ## 1.6.2 (2017-03-15)
 - Fix a bug that was not updating price and weight when an option is selected [#963](https://github.com/bigcommerce/cornerstone/pull/963)

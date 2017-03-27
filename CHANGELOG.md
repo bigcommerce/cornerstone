@@ -6,6 +6,7 @@
 - Escape html for product summaries in product list view [#980](https://github.com/bigcommerce/cornerstone/pull/980)
 - Add `customized_checkout` feature to features list [#974](https://github.com/bigcommerce/stencil/pull/974)
 - Fixed AMP Carousel alignment on product view [#982](https://github.com/bigcommerce/cornerstone/pull/982)
+- Remove footer scripts from the amp-iframe used to render product options for stores using AMP [#983](https://github.com/bigcommerce/cornerstone/pull/983/
 
 ## 1.6.2 (2017-03-15)
 - Fix a bug that was not updating price and weight when an option is selected [#963](https://github.com/bigcommerce/cornerstone/pull/963)

@@ -1,6 +1,8 @@
 # Changelog
 
 ## Draft
+
+## 1.6.3 (2017-03-27)
 - `stencil.conf.js` was refactored to support webpack2 builds [961](https://github.com/bigcommerce/cornerstone/pull/961)
 - Load amp social share JS only when we have share icons enabled. [#968](https://github.com/bigcommerce/cornerstone/pull/968)
 - Escape html for product summaries in product list view [#980](https://github.com/bigcommerce/cornerstone/pull/980)

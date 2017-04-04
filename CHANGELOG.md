@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Update bigcommerce.com footer link [#990](https://github.com/bigcommerce/cornerstone/pull/990)
 
 ## 1.6.3 (2017-03-28)
 - `stencil.conf.js` was refactored to support webpack2 builds [961](https://github.com/bigcommerce/cornerstone/pull/961)

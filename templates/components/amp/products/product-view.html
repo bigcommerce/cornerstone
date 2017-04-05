@@ -1,10 +1,10 @@
 <div class="productView">
     {{#each product.reviews.messages}}
         {{#if error}}
-            {{>components/common/alert-error error}}
+            {{>components/amp/common/alert-error error}}
         {{/if}}
         {{#if success}}
-            {{>components/common/alert-success success}}
+            {{>components/amp/common/alert-success success}}
         {{/if}}
     {{/each}}
 
@@ -43,9 +43,9 @@
         {{/or}}
         {{#if product.out_of_stock}}
             {{#if product.out_of_stock_message}}
-                {{>components/common/alert-error product.out_of_stock_message}}
+                {{>components/amp/common/alert-error product.out_of_stock_message}}
             {{else}}
-                {{>components/common/alert-error (lang 'products.sold_out')}}
+                {{>components/amp/common/alert-error (lang 'products.sold_out')}}
             {{/if}}
         {{/if}}
     </div>

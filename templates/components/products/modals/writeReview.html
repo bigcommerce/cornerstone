@@ -22,24 +22,36 @@
                     <select id="rating-rate" class="form-select" name="revrating">
                         <option value="">{{lang 'products.reviews.select_rating'}}</option>
                         {{#for 1 5}}
-                            <option value="{{$index}}">{{lang (concat 'products.reviews.rating.' $index) }}</option>
+                            {{#if ../product.reviews.selected_rating '===' $index}}
+                                <option selected value="{{$index}}">{{lang (concat 'products.reviews.rating.' $index) }}</option>
+                            {{else}}
+                                <option value="{{$index}}">{{lang (concat 'products.reviews.rating.' $index) }}</option>
+                            {{/if}}
                         {{/for}}
                     </select>
                 </div>
 
                 <!-- Name -->
-                {{> components/common/forms/text name="revfromname" label=(lang 'products.reviews.form_write.name') value=customer.name}}
+                {{#if product.reviews.author}}
+                    {{> components/common/forms/text name="revfromname" label=(lang 'products.reviews.form_write.name') value=product.reviews.author}}
+                {{else}}
+                    {{> components/common/forms/text name="revfromname" label=(lang 'products.reviews.form_write.name') value=customer.name}}
+                {{/if}}
 
                 {{#if product.reviews.show_review_email}}
                     <!-- Email -->
-                    {{> components/common/forms/text name="email" required="false" label=(lang 'products.reviews.form_write.email') value=customer.email}}
+                    {{#if product.reviews.email}}
+                        {{> components/common/forms/text name="email" required="false" label=(lang 'products.reviews.form_write.email') value=product.reviews.email}}
+                    {{else}}
+                        {{> components/common/forms/text name="email" required="false" label=(lang 'products.reviews.form_write.email') value=customer.email}}
+                    {{/if}}
                 {{/if}}
 
                 <!-- Review Subject -->
-                {{> components/common/forms/text name="revtitle" required="true" label=(lang 'products.reviews.form_write.subject')}}
+                {{> components/common/forms/text name="revtitle" required="true" label=(lang 'products.reviews.form_write.subject') value=product.reviews.title}}
 
                 <!-- Comments -->
-                {{> components/common/forms/multiline name="revtext" required="true" label=(lang 'products.reviews.form_write.comments')}}
+                {{> components/common/forms/multiline name="revtext" required="true" label=(lang 'products.reviews.form_write.comments') value=product.reviews.text}}
 
                 {{{product.reviews.recaptcha.markup}}}
 

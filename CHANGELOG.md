@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Upgrade to Webpack 2 with code splitting and tree shaking [964](https://github.com/bigcommerce/cornerstone/pull/964)
 - Reflect the actual default value for `autoprefixer-browsers` [#998](https://github.com/bigcommerce/cornerstone/pull/998)
 - Fix latest node-sass issues with Citadel upgrade and conditional import swap with mixin [#999](https://github.com/bigcommerce/cornerstone/pull/999)
 - Repopulate review form fields after error [#996](https://github.com/bigcommerce/cornerstone/pull/996)

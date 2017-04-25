@@ -1,70 +1,53 @@
+__webpack_public_path__ = window.__webpack_public_path__; // eslint-disable-line
+
 import 'babel-polyfill';
-
 import $ from 'jquery';
-import account from './theme/account';
-import auth from './theme/auth';
-import blog from './theme/blog';
-import brand from './theme/brand';
-import cart from './theme/cart';
-import category from './theme/category';
-import contactUs from './theme/contact-us';
-import compare from './theme/compare';
-import errors from './theme/errors';
-import errors404 from './theme/404-error';
-import giftCertificate from './theme/gift-certificate';
 import Global from './theme/global';
-import home from './theme/home';
-import orderComplete from './theme/order-complete';
-import rss from './theme/rss';
-import page from './theme/page';
-import product from './theme/product';
-import search from './theme/search';
-import sitemap from './theme/sitemap';
-import subscribe from './theme/subscribe';
-import wishlist from './theme/wishlist';
 
+const getAccount = () => import('./theme/account');
+const getLogin = () => import('./theme/auth');
 const pageClasses = {
-    'pages/account/orders/all': account,
-    'pages/account/orders/details': account,
-    'pages/account/addresses': account,
-    'pages/account/add-address': account,
-    'pages/account/add-return': account,
-    'pages/account/add-wishlist': wishlist,
-    'pages/account/recent-items': account,
-    'pages/account/download-item': account,
-    'pages/account/edit': account,
-    'pages/account/inbox': account,
-    'pages/account/return-saved': account,
-    'pages/account/returns': account,
-    'pages/auth/login': auth,
-    'pages/auth/account-created': auth,
-    'pages/auth/create-account': auth,
-    'pages/auth/new-password': auth,
-    'pages/auth/forgot-password': auth,
-    'pages/blog': blog,
-    'pages/blog-post': blog,
-    'pages/brand': brand,
-    'pages/brands': brand,
-    'pages/cart': cart,
-    'pages/category': category,
-    'pages/compare': compare,
-    'pages/contact-us': contactUs,
-    'pages/errors': errors,
-    'pages/errors/404': errors404,
-    'pages/gift-certificate/purchase': giftCertificate,
-    'pages/gift-certificate/balance': giftCertificate,
-    'pages/gift-certificate/redeem': giftCertificate,
-    'pages/home': home,
-    'pages/order-complete': orderComplete,
-    'pages/page': page,
-    'pages/product': product,
-    'pages/amp/product-options': product,
-    'pages/search': search,
-    'pages/rss': rss,
-    'pages/sitemap': sitemap,
-    'pages/subscribed': subscribe,
-    'pages/account/wishlist-details': wishlist,
-    'pages/account/wishlists': wishlist,
+    'pages/account/orders/all': getAccount,
+    'pages/account/orders/details': getAccount,
+    'pages/account/addresses': getAccount,
+    'pages/account/add-address': getAccount,
+    'pages/account/add-return': getAccount,
+    'pages/account/add-wishlist': () => import('./theme/wishlist'),
+    'pages/account/recent-items': getAccount,
+    'pages/account/download-item': getAccount,
+    'pages/account/edit': getAccount,
+    'pages/account/inbox': getAccount,
+    'pages/account/return-saved': getAccount,
+    'pages/account/returns': getAccount,
+    'pages/auth/login': getLogin,
+    'pages/auth/account-created': getLogin,
+    'pages/auth/create-account': getLogin,
+    'pages/auth/new-password': getLogin,
+    'pages/auth/forgot-password': getLogin,
+    'pages/blog': () => import('./theme/blog'),
+    'pages/blog-post': () => import('./theme/blog'),
+    'pages/brand': () => import('./theme/brand'),
+    'pages/brands': () => import('./theme/brand'),
+    'pages/cart': () => import('./theme/cart'),
+    'pages/category': () => import('./theme/category'),
+    'pages/compare': () => import('./theme/compare'),
+    'pages/contact-us': () => import('./theme/contact-us'),
+    'pages/errors': () => import('./theme/errors'),
+    'pages/errors/404': () => import('./theme/404-error'),
+    'pages/gift-certificate/purchase': () => import('./theme/gift-certificate'),
+    'pages/gift-certificate/balance': () => import('./theme/gift-certificate'),
+    'pages/gift-certificate/redeem': () => import('./theme/gift-certificate'),
+    'pages/home': () => import('./theme/home'),
+    'pages/order-complete': () => import('./theme/order-complete'),
+    'pages/page': () => import('./theme/page'),
+    'pages/product': () => import('./theme/product'),
+    'pages/amp/product-options': () => import('./theme/product'),
+    'pages/search': () => import('./theme/search'),
+    'pages/rss': () => import('./theme/rss'),
+    'pages/sitemap': () => import('./theme/sitemap'),
+    'pages/subscribed': () => import('./theme/subscribe'),
+    'pages/account/wishlist-details': () => import('./theme/wishlist'),
+    'pages/account/wishlists': () => import('./theme/wishlist'),
 };
 
 /**
@@ -80,11 +63,16 @@ window.stencilBootstrap = function stencilBootstrap(templateFile, contextJSON = 
 
     return {
         load() {
-            $(() => {
-                let pageClass;
+            $(async () => {
                 let globalClass;
+                let pageClass;
+                let PageClass;
+
                 // Finds the appropriate class from the pageType.
-                const PageClass = pageClasses[templateFile];
+                const pageClassImporter = pageClasses[templateFile];
+                if (typeof pageClassImporter === 'function') {
+                    PageClass = (await pageClassImporter()).default;
+                }
 
                 if (loadGlobal) {
                     globalClass = new Global();

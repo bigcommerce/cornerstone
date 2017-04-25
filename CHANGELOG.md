@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Fix latest node-sass issues with Citadel upgrade and conditional import swap with mixin [#999](https://github.com/bigcommerce/cornerstone/pull/999)
 - Repopulate review form fields after error [#996](https://github.com/bigcommerce/cornerstone/pull/996)
 - Fix product quick view 'Write a Review' link [#995](https://github.com/bigcommerce/cornerstone/pull/995)
 - Update bigcommerce.com footer link [#990](https://github.com/bigcommerce/cornerstone/pull/990)

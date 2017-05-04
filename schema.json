@@ -72,27 +72,6 @@
     "settings": [
       {
         "type": "heading",
-        "content": "Logo"
-      },
-      {
-        "type": "font",
-        "label": "Font family",
-        "id": "logo-font",
-        "options": [
-          {
-            "group": "Oswald",
-            "label": "Oswald",
-            "value": "Google_Oswald_400"
-          },
-          {
-            "group": "Oswald",
-            "label": "Oswald Light",
-            "value": "Google_Oswald_300"
-          }
-        ]
-      },
-      {
-        "type": "heading",
         "content": "Body text"
       },
       {
@@ -723,11 +702,87 @@
     "name": "Logo",
     "settings": [
       {
+        
+        "type": "radio",
+        "label": "",
+        "force_reload": true,
+        "id": "logo_type",
+        "options": [
+          {
+            "value": "text-logo",
+            "label": "Text Based Logo"
+          },
+          {
+            "value": "image-logo",
+            "label": "Custom Image Logo"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "label": "Font size",
+        "id": "logo_fontSize",
+        "force_reload": true,
+        "reference": "logo_type",
+        "reference_default": "image-logo",
+        "options": [
+          {
+            "value": 12,
+            "label": "12px"
+          },
+          {
+            "value": 13,
+            "label": "13px"
+          },
+          {
+            "value": 14,
+            "label": "14px"
+          },
+          {
+            "value": 16,
+            "label": "16px"
+          },
+          {
+            "value": 18,
+            "label": "18px"
+          }
+        ]
+      },
+      {
+        "type": "color",
+        "label": "Text Color",
+        "id": "logo-textColor",
+        "force_reload": true,
+        "reference": "logo_type",
+        "reference_default": "image-logo"
+      },
+      {
+        "type": "font",
+        "label": "Font family",
+        "id": "logo-font",
+        "force_reload": true,
+        "reference": "logo_type",
+        "reference_default": "image-logo",
+        "options": [
+          {
+            "group": "Oswald",
+            "label": "Oswald",
+            "value": "Google_Oswald_400"
+          },
+          {
+            "group": "Oswald",
+            "label": "Oswald Light",
+            "value": "Google_Oswald_300"
+          }
+        ]
+      },
         "type": "imageDimension",
-        "label": "Logo size",
+        "label": "Size",
         "id": "logo_size",
         "description": "Please specify a maximum image size for desktop display. We'll automatically scale down the image for smaller devices.",
         "force_reload": true,
+        "reference": "logo_type",
+        "reference_default": "text-logo",
         "options": [
           {
             "value": "original",
@@ -745,7 +800,7 @@
       },
       {
         "type": "select",
-        "label": "Logo position",
+        "label": "Position",
         "id": "logo-position",
         "force_reload": true,
         "options": [

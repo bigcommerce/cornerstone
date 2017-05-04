@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Add storefront admin bar to replace store not launched preview panel [#997](https://github.com/bigcommerce/cornerstone/pull/997)
 
 ## 1.7.0 (2017-04-26)
 - Upgrade to Webpack 2 with code splitting and tree shaking [964](https://github.com/bigcommerce/cornerstone/pull/964)

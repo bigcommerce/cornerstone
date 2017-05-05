@@ -2,6 +2,8 @@
 
 ## Draft
 
+## 1.8.1 (2017-05-05)
+
 ## 1.8.0 (2017-05-04)
 - Add storefront admin bar to replace store not launched preview panel [#997](https://github.com/bigcommerce/cornerstone/pull/997)
 

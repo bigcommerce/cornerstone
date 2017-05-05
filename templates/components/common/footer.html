@@ -83,8 +83,11 @@
         {{/if}}
         {{#if theme_settings.show_copyright_footer}}
             <div class="footer-copyright">
-                <p class="powered-by">&copy; {{moment format="YYYY"}} {{settings.store_name}} </p>
+                <p class="powered-by">&copy; <span id="copyright_year"></span> {{settings.store_name}} </p>
             </div>
+            <script type="text/javascript">
+                document.getElementById("copyright_year").innerHTML = new Date().getFullYear();
+            </script>
         {{/if}}
     </div>
 </footer>

@@ -24,11 +24,9 @@ category:
 {{{category.description}}}
 {{{snippet 'categories'}}}
 <div class="page">
-    {{#or category.subcategories category.faceted_search_enabled}}
-        <aside class="page-sidebar" id="faceted-search-container">
-            {{> components/category/sidebar}}
-        </aside>
-    {{/or}}
+    <aside class="page-sidebar" id="faceted-search-container">
+        {{> components/category/sidebar}}
+    </aside>
 
     <main class="page-content" id="product-listing-container">
         {{#if category.products}}

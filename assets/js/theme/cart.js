@@ -32,7 +32,7 @@ export default class Cart extends PageManager {
         // Does not quality for min/max quantity
         if (newQty < minQty) {
             return alert(minError);
-        } else if (newQty > maxQty) {
+        } else if (maxQty > 0 && newQty > maxQty) {
             return alert(maxError);
         }
 

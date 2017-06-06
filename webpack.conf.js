@@ -46,7 +46,7 @@ module.exports = {
     },
     plugins: [
         new CleanWebpackPlugin(['assets/dist'], {
-            verbose: true,
+            verbose: false,
             watch: false,
         }),
         new webpack.LoaderOptionsPlugin({

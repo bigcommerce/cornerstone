@@ -19,7 +19,7 @@ export default class Product extends PageManager {
     before(next) {
         // Listen for foundation modal close events to sanitize URL after review.
         $(document).on('close.fndtn.reveal', () => {
-            if (this.url.indexOf('#writeReview') !== -1 && typeof window.history.replaceState === 'function') {
+            if (this.url.indexOf('#write_review') !== -1 && typeof window.history.replaceState === 'function') {
                 window.history.replaceState(null, document.title, window.location.pathname);
             }
         });
@@ -63,7 +63,7 @@ export default class Product extends PageManager {
     }
 
     productReviewHandler() {
-        if (this.url.indexOf('#writeReview') !== -1) {
+        if (this.url.indexOf('#write_review') !== -1) {
             this.$reviewLink.click();
         }
     }

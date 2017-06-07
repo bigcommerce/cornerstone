@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Maintenance page stylesheet fix [#1016](https://github.com/bigcommerce/cornerstone/pull/1016)
 
 ## 1.8.1 (2017-05-05)
 

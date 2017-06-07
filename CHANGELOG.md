@@ -1,8 +1,10 @@
 # Changelog
 
 ## Draft
+- Swaps `writeReview` for `write_review` to fix email link issue [#1017](https://github.com/bigcommerce/cornerstone/pull/1017)
 
 ## 1.8.1 (2017-05-05)
+- Bug fix for category sidebar [#1006](https://github.com/bigcommerce/cornerstone/pull/1006)
 
 ## 1.8.0 (2017-05-04)
 - Add storefront admin bar to replace store not launched preview panel [#997](https://github.com/bigcommerce/cornerstone/pull/997)

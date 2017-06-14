@@ -3,6 +3,8 @@
 ## Draft
 - Swaps `writeReview` for `write_review` to fix email link issue [#1017](https://github.com/bigcommerce/cornerstone/pull/1017)
 - Maintenance page stylesheet fix [#1016](https://github.com/bigcommerce/cornerstone/pull/1016)
+- Restore four products per row on category pages when sidebar is empty. [#1018](https://github.com/bigcommerce/cornerstone/pull/1018)
+- Restore product image carousel [#1021](https://github.com/bigcommerce/cornerstone/pull/1021)
 
 ## 1.8.1 (2017-05-05)
 - Bug fix for category sidebar [#1006](https://github.com/bigcommerce/cornerstone/pull/1006)

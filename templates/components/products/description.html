@@ -1,0 +1,12 @@
+<p class="productView-title">{{lang 'products.description'}}</p>
+<div class="productView-description">
+    {{{product.description}}}
+    {{{snippet 'product_description'}}}
+</div>
+
+{{#if product.warranty}}
+    <p class="productView-title">{{lang 'products.warranty'}}</p>
+    <div class="productView-description">
+        {{{product.warranty}}}
+    </div>
+{{/if}}

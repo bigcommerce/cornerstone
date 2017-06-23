@@ -1,6 +1,13 @@
 <article class="listItem">
     <figure class="listItem-figure">
         <img class="listItem-image" src="{{getImage image 'productgallery_size' (cdn theme_settings.default_image_product)}}" alt="{{image.alt}}" title="{{image.alt}}">
+        {{#unless hide_product_quick_view}}
+            {{#if theme_settings.show_product_quick_view}}
+                <div class="listItem-figureBody">
+                    <a href="#" class="button button--small listItem-button quickview" data-product-id="{{id}}">{{lang 'products.quick_view'}}</a>
+                </div>
+            {{/if}}
+        {{/unless}}
     </figure>
     <div class="listItem-body">
         <div class="listItem-content">

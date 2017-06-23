@@ -6,6 +6,7 @@
 - Restore four products per row on category pages when sidebar is empty. [#1018](https://github.com/bigcommerce/cornerstone/pull/1018)
 - Remove gift certificate format validation [#1026](https://github.com/bigcommerce/cornerstone/pull/1026)
 - Remove usage of deprecated {{template_file}} property [#1032](https://github.com/bigcommerce/cornerstone/pull/1032)
+- Reinstate Quick View on product list mode when set to list view [#1033](https://github.com/bigcommerce/cornerstone/pull/1033)
 
 ## 1.8.1 (2017-05-05)
 - Bug fix for category sidebar [#1006](https://github.com/bigcommerce/cornerstone/pull/1006)

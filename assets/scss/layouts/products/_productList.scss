@@ -42,6 +42,21 @@
     }
 }
 
+// QuickView button
+// -----------------------------------------------------------------------------
+
+.listItem-button {
+    background-color: $card-figcaption-button-background;
+    border-color: $card-figcaption-button-borderColor;
+    color: $card-figcaption-button-color;
+
+    &:hover {
+        background-color: $card-figcaption-button-backgroundHover;
+        border-color: $card-figcaption-button-borderColor;
+        color: $card-figcaption-button-color;
+    }
+}
+
 
 // List figure
 // -----------------------------------------------------------------------------
@@ -51,11 +66,43 @@
 
     @include breakpoint("small") {
         margin-bottom: 0;
+        padding-left: spacing("half");
+        padding-right: spacing("half");
+        width: grid-calc(3, $total-columns);
+    }
 
-        @include breakpoint("small") {
-            padding-left: spacing("half");
-            padding-right: spacing("half");
-            width: grid-calc(3, $total-columns);
+    @include breakpoint("large") {
+        position: relative;
+    }
+
+    .listItem-button {
+        margin: spacing("single") 0;
+
+        @include breakpoint("large") {
+            @include verticalPositionMiddle();
+            display: inline-block;
+            margin: 0 0 spacing("single");
+            pointer-events: all;
+            transform-style: preserve-3d;
+        }
+    }
+}
+
+.listItem-figureBody {
+    opacity: 1;
+    text-align: center;
+
+    @include breakpoint("large") {
+        bottom: 0;
+        height: 100%;
+        left: spacing("half");
+        opacity: 0;
+        position: absolute;
+        right: spacing("half");
+        top: 0;
+
+        &:hover {
+            opacity: 1;
         }
     }
 }

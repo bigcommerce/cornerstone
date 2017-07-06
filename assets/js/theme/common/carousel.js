@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import 'slick-carousel/slick/slick.min';
+import 'slick-carousel';
 
 export default function () {
     const $carousel = $('[data-slick]');

@@ -65,8 +65,10 @@ module.exports = {
     ],
     resolve: {
         alias: {
+            'html5-history-api': path.resolve(__dirname, 'node_modules/html5-history-api/history.min.js'),
             jquery: path.resolve(__dirname, 'node_modules/jquery/dist/jquery.min.js'),
             jstree: path.resolve(__dirname, 'node_modules/jstree/dist/jstree.min.js'),
+            'slick-carousel': path.resolve(__dirname, 'node_modules/slick-carousel/slick/slick.min.js'),
         },
     },
     watch: false,

@@ -3,6 +3,7 @@
 ## Draft
 - Product Images were obscuring product details on smaller viewports [#1019](https://github.com/bigcommerce/cornerstone/pull/1019)
 - Add region tags to two template files to support payments team banner integration with content service [#1023](https://github.com/bigcommerce/cornerstone/pull/1023)
+- Fix H1-H6 font-sizing [#1034](https://github.com/bigcommerce/cornerstone/pull/1034)
 
 ## 1.8.2 (2017-06-23)
 - Swaps `writeReview` for `write_review` to fix email link issue [#1017](https://github.com/bigcommerce/cornerstone/pull/1017)

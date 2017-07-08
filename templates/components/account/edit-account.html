@@ -1,4 +1,8 @@
 <form action="{{urls.account.update_action}}" data-edit-account-form class="form" method="post">
+    {{inject 'firstName' (lang 'forms.validate.account.edit.first_name')}}
+    {{inject 'lastName' (lang 'forms.validate.account.edit.last_name')}}
+    {{inject 'phoneNumber' (lang 'forms.validate.account.edit.phone')}}
+    {{inject 'currentPassword' (lang 'forms.validate.account.edit.password')}}
     <fieldset class="form-fieldset">
         <div class="form-row form-row--half">
             <div class="form-field">

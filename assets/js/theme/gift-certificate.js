@@ -7,8 +7,9 @@ import { api } from '@bigcommerce/stencil-utils';
 import { defaultModal } from './global/modal';
 
 export default class GiftCertificate extends PageManager {
-    constructor() {
+    constructor(context) {
         super();
+        this.context = context;
 
         const $certBalanceForm = $('#gift-certificate-balance');
 
@@ -79,7 +80,7 @@ export default class GiftCertificate extends PageManager {
 
                     cb(result);
                 },
-                errorMessage: 'You must enter a valid recipient name.',
+                errorMessage: this.context.toName,
             },
             {
                 selector: '#gift-certificate-form input[name="to_email"]',
@@ -88,7 +89,7 @@ export default class GiftCertificate extends PageManager {
 
                     cb(result);
                 },
-                errorMessage: 'You must enter a valid recipient email.',
+                errorMessage: this.context.toEmail,
             },
             {
                 selector: '#gift-certificate-form input[name="from_name"]',
@@ -97,7 +98,7 @@ export default class GiftCertificate extends PageManager {
 
                     cb(result);
                 },
-                errorMessage: 'You must enter your name.',
+                errorMessage: this.context.fromName,
             },
             {
                 selector: '#gift-certificate-form input[name="from_email"]',
@@ -106,7 +107,7 @@ export default class GiftCertificate extends PageManager {
 
                     cb(result);
                 },
-                errorMessage: 'You must enter a valid email.',
+                errorMessage: this.context.fromEmail,
             },
             {
                 selector: '#gift-certificate-form input[name="certificate_theme"]:first-of-type',
@@ -116,7 +117,7 @@ export default class GiftCertificate extends PageManager {
 
                     cb(typeof(val) === 'string');
                 },
-                errorMessage: 'You must select a gift certificate theme.',
+                errorMessage: this.context.certTheme,
             },
             {
                 selector: '#gift-certificate-form input[name="agree"]',
@@ -125,7 +126,7 @@ export default class GiftCertificate extends PageManager {
 
                     cb(val);
                 },
-                errorMessage: 'You must agree to these terms.',
+                errorMessage: this.context.agreeToTerms,
             },
             {
                 selector: '#gift-certificate-form input[name="agree2"]',
@@ -134,7 +135,7 @@ export default class GiftCertificate extends PageManager {
 
                     cb(val);
                 },
-                errorMessage: 'You must agree to these terms.',
+                errorMessage: this.context.agreeToTerms,
             },
         ]);
 

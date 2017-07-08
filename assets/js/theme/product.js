@@ -41,7 +41,7 @@ export default class Product extends PageManager {
         const review = new Review($reviewForm);
 
         $('body').on('click', '[data-reveal-id="modal-review-form"]', () => {
-            validator = review.registerValidation();
+            validator = review.registerValidation(this.context);
         });
 
         $reviewForm.on('submit', () => {

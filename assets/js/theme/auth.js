@@ -27,7 +27,7 @@ export default class Auth extends PageManager {
 
                     cb(result);
                 },
-                errorMessage: 'Please use a valid email address, such as user@example.com.',
+                errorMessage: this.context.useValidEmail,
             },
             {
                 selector: '.login-form input[name="login_pass"]',
@@ -36,7 +36,7 @@ export default class Auth extends PageManager {
 
                     cb(result);
                 },
-                errorMessage: 'You must enter a password.',
+                errorMessage: this.context.enterPass,
             },
         ]);
 
@@ -64,7 +64,7 @@ export default class Auth extends PageManager {
 
                     cb(result);
                 },
-                errorMessage: 'Please use a valid email address, such as user@example.com.',
+                errorMessage: this.context.useValidEmail,
             },
         ]);
 

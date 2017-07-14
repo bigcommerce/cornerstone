@@ -6,6 +6,7 @@
 - Add on/off toggle to the theme editor for the "Shop by Price" panel located on category pages [#1036](https://github.com/bigcommerce/cornerstone/pull/1036)
 - Fix H1-H6 font-sizing [#1034](https://github.com/bigcommerce/cornerstone/pull/1034)
 - Reduce theme bundle size by using specific minified libraries [#1037](https://github.com/bigcommerce/cornerstone/pull/1037)
+- Fix google plus spacing issue [#1041](https://github.com/bigcommerce/cornerstone/pull/1041) 
 
 ## 1.8.2 (2017-06-23)
 - Swaps `writeReview` for `write_review` to fix email link issue [#1017](https://github.com/bigcommerce/cornerstone/pull/1017)

@@ -1,11 +1,12 @@
-<ul class="breadcrumbs">
+<ul class="breadcrumbs" vocab="http://schema.org/" typeof="BreadcrumbList">
     {{#each breadcrumbs}}
-        <li class="breadcrumb {{#if @last}}is-active{{/if}}">
+        <li property="itemListElement" typeof="ListItem" class="breadcrumb {{#if @last}}is-active{{/if}}">
             {{#if url}}
-                <a href="{{url}}" class="breadcrumb-label">{{name}}</a>
+                <a property="item" typeof="WebPage" href="{{url}}" class="breadcrumb-label"><span property="name">{{name}}</span></a>
             {{else}}
-                <span class="breadcrumb-label">{{name}}</span>
+                <span property="name" class="breadcrumb-label">{{name}}</span>
             {{/if}}
+            <meta property="position" content="{{add @index 1}}">
         </li>
     {{/each}}
 </ul>

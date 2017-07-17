@@ -7,6 +7,11 @@
             <a class="tab-title" href="#tab-warranty">{{lang 'products.warranty'}}</a>
         </li>
     {{/if}}
+    {{#all settings.show_product_reviews theme_settings.show_product_reviews_tabs}}
+        <li class="tab">
+            <a class="tab-title productView-reviewTabLink" href="#tab-reviews">{{lang 'products.reviews.header' total=product.reviews.total}}</a>
+        </li>
+    {{/all}}
 </ul>
 <div class="tabs-contents">
     <div class="tab-content is-active" id="tab-description">
@@ -18,4 +23,9 @@
            {{{product.warranty}}}
        </div>
    {{/if}}
+   {{#all settings.show_product_reviews theme_settings.show_product_reviews_tabs}}
+       <div class="tab-content" id="tab-reviews">
+           {{> components/products/reviews reviews=product.reviews product=product urls=urls}}
+       </div>
+   {{/all}}
 </div>

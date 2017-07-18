@@ -1,6 +1,8 @@
 # Changelog
 
 ## Draft
+
+## 1.9.0 (2017-07-18)
 - Product Images were obscuring product details on smaller viewports [#1019](https://github.com/bigcommerce/cornerstone/pull/1019)
 - Add region tags to two template files to support payments team banner integration with content service [#1023](https://github.com/bigcommerce/cornerstone/pull/1023)
 - Add on/off toggle to the theme editor for the "Shop by Price" panel located on category pages [#1036](https://github.com/bigcommerce/cornerstone/pull/1036)

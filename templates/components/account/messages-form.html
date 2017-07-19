@@ -1,6 +1,9 @@
 {{#if customer.inbox.orders}}
     <h2>{{lang 'forms.inbox.send_message'}}</h2>
     <form class="form" data-inbox-form action="{{urls.account.send_message}}" method="post">
+        {{inject 'enterOrderNum' (lang 'forms.validate.account.inbox.order')}}
+        {{inject 'enterSubject' (lang 'forms.validate.account.inbox.subject')}}
+        {{inject 'enterMessage' (lang 'forms.validate.account.inbox.message')}}
         <div class="form-field">
             <label class="form-label" for="message_order_id">
                 {{lang 'forms.inbox.order' }}
@@ -35,4 +38,3 @@
 {{else}}
     {{> components/common/alert-info (lang 'forms.inbox.no_orders')}}
 {{/if}}
-

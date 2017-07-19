@@ -99,7 +99,14 @@
         </div>
         <div class="form-actions">
             {{inject 'previewError' (lang 'forms.gift_certificate.purchase.preview_error')}}
-            <input 
+            {{inject 'enterAmount' (lang 'forms.validate.gift.amount')}}
+            {{inject 'toName' (lang 'forms.validate.gift.to_name')}}
+            {{inject 'toEmail' (lang 'forms.validate.gift.to_email')}}
+            {{inject 'fromName' (lang 'forms.validate.gift.from_name')}}
+            {{inject 'fromEmail' (lang 'forms.validate.gift.from_email')}}
+            {{inject 'certTheme' (lang 'forms.validate.gift.cert_theme')}}
+            {{inject 'agreeToTerms' (lang 'forms.validate.gift.agree_terms')}}
+            <input
                 id="gift-certificate-preview"
                 class="button"
                 type="submit"

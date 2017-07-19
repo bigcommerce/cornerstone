@@ -2,6 +2,7 @@
 
 ## Draft
 - Move some hard-coded validation messages to language file [#1040](https://github.com/bigcommerce/cornerstone/pull/1040)
+- Use different id for gift cert in cart page [#1044](https://github.com/bigcommerce/cornerstone/pull/1044)
 
 ## 1.9.0 (2017-07-18)
 - Product Images were obscuring product details on smaller viewports [#1019](https://github.com/bigcommerce/cornerstone/pull/1019)

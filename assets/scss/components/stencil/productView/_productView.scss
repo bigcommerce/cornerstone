@@ -48,12 +48,38 @@
 
     margin-left: -(spacing("quarter"));
     margin-right: -(spacing("quarter"));
+
+    .slick-list {
+        margin-left: remCalc(40px);
+        margin-right: remCalc(40px);
+    }
+
+    .slick-next {
+        right: 0;
+    }
+
+    .slick-prev {
+        left: 0;
+    }
+
+    img {
+        bottom: 0;
+        left: 0;
+        margin: auto;
+        max-height: 50px;
+        max-width: 50px;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 100%;
+    }
 }
 
 .productView-thumbnail {
     @include grid-column(3);
     padding-left: spacing("quarter");
     padding-right: spacing("quarter");
+    text-align: center;
 
     @include breakpoint("large") {
         width: 20%;
@@ -61,9 +87,12 @@
 }
 
 .productView-thumbnail-link {
-    border: 2px solid transparent;
+    border: container("border");
     display: inline-block;
+    height: 67px;
+    max-width: 75px;
     padding: 2px;
+    position: relative;
     text-align: center;
     width: 100%;
 

@@ -161,7 +161,12 @@
                      alt="{{product.main_image.alt}}" title="{{product.main_image.alt}}" data-main-image>
             </a>
         </figure>
-        <ul class="productView-thumbnails">
+        <ul class="productView-thumbnails"{{#gt product.images.length 5}} data-slick='{
+                "infinite": false,
+                "mobileFirst": true,
+                "slidesToShow": 5,
+                "slidesToScroll": 1
+            }'{{/gt}}>
             {{#each product.images}}
                 <li class="productView-thumbnail">
                     <a

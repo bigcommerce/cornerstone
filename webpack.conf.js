@@ -65,9 +65,12 @@ module.exports = {
     ],
     resolve: {
         alias: {
+            'async': path.resolve(__dirname, 'node_modules/async/dist/async.min.js'),
             'html5-history-api': path.resolve(__dirname, 'node_modules/html5-history-api/history.min.js'),
             jquery: path.resolve(__dirname, 'node_modules/jquery/dist/jquery.min.js'),
+            'jquery-zoom': path.resolve(__dirname, 'node_modules/jquery-zoom/jquery.zoom.min.js'),
             jstree: path.resolve(__dirname, 'node_modules/jstree/dist/jstree.min.js'),
+            'pace': path.resolve(__dirname, 'node_modules/pace/pace.min.js'),
             'slick-carousel': path.resolve(__dirname, 'node_modules/slick-carousel/slick/slick.min.js'),
         },
     },

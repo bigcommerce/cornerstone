@@ -5,6 +5,7 @@ import Wishlist from './wishlist';
 import validation from './common/form-validation';
 import stateCountry from './common/state-country';
 import { classifyForm, Validators, insertStateHiddenField } from './common/form-utils';
+import swal from 'sweetalert2';
 
 export default class Account extends PageManager {
     constructor() {
@@ -105,7 +106,10 @@ export default class Account extends PageManager {
 
             if (!submitForm) {
                 event.preventDefault();
-                alert(this.context.selectItem);
+                swal({
+                    text: this.context.selectItem,
+                    type: 'error',
+                });
             }
         });
     }
@@ -179,7 +183,10 @@ export default class Account extends PageManager {
                 return true;
             }
 
-            alert(errorMessage);
+            swal({
+                text: errorMessage,
+                type: 'error',
+            });
 
             return event.preventDefault();
         });

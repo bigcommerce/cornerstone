@@ -5,6 +5,7 @@ import giftCertCheck from './common/gift-certificate-validator';
 import utils from '@bigcommerce/stencil-utils';
 import ShippingEstimator from './cart/shipping-estimator';
 import { defaultModal } from './global/modal';
+import swal from 'sweetalert2';
 
 export default class Cart extends PageManager {
     loaded(next) {
@@ -31,9 +32,15 @@ export default class Cart extends PageManager {
 
         // Does not quality for min/max quantity
         if (newQty < minQty) {
-            return alert(minError);
+            return swal({
+                text: minError,
+                type: 'error',
+            });
         } else if (maxQty > 0 && newQty > maxQty) {
-            return alert(maxError);
+            return swal({
+                text: maxError,
+                type: 'error',
+            });
         }
 
         this.$overlay.show();
@@ -48,7 +55,10 @@ export default class Cart extends PageManager {
                 this.refreshContent(remove);
             } else {
                 $el.val(oldQty);
-                alert(response.data.errors.join('\n'));
+                swal({
+                    text: response.data.errors.join('\n'),
+                    type: 'error',
+                });
             }
         });
     }
@@ -59,7 +69,10 @@ export default class Cart extends PageManager {
             if (response.data.status === 'succeed') {
                 this.refreshContent(true);
             } else {
-                alert(response.data.errors.join('\n'));
+                swal({
+                    text: response.data.errors.join('\n'),
+                    type: 'error',
+                });
             }
         });
     }
@@ -89,7 +102,10 @@ export default class Cart extends PageManager {
                 const data = result.data || {};
 
                 if (err) {
-                    alert(err);
+                    swal({
+                        text: err,
+                        type: 'error',
+                    });
                     return false;
                 }
 
@@ -162,18 +178,16 @@ export default class Cart extends PageManager {
 
         $('.cart-remove', this.$cartContent).on('click', (event) => {
             const itemId = $(event.currentTarget).data('cart-itemid');
-            const openTime = new Date();
-            const result = confirm($(event.currentTarget).data('confirm-delete'));
-            const delta = new Date() - openTime;
+            const string = $(event.currentTarget).data('confirm-delete');
+            swal({
+                text: string,
+                type: 'warning',
+                showCancelButton: true,
+            }).then(() => {
+                // remove item from cart
+                cartRemoveItem(itemId);
+            });
             event.preventDefault();
-
-            // Delta workaround for Chrome's "prevent popup"
-            if (!result && delta > 10) {
-                return;
-            }
-
-            // remove item from cart
-            cartRemoveItem(itemId);
         });
 
         $('[data-item-edit]', this.$cartContent).on('click', (event) => {
@@ -214,14 +228,20 @@ export default class Cart extends PageManager {
 
             // Empty code
             if (!code) {
-                return alert($codeInput.data('error'));
+                return swal({
+                    text: $codeInput.data('error'),
+                    type: 'error',
+                });
             }
 
             utils.api.cart.applyCode(code, (err, response) => {
                 if (response.data.status === 'success') {
                     this.refreshContent();
                 } else {
-                    alert(response.data.errors.join('\n'));
+                    swal({
+                        text: response.data.errors.join('\n'),
+                        type: 'error',
+                    });
                 }
             });
         });
@@ -252,14 +272,20 @@ export default class Cart extends PageManager {
             event.preventDefault();
 
             if (!giftCertCheck(code)) {
-                return alert($certInput.data('error'));
+                return swal({
+                    text: $certInput.data('error'),
+                    type: 'error',
+                });
             }
 
             utils.api.cart.applyGiftCertificate(code, (err, resp) => {
                 if (resp.data.status === 'success') {
                     this.refreshContent();
                 } else {
-                    alert(resp.data.errors.join('\n'));
+                    swal({
+                        text: resp.data.errors.join('\n'),
+                        type: 'error',
+                    });
                 }
             });
         });

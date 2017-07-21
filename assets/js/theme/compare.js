@@ -1,5 +1,6 @@
 import PageManager from './page-manager';
 import $ from 'jquery';
+import swal from 'sweetalert2';
 
 export default class Compare extends PageManager {
 
@@ -8,7 +9,10 @@ export default class Compare extends PageManager {
 
         $('body').on('click', '[data-comparison-remove]', (event) => {
             if (this.context.comparisons.length <= 2) {
-                alert(message);
+                swal({
+                    text: message,
+                    type: 'error',
+                });
                 event.preventDefault();
             }
         });

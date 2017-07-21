@@ -8,6 +8,7 @@ import 'foundation-sites/js/foundation/foundation.reveal';
 import ImageGallery from '../product/image-gallery';
 import modalFactory from '../global/modal';
 import _ from 'lodash';
+import swal from 'sweetalert2';
 
 // We want to ensure that the events are bound to a single instance of the product details component
 let productSingleton = null;
@@ -228,7 +229,10 @@ export default class Product {
                 const tmp = document.createElement('DIV');
                 tmp.innerHTML = errorMessage;
 
-                return alert(tmp.textContent || tmp.innerText);
+                return swal({
+                    text: tmp.textContent || tmp.innerText,
+                    type: 'error',
+                });
             }
 
             // Open preview modal and update content

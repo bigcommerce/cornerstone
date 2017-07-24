@@ -7,6 +7,7 @@
 - Reduce theme bundle size by using minified libraries where applicable [#1039](https://github.com/bigcommerce/cornerstone/pull/1039)
 - Replace JavaScript alert/confirmations with sweetalert2 library [#1035](https://github.com/bigcommerce/cornerstone/pull/1035)
 - Add global Sass variables to easily toggle exposure of Foundation styles from Citadel [#1047](https://github.com/bigcommerce/cornerstone/pull/1047)
+- Use `page_type` instead of `template` for routing. Fix an issue with javascript not running in custom templates [#1047](https://github.com/bigcommerce/cornerstone/pull/1050)
 
 ## 1.9.0 (2017-07-18)
 - Product Images were obscuring product details on smaller viewports [#1019](https://github.com/bigcommerce/cornerstone/pull/1019)
@@ -14,7 +15,7 @@
 - Add on/off toggle to the theme editor for the "Shop by Price" panel located on category pages [#1036](https://github.com/bigcommerce/cornerstone/pull/1036)
 - Fix H1-H6 font-sizing [#1034](https://github.com/bigcommerce/cornerstone/pull/1034)
 - Reduce theme bundle size by using specific minified libraries [#1037](https://github.com/bigcommerce/cornerstone/pull/1037)
-- Fix google plus spacing issue [#1041](https://github.com/bigcommerce/cornerstone/pull/1041) 
+- Fix google plus spacing issue [#1041](https://github.com/bigcommerce/cornerstone/pull/1041)
 
 ## 1.8.2 (2017-06-23)
 - Swaps `writeReview` for `write_review` to fix email link issue [#1017](https://github.com/bigcommerce/cornerstone/pull/1017)

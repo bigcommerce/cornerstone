@@ -1,6 +1,8 @@
 # Changelog
 
 ## Draft
+
+## 1.9.1 (2017-07-24)
 - Move some hard-coded validation messages to language file [#1040](https://github.com/bigcommerce/cornerstone/pull/1040)
 - Use different id for gift cert in cart page [#1044](https://github.com/bigcommerce/cornerstone/pull/1044)
 - Restore product image carousel [#1028](https://github.com/bigcommerce/cornerstone/pull/1028)

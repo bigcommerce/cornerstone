@@ -7,58 +7,56 @@ import Global from './theme/global';
 const getAccount = () => import('./theme/account');
 const getLogin = () => import('./theme/auth');
 const pageClasses = {
-    'pages/account/orders/all': getAccount,
-    'pages/account/orders/details': getAccount,
-    'pages/account/addresses': getAccount,
-    'pages/account/add-address': getAccount,
-    'pages/account/add-return': getAccount,
-    'pages/account/add-wishlist': () => import('./theme/wishlist'),
-    'pages/account/recent-items': getAccount,
-    'pages/account/download-item': getAccount,
-    'pages/account/edit': getAccount,
-    'pages/account/inbox': getAccount,
-    'pages/account/return-saved': getAccount,
-    'pages/account/returns': getAccount,
-    'pages/auth/login': getLogin,
-    'pages/auth/account-created': getLogin,
-    'pages/auth/create-account': getLogin,
-    'pages/auth/new-password': getLogin,
-    'pages/auth/forgot-password': getLogin,
-    'pages/blog': () => import('./theme/blog'),
-    'pages/blog-post': () => import('./theme/blog'),
-    'pages/brand': () => import('./theme/brand'),
-    'pages/brands': () => import('./theme/brand'),
-    'pages/cart': () => import('./theme/cart'),
-    'pages/category': () => import('./theme/category'),
-    'pages/compare': () => import('./theme/compare'),
-    'pages/contact-us': () => import('./theme/contact-us'),
-    'pages/errors': () => import('./theme/errors'),
-    'pages/errors/404': () => import('./theme/404-error'),
-    'pages/gift-certificate/purchase': () => import('./theme/gift-certificate'),
-    'pages/gift-certificate/balance': () => import('./theme/gift-certificate'),
-    'pages/gift-certificate/redeem': () => import('./theme/gift-certificate'),
-    'pages/home': () => import('./theme/home'),
-    'pages/order-complete': () => import('./theme/order-complete'),
-    'pages/page': () => import('./theme/page'),
-    'pages/product': () => import('./theme/product'),
-    'pages/amp/product-options': () => import('./theme/product'),
-    'pages/search': () => import('./theme/search'),
-    'pages/rss': () => import('./theme/rss'),
-    'pages/sitemap': () => import('./theme/sitemap'),
-    'pages/subscribed': () => import('./theme/subscribe'),
-    'pages/account/wishlist-details': () => import('./theme/wishlist'),
-    'pages/account/wishlists': () => import('./theme/wishlist'),
+    account_orderstatus: getAccount,
+    account_order: getAccount,
+    account_addressbook: getAccount,
+    shippingaddressform: getAccount,
+    account_new_return: getAccount,
+    'add-wishlist': () => import('./theme/wishlist'),
+    account_recentitems: getAccount,
+    account_downloaditem: getAccount,
+    editaccount: getAccount,
+    account_inbox: getAccount,
+    account_saved_return: getAccount,
+    account_returns: getAccount,
+    login: getLogin,
+    createaccount_thanks: getLogin,
+    createaccount: getLogin,
+    getnewpassword: getLogin,
+    forgotpassword: getLogin,
+    blog: () => import('./theme/blog'),
+    blog_post: () => import('./theme/blog'),
+    brand: () => import('./theme/brand'),
+    brands: () => import('./theme/brand'),
+    cart: () => import('./theme/cart'),
+    category: () => import('./theme/category'),
+    compare: () => import('./theme/compare'),
+    page_contact_form: () => import('./theme/contact-us'),
+    error: () => import('./theme/errors'),
+    404: () => import('./theme/404-error'),
+    giftcertificates: () => import('./theme/gift-certificate'),
+    giftcertificates_balance: () => import('./theme/gift-certificate'),
+    giftcertificates_redeem: () => import('./theme/gift-certificate'),
+    default: () => import('./theme/home'),
+    page: () => import('./theme/page'),
+    product: () => import('./theme/product'),
+    amp_product_options: () => import('./theme/product'),
+    search: () => import('./theme/search'),
+    rss: () => import('./theme/rss'),
+    sitemap: () => import('./theme/sitemap'),
+    newsletter_subscribe: () => import('./theme/subscribe'),
+    wishlist: () => import('./theme/wishlist'),
+    wishlists: () => import('./theme/wishlist'),
 };
 
 /**
  * This function gets added to the global window and then called
  * on page load with the current template loaded and JS Context passed in
- * @todo use page_type instead of template_file (STENCIL-2922)
- * @param templateFile String
+ * @param pageType String
  * @param contextJSON
  * @returns {*}
  */
-window.stencilBootstrap = function stencilBootstrap(templateFile, contextJSON = null, loadGlobal = true) {
+window.stencilBootstrap = function stencilBootstrap(pageType, contextJSON = null, loadGlobal = true) {
     const context = JSON.parse(contextJSON || {});
 
     return {
@@ -69,7 +67,7 @@ window.stencilBootstrap = function stencilBootstrap(templateFile, contextJSON = 
                 let PageClass;
 
                 // Finds the appropriate class from the pageType.
-                const pageClassImporter = pageClasses[templateFile];
+                const pageClassImporter = pageClasses[pageType];
                 if (typeof pageClassImporter === 'function') {
                     PageClass = (await pageClassImporter()).default;
                 }

@@ -7,6 +7,7 @@
 - Reduce theme bundle size by using minified libraries where applicable [#1039](https://github.com/bigcommerce/cornerstone/pull/1039)
 - Replace JavaScript alert/confirmations with sweetalert2 library [#1035](https://github.com/bigcommerce/cornerstone/pull/1035)
 - Add global Sass variables to easily toggle exposure of Foundation styles from Citadel [#1047](https://github.com/bigcommerce/cornerstone/pull/1047)
+- Fix google plus social icon position [#1048](https://github.com/bigcommerce/cornerstone/pull/1048)
 - Use `page_type` instead of `template` for routing. Fix an issue with javascript not running in custom templates [#1047](https://github.com/bigcommerce/cornerstone/pull/1050)
 
 ## 1.9.0 (2017-07-18)

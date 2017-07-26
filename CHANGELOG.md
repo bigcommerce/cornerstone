@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Hide Info in footer if no address is provided in Store Profile. Hide Brands in footer if Merchant has no brands [#1053](https://github.com/bigcommerce/cornerstone/pull/1053)
 
 ## 1.9.1 (2017-07-25)
 - Move some hard-coded validation messages to language file [#1040](https://github.com/bigcommerce/cornerstone/pull/1040)

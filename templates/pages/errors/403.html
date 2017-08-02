@@ -7,9 +7,12 @@
         <h1 class="page-heading">{{lang 'forbidden.page_heading'}}</h1>
         <p class="u-textAlignCenter">
             {{lang 'forbidden.message'}}
-            <a href="{{urls.auth.login}}">{{lang 'forbidden.sign_in'}}</a>
         </p>
-
+        <p class="u-textAlignCenter">
+            {{lang 'forbidden.if_you_were_logged_in'}}
+            <a href="{{urls.auth.login}}">{{lang 'forbidden.sign_in'}}</a>
+            {{lang 'forbidden.to_continue'}}
+        </p>
         {{> components/common/search-box}}
     </section>
 </main>

@@ -3,6 +3,7 @@
 ## Draft
 - Hide Info in footer if no address is provided in Store Profile. Hide Brands in footer if Merchant has no brands [#1053](https://github.com/bigcommerce/cornerstone/pull/1053)
 - Product illustrations in the storefront when the product catalog is empty [#1054](https://github.com/bigcommerce/cornerstone/pull/1054)
+- Add pointer-event for color and pattern swatches so title tags appear upon hover [#1055](https://github.com/bigcommerce/cornerstone/pull/1055)
 - Change the 403 page message to be more friendly [#1057](https://github.com/bigcommerce/cornerstone/pull/1057)
 
 ## 1.9.1 (2017-07-25)

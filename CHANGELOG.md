@@ -5,6 +5,7 @@
 - Product illustrations in the storefront when the product catalog is empty [#1054](https://github.com/bigcommerce/cornerstone/pull/1054)
 - Add pointer-event for color and pattern swatches so title tags appear upon hover [#1055](https://github.com/bigcommerce/cornerstone/pull/1055)
 - Change the 403 page message to be more friendly [#1057](https://github.com/bigcommerce/cornerstone/pull/1057) & [#1059](https://github.com/bigcommerce/cornerstone/pull/1059)
+- Add bulk discount rates to product cards [#1058](https://github.com/bigcommerce/cornerstone/pull/1058)
 
 ## 1.9.1 (2017-07-25)
 - Move some hard-coded validation messages to language file [#1040](https://github.com/bigcommerce/cornerstone/pull/1040)

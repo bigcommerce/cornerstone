@@ -7,6 +7,7 @@
 - Change the 403 page message to be more friendly [#1057](https://github.com/bigcommerce/cornerstone/pull/1057) & [#1059](https://github.com/bigcommerce/cornerstone/pull/1059)
 - Add bulk discount rates to product cards [#1058](https://github.com/bigcommerce/cornerstone/pull/1058)
 - Add higher z-index to display text over burst image [#1066](https://github.com/bigcommerce/cornerstone/pull/1066)
+- Do not show add to cart on disabled products, add pre-order button, update pre-order url to add product to cart & fix login for pricing on product cards. [#1063](https://github.com/bigcommerce/cornerstone/pull/1063)
 
 ## 1.9.1 (2017-07-25)
 - Move some hard-coded validation messages to language file [#1040](https://github.com/bigcommerce/cornerstone/pull/1040)

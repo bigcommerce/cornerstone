@@ -47,7 +47,7 @@ export default class ShippingEstimator {
                 selector: `${this.shippingEstimator} select[name="shipping-country"]`,
                 validate: (cb, val) => {
                     const countryId = Number(val);
-                    const result = countryId !== 0 && !isNaN(countryId);
+                    const result = countryId !== 0 && !Number.isNaN(countryId);
 
                     cb(result);
                 },
@@ -158,7 +158,7 @@ export default class ShippingEstimator {
                     clickEvent.preventDefault();
 
                     utils.api.cart.submitShippingQuote(quoteId, () => {
-                        location.reload();
+                        window.location.reload();
                     });
                 });
             });

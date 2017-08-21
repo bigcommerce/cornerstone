@@ -156,7 +156,7 @@ class FacetedSearch {
         const id = $navList.attr('id');
 
         // Toggle depending on `collapsed` flag
-        if (_.contains(this.collapsedFacetItems, id)) {
+        if (_.includes(this.collapsedFacetItems, id)) {
             this.getMoreFacetResults($navList);
 
             return true;
@@ -363,7 +363,7 @@ class FacetedSearch {
     }
 
     onSortBySubmit(event) {
-        const url = Url.parse(location.href, true);
+        const url = Url.parse(window.location.href, true);
         const queryParams = $(event.currentTarget).serialize().split('=');
 
         url.query[queryParams[0]] = queryParams[1];
@@ -381,7 +381,7 @@ class FacetedSearch {
             return;
         }
 
-        const url = Url.parse(location.href);
+        const url = Url.parse(window.location.href);
         const queryParams = decodeURI($(event.currentTarget).serialize());
 
         urlUtils.goToUrl(Url.format({ pathname: url.pathname, search: `?${queryParams}` }));

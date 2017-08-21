@@ -91,7 +91,7 @@ export default class Auth extends PageManager {
             newPasswordValidator,
             passwordSelector,
             password2Selector,
-            this.passwordRequirements
+            this.passwordRequirements,
         );
     }
 
@@ -150,7 +150,7 @@ export default class Auth extends PageManager {
                 createAccountValidator,
                 passwordSelector,
                 password2Selector,
-                this.passwordRequirements
+                this.passwordRequirements,
             );
         }
 

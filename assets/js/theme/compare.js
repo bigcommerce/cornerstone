@@ -3,7 +3,6 @@ import $ from 'jquery';
 import swal from 'sweetalert2';
 
 export default class Compare extends PageManager {
-
     loaded() {
         const message = this.context.compareRemoveMessage;
 

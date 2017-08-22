@@ -3,6 +3,7 @@
 ## Draft
 - Fixes image overlapping details on product page and Quick View on small viewports [#1067](https://github.com/bigcommerce/cornerstone/pull/1067)
 - Allow 'none' to be a default selection on product option pick lists [#1068](https://github.com/bigcommerce/cornerstone/pull/1068)
+- Fix for Changing Menu Colors In Theme Editor Not Respected In Mobile View [#1071](https://github.com/bigcommerce/cornerstone/pull/1071)
 
 ## 1.9.2 (2017-08-16)
 - Hide Info in footer if no address is provided in Store Profile. Hide Brands in footer if Merchant has no brands [#1053](https://github.com/bigcommerce/cornerstone/pull/1053)

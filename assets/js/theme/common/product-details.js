@@ -1,6 +1,3 @@
-/*
- Import all product specific js
- */
 import $ from 'jquery';
 import utils from '@bigcommerce/stencil-utils';
 import 'foundation-sites/js/foundation/foundation';
@@ -10,22 +7,7 @@ import modalFactory from '../global/modal';
 import _ from 'lodash';
 import swal from 'sweetalert2';
 
-// We want to ensure that the events are bound to a single instance of the product details component
-let productSingleton = null;
-
-utils.hooks.on('cart-item-add', (event, form) => {
-    if (productSingleton) {
-        productSingleton.addProductToCart(event, form);
-    }
-});
-
-utils.hooks.on('product-option-change', (event, changedOption) => {
-    if (productSingleton) {
-        productSingleton.productOptionsChanged(event, changedOption);
-    }
-});
-
-export default class Product {
+export default class ProductDetails {
     constructor($scope, context, productAttributesData = {}) {
         this.$overlay = $('[data-cart-item-add] .loadingOverlay');
         this.$scope = $scope;
@@ -39,7 +21,16 @@ export default class Product {
         const $productOptionsElement = $('[data-product-option-change]', $form);
         const hasOptions = $productOptionsElement.html().trim().length;
 
-        // Update product attributes. If we're in quick view and the product has options, then also update the initial view in case items are oos
+        $productOptionsElement.change(event => {
+            this.productOptionsChanged(event);
+        });
+
+        $form.submit(event => {
+            this.addProductToCart(event, $form[0]);
+        });
+
+        // Update product attributes. If we're in quick view and the product has options,
+        // then also update the initial view in case items are oos
         if (_.isEmpty(productAttributesData) && hasOptions) {
             const $productId = $('[name="product_id"]', $form).val();
 
@@ -56,7 +47,6 @@ export default class Product {
         $productOptionsElement.show();
 
         this.previewModal = modalFactory('#previewModal')[0];
-        productSingleton = this;
     }
 
     /**
@@ -104,8 +94,8 @@ export default class Product {
      * Handle product options changes
      *
      */
-    productOptionsChanged(event, changedOption) {
-        const $changedOption = $(changedOption);
+    productOptionsChanged(event) {
+        const $changedOption = $(event.target);
         const $form = $changedOption.parents('form');
         const productId = $('[name="product_id"]', $form).val();
 

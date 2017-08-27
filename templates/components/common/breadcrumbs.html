@@ -1,3 +1,22 @@
+<script type="application/ld+json">
+    {
+        "@context": "http://schema.org/", 
+        "@type": "BreadcrumbList", 
+        "itemListElement": [
+            {{#each breadcrumbs}}
+                { 
+                    "@type": "ListItem", 
+                    "position": "{{add @index 1}}", 
+                    "item": { 
+                        "@id": "{{url}}", 
+                        "name": "{{name}}" 
+                    } 
+                }{{#if @last}}{{else}},{{/if}}
+            {{/each}}
+        ]
+    }
+</script>
+
 <ul class="breadcrumbs">
     {{#each breadcrumbs}}
         <li class="breadcrumb {{#if @last}}is-active{{/if}}">

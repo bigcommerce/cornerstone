@@ -6,6 +6,7 @@
 - Fixes a bug where product options and add to cart do not work when opened in Quick View modals [#1070](https://github.com/bigcommerce/cornerstone/pull/1070)
 - Fixes a bug where the Apple Pay button is displayed in incompatible browsers in the Preview Cart modal [#1084](https://github.com/bigcommerce/cornerstone/pull/1084)
 - Make 3 variations WCAG color contrast compliant [#1061](https://github.com/bigcommerce/cornerstone/pull/1061)
+- Add footer script to optimized checkout / order confirmation [#1085](https://github.com/bigcommerce/cornerstone/pull/1085)
 
 ## 1.9.2 (2017-08-16)
 - Hide Info in footer if no address is provided in Store Profile. Hide Brands in footer if Merchant has no brands [#1053](https://github.com/bigcommerce/cornerstone/pull/1053)

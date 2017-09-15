@@ -66,6 +66,10 @@ window.stencilBootstrap = function stencilBootstrap(pageType, contextJSON = null
                 let pageClass;
                 let PageClass;
 
+                if (contextJSON.template === 'pages/custom/page/my-custom-template') {
+                    // do something, import a file, call a function ...
+                }
+
                 // Finds the appropriate class from the pageType.
                 const pageClassImporter = pageClasses[pageType];
                 if (typeof pageClassImporter === 'function') {

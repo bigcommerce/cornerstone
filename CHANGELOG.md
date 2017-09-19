@@ -1,6 +1,8 @@
 # Changelog
 
 ## Draft
+
+## 1.9.3 (2017-09-19)
 - Fixes image overlapping details on product page and Quick View on small viewports [#1067](https://github.com/bigcommerce/cornerstone/pull/1067)
 - Allow 'none' to be a default selection on product option pick lists [#1068](https://github.com/bigcommerce/cornerstone/pull/1068)
 - Fixes a bug where product options and add to cart do not work when opened in Quick View modals [#1070](https://github.com/bigcommerce/cornerstone/pull/1070)

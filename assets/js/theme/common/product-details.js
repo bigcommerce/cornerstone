@@ -70,6 +70,7 @@ export default class ProductDetails {
                 $input: $('[data-product-stock]', $scope),
             },
             $sku: $('[data-product-sku]'),
+            $upc: $('[data-product-upc]'),
             quantity: {
                 $text: $('.incrementTotal', $scope),
                 $input: $('[name=qty\\[\\]]', $scope),
@@ -368,6 +369,11 @@ export default class ProductDetails {
         // If SKU is available
         if (data.sku) {
             viewModel.$sku.text(data.sku);
+        }
+
+        // If UPC is available
+        if (data.upc) {
+            viewModel.$upc.text(data.upc);
         }
 
         // if stock view is on (CP settings)

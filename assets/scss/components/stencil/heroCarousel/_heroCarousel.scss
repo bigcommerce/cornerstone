@@ -6,7 +6,7 @@
 //
 // 1. Hide the actual image element to allow background-size: cover treatment on
 //    large screens to scale image. Use visibility because the JS uses the height
-//    to set the slide size.
+//    to set the slide size. (For browsers with object-fit only)
 //
 // 2. With JS on, minimise the jump in content as you progressively enhance the
 //    slider. Slowly fade and slide the height, instead of a jump in collapsing
@@ -90,6 +90,11 @@
     }
 }
 
+.objectfit .heroCarousel-slide {
+    // scss-lint:disable ImportantRule
+    background-image: none !important;
+}
+
 .heroCarousel-slide--stretch {
     @include breakpoint("large") { // 4
         background-size: 100% 100%;
@@ -97,6 +102,14 @@
 }
 
 .heroCarousel-image {
+    @include breakpoint("medium") {
+        max-height: remCalc(600px);
+        object-fit: cover;
+        width: 100%;
+    }
+}
+
+.no-objectfit .heroCarousel-image {
     @include breakpoint("medium") { // 1
         visibility: hidden;
     }

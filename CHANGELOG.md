@@ -4,6 +4,7 @@
 - Style optimized checkout new checklist radio buttons [#1088](https://github.com/bigcommerce/cornerstone/pull/1088)
 - Update product UPC when options with different UPC are selected [#1089](https://github.com/bigcommerce/cornerstone/pull/1089)
 - Do not scale product thumbnail images [#1094](https://github.com/bigcommerce/cornerstone/pull/1094)
+- Lazy load carousel images [#1090](https://github.com/bigcommerce/cornerstone/pull/1090)
 
 ## 1.9.3 (2017-09-19)
 - Fixes image overlapping details on product page and Quick View on small viewports [#1067](https://github.com/bigcommerce/cornerstone/pull/1067)

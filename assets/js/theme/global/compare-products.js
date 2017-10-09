@@ -33,7 +33,7 @@ export default function (urlContext) {
     const $compareLink = $('a[data-compare-nav]');
 
     if ($checked.length !== 0) {
-        products = _.map($checked, (element) => element.value);
+        products = _.map($checked, element => element.value);
 
         updateCounterNav(products, $compareLink, urlContext);
     }

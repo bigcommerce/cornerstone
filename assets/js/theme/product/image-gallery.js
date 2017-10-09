@@ -3,7 +3,6 @@ import 'jquery-zoom';
 import _ from 'lodash';
 
 export default class ImageGallery {
-
     constructor($gallery) {
         this.$mainImage = $gallery.find('[data-image-gallery-main]');
         this.$selectableImages = $gallery.find('[data-image-gallery-item]');
@@ -81,5 +80,4 @@ export default class ImageGallery {
     bindEvents() {
         this.$selectableImages.on('click', this.selectNewImage.bind(this));
     }
-
 }

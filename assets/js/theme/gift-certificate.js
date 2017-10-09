@@ -115,7 +115,7 @@ export default class GiftCertificate extends PageManager {
                 validate: (cb) => {
                     const val = $purchaseForm.find('input[name="certificate_theme"]:checked').val();
 
-                    cb(typeof(val) === 'string');
+                    cb(typeof (val) === 'string');
                 },
                 errorMessage: this.context.certTheme,
             },

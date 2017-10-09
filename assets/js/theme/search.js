@@ -34,7 +34,7 @@ export default class Search extends CatalogPage {
     }
 
     showProducts() {
-        const url = urlUtils.replaceParams(location.href, {
+        const url = urlUtils.replaceParams(window.location.href, {
             section: 'product',
         });
 
@@ -46,7 +46,7 @@ export default class Search extends CatalogPage {
     }
 
     showContent() {
-        const url = urlUtils.replaceParams(location.href, {
+        const url = urlUtils.replaceParams(window.location.href, {
             section: 'content',
         });
 
@@ -60,7 +60,7 @@ export default class Search extends CatalogPage {
     loaded() {
         const $searchForm = $('[data-advanced-search-form]');
         const $categoryTreeContainer = $searchForm.find('[data-search-category-tree]');
-        const url = Url.parse(location.href, true);
+        const url = Url.parse(window.location.href, true);
         const treeData = [];
         this.$productListingContainer = $('#product-listing-container');
         this.$facetedSearchContainer = $('#faceted-search-container');

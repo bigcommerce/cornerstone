@@ -38,8 +38,8 @@ export default class Account extends PageManager {
 
         if ($invoiceButton.length) {
             $invoiceButton.on('click', () => {
-                const left = screen.availWidth / 2 - 450;
-                const top = screen.availHeight / 2 - 320;
+                const left = window.screen.availWidth / 2 - 450;
+                const top = window.screen.availHeight / 2 - 320;
                 const url = $invoiceButton.data('print-invoice');
 
                 window.open(url, 'orderInvoice', `width=900,height=650,left=${left},top=${top},scrollbars=1`);
@@ -78,7 +78,7 @@ export default class Account extends PageManager {
         $('[data-delete-address]').on('submit', (event) => {
             const message = $(event.currentTarget).data('delete-address');
 
-            if (!confirm(message)) {
+            if (!window.confirm(message)) {
                 event.preventDefault();
             }
         });
@@ -223,7 +223,7 @@ export default class Account extends PageManager {
                 passwordSelector,
                 password2Selector,
                 this.passwordRequirements,
-                true
+                true,
             );
         }
 

@@ -266,7 +266,7 @@ class FacetedSearch {
         $navLists.each((index, navList) => {
             const $navList = $(navList);
             const id = $navList.attr('id');
-            const shouldCollapse = _.contains(this.collapsedFacetItems, id);
+            const shouldCollapse = _.includes(this.collapsedFacetItems, id);
 
             if (shouldCollapse) {
                 this.collapseFacetItems($navList);
@@ -283,7 +283,7 @@ class FacetedSearch {
             const $accordionToggle = $(accordionToggle);
             const collapsible = $accordionToggle.data('collapsible-instance');
             const id = collapsible.targetId;
-            const shouldCollapse = _.contains(this.collapsedFacets, id);
+            const shouldCollapse = _.includes(this.collapsedFacets, id);
 
             if (shouldCollapse) {
                 this.collapseFacet($accordionToggle);

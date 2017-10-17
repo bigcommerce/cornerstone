@@ -1,6 +1,8 @@
 # Changelog
 
 ## Draft
+
+## 1.9.4 (2017-10-17)
 - Style optimized checkout new checklist radio buttons [#1088](https://github.com/bigcommerce/cornerstone/pull/1088)
 - Update product UPC when options with different UPC are selected [#1089](https://github.com/bigcommerce/cornerstone/pull/1089)
 - Do not scale product thumbnail images [#1094](https://github.com/bigcommerce/cornerstone/pull/1094)

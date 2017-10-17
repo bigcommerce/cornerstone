@@ -54,10 +54,14 @@
         <section class="productView">
             {{#with cart.added_item}}
                 <figure class="productView-image">
-                    <img class="productView-image--cart"
-                         src="{{getImage image 'product_size' (cdn ../theme_settings.default_image_product)}}"
-                         alt="{{image.alt}}"
-                         title="{{image.alt}}" />
+                    <div class="productView-img-container">
+                        <img class="productView-image--cart lazyload"
+                            data-sizes="auto"
+                            src="{{cdn 'img/loading.svg'}}"
+                            data-src="{{getImage image 'product_size' (cdn ../theme_settings.default_image_product)}}"
+                            alt="{{image.alt}}"
+                            title="{{image.alt}}" />
+                    </div>
                 </figure>
 
                 <div class="productView-details">

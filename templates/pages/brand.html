@@ -16,7 +16,9 @@ brand:
 {{#partial "page"}}
 {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
 {{#if brand.image}}
-    <img src="{{getImage brand.image 'thumb_size'}}">
+    <div class="brand-image-container">
+        <img class="lazyload" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{getImage brand.image 'thumb_size'}}">
+    </div>
 {{/if}}
 <h1 class="page-heading">{{brand.name}}</h1>
 {{{snippet 'brand'}}}

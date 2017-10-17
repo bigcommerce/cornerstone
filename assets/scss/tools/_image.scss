@@ -1,0 +1,41 @@
+///
+/// Calculate the required `padding-bottom` value to reserve page space for an image of a given size, represented by `$size`.
+///
+/// @param {String} $size - A string of the form 'XxY', where 'X' and 'Y' are integers.
+///
+/// @return {Number} - A percentage indicating the appropriate value of `padding-bottom`.
+///
+@function get-padding($size) {
+    $list: str-split($size, 'x');
+
+    $width: to-number(nth($list, 1));
+    $height: to-number(nth($list, 2));
+
+    @return percentage($height/$width);
+}
+
+///
+/// Returns a string representing the width (in pixels) of an image with size `$size`.
+///
+/// @param {String} $size - A string of the form 'XxY', where 'X' and 'Y' are integers.
+///
+/// @return {String} - A string of the form 'Xpx'
+///
+@function get-width($size) {
+	$list: str-split($size, 'x');
+
+    @return nth($list, 1) + 'px';
+}
+
+///
+/// Returns a string representing the width (in pixels) of an image with size `$size`.
+///
+/// @param {String} $size - A string of the form 'XxY', where 'X' and 'Y' are integers.
+///
+/// @return {String} - A string of the form 'Ypx'
+///
+@function get-height($size) {
+	$list: str-split($size, 'x');
+
+    @return nth($list, 2) + 'px';
+}

@@ -1,6 +1,6 @@
 <article class="listItem">
     <figure class="listItem-figure">
-        <img class="listItem-image" src="{{getImage image 'productgallery_size' (cdn theme_settings.default_image_product)}}" alt="{{image.alt}}" title="{{image.alt}}">
+        <img class="listItem-image lazyload" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{getImage image 'productgallery_size' (cdn theme_settings.default_image_product)}}" alt="{{image.alt}}" title="{{image.alt}}">
         {{#unless hide_product_quick_view}}
             {{#if theme_settings.show_product_quick_view}}
                 <div class="listItem-figureBody">

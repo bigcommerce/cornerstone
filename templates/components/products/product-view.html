@@ -184,11 +184,15 @@
                 data-image-gallery-main
                 data-zoom-image="{{getImage product.main_image 'zoom_size' (cdn theme_settings.default_image_product)}}"
                 >
-            <a href="{{getImage product.main_image 'zoom_size' (cdn theme_settings.default_image_product)}}">
-                <img class="productView-image--default"
-                     src="{{getImage product.main_image 'product_size' (cdn theme_settings.default_image_product)}}"
-                     alt="{{product.main_image.alt}}" title="{{product.main_image.alt}}" data-main-image>
-            </a>
+            <div class="productView-img-container">
+                <a href="{{getImage product.main_image 'zoom_size' (cdn theme_settings.default_image_product)}}">
+                    <img class="productView-image--default lazyload" 
+                         data-sizes="auto" 
+                         src="{{cdn 'img/loading.svg'}}" 
+                         data-src="{{getImage product.main_image 'product_size' (cdn theme_settings.default_image_product)}}"
+                         alt="{{product.main_image.alt}}" title="{{product.main_image.alt}}" data-main-image>
+                </a>
+            </div>
         </figure>
         <ul class="productView-thumbnails"{{#gt product.images.length 5}} data-slick='{
                 "infinite": false,
@@ -204,7 +208,7 @@
                         data-image-gallery-item
                         data-image-gallery-new-image-url="{{getImage this 'product_size' (cdn ../theme_settings.default_image_product)}}"
                         data-image-gallery-zoom-image-url="{{getImage this 'zoom_size' (cdn ../theme_settings.default_image_product)}}">
-                        <img src="{{getImage this 'productview_thumb_size' (cdn ../theme_settings.default_image_product)}}" alt="{{this.alt}}" title="{{this.alt}}">
+                        <img class="lazyload" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{getImage this 'productview_thumb_size' (cdn ../theme_settings.default_image_product)}}" alt="{{this.alt}}" title="{{this.alt}}">
                     </a>
                 </li>
             {{/each}}

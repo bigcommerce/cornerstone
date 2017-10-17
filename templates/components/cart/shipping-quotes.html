@@ -43,7 +43,7 @@
                                 <input id="shipping-quote-{{type}}-{{id}}" class="shipping-quote" type="radio" name="shipping_method" value="{{id}}">
                                 <label class="estimator-form-label-text" for="shipping-quote-{{type}}-{{id}}">
                                     {{#if logo_path}}
-                                        <img src="{{logo_path}}" alt="{{description}}" title="{{description}}">
+                                        <img class="lazyload" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{logo_path}}" alt="{{description}}" title="{{description}}">
                                     {{/if}}
                                     {{provider_name}} &mdash; {{description}}
                                 </label>

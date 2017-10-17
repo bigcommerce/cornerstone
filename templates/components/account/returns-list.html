@@ -5,7 +5,7 @@
     <li class="account-listItem">
         <div class="account-product">
             <div class="account-product-figure">
-                <img src="{{getImage product.image 'productthumb_size'}}" alt="{{product.image.alt}}" title="{{product.image.alt}}">
+                <img class="lazyload" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{getImage product.image 'productthumb_size'}}" alt="{{product.image.alt}}" title="{{product.image.alt}}">
             </div>
             <div class="account-product-body">
                 <div class="account-orderStatus">

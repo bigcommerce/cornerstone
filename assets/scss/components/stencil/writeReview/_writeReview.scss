@@ -18,9 +18,20 @@
     }
 }
 
+
 .writeReview-form {
 
     @include breakpoint("medium") {
         @include grid-column(6);
     }
+}
+
+.writeReview-productImage-container {
+    position: relative;
+
+    img {
+        @include lazy-loaded-img;
+    }
+
+    @include lazy-loaded-padding('product_size');
 }

@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Use appropriately-sized (50x50) images for product thumbnails on product details page [#1097](https://github.com/bigcommerce/cornerstone/pull/1097)
 
 ## 1.9.4 (2017-10-17)
 - Style optimized checkout new checklist radio buttons [#1088](https://github.com/bigcommerce/cornerstone/pull/1088)

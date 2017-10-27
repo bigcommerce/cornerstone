@@ -30,7 +30,11 @@
                                 <a href="{{url}}">{{ name }}</a>
                             </h4>
                             {{#or ../customer (if ../theme_settings.restrict_to_login '!==' true)}}
-                                {{> components/products/price price=price}}
+                                {{#if price_range}}
+                                    {{> components/products/price-range}}
+                                {{else}}
+                                    {{> components/products/price price=price}}
+                                {{/if}}
                             {{else}}
                                 {{> components/common/login-for-pricing}}
                             {{/or}}

@@ -81,7 +81,11 @@
 
         <div class="card-text" data-test-info-type="price">
             {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
-                {{> components/products/price price=price customer=customer}}
+                {{#if price_range}}
+                    {{> components/products/price-range}}
+                {{else}}
+                    {{> components/products/price price=price customer=customer}}
+                {{/if}}
             {{else}}
                 {{> components/common/login-for-pricing}}
             {{/or}}

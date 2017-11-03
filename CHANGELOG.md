@@ -3,6 +3,7 @@
 ## Draft
 - Use appropriately-sized (50x50) images for product thumbnails on product details page [#1097](https://github.com/bigcommerce/cornerstone/pull/1097)
 - Add spacing between checkout buttons [#1105](https://github.com/bigcommerce/cornerstone/pull/1105)
+- Fix issue with product option changes not updating price, images, etc [#1105](https://github.com/bigcommerce/cornerstone/pull/1116)
 
 ## 1.9.4 (2017-10-17)
 - Style optimized checkout new checklist radio buttons [#1088](https://github.com/bigcommerce/cornerstone/pull/1088)

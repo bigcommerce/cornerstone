@@ -3,7 +3,7 @@
     <div
         class="accordion-navigation toggleLink {{#unless ../start_collapsed }} is-open {{/unless}}"
         role="button"
-        data-collapsible="#facetedSearch-content--{{ facet }}">
+        data-collapsible="#facetedSearch-content--{{hyphenate facet }}">
         <h5 class="accordion-title">
             {{ title }}
         </h5>
@@ -21,7 +21,7 @@
         </div>
     </div>
 
-    <div id="facetedSearch-content--{{ facet }}" class="accordion-content facetedSearch-content--{{ facet }} {{#unless ../start_collapsed }} is-open {{/unless}}">
+    <div id="facetedSearch-content--{{hyphenate facet }}" class="accordion-content facetedSearch-content--{{hyphenate facet}} {{#unless ../start_collapsed }} is-open {{/unless}}">
         <ul class="navList">
             {{#each items}}
                 <li class="navList-item">

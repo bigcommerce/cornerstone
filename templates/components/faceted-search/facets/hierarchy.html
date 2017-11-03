@@ -3,7 +3,7 @@
     <div
         class="accordion-navigation toggleLink {{#unless ../start_collapsed }} is-open {{/unless}}"
         role="button"
-        data-collapsible="#facetedSearch-content--{{ facet }}">
+        data-collapsible="#facetedSearch-content--{{hyphenate facet }}">
         <h5 class="accordion-title">
             {{ title }}
         </h5>
@@ -21,12 +21,12 @@
         </div>
     </div>
 
-    <div id="facetedSearch-content--{{ facet }}" class="accordion-content {{#unless ../start_collapsed }} is-open {{/unless}}">
-        <ul id="facetedSearch-navList--{{ facet }}" class="navList" data-facet="{{facet}}" data-has-more-results="{{ has_more_results }}">
+    <div id="facetedSearch-content--{{hyphenate facet }}" class="accordion-content {{#unless ../start_collapsed }} is-open {{/unless}}">
+        <ul id="facetedSearch-navList--{{hyphenate facet }}" class="navList" data-facet="{{facet}}" data-has-more-results="{{ has_more_results }}">
             {{#each items}}
                 <li class="navList-item">
                     <a
-                        href="{{url}}"
+                        href="{{ url }}"
                         class="navList-action navList-action--checkbox {{#if selected }} is-selected {{/if}} {{#if has_sub_categories }} has-children {{/if}}"
                         rel="nofollow"
                         data-id="{{ id }}"
@@ -46,7 +46,7 @@
         </ul>
 
         {{#if show_more_toggle}}
-            <a href="#facetedSearch-navList--{{ facet }}" role="button" class="toggleLink">
+            <a href="#facetedSearch-navList--{{hyphenate facet }}" role="button" class="toggleLink">
                 <span class="toggleLink-text toggleLink-text--off">{{lang 'search.faceted.show-more'}}</span>
             </a>
         {{/if}}

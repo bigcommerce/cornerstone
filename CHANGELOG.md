@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Fix spaces in faceted search option names [#1113](https://github.com/bigcommerce/cornerstone/pull/1113)
 - Use appropriately-sized (50x50) images for product thumbnails on product details page [#1097](https://github.com/bigcommerce/cornerstone/pull/1097)
 - Add spacing between checkout buttons [#1105](https://github.com/bigcommerce/cornerstone/pull/1105)
 - Load visible images before images below the fold, and save space for lazy loading images prior to loading them [#1104](https://github.com/bigcommerce/cornerstone/pull/1104)

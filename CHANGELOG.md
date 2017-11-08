@@ -5,6 +5,7 @@
 - Use appropriately-sized (50x50) images for product thumbnails on product details page [#1097](https://github.com/bigcommerce/cornerstone/pull/1097)
 - Add spacing between checkout buttons [#1105](https://github.com/bigcommerce/cornerstone/pull/1105)
 - Load visible images before images below the fold, and save space for lazy loading images prior to loading them [#1104](https://github.com/bigcommerce/cornerstone/pull/1104)
+- Shows price ranges instead of prices when they are present in the context on product list pages [#1111](https://github.com/bigcommerce/cornerstone/pull/1111)
 
 ## 1.9.4 (2017-10-17)
 - Style optimized checkout new checklist radio buttons [#1088](https://github.com/bigcommerce/cornerstone/pull/1088)

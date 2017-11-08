@@ -14,7 +14,7 @@
 
 .card-figure {
     margin-top: $card-figure-marginTop;
-
+    position: relative;
     &:hover {
 
         // scss-lint:disable NestingDepth
@@ -22,6 +22,12 @@
             opacity: 1;
         }
     }
+}
+
+.card-img-container {
+    max-width: get-width(stencilString('productgallery_size'));
+
+    @include lazy-loaded-padding('productgallery_size');
 }
 
 .card-figcaption {
@@ -41,10 +47,10 @@
 }
 
 .card-image {
+    @include lazy-loaded-img;
     border: 0;
-    display: flex;
-    margin: auto;
     width: auto;
+    max-height: 100%;
 }
 
 .card-title {

@@ -43,7 +43,7 @@
     }
 
     .account-product-image {
-        width: auto;
+        @include lazy-loaded-img;
     }
 }
 
@@ -72,6 +72,8 @@
     margin: 0 spacing("single") + spacing("third") 0 0;
     position: relative;
     width: 70px;
+
+    @include lazy-loaded-padding('productthumb_size');
 }
 
 .account-product-download {

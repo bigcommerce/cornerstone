@@ -25,7 +25,7 @@
                 <li class="productOptions-list-item" data-product-attribute-value="{{id}}">
                     {{#if image}}
                         <figure class="productOptions-list-item-figure">
-                            <img class="productOptions-list-item-image" src="{{getImage image 'productthumb_size'}}" alt="{{image.alt}}" title="{{image.alt}}">
+                            <img class="productOptions-list-item-image lazyload" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{getImage image 'productthumb_size'}}" alt="{{image.alt}}" title="{{image.alt}}">
                         </figure>
                     {{/if}}
                     <div class="productOptions-list-item-content">

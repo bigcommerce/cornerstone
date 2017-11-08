@@ -93,6 +93,10 @@
     @include breakpoint("medium") {
         margin-left: remCalc(40px);
     }
+
+    .header-logo-image {
+        right: unset;
+    }
 }
 
 .header-logo--right {
@@ -100,6 +104,10 @@
 
     @include breakpoint("medium") {
         margin-right: remCalc(40px);
+    }
+
+    .header-logo-image {
+        left: unset;
     }
 }
 
@@ -139,13 +147,30 @@
     }
 }
 
+.header-logo-image-container {
+    position: relative;
+}
+
+.header-logo-image-container:after {
+    content: '';
+    display: block;
+    padding-bottom: remCalc($header-height) - $header-logo-marginVertical * 2;
+
+    @include breakpoint("medium") {
+        padding-bottom: get-height(stencilString('logo_size'));
+    }
+}
+
 .header-logo-image {
+    @include lazy-loaded-img;
     max-height: remCalc($header-height) - $header-logo-marginVertical * 2;
 
     @include breakpoint("medium") {
         max-height: none;
     }
 }
+
+
 
 //
 // Mobile Menu Toggle

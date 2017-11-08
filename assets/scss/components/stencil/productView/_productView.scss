@@ -22,7 +22,7 @@
     align-items: center;
     display: flex;
     justify-content: center;
-    margin: 0;
+    margin: auto;
     position: relative;
 
     @include breakpoint("medium") {
@@ -30,17 +30,24 @@
         min-width: inherit;
     }
 
-    img {
-        width: 100%;
-    }
-
-    .productView-image--default {
-        width: auto;
-    }
-
     + .productView-thumbnails {
         margin-top: spacing("half");
     }
+}
+
+.productView-img-container {
+    position: relative;
+    margin: auto;
+    max-width: get-width(stencilString('product_size'));
+    width: 100%;
+
+    img {
+        @include lazy-loaded-img;
+        max-height: 100%;
+        width: auto;
+    }
+
+    @include lazy-loaded-padding('product_size');
 }
 
 .productView-thumbnails {
@@ -64,14 +71,9 @@
     }
 
     img {
-        bottom: 0;
-        left: 0;
-        margin: auto;
+        @include lazy-loaded-img;
         max-height: 50px;
         max-width: 50px;
-        position: absolute;
-        right: 0;
-        top: 0;
         width: auto;
     }
 }

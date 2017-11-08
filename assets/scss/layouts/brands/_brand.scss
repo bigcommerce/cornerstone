@@ -1,0 +1,18 @@
+.brand-image-container {
+    position: relative;
+    max-width: get-width(stencilString('thumb_size'));
+
+    img {
+        @include lazy-loaded-img;
+    }
+
+    @include lazy-loaded-padding('thumb_size');
+}
+
+.brand {
+    .card-img-container {
+        max-width: get-width(stencilString('brand_size'));
+
+        @include lazy-loaded-padding('brand_size');
+    }
+}

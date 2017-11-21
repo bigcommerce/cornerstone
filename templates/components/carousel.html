@@ -9,9 +9,9 @@
         "lazyLoad": "anticipated"
     }'>
     {{#each carousel.slides}}
-    <div class="heroCarousel-slide {{#if ../theme_settings.homepage_stretch_carousel_images}}heroCarousel-slide--stretch{{/if}}"
-        style="background-image: url({{image}})">
-        <a href="{{url}}">
+    <a href="{{url}}">
+        <div class="heroCarousel-slide {{#if ../theme_settings.homepage_stretch_carousel_images}}heroCarousel-slide--stretch{{/if}}"
+            style="background-image: url({{image}})">
             <img class="heroCarousel-image" data-lazy="{{image}}" alt="{{alt_text}}" title="{{alt_text}}"/>
             {{#if heading}}
                 {{> components/carousel-content show_background=true}}
@@ -24,7 +24,7 @@
                     {{/if}}
                 {{/if}}
             {{/if}}
-        </a>
-    </div>
+        </div>
+    </a>
     {{/each}}
 </section>

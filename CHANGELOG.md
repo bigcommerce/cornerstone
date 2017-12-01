@@ -3,6 +3,7 @@
 ## Draft
 - Fixes functionality of carousel links in IE and Edge. [#1093](https://github.com/bigcommerce/cornerstone/pull/1093)
 - Add image width & height for carousel images. [#1126](https://github.com/bigcommerce/cornerstone/pull/1126)
+- Display product reviews in tabbed content region of product page [#1043](https://github.com/bigcommerce/cornerstone/pull/1043)
 
 ## 1.10.0 (2017-11-15)
 - Fix spaces in faceted search option names [#1113](https://github.com/bigcommerce/cornerstone/pull/1113)

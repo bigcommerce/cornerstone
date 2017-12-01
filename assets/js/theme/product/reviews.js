@@ -23,10 +23,13 @@ export default class {
      */
     initLinkBind() {
         const $content = $('#productReviews-content', this.$reviewsContent);
+        const $tabLink = $('a[href="#tab-reviews"]');
 
         $('.productView-reviewLink').click(() => {
             if (!$content.hasClass('is-open')) {
                 this.$collapsible.trigger(CollapsibleEvents.click);
+            } else if ($tabLink.length) {
+                $tabLink.click();
             }
         });
     }

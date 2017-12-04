@@ -108,6 +108,12 @@ export class Modal {
         this.onModalClosed = this.onModalClosed.bind(this);
 
         this.bindEvents();
+
+        /* STRF-2471 - Multiple Wish Lists - prevents double-firing
+         * of foundation.dropdown click.fndtn.dropdown event */
+        this.$modal.on('click .dropdown-menu-button', e => {
+            e.stopPropagation();
+        });
     }
 
     get pending() {

@@ -1,0 +1,10 @@
+<li>
+    <a href="{{url}}">{{name}}</a>
+    {{#if children}}
+        <ul>
+            {{#each children}}
+                {{> components/page/links}}
+            {{/each}}
+        </ul>
+    {{/if}}
+</li>

@@ -4,6 +4,7 @@
 - Fixes functionality of carousel links in IE and Edge. [#1093](https://github.com/bigcommerce/cornerstone/pull/1093)
 - Add image width & height for carousel images. [#1126](https://github.com/bigcommerce/cornerstone/pull/1126)
 - Fix Bold featured products clickability. [#1130](https://github.com/bigcommerce/cornerstone/pull/1130)
+- Fixes mobile swatch selectability styling. [#1131](https://github.com/bigcommerce/cornerstone/pull/1131)
 
 ## 1.10.0 (2017-11-15)
 - Fix spaces in faceted search option names [#1113](https://github.com/bigcommerce/cornerstone/pull/1113)

@@ -260,6 +260,7 @@
 // 1. Issue with FastClick JS library workaround: https://github.com/ftlabs/fastclick/issues/351
 // 2. Resetting font due to inline-block whitespace issue.
 // 3. Added for STENCIL-3384. Did not change directly on .form-option-variant to avoid 1.
+// 4. Added for STRF-4031. Breaks 3 for small screens.
 //
 
 .form-option {
@@ -297,7 +298,10 @@
     @include square(22);
     min-width: initial;
     padding: 0;
-    pointer-events: inherit;  // 3
+
+    @include breakpoint('small') { // 4
+        pointer-events: inherit; // 3
+    }
 }
 
 .form-option-variant--pattern {

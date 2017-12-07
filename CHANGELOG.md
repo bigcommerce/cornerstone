@@ -5,6 +5,7 @@
 - Add image width & height for carousel images. [#1126](https://github.com/bigcommerce/cornerstone/pull/1126)
 - Fix Bold featured products clickability. [#1130](https://github.com/bigcommerce/cornerstone/pull/1130)
 - Fixes mobile swatch selectability styling. [#1131](https://github.com/bigcommerce/cornerstone/pull/1131)
+- Fix Logo not loading on UCO page [#1132](https://github.com/bigcommerce/cornerstone/pull/1132) 
 
 ## 1.10.0 (2017-11-15)
 - Fix spaces in faceted search option names [#1113](https://github.com/bigcommerce/cornerstone/pull/1113)

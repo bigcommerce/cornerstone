@@ -29,5 +29,8 @@
                 {{$index}}
             </option>
         {{/for}}
+        {{#if earliest_year '==' latest_year}}
+        <option value="{{earliest_year}}" selected="selected">{{earliest_year}}</option>
+        {{/if}}
     </select>
 </div>

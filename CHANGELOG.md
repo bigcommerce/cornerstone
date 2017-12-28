@@ -8,6 +8,7 @@
 - Fix Logo not loading on UCO page [#1132](https://github.com/bigcommerce/cornerstone/pull/1132)
 - Fixes functionality of date picker option on product pages. [#1125](https://github.com/bigcommerce/cornerstone/pull/1125)
 - Fix image-overlap on Orders page [#1137](https://github.com/bigcommerce/cornerstone/pull/1137)
+- Fixes issue with image zoom causing scrolling issues on mobile. [#1140](https://github.com/bigcommerce/cornerstone/pull/1140)
 
 ## 1.10.0 (2017-11-15)
 - Fix spaces in faceted search option names [#1113](https://github.com/bigcommerce/cornerstone/pull/1113)

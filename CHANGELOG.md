@@ -9,6 +9,7 @@
 - Fixes functionality of date picker option on product pages. [#1125](https://github.com/bigcommerce/cornerstone/pull/1125)
 - Fix image-overlap on Orders page [#1137](https://github.com/bigcommerce/cornerstone/pull/1137)
 - Fixes issue with image zoom causing scrolling issues on mobile. [#1141](https://github.com/bigcommerce/cornerstone/pull/1141)
+- Fix mis-sized product images. [#1145](https://github.com/bigcommerce/cornerstone/pull/1145)
 
 ## 1.10.0 (2017-11-15)
 - Fix spaces in faceted search option names [#1113](https://github.com/bigcommerce/cornerstone/pull/1113)

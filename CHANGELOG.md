@@ -1,6 +1,8 @@
 # Changelog
 
 ## Draft
+
+## 1.11.0 (2018-01-08)
 - Fixes functionality of carousel links in IE and Edge. [#1093](https://github.com/bigcommerce/cornerstone/pull/1093)
 - Add image width & height for carousel images. [#1126](https://github.com/bigcommerce/cornerstone/pull/1126)
 - Fix Bold featured products clickability. [#1130](https://github.com/bigcommerce/cornerstone/pull/1130)

@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Removes duplicate amp-iframe attributes for Google Amp product-view temaplate [#1148](https://github.com/bigcommerce/cornerstone/pull/1148)
 
 ## 1.11.0 (2018-01-08)
 - Fixes functionality of carousel links in IE and Edge. [#1093](https://github.com/bigcommerce/cornerstone/pull/1093)

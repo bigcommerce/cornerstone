@@ -2,6 +2,7 @@
 
 ## Draft
 - Removes duplicate amp-iframe attributes for Google Amp product-view temaplate [#1148](https://github.com/bigcommerce/cornerstone/pull/1148)
+- Remove "as low as" feature and add support for price ranges instead[#1143](https://github.com/bigcommerce/cornerstone/pull/1143)
 
 ## 1.11.0 (2018-01-08)
 - Fixes functionality of carousel links in IE and Edge. [#1093](https://github.com/bigcommerce/cornerstone/pull/1093)
@@ -13,7 +14,6 @@
 - Fix image-overlap on Orders page [#1137](https://github.com/bigcommerce/cornerstone/pull/1137)
 - Fixes issue with image zoom causing scrolling issues on mobile. [#1141](https://github.com/bigcommerce/cornerstone/pull/1141)
 - Fix mis-sized product images. [#1145](https://github.com/bigcommerce/cornerstone/pull/1145)
-- Remove "as low as" feature and add support for price ranges instead[#1143](https://github.com/bigcommerce/cornerstone/pull/1143)
 
 ## 1.10.0 (2017-11-15)
 - Fix spaces in faceted search option names [#1113](https://github.com/bigcommerce/cornerstone/pull/1113)

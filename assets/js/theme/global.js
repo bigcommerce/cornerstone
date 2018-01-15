@@ -16,8 +16,7 @@ import carousel from './common/carousel';
 import 'lazysizes';
 import loadingProgressBar from './global/loading-progress-bar';
 import FastClick from 'fastclick';
-import sweetAlert from './global/sweet-alert';
-
+import custom from './global/custom';
 function fastClick(element) {
     return new FastClick(element);
 }
@@ -42,7 +41,6 @@ export default class Global extends PageManager {
         privacyCookieNotification();
         maintenanceMode(this.context.maintenanceMode);
         loadingProgressBar();
-        sweetAlert();
         next();
     }
 }

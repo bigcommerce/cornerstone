@@ -3,7 +3,6 @@ import stateCountry from '../common/state-country';
 import nod from '../common/nod';
 import utils from '@bigcommerce/stencil-utils';
 import { Validators } from '../common/form-utils';
-import swal from 'sweetalert2';
 
 export default class ShippingEstimator {
     constructor($element) {
@@ -47,7 +46,7 @@ export default class ShippingEstimator {
                 selector: `${this.shippingEstimator} select[name="shipping-country"]`,
                 validate: (cb, val) => {
                     const countryId = Number(val);
-                    const result = countryId !== 0 && !Number.isNaN(countryId);
+                    const result = countryId !== 0 && !isNaN(countryId);
 
                     cb(result);
                 },
@@ -101,10 +100,7 @@ export default class ShippingEstimator {
         // Requests the states for a country with AJAX
         stateCountry(this.$state, this.context, { useIdForStates: true }, (err, field) => {
             if (err) {
-                swal({
-                    text: err,
-                    type: 'error',
-                });
+                alert(err);
 
                 throw new Error(err);
             }
@@ -158,7 +154,7 @@ export default class ShippingEstimator {
                     clickEvent.preventDefault();
 
                     utils.api.cart.submitShippingQuote(quoteId, () => {
-                        window.location.reload();
+                        location.reload();
                     });
                 });
             });

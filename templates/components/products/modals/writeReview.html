@@ -1,8 +1,4 @@
 <div id="modal-review-form" class="modal" data-reveal>
-    {{inject 'reviewRating' (lang 'forms.validate.reviews.rating')}}
-    {{inject 'reviewSubject' (lang 'forms.validate.reviews.title')}}
-    {{inject 'reviewComment' (lang 'forms.validate.reviews.comment')}}
-    {{inject 'reviewEmail' (lang 'forms.validate.common.email_address')}}
     <div class="modal-header">
         <h2 class="modal-header-title">{{lang 'products.reviews.write_a_review'}}</h2>
         <a href="#" class="modal-close" aria-label="{{lang 'common.close'}}" role="button">
@@ -11,9 +7,7 @@
     </div>
     <div class="modal-body">
         <div class="writeReview-productDetails">
-            <div class="writeReview-productImage-container">
-                <img class="lazyload" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{getImage product.main_image 'product_size' (cdn theme_settings.default_image_product)}}">
-            </div>
+            <img src="{{getImage product.main_image 'product_size' (cdn theme_settings.default_image_product)}}">
             <h6 class="product-brand">{{ product.brand.name }}</h6>
             <h5 class="product-title">{{ product.title }}</h5>
         </div>

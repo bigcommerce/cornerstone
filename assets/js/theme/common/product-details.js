@@ -1,3 +1,6 @@
+/*
+ Import all product specific js
+ */
 import $ from 'jquery';
 import utils from '@bigcommerce/stencil-utils';
 import 'foundation-sites/js/foundation/foundation';
@@ -5,9 +8,23 @@ import 'foundation-sites/js/foundation/foundation.reveal';
 import ImageGallery from '../product/image-gallery';
 import modalFactory from '../global/modal';
 import _ from 'lodash';
-import swal from 'sweetalert2';
 
-export default class ProductDetails {
+// We want to ensure that the events are bound to a single instance of the product details component
+let productSingleton = null;
+
+utils.hooks.on('cart-item-add', (event, form) => {
+    if (productSingleton) {
+        productSingleton.addProductToCart(event, form);
+    }
+});
+
+utils.hooks.on('product-option-change', (event, changedOption) => {
+    if (productSingleton) {
+        productSingleton.productOptionsChanged(event, changedOption);
+    }
+});
+
+export default class Product {
     constructor($scope, context, productAttributesData = {}) {
         this.$overlay = $('[data-cart-item-add] .loadingOverlay');
         this.$scope = $scope;
@@ -21,16 +38,7 @@ export default class ProductDetails {
         const $productOptionsElement = $('[data-product-option-change]', $form);
         const hasOptions = $productOptionsElement.html().trim().length;
 
-        $productOptionsElement.change(event => {
-            this.productOptionsChanged(event);
-        });
-
-        $form.submit(event => {
-            this.addProductToCart(event, $form[0]);
-        });
-
-        // Update product attributes. If we're in quick view and the product has options,
-        // then also update the initial view in case items are oos
+        // Update product attributes. If we're in quick view and the product has options, then also update the initial view in case items are oos
         if (_.isEmpty(productAttributesData) && hasOptions) {
             const $productId = $('[name="product_id"]', $form).val();
 
@@ -47,6 +55,7 @@ export default class ProductDetails {
         $productOptionsElement.show();
 
         this.previewModal = modalFactory('#previewModal')[0];
+        productSingleton = this;
     }
 
     /**
@@ -70,7 +79,6 @@ export default class ProductDetails {
                 $input: $('[data-product-stock]', $scope),
             },
             $sku: $('[data-product-sku]'),
-            $upc: $('[data-product-upc]'),
             quantity: {
                 $text: $('.incrementTotal', $scope),
                 $input: $('[name=qty\\[\\]]', $scope),
@@ -95,8 +103,8 @@ export default class ProductDetails {
      * Handle product options changes
      *
      */
-    productOptionsChanged(event) {
-        const $changedOption = $(event.target);
+    productOptionsChanged(event, changedOption) {
+        const $changedOption = $(changedOption);
         const $form = $changedOption.parents('form');
         const productId = $('[name="product_id"]', $form).val();
 
@@ -117,12 +125,12 @@ export default class ProductDetails {
         if (_.isPlainObject(image)) {
             const zoomImageUrl = utils.tools.image.getSrc(
                 image.data,
-                this.context.themeSettings.zoom_size,
+                this.context.themeSettings.zoom_size
             );
 
             const mainImageUrl = utils.tools.image.getSrc(
                 image.data,
-                this.context.themeSettings.product_size,
+                this.context.themeSettings.product_size
             );
 
             this.imageGallery.setAlternateImage({
@@ -220,10 +228,7 @@ export default class ProductDetails {
                 const tmp = document.createElement('DIV');
                 tmp.innerHTML = errorMessage;
 
-                return swal({
-                    text: tmp.textContent || tmp.innerText,
-                    type: 'error',
-                });
+                return alert(tmp.textContent || tmp.innerText);
             }
 
             // Open preview modal and update content
@@ -369,11 +374,6 @@ export default class ProductDetails {
         // If SKU is available
         if (data.sku) {
             viewModel.$sku.text(data.sku);
-        }
-
-        // If UPC is available
-        if (data.upc) {
-            viewModel.$upc.text(data.upc);
         }
 
         // if stock view is on (CP settings)

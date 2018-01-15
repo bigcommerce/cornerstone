@@ -228,9 +228,11 @@ export default function collapsibleFactory(selector = `[data-${PLUGIN_KEY}]`, ov
             return cachedCollapsible;
         }
 
-        const targetId = prependHash($toggle.data(PLUGIN_KEY) ||
-            $toggle.data(`${PLUGIN_KEY}-target`) ||
-            $toggle.attr('href'));
+        const targetId = prependHash(
+                            $toggle.data(PLUGIN_KEY) ||
+                            $toggle.data(`${PLUGIN_KEY}-target`) ||
+                            $toggle.attr('href')
+                        );
         const options = _.extend(optionsFromData($toggle), overrideOptions);
         const collapsible = new Collapsible($toggle, $(targetId), options);
 

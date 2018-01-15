@@ -12,7 +12,7 @@ import { classifyForm } from './common/form-utils';
 export default class Product extends PageManager {
     constructor(context) {
         super(context);
-        this.url = window.location.href;
+        this.url = location.href;
         this.$reviewLink = $('[data-reveal-id="modal-review-form"]');
     }
 
@@ -41,7 +41,7 @@ export default class Product extends PageManager {
         const review = new Review($reviewForm);
 
         $('body').on('click', '[data-reveal-id="modal-review-form"]', () => {
-            validator = review.registerValidation(this.context);
+            validator = review.registerValidation();
         });
 
         $reviewForm.on('submit', () => {

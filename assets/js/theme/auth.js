@@ -27,7 +27,7 @@ export default class Auth extends PageManager {
 
                     cb(result);
                 },
-                errorMessage: this.context.useValidEmail,
+                errorMessage: 'Please use a valid email address, such as user@example.com.',
             },
             {
                 selector: '.login-form input[name="login_pass"]',
@@ -36,7 +36,7 @@ export default class Auth extends PageManager {
 
                     cb(result);
                 },
-                errorMessage: this.context.enterPass,
+                errorMessage: 'You must enter a password.',
             },
         ]);
 
@@ -64,7 +64,7 @@ export default class Auth extends PageManager {
 
                     cb(result);
                 },
-                errorMessage: this.context.useValidEmail,
+                errorMessage: 'Please use a valid email address, such as user@example.com.',
             },
         ]);
 
@@ -91,7 +91,7 @@ export default class Auth extends PageManager {
             newPasswordValidator,
             passwordSelector,
             password2Selector,
-            this.passwordRequirements,
+            this.passwordRequirements
         );
     }
 
@@ -150,7 +150,7 @@ export default class Auth extends PageManager {
                 createAccountValidator,
                 passwordSelector,
                 password2Selector,
-                this.passwordRequirements,
+                this.passwordRequirements
             );
         }
 

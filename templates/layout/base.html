@@ -1,12 +1,31 @@
 <!DOCTYPE html>
 <html class="no-js" lang="{{ locale_name }}">
     <head>
+        <!-- minibc dev -->
+<!--         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script type="text/javascript">
+            (function(d) {
+                d.addEventListener("DOMContentLoaded", function(e) {
+                    var h = d.getElementsByTagName("head"),
+                    s = d.createElement('script');
+                    s.setAttribute("type", "text/javascript");
+                    s.setAttribute("src", "https://minibc.dev/bootstrap/581b7b5b25ade");
+                    h[0].appendChild(s);
+                });
+            })(document); 
+        </script> -->
+        <!-- minibc dev -->
+        
+
         <title>{{ head.title }}</title>
         {{{ head.meta_tags }}}
         {{{ head.config }}}
         {{#block "head"}} {{/block}}
         <link href="{{ head.favicon }}" rel="shortcut icon">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
         {{{stylesheet '/assets/css/theme.css'}}}
         {{ getFontsCollection }}
         <script src="{{cdn 'assets/modernizr-custom.js'}}"></script>
@@ -37,7 +56,7 @@
 
         <script>
             // Exported in app.js
-            window.stencilBootstrap("{{page_type}}", {{jsContext}}).load();
+            window.stencilBootstrap("{{template}}", {{jsContext}}).load();
         </script>
 
         {{{footer.scripts}}}

@@ -22,36 +22,24 @@
     align-items: center;
     display: flex;
     justify-content: center;
-    margin: auto;
-    position: relative;
+    margin: 0;
 
     @include breakpoint("medium") {
         min-height: 366px;
-        min-width: inherit;
+        min-width: 366px;
+    }
+
+    img {
+        width: 100%;
+    }
+
+    .productView-image--default {
+        width: auto;
     }
 
     + .productView-thumbnails {
         margin-top: spacing("half");
     }
-
-    @media (min-width: $screen-xxsmall) and (max-width: $screen-xsmall) {
-        pointer-events: none;
-    }
-}
-
-.productView-img-container {
-    position: relative;
-    margin: auto;
-    max-width: get-width(stencilString('product_size'));
-    width: 100%;
-
-    img {
-        @include lazy-loaded-img;
-        max-height: 100%;
-        width: auto;
-    }
-
-    @include lazy-loaded-padding('product_size');
 }
 
 .productView-thumbnails {
@@ -60,33 +48,12 @@
 
     margin-left: -(spacing("quarter"));
     margin-right: -(spacing("quarter"));
-
-    .slick-list {
-        margin-left: remCalc(40px);
-        margin-right: remCalc(40px);
-    }
-
-    .slick-next {
-        right: 0;
-    }
-
-    .slick-prev {
-        left: 0;
-    }
-
-    img {
-        @include lazy-loaded-img;
-        max-height: 50px;
-        max-width: 50px;
-        width: auto;
-    }
 }
 
 .productView-thumbnail {
     @include grid-column(3);
     padding-left: spacing("quarter");
     padding-right: spacing("quarter");
-    text-align: center;
 
     @include breakpoint("large") {
         width: 20%;
@@ -94,12 +61,9 @@
 }
 
 .productView-thumbnail-link {
-    border: container("border");
+    border: 2px solid transparent;
     display: inline-block;
-    height: 67px;
-    max-width: 75px;
     padding: 2px;
-    position: relative;
     text-align: center;
     width: 100%;
 
@@ -395,20 +359,4 @@
 
 .shareProduct {
     text-align: center;
-}
-
-
-// EasyZoom settings for zoomable product image
-// -----------------------------------------------------------------------------
-
-.productView-image .easyzoom-flyout {
-    overflow: hidden;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-
-    img {
-        max-width: none;
-        width: auto;
-    }
 }

@@ -1,6 +1,8 @@
 # Changelog
 
 ## Draft
+
+## 1.12.0 (2018-01-16)
 - Removes duplicate amp-iframe attributes for Google Amp product-view temaplate [#1148](https://github.com/bigcommerce/cornerstone/pull/1148)
 - Remove "as low as" feature and add support for price ranges instead[#1143](https://github.com/bigcommerce/cornerstone/pull/1143)
 - Implements Add to any Wish Lists capability. [#1134](https://github.com/bigcommerce/cornerstone/pull/1134)

@@ -13,6 +13,25 @@ module.exports = {
     },
     module: {
         rules: [
+			{
+			    // Exposes jQuery for use outside Webpack build
+			    test: require.resolve('jquery'),
+			    use: [
+			        {
+			          loader: 'expose-loader',
+			          options: 'jQuery'
+			        },{
+			          loader: 'expose-loader',
+			          options: '$'
+			        },{
+			        	loader: 'expose-loader',
+			            options: 'window.$'
+			        },{
+			        	loader: 'expose-loader',
+			            options: 'window.jQuery'
+			        }
+			    ]
+			  },
             {
                 test: /\.js$/,
                 include: /(assets\/js|assets\\js|stencil-utils)/,
@@ -36,7 +55,8 @@ module.exports = {
                         ],
                     }
                 }
-            }
+            },
+            
         ],
     },
     output: {
@@ -54,6 +74,7 @@ module.exports = {
         }),
         new LodashModuleReplacementPlugin, // Complements 'babel-plugin-lodash by shrinking it's cherry-picked builds further.
         new webpack.ProvidePlugin({
+        	'window.$': 'jquery',
             $: 'jquery',
             jQuery: 'jquery',
             'window.jQuery': 'jquery',

@@ -42,5 +42,6 @@ export default class Global extends PageManager {
         maintenanceMode(this.context.maintenanceMode);
         loadingProgressBar();
         next();
+        custom();
     }
 }

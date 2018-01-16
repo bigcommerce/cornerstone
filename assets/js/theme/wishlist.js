@@ -13,6 +13,8 @@ export default class WishList extends PageManager {
         this.options = {
             template: 'account/add-wishlist',
         };
+
+        return this;
     }
 
     /**
@@ -81,7 +83,7 @@ export default class WishList extends PageManager {
         });
     }
 
-    loaded(next) {
+    load() {
         const $addWishListForm = $('.wishlist-form');
 
         if ($addWishListForm.length) {
@@ -90,7 +92,10 @@ export default class WishList extends PageManager {
 
         this.wishlistDeleteConfirm();
         this.wishListHandler();
+    }
 
+    loaded(next) {
+        this.load();
         next();
     }
 }

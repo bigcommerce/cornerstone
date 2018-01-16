@@ -6,6 +6,7 @@ import ImageGallery from '../product/image-gallery';
 import modalFactory from '../global/modal';
 import _ from 'lodash';
 import swal from 'sweetalert2';
+import Wishlist from '../wishlist';
 
 export default class ProductDetails {
     constructor($scope, context, productAttributesData = {}) {
@@ -16,6 +17,7 @@ export default class ProductDetails {
         this.imageGallery.init();
         this.listenQuantityChange();
         this.initRadioAttributes();
+        this.wishlist = new Wishlist().load();
 
         const $form = $('form[data-cart-item-add]', $scope);
         const $productOptionsElement = $('[data-product-option-change]', $form);

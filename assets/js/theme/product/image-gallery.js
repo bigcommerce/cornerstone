@@ -1,9 +1,8 @@
 import $ from 'jquery';
-import 'jquery-zoom';
+import 'easyzoom';
 import _ from 'lodash';
 
 export default class ImageGallery {
-
     constructor($gallery) {
         this.$mainImage = $gallery.find('[data-image-gallery-main]');
         this.$selectableImages = $gallery.find('[data-image-gallery-item]');
@@ -13,15 +12,14 @@ export default class ImageGallery {
     init() {
         this.bindEvents();
         this.setImageZoom();
+        
     }
 
     setMainImage(imgObj) {
         this.currentImage = _.clone(imgObj);
 
-        this.destroyImageZoom();
         this.setActiveThumb();
         this.swapMainImage();
-        this.setImageZoom();
     }
 
     setAlternateImage(imgObj) {
@@ -63,23 +61,18 @@ export default class ImageGallery {
     }
 
     swapMainImage() {
+        this.easyzoom.data('easyZoom').swap(this.currentImage.mainImageUrl, this.currentImage.zoomImageUrl);
+
         this.$mainImage.attr({
             'data-zoom-image': this.currentImage.zoomImageUrl,
-        }).find('img').attr({
-            src: this.currentImage.mainImageUrl,
         });
     }
 
     setImageZoom() {
-        this.$mainImage.zoom({ url: this.$mainImage.attr('data-zoom-image'), touch: false });
-    }
-
-    destroyImageZoom() {
-        this.$mainImage.trigger('zoom.destroy');
+        this.easyzoom = this.$mainImage.easyZoom({ errorNotice: '', loadingNotice: '' });
     }
 
     bindEvents() {
         this.$selectableImages.on('click', this.selectNewImage.bind(this));
     }
-
 }

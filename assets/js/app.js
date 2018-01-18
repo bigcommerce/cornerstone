@@ -1,6 +1,7 @@
 __webpack_public_path__ = window.__webpack_public_path__; // eslint-disable-line
-import $ from 'jquery';
+
 import 'babel-polyfill';
+import $ from 'jquery';
 import Global from './theme/global';
 
 const getAccount = () => import('./theme/account');
@@ -39,6 +40,7 @@ const pageClasses = {
     default: () => import('./theme/home'),
     page: () => import('./theme/page'),
     product: () => import('./theme/product'),
+    'pages/product': () => import('./theme/product'),
     amp_product_options: () => import('./theme/product'),
     search: () => import('./theme/search'),
     rss: () => import('./theme/rss'),
@@ -55,7 +57,6 @@ const pageClasses = {
  * @param contextJSON
  * @returns {*}
  */
-
 window.stencilBootstrap = function stencilBootstrap(pageType, contextJSON = null, loadGlobal = true) {
     const context = JSON.parse(contextJSON || {});
 
@@ -93,9 +94,9 @@ window.stencilBootstrap = function stencilBootstrap(pageType, contextJSON = null
         },
     };
 };
+
 /**
 Works, but janky
 */
 global.jQuery = require('jquery');
 global.$ = require('jquery');
-

@@ -23,6 +23,7 @@
     display: flex;
     justify-content: center;
     margin: 0;
+    position: relative;
 
     @include breakpoint("medium") {
         min-height: 366px;
@@ -359,4 +360,18 @@
 
 .shareProduct {
     text-align: center;
+}
+// EasyZoom settings for zoomable product image
+// -----------------------------------------------------------------------------
+
+.productView-image .easyzoom-flyout {
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    img {
+        max-width: none;
+        width: auto;
+    }
 }

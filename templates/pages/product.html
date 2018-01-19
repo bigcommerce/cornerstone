@@ -19,10 +19,6 @@ product:
     <div itemscope itemtype="http://schema.org/Product">
         {{> components/products/product-view schema=true}}
 
-        {{#if product.videos.list.length}}
-            {{> components/products/videos product.videos}}
-        {{/if}}
-
         {{#if settings.show_product_reviews}}
             {{> components/products/reviews reviews=product.reviews product=product urls=urls}}
         {{/if}}

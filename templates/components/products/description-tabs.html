@@ -2,7 +2,11 @@
     <li class="tab is-active">
         <a class="tab-title" href="#tab-description">{{lang 'products.description'}}</a>
     </li>
-
+    {{#if product.videos.list.length}}
+    <li class="tab">
+        <a class="tab-title" href="#tab-videos">Product Videos</a>
+    </li>
+    {{/if}}
      <li class="tab">
          <a class="tab-title" href="#tab-shippingReturns">Shipping and Returns</a>
      </li>
@@ -104,5 +108,9 @@
 								
 								<p>Please see our entire Shipping Policy here: <a href="http://groupvertical.com/shipping-policy/">http://groupvertical.com/shipping-policy/</a></p>
     </div>
-
+	{{#if product.videos.list.length}}
+	<div class="tab-content" id="tab-videos">
+		{{> components/products/videos product.videos}}
+    </div>
+    {{/if}}
 </div>

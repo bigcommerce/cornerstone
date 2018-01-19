@@ -8,6 +8,7 @@ import collapsibleFactory from './common/collapsible';
 import ProductDetails from './common/product-details';
 import videoGallery from './product/video-gallery';
 import { classifyForm } from './common/form-utils';
+import { defaultModal } from './global/modal';
 export default class Product extends PageManager {
     constructor(context) {
         super(context);

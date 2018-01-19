@@ -172,8 +172,16 @@
                 {{/if}}
 
                 {{#each product.custom_fields}}
+                	{{#unless name '===' 'Current Inventory'}}
                     <dt class="productView-info-name">{{name}}:</dt>
+                    {{#if name '===' 'Product Line'}}
+                    <a href="#" data-reveal-id="myModal"><dd class="productView-info-value">{{{value}}} <span style="" class=" infoColor glyphicon glyphicon-info-sign" aria-hidden="true"></span></dd></a>
+                    {{else}}
                     <dd class="productView-info-value">{{{value}}}</dd>
+                    {{/if}}
+                    
+                    {{/unless}}
+                    
                 {{/each}}
             </dl>
         </div>
@@ -264,14 +272,31 @@
         {{> components/common/share}}
         {{{snippet 'product_details'}}}
     </section>
+	<div class="bottomProductView">
+		<article class="bottomProductDesc col-md-6 col-md-push-6"{{#if schema}} itemprop="description"{{/if}}>
+	        {{#if theme_settings.show_product_details_tabs}}
+	            {{> components/products/description-tabs}}
+	        {{else}}
+	            {{> components/products/description}}
+	        {{/if}}
+	    </article>
+		<section class="bottomCarousel col-md-6 col-md-pull-6">
+		{{> components/products/tabs}}
+		</section>
+	    
+	</div>
+</div>
 
-    <article class="productView-description"{{#if schema}} itemprop="description"{{/if}}>
-        {{#if theme_settings.show_product_details_tabs}}
-            {{> components/products/description-tabs}}
-        {{else}}
-            {{> components/products/description}}
-        {{/if}}
-    </article>
+
+<!-- Info Modal -->
+<div id="myModal" class="modal modal--large" data-reveal>
+    <a href="#" class="modal-close" aria-label="{{lang 'common.close'}}" role="button">
+        <span aria-hidden="true">&#215;</span>
+    </a>
+    <div class="modal-content">
+    	{{> components/products/gv_product_levels}}
+    </div>
+    <div class="loadingOverlay"></div>
 </div>
 
 <div id="previewModal" class="modal modal--large" data-reveal>

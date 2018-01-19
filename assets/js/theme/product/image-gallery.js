@@ -12,12 +12,10 @@ export default class ImageGallery {
     init() {
         this.bindEvents();
         this.setImageZoom();
-        
     }
 
     setMainImage(imgObj) {
         this.currentImage = _.clone(imgObj);
-
         this.setActiveThumb();
         this.swapMainImage();
     }

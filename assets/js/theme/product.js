@@ -8,30 +8,25 @@ import collapsibleFactory from './common/collapsible';
 import ProductDetails from './common/product-details';
 import videoGallery from './product/video-gallery';
 import { classifyForm } from './common/form-utils';
-import { defaultModal } from './global/modal';
 export default class Product extends PageManager {
     constructor(context) {
         super(context);
         this.url = window.location.href;
         this.$reviewLink = $('[data-reveal-id="modal-review-form"]');
-
     }
 
     before(next) {
-        // Listen for foundation modal close events to sanitize URL after review.
-    	console.log('beforenext');
+    // Listen for foundation modal close events to sanitize URL after review.
         $(document).on('close.fndtn.reveal', () => {
             if (this.url.indexOf('#write_review') !== -1 && typeof window.history.replaceState === 'function') {
                 window.history.replaceState(null, document.title, window.location.pathname);
             }
         });
-
         next();
     }
 
     loaded(next) {
         let validator;
-        console.log('loadnext');
         // Init collapsible
         collapsibleFactory();
 

@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Fix event delegation error [#1151](https://github.com/bigcommerce/cornerstone/pull/1151)
 
 ## 1.12.0 (2018-01-16)
 - Removes duplicate amp-iframe attributes for Google Amp product-view temaplate [#1148](https://github.com/bigcommerce/cornerstone/pull/1148)

@@ -8,6 +8,7 @@ import collapsibleFactory from './common/collapsible';
 import ProductDetails from './common/product-details';
 import videoGallery from './product/video-gallery';
 import { classifyForm } from './common/form-utils';
+import { defaultModal } from './global/modal';
 export default class Product extends PageManager {
     constructor(context) {
         super(context);
@@ -29,7 +30,7 @@ export default class Product extends PageManager {
         let validator;
         // Init collapsible
         collapsibleFactory();
-
+        defaultModal();
         this.productDetails = new ProductDetails($('.productView'), this.context, window.BCData.product_attributes);
         videoGallery();
 
@@ -48,13 +49,11 @@ export default class Product extends PageManager {
 
             return false;
         });
-
         next();
     }
 
     after(next) {
         this.productReviewHandler();
-
         next();
     }
 

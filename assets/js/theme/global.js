@@ -16,7 +16,9 @@ import carousel from './common/carousel';
 import 'lazysizes';
 import loadingProgressBar from './global/loading-progress-bar';
 import FastClick from 'fastclick';
-import custom from './global/custom';
+import timer from './global/timer';
+import scrollToTopAndCart from './global/custom';
+require('expose-loader?$!expose-loader?jQuery!jquery');
 function fastClick(element) {
     return new FastClick(element);
 }
@@ -27,6 +29,11 @@ export default class Global extends PageManager {
      * if your global modules need async callback handling.
      * @param next
      */
+    before(next) {
+        global.jQuery = require('jquery');
+        global.$ = require('jquery');
+        next();
+    }
     loaded(next) {
         fastClick(document.body);
         quickSearch();
@@ -41,8 +48,9 @@ export default class Global extends PageManager {
         privacyCookieNotification();
         maintenanceMode(this.context.maintenanceMode);
         loadingProgressBar();
+        timer();
+        scrollToTopAndCart();
         next();
-        custom();
     }
 }
 

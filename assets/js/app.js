@@ -97,6 +97,7 @@ window.stencilBootstrap = function stencilBootstrap(pageType, contextJSON = null
 
 /**
 Works, but janky
+
+//global.jQuery = require('jquery');
+//global.$ = require('jquery');
 */
-global.jQuery = require('jquery');
-global.$ = require('jquery');

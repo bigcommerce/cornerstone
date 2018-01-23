@@ -1,6 +1,8 @@
 # Changelog
 
 ## Draft
+
+## 1.12.1 (2018-01-23)
 - Fix event delegation error [#1151](https://github.com/bigcommerce/cornerstone/pull/1151)
 
 ## 1.12.0 (2018-01-16)

@@ -184,37 +184,67 @@ olark.identify('3499-933-10-8985');/*]]>*/</script><noscript><a href="https://ww
 {{#if page_type '===' 'default'}}
 <script>
 //Front Page Product listings stock data
-    function getHomeProductSku(){
-        var arrProductSkus = [];
-        var x = document.getElementsByClassName("data-sku");
-        var skuStr = "";
-        for (var i = 0; i < x.length; i++) {
-            skuStr = x[i].innerHTML;
-            arrProductSkus.push(skuStr);
-        }
-        console.log(arrProductSkus);
-        getJSONP(u + '&callback=' + 'updateHomeProductStock'+'&products='+encodeURIComponent(JSON.stringify(arrProductSkus)));
-    }
-    function updateHomeProductStock(data){
-        (function($) {
-            var productStockData = JSON.parse(data);
-            console.log(productStockData);
-            for( var i = 0, len = productStockData .length; i < len; i++ ) {
-                $('#'+productStockData[i][0]).text(productStockData[i][1]);
-                if(productStockData[i][1] == "On Backorder"){
-                    $('#'+productStockData[i][0]).text(productStockData[i][2]);
-                    $('#'+productStockData[i][0]).addClass('back-order-message');
-                    $(this).next().find('.button').addClass('backorder-button');
-                    
-                }
-            }
-        }(jQuery));
-    }
-   getHomeProductSku();
+  function getProductCarouselSku(){
+      var arrProductSkus = [];
+      var x = document.getElementsByClassName("data-sku");
+      var skuStr = "";
+      for (var i = 0; i < x.length; i++) {
+          skuStr = x[i].innerHTML;
+          arrProductSkus.push(skuStr);
+      }
+      console.log(arrProductSkus);
+      getJSONP(u + '&callback=' + 'updateHomeProductStock'+'&products='+encodeURIComponent(JSON.stringify(arrProductSkus)));
+  }
+  function updateHomeProductStock(data){
+      (function($) {
+          var productStockData = JSON.parse(data);
+          console.log(productStockData);
+          for( var i = 0, len = productStockData .length; i < len; i++ ) {
+              $('#'+productStockData[i][0]).text(productStockData[i][1]);
+              if(productStockData[i][1] == "On Backorder"){
+                  $('#'+productStockData[i][0]).text(productStockData[i][2]);
+                  $('#'+productStockData[i][0]).addClass('back-order-message');
+                  $(this).next().find('.button').addClass('backorder-button');
+                  
+              }
+          }
+      }(jQuery));
+  }
+  getProductCarouselSku();
 </script>
 {{/if}}
 
 {{#if page_type '===' 'product'}}
+<script>
+//Front Page Product listings stock data
+  function getProductCarouselSku(){
+      var arrProductSkus = [];
+      var x = document.getElementsByClassName("data-sku");
+      var skuStr = "";
+      for (var i = 0; i < x.length; i++) {
+          skuStr = x[i].innerHTML;
+          arrProductSkus.push(skuStr);
+      }
+      console.log(arrProductSkus);
+      getJSONP(u + '&callback=' + 'updateHomeProductStock'+'&products='+encodeURIComponent(JSON.stringify(arrProductSkus)));
+  }
+  function updateHomeProductStock(data){
+      (function($) {
+          var productStockData = JSON.parse(data);
+          console.log(productStockData);
+          for( var i = 0, len = productStockData .length; i < len; i++ ) {
+              $('#'+productStockData[i][0]).text(productStockData[i][1]);
+              if(productStockData[i][1] == "On Backorder"){
+                  $('#'+productStockData[i][0]).text(productStockData[i][2]);
+                  $('#'+productStockData[i][0]).addClass('back-order-message');
+                  $(this).next().find('.button').addClass('pre-order-btn');
+                  
+              }
+          }
+      }(jQuery));
+  }
+  getProductCarouselSku();
+</script>
 <script>
 console.log("product");
 
@@ -228,20 +258,10 @@ console.log("product");
               //  $('.product_stock_status').append(": "+productStockData[0][2]);
             //}            
             if(productStockData[0][1] == "On Backorder"){   
-                $("head").append("\
-                                 <style>\
-                                 .back-order-message{\
-                                     color:#ff7900;\
-                                 }\
-                                 .productView-options{\
-                                 color: #ff7900;\
-                                 font-weight: bold;\
-                                 font-size:larger;\
-                                 }\
-                                 </style>");
                 $('.product_stock_status').addClass('back-order-message');
+                $('.product_stock_status').html(productStockData[0][1]+"<br>"+productStockData[0][2]);
                 $('.productView-options').find('p').text(productStockData[0][2]);
-                $('#form-action-addToCart').addClass('backorder-button');
+                $('#form-action-addToCart').addClass('pre-order-btn');
             }
             var button = $('#form-action-addToCart');
             button.attr("data-stocklevel", productStockData[0][3]);

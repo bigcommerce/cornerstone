@@ -52,7 +52,39 @@ export default class Cart extends PageManager {
             }
         });
     }
+    cartUpdateBtn($target) {
+        const itemId = $target.data('cart-itemid');
+        const $el = $(`#qty-${itemId}`);
+        const oldQty = parseInt($el.val(), 10);
+        const maxQty = parseInt($el.data('quantity-max'), 10);
+        const minQty = parseInt($el.data('quantity-min'), 10);
+        const minError = $el.data('quantity-min-error');
+        const maxError = $el.data('quantity-max-error');
+        const newQty = $target.data('action') === 'inc' ? oldQty + 1 : oldQty - 0;
 
+        // Does not quality for min/max quantity
+        if (newQty < minQty) {
+            return alert(minError);
+        } else if (maxQty > 0 && newQty > maxQty) {
+            return alert(maxError);
+        }
+
+        this.$overlay.show();
+
+        utils.api.cart.itemUpdate(itemId, newQty, (err, response) => {
+            this.$overlay.hide();
+
+            if (response.data.status === 'succeed') {
+                // if the quantity is changed "1" from "0", we have to remove the row.
+                const remove = (newQty === 0);
+
+                this.refreshContent(remove);
+            } else {
+                $el.val(oldQty);
+                alert(response.data.errors.join('\n'));
+            }
+        });
+    }
     cartRemoveItem(itemId) {
         this.$overlay.show();
         utils.api.cart.itemRemove(itemId, (err, response) => {
@@ -148,6 +180,7 @@ export default class Cart extends PageManager {
     bindCartEvents() {
         const debounceTimeout = 400;
         const cartUpdate = _.bind(_.debounce(this.cartUpdate, debounceTimeout), this);
+        const cartUpdateBtn = _.bind(_.debounce(this.cartUpdateBtn, debounceTimeout), this);
         const cartRemoveItem = _.bind(_.debounce(this.cartRemoveItem, debounceTimeout), this);
 
         // cart update
@@ -159,7 +192,15 @@ export default class Cart extends PageManager {
             // update cart quantity
             cartUpdate($target);
         });
+     // cart update
+        $('[data-cart-update-button]', this.$cartContent).on('click', (event) => {
+            const $target = $(event.currentTarget);
 
+            event.preventDefault();
+
+            // update cart quantity
+            cartUpdateBtn($target);
+        });
         $('.cart-remove', this.$cartContent).on('click', (event) => {
             const itemId = $(event.currentTarget).data('cart-itemid');
             const openTime = new Date();

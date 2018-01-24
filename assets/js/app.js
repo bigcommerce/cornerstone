@@ -29,6 +29,7 @@ const pageClasses = {
     brand: () => import('./theme/brand'),
     brands: () => import('./theme/brand'),
     cart: () => import('./theme/cart'),
+    'pages/cart': () => import('./theme/cart'),
     category: () => import('./theme/category'),
     compare: () => import('./theme/compare'),
     page_contact_form: () => import('./theme/contact-us'),

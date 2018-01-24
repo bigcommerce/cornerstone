@@ -42,7 +42,7 @@
       {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
           <div class="form-action col-xs-12 col-sm-12 col-md-7 col-lg-8">
               <input id="form-action-addToCart" data-wait-message="{{lang 'products.adding_to_cart'}}" class="button button--primary" type="submit"
-                  value="{{#if product.pre_order}}{{lang 'products.pre_order'}}{{else}}{{lang 'products.add_to_cart'}}{{/if}}">
+                  value="{{#if product.pre_order}}{{lang 'products.add_to_cart'}}{{else}}{{lang 'products.add_to_cart'}}{{/if}}">
           </div>
            {{{snippet 'product_addtocart'}}}
       {{/or}}

@@ -27,7 +27,7 @@ function classifyInput(input, formFieldClass) {
     if (tagName === 'input') {
         const inputType = $input.prop('type');
 
-        if (_.includes(['radio', 'checkbox', 'submit'], inputType)) {
+        if (_.contains(['radio', 'checkbox', 'submit'], inputType)) {
             // ie: .form-field--checkbox, .form-field--radio
             className = `${formFieldClass}--${_.camelCase(inputType)}`;
         } else {

@@ -14,13 +14,13 @@
 <div class="tabs-contents">
 {{#if product.related_products}}
     <div role="tabpanel" aria-hidden="false" class="tab-content has-jsContent is-active" id="tab-related">
-        {{> components/products/carousel products=product.related_products columns=6}}
+        {{> components/products/carousel products=product.related_products columns=3}}
     </div>
 {{/if}}
 
 {{#if product.similar_by_views}}
     <div role="tabpanel" aria-hidden="true" class="tab-content has-jsContent{{#unless product.related_products}} is-active{{/unless}}" id="tab-similar">
-        {{> components/products/carousel products=product.similar_by_views columns=6}}
+        {{> components/products/carousel products=product.similar_by_views columns=3}}
     </div>
 {{/if}}
 </div>

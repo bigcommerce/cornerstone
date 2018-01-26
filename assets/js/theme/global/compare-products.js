@@ -1,6 +1,5 @@
 import $ from 'jquery';
 import _ from 'lodash';
-import swal from 'sweetalert2';
 
 function decrementCounter(counter, item) {
     const index = counter.indexOf(item);
@@ -33,7 +32,7 @@ export default function (urlContext) {
     const $compareLink = $('a[data-compare-nav]');
 
     if ($checked.length !== 0) {
-        products = _.map($checked, element => element.value);
+        products = _.map($checked, (element) => element.value);
 
         updateCounterNav(products, $compareLink, urlContext);
     }
@@ -58,10 +57,7 @@ export default function (urlContext) {
         const productsToCompare = $this.find('input[name="products\[\]"]:checked');
 
         if (productsToCompare.length <= 1) {
-            swal({
-                text: 'You must select at least two products to compare',
-                type: 'error',
-            });
+            alert('You must select at least two products to compare');
             event.preventDefault();
         }
     });
@@ -70,10 +66,7 @@ export default function (urlContext) {
         const $clickedCheckedInput = $('body').find('input[name="products\[\]"]:checked');
 
         if ($clickedCheckedInput.length <= 1) {
-            swal({
-                text: 'You must select at least two products to compare',
-                type: 'error',
-            });
+            alert('You must select at least two products to compare');
 
             return false;
         }

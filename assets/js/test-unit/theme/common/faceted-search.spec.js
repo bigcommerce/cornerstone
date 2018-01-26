@@ -160,7 +160,7 @@ describe('FacetedSearch', () => {
             expect(facetedSearch.getMoreFacetResults).toHaveBeenCalledWith($navList);
         });
 
-        it('should collapse facet items if they are expanded', function() {
+        it('should collapse facet items if they are expaned', function() {
             facetedSearch.collapsedFacetItems = [];
             facetedSearch.toggleFacetItems($navList);
 

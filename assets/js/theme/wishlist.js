@@ -22,7 +22,7 @@ export default class WishList extends PageManager {
      */
     wishlistDeleteConfirm() {
         $('body').on('click', '[data-wishlist-delete]', (event) => {
-            const confirmed = window.confirm(this.context.wishlistDelete);
+            const confirmed = confirm(this.context.wishlistDelete);
 
             if (confirmed) {
                 return true;

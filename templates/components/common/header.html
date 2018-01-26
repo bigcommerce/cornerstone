@@ -1,28 +1,65 @@
-{{#if banners.top}}
-<div class="banners" data-banner-location="top">
-    <div class="banner">
-        {{{limit banners.top 1}}}
-    </div>
+<div class="headerWrapper">
+	{{> components/common/navigation}}
+
+	<header class="header" role="banner"> 
+		<div class="container">
+		    <a href="#" class="mobileMenu-toggle" data-mobile-menu-toggle="menu">
+		        <span class="mobileMenu-toggleIcon">Toggle menu</span>
+		    </a>
+	    
+		    <div class="logoWrap col-xs-12 col-sm-12 col-md-2 col-lg-2">
+			    {{#if template_file '===' 'pages/home'}}
+			        <h1 class="header-logo header-logo--{{theme_settings.logo-position}}">
+			            {{> components/common/store-logo}}
+			        </h1>
+			    {{else}}
+			        <div class="header-logo header-logo--{{theme_settings.logo-position}}">
+			            {{> components/common/store-logo}}
+			        </div>
+			    {{/if}}
+		    </div>
+	
+		    <div class="navPages-container col-md-12 col-lg-8" id="menu" data-menu>
+		        {{> components/common/navigation-menu}}
+		        <section class="quickSearchResults" data-bind="html: results" style="display: none;"></section>
+		    </div>
+		
+					
+			<div class="cartWrap col-xs-3 col-sm-8 col-md-3 col-lg-2">
+				<ul class="navPages-list">
+					<li class="navUser-item col-md-10 col-lg-10">
+						<div class="navPages-quickSearch">
+					        {{> components/common/quick-search}}
+					    </div>
+					    
+					</li>
+					<li class="navUser-item-search-icon">
+						<div class="navSearch-Icon">
+						    <i class="fa fa-search" aria-hidden="true"></i>
+					    </div>
+					</li>
+					<li class="navUser-item navUser-item--cart col-md-2 col-lg-2">
+			            <a
+			                class="navUser-action"
+			                data-cart-preview
+			                data-dropdown="cart-preview-dropdown"
+			                data-options="align:right"
+			                href="{{urls.cart}}">
+			                <span class="navUser-item-cartLabel"><img src="{{cdn '/assets/img/icon--cart.jpg'}}" /></span> <span class="countPill{{#if cart.items}} countPill--positive{{/if}} cart-quantity">{{cart.quantity}}</span>
+			            </a>
+			
+			            <div class="dropdown-menu" id="cart-preview-dropdown" data-dropdown-content aria-hidden="true"></div>
+			        </li>
+				</ul>
+				
+				
+			</div>
+			<div class="m--quickSearch">
+		        {{> components/common/quick-search}}
+		    </div>
+			
+			
+		</div>
+		
+	</header>
 </div>
-{{/if}}
-<header class="header" role="banner">
-    <a href="#" class="mobileMenu-toggle" data-mobile-menu-toggle="menu">
-        <span class="mobileMenu-toggleIcon">Toggle menu</span>
-    </a>
-    {{> components/common/navigation}}
-
-    {{#if page_type '===' 'default'}}
-        <h1 class="header-logo header-logo--{{theme_settings.logo-position}}">
-            {{> components/common/store-logo}}
-        </h1>
-    {{else}}
-        <div class="header-logo header-logo--{{theme_settings.logo-position}}">
-            {{> components/common/store-logo}}
-        </div>
-    {{/if}}
-    {{{region name="header_bottom"}}}
-    <div class="navPages-container" id="menu" data-menu>
-        {{> components/common/navigation-menu}}
-    </div>
-
-</header>

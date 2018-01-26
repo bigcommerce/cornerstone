@@ -93,10 +93,6 @@
     @include breakpoint("medium") {
         margin-left: remCalc(40px);
     }
-
-    .header-logo-image {
-        right: unset;
-    }
 }
 
 .header-logo--right {
@@ -105,16 +101,12 @@
     @include breakpoint("medium") {
         margin-right: remCalc(40px);
     }
-
-    .header-logo-image {
-        left: unset;
-    }
 }
 
 .header-logo-text {
     display: block;
     font-family: $fontFamily-hero;
-    font-size: $fontSize-logo-small;   // 1
+    font-size: fontSize("small");   // 1
     font-weight: stencilFontWeight("logo-font");
     letter-spacing: remCalc(5px);
     margin-left: auto;
@@ -126,7 +118,7 @@
     white-space: nowrap;
 
     @include breakpoint("small") {
-        font-size: $fontSize-logo-medium;
+        font-size: fontSize("large");
         letter-spacing: remCalc(9px);
         padding-bottom: 0;
         padding-top: 0;
@@ -134,7 +126,7 @@
 
     @include breakpoint("medium") {
         display: inline;
-        font-size: $fontSize-logo-large;
+        font-size: fontSize("largest");
         margin-left: 0;
         margin-right: -(remCalc(9px)); // 3
         max-width: none;
@@ -147,30 +139,13 @@
     }
 }
 
-.header-logo-image-container {
-    position: relative;
-}
-
-.header-logo-image-container:after {
-    content: '';
-    display: block;
-    padding-bottom: remCalc($header-height) - $header-logo-marginVertical * 2;
-
-    @include breakpoint("medium") {
-        padding-bottom: get-height(stencilString('logo_size'));
-    }
-}
-
 .header-logo-image {
-    @include lazy-loaded-img;
     max-height: remCalc($header-height) - $header-logo-marginVertical * 2;
 
     @include breakpoint("medium") {
         max-height: none;
     }
 }
-
-
 
 //
 // Mobile Menu Toggle

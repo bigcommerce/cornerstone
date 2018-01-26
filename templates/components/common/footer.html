@@ -1,37 +1,28 @@
-{{#if banners.bottom}}
-<div class="banners" data-banner-location="bottom">
-    <div class="banner">
-        {{{limit banners.bottom 1}}}
-    </div>
+<div class="top--footer">
+	<div class="container">
+	    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" data-section-type="newsletterSubscription">
+		    <div class="social--links col-xs-12 col-sm-12 col-md-6 col-lg-4">
+		        <ul>
+			        <li><a class="fbBG" href="https://www.facebook.com/GroupVertical"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+			        <li><a class="twBG" href="https://twitter.com/GroupVertical"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+			        <li><a class="ggBG" href="https://plus.google.com/+groupvertical/posts"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+			        <li><a class="likdnBG" href="https://www.linkedin.com/company/groupvertical"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+			        <li><a class="utubeBG" href="https://www.youtube.com/user/groupvertical"><i class="fa fa-youtube-play" aria-hidden="true"></i></a></li>
+		        </ul>
+		    </div>
+		    
+		    <div class="subscription--section col-xs-12 col-sm-12 col-md-6 col-lg-8">
+			    {{#if settings.show_newsletter_box}}
+		            {{> components/common/subscription-form}}
+		        {{/if}}
+		    </div>
+	    </div>
+	</div>
 </div>
-{{/if}}
 <footer class="footer" role="contentinfo">
     <div class="container">
-        {{#if theme_settings.social_icon_placement_bottom '!==' 'bottom_none'}}
-            <article class="footer-info-col
-                footer-info-col--social
-                footer-info-col--{{#if theme_settings.social_icon_placement_bottom '===' 'bottom_left'}}left{{else}}right{{/if}}"
-                data-section-type="footer-webPages">
-                    <h5 class="footer-info-heading">{{lang 'social.connect'}}</h5>
-                    {{> components/common/social-links}}
-            </article>
-        {{/if}}
         <section class="footer-info">
-            <article class="footer-info-col footer-info-col--small" data-section-type="footer-webPages">
-                <h5 class="footer-info-heading">{{lang 'footer.navigate'}}</h5>
-                <ul class="footer-info-list">
-                    {{#each pages}}
-                        <li>
-                            <a href="{{url}}">{{name}}</a>
-                        </li>
-                    {{/each}}
-                    <li>
-                        <a href="{{urls.sitemap}}">{{lang 'sitemap.page_title'}}</a>
-                    </li>
-                </ul>
-            </article>
-
-            <article class="footer-info-col footer-info-col--small" data-section-type="footer-categories">
+            <article class="footer-info--col col-xs-6 col-sm-4 col-md-4 col-lg-2" data-section-type="footer-categories">
                 <h5 class="footer-info-heading">{{lang 'footer.categories'}}</h5>
                 <ul class="footer-info-list">
                     {{#each categories}}
@@ -42,51 +33,100 @@
                 </ul>
             </article>
 
-            {{#and theme_settings.shop_by_brand_show_footer shop_by_brand.length}}
-            <article class="footer-info-col footer-info-col--small" data-section-type="footer-brands">
-                <h5 class="footer-info-heading">{{lang 'footer.brands'}}</h5>
+            <article class="footer-info--col col-xs-6 col-sm-4 col-md-4 col-lg-2">
+                <h5 class="footer-info-heading">Customer Service</h5>
                 <ul class="footer-info-list">
-                    {{#each shop_by_brand}}
-                        <li>
-                            <a href="{{url}}">{{name}}</a>
-                        </li>
-                    {{/each}}
-                    <li><a href="{{urls.brands}}">{{lang 'common.view_all'}}</a></li>
+	                <li><a href="/contact-us">Contact Us</li>
+                    <li><a href="/returns/">Return Policy</li>
+	           		<li><a href="/shipping-policy/">Shipping Info</li>
+		           	<li><a href="/account.php?action=order_status">RMA Request</li>
+		           	<li><a href="/bulk-return-form/">Bulk Return Form</li>
+					<li><a href="/faq/">FAQ</li>
+					<li><a href="/privacy-terms/">Privacy Terms</li>
                 </ul>
             </article>
-            {{/and}}
 
-            {{#if settings.address}}
-            <article class="footer-info-col footer-info-col--small" data-section-type="storeInfo">
-                <h5 class="footer-info-heading">{{lang 'footer.info'}}</h5>
-                <address>{{nl2br settings.address}}</address>
-                {{#if settings.phone_number}}
-                    <strong>{{lang 'footer.call_us' phone_number=settings.phone_number}}</strong>
-                {{/if}}
+            <article class="footer-info--col col-xs-6 col-sm-4 col-md-4 col-lg-2">
+                <h5 class="footer-info-heading">My Account</h5>
+                <ul class="footer-info-list">
+                    <li><a href="{{urls.account.index}}">Sign in</a></li>
+					<li><a href="{{urls.account.index}}">Register</a></li>
+					<li><a href="{{urls.account.index}}">Track My Order</a></li>
+					<li><a href="{{urls.account.index}}">Track My Returns</a></li>
+					<li><a href="/contact-us">Request a Quote</a></li>
+					<li><a href="/wholesale-accounts/">Wholesale Accounts</a></li>
+                </ul>
             </article>
-            {{/if}}
 
-            <article class="footer-info-col" data-section-type="newsletterSubscription">
-                {{#if settings.show_newsletter_box}}
-                    {{> components/common/subscription-form}}
-                {{/if}}
-                {{> components/common/payment-icons}}
+            <article class="footer-info--col col-xs-6 col-sm-4 col-md-4 col-lg-2">
+                <h5 class="footer-info-heading">Stay Connected</h5>
+                <ul class="footer-info-list">
+                    <li><a href="/about-us/">About Us</a></li>
+					<li><a href="/careers/">Careers</a></li>
+					<li><a href="/blog/">Blog</a></li>
+                </ul>
             </article>
+
+            <article class="footer-info--col col-xs-6 col-sm-4 col-md-4 col-lg-2">
+                <h5 class="footer-info-heading">Resources</h5>
+                <ul class="footer-info-list">
+                    <li><a href="/industry-trends/">Industry Trends</a></li>
+					<li><a href="/repair-guides/">Repair Guides</a></li>
+					<li><a href="/repair-videos/">Videos</a></li>
+                </ul>
+            </article>
+            
+            <article class="footer-info--col col-xs-6 col-sm-4 col-md-4 col-lg-2">
+                <h5 class="footer-info-heading">Business Hours</h5>
+                <ul class="footer-info-list">
+                    <li>Monday: 9am - 6pm</li>
+					<li>Tuesday: 9am - 6pm</li>
+					<li>Wednesday: 9am - 6pm</li>
+					<li>Thursday: 9am - 6pm</li>
+					<li>Friday: 8.30am - 5pm</li>
+					<li>Saturday: Closed</li>
+					<li>Sunday: Closed</li>
+                </ul>
+            </article>   
+            <div class="bottomFooter">
+	            <article class="footer-info--col col-xs-12 col-sm-12 col-md-6 col-lg-4">
+	                <p><i class="fa fa-map-marker" aria-hidden="true"></i> <a href="https://goo.gl/maps/WnzmawCS5uG2" target="_blank">678 Front Ave NW STE 199, <br/><span style="display: inline-block; padding-left: 1.1rem;">Grand Rapids, MI 49504</span></a></p>
+	                
+	            </article>
+	            <article class="footer-info--col col-xs-12 col-sm-12 col-md-6 col-lg-4">
+	                <p><i class="fa fa-envelope" aria-hidden="true"></i> <a href="mailto:support@groupvertical.com">support@groupvertical.com</a></p>
+	                <p><i class="fa fa-envelope" aria-hidden="true"></i> <a href="mailto:wholesale@groupvertical.com">wholesale@groupvertical.com</a></p>
+	            </article>
+	            <article class="footer-info--col col-xs-12 col-sm-12 col-md-6 col-lg-2">
+	                <p><i class="fa fa-phone" aria-hidden="true"></i> <a href="tel:+16164259141">1-616-425-9141</a></p>
+	                <p><i class="fa fa-phone" aria-hidden="true"></i> <a href="tel:+18774259854">1-877-425-9854</a></p>
+	            </article>
+	            <article class="footer-info--col col-xs-12 col-sm-12 col-md-6 col-lg-2">
+	                <a class="button button--primary btnContact" href="/contact-us">Contact Us</a>
+	            </article>
+		    </div> 
         </section>
-        {{#if theme_settings.geotrust_ssl_common_name}}
-            <div class="footer-geotrust-ssl-seal">
-                {{> components/common/geotrust-ssl-seal}}
-            </div>
-        {{/if}}
-        {{#if theme_settings.show_powered_by}}
+    </div>
+    <div class="footerCopyrightWrap">
+	    <div class="container">
+            {{#if theme_settings.show_powered_by}}
             <div class="footer-copyright">
-                <p class="powered-by">Powered by <a href="https://www.bigcommerce.com/" rel="nofollow">BigCommerce</a></p>
+                <p class="powered-by">Powered by <a href="http://bigcommerce.com" rel="nofollow">BigCommerce</a></p>
             </div>
-        {{/if}}
-        {{#if theme_settings.show_copyright_footer}}
-            <div class="footer-copyright">
-                <p class="powered-by">&copy; {{moment format="YYYY"}} {{settings.store_name}} </p>
-            </div>
-        {{/if}}
+	        {{/if}}
+	        {{#if theme_settings.show_copyright_footer}}
+	        
+	        	<div class="identityWrap">
+		        	<p><img src="{{cdn '/assets/img/usa-flag.jpg'}}" /> AN AMERICAN COMPANY</p>
+	        	</div>
+	        
+	            <div class="footer-copyright">
+	                <p class="powered-by">&copy; Copyright <span id="copyright_year"></span> - {{settings.store_name}} - All Rights Reserved</p>
+	            </div>
+	            <script type="text/javascript">
+	                document.getElementById("copyright_year").innerHTML = new Date().getFullYear();
+	            </script>
+	        {{/if}}
+	    </div>
     </div>
 </footer>

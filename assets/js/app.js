@@ -29,6 +29,7 @@ const pageClasses = {
     brand: () => import('./theme/brand'),
     brands: () => import('./theme/brand'),
     cart: () => import('./theme/cart'),
+    'pages/cart': () => import('./theme/cart'),
     category: () => import('./theme/category'),
     compare: () => import('./theme/compare'),
     page_contact_form: () => import('./theme/contact-us'),
@@ -40,6 +41,7 @@ const pageClasses = {
     default: () => import('./theme/home'),
     page: () => import('./theme/page'),
     product: () => import('./theme/product'),
+    'pages/product': () => import('./theme/product'),
     amp_product_options: () => import('./theme/product'),
     search: () => import('./theme/search'),
     rss: () => import('./theme/rss'),
@@ -93,3 +95,10 @@ window.stencilBootstrap = function stencilBootstrap(pageType, contextJSON = null
         },
     };
 };
+
+/**
+Works, but janky
+
+//global.jQuery = require('jquery');
+//global.$ = require('jquery');
+*/

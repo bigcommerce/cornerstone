@@ -15,18 +15,12 @@
 // Background, Logo Position
 // -----------------------------------------------------------------------------
 
-*:focus {
-    outline-color: stencilColor("optimizedCheckout-colorFocus");
-}
-
 .optimizedCheckout-header {
     background-color: stencilColor("optimizedCheckout-header-backgroundColor");
     // scss-lint:disable StringQuotes
     background-image: url(stencilImage('optimizedCheckout-backgroundImage', 'optimizedCheckout-backgroundImage-size'));
     // scss-lint:enable StringQuotes
     background-size: cover;
-    border-color: stencilColor("optimizedCheckout-header-borderColor");
-    color: stencilColor("optimizedCheckout-header-textColor");
 
     //
     // TODO:
@@ -67,8 +61,6 @@ body {
 
 .optimizedCheckout-overlay {
     background-color: stencilColor("optimizedCheckout-body-backgroundColor");
-    border-color: stencilColor("optimizedCheckout-step-borderColor");
-    color: stencilColor("optimizedCheckout-contentPrimary-color");
 }
 
 //
@@ -110,26 +102,10 @@ body {
         color: stencilColor("optimizedCheckout-buttonPrimary-colorHover");
     }
 
-    &:focus {
-        border-color: stencilColor("optimizedCheckout-colorFocus");
-        box-shadow: 0 0 3px stencilColor("optimizedCheckout-colorFocus");
-    }
-
     &:active {
         background-color: stencilColor("optimizedCheckout-buttonPrimary-backgroundColorActive");
         border-color: stencilColor("optimizedCheckout-buttonPrimary-borderColorActive");
         color: stencilColor("optimizedCheckout-buttonPrimary-colorActive");
-    }
-
-    &[disabled],
-    &[disabled]:hover,
-    &[disabled]:focus,
-    &[disabled].is-active,
-    &[disabled].is-loading,
-    &[disabled].active {
-        background-color: stencilColor("optimizedCheckout-buttonPrimary-backgroundColorDisabled");
-        border-color: stencilColor("optimizedCheckout-buttonPrimary-borderColorDisabled");
-        color: stencilColor("optimizedCheckout-buttonPrimary-colorDisabled");
     }
 }
 
@@ -145,35 +121,6 @@ body {
     color: stencilColor("optimizedCheckout-buttonSecondary-color");
     font-family: stencilFontFamily("optimizedCheckout-buttonSecondary-font"), Arial, Helvetica, sans-serif;
     font-weight: stencilFontWeight("optimizedCheckout-buttonSecondary-font");
-
-    &:focus,
-    &:hover {
-        background-color: stencilColor("optimizedCheckout-buttonSecondary-backgroundColorHover");
-        border-color: stencilColor("optimizedCheckout-buttonSecondary-borderColorHover");
-        color: stencilColor("optimizedCheckout-buttonSecondary-colorHover");
-    }
-
-    &:focus {
-        border-color: stencilColor("optimizedCheckout-colorFocus");
-        box-shadow: 0 0 3px stencilColor("optimizedCheckout-colorFocus");
-    }
-
-    &:active {
-        background-color: stencilColor("optimizedCheckout-buttonSecondary-backgroundColorActive");
-        border-color: stencilColor("optimizedCheckout-buttonSecondary-borderColorActive");
-        color: stencilColor("optimizedCheckout-buttonSecondary-colorActive");
-    }
-
-    &[disabled],
-    &[disabled]:hover,
-    &[disabled]:focus,
-    &[disabled].is-active,
-    &[disabled].is-loading,
-    &[disabled].active {
-        background-color: stencilColor("optimizedCheckout-buttonPrimary-backgroundColorDisabled");
-        border-color: stencilColor("optimizedCheckout-buttonPrimary-borderColorDisabled");
-        color: stencilColor("optimizedCheckout-buttonPrimary-colorDisabled");
-    }
 }
 
 //
@@ -185,11 +132,6 @@ a {
     color: stencilColor("optimizedCheckout-link-color");
     font-family: stencilFontFamily("optimizedCheckout-link-font"), Arial, Helvetica, sans-serif;
     font-weight: stencilFontWeight("optimizedCheckout-link-font");
-
-    &:focus,
-    &:hover {
-        color: stencilColor("optimizedCheckout-link-hoverColor");
-    }
 }
 
 //
@@ -199,16 +141,6 @@ a {
 
 .optimizedCheckout-orderSummary {
     background-color: stencilColor("optimizedCheckout-orderSummary-backgroundColor");
-    border-color: stencilColor("optimizedCheckout-orderSummary-borderColor");
-    box-shadow: 0 1px 4px transparentize(stencilColor("optimizedCheckout-orderSummary-borderColor"), 0.4);
-}
-
-.optimizedCheckout-orderSummary-cartSection {
-    border-color: stencilColor("optimizedCheckout-orderSummary-borderColor");
-}
-
-.optimizedCheckout-checkoutStep {
-    border-color: stencilColor("optimizedCheckout-step-borderColor");
 }
 
 //
@@ -239,74 +171,15 @@ a {
     color: stencilColor("optimizedCheckout-form-textColor");
 }
 
-.form-field--error {
-    .optimizedCheckout-form-label,
-    .form-inlineMessage {
-        color: stencilColor("optimizedCheckout-formField-errorColor");
-    }
-}
 //
 // Form Input
-// Background, Border, Shadow and Text Color
+// Background & Border Color
 // Styles form fields.
 // -----------------------------------------------------------------------------
 
-$optimizedCheckout-input-boxShadow: inset 0 1px 1px stencilColor("optimizedCheckout-formField-shadowColor");
-$optimizedCheckout-input--focus-boxShadow: 0 0 3px transparentize(stencilColor("optimizedCheckout-colorFocus"), 0.4);
-$optimizedCheckout-input--error-boxShadow: 0 0 3px transparentize(stencilColor("optimizedCheckout-formField-errorColor"), 0.4);
-
-.optimizedCheckout-form-input,
-.optimizedCheckout-form-select {
+.optimizedCheckout-form-input {
     background-color: stencilColor("optimizedCheckout-formField-backgroundColor");
     border-color: stencilColor("optimizedCheckout-formField-borderColor");
-    box-shadow: $optimizedCheckout-input-boxShadow;
-    color: stencilColor("optimizedCheckout-formField-textColor");
-
-    &::placeholder {
-        color: stencilColor("optimizedCheckout-formField-placeholderColor");
-    }
-
-    .form-field--error & {
-        background-color: stencilColor("optimizedCheckout-formField-backgroundColor");
-        border-color: stencilColor("optimizedCheckout-formField-errorColor");
-        box-shadow: $optimizedCheckout-input--error-boxShadow, $optimizedCheckout-input-boxShadow;
-    }
-}
-
-.optimizedCheckout-form-input:focus,
-.optimizedCheckout-form-select:focus,
-.optimizedCheckout-form-select:hover {
-    background-color: stencilColor("optimizedCheckout-formField-backgroundColor");
-    border-color: stencilColor("optimizedCheckout-colorFocus");
-    box-shadow: $optimizedCheckout-input--focus-boxShadow, $optimizedCheckout-input-boxShadow;
-}
-
-.optimizedCheckout-form-label::before {
-    .optimizedCheckout-form-radio + &,
-    .optimizedCheckout-form-checkbox + & {
-        background-color: stencilColor("optimizedCheckout-formField-backgroundColor");
-        border-color: stencilColor("optimizedCheckout-formField-borderColor");
-        box-shadow: $optimizedCheckout-input-boxShadow;
-        opacity: 1;
-    }
-
-    .optimizedCheckout-form-radio:checked + &,
-    .optimizedCheckout-form-checkbox:checked + & {
-        background-color: stencilColor("optimizedCheckout-formField-inputControlColor");
-        border-color: stencilColor("optimizedCheckout-formField-inputControlColor");
-        box-shadow: none;
-    }
-
-    .optimizedCheckout-form-radio:focus + &,
-    .optimizedCheckout-form-checkbox:focus + & {
-        border-color: stencilColor("optimizedCheckout-colorFocus");
-        box-shadow: $optimizedCheckout-input--focus-boxShadow, $optimizedCheckout-input-boxShadow;
-    }
-
-    .optimizedCheckout-form-radio:focus:checked + &,
-    .optimizedCheckout-form-checkbox:focus:checked + & {
-        box-shadow: $optimizedCheckout-input--focus-boxShadow;
-    }
 }
 
 //
@@ -324,58 +197,4 @@ $optimizedCheckout-input--error-boxShadow: 0 0 3px transparentize(stencilColor("
     svg {
         fill: stencilColor("optimizedCheckout-discountBanner-iconColor");
     }
-}
-
-//
-// Form Checklist (Shipping / Payment methods)
-// Background & Border & Text Color
-// Styles form checklists
-// -----------------------------------------------------------------------------
-
-.optimizedCheckout-form-checklist {
-    background-color: stencilColor("optimizedCheckout-formChecklist-backgroundColor");
-    border-color: stencilColor("optimizedCheckout-formChecklist-borderColor");
-    color: stencilColor("optimizedCheckout-formChecklist-color");
-}
-
-.optimizedCheckout-form-checklist-item {
-    background-color: stencilColor("optimizedCheckout-formChecklist-backgroundColor");
-    border-color: stencilColor("optimizedCheckout-formChecklist-borderColor");
-}
-
-.optimizedCheckout-form-checklist-item:hover,
-.optimizedCheckout-form-checklist-item--selected {
-    background-color: stencilColor("optimizedCheckout-formChecklist-backgroundColorSelected");
-    border-color: stencilColor("optimizedCheckout-formChecklist-borderColor");
-}
-
-.optimizedCheckout-form-checklist-checkbox {
-    ~ .form-label::after,
-    ~ .form-label::before {
-        background-color: stencilColor("optimizedCheckout-formField-backgroundColor");
-        border-color: stencilColor("optimizedCheckout-formField-borderColor");
-    }
-
-    &:focus ~ .form-label {
-        box-shadow: inset 0 0 0 1px stencilColor("optimizedCheckout-colorFocus");
-    }
-
-    &:checked ~ .form-label::before {
-        border-color: stencilColor("optimizedCheckout-formField-inputControlColor");
-    }
-
-    &:checked ~ .form-label::after {
-        background: stencilColor("optimizedCheckout-formField-inputControlColor");
-    }
-}
-
-//
-// Loading Toaster
-// Background & Text Color
-// Styles the Loading Toaster
-// -----------------------------------------------------------------------------
-
-.optimizedCheckout-loadingToaster {
-    background-color: stencilColor("optimizedCheckout-loadingToaster-backgroundColor");
-    color: stencilColor("optimizedCheckout-loadingToaster-textColor");
 }

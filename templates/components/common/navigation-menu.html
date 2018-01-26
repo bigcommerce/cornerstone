@@ -1,25 +1,499 @@
 <nav class="navPages">
-    <div class="navPages-quickSearch">
-        {{> components/common/quick-search}}
-    </div>
-    <ul class="navPages-list{{#if theme_settings.navigation_design '!==' 'simple'}} navPages-list-depth-max{{/if}}">
+	
+	
+    <ul class="navPages-list">
         {{#each categories}}
             <li class="navPages-item">
-            {{#if ../theme_settings.navigation_design '===' 'simple'}}
                 {{> components/common/navigation-list}}
-            {{/if}}
-            {{#if ../theme_settings.navigation_design '===' 'alternate'}}
-                {{> components/common/navigation-list-alternate}}
-            {{/if}}
             </li>
         {{/each}}
+        <li class="navPages-item">
+                <a class="navPages-action" href="/lcd-screen-recycling/" data-id="nav-lcdscreenrecyle">LCD Buyback</a>
+            </li>
         {{#unless theme_settings.hide_content_navigation}}
             {{#each pages}}
-                 <li class="navPages-item navPages-item-page">
+                 <li class="navPages-item">
                      <a class="navPages-action" href="{{url}}">{{name}}</a>
                  </li>
              {{/each}}
         {{/unless}}
+        
+        <div class="navPage-subMenu-2 navPage-subMenu-phone" id="nav-Phone Parts" aria-hidden="true" tabindex="-1">    
+		    <ul class="navPage-subMenu-list"> 
+			    <li class="navPage-subMenu-item">
+			    	<a href="/phone-parts/apple/" data-id="nav-apple" class="navPage-subMenu-action navPages-action navPage-subMenu-action-main">Apple</a>
+		    		<ul class="navPage-childList is-open" id="nav-apple" aria-hidden="true">
+		    		    <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/phone-parts/apple/iphone-X/">iPhone X</a>
+		                </li>
+		    		    <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/phone-parts/apple/iphone-8-plus/">iPhone 8 Plus</a>
+		                </li>
+		    		    <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/phone-parts/apple/iphone-8/">iPhone 8</a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/phone-parts/apple/iphone-7-plus/">iPhone 7 Plus</a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/phone-parts/apple/iphone-7/">iPhone 7</a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/phone-parts/apple/iphone-6s-plus/">iPhone 6S Plus</a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/phone-parts/apple/iphone-6s/">iPhone 6S</a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/phone-parts/apple/iphone-se/">iPhone SE</a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/phone-parts/apple/iphone-6-plus/">iPhone 6 Plus</a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/phone-parts/apple/iphone-6/">iPhone 6</a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/phone-parts/apple/iphone-5s/">iPhone 5S</a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/phone-parts/apple/iphone-5c/">iPhone 5C</a>
+		                </li>
+		            </ul>
+			    </li>
+
+			    <li class="navPage-subMenu-item">
+			    	<a href="/phone-parts/samsung" data-id="nav-samsung" class="navPage-subMenu-action navPages-action navPage-subMenu-action-main">Samsung</a>
+		    		<ul class="navPage-childList is-open" id="nav-samsung" aria-hidden="true">
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/phone-parts/samsung/galaxy-s8-plus/">Galaxy S8 Plus</a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/phone-parts/samsung/galaxy-s8/">Galaxy S8</a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/phone-parts/samsung/galaxy-s7-edge/">Galaxy S7 Edge</a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/phone-parts/samsung/galaxy-s7/">Galaxy S7</a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/phone-parts/samsung/galaxy-s7-active/">Galaxy S7 Active</a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/phone-parts/samsung/galaxy-s6-edge-1/">Galaxy S6 Edge +</a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/phone-parts/samsung/galaxy-s6-edge/">Galaxy S6 Edge</a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/phone-parts/samsung/galaxy-s6/">Galaxy S6</a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/phone-parts/samsung/galaxy-note-8/">Galaxy Note 8</a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/phone-parts/samsung/galaxy-note-5/">Galaxy Note 5</a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/phone-parts/samsung/galaxy-note-4/">Galaxy Note 4</a>
+		                </li>
+		            </ul>
+			    </li>
+			    
+			    <li class="navPage-subMenu-item">
+			    	<a href="/phone-parts/lg/" data-id="nav-lg" class="navPage-subMenu-action navPages-action navPage-subMenu-action-main">LG</a>
+		    		<ul class="navPage-childList is-open" id="nav-lg" aria-hidden="true">
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/phone-parts/lg/g6/">G6</a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/phone-parts/lg/g5/">G5</a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/phone-parts/lg/g4/">G4</a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/phone-parts/lg/g3/">G3</a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/phone-parts/lg/g2/">G2</a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/phone-parts/lg/v20/">V20</a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/phone-parts/lg/v10/">V10</a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/phone-parts/lg/nexus-5/">Nexus 5</a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/phone-parts/lg/g-flex-2/">G Flex 2</a>
+		                </li>
+		            </ul>
+			    </li>
+			    
+			    <li class="navPage-subMenu-item">
+			    	<a href="/phone-parts/google/" data-id="nav-google" class="navPage-subMenu-action navPages-action navPage-subMenu-action-main">Google</a>
+		    		<ul class="navPage-childList is-open" id="nav-google" aria-hidden="true">
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/phone-parts/google/pixel-2-xl/">Pixel 2 XL</a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/phone-parts/google/pixel-2/">Pixel 2</a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/phone-parts/google/google-pixel-xl/">Pixel XL</a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/phone-parts/google/google-pixel/">Pixel</a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/phone-parts/google/google-nexus-7/">Nexus 7</a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/phone-parts/google/google-nexus-6p/">Nexus 6P</a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/phone-parts/google/google-nexus-6/">Nexus 6</a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/phone-parts/google/google-nexus-5/">Nexus 5</a>
+		                </li> 
+		           	</ul>
+			    </li> 
+			    
+			    <div class="navPage-extra-items">
+			        <span><strong>More:</strong></span>
+				    <ul>
+					    <li class="navPage-subMenu-item">
+					    	<a href="/phone-parts/htc/" class="navPage-subMenu-action navPages-action ">HTC</a>
+						</li>
+					    <li class="navPage-subMenu-item">
+					    	<a href="/phone-parts/motorola/" class="navPage-subMenu-action navPages-action">Motorola</a>
+						</li>
+						 <li class="navPage-subMenu-item">
+					    	<a href="/phone-parts/oneplus/" class="navPage-subMenu-action navPages-action">OnePlus</a>
+						</li>
+				   	    <li class="navPage-subMenu-item">
+					    	<a href="/phone-parts/nokia/" class="navPage-subMenu-action navPages-action">Nokia</a>
+				   	    </li>
+				   	    <li class="navPage-subMenu-item">
+					    	<a href="/phone-parts/blackberry/" class="navPage-subMenu-action navPages-action">Blackberry</a>
+				   	    </li>
+				   	    <li class="navPage-subMenu-item">
+					    	<a href="/phone-parts/sony/" class="navPage-subMenu-action navPages-action">Sony</a>
+				   	    </li>
+				   	    
+				    </ul>
+			    </div>
+		    </ul>
+		</div>
+
+		<div class="navPage-subMenu-2 navPage-subMenu-Tablet" id="nav-Tablet Parts" aria-hidden="true" tabindex="-1">    
+		    <ul class="navPage-subMenu-list"> 
+			    <li class="navPage-subMenu-item">
+			    	<a href="/tablet-parts/apple" data-id="nav-apple-tablet" class="navPage-subMenu-action navPages-action navPage-subMenu-action-main">Apple</a>
+		    		<ul class="navPage-childList is-open" id="nav-apple-tablet" aria-hidden="true">
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/tablet-parts/apple/ipad-pro/">iPad Pro</a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/tablet-parts/apple/ipad-air-2/">iPad Air 2</a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/tablet-parts/apple/ipad-air/">iPad Air</a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/tablet-parts/apple/ipad-2017/">iPad 5th Gen</a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/tablet-parts/apple/ipad-4/">iPad 4th Gen</a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/tablet-parts/apple/ipad-3/">iPad 3rd Gen</a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/tablet-parts/apple/ipad-2/">iPad 2nd Gen</a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/tablet-parts/apple/ipad-mini-4/">iPad Mini 4</a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/tablet-parts/apple/ipad-mini-3/">iPad Mini 3</a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/tablet-parts/apple/ipad-mini-2/">iPad Mini 2</a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/tablet-parts/apple/ipad-mini/">iPad Mini 1</a>
+		                </li>
+		            </ul>
+			    </li>
+			    
+			    <li class="navPage-subMenu-item">
+			    	<a href="/tablet-parts/samsung/" data-id="nav-samsung-tablet" class="navPage-subMenu-action navPages-action navPage-subMenu-action-main">Samsung</a>
+		    		<ul class="navPage-childList is-open" id="nav-samsung-tablet" aria-hidden="true">
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/tablet-parts/samsung/galaxy-tab-4/">Galaxy Tab 4</a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/tablet-parts/samsung/galaxy-tab-3/">Galaxy Tab 3</a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/tablet-parts/samsung/galaxy-tab-2/">Galaxy Tab 2</a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/tablet-parts/samsung/galaxy-tab-1/">Galaxy Tab </a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/tablet-parts/samsung/galaxy-tab-s2/">Galaxy Tab S2</a>
+		                </li>
+		                 <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/tablet-parts/samsung/galaxy-tab-s/">Galaxy Tab S</a>
+		                </li>
+		                 <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/tablet-parts/samsung/galaxy-note/">Galaxy Note</a>
+		                </li>
+		            </ul>
+			    </li>
+			    
+			    <li class="navPage-subMenu-item">
+			    	<a href="/tablet-parts/amazon/" data-id="nav-amazon-tablet" class="navPage-subMenu-action navPages-action navPage-subMenu-action-main">Kindle</a>
+		    		<ul class="navPage-childList is-open" id="nav-amazon-tablet" aria-hidden="true">
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/tablet-parts/amazon/kindle-fire/">Kindle Fire</a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/tablet-parts/amazon/kindle-fire-hd/">Kindle Fire HD</a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/tablet-parts/amazon/kindle-fire-hd-7/">Kindle Fire HD 7</a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/tablet-parts/amazon/kindle-fire-hd-8-9/">Kindle Fire HD 8.9</a>
+		                </li>
+		            </ul>
+			    </li>
+			    <li class="navPage-subMenu-item">
+			    	<a href="/tablet-parts/microsoft" data-id="nav-microsoft-tablet" class="navPage-subMenu-action navPages-action navPage-subMenu-action-main">Microsoft</a>
+		    		<ul class="navPage-childList is-open" id="nav-microsoft-tablet" aria-hidden="true">
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/tablet-parts/microsoft/surface-pro-4/">Surface Pro 4</a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/tablet-parts/microsoft/surface-pro-3/">Surface Pro 3</a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/tablet-parts/microsoft/surface-pro-2/">Surface Pro 2</a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/tablet-parts/microsoft/surface-pro/">Surface Pro</a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/tablet-parts/microsoft/surface-2-rt/">Surface 2 RT</a>
+		                </li>
+		            </ul>
+			    </li>
+			    <div class="navPage-extra-items">
+			        <span><strong>More:</strong></span>
+				    <ul>
+						<li class="navPage-subMenu-item">
+					    	<a href="/tablet-parts/google/" class="navPage-subMenu-action navPages-action">Google</a>
+					    </li>
+					    <li class="navPage-subMenu-item">
+					    	<a href="/tablet-parts/lg/" class="navPage-subMenu-action navPages-action">LG</a>
+					    </li>
+				    </ul>
+			    </div>
+		    </ul>
+		</div>
+
+		<div class="navPage-subMenu-2 navPage-subMenu-repair" id="nav-Repair Supplies" aria-hidden="true" tabindex="-1">    
+		    <ul class="navPage-subMenu-list">
+			    <li class="navPage-subMenu-item navPage-subMenu-item-no-child">
+			    	<a href="/repair-supplies/adhesives/" class="navPage-subMenu-action navPages-action">Adhesives</a>
+			    </li>
+			    <li class="navPage-subMenu-item navPage-subMenu-item-no-child">
+			    	<a href="/repair-supplies/diy-kits/" class="navPage-subMenu-action navPages-action">DIY Kits</a>
+			    </li>
+			    <li class="navPage-subMenu-item navPage-subMenu-item-no-child">
+			    	<a href="/repair-supplies/diy-tool-kits/" class="navPage-subMenu-action navPages-action">DIY Tool Kits</a>
+			    </li>
+			    <li class="navPage-subMenu-item navPage-subMenu-item-no-child">
+			    	<a href="/repair-supplies/microsoldering/" class="navPage-subMenu-action navPages-action">Microsoldering</a>
+			    </li>
+			    <li class="navPage-subMenu-item navPage-subMenu-item-no-child">
+			    	<a href="/repair-supplies/refurbishing/" class="navPage-subMenu-action navPages-action">Refurbishing</a>
+			    </li>
+			    <li class="navPage-subMenu-item navPage-subMenu-item-no-child">
+			    	<a href="/repair-supplies/screwdrivers/" class="navPage-subMenu-action navPages-action">Screwdrivers</a>
+			    </li>
+			    <li class="navPage-subMenu-item navPage-subMenu-item-no-child">
+			    	<a href="/repair-supplies/screwmats/" class="navPage-subMenu-action navPages-action">Screwmats</a>
+			    </li>
+			    <li class="navPage-subMenu-item navPage-subMenu-item-no-child">
+			    	<a href="/repair-supplies/testing-equipment/" class="navPage-subMenu-action navPages-action">Testing Equipment</a>
+			    </li>
+		    </ul>
+		</div>
+
+		<div class="navPage-subMenu-2 navPage-subMenu-accessories" id="nav-Accessories" aria-hidden="true" tabindex="-1">    
+		    <ul class="navPage-subMenu-list">
+			    <li class="navPage-subMenu-item navPage-subMenu-item-no-child">
+			    	<a href="/accessories/cables-1/" class="navPage-subMenu-action navPages-action">Cables</a>
+			    </li>
+			    <li class="navPage-subMenu-item navPage-subMenu-item-no-child">
+			    	<a href="/accessories/chargers-1/" class="navPage-subMenu-action navPages-action">Chargers</a>
+			    </li>
+			    <li class="navPage-subMenu-item navPage-subMenu-item-no-child">
+			    	<a href="/accessories/protective-cases/" class="navPage-subMenu-action navPages-action">Protective Cases</a>
+			    </li>
+			    <li class="navPage-subMenu-item navPage-subMenu-item-no-child">
+			    	<a href="/accessories/tempered-glass-screen-protector/" class="navPage-subMenu-action navPages-action">Tempered Glass Screen Protectors</a>
+			    </li>
+			    <li class="navPage-subMenu-item navPage-subMenu-item-no-child">
+			    	<a href="/accessories/protective-screens-pet-film-1/" class="navPage-subMenu-action navPages-action">Film Screen Protectors</a>
+			    </li>
+			    <li class="navPage-subMenu-item navPage-subMenu-item-no-child">
+			    	<a href="/accessories/selfie-sticks/" class="navPage-subMenu-action navPages-action">Selfie Sticks</a>
+			    </li>
+			    <li class="navPage-subMenu-item navPage-subMenu-item-no-child">
+			    	<a href="/accessories/stylus-and-pens-1/" class="navPage-subMenu-action navPages-action">Stylus and Pens</a>
+			    </li>
+			    <li class="navPage-subMenu-item navPage-subMenu-item-no-child">
+			    	<a href="/accessories/video-game-accessories/" class="navPage-subMenu-action navPages-action">Video Game Accessories</a>
+			    </li>
+		    </ul>
+		</div>
+
+		<div class="navPage-subMenu-2 navPage-subMenu-computer" id="nav-Computer Parts" aria-hidden="true" tabindex="-1" style="width: 100%;">
+		    <ul class="navPage-subMenu-list">
+			    
+		
+			    <li class="navPage-subMenu-item">
+			    	<a href="/computer-parts/apple/" data-id="nav-apple-comp" class="navPage-subMenu-action navPages-action navPage-subMenu-action-main">Apple</a>
+		    		<ul class="navPage-childList is-open" id="nav-apple-comp" aria-hidden="true">
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/computer-parts/apple/macbook-pro-13/">MacBook Pro 13</a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/computer-parts/apple/macbook-pro-15/">MacBook Pro 15</a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/computer-parts/apple/macbook-13-3/">MacBook 13.3</a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/computer-parts/apple/macbook-17/">MacBook 17</a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/computer-parts/apple/macbook-15/">MacBook 15</a>
+		                </li>
+		            </ul>
+			    </li>
+			    <li class="navPage-subMenu-item">
+			    	<a href="/computer-parts/chromebook/" data-id="nav-chromebook-comp" class="navPage-subMenu-action navPages-action navPage-subMenu-action-main">Chromebook</a>
+		    		<ul class="navPage-childList is-open" id="nav-chromebook-comp" aria-hidden="true">
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/computer-parts/chromebook/boards/">Boards</a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/computer-parts/chromebook/cooling-fans/">Cooling Fans</a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/computer-parts/chromebook/dc-in-plugs/">DC IN plugs</a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/computer-parts/chromebook/dc-power-jacks/">DC Power Jacks</a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/computer-parts/chromebook/keyboards/">Keyboards</a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/computer-parts/chromebook/lcd-cables/">LCD Cables</a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/computer-parts/chromebook/miscellaneous-parts/">Miscellaneous Parts</a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/computer-parts/chromebook/screens/">Screens</a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/computer-parts/chromebook/usb-connectors/">USB Connectors</a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/computer-parts/chromebook/more-parts/">More Parts</a>
+		                </li>
+		            </ul>
+			    </li>
+		    </ul>
+		</div>
+		
+		<div class="navPage-subMenu-2 navPage-subMenu-more" id="nav-More" aria-hidden="true" tabindex="-1" style="width: 100%;">    
+		    <ul class="navPage-subMenu-list">
+		        <li class="navPage-subMenu-item">
+		        	<a href="/more/apple-ipod-parts/" data-id="nav-apple-more" class="navPage-subMenu-action navPages-action navPage-subMenu-action-main">Apple iPod Parts </a>
+		            <ul class="navPage-childList is-open" id="nav-apple-more" aria-hidden="true">
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/more/apple-ipod-parts/ipod-classic-parts/">iPod Classic Parts</a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/more/apple-ipod-parts/ipod-nano-parts/">iPod Nano Parts</a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/more/apple-ipod-parts/ipod-touch-parts/">iPod Touch Parts</a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/more/apple-ipod-parts/ipod-video-parts/">iPod Video Parts</a>
+		                </li>
+		               
+		            </ul>
+		        </li>
+		      
+		        <li class="navPage-subMenu-item">
+		                <a class="navPage-subMenu-action navPages-action" href="/unlocked-devices/">Unlocked Devices</a>
+		        </li>
+		        <li class="navPage-subMenu-item">
+		            <a href="/more/gaming-parts/" data-id="nav-game-part" class="navPage-subMenu-action navPages-action navPage-subMenu-action-main">Gaming Parts </a>
+		            <ul class="navPage-childList is-open" id="nav-game-part" aria-hidden="true">
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/more/gaming-parts/microsoft-xbox-parts/">Microsoft xBox Parts</a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/more/gaming-parts/nintendo-parts/">Nintendo Parts</a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/more/gaming-parts/sony-playstation-parts/">Sony Playstation Parts</a>
+		                </li>
+		                
+		            </ul>
+		        </li>
+		        <li class="navPage-subMenu-item">
+		            <a href="/more/high-tech-gadgets/" data-id="nav-hightech" class="navPage-subMenu-action navPages-action navPage-subMenu-action-main">High-Tech Gadgets</a>
+		            <ul class="navPage-childList is-open" id="nav-hightech" aria-hidden="true">
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/more/high-tech-gadgets/action-cameras/">Action Cameras</a>
+		                </li>
+		                <li class="navPage-childList-item">
+		                    <a class="navPage-childList-action navPages-action" href="/more/high-tech-gadgets/wearables/">Wearables</a>
+		                </li>
+		                
+		            </ul>
+		        </li>
+		        <div class="navPage-extra-items">
+			        <span><strong>More:</strong></span>
+				    <ul>
+						<li class="navPage-subMenu-item">
+					    	<a href="/clearance/" class="navPage-subMenu-action navPages-action">Clearance</a>
+					    </li>
+					    <li class="navPage-subMenu-item">
+					    	<a href="/more/clearance/closeout-products/" class="navPage-subMenu-action navPages-action">Closeout Products</a>
+					    </li>
+				    </ul>
+			    </div>
+		    </ul>
+		</div>
     </ul>
     <ul class="navPages-list navPages-list--user">
         {{#if currency_selector.currencies.length '>' 1}}
@@ -44,11 +518,9 @@
                 </div>
             </li>
         {{/if}}
-        {{#if settings.gift_certificates_enabled}}
-            <li class="navPages-item">
-                <a class="navPages-action" href="{{urls.gift_certificate.purchase}}">{{lang 'common.gift_cert'}}</a>
-            </li>
-        {{/if}}
+        <li class="navPages-item">
+            <a class="navPages-action" href="{{urls.gift_certificate.purchase}}">{{lang 'common.gift_cert'}}</a>
+        </li>
         {{#if customer.store_credit.value '>' 0}}
             <li class="navPages-item">
                 <a class="navPages-action navPages-action--storeCredit">
@@ -99,10 +571,7 @@
             </li>
         {{else}}
             <li class="navPages-item">
-                <a class="navPages-action" href="{{urls.auth.login}}">{{lang 'common.login'}}</a>
-                {{#if settings.account_creation_enabled}}
-                    {{lang 'common.or'}} <a class="navPages-action" href="{{urls.auth.create_account}}">{{lang 'common.sign_up'}}</a>
-                {{/if}}
+                <a class="navPages-action" href="{{urls.auth.login}}">{{lang 'common.login'}}</a> {{lang 'common.or'}} <a class="navPages-action" href="{{urls.auth.create_account}}">{{lang 'common.sign_up'}}</a>
             </li>
         {{/if}}
         {{#if theme_settings.social_icon_placement_top}}

@@ -16,7 +16,6 @@ export default class ImageGallery {
 
     setMainImage(imgObj) {
         this.currentImage = _.clone(imgObj);
-
         this.setActiveThumb();
         this.swapMainImage();
     }

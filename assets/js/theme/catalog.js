@@ -5,7 +5,7 @@ import Url from 'url';
 
 export default class CatalogPage extends PageManager {
     onSortBySubmit(event) {
-        const url = Url.parse(window.location.href, true);
+        const url = Url.parse(location.href, true);
         const queryParams = $(event.currentTarget).serialize().split('=');
 
         url.query[queryParams[0]] = queryParams[1];

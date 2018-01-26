@@ -5,7 +5,6 @@ import giftCertCheck from './common/gift-certificate-validator';
 import utils from '@bigcommerce/stencil-utils';
 import ShippingEstimator from './cart/shipping-estimator';
 import { defaultModal } from './global/modal';
-import swal from 'sweetalert2';
 
 export default class Cart extends PageManager {
     loaded(next) {
@@ -32,15 +31,9 @@ export default class Cart extends PageManager {
 
         // Does not quality for min/max quantity
         if (newQty < minQty) {
-            return swal({
-                text: minError,
-                type: 'error',
-            });
+            return alert(minError);
         } else if (maxQty > 0 && newQty > maxQty) {
-            return swal({
-                text: maxError,
-                type: 'error',
-            });
+            return alert(maxError);
         }
 
         this.$overlay.show();
@@ -55,24 +48,50 @@ export default class Cart extends PageManager {
                 this.refreshContent(remove);
             } else {
                 $el.val(oldQty);
-                swal({
-                    text: response.data.errors.join('\n'),
-                    type: 'error',
-                });
+                alert(response.data.errors.join('\n'));
             }
         });
     }
+    cartUpdateBtn($target) {
+        const itemId = $target.data('cart-itemid');
+        const $el = $(`#qty-${itemId}`);
+        const oldQty = parseInt($el.val(), 10);
+        const maxQty = parseInt($el.data('quantity-max'), 10);
+        const minQty = parseInt($el.data('quantity-min'), 10);
+        const minError = $el.data('quantity-min-error');
+        const maxError = $el.data('quantity-max-error');
+        const newQty = $target.data('action') === 'inc' ? oldQty + 1 : oldQty - 0;
 
+        // Does not quality for min/max quantity
+        if (newQty < minQty) {
+            return alert(minError);
+        } else if (maxQty > 0 && newQty > maxQty) {
+            return alert(maxError);
+        }
+
+        this.$overlay.show();
+
+        utils.api.cart.itemUpdate(itemId, newQty, (err, response) => {
+            this.$overlay.hide();
+
+            if (response.data.status === 'succeed') {
+                // if the quantity is changed "1" from "0", we have to remove the row.
+                const remove = (newQty === 0);
+
+                this.refreshContent(remove);
+            } else {
+                $el.val(oldQty);
+                alert(response.data.errors.join('\n'));
+            }
+        });
+    }
     cartRemoveItem(itemId) {
         this.$overlay.show();
         utils.api.cart.itemRemove(itemId, (err, response) => {
             if (response.data.status === 'succeed') {
                 this.refreshContent(true);
             } else {
-                swal({
-                    text: response.data.errors.join('\n'),
-                    type: 'error',
-                });
+                alert(response.data.errors.join('\n'));
             }
         });
     }
@@ -102,10 +121,7 @@ export default class Cart extends PageManager {
                 const data = result.data || {};
 
                 if (err) {
-                    swal({
-                        text: err,
-                        type: 'error',
-                    });
+                    alert(err);
                     return false;
                 }
 
@@ -164,6 +180,7 @@ export default class Cart extends PageManager {
     bindCartEvents() {
         const debounceTimeout = 400;
         const cartUpdate = _.bind(_.debounce(this.cartUpdate, debounceTimeout), this);
+        const cartUpdateBtn = _.bind(_.debounce(this.cartUpdateBtn, debounceTimeout), this);
         const cartRemoveItem = _.bind(_.debounce(this.cartRemoveItem, debounceTimeout), this);
 
         // cart update
@@ -175,19 +192,29 @@ export default class Cart extends PageManager {
             // update cart quantity
             cartUpdate($target);
         });
+     // cart update
+        $('[data-cart-update-button]', this.$cartContent).on('click', (event) => {
+            const $target = $(event.currentTarget);
 
+            event.preventDefault();
+
+            // update cart quantity
+            cartUpdateBtn($target);
+        });
         $('.cart-remove', this.$cartContent).on('click', (event) => {
             const itemId = $(event.currentTarget).data('cart-itemid');
-            const string = $(event.currentTarget).data('confirm-delete');
-            swal({
-                text: string,
-                type: 'warning',
-                showCancelButton: true,
-            }).then(() => {
-                // remove item from cart
-                cartRemoveItem(itemId);
-            });
+            const openTime = new Date();
+            const result = confirm($(event.currentTarget).data('confirm-delete'));
+            const delta = new Date() - openTime;
             event.preventDefault();
+
+            // Delta workaround for Chrome's "prevent popup"
+            if (!result && delta > 10) {
+                return;
+            }
+
+            // remove item from cart
+            cartRemoveItem(itemId);
         });
 
         $('[data-item-edit]', this.$cartContent).on('click', (event) => {
@@ -228,20 +255,14 @@ export default class Cart extends PageManager {
 
             // Empty code
             if (!code) {
-                return swal({
-                    text: $codeInput.data('error'),
-                    type: 'error',
-                });
+                return alert($codeInput.data('error'));
             }
 
             utils.api.cart.applyCode(code, (err, response) => {
                 if (response.data.status === 'success') {
                     this.refreshContent();
                 } else {
-                    swal({
-                        text: response.data.errors.join('\n'),
-                        type: 'error',
-                    });
+                    alert(response.data.errors.join('\n'));
                 }
             });
         });
@@ -272,20 +293,14 @@ export default class Cart extends PageManager {
             event.preventDefault();
 
             if (!giftCertCheck(code)) {
-                return swal({
-                    text: $certInput.data('error'),
-                    type: 'error',
-                });
+                return alert($certInput.data('error'));
             }
 
             utils.api.cart.applyGiftCertificate(code, (err, resp) => {
                 if (resp.data.status === 'success') {
                     this.refreshContent();
                 } else {
-                    swal({
-                        text: resp.data.errors.join('\n'),
-                        type: 'error',
-                    });
+                    alert(resp.data.errors.join('\n'));
                 }
             });
         });

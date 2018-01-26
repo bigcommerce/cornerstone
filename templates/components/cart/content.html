@@ -12,9 +12,9 @@
             <tr class="cart-item" data-item-row>
                 <td class="cart-item-block cart-item-figure">
                     {{#if type '==' 'GiftCertificate'}}
-                        <img class="cart-item-fixed-image lazyload" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{cdn ../../theme_settings.default_image_gift_certificate}}" alt="GiftCertificate" title="GiftCertificate">
+                        <img class="cart-item-fixed-image" src="{{cdn ../../theme_settings.default_image_gift_certificate}}" alt="GiftCertificate" title="GiftCertificate">
                     {{else}}
-                        <img class="cart-item-image lazyload" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{getImage image 'productthumb_size' (cdn ../../theme_settings.default_image_product)}}" alt="{{image.alt}}" title="{{image.alt}}">
+                        <img class="cart-item-image" src="{{getImage image 'productthumb_size' (cdn ../../theme_settings.default_image_product)}}" alt="{{image.alt}}" title="{{image.alt}}">
                     {{/if}}
                 </td>
                 <td class="cart-item-block cart-item-title">
@@ -22,9 +22,9 @@
                         <p class="cart-item-brand">{{brand.name}}</p>
                     {{/if}}
                     <h4 class="cart-item-name"><a href="{{url}}">{{name}}</a></h4>
-                    {{#if release_date}}
-                        <p>({{release_date}})</p>
-                    {{/if}}
+                    <div class="release-message">
+	                    {{release_date}}
+                    </div>
 
                     {{#if configurable_fields}}
                         <dl class="definitionList">
@@ -93,13 +93,8 @@
 
                     <label class="form-label cart-item-label" for="qty-{{id}}">{{lang 'products.quantity'}}</label>
                     <div class="form-increment">
-                        {{# if can_modify}}
-                            <button class="button button--icon" data-cart-update data-cart-itemid="{{id}}" data-action="dec">
-                                <span class="is-srOnly">{{lang 'products.quantity_decrease'}}</span>
-                                <i class="icon" aria-hidden="true"><svg><use xlink:href="#icon-keyboard-arrow-down" /></svg></i>
-                            </button>
-                        {{/if}}
-                        <input class="form-input form-input--incrementTotal"
+	                    
+	                    <input class="form-input form-input--incrementTotal"
                                id="qty-{{id}}"
                                name="qty-{{id}}"
                                type="tel"
@@ -112,11 +107,21 @@
                                pattern="[0-9]*"
                                aria-live="polite"{{#unless can_modify}} disabled{{/unless}}>
                         {{# if can_modify}}
-                            <button class="button button--icon" data-cart-update data-cart-itemid="{{id}}" data-action="inc">
+                            <button class="button button--icon qty-arrow-up" data-cart-update data-cart-itemid="{{id}}" data-action="inc">
                                 <span class="is-srOnly">{{lang 'products.quantity_increase'}}</span>
                                 <i class="icon" aria-hidden="true"><svg><use xlink:href="#icon-keyboard-arrow-up" /></svg></i>
                             </button>
                         {{/if}}
+                        {{# if can_modify}}
+                            <button class="button button--icon qty-arrow-down" data-cart-update data-cart-itemid="{{id}}" data-action="dec">
+                                <span class="is-srOnly">{{lang 'products.quantity_decrease'}}</span>
+                                <i class="icon" aria-hidden="true"><svg><use xlink:href="#icon-keyboard-arrow-down" /></svg></i>
+                            </button>
+                        {{/if}}
+                        <button class="button button--primary button-cart-update" data-cart-update-button data-cart-itemid="{{id}}" data-action="{{quantity}}">
+                            <span>Update</span>
+                        </button>
+                        
                     </div>
 
                 </td>

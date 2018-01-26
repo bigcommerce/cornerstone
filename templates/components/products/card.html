@@ -16,42 +16,36 @@
                 </div>
             {{/if}}
         {{/or}}
-        {{#if demo}}
-            <div class="card-img-container">
-                <img class="card-image lazyload" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{getImage image 'productgallery_size' (cdn theme_settings.default_image_product)}}" alt="{{image.alt}}" title="{{image.alt}}">
-            </div>
-        {{else}}
-            <a href="{{url}}">
-                <div class="card-img-container">
-                    <img class="card-image lazyload" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{getImage image 'productgallery_size' (cdn theme_settings.default_image_product)}}" alt="{{image.alt}}" title="{{image.alt}}">
-                </div>
-            </a>
-        {{/if}}
+        <a class="card-image-link" href="{{url}}">
+            <img class="card-image" src="{{getImage image 'productgallery_size' (cdn theme_settings.default_image_product)}}" alt="{{image.alt}}" title="{{image.alt}}">
+        </a>
         <figcaption class="card-figcaption">
             <div class="card-figcaption-body">
                 {{#unless hide_product_quick_view}}
                     {{#if theme_settings.show_product_quick_view}}
-                        {{#unless demo}}
-                            <a href="#" class="button button--small card-figcaption-button quickview" data-product-id="{{id}}">{{lang 'products.quick_view'}}</a>
-                        {{/unless}}
+                        <a href="#" class="button button--small card-figcaption-button quickview" data-product-id="{{id}}">{{lang 'products.quick_view'}}</a>
                     {{/if}}
                 {{/unless}}
                 {{#if show_compare}}
-                    <label class="button button--small card-figcaption-button" for="compare-{{id}}">
+                    <label style="display: none;"  class="button button--small card-figcaption-button" for="compare-{{id}}">
                         {{lang 'products.compare'}} <input type="checkbox" name="products[]" value="{{id}}" id="compare-{{id}}" data-compare-id="{{id}}">
                     </label>
                 {{/if}}
                 {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
                     {{#if show_cart_action}}
-                        {{#if has_options}}
+
+                        <!--{{#if has_options}}
                             <a href="{{url}}" class="button button--small card-figcaption-button" data-product-id="{{id}}">{{lang 'products.choose_options'}}</a>
-                        {{/if}}
+                        {{/if}}-->
+                        
                         {{#if pre_order}}
-                            <a href="{{pre_order_add_to_cart_url}}" class="button button--small card-figcaption-button">{{lang 'products.pre_order'}}</a>
+                            <a href="{{url}}" class="button button--small card-figcaption-button pre-order-btn">{{lang 'products.pre_order'}}</a>
                         {{/if}}
+
                         {{#if add_to_cart_url }}
                             <a href="{{add_to_cart_url}}" class="button button--small card-figcaption-button">{{lang 'products.add_to_cart'}}</a>
                         {{/if}}
+
                         {{#if out_of_stock_message }}
                             <a href="{{url}}" class="button button--small card-figcaption-button" data-product-id="{{id}}">{{out_of_stock_message}}</a>
                         {{/if}}
@@ -68,24 +62,58 @@
                 </span>
             </p>
         {{/if}}
+        {{!-- 
         {{#if brand.name}}
             <p class="card-text" data-test-info-type="brandName">{{brand.name}}</p>
         {{/if}}
-        <h4 class="card-title">
-            {{#if demo}}
-                {{name}}
-            {{else}}
-                <a href="{{url}}">{{name}}</a>
-            {{/if}}
-        </h4>
+        --}}
 
         <div class="card-text" data-test-info-type="price">
             {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
-                {{> components/products/price price=price}}
+                {{> components/products/price price=price customer=customer}}
             {{else}}
                 {{> components/common/login-for-pricing}}
             {{/or}}
         </div>
-        {{> components/products/bulk-discount-rates}}
+        <h4 class="card-title-gv">
+            <a href="{{url}}">{{name}}</a>
+        </h4>
+        <div class="card-sku">SKU: <span class="data-sku">{{sku}}</span></div>
+        
+		
+	    <span id="{{sku}}" class="in-stock-message card-stock-message">Fetching Stock Data...</span>
+		{{!-- 
+		{{#if custom_fields}}
+			{{#each custom_fields}}
+				<div class="currentInventory" style="display: none">{{value}}</div>
+			{{/each}}
+		{{/if}}
+		
+		--}}
+    </div>
+    <div class="bottomCard">
+        <div class="customQty col-xs-12 col-sm-12 col-md-12 col-lg-5">
+	        <span>Qty <input type="text" value="1" class="qtyinput" name="qtyinput"></span>
+        </div>
+        <div class="addToCartWrap col-xs-12 col-sm-12 col-md-12 col-lg-7">
+    	<!--	<a href="{{add_to_cart_url}}" class="button button--small card-figcaption-button customAddCart">{{lang 'products.add_to_cart'}}</a>-->
+    		{{#if show_cart_action}}
+                {{#if has_options}}
+                    <a href="{{url}}" class="button button--small card-figcaption-button customAddCart" data-product-id="{{id}}">{{lang 'products.choose_options'}}</a>
+                {{/if}}
+                {{#if pre_order}}
+                    <a href="/cart.php?action=add&product_id={{id}}" class="button button--small card-figcaption-button customAddCart pre-order-btn">{{lang 'products.pre_order'}}</a>
+                    
+                {{/if}}
+                {{#if add_to_cart_url }}
+                    <a href="{{add_to_cart_url}}" class="button button--small card-figcaption-button customAddCart">{{lang 'products.add_to_cart'}}</a>
+                {{/if}}
+                {{#if out_of_stock_message }}
+                    <a href="{{url}}" class="button button--small card-figcaption-button customAddCart" data-product-id="{{id}}">{{out_of_stock_message}}</a>
+                {{/if}}
+            {{/if}}
+
+    		
+        </div>
     </div>
 </article>

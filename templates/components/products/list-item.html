@@ -1,6 +1,6 @@
 <article class="listItem">
     <figure class="listItem-figure">
-        <img class="listItem-image lazyload" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{getImage image 'productgallery_size' (cdn theme_settings.default_image_product)}}" alt="{{image.alt}}" title="{{image.alt}}">
+        <img class="listItem-image" src="{{getImage image 'productgallery_size' (cdn theme_settings.default_image_product)}}" alt="{{image.alt}}" title="{{image.alt}}">
         {{#unless hide_product_quick_view}}
             {{#if theme_settings.show_product_quick_view}}
                 <div class="listItem-figureBody">
@@ -26,27 +26,20 @@
                 {{/if}}
             </div>
             <div class="listItem-actions">
-                {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
-                    {{#if price}}
-                        <div class="listItem-price">{{> components/products/price price=price}}</div>
-                    {{/if}}
-                    {{#if show_cart_action}}
-                        {{#if has_options}}
-                            <a href="{{url}}" class="button button--small" data-product-id="{{id}}">{{lang 'products.choose_options'}}</a>
-                        {{/if}}
-                        {{#if pre_order}}
-                            <a href="{{pre_order_add_to_cart_url}}" class="button button--primary">{{lang 'products.pre_order'}}</a>
-                        {{/if}}
-                        {{#if add_to_cart_url }}
-                            <a href="{{add_to_cart_url}}" class="button button--primary">{{lang 'products.add_to_cart'}}</a>
-                        {{/if}}
+                {{#if price}}
+                    <div class="listItem-price">{{> components/products/price price=price}}</div>
+                {{/if}}
+                {{#unless hide_add_to_cart}}
+                    {{#if has_options}}
+                        <a href="{{url}}" class="button button--primary" data-product-id="{{id}}">{{lang "products.choose_options"}}</a>
+                    {{else}}
                         {{#if out_of_stock_message }}
-                            <a href="{{url}}" class="button button--small" data-product-id="{{id}}">{{out_of_stock_message}}</a>
+                        <span href="{{url}}" class="button button--primary">{{out_of_stock_message}}</span>
+                        {{else}}
+                        <a href="{{add_to_cart_url}}" class="button button--primary">{{lang "products.add_to_cart"}}</a>
                         {{/if}}
                     {{/if}}
-                {{else}}
-                    {{> components/common/login-for-pricing}}
-                {{/or}}
+                {{/unless}}
                 {{#if show_compare}}
                     <label class="button button--small" for="compare-{{id}}">
                         {{lang "products.compare"}} <input type="checkbox" name="products[]" value="{{id}}" id="compare-{{id}}" data-compare-id="{{id}}">

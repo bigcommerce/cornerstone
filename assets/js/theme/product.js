@@ -8,7 +8,7 @@ import collapsibleFactory from './common/collapsible';
 import ProductDetails from './common/product-details';
 import videoGallery from './product/video-gallery';
 import { classifyForm } from './common/form-utils';
-
+import { defaultModal } from './global/modal';
 export default class Product extends PageManager {
     constructor(context) {
         super(context);
@@ -17,24 +17,21 @@ export default class Product extends PageManager {
     }
 
     before(next) {
-        // Listen for foundation modal close events to sanitize URL after review.
+    // Listen for foundation modal close events to sanitize URL after review.
         $(document).on('close.fndtn.reveal', () => {
             if (this.url.indexOf('#write_review') !== -1 && typeof window.history.replaceState === 'function') {
                 window.history.replaceState(null, document.title, window.location.pathname);
             }
         });
-
         next();
     }
 
     loaded(next) {
         let validator;
-
         // Init collapsible
         collapsibleFactory();
-
+        defaultModal();
         this.productDetails = new ProductDetails($('.productView'), this.context, window.BCData.product_attributes);
-
         videoGallery();
 
         const $reviewForm = classifyForm('.writeReview-form');
@@ -52,13 +49,11 @@ export default class Product extends PageManager {
 
             return false;
         });
-
         next();
     }
 
     after(next) {
         this.productReviewHandler();
-
         next();
     }
 

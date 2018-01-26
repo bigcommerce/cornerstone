@@ -156,7 +156,7 @@ class FacetedSearch {
         const id = $navList.attr('id');
 
         // Toggle depending on `collapsed` flag
-        if (_.includes(this.collapsedFacetItems, id)) {
+        if (_.contains(this.collapsedFacetItems, id)) {
             this.getMoreFacetResults($navList);
 
             return true;
@@ -266,7 +266,7 @@ class FacetedSearch {
         $navLists.each((index, navList) => {
             const $navList = $(navList);
             const id = $navList.attr('id');
-            const shouldCollapse = _.includes(this.collapsedFacetItems, id);
+            const shouldCollapse = _.contains(this.collapsedFacetItems, id);
 
             if (shouldCollapse) {
                 this.collapseFacetItems($navList);
@@ -283,7 +283,7 @@ class FacetedSearch {
             const $accordionToggle = $(accordionToggle);
             const collapsible = $accordionToggle.data('collapsible-instance');
             const id = collapsible.targetId;
-            const shouldCollapse = _.includes(this.collapsedFacets, id);
+            const shouldCollapse = _.contains(this.collapsedFacets, id);
 
             if (shouldCollapse) {
                 this.collapseFacet($accordionToggle);
@@ -363,7 +363,7 @@ class FacetedSearch {
     }
 
     onSortBySubmit(event) {
-        const url = Url.parse(window.location.href, true);
+        const url = Url.parse(location.href, true);
         const queryParams = $(event.currentTarget).serialize().split('=');
 
         url.query[queryParams[0]] = queryParams[1];
@@ -381,7 +381,7 @@ class FacetedSearch {
             return;
         }
 
-        const url = Url.parse(window.location.href);
+        const url = Url.parse(location.href);
         const queryParams = decodeURI($(event.currentTarget).serialize());
 
         urlUtils.goToUrl(Url.format({ pathname: url.pathname, search: `?${queryParams}` }));

@@ -57,27 +57,26 @@ export default class {
         }
     }
 
-    registerValidation(context) {
-        this.context = context;
+    registerValidation() {
         this.validator.add([{
             selector: '[name="revrating"]',
             validate: 'presence',
-            errorMessage: this.context.reviewRating,
+            errorMessage: 'The \'Rating\' field cannot be blank.',
         }, {
             selector: '[name="revtitle"]',
             validate: 'min-length:2',
-            errorMessage: this.context.reviewSubject,
+            errorMessage: 'The \'Review Subject\' field cannot be blank.',
         }, {
             selector: '[name="revtext"]',
             validate: 'min-length:2',
-            errorMessage: this.context.reviewComment,
+            errorMessage: 'The \'Comments\' field cannot be blank.',
         }, {
             selector: '[name="email"]',
             validate: (cb, val) => {
                 const result = forms.email(val);
                 cb(result);
             },
-            errorMessage: this.context.reviewEmail,
+            errorMessage: 'Please use a valid email address, such as user@example.com.',
         }]);
 
         return this.validator;

@@ -1,8 +1,8 @@
 ---
 category:
-    shop_by_price: true
+    shop_by_price: false
     products:
-        limit: {{theme_settings.categorypage_products_per_page}}
+        limit: 20
 ---
 {{inject "categoryProductsPerPage" theme_settings.categorypage_products_per_page}}
 {{#partial "head"}}
@@ -18,31 +18,18 @@ category:
 
 {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
 {{#if category.image}}
-    <img class="lazyload" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{getImage category.image 'zoom_size'}}">
+    <img src="{{getImage category.image 'zoom_size'}}">
 {{/if}}
-<h1 class="page-heading">{{category.name}}</h1>
+<div class="cat-header">
+<h1 class="page-heading cat-page-heading">{{category.name}}</h1>
+</div>
+
+
 {{{category.description}}}
 {{{snippet 'categories'}}}
 <div class="page">
-    {{#or category.subcategories category.faceted_search_enabled}}
-        <aside class="page-sidebar" id="faceted-search-container">
-            {{> components/category/sidebar}}
-        </aside>
-    {{else}}
-        {{#if theme_settings.shop_by_price_visible}}
-            <aside class="page-sidebar" id="faceted-search-container">
-                {{> components/category/sidebar}}
-            </aside>
-        {{/if}}
-    {{/or}}
-    <main class="page-content" id="product-listing-container">
-        {{#if category.products}}
-            {{> components/category/product-listing}}
-        {{else}}
-            <p>{{lang 'categories.no_products'}}</p>
-        {{/if}}
-    </main>
+    
+<script src="{{{theme_settings.isplus_category_url}}}{{{category.id}}}"></script>
 </div>
-
 {{/partial}}
 {{> layout/base}}

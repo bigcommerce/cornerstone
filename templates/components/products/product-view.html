@@ -28,13 +28,10 @@
                 {{/or}}
             </div>
             {{{region name="product_below_price"}}}
-            <div class="productView-rating"{{#if schema}} itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating"{{/if}}>
+            <div class="productView-rating">
                 {{#if settings.show_product_rating}}
                     {{#if product.num_reviews '>' 0}}
                         {{#if schema}}
-                            <meta itemprop="ratingValue" content="{{product.rating}}">
-                            <meta itemprop="ratingCount" content="{{product.num_reviews}}">
-                            <meta itemprop="reviewCount" content="{{product.num_reviews}}">
                         {{/if}}
                     {{/if}}
                     {{> components/products/ratings rating=product.rating}}
@@ -172,8 +169,16 @@
                 {{/if}}
 
                 {{#each product.custom_fields}}
+                	{{#unless name '===' 'Current Inventory'}}
                     <dt class="productView-info-name">{{name}}:</dt>
+                    {{#if name '===' 'Product Line'}}
+                    <a href="#" data-reveal-id="myModal"><dd class="productView-info-value">{{{value}}} <span style="" class=" infoColor glyphicon glyphicon-info-sign" aria-hidden="true"></span></dd></a>
+                    {{else}}
                     <dd class="productView-info-value">{{{value}}}</dd>
+                    {{/if}}
+                    
+                    {{/unless}}
+                    
                 {{/each}}
             </dl>
         </div>
@@ -217,9 +222,11 @@
 
     <section class="productView-details">
         <div class="productView-options">
+            {{!--
             {{#if product.release_date }}
                 <p>{{product.release_date}}</p>
             {{/if}}
+            --}}
             <form class="form" method="post" action="{{product.cart_url}}" enctype="multipart/form-data"
                   data-cart-item-add>
                 <input type="hidden" name="action" value="add">
@@ -241,16 +248,7 @@
                         <span data-product-stock>{{product.stock_level}}</span>
                     </label>
                 </div>
-                {{#if product.can_purchase}}
-                    {{> components/products/add-to-cart}}
-                {{/if}}
-                {{#if product.out_of_stock}}
-                    {{#if product.out_of_stock_message}}
-                        {{> components/common/alert-error product.out_of_stock_message}}
-                    {{else}}
-                        {{> components/common/alert-error (lang 'products.sold_out')}}
-                    {{/if}}
-                {{/if}}
+                {{> components/products/add-to-cart}}
             </form>
             {{#if settings.show_wishlist}}
                 <form class="form" method="post" action="{{product.add_to_wishlist_url}}" data-wishlist-add>
@@ -264,15 +262,26 @@
         {{> components/common/share}}
         {{{snippet 'product_details'}}}
     </section>
-
-    <article class="productView-description"{{#if schema}} itemprop="description"{{/if}}>
-        {{#if theme_settings.show_product_details_tabs}}
-            {{> components/products/description-tabs}}
-        {{else}}
-            {{> components/products/description}}
-        {{/if}}
-    </article>
+	<div class="bottomProductView">
+		<article class="bottomProductDesc col-md-6 col-md-push-6"{{#if schema}} itemprop="description"{{/if}}>
+	        {{#if theme_settings.show_product_details_tabs}}
+	            {{> components/products/description-tabs}}
+	        {{else}}
+	            {{> components/products/description}}
+	        {{/if}}
+	    </article>
+		<section class="bottomCarousel col-md-6 col-md-pull-6">
+		{{> components/products/tabs}}
+		</section>
+	    
+	</div>
 </div>
+
+
+<!-- Info Modal -->
+
+{{> components/products/gv_product_levels}}
+
 
 <div id="previewModal" class="modal modal--large" data-reveal>
     <a href="#" class="modal-close" aria-label="{{lang 'common.close'}}" role="button">

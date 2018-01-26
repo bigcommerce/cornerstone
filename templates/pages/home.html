@@ -23,19 +23,137 @@ blog:
     {{#each shipping_messages}}
         {{> components/common/alert-info message}}
     {{/each}}
+    
 
 <div class="main full">
-    {{#if products.featured}}
-        {{> components/products/featured products=products.featured columns=theme_settings.homepage_featured_products_column_count}}
-    {{/if}}
+	<div class="homeContent">
+		<div class="bottomCarouselBanner">
+			<div class="bottomCarouselSection free--shipping col-xs-4 col-sm-4 col-md-4 col-lg-4">
+				<div class="bottomCarouselContent">
+					<div class="icons col-xs-12 col-sm-12 col-md-3 col-lg-3">
+						<!-- <img src="{{cdn '/assets/img/trucks--icon.jpg'}}" /> -->
+						<a href="/shipping-policy/"><i class="fa fa-truck" aria-hidden="true"></i></a>
+					</div>
+					<div class="info col-xs-12 col-sm-12 col-md-9 col-lg-9">
+						<h4>Free Shipping</h4>
+						<p>We offer free shipping on orders over $500</p>
+						<a href="/shipping-policy/">Learn More</a>
+					</div>
+				</div>
+			</div>
+			<div class="bottomCarouselSection lifetime--returns col-xs-4 col-sm-4 col-md-4 col-lg-4">
+				<div class="bottomCarouselContent">
+					<div class="icons col-xs-12 col-sm-12 col-md-3 col-lg-3">
+						<!-- <img src="{{cdn '/assets/img/return--icon.jpg'}}" /> -->
+						<a href="/returns/"><i class="fa fa-refresh" aria-hidden="true"></i></a>
+					</div>
+					<div class="info col-xs-12 col-sm-12 col-md-9 col-lg-9">
+						<h4>Lifetime Returns</h4>
+						<p>We offer lifetime returns on our products!</p>
+						<a href="/returns/">Learn More</a>
+					</div>
+				</div>
+			</div>
+			<div class="bottomCarouselSection reward--points col-xs-4 col-sm-4 col-md-4 col-lg-4">
+				<div class="bottomCarouselContent">
+					<div class="icons col-xs-12 col-sm-12 col-md-3 col-lg-3">
+						<!-- <img src="{{cdn '/assets/img/same-day--icon.jpg'}}" /> -->
+						<a href="/same-day-guarantee/"><i class="fa fa-clock-o" aria-hidden="true"></i></a>
+					</div>
+					<div class="info col-xs-12 col-sm-12 col-md-9 col-lg-9">
+						<h4>Same-day Guarantee</h4>
+						<p>Orders shipped the same day when placed by our deadlines</p>
+						<a href="/same-day-guarantee/">Learn More</a>
+					</div>
+				</div>
+			</div>
+		</div>
 
-    {{#if products.top_sellers}}
-        {{> components/products/top products=products.top_sellers columns=theme_settings.homepage_top_products_column_count}}
-    {{/if}}
+		<div class="homepage-products">
+			<div class="container">
+			   	<div class="head-tabs-wrapper">
+					<ul data-tab="" class="tabs">
+					    {{#if products.featured}}
+			            <li class="tab is-active">
+			                <a href="#featured" class="tab-title" aria-selected="true" tabindex="0">Featured Items</a>
+			            </li>
+			             {{/if}}
+			             
+			             {{#if products.top_sellers}}
+			            <li class="tab">
+			                <a href="#top-seller" class="tab-title" aria-selected="" tabindex="0">Top Sellers</a>
+			            </li>
+			             {{/if}}
+			             
+			            <!--
+			            <li class="tab">
+			                <a href="#new-arrivals" class="tab-title" tabindex="0">New Products</a>
+			            </li>
+			            -->
+			        </ul>
+				</div>
+				
+				
+		        <div class="tabs-contents">
+		             {{#if products.featured}}
+		            <div id="featured" class="tab-content is-active" aria-hidden="false">
+					   
+					        {{> components/products/top products=products.featured columns=theme_settings.homepage_top_products_column_count}}
+					    
+		            </div>
+		            {{/if}}
+		            {{#if products.top_sellers}}
+		            <div id="top-seller" class="tab-content" aria-hidden="false">
+					   
+					        {{> components/products/top products=products.top_sellers columns=theme_settings.homepage_top_products_column_count}}
+					    
+		            </div>
+		            {{/if}}
+		            <!--
+		            <div id="new-arrivals" class="tab-content">
+		            {{!--
+						{{#if products.new}}
+							{{> components/products/new products=products.new columns=theme_settings.homepage_new_products_column_count}}
+						{{/if}}
+						--}}
+		            </div>
+		            -->
+		  
+<!-- 		            <div id="on-sale" class="tab-content"></div> -->
+		        </div>
+	   		</div>
+		</div>
+        
+    <script type="text/javascript">
+        function checkIfISLoaded(){
+            //console.log("Checking if loaded..");
+            contents = document.getElementById("isp-related-widget-1").textContent;
+            //console.log("contents:",contents);
+            if (contents==""){
+                setTimeout(checkIfISLoaded,5);
+            }else{
+                document.getElementById("on-sale").classList.remove("is-active");
+                document.getElementById("new-products").classList.remove("is-active");
+            }
+        }
+        //checkIfISLoaded();
+    </script>
 
-    {{#if products.new}}
-        {{> components/products/new products=products.new columns=theme_settings.homepage_new_products_column_count}}
-    {{/if}}
+    <!--<script src="https://acp-magento.appspot.com/js/isp_related_products.js?v=1.0.8&UUID=12302bb3-194f-4a8b-9f02-9891e89ef7c5&store=1"></script> -->
+		{{#if banners.bottom}}
+		<div class="banners" data-banner-location="bottom">
+		    <div class="banner">
+		        {{{limit banners.bottom 1}}}
+		    </div>
+		</div>
+		{{/if}}
+		
+	</div>
 </div>
 {{/partial}}
 {{> layout/base}}
+<style>
+.body {
+	margin-top: 0rem;
+}
+</style>

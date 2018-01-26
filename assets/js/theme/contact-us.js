@@ -23,7 +23,7 @@ export default class ContactUs extends PageManager {
 
                     cb(result);
                 },
-                errorMessage: this.context.contactEmail,
+                errorMessage: 'Please use a valid email address, such as user@example.com.',
             },
             {
                 selector: `${formSelector} textarea[name="contact_question"]`,
@@ -32,7 +32,7 @@ export default class ContactUs extends PageManager {
 
                     cb(result);
                 },
-                errorMessage: this.context.contactQuestion,
+                errorMessage: 'You must enter your question.',
             },
         ]);
 

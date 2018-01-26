@@ -13,9 +13,7 @@
                 <th class="compareTable-product">
                     <article class="card">
                         <figure class="card-figure">
-                            <div class="card-img-container">
-                                <img class="card-image lazyload" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{getImage image 'product_size' (cdn theme_settings.default_image_product)}}" alt="{{image.alt}}" title="{{image.alt}}">
-                            </div>
+                            <img class="card-image" src="{{getImage image 'product_size' (cdn theme_settings.default_image_product)}}" alt="{{image.alt}}" title="{{image.alt}}">
                             <a class="compareTable-removeProduct" data-comparison-remove href="{{#if remove_url}}{{remove_url}}{{else}}#{{/if}}">
                                 <svg class="icon">
                                     <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use>
@@ -30,11 +28,7 @@
                                 <a href="{{url}}">{{ name }}</a>
                             </h4>
                             {{#or ../customer (if ../theme_settings.restrict_to_login '!==' true)}}
-                                {{#if price_range}}
-                                    {{> components/products/price-range}}
-                                {{else}}
-                                    {{> components/products/price price=price}}
-                                {{/if}}
+                                {{> components/products/price price=price}}
                             {{else}}
                                 {{> components/common/login-for-pricing}}
                             {{/or}}

@@ -28,12 +28,12 @@ product:
     <div itemscope itemtype="http://schema.org/Product">
         {{> components/amp/products/product-view schema=true}}
     </div>
-    {{#if theme_settings.amp_analytics_id}}
+    {{#if settings.amp_analytics_id}}
         <amp-analytics type="googleanalytics">
             <script type="application/json">
             {
                 "vars": {
-                    "account": "{{theme_settings.amp_analytics_id}}"
+                    "account": "{{settings.amp_analytics_id}}"
                 },
                 "extraUrlParams": {
                     "cd1": "{{page_type}}",

@@ -20,7 +20,7 @@ export default function () {
             .toggleClass('countPill--positive', quantity > 0);
     });
 
-    $cart.on('click', (event) => {
+    $cart.on('click', event => {
         const options = {
             template: 'common/cart-preview',
         };

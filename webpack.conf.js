@@ -36,7 +36,11 @@ module.exports = {
                         ],
                     }
                 }
-            }
+            },
+            {
+                test: /jquery-migrate/,
+                use: 'imports-loader?define=>false',
+            },
         ],
     },
     output: {
@@ -68,6 +72,7 @@ module.exports = {
             'async': path.resolve(__dirname, 'node_modules/async/dist/async.min.js'),
             'html5-history-api': path.resolve(__dirname, 'node_modules/html5-history-api/history.min.js'),
             jquery: path.resolve(__dirname, 'node_modules/jquery/dist/jquery.min.js'),
+            'jquery-migrate': path.resolve(__dirname, 'node_modules/jquery-migrate/dist/jquery-migrate.min.js'),
             'jquery-zoom': path.resolve(__dirname, 'node_modules/jquery-zoom/jquery.zoom.min.js'),
             jstree: path.resolve(__dirname, 'node_modules/jstree/dist/jstree.min.js'),
             'pace': path.resolve(__dirname, 'node_modules/pace/pace.min.js'),

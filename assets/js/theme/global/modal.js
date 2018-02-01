@@ -226,7 +226,7 @@ export default function modalFactory(selector = '[data-reveal]', options = {}) {
 
     return $modals.map((index, element) => {
         const $modal = $(element);
-        const instanceKey = 'modal-instance';
+        const instanceKey = 'modalInstance';
         const cachedModal = $modal.data(instanceKey);
 
         if (cachedModal instanceof Modal) {

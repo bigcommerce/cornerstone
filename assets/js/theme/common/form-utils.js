@@ -279,7 +279,7 @@ const Validators = {
      * @param field
      */
     cleanUpStateValidation: (field) => {
-        const $fieldClassElement = $((`[data-type="${field.data('field-type')}"]`));
+        const $fieldClassElement = $((`[data-type="${field.data('fieldType')}"]`));
 
         Object.keys(nod.classes).forEach((value) => {
             if ($fieldClassElement.hasClass(nod.classes[value])) {

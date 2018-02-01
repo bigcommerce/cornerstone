@@ -64,7 +64,7 @@ export default class Product extends PageManager {
 
     productReviewHandler() {
         if (this.url.indexOf('#write_review') !== -1) {
-            this.$reviewLink.click();
+            this.$reviewLink.trigger('click');
         }
     }
 }

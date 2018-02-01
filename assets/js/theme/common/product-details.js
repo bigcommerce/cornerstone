@@ -23,11 +23,11 @@ export default class ProductDetails {
         const $productOptionsElement = $('[data-product-option-change]', $form);
         const hasOptions = $productOptionsElement.html().trim().length;
 
-        $productOptionsElement.change(event => {
+        $productOptionsElement.on('change', event => {
             this.productOptionsChanged(event);
         });
 
-        $form.submit(event => {
+        $form.on('submit', event => {
             this.addProductToCart(event, $form[0]);
         });
 
@@ -142,13 +142,13 @@ export default class ProductDetails {
      *
      */
     listenQuantityChange() {
-        this.$scope.on('click', '[data-quantity-change] button', (event) => {
+        this.$scope.on('click', '[data-quantity-change] button', event => {
             event.preventDefault();
             const $target = $(event.currentTarget);
             const viewModel = this.getViewModel(this.$scope);
             const $input = viewModel.quantity.$input;
-            const quantityMin = parseInt($input.data('quantity-min'), 10);
-            const quantityMax = parseInt($input.data('quantity-max'), 10);
+            const quantityMin = parseInt($input.data('quantityMin'), 10);
+            const quantityMax = parseInt($input.data('quantityMax'), 10);
 
             let qty = parseInt($input.val(), 10);
 
@@ -297,7 +297,7 @@ export default class ProductDetails {
             const $body = $('body');
             const $cartQuantity = $('[data-cart-quantity]', modal.$content);
             const $cartCounter = $('.navUser-action .cart-count');
-            const quantity = $cartQuantity.data('cart-quantity') || 0;
+            const quantity = $cartQuantity.data('cartQuantity') || 0;
 
             $cartCounter.addClass('cart-count--positive');
             $body.trigger('cart-quantity-update', quantity);
@@ -412,7 +412,7 @@ export default class ProductDetails {
 
         $('[data-product-attribute-value]', this.$scope).each((i, attribute) => {
             const $attribute = $(attribute);
-            const attrId = parseInt($attribute.data('product-attribute-value'), 10);
+            const attrId = parseInt($attribute.data('productAttributeValue'), 10);
 
 
             if (inStockIds.indexOf(attrId) !== -1) {
@@ -466,7 +466,7 @@ export default class ProductDetails {
         if (behavior === 'hide_option') {
             $attribute.toggleOption(true);
         } else {
-            $attribute.removeAttr('disabled');
+            $attribute.prop('disabled', false);
             $attribute.html($attribute.html().replace(outOfStockMessage, ''));
         }
     }
@@ -474,7 +474,7 @@ export default class ProductDetails {
     getAttributeType($attribute) {
         const $parent = $attribute.closest('[data-product-attribute]');
 
-        return $parent ? $parent.data('product-attribute') : null;
+        return $parent ? $parent.data('productAttribute') : null;
     }
 
     /**
@@ -486,12 +486,12 @@ export default class ProductDetails {
 
             // Only bind to click once
             if ($radio.attr('data-state') !== undefined) {
-                $radio.click(() => {
+                $radio.on('click', () => {
                     if ($radio.data('state') === true) {
                         $radio.prop('checked', false);
                         $radio.data('state', false);
 
-                        $radio.change();
+                        $radio.trigger('change');
                     } else {
                         $radio.data('state', true);
                     }

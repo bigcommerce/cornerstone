@@ -14,7 +14,7 @@ export class VideoGallery {
         const $target = $(e.currentTarget);
 
         this.currentVideo = {
-            id: $target.data('video-id'),
+            id: $target.data('videoId'),
             $selectedThumb: $target,
         };
 
@@ -37,7 +37,7 @@ export class VideoGallery {
 }
 
 export default function videoGallery() {
-    const pluginKey = 'video-gallery';
+    const pluginKey = 'videoGallery';
     const $videoGallery = $(`[data-${pluginKey}]`);
 
     $videoGallery.each((index, element) => {

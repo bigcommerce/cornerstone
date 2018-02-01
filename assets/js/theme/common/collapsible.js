@@ -26,10 +26,10 @@ function prependHash(id) {
 
 function optionsFromData($element) {
     return {
-        disabledBreakpoint: $element.data(`${PLUGIN_KEY}-disabled-breakpoint`),
-        disabledState: $element.data(`${PLUGIN_KEY}-disabled-state`),
-        enabledState: $element.data(`${PLUGIN_KEY}-enabled-state`),
-        openClassName: $element.data(`${PLUGIN_KEY}-open-class-name`),
+        disabledBreakpoint: $element.data(`${PLUGIN_KEY}DisabledBreakpoint`),
+        disabledState: $element.data(`${PLUGIN_KEY}DisabledState`),
+        enabledState: $element.data(`${PLUGIN_KEY}EnabledState`),
+        openClassName: $element.data(`${PLUGIN_KEY}OpenClassName`),
     };
 }
 
@@ -221,7 +221,7 @@ export default function collapsibleFactory(selector = `[data-${PLUGIN_KEY}]`, ov
 
     return $collapsibles.map((index, element) => {
         const $toggle = $(element);
-        const instanceKey = `${PLUGIN_KEY}-instance`;
+        const instanceKey = `${PLUGIN_KEY}Instance`;
         const cachedCollapsible = $toggle.data(instanceKey);
 
         if (cachedCollapsible instanceof Collapsible) {
@@ -229,7 +229,7 @@ export default function collapsibleFactory(selector = `[data-${PLUGIN_KEY}]`, ov
         }
 
         const targetId = prependHash($toggle.data(PLUGIN_KEY) ||
-            $toggle.data(`${PLUGIN_KEY}-target`) ||
+            $toggle.data(`${PLUGIN_KEY}Target`) ||
             $toggle.attr('href'));
         const options = _.extend(optionsFromData($toggle), overrideOptions);
         const collapsible = new Collapsible($toggle, $(targetId), options);

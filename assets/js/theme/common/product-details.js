@@ -441,7 +441,7 @@ export default class ProductDetails {
         if (behavior === 'hide_option') {
             $attribute.toggleOption(false);
             // If the attribute is the selected option in a select dropdown, select the first option (MERC-639)
-            if ($attribute.parent().val() === $attribute.attr('value')) {
+            if ($select.val() === $attribute.attr('value')) {
                 $select[0].selectedIndex = 0;
             }
         } else {

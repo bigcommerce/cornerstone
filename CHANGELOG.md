@@ -3,6 +3,7 @@
 ## Draft
 - Fix logo not loading on order confirmation page [#1159](https://github.com/bigcommerce/cornerstone/pull/1159)
 - Add support in Cornerstone to consume AMP ID [#1155](https://github.com/bigcommerce/cornerstone/pull/1155)
+- Fix option selection reset bug when a variation is out of stock [#1160](https://github.com/bigcommerce/cornerstone/pull/1160)
 
 ## 1.12.1 (2018-01-23)
 - Fix event delegation error [#1151](https://github.com/bigcommerce/cornerstone/pull/1151)

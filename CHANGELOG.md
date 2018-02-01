@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Fix "Shop by Price" toggle in theme editor to hide Shop by Price when faceted search is not enabled. [#1161](https://github.com/bigcommerce/cornerstone/pull/1161)
 
 ## 1.13.0 (2018-02-05)
 - Fix logo not loading on order confirmation page [#1159](https://github.com/bigcommerce/cornerstone/pull/1159)

@@ -24,16 +24,10 @@ category:
 {{{category.description}}}
 {{{snippet 'categories'}}}
 <div class="page">
-    {{#or category.subcategories category.faceted_search_enabled}}
+    {{#or category.subcategories category.faceted_search_enabled category.shop_by_price}}
         <aside class="page-sidebar" id="faceted-search-container">
             {{> components/category/sidebar}}
         </aside>
-    {{else}}
-        {{#if theme_settings.shop_by_price_visible}}
-            <aside class="page-sidebar" id="faceted-search-container">
-                {{> components/category/sidebar}}
-            </aside>
-        {{/if}}
     {{/or}}
     <main class="page-content" id="product-listing-container">
         {{#if category.products}}

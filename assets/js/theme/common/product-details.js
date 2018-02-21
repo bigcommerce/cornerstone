@@ -31,16 +31,16 @@ export default class ProductDetails {
             this.addProductToCart(event, $form[0]);
         });
 
-        // Update product attributes. If we're in quick view and the product has options,
-        // then also update the initial view in case items are oos
-        if (_.isEmpty(productAttributesData) && hasOptions) {
+        // Update product attributes. Also update the initial view in case items are oos
+        // or have default variant properties that change the view
+        if (hasOptions) {
             const $productId = $('[name="product_id"]', $form).val();
 
-            utils.api.productAttributes.optionChange($productId, $form.serialize(), (err, response) => {
+            utils.api.productAttributes.optionChange($productId, $form.serialize(), 'products/bulk-discount-rates', (err, response) => {
                 const attributesData = response.data || {};
-
+                const attributesContent = response.content || {};
                 this.updateProductAttributes(attributesData);
-                this.updateView(attributesData);
+                this.updateView(attributesData, attributesContent);
             });
         } else {
             this.updateProductAttributes(productAttributesData);
@@ -77,6 +77,7 @@ export default class ProductDetails {
                 $text: $('.incrementTotal', $scope),
                 $input: $('[name=qty\\[\\]]', $scope),
             },
+            $bulkPricing: $('.productView-info-bulkPricing', $scope),
         };
     }
 
@@ -107,11 +108,11 @@ export default class ProductDetails {
             return;
         }
 
-        utils.api.productAttributes.optionChange(productId, $form.serialize(), (err, response) => {
+        utils.api.productAttributes.optionChange(productId, $form.serialize(), 'products/bulk-discount-rates', (err, response) => {
             const productAttributesData = response.data || {};
-
+            const productAttributesContent = response.content || {};
             this.updateProductAttributes(productAttributesData);
-            this.updateView(productAttributesData);
+            this.updateView(productAttributesData, productAttributesContent);
         });
     }
 
@@ -350,7 +351,7 @@ export default class ProductDetails {
      * Update the view of price, messages, SKU and stock options when a product option changes
      * @param  {Object} data Product attribute data
      */
-    updateView(data) {
+    updateView(data, content = null) {
         const viewModel = this.getViewModel(this.$scope);
 
         this.showMessageBox(data.stock_message || data.purchasing_message);
@@ -392,6 +393,13 @@ export default class ProductDetails {
         } else {
             viewModel.$addToCart.prop('disabled', false);
             viewModel.$increments.prop('disabled', false);
+        }
+
+        // If Bulk Pricing rendered HTML is available
+        if (content) {
+            viewModel.$bulkPricing.html(content);
+        } else {
+            viewModel.$bulkPricing.html('');
         }
     }
 

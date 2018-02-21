@@ -1,11 +1,12 @@
 {{#if bulk_discount_rates.length}}
-    <dt class="productView-info-name">{{lang 'products.bulk_pricing.title'}}</dt>
+    {{#if product}}<dt class="productView-info-name">{{lang 'products.bulk_pricing.title'}}</dt>{{/if}}
     <dd class="productView-info-value">
-        <a href="{{url}}" data-reveal-id="bulkPricingModal-{{id}}-{{$index}}">
+        <a href="{{url}}"
+           {{#unless is_ajax }}data-reveal-id="bulkPricingModal{{#if id}}-{{id}}-{{$index}}{{/if}}">{{/unless}}
             {{lang 'products.bulk_pricing.view'}}
         </a>
     </dd>
-    <div id="bulkPricingModal-{{id}}-{{$index}}" class="modal modal--small" data-reveal>
+    <div id="bulkPricingModal{{#if id}}-{{id}}-{{$index}}{{/if}}" class="modal modal--small" data-reveal>
         <div class="modal-header">
             <h2 class="modal-header-title">{{lang 'products.bulk_pricing.modal_title'}}</h2>
             <a href="#" class="modal-close" aria-label="Close"><span aria-hidden="true">&#215;</span></a>
@@ -13,20 +14,20 @@
         <div class="modal-body">
             <p>{{lang 'products.bulk_pricing.instructions'}}</p>
             <ul>
-            {{#each bulk_discount_rates}}
+                {{#each bulk_discount_rates}}
                 <li>
                     {{lang 'products.bulk_pricing.range' min=min max=max}}
                     {{#if type '===' 'percent'}}
-                        {{lang 'products.bulk_pricing.percent' discount=discount.formatted}}
+                    {{lang 'products.bulk_pricing.percent' discount=discount.formatted}}
                     {{/if}}
                     {{#if type '===' 'fixed'}}
-                        {{lang 'products.bulk_pricing.fixed' discount=discount.formatted}}
+                    {{lang 'products.bulk_pricing.fixed' discount=discount.formatted}}
                     {{/if}}
                     {{#if type '===' 'price'}}
-                        {{lang 'products.bulk_pricing.price' discount=discount.formatted}}
+                    {{lang 'products.bulk_pricing.price' discount=discount.formatted}}
                     {{/if}}
                 </li>
-            {{/each}}
+                {{/each}}
             </ul>
         </div>
     </div>

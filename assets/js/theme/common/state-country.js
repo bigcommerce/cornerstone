@@ -121,7 +121,7 @@ export default function (stateElement, context = {}, options, callback) {
         /* eslint-enable no-param-reassign */
     }
 
-    $('select[data-field-type="Country"]').on('change', (event) => {
+    $('select[data-field-type="Country"]').on('change', event => {
         const countryName = $(event.currentTarget).val();
 
         if (countryName === '') {

@@ -53,9 +53,9 @@ export default class GiftCertificate extends PageManager {
         if ($customAmounts.length) {
             const $element = $purchaseForm.find('input[name="certificate_amount"]');
             const min = $element.data('min');
-            const minFormatted = $element.data('min-formatted');
+            const minFormatted = $element.data('minFormatted');
             const max = $element.data('max');
-            const maxFormatted = $element.data('max-formatted');
+            const maxFormatted = $element.data('maxFormatted');
 
             purchaseValidator.add({
                 selector: '#gift-certificate-form input[name="certificate_amount"]',
@@ -142,7 +142,7 @@ export default class GiftCertificate extends PageManager {
         if ($certBalanceForm.length) {
             const balanceVal = this.checkCertBalanceValidator($certBalanceForm);
 
-            $certBalanceForm.submit(() => {
+            $certBalanceForm.on('submit', () => {
                 balanceVal.performCheck();
 
                 if (!balanceVal.areAll('valid')) {
@@ -151,7 +151,7 @@ export default class GiftCertificate extends PageManager {
             });
         }
 
-        $purchaseForm.submit((event) => {
+        $purchaseForm.on('submit', event => {
             purchaseValidator.performCheck();
 
             if (!purchaseValidator.areAll('valid')) {
@@ -159,7 +159,7 @@ export default class GiftCertificate extends PageManager {
             }
         });
 
-        $('#gift-certificate-preview').click((event) => {
+        $('#gift-certificate-preview').click(event => {
             event.preventDefault();
 
             purchaseValidator.performCheck();
@@ -169,7 +169,7 @@ export default class GiftCertificate extends PageManager {
             }
 
             const modal = defaultModal();
-            const previewUrl = `${$(event.currentTarget).data('preview-url')}&${$purchaseForm.serialize()}`;
+            const previewUrl = `${$(event.currentTarget).data('previewUrl')}&${$purchaseForm.serialize()}`;
 
             modal.open();
 

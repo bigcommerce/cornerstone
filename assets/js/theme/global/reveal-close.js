@@ -1,6 +1,6 @@
 import $ from 'jquery';
 
-const revealCloseAttr = 'reveal-close';
+const revealCloseAttr = 'revealClose';
 const revealCloseSelector = `[data-${revealCloseAttr}]`;
 const revealSelector = '[data-reveal]';
 
@@ -23,7 +23,7 @@ class RevealClose {
             $modal = this.$button.parents(revealSelector).eq(0);
         }
 
-        return $modal.data('modal-instance');
+        return $modal.data('modalInstance');
     }
 
     bindEvents() {
@@ -63,7 +63,7 @@ export default function revealCloseFactory(selector = revealCloseSelector, optio
 
     return $buttons.map((index, element) => {
         const $button = $(element);
-        const instanceKey = `${revealCloseAttr}-instance`;
+        const instanceKey = `${revealCloseAttr}Instance`;
         const cachedButton = $button.data(instanceKey);
 
         if (cachedButton instanceof RevealClose) {

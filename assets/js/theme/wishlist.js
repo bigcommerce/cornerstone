@@ -21,7 +21,7 @@ export default class WishList extends PageManager {
      * Creates a confirm box before deleting all wish lists
      */
     wishlistDeleteConfirm() {
-        $('body').on('click', '[data-wishlist-delete]', (event) => {
+        $('body').on('click', '[data-wishlist-delete]', event => {
             const confirmed = window.confirm(this.context.wishlistDelete);
 
             if (confirmed) {
@@ -49,7 +49,7 @@ export default class WishList extends PageManager {
             },
         ]);
 
-        $addWishlistForm.submit((event) => {
+        $addWishlistForm.on('submit', event => {
             this.addWishlistValidator.performCheck();
 
             if (this.addWishlistValidator.areAll('valid')) {
@@ -61,7 +61,7 @@ export default class WishList extends PageManager {
     }
 
     wishListHandler() {
-        $('body').on('click', '[data-wishlist]', (event) => {
+        $('body').on('click', '[data-wishlist]', event => {
             const wishListUrl = event.currentTarget.href;
             const modal = defaultModal();
 

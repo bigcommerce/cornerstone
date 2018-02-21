@@ -40,7 +40,7 @@ export default function (urlContext) {
 
     const compareCounter = products || [];
 
-    $('body').on('click', '[data-compare-id]', (event) => {
+    $('body').on('click', '[data-compare-id]', event => {
         const product = event.currentTarget.value;
         const $clickedCompareLink = $('a[data-compare-nav]');
 
@@ -53,7 +53,7 @@ export default function (urlContext) {
         updateCounterNav(compareCounter, $clickedCompareLink, urlContext);
     });
 
-    $('body').on('submit', '[data-product-compare]', (event) => {
+    $('body').on('submit', '[data-product-compare]', event => {
         const $this = $(event.currentTarget);
         const productsToCompare = $this.find('input[name="products\[\]"]:checked');
 

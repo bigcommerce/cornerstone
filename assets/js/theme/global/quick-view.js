@@ -9,10 +9,10 @@ import 'slick-carousel';
 export default function (context) {
     const modal = defaultModal();
 
-    $('body').on('click', '.quickview', (event) => {
+    $('body').on('click', '.quickview', event => {
         event.preventDefault();
 
-        const productId = $(event.currentTarget).data('product-id');
+        const productId = $(event.currentTarget).data('productId');
 
         modal.open({ size: 'large' });
 

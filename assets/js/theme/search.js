@@ -77,12 +77,12 @@ export default class Search extends CatalogPage {
         // Init collapsibles
         collapsibleFactory();
 
-        $('[data-product-results-toggle]').click((event) => {
+        $('[data-product-results-toggle]').on('click', event => {
             event.preventDefault();
             this.showProducts();
         });
 
-        $('[data-content-results-toggle]').click((event) => {
+        $('[data-content-results-toggle]').on('click', event => {
             event.preventDefault();
             this.showContent();
         });
@@ -103,7 +103,7 @@ export default class Search extends CatalogPage {
         this.categoryTreeData = treeData;
         this.createCategoryTree($categoryTreeContainer);
 
-        $searchForm.submit((event) => {
+        $searchForm.on('submit', event => {
             const selectedCategoryIds = $categoryTreeContainer.jstree().get_selected();
 
             if (!validator.check()) {
@@ -131,15 +131,14 @@ export default class Search extends CatalogPage {
                 selectedCategoryId: node.id,
                 prefix: 'category',
             },
-            success: (data) => {
-                const formattedResults = [];
+        }).done(data => {
+            const formattedResults = [];
 
-                data.forEach((dataNode) => {
-                    formattedResults.push(this.formatCategoryTreeForJSTree(dataNode));
-                });
+            data.forEach((dataNode) => {
+                formattedResults.push(this.formatCategoryTreeForJSTree(dataNode));
+            });
 
-                cb(formattedResults);
-            },
+            cb(formattedResults);
         });
     }
 
@@ -217,7 +216,7 @@ export default class Search extends CatalogPage {
             this.validator.add({
                 selector: $element,
                 validate: 'presence',
-                errorMessage: $element.data('error-message'),
+                errorMessage: $element.data('errorMessage'),
             });
         }
 

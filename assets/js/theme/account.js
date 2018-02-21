@@ -40,7 +40,7 @@ export default class Account extends PageManager {
             $invoiceButton.on('click', () => {
                 const left = window.screen.availWidth / 2 - 450;
                 const top = window.screen.availHeight / 2 - 320;
-                const url = $invoiceButton.data('print-invoice');
+                const url = $invoiceButton.data('printInvoice');
 
                 window.open(url, 'orderInvoice', `width=900,height=650,left=${left},top=${top},scrollbars=1`);
             });
@@ -75,8 +75,8 @@ export default class Account extends PageManager {
      * Binds a submit hook to ensure the customer receives a confirmation dialog before deleting an address
      */
     bindDeleteAddress() {
-        $('[data-delete-address]').on('submit', (event) => {
-            const message = $(event.currentTarget).data('delete-address');
+        $('[data-delete-address]').on('submit', event => {
+            const message = $(event.currentTarget).data('deleteAddress');
 
             if (!window.confirm(message)) {
                 event.preventDefault();
@@ -85,7 +85,7 @@ export default class Account extends PageManager {
     }
 
     initReorderForm($reorderForm) {
-        $reorderForm.on('submit', (event) => {
+        $reorderForm.on('submit', event => {
             const $productReorderCheckboxes = $('.account-listItem .form-checkbox:checked');
             let submitForm = false;
 
@@ -152,7 +152,7 @@ export default class Account extends PageManager {
             });
         }
 
-        $addressForm.submit((event) => {
+        $addressForm.on('submit', event => {
             addressValidator.performCheck();
 
             if (addressValidator.areAll('valid')) {
@@ -164,9 +164,9 @@ export default class Account extends PageManager {
     }
 
     initAccountReturnFormValidation($accountReturnForm) {
-        const errorMessage = $accountReturnForm.data('account-return-form-error');
+        const errorMessage = $accountReturnForm.data('accountReturnFormError');
 
-        $accountReturnForm.submit((event) => {
+        $accountReturnForm.on('submit', event => {
             let formSubmit = false;
 
             // Iterate until we find a non-zero value in the dropdown for quantity
@@ -273,7 +273,7 @@ export default class Account extends PageManager {
             },
         ]);
 
-        $editAccountForm.submit((event) => {
+        $editAccountForm.on('submit', event => {
             editValidator.performCheck();
 
             if (editValidator.areAll('valid')) {
@@ -319,7 +319,7 @@ export default class Account extends PageManager {
             },
         ]);
 
-        $inboxForm.submit((event) => {
+        $inboxForm.on('submit', event => {
             inboxValidator.performCheck();
 
             if (inboxValidator.areAll('valid')) {

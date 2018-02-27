@@ -3,6 +3,7 @@
 ## Draft
 - Fix product options unhiding indexing issue. [#1176](https://github.com/bigcommerce/cornerstone/pull/1176)
 - Fix ItemAvailability microdata schema for product pages. [#1174](https://github.com/bigcommerce/cornerstone/pull/1174)
+- Fix invoice.css styles. [#1171](https://github.com/bigcommerce/cornerstone/pull/1171)
 
 ## 1.13.2 (2018-02-28)
 

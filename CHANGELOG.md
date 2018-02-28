@@ -2,6 +2,8 @@
 
 ## Draft
 
+## 1.13.2 (2018-02-28)
+
 ## 1.13.1 (2018-02-26)
 - Fix "Shop by Price" toggle in theme editor to hide Shop by Price when faceted search is not enabled. [#1161](https://github.com/bigcommerce/cornerstone/pull/1161)
 - Migrate jQuery from 2->3. [#1162](https://github.com/bigcommerce/cornerstone/pull/1162)

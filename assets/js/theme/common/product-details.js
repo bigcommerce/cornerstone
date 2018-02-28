@@ -22,6 +22,7 @@ export default class ProductDetails {
         const $form = $('form[data-cart-item-add]', $scope);
         const $productOptionsElement = $('[data-product-option-change]', $form);
         const hasOptions = $productOptionsElement.html().trim().length;
+        const hasDefaultOptions = $productOptionsElement.find('[data-default]').length;
 
         $productOptionsElement.on('change', event => {
             this.productOptionsChanged(event);
@@ -33,7 +34,7 @@ export default class ProductDetails {
 
         // Update product attributes. Also update the initial view in case items are oos
         // or have default variant properties that change the view
-        if (hasOptions) {
+        if ((_.isEmpty(productAttributesData) || hasDefaultOptions) && hasOptions) {
             const $productId = $('[name="product_id"]', $form).val();
 
             utils.api.productAttributes.optionChange($productId, $form.serialize(), 'products/bulk-discount-rates', (err, response) => {
@@ -396,7 +397,7 @@ export default class ProductDetails {
         }
 
         // If Bulk Pricing rendered HTML is available
-        if (content) {
+        if (data.bulk_discount_rates && content) {
             viewModel.$bulkPricing.html(content);
         } else {
             viewModel.$bulkPricing.html('');

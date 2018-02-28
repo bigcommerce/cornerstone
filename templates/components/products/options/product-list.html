@@ -35,7 +35,10 @@
                             name="attribute[{{../id}}]"
                             value="{{id}}"
                             id="attribute_{{id}}"
-                            {{#if selected}}checked{{/if}}
+                            {{#if selected}}
+                                checked
+                                data-default
+                            {{/if}}
                             {{#if ../required}}required{{/if}}>
                         <label data-product-attribute-value="{{id}}" class="form-label" for="attribute_{{id}}">{{label}}</label>
                     </div>

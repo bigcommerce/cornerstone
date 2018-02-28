@@ -9,7 +9,7 @@
     </label>
 
     {{#each this.values}}
-        <input class="form-radio" type="radio" name="attribute[{{../id}}]" value="{{id}}" id="attribute_{{id}}" {{#if selected}}checked{{/if}} {{#if ../required}}required{{/if}}>
+        <input class="form-radio" type="radio" name="attribute[{{../id}}]" value="{{id}}" id="attribute_{{id}}" {{#if selected}}checked data-default{{/if}} {{#if ../required}}required{{/if}}>
         <label class="form-option form-option-swatch" for="attribute_{{id}}" data-product-attribute-value="{{id}}">
             {{#if image}}
                 <span class='form-option-variant form-option-variant--pattern' title="{{this.label}}" style="background-image: url('{{getImage image "swatch_option_size"}}');"></span>

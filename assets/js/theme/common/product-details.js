@@ -395,11 +395,10 @@ export default class ProductDetails {
             viewModel.$addToCart.prop('disabled', false);
             viewModel.$increments.prop('disabled', false);
         }
-
         // If Bulk Pricing rendered HTML is available
         if (data.bulk_discount_rates && content) {
             viewModel.$bulkPricing.html(content);
-        } else {
+        } else if (typeof (data.bulk_discount_rates) !== 'undefined') {
             viewModel.$bulkPricing.html('');
         }
     }

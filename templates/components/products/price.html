@@ -28,7 +28,8 @@
             {{/if}}
             <span data-product-price-without-tax class="price price--withoutTax">{{price.without_tax.formatted}}</span>
             {{#if schema_org}}
-                <meta itemprop="availability" content="{{product.availability}}">
+                <meta itemprop="availability" itemtype="http://schema.org/ItemAvailability"
+                    content="http://schema.org/{{#if product.pre_order}}PreOrder{{else if product.out_of_stock}}OutOfStock{{else if product.can_purchase '===' false}}OutOfStock{{else}}InStock{{/if}}">
                 <meta itemprop="itemCondition" itemtype="http://schema.org/OfferItemCondition" content="http://schema.org/{{product.condition}}Condition">
                 <div itemprop="priceSpecification" itemscope itemtype="http://schema.org/PriceSpecification">
                     <meta itemprop="price" content="{{price.without_tax.value}}">

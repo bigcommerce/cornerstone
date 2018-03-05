@@ -7,6 +7,8 @@
 - Fix invoice.css styles. [#1171](https://github.com/bigcommerce/cornerstone/pull/1171)
 
 ## 1.13.2 (2018-02-28)
+- Fix updateView firing when there are no default options. [#1172](https://github.com/bigcommerce/cornerstone/pull/1172)
+- Don't clear bulk pricing rules when feature is disabled. [#1173](https://github.com/bigcommerce/cornerstone/pull/1173)
 
 ## 1.13.1 (2018-02-26)
 - Fix "Shop by Price" toggle in theme editor to hide Shop by Price when faceted search is not enabled. [#1161](https://github.com/bigcommerce/cornerstone/pull/1161)

@@ -2,6 +2,7 @@
 
 ## Draft
 - Fix product options unhiding indexing issue. [#1176](https://github.com/bigcommerce/cornerstone/pull/1176)
+- Add schema microdata for breadcrumbs. [#1175](https://github.com/bigcommerce/cornerstone/pull/1175)
 - Fix ItemAvailability microdata schema for product pages. [#1174](https://github.com/bigcommerce/cornerstone/pull/1174)
 - Fix invoice.css styles. [#1171](https://github.com/bigcommerce/cornerstone/pull/1171)
 

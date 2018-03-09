@@ -2,11 +2,15 @@
 <html class="no-js" lang="{{ locale_name }}">
     <head>
         <title>{{ head.title }}</title>
+
+        <link href="{{ head.favicon }}" rel="shortcut icon">
+        <link rel="preload" href="{{cdn 'img/loading.svg'}}" as="image" crossorigin>
+
         {{{ head.meta_tags }}}
         {{{ head.config }}}
         {{#block "head"}} {{/block}}
-        <link href="{{ head.favicon }}" rel="shortcut icon">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
         {{{stylesheet '/assets/css/theme.css'}}}
 
         <link rel="dns-prefetch preconnect" href="//fonts.gstatic.com" crossorigin>
@@ -15,6 +19,10 @@
         <link rel="dns-prefetch preconnect" href="https://event.jirafe.com" crossorigin>
 
         <script>
+            // Change document class from no-js to js so we can detect this in css
+            document.documentElement.className = 'js';
+
+            // Load web fonts in the background
             WebFontConfig = {
                 classes: false,
                 events: false,
@@ -30,11 +38,6 @@
                 wf.defer = true;
                 s.parentNode.insertBefore(wf, s);
             })(document);
-        </script>
-
-        <script>
-            // Change document class from no-js to js so we can detect this in css
-            document.documentElement.className = 'js';
         </script>
 
         {{{head.scripts}}}

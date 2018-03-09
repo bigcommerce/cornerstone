@@ -8,7 +8,24 @@
         <link href="{{ head.favicon }}" rel="shortcut icon">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         {{{stylesheet '/assets/css/theme.css'}}}
-        {{ getFontsCollection }}
+
+        <script>
+            WebFontConfig = {
+                classes: false,
+                events: false,
+                timeout: 1000,
+                google: {
+                    families: ['Oswald:300', 'Karla:400', 'Montserrat:400']
+                },
+            };
+
+            (function(d) {
+                var wf = d.createElement('script'), s = d.scripts[0];
+                wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js';
+                wf.defer = true;
+                s.parentNode.insertBefore(wf, s);
+            })(document);
+        </script>
 
         <script>
             // Change document class from no-js to js so we can detect this in css

@@ -8,36 +8,29 @@
 //    large screens to scale image. Use visibility because the JS uses the height
 //    to set the slide size. (For browsers with object-fit only)
 //
-// 2. With JS on, minimise the jump in content as you progressively enhance the
-//    slider. Slowly fade and slide the height, instead of a jump in collapsing
-//    hidden content.
-//
-// 3. Visually overrides the top margin for '.body' defined in _body.scss.
+// 2. Visually overrides the top margin for '.body' defined in _body.scss.
 //    The '.body' top margin creates space between the header and page content.
 //    However, on the homepage, we want the carousel to be flush with the header.
 //
-// 4. Allows image to scale on large screens while preventing the top and bottom
+// 3. Allows image to scale on large screens while preventing the top and bottom
 //    from becoming cut off.
 // -----------------------------------------------------------------------------
 
 .heroCarousel {
-    margin-bottom: (spacing("double") + spacing("single"));
+    margin-bottom: 30px; // from slick-theme.scss
     margin-top: -(spacing("single")); // 3
 
     @include breakpoint("medium") {
         margin-top: -(spacing("single") + spacing("base")); // 3
     }
 
-    .js & { // 2
-        max-height: remCalc(0);
-        opacity: 0;
-        overflow: hidden;
-        transition: all 600ms ease-out;
-    }
-
     &.slick-initialized { // 2
         max-height: remCalc(1000);
         opacity: 1;
+    }
+
+    &:not(.slick-initialized) :not(.heroCarousel-slide--first).heroCarousel-slide {
+        display: none;
     }
 
     .slick-next,
@@ -105,6 +98,11 @@
     }
 }
 
+.heroCarousel-image-wrapper {
+    @include breakpoint("medium") {
+        max-height: remCalc(600px);
+    }
+}
 .no-objectfit .heroCarousel-image {
     @include breakpoint("medium") { // 1
         visibility: hidden;

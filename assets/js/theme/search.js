@@ -57,7 +57,7 @@ export default class Search extends CatalogPage {
         urlUtils.goToUrl(url);
     }
 
-    loaded() {
+    onReady() {
         const $searchForm = $('[data-advanced-search-form]');
         const $categoryTreeContainer = $searchForm.find('[data-search-category-tree]');
         const url = Url.parse(window.location.href, true);

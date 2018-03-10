@@ -15,7 +15,7 @@ export default class Account extends PageManager {
         this.$body = $('body');
     }
 
-    loaded(next) {
+    onReady() {
         const $editAccountForm = classifyForm('form[data-edit-account-form]');
         const $addressForm = classifyForm('form[data-address-form]');
         const $inboxForm = classifyForm('form[data-inbox-form]');
@@ -67,8 +67,6 @@ export default class Account extends PageManager {
         }
 
         this.bindDeleteAddress();
-
-        next();
     }
 
     /**

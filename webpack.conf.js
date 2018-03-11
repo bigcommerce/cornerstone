@@ -10,6 +10,7 @@ module.exports = {
     devtool: 'source-map',
     entry: {
         main: './assets/js/app.js',
+        bootstrap: './assets/js/bootstrap.js',
     },
     module: {
         rules: [

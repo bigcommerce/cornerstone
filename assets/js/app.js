@@ -57,40 +57,34 @@ const pageClasses = {
  * @param contextJSON
  * @returns {*}
  */
-window.stencilBootstrap = function stencilBootstrap(pageType, contextJSON = null, loadGlobal = true) {
-    const context = JSON.parse(contextJSON || {});
 
-    return {
-        load() {
-            $(async () => {
-                let globalClass;
-                let pageClass;
-                let PageClass;
+$(async () => {
+    let globalClass;
+    let pageClass;
+    let PageClass;
+    const { context, pageType, loadGlobal } = window.stencilBootstrap;
 
-                // Finds the appropriate class from the pageType.
-                const pageClassImporter = pageClasses[pageType];
-                if (typeof pageClassImporter === 'function') {
-                    PageClass = (await pageClassImporter()).default;
-                }
+    // Finds the appropriate class from the pageType.
+    const pageClassImporter = pageClasses[pageType];
+    if (typeof pageClassImporter === 'function') {
+        PageClass = (await pageClassImporter()).default;
+    }
 
-                if (loadGlobal) {
-                    globalClass = new Global();
-                    globalClass.context = context;
-                }
+    if (loadGlobal) {
+        globalClass = new Global();
+        globalClass.context = context;
+    }
 
-                if (PageClass) {
-                    pageClass = new PageClass(context);
-                    pageClass.context = context;
-                }
+    if (PageClass) {
+        pageClass = new PageClass(context);
+        pageClass.context = context;
+    }
 
-                if (globalClass) {
-                    globalClass.load();
-                }
+    if (globalClass) {
+        globalClass.load();
+    }
 
-                if (pageClass) {
-                    pageClass.load();
-                }
-            });
-        },
-    };
-};
+    if (pageClass) {
+        pageClass.load();
+    }
+});

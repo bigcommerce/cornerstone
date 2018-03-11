@@ -29,12 +29,16 @@
         {{#block "page"}} {{/block}}
 
         <script>window.__webpack_public_path__ = "{{cdn 'assets/dist/'}}";</script>
-        <script src="{{cdn 'assets/dist/theme-bundle.main.js'}}"></script>
+        <script src="{{cdn 'assets/dist/theme-bundle.bootstrap.js'}}"></script>
 
         <script>
             // Exported in app.js
-            window.stencilBootstrap("{{page_type}}", {{jsContext}}, false).load();
+            window.stencilBootstrap("{{page_type}}", {{jsContext}}, false);
         </script>
+
+
+        <script defer src="{{cdn 'assets/dist/theme-bundle.main.js'}}"></script>
+
         <script type="text/javascript" charset="utf-8">
             function postHeight() {
                 window.parent.postMessage({

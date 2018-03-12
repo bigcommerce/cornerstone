@@ -1,0 +1,232 @@
+// =============================================================================
+// FORMS (Tools)
+// =============================================================================
+
+
+//
+// FORM ROW MIXINS
+// -----------------------------------------------------------------------------
+
+@mixin formRow--flex() {
+
+    @include breakpoint("small") {
+        display: flex;
+        flex-direction: row;
+        margin: $formRow-margin;
+        padding: $formRow-padding;
+
+        .form-field {
+            flex: 1;
+            margin-left: $formRow-field-marginLeft;
+            margin-right: $formRow-field-marginRight;
+            max-width: none;
+            padding: $formRow-field-padding;
+        }
+
+        .form-select {
+            max-width: none;
+        }
+    }
+
+}
+
+@mixin formRow--grid() {
+
+    @include grid-row($behavior:nest);
+
+    .form-field {
+        @include grid-column(12);
+        max-width: none;
+    }
+
+    @include breakpoint("small") {
+
+        &--half {
+            .form-field {
+                width: grid-calc(6, $total-columns);
+            }
+        }
+
+        &--third {
+            .form-field {
+                width: grid-calc(4, $total-columns);
+            }
+        }
+
+        &--quarter {
+            .form-field {
+                width: grid-calc(3, $total-columns);
+            }
+        }
+
+    }
+
+}
+
+
+//
+// CHECKRADIO COMPONENT MIXINS
+// -----------------------------------------------------------------------------
+
+@mixin checkRadioBase() {
+
+    display: inline-block;
+    font-size: $checkRadio-label-fontSize;
+    font-weight: $checkRadio-label-fontWeight;
+    line-height: $checkRadio-label-lineHeight;
+    margin-bottom: $checkRadio-label-marginBottom;
+    padding-#{$default-float}: $checkRadio-label-spacing;
+    position: relative;
+    vertical-align: baseline;
+    width: 100%;
+
+    &::before,
+    &::after {
+        content: "";
+        display: block;
+        position: absolute;
+        transition: all 50ms ease-out;
+    }
+
+    &::before {
+        background-color: $checkRadio-bg;
+        border: $checkRadio-borderStyle $checkRadio-borderColor;
+        border-width: $checkRadio-borderWidth;
+        box-shadow: $checkRadio-boxShadow;
+        height: $checkRadio-outerSize;
+        left: 0;
+        top: 0;
+        width: $checkRadio-outerSize;
+    }
+
+    &::after {
+        height: $checkRadio-pip-size;
+        left: $checkRadio-pip-scale / 2;
+        opacity: 0;
+        top: $checkRadio-pip-scale / 2;
+        transform: $checkRadio-pip-zoomStart;
+        width: $checkRadio-pip-size;
+    }
+
+}
+
+@mixin checkRadioBase--disabled() {
+
+    cursor: $cursor-default-value;
+
+    &::before {
+        background-color: $checkRadio-disabled-bg;
+    }
+
+    &::after {
+        opacity: $checkRadio-disabled-opacity;
+    }
+
+}
+
+@mixin checkRadioBase--checked() {
+
+    &::after {
+        opacity: 1;
+        transform: $checkRadio-pip-zoomEnd;
+    }
+
+}
+
+@mixin checkRadioBase--focus() {
+
+    &::before {
+        border-color: $checkRadio-focus-borderColor;
+        box-shadow: $checkRadio-focus-boxShadow;
+    }
+
+
+}
+
+@mixin checkBox-base() {
+
+    &::before {
+        border-radius: $check-radius;
+    }
+
+    &::after {
+        background-image: $check-pip-backgroundImage;
+        background-position: 50%;
+        background-repeat: no-repeat;
+        background-size: 100%;
+        color: $check-pip-color;
+        content: $check-pip-content;
+        font-size: $check-pip-size;
+        line-height: 1;
+        text-align: center;
+    }
+
+}
+
+@mixin radioButton-base {
+
+    &::before {
+        border-radius: $radio-radius;
+    }
+
+    &::after {
+        background: $radio-pip-color;
+        border: $radio-pipInset solid $radio-pipInset-color;
+        border-radius: $radio-pip-size;
+    }
+
+}
+
+//
+// PREFIXPOSTFIX COMPONENTS MIXINS
+// -----------------------------------------------------------------------------
+
+@mixin prefixPostfix-container($inputClassname, $buttonClassname) {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+
+    .#{$inputClassname} {
+        flex: 1;
+    }
+
+    .#{$buttonClassname} {
+        height: $prefixPostfix-input-height;
+    }
+}
+
+@mixin prefixPostfix-input {
+    border-radius: $prefixPostfix-input-borderRadius;
+}
+
+@mixin prefixPostfix-label {
+    background-color: $prefixPostfix-label-backgroundColor;
+    border: $prefixPostfix-label-borderStyle $prefixPostfix-label-borderColor;
+    border-width: $prefixPostfix-label-borderWidth;
+    flex: 1;
+    font-weight: $prefixPostfix-label-fontWeight;
+    height: $prefixPostfix-label-height;
+    line-height: normal;
+    max-width: $prefixPostfix-label-maxWidth;
+    padding: $prefixPostfix-label-padding;
+    text-align: $prefixPostfix-label-textAlign;
+}
+
+@mixin prefixPostfix-label--prefix($inputClassName) {
+    border-radius: $prefix-label-borderRadius;
+    border-width: $prefix-label-borderWidth;
+
+    + .#{$inputClassName} {
+        border-radius: $prefix-input-borderRadius;
+    }
+}
+
+@mixin prefixPostfix-label--postfix {
+    border-radius: $postfix-label-borderRadius;
+    border-width: $postfix-label-borderWidth;
+}
+
+
+//
+// PREFIXPOSTFIX COMPONENTS MIXINS
+// -----------------------------------------------------------------------------

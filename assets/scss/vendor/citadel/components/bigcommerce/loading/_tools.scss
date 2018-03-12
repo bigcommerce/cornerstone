@@ -1,0 +1,86 @@
+// =============================================================================
+// LOADING (Tools)
+// =============================================================================
+
+
+// =============================================================================
+// MIXINS FOR THE LOADING NOTIFICATION
+// =============================================================================
+
+@mixin loadingNotification-base() {
+    left: $loadingNotification-left;
+    position: fixed;
+    text-align: $loadingNotification-textAlign;
+    top: $loadingNotification-top;
+    transform: $loadingNotification-transform;
+    transform-style: preserve-3d;
+    transition: all 200ms ease-out;
+    z-index: zIndex("highest");
+}
+
+@mixin loadingNotification-startState() {
+    opacity: 0;
+    top: $loadingNotification-top--startPosition;
+    transform: $loadingNotification-transform--start;
+}
+
+@mixin loadingNotification-activeState() {
+    opacity: 1;
+    top: $loadingNotification-top;
+    transform: $loadingNotification-transform--end;
+}
+
+@mixin loadingNotification-label() {
+    background: $loadingNotification-label-background;
+    border-radius: $loadingNotification-label-radius;
+    color: $loadingNotification-label-color;
+    display: inline-block;
+    font-size: $loadingNotification-label-fontSize;
+    padding: $loadingNotification-label-verticalSpacing $loadingNotification-label-horizontalSpacing;
+}
+
+
+// =============================================================================
+// MIXINS FOR THE LOADING OVERLAY
+// =============================================================================
+
+@mixin loadingOverlay-container() {
+    min-height: $loadingOverlay-minHeight;
+    position: relative;
+}
+
+@mixin loadingOverlay-base() {
+    background: $loadingOverlay-background;
+    bottom: 0;
+    height: 100%;
+    left: 0;
+    opacity: 1;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: $loadingOverlay-transitionProperty $loadingOverlay-transitionSpeed $loadingOverlay-transitionEase;
+    width: 100%;
+}
+
+@mixin loadingOverlay-spinner() {
+    @include circle($loadingOverlay-spinner-size);
+    border: solid $loadingOverlay-spinner-borderWidth;
+    border-color: $loadingOverlay-spinner-borderColor;
+    content: "";
+    display: block;
+    left: 0;
+    margin: 0 auto;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%) rotate(0deg);
+    transform-style: preserve-3d;
+}
+
+@mixin loadingOverlay-startState() {
+    opacity: 0;
+}
+
+@mixin loadingOverlay-activeState() {
+    opacity: 1;
+}

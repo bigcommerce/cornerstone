@@ -1,0 +1,177 @@
+// =============================================================================
+// TYPE (Settings)
+// =============================================================================
+
+
+// Foundation Variables
+// -----------------------------------------------------------------------------
+//
+// These variables come directly from:
+// /vendor/foundation/foundation/components/*
+// Declaring the variables here, you can adjust them all to your design,
+// leaving the vendor framework untouched.
+//
+// -----------------------------------------------------------------------------
+
+// We use these to define default font stacks
+$font-family-sans-serif:               fontFamily("sans") !default;
+$font-family-serif:                    fontFamily("serif") !default;
+$font-family-monospace:                fontFamily("mono") !default;
+
+// We use these to define default font weights
+$font-weight-normal:                   fontWeight("normal") !default;
+$font-weight-bold:                     fontWeight("semibold") !default;
+
+// We use these to control various global styles
+$body-bg:                              color("greys", "lighter") !default;
+$body-font-color:                      color("greys", "darker") !default;
+$body-font-family:                     $font-family-sans-serif !default;
+$body-font-weight:                     $font-weight-normal !default;
+$body-font-style:                      normal !default;
+
+// We use this to control font-smoothing
+$font-smoothing:                       antialiased !default;
+
+// We use these to control header font styles
+$header-font-family:                   fontFamily("sans") !default;
+$header-font-weight:                   $font-weight-bold !default;
+$header-font-style:                    normal !default;
+$header-font-color:                    $body-font-color !default;
+$header-line-height:                   lineHeight("small") !default;
+$header-top-margin:                    0 !default;
+$header-bottom-margin:                 spacing("single") !default;
+$header-text-rendering:                optimizeLegibility !default;
+$header-letter-spacing:                0 !default;
+
+// We use these to control header font sizes
+$h1-font-size:                         fontSize("largest") !default;
+$h2-font-size:                         fontSize("larger") !default;
+$h3-font-size:                         fontSize("large") !default;
+$h4-font-size:                         fontSize("small") !default;
+$h5-font-size:                         fontSize("smaller") !default;
+$h6-font-size:                         fontSize("smallest") !default;
+
+
+// These control how subheaders are styled.
+$subheader-line-height:                lineHeight(small) !default;
+$subheader-font-color:                 color("greys") !default;
+$subheader-font-weight:                fontWeight("normal") !default;
+$subheader-bottom-margin:              spacing("half") !default;
+
+// A general <small> styling
+$small-font-size:                      80% !default;
+$small-font-color:                     color("greys") !default;
+
+// We use these to style paragraphs
+$paragraph-font-family:                inherit !default;
+$paragraph-font-weight:                $font-weight-normal !default;
+$paragraph-font-size:                  fontSize("base") !default;
+$paragraph-line-height:                lineHeight("base") !default;
+$paragraph-margin-bottom:              spacing("base") !default;
+$paragraph-aside-font-size:            fontSize("base") !default;
+$paragraph-aside-line-height:          lineHeight("base") !default;
+$paragraph-aside-font-style:           italic !default;
+$paragraph-text-rendering:             optimizeLegibility !default;
+
+// We use these to style <code> tags
+$code-color:                           color("error") !default;
+$code-font-family:                     Consolas, Monaco, 'Andale Mono', monospace !default;
+$code-font-weight:                     $font-weight-normal !default;
+$code-background-color:                color("whites", "bright") !default;
+$code-border-size:                     1px !default;
+$code-border-style:                    solid !default;
+$code-border-color:                    container("borderColor") !default;
+$code-padding:                         spacing("quarter") spacing("third") !default;
+
+// We use these to style anchors
+$anchor-text-decoration:               none !default;
+$anchor-text-decoration-hover:         none !default;
+$anchor-font-color:                    color("primary") !default;
+$anchor-font-color-hover:              scale-color($anchor-font-color, $lightness: -14%) !default;
+
+// We use these to style the <hr> element
+$hr-border-width:                      1px !default;
+$hr-border-style:                      solid !default;
+$hr-border-color:                      container("borderColor", "dark") !default;
+$hr-margin:                            spacing("base") !default;
+
+// We use these to style lists
+$list-font-family:                     $paragraph-font-family !default;
+$list-font-size:                       $paragraph-font-size !default;
+$list-line-height:                     $paragraph-line-height !default;
+$list-margin-bottom:                   $paragraph-margin-bottom !default;
+$list-style-position:                  outside !default;
+$list-side-margin:                     1.1rem !default;
+$list-ordered-side-margin:             1.4rem !default;
+$list-side-margin-no-bullet:           0 !default;
+$list-nested-margin:                   remCalc(20) !default;
+$definition-list-header-weight:        $font-weight-bold !default;
+$definition-list-header-margin-bottom: 0.3rem !default;
+$definition-list-margin-bottom:        spacing("single") !default;
+
+// We use these to style blockquotes
+$blockquote-font-color:                $body-font-color !default;
+$blockquote-padding:                   spacing("half") spacing("single") !default;
+$blockquote-border:                    null !default;
+$blockquote-cite-font-size:            fontSize("base") !default;
+$blockquote-cite-font-color:           color("greys") !default;
+$blockquote-cite-link-color:           $blockquote-cite-font-color !default;
+
+// Acronym styles
+$acronym-underline:                    1px dotted container("borderColor", "dark") !default;
+
+// We use these to control padding and margin
+$microformat-padding:                  spacing("single") !default;
+$microformat-margin:                   0 0 spacing("single") !default;
+
+// We use these to control the border styles
+$microformat-border-width:             1px !default;
+$microformat-border-style:             solid !default;
+$microformat-border-color:             container("borderColor", "dark") !default;
+
+// We use these to control full name font styles
+$microformat-fullname-font-weight:     $font-weight-bold !default;
+$microformat-fullname-font-size:       fontSize("base") !default;
+
+// We use this to control the summary font styles
+$microformat-summary-font-weight:      $font-weight-bold !default;
+
+// We use this to control abbr padding
+$microformat-abbr-padding:             remCalc(0 1) !default;
+
+// We use this to control abbr font styles
+$microformat-abbr-font-weight:         $font-weight-bold !default;
+$microformat-abbr-font-decoration:     none !default;
+
+// Controls the page margin when printing the website
+$print-margin: 0.34in !default;
+
+
+// Bigcommerce Variables
+// -----------------------------------------------------------------------------
+//
+// These scoped variables are created by Bigcommerce.
+// All variables that are not from Foundation should be placed here.
+//
+// 1. Choose whether to include the Bigcommerce class names
+//
+// -----------------------------------------------------------------------------
+
+$exportCSS--type:                      $exportCSS !default; // 1
+
+$html-fontSize:                        $fontSize-root + 2 !default;
+$html-fontSize--smallUp:               $fontSize-root !default;
+$html-fontSize--mediumUp:              $fontSize-root !default;
+$html-fontSize--largeUp:               $fontSize-root !default;
+
+$code-font-size:                       fontSize("smallest") !default;
+
+$blockquote-borderColor:               container("borderColor", "dark") !default;
+$blockquote-borderStyle:               container("borderStyle") !default;
+$blockquote-borderWidth:               0 0 0 1px !default;
+$blockquote-fontSize:                  $paragraph-font-size !default;
+$blockquote-fontWeight:                $paragraph-font-weight !default;
+$blockquote-lineHeight:                $paragraph-line-height !default;
+$blockquote-margin:                    0 0 $paragraph-margin-bottom !default;
+
+$blockquote-cite-content:              "\2014 \0020" !default;

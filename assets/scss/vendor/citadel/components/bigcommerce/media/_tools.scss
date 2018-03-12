@@ -1,0 +1,61 @@
+// =============================================================================
+// MEDIA Object (Tools)
+// =============================================================================
+
+@mixin media($style: "default") { // 1
+
+    @include clearfix;
+
+    @if $style == "default" { // 2
+        &-figure {
+            float: $default-float;
+            margin-#{$opposite-direction}: $media-gutter;
+
+            > img {
+                display: block;
+            }
+        }
+
+        &-figure--opposite {
+            float: $opposite-direction;
+            margin-#{$default-float}: $media-gutter;
+            margin-#{$opposite-direction}: 0;
+        }
+
+        &-body {
+            @include clearfix;
+        }
+    }
+
+    @if $style == "table" { // 3
+        display: table;
+        padding: $mediaTable-gutter;
+
+        &-column {
+            display: table-cell;
+            padding-right: $mediaTable-gutter;
+            vertical-align: $mediaTable-verticalAlignment;
+
+            &:last-child {
+                padding: 0;
+            }
+        }
+
+        &-figure {
+            text-align: $mediaTable-image-textAlignment;
+            vertical-align: $mediaTable-image-verticalAlignment;
+            width: $mediaTable-image-width;
+        }
+
+        &-body {
+            vertical-align: $mediaTable-body-verticalAlignment;
+        }
+
+        &-actions {
+            text-align: $mediaTable-actions-textAlign;
+            vertical-align: $mediaTable-actions-verticalAlignment;
+            width: $mediaTable-actions-width;
+        }
+
+    }
+}

@@ -1,0 +1,45 @@
+// =============================================================================
+// DROPDOWN BUTTONS (CSS)
+// =============================================================================
+
+
+// Bigcommerce Component
+// -----------------------------------------------------------------------------
+//
+// The Bigcommerce Coding Standards, coupled with Foundation.
+// If any library overrides or extra CSS is needed, declare it here.
+//
+// 1. If set to false, there is no outputted CSS for this component.
+//
+// -----------------------------------------------------------------------------
+
+@if $exportCSS--dropdown-buttons { // 1
+
+
+    // Component
+    // -------------------------------------------------------------------------
+    .dropdown-button {
+        @include dropdown-button("medium", $dropdown-button-pip-color);
+        cursor: pointer;
+
+        &.button--small {
+            @include dropdown-button("small", $dropdown-button-pip-color, $base-style: false);
+        }
+
+        &.button--large {
+            @include dropdown-button("large", $dropdown-button-pip-color, $base-style: false);
+        }
+
+        &.button--primary:after {
+            border-color: $dropdown-button-pip-color-alt transparent transparent;
+        }
+    }
+
+    .dropdown-button:after {
+        // TODO: Replace the default Foundation pip with our chevron icon
+        // background-image: iconGoesHere;
+        // border: none;
+    }
+
+}
+

@@ -1,0 +1,60 @@
+// =============================================================================
+// BREADCRUMBS (CSS)
+// =============================================================================
+
+
+// Bigcommerce Component
+// -----------------------------------------------------------------------------
+//
+// The Bigcommerce Coding Standards, coupled with Foundation.
+// If any library overrides or extra CSS is needed, declare it here.
+//
+// 1. If set to false, there is no outputted CSS for this component.
+//
+// -----------------------------------------------------------------------------
+
+@if $exportCSS--breadcrumbs { // 1
+
+    .breadcrumbs {
+        @include crumb-container;
+    }
+
+    .breadcrumb {
+        @include crumbs;
+        line-height: $crumb-lineHeight;
+
+        @include breakpoint(xsmall) {
+            line-height: $crumb-lineHeight--xSmallUp;
+        }
+
+        &::before {
+            margin: $crumb-slash-margin;
+
+            @include breakpoint(xsmall) {
+                margin: $crumb-slash-margin--xSmallUp;
+            }
+        }
+    }
+
+    .breadcrumb-label {
+        cursor: $crumb-link-cursor;
+        text-decoration: $crumb-link-decor;
+
+        &:hover {
+            color: $crumb-hover-color;
+            text-decoration: $crumb-link-hover-decor;
+        }
+
+        .breadcrumb.is-active > & {
+            color: $crumb-font-color-current;
+            cursor: $crumb-link-cursor-current;
+        }
+
+        .breadcrumb.is-unavailable > & {
+            color: $crumb-font-color-unavailable;
+            cursor: $crumb-link-cursor-unavailable;
+        }
+    }
+
+}
+

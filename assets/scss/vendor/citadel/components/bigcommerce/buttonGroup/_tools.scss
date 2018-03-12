@@ -1,0 +1,37 @@
+// =============================================================================
+// BUTTON GROUPS (Tools)
+// =============================================================================
+
+
+// Bigcommerce Mixins
+// -----------------------------------------------------------------------------
+//
+// 1. buttonGroup-container-styles; Creates the visuals of a .button-group container
+// 2. buttonGroup-button-styles; Creates the visuals of the buttons inside a .button-group
+//
+// -----------------------------------------------------------------------------
+
+// element with buttonGroup class
+@mixin buttonGroup-container() {
+    display: inline-block;
+}
+
+// the contents of buttonGroup
+@mixin buttonGroup-buttons() {
+
+    border-radius: 0;
+    border-right-width: 0;
+    float: left;
+
+    &:first-child {
+        border-bottom-left-radius: $button-radius;
+        border-top-left-radius: $button-radius;
+    }
+
+    &:last-child {
+        border-bottom-right-radius: $button-radius;
+        border-right-width: $button-border-width;
+        border-top-right-radius: $button-radius;
+    }
+
+}

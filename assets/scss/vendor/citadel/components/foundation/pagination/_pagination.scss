@@ -1,0 +1,51 @@
+// =============================================================================
+// PAGINATION (CSS)
+// =============================================================================
+
+
+// Bigcommerce Component
+// -----------------------------------------------------------------------------
+//
+// The Bigcommerce Coding Standards, coupled with Foundation.
+// If any library overrides or extra CSS is needed, declare it here.
+//
+// 1. If set to false, there is no outputted CSS for this component.
+// 2. Foundation forces certain extra specificity
+//
+// -----------------------------------------------------------------------------
+
+@if $exportCSS--pagination {
+
+    // Component
+    // -------------------------------------------------------------------------
+
+    .pagination-list {
+        @include pagination($use-default-classes: false);
+        display: $pagination-display;
+    }
+
+    li.pagination-item { // 2
+        cursor: $cursor-pointer-value;
+
+        &:first-child {
+            margin-left: 0;
+        }
+
+        a:hover {
+            color: $pagination-link-current-font-color;
+        }
+    }
+
+    li.pagination-item--current { // 2
+        @include pagination-current-item();
+    }
+
+    .pagination-link {
+
+        .pagination-item--current & {
+            border-radius: $pagination-link-borderRadius--current;
+        }
+
+    }
+
+}

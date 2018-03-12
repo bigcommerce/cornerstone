@@ -1,0 +1,150 @@
+// =============================================================================
+// TABS (CSS)
+// =============================================================================
+
+
+// Bigcommerce Component
+// -----------------------------------------------------------------------------
+//
+// The Bigcommerce Coding Standards, coupled with Foundation.
+// If any library overrides or extra CSS is needed, declare it here.
+//
+// 1. If set to false, there is no outputted CSS for this component.
+//
+// -----------------------------------------------------------------------------
+
+@if $exportCSS--tabs { // 1
+
+    %tabs {
+        @include clearfix;
+        border-bottom: $tabs-bottom-border;
+        margin: $tabs-margin;
+    }
+
+    %tab {
+
+        border-bottom: $tab-title-border-bottom-height $tab-title-border-bottom-style $tab-title-border-color;
+        display: $tab-display;
+        list-style: none;
+        margin: $tab-margin;
+        padding: $tab-navigation-container-padding;
+        position: relative;
+
+        @include breakpoint(small) {
+            float: $default-float;
+        }
+
+    }
+
+    %tab--active {
+        border-bottom-color: $tab-title-active-border-color;
+    }
+
+    %tab-title {
+
+        background-color: $tabs-navigation-bg-color;
+        color: $tabs-navigation-font-color;
+        display: $tab-navigation-display;
+        font-family: $tabs-navigation-font-family;
+        font-size: $tabs-navigation-font-size;
+        padding: $tabs-navigation-padding $tabs-navigation-padding * 2;
+
+        &:hover {
+            background-color: $tabs-navigation-hover-bg-color;
+            color: $tabs-navigation-active-font-color;
+        }
+
+    }
+
+    %tab-title--active {
+        background-color: $tabs-navigation-active-bg-color;
+        color: $tabs-navigation-active-font-color;
+        font-weight: $tab-title-active-font-weight;
+    }
+
+
+    // =============================================================================
+    // TABS
+    // =============================================================================
+
+    .tabs {
+        @extend %tabs;
+    }
+
+    .tab {
+        @extend %tab;
+    }
+
+    .tab.is-active {
+        @extend %tab--active !optional;
+
+        .tab-title {
+            @extend %tab-title--active;
+        }
+    }
+
+    .tab-title {
+        @extend %tab-title;
+    }
+
+
+    .tabs--vertical {
+
+        @include breakpoint(small) {
+            border-bottom: $tabs--vertical-borderBottom;
+            float: $tabs--vertical-float;
+            margin: 0 0 $tabs-vertical-navigation-margin-bottom;
+            max-width: $tabs--vertical-maxWidth;
+            width: $tabs--vertical-width;
+        }
+
+        .tab {
+            float: $tabs--vertical-tab-float;
+        }
+
+    }
+
+
+    // =============================================================================
+    // TAB CONTENT
+    // =============================================================================
+
+    .tabs-contents {
+        @include clearfix;
+        margin-bottom: $tabs-content-margin-bottom;
+    }
+
+    .tabs-contents--vertical {
+
+        @include breakpoint(small) {
+
+            float: $tabs-contents--vertical-floatDirection;
+            max-width: $tabs-contents--vertical-maxWidth;
+            padding-#{$tabs-contents--vertical-floatDirection}: $tabs-contents--vertical-floatDirection-padding;
+            width: $tabs-contents--vertical-width;
+
+            > .tab-content {
+                padding: $tabs-contents--vertical-padding;
+            }
+
+        }
+
+    }
+
+    .tab-content {
+        display: none;
+        padding: $tabs-content-padding;
+
+        &.is-active {
+            display: block;
+        }
+    }
+
+    .no-js {
+        .tab-content {
+            display: block;
+            float: none;
+        }
+    }
+}
+

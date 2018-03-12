@@ -1,0 +1,83 @@
+// =============================================================================
+// NAV (Tools)
+// =============================================================================
+
+
+// Base Object
+// -----------------------------------------------------------------------------
+//
+// This mixin is created by bending our style guides rules.
+// To achieve both total control, and the freedom of appending your own
+// class name prefix to the elements, the '&' selector has been used heavily.
+//
+// 1. $style arguments: "bar" or "list", $wrapper arguments: "nav" or "ul".
+// 2. Strip basic list styles from all lists placed inside a nav component.
+// 3. If your nav a simple <ul> or <ol> element, set $type to "list".
+// 4. If your nav is wrapped in a <nav> element, set $type to "block".
+// 5. Adds basic visual styling to the actions.
+//
+// -----------------------------------------------------------------------------
+
+@mixin nav($style: "navBar", $wrapper: "nav") { // 1
+
+    @include clearfix;
+
+    ul,
+    ol { // 2
+        @include u-listReset;
+    }
+
+    @if $wrapper == "ul" { // 3
+        @include u-listReset;
+    }
+
+    @if $wrapper == "nav" { // 4
+        &-section {
+            @include clearfix;
+
+            @if $style == "navBar" {
+                float: $navBar-item-floatDirection;
+            }
+        }
+
+        &-section--alt {
+            float: $navBar-item-floatOppositeDirection;
+            margin-#{$navBar-item-floatDirection}: $navBar-section-margin;
+        }
+    }
+
+    @if $style == "navList" {
+        &-section + &-section {
+            margin-top: $navList-section-margin;
+        }
+    }
+
+    @if $style == "navBar" {
+        @if $wrapper == "nav" {
+            &-section + &-section {
+                margin-left: $navBar-section-margin;
+            }
+        }
+
+        &-item {
+            @include breakpoint("small") {
+                float: $navBar-item-floatDirection;
+            }
+        }
+    }
+
+    &-item,
+    &-action {
+        display: block;
+    }
+
+}
+
+@mixin nav-action($color, $fontFamily, $fontSize, $padding) {
+    &-action {
+        color: $color;
+        font-family: $fontFamily;
+        font-size: $fontSize;
+        padding: $padding;
+    }
+}

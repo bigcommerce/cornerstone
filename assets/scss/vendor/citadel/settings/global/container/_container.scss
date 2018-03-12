@@ -1,0 +1,102 @@
+// =============================================================================
+// CONTAINERS
+// =============================================================================
+//
+// Purpose:
+// The centralised place to control container settings like borders and fill.
+//
+// -----------------------------------------------------------------------------
+
+
+// Borders
+// -----------------------------------------------------------------------------
+
+$container-border-global-size:          1px !default;
+$container-border-global-style:         solid !default;
+$container-border-global-color-base:    $color-greyLight !default;
+$container-border-global-color-dark:    $color-grey !default;
+$container-border-global-base:          $container-border-global-size $container-border-global-style $color-greyLight !default;
+$container-border-global-dark:          $container-border-global-size $container-border-global-style $color-grey !default;
+
+
+// Drop shadows
+// -----------------------------------------------------------------------------
+
+$container-drop-shadow-base:             0 2px 0 rgba($color-greyLight, 0.6) !default;
+
+
+// Backgrounds
+// -----------------------------------------------------------------------------
+
+$container-fill-base:                   $color-white !default;
+$container-fill-dark:                   $color-greyLight !default;
+
+
+// Padding
+// -----------------------------------------------------------------------------
+
+$container-padding-base:                $spacing-single !default;
+$container-padding-large:               $spacing-double !default;
+
+
+// Margin
+// -----------------------------------------------------------------------------
+
+$container-margin-base:                 $spacing-single !default;
+
+
+
+
+// Containers map
+// -----------------------------------------------------------------------------
+
+$containersMap: (
+    border: (
+        base: $container-border-global-base,
+        dark: $container-border-global-dark
+    ),
+
+    borderColor: (
+        base: $container-border-global-color-base,
+        dark: $container-border-global-color-dark
+    ),
+
+    borderSize: (
+        base: $container-border-global-size
+    ),
+
+    borderStyle: (
+        base: $container-border-global-style
+    ),
+
+    dropShadow: (
+        base: $container-drop-shadow-base
+    ),
+
+    fill: (
+        base: $container-fill-base,
+        dark: $container-fill-dark
+    ),
+
+    margin: (
+        base: $container-margin-base
+    ),
+
+    padding: (
+        base: $container-padding-base,
+        large: $container-padding-large
+    )
+);
+
+
+// Containers map function
+// -----------------------------------------------------------------------------
+
+@function container($property, $variant: "base") {
+    @if map-has-key($containersMap, $property) {
+        @return map-get(map-get($containersMap, $property), $variant);
+    }
+
+    @warn "Unknown `#{$property}` in $containersMap.";
+    @return null
+}

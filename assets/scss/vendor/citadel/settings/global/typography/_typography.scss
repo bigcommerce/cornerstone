@@ -1,0 +1,204 @@
+// =============================================================================
+// TYPOGRAPHY
+// =============================================================================
+
+
+// Global Type Vars
+// -----------------------------------------------------------------------------
+//
+// IMPORTANT: These variables are NOT to be consumed in components/apps.
+//            Instead use the maps and functions outlined below.
+//
+// 1. Set up the REM units for the rest of the framework (pixel value).
+// 2. Your base font size should always start at 1rem;
+// 3. Your <body> line-height. This value is used for spacing calculations,
+//    where spacing is = $fontSize-root * $lineHeight-base.
+//
+// -----------------------------------------------------------------------------
+
+
+// Font families
+// -----------------------------------------------------------------------------
+
+$fontFamily-sans:               ("Helvetica", Arial, sans-serif) !default;
+$fontFamily-serif:              (Georgia, "Times New Roman", serif) !default;
+$fontFamily-mono:               (Menlo, Monaco, Consolas, monospace) !default;
+$fontFamily-headings:           ("Helvetica" Arial, sans-serif) !default;
+
+
+// Font sizes
+// -----------------------------------------------------------------------------
+
+$fontSize-root:                 16px !default; // 1
+$fontSize-base:                 1rem !default; // 2
+$fontSize-hero:                 $fontSize-base * 3 !default;
+$fontSize-largest:              $fontSize-base * 2.5 !default;
+$fontSize-larger:               $fontSize-base * 2 !default;
+$fontSize-large:                $fontSize-base * 1.5 !default;
+$fontSize-small:                $fontSize-base * 1.25 !default;
+$fontSize-smaller:              $fontSize-base * 1.125 !default;
+$fontSize-smallest:             $fontSize-base * 0.875 !default;
+$fontSize-tiny:                 $fontSize-base * 0.75 !default;
+
+
+// Line heights
+// -----------------------------------------------------------------------------
+
+$lineHeight-base:               1.5 !default; // 3
+$lineHeight-hero:               2.5 !default;
+$lineHeight-largest:            2.25 !default;
+$lineHeight-larger:             2 !default;
+$lineHeight-large:              1.75 !default;
+$lineHeight-small:              1.25 !default;
+$lineHeight-smaller:            1.1 !default;
+$lineHeight-smallest:           1 !default;
+$lineHeight-tiny:               0.9 !default;
+
+
+// Font weights
+// -----------------------------------------------------------------------------
+
+$fontWeight-thin:               300 !default;
+$fontWeight-normal:             400 !default;
+$fontWeight-medium:             500 !default;
+$fontWeight-semibold:           600 !default;
+$fontWeight-bold:               700 !default;
+$fontWeight-black:              900 !default;
+
+
+// Letter spacing
+// -----------------------------------------------------------------------------
+
+$letterSpacing-base:            0 !default;
+$letterSpacing-largest:         remCalc(3px) !default;
+$letterSpacing-larger:          remCalc(2px) !default;
+$letterSpacing-large:           remCalc(1px) !default;
+$letterSpacing-small:           remCalc(-1px) !default;
+$letterSpacing-smaller:         remCalc(-2px) !default;
+$letterSpacing-smallest:        remCalc(-3px) !default;
+
+
+
+
+// Font families
+// -----------------------------------------------------------------------------
+
+$fontFamilyMap: (
+    sans:                       $fontFamily-sans,
+    serif:                      $fontFamily-serif,
+    mono:                       $fontFamily-mono,
+    headingSans:                $fontFamily-headings
+);
+
+
+// Font sizes
+// -----------------------------------------------------------------------------
+
+$fontSizeMap: (
+    base:                       $fontSize-base,
+    hero:                       $fontSize-hero,
+    largest:                    $fontSize-largest,
+    larger:                     $fontSize-larger,
+    large:                      $fontSize-large,
+    small:                      $fontSize-small,
+    smaller:                    $fontSize-smaller,
+    smallest:                   $fontSize-smallest,
+    tiny:                       $fontSize-tiny
+);
+
+
+// Line heights
+// -----------------------------------------------------------------------------
+
+$lineHeightMap: (
+    base:                       $lineHeight-base,
+    hero:                       $lineHeight-hero,
+    largest:                    $lineHeight-largest,
+    larger:                     $lineHeight-larger,
+    large:                      $lineHeight-large,
+    small:                      $lineHeight-small,
+    smaller:                    $lineHeight-smaller,
+    smallest:                   $lineHeight-smallest,
+    tiny:                       $lineHeight-tiny
+);
+
+
+// Font Weights
+// -----------------------------------------------------------------------------
+
+$fontWeightMap: (
+    thin:                       $fontWeight-thin,
+    normal:                     $fontWeight-normal,
+    medium:                     $fontWeight-medium,
+    semibold:                   $fontWeight-semibold,
+    bold:                       $fontWeight-bold,
+    black:                      $fontWeight-black
+);
+
+
+// Letter spacing
+// -----------------------------------------------------------------------------
+
+$letterSpacingMap: (
+    base:                       $letterSpacing-base,
+    largest:                    $letterSpacing-largest,
+    larger:                     $letterSpacing-larger,
+    large:                      $letterSpacing-large,
+    small:                      $letterSpacing-small,
+    smaller:                    $letterSpacing-smaller,
+    smallest:                   $letterSpacing-smallest
+);
+
+
+// Typography Functions
+// -----------------------------------------------------------------------------
+
+@function fontFamily($key) {
+
+    @if map-has-key($fontFamilyMap, $key) {
+        @return map-get($fontFamilyMap, $key);
+    }
+
+    @warn "Unknown `#{$key}` in $fontFamilyMap.";
+    @return null;
+}
+
+@function fontSize($key) {
+
+    @if map-has-key($fontSizeMap, $key) {
+        @return map-get($fontSizeMap, $key);
+    }
+
+    @warn "Unknown `#{$key}` in $fontSizeMap.";
+    @return null;
+}
+
+@function fontWeight($key) {
+
+    @if map-has-key($fontWeightMap, $key) {
+        @return map-get($fontWeightMap, $key);
+    }
+
+    @warn "Unknown `#{$key}` in $fontWeightMap.";
+    @return null;
+}
+
+@function letterSpacing($key) {
+
+    @if map-has-key($letterSpacingMap, $key) {
+        @return map-get($letterSpacingMap, $key);
+    }
+
+    @warn "Unknown `#{$key}` in $letterSpacingMap.";
+    @return null;
+}
+
+@function lineHeight($key) {
+
+    @if map-has-key($lineHeightMap, $key) {
+        @return map-get($lineHeightMap, $key);
+    }
+
+    @warn "Unknown `#{$key}` in $lineHeightMap.";
+    @return null;
+}

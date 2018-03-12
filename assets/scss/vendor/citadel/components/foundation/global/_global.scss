@@ -1,0 +1,83 @@
+// =============================================================================
+// GLOBAL (CSS)
+// =============================================================================
+
+
+// Bigcommerce Component
+// -----------------------------------------------------------------------------
+//
+// The Bigcommerce Coding Standards, coupled with Foundation.
+// If any overrides / extra CSS is needed, declare it here.
+//
+// 1. If set to false, there is no outputted CSS for this component.
+// 2. Set border-box on all elements for a better box-model.
+//
+// -----------------------------------------------------------------------------
+
+@if $exportCSS--global { // 1
+
+    *,
+    *:before,
+    *:after { box-sizing: border-box; } // 2
+
+    html,
+    body {
+        height: 100%;
+    }
+
+    body {
+        background: $body-bg;
+        color: $body-font-color;
+        cursor: $cursor-auto-value;
+        margin: 0;
+        padding: 0;
+        position: relative;
+    }
+
+    body {
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    a:hover {
+        cursor: $cursor-pointer-value;
+    }
+
+    figure {
+        margin: $figure-margin;
+    }
+
+    img {
+        display: inline-block;
+        height: auto;
+        max-width: 100%;
+        vertical-align: middle;
+    }
+
+    img {
+        -ms-interpolation-mode: bicubic;
+    }
+
+    button {
+        background: none;
+        border: 0;
+
+        &:active,
+        &:focus {
+            box-shadow: none;
+            outline: none;
+        }
+    }
+
+    // Make sure textarea takes on height automatically
+    textarea {
+        height: auto;
+        min-height: 50px;
+    }
+
+    // Make select elements 100% width by default
+    select {
+        width: 100%;
+    }
+
+}

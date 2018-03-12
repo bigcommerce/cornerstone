@@ -1,0 +1,83 @@
+// =============================================================================
+// PROGRESS BARS
+// =============================================================================
+
+
+// Bigcommerce Component
+// -----------------------------------------------------------------------------
+//
+// The Bigcommerce Coding Standards, coupled with Foundation.
+// If any library overrides or extra CSS is needed, declare it here.
+//
+// 1. If set to false, there is no outputted CSS for this component.
+//
+// -----------------------------------------------------------------------------
+
+@if $exportCSS--progress-bars { // 1
+
+/*doc
+---
+title: Progress bars
+name: progress_bars
+category: Components
+---
+
+Show your progress. A simple way to add progress bars to your layouts. You only need two HTML elements to make them and they're easy to customize.
+
+```sass_file_example
+src/settings/foundation/progress-bars/_settings.scss
+```
+
+Progress bars consist of a `progress` parent, with a `progress-meter` inner element. You can set the color of the meter by
+adding a modifier class to the `progress` class. For example: `class="progress progress--success"`. To adjust the length
+of the progress bar, you'll want to inline a width into the HTML, for example: `<span class="progress-meter" style="width: x%">`
+
+```html_example
+<div class="progress">
+    <span class="progress-meter" style="width: 75%;"></span>
+</div>
+
+<div class="progress progress--success">
+    <span class="progress-meter" style="width: 45%;"></span>
+</div>
+```
+*/
+
+    .progress {
+        @include progress-container;
+        border-radius: $progress-bar-border-radius;
+        overflow: hidden;
+    }
+
+    .progress-meter {
+        @include progress-meter;
+    }
+
+    .progress--info {
+
+        .progress-meter {
+            @include progress-meter($bg: $progress-meter-info-color);
+        }
+    }
+
+    .progress--secondary {
+
+        .progress-meter {
+            @include progress-meter($bg: $progress-meter-secondary-color);
+        }
+    }
+
+    .progress--success {
+
+        .progress-meter {
+            @include progress-meter($bg: $progress-meter-success-color);
+        }
+    }
+
+    .progress--error {
+
+        .progress-meter {
+            @include progress-meter($bg: $progress-meter-alert-color);
+        }
+    }
+}

@@ -1,0 +1,50 @@
+// =============================================================================
+// TOOLTIPS (Settings)
+// =============================================================================
+
+
+// Bigcommerce Variables
+// -----------------------------------------------------------------------------
+//
+// These scoped variables are created by Bigcommerce.
+// All variables that are not from Foundation should be placed here.
+//
+// 1. Choose whether to include the Bigcommerce class names
+//
+// -----------------------------------------------------------------------------
+
+$exportCSS--tooltips:          $exportCSS !default; // 1
+
+
+// Foundation Variables
+// -----------------------------------------------------------------------------
+//
+// 2. As Tooltips don't have a Foundation mixin, we need to set the Foundation
+// include classes variable to our export variable, so it selectively exports css
+// for the pattern labs. This outputs Foundations scss, when we state to do so.
+//
+// -----------------------------------------------------------------------------
+
+$include-html-tooltip-classes: $exportCSS--tooltips !default; // 2
+
+$has-tip-border-bottom:        dotted 1px color("greys", "medium") !default;
+$has-tip-font-weight:          $font-weight-bold !default;
+$has-tip-font-color:           color("greys", "darkest") !default;
+$has-tip-border-bottom-hover:  dotted 1px scale-color(color("primary", "base"), $lightness: -55%) !default;
+$has-tip-font-color-hover:     color("primary", "base") !default;
+$has-tip-cursor-type:          help !default;
+
+$tooltip-padding:              spacing("quarter") spacing("third") (spacing("quarter") - remCalc(1px)) !default;
+$tooltip-bg:                   color("greys", "darkest") !default;
+$tooltip-font-size:            fontSize("smallest") !default;
+$tooltip-font-weight:          $font-weight-normal !default;
+$tooltip-font-color:           color("whites", "bright") !default;
+$tooltip-line-height:          lineHeight("small") !default;
+$tooltip-close-font-size:      fontSize("smallest") !default;
+$tooltip-close-font-weight:    null !default;
+$tooltip-close-font-color:     color("greys", "lighter") !default;
+$tooltip-font-size-sml:        fontSize("base") !default;
+$tooltip-radius:               2px !default;
+$tooltip-rounded:              null !default;
+$tooltip-pip-size:             5px !default;
+$tooltip-max-width:            300px !default;

@@ -1,0 +1,41 @@
+// =============================================================================
+// LISTS (CSS)
+// =============================================================================
+
+
+// Bigcommerce Utility Classes
+// -----------------------------------------------------------------------------
+//
+// 1. If set to false, there is no outputted CSS for this component.
+// Adapted from Foundation CSS:
+//
+// -----------------------------------------------------------------------------
+
+@if $exportCSS--listUtilities { // 1
+
+    .u-listCircleBullet {
+        @include u-listBullets("circle", !important);
+    }
+
+    .u-listDiscBullet {
+        @include u-listBullets("disc", !important);
+    }
+
+    .u-listNoBullet {
+        @include u-listBullets("none", !important);
+    }
+
+    .u-listSquareBullet {
+        @include u-listBullets("square", !important);
+    }
+
+    .u-listHorizontal {
+        @include u-listHorizontal;
+    }
+
+    .u-listReset {
+        @include u-listReset;
+    }
+
+}
+

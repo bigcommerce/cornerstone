@@ -1,0 +1,62 @@
+// =============================================================================
+// ACCOUNT (CSS)
+// =============================================================================
+
+
+// Bigcommerce Component
+// -----------------------------------------------------------------------------
+//
+// The Bigcommerce Coding Standards, coupled with Foundation.
+// If any library overrides or extra CSS is needed, declare it here.
+//
+// 1. If set to false, there is no outputted CSS for this component.
+//
+// -----------------------------------------------------------------------------
+
+@if $exportCSS--account {
+
+/*doc
+---
+title: Account
+name: account
+category: Patterns
+---
+```html_example
+<ul class="account">
+    <li class="account-name">
+        <span class="account-firstName">David</span>
+        <span class="account-lastName">Smith</span>
+    </li>
+    <li class="account-address-line1">150 Stockton St</li>
+    <li>
+        <span class="account-address-city">San Francisco</span>,
+        <span class="account-address-state">CA</span>
+        <span class="account-address-postalCode">94108</span>
+    </li>
+    <li class="account-address-country">United States</li>
+</ul>
+
+<ul class="account">
+    <li class="account-phoneNumber">
+        415-362-3900
+    </li>
+    <li class="account-email">
+        <a href="mailto:david.smith@hotmail.com">david.smith@hotmail.com</a>
+    </li>
+</ul>
+```
+
+```sass_file_example
+src/settings/bigcommerce/account/_settings.scss
+```
+*/
+
+    .account {
+        @include u-listBullets("none");
+    }
+
+    .account-name {
+        font-weight: $account-name-fontWeight;
+    }
+}
+

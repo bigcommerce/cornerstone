@@ -1,0 +1,223 @@
+// =============================================================================
+// BUTTONS (Settings)
+// =============================================================================
+
+
+// Bigcommerce Variables
+// -----------------------------------------------------------------------------
+//
+// These scoped variables are created by Bigcommerce.
+// All variables that are not from Foundation should be placed here.
+//
+// 1. Choose whether to include the Bigcommerce class names
+//
+// -----------------------------------------------------------------------------
+
+$exportCSS--buttons:                    $exportCSS !default; // 1
+
+
+//
+// Button Style variables
+// -----------------------------------------------------------------------------
+
+$buttonStyle-default-color:                  color("primary") !default;
+$buttonStyle-default-colorHover:             color("primary") !default;
+$buttonStyle-default-colorActive:            color("primary") !default;
+$buttonStyle-default-backgroundColor:        color("secondary") !default;
+$buttonStyle-default-backgroundColorHover:   color("secondary", "dark") !default;
+$buttonStyle-default-backgroundColorActive:  color("secondary", "dark") !default;
+$buttonStyle-default-borderColor:            color("greys", "light") !default;
+$buttonStyle-default-borderColorHover:       color("greys", "light") !default;
+$buttonStyle-default-borderColorActive:      color("greys", "medium") !default;
+
+$buttonStyle-primary-color:                  color("whites", "bright") !default;
+$buttonStyle-primary-colorHover:             color("whites", "bright") !default;
+$buttonStyle-primary-colorActive:            color("whites", "bright") !default;
+$buttonStyle-primary-backgroundColor:        color("primary") !default;
+$buttonStyle-primary-backgroundColorHover:   color("primary", "dark") !default;
+$buttonStyle-primary-backgroundColorActive:  color("primary", "darker") !default;
+$buttonStyle-primary-borderColor:            color("primary") !default;
+$buttonStyle-primary-borderColorHover:       color("primary", "dark") !default;
+$buttonStyle-primary-borderColorActive:      color("primary", "darker") !default;
+
+$buttonStyle-tertiary-color:                 color("greys", "dark") !default;
+$buttonStyle-tertiary-colorHover:            color("greys", "darker") !default;
+$buttonStyle-tertiary-colorActive:           color("greys", "darker") !default;
+$buttonStyle-tertiary-backgroundColor:       color("greys", "light") !default;
+$buttonStyle-tertiary-backgroundColorHover:  color("greys", "medium") !default;
+$buttonStyle-tertiary-backgroundColorActive: color("greys", "medium") !default;
+$buttonStyle-tertiary-borderColor:           color("greys", "light") !default;
+$buttonStyle-tertiary-borderColorHover:      color("greys", "medium") !default;
+$buttonStyle-tertiary-borderColorActive:     color("greys", "medium") !default;
+
+$buttonStyle-action-color:                   color("whites", "bright") !default;
+$buttonStyle-action-colorHover:              color("whites", "bright") !default;
+$buttonStyle-action-colorActive:             color("whites", "bright") !default;
+$buttonStyle-action-backgroundColor:         color("highlight") !default;
+$buttonStyle-action-backgroundColorHover:    color("highlight", "dark") !default;
+$buttonStyle-action-backgroundColorActive:   color("highlight", "darker") !default;
+$buttonStyle-action-borderColor:             color("highlight") !default;
+$buttonStyle-action-borderColorHover:        color("highlight", "dark") !default;
+$buttonStyle-action-borderColorActive:       color("highlight", "darker") !default;
+
+$buttonStyle-disabled-color:                 color("greys", "medium") !default;
+$buttonStyle-disabled-colorHover:            color("greys", "medium") !default;
+$buttonStyle-disabled-colorActive:           color("greys", "medium") !default;
+$buttonStyle-disabled-backgroundColor:       color("greys", "lightest") !default;
+$buttonStyle-disabled-backgroundColorHover:  color("greys", "lightest") !default;
+$buttonStyle-disabled-backgroundColorActive: color("greys", "lightest") !default;
+$buttonStyle-disabled-borderColor:           color("greys", "light") !default;
+$buttonStyle-disabled-borderColorHover:      color("greys", "light") !default;
+$buttonStyle-disabled-borderColorActive:     color("greys", "light") !default;
+
+
+// Color/State Modifiers
+// -----------------------------------------------------------------------------
+$buttonStyleMap: (
+    default: (
+        color:                          $buttonStyle-default-color,
+        colorHover:                     $buttonStyle-default-colorHover,
+        colorActive:                    $buttonStyle-default-colorActive,
+        backgroundColor:                $buttonStyle-default-backgroundColor,
+        backgroundColorHover:           $buttonStyle-default-backgroundColorHover,
+        backgroundColorActive:          $buttonStyle-default-backgroundColorActive,
+        borderColor:                    $buttonStyle-default-borderColor,
+        borderColorHover:               $buttonStyle-default-borderColorHover,
+        borderColorActive:              $buttonStyle-default-borderColorActive
+    ),
+
+    primary: (
+        color:                          $buttonStyle-primary-color,
+        colorHover:                     $buttonStyle-primary-colorHover,
+        colorActive:                    $buttonStyle-primary-colorActive,
+        backgroundColor:                $buttonStyle-primary-backgroundColor,
+        backgroundColorHover:           $buttonStyle-primary-backgroundColorHover,
+        backgroundColorActive:          $buttonStyle-primary-backgroundColorActive,
+        borderColor:                    $buttonStyle-primary-borderColor,
+        borderColorHover:               $buttonStyle-primary-borderColorHover,
+        borderColorActive:              $buttonStyle-primary-borderColorActive
+    ),
+
+    tertiary: (
+        color:                          $buttonStyle-tertiary-color,
+        colorHover:                     $buttonStyle-tertiary-colorHover,
+        colorActive:                    $buttonStyle-tertiary-colorActive,
+        backgroundColor:                $buttonStyle-tertiary-backgroundColor,
+        backgroundColorHover:           $buttonStyle-tertiary-backgroundColorHover,
+        backgroundColorActive:          $buttonStyle-tertiary-backgroundColorActive,
+        borderColor:                    $buttonStyle-tertiary-borderColor,
+        borderColorHover:               $buttonStyle-tertiary-borderColorHover,
+        borderColorActive:              $buttonStyle-tertiary-borderColorActive
+    ),
+
+    action: (
+        color:                          $buttonStyle-action-color,
+        colorHover:                     $buttonStyle-action-colorHover,
+        colorActive:                    $buttonStyle-action-colorActive,
+        backgroundColor:                $buttonStyle-action-backgroundColor,
+        backgroundColorHover:           $buttonStyle-action-backgroundColorHover,
+        backgroundColorActive:          $buttonStyle-action-backgroundColorActive,
+        borderColor:                    $buttonStyle-action-borderColor,
+        borderColorHover:               $buttonStyle-action-borderColorHover,
+        borderColorActive:              $buttonStyle-action-borderColorActive
+    ),
+
+    disabled: (
+        color:                          $buttonStyle-disabled-color,
+        colorHover:                     $buttonStyle-disabled-colorHover,
+        colorActive:                    $buttonStyle-disabled-colorActive,
+        backgroundColor:                $buttonStyle-disabled-backgroundColor,
+        backgroundColorHover:           $buttonStyle-disabled-backgroundColorHover,
+        backgroundColorActive:          $buttonStyle-disabled-backgroundColorActive,
+        borderColor:                    $buttonStyle-disabled-borderColor,
+        borderColorHover:               $buttonStyle-disabled-borderColorHover,
+        borderColorActive:              $buttonStyle-disabled-borderColorActive
+    )
+);
+
+
+// Size Modifiers
+// -----------------------------------------------------------------------------
+
+$buttonSize-default-fontSize:           fontSize("base") !default;
+$buttonSize-default-horizontalPadding:  spacing("single") !default;
+$buttonSize-default-verticalPadding:    spacing("third") + spacing("quarter") !default;
+
+$buttonSize-large-fontSize:             fontSize("large") !default;
+$buttonSize-large-horizontalPadding:    spacing("single") + spacing("third") !default;
+$buttonSize-large-verticalPadding:      spacing("base") + spacing("eighth") !default;
+
+$buttonSize-small-fontSize:             fontSize("smaller") !default;
+$buttonSize-small-horizontalPadding:    spacing("base") !default;
+$buttonSize-small-verticalPadding:      spacing("quarter") + spacing("eighth") !default;
+
+$buttonSize-tiny-fontSize:              fontSize("smallest") !default;
+$buttonSize-tiny-horizontalPadding:     spacing("half") !default;
+$buttonSize-tiny-verticalPadding:       spacing("quarter") !default;
+
+$buttonSize-square-fontSize:            fontSize("base") !default;
+$buttonSize-square-horizontalPadding:   spacing("half") !default;
+$buttonSize-square-verticalPadding:     spacing("half") !default;
+
+
+$buttonSizeMap: (
+    default: (
+        fontSize:                       $buttonSize-default-fontSize,
+        horizontalPadding:              $buttonSize-default-horizontalPadding,
+        verticalPadding:                $buttonSize-default-verticalPadding
+    ),
+
+    large: (
+        fontSize:                       $buttonSize-large-fontSize,
+        horizontalPadding:              $buttonSize-large-horizontalPadding,
+        verticalPadding:                $buttonSize-large-verticalPadding
+    ),
+
+    small: (
+        fontSize:                       $buttonSize-small-fontSize,
+        horizontalPadding:              $buttonSize-small-horizontalPadding,
+        verticalPadding:                $buttonSize-small-verticalPadding
+    ),
+
+    tiny: (
+        fontSize:                       $buttonSize-tiny-fontSize,
+        horizontalPadding:              $buttonSize-tiny-horizontalPadding,
+        verticalPadding:                $buttonSize-tiny-verticalPadding
+    ),
+
+    square: (
+        fontSize:                       $buttonSize-square-fontSize,
+        horizontalPadding:              $buttonSize-square-horizontalPadding,
+        verticalPadding:                $buttonSize-square-verticalPadding
+    )
+);
+
+$button-vAlign:                         middle !default;
+$button-focus-boxShadow:                0 0 2px rgba(color("primary"), 0.6) !default;
+
+$button-adjacentButton-marginLeft:      spacing("half") !default;
+
+
+// Foundation Variables
+// -----------------------------------------------------------------------------
+//
+// These variables come directly from:
+// /vendor/foundation/foundation/components/*
+// Declaring the variables here, you can adjust them all to your design,
+// leaving the vendor framework untouched.
+//
+// -----------------------------------------------------------------------------
+
+$include-html-button-classes:           $include-html-classes !default;
+
+$button-display:                        inline-block !default;
+$button-margin-bottom:                  spacing("base") !default;
+
+$button-font-family:                    $body-font-family !default;
+$button-font-weight:                    $font-weight-normal !default;
+$button-font-align:                     center !default;
+
+$button-border-width:                   1px !default;
+$button-border-style:                   solid !default;
+
+$button-radius:                         $global-radius !default;

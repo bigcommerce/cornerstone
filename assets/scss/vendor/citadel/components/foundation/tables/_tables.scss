@@ -1,0 +1,90 @@
+// =============================================================================
+// TABLES (CSS)
+// =============================================================================
+
+
+// Bigcommerce Tables
+// -----------------------------------------------------------------------------
+//
+// The Bigcommerce Coding Standards, coupled with Foundation.
+// If any overrides / extra CSS is needed, declare it here.
+//
+// 1. If set to false, there is no outputted CSS for this component.
+//
+// -----------------------------------------------------------------------------
+
+@if $exportCSS--tables { // 1
+
+
+/*doc
+---
+title: Tables
+name: tables
+category: Elements
+---
+
+
+```html_example
+<table class="table">
+    <thead class="table-thead">
+        <tr>
+            <th>Table Header</th>
+            <th>Table Header</th>
+            <th class="table-header--numericData" scope="column">Totals</th>
+        </tr>
+    </thead>
+    <tbody class="table-tbody">
+        <tr>
+            <td>Content Goes Here</td>
+            <td>This is longer content Donec id elit non mi porta gravida at eget metus.</td>
+            <td class="table-cell--numericData">$10</td>
+        </tr>
+    </tbody>
+    <tfoot class="table-tfoot">
+        <tr>
+            <td class="table-cell--numericData" colspan="2">Subtotal:</td>
+            <td class="table-cell--numericData"><strong>$60</strong></td>
+        </tr>
+    </tfoot>
+</table>
+```
+##### Tables settings
+```sass_file_example
+src/settings/foundation/tables/_settings.scss
+```
+
+*/
+
+    .table {
+        @include table;
+        width: $table-width;
+
+        // Fighting with Foundations use of descendent class names
+        th.table-header--numericData,
+        td.table-cell--numericData, {
+            text-align: $table-numericData-textAlign;
+        }
+
+        tr:hover {
+            background: $table-row-hover;
+        }
+    }
+
+    .table-thead {
+        border: $table-head-border;
+    }
+
+    .table-tfoot {
+        border: $table-foot-border;
+    }
+
+    .table-tbody tr {
+        border-bottom: $table-row-border;
+
+        &:last-child {
+            border-bottom: 0;
+        }
+    }
+
+
+}

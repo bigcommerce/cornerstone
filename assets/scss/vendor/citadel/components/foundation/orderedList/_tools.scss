@@ -1,0 +1,29 @@
+// =============================================================================
+// ORDERED-LIST (Tools)
+// =============================================================================
+
+
+// Bigcommerce Mixins
+// -----------------------------------------------------------------------------
+
+@mixin orderedList($style-type) {
+    counter-reset: item-counter;
+    list-style-type: $style-type;
+}
+
+@mixin orderedListItem($border-bot, $font-size, $padding) {
+    border-bottom: $border-bot;
+    font-size: $font-size;
+    list-style-type: none;
+    padding: $padding;
+}
+
+@mixin orderedListItemCounter($color, $font-family, $font-size, $font-weight, $margin) {
+    color: $color;
+    content: counter(item-counter);
+    counter-increment: item-counter;
+    font-family: $font-family;
+    font-size: $font-size;
+    font-weight: $font-weight;
+    margin: $margin;
+}

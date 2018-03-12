@@ -1,0 +1,146 @@
+// =============================================================================
+// FORMS (Settings)
+// =============================================================================
+
+
+// Foundation Variables
+// -----------------------------------------------------------------------------
+//
+// These variables come directly from:
+// /vendor/foundation/foundation/components/*
+// Declaring the variables here, you can adjust them all to your design,
+// leaving the vendor framework untouched.
+//
+// -----------------------------------------------------------------------------
+
+$include-html-form-classes:          $include-html-classes !default;
+
+// We use this to set the base for lots of form spacing and positioning styles
+$form-spacing:                       spacing("single") !default;
+
+// We use these to style the labels in different ways
+$form-label-pointer:                 pointer !default;
+$form-label-font-size:               fontSize("base") !default;
+$form-label-font-weight:             fontWeight("medium") !default;
+$form-label-line-height:             lineHeight("base") !default;
+$form-label-font-color:              $body-font-color !default;
+$form-label-small-transform:         none !default;
+$form-label-bottom-margin:           1rem !default;
+
+// $input-font-family:               inherit !default;
+$input-font-color:                   $body-font-color !default;
+$input-font-size:                    fontSize("base") !default;
+$input-bg-color:                     color("greys", "lightest") !default;
+$input-focus-bg-color:               color("whites", "bright") !default;
+$input-border-color:                 container("borderColor", "dark") !default;
+$input-focus-border-color:           color("primary") !default;
+$input-border-style:                 solid !default;
+$input-border-width:                 1px !default;
+$input-border-radius:                0 !default;
+$input-disabled-bg:                  color("whites") !default;
+$input-disabled-cursor:              not-allowed !default;
+$input-box-shadow:                   none !default;
+$input-include-glowing-effect:       false !default;
+
+// We use these to style the fieldset border and spacing.
+$fieldset-border-style:              solid !default;
+$fieldset-border-width:              0 !default;
+$fieldset-border-color:              container("borderColor", "dark") !default;
+$fieldset-padding:                   0 !default;
+$fieldset-margin:                    0 !default;
+
+// We use these to style the legends when you use them
+$legend-bg:                          container("fill") !default;
+$legend-font-weight:                 fontWeight("bold") !default;
+$legend-padding:                     container("padding") (container("padding") + spacing("quarter")) !default;
+
+// We use these to style the prefix and postfix input elements
+$input-prefix-bg:                    null !default;
+$input-prefix-border-color:          null !default;
+$input-prefix-border-size:           null !default;
+$input-prefix-border-type:           null !default;
+$input-prefix-overflow:              null !default;
+$input-prefix-font-color:            null !default;
+$input-prefix-font-color-alt:        null !default;
+
+// We use this setting to turn on/off HTML5 number spinners (the up/down arrows)
+$input-number-spinners:              true !default;
+
+// We use these to style the error states for inputs and labels
+$input-error-message-padding:        null !default;
+$input-error-message-top:            null !default;
+$input-error-message-font-size:      null !default;
+$input-error-message-font-weight:    null !default;
+$input-error-message-font-style:     null !default;
+$input-error-message-font-color:     null !default;
+$input-error-message-font-color-alt: null !default;
+
+// We use this to style the glowing effect of inputs when focused
+$glowing-effect-fade-time:           null !default;
+$glowing-effect-color:               null !default;
+
+// Select variables
+$select-bg-color:                    color("whites", "bright") !default;
+$select-hover-bg-color:              color("whites", "bright") !default;
+
+
+// Bigcommerce Variables
+// -----------------------------------------------------------------------------
+//
+// These scoped variables are created by Bigcommerce.
+// All variables that are not from Foundation should be placed here.
+//
+// 1. Choose whether to include the Bigcommerce class names
+//
+// -----------------------------------------------------------------------------
+
+$exportCSS--forms:                   $exportCSS !default; // 1
+
+$form-verticalSpacing:               spacing("single") * 1.5 !default;
+
+$form-margin:                        0 !default;
+
+$legend-border-style:                solid !default;
+$legend-border-width:                0 0 1px !default;
+$legend-border-color:                container("borderColor", "dark") !default;
+$legend-display:                     block !default;
+$legend-fontFamily:                  fontFamily("headingSans") !default;
+$legend-fontSize:                    $h2-font-size !default;
+$legend-lineHeight:                  lineHeight("base") !default;
+$legend-marginBottom:                0 !default;
+$legend-width:                       100% !default;
+
+$form-label-small-color:             color("greys", "medium") !default;
+$form-label-small-fontSize:          fontSize("base") !default;
+$form-label-small-fontWeight:        fontWeight("normal") !default;
+
+$input-boxShadow:                    1px 1px 0 rgba($input-border-color, 0.4) !default;
+$input-display:                      block !default;
+$input-fontSmoothing:                true !default;
+$input-height:                       $form-spacing * 2 !default;
+$input-horizontalPadding:            ($form-spacing / 1.5) !default;
+$input-margin:                       0 !default;
+$input-placeholder-color:            color("greys") !default;
+$input-transition:                   all 100ms ease-out !default;
+$input-verticalPadding:              ($form-spacing / 2) !default;
+$input-padding:                      $input-verticalPadding $input-horizontalPadding !default;
+$input-width:                        100% !default;
+
+$input-disabled-borderColor:         container("borderColor", "dark") !default;
+$input-disabled-color:               color("greys", "light") !default;
+
+$input-readonly-bg:                  $input-disabled-bg !default;
+$input-readonly-borderColor:         $input-disabled-borderColor !default;
+$input-readonly-color:               color("greys", "medium") !default;
+$input-readonly-cursor:              text !default;
+
+$input-focus-boxShadow:              0 0 2px rgba(color("primary"), 0.4) !default;
+
+$select-boxShadow:                   $input-boxShadow !default;
+$select-height:                      $input-height !default;
+$select-margin:                      0 !default;
+$select-maxWidth:                    none !default;
+$select-outline:                     0 !default;
+$select-paddingRight:                $form-spacing !default;
+$select-focus-borderColor:           $input-focus-border-color !default;
+$select-focus-boxShadow:             $input-focus-boxShadow !default;

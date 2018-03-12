@@ -1,0 +1,72 @@
+// =============================================================================
+// Panels (Settings)
+// =============================================================================
+//
+
+// Foundation Variables
+// -----------------------------------------------------------------------------
+//
+// These variables come directly from:
+// /vendor/foundation/foundation/components/*
+// Declaring the variables here, you can adjust them all to your design,
+// leaving the vendor framework untouched.
+//
+// -----------------------------------------------------------------------------
+
+$include-html-panel-classes:     $include-html-classes !default;
+
+// We use these to control the background and border styles
+$panel-bg:                       container("fill") !default;
+$panel-border-style:             container("borderStyle") !default;
+$panel-border-size:              1px !default;
+$callout-panel-bg:               color("greys", "lighter") !default;
+
+// We use this % to control how much we darken things on hover
+$panel-border-color:             container("borderColor", "dark") !default;
+
+// We use these to set default inner padding and bottom margin
+$panel-margin-bottom:            container("margin") !default;
+$panel-paddingHorizontal:        container("padding") + spacing("half") !default;
+$panel-paddingVertical:          container("padding") !default;
+$panel-padding:                  $panel-paddingVertical $panel-paddingHorizontal !default;
+
+// We use these to set default font colors
+$panel-font-color:               $body-font-color !default;
+$panel-font-color-alt:           color("whites", "bright") !default;
+
+$panel-header-adjust:            false !default;
+$callout-panel-link-color:       null !default;
+
+
+// Bigcommerce Variables
+// -----------------------------------------------------------------------------
+//
+// These scoped variables are created by Bigcommerce.
+// All variables that are not from Foundation should be placed here.
+//
+// 1. Choose whether to include the Bigcommerce class names
+//
+// -----------------------------------------------------------------------------
+
+$exportCSS--panels:              $exportCSS !default; // 1
+
+$panel-boxShadow:                none !default;
+
+// Panel header settings
+$panel-header-bg:                $panel-bg !default;
+$panel-header-borderColor:       $panel-border-color !default;
+$panel-header-borderStyle:       $panel-border-style !default;
+$panel-header-borderWidth:       1px 1px 0 !default;
+$panel-header-margin:            0 !default;
+$panel-header-paddingHorizontal: $panel-paddingHorizontal !default;
+$panel-header-paddingVertical:   $panel-paddingVertical !default;
+$panel-header-padding:           $panel-header-paddingVertical $panel-header-paddingHorizontal !default;
+
+// Panel title settings
+$panel-title-lineHeight:         lineHeight("base") !default;
+$panel-title-margin:             0 !default;
+
+// Callout panel settings
+$callout-panel-titleColor:       color("whites", "bright") !default;
+$callout-panel-headerBg:         color("greys", "darkest") !default;
+$callout-panel-headerColor:      color("whites", "bright") !default;

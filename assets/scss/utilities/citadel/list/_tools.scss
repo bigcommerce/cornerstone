@@ -1,0 +1,83 @@
+// =============================================================================
+// LISTS (Tools)
+// =============================================================================
+
+
+// List Bullets
+// -----------------------------------------------------------------------------
+
+@mixin u-listBullets($type, $important: null) {
+
+    @if $type == "circle" {
+
+        list-style-type: circle $important;
+
+        ul {
+
+            list-style: inherit $important;
+        }
+
+    }
+    @else if $type == "disc" {
+
+        list-style-type: disc $important;
+
+        ul {
+
+            list-style: inherit $important;
+        }
+
+    }
+    @else if $type == "none" {
+
+        list-style: none $important;
+        margin-#{$default-float}: $list-side-margin-no-bullet $important;
+
+        ul,
+        ol {
+
+            list-style: none $important;
+            margin-bottom: 0 $important;
+        }
+
+    }
+    @else if $type == "square" {
+
+        list-style-type: square $important;
+
+        ul {
+
+            list-style: inherit $important;
+        }
+
+    }
+}
+
+//
+// Horizontal Lists
+// -----------------------------------------------------------------------------
+
+@mixin u-listHorizontal() {
+    @include u-listBullets("none");
+
+    li {
+        display: inline-block;
+    }
+}
+
+//
+// List Rest
+//
+// Purpose: A general helper to reset a list style of all styling
+// -----------------------------------------------------------------------------
+
+@mixin u-listReset() {
+    @include u-listBullets("none");
+    margin: 0;
+    padding: 0;
+
+    li {
+        margin: 0;
+        padding: 0;
+    }
+}

@@ -1,0 +1,140 @@
+// =============================================================================
+// ALERTS (CSS)
+// =============================================================================
+
+
+// Bigcommerce Component
+// -----------------------------------------------------------------------------
+//
+// The Bigcommerce Coding Standards, coupled with Foundation.
+// If any library overrides or extra CSS is needed, declare it here.
+//
+// 1. If set to false, there is no outputted CSS for this component.
+//
+// -----------------------------------------------------------------------------
+
+@if $exportCSS--alerts { // 1
+
+
+/*doc
+---
+title: Alerts
+name: alerts
+category: Components
+---
+
+Alerts can be used to inform users about the actions they perform, whether it's a successful message, a warning, error, or just information.
+They can be displayed at a page level or inside a specific container. They will take the full width of their containers.
+
+```sass_file_example
+src/settings/foundation/alerts/_settings.scss
+```
+
+The alert box consists of three `alertBox-column`s: The `alertBox-icon` which contains the icon for the type of alert,
+the `alertBox-message` which can contain the heading and text for the alert message, and `alertBox-close` which holds the close button.
+You can set the vertical alignment of the columns in the setting variables.
+
+```html_example
+<div class="alertBox">
+    <div class="alertBox-column alertBox-icon">
+        <icon class="icon" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path>
+            </svg>
+        </icon>
+    </div>
+    <div class="alertBox-column alertBox-message">
+        <span>Generic alert</span>
+    </div>
+    <a class="alertBox-column alertBox-close" tabindex="0" href="#">
+        <icon glyph="ic-close" class="icon" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path>
+            </svg>
+        </icon>
+    </a>
+</div>
+```
+*/
+
+    // Component
+    // -------------------------------------------------------------------------
+
+    .alertBox {
+        @include alert($bg:$alert-generic-bgColor);
+
+        .icon {
+            @include square($alert-iconSize);
+        }
+
+        .button {
+            margin: $alert-button-margin;
+        }
+    }
+
+    .alertBox--info {
+        @include alert-style($alert-info-bgColor);
+
+        svg {
+            fill: $alert-info-iconColor;
+        }
+    }
+
+    .alertBox--success {
+        @include alert-style($alert-success-bgColor);
+
+        svg {
+            fill: $alert-success-iconColor;
+        }
+    }
+
+    .alertBox--warning {
+        @include alert-style($alert-warning-bgColor);
+
+        svg {
+            fill: $alert-warning-iconColor;
+        }
+    }
+
+    .alertBox--error {
+        @include alert-style($alert-error-bgColor);
+
+        svg {
+            fill: $alert-error-iconColor;
+        }
+    }
+
+    .alertBox-column {
+        display: table-cell;
+        text-align: $alert-column-textAlign;
+        vertical-align: middle;
+    }
+
+    .alertBox-icon {
+        padding-right: $alert-padding-default-float;
+    }
+
+    .alertBox-message {
+        margin: $alert-message-margin;
+        text-align: $alert-message-textAlign;
+        width: 100%;
+    }
+
+    .alertBox-heading {
+        margin: $alert-heading-margin;
+    }
+
+    .alertBox-close {
+        cursor: $alert-close-cursor;
+        padding-left: $alert-padding-default-float;
+
+        .icon {
+            @include square($alert-close-iconSize);
+        }
+
+        svg {
+            fill: $alert-close-color;
+        }
+    }
+}
+

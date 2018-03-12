@@ -1,0 +1,168 @@
+// =============================================================================
+// NAV (CSS)
+// =============================================================================
+
+
+// Bigcommerce Component
+// -----------------------------------------------------------------------------
+//
+// The Bigcommerce Coding Standards, coupled with Foundation.
+// If any library overrides or extra CSS is needed, declare it here.
+//
+// 1. If set to false, there is no outputted CSS for this component.
+// 2. Include the basic nav component that builds all naming conventions
+//    and base classe names.
+//
+// -----------------------------------------------------------------------------
+
+@if $exportCSS--nav { // 1
+
+
+/*doc
+---
+title: Navigation
+name: nav
+category: Components
+---
+
+The navigation pattern holds a list of links wrapped in a navigation element. The links can help you navigate
+the document, or the information architecture. Each link should modify the URL in some way.
+
+```sass_file_example
+src/settings/bigcommerce/nav/_settings.scss
+```
+We generate our own navigation abstractions through a `nav()` mixin. The mixin works as follows:
+
+```scss_example
+nav($style: "navBar", $wrapper: "nav")
+```
+Where:
+
+ - `$style` - The type of navigation (a bar or list)
+ - `$wrapper` - The wrapper of the navigation (usually nav, ul or ol)
+
+There is also a `nav-action()` mixin, which when used will set the styles for any actionable items in your navigation list.
+
+```scss_example
+nav-action($color, $fontFamily, $fontSize, $padding)
+```
+
+*/
+
+
+/*doc
+---
+title: Navigation Bar
+name: navBar
+parent: nav
+category: Components
+---
+
+The Navigation Bar is a horizontal navigation component, useful for page navigation or any other primary content navigation.
+
+```html_example
+<nav class="navBar navBar--internal">
+    <ul class="navBar-section">
+        <li class="navBar-item">
+            <a class="navBar-action" href="#">Item 1</a>
+        </li>
+        <li class="navBar-item is-active">
+            <a class="navBar-action" href="#">Item 2</a>
+        </li>
+        <li class="navBar-item">
+            <a class="navBar-action" href="#">Item 3</a>
+        </li>
+        <li class="navBar-item">
+            <a class="navBar-action" href="#">Item 4</a>
+        </li>
+    </ul>
+    <ul class="navBar-section navBar-section--alt">
+        <li class="navBar-item">
+            <a class="navBar-action" href="#">Item 5</a>
+        </li>
+        <li class="navBar-item">
+            <a class="navBar-action" href="#">Item 6</a>
+        </li>
+        <li class="navBar-item">
+            <a class="navBar-action" href="#">Item 7</a>
+        </li>
+    </ul>
+</nav>
+```
+
+You can create a navigation bar abstraction with the following mixin:
+
+```scss_example
+.pageNavigation {
+    @include nav("navBar", "nav");
+    @include nav-action($navBar-action-color, $navBar-action-fontFamily, $navBar-action-fontSize, $navBar-action-padding);
+}
+```
+
+*/
+    .navBar {
+        @include nav("navBar", "nav"); // 2
+        @include nav-action($navBar-action-color, $navBar-action-fontFamily, $navBar-action-fontSize, $navBar-action-padding);
+    }
+
+
+/*doc
+---
+title: Navigation List
+name: navList
+parent: nav
+category: Components
+---
+
+The Navigation List is a vertical navigation component, useful for secondary navigation like a list of child pages.
+
+```html_example
+<nav class="navList navList--aside">
+    <ul class="navList-section">
+        <li class="navList-item">
+            <a class="navList-action" href="#">Item 1</a>
+        </li>
+        <li class="navList-item is-active">
+            <a class="navList-action" href="#">Item 2</a>
+            <ul class="navList-subSection">
+                <li class="navList-item">
+                    <a class="navList-action" href="#">Sub-item 1</a>
+                </li>
+                <li class="navList-item is-active">
+                    <a class="navList-action" href="#">Sub-item 2</a>
+                </li>
+                <li class="navList-item">
+                    <a class="navList-action" href="#">Sub-item 3</a>
+                </li>
+                <li class="navList-item">
+                    <a class="navList-action" href="#">Sub-item 4</a>
+                </li>
+            </ul>
+        </li>
+        <li class="navList-item">
+            <a class="navList-action" href="#">Sub-item 3</a>
+        </li>
+        <li class="navList-item">
+            <a class="navList-action" href="#">Sub-item 4</a>
+        </li>
+    </ul>
+</nav>
+```
+
+You can create a navigation list abstraction with the following mixin:
+
+```scss_example
+.subPagesList {
+    @include nav("navList", "ul");
+    @include nav-action($navBar-action-color, $navBar-action-fontFamily, $navBar-action-fontSize, $navBar-action-padding);
+}
+```
+
+*/
+
+    .navList {
+        @include nav("navList", "nav"); // 3
+        @include nav-action($navList-action-color, $navList-action-fontFamily, $navList-action-fontSize, $navList-action-padding);
+    }
+
+}

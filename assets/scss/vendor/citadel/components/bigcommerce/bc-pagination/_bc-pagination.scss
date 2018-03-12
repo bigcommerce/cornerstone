@@ -1,0 +1,35 @@
+// =============================================================================
+// BC-PAGINATION (CSS)
+// =============================================================================
+
+
+// Bigcommerce Component
+// -----------------------------------------------------------------------------
+//
+// The Bigcommerce Coding Standards, coupled with Foundation.
+// If any library overrides or extra CSS is needed, declare it here.
+//
+// 1. If set to false, there is no outputted CSS for this component.
+//
+// -----------------------------------------------------------------------------
+
+@if $exportCSS--paginationLimits {
+
+    // Component
+    // -------------------------------------------------------------------------
+    .pagination {
+        @include clearfix();
+        float: $pagination-side;
+    }
+
+    .pagination-limits {
+        border: $pagination-limits-borderStyle $pagination-limits-borderColor;
+        border-width: $pagination-limits-borderWidth;
+        display: inline-block;
+        margin-left: $pagination-limits-marginLeft;
+        padding: $pagination-limits-padding;
+        position: relative;
+        vertical-align: top;
+    }
+
+}

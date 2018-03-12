@@ -1,0 +1,47 @@
+// =============================================================================
+// SCREEN SIZES
+// =============================================================================
+
+
+// Screen sizes
+// -----------------------------------------------------------------------------
+
+$screen-xxxlarge:               1920px !default;
+$screen-xxlarge:                1681px !default;
+$screen-xlarge:                 1441px !default;
+$screen-large:                  1281px !default;
+$screen-medium:                 1025px !default;
+$screen-small:                  769px !default;
+$screen-xsmall:                 481px !default;
+$screen-xxsmall:                320px !default;
+
+
+
+// Screen sizes map
+// -----------------------------------------------------------------------------
+
+$screenSizeMap: (
+    xxxlarge:                   $screen-xxxlarge,
+    xxlarge:                    $screen-xxlarge,
+    xlarge:                     $screen-xlarge,
+    large:                      $screen-large,
+    medium:                     $screen-medium,
+    small:                      $screen-small,
+    xsmall:                     $screen-xsmall,
+    xxsmall:                    $screen-xxsmall
+);
+
+
+//
+// Screen sizes function
+// -----------------------------------------------------------------------------
+
+@function screenSize($key) {
+
+    @if map-has-key($screenSizeMap, $key) {
+        @return map-get($screenSizeMap, $key);
+    }
+
+    @warn "Unknown `#{$key}` in $screenSizeMap.";
+    @return null;
+}

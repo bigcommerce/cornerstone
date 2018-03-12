@@ -1,0 +1,57 @@
+// =============================================================================
+// INLINELIST (CSS)
+// =============================================================================
+
+
+// Bigcommerce Component
+// -----------------------------------------------------------------------------
+//
+// The Bigcommerce Coding Standards, coupled with Foundation.
+// If any library overrides or extra CSS is needed, declare it here.
+//
+// 1. If set to false, there is no outputted CSS for this component.
+//
+// -----------------------------------------------------------------------------
+
+@if $exportCSS--inlineList { // 1
+
+/*doc
+---
+title: Lists
+name: lists
+category: Elements
+---
+
+*/
+
+
+/*doc
+---
+title: Inline List
+name: inline_list
+category: Elements
+parent: lists
+---
+
+
+```html_example
+<ul class="inlineList">
+    <li><a href="#">Link 1</a></li>
+    <li><a href="#">Link 2</a></li>
+    <li><a href="#">Link 3</a></li>
+    <li><a href="#">Link 4</a></li>
+    <li><a href="#">Link 5</a></li>
+</ul>
+```
+##### Inline list settings
+```sass_file_example
+src/settings/foundation/inlineList/_settings.scss
+```
+
+*/
+
+    .inlineList {
+        @include inline-list;
+    }
+}
+

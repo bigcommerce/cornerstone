@@ -1,0 +1,205 @@
+// =============================================================================
+// COLORS
+// =============================================================================
+
+
+// Basics
+// -----------------------------------------------------------------------------
+
+$color-black:                       #000 !default;
+$color-white:                       #fff !default;
+
+$color-whitesBase:                  #fcfcfd !default;
+
+$color-grey:                        #798289 !default;
+$color-greyDarkest:                 #232831 !default;
+$color-greyDarker:                  #282c30 !default;
+$color-greyDark:                    #556273 !default;
+$color-greyMedium:                  #acb3be !default;
+$color-greyLight:                   #e1e6eb !default;
+$color-greyLighter:                 #f2f4f6 !default;
+$color-greyLightest:                #f7f8f9 !default;
+
+
+// Branding
+// -----------------------------------------------------------------------------
+
+$color-primary:                     #00abc9 !default;
+$color-primaryDarker:               #008ba3 !default;
+$color-primaryDark:                 #009cb7 !default;
+$color-primaryLight:                #c7e8ee !default;
+
+$color-secondary:                   #fff !default;
+$color-secondaryDarker:             #e1e6eb !default;
+$color-secondaryDark:               #f8f9fb !default;
+
+$color-highlight:                   #00abc9 !default;
+$color-highlightDarker:             #008ba3 !default;
+$color-highlightDark:               #009cb7 !default;
+
+
+// States
+// -----------------------------------------------------------------------------
+
+$color-error:                       #db636b !default;
+$color-errorLight:                  #f8e0e1 !default;
+
+$color-info:                        #00abc9 !default;
+$color-infoLight:                   #d8f0f4 !default;
+
+$color-success:                     #95db89 !default;
+$color-successLight:                #dfefdc !default;
+
+$color-warning:                     #ffb800 !default;
+$color-warningLight:                #fff9d9 !default;
+
+
+// Text
+// -----------------------------------------------------------------------------
+
+$color-textBase:                    #313b47 !default;
+$color-textBase-hover:              #556273 !default;
+$color-textBase-active:             #3c4043 !default;
+
+
+// Order status
+// -----------------------------------------------------------------------------
+
+$color-orderAwaitingFulfilment:     #6eccfc !default;
+$color-orderAwaitingPayment:        #f80 !default;
+$color-orderAwaitingPickup:         #b186cb !default;
+$color-orderAwaitingShipment:       #ca2f3a !default;
+$color-orderCancelled:              #3c4043 !default;
+$color-orderCompleted:              #95db89 !default;
+$color-orderDeclined:               #955831 !default;
+$color-orderDisputed:               #9960ff !default;
+$color-orderPartiallyShipped:       #3e62a1 !default;
+$color-orderPending:                #acb4be !default;
+$color-orderShipped:                #95db89 !default;
+$color-orderRefunded:               #ffb800 !default;
+$color-orderVerificationRequired:   #e89fae !default;
+
+
+
+
+// Color Map
+// -----------------------------------------------------------------------------
+
+$colorMap: (
+
+    // Basics
+    // -------------------------------------------------------------------------
+
+    blacks: (
+        base:                   $color-black
+    ),
+
+    whites: (
+        base:                   $color-whitesBase,
+        bright:                 $color-white
+    ),
+
+    greys: (
+        base:                   $color-grey,
+        darkest:                $color-greyDarkest,
+        darker:                 $color-greyDarker,
+        dark:                   $color-greyDark,
+        medium:                 $color-greyMedium,
+        light:                  $color-greyLight,
+        lighter:                $color-greyLighter,
+        lightest:               $color-greyLightest
+    ),
+
+
+    // Branding
+    // -------------------------------------------------------------------------
+
+    primary: (
+        base:                   $color-primary,
+        darker:                 $color-primaryDarker,
+        dark:                   $color-primaryDark,
+        light:                  $color-primaryLight
+    ),
+
+    secondary: (
+        base:                   $color-secondary,
+        darker:                 $color-secondaryDarker,
+        dark:                   $color-secondaryDark
+    ),
+
+    highlight: (
+        base:                   $color-highlight,
+        darker:                 $color-highlightDarker,
+        dark:                   $color-highlightDark
+    ),
+
+
+    // States
+    // -------------------------------------------------------------------------
+
+    error: (
+        base:                   $color-error,
+        light:                  $color-errorLight
+    ),
+
+    info: (
+        base:                   $color-info,
+        light:                  $color-infoLight
+    ),
+
+    success: (
+        base:                   $color-success,
+        light:                  $color-successLight
+    ),
+
+    warning: (
+        base:                   $color-warning,
+        light:                  $color-warningLight
+    ),
+
+
+    // Text
+    // -------------------------------------------------------------------------
+
+    link: (
+        base:                   $color-textBase,
+        hover:                  $color-textBase-hover,
+        active:                 $color-textBase-active
+    ),
+
+
+    // Order status'
+    // -------------------------------------------------------------------------
+
+    orderStatus: (
+        awaitingFulfilment:     $color-orderAwaitingFulfilment,
+        awaitingPayment:        $color-orderAwaitingPayment,
+        awaitingPickup:         $color-orderAwaitingPickup,
+        awaitingShipment:       $color-orderAwaitingShipment,
+        cancelled:              $color-orderCancelled,
+        completed:              $color-orderCompleted,
+        declined:               $color-orderDeclined,
+        disputed:               $color-orderDisputed,
+        partiallyShipped:       $color-orderPartiallyShipped,
+        pending:                $color-orderPending,
+        shipped:                $color-orderShipped,
+        refunded:               $color-orderRefunded,
+        verificationRequired:   $color-orderVerificationRequired
+    )
+);
+
+
+// Color Map Function
+// -----------------------------------------------------------------------------
+
+@function color($color, $tone: "base") {
+
+    @if map-has-key($colorMap, $color) {
+        @return map-get(map-get($colorMap, $color), $tone);
+    }
+
+    @warn "Unknown `#{$color}` in $colorMap.";
+    @return null
+
+}
+

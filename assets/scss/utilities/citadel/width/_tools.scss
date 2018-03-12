@@ -1,0 +1,30 @@
+// =============================================================================
+// WIDTHS (Tools)
+// =============================================================================
+
+
+// Width Mixins
+// -----------------------------------------------------------------------------
+
+@mixin u-width($width, $important: null) {
+
+    @if $width == "full" {
+
+        border-left: 0 $important;
+        border-right: 0 $important;
+        margin-left: 0 $important;
+        margin-right: 0 $important;
+        padding-left: 0 $important;
+        padding-right: 0 $important;
+        width: 100% $important;
+
+    }
+    @else if $width == "fixed" {
+
+        margin: auto $important;
+        max-width: layout(fixed) $important;
+        width: layout(max) $important;
+
+    }
+}
+

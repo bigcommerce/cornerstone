@@ -1,0 +1,54 @@
+// =============================================================================
+// TYPE (Tools)
+// =============================================================================
+
+
+// Heading Style
+// -----------------------------------------------------------------------------
+
+@mixin headingBase() {
+    color: $header-font-color;
+    font-family: $header-font-family;
+    font-style: $header-font-style;
+    font-weight: $header-font-weight;
+    letter-spacing: $header-letter-spacing;
+    line-height: $header-line-height;
+    margin-bottom: $header-bottom-margin;
+    text-rendering: $header-text-rendering;
+}
+
+@mixin heading-smallBase() {
+    small {
+        color: $small-font-color;
+        font-size: $small-font-size;
+        line-height: 0;
+    }
+}
+
+@mixin subHeadingBase() {
+    color: $subheader-font-color;
+    font-weight: $subheader-font-weight;
+    line-height: $subheader-line-height;
+    margin-bottom: $subheader-bottom-margin;
+}
+
+//
+// List styles
+// -----------------------------------------------------------------------------
+
+@mixin listStyle() {
+    font-family: $list-font-family;
+    font-size: $list-font-size;
+    line-height: $list-line-height;
+    list-style-position: $list-style-position;
+    margin-bottom: $list-margin-bottom;
+}
+
+@mixin bulletedList() {
+    margin-#{$default-float}: $list-side-margin;
+}
+
+@mixin numberedList() {
+    margin-#{$default-float}: $list-ordered-side-margin;
+}
+

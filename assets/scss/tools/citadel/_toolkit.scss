@@ -1,0 +1,92 @@
+// =============================================================================
+// LIBRARY MIXINS & FUNCTIONS
+// =============================================================================
+
+// Responsive Breakpoints
+// -----------------------------------------------------------------------------
+//
+// Add to your object/theme file
+// Eg. @include breakpoint(medium) { styles }
+//
+// -----------------------------------------------------------------------------
+
+@mixin breakpoint($size) {
+    @if type-of($size) == "number" {
+        @media (min-width: $size) { @content; }
+    }
+    @else {
+        @media (min-width: screenSize($size)) { @content; }
+    }
+}
+
+
+// Rem Calculations
+// -----------------------------------------------------------------------------
+
+@function stripUnit($num) {
+    @return $num / ($num * 0 + 1);
+}
+
+// scss-lint:disable ZeroUnit
+@function convertToRem($value, $base-value: $fontSize-base) {
+    $value: stripUnit($value) / stripUnit($base-value) * 1rem;
+    @if ($value == 0rem) { $value: 0; } // Turn 0rem into 0
+    @return $value;
+}
+
+@function remCalc($values, $base-value: $fontSize-root) {
+
+    $max: length($values);
+
+    @if $max == 1 { @return convertToRem(nth($values, 1), $base-value); }
+
+    $remValues: ();
+
+    @for $i from 1 through $max {
+        $remValues: append($remValues, convertToRem(nth($values, $i), $base-value));
+    }
+
+    @return $remValues;
+}
+
+
+//
+// Square
+// =============================================================================
+
+@mixin square($size) {
+    height: remCalc($size);
+    width: remCalc($size);
+}
+
+
+//
+// Circle
+// =============================================================================
+
+@mixin circle($size) {
+    @include square($size);
+    border-radius: remCalc($size);
+}
+
+
+//
+// Vertical position middle
+// -----------------------------------------------------------------------------
+
+@mixin verticalPositionMiddle($position: "relative") {
+
+    @if $position == "relative" {
+
+        position: relative;
+
+    }
+    @else if $position == "absolute" {
+
+        position: absolute;
+
+    }
+
+    top: 50%;
+    transform: translateY(-50%);
+}

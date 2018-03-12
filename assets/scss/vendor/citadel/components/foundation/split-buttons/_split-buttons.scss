@@ -1,0 +1,127 @@
+// =============================================================================
+// SPLIT BUTTONS (CSS)
+// =============================================================================
+
+
+// Bigcommerce Component
+// -----------------------------------------------------------------------------
+//
+// The Bigcommerce Coding Standards, coupled with Foundation.
+// If any library overrides or extra CSS is needed, declare it here.
+//
+// 1. If set to false, there is no outputted CSS for this component.
+// 2. Specific overrides for CP primary button colours
+//
+// -----------------------------------------------------------------------------
+
+@if $exportCSS--split-buttons { // 1
+
+/*doc
+---
+title: Split Buttons
+name: splitButton
+parent: button
+category: Components
+---
+
+The split button is a button with two triggers – the button as the primary action, and a dropdown with a list of secondary actions.
+
+The dropdown toggle is a small span that's placed within the button. This toggles the dropdown menu when clicked.
+The actions within the dropdown are triggered on click as well.
+The main button triggers a separate, primary action; however this is reserved for actions relating to the dropdown contents.
+
+```sass_file_example
+src/settings/foundation/split-buttons/_settings.scss
+```
+```html_example
+<ul class="inlineList">
+
+            <li>
+                <span>Small</span>
+                <div id="dropdown-splitButton">
+                    <button type="button" class="button button--small button--split">
+                        Click
+                        <span></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-menu-item"><a href="#">One</a></li>
+                        <li class="dropdown-menu-item"><a href="#">Two</a></li>
+                        <li class="dropdown-menu-item"><a href="#">Three</a></li>
+                    </ul>
+                </div>
+            </li>
+
+            <li>
+                <span>Default</span>
+                <div>
+                    <button type="button" class="button button--split">
+                        Click
+                        <span></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-menu-item"><a href="#">One</a></li>
+                        <li class="dropdown-menu-item"><a href="#">Two</a></li>
+                        <li class="dropdown-menu-item"><a href="#">Three</a></li>
+                    </ul>
+                </div>
+            </li>
+
+            <li>
+                <span>Large</span>
+                <div>
+                    <button type="button" class="button button--large button--split">
+                        Click
+                        <span></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-menu-item"><a href="#">One</a></li>
+                        <li class="dropdown-menu-item"><a href="#">Two</a></li>
+                        <li class="dropdown-menu-item"><a href="#">Three</a></li>
+                    </ul>
+                </div>
+            </li>
+
+            <li>
+                <span>Primary</span>
+                <div>
+                    <button type="button" class="button button--primary button--split">
+                        Click
+                        <span></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-menu-item"><a href="#">One</a></li>
+                        <li class="dropdown-menu-item"><a href="#">Two</a></li>
+                        <li class="dropdown-menu-item"><a href="#">Three</a></li>
+                    </ul>
+                </div>
+            </li>
+
+        </ul>
+```
+*/
+
+    .button--split {
+
+        @include split-button($span-border: buttonStyle("default", "borderColor"));
+
+        &.button--small {
+            @include split-button("small", $span-border: buttonStyle("default", "borderColor"), $base-style: false);
+        }
+
+        &.button--large {
+            @include split-button("large", $span-border: buttonStyle("default", "borderColor"), $base-style: false);
+        }
+
+        // scss-lint:disable NestingDepth
+        &.button--primary span { // 2
+            border-color: buttonStyle("primary", "color");
+
+            &:after {
+                border-top-color: buttonStyle("primary", "color");
+            }
+        }
+        // scss-lint:enable NestingDepth
+
+    }
+
+}

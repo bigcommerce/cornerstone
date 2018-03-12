@@ -1,0 +1,57 @@
+// =============================================================================
+// TEXT (CSS)
+// =============================================================================
+
+
+// Bigcommerce Utility Classes
+// -----------------------------------------------------------------------------
+//
+// 1. If set to false, there is no outputted CSS for this component.
+// Adapted from SUIT CSS: https://github.com/suitcss/utils-text/
+//
+// -----------------------------------------------------------------------------
+// scss-lint:disable ImportantRule
+
+@if $exportCSS--textUtilities { // 1
+
+    .u-textAlignCenter {
+        text-align: center !important;
+    }
+
+    .u-textAlignLeft {
+        text-align: left !important;
+    }
+
+    .u-textAlignRight {
+        text-align: right !important;
+    }
+
+    .u-textBreak {
+        word-wrap: break-word !important;
+    }
+
+    .u-textInheritColor {
+        color: inherit !important;
+    }
+
+    .u-textKern {
+        @include u-textKern(!important);
+    }
+
+    .u-textLead {
+        @include u-textLead(!important);
+    }
+
+    .u-textNoWrap {
+        white-space: nowrap !important;
+    }
+
+    .u-textTruncate {
+        @include u-textTruncate(!important);
+    }
+
+    .u-fontSmoothing {
+        @include u-fontSmoothing(!important);
+    }
+}
+

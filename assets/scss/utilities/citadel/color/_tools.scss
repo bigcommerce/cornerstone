@@ -1,0 +1,17 @@
+// =============================================================================
+// COLORS (Tools)
+// =============================================================================
+
+@function colorUtilityClassName($color, $variant) {
+    $colorFirstLetter: to-upper-case(str-slice($color, 0, 1));
+    $variantFirstLetter: to-upper-case(str-slice($variant, 0, 1));
+    $colorStr: $colorFirstLetter + str-slice($color, 2);
+    $variantStr: "";
+
+    @if $variant != "base" {
+        $variantStr: $variantFirstLetter + str-slice($variant, 2);
+    }
+
+    $className: $colorStr + $variantStr;
+    @return $className;
+}

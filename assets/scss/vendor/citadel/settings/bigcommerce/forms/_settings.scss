@@ -1,0 +1,244 @@
+// =============================================================================
+// BC FORMS (Settings)
+// =============================================================================
+
+
+// Bigcommerce Variables
+// -----------------------------------------------------------------------------
+//
+// These scoped variables are created by Bigcommerce.
+// All variables that are not from Foundation should be placed here.
+// BC variables can take the value of Foundation variables if related to a wider
+// component.
+//
+// 1. Choose whether to include the Bigcommerce class names
+//
+// -----------------------------------------------------------------------------
+
+$exportCSS--bcForms:                       $exportCSS !default; // 1
+
+
+// =============================================================================
+// FORM LAYOUT
+// =============================================================================
+
+$formBody-backgroundColor:                 container("fill") !default;
+$formBody-border:                          container("border", "dark") !default;
+$formBody-boxShadow:                       container("dropShadow") !default;
+$formBody-marginBottom:                    container("margin") !default;
+$formBody-maxWidth:                        none !default;
+$formBody-padding:                         container("padding") !default;
+
+$formRow-modernBrowsers:                   true !default;
+$formRow-flex-gutter:                      $column-gutter !default;
+$formRow-margin:                           0 (-$formRow-flex-gutter / 2) !default;
+$formRow-padding:                          0 !default;
+
+$formRow-field-marginHorizontal:           ($formRow-flex-gutter / 2) !default;
+$formRow-field-marginLeft:                 $formRow-field-marginHorizontal !default;
+$formRow-field-marginRight:                $formRow-field-marginHorizontal !default;
+$formRow-field-padding:                    0 !default;
+
+
+// =============================================================================
+// FORM BASICS
+// =============================================================================
+
+$formField-maxWidth:                       none !default;
+$formField-margin:                         0 0 $form-verticalSpacing !default;
+
+
+// =============================================================================
+// CHECKS AND RADIOS
+// =============================================================================
+
+$checkRadio-borderStyle:                   solid !default;
+$checkRadio-borderWidth:                   1px !default;
+$checkRadio-borderColor:                   $input-border-color !default;
+// sizing
+$checkRadio-baseDimension:                 16px !default;
+$checkRadio-pip-scale:                     $checkRadio-borderWidth * 2 !default;
+$checkRadio-outerSize:                     remCalc($checkRadio-baseDimension) !default;
+$checkRadio-pip-size:                      remCalc($checkRadio-baseDimension - $checkRadio-pip-scale) !default;
+$checkRadio-pip-zoomStart:                 scale(0) !default;
+$checkRadio-pip-zoomEnd:                   scale(1) !default;
+// label
+$checkRadio-label-fontSize:                fontSize("base") !default;
+$checkRadio-label-fontWeight:              fontWeight("normal") !default;
+$checkRadio-label-lineHeight:              lineHeight("small") !default;
+$checkRadio-label-spacing:                 $form-spacing !default;
+$checkRadio-label-marginBottom:            spacing("half") !default;
+// visual
+$checkRadio-bg:                            color("whites", "bright") !default;
+$checkRadio-boxShadow:                     $input-boxShadow !default;
+$checkRadio-focus-borderColor:             color("primary") !default;
+$checkRadio-focus-boxShadow:               $input-focus-boxShadow !default;
+$checkRadio-disabled-bg:                   $input-disabled-bg !default;
+$checkRadio-disabled-opacity:              0.4 !default;
+
+$check-radius:                             0 !default;
+$check-pip-color:                          color("primary") !default;
+$check-pip-backgroundImage:                url("data:image/svg+xml !default;base64, PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+Cjxzdmcgd2lkdGg9IjEzcHgiIGhlaWdodD0iOXB4IiB2aWV3Qm94PSIwIDAgMTMgOSIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4bWxuczpza2V0Y2g9Imh0dHA6Ly93d3cuYm9oZW1pYW5jb2RpbmcuY29tL3NrZXRjaC9ucyI+CiAgICA8IS0tIEdlbmVyYXRvcjogU2tldGNoIEJldGEgMy4zICgxMTk3MCkgLSBodHRwOi8vd3d3LmJvaGVtaWFuY29kaW5nLmNvbS9za2V0Y2ggLS0+CiAgICA8dGl0bGU+Y2hlY2sgY29weTwvdGl0bGU+CiAgICA8ZGVzYz5DcmVhdGVkIHdpdGggU2tldGNoIEJldGEuPC9kZXNjPgogICAgPGRlZnM+PC9kZWZzPgogICAgPGcgaWQ9IkNQMiIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc2tldGNoOnR5cGU9Ik1TUGFnZSI+CiAgICAgICAgPGcgaWQ9ImNoZWNrLWNvcHkiIHNrZXRjaDp0eXBlPSJNU0xheWVyR3JvdXAiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0wLjUwMDAwMCwgLTIuNTk4MDMxKSI+CiAgICAgICAgICAgIDxyZWN0IGlkPSJib3VuZHMiIHNrZXRjaDp0eXBlPSJNU1NoYXBlR3JvdXAiIHg9IjAiIHk9IjAiIHdpZHRoPSIxNCIgaGVpZ2h0PSIxNCI+PC9yZWN0PgogICAgICAgICAgICA8cGF0aCBkPSJNNS4yNDk5OTY0NCw5LjQ1IEwyLjc5OTk5NjQ0LDcgTDEuOTgzMzI5NzcsNy44MTY2NjY2NyBMNS4yNDk5OTY0NCwxMS4wODMzMzMzIEwxMi4yNDk5OTY0LDQuMDgzMzMzMzMgTDExLjQzMzMyOTgsMy4yNjY2NjY2NyBMNS4yNDk5OTY0NCw5LjQ1IFoiIGlkPSJTaGFwZSIgc3Ryb2tlPSIjMDBBQkM5IiBmaWxsPSIjMDBBQkM5IiBza2V0Y2g6dHlwZT0iTVNTaGFwZUdyb3VwIj48L3BhdGg+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4=") !default;
+$check-pip-content:                        "" !default;
+$check-pip-size:                           $checkRadio-pip-size !default;
+
+$radio-radius:                             $checkRadio-outerSize !default;
+$radio-pip-color:                          color("primary") !default;
+$radio-pipInset:                           3px !default;
+$radio-pipInset-color:                     $checkRadio-bg !default;
+$radio-pip-size:                           $checkRadio-pip-size !default;
+
+
+// =============================================================================
+// INPUT ACTIONS
+// =============================================================================
+
+// float direction
+$inputAction-floatDirection:               $default-float !default;
+$inputAction-backgroundColor:              transparent !default;
+$inputAction-borderRadius:                 0 $input-border-radius $input-border-radius 0 !default;
+$inputAction-borderWidth:                  $input-border-width !default;
+// form spacing minus top and bottom border width
+$inputAction-button-width:                 ($form-spacing * 2) - remCalc($input-border-width * 2) !default;
+// padding the same as the button with
+$inputAction-input-paddingRight:           $inputAction-button-width !default;
+// Negative margin can't use the button width as we only need to deal with 1 border on the right
+$inputAction-button-marginLeft:            - ($form-spacing * 2) + remCalc($input-border-width) !default;
+$inputAction-margin:                       remCalc($inputAction-borderWidth) 0 0 $inputAction-button-marginLeft !default;
+
+
+// =============================================================================
+// INPUT ICONS
+// =============================================================================
+
+// component direction
+$inputIcon-floatDirection:                 $default-float !default;
+$inputIcon-oppositeDirection:              $opposite-direction !default;
+// icon
+$inputIcon-icon-height:                    $input-height !default;
+$inputIcon-icon-width:                     remCalc(20px) !default;
+// positioning
+$inputAction-input-paddingOffset:          ($inputIcon-icon-width * 1.8) !default;
+$inputIcon-icon-marginOffset:              -$inputAction-input-paddingOffset !default;
+
+
+
+// =============================================================================
+// PREFIXPOSTFIX
+// =============================================================================
+
+$prefixPostfix-inputClassName:             "form-input" !default;
+$prefixPostfix-buttonClassName:            "button" !default;
+$prefixPostfix-borderRadius:               $input-border-radius !default;
+
+$prefixPostfix-input-height:               $input-height !default;
+$prefixPostfix-input-borderRadius:         $input-border-radius 0 0 $input-border-radius !default;
+
+$prefixPostfix-label-backgroundColor:      color("whites", "bright") !default;
+$prefixPostfix-label-borderStyle:          $input-border-style !default;
+$prefixPostfix-label-borderColor:          $input-border-color !default;
+$prefixPostfix-label-borderWidth:          $input-border-width !default;
+$prefixPostfix-label-fontWeight:           fontWeight("thin") !default;
+$prefixPostfix-label-height:               $prefixPostfix-input-height !default;
+$prefixPostfix-label-padding:              ($form-spacing / 2) !default;
+$prefixPostfix-label-textAlign:            center !default;
+$prefixPostfix-label-maxWidth:             remCalc(90px) !default;
+
+// Prefixed labels to input
+$prefix-label-borderRadius:                $prefixPostfix-borderRadius 0 0 $prefixPostfix-borderRadius !default;
+$prefix-label-borderWidth:                 $input-border-width 0 $input-border-width $input-border-width !default;
+$prefix-input-borderRadius:                0 $prefixPostfix-borderRadius $prefixPostfix-borderRadius 0 !default;
+
+// Postfixed labels to input
+$postfix-label-borderRadius:               0 $prefixPostfix-borderRadius $prefixPostfix-borderRadius 0 !default;
+$postfix-label-borderWidth:                $input-border-width $input-border-width $input-border-width 0 !default;
+
+
+// =============================================================================
+// SWITCHES
+// =============================================================================
+
+$switch-baseSize:                          28px !default; // magic design number
+$switch-baseWidth:                         60px !default; // magic design number
+$switch-height:                            remCalc($switch-baseSize) !default;
+$switch-lineHeight:                        ($switch-baseSize - 1) / $fontSize-root !default;
+$switch-borderRadius:                      $switch-height !default;
+$switch-marginBottom:                      $form-spacing !default;
+$switch-width:                             remCalc($switch-baseWidth) !default;
+$switch-transition:                        $input-transition !default;
+
+$switch-backgroundColor:                   color("greys", "medium") !default;
+
+$switch-borderColor:                       $switch-backgroundColor !default;
+$switch-borderSize:                        1px !default;
+$switch-borderStyle:                       solid !default;
+
+$switch-checked-backgroundColor:           color("success") !default;
+$switch-checked-borderColor:               color("success") !default;
+$switch-disabled-backgroundcolor:          color("greys", "lightest") !default;
+$switch-disabled-borderColor:              color("greys", "light") !default;
+$switch-focus-borderColor:                 color("primary") !default;
+$switch-focus-BoxShadow:                   0 0 4px rgba(color("primary"), 0.4) !default;
+$switch-important-checked-backgroundColor: color("warning") !default;
+$switch-important-checked-borderColor:     $switch-important-checked-backgroundColor !default;
+
+// SWITCH DESCRIPTIONS
+$switch-description-unselected-color:      color("greys", "medium") !default;
+$switch-description-selected-color:        color("greys", "darkest") !default;
+$switch-description-spacing:               5px !default;
+
+// SWITCH INDICATOR
+$switch-indicator-scale:                   0.7143 !default; // bit magic-y (20px / 28px)
+$switch-indicator-baseSize:                $switch-baseSize * $switch-indicator-scale !default;
+$switch-indicator-height:                  remCalc($switch-indicator-baseSize) !default;
+$switch-indicator-width:                   $switch-indicator-height !default;
+$switch-indicator-borderRadius:            $switch-indicator-height !default;
+$switch-indicator-offSet:                  (($switch-baseSize - ($switch-borderSize * 2)) - $switch-indicator-baseSize) / 2 !default;
+$switch-indicator-on-offSet:               (($switch-baseWidth - ($switch-borderSize * 2)) - $switch-indicator-baseSize) - $switch-indicator-offSet !default;
+$switch-indicator-color:                   color("whites", "bright") !default;
+$switch-indicator-boxShadow:               0 1px 1px rgba(0, 0, 0, 0.1) !default;
+
+// SWITCH LABEL SETTINGS
+$switch-label-text-color:                  color("whites", "bright") !default;
+$switch-label-disabled-text-color:         color("greys", "medium") !default;
+$switch-label-height:                      $switch-baseSize - ($switch-borderSize * 2) !default; // minus the top/bottom border
+$switch-label-text-rightPosition:          remCalc(6px) !default;
+$switch-label-text-onFontWeight:           fontWeight("semibold") !default;
+
+
+// =============================================================================
+// FORM ACTIONS
+// =============================================================================
+
+$form-actions-background:                  none !default;
+$form-actions-border:                      0 !default;
+$form-actions-margin:                      0 0 0 spacing("half") !default;
+$form-actions-padding:                     spacing("base") 0 !default;
+$form-actions-textAlign:                   left !default;
+
+$form-actions--fixed-background:           container("fill") !default;
+$form-actions--fixed-border:               container("border", "dark") !default;
+$form-actions--fixed-padding:              container("padding") container("padding", "large") !default;
+$form-actions--fixed-zIndex:               zIndex("low") !default;
+$form-actions--fixed-textAlign:            right !default;
+
+
+// =============================================================================
+// ERROR STATES
+// =============================================================================
+
+$form-success-color:                       color("success") !default;
+$form-error-color:                         color("error") !default;
+$form-warning-color:                       color("warning") !default;
+
+$form-field-errors-bullets:                false !default;
+$form-field-errors-marginBottom:           0 !default;
+$form-field-errors-marginTop:              spacing("eighth") !default;
+
+$form-inputIndicator-margin:               0 0 0 (- remCalc(30px)) !default;
+$form-inputIndicator-size:                 22px !default;
+$form-inputIndicator-top:                  remCalc(10px) !default;
+
+$form-inlineMessage-fontWeight:            fontWeight("semibold") !default;
+$form-inlineMessage-lineHeight:            lineHeight("small") !default;
+$form-inlineMessage-margin:                spacing("quarter") 0 0 !default;

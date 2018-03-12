@@ -16,7 +16,7 @@ export default class Product extends PageManager {
         this.$reviewLink = $('[data-reveal-id="modal-review-form"]');
     }
 
-    before(next) {
+    onReady() {
         // Listen for foundation modal close events to sanitize URL after review.
         $(document).on('close.fndtn.reveal', () => {
             if (this.url.indexOf('#write_review') !== -1 && typeof window.history.replaceState === 'function') {
@@ -24,10 +24,6 @@ export default class Product extends PageManager {
             }
         });
 
-        next();
-    }
-
-    loaded(next) {
         let validator;
 
         // Init collapsible
@@ -53,13 +49,7 @@ export default class Product extends PageManager {
             return false;
         });
 
-        next();
-    }
-
-    after(next) {
         this.productReviewHandler();
-
-        next();
     }
 
     productReviewHandler() {

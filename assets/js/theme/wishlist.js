@@ -83,7 +83,7 @@ export default class WishList extends PageManager {
         });
     }
 
-    load() {
+    onReady() {
         const $addWishListForm = $('.wishlist-form');
 
         if ($addWishListForm.length) {
@@ -92,10 +92,5 @@ export default class WishList extends PageManager {
 
         this.wishlistDeleteConfirm();
         this.wishListHandler();
-    }
-
-    loaded(next) {
-        this.load();
-        next();
     }
 }

@@ -1,6 +1,6 @@
 <article class="listItem">
     <figure class="listItem-figure">
-        <amp-img src="{{getImage image 'productgallery_size' (cdn theme_settings.default_image_product)}}" width="300" height="300" layout="responsive" alt="{{image.alt}}"></amp-img>
+        <amp-img src="{{getImage image 'productgallery_size' (cdn theme_settings.default_image_product)}}" width="{{first (split theme_settings.productgallery_size 'x')}}" height="{{last (split theme_settings.productgallery_size 'x')}}" layout="responsive" alt="{{image.alt}}"></amp-img>
     </figure>
     <div class="listItem-body">
         <div class="listItem-content">

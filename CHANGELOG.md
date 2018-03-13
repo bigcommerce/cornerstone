@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Fix image dimensions on AMP pages. [#1192](https://github.com/bigcommerce/cornerstone/pull/1192)
 
 ## 1.14.0 (2018-03-12)
 - Fix product options unhiding indexing issue. [#1176](https://github.com/bigcommerce/cornerstone/pull/1176)

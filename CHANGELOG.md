@@ -26,6 +26,8 @@
 - Fix option selection reset bug when a variation is out of stock [#1160](https://github.com/bigcommerce/cornerstone/pull/1160)
 - Fix easyzoom preventing page scrolling on mobile [#1164](https://github.com/bigcommerce/cornerstone/pull/1164)
 
+- Add head.scripts reference to checkout & order_confirmation pages [#1158](https://github.com/bigcommerce/cornerstone/pull/1158)
+
 ## 1.12.1 (2018-01-23)
 - Fix event delegation error [#1151](https://github.com/bigcommerce/cornerstone/pull/1151)
 

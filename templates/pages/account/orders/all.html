@@ -11,6 +11,7 @@ customer:
 {{> components/account/navigation account_page='orders'}}
 
 <main class="account account--fixed">
+    {{{ region name="top_banner" }}}
     <div class="account-head">
         {{#if customer.store_credit.value '>' 0}}
             <div class="alertBox alertBox--storeCredit">
@@ -28,7 +29,7 @@ customer:
             {{/if}}
         </section>
     </div>
-    {{{snippet 'account'}}}
+    {{{ region name="bottom_banner" }}}
 </main>
 
 {{/partial}}

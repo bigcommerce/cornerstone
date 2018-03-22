@@ -5,6 +5,7 @@ limit: 3
 ---
 {{#partial "page"}}
 <div class="account">
+    {{{ region name="top_banner" }}}
     {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
     <h2 class="account-heading title">{{lang 'account.orders.heading' }}</h2>
     {{> components/account/navigation account_page='orders'}}
@@ -14,6 +15,7 @@ limit: 3
             {{> components/common/small-paginator pagination.orders}}
         </section>
     </div>
+    {{{ region name="bottom_banner" }}}
 </div>
 {{/partial}}
 {{> layout/base}}

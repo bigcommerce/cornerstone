@@ -15,7 +15,7 @@ product_results:
 
 {{#partial "page"}}
 {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
-{{{snippet 'search'}}}
+{{{ region name="above_search" }}}
 <section class="nav">
     {{#if forms.search.query}}
         <div id="search-results-heading">
@@ -140,10 +140,11 @@ product_results:
             </div>
 
         {{/if}}
-
+        {{{ region name="above_product_search_results" }}}
         <div id="product-listing-container" {{#if forms.search.section '!=' 'product'}}class="u-hiddenVisually"{{/if}}>
             {{> components/search/product-listing}}
         </div>
+        {{{ region name="below_product_search_results" }}}
     </main>
 </section>
 

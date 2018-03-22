@@ -21,7 +21,6 @@ brand:
     </div>
 {{/if}}
 <h1 class="page-heading">{{brand.name}}</h1>
-{{{snippet 'brand'}}}
 <div class="page">
     <aside class="page-sidebar" id="faceted-search-container">
         {{> components/brand/sidebar}}
@@ -29,8 +28,10 @@ brand:
 
     <main class="page-content" id="product-listing-container">
         {{#if brand.products}}
+        {{{ region name="above_brand_products" }}}
             {{> components/brand/product-listing}}
         {{else}}
+            {{{ region name="above_brand_no_products" }}}
             <p>{{lang 'brands.no_products'}}</p>
         {{/if}}
     </main>

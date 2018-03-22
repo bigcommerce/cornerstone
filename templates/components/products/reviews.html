@@ -1,4 +1,5 @@
 {{#if reviews.total}}
+{{{ region name="above_reviews" }}}
 <section class="toggle productReviews" id="product-reviews" data-product-reviews>
     <h4 class="toggle-title">
         {{lang 'products.reviews.header' total=reviews.total}}
@@ -41,5 +42,6 @@
         {{> components/common/paginator pagination.reviews}}
     </div>
 </section>
+{{else}}
+    {{{ region name="no_reviews" }}}
 {{/if}}
-{{{snippet 'reviews'}}}

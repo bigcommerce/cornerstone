@@ -6,6 +6,8 @@
 
         {{> components/cart/page-title}}
 
+        {{{ region name="top_banner" }}}
+
         <div data-cart-status>
             {{> components/cart/status-messages}}
         </div>
@@ -47,7 +49,7 @@
             <h3>{{lang 'cart.checkout.empty_cart'}}</h3>
         {{/if}}
 
-        {{{snippet 'cart'}}}
+        {{{ region name="bottom_banner" }}}
     </main>
 </div>
 {{/partial}}

@@ -10,6 +10,7 @@
         {{#each order.status_messages}}
             {{> components/common/alert-info message}}
         {{/each}}
+        {{{ region name="top_banner" }}}
         <div class="account-content account-content--fixedSmall">
             {{> components/account/order-contents order=order}}
 
@@ -143,7 +144,7 @@
                 </div>
             </section>
         </aside>
-
+        {{{ region name="bottom_banner" }}}
     </div>
 </div>
 {{/partial}}

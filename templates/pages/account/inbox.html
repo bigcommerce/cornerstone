@@ -6,6 +6,7 @@
 
 <main class="account account--fixed">
     <div class="account-body">
+        {{{ region name="top_banner" }}}
         <section class="account-content">
             {{#if forms.inbox.error}}
                 {{> components/common/alert-error forms.inbox.error}}
@@ -16,6 +17,7 @@
             {{> components/account/messages-list messages=customer.inbox.messages}}
             {{> components/account/messages-form}}
         </section>
+        {{{ region name="bottom_banner" }}}
     </div>
 </main>
 

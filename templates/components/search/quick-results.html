@@ -2,6 +2,7 @@
     <a class="modal-close" aria-label="{{lang 'common.close'}}" data-drop-down-close role="button">
         <span aria-hidden="true">&#215;</span>
     </a>
+    {{{ region name="above_quick_search_results" }}}
     <ul class="productGrid">
 
         {{#each product_results.products}}
@@ -10,8 +11,11 @@
         </li>
         {{/each}}
     </ul>
+    {{{ region name="below_quick_search_results" }}}
 {{else}}
+    {{{ region name="above_quick_search_no_results" }}}
     <p class="quickSearchMessage">
         {{lang 'search.results.quick_count' count=pagination.product_results.total search_query=forms.search.query}}
     </p>
+    {{{ region name="below_quick_search_no_results" }}}
 {{/if}}

@@ -12,10 +12,11 @@ blog:
         limit: {{theme_settings.homepage_blog_posts_count}}
 ---
 {{#partial "hero"}}
+    {{{ region name="carousel" }}}
     {{#if carousel}}
         {{> components/carousel}}
     {{/if}}
-    {{{snippet 'home_content'}}}
+    {{{ region name="home_content" }}}
 {{/partial}}
 
 {{#partial "page"}}

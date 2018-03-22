@@ -18,10 +18,9 @@
         {{inject 'genericError' (lang 'common.generic_error')}}
         {{inject 'maintenanceMode' settings.maintenance}}
         {{inject 'urls' urls}}
-        {{{snippet 'htmlhead'}}}
     </head>
     <body>
-        {{{snippet 'header'}}}
+        {{{ region name="above_header" }}}
         <div class="icons-svg-sprite">{{> components/common/icons/icon-defs }}</div>
 
         {{#if settings.privacy_cookie}}
@@ -41,6 +40,6 @@
         </script>
 
         {{{footer.scripts}}}
-        {{{snippet 'footer'}}}
+        {{{ region name="below_footer" }}}
     </body>
 </html>

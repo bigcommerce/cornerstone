@@ -3,6 +3,7 @@
 ## Draft
 - Fix image dimensions on AMP pages. [#1192](https://github.com/bigcommerce/cornerstone/pull/1192)
 - Remove AMP quick-search. [#1191](https://github.com/bigcommerce/cornerstone/pull/1191)
+- Add head.scripts reference to checkout & order_confirmation pages [#1158](https://github.com/bigcommerce/cornerstone/pull/1158)
 
 ## 1.14.0 (2018-03-12)
 - Fix product options unhiding indexing issue. [#1176](https://github.com/bigcommerce/cornerstone/pull/1176)
@@ -25,8 +26,6 @@
 - Add support in Cornerstone to consume AMP ID [#1155](https://github.com/bigcommerce/cornerstone/pull/1155)
 - Fix option selection reset bug when a variation is out of stock [#1160](https://github.com/bigcommerce/cornerstone/pull/1160)
 - Fix easyzoom preventing page scrolling on mobile [#1164](https://github.com/bigcommerce/cornerstone/pull/1164)
-
-- Add head.scripts reference to checkout & order_confirmation pages [#1158](https://github.com/bigcommerce/cornerstone/pull/1158)
 
 ## 1.12.1 (2018-01-23)
 - Fix event delegation error [#1151](https://github.com/bigcommerce/cornerstone/pull/1151)

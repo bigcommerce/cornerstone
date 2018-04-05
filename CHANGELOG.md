@@ -1,6 +1,8 @@
 # Changelog
 
 ## Draft
+
+## 1.15.0 (2018-04-04)
 - Fix image dimensions on AMP pages. [#1192](https://github.com/bigcommerce/cornerstone/pull/1192)
 - Remove AMP quick-search. [#1191](https://github.com/bigcommerce/cornerstone/pull/1191)
 - Add head.scripts reference to checkout & order_confirmation pages [#1158](https://github.com/bigcommerce/cornerstone/pull/1158)

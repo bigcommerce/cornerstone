@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Add representation for products and variants with retail price that has sale price. [#1195](https://github.com/bigcommerce/cornerstone/pull/1195) 
 
 ## 1.15.0 (2018-04-04)
 - Fix image dimensions on AMP pages. [#1192](https://github.com/bigcommerce/cornerstone/pull/1192)

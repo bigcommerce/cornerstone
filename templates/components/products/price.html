@@ -2,11 +2,25 @@
     {{> components/products/price-range price_range=price.price_range schema_org=schema_org}}
 {{else}}
     {{#if price.with_tax}}
-        <div class="price-section price-section--withTax" {{#if schema_org}}itemprop="offers" itemscope itemtype="http://schema.org/Offer"{{/if}}>
+        <div class="price-section price-section--withTax rrp-price--withTax" {{#if schema_org}}itemprop="offers" itemscope itemtype="http://schema.org/Offer"{{/if}}>
             {{#if price.rrp_with_tax}}
-                <span data-product-rrp-with-tax class="price price--rrp">{{price.rrp_with_tax.formatted}}</span>
+                {{lang 'products.retail_price'}}
+                <span data-product-rrp-with-tax class="price price--rrp"> {{price.rrp_with_tax.formatted}}</span>
             {{/if}}
-            <span data-product-price-with-tax class="price">{{price.with_tax.formatted}}</span>
+        </div>
+        <div class="price-section price-section--withTax non-sale-price---withTax" {{#if schema_org}}itemprop="offers" itemscope itemtype="http://schema.org/Offer"{{/if}}>
+            {{#if price.non_sale_price_with_tax}}
+                {{lang 'products.price_was'}}
+                <span data-product-non-sale-price-with-tax class="price price--rrp"> {{price.non_sale_price_with_tax.formatted}}</span>
+            {{/if}}
+        </div>
+        <div>
+            <span class="price-now-label">
+                {{#if price.non_sale_price_with_tax}}
+                    {{lang 'products.price_now'}}
+                {{/if}}
+            </span>
+            <span data-product-price-with-tax class="price"> {{price.with_tax.formatted}}</span>
             {{#if schema_org}}
                 <meta itemprop="availability" content="{{product.availability}}">
                 <meta itemprop="itemCondition" itemtype="http://schema.org/OfferItemCondition" content="http://schema.org/{{product.condition}}Condition">
@@ -22,11 +36,25 @@
         </div>
     {{/if}}
     {{#if price.without_tax}}
-        <div class="price-section price-section--withoutTax {{#if price.with_tax}}price-section--minor{{/if}}"  {{#if schema_org}}itemprop="offers" itemscope itemtype="http://schema.org/Offer"{{/if}}>
+        <div class="price-section rrp-price--withoutTax price-section--withoutTax {{#if price.with_tax}}price-section--minor{{/if}}"  {{#if schema_org}}itemprop="offers" itemscope itemtype="http://schema.org/Offer"{{/if}}>
             {{#if price.rrp_without_tax}}
-                <span data-product-rrp-without-tax class="price price--rrp">{{price.rrp_without_tax.formatted}}</span>
+                {{lang 'products.retail_price'}}
+                <span data-product-rrp-price-without-tax class="price price--rrp"> {{price.rrp_without_tax.formatted}}</span>
             {{/if}}
-            <span data-product-price-without-tax class="price price--withoutTax">{{price.without_tax.formatted}}</span>
+        </div>
+        <div class="price-section non-sale-price---withoutTax price-section--withoutTax {{#if price.with_tax}}price-section--minor{{/if}}"  {{#if schema_org}}itemprop="offers" itemscope itemtype="http://schema.org/Offer"{{/if}}>
+            {{#if price.non_sale_price_without_tax}}
+                {{lang 'products.price_was'}}
+                <span data-product-non-sale-price-without-tax class="price price--rrp"> {{price.non_sale_price_without_tax.formatted}}</span>
+            {{/if}}
+        </div>
+        <div>
+            <span class="price-now-label">
+                {{#if price.non_sale_price_without_tax}}
+                    {{lang 'products.price_now'}}
+                {{/if}}
+            </span>
+            <span data-product-price-without-tax class="price price--withoutTax"> {{price.without_tax.formatted}}</span>
             {{#if schema_org}}
                 <meta itemprop="availability" itemtype="http://schema.org/ItemAvailability"
                     content="http://schema.org/{{#if product.pre_order}}PreOrder{{else if product.out_of_stock}}OutOfStock{{else if product.can_purchase '===' false}}OutOfStock{{else}}InStock{{/if}}">
@@ -44,11 +72,13 @@
     {{/if}}
     {{#if page_type '===' 'product'}}
         {{#if price.saved}}
-            <div class="price-section price-section--saving">
-                <span class="price">
-                    {{lang 'products.you_save' amount=price.saved.formatted}}
-                </span>
-            </div>
+             <div class="price-section price-section--saving price">
+                    <span class="price">{{lang 'products.you_save_opening_text'}}</span>
+                    <span data-product-price-saved class="price">
+                        {{price.saved.formatted}}
+                    </span>
+                    <span class="price">{{lang 'products.you_save_closing_bracket'}}</span>
+             </div>
         {{/if}}
     {{/if}}
 {{/and}}

@@ -41,7 +41,11 @@ export default class ProductDetails {
                 const attributesData = response.data || {};
                 const attributesContent = response.content || {};
                 this.updateProductAttributes(attributesData);
-                this.updateView(attributesData, attributesContent);
+                if (hasDefaultOptions) {
+                    this.updateView(attributesData, attributesContent);
+                } else {
+                    this.updateDefaultAttributesForOOS(attributesData);
+                }
             });
         } else {
             this.updateProductAttributes(productAttributesData);
@@ -443,18 +447,24 @@ export default class ProductDetails {
             viewModel.stock.$input.text(data.stock);
         }
 
+        this.updateDefaultAttributesForOOS(data);
+
+        // If Bulk Pricing rendered HTML is available
+        if (data.bulk_discount_rates && content) {
+            viewModel.$bulkPricing.html(content);
+        } else if (typeof (data.bulk_discount_rates) !== 'undefined') {
+            viewModel.$bulkPricing.html('');
+        }
+    }
+
+    updateDefaultAttributesForOOS(data) {
+        const viewModel = this.getViewModel(this.$scope);
         if (!data.purchasable || !data.instock) {
             viewModel.$addToCart.prop('disabled', true);
             viewModel.$increments.prop('disabled', true);
         } else {
             viewModel.$addToCart.prop('disabled', false);
             viewModel.$increments.prop('disabled', false);
-        }
-        // If Bulk Pricing rendered HTML is available
-        if (data.bulk_discount_rates && content) {
-            viewModel.$bulkPricing.html(content);
-        } else if (typeof (data.bulk_discount_rates) !== 'undefined') {
-            viewModel.$bulkPricing.html('');
         }
     }
 

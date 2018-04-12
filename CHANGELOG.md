@@ -1,6 +1,8 @@
 # Changelog
 
 ## Draft
+
+## 1.16.0 (2018-04-12)
 - Add representation for products and variants with retail price that has sale price. [#1195](https://github.com/bigcommerce/cornerstone/pull/1195) 
 - Fix but in quickview related to grabbing default prices for products with no default selection. [#1197](https://github.com/bigcommerce/cornerstone/pull/1197)
 

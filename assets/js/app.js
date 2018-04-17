@@ -58,7 +58,7 @@ const pageClasses = {
  * @returns {*}
  */
 window.stencilBootstrap = function stencilBootstrap(pageType, contextJSON = null, loadGlobal = true) {
-    const context = JSON.parse(contextJSON || {});
+    const context = JSON.parse(contextJSON || '{}');
 
     return {
         load() {

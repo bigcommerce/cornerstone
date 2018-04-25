@@ -1,5 +1,8 @@
 # Changelog
 
+## Draft
+- Add the +/- icons for the category filtering [#1211](https://github.com/bigcommerce/cornerstone/pull/1211)
+
 ## 1.17.0 (2018-04-26)
 - Add the +/- icons for the category filtering [#1211](https://github.com/bigcommerce/cornerstone/pull/1211)
 - Fix empty object issue in app.js [#1204](https://github.com/bigcommerce/cornerstone/pull/1204)

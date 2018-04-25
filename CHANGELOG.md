@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Add the +/- icons for the category filtering [#1211](https://github.com/bigcommerce/cornerstone/pull/1211)
 - Fix empty object issue in app.js [#1204](https://github.com/bigcommerce/cornerstone/pull/1204)
 - Fix product layout when shop by price disabled [#1205](https://github.com/bigcommerce/cornerstone/pull/1205)
 - Fix brands import statement in app.js [#1202](https://github.com/bigcommerce/cornerstone/pull/1202)

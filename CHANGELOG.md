@@ -6,6 +6,7 @@
 - Fix Product Options hiding Add to Cart on a Google AMP page [#1214](https://github.com/bigcommerce/cornerstone/pull/1214)
 - Fix syntactically incorrect code in carousel and bulk-discount-rates components
 - Fix the possibility of duplicate IDs occurring in product options in certain situations
+- Open correct product page tabs when URL contains a fragment identifier referring to that content
 
 ## 1.17.0 (2018-04-26)
 - Fix empty object issue in app.js [#1204](https://github.com/bigcommerce/cornerstone/pull/1204)

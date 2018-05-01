@@ -4,6 +4,8 @@
 - Add the +/- icons for the category filtering [#1211](https://github.com/bigcommerce/cornerstone/pull/1211)
 - Fix overlapping logo when using "original" sizing and large logos [#1213](https://github.com/bigcommerce/cornerstone/pull/1213)
 - Fix Product Options hiding Add to Cart on a Google AMP page [#1214](https://github.com/bigcommerce/cornerstone/pull/1214)
+- Fix syntactically incorrect code in carousel and bulk-discount-rates components
+- Fix the possibility of duplicate IDs occurring in product options in certain situations
 
 ## 1.17.0 (2018-04-26)
 - Fix empty object issue in app.js [#1204](https://github.com/bigcommerce/cornerstone/pull/1204)
@@ -13,7 +15,7 @@
 
 ## 1.16.0 (2018-04-12)
 - Add representation for products and variants with retail price that has sale price. [#1195](https://github.com/bigcommerce/cornerstone/pull/1195)
-- Fix but in quickview related to grabbing default prices for products with no default selection. [#1197](https://github.com/bigcommerce/cornerstone/pull/1197)
+- Fix buy in quickview related to grabbing default prices for products with no default selection. [#1197](https://github.com/bigcommerce/cornerstone/pull/1197)
 
 ## 1.15.0 (2018-04-04)
 - Fix image dimensions on AMP pages. [#1192](https://github.com/bigcommerce/cornerstone/pull/1192)

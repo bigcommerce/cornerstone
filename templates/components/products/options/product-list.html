@@ -16,9 +16,9 @@
                            type="radio"
                            name="attribute[{{id}}]"
                            value="0"
-                           id="attribute_0_{{id}}"
+                           id="attribute_productlist_0_{{id}}"
                            checked="{{#if defaultValue '==' 0}}checked{{/if}}" required>
-                    <label class="form-label" for="attribute_0_{{id}}">{{lang 'products.none'}}</label>
+                    <label class="form-label" for="attribute_productlist_0_{{id}}">{{lang 'products.none'}}</label>
                 </li>
             {{/unless}}
             {{#each values}}
@@ -34,13 +34,13 @@
                             type="radio"
                             name="attribute[{{../id}}]"
                             value="{{id}}"
-                            id="attribute_{{id}}"
+                            id="attribute_productlist_{{id}}"
                             {{#if selected}}
                                 checked
                                 data-default
                             {{/if}}
                             {{#if ../required}}required{{/if}}>
-                        <label data-product-attribute-value="{{id}}" class="form-label" for="attribute_{{id}}">{{label}}</label>
+                        <label data-product-attribute-value="{{id}}" class="form-label" for="attribute_productlist_{{id}}">{{label}}</label>
                     </div>
                 </li>
             {{/each}}
@@ -53,7 +53,7 @@
                value="0"
                id="attribute_0_{{id}}"
                {{#if defaultValue '==' 0}}checked{{/if}}>
-        <label class="form-label" for="attribute_0_{{id}}">{{lang 'products.none'}}</label>
+        <label class="form-label" for="attribute_productlist_0_{{id}}">{{lang 'products.none'}}</label>
         {{/unless}}
         {{#each values}}
             <input
@@ -64,7 +64,7 @@
                 id="attribute_{{id}}"
                 {{#if selected}}checked{{/if}}
                 {{#if ../required}}required{{/if}}>
-            <label data-product-attribute-value="{{id}}" class="form-label" for="attribute_{{id}}">{{label}}</label>
+            <label data-product-attribute-value="{{id}}" class="form-label" for="attribute_productlist_{{id}}">{{label}}</label>
         {{/each}}
     {{/if}}
 </div>

@@ -597,14 +597,22 @@ export default class ProductDetails {
         });
     }
 
+    /**
+     * Check for fragment identifier in URL requesting a specific tab
+     */
     getTabRequests() {
-        if (window.location.hash && (window.location.hash.indexOf('#tab-similar') === 0 || window.location.hash.indexOf('#tab-warranty') === 0)) {
+        if (window.location.hash && window.location.hash.indexOf('#tab-similar') === 0 || window.location.hash.indexOf('#tab-warranty') === 0) {
             const $activeTab = $('.tabs').has(`[href='${window.location.hash}']`);
             const $tabContent = $(`${window.location.hash}`);
 
-            $activeTab.find('.tab').removeClass('is-active').has(`[href='${window.location.hash}']`).addClass('is-active');
-            $tabContent.siblings().removeClass('is-active');
-            $tabContent.addClass('is-active');
+            $activeTab.find('.tab')
+                .removeClass('is-active')
+                .has(`[href='${window.location.hash}']`)
+                .addClass('is-active');
+
+            $tabContent.addClass('is-active')
+                .siblings()
+                .removeClass('is-active');
         }
     }
 }

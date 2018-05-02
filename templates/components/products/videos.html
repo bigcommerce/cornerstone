@@ -13,8 +13,9 @@
 
     <div class="toggle-content is-open" id="videoGallery-content">
         <div class="videoGallery-main">
-            <iframe
+                <iframe
                 id="player"
+                class="lazyload"
                 type="text/html"
                 width="640"
                 height="390"
@@ -22,7 +23,7 @@
                 webkitAllowFullScreen
                 mozallowfullscreen
                 allowFullScreen
-                src="//www.youtube.com/embed/{{this.featured.id}}"
+                data-src="//www.youtube.com/embed/{{this.featured.id}}"
                 data-video-player>
             </iframe>
         </div>

@@ -6,6 +6,8 @@
 - Fix Product Options hiding Add to Cart on a Google AMP page [#1214](https://github.com/bigcommerce/cornerstone/pull/1214)
 - Hide blank review stars when there are no reviews on a product [#1209](https://github.com/bigcommerce/cornerstone/pull/1209)
 - Fix styling of subpage links in Contact Us page [#1216](https://github.com/bigcommerce/cornerstone/pull/1216)
+- Fix video thumbnail update issue & add lazyload to main video [#1218](https://github.com/bigcommerce/cornerstone/pull/1218)
+
 
 ## 1.17.0 (2018-04-26)
 - Fix empty object issue in app.js [#1204](https://github.com/bigcommerce/cornerstone/pull/1204)

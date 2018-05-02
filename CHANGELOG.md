@@ -10,6 +10,7 @@
 - Fix product layout when shop by price disabled [#1205](https://github.com/bigcommerce/cornerstone/pull/1205)
 - Fix brands import statement in app.js [#1202](https://github.com/bigcommerce/cornerstone/pull/1202)
 - Fix broken 403/404 page search box in mobile [#1203](https://github.com/bigcommerce/cornerstone/pull/1203)
+- Hide blank review stars when there are no reviews on a product [#1209](https://github.com/bigcommerce/cornerstone/pull/1209)
 
 ## 1.16.0 (2018-04-12)
 - Add representation for products and variants with retail price that has sale price. [#1195](https://github.com/bigcommerce/cornerstone/pull/1195)

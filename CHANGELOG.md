@@ -4,13 +4,13 @@
 - Add the +/- icons for the category filtering [#1211](https://github.com/bigcommerce/cornerstone/pull/1211)
 - Fix overlapping logo when using "original" sizing and large logos [#1213](https://github.com/bigcommerce/cornerstone/pull/1213)
 - Fix Product Options hiding Add to Cart on a Google AMP page [#1214](https://github.com/bigcommerce/cornerstone/pull/1214)
+- Hide blank review stars when there are no reviews on a product [#1209](https://github.com/bigcommerce/cornerstone/pull/1209)
 
 ## 1.17.0 (2018-04-26)
 - Fix empty object issue in app.js [#1204](https://github.com/bigcommerce/cornerstone/pull/1204)
 - Fix product layout when shop by price disabled [#1205](https://github.com/bigcommerce/cornerstone/pull/1205)
 - Fix brands import statement in app.js [#1202](https://github.com/bigcommerce/cornerstone/pull/1202)
 - Fix broken 403/404 page search box in mobile [#1203](https://github.com/bigcommerce/cornerstone/pull/1203)
-- Hide blank review stars when there are no reviews on a product [#1209](https://github.com/bigcommerce/cornerstone/pull/1209)
 
 ## 1.16.0 (2018-04-12)
 - Add representation for products and variants with retail price that has sale price. [#1195](https://github.com/bigcommerce/cornerstone/pull/1195)

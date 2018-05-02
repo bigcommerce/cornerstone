@@ -37,7 +37,7 @@ export class VideoGallery {
 }
 
 export default function videoGallery() {
-    const pluginKey = 'videoGallery';
+    const pluginKey = 'video-gallery';
     const $videoGallery = $(`[data-${pluginKey}]`);
 
     $videoGallery.each((index, element) => {

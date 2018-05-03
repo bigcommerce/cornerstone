@@ -18,6 +18,7 @@ export default class ProductDetails {
         this.listenQuantityChange();
         this.initRadioAttributes();
         this.wishlist = new Wishlist().load();
+        this.getTabRequests();
 
         const $form = $('form[data-cart-item-add]', $scope);
         const $productOptionsElement = $('[data-product-option-change]', $form);
@@ -594,5 +595,24 @@ export default class ProductDetails {
 
             $radio.attr('data-state', $radio.prop('checked'));
         });
+    }
+
+    /**
+     * Check for fragment identifier in URL requesting a specific tab
+     */
+    getTabRequests() {
+        if (window.location.hash && window.location.hash.indexOf('#tab-') === 0) {
+            const $activeTab = $('.tabs').has(`[href='${window.location.hash}']`);
+            const $tabContent = $(`${window.location.hash}`);
+
+            $activeTab.find('.tab')
+                .removeClass('is-active')
+                .has(`[href='${window.location.hash}']`)
+                .addClass('is-active');
+
+            $tabContent.addClass('is-active')
+                .siblings()
+                .removeClass('is-active');
+        }
     }
 }

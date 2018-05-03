@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Open correct product page tabs when URL contains a fragment identifier referring to that content [#1304](https://github.com/bigcommerce/cornerstone/pull/1304)
 
 ## 2.2.1 (2018-07-10)
 - Fix wishlist dropdown background color bleeding out of container [#1283](https://github.com/bigcommerce/cornerstone/pull/1283)

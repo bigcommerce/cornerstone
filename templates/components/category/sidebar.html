@@ -1,15 +1,15 @@
 <nav>
     {{#if category.subcategories}}
-    <div class="sidebarBlock">
-        <h5 class="sidebarBlock-heading">{{category.name}}</h5>
-        <ul class="navList">
-            {{#each category.subcategories}}
-            <li class="navList-item">
-                <a class="navList-action" href="{{url}}" alt="{{name}}" title="{{name}}">{{name}}</a>
-            </li>
-            {{/each}}
-        </ul>
-    </div>
+        <div class="sidebarBlock">
+            <h5 class="sidebarBlock-heading">{{category.name}}</h5>
+            <ul class="navList">
+                {{#each category.subcategories}}
+                <li class="navList-item">
+                    <a class="navList-action" href="{{url}}" alt="{{name}}" title="{{name}}">{{name}}</a>
+                </li>
+                {{/each}}
+            </ul>
+        </div>
     {{/if}}
 
     {{#if category.faceted_search_enabled}}

@@ -57,6 +57,25 @@ export default class ProductDetails {
     }
 
     /**
+     * https://stackoverflow.com/questions/49672992/ajax-request-fails-when-sending-formdata-including-empty-file-input-in-safari
+     * Safari browser with jquery 3.3.1 has an issue uploading empty file parameters. This function removes any empty files from the form params
+     * @param formData: FormData object
+     * @returns FormData object
+     */
+    filterEmptyFilesFromForm(formData) {
+        try {
+            for (const [key, val] of formData) {
+                if (val instanceof File && !val.name && !val.size) {
+                    formData.delete(key);
+                }
+            }
+        } catch (e) {
+            console.error(e);
+        }
+        return formData;
+    }
+
+    /**
      * Since $productView can be dynamically inserted using render_with,
      * We have to retrieve the respective elements
      *
@@ -234,7 +253,7 @@ export default class ProductDetails {
         this.$overlay.show();
 
         // Add item to cart
-        utils.api.cart.itemAdd(new FormData(form), (err, response) => {
+        utils.api.cart.itemAdd(this.filterEmptyFilesFromForm(new FormData(form)), (err, response) => {
             const errorMessage = err || response.data.error;
 
             $addToCartBtn

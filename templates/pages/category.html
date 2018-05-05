@@ -24,11 +24,22 @@ category:
 {{{category.description}}}
 {{{snippet 'categories'}}}
 <div class="page">
-    {{#or category.subcategories category.faceted_search_enabled category.shop_by_price}}
+    {{#if category.faceted_search_enabled}}
         <aside class="page-sidebar" id="faceted-search-container">
             {{> components/category/sidebar}}
         </aside>
-    {{/or}}
+    {{else if category.subcategories}}
+        <aside class="page-sidebar" id="faceted-search-container">
+            {{> components/category/sidebar}}
+        </aside>
+    {{else if category.shop_by_price}}
+        {{#if theme_settings.shop_by_price_visibility}}
+             <aside class="page-sidebar" id="faceted-search-container">
+                {{> components/category/sidebar}}
+            </aside>
+        {{/if}}
+    {{/if}}
+
     <main class="page-content" id="product-listing-container">
         {{#if category.products}}
             {{> components/category/product-listing}}

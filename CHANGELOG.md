@@ -8,7 +8,7 @@
 - Fix Product Options hiding Add to Cart on a Google AMP page [#1214](https://github.com/bigcommerce/cornerstone/pull/1214)
 - Fix styling of subpage links in Contact Us page [#1216](https://github.com/bigcommerce/cornerstone/pull/1216)
 - Fix for excess whitespace in multiline text field product option [#1222](https://github.com/bigcommerce/cornerstone/pull/1222)
-- Fix for facered search display. [#1225](https://github.com/bigcommerce/cornerstone/pull/1225)
+- Fix for faceted search display. [#1225](https://github.com/bigcommerce/cornerstone/pull/1225)
 
 ## 1.17.0 (2018-04-26)
 - Fix empty object issue in app.js [#1204](https://github.com/bigcommerce/cornerstone/pull/1204)

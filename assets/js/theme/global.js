@@ -19,6 +19,11 @@ import svgInjector from './global/svg-injector';
 
 export default class Global extends PageManager {
     onReady() {
+        // Only load visible elements until the onload event fires,
+        // after which preload nearby elements.
+        window.lazySizesConfig = window.lazySizesConfig || {};
+        window.lazySizesConfig.loadMode = 1;
+
         quickSearch();
         currencySelector();
         foundation($(document));

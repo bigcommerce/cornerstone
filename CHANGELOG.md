@@ -1,6 +1,8 @@
 # Changelog
 
 ## Draft
+
+## 1.18.0 (2018-05-09)
 - Add the +/- icons for the category filtering [#1211](https://github.com/bigcommerce/cornerstone/pull/1211)
 - Add lazyloading to main product video and fix video thumbnail bug [#1217](https://github.com/bigcommerce/cornerstone/pull/1217)
 - Hide blank review stars when there are no reviews on a product [#1209](https://github.com/bigcommerce/cornerstone/pull/1209)

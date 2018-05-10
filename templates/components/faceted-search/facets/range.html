@@ -26,8 +26,8 @@
                 <input type="hidden" name="{{ param_name }}[]" value="{{ param_value }}"/>
             {{/each}}
             <input type="hidden" name="search_query" value="{{search_query}}">
-            {{#if sort}}
-                <input type="hidden" name="sort" value="{{sort}}">
+            {{#if this.sort}}
+                <input type="hidden" name="sort" value={{this.sort}}>
             {{/if}}
             <fieldset class="form-fieldset">
                 <div class="form-minMaxRow">

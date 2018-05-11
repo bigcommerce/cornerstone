@@ -2,26 +2,21 @@
 <html class="no-js" lang="{{ locale_name }}">
     <head>
         <title>{{ head.title }}</title>
-
-        <link rel="dns-prefetch preconnect" href="//cdn8.bigcommerce.com" crossorigin>
-        <link rel="dns-prefetch preconnect" href="//cdn7.bigcommerce.com" crossorigin>
-        <link rel="dns-prefetch preconnect" href="//fonts.googleapis.com" crossorigin>
-        <link rel="dns-prefetch preconnect" href="//fonts.gstatic.com" crossorigin>
-        <link rel="dns-prefetch preconnect" href="https://event.jirafe.com" crossorigin>
-
+        {{{ resourceHints }}}
         {{{ head.meta_tags }}}
         {{{ head.config }}}
         {{#block "head"}} {{/block}}
 
         <link href="{{ head.favicon }}" rel="shortcut icon">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-        {{{stylesheet '/assets/css/theme.css'}}}
-        {{ getFontsCollection }}
 
         <script>
             // Change document class from no-js to js so we can detect this in css
-            document.documentElement.className = 'js';
+            document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
         </script>
+
+        {{ getFontsCollection }}
+        {{{stylesheet '/assets/css/theme.css'}}}
 
         {{{head.scripts}}}
         {{{head.rsslinks}}}

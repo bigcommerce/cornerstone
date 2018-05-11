@@ -8,7 +8,6 @@
         <link href="{{ head.favicon }}" rel="shortcut icon">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         {{{stylesheet '/assets/css/theme.css'}}}
-        {{ getFontsCollection }}
         <script src="{{cdn 'assets/modernizr-custom.js'}}"></script>
 
         {{{head.scripts}}}
@@ -40,6 +39,7 @@
             window.stencilBootstrap("{{page_type}}", {{jsContext}}).load();
         </script>
 
+        {{ getFontsCollection }}
         {{{footer.scripts}}}
         {{{snippet 'footer'}}}
     </body>

@@ -70,6 +70,7 @@ export default class ProductDetails {
                 }
             }
         } catch (e) {
+            /* eslint-disable no-console */
             console.error(e);
         }
         return formData;

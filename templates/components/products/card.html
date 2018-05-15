@@ -1,4 +1,4 @@
-<article class="card {{#if alternate}}card--alternate{{/if}}">
+<article class="card {{#if alternate}}card--alternate{{/if}}" data-event-type="{{event}}" data-entity-id="{{id}}" data-product-position="{{position}}" data-product-name="{{name}}" data-product-category="" data-product-brand="{{brand.name}}" data-product-price="{{#if price.with_tax}}{{price.with_tax.value}}{{else}}{{price.without_tax.value}}{{/if}}">
     <figure class="card-figure">
         {{#or price.non_sale_price_with_tax price.non_sale_price_without_tax}}
             {{#if theme_settings.product_sale_badges '===' 'sash'}}

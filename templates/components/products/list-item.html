@@ -1,4 +1,4 @@
-<article class="listItem">
+<article class="listItem" data-event-type="{{event}}" data-entity-id="{{id}}" data-product-position="{{position}}" data-product-name="{{name}}" data-product-category="" data-product-brand="{{brand.name}}" data-product-price="{{#if price.with_tax}}{{price.with_tax.value}}{{else}}{{price.without_tax.value}}{{/if}}">
     <figure class="listItem-figure">
         <img class="listItem-image lazyload" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{getImage image 'productgallery_size' (cdn theme_settings.default_image_product)}}" alt="{{image.alt}}" title="{{image.alt}}">
         {{#unless hide_product_quick_view}}

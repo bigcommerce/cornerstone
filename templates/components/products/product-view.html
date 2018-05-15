@@ -1,4 +1,4 @@
-<div class="productView" data-event-type="product" data-entity-id="{{product.id}}" data-product-name="{{product.title}}" data-product-category="" data-product-brand="{{product.brand.name}}" data-product-price="{{#if price.with_tax}}{{product.price.with_tax.value}}{{else}}{{product.price.without_tax.value}}{{/if}}">
+<div class="productView" data-event-type="product" data-entity-id="{{product.id}}" data-product-name="{{product.title}}" data-product-category="" data-product-brand="{{product.brand.name}}" data-product-price="{{#if product.price.with_tax}}{{product.price.with_tax.value}}{{else}}{{product.price.without_tax.value}}{{/if}}">
     {{#each product.reviews.messages}}
         {{#if error}}
             {{> components/common/alert-error error}}

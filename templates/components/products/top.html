@@ -3,8 +3,7 @@
 <ul class="productGrid productGrid--maxCol{{ columns }}" data-product-type="top_sellers">
     {{#each products}}
         <li class="product">
-            {{>components/products/card theme_settings=../theme_settings customer=../customer}}
+            {{>components/products/card theme_settings=../theme_settings customer=../customer event="product-list" position=(add @index 1)}}
         </li>
     {{/each}}
 </ul>
-

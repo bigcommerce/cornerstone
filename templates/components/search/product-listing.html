@@ -1,11 +1,11 @@
 {{#if product_results.products.length}}
     {{> components/products/filter sort=pagination.product_results.sort}}
 {{/if}}
-<form action="{{urls.compare}}" method='POST' data-product-compare>
+<form action="{{urls.compare}}" method='POST' data-product-list="Search Results" data-product-compare>
     {{#if theme_settings.product_list_display_mode '===' 'grid'}}
-        {{> components/products/grid products=product_results.products show_compare=product_results.show_compare theme_settings=theme_settings}}
+        {{> components/products/grid products=product_results.products show_compare=product_results.show_compare event="product-list" theme_settings=theme_settings}}
     {{else}}
-        {{> components/products/list products=product_results.products show_compare=product_results.show_compare theme_settings=theme_settings}}
+        {{> components/products/list products=product_results.products show_compare=product_results.show_compare event="product-list" theme_settings=theme_settings}}
     {{/if}}
 </form>
 

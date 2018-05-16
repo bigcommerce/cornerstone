@@ -1,0 +1,293 @@
+
+// =============================================================================
+// TYPE (CSS)
+// =============================================================================
+
+
+// Bigcommerce Component
+// -----------------------------------------------------------------------------
+//
+// The Bigcommerce Coding Standards, coupled with Foundation.
+// If any overrides / extra CSS is needed, declare it here.
+//
+// 1. If set to false, there is no outputted CSS for this component.
+//
+// -----------------------------------------------------------------------------
+
+@if $exportCSS--type { // 1
+
+    // Reset Spacing
+    // -------------------------------------------------------------------------
+    div,
+    dl,
+    dt,
+    dd,
+    ul,
+    ol,
+    li,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    pre,
+    form,
+    p,
+    blockquote,
+    th,
+    td {
+        margin: 0;
+        padding: 0;
+    }
+
+
+    // <html> & <body>
+    // -------------------------------------------------------------------------
+    //
+    // 1. Base font size.
+    // 2. Small breakpoint base font size.
+    // 3. Medium breakpoint base font size.
+    // 4. Large breakpoint base font size.
+    //
+    // -------------------------------------------------------------------------
+
+    html {
+        font-size: $html-fontSize; // 1
+
+        @include breakpoint("small") {
+            font-size: $html-fontSize--smallUp; // 2
+        }
+
+        @include breakpoint("medium") {
+            font-size: $html-fontSize--mediumUp; // 3
+        }
+
+        @include breakpoint("large") {
+            font-size: $html-fontSize--largeUp; // 4
+        }
+
+    }
+
+    body {
+        font-family: $body-font-family;
+        font-style: $body-font-style;
+        font-weight: $body-font-weight;
+        line-height: $base-line-height;
+    }
+
+
+    // Links <a>
+    // -------------------------------------------------------------------------
+
+    a {
+        color: $anchor-font-color;
+        line-height: inherit;
+        text-decoration: $anchor-text-decoration;
+
+        &:hover,
+        &:focus {
+            color: $anchor-font-color-hover;
+
+            @if $anchor-text-decoration-hover != $anchor-text-decoration {
+                text-decoration: $anchor-text-decoration-hover;
+            }
+        }
+    }
+
+
+    // Paragraph <p>
+    // -------------------------------------------------------------------------
+
+    p {
+        font-size: $paragraph-font-size;
+        font-weight: $paragraph-font-weight;
+        line-height: $paragraph-line-height;
+        margin-bottom: $paragraph-margin-bottom;
+        text-rendering: $paragraph-text-rendering;
+    }
+
+
+    // Headings <h1> to <h6>
+    // -------------------------------------------------------------------------
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        @include headingBase;
+        @include heading-smallBase;
+    }
+
+    h1 {
+        font-size: $h1-font-size;
+    }
+
+    h2 {
+        font-size: $h2-font-size;
+    }
+
+    h3 {
+        font-size: $h3-font-size;
+    }
+
+    h4 {
+        font-size: $h4-font-size;
+    }
+
+    h5 {
+        font-size: $h5-font-size;
+    }
+
+    h6 {
+        font-size: $h6-font-size;
+    }
+
+    .subheader {
+        @include subHeadingBase;
+    }
+
+
+    // Horizontal rule <hr>
+    // -------------------------------------------------------------------------
+
+    hr {
+        border: $hr-border-style $hr-border-color;
+        border-width: $hr-border-width 0 0;
+        clear: both;
+        height: 0;
+        margin: $hr-margin 0 ($hr-margin - rem-calc($hr-border-width));
+    }
+
+
+    // Text emphasis <em>, <strong> & <small>
+    // -------------------------------------------------------------------------
+
+    em,
+    i {
+        font-style: italic;
+        line-height: inherit;
+    }
+
+    strong,
+    b {
+        font-weight: $font-weight-bold;
+        line-height: inherit;
+    }
+
+    small {
+        font-size: $small-font-size;
+        line-height: inherit;
+    }
+
+
+    // Code <code>
+    // -------------------------------------------------------------------------
+
+    code {
+        background-color: $code-background-color;
+        border-color: $code-border-color;
+        border-style: $code-border-style;
+        border-width: $code-border-size;
+        color: $code-color;
+        font-family: $code-font-family;
+        font-size: $code-font-size;
+        font-weight: $code-font-weight;
+        padding: $code-padding;
+    }
+
+
+    // Lists <ul>, <ol> & <dl>
+    // -------------------------------------------------------------------------
+
+    ul,
+    ol,
+    dl {
+        @include listStyle;
+    }
+
+    ul,
+    ol {
+
+        ul,
+        ol {
+            margin-#{$default-float}: $list-nested-margin;
+            margin-bottom: 0;
+        }
+    }
+
+    ul {
+        @include bulletedList;
+    }
+
+    ol {
+        @include numberedList;
+    }
+
+    dl {
+
+        dt {
+            font-weight: $definition-list-header-weight;
+            margin-bottom: $definition-list-header-margin-bottom;
+        }
+
+        dd {
+            margin-bottom: $definition-list-margin-bottom;
+        }
+    }
+
+
+    // Abbreviations <abbr> & <acronym>
+    // -------------------------------------------------------------------------
+
+    abbr,
+    acronym {
+        border-bottom: $acronym-underline;
+        color: $body-font-color;
+        cursor: $cursor-help-value;
+        font-size: 90%;
+        text-transform: uppercase;
+    }
+
+    abbr {
+        text-transform: none;
+    }
+
+
+    // Blockquote <blockquote>
+    // -------------------------------------------------------------------------
+
+    blockquote {
+        border: $blockquote-borderColor $blockquote-borderStyle;
+        border-width: $blockquote-borderWidth;
+        margin: $blockquote-margin;
+        padding: $blockquote-padding;
+    }
+
+    blockquote,
+    blockquote p {
+        color: $blockquote-font-color;
+        font-size: $blockquote-fontSize;
+        font-weight: $blockquote-fontWeight;
+        line-height: $blockquote-lineHeight;
+    }
+
+    // This rule should only apply to cite elements within a blockquote. For example inline quotes should not
+    // receive the same treatment.
+    cite {
+        color: $blockquote-cite-font-color;
+        display: block;
+        font-size: $blockquote-cite-font-size;
+
+        &:before {
+            content: $blockquote-cite-content;
+        }
+
+        a,
+        a:visited {
+            color: $blockquote-cite-link-color;
+        }
+    }
+}

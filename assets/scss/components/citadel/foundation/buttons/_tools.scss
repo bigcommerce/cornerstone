@@ -1,0 +1,70 @@
+// =============================================================================
+// BUTTONS (Tools)
+// =============================================================================
+
+
+// Bigcommerce Mixins
+// -----------------------------------------------------------------------------
+//
+// 1. Button variant; Creates the visuals of a button
+// 2. Button size; Creates the font-size and padding of the button
+// 3. Angular Foundation class which is not override-able
+//
+// -----------------------------------------------------------------------------
+
+
+@mixin buttonVariant($type) { // 1
+
+    background-color: buttonStyle($type, "backgroundColor");
+    border-color: buttonStyle($type, "borderColor");
+    color: buttonStyle($type, "color");
+
+    @if buttonStyle($type, "backgroundColorHover") or buttonStyle($type, "borderColorHover") or buttonStyle($type, "colorHover") != null {
+
+        &:hover,
+        &:focus,
+        &.is-active,
+        &.active { // 3
+
+            background-color: buttonStyle($type, "backgroundColorHover");
+            border-color: buttonStyle($type, "borderColorHover");
+            color: buttonStyle($type, "colorHover");
+        }
+    }
+
+    @if buttonStyle($type, "backgroundColorActive") or buttonStyle($type, "borderColorActive") or buttonStyle($type, "colorActive") != null {
+
+        &:active {
+
+            background-color: buttonStyle($type, "backgroundColorActive");
+            border: $button-border-width $button-border-style buttonStyle($type, "borderColorActive");
+            color: buttonStyle($type, "colorActive");
+        }
+    }
+}
+
+@mixin buttonSize($type) { // 2
+
+    font-size: buttonSize($type, "fontSize");
+    padding: buttonSize($type, "verticalPadding") buttonSize($type, "horizontalPadding");
+}
+
+@function buttonStyle($type, $rule) {
+
+    @if map-has-key($buttonStyleMap, $type) {
+        @return map-get(map-get($buttonStyleMap, $type), $rule);
+    }
+
+    @warn "Unknown `#{$type}` in $buttonStyleMap.";
+    @return null
+}
+
+@function buttonSize($type, $rule) {
+
+    @if map-has-key($buttonSizeMap, $type) {
+        @return map-get(map-get($buttonSizeMap, $type), $rule);
+    }
+
+    @warn "Unknown `#{$type}` in $buttonSizeMap.";
+    @return null
+}

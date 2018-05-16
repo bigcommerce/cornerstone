@@ -1,0 +1,132 @@
+/*doc
+---
+title: ActionBar
+name: action_bar
+category: Patterns
+---
+```html_example
+<div class="actionBar">
+    <div class="actionBar-section">
+        <fieldset class="form-fieldset">
+            <div class="actionBar-item form-field">
+                <input class="form-input has-action" type="search" placeholder="Search">
+                <button class="button button--icon button--inputAction">
+                    <span class="is-srOnly">Search</span>
+                    <icon glyph="ic-search"></icon>
+                </button>
+            </div>
+            <a href="#" class="actionBar-item">Advanced</a>
+        </fieldset>
+    </div>
+    <div class="actionBar-section actionBar-section--alt">
+        <fieldset class="form-fieldset">
+            <div class="actionBar-item form-field">
+                <div class="buttonGroup">
+                    <button class="button">
+                        All
+                    </button>
+                    <button class="button">
+                        Free
+                    </button>
+                    <button class="button">
+                        Paid
+                    </button>
+                </div>
+            </div>
+            <div class="actionBar-item form-field">
+                <label class="form-label" for="select1">Sort by</label>
+                <select class="form-select" name="select1" id="select1">
+                    <option value="1">Popular</option>
+                    <option value="2">Newest</option>
+                </select>
+            </div>
+        </fieldset>
+    </div>
+</div>
+```
+
+```sass_file_example
+src/settings/bigcommerce/actionBar/_settings.scss
+```
+*/
+
+// =============================================================================
+// ACTION BAR (CSS)
+// =============================================================================
+
+
+// Bigcommerce Component
+// -----------------------------------------------------------------------------
+//
+// The Bigcommerce Coding Standards, coupled with Foundation.
+// If any library overrides or extra CSS is needed, declare it here.
+//
+// 1. If set to false, there is no outputted CSS for this component.
+// 2. Scss-lint seems to be triggered by the nesting, even though this is a
+//    pseudoselector. Disabling for this statement only.
+//
+// -----------------------------------------------------------------------------
+
+@if $exportCSS--actionBar { // 1
+
+    .actionBar {
+        @include clearfix;
+        margin: $actionBar-margin;
+
+        .button {
+            margin-bottom: $actionBar-button-margin;
+        }
+
+        .buttonGroup {
+            vertical-align: middle;
+        }
+    }
+
+    .actionBar-link {
+        display: block;
+        padding: $actionBar-text-padding;
+    }
+
+    .actionBar-section {
+        @include clearfix;
+        @include breakpoint("small") {
+            float: $actionBar-section-float;
+
+            .form-label {
+                display: inline-block;
+                margin: 0 $actionBar-form-label-margin 0 0;
+            }
+
+            .form-select,
+            .form-input {
+                display: inline-block;
+                width: $actionBar-form-input-width;
+            }
+        }
+    }
+
+    .actionBar-section--alt {
+
+        @include breakpoint("small") {
+            float: $actionBar-section-float--alt;
+        }
+    }
+
+    .actionBar-item {
+        margin-bottom: $actionBar-item-margin;
+
+        @include breakpoint("small") {
+            display: inline-block;
+            margin-bottom: 0;
+            margin-#{$actionBar-section-float--alt}: $actionBar-item-margin;
+            vertical-align: middle;
+
+            // 2
+            //scss-lint:disable NestingDepth
+            &:last-child {
+                margin-#{$actionBar-section-float--alt}: 0;
+            }
+            //scss-lint:enable
+        }
+    }
+}

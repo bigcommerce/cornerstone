@@ -1,0 +1,34 @@
+// =============================================================================
+// BC SVG ICONS
+// =============================================================================
+
+
+// ICONS
+// -----------------------------------------------------------------------------
+//
+// Purpose: We use raw svg in the DOM to style icons. This is a simple wrapper
+// for the icon directive
+//
+// 1. If set to false, there is no outputted CSS for this component.
+//
+// -----------------------------------------------------------------------------
+
+@if $exportCSS--icons { // 1
+
+    .icon {
+
+        @include square($icon-size);
+        display: inline-block;
+        vertical-align: middle;
+
+        svg {
+            display: inline-block;
+            fill: $icon-color;
+            height: 100%;
+            vertical-align: top;
+            width: 100%;
+        }
+
+    }
+
+}

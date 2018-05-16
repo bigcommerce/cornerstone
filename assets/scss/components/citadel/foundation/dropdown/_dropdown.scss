@@ -1,0 +1,67 @@
+// =============================================================================
+// DROPDOWN (CSS)
+// =============================================================================
+
+
+// Bigcommerce Component
+// -----------------------------------------------------------------------------
+//
+// The Bigcommerce Coding Standards, coupled with Foundation.
+// If any library overrides or extra CSS is needed, declare it here.
+//
+// 1. If set to false, there is no outputted CSS for this component.
+//
+// -----------------------------------------------------------------------------
+
+@if $exportCSS--dropdown { // 1
+
+/*doc
+---
+title: Dropdowns
+name: dropdown
+category: Components
+---
+
+Dropdowns are simple lists that can appear next to any element that can trigger a click event.
+They can be used by buttons, icons, links and other similar items.
+
+```sass_file_example
+src/settings/foundation/dropdown/_settings.scss
+```
+```html_example
+<ul class="dropdown-menu" style="display:block; left: 0;">
+    <li class="dropdown-menu-item"><a href="#" ng-click="$event.preventDefault()">One</a></li>
+    <li class="dropdown-menu-item"><a href="#" ng-click="$event.preventDefault()">Two</a></li>
+    <li class="dropdown-menu-item"><a href="#" ng-click="$event.preventDefault()">Three</a></li>
+</ul>
+```
+*/
+
+    // Component
+    // -------------------------------------------------------------------------
+
+    .dropdown-menu {
+        @include dropdown-container("list", $triangle: false);
+    }
+
+    .dropdown-menu--content {
+        @include dropdown-container("content", $triangle: false);
+    }
+
+    .dropdown-menu,
+    .dropdown-menu--content {
+        box-shadow: $f-dropdown-boxShadow;
+        margin-top: $f-dropdown-marginTop;
+    }
+
+    // Allow for non-anchor elements to be styled the same as anchors
+    .dropdown-menu-item {
+        @include dropdown-style;
+        padding: $f-dropdown-list-padding ($f-dropdown-list-padding * 2);
+
+        a {
+            margin: -$f-dropdown-list-padding;
+        }
+    }
+}
+

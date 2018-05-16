@@ -1,0 +1,74 @@
+// =============================================================================
+// PANELS (CSS)
+// =============================================================================
+
+
+// Bigcommerce Component
+// -----------------------------------------------------------------------------
+//
+// The Bigcommerce Coding Standards, coupled with Foundation.
+// If any library overrides or extra CSS is needed, declare it here.
+//
+// 1. If set to false, there is no outputted CSS for this component.
+//
+// -----------------------------------------------------------------------------
+
+@if $exportCSS--panels { // 1
+
+
+/*doc
+---
+title: Panels
+name: panel
+category: Components
+---
+
+Panels are a simple container which is relatively positioned within the document which helps you section
+your content. Panels may also have a header, which contains a related title to describe the contents.
+
+```sass_file_example
+src/settings/foundation/panels/_settings.scss
+```
+```html_example
+<div class="panel">
+    <div class="panel-header">
+        <h2 class="panel-title">Panel Title</h2>
+    </div>
+    <div class="panel-body">
+        <h2>Some Panel Content</h2>
+        <p>Should be able to handle any type of content.</p>
+    </div>
+</div>
+```
+*/
+    .panel {
+        position: relative;
+    }
+
+    .panel-header {
+        background-color: $panel-header-bg;
+        border: $panel-header-borderColor $panel-header-borderStyle;
+        border-width: $panel-header-borderWidth;
+        margin: $panel-header-margin;
+        padding: $panel-header-padding;
+    }
+
+    .panel-title {
+        line-height: $panel-title-lineHeight;
+        margin: $panel-title-margin;
+    }
+
+    .panel-body {
+
+        @include panel;
+        border-color: $panel-border-color;
+        box-shadow: $panel-boxShadow;
+
+        > :last-child {
+            margin-bottom: 0;
+        }
+
+    }
+
+}
+

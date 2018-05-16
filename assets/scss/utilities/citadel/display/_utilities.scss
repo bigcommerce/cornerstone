@@ -1,0 +1,42 @@
+// =============================================================================
+// DISPLAY (CSS)
+// =============================================================================
+
+
+// Bigcommerce Utility Classes
+// -----------------------------------------------------------------------------
+//
+// 1. If set to false, there is no outputted CSS for this component.
+// Adapted from SUIT CSS: https://github.com/suitcss/utils-display/
+//
+// 2. is-srOnly stands for "is screen reader only", meaning the content is not
+// visible to users, but is read out by assistive technology like screen readers.
+// Can be used to give greater context about a component when the visual treatment
+// is minimal with no supportive text to describe it.
+//
+// -----------------------------------------------------------------------------
+
+@if $exportCSS--displayUtilities { // 1
+
+    .u-block {
+        @include u-display("block", !important);
+    }
+
+    .u-inlineBlock {
+        @include u-display("inlineBlock", !important);
+    }
+
+    .u-hidden {
+        @include u-hidden("fully", !important);
+    }
+
+    .u-hiddenVisually {
+        @include u-hidden("visually", !important);
+    }
+
+    .is-srOnly { // 2
+        @include u-hidden("visually", !important);
+    }
+
+}
+

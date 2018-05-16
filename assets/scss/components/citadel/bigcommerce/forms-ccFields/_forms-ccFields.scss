@@ -1,0 +1,131 @@
+// =============================================================================
+// BC FORM CREDIT CARD FIELDS (CSS)
+// =============================================================================
+
+
+// Bigcommerce Component
+// -----------------------------------------------------------------------------
+//
+// The Bigcommerce Coding Standards, coupled with Foundation Variables.
+//
+// 1. If set to false, there is no outputted CSS for this component.
+// 2. This matches the variable of Foundation forms, as they come together
+//
+// -----------------------------------------------------------------------------
+
+@if $exportCSS--bcForm-ccFields { // 1, 2
+    // Credit Card Form Fields
+    // -----------------------------------------------------------------------------
+    //
+    // Purpose: Predefined pattern for credit card payment forms
+    //
+    // 1. Override the default max-width of form-field
+    //
+    // 2. Override the max-width again, because we really only want expiry and cvv
+    // to be very short fields based on input, no matter what the layout, except small
+    // screens which is 50/50
+    //
+    // 3. Override the icon's height because the cvc icon is not a square. Otherwise,
+    // it would appear there is a top margin
+    //
+    // .form-ccFields
+    //     > .form-field--ccNumber
+    //     > .form-field--ccExpiry
+    //     > .form-field--ccName
+    //     > .form-field--ccCvv
+    //
+    // -----------------------------------------------------------------------------
+
+    .form-ccFields {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin: $form-ccFields-margin;
+        padding: $form-ccFields-padding;
+
+        > .form-field {
+            max-width: none; // 1
+            padding: $form-ccFields-field-padding;
+        }
+    }
+
+    .form-field--ccNumber {
+        order: 1;
+    }
+
+    .form-field--ccExpiry {
+        order: 2;
+    }
+
+    .form-field--ccName {
+        order: 4;
+
+        @include breakpoint("small") {
+            order: 3;
+        }
+    }
+
+    .form-field--ccCvv {
+        order: 3;
+
+        @include breakpoint("small") {
+            order: 4;
+        }
+    }
+
+    .form-field--ccNumber,
+    .form-field--ccName {
+        flex: 100%;
+
+        @include breakpoint("small") {
+            flex: 0.65 0 65%;
+        }
+
+        @include breakpoint("medium") {
+            flex: 0.75 0 75%;
+        }
+    }
+
+    .form-field--ccExpiry,
+    .form-field--ccCvv {
+
+        flex: 0.5;
+
+        @include breakpoint("small") {
+            flex: 0.35 0 35%;
+            // scss-lint:disable ImportantRule
+            max-width: $form-ccFields-cvvExpiry-maxWidth; // 2
+            // scss-lint:enable ImportantRule
+        }
+
+        @include breakpoint("medium") {
+            flex: 0.25 0 25%;
+        }
+    }
+
+    .form-ccFields-cvvExample {
+        display: flex;
+    }
+
+    .form-ccFields-cvvExampleDescription {
+        flex: 2 auto;
+        margin-right: $form-ccFields-cvvExampleDescription-marginRight;
+
+        p {
+            font-size: $form-ccFields-cvvExampleDescription-fontSize;
+            margin: $form-ccFields-cvvExampleDescription-text-margin;
+        }
+    }
+
+    .form-ccFields-cvvExampleFigures {
+        flex: 1 auto;
+
+        figure {
+            margin-bottom: $form-ccFields-cvvExampleFigures-marginBottom;
+        }
+
+        icon {
+            height: auto; // 3
+        }
+    }
+}

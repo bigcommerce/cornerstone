@@ -1,0 +1,27 @@
+// =============================================================================
+// MODAL (Tools)
+// =============================================================================
+
+
+// Bigcommerce Mixins
+// -----------------------------------------------------------------------------
+
+@mixin modal-header($border-bottom, $hPadding, $vPadding) {
+    border-bottom: $border-bottom;
+    padding: $vPadding $hPadding;
+    position: relative;
+}
+
+@mixin modal-body($hPadding, $vPadding) {
+    padding: $vPadding $hPadding;
+}
+
+@mixin modal-footer($border-bottom, $hPadding, $vPadding, $text-align) {
+    border-top: $border-bottom;
+    padding: $vPadding $hPadding;
+    text-align: center;
+
+    @include breakpoint("xsmall") {
+        text-align: $text-align;
+    }
+}

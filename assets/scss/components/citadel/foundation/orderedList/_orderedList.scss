@@ -1,0 +1,69 @@
+// =============================================================================
+// ORDERED-LIST (CSS)
+// =============================================================================
+
+
+// Bigcommerce Component
+// -----------------------------------------------------------------------------
+//
+// The Bigcommerce Coding Standards, coupled with Foundation.
+// If any library overrides or extra CSS is needed, declare it here.
+//
+// 1. If set to false, there is no outputted CSS for this component.
+//
+// -----------------------------------------------------------------------------
+
+@if $exportCSS--ordered-list { // 1
+
+/*doc
+---
+title: Ordered List
+name: ordered_list
+category: Elements
+parent: lists
+---
+
+
+```html_example
+<ul class="orderedList">
+    <li class="orderedList-item"><a href="#">Link 1</a></li>
+    <li class="orderedList-item"><a href="#">Link 2</a></li>
+    <li class="orderedList-item"><a href="#">Link 3</a></li>
+    <li class="orderedList-item"><a href="#">Link 4</a></li>
+    <li class="orderedList-item"><a href="#">Link 5</a></li>
+</ul>
+```
+##### Ordered list settings
+```sass_file_example
+src/settings/foundation/orderedList/_settings.scss
+```
+
+*/
+
+    .orderedList {
+        @include orderedList($list-style-type);
+    }
+
+
+    // Ordered List Item
+    // -------------------------------------------------------------------------
+
+    .orderedList-item {
+        @include orderedListItem($ol-item-border-bot, $ol-item-font-size, $ol-item-padding);
+
+        &:last-child {
+
+            border-bottom: 0;
+        }
+
+        &::before {
+            @include orderedListItemCounter(
+                $ol-item-counter-color,
+                $ol-item-counter-font-family,
+                $ol-item-counter-font-size,
+                $ol-item-counter-font-weight,
+                $ol-item-counter-margin
+            );
+        }
+    }
+}

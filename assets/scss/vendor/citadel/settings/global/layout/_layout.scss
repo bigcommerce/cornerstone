@@ -1,0 +1,92 @@
+// =============================================================================
+// DIMENSIONS (Layout / Grid)
+// =============================================================================
+
+
+// Layout
+// -----------------------------------------------------------------------------
+//
+// Define the layout width's for your project.
+//
+// -----------------------------------------------------------------------------
+
+// Max Width
+$layout-widthMax:               remCalc(1200px) !default;
+
+// Fixed Width
+$layout-widthFixed:             90% !default;
+
+
+// Layout Map
+// -----------------------------------------------------------------------------
+
+$layoutMap: (
+    max:                        $layout-widthMax,
+    fixed:                      $layout-widthFixed
+);
+
+
+// Spacing Function
+// -----------------------------------------------------------------------------
+
+@function layout($key) {
+
+    @if map-has-key($layoutMap, $key) {
+        @return map-get($layoutMap, $key);
+    }
+
+    @warn "Unknown `#{$key}` in $layoutMap.";
+    @return null;
+}
+
+
+// Spacing Rhythm
+// -----------------------------------------------------------------------------
+//
+// Create consistent spacing patterns in your entire projects aesthetics.
+// Build your components margins, paddings, etc based off these spacing vars.
+//
+// -----------------------------------------------------------------------------
+
+// Base Spacing
+$spacingRhythm:                 $fontSize-base * $lineHeight-base !default;
+
+$spacing-base:                  1rem !default;
+$spacing-single:                $spacingRhythm !default;
+$spacing-double:                $spacingRhythm * 2 !default;
+$spacing-half:                  $spacingRhythm / 2 !default;
+$spacing-third:                 $spacingRhythm / 3 !default;
+$spacing-quarter:               $spacingRhythm / 4 !default;
+$spacing-fifth:                 $spacingRhythm / 5 !default;
+$spacing-sixth:                 $spacingRhythm / 6 !default;
+$spacing-eighth:                $spacingRhythm / 8 !default;
+
+
+// Spacing Map
+// -----------------------------------------------------------------------------
+
+$spacingMap: (
+    base:                       $spacing-base,
+    single:                     $spacing-single,
+    double:                     $spacing-double,
+    half:                       $spacing-half,
+    third:                      $spacing-third,
+    quarter:                    $spacing-quarter,
+    fifth:                      $spacing-fifth,
+    sixth:                      $spacing-sixth,
+    eighth:                     $spacing-eighth
+);
+
+
+// Spacing Function
+// -----------------------------------------------------------------------------
+
+@function spacing($key) {
+
+    @if map-has-key($spacingMap, $key) {
+        @return map-get($spacingMap, $key);
+    }
+
+    @warn "Unknown `#{$key}` in $spacingMap.";
+    @return null;
+}

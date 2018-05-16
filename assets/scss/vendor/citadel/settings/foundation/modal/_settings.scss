@@ -1,0 +1,106 @@
+// =============================================================================
+// MODAL (Settings)
+// =============================================================================
+
+
+// Bigcommerce Variables
+// -----------------------------------------------------------------------------
+//
+// These scoped variables are created by Bigcommerce.
+// All variables that are not from Foundation should be placed here.
+//
+// 1. Choose whether to include the Bigcommerce class names
+//
+// -----------------------------------------------------------------------------
+
+$exportCSS--modal:                 $exportCSS !default; // 1
+
+// Color Variables
+$modal-backdrop-color:             color("greys", "darkest") !default;
+
+// Border Variables
+$modal-border:                     container("border", "dark") !default;
+
+// Size Variables
+$modal-width--small:               300px !default;
+$modal-width--large:               900px !default;
+
+$modal-max-height:                 80% !default;
+$modal-max-height--large:          90% !default;
+
+// Positioning Variables
+$modal-footer-align:               right !default;
+$modal-transformY:                 -50% !default;
+
+
+// Spacing
+$modal-horizontalSpacing:          spacing("single") * 1.5 !default;
+$modal-verticalSpacing:            spacing("single") !default;
+
+
+// Modal header variables
+$modal-header-horizontalSpacing:   $modal-horizontalSpacing !default;
+$modal-header-verticalSpacing:     $modal-verticalSpacing !default;
+
+$modal-header-title-margin:        0 !default;
+
+$modal-close-size:                 20px !default;
+$modal-close-transformY:           $modal-transformY !default;
+
+// Modal body variables
+$modal-body-horizontalSpacing:     $modal-horizontalSpacing !default;
+$modal-body-verticalSpacing:       $modal-horizontalSpacing !default;
+
+
+// Modal footer variables
+$modal-footer-horizontalSpacing:   $modal-horizontalSpacing !default;
+$modal-footer-verticalSpacing:     spacing("half") !default;
+
+$modal-footer-button-marginBottom: 0 !default;
+
+$modal-footer-link-fontSize:       fontSize("smaller") !default;
+$modal-footer-link-margin:         spacing("single") !default;
+
+
+// Foundation Variables
+// -----------------------------------------------------------------------------
+//
+// These variables come directly from:
+// /vendor/foundation/foundation/components/*
+// Declaring the variables here, you can adjust them all to your design,
+// leaving the vendor framework untouched.
+//
+// -----------------------------------------------------------------------------
+
+$include-html-reveal-classes:      $include-html-classes !default;
+
+// We use these to control the style of the reveal overlay.
+$reveal-overlay-bg:                rgba($modal-backdrop-color, 0.6) !default;
+$reveal-overlay-bg-old:            $modal-backdrop-color !default;
+
+// We use these to control the style of the modal itself.
+$reveal-modal-bg:                  color("whites", "bright") !default;
+$reveal-position-top:              50% !default;
+$reveal-default-width:             $modal-width--large !default;
+$reveal-max-width:                 80% !default;
+$reveal-modal-padding:             0 !default;
+$reveal-box-shadow:                0 0 5px rgba(color("greys", "darkest"), 0.4) !default;
+
+// We use these to style the reveal close button
+$reveal-close-font-size:           fontSize("larger") !default;
+$reveal-close-top:                 50% !default;
+$reveal-close-side:                $modal-header-horizontalSpacing / 2 !default;
+$reveal-close-color:               color("greys", "dark") !default;
+$reveal-close-weight:              normal !default;
+
+// We use this to set the default radius used throughout the core.
+$reveal-radius:                    $global-radius !default;
+$reveal-round:                     $global-radius !default;
+
+// We use these to control the modal border
+$reveal-border-style:              solid !default;
+$reveal-border-width:              1px !default;
+$reveal-border-color:              container("borderColor", "dark") !default;
+
+$reveal-modal-class:               "modal" !default;
+$close-reveal-modal-class:         "modal-close" !default;

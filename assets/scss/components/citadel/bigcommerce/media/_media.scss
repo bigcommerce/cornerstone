@@ -1,0 +1,111 @@
+// =============================================================================
+// MEDIA Object (CSS)
+// =============================================================================
+
+
+// Bigcommerce Component
+// -----------------------------------------------------------------------------
+//
+// The Bigcommerce Coding Standards, coupled with Foundation.
+// If any library overrides or extra CSS is needed, declare it here.
+//
+// 1. If set to false, there is no outputted CSS for this component.
+// 2. Include the basic media object styles for any .media component.
+// 3. Include the modified .mediaTable element, which adds table styling and the
+// .mediaTable-column to the component.
+//
+// -----------------------------------------------------------------------------
+
+@if $exportCSS--media { // 1
+
+
+/*doc
+---
+title: Media Object
+name: media
+category: Components
+---
+
+The media object, as per OOCSS methodology. Taken straight from the OOCSS repo.
+(https://github.com/stubbornella/oocss/blob/master/oocss/src/settings/media/_media.scss)
+This also allows the "media table" variation, which allows you to specify
+columns in the media object, and align the contents accordingly.
+This is similar to Harry Roberts's "Flag object". (http://csswizardry.com/2013/05/the-flag-object/)
+
+This mixin, like the nav mixin, is created by bending our style guides rules.
+To achieve both total control, and the freedom of appending your own
+class name prefix to the elements, the '&' selector has been used heavily.
+
+1. $style arguments: "default" or "table"
+2. To avoid generating the default media object styles for descendants if we
+don't have to, we check for the default operator first.
+3. The "table" style just sets the parent to display as table, and its children
+to table-cells, if they have the "-column" descendant class.
+
+```sass_file_example
+src/settings/bigcommerce/media/_settings.scss
+```
+
+To create a media object, you can use the following mixin:
+
+```scss_example
+.media {
+    @include media;
+}
+```
+
+```html_example
+<div class="media">
+    <div class="media-figure">
+        <img src="https://placeholdit.imgix.net/~text?txtsize=25&txt=150%C3%97150&w=150&h=150"/>
+    </div>
+    <div class="media-body">
+        <h5>Media header</h5>
+        <p>Media body</p>
+    </div>
+</div>
+```
+*/
+
+    .media {
+        @include media; // 2
+    }
+
+
+/*doc
+---
+title: Media Table Object
+name: mediaTable
+parent: media
+category: Components
+---
+
+To create a media table, you can use the same mixin with the "table" parameter:
+
+```scss_example
+.media {
+    @include media("table");
+}
+```
+
+```html_example
+<div class="mediaTable">
+    <div class="mediaTable-column mediaTable-figure">
+        <img src="https://placeholdit.imgix.net/~text?txtsize=25&txt=150%C3%97150&w=150&h=150"/>
+    </div>
+    <div class="mediaTable-column mediaTable-body">
+        <h5>Media header</h5>
+        <p>Media body</p>
+    </div>
+    <div class="mediaTable-column mediaTable-actions">
+        <button class="button">Go!</button>
+    </div>
+</div>
+```
+*/
+
+    .mediaTable {
+        @include media("table"); // 3
+    }
+
+}

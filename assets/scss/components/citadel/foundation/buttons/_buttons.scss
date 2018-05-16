@@ -1,0 +1,162 @@
+// =============================================================================
+// BUTTONS (CSS)
+// =============================================================================
+
+
+// Bigcommerce Component
+// -----------------------------------------------------------------------------
+//
+// The Bigcommerce Coding Standards, coupled with Foundation.
+// If any overrides / extra CSS is needed, declare it here.
+//
+// 1. If set to false, there is no outputted CSS for this component.
+// 2. The $button-radius variable isn't actually used in Foundations mixin. Smart.
+//
+// -----------------------------------------------------------------------------
+
+@if $exportCSS--buttons { // 1
+
+
+/*doc
+---
+title: Buttons
+name: button
+category: Components
+---
+
+These are all the button
+
+```sass_file_example
+src/settings/foundation/buttons/_settings.scss
+```
+
+```html_example
+<button class="button">Button</button>
+
+<input type="submit" class="button" value="Button">
+
+<a class="button" role="button" href="#">Button</a>
+```
+
+*/
+
+    .button {
+        @include button-base;
+        @include buttonVariant("default");
+        @include buttonSize("default");
+        border-radius: $button-radius; // 2
+        outline: none;
+        vertical-align: $button-vAlign;
+
+        &:focus,
+        &.is-active,
+        &.active { // 3
+            box-shadow: $button-focus-boxShadow;
+            outline: none;
+        }
+
+        + .button {
+            @include breakpoint("xsmall") {
+                margin-left: $button-adjacentButton-marginLeft;
+            }
+        }
+    }
+
+
+/*doc
+---
+title: Button states
+name: button_states
+category: Components
+parent: button
+---
+
+```html_example
+<button class="button button--primary">Primary Button</button>
+
+<button class="button">Secondary / Default Button</button>
+
+<button class="button button--tertiary">Tertiary Button</button>
+
+<button class="button button--action">Call-to-Action Button</button>
+```
+    */
+
+    .button--primary {
+        @include buttonVariant("primary");
+    }
+
+    .button--tertiary {
+        @include buttonVariant("tertiary");
+    }
+
+    .button--action {
+        @include buttonVariant("action");
+    }
+
+    .button[disabled] {
+        @include buttonVariant("disabled");
+        cursor: $cursor-default-value;
+    }
+
+
+/*doc
+---
+title: Button sizes
+name: button_sizes
+category: Components
+parent: button
+---
+
+```html_example
+<button class="button button--large">Large</button>
+
+<button class="button">Default</button>
+
+<button class="button button--small">Small</button>
+
+<button class="button button--tiny">Tiny</button>
+```
+
+And a special case, slab, which takes the full width of it's container and any
+size modifier
+
+```html_example
+<button class="button button--slab">Slab</button>
+
+<button class="button button--slab button--large">Slab</button>
+```
+
+*/
+
+    .button--large {
+        @include buttonSize("large");
+    }
+
+    .button--small {
+        @include buttonSize("small");
+    }
+
+    .button--tiny {
+        @include buttonSize("tiny");
+    }
+
+    .button--slab {
+        display: block;
+        width: 100%;
+
+        .button + & {
+            margin-left: 0;
+        }
+    }
+
+    .button--icon {
+        @include buttonSize("square");
+
+        svg {
+            fill: color("primary");
+        }
+    }
+
+}
+

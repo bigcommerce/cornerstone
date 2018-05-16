@@ -1,0 +1,72 @@
+// =============================================================================
+// ACCORDION (Settings)
+// =============================================================================
+
+
+// Bigcommerce Variables
+// -----------------------------------------------------------------------------
+//
+// These scoped variables are created by Bigcommerce.
+// All variables that are not from Foundation should be placed here.
+//
+// 1. Choose whether to include the Bigcommerce class names
+// 2. Foundation uses this variable in a mixin. If you assign short hand padding
+//    values to it, it throws a sass warning. Will only accept a single value.
+//
+// -----------------------------------------------------------------------------
+
+$exportCSS--accordion:                   $exportCSS !default; // 1
+
+$accordion-borderColor:                  container("borderColor", "dark") !default;
+$accordion-borderStyle:                  container("borderStyle") !default;
+$accordion-borderWidth:                  0 1px 1px !default;
+$accordion-border:                       $accordion-borderColor $accordion-borderStyle !default;
+$accordion-boxShadow:                    container("dropShadow") !default;
+$accordion-margin:                       0 0 container("margin") !default;
+
+$accordion-successColor:                 color("success") !default;
+$accordion-errorColor:                   color("error") !default;
+$accordion-warningColor:                 color("warning") !default;
+
+$accordion-navigation-borderColor:       $accordion-borderColor !default;
+$accordion-navigation-borderStyle:       $accordion-borderStyle !default;
+$accordion-navigation-borderWidth:       1px 0 0 !default;
+$accordion-navigation-border:            $accordion-border !default;
+$accordion-navigation-paddingHorizontal: container("padding") !default;
+$accordion-navigation-paddingVertical:   container("padding") !default;
+
+$accordion-title-fontWeight:             $font-weight-bold !default;
+$accordion-title-lineHeight:             lineHeight("base") !default;
+$accordion-title-padding:                $accordion-navigation-paddingVertical $accordion-navigation-paddingHorizontal !default;
+$accordion-title-successColor:           $accordion-successColor;
+$accordion-title-errorColor:             $accordion-errorColor;
+$accordion-title-warningColor:           $accordion-warningColor;
+
+$accordion-content-borderColor:          $accordion-borderColor !default;
+$accordion-content-borderStyle:          $accordion-borderStyle !default;
+$accordion-content-borderWidth:          1px 0 0 !default;
+$accordion-content-border:               $accordion-border !default;
+
+// Foundation Variables
+// -----------------------------------------------------------------------------
+//
+// These variables come directly from:
+// /vendor/foundation/foundation/components/*
+// Declaring the variables here, you can adjust them all to your design,
+// leaving the vendor framework untouched.
+//
+// -----------------------------------------------------------------------------
+
+$include-html-accordion-classes:         $include-html-classes !default;
+
+$accordion-navigation-padding:           $accordion-navigation-paddingHorizontal !default; // 2
+$accordion-navigation-bg-color:          container("fill") !default;
+$accordion-navigation-hover-bg-color:    color("greys", "light") !default;
+$accordion-navigation-active-bg-color:   container("fill") !default;
+$accordion-navigation-active-font-color: color("greys", "darkest") !default;
+$accordion-navigation-font-color:        color("greys", "darker") !default;
+$accordion-navigation-font-size:         fontSize("base") !default;
+$accordion-navigation-font-family:       fontFamily("sans") !default;
+
+$accordion-content-padding:              container("padding") !default;
+$accordion-content-active-bg-color:      container("fill") !default;

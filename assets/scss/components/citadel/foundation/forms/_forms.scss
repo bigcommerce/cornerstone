@@ -1,0 +1,268 @@
+
+// =============================================================================
+// FORMS (CSS)
+// =============================================================================
+
+
+// Bigcommerce Component
+// -----------------------------------------------------------------------------
+//
+// The Bigcommerce Coding Standards, coupled with Foundation.
+// If any overrides / extra CSS is needed, declare it here.
+//
+// 1. If set to false, there is no outputted CSS for this component.
+// 2. Hiding ::-ms-clear as it doesn't work well with JS `onchange` listeners
+// 3. Can't use `display: none` as it breaks the padding of its parent input
+//
+// -----------------------------------------------------------------------------
+
+@if $exportCSS--forms { // 1
+
+/*doc
+---
+title: Forms
+name: forms
+category: Forms
+---
+
+##### Foundation Forms settings
+```sass_file_example
+src/settings/foundation/forms/_settings.scss
+```
+
+##### Citadel Forms settings
+```sass_file_example
+src/settings/foundation/forms/_settings.scss
+```
+
+*/
+
+
+/*doc
+---
+title: Form basics
+name: 01forms_basics
+category: Forms
+parent: forms
+---
+
+Citadel comes with styling for most form input types and some custom ones. To start
+things off a basic, semantic mark-up structure should be adhered too, including
+the `form`, `fieldset` and `legend` elements where ever possible.
+
+```html_example
+<form action="#" class="form">
+    <fieldset class="form-fieldset">
+        <legend class="form-legend">Form legend</legend>
+    </fieldset>
+</form>
+```
+
+*/
+
+    .form {
+        margin: $form-margin;
+    }
+
+    .form-fieldset {
+        border: $fieldset-border-style $fieldset-border-color;
+        border-width: $fieldset-border-width;
+        margin: $fieldset-margin;
+        padding: $fieldset-padding;
+    }
+
+    .form-legend {
+        background: $legend-bg;
+        border: $legend-border-style $legend-border-color;
+        border-width: $legend-border-width;
+        display: $legend-display;
+        line-height: $legend-lineHeight;
+        margin-bottom: $legend-marginBottom;
+        padding: $legend-padding;
+        width: $legend-width;
+    }
+
+
+/*doc
+---
+title: Form labels and inputs
+name: 03forms_basics
+category: Forms
+parent: forms
+---
+
+Inputs of all types should be associated with a label which has a `for` attribute
+
+```html_example
+<div class="form-field">
+    <label class="form-label" for="input1">Input Label</label>
+    <input class="form-input" id="input1" type="text" placeholder="Placeholder text">
+</div>
+<div class="form-field">
+    <label class="form-label" for="input2">Number Label</label>
+    <input class="form-input" id="input2" type="number" placeholder="Number input">
+</div>
+<div class="form-field">
+    <label class="form-label" for="input3">Textarea Label <small>additional context</small></label>
+    <textarea class="form-input" id="input3" placeholder="Placeholder text" rows="3"></textarea>
+</div>
+```
+*/
+
+    .form-label {
+        @include form-label;
+
+        small {
+            color: $form-label-small-color;
+            font-size: $form-label-small-fontSize;
+            font-weight: $form-label-small-fontWeight;
+            text-transform: $form-label-small-transform;
+            vertical-align: bottom;
+        }
+    }
+
+
+    // =============================================================================
+    // FORM INPUTS COVER MOST TEXT OR NUMERIC INPUT
+    // =============================================================================
+
+    .form-input {
+        appearance: none;
+        background-color: $input-bg-color;
+        border: {
+            color: $input-border-color;
+            style: $input-border-style;
+            width: $input-border-width;
+        }
+        border-radius: $input-border-radius;
+        box-shadow: $input-box-shadow;
+        color: $input-font-color;
+        display: $input-display;
+        font-family: $input-font-family;
+        font-size: $input-font-size;
+
+        @if $input-fontSmoothing {
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-font-smoothing: antialiased;
+            font-smoothing: antialiased;
+        }
+
+        height: $input-height;
+        margin: $input-margin;
+        padding: $input-padding;
+        transition: $input-transition;
+        width: $input-width;
+
+/*doc
+---
+title: Disabled inputs
+name: 04forms_basics
+category: Forms
+parent: forms
+---
+
+```html_example
+<div class="form-field">
+    <label class="form-label" for="disabled_input1">Input Label</label>
+    <input class="form-input" id="disabled_input1" disabled type="text" value="Disabled text">
+</div>
+
+<div class="form-field">
+    <label class="form-label" for="disabled_input2">Input Label</label>
+    <input class="form-input" id="disabled_input2" readonly type="text" value="Readonly text">
+</div>
+```
+*/
+
+        &:disabled {
+            background-color: $input-disabled-bg;
+            border-color: $input-disabled-borderColor;
+            color: $input-disabled-color;
+            cursor: $input-disabled-cursor;
+        }
+
+        &[readonly] {
+            background-color: $input-readonly-bg;
+            border-color: $input-readonly-borderColor;
+            color: $input-readonly-color;
+            cursor: $input-readonly-cursor;
+        }
+
+        &:focus {
+            background: $input-focus-bg-color;
+            border-color: $input-focus-border-color;
+            box-shadow: $input-focus-boxShadow;
+            outline: none;
+        }
+
+        // Respect stated rows on textarea
+        &[rows] {
+            height: auto;
+        }
+
+        &[type="search"] {
+            box-sizing: border-box;
+        }
+
+        // Placeholder text styling
+        &::-webkit-input-placeholder {
+            color: $input-placeholder-color;
+        }
+
+        &::-ms-clear { // 2
+            height: 0; // 3
+            width: 0;
+        }
+
+        // Proprietary vendor selectors, not covered by scss-lint
+        // scss-lint:disable VendorPrefix
+        &::-moz-placeholder {
+            color: $input-placeholder-color;
+        }
+
+        &:-ms-input-placeholder {
+            color: $input-placeholder-color;
+        }
+        // scss-lint:enable VendorPrefix
+
+    }
+
+
+/*doc
+---
+title: Selects
+name: 05forms_basics
+category: Forms
+parent: forms
+---
+
+```html_example
+<div class="form-field">
+    <label class="form-label" for="select1">Native Select label</label>
+    <select class="form-select" name="select1" id="select1">
+        <option>Please select a value</option>
+        <option value="1">Option 1</option>
+        <option value="2">Option 2</option>
+    </select>
+</div>
+```
+*/
+
+    .form-select {
+        @include form-select;
+        box-shadow: $select-boxShadow;
+        cursor: $cursor-pointer-value;
+        height: $select-height;
+        margin: $select-margin;
+        max-width: $select-maxWidth;
+        outline: $select-outline;
+        padding-right: $select-paddingRight;
+
+        &:focus {
+            border-color: $select-focus-borderColor;
+            box-shadow: $select-focus-boxShadow;
+        }
+    }
+
+
+}

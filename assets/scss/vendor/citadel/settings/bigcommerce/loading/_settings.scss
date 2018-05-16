@@ -1,0 +1,54 @@
+// =============================================================================
+// LOADING (Settings)
+// =============================================================================
+
+
+// Bigcommerce Variables
+// -----------------------------------------------------------------------------
+//
+// These scoped variables are created by Bigcommerce.
+// All variables that are not from Foundation should be placed here.
+//
+// 1. Choose whether to include the Bigcommerce class names
+//
+// -----------------------------------------------------------------------------
+
+$exportCSS--loading:                          $exportCSS !default;
+
+
+// =============================================================================
+// LOADING NOTIFICATION
+// =============================================================================
+
+$loadingNotification-left:                    50%;
+$loadingNotification-translate:               translateX(-50%);
+$loadingNotification-transform:               $loadingNotification-translate;
+$loadingNotification-transform--start:        scale(0.9) $loadingNotification-translate;
+$loadingNotification-transform--end:          scale(1) $loadingNotification-translate;
+$loadingNotification-top:                     spacing("double") !default;
+$loadingNotification-top--startPosition:      spacing("double") * 1.2 !default;
+$loadingNotification-textAlign:               center !default;
+
+$loadingNotification-label-background:        color("greys", "dark") !default;
+$loadingNotification-label-color:             color("whites", "bright") !default;
+$loadingNotification-label-fontSize:          fontSize("smaller") !default;
+$loadingNotification-label-radius:            $global-radius !default;
+$loadingNotification-label-verticalSpacing:   spacing("quarter") !default;
+$loadingNotification-label-horizontalSpacing: spacing("half") !default;
+
+
+// =============================================================================
+// LOADING OVERLAY
+// =============================================================================
+
+$loadingOverlay-minHeight:                    120px !default;
+$loadingOverlay-background:                   rgba(color("whites", "bright"), 0.9) !default;
+$loadingOverlay-transitionProperty:           all !default;
+$loadingOverlay-transitionSpeed:              250ms !default;
+$loadingOverlay-transitionEase:               ease-out !default;
+
+$loadingOverlay-spinner-size:                 80px !default;
+$loadingOverlay-spinner-borderWidth:          1px !default;
+$loadingOverlay-spinner-borderColor:          color("whites", "bright") color("whites", "bright") color("greys", "medium")  color("greys", "medium") !default;
+$loadingOverlay-spinner-duration:             500ms !default;
+$loadingOverlay-spinner-easing:               cubic-bezier(0.69, 0.31, 0.56, 0.83) !default;

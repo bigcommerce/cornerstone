@@ -1,0 +1,137 @@
+// =============================================================================
+// BC-DATEPICKER (CSS)
+// =============================================================================
+
+
+// Bigcommerce Component
+// -----------------------------------------------------------------------------
+//
+// The Bigcommerce Coding Standards, coupled with Foundation.
+// If any library overrides or extra CSS is needed, declare it here.
+//
+// 1. If set to false, there is no outputted CSS for this component.
+//
+// -----------------------------------------------------------------------------
+
+@if $exportCSS--datepicker {
+
+    // Component
+    // -------------------------------------------------------------------------
+
+    .datepicker {
+        background-color: $datepicker-backgroundColor;
+        box-shadow: $datepicker-boxShadow;
+        padding: $datepicker-padding;
+        text-align: center;
+        z-index: $datepicker-zIndex;
+    }
+
+    .datepicker-attachment {
+        position: absolute;
+    }
+
+    .datepicker-month {
+        color: $datepicker-month-color;
+        font-size: $datepicker-month-fontSize;
+        font-weight: $datepicker-month-fontWeight;
+        margin: $datepicker-month-margin;
+    }
+
+    .datepicker-back,
+    .datepicker-next {
+        color: $datepicker-back-next-color;
+        cursor: $datepicker-back-next-cursor;
+        font-size: $datepicker-back-next-fontSize;
+        font-weight: $datepicker-back-next-fontWeight;
+        padding: $datepicker-back-next-padding;
+    }
+
+    .datepicker-back {
+        float: left;
+        margin-left: $datepicker-back-next-margin;
+
+        &::before {
+            content: $datepicker-back-content;
+            display: block;
+        }
+    }
+
+    .datepicker-next {
+        float: right;
+        margin-right: $datepicker-back-next-margin;
+
+        &::before {
+            content: $datepicker-next-content;
+            display: block;
+        }
+    }
+
+    .datepicker-days {
+        border-collapse: separate;
+        color: $datepicker-days-color;
+        font-size: $datepicker-days-fontSize;
+        margin: $datepicker-days-margin;
+        table-layout: fixed;
+    }
+
+    .datepicker-days-head {
+        line-height: $datepicker-days-head-lineHeight;
+    }
+
+    .datepicker-day-name {
+        color: $datepicker-day-name-color;
+        font-size: $datepicker-day-name-fontSize;
+        font-weight: $datepicker-day-name-fontWeight;
+        text-transform: $datepicker-day-name-textTransform;
+    }
+
+    .datepicker-day {
+        cursor: $cursor-pointer-value;
+        height: $datepicker-day-height;
+        line-height: $datepicker-day-lineHeight;
+        padding: $datepicker-day-padding;
+        position: relative;
+        text-align: center;
+        width: $datepicker-day-width;
+        z-index: zIndex("lowest");
+
+        &::before {
+            @extend %datepicker-day-background;
+        }
+
+        &:hover::before {
+            background-color: $datepicker-day-hover-backgroundColor;
+        }
+    }
+
+    .datepicker-day.is-selected {
+        color: $datepicker-day-selected-color;
+        cursor: $cursor-pointer-value;
+
+        &::before {
+            @extend %datepicker-day-background;
+            background-color: $datepicker-day-selected-backgroundColor;
+        }
+
+        &:hover::before {
+            background-color: $datepicker-day-selected-backgroundColor;
+        }
+    }
+
+    %datepicker-day-background {
+        border-radius: $datepicker-day-background-borderRadius;
+        bottom: $datepicker-day-background-bottom;
+        content: "";
+        left: $datepicker-day-background-left;
+        position: absolute;
+        right: $datepicker-day-background-right;
+        top: $datepicker-day-background-top;
+        z-index: -1;
+    }
+
+    .datepicker-day.is-disabled {
+        color: $datepicker-day-disabled-color;
+        cursor: $cursor-default-value;
+    }
+}
+

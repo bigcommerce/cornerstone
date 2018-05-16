@@ -1,0 +1,39 @@
+// =============================================================================
+// POSITION (Tools)
+// =============================================================================
+
+
+@mixin u-position($variant, $important: null) {
+
+    @if $variant == "absoluteCenter" {
+
+        // ---------------------------------------------------------------------
+        //
+        // Pins to all corners by default. But when a width and/or height are
+        // provided, the element will be centered in its nearest
+        // relatively-positioned ancestor.
+        //
+        // ---------------------------------------------------------------------
+
+        bottom: 0 $important;
+        left: 0 $important;
+        margin: auto $important;
+        position: absolute $important;
+        right: 0 $important;
+        top: 0 $important;
+
+    }
+    @else if $variant == "fixed" {
+
+        // ---------------------------------------------------------------------
+        //
+        // Make sure fixed elements are promoted into a new layer, for
+        // performance reasons.
+        //
+        // ---------------------------------------------------------------------
+
+        backface-visibility: hidden $important;
+        position: fixed $important;
+    }
+}
+

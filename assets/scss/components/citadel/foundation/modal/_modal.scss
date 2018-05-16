@@ -1,0 +1,163 @@
+// =============================================================================
+// MODAL (CSS)
+// =============================================================================
+
+
+// Bigcommerce Component
+// -----------------------------------------------------------------------------
+//
+// The Bigcommerce Coding Standards, coupled with Foundation.
+// If any library overrides or extra CSS is needed, declare it here.
+//
+// 1. If set to false, there is no outputted CSS for this component.
+//
+// -----------------------------------------------------------------------------
+
+@if $exportCSS--modal { // 1
+
+    // Body Element When Modal Is Open
+    // -------------------------------------------------------------------------
+
+    body.has-activeModal {
+        overflow: hidden;
+    }
+
+
+    // modal Background
+    // -------------------------------------------------------------------------
+
+    .modal-background {
+        @include reveal-bg; // Foundation mixin
+
+        .has-activeModal & {
+            display: block;
+        }
+    }
+
+
+    // =============================================================================
+    // MODAL BASE
+    // =============================================================================
+
+    .#{$reveal-modal-class} {
+
+        // foundation mixins
+        @include reveal-modal-base;
+
+        @include reveal-modal-style(
+            $bg: $reveal-modal-bg,
+            $padding: $reveal-modal-padding,
+            $border: true,
+            $box-shadow: true,
+            $top-offset: $reveal-position-top
+        );
+
+        // additional styles
+        max-height: $modal-max-height;
+        overflow: auto;
+        position: fixed;
+
+        @include breakpoint("small") {
+            transform: translateY($modal-transformY);
+        }
+    }
+
+    .modal--large {
+        max-height: $modal-max-height--large;
+        width: $modal-width--large;
+    }
+
+    .modal--small {
+        width: $modal-width--small;
+    }
+
+
+    // =============================================================================
+    // MODAL HEADER
+    // =============================================================================
+
+    .modal-header {
+        @include modal-header(
+            $modal-border,
+            $modal-header-horizontalSpacing,
+            $modal-header-verticalSpacing
+        );
+    }
+
+    .modal-header-title {
+        margin: $modal-header-title-margin;
+    }
+
+
+    // =============================================================================
+    // MODAL BODY
+    // =============================================================================
+
+    .modal-body {
+        @include modal-body(
+            $modal-body-horizontalSpacing,
+            $modal-body-verticalSpacing
+        );
+
+        > :last-child {
+            margin-bottom: 0;
+        }
+    }
+
+
+    // =============================================================================
+    // MODAL FOOTER
+    // =============================================================================
+
+    .modal-footer {
+        @include modal-footer(
+            $modal-border,
+            $modal-footer-horizontalSpacing,
+            $modal-footer-verticalSpacing,
+            $modal-footer-align
+        );
+
+        .button {
+            display: block;
+
+            @include breakpoint("xsmall") {
+                display: inline-block;
+                margin-bottom: $modal-footer-button-marginBottom;
+            }
+        }
+    }
+
+    .modal-footer-link {
+        display: inline-block;
+        font-size: $modal-footer-link-fontSize;
+        margin: 0 0 spacing("half");
+
+        @include breakpoint("xsmall") {
+            display: inline;
+            margin: $modal-footer-link-margin;
+        }
+    }
+
+    .#{$close-reveal-modal-class} {
+        @include reveal-close; // Foundation mixin
+
+        transform: translateY($modal-close-transformY);
+
+        .icon {
+            @include square($modal-close-size);
+        }
+    }
+
+
+    // Print
+    //
+    // Reveal Print Styles: It should be invisible, adds no value being printed.
+    // -------------------------------------------------------------------------
+    // scss-lint:disable ImportantRule
+    @media print {
+        .#{$reveal-modal-class} {
+            background: $white !important; // !important from foundation
+            display: none;
+        }
+    }
+}

@@ -1,0 +1,1102 @@
+// =============================================================================
+// BC FORMS (CSS)
+// =============================================================================
+
+
+// Bigcommerce Component
+// -----------------------------------------------------------------------------
+//
+// The Bigcommerce Coding Standards, coupled with Foundation Variables.
+//
+// 1. If set to false, there is no outputted CSS for this component.
+// 2. This matches the variable of Foundation forms, as they come together
+//
+// -----------------------------------------------------------------------------
+
+@if $exportCSS--bcForms { // 1, 2
+
+
+/*doc
+---
+title: Form Panels and Layouts
+name: 13forms_layouts
+category: Forms
+parent: forms
+---
+
+We provide a couple of component styles to layout forms.
+
+The more `form-field` components you place in the `form-row`, the smaller the columns gets.
+Columns are equal length, and calculated automatically by Flexbox by default.
+
+It's the same mark-up but depending on your browser support needs, you can switch
+between a flexbox layout or a more traditional grid based layout by setting
+`$formRow-modernBrowsers` to `false`.
+
+The grid based layout of `form-feilds` will require the use of modifiers to calculate
+the correct widths. We support `form-field--half`, `form-field--third` and
+`form-field--quarter`
+
+```html_example
+<form action="#" class="form">
+    <fieldset class="form-fieldset">
+        <legend class="form-legend">Form legend</legend>
+        <div class="form-body">
+            <div class="form-row">
+                <div class="form-field">
+                    <label class="form-label" for="input12">Input Label</label>
+                    <input class="form-input" id="input12" type="text" placeholder="Placeholder text">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-field">
+                    <label class="form-label" for="input12">Input Label</label>
+                    <input class="form-input" id="input12" type="text" placeholder="Placeholder text">
+                </div>
+                <div class="form-field">
+                    <label class="form-label" for="input4">Prefixed Label</label>
+                    <div class="form-prefixPostfix">
+                        <span class="form-prefixPostfix-label form-prefixPostfix-label--prefix" id="prefixDesc1">KG</span>
+                        <input class="form-input form-prefixPostfix-input" id="input4" type="text" placeholder="Placeholder text" aria-describedby="prefixDesc1">
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-field">
+                    <label class="form-label" for="input12">Input Label</label>
+                    <input class="form-input" id="input12" type="text" placeholder="Placeholder text">
+                </div>
+                <div class="form-field">
+                    <label class="form-label" for="input4">Prefixed Label</label>
+                    <div class="form-prefixPostfix">
+                        <span class="form-prefixPostfix-label form-prefixPostfix-label--prefix" id="prefixDesc1">KG</span>
+                        <input class="form-input form-prefixPostfix-input" id="input4" type="text" placeholder="Placeholder text" aria-describedby="prefixDesc1">
+                    </div>
+                </div>
+                <div class="form-field">
+                    <label class="form-label" for="input12">Input Label</label>
+                    <input class="form-input" id="input12" type="text" placeholder="Placeholder text">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-field">
+                    <label class="form-label" for="input12">Input Label</label>
+                    <input class="form-input" id="input12" type="text" placeholder="Placeholder text">
+                </div>
+                <div class="form-field">
+                    <label class="form-label" for="input4">Prefixed Label</label>
+                    <div class="form-prefixPostfix">
+                        <span class="form-prefixPostfix-label form-prefixPostfix-label--prefix" id="prefixDesc1">KG</span>
+                        <input class="form-input form-prefixPostfix-input" id="input4" type="text" placeholder="Placeholder text" aria-describedby="prefixDesc1">
+                    </div>
+                </div>
+                <div class="form-field">
+                    <label class="form-label" for="input12">Input Label</label>
+                    <input class="form-input" id="input12" type="text" placeholder="Placeholder text">
+                </div>
+                <div class="form-field">
+                    <label class="form-label" for="input4">Prefixed Label</label>
+                    <div class="form-prefixPostfix">
+                        <span class="form-prefixPostfix-label form-prefixPostfix-label--prefix" id="prefixDesc1">KG</span>
+                        <input class="form-input form-prefixPostfix-input" id="input4" type="text" placeholder="Placeholder text" aria-describedby="prefixDesc1">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+</form>
+```
+*/
+
+    .form-body {
+        background-color: $formBody-backgroundColor;
+        border: $formBody-border;
+        box-shadow: $formBody-boxShadow;
+        margin-bottom: $formBody-marginBottom;
+        max-width: $formBody-maxWidth;
+        padding: $formBody-padding;
+    }
+
+    .form-row {
+
+        @if $formRow-modernBrowsers {
+            @include formRow--flex();
+        }
+        @else {
+            @include formRow--grid();
+        }
+
+    }
+
+    // Form Basics
+    // -----------------------------------------------------------------------------
+    //
+    // Purpose: Bigcommerce form basics that aren't covered by Foundation
+    //
+    // 1. Can be a custom element <form-field /> needs display-block to hold styles
+    //
+    // -----------------------------------------------------------------------------
+
+/*doc
+---
+title: Form Fields
+name: 02forms_basics
+category: Forms
+parent: forms
+---
+
+Each form input should be wrapped in a `form-field`
+
+```html_example
+<div class="form-field">
+</div>
+```
+*/
+    .form-field {
+        @include clearfix();
+        display: block; // 1
+        margin: $formField-margin;
+        max-width: $formField-maxWidth;
+    }
+
+
+/*doc
+---
+title: Selects [multiple]
+name: 06forms_basics
+category: Forms
+parent: forms
+---
+
+Styling of the select element with the multiple attribute
+
+```html_example
+<div class="form-field">
+    <label class="form-label" for="multiselect1">Native Select Multiple label</label>
+    <select class="form-select" multiple name="multiselect1" id="multiselect1">
+        <option>Please select a value</option>
+        <option value="1">Option 1</option>
+        <option value="2">Option 2</option>
+        <option value="3">Option 3</option>
+        <option value="4">Option 4</option>
+    </select>
+</div>
+```
+*/
+
+    .form-select[multiple] {
+        height: auto;
+
+        option {
+            padding: 5px;
+        }
+    }
+
+
+    // Checkboxes and Radios
+    // -----------------------------------------------------------------------------
+    //
+    // Purpose: We do these better than Foundation
+    //
+    // -----------------------------------------------------------------------------
+
+/*doc
+---
+title: Radios and Checkbox
+name: 07forms_basics
+category: Forms
+parent: forms
+---
+
+```html_example
+<div class="form-field">
+    <label class="form-label">Field label</label>
+    <input class="form-checkbox" type="checkbox" id="check1">
+    <label class="form-label" for="check1">Checkbox 1 label</label>
+    <input class="form-checkbox" type="checkbox" id="check2">
+    <label class="form-label" for="check2">Checkbox 2 label</label>
+</div>
+```
+
+```html_example
+<div class="form-field">
+    <label class="form-label">Field label</label>
+    <input class="form-radio" type="radio" name="radio_example" id="radio1">
+    <label class="form-label" for="radio1">Radio 1 label</label>
+    <input class="form-radio" type="radio" name="radio_example" id="radio2">
+    <label class="form-label" for="radio2">Radio 2 label</label>
+</div>
+```
+*/
+
+    .form-checkbox,
+    .form-radio {
+
+        @include u-hidden("visually");
+
+        + .form-label {
+            @include checkRadioBase();
+        }
+
+    }
+
+    .form-checkbox:checked,
+    .form-radio:checked {
+
+        + .form-label {
+            @include checkRadioBase--checked();
+        }
+
+    }
+
+    //
+    // Don't forget you focus styles if you're creating custom Inputs
+    // -----------------------------------------------------------------------------
+    .form-checkbox:focus,
+    .form-radio:focus {
+
+        + .form-label {
+            @include checkRadioBase--focus();
+        }
+
+    }
+
+    .form-checkbox[disabled],
+    .form-radio[disabled] {
+
+        + .form-label {
+            @include checkRadioBase--disabled();
+        }
+
+    }
+
+    //
+    // Checkbox
+    // -----------------------------------------------------------------------------
+
+    .form-checkbox {
+
+        + .form-label {
+            @include checkBox-base();
+        }
+
+    }
+
+    //
+    // Radiobutton
+    // -----------------------------------------------------------------------------
+
+    .form-radio {
+
+        + .form-label {
+            @include radioButton-base();
+        }
+
+    }
+
+
+    // Inputs with internal actions
+    // -----------------------------------------------------------------------------
+    //
+    // Purpose: Define inputs that have internal action button, like a search box
+    //
+    // -----------------------------------------------------------------------------
+
+/*doc
+---
+title: Inputs with Extras
+name: 08forms_inputextras
+category: Forms
+parent: forms
+---
+
+Sometimes inputs need inline actions. An inline button for a search box for example.
+
+```html_example
+<div class="form-field">
+    <label class="form-label" for="input9">Input with action</label>
+    <input class="form-input has-action" type="search" id="input9">
+    <button class="button button--icon button--inputAction">
+        <span class="u-hiddenVisually">Search</span>
+        <icon glyph="ic-search" class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path></svg></icon>
+    </button>
+</div>
+```
+*/
+
+
+    .form-input.has-action {
+
+        float: $inputAction-floatDirection;
+        padding-right: $inputAction-input-paddingRight;
+
+        + .button--inputAction {
+            background: $inputAction-backgroundColor;
+            border: 0;
+            border-radius: $inputAction-borderRadius;
+            float: left;
+            height: $inputAction-button-width;
+            margin: $inputAction-margin;
+            width: $inputAction-button-width;
+        }
+
+    }
+
+
+    // Inputs with internal icons
+    // -----------------------------------------------------------------------------
+    //
+    // Purpose: Define inputs that have internal icons
+    //
+    // -----------------------------------------------------------------------------
+
+/*doc
+---
+title: Inputs with Icons
+name: 09forms_inputicons
+category: Forms
+parent: forms
+---
+
+Sometimes inputs need to display an informative icon to convey a certain meaning, like secure.
+
+```html_example
+<div class="form-field">
+    <label class="form-label" for="input99">Input with icon</label>
+    <input class="form-input has-icon" type="search" id="input9">
+    <icon glyph="ic-lock" class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"></path></svg></icon>
+</div>
+```
+*/
+
+    .form-input.has-icon {
+
+        float: $inputIcon-floatDirection;
+        padding-#{$inputIcon-oppositeDirection}: $inputAction-input-paddingOffset;
+
+        + .icon {
+            height: $inputIcon-icon-height;
+            margin-#{$inputIcon-floatDirection}: $inputIcon-icon-marginOffset;
+            width: $inputIcon-icon-width;
+        }
+
+    }
+
+
+    // PrefixPostfix
+    // -----------------------------------------------------------------------------
+    //
+    // Purpose: Pre/Postfixed label and actions to form elements
+    //
+    // -----------------------------------------------------------------------------
+
+/*doc
+---
+title: Form PrefixPostfix
+name: 10forms_prefixpostfix
+category: Forms
+parent: forms
+---
+
+PrefixPostfix
+
+```html_example
+<div class="form-field">
+    <label class="form-label" for="input4">Prefixed Label <small>(Inc. tax)</small></label>
+    <div class="form-prefixPostfix">
+        <span class="form-prefixPostfix-label form-prefixPostfix-label--prefix" id="prefixDesc1">AUD $</span>
+        <input class="form-input form-prefixPostfix-input" id="input4" type="text" placeholder="Placeholder text" aria-describedby="prefixDesc1">
+    </div>
+</div>
+
+<div class="form-field">
+    <label class="form-label" for="input5">Postfixed Label</label>
+    <div class="form-prefixPostfix">
+        <input class="form-input form-prefixPostfix-input" id="input5" type="text" placeholder="Placeholder text" aria-describedby="prefixDesc2">
+        <span class="form-prefixPostfix-label form-prefixPostfix-label--postfix" id="prefixDesc2">KG</span>
+    </div>
+</div>
+```
+
+### PrefixPostfix with a button
+
+```html_example
+<div class="form-field">
+    <label class="form-label" for="input6">Prefixed Button</label>
+    <div class="form-prefixPostfix">
+        <input class="button form-prefixPostfix-button--prefix" type="submit" value="Save">
+        <input class="form-input" id="input6" type="text" placeholder="Placeholder text">
+    </div>
+</div>
+
+<div class="form-field">
+    <label class="form-label" for="input7">Postfixed Button</label>
+    <div class="form-prefixPostfix">
+        <input class="form-input" id="input7" type="text" placeholder="Placeholder text">
+        <input class="button form-prefixPostfix-button--postfix" type="submit" value="Save">
+    </div>
+</div>
+```
+*/
+
+    .form-prefixPostfix {
+        @include prefixPostfix-container($prefixPostfix-inputClassName, $prefixPostfix-buttonClassName);
+    }
+
+    // PrefixPostfix inputs (but only if touching)
+    .form-prefixPostfix-input {
+        @include prefixPostfix-input();
+    }
+
+    // PrefixPostfix Labels
+    .form-prefixPostfix-label {
+        @include prefixPostfix-label();
+    }
+
+    .form-prefixPostfix-label--prefix {
+        @include prefixPostfix-label--prefix($prefixPostfix-inputClassName);
+    }
+
+    .form-prefixPostfix-label--postfix {
+        @include prefixPostfix-label--postfix();
+    }
+
+    // PrefixPostfix buttons
+    .form-prefixPostfix-button--prefix {
+        margin: 0 ($form-spacing / 2) 0 0;
+    }
+
+    .form-prefixPostfix-button--postfix {
+        margin: 0 0 0 ($form-spacing / 2);
+    }
+
+
+    // Switches
+    // -----------------------------------------------------------------------------
+    //
+    // Purpose: CHECKBOX OVERRIDES THAT LOOK LIKE NICE SWITCHES
+    //
+    // -----------------------------------------------------------------------------
+
+
+    //
+    // Switch checkbox
+    //
+    // Purpose: The switch is just a custom, css checkbox.
+    // -----------------------------------------------------------------------------
+
+
+/*doc
+---
+title: Form Switch
+name: 11forms_switch
+category: Forms
+parent: forms
+---
+
+Switch
+
+```html_example
+<div class="form-field">
+    <switch>
+        <div class="switch">
+            <input class="switch-checkbox" type="checkbox" id="switch-1" aria-describedby="switch-ariaDescription-2">
+            <label class="switch-toggle" for="switch-1">
+            </label>
+            <span id="switch-ariaDescription-2" class="switch-ariaDescription">
+                Switching this setting off will...
+            </span>
+        </div>
+    </switch>
+</div>
+
+<div class="form-field">
+    <switch>
+        <div class="switch switch--checked">
+            <input class="switch-checkbox" type="checkbox" id="switch-1" aria-describedby="switch-ariaDescription-2">
+            <label class="switch-toggle" for="switch-1">
+            </label>
+            <span id="switch-ariaDescription-2" class="switch-ariaDescription">
+                Switching this setting off will...
+            </span>
+        </div>
+    </switch>
+</div>
+
+<div class="form-field">
+    <switch>
+        <div class="switch switch--checked">
+            <input class="switch-checkbox" type="checkbox" id="switch-3" aria-describedby="switch-ariaDescription-4">
+            <label class="switch-toggle" for="switch-3">
+                <span class="switch-label">On</span>
+            </label>
+            <span id="switch-ariaDescription-4" class="switch-ariaDescription">
+                Switching this setting off will...
+            </span>
+        </div>
+    </switch>
+</div>
+
+<div class="form-field">
+    <switch>
+        <div class="switch">
+            <input class="switch-checkbox" type="checkbox" id="switch-3" aria-describedby="switch-ariaDescription-4">
+            <label class="switch-toggle" for="switch-3">
+                <span class="switch-label">Off</span>
+            </label>
+            <span id="switch-ariaDescription-4" class="switch-ariaDescription">
+                Switching this setting off will...
+            </span>
+        </div>
+    </switch>
+</div>
+
+<div class="form-field">
+    <switch>
+        <div class="switch switch--important">
+            <span class="switch-description--off">Down for Maintenance</span>
+            <input class="switch-checkbox" type="checkbox" id="switch-7" aria-describedby="switch-ariaDescription-8">
+            <label class="switch-toggle" for="switch-7">
+            </label>
+            <span class="switch-description--on">Open</span>
+            <span id="switch-ariaDescription-8" class="switch-ariaDescription">
+                Switching this setting to off will enter your store into maintenance mode.
+            </span>
+        </div>
+    </switch>
+</div>
+
+<div class="form-field">
+    <switch>
+        <div class="switch switch--important switch--checked">
+            <span class="switch-description--off">Down for Maintenance</span>
+            <input class="switch-checkbox" type="checkbox" id="switch-7" aria-describedby="switch-ariaDescription-8">
+            <label class="switch-toggle" for="switch-7">
+            </label>
+            <span class="switch-description--on">Open</span>
+            <span id="switch-ariaDescription-8" class="switch-ariaDescription">
+                Switching this setting to off will enter your store into maintenance mode.
+            </span>
+        </div>
+    </switch>
+</div>
+```
+*/
+
+    .switch-checkbox {
+
+        @include u-hidden("visually");
+
+        // Focus state of the checkbox
+        &:focus + .switch-toggle {
+            border-color: $switch-focus-borderColor;
+            box-shadow: $switch-focus-BoxShadow;
+        }
+
+    }
+
+    //
+    // Switch Toggle
+    //
+    // Purpose: The actual, graphical toggle you seen in the UI
+    // -----------------------------------------------------------------------------
+
+    .switch-toggle {
+
+        background-color: $switch-backgroundColor;
+        border: $switch-borderSize $switch-borderStyle $switch-borderColor;
+        border-radius: $switch-borderRadius;
+        cursor: $form-label-pointer;
+        display: inline-block;
+        height: $switch-height;
+        position: relative;
+        transition: $switch-transition;
+        vertical-align: middle;
+        width: $switch-width;
+
+        .switch--important & {
+            background-color: $switch-important-checked-backgroundColor;
+            border-color: $switch-important-checked-borderColor;
+        }
+
+        .switch--checked & {
+            background-color: $switch-checked-backgroundColor;
+            border-color: $switch-checked-borderColor;
+        }
+
+        .switch--disabled & {
+            background-color: $switch-disabled-backgroundcolor;
+            border-color: $switch-disabled-borderColor;
+            cursor: default;
+        }
+
+    }
+
+    //
+    // Toggle element before pseudo element
+    //
+    // Purpose: Effectively used as the indicator of the switch, positioned left or right
+    // -----------------------------------------------------------------------------
+
+    .switch-toggle::before {
+        background: $switch-indicator-color;
+        border-radius: $switch-indicator-borderRadius;
+        box-shadow: $switch-indicator-boxShadow;
+        content: "";
+        height: $switch-indicator-height;
+        left: remCalc($switch-indicator-offSet);
+        position: absolute;
+        top: remCalc($switch-indicator-offSet);
+        transition: $switch-transition;
+        width: $switch-indicator-width;
+
+        .switch--checked & {
+            left: remCalc($switch-indicator-on-offSet);
+        }
+    }
+
+    //
+    // Toggle element supportive text
+    //
+    // Purpose: Effectively used as the background of the UI switch
+    // Can have ON/OFF text or tick/cross icons in the content
+    // -----------------------------------------------------------------------------
+
+    .switch-label {
+
+        color: $switch-label-text-color;
+        height: $switch-label-height;
+        line-height: $switch-lineHeight;
+        position: absolute;
+        right: $switch-label-text-rightPosition;
+        text-transform: uppercase;
+        transition: $switch-transition;
+
+        .switch--checked & {
+            font-weight: $switch-label-text-onFontWeight;
+            left: $switch-label-text-rightPosition;
+            right: auto;
+        }
+
+        .switch--disabled & {
+            color: $switch-label-disabled-text-color;
+        }
+
+    }
+
+    .switch-label--icon.icon { // fighting specificity
+
+        @include square($switch-label-height);
+
+        svg {
+            @include square($switch-label-height);
+            fill: $switch-label-text-color;
+
+            // scss-lint:disable NestingDepth, SelectorDepth
+            .switch--disabled & {
+                fill: $switch-label-disabled-text-color;
+            }
+            // scss-lint:enable NestingDepth, SelectorDepth
+        }
+    }
+
+    //
+    // Switch explanatory text labels
+    //
+    // Purpose: Text labels can be placed either side of the switch to give more
+    // meaning to the position of the switch indicator.  "On this side, it means off",
+    // "On that side it means on"
+    // -----------------------------------------------------------------------------
+
+    .switch-description--off {
+        color: $switch-description-selected-color;
+        margin-right: $switch-description-spacing;
+
+        .switch--checked & {
+            color: $switch-description-unselected-color;
+        }
+    }
+
+    .switch-description--on {
+        color: $switch-description-unselected-color;
+        margin-left: $switch-description-spacing;
+
+        .switch--checked & {
+            color: $switch-description-selected-color;
+        }
+    }
+
+    .switch-ariaDescription {
+        @include u-hidden("visually");
+    }
+
+
+    // FORM ACTIONS
+    // -----------------------------------------------------------------------------
+    //
+    // Purpose: Container for the form's primary actions, like Submit, Reset, etc.
+    // This can also manifest as a fixed bar, which runs along the bottom of the page.
+    //
+    // -----------------------------------------------------------------------------
+
+/*doc
+---
+title: Form Actions
+name: 14forms_actions
+category: Forms
+parent: forms
+---
+
+Forms require actions to submit or cancel (or what ever action a user should perform).
+Form actions come in 2 flavours; normal and fixed.
+
+```html_example
+<div class="form-actions">
+    <a href="#">Cancel</a>
+    <button class="button">Reset</button>
+    <button class="button button--primary">Submit</button>
+</div>
+```
+
+### Form Actions --fixed
+
+```html_example
+<div class="form-actions form-actions--fixed">
+    <a href="#">Cancel</a>
+    <button class="button">Reset</button>
+    <button class="button button--primary">Submit</button>
+</div>
+```
+*/
+
+    .form-actions {
+        background: $form-actions-background;
+        border: $form-actions-border;
+        padding: $form-actions-padding;
+        text-align: center;
+
+        @include breakpoint("xsmall") {
+            text-align: $form-actions-textAlign;
+        }
+    }
+
+    .form-actions > * {
+        display: inline-block;
+        margin-bottom: spacing("base");
+        width: 100%;
+
+        @include breakpoint("xsmall") {
+            margin: $form-actions-margin;
+            vertical-align: baseline;
+            width: auto;
+        }
+    }
+
+    .form-actions--fixed {
+        @include breakpoint("xsmall") {
+            background: $form-actions--fixed-background;
+            border-top: $form-actions--fixed-border;
+            bottom: 0;
+            left: 0;
+            padding: $form-actions--fixed-padding;
+            position: fixed;
+            right: 0;
+            text-align: $form-actions--fixed-textAlign;
+            z-index: $form-actions--fixed-zIndex;
+        }
+    }
+
+
+    // Form errors
+    // -----------------------------------------------------------------------------
+    //
+    // Purpose: Used to display contextual errors in forms
+    //
+    // 1. Magic numbers, yet to think of a better way to align the icon in the input.
+    //
+    // -----------------------------------------------------------------------------
+
+/*doc
+---
+title: Form Errors
+name: 12forms_errors
+category: Forms
+parent: forms
+---
+
+Form inline errors
+
+```html_example
+<div class="form-field form-field--success">
+    <label class="form-label" for="valid_simple">Valid field</label>
+    <input class="form-input" id="valid_simple" type="text" value="Some Valid text">
+    <icon class="form-input-indicator icon ng-isolate-scope" glyph="ic-check-circle" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path></svg></icon>
+</div>
+
+<div class="form-field form-field--error">
+    <label class="form-label" for="invalid_simple">Invalid field</label>
+    <input class="form-input" id="invalid_simple" type="text" value="Some Invalid text">
+    <icon class="form-input-indicator icon ng-isolate-scope" glyph="ic-error" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path></svg></icon>
+    <ul class="form-field-errors">
+        <li class="form-field-error">
+            <label class="form-inlineMessage" for="invalid_simple">
+                This is not a valid email address
+            </label>
+        </li>
+    </ul>
+</div>
+
+<div class="form-field form-field--warning">
+    <label class="form-label" for="warning_simple">Warning field</label>
+    <input class="form-input" id="warning_simple" type="text" value="Text that generated a Warning">
+    <icon class="form-input-indicator icon ng-isolate-scope" glyph="ic-error" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path></svg></icon>
+    <ul class="form-field-errors">
+        <li class="form-field-error">
+            <label class="form-inlineMessage" for="warning_simple">
+                Did you mean…
+            </label>
+        </li>
+    </ul>
+</div>
+
+<div class="form-field form-field--error">
+    <label class="form-label" for="invalid_select">Select label</label>
+    <select class="form-select" name="invalid_select" id="invalid_select">
+        <option value="Please select a value">Please select a value</option>
+        <option value="1">Option 1</option>
+        <option value="2">Option 2</option>
+    </select>
+    <ul class="form-field-errors">
+        <li class="form-field-error">
+            <label class="form-inlineMessage" for="invalid_select">
+                You must select a value
+            </label>
+        </li>
+    </ul>
+</div>
+
+<div class="form-field form-field--error">
+    <label class="form-label">Checkbox label</label>
+    <input class="form-checkbox" type="checkbox" id="invalid_check1">
+    <label class="form-label" for="invalid_check1">Checkbox 1 label</label>
+    <input class="form-checkbox" type="checkbox" id="invalid_check2">
+    <label class="form-label" for="invalid_check2">Checkbox 2 label</label>
+    <ul class="form-field-errors">
+        <li class="form-field-error">
+            <label class="form-inlineMessage">
+                Please select one or more
+            </label>
+        </li>
+    </ul>
+</div>
+
+<div class="form-field form-field--error">
+    <label class="form-label">Radio label</label>
+    <input class="form-radio" type="radio" name="invalid_radio_example" id="invalid_radio1">
+    <label class="form-label" for="invalid_radio1">Radio 1 label</label>
+    <input class="form-radio" type="radio" name="invalid_radio_example" id="invalid_radio2">
+    <label class="form-label" for="invalid_radio2">Radio 2 label</label>
+    <ul class="form-field-errors">
+        <li class="form-field-error">
+            <label class="form-inlineMessage">
+                Please select an option
+            </label>
+        </li>
+    </ul>
+</div>
+
+<div class="form-field form-field--error">
+    <label class="form-label" for="invalid_prefix">Prefixed Label <small>(Inc. tax)</small></label>
+    <div class="form-prefixPostfix">
+        <span class="form-prefixPostfix-label form-prefixPostfix-label--prefix" id="prefixDesc1">AUD $</span>
+        <input class="form-input form-prefixPostfix-input" id="invalid_prefix" type="text" placeholder="Placeholder text" aria-describedby="prefixDesc1">
+        <icon class="form-input-indicator icon ng-isolate-scope" glyph="ic-error" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path></svg></icon>
+    </div>
+    <ul class="form-field-errors">
+        <li class="form-field-error">
+            <label class="form-inlineMessage" for="invalid_prefix">
+                Please input a dollar amount
+            </label>
+        </li>
+    </ul>
+</div>
+
+<div class="form-field form-field--error">
+    <label class="form-label" for="invalid_postfix">Postfixed Label</label>
+    <div class="form-prefixPostfix">
+        <input class="form-input form-prefixPostfix-input" id="invalid_postfix" type="text" placeholder="Placeholder text" aria-describedby="prefixDesc2">
+        <span class="form-prefixPostfix-label form-prefixPostfix-label--postfix" id="prefixDesc2">KG</span>
+    </div>
+    <ul class="form-field-errors">
+        <li class="form-field-error">
+            <label class="form-inlineMessage" for="invalid_postfix">
+                Please enter the weight in kilograms
+            </label>
+        </li>
+    </ul>
+</div>
+
+<div class="form-field form-field--error">
+    <label class="form-label" for="invalid_postfix_button">Postfixed Button</label>
+    <div class="form-prefixPostfix">
+        <input class="form-input" id="invalid_postfix_button" type="text" placeholder="Placeholder text">
+        <input class="button form-prefixPostfix-button--postfix" type="submit" value="Save">
+    </div>
+    <ul class="form-field-errors">
+        <li class="form-field-error">
+            <label class="form-inlineMessage" for="invalid_postfix_button">
+                This is a really long error message to give alot
+                more detail to the user about what is wrong with this field.
+            </label>
+        </li>
+        <li class="form-field-error">
+            <label class="form-inlineMessage" for="invalid_postfix_button">
+                Something else was wrong
+            </label>
+        </li>
+        <li class="form-field-error">
+            <label class="form-inlineMessage" for="invalid_postfix_button">
+                You really messed up here
+            </label>
+        </li>
+    </ul>
+</div>
+```
+*/
+
+    .form-input-indicator {
+
+        @include square($form-inputIndicator-size);
+        float: left;
+        margin: $form-inputIndicator-margin; // 1
+        position: relative;
+        top: $form-inputIndicator-top; // 1
+
+        .form-prefixPostfix & {
+            top: 0; //specific override due to flexbox middle alignment.
+        }
+
+        > svg {
+            fill: $form-success-color;
+        }
+
+    }
+
+    .form-field-errors {
+        @if not $form-field-errors-bullets {
+            @include u-listBullets("none");
+            margin-left: 0;
+        }
+        clear: both;
+        margin-bottom: $form-field-errors-marginBottom;
+        margin-top: $form-field-errors-marginTop;
+    }
+
+    .form-inlineMessage {
+        display: inline-block;
+        font-weight: $form-inlineMessage-fontWeight;
+        line-height: $form-inlineMessage-lineHeight;
+        margin: $form-inlineMessage-margin;
+        width: 100%;
+    }
+
+
+    //
+    // FORM FIELD VALIDATION MODIFIERS
+    // -----------------------------------------------------------------------------
+
+    .form-field--success,
+    .form-field--error,
+    .form-field--warning {
+
+        .form-input {
+            float: left; //needed to place icons in the inputs
+        }
+
+    }
+
+    //
+    // VALID STYLES
+    // -----------------------------------------------------------------------------
+
+    .form-field--success {
+
+        .form-input,
+        .form-select,
+        .form-checkbox + .form-label::before,
+        .form-radio + .form-label::before,
+        .form-prefixPostfix-label {
+            border-color: $form-success-color;
+        }
+
+        .form-field-error,
+        .form-inlineMessage {
+            color: $form-success-color;
+        }
+
+        // Depth need to style svg with validation state
+        // scss-lint:disable SelectorDepth
+        .form-input-indicator > svg {
+            fill: $form-success-color;
+        }
+        // scss-lint:enable SelectorDepth
+
+    }
+
+    //
+    // INVALID STYLES
+    // -----------------------------------------------------------------------------
+
+    .form-field--error {
+
+        .form-input,
+        .form-select,
+        .form-checkbox + .form-label::before,
+        .form-radio + .form-label::before,
+        .form-prefixPostfix-label {
+            border-color: $form-error-color;
+        }
+
+        .form-field-error,
+        .form-inlineMessage {
+            color: $form-error-color;
+        }
+
+        // Depth need to style svg with validation state
+        // scss-lint:disable SelectorDepth
+        .form-input-indicator > svg {
+            fill: $form-error-color;
+        }
+        // scss-lint:enable SelectorDepth
+
+
+    }
+
+    //
+    // WARNING STYLES
+    // -----------------------------------------------------------------------------
+
+    .form-field--warning {
+
+        .form-input,
+        .form-select,
+        .form-checkbox + .form-label::before,
+        .form-radio + .form-label::before,
+        .form-prefixPostfix-label {
+            border-color: $form-warning-color;
+        }
+
+        .form-field-error,
+        .form-inlineMessage {
+            color: $form-warning-color;
+        }
+
+        // Depth need to style svg with validation state
+        // scss-lint:disable SelectorDepth
+        .form-input-indicator > svg {
+            fill: $form-warning-color;
+        }
+        // scss-lint:enable SelectorDepth
+
+    }
+}

@@ -1,0 +1,48 @@
+// =============================================================================
+// BUTTON GROUPS (CSS)
+// =============================================================================
+
+
+// Bigcommerce Component
+// -----------------------------------------------------------------------------
+//
+// 1. If set to false, there is no outputted CSS for this component.
+//
+// -----------------------------------------------------------------------------
+
+@if $exportCSS--buttonGroup { // 1
+
+
+/*doc
+---
+title: Button Groups
+name: button_groups
+category: Components
+parent: button
+---
+
+
+```html_example
+<div class="buttonGroup">
+    <button class="button">Button1</button>
+    <button class="button">Button2</button>
+    <button class="button">Button3</button>
+</div>
+```
+##### Button group settings
+```sass_file_example
+src/settings/bigcommerce/buttonGroup/_settings.scss
+```
+
+*/
+
+    .buttonGroup {
+        @include buttonGroup-container;
+
+        > .button {
+            @include buttonGroup-buttons;
+            margin-left: 0;
+        }
+    }
+
+}

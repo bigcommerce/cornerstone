@@ -1,0 +1,40 @@
+// =============================================================================
+// OVERLAY
+// =============================================================================
+//
+// Purpose: Centralised place to control overlay backgrounds, such as:
+// modal backdrops, card overlays, etc.
+//
+// -----------------------------------------------------------------------------
+
+
+// Overlay fill
+// -----------------------------------------------------------------------------
+
+$overlay-fill:                  rgba(color("blacks"), 0.8) !default;
+
+
+// Overlay Map
+// -----------------------------------------------------------------------------
+
+$overlaysMap: (
+
+    fill: (
+        base: $overlay-fill
+    )
+);
+
+
+// Overlay Map Function
+// -----------------------------------------------------------------------------
+
+@function overlay($property, $variant: "base") {
+
+    @if map-has-key($overlaysMap, $property) {
+        @return map-get(map-get($overlaysMap, $property), $variant);
+    }
+
+    @warn "Unknown property `#{$property}` in $overlaysMap.";
+    @return null
+
+}

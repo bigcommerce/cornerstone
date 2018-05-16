@@ -1,0 +1,120 @@
+// =============================================================================
+// ACCORDION (CSS)
+// =============================================================================
+
+
+// Bigcommerce Component
+// -----------------------------------------------------------------------------
+//
+// The Bigcommerce Coding Standards, coupled with Foundation.
+// If any library overrides or extra CSS is needed, declare it here.
+//
+// 1. If set to false, there is no outputted CSS for this component.
+// 2. The Foundation accordion component re-sets the colour for accordion title
+//    unnecessarily, and in an overly specific manner. This has to be re-set for
+//    each modifier, again.
+//
+// -----------------------------------------------------------------------------
+
+/*doc
+---
+title: Accordion
+name: accordion
+category: Components
+---
+```html_example
+<section class="accordion">
+    <article heading="Dynamic Group Header - 1" class="is-open">
+        <h2 class="accordion-navigation is-open">
+            <a href="javascript:void(0)" class="accordion-title">
+                Dynamic Group Header - 1
+                <icon class="accordion-indicator icon" glyph="ic-remove" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 13H5v-2h14v2z"></path></svg></icon>
+            </a>
+        </h2>
+        <div class="accordion-content is-open">
+            Dynamic Group Body - 1
+        </div>
+    </article>
+    <article heading="Dynamic Group Header - 2">
+        <h2 class="accordion-navigation">
+            <a href="javascript:void(0)" class="accordion-title">
+                Dynamic Group Header - 2
+                <icon class="accordion-indicator icon" glyph="ic-remove" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 13H5v-2h14v2z"></path></svg></icon>
+            </a>
+        </h2>
+    </article>
+<article heading="Dynamic Group Header - 3">
+        <h2 class="accordion-navigation accordion-navigation--error">
+            <a href="javascript:void(0)" class="accordion-title">
+                Dynamic Group Header - 3
+                <icon class="accordion-indicator icon" glyph="ic-remove" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 13H5v-2h14v2z"></path></svg></icon>
+            </a>
+        </h2>
+    </article>
+</section>
+```
+
+```sass_file_example
+src/settings/foundation/accordion/_settings.scss
+```
+*/
+
+@if $exportCSS--accordion { // 1
+
+    // Component
+    // -------------------------------------------------------------------------
+
+    .accordion {
+        @include accordion-container;
+        border: $accordion-border;
+        border-width: $accordion-borderWidth;
+        box-shadow: $accordion-boxShadow;
+        margin: $accordion-margin;
+    }
+
+    .accordion-navigation {
+        @include accordion-navigation($active_class: "is-open");
+        border: $accordion-navigation-border;
+        border-width: $accordion-navigation-borderWidth;
+        cursor: $cursor-pointer-value;
+
+        .accordion-title {
+            padding: $accordion-title-padding;
+        }
+
+    }
+
+    .accordion-title {
+        font-weight: $accordion-title-fontWeight;
+        line-height: $accordion-title-lineHeight;
+    }
+
+    .accordion-content {
+        @include accordion-content($active_class: "is-open");
+        border: $accordion-content-border;
+        border-width: $accordion-content-borderWidth;
+    }
+
+    .accordion-navigation--success {
+        .accordion-title,
+        &.is-open > a {
+            color: $accordion-title-successColor;   // 2
+        }
+    }
+
+    .accordion-navigation--error {
+        .accordion-title,
+        &.is-open > a {
+            color: $accordion-title-errorColor;   // 2
+        }
+    }
+
+    .accordion-navigation--warning {
+        .accordion-title,
+        &.is-open > a {
+            color: $accordion-title-warningColor;   // 2
+        }
+    }
+
+}
+

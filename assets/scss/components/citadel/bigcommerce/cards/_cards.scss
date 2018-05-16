@@ -1,0 +1,196 @@
+// =============================================================================
+// CARDS (CSS)
+// =============================================================================
+
+
+// Bigcommerce Component
+// -----------------------------------------------------------------------------
+//
+// The Bigcommerce Coding Standards, coupled with Foundation.
+// If any library overrides or extra CSS is needed, declare it here.
+//
+// 1. If set to false, there is no outputted CSS for this component.
+// 2. This is here to allow absolute positioning of its children.
+// 3. Resets any default heading color to an appropriate card text color.
+//
+// -----------------------------------------------------------------------------
+
+@if $exportCSS--cards { // 1
+
+/*doc
+---
+title: Cards
+name: cards
+category: Components
+---
+
+Cards are a typical component consisting of a figure and a short snippet of descriptive text.
+This could include a heading and a caption or definition, and perhaps a call to action
+or other actionable functions.
+
+```sass_file_example
+src/settings/bigcommerce/cards/_settings.scss
+```
+```html_example
+<article class="card">
+    <figure class="card-figure">
+        <img class="card-image" src="http://lorempixel.com/960/360/sports/" alt="Example card image">
+        <figcaption class="card-figcaption">
+            <a class="card-figcaption-action" href="#">
+                <div class="card-figcaption-body">
+                    <span class="button card-figcaption-button">Learn more</span>
+                </div>
+            </a>
+        </figcaption>
+    </figure>
+    <div class="card-body">
+        <h2 class="card-title">20% Off First Design Project</h2>
+        <h3 class="card-subTitle">Custom Designs</h3>
+        <p class="card-text">
+            Be seen by customers at the very moment that
+            they are searching on Google for the things you offer.
+        </p>
+    </div>
+</article>
+```
+*/
+
+    .card {
+        background-color: $card-backgroundColor;
+        border: $card-border;
+        margin-bottom: $card-marginBottom;
+        padding: $card-padding;
+    }
+
+    .card-figure {
+        background-color: $card-figure-background;
+        margin-bottom: 0;
+        padding: $card-figure-padding;
+        position: relative; // 2
+    }
+
+
+    .card-image {
+        border: $card-image-border;
+        width: 100%;
+    }
+
+    .card-figcaption {
+        background-color: $card-figcaption-background;
+        bottom: 0;
+        color: $card-figcaption-color;
+        height: 100%;
+        left: 0;
+        opacity: 0;
+        position: absolute;
+        right: 0;
+        text-align: $card-figcaption-textAlign;
+        top: 0;
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+
+    .card-figcaption-action {
+        display: block;
+        height: 100%;
+    }
+
+    .card-figcaption-body {
+        padding-left: $card-figcaption-body-paddingHorizontal;
+        padding-right: $card-figcaption-body-paddingHorizontal;
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+        transform-style: preserve-3d;
+
+        > :first-child {
+            margin-top: 0;
+        }
+
+        > :last-child {
+            margin-bottom: 0;
+        }
+
+        .card-text {
+            color: $card-text-color;
+        }
+    }
+
+    .card-figcaption-title {
+        color: $card-figcaption-title-color; // 3
+        margin-bottom: $card-figcaption-title-marginBottom;
+    }
+
+    .card-figcaption-button {
+        background-color: $card-figcaption-button-background;
+        border-color: $card-figcaption-button-borderColor;
+        color: $card-figcaption-button-color;
+
+        &:hover {
+            background-color: $card-figcaption-button-backgroundHover;
+            border-color: $card-figcaption-button-borderColor;
+            color: $card-figcaption-button-color;
+        }
+    }
+
+    .card-body {
+        background-color: $card-body-background;
+        border-top: $card-body-borderTop;
+        padding: $card-body-padding;
+
+        > :first-child {
+            margin-top: 0;
+        }
+
+        > :last-child {
+            margin-bottom: 0;
+        }
+
+        .card-text {
+            color: $card-body-textColor;
+        }
+    }
+
+    .card-surTitle {
+        float: $opposite-direction;
+        margin-left: $card-surTitle-marginLeft;
+        max-width: $card-surTitle-maxWidth;
+        text-align: $opposite-direction;
+    }
+
+    .card-title {
+        margin-bottom: $card-title-marginBottom;
+    }
+
+    .card-subTitle {
+        margin-bottom: $card-subTitle-marginBottom;
+
+        .card-title + & {
+            margin-top: $card-subTitle-adjacentCardTitleMarginTop;
+        }
+    }
+
+    .card-text {
+        font-size: $card-text-fontSize;
+    }
+
+    .card-footer {
+        @include clearfix();
+        background-color: $card-footer-backgroundColor;
+        border: $card-footer-border;
+        border-width: $card-footer-borderWidth;
+        margin: $card-footer-margin;
+        padding: $card-footer-padding;
+    }
+
+    .card-button {
+        margin-bottom: 0;
+
+        &:not(.button--small) {
+            width: $card-button-width;
+        }
+
+    }
+}

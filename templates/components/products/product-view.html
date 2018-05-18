@@ -11,10 +11,11 @@
     <section class="productView-details">
         <div class="productView-product">
             <h1 class="productView-title" {{#if schema}}itemprop="name"{{/if}}>{{product.title}}</h1>
-
-            <h2 class="productView-brand"{{#if schema}} itemprop="brand" itemscope itemtype="http://schema.org/Brand"{{/if}}>
-                <a href="{{product.brand.url}}"{{#if schema}} itemprop="url"{{/if}}><span{{#if schema}} itemprop="name"{{/if}}>{{product.brand.name}}</span></a>
-            </h2>
+            {{#if product.brand}}
+                <h2 class="productView-brand"{{#if schema}} itemprop="brand" itemscope itemtype="http://schema.org/Brand"{{/if}}>
+                    <a href="{{product.brand.url}}"{{#if schema}} itemprop="url"{{/if}}><span{{#if schema}} itemprop="name"{{/if}}>{{product.brand.name}}</span></a>
+                </h2>
+            {{/if}}
             {{#if product.call_for_price}}
                 <p class="productView-price">
                     <span>{{product.call_for_price}}</span>
@@ -28,36 +29,38 @@
                 {{/or}}
             </div>
             {{{region name="product_below_price"}}}
-            <div class="productView-rating"{{#if schema}} itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating"{{/if}}>
-                {{#if settings.show_product_rating}}
-                    {{#if product.num_reviews '>' 0}}
-                        {{#if schema}}
-                            <meta itemprop="ratingValue" content="{{product.rating}}">
-                            <meta itemprop="ratingCount" content="{{product.num_reviews}}">
-                            <meta itemprop="reviewCount" content="{{product.num_reviews}}">
-                        {{/if}}
-                    {{/if}}
-                    {{> components/products/ratings rating=product.rating}}
-                    <span class="productView-reviewLink">
+            {{#if product.rating}}
+                <div class="productView-rating"{{#if schema}} itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating"{{/if}}>
+                    {{#if settings.show_product_rating}}
                         {{#if product.num_reviews '>' 0}}
-                            <a href="{{product.url}}#product-reviews">
-                                {{lang 'products.reviews.link_to_review' total=product.num_reviews}}
-                            </a>
-                        {{else}}
-                            {{lang 'products.reviews.link_to_review' total=product.num_reviews}}
+                            {{#if schema}}
+                                <meta itemprop="ratingValue" content="{{product.rating}}">
+                                <meta itemprop="ratingCount" content="{{product.num_reviews}}">
+                                <meta itemprop="reviewCount" content="{{product.num_reviews}}">
+                            {{/if}}
                         {{/if}}
-                    </span>
-                {{/if}}
-                {{#if settings.show_product_reviews}}
-                    <span class="productView-reviewLink">
-                        <a href="{{product.url}}{{#if is_ajax}}#write_review{{/if}}"
-                           {{#unless is_ajax }}data-reveal-id="modal-review-form"{{/unless}}>
-                           {{lang 'products.reviews.new'}}
-                        </a>
-                    </span>
-                    {{> components/products/modals/writeReview}}
-                {{/if}}
-            </div>
+                        {{> components/products/ratings rating=product.rating}}
+                        <span class="productView-reviewLink">
+                            {{#if product.num_reviews '>' 0}}
+                                <a href="{{product.url}}#product-reviews">
+                                    {{lang 'products.reviews.link_to_review' total=product.num_reviews}}
+                                </a>
+                            {{else}}
+                                {{lang 'products.reviews.link_to_review' total=product.num_reviews}}
+                            {{/if}}
+                        </span>
+                    {{/if}}
+                    {{#if settings.show_product_reviews}}
+                        <span class="productView-reviewLink">
+                            <a href="{{product.url}}{{#if is_ajax}}#write_review{{/if}}"
+                               {{#unless is_ajax }}data-reveal-id="modal-review-form"{{/unless}}>
+                               {{lang 'products.reviews.new'}}
+                            </a>
+                        </span>
+                        {{> components/products/modals/writeReview}}
+                    {{/if}}
+                </div>
+            {{/if}}
             {{product.detail_messages}}
             <dl class="productView-info">
                 {{#if product.sku}}

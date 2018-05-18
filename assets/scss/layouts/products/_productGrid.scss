@@ -61,7 +61,6 @@
 // Purpose: Display products in a masonry grid, with a display inline-block for
 // older browsers that don't support css multicolumn
 //
-// 1. Some older browser support. This class comes from Modernizr
 // -----------------------------------------------------------------------------
 
 .productMasonry {
@@ -81,6 +80,7 @@
 
     .product {
         break-inside: avoid;
+        page-break-inside: avoid; // for firefox
         display: block;
         margin-bottom: spacing("double");
         padding: 0;
@@ -89,24 +89,6 @@
 
     .card {
         margin: 0;
-    }
-
-    .no-csscolumns & { // 1
-        @include u-listBullets("none");
-        @include grid-row($behavior: "nest");
-        font-size: 0;
-
-        // scss-lint:disable SelectorDepth, NestingDepth
-        .product {
-            @include grid-column(3, $float: none);
-            display: inline-block;
-            font-size: fontSize("base"); // 1
-            vertical-align: top;
-        }
-
-        .card {
-            margin: 0;
-        }
     }
 }
 

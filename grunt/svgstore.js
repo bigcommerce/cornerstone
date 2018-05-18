@@ -7,7 +7,7 @@ module.exports = {
 
     'default': {
         files: {
-            './templates/components/common/icons/icon-defs.html': ['./assets/icons/**/*.svg']
+            './assets/img/icon-sprite.svg': ['./assets/icons/**/*.svg']
         }
     }
 };

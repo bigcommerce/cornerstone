@@ -8,7 +8,7 @@ import { defaultModal } from './global/modal';
 import swal from 'sweetalert2';
 
 export default class Cart extends PageManager {
-    loaded(next) {
+    onReady() {
         this.$cartContent = $('[data-cart-content]');
         this.$cartMessages = $('[data-cart-status]');
         this.$cartTotals = $('[data-cart-totals]');
@@ -16,8 +16,6 @@ export default class Cart extends PageManager {
             .hide(); // TODO: temporary until roper pulls in his cart components
 
         this.bindEvents();
-
-        next();
     }
 
     cartUpdate($target) {

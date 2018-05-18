@@ -4,7 +4,7 @@ import $ from 'jquery';
 import FacetedSearch from './common/faceted-search';
 
 export default class Brand extends CatalogPage {
-    loaded() {
+    onReady() {
         if ($('#facetedSearch').length > 0) {
             this.initFacetedSearch();
         } else {

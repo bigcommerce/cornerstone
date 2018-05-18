@@ -4,7 +4,7 @@ import $ from 'jquery';
 import forms from './common/models/forms';
 
 export default class ContactUs extends PageManager {
-    loaded() {
+    onReady() {
         this.registerContactFormValidation();
     }
 

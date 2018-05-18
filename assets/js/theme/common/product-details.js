@@ -17,7 +17,8 @@ export default class ProductDetails {
         this.imageGallery.init();
         this.listenQuantityChange();
         this.initRadioAttributes();
-        this.wishlist = new Wishlist().load();
+
+        Wishlist.load();
 
         const $form = $('form[data-cart-item-add]', $scope);
         const $productOptionsElement = $('[data-product-option-change]', $form);

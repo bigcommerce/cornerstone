@@ -5,6 +5,8 @@
 - No longer escaping HTML content in blog summaries. [#1238](https://github.com/bigcommerce/cornerstone/pull/1238)
 - Fix logo image dimensions on AMP pages. [#1239](https://github.com/bigcommerce/cornerstone/pull/1239)
 - Fix product pricing schema.org microdata. [#1233](https://github.com/bigcommerce/cornerstone/pull/1233)
+- Removed unused browserlist. [#1241](https://github.com/bigcommerce/cornerstone/pull/1241)
+- Fix for ESLint "no-console" warning. [#1237](https://github.com/bigcommerce/cornerstone/pull/1237)
 
 ## 1.18.0 (2018-05-09)
 - Add the +/- icons for the category filtering [#1211](https://github.com/bigcommerce/cornerstone/pull/1211)

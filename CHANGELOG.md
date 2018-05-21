@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Performance improvements. [#1229](https://github.com/bigcommerce/cornerstone/pull/1229)
 - Fix for sort disappearing on range update with product filtering [#1232](https://github.com/bigcommerce/cornerstone/pull/1232)
 - No longer escaping HTML content in blog summaries. [#1238](https://github.com/bigcommerce/cornerstone/pull/1238)
 - Fix logo image dimensions on AMP pages. [#1239](https://github.com/bigcommerce/cornerstone/pull/1239)

@@ -29,38 +29,36 @@
                 {{/or}}
             </div>
             {{{region name="product_below_price"}}}
-            {{#if product.rating}}
-                <div class="productView-rating"{{#if schema}} itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating"{{/if}}>
-                    {{#if settings.show_product_rating}}
-                        {{#if product.num_reviews '>' 0}}
-                            {{#if schema}}
-                                <meta itemprop="ratingValue" content="{{product.rating}}">
-                                <meta itemprop="ratingCount" content="{{product.num_reviews}}">
-                                <meta itemprop="reviewCount" content="{{product.num_reviews}}">
-                            {{/if}}
+            <div class="productView-rating"{{#if product.num_reviews '>' 0}}{{#if schema}} itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating"{{/if}}{{/if}}>
+                {{#if settings.show_product_rating}}
+                    {{#if product.num_reviews '>' 0}}
+                        {{#if schema}}
+                            <meta itemprop="ratingValue" content="{{product.rating}}">
+                            <meta itemprop="ratingCount" content="{{product.num_reviews}}">
+                            <meta itemprop="reviewCount" content="{{product.num_reviews}}">
                         {{/if}}
-                        {{> components/products/ratings rating=product.rating}}
-                        <span class="productView-reviewLink">
-                            {{#if product.num_reviews '>' 0}}
-                                <a href="{{product.url}}#product-reviews">
-                                    {{lang 'products.reviews.link_to_review' total=product.num_reviews}}
-                                </a>
-                            {{else}}
+                    {{/if}}
+                    {{> components/products/ratings rating=product.rating}}
+                    <span class="productView-reviewLink">
+                        {{#if product.num_reviews '>' 0}}
+                            <a href="{{product.url}}#product-reviews">
                                 {{lang 'products.reviews.link_to_review' total=product.num_reviews}}
-                            {{/if}}
-                        </span>
-                    {{/if}}
-                    {{#if settings.show_product_reviews}}
-                        <span class="productView-reviewLink">
-                            <a href="{{product.url}}{{#if is_ajax}}#write_review{{/if}}"
-                               {{#unless is_ajax }}data-reveal-id="modal-review-form"{{/unless}}>
-                               {{lang 'products.reviews.new'}}
                             </a>
-                        </span>
-                        {{> components/products/modals/writeReview}}
-                    {{/if}}
-                </div>
-            {{/if}}
+                        {{else}}
+                            {{lang 'products.reviews.link_to_review' total=product.num_reviews}}
+                        {{/if}}
+                    </span>
+                {{/if}}
+                {{#if settings.show_product_reviews}}
+                    <span class="productView-reviewLink">
+                        <a href="{{product.url}}{{#if is_ajax}}#write_review{{/if}}"
+                           {{#unless is_ajax }}data-reveal-id="modal-review-form"{{/unless}}>
+                           {{lang 'products.reviews.new'}}
+                        </a>
+                    </span>
+                    {{> components/products/modals/writeReview}}
+                {{/if}}
+            </div>
             {{product.detail_messages}}
             <dl class="productView-info">
                 {{#if product.sku}}

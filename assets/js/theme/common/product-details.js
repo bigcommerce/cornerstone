@@ -18,7 +18,7 @@ export default class ProductDetails {
         this.listenQuantityChange();
         this.initRadioAttributes();
 
-        Wishlist.load();
+        Wishlist.load(this.context);
 
         const $form = $('form[data-cart-item-add]', $scope);
         const $productOptionsElement = $('[data-product-option-change]', $form);

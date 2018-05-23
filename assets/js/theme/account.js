@@ -27,7 +27,7 @@ export default class Account extends PageManager {
         this.passwordRequirements = this.context.passwordRequirements;
 
         // Instantiates wish list JS
-        Wishlist.load();
+        Wishlist.load(this.context);
 
         if ($editAccountForm.length) {
             this.registerEditAccountValidation($editAccountForm);

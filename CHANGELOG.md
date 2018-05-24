@@ -1,6 +1,8 @@
 # Changelog
 
 ## Draft
+- Fix quantity edit on Simple Product AMP pages. [#1242](https://github.com/bigcommerce/cornerstone/pull/1242)
+- Add Newsletter summary section to subscription form. [#1248](https://github.com/bigcommerce/cornerstone/pull/1248)
 
 ## 2.0.0 (2018-05-23)
 - Performance improvements. [#1229](https://github.com/bigcommerce/cornerstone/pull/1229)
@@ -10,7 +12,6 @@
 - Fix product pricing schema.org microdata. [#1233](https://github.com/bigcommerce/cornerstone/pull/1233)
 - Removed unused browserlist. [#1241](https://github.com/bigcommerce/cornerstone/pull/1241)
 - Fix for ESLint "no-console" warning. [#1237](https://github.com/bigcommerce/cornerstone/pull/1237)
-- Fix quantity edit on Simple Product AMP pages. [#1242](https://github.com/bigcommerce/cornerstone/pull/1242)
 
 ## 1.18.0 (2018-05-09)
 - Add the +/- icons for the category filtering [#1211](https://github.com/bigcommerce/cornerstone/pull/1211)

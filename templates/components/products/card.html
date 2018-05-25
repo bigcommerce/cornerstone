@@ -21,7 +21,7 @@
                 <img class="card-image lazyload" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{getImage image 'productgallery_size' (cdn theme_settings.default_image_product)}}" alt="{{image.alt}}" title="{{image.alt}}">
             </div>
         {{else}}
-            <a href="{{url}}">
+            <a href="{{url}}" data-event-type="product-click">
                 <div class="card-img-container">
                     <img class="card-image lazyload" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{getImage image 'productgallery_size' (cdn theme_settings.default_image_product)}}" alt="{{image.alt}}" title="{{image.alt}}">
                 </div>
@@ -32,7 +32,7 @@
                 {{#unless hide_product_quick_view}}
                     {{#if theme_settings.show_product_quick_view}}
                         {{#unless demo}}
-                            <a href="#" class="button button--small card-figcaption-button quickview" data-product-id="{{id}}">{{lang 'products.quick_view'}}</a>
+                            <a href="#" class="button button--small card-figcaption-button quickview" data-event-type="product-click" data-product-id="{{id}}">{{lang 'products.quick_view'}}</a>
                         {{/unless}}
                     {{/if}}
                 {{/unless}}
@@ -75,7 +75,7 @@
             {{#if demo}}
                 {{name}}
             {{else}}
-                <a href="{{url}}">{{name}}</a>
+                <a href="{{url}}" data-event-type="product-click">{{name}}</a>
             {{/if}}
         </h4>
 

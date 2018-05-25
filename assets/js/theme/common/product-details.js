@@ -465,6 +465,9 @@ export default class ProductDetails {
             viewModel.stock.$container.removeClass('u-hiddenVisually');
 
             viewModel.stock.$input.text(data.stock);
+        } else {
+            viewModel.stock.$container.addClass('u-hiddenVisually');
+            viewModel.stock.$input.text(data.stock);
         }
 
         this.updateDefaultAttributesForOOS(data);

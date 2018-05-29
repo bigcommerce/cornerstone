@@ -1,6 +1,6 @@
 {{> components/products/filter sort=pagination.category.sort}}
 
-<form action="{{urls.compare}}" method='POST' data-product-list="Category" data-product-compare>
+<form action="{{urls.compare}}" method='POST' data-product-list="Category: {{category.name}}" data-product-compare>
     {{#if theme_settings.product_list_display_mode '===' 'grid'}}
         {{> components/products/grid products=category.products show_compare=category.show_compare theme_settings=theme_settings event="product-list"}}
     {{else}}

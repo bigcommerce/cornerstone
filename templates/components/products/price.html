@@ -1,5 +1,5 @@
 {{#and price.price_range (if theme_settings.price_ranges '==' true)}}
-    {{> components/products/price-range price_range=price.price_range schema_org=schema_org}}
+    {{> components/products/price-range price=price schema_org=schema_org}}
 {{else}}
     {{#if price.with_tax}}
         <div class="price-section price-section--withTax rrp-price--withTax">

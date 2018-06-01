@@ -1,13 +1,31 @@
 # Changelog
 
 ## Draft
+- Add Newsletter summary section to subscription form. [#1248](https://github.com/bigcommerce/cornerstone/pull/1248)
+- Show retail price range with strikethrough. [#1199](https://github.com/bigcommerce/cornerstone/pull/1199)
+- Fix for individual low inventory count for SKUs. [#1234](https://github.com/bigcommerce/cornerstone/pull/1234)
+- Avoid undefined context in WishList instance. [#1247](https://github.com/bigcommerce/cornerstone/pull/1247)
+- Fix duplicate IDs occurrence in product options in certain situations & syntax fix in bulk-discount-rates component [#1215](https://github.com/bigcommerce/cornerstone/pull/1215)
+
+## 2.0.0 (2018-05-23)
+- Performance improvements. [#1229](https://github.com/bigcommerce/cornerstone/pull/1229)
+- Fix for sort disappearing on range update with product filtering [#1232](https://github.com/bigcommerce/cornerstone/pull/1232)
+- No longer escaping HTML content in blog summaries. [#1238](https://github.com/bigcommerce/cornerstone/pull/1238)
+- Fix logo image dimensions on AMP pages. [#1239](https://github.com/bigcommerce/cornerstone/pull/1239)
+- Fix product pricing schema.org microdata. [#1233](https://github.com/bigcommerce/cornerstone/pull/1233)
+- Removed unused browserlist. [#1241](https://github.com/bigcommerce/cornerstone/pull/1241)
+- Fix for ESLint "no-console" warning. [#1237](https://github.com/bigcommerce/cornerstone/pull/1237)
+
+## 1.18.0 (2018-05-09)
 - Add the +/- icons for the category filtering [#1211](https://github.com/bigcommerce/cornerstone/pull/1211)
+- Add lazyloading to main product video and fix video thumbnail bug [#1217](https://github.com/bigcommerce/cornerstone/pull/1217)
+- Hide blank review stars when there are no reviews on a product [#1209](https://github.com/bigcommerce/cornerstone/pull/1209)
 - Fix overlapping logo when using "original" sizing and large logos [#1213](https://github.com/bigcommerce/cornerstone/pull/1213)
 - Fix Product Options hiding Add to Cart on a Google AMP page [#1214](https://github.com/bigcommerce/cornerstone/pull/1214)
-- Hide blank review stars when there are no reviews on a product [#1209](https://github.com/bigcommerce/cornerstone/pull/1209)
 - Fix styling of subpage links in Contact Us page [#1216](https://github.com/bigcommerce/cornerstone/pull/1216)
-- Add lazyloading to main product video and fix video thumbnail bug [#1217](https://github.com/bigcommerce/cornerstone/pull/1217)
 - Fix for excess whitespace in multiline text field product option [#1222](https://github.com/bigcommerce/cornerstone/pull/1222)
+- Fix for faceted search display. [#1225](https://github.com/bigcommerce/cornerstone/pull/1225)
+- Fix for calls with empty files in Safari. [#1210](https://github.com/bigcommerce/cornerstone/pull/1210)
 
 ## 1.17.0 (2018-04-26)
 - Fix empty object issue in app.js [#1204](https://github.com/bigcommerce/cornerstone/pull/1204)

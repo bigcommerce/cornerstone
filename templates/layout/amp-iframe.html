@@ -9,7 +9,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         {{{stylesheet '/assets/css/theme.css'}}}
         {{ getFontsCollection }}
-        <script src="{{cdn 'assets/modernizr-custom.js'}}"></script>
+
+        <script>
+            // Change document class from no-js to js so we can detect this in css
+            document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+        </script>
 
         {{{ head.scripts }}}
 
@@ -20,7 +24,7 @@
         </style>
     </head>
     <body>
-        <div class="icons-svg-sprite">{{> components/common/icons/icon-defs }}</div>
+        <svg data-src="{{cdn 'icons/icons.svg'}}" class="icons-svg-sprite"></svg>
 
         {{#block "page"}} {{/block}}
 

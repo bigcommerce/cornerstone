@@ -17,7 +17,8 @@ export default class ProductDetails {
         this.imageGallery.init();
         this.listenQuantityChange();
         this.initRadioAttributes();
-        this.wishlist = new Wishlist().load();
+
+        Wishlist.load(this.context);
 
         const $form = $('form[data-cart-item-add]', $scope);
         const $productOptionsElement = $('[data-product-option-change]', $form);
@@ -70,7 +71,7 @@ export default class ProductDetails {
                 }
             }
         } catch (e) {
-            console.error(e);
+            console.error(e); // eslint-disable-line no-console
         }
         return formData;
     }
@@ -463,6 +464,9 @@ export default class ProductDetails {
             // if the stock container is hidden, show
             viewModel.stock.$container.removeClass('u-hiddenVisually');
 
+            viewModel.stock.$input.text(data.stock);
+        } else {
+            viewModel.stock.$container.addClass('u-hiddenVisually');
             viewModel.stock.$input.text(data.stock);
         }
 

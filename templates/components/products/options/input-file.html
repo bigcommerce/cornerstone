@@ -1,5 +1,5 @@
 <div class="form-field" data-product-attribute="input-file">
-    <label class="form-label form-label--alternate form-label--inlineSmall" for="attribute_{{id}}">
+    <label class="form-label form-label--alternate form-label--inlineSmall" for="attribute_file_{{id}}">
         {{ this.display_name }}:
 
         {{#if required}}
@@ -7,7 +7,7 @@
         {{/if}}
     </label>
 
-    <input class="form-file" type="file" id="attribute_{{id}}" name="attribute[{{this.id}}]" {{#if required}}required{{/if}}>
+    <input class="form-file" type="file" id="attribute_file_{{id}}" name="attribute[{{this.id}}]" {{#if required}}required{{/if}}>
     {{#if original_name}}
         {{{lang 'products.file_option_set' url=file_url name=original_name}}}
         <label>{{lang 'cart.remove_file'}}<input type="checkbox" name="{{file_remove}}"></label>

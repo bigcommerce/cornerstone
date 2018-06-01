@@ -4,19 +4,16 @@
 // Purpose: Styles the hero carousel component, which basically adds extras to the
 // vendor slick carousel, to specifically display hero images.
 //
-// 1. Hide the actual image element to allow background-size: cover treatment on
-//    large screens to scale image. Use visibility because the JS uses the height
-//    to set the slide size. (For browsers with object-fit only)
+// 1. Use object-fit on the image tag to keep aspect ratio and cover the space
+//    created by the outer div. The JS will detect browsers that do not support
+//    object-fit and instead copy the image src to a the background-image of the
+//    wrapper div and add the compat-object-fit class.
 //
-// 2. With JS on, minimise the jump in content as you progressively enhance the
-//    slider. Slowly fade and slide the height, instead of a jump in collapsing
-//    hidden content.
-//
-// 3. Visually overrides the top margin for '.body' defined in _body.scss.
+// 2. Visually overrides the top margin for '.body' defined in _body.scss.
 //    The '.body' top margin creates space between the header and page content.
 //    However, on the homepage, we want the carousel to be flush with the header.
 //
-// 4. Allows image to scale on large screens while preventing the top and bottom
+// 3. Allows image to scale on large screens while preventing the top and bottom
 //    from becoming cut off.
 // -----------------------------------------------------------------------------
 
@@ -28,16 +25,13 @@
         margin-top: -(spacing("single") + spacing("base")); // 3
     }
 
-    .js & { // 2
-        max-height: remCalc(0);
-        opacity: 0;
-        overflow: hidden;
-        transition: all 600ms ease-out;
-    }
-
     &.slick-initialized { // 2
         max-height: remCalc(1000);
         opacity: 1;
+    }
+
+    &:not(.slick-initialized) :not(.heroCarousel-slide--first).heroCarousel-slide {
+        display: none;
     }
 
     .slick-next,
@@ -76,38 +70,39 @@
 }
 
 .heroCarousel-slide {
-    background-position: 50%;
-    background-repeat: no-repeat;
-    background-size: cover;
     position: relative;
-
     a {
         text-decoration: none;
     }
-}
 
-.objectfit .heroCarousel-slide {
-    // scss-lint:disable ImportantRule
-    background-image: none !important;
-}
-
-.heroCarousel-slide--stretch {
-    @include breakpoint("large") { // 4
-        background-size: 100% 100%;
+    .heroCarousel-image {
+        @include breakpoint("medium") {
+            object-fit: cover; // 1
+            max-height: remCalc(600px);
+            width: 100%;
+        }
     }
-}
 
-.heroCarousel-image {
-    @include breakpoint("medium") {
-        max-height: remCalc(600px);
-        object-fit: cover;
-        width: 100%;
+    .heroCarousel-image-wrapper {
+        @include breakpoint("medium") {
+            max-height: remCalc(600px);
+        }
     }
-}
 
-.no-objectfit .heroCarousel-image {
-    @include breakpoint("medium") { // 1
-        visibility: hidden;
+    &.compat-object-fit { // 1
+        background-size: cover;
+        background-position: 50%;
+        background-repeat: no-repeat;
+
+        &.stretch {
+            @include breakpoint("large") { // 4
+                background-size: 100% 100%;
+            }
+        }
+
+        .heroCarousel-image {
+            opacity: 0;
+        }
     }
 }
 

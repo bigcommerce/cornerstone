@@ -7,6 +7,7 @@
 - Show retail price range with strikethrough. [#1199](https://github.com/bigcommerce/cornerstone/pull/1199)
 - Fix for individual low inventory count for SKUs. [#1234](https://github.com/bigcommerce/cornerstone/pull/1234)
 - Avoid undefined context in WishList instance. [#1247](https://github.com/bigcommerce/cornerstone/pull/1247)
+- Fix duplicate IDs occurrence in product options in certain situations & syntax fix in bulk-discount-rates component [#1215](https://github.com/bigcommerce/cornerstone/pull/1215)
 
 ## 2.0.0 (2018-05-23)
 - Performance improvements. [#1229](https://github.com/bigcommerce/cornerstone/pull/1229)
@@ -36,7 +37,7 @@
 
 ## 1.16.0 (2018-04-12)
 - Add representation for products and variants with retail price that has sale price. [#1195](https://github.com/bigcommerce/cornerstone/pull/1195)
-- Fix but in quickview related to grabbing default prices for products with no default selection. [#1197](https://github.com/bigcommerce/cornerstone/pull/1197)
+- Fix buy in quickview related to grabbing default prices for products with no default selection. [#1197](https://github.com/bigcommerce/cornerstone/pull/1197)
 
 ## 1.15.0 (2018-04-04)
 - Fix image dimensions on AMP pages. [#1192](https://github.com/bigcommerce/cornerstone/pull/1192)

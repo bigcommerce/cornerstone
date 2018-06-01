@@ -6,14 +6,15 @@
         "slidesToScroll": 1,
         "autoplay": true,
         "autoplaySpeed": {{carousel.swap_frequency}},
-        "lazyLoad": "anticipated"
+        "lazyLoad": "ondemand"
     }'>
     {{#each carousel.slides}}
     <a href="{{url}}">
-        <div class="heroCarousel-slide {{#if ../theme_settings.homepage_stretch_carousel_images}}heroCarousel-slide--stretch{{/if}}"
-            style="background-image: url({{image}})">
-            <img class="heroCarousel-image" data-lazy="{{image}}" alt="{{alt_text}}" title="{{alt_text}}"
-             {{#if image_width}}width="{{image_width}}"{{/if}} {{#if image_height}}height="{{image_height}}"{{/if}} />
+        <div class="heroCarousel-slide {{#if ../theme_settings.homepage_stretch_carousel_images}}stretch{{/if}} {{#if @first}}heroCarousel-slide--first{{/if}}">
+            <div class="heroCarousel-image-wrapper" {{#if image_height}}{{#if image_width}}style="height: {{multiply (divide image_height image_width) 100}}vw"{{/if}}{{/if}}>
+                <img class="heroCarousel-image" data-lazy="{{image}}" alt="{{alt_text}}" title="{{alt_text}}"
+                {{#if image_width}}width="{{image_width}}"{{/if}} {{#if image_height}}height="{{image_height}}"{{/if}} />
+            </div>
             {{#if heading}}
                 {{> components/carousel-content show_background=true}}
             {{else}}

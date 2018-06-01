@@ -1,13 +1,12 @@
-var CleanWebpackPlugin = require('clean-webpack-plugin'),
-    config = require('./config.json'),
-    LodashModuleReplacementPlugin = require('lodash-webpack-plugin'),
-    path = require('path'),
-    webpack = require('webpack');
+const CleanPlugin = require('clean-webpack-plugin'),
+      LodashPlugin = require('lodash-webpack-plugin'),
+      path = require('path'),
+      webpack = require('webpack');
 
+// Common configuration, with extensions in webpack.dev.js and webpack.prod.js.
 module.exports = {
     bail: true,
     context: __dirname,
-    devtool: 'source-map',
     entry: {
         main: './assets/js/app.js',
     },
@@ -19,9 +18,6 @@ module.exports = {
                 use: {
                     loader: 'babel-loader',
                     options: {
-                        cacheDirectory: true,
-                        compact: true,
-                        minified: true,
                         plugins: [
                             'dynamic-import-webpack', // Needed for dynamic imports.
                             'lodash', // Automagically tree-shakes lodash.
@@ -34,8 +30,8 @@ module.exports = {
                                 useBuiltIns: true, // Tree-shake babel-polyfill.
                             }],
                         ],
-                    }
-                }
+                    },
+                },
             },
             {
                 test: /jquery-migrate/,
@@ -49,36 +45,25 @@ module.exports = {
         path: path.resolve(__dirname, "assets/dist"),
     },
     plugins: [
-        new CleanWebpackPlugin(['assets/dist'], {
+        new CleanPlugin(['assets/dist'], {
             verbose: false,
             watch: false,
         }),
-        new webpack.LoaderOptionsPlugin({
-             minimize: true,
-        }),
-        new LodashModuleReplacementPlugin, // Complements 'babel-plugin-lodash by shrinking it's cherry-picked builds further.
+        new LodashPlugin, // Complements babel-plugin-lodash by shrinking its cherry-picked builds further.
         new webpack.ProvidePlugin({
             $: 'jquery',
             jQuery: 'jquery',
             'window.jQuery': 'jquery',
         }),
-        new webpack.optimize.CommonsChunkPlugin({
-            children: true,
-            minChunks: 2,
-        }),
     ],
     resolve: {
         alias: {
-            'async': path.resolve(__dirname, 'node_modules/async/dist/async.min.js'),
-            'html5-history-api': path.resolve(__dirname, 'node_modules/html5-history-api/history.min.js'),
-            jquery: path.resolve(__dirname, 'node_modules/jquery/dist/jquery.min.js'),
             'jquery-migrate': path.resolve(__dirname, 'node_modules/jquery-migrate/dist/jquery-migrate.min.js'),
-            'jquery-zoom': path.resolve(__dirname, 'node_modules/jquery-zoom/jquery.zoom.min.js'),
             jstree: path.resolve(__dirname, 'node_modules/jstree/dist/jstree.min.js'),
             'pace': path.resolve(__dirname, 'node_modules/pace/pace.min.js'),
             'slick-carousel': path.resolve(__dirname, 'node_modules/slick-carousel/slick/slick.min.js'),
+            'svg-injector': path.resolve(__dirname, 'node_modules/svg-injector/dist/svg-injector.min.js'),
             sweetalert2: path.resolve(__dirname, 'node_modules/sweetalert2/dist/sweetalert2.min.js'),
         },
     },
-    watch: false,
 };

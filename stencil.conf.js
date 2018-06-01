@@ -1,5 +1,6 @@
 var webpack = require('webpack');
-var webpackConfig = require('./webpack.conf.js');
+var devConfig = require('./webpack.dev.js');
+var prodConfig = require('./webpack.prod.js');
 
 /**
  * Watch options for the core watcher
@@ -26,7 +27,7 @@ var watchOptions = {
  */
 function development() {
     // Rebuild the bundle once at bootup
-    webpack(webpackConfig).watch({}, err => {
+    webpack(devConfig).watch({}, err => {
         if (err) {
             console.error(err.message, err.details);
         }
@@ -39,23 +40,11 @@ function development() {
  * Hook into the `stencil bundle` command and build your files before they are packaged as a .zip
  */
 function production() {
-    webpackConfig.watch = false;
-    webpackConfig.devtool = false;
-    webpackConfig.plugins.push(new webpack.LoaderOptionsPlugin({
-        minimize: true,
-    }));
-    webpackConfig.plugins.push(new webpack.optimize.UglifyJsPlugin({
-        comments: false,
-        compress: {
-            warnings: true,
-        },
-        sourceMap: false, // Toggle to turn on source maps.
-    }));
-
-    webpack(webpackConfig).run(err => {
+    webpack(prodConfig).run(err => {
         if (err) {
             console.error(err.message, err.details);
-            throw err;
+            process.exit(1);
+            return;
         }
 
         process.send('done');

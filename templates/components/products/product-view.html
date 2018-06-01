@@ -11,10 +11,11 @@
     <section class="productView-details">
         <div class="productView-product">
             <h1 class="productView-title" {{#if schema}}itemprop="name"{{/if}}>{{product.title}}</h1>
-
-            <h2 class="productView-brand"{{#if schema}} itemprop="brand" itemscope itemtype="http://schema.org/Brand"{{/if}}>
-                <a href="{{product.brand.url}}"{{#if schema}} itemprop="url"{{/if}}><span{{#if schema}} itemprop="name"{{/if}}>{{product.brand.name}}</span></a>
-            </h2>
+            {{#if product.brand}}
+                <h2 class="productView-brand"{{#if schema}} itemprop="brand" itemscope itemtype="http://schema.org/Brand"{{/if}}>
+                    <a href="{{product.brand.url}}"{{#if schema}} itemprop="url"{{/if}}><span{{#if schema}} itemprop="name"{{/if}}>{{product.brand.name}}</span></a>
+                </h2>
+            {{/if}}
             {{#if product.call_for_price}}
                 <p class="productView-price">
                     <span>{{product.call_for_price}}</span>
@@ -28,7 +29,7 @@
                 {{/or}}
             </div>
             {{{region name="product_below_price"}}}
-            <div class="productView-rating"{{#if schema}} itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating"{{/if}}>
+            <div class="productView-rating"{{#if product.num_reviews '>' 0}}{{#if schema}} itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating"{{/if}}{{/if}}>
                 {{#if settings.show_product_rating}}
                     {{#if product.num_reviews '>' 0}}
                         {{#if schema}}

@@ -2,14 +2,21 @@
 <html class="no-js" lang="{{ locale_name }}">
     <head>
         <title>{{ head.title }}</title>
+        {{{ resourceHints }}}
         {{{ head.meta_tags }}}
         {{{ head.config }}}
         {{#block "head"}} {{/block}}
+
         <link href="{{ head.favicon }}" rel="shortcut icon">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-        {{{stylesheet '/assets/css/theme.css'}}}
+
+        <script>
+            // Change document class from no-js to js so we can detect this in css
+            document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+        </script>
+
         {{ getFontsCollection }}
-        <script src="{{cdn 'assets/modernizr-custom.js'}}"></script>
+        {{{stylesheet '/assets/css/theme.css'}}}
 
         {{{head.scripts}}}
         {{{head.rsslinks}}}
@@ -22,7 +29,7 @@
     </head>
     <body>
         {{{snippet 'header'}}}
-        <div class="icons-svg-sprite">{{> components/common/icons/icon-defs }}</div>
+        <svg data-src="{{cdn 'img/icon-sprite.svg'}}" class="icons-svg-sprite"></svg>
 
         {{#if settings.privacy_cookie}}
             {{> components/common/cookie}}

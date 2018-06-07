@@ -1,8 +1,8 @@
 <h4>{{lang 'products.related_products' }}</h4>
-<ul class="product-list">
+<ul class="product-list" data-product-list="Related Products">
     {{#each this}}
     <li class="product-card">
-        {{>components/products/card theme_settings=../theme_settings}}
+        {{>components/products/card theme_settings=../theme_settings event="product-list" event="product-list" position=(add @index 1)}}
     </li>
     {{/each}}
 </ul>

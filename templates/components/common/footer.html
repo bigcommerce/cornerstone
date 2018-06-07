@@ -1,18 +1,11 @@
 {{#if banners.bottom}}
-<!-- <div class="banners" data-banner-location="bottom">
-    <div class="banner">
-        {{{limit banners.bottom 1}}}
-    </div>
-</div> -->
-
     <div class="banners" data-banner-location="bottom">
-        {{#each banners.bottom_detail_params}}
-        <div class="banner" data-event-type="promotion" data-entity-id="{{this.id}}" data-promo-name="{{this.banner-name}}" data-banner-position="{{this.location}}" data-banner-name="{{this.banner-name}}">
-               {{{this.content}}}
+        {{#each (limit banners.bottom_detail_params 1)}}
+            <div class="banner" data-event-type="promotion" data-entity-id="{{this.id}}" data-promo-name="{{this.banner-name}}" data-banner-position="{{this.location}}" data-banner-name="{{this.banner-name}}">
+                {{{this.content}}}
             </div>
         {{/each}}
     </div>
-
 {{/if}}
 <footer class="footer" role="contentinfo">
     <div class="container">

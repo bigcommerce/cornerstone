@@ -2,6 +2,7 @@
 
 ## Draft
 - Fix quantity edit on Simple Product AMP pages. [#1257](https://github.com/bigcommerce/cornerstone/pull/1257)
+- Fix empty image on carousel wrap. [#1263](https://github.com/bigcommerce/cornerstone/pull/1263)
 
 ## 2.1.0 (2018-06-01)
 - Add Newsletter summary section to subscription form. [#1248](https://github.com/bigcommerce/cornerstone/pull/1248)

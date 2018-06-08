@@ -95,11 +95,11 @@ export default class ProductDetails {
                 $span: $('[data-product-rrp-price-without-tax]', $scope),
             },
             nonSaleWithPrice: {
-                $div: $('.non-sale-price---withTax', $scope),
+                $div: $('.non-sale-price--withTax', $scope),
                 $span: $('[data-product-non-sale-price-with-tax]', $scope),
             },
             nonSaleWithoutPrice: {
-                $div: $('.non-sale-price---withoutTax', $scope),
+                $div: $('.non-sale-price--withoutTax', $scope),
                 $span: $('[data-product-non-sale-price-without-tax]', $scope),
             },
             priceSaved: {

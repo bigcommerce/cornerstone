@@ -1,5 +1,5 @@
 <div class="form-field" data-product-attribute="input-number">
-    <label class="form-label form-label--alternate form-label--inlineSmall" for="attribute_{{id}}">
+    <label class="form-label form-label--alternate form-label--inlineSmall" for="attribute_number_{{id}}">
         {{ this.display_name }}:
 
         {{#if required}}
@@ -7,5 +7,5 @@
         {{/if}}
     </label>
 
-    <input class="form-input" type="number" id="attribute_{{id}}" {{#unless this.integer_only}}step="any"{{/unless}} name="attribute[{{this.id}}]" value="{{this.prefill}}" {{#if required}}required{{/if}}>
+    <input class="form-input" type="number" id="attribute_number_{{id}}" {{#unless this.integer_only}}step="any"{{/unless}} name="attribute[{{this.id}}]" value="{{this.prefill}}" {{#if required}}required{{/if}}>
 </div>

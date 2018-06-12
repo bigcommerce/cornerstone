@@ -1,21 +1,28 @@
-{{#and price.retail_price_range.min.without_tax price.retail_price_range.max.without_tax}}
-    <div class="price-section price-section--withTax" {{#if schema_org}}itemprop="offers" itemscope itemtype="http://schema.org/Offer"{{/if}}>
-        <span data-product-price-without-tax class="price price--rrp">{{price.retail_price_range.min.without_tax.formatted}} - {{price.retail_price_range.max.without_tax.formatted}}</span>
-        {{#if schema_org}}
-            <meta itemprop="availability" content="{{product.availability}}">
-            <meta itemprop="itemCondition" itemtype="http://schema.org/OfferItemCondition" content="http://schema.org/{{product.condition}}Condition">
-            <div itemprop="priceSpecification" itemscope itemtype="http://schema.org/PriceSpecification">
-                <meta itemprop="minPrice" content="{{price.retail_price_range.min.without_tax.value}}"  />
-                <meta itemprop="price" content="{{price.retail_price_range.min.without_tax.value}}">
-                <meta itemprop="maxPrice" content="{{price.retail_price_range.max.without_tax.value}}"  />
-                <meta itemprop="priceCurrency" content="{{currency_selector.active_currency_code}}">
-                <meta itemprop="valueAddedTaxIncluded" content="true">
-            </div>
-        {{/if}}
+{{#and price.retail_price_range.min.with_tax price.retail_price_range.max.with_tax}}
+    <div class="price-section price-section--withTax rrp-price--withTax" {{#if schema_org}}itemprop="offers" itemscope itemtype="http://schema.org/Offer"{{/if}}>
+        {{theme_settings.pdp-retail-price-label}}
+        <span data-product-rrp-price-with-tax class="price price--rrp">{{price.retail_price_range.min.with_tax.formatted}} - {{price.retail_price_range.max.with_tax.formatted}}</span>
     </div>
+{{else}}
+    {{#if price.with_tax}}
+        <div class="price-section price-section--withTax rrp-price--withTax" style="display: none;">
+            {{theme_settings.pdp-retail-price-label}}
+            <span data-product-rrp-with-tax class="price price--rrp">
+                {{price.rrp_with_tax.formatted}}
+            </span>
+        </div>
+    {{/if}}
 {{/and}}
 {{#and price.price_range.min.with_tax price.price_range.max.with_tax}}
+    <div class="price-section price-section--withTax non-sale-price--withTax" style="display: none;">
+        {{theme_settings.pdp-non-sale-price-label}}
+        <span data-product-non-sale-price-with-tax class="price price--non-sale">
+            {{price.non_sale_price_with_tax.formatted}}
+        </span>
+    </div>
     <div class="price-section price-section--withTax" {{#if schema_org}}itemprop="offers" itemscope itemtype="http://schema.org/Offer"{{/if}}>
+        <span class="price-label">{{theme_settings.pdp-price-label}}</span>
+        <span class="price-now-label" style="display: none;">{{theme_settings.pdp-sale-price-label}}</span>
         <span data-product-price-with-tax class="price">{{price.price_range.min.with_tax.formatted}} - {{price.price_range.max.with_tax.formatted}}</span>
         {{#and price.price_range.min.without_tax price.price_range.max.without_tax}}
             <abbr title="{{lang 'products.including_tax'}}">{{lang 'products.price_with_tax' tax_label=price.price_range.min.tax_label}}</abbr>
@@ -33,8 +40,31 @@
         {{/if}}
     </div>
 {{/and}}
+{{#and price.retail_price_range.min.without_tax price.retail_price_range.max.without_tax}}
+        <div class="price-section price-section--withoutTax rrp-price--withoutTax" {{#if schema_org}}itemprop="offers" itemscope itemtype="http://schema.org/Offer"{{/if}}>
+            {{theme_settings.pdp-retail-price-label}}
+            <span data-product-rrp-price-without-tax class="price price--rrp">{{price.retail_price_range.min.without_tax.formatted}} - {{price.retail_price_range.max.without_tax.formatted}}</span>
+        </div>
+{{else}}
+    {{#if price.without_tax}}
+        <div class="price-section price-section--withoutTax rrp-price--withoutTax {{#if price.with_tax}}price-section--minor{{/if}}" style="display: none;">
+            {{theme_settings.pdp-retail-price-label}}
+            <span data-product-rrp-price-without-tax class="price price--rrp">
+                {{price.rrp_without_tax.formatted}}
+            </span>
+        </div>
+    {{/if}}
+{{/and}}
 {{#and price.price_range.min.without_tax price.price_range.max.without_tax}}
+    <div class="price-section price-section--withoutTax non-sale-price--withoutTax {{#if price.with_tax}}price-section--minor{{/if}}" style="display: none;">
+        {{theme_settings.pdp-non-sale-price-label}}
+        <span data-product-non-sale-price-without-tax class="price price--non-sale">
+            {{price.non_sale_price_without_tax.formatted}}
+        </span>
+    </div>
     <div class="price-section price-section--withoutTax {{#and price_range.min.with_tax price_range.max.with_tax}}price-section--minor{{/and}}"  {{#if schema_org}}itemprop="offers" itemscope itemtype="http://schema.org/Offer"{{/if}}>
+        <span class="price-label">{{theme_settings.pdp-price-label}}</span>
+        <span class="price-now-label" style="display: none;">{{theme_settings.pdp-sale-price-label}}</span>
         <span data-product-price-without-tax class="price price--withoutTax">{{price.price_range.min.without_tax.formatted}} - {{price.price_range.max.without_tax.formatted}}</span>
         {{#and price.price_range.min.with_tax price.price_range.max.with_tax}}
             <abbr title="{{lang 'products.excluding_tax'}}">{{lang 'products.price_without_tax' tax_label=price.price_range.min.tax_label}}</abbr>

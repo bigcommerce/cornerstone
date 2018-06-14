@@ -6,6 +6,7 @@
 - Fix duplicate IDs occurrence in product options in certain situations & syntax fix in bulk-discount-rates component [#1223](https://github.com/bigcommerce/cornerstone/pull/1223)
 - Fix use case that prevented retail/sale prices from displaying on product details page [#1262](https://github.com/bigcommerce/cornerstone/pull/1262)
 - Fix svg arrows missing on AMP product pages. [#1258](https://github.com/bigcommerce/cornerstone/pull/1258)
+- Fix for Changing Menu Colors In Theme Editor Not Respected In Mobile View [#1266](https://github.com/bigcommerce/cornerstone/pull/1266)
 
 ## 2.1.0 (2018-06-01)
 - Add Newsletter summary section to subscription form. [#1248](https://github.com/bigcommerce/cornerstone/pull/1248)

@@ -5,9 +5,10 @@
 // 1. Corrects the spacing added by .navUser-or
 // 2. Can't use top: 50% because its container `.header` changes its height to
 //    100% when mobile menu is expanded
-// 3. Make the triangle for dropdown centered
+// 3. Make the triangle for store credit dropdown centered
 // 4. Needs to be 100% so its dropdown can take full width in mobile viewport
 // 5. Needs to be lower than logo zIndex, otherwise, logo is not clickable
+// 6. Make the triangle for currency dropdown right aligned
 //
 // -----------------------------------------------------------------------------
 
@@ -89,6 +90,20 @@
         fill: stencilColor("navUser-color");
         stroke: stencilColor("navUser-color");
         transition: all 0.15s ease;
+    }
+}
+
+.navUser-action--currencySelector + .dropdown-menu {
+    &:before {
+        // scss-lint:disable ImportantRule
+        left: auto !important; // 6
+        right: spacing("half"); // 6
+    }
+
+    &:after {
+        // scss-lint:disable ImportantRule
+        left: auto !important; // 6
+        right: spacing("half") + remCalc(2px); // 6
     }
 }
 

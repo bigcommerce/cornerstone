@@ -7,6 +7,7 @@
 - Fix use case that prevented retail/sale prices from displaying on product details page [#1262](https://github.com/bigcommerce/cornerstone/pull/1262)
 - Fix svg arrows missing on AMP product pages. [#1258](https://github.com/bigcommerce/cornerstone/pull/1258)
 - Fix for Changing Menu Colors In Theme Editor Not Respected In Mobile View [#1266](https://github.com/bigcommerce/cornerstone/pull/1266)
+- Fix arrow placement on currency dropdown menu [#1267](https://github.com/bigcommerce/cornerstone/pull/1267)
 
 ## 2.1.0 (2018-06-01)
 - Add Newsletter summary section to subscription form. [#1248](https://github.com/bigcommerce/cornerstone/pull/1248)

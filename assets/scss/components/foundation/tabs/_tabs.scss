@@ -46,26 +46,52 @@
     }
 }
 
+.tab-content {
+    //
+    // State for when tab-content has js generated of calculated content, like carousel
+    //
+    // Purpose: The content being display: none, means any js calculated dimensions
+    // are incorrect as the elements inside the tab-content have no dimensions to grab.
+    // Carousel is a prime example. It needs widths to calculate the layout and slides
+    // -----------------------------------------------------------------------------
+    &.has-jsContent {
+        display: block;
+        height: 0;
+        overflow: hidden;
+        padding: 0;
+        visibility: hidden;
 
-//
-// State for when tab-content has js generated of calculated content, like carousel
-//
-// Purpose: The content being display: none, means any js calculated dimensions
-// are incorrect as the elements inside the tab-content have no dimensions to grab.
-// Carousel is a prime example. It needs widths to calculate the layout and slides
-// -----------------------------------------------------------------------------
+        // scss-lint:disable NestingDepth
+        &.is-active {
+            height: auto;
+            overflow: visible;
+            padding: $tabs-content-padding;
+            visibility: visible;
+        }
+        // scss-lint:enable NestingDepth
+    }
 
-.tab-content.has-jsContent {
-    display: block;
-    height: 0;
-    overflow: hidden;
-    padding: 0;
-    visibility: hidden;
 
-    &.is-active {
-        height: auto;
-        overflow: visible;
-        padding: $tabs-content-padding;
-        visibility: visible;
+    //
+    // Product review displays in tabs
+    //
+    // Purpose: Display product reviews within tabbed content on product pages.
+    // -----------------------------------------------------------------------------
+    .productReview {
+        @include breakpoint("small") {
+            width: grid-calc(6, $total-columns);
+        }
+
+        @include breakpoint("medium") {
+            width: grid-calc(4, $total-columns);
+        }
+
+        @include breakpoint("large") {
+            width: grid-calc(6, $total-columns);
+        }
+    }
+
+    .productReviews {
+        border-top: 0;
     }
 }

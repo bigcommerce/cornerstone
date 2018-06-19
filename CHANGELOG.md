@@ -11,6 +11,7 @@
 - Add alias for lazysizes module to bundle minified library [#1275](https://github.com/bigcommerce/cornerstone/pull/1275)
 - Fix prices not showing in quick search while logged in when "Restrict to Login" for price display is true [#1272](https://github.com/bigcommerce/cornerstone/pull/1272)
 - Display product reviews in tabbed content region of product page [#1273](https://github.com/bigcommerce/cornerstone/pull/1273)
+- Disable zoom and link for default "No Image" image. [#1278](https://github.com/bigcommerce/cornerstone/pull/1278)
 
 ## 2.1.0 (2018-06-01)
 - Add Newsletter summary section to subscription form. [#1248](https://github.com/bigcommerce/cornerstone/pull/1248)

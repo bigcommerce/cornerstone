@@ -6,7 +6,7 @@
     {{/if}}
     {{#if product.similar_by_views}}
         <li class="tab{{#unless product.related_products}} is-active{{/unless}}" role="presentational">
-            <a class="tab-title" href="#tab-similar" role="tab" tabindex="0" aria-selected="false" controls="tab-similar">{{lang 'products.similar_by_views'}}</a>
+            <a class="tab-title" href="#tab-similar" role="tab" tabindex="0" aria-selected="{{#if product.related_products}}false{{else}}true{{/if}}" controls="tab-similar">{{lang 'products.similar_by_views'}}</a>
         </li>
     {{/if}}
 </ul>
@@ -19,7 +19,7 @@
 {{/if}}
 
 {{#if product.similar_by_views}}
-    <div role="tabpanel" aria-hidden="true" class="tab-content has-jsContent{{#unless product.related_products}} is-active{{/unless}}" id="tab-similar">
+    <div role="tabpanel" aria-hidden="{{#if product.related_products}}true{{else}}false{{/if}}" class="tab-content has-jsContent{{#unless product.related_products}} is-active{{/unless}}" id="tab-similar">
         {{> components/products/carousel products=product.similar_by_views columns=6}}
     </div>
 {{/if}}

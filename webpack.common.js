@@ -42,7 +42,7 @@ module.exports = {
     output: {
         chunkFilename: 'theme-bundle.chunk.[name].js',
         filename: 'theme-bundle.[name].js',
-        path: path.resolve(__dirname, "assets/dist"),
+        path: path.resolve(__dirname, 'assets/dist'),
     },
     plugins: [
         new CleanPlugin(['assets/dist'], {
@@ -60,8 +60,8 @@ module.exports = {
         alias: {
             'jquery-migrate': path.resolve(__dirname, 'node_modules/jquery-migrate/dist/jquery-migrate.min.js'),
             jstree: path.resolve(__dirname, 'node_modules/jstree/dist/jstree.min.js'),
-            'lazysizes': path.resolve(__dirname, 'node_modules/lazysizes/lazysizes.min.js'),
-            'pace': path.resolve(__dirname, 'node_modules/pace/pace.min.js'),
+            lazysizes: path.resolve(__dirname, 'node_modules/lazysizes/lazysizes.min.js'),
+            pace: path.resolve(__dirname, 'node_modules/pace/pace.min.js'),
             'slick-carousel': path.resolve(__dirname, 'node_modules/slick-carousel/slick/slick.min.js'),
             'svg-injector': path.resolve(__dirname, 'node_modules/svg-injector/dist/svg-injector.min.js'),
             sweetalert2: path.resolve(__dirname, 'node_modules/sweetalert2/dist/sweetalert2.min.js'),

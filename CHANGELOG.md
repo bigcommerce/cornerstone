@@ -6,6 +6,7 @@
 - Fix Webpack DefinePlugin configuration. [#1286](https://github.com/bigcommerce/cornerstone/pull/1286)
 - Disable zoom and link for default "No Image" image. [#1291](https://github.com/bigcommerce/cornerstone/pull/1291)
 - Fix for ESLint "quotes" and "quote-props" errors. [#1280](https://github.com/bigcommerce/cornerstone/pull/1280)
+- Fix cart link not being clickable on mobile when white space reduced around store logo [#1296](https://github.com/bigcommerce/cornerstone/pull/1296)
 
 ## 2.2.0 (2018-06-22)
 - Fix quantity edit on Simple Product AMP pages. [#1257](https://github.com/bigcommerce/cornerstone/pull/1257)

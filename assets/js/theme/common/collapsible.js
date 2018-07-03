@@ -232,7 +232,7 @@ export default function collapsibleFactory(selector = `[data-${PLUGIN_KEY}]`, ov
             $toggle.data(`${PLUGIN_KEY}Target`) ||
             $toggle.attr('href'));
         const options = _.extend(optionsFromData($toggle), overrideOptions);
-        const collapsible = new Collapsible($toggle, $(targetId), options);
+        const collapsible = new Collapsible($toggle, $(targetId, overrideOptions.$context), options);
 
         $toggle.data(instanceKey, collapsible);
 

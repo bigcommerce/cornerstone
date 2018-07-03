@@ -379,13 +379,13 @@ export default class ProductDetails {
      * @param viewModel
      */
     clearPricingNotFound(viewModel) {
-        viewModel.rrpWithTax.$div.hide();
-        viewModel.rrpWithoutTax.$div.hide();
-        viewModel.nonSaleWithTax.$div.hide();
-        viewModel.nonSaleWithoutTax.$div.hide();
-        viewModel.priceSaved.$div.hide();
-        viewModel.priceNowLabel.$span.hide();
-        viewModel.priceLabel.$span.hide();
+        viewModel.rrpWithTax.$div.addClass('price-section--hidden');
+        viewModel.rrpWithoutTax.$div.addClass('price-section--hidden');
+        viewModel.nonSaleWithTax.$div.addClass('price-section--hidden');
+        viewModel.nonSaleWithoutTax.$div.addClass('price-section--hidden');
+        viewModel.priceSaved.$div.addClass('price-section--hidden');
+        viewModel.priceNowLabel.$span.addClass('price-now-label-hidden');
+        viewModel.priceLabel.$span.addClass('price-label-hidden');
     }
 
     /**
@@ -396,41 +396,41 @@ export default class ProductDetails {
         this.clearPricingNotFound(viewModel);
 
         if (price.with_tax) {
-            viewModel.priceLabel.$span.show();
+            viewModel.priceLabel.$span.removeClass('price-label-hidden');
             viewModel.$priceWithTax.html(price.with_tax.formatted);
         }
 
         if (price.without_tax) {
-            viewModel.priceLabel.$span.show();
+            viewModel.priceLabel.$span.removeClass('price-label-hidden');
             viewModel.$priceWithoutTax.html(price.without_tax.formatted);
         }
 
         if (price.rrp_with_tax) {
-            viewModel.rrpWithTax.$div.show();
+            viewModel.rrpWithTax.$div.removeClass('price-section--hidden');
             viewModel.rrpWithTax.$span.html(price.rrp_with_tax.formatted);
         }
 
         if (price.rrp_without_tax) {
-            viewModel.rrpWithoutTax.$div.show();
+            viewModel.rrpWithoutTax.$div.removeClass('price-section--hidden');
             viewModel.rrpWithoutTax.$span.html(price.rrp_without_tax.formatted);
         }
 
         if (price.saved) {
-            viewModel.priceSaved.$div.show();
+            viewModel.priceSaved.$div.removeClass('price-section--hidden');
             viewModel.priceSaved.$span.html(price.saved.formatted);
         }
 
         if (price.non_sale_price_with_tax) {
-            viewModel.priceLabel.$span.hide();
-            viewModel.nonSaleWithTax.$div.show();
-            viewModel.priceNowLabel.$span.show();
+            viewModel.priceLabel.$span.addClass('price-label-hidden');
+            viewModel.nonSaleWithTax.$div.removeClass('price-section--hidden');
+            viewModel.priceNowLabel.$span.removeClass('price-now-label-hidden');
             viewModel.nonSaleWithTax.$span.html(price.non_sale_price_with_tax.formatted);
         }
 
         if (price.non_sale_price_without_tax) {
-            viewModel.priceLabel.$span.hide();
-            viewModel.nonSaleWithoutTax.$div.show();
-            viewModel.priceNowLabel.$span.show();
+            viewModel.priceLabel.$span.addClass('price-label-hidden');
+            viewModel.nonSaleWithoutTax.$div.removeClass('price-section--hidden');
+            viewModel.priceNowLabel.$span.removeClass('price-now-label-hidden');
             viewModel.nonSaleWithoutTax.$span.html(price.non_sale_price_without_tax.formatted);
         }
     }

@@ -32,17 +32,13 @@ export default class {
     }
 
     collapseReviews() {
-        const $reviewTab = $('#tab-reviews');
-
         // We're in paginating state, do not collapse
         if (window.location.hash && window.location.hash.indexOf('#product-reviews') === 0) {
             return;
         }
 
-        // force collapse on page load if product reviews are displayed in tabs
-        if (!$reviewTab) {
-            this.$collapsible.trigger(CollapsibleEvents.click);
-        }
+        // force collapse on page load
+        this.$collapsible.trigger(CollapsibleEvents.click);
     }
 
     /**

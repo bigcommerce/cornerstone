@@ -1,6 +1,8 @@
 # Changelog
 
 ## Draft
+
+## 2.2.1 (2018-07-10)
 - Fix wishlist dropdown background color bleeding out of container [#1283](https://github.com/bigcommerce/cornerstone/pull/1283)
 - Fix indefinite load spinner for products without an image in order history. [#1284](https://github.com/bigcommerce/cornerstone/pull/1284)
 - Fix Webpack DefinePlugin configuration. [#1286](https://github.com/bigcommerce/cornerstone/pull/1286)

@@ -2,7 +2,15 @@ import $ from 'jquery';
 import Url from 'url';
 
 const urlUtils = {
-    getUrl: () => `${window.location.pathname}${window.location.search}`,
+    getUrl: (query = false) => {
+        let search = window.location.search;
+
+        if (query) {
+            search = '';
+        }
+
+        return `${window.location.pathname}${search}`;
+    },
 
     goToUrl: (url) => {
         window.history.pushState({}, document.title, url);

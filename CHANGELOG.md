@@ -8,6 +8,7 @@
 - Fix for ESLint "quotes" and "quote-props" errors. [#1280](https://github.com/bigcommerce/cornerstone/pull/1280)
 - Fix cart link not being clickable on mobile when white space reduced around store logo [#1296](https://github.com/bigcommerce/cornerstone/pull/1296)
 - Replace usage of in-line styles on PDP with classes to meet Google AMP requirements [#1300](https://github.com/bigcommerce/cornerstone/pull/1300)
+- Add optional parameter to getUrl() to filter out query string [#1305](https://github.com/bigcommerce/cornerstone/pull/1305)
 
 ## 2.2.0 (2018-06-22)
 - Fix quantity edit on Simple Product AMP pages. [#1257](https://github.com/bigcommerce/cornerstone/pull/1257)

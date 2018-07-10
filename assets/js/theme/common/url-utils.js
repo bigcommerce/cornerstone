@@ -2,7 +2,24 @@ import $ from 'jquery';
 import Url from 'url';
 
 const urlUtils = {
-    getUrl: () => `${window.location.pathname}${window.location.search}`,
+    getUrl: (object = null) => {
+        const href = Url.parse(window.location.href, true);
+        let url = href.path;
+
+        if (object) {
+            if (object === 'raw') {
+                url = href;
+            } else if (object === 'query') {
+                url = JSON.stringify(href.query);
+            } else if (href[object] !== null) {
+                url = href[object];
+            } else {
+                url = null; // url is null since object was not found but declared
+            }
+        }
+
+        return url;
+    },
 
     goToUrl: (url) => {
         window.history.pushState({}, document.title, url);

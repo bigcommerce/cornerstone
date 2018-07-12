@@ -2,14 +2,16 @@
 <section class="toggle productReviews" id="product-reviews" data-product-reviews>
     <h4 class="toggle-title">
         {{lang 'products.reviews.header' total=reviews.total}}
-        <a class="toggleLink is-open" data-collapsible href="#productReviews-content">
-            <span class="toggleLink-text toggleLink-text--on">
-                {{lang 'products.reviews.hide'}}
-            </span>
-            <span class="toggleLink-text toggleLink-text--off">
-                {{lang 'products.reviews.show'}}
-            </span>
-        </a>
+        {{#if theme_settings.show_product_reviews_tabs '!==' true}}
+            <a class="toggleLink is-open" data-collapsible href="#productReviews-content">
+                <span class="toggleLink-text toggleLink-text--on">
+                    {{lang 'products.reviews.hide'}}
+                </span>
+                <span class="toggleLink-text toggleLink-text--off">
+                    {{lang 'products.reviews.show'}}
+                </span>
+            </a>
+        {{/if}}
     </h4>
     <div class="toggle-content is-open" id="productReviews-content" aria-hidden="false">
         <ul class="productReviews-list" id="productReviews-list">

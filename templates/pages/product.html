@@ -23,9 +23,9 @@ product:
             {{> components/products/videos product.videos}}
         {{/if}}
 
-        {{#if settings.show_product_reviews}}
+        {{#all settings.show_product_reviews (if theme_settings.show_product_reviews_tabs '!==' true)}}
             {{> components/products/reviews reviews=product.reviews product=product urls=urls}}
-        {{/if}}
+        {{/all}}
 
         {{> components/products/tabs}}
 

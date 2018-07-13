@@ -137,9 +137,11 @@
                     {{/if}}
                 {{/if}}
 
-                <div class="productView-info-bulkPricing">
-                    {{> components/products/bulk-discount-rates bulk_discount_rates=product.bulk_discount_rates}}
-                </div>
+                {{#if settings.bulk_discount_enabled}}
+                    <div class="productView-info-bulkPricing">
+                        {{> components/products/bulk-discount-rates bulk_discount_rates=product.bulk_discount_rates}}
+                    </div>
+                {{/if}}
 
                 {{#each product.custom_fields}}
                     <dt class="productView-info-name">{{name}}:</dt>

@@ -53,5 +53,15 @@
                 <a class="navBar-action" href="{{urls.account.details}}">{{lang 'account.nav.settings'}}</a>
             </li>
         {{/if}}
+
+        {{#if settings.show_payment_methods}}
+            {{#if account_page '===' 'payment_methods'}}
+                <li class="navBar-item is-active">Payment Methods</li>
+            {{else}}
+                <li class="navBar-item">
+                    <a class="navBar-action" href="/account.php?action=payment_methods">Payment Methods</a>
+                </li>
+            {{/if}}
+        {{/if}}
     </ul>
 </nav>

@@ -6,6 +6,7 @@
 - Show bulk discounts only if enabled through store settings. [#1310](https://github.com/bigcommerce/cornerstone/pull/1310)
 - Style active section in search results. [#1316](https://github.com/bigcommerce/cornerstone/pull/1316)
 - Fix blog_post import statement in app.js [#1301](https://github.com/bigcommerce/cornerstone/pull/1301)
+- Show carousel dots only when carousel has more than one slide. [#1319](https://github.com/bigcommerce/cornerstone/pull/1319)
 
 ## 2.2.1 (2018-07-10)
 - Fix wishlist dropdown background color bleeding out of container [#1283](https://github.com/bigcommerce/cornerstone/pull/1283)

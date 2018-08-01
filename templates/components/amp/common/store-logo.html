@@ -7,8 +7,12 @@
             {{else}}
                 width="{{first (split theme_settings.logo_size 'x')}}"
                 height="{{last (split theme_settings.logo_size 'x')}}"
+                {{#if (last (split theme_settings.logo_size 'x')) 'gtnum' (first (split theme_settings.logo_size 'x')) }}
+                    sizes="(max-width: 360px) 100vw, 1vw"
+                {{else}}
+                    sizes="(max-width: 360px) 100vw, 10vw"
+                {{/if}}
                 layout="responsive"
-                sizes="(min-height: {{last (split theme_settings.logo_size 'x')}}%)"
             {{/if}}
             alt="{{settings.store_logo.title}}">
         </amp-img>

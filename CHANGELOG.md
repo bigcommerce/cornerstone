@@ -9,6 +9,7 @@
 - Fix blog_post import statement in app.js [#1301](https://github.com/bigcommerce/cornerstone/pull/1301)
 - Show carousel dots only when carousel has more than one slide. [#1319](https://github.com/bigcommerce/cornerstone/pull/1319)
 - New products left align. [1321](https://github.com/bigcommerce/cornerstone/pull/1321)
+- Fix initial aria attributes for 'Customers Also Viewed' products tab [#1290](https://github.com/bigcommerce/cornerstone/pull/1290)
 
 ## 2.2.1 (2018-07-10)
 - Fix wishlist dropdown background color bleeding out of container [#1283](https://github.com/bigcommerce/cornerstone/pull/1283)

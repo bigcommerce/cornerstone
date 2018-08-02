@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Fix for review tabs not appearing. [#1322](https://github.com/bigcommerce/cornerstone/pull/1322)
 
 ## 2.3.0 (2018-08-02)
 - Open correct product page tabs when URL contains a fragment identifier referring to that content [#1304](https://github.com/bigcommerce/cornerstone/pull/1304)

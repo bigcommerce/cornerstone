@@ -1,6 +1,8 @@
 # Changelog
 
 ## Draft
+
+## 2.3.1 (2018-08-03)
 - Fix for review tabs not appearing. [#1322](https://github.com/bigcommerce/cornerstone/pull/1322)
 
 ## 2.3.0 (2018-08-02)

@@ -41,7 +41,6 @@ export default class ImageGallery {
 
     selectNewImage(e) {
         e.preventDefault();
-
         const $target = $(e.currentTarget);
         const imgObj = {
             mainImageUrl: $target.attr('data-image-gallery-new-image-url'),
@@ -67,8 +66,22 @@ export default class ImageGallery {
         });
     }
 
+    checkImage() {
+        const containerHeight = $('.productView-image').height();
+        const containerWidth = $('.productView-image').width();
+        const height = this.easyzoom.data('easyZoom').$zoom.context.height;
+        const width = this.easyzoom.data('easyZoom').$zoom.context.width;
+        if (height < containerHeight || width < containerWidth) {
+            this.easyzoom.data('easyZoom').hide();
+        }
+    }
+
     setImageZoom() {
-        this.easyzoom = this.$mainImage.easyZoom({ errorNotice: '', loadingNotice: '' });
+        this.easyzoom = this.$mainImage.easyZoom({
+            onShow: () => this.checkImage(),
+            errorNotice: '',
+            loadingNotice: '',
+        });
     }
 
     bindEvents() {

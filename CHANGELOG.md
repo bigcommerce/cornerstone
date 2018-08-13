@@ -2,6 +2,7 @@
 
 ## Draft
 - Fix zoom behavior for small images in gallery (turn off zoom if image is too small). [#1325](https://github.com/bigcommerce/cornerstone/pull/1325)
+- Undo New Products left align from 2.3.0. [#1328](https://github.com/bigcommerce/cornerstone/pull/1328)
 
 ## 2.3.1 (2018-08-03)
 - Fix for review tabs not appearing. [#1322](https://github.com/bigcommerce/cornerstone/pull/1322)

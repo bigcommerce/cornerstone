@@ -3,10 +3,10 @@
 ## Draft
 - Fix zoom behavior for small images in gallery (turn off zoom if image is too small). [#1325](https://github.com/bigcommerce/cornerstone/pull/1325)
 - Undo New Products left align from 2.3.0. [#1328](https://github.com/bigcommerce/cornerstone/pull/1328)
+- Fix invoice store logo. [#1326](https://github.com/bigcommerce/cornerstone/pull/1326)
 
 ## 2.3.1 (2018-08-03)
 - Fix for review tabs not appearing. [#1322](https://github.com/bigcommerce/cornerstone/pull/1322)
-- Fix invoice store logo. [#1326](https://github.com/bigcommerce/cornerstone/pull/1326)
 
 ## 2.3.0 (2018-08-02)
 - Open correct product page tabs when URL contains a fragment identifier referring to that content [#1304](https://github.com/bigcommerce/cornerstone/pull/1304)

@@ -1,0 +1,112 @@
+// =============================================================================
+// PAYMENT METHODS (CSS)
+// =============================================================================
+
+// Payment Methods layout
+// -----------------------------------------------------------------------------
+//
+// 1. Using display: inline-block; to vertically align blocks.
+//    Font-size gets redefined under the .paymentMethod block.
+//
+// -----------------------------------------------------------------------------
+
+.paymentMethodList {
+    font-size: 0; // 1
+    list-style: none;
+    margin-left: -(spacing("half"));
+    margin-right: -(spacing("half"));
+}
+
+.paymentMethodName {
+    margin-top: 0;
+    padding: 0 spacing("half");
+    text-transform: none;
+}
+
+.paymentMethod {
+    display: inline-block;
+    padding: 0 spacing("half");
+    vertical-align: top;
+    width: 100%;
+
+    @include breakpoint("small") {
+        width: grid-calc(6, $total-columns);
+    }
+}
+
+
+// Payment Method
+// -----------------------------------------------------------------------------
+//
+// 1. Redefine the font-size as we're removing white-space on the parent by
+//    reducing the size to 0.
+//
+// -----------------------------------------------------------------------------
+
+.panel--paymentMethod {
+    font-size: fontSize("base"); // 1
+    position: relative;
+
+    .panel-body {
+        border: container("border");
+        border-radius: remCalc(3px);
+        padding: 0;
+    }
+}
+
+.paymentMethod-card,
+.paymentMethod-details {
+    display: flex;
+    flex-flow: wrap;
+    padding: spacing("half");
+
+    @include breakpoint("large") {
+        padding: spacing("single");
+    }
+}
+
+.paymentMethod-card {
+    align-items: center;
+    background: white;
+}
+
+.paymentMethod-icon {
+    margin-right: spacing("half");
+    width: remCalc(28px);
+
+    @include breakpoint("large") {
+        width: remCalc(42px);
+    }
+}
+
+.paymentMethod-brand {
+    font-size: fontSize("smallest");
+    font-weight: fontWeight("semibold");
+
+    @include breakpoint("large") {
+        font-size: fontSize("base");
+    }
+}
+
+.paymentMethod-expiry {
+    font-size: fontSize("smaller");
+    margin-left: auto;
+    text-transform: capitalize;
+}
+
+.paymentMethod-label,
+.paymentMethod-description {
+    display: inline-block;
+    font-size: fontSize("smallest");
+    margin-bottom: spacing("half");
+}
+
+.paymentMethod-label {
+    flex: remCalc(100px);
+    font-weight: fontWeight("semibold");
+}
+
+.paymentMethod-description {
+    flex: calc(100% - 100px);
+    padding-left: spacing("half");
+}

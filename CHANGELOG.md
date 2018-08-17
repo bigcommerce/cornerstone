@@ -1,6 +1,8 @@
 # Changelog
 
 ## Draft
+
+## 2.3.2 (2018-08-17)
 - Fix zoom behavior for small images in gallery (turn off zoom if image is too small). [#1325](https://github.com/bigcommerce/cornerstone/pull/1325)
 - Undo New Products left align from 2.3.0. [#1328](https://github.com/bigcommerce/cornerstone/pull/1328)
 - Fix invoice store logo. [#1326](https://github.com/bigcommerce/cornerstone/pull/1326)

@@ -8,14 +8,14 @@ import { classifyForm, Validators, insertStateHiddenField } from './common/form-
 import swal from 'sweetalert2';
 
 export default class Account extends PageManager {
-    constructor() {
-        super();
+    constructor(context) {
+        super(context);
 
         this.$state = $('[data-field-type="State"]');
         this.$body = $('body');
     }
 
-    loaded(next) {
+    onReady() {
         const $editAccountForm = classifyForm('form[data-edit-account-form]');
         const $addressForm = classifyForm('form[data-address-form]');
         const $inboxForm = classifyForm('form[data-inbox-form]');
@@ -27,7 +27,7 @@ export default class Account extends PageManager {
         this.passwordRequirements = this.context.passwordRequirements;
 
         // Instantiates wish list JS
-        this.wishlist = new Wishlist();
+        Wishlist.load(this.context);
 
         if ($editAccountForm.length) {
             this.registerEditAccountValidation($editAccountForm);
@@ -67,8 +67,6 @@ export default class Account extends PageManager {
         }
 
         this.bindDeleteAddress();
-
-        next();
     }
 
     /**

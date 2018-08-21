@@ -1,6 +1,5 @@
 import $ from 'jquery';
 import './common/select-option-plugin';
-import 'html5-history-api';
 import PageManager from './page-manager';
 import quickSearch from './global/quick-search';
 import currencySelector from './global/currency-selector';
@@ -15,21 +14,16 @@ import maintenanceMode from './global/maintenanceMode';
 import carousel from './common/carousel';
 import 'lazysizes';
 import loadingProgressBar from './global/loading-progress-bar';
-import FastClick from 'fastclick';
 import sweetAlert from './global/sweet-alert';
-
-function fastClick(element) {
-    return new FastClick(element);
-}
+import svgInjector from './global/svg-injector';
 
 export default class Global extends PageManager {
-    /**
-     * You can wrap the execution in this method with an asynchronous function map using the async library
-     * if your global modules need async callback handling.
-     * @param next
-     */
-    loaded(next) {
-        fastClick(document.body);
+    onReady() {
+        // Only load visible elements until the onload event fires,
+        // after which preload nearby elements.
+        window.lazySizesConfig = window.lazySizesConfig || {};
+        window.lazySizesConfig.loadMode = 1;
+
         quickSearch();
         currencySelector();
         foundation($(document));
@@ -43,6 +37,6 @@ export default class Global extends PageManager {
         maintenanceMode(this.context.maintenanceMode);
         loadingProgressBar();
         sweetAlert();
-        next();
+        svgInjector();
     }
 }

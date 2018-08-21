@@ -8,8 +8,7 @@ import { defaultModal } from './global/modal';
 
 export default class GiftCertificate extends PageManager {
     constructor(context) {
-        super();
-        this.context = context;
+        super(context);
 
         const $certBalanceForm = $('#gift-certificate-balance');
 

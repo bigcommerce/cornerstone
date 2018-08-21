@@ -42,6 +42,12 @@ export default class Search extends CatalogPage {
         this.$facetedSearchContainer.removeClass('u-hiddenVisually');
         this.$contentResultsContainer.addClass('u-hiddenVisually');
 
+        $('[data-content-results-toggle]').removeClass('navBar-action-color--active');
+        $('[data-content-results-toggle]').addClass('navBar-action');
+
+        $('[data-product-results-toggle]').removeClass('navBar-action');
+        $('[data-product-results-toggle]').addClass('navBar-action-color--active');
+
         urlUtils.goToUrl(url);
     }
 
@@ -54,10 +60,16 @@ export default class Search extends CatalogPage {
         this.$productListingContainer.addClass('u-hiddenVisually');
         this.$facetedSearchContainer.addClass('u-hiddenVisually');
 
+        $('[data-product-results-toggle]').removeClass('navBar-action-color--active');
+        $('[data-product-results-toggle]').addClass('navBar-action');
+
+        $('[data-content-results-toggle]').removeClass('navBar-action');
+        $('[data-content-results-toggle]').addClass('navBar-action-color--active');
+
         urlUtils.goToUrl(url);
     }
 
-    loaded() {
+    onReady() {
         const $searchForm = $('[data-advanced-search-form]');
         const $categoryTreeContainer = $searchForm.find('[data-search-category-tree]');
         const url = Url.parse(window.location.href, true);

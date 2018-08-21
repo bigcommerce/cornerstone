@@ -159,8 +159,8 @@ Icons are delivered via a single SVG sprite, which is embedded on the page in
 `templates/layout/base.html`. It is generated via a grunt task `grunt svgstore`.
 
 The task takes individual SVG files for each icon in `assets/icons` and bundles
-them together, to be inlined on the top of the theme, inside a handlebars partial.
-Each icon can then be called in a similar way to an inline image via:
+them together, to be inlined on the top of the theme, via an ajax call managed
+by svg-injector. Each icon can then be called in a similar way to an inline image via:
 
 ```
 <svg><use xlink:href="#icon-svgFileName" /></svg>

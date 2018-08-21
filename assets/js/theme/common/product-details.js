@@ -17,7 +17,8 @@ export default class ProductDetails {
         this.imageGallery.init();
         this.listenQuantityChange();
         this.initRadioAttributes();
-        this.wishlist = new Wishlist().load();
+        Wishlist.load(this.context);
+        this.getTabRequests();
 
         const $form = $('form[data-cart-item-add]', $scope);
         const $productOptionsElement = $('[data-product-option-change]', $form);
@@ -70,7 +71,7 @@ export default class ProductDetails {
                 }
             }
         } catch (e) {
-            console.error(e);
+            console.error(e); // eslint-disable-line no-console
         }
         return formData;
     }
@@ -93,12 +94,12 @@ export default class ProductDetails {
                 $div: $('.rrp-price--withoutTax', $scope),
                 $span: $('[data-product-rrp-price-without-tax]', $scope),
             },
-            nonSaleWithPrice: {
-                $div: $('.non-sale-price---withTax', $scope),
+            nonSaleWithTax: {
+                $div: $('.non-sale-price--withTax', $scope),
                 $span: $('[data-product-non-sale-price-with-tax]', $scope),
             },
-            nonSaleWithoutPrice: {
-                $div: $('.non-sale-price---withoutTax', $scope),
+            nonSaleWithoutTax: {
+                $div: $('.non-sale-price--withoutTax', $scope),
                 $span: $('[data-product-non-sale-price-without-tax]', $scope),
             },
             priceSaved: {
@@ -107,6 +108,9 @@ export default class ProductDetails {
             },
             priceNowLabel: {
                 $span: $('.price-now-label', $scope),
+            },
+            priceLabel: {
+                $span: $('.price-label', $scope),
             },
             $weight: $('.productView-info [data-product-weight]', $scope),
             $increments: $('.form-field--increments :input', $scope),
@@ -377,10 +381,11 @@ export default class ProductDetails {
     clearPricingNotFound(viewModel) {
         viewModel.rrpWithTax.$div.hide();
         viewModel.rrpWithoutTax.$div.hide();
-        viewModel.nonSaleWithPrice.$div.hide();
-        viewModel.nonSaleWithoutPrice.$div.hide();
+        viewModel.nonSaleWithTax.$div.hide();
+        viewModel.nonSaleWithoutTax.$div.hide();
         viewModel.priceSaved.$div.hide();
         viewModel.priceNowLabel.$span.hide();
+        viewModel.priceLabel.$span.hide();
     }
 
     /**
@@ -391,10 +396,12 @@ export default class ProductDetails {
         this.clearPricingNotFound(viewModel);
 
         if (price.with_tax) {
+            viewModel.priceLabel.$span.show();
             viewModel.$priceWithTax.html(price.with_tax.formatted);
         }
 
         if (price.without_tax) {
+            viewModel.priceLabel.$span.show();
             viewModel.$priceWithoutTax.html(price.without_tax.formatted);
         }
 
@@ -414,15 +421,17 @@ export default class ProductDetails {
         }
 
         if (price.non_sale_price_with_tax) {
-            viewModel.nonSaleWithPrice.$div.show();
+            viewModel.priceLabel.$span.hide();
+            viewModel.nonSaleWithTax.$div.show();
             viewModel.priceNowLabel.$span.show();
-            viewModel.nonSaleWithPrice.$span.html(price.non_sale_price_with_tax.formatted);
+            viewModel.nonSaleWithTax.$span.html(price.non_sale_price_with_tax.formatted);
         }
 
         if (price.non_sale_price_without_tax) {
-            viewModel.nonSaleWithoutPrice.$div.show();
+            viewModel.priceLabel.$span.hide();
+            viewModel.nonSaleWithoutTax.$div.show();
             viewModel.priceNowLabel.$span.show();
-            viewModel.nonSaleWithoutPrice.$span.html(price.non_sale_price_without_tax.formatted);
+            viewModel.nonSaleWithoutTax.$span.html(price.non_sale_price_without_tax.formatted);
         }
     }
 
@@ -463,6 +472,9 @@ export default class ProductDetails {
             // if the stock container is hidden, show
             viewModel.stock.$container.removeClass('u-hiddenVisually');
 
+            viewModel.stock.$input.text(data.stock);
+        } else {
+            viewModel.stock.$container.addClass('u-hiddenVisually');
             viewModel.stock.$input.text(data.stock);
         }
 
@@ -594,5 +606,26 @@ export default class ProductDetails {
 
             $radio.attr('data-state', $radio.prop('checked'));
         });
+    }
+
+    /**
+     * Check for fragment identifier in URL requesting a specific tab
+     */
+    getTabRequests() {
+        if (window.location.hash && window.location.hash.indexOf('#tab-') === 0) {
+            const $activeTab = $('.tabs').has(`[href='${window.location.hash}']`);
+            const $tabContent = $(`${window.location.hash}`);
+
+            if ($activeTab.length > 0) {
+                $activeTab.find('.tab')
+                    .removeClass('is-active')
+                    .has(`[href='${window.location.hash}']`)
+                    .addClass('is-active');
+
+                $tabContent.addClass('is-active')
+                    .siblings()
+                    .removeClass('is-active');
+            }
+        }
     }
 }

@@ -5,9 +5,14 @@
 // 1. Corrects the spacing added by .navUser-or
 // 2. Can't use top: 50% because its container `.header` changes its height to
 //    100% when mobile menu is expanded
-// 3. Make the triangle for dropdown centered
+// 3. Make the triangle for store credit dropdown centered
 // 4. Needs to be 100% so its dropdown can take full width in mobile viewport
 // 5. Needs to be lower than logo zIndex, otherwise, logo is not clickable
+// 6. Make the triangle for currency dropdown right aligned
+// 7. Corrects mini cart positioned outside viewport. Since this resets right
+//    position, nudge dropdown away from the side of viewport in mobile viewport.
+// 8. This corrects mini cart dropdown arrow alignment in mobile viewport by
+//    setting the previous styles to medium breakpoint and adjusts for nudge in (7).
 //
 // -----------------------------------------------------------------------------
 
@@ -61,6 +66,12 @@
     }
 }
 
+.navUser-section {
+    @include breakpoint("medium") {
+        position: relative; // 7
+    }
+}
+
 .navUser-action {
     color: stencilColor("navUser-color");
     font-weight: fontWeight("bold");
@@ -89,6 +100,20 @@
         fill: stencilColor("navUser-color");
         stroke: stencilColor("navUser-color");
         transition: all 0.15s ease;
+    }
+}
+
+.navUser-action--currencySelector + .dropdown-menu {
+    &:before {
+        // scss-lint:disable ImportantRule
+        left: auto !important; // 6
+        right: spacing("half"); // 6
+    }
+
+    &:after {
+        // scss-lint:disable ImportantRule
+        left: auto !important; // 6
+        right: spacing("half") + remCalc(2px); // 6
     }
 }
 
@@ -152,17 +177,30 @@
 
         // scss-lint:disable NestingDepth
         &.is-open {
+            top: auto !important; // 7
+            left: auto !important; // 7
+            right: remCalc(5px); // 7
+            @include breakpoint("medium") {
+                right: 0; // 7
+            }
+
             &:before,
             &:after {
                 left: auto;
             }
 
             &:before {
-                right: spacing("half");
+                right: spacing("half") - remCalc(5px); // 8
+                @include breakpoint("medium") {
+                    right: spacing("half"); // 8
+                }
             }
 
             &:after {
-                right: spacing("half") + remCalc(2px);
+                right: spacing("half") - remCalc(3px); // 8
+                @include breakpoint("medium") {
+                    right: spacing("half") + remCalc(2px); // 8
+                }
             }
         }
     }

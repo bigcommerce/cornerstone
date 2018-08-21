@@ -39,25 +39,25 @@
 
                 <!-- Name -->
                 {{#if product.reviews.author}}
-                    {{> components/common/forms/text name="revfromname" label=(lang 'products.reviews.form_write.name') value=product.reviews.author}}
+                    {{> components/common/forms/text id="revfromname" name="revfromname" label=(lang 'products.reviews.form_write.name') value=product.reviews.author}}
                 {{else}}
-                    {{> components/common/forms/text name="revfromname" label=(lang 'products.reviews.form_write.name') value=customer.name}}
+                    {{> components/common/forms/text id="revfromname" name="revfromname" label=(lang 'products.reviews.form_write.name') value=customer.name}}
                 {{/if}}
 
                 {{#if product.reviews.show_review_email}}
                     <!-- Email -->
                     {{#if product.reviews.email}}
-                        {{> components/common/forms/text name="email" required="false" label=(lang 'products.reviews.form_write.email') value=product.reviews.email}}
+                        {{> components/common/forms/text id="email" name="email" required="false" label=(lang 'products.reviews.form_write.email') value=product.reviews.email}}
                     {{else}}
-                        {{> components/common/forms/text name="email" required="false" label=(lang 'products.reviews.form_write.email') value=customer.email}}
+                        {{> components/common/forms/text id="email" name="email" required="false" label=(lang 'products.reviews.form_write.email') value=customer.email}}
                     {{/if}}
                 {{/if}}
 
                 <!-- Review Subject -->
-                {{> components/common/forms/text name="revtitle" required="true" label=(lang 'products.reviews.form_write.subject') value=product.reviews.title}}
+                {{> components/common/forms/text id="revtitle" name="revtitle" required="true" label=(lang 'products.reviews.form_write.subject') value=product.reviews.title}}
 
                 <!-- Comments -->
-                {{> components/common/forms/multiline name="revtext" required="true" label=(lang 'products.reviews.form_write.comments') value=product.reviews.text}}
+                {{> components/common/forms/multiline id="revtext" name="revtext" required="true" label=(lang 'products.reviews.form_write.comments') value=product.reviews.text}}
 
                 {{{product.reviews.recaptcha.markup}}}
 

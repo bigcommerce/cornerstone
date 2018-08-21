@@ -1,7 +1,7 @@
 {{#if currency_selector.currencies.length '>' 1}}
 <ul class="navUser-section">
     <li class="navUser-item">
-        <a class="navUser-action has-dropdown" href="#" data-dropdown="currencySelection" aria-controls="currencySelection" aria-expanded="false">{{lang 'common.currency' code=currency_selector.active_currency_code}} <i class="icon" aria-hidden="true"><svg><use xlink:href="#icon-chevron-down" /></svg></i></a>
+        <a class="navUser-action navUser-action--currencySelector has-dropdown" href="#" data-dropdown="currencySelection" aria-controls="currencySelection" aria-expanded="false">{{lang 'common.currency' code=currency_selector.active_currency_code}} <i class="icon" aria-hidden="true"><svg><use xlink:href="#icon-chevron-down" /></svg></i></a>
         <ul class="dropdown-menu" id="currencySelection" data-dropdown-content aria-hidden="true" tabindex="-1">
             {{#each currency_selector.currencies}}
             <li class="dropdown-menu-item">

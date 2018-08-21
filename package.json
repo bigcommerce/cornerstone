@@ -1,18 +1,15 @@
 {
   "name": "bigcommerce-cornerstone",
   "description": "The BigCommerce reference theme for the Stencil platform",
-  "version": "1.17.0",
+  "version": "2.3.2",
   "private": true,
   "author": "BigCommerce",
   "license": "MIT",
   "dependencies": {
     "@bigcommerce/stencil-utils": "^1.1.2",
-    "async": "^2.5.0",
     "babel-polyfill": "^6.26.0",
     "easyzoom": "^2.5.0",
-    "fastclick": "^1.0.6",
     "foundation-sites": "^5.5.3",
-    "html5-history-api": "^4.2.7",
     "jquery": "^3.3.1",
     "jquery-migrate": "^1.4.1",
     "jstree": "vakata/jstree",
@@ -21,20 +18,21 @@
     "nod-validate": "^2.0.12",
     "pace": "hubspot/pace#a03f1f1de62c9cea6c88b2267b8d7a83858b6cb6",
     "slick-carousel": "^1.8.1",
+    "svg-injector": "^1.1.3",
     "sweetalert2": "^6.10.1"
   },
   "devDependencies": {
     "@bigcommerce/citadel": "^2.15.1",
     "babel-core": "^6.26.0",
-    "babel-eslint": "^8.0.1",
-    "babel-loader": "^7.1.2",
-    "babel-plugin-dynamic-import-webpack": "^1.0.1",
-    "babel-plugin-lodash": "^3.2.11",
+    "babel-eslint": "^8.2.2",
+    "babel-loader": "^7.1.4",
+    "babel-plugin-dynamic-import-webpack": "^1.0.2",
+    "babel-plugin-lodash": "^3.3.2",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "babel-plugin-transform-regenerator": "^6.26.0",
     "babel-plugin-transform-runtime": "^6.23.0",
-    "babel-preset-env": "^1.2.2",
-    "clean-webpack-plugin": "^0.1.17",
+    "babel-preset-env": "^1.6.1",
+    "clean-webpack-plugin": "^0.1.19",
     "core-js": "^2.5.0",
     "es6-shim": "^0.35.3",
     "eslint": "^4.8.0",
@@ -62,7 +60,12 @@
     "lodash-webpack-plugin": "^0.11.2",
     "regenerator-runtime": "^0.11.0",
     "time-grunt": "^1.2.2",
-    "uglify-js": "^3.0.28",
-    "webpack": "^3.6.0"
+    "webpack": "^4.1.1",
+    "webpack-cli": "^2.0.11",
+    "webpack-merge": "^4.1.2"
+  },
+  "scripts": {
+    "build": "webpack --config webpack.prod.js",
+    "buildDev": "webpack --config webpack.dev.js"
   }
 }

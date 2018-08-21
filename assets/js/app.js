@@ -26,7 +26,7 @@ const pageClasses = {
     getnewpassword: getLogin,
     forgotpassword: getLogin,
     blog: () => import('./theme/blog'),
-    blog_post: () => import('./theme/blog'),
+    blog_post: () => import('./theme/blog-post'),
     brand: () => import('./theme/brand'),
     brands: () => import('./theme/brands'),
     cart: () => import('./theme/cart'),
@@ -63,32 +63,16 @@ window.stencilBootstrap = function stencilBootstrap(pageType, contextJSON = null
     return {
         load() {
             $(async () => {
-                let globalClass;
-                let pageClass;
-                let PageClass;
+                // Load globals
+                if (loadGlobal) {
+                    Global.load(context);
+                }
 
-                // Finds the appropriate class from the pageType.
+                // Find the appropriate page loader based on pageType
                 const pageClassImporter = pageClasses[pageType];
                 if (typeof pageClassImporter === 'function') {
-                    PageClass = (await pageClassImporter()).default;
-                }
-
-                if (loadGlobal) {
-                    globalClass = new Global();
-                    globalClass.context = context;
-                }
-
-                if (PageClass) {
-                    pageClass = new PageClass(context);
-                    pageClass.context = context;
-                }
-
-                if (globalClass) {
-                    globalClass.load();
-                }
-
-                if (pageClass) {
-                    pageClass.load();
+                    const PageClass = (await pageClassImporter()).default;
+                    PageClass.load(context);
                 }
             });
         },

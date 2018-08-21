@@ -11,10 +11,11 @@
     <section class="productView-details">
         <div class="productView-product">
             <h1 class="productView-title" {{#if schema}}itemprop="name"{{/if}}>{{product.title}}</h1>
-
-            <h2 class="productView-brand"{{#if schema}} itemprop="brand" itemscope itemtype="http://schema.org/Brand"{{/if}}>
-                <a href="{{product.brand.url}}"{{#if schema}} itemprop="url"{{/if}}><span{{#if schema}} itemprop="name"{{/if}}>{{product.brand.name}}</span></a>
-            </h2>
+            {{#if product.brand}}
+                <h2 class="productView-brand"{{#if schema}} itemprop="brand" itemscope itemtype="http://schema.org/Brand"{{/if}}>
+                    <a href="{{product.brand.url}}"{{#if schema}} itemprop="url"{{/if}}><span{{#if schema}} itemprop="name"{{/if}}>{{product.brand.name}}</span></a>
+                </h2>
+            {{/if}}
             {{#if product.call_for_price}}
                 <p class="productView-price">
                     <span>{{product.call_for_price}}</span>
@@ -28,7 +29,7 @@
                 {{/or}}
             </div>
             {{{region name="product_below_price"}}}
-            <div class="productView-rating"{{#if schema}} itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating"{{/if}}>
+            <div class="productView-rating"{{#if product.num_reviews '>' 0}}{{#if schema}} itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating"{{/if}}{{/if}}>
                 {{#if settings.show_product_rating}}
                     {{#if product.num_reviews '>' 0}}
                         {{#if schema}}
@@ -136,9 +137,11 @@
                     {{/if}}
                 {{/if}}
 
-                <div class="productView-info-bulkPricing">
-                    {{> components/products/bulk-discount-rates bulk_discount_rates=product.bulk_discount_rates}}
-                </div>
+                {{#if settings.bulk_discount_enabled}}
+                    <div class="productView-info-bulkPricing">
+                        {{> components/products/bulk-discount-rates bulk_discount_rates=product.bulk_discount_rates}}
+                    </div>
+                {{/if}}
 
                 {{#each product.custom_fields}}
                     <dt class="productView-info-name">{{name}}:</dt>
@@ -151,16 +154,25 @@
     <section class="productView-images" data-image-gallery>
         <figure class="productView-image"
                 data-image-gallery-main
+                {{#if product.main_image}}
                 data-zoom-image="{{getImage product.main_image 'zoom_size' (cdn theme_settings.default_image_product)}}"
+                {{/if}}
                 >
             <div class="productView-img-container">
-                <a href="{{getImage product.main_image 'zoom_size' (cdn theme_settings.default_image_product)}}">
-                    <img class="productView-image--default lazyload" 
-                         data-sizes="auto" 
-                         src="{{cdn 'img/loading.svg'}}" 
-                         data-src="{{getImage product.main_image 'product_size' (cdn theme_settings.default_image_product)}}"
-                         alt="{{product.main_image.alt}}" title="{{product.main_image.alt}}" data-main-image>
-                </a>
+                {{!-- Remove the surrounding a-element if there is no main image. --}}
+                {{#if product.main_image}}
+                    <a href="{{getImage product.main_image 'zoom_size' (cdn theme_settings.default_image_product)}}">
+                {{/if}}
+
+                <img class="productView-image--default lazyload"
+                     data-sizes="auto"
+                     src="{{cdn 'img/loading.svg'}}"
+                     data-src="{{getImage product.main_image 'product_size' (cdn theme_settings.default_image_product)}}"
+                     alt="{{product.main_image.alt}}" title="{{product.main_image.alt}}" data-main-image>
+
+                {{#if product.main_image}}
+                    </a>
+                {{/if}}
             </div>
         </figure>
         <ul class="productView-thumbnails"{{#gt product.images.length 5}} data-slick='{

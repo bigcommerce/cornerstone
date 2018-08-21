@@ -1,13 +1,13 @@
 language: node_js
 node_js:
-- 4
+  - 6
 sudo: required
 dist: trusty
 install:
-- bundle install
-- npm install -g grunt-cli
-- npm install -g bigcommerce/stencil-cli
-- npm install
+  - bundle install
+  - npm install -g grunt-cli
+  - npm install -g bigcommerce/stencil-cli
+  - npm install
 script:
-- grunt check
-- stencil bundle
+  - grunt check
+  - stencil bundle

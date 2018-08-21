@@ -1,5 +1,5 @@
 {{#if children}}
-<a class="navPages-action has-subMenu" href="{{url}}" data-collapsible="navPages-{{id}}">
+<a class="navPages-action has-subMenu{{#if is_active}} activePage{{/if}}" href="{{url}}" data-collapsible="navPages-{{id}}">
     {{name}} <i class="icon navPages-action-moreIcon" aria-hidden="true"><svg><use xlink:href="#icon-chevron-down" /></svg></i>
 </a>
 <div class="navPage-subMenu" id="navPages-{{id}}" aria-hidden="true" tabindex="-1">
@@ -11,7 +11,7 @@
             <li class="navPage-subMenu-item">
                 {{#if children}}
                     <a
-                        class="navPage-subMenu-action navPages-action has-subMenu"
+                        class="navPage-subMenu-action navPages-action has-subMenu{{#if is_active}} activePage{{/if}}"
                         href="{{url}}"
                         data-collapsible="navPages-{{id}}"
                         data-collapsible-disabled-breakpoint="medium"
@@ -22,17 +22,17 @@
                     <ul class="navPage-childList" id="navPages-{{id}}">
                         {{#each children}}
                         <li class="navPage-childList-item">
-                            <a class="navPage-childList-action navPages-action" href="{{url}}">{{name}}</a>
+                            <a class="navPage-childList-action navPages-action{{#if is_active}} activePage{{/if}}" href="{{url}}">{{name}}</a>
                         </li>
                         {{/each}}
                     </ul>
                 {{else}}
-                    <a class="navPage-subMenu-action navPages-action" href="{{url}}">{{name}}</a>
+                    <a class="navPage-subMenu-action navPages-action{{#if is_active}} activePage{{/if}}" href="{{url}}">{{name}}</a>
                 {{/if}}
             </li>
         {{/each}}
     </ul>
 </div>
 {{else}}
-<a class="navPages-action" href="{{url}}">{{name}}</a>
+<a class="navPages-action{{#if is_active}} activePage{{/if}}" href="{{url}}">{{name}}</a>
 {{/if}}

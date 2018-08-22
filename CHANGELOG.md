@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Require Webpack config only when used (reduce time to be ready for receiving messages from stencil-cli). [#1334](https://github.com/bigcommerce/cornerstone/pull/1334)
 
 ## 2.3.2 (2018-08-17)
 - Fix zoom behavior for small images in gallery (turn off zoom if image is too small). [#1325](https://github.com/bigcommerce/cornerstone/pull/1325)

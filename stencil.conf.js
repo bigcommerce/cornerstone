@@ -1,6 +1,4 @@
 var webpack = require('webpack');
-var devConfig = require('./webpack.dev.js');
-var prodConfig = require('./webpack.prod.js');
 
 /**
  * Watch options for the core watcher
@@ -26,6 +24,8 @@ var watchOptions = {
  * Watch any custom files and trigger a rebuild
  */
 function development() {
+    var devConfig = require('./webpack.dev.js');
+
     // Rebuild the bundle once at bootup
     webpack(devConfig).watch({}, err => {
         if (err) {
@@ -40,6 +40,8 @@ function development() {
  * Hook into the `stencil bundle` command and build your files before they are packaged as a .zip
  */
 function production() {
+    var prodConfig = require('./webpack.prod.js');
+
     webpack(prodConfig).run(err => {
         if (err) {
             console.error(err.message, err.details);

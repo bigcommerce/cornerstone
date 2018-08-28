@@ -18,15 +18,28 @@ export default class Cart extends PageManager {
         this.bindEvents();
     }
 
-    cartUpdate($target) {
+    cartUpdate($target, preVal = null) {
         const itemId = $target.data('cartItemid');
         const $el = $(`#qty-${itemId}`);
-        const oldQty = parseInt($el.val(), 10);
+        const oldQty = preVal !== null ? preVal : parseInt($el.val(), 10);
         const maxQty = parseInt($el.data('quantityMax'), 10);
         const minQty = parseInt($el.data('quantityMin'), 10);
         const minError = $el.data('quantityMinError');
         const maxError = $el.data('quantityMaxError');
-        const newQty = $target.data('action') === 'inc' ? oldQty + 1 : oldQty - 1;
+        let qty = null;
+
+        switch ($target.data('action')) {
+        case 'inc':
+            qty = oldQty + 1;
+            break;
+        case 'dec':
+            qty = oldQty - 1;
+            break;
+        default:
+            qty = $el.attr('value');
+        }
+
+        const newQty = qty;
 
         // Does not quality for min/max quantity
         if (newQty < minQty) {
@@ -42,7 +55,6 @@ export default class Cart extends PageManager {
         }
 
         this.$overlay.show();
-
         utils.api.cart.itemUpdate(itemId, newQty, (err, response) => {
             this.$overlay.hide();
 
@@ -163,6 +175,7 @@ export default class Cart extends PageManager {
         const debounceTimeout = 400;
         const cartUpdate = _.bind(_.debounce(this.cartUpdate, debounceTimeout), this);
         const cartRemoveItem = _.bind(_.debounce(this.cartRemoveItem, debounceTimeout), this);
+        let preVal;
 
         // cart update
         $('[data-cart-update]', this.$cartContent).on('click', event => {
@@ -172,6 +185,17 @@ export default class Cart extends PageManager {
 
             // update cart quantity
             cartUpdate($target);
+        });
+
+        // cart qty manually updates
+        $('.cart-item-qty-input', this.$cartContent).on('focus', function () {
+            preVal = this.value;
+        }).change(event => {
+            const $target = $(event.currentTarget);
+            event.preventDefault();
+
+            // update cart quantity
+            cartUpdate($target, preVal);
         });
 
         $('.cart-remove', this.$cartContent).on('click', event => {

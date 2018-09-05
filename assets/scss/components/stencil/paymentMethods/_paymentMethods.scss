@@ -40,6 +40,7 @@
 //
 // 1. Redefine the font-size as we're removing white-space on the parent by
 //    reducing the size to 0.
+// 2. Adding a min-height to improve the consistency of the paymentMethod blocks.
 //
 // -----------------------------------------------------------------------------
 
@@ -50,7 +51,20 @@
     .panel-body {
         border: container("border");
         border-radius: remCalc(3px);
+        min-height: remCalc(228px); // 2
         padding: 0;
+    }
+
+    .form-actions {
+        font-size: 0;
+        margin-top: 0;
+        text-align: left;
+
+        // scss-lint:disable NestingDepth
+        .button {
+            margin-top: 0;
+        }
+        // scss-lint:enable NestingDepth
     }
 }
 
@@ -58,16 +72,17 @@
 .paymentMethod-details {
     display: flex;
     flex-flow: wrap;
-    padding: spacing("half");
-
-    @include breakpoint("large") {
-        padding: spacing("single");
-    }
+    margin-bottom: 0;
 }
 
 .paymentMethod-card {
     align-items: center;
     background: white;
+    padding: spacing("half");
+
+    @include breakpoint("large") {
+        padding: spacing("single");
+    }
 }
 
 .paymentMethod-icon {
@@ -94,6 +109,10 @@
     text-transform: capitalize;
 }
 
+.paymentMethod-details {
+    padding: spacing("single");
+}
+
 .paymentMethod-label,
 .paymentMethod-description {
     display: inline-block;
@@ -109,4 +128,50 @@
 .paymentMethod-description {
     flex: calc(100% - 100px);
     padding-left: spacing("half");
+}
+
+.paymentMethod-form {
+    padding: 0 spacing("single") spacing("half");
+
+    @include breakpoint("small") {
+        bottom: spacing("half");
+        position: absolute;
+        width: auto;
+    }
+}
+
+.panel--newPaymentMethod {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+
+    &:hover {
+        // scss-lint:disable NestingDepth
+        .paymentMethod-title {
+            color: stencilColor("color-textLink--hover");
+        }
+        // scss-lint:enable NestingDepth
+    }
+
+    .panel-body {
+        background-color: transparent;
+    }
+
+    .paymentMethod-title {
+        margin-bottom: 0;
+        text-transform: none;
+        transition: all 0.15s ease;
+    }
+}
+
+.paymentMethod-addNew {
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translateX(-50%) translateY(-55%);
+}
+
+.paymentMethod-symbol {
+    font-size: fontSize("hero");
+    line-height: 1;
 }

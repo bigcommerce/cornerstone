@@ -1,6 +1,7 @@
 # Changelog
 
-## Draft
+## Draft 
+- Fix encoding issues on Account Signup Form ("&#039;" characters showing in country name)[#1341] (https://github.com/bigcommerce/cornerstone/pull/1341)
 - Require Webpack config only when used (reduce time to be ready for receiving messages from stencil-cli). [#1334](https://github.com/bigcommerce/cornerstone/pull/1334)
 
 ## 2.3.2 (2018-08-17)

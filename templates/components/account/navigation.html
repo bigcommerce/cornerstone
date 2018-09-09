@@ -1,7 +1,13 @@
 <nav class="navBar navBar--sub navBar--account">
     <ul class="navBar-section">
         {{#if account_page '===' 'orders'}}
-            <li class="navBar-item is-active">{{lang 'account.nav.orders'}}</li>
+            {{#if page_type '===' 'account_order'}}
+                <li class="navBar-item is-active">
+                    <a class="navBar-action" href="{{urls.account.orders.all}}">{{lang 'account.nav.orders'}}</a>
+                </li>
+            {{else}}
+                <li class="navBar-item is-active">{{lang 'account.nav.orders'}}</li>
+            {{/if}}
         {{else}}
             <li class="navBar-item">
                 <a class="navBar-action" href="{{urls.account.orders.all}}">{{lang 'account.nav.orders'}}</a>

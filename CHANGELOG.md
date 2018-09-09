@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Fix broken breadcrumb schema markup [#1362](https://github.com/bigcommerce/cornerstone/pull/1362)
 
 ## 2.5.0 (2018-09-26)
 - Blueprint for Mapping Custom Templates to JavaScript Modules [#1346](https://github.com/bigcommerce/cornerstone/pull/1346)

@@ -18,29 +18,15 @@ export default class Cart extends PageManager {
         this.bindEvents();
     }
 
-    cartUpdate($target, preVal = null) {
+    cartUpdate($target) {
         const itemId = $target.data('cartItemid');
         const $el = $(`#qty-${itemId}`);
-        const oldQty = preVal !== null ? preVal : parseInt($el.val(), 10);
+        const oldQty = parseInt($el.val(), 10);
         const maxQty = parseInt($el.data('quantityMax'), 10);
         const minQty = parseInt($el.data('quantityMin'), 10);
         const minError = $el.data('quantityMinError');
         const maxError = $el.data('quantityMaxError');
-        let qty = null;
-
-        switch ($target.data('action')) {
-        case 'inc':
-            qty = oldQty + 1;
-            break;
-        case 'dec':
-            qty = oldQty - 1;
-            break;
-        default:
-            qty = $el.attr('value');
-        }
-
-        const newQty = qty;
-
+        const newQty = $target.data('action') === 'inc' ? oldQty + 1 : oldQty - 1;
         // Does not quality for min/max quantity
         if (newQty < minQty) {
             return swal({
@@ -48,6 +34,58 @@ export default class Cart extends PageManager {
                 type: 'error',
             });
         } else if (maxQty > 0 && newQty > maxQty) {
+            return swal({
+                text: maxError,
+                type: 'error',
+            });
+        }
+
+        this.$overlay.show();
+
+        utils.api.cart.itemUpdate(itemId, newQty, (err, response) => {
+            this.$overlay.hide();
+
+            if (response.data.status === 'succeed') {
+                // if the quantity is changed "1" from "0", we have to remove the row.
+                const remove = (newQty === 0);
+
+                this.refreshContent(remove);
+            } else {
+                $el.val(oldQty);
+                swal({
+                    text: response.data.errors.join('\n'),
+                    type: 'error',
+                });
+            }
+        });
+    }
+
+    cartUpdateQtyTextChange($target, preVal = null) {
+        const itemId = $target.data('cartItemid');
+        const $el = $(`#qty-${itemId}`);
+        const maxQty = parseInt($el.data('quantityMax'), 10);
+        const minQty = parseInt($el.data('quantityMin'), 10);
+        const oldQty = preVal !== null ? preVal : minQty;
+        const minError = $el.data('quantityMinError');
+        const maxError = $el.data('quantityMaxError');
+        const newQty = parseInt(Number($el.attr('value')), 10);
+        let invalidEntry;
+        // Does not quality for min/max quantity
+        if (!newQty) {
+            invalidEntry = $el.attr('value');
+            $el.val(oldQty);
+            return swal({
+                text: `${invalidEntry} is not a valid entry`,
+                type: 'error',
+            });
+        } else if (newQty < minQty) {
+            $el.val(oldQty);
+            return swal({
+                text: minError,
+                type: 'error',
+            });
+        } else if (maxQty > 0 && newQty > maxQty) {
+            $el.val(oldQty);
             return swal({
                 text: maxError,
                 type: 'error',
@@ -174,6 +212,7 @@ export default class Cart extends PageManager {
     bindCartEvents() {
         const debounceTimeout = 400;
         const cartUpdate = _.bind(_.debounce(this.cartUpdate, debounceTimeout), this);
+        const cartUpdateQtyTextChange = _.bind(_.debounce(this.cartUpdateQtyTextChange, debounceTimeout), this);
         const cartRemoveItem = _.bind(_.debounce(this.cartRemoveItem, debounceTimeout), this);
         let preVal;
 
@@ -195,7 +234,7 @@ export default class Cart extends PageManager {
             event.preventDefault();
 
             // update cart quantity
-            cartUpdate($target, preVal);
+            cartUpdateQtyTextChange($target, preVal);
         });
 
         $('.cart-remove', this.$cartContent).on('click', event => {

@@ -99,7 +99,7 @@
                                 <i class="icon" aria-hidden="true"><svg><use xlink:href="#icon-keyboard-arrow-down" /></svg></i>
                             </button>
                         {{/if}}
-                        <input class="form-input form-input--incrementTotal"
+                        <input class="form-input form-input--incrementTotal cart-item-qty-input"
                                id="qty-{{id}}"
                                name="qty-{{id}}"
                                type="tel"
@@ -110,6 +110,8 @@
                                data-quantity-max-error="{{lang 'products.quantity_max' quantity=max_purchase_quantity}}"
                                min="1"
                                pattern="[0-9]*"
+                               data-cart-itemid="{{id}}"
+                               data-action="manualQtyChange"
                                aria-live="polite"{{#unless can_modify}} disabled{{/unless}}>
                         {{# if can_modify}}
                             <button class="button button--icon" data-cart-update data-cart-itemid="{{id}}" data-action="inc">

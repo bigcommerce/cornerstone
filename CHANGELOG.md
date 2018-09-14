@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Blueprint for Mapping Custom Templates to JavaScript Modules [#1346](https://github.com/bigcommerce/cornerstone/pull/1346)
 
 ## 2.4.0 (2018-09-14)
 - Fix encoding issues on Account Signup Form ("&#039;" characters showing in country name)[#1341] (https://github.com/bigcommerce/cornerstone/pull/1341)

@@ -34,13 +34,13 @@
                             type="radio"
                             name="attribute[{{../id}}]"
                             value="{{id}}"
-                            id="attribute_productlist_{{id}}"
+                            id="attribute_productlist_{{../id}}_{{id}}"
                             {{#if selected}}
                                 checked
                                 data-default
                             {{/if}}
                             {{#if ../required}}required{{/if}}>
-                        <label data-product-attribute-value="{{id}}" class="form-label" for="attribute_productlist_{{id}}">{{label}}</label>
+                        <label data-product-attribute-value="{{id}}" class="form-label" for="attribute_productlist_{{../id}}_{{id}}">{{label}}</label>
                     </div>
                 </li>
             {{/each}}
@@ -61,10 +61,10 @@
                 type="radio"
                 name="attribute[{{../id}}]"
                 value="{{id}}"
-                id="attribute_productlist_{{id}}"
+                id="attribute_productlist_{{../id}}_{{id}}"
                 {{#if selected}}checked{{/if}}
                 {{#if ../required}}required{{/if}}>
-            <label data-product-attribute-value="{{id}}" class="form-label" for="attribute_productlist_{{id}}">{{label}}</label>
+            <label data-product-attribute-value="{{id}}" class="form-label" for="attribute_productlist_{{../id}}_{{id}}">{{label}}</label>
         {{/each}}
     {{/if}}
 </div>

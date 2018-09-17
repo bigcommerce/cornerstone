@@ -21,6 +21,7 @@ const pageClasses = {
     account_saved_return: getAccount,
     account_returns: getAccount,
     account_paymentmethods: getAccount,
+    account_editpaymentmethod: getAccount,
     login: getLogin,
     createaccount_thanks: getLogin,
     createaccount: getLogin,

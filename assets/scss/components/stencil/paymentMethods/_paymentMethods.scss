@@ -34,6 +34,11 @@
     }
 }
 
+.paymentMethodEdit {
+    @include breakpoint("small") {
+        max-width: 50%;
+    }
+}
 
 // Payment Method
 // -----------------------------------------------------------------------------
@@ -174,4 +179,34 @@
 .paymentMethod-symbol {
     font-size: fontSize("hero");
     line-height: 1;
+}
+
+// Payment Method Edit
+// -----------------------------------------------------------------------------
+
+.paymentMethodEdit-heading {
+    color: color("greys", "darker");
+    font-family: fontFamily("sans");
+    margin-top: spacing("single");
+    text-transform: capitalize;
+}
+
+.paymentMethodEdit-details {
+    margin-bottom: 0;
+
+    @include breakpoint("small") {
+        display: inline-block;
+        margin: 0 spacing("double") 0 0;
+    }
+}
+
+.paymentMethodEdit-details-term {
+    font-weight: fontWeight("normal");
+    margin-bottom: spacing("half");
+}
+
+.paymentMethodEdit-details-description {
+    font-size: fontSize("smaller");
+    font-weight: fontWeight("semibold");
+    letter-spacing: letterSpacing("large");
 }

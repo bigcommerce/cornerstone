@@ -67,6 +67,7 @@ export default class Account extends PageManager {
         }
 
         this.bindDeleteAddress();
+        this.bindDeletePaymentMethod();
     }
 
     /**
@@ -75,6 +76,16 @@ export default class Account extends PageManager {
     bindDeleteAddress() {
         $('[data-delete-address]').on('submit', event => {
             const message = $(event.currentTarget).data('deleteAddress');
+
+            if (!window.confirm(message)) {
+                event.preventDefault();
+            }
+        });
+    }
+
+    bindDeletePaymentMethod() {
+        $('[data-delete-payment-method]').on('submit', event => {
+            const message = $(event.currentTarget).data('deletePaymentMethod');
 
             if (!window.confirm(message)) {
                 event.preventDefault();

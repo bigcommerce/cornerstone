@@ -50,6 +50,8 @@ const pageClasses = {
     wishlists: () => import('./theme/wishlist'),
 };
 
+const customClasses = {};
+
 /**
  * This function gets added to the global window and then called
  * on page load with the current template loaded and JS Context passed in
@@ -59,6 +61,8 @@ const pageClasses = {
  */
 window.stencilBootstrap = function stencilBootstrap(pageType, contextJSON = null, loadGlobal = true) {
     const context = JSON.parse(contextJSON || '{}');
+    const template = context.template;
+    const templateCheck = Object.keys(customClasses).indexOf(template);
 
     return {
         load() {
@@ -73,6 +77,15 @@ window.stencilBootstrap = function stencilBootstrap(pageType, contextJSON = null
                 if (typeof pageClassImporter === 'function') {
                     const PageClass = (await pageClassImporter()).default;
                     PageClass.load(context);
+                }
+
+                if (templateCheck > -1) {
+                    // Find the appropriate page loader based on template
+                    const customClassImporter = customClasses[template];
+                    if (typeof customClassImporter === 'function') {
+                        const CustomClass = (await customClassImporter()).default;
+                        CustomClass.load(context);
+                    }
                 }
             });
         },

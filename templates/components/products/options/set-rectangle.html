@@ -10,7 +10,7 @@
         <input
             class="form-radio"
             type="radio"
-            id="attribute_rectangle_{{id}}"
+            id="attribute_rectangle__{{../id}}_{{id}}"
             name="attribute[{{../id}}]"
             value="{{id}}"
             {{#if selected}}
@@ -18,7 +18,7 @@
                 data-default
             {{/if}}
             {{#if ../required}}required{{/if}}>
-        <label class="form-option" for="attribute_rectangle_{{id}}" data-product-attribute-value="{{id}}">
+        <label class="form-option" for="attribute_rectangle__{{../id}}_{{id}}" data-product-attribute-value="{{id}}">
             <span class="form-option-variant">{{this.label}}</span>
         </label>
     {{/each}}

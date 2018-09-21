@@ -9,6 +9,7 @@
 - Fixed amp page error related to store logo [#1323](https://github.com/bigcommerce/cornerstone/pull/1323)
 - Add link to order status in account menu when viewing order [#1343](https://github.com/bigcommerce/cornerstone/pull/1343)
 - Update cart when quantity changed manually (without using the increase and decrease arrows). [#1338](https://github.com/bigcommerce/cornerstone/pull/1338)
+- Fix option set. Selection from option set that containes multiple similar options. [1347] (https://github.com/bigcommerce/cornerstone/pull/1347)
 
 ## 2.3.2 (2018-08-17)
 - Fix zoom behavior for small images in gallery (turn off zoom if image is too small). [#1325](https://github.com/bigcommerce/cornerstone/pull/1325)

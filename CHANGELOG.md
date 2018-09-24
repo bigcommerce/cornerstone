@@ -10,6 +10,7 @@
 - Stop lazyloading store logo [#1357](https://github.com/bigcommerce/cornerstone/pull/1357)
 - Update lazysizes plugin to 4.1.2 [#1358](https://github.com/bigcommerce/cornerstone/pull/1358)
 - Improve performance of first carousel slide [#1356](https://github.com/bigcommerce/cornerstone/pull/1356)
+- Add support for Paypal smart buttons settings [#1359](https://github.com/bigcommerce/cornerstone/pull/1359)
 
 ## 2.4.0 (2018-09-14)
 - Fix encoding issues on Account Signup Form ("&#039;" characters showing in country name)[#1341] (https://github.com/bigcommerce/cornerstone/pull/1341)

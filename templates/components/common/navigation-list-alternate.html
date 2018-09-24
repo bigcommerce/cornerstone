@@ -1,8 +1,8 @@
 {{#if children}}
-    <a class="navPages-action navPages-action-depth-max has-subMenu is-root" href="{{url}}" data-collapsible="navPages-{{id}}">
+    <a class="navPages-action navPages-action-depth-max has-subMenu is-root{{#if is_active}} activePage{{/if}}" href="{{url}}" data-collapsible="navPages-{{id}}">
         {{name}} <i class="icon navPages-action-moreIcon" aria-hidden="true"><svg><use xlink:href="#icon-chevron-down" /></svg></i>
     </a>
     {{> components/common/navigation-dropdown}}
 {{else}}
-    <a class="navPages-action" href="{{url}}">{{name}}</a>
+    <a class="navPages-action{{#if is_active}} activePage{{/if}}" href="{{url}}">{{name}}</a>
 {{/if}}

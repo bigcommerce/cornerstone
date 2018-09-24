@@ -10,8 +10,8 @@
     {{#each carousel.slides}}
     <a href="{{url}}">
         <div class="heroCarousel-slide {{#if ../theme_settings.homepage_stretch_carousel_images}}stretch{{/if}} {{#if @first}}heroCarousel-slide--first{{/if}}">
-            <div class="heroCarousel-image-wrapper" {{#if image_height}}{{#if image_width}}style="height: {{multiply (divide image_height image_width) 100}}vw"{{/if}}{{/if}}>
-                <img class="heroCarousel-image" data-lazy="{{image}}" alt="{{alt_text}}" title="{{alt_text}}"
+            <div class="heroCarousel-image-wrapper" {{#and image_height image_width}}style="height: {{multiply (divide image_height image_width) 100}}vw"{{/and}}>
+            <img class="heroCarousel-image" {{#if @first}}src{{else}}data-lazy{{/if}}="{{image}}" alt="{{alt_text}}" title="{{alt_text}}"
                 {{#if image_width}}width="{{image_width}}"{{/if}} {{#if image_height}}height="{{image_height}}"{{/if}} />
             </div>
             {{#if heading}}

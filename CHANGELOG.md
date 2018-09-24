@@ -6,6 +6,7 @@
 - Cornerstone schema updates and organization [#1350](https://github.com/bigcommerce/cornerstone/pull/1350)
 - Add div and id attributes so that contact form steps can be tracked [#1317](https://github.com/bigcommerce/cornerstone/pull/1317)
 - Added "activePage" as a active class in navigation menus and web pages. [#1354](https://github.com/bigcommerce/cornerstone/pull/1354)
+- Added hidden field for checkboxes with a "No" value. [#1355](https://github.com/bigcommerce/cornerstone/pull/1355)
 
 ## 2.4.0 (2018-09-14)
 - Fix encoding issues on Account Signup Form ("&#039;" characters showing in country name)[#1341] (https://github.com/bigcommerce/cornerstone/pull/1341)

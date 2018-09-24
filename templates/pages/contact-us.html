@@ -16,9 +16,9 @@
         </nav>
     {{/if}}
 
-    <div class="page-content page-content--centered">
+    <div id="contact-us-page" class="page-content page-content--centered">
         {{#if forms.contact.success}}
-            {{{lang 'forms.contact_us.successful' shopPath=urls.home}}}
+            <div id="contact-us-success">{{{lang 'forms.contact_us.successful' shopPath=urls.home}}}</div>
         {{else}}
             <p>{{{page.content}}}</p>
             {{> components/page/contact-us-form}}

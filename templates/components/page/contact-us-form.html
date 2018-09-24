@@ -2,7 +2,7 @@
     {{inject 'contactEmail' (lang 'forms.validate.contact.email_address')}}
     {{inject 'contactQuestion' (lang 'forms.validate.contact.question')}}
     {{#if forms.contact.error}}
-        {{> components/common/alert-error forms.contact.error}}
+    <div id="contact-us-error">{{> components/common/alert-error forms.contact.error}}</div>
     {{/if}}
     <input type="hidden" name="page_id" id="page_id" value="{{forms.contact.page_id}}">
     <div class="form-row form-row--half">

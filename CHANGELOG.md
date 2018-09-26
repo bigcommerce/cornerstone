@@ -1,6 +1,8 @@
 # Changelog
 
 ## Draft
+
+## 2.5.0 (2018-09-26)
 - Blueprint for Mapping Custom Templates to JavaScript Modules [#1346](https://github.com/bigcommerce/cornerstone/pull/1346)
 - Fix carousel dots overlapping thumbnails on Product page. [#1351](https://github.com/bigcommerce/cornerstone/pull/1351)
 - Cornerstone schema updates and organization [#1350](https://github.com/bigcommerce/cornerstone/pull/1350)

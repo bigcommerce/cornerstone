@@ -364,7 +364,7 @@
         "type": "select",
         "id": "product_list_display_mode",
         "force_reload": true,
-        "label": "Display style",
+        "label": "Display Style",
         "options": [
           {
             "value": "grid",
@@ -878,7 +878,7 @@
       },
       {
         "type": "select",
-        "label": "Seal size",
+        "label": "Seal Size",
         "id": "geotrust_ssl_seal_size",
         "options": [
           {
@@ -903,7 +903,7 @@
       },
       {
         "type": "checkbox",
-        "label": "Show carousel",
+        "label": "Show Carousel",
         "force_reload": true,
         "id": "homepage_show_carousel"
       },
@@ -964,7 +964,7 @@
       },
       {
         "type": "select",
-        "label": "Number of featured products",
+        "label": "Number of Featured Products",
         "id": "homepage_featured_products_count",
         "force_reload": true,
         "options": [
@@ -1024,7 +1024,7 @@
       },
       {
         "type": "select",
-        "label": "Number of most popular products",
+        "label": "Number of Most Popular Products",
         "id": "homepage_top_products_count",
         "force_reload": true,
         "options": [
@@ -1084,7 +1084,7 @@
       },
       {
         "type": "select",
-        "label": "Number of new products",
+        "label": "Number of New Products",
         "id": "homepage_new_products_count",
         "force_reload": true,
         "options": [
@@ -1281,6 +1281,11 @@
          "id": "show_product_reviews_tabs"
       },
       {
+        "type": "color",
+        "label": "Wishlist dropdown background",
+        "id": "dropdown--wishList-backgroundColor"
+      },
+      {
         "type": "select",
         "label": "Number of product reviews",
         "id": "productpage_reviews_count",
@@ -1337,11 +1342,6 @@
             "label": "12"
           }
         ]
-      },
-      {
-        "type": "color",
-        "label": "Wishlist dropdown background",
-        "id": "dropdown--wishList-backgroundColor"
       },
       {
         "type": "heading",
@@ -1919,6 +1919,13 @@
         "id": "optimizedCheckout-show-backgroundImage"
       },
       {
+        "type": "color",
+        "label": "Background color",
+        "reference": "optimizedCheckout-show-backgroundImage",
+        "reference_default": false,
+        "id": "optimizedCheckout-header-backgroundColor"
+      },
+      {
         "type": "optimizedCheckout-image",
         "label": "1000 x 400px recommended",
         "reference": "optimizedCheckout-show-backgroundImage",
@@ -1942,11 +1949,6 @@
             "label": "Specify dimensions"
           }
         ]
-      },
-      {
-        "type": "color",
-        "label": "Background color",
-        "id": "optimizedCheckout-header-backgroundColor"
       },
       {
         "type": "color",
@@ -2025,7 +2027,7 @@
       },
       {
         "type": "heading",
-        "content": "Discount banner"
+        "content": "Discount Banner"
       },
       {
         "type": "color",
@@ -2184,7 +2186,7 @@
       },
       {
         "type": "color",
-        "label": "Focus color",
+        "label": "Focus Color",
         "id": "optimizedCheckout-colorFocus"
       },
       {
@@ -2580,11 +2582,11 @@
       },
       {
         "type": "heading",
-        "content": "Form checklist"
+        "content": "Form Checklist"
       },
       {
         "type": "color",
-        "label": "Background color",
+        "label": "Background Color",
         "id": "optimizedCheckout-formChecklist-backgroundColor"
       },
       {
@@ -2604,7 +2606,7 @@
       },
       {
         "type": "heading",
-        "content": "Loading toaster"
+        "content": "Loading Toaster"
       },
       {
         "type": "color",
@@ -2623,20 +2625,24 @@
       "enable": "smartButtons",
       "settings": [
           {
-            "type": "checkbox",
-            "label": "Show Paypal tagline",
-            "force_reload": true,
-            "id": "paymentbuttons-paypal-tagline"
-          },
-          {
-            "type": "checkbox",
-            "label": "Show funding icons",
-            "force_reload": true,
-            "id": "paymentbuttons-paypal-fundingicons"
+              "type": "select",
+              "label": "Layout",
+              "id": "paymentbuttons-paypal-layout",
+              "force_reload": true,
+              "options": [
+                {
+                  "value": "horizontal",
+                  "label": "Horizontal"
+                },
+                {
+                  "value": "vertical",
+                  "label": "Vertical"
+                }
+              ]
           },
           {
               "type": "select",
-              "label": "Button color",
+              "label": "Color",
               "id": "paymentbuttons-paypal-color",
               "force_reload": true,
               "options": [
@@ -2660,7 +2666,7 @@
           },
           {
               "type": "select",
-              "label": "Button shape",
+              "label": "Shape",
               "id": "paymentbuttons-paypal-shape",
               "force_reload": true,
               "options": [
@@ -2676,7 +2682,7 @@
           },
           {
               "type": "select",
-              "label": "Button size",
+              "label": "Size",
               "id": "paymentbuttons-paypal-size",
               "force_reload": true,
               "options": [
@@ -2700,7 +2706,7 @@
           },
           {
               "type": "select",
-              "label": "Button content",
+              "label": "Display Label",
               "id": "paymentbuttons-paypal-label",
               "force_reload": true,
               "options": [
@@ -2723,20 +2729,16 @@
               ]
           },
           {
-            "type": "select",
-            "label": "Display style",
-            "id": "paymentbuttons-paypal-layout",
-            "force_reload": true,
-            "options": [
-              {
-                "value": "horizontal",
-                "label": "Show buttons horizontally"
-              },
-              {
-                "value": "vertical",
-                "label": "Show buttons vertically"
-              }
-            ]
+              "type": "checkbox",
+              "label": "Display the Paypal Tagline",
+              "force_reload": true,
+              "id": "paymentbuttons-paypal-tagline"
+          },
+          {
+              "type": "checkbox",
+              "label": "Display the Funding Icons",
+              "force_reload": true,
+              "id": "paymentbuttons-paypal-fundingicons"
           }
       ]
   }

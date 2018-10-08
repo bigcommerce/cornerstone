@@ -2,8 +2,9 @@
     {{#each breadcrumbs}}
         <li class="breadcrumb {{#if @last}}is-active{{/if}}" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
             {{#if url}}
-                <a href="{{url}}" class="breadcrumb-label" itemprop="item">{{name}}</a>
+                <a href="{{url}}" class="breadcrumb-label" itemprop="item"><span itemprop="name">{{name}}</span></a>
             {{else}}
+                <meta itemprop="item" content="{{url}}">
                 <span class="breadcrumb-label" itemprop="name">{{name}}</span>
             {{/if}}
             <meta itemprop="position" content="{{@index}}" />

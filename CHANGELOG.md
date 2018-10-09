@@ -3,6 +3,7 @@
 ## Draft
 - Fix broken breadcrumb schema markup [#1362](https://github.com/bigcommerce/cornerstone/pull/1362)
 - Add option to disable arrows on the homepage carousel [#1293](https://github.com/bigcommerce/cornerstone/pull/1293)
+- Fix spacing with SweetAlert cancel button on mobile [#1363](https://github.com/bigcommerce/cornerstone/pull/1363)
 
 ## 2.5.0 (2018-09-26)
 - Blueprint for Mapping Custom Templates to JavaScript Modules [#1346](https://github.com/bigcommerce/cornerstone/pull/1346)

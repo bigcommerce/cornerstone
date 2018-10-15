@@ -2,6 +2,7 @@
 
 ## Draft
 - Product review modal error message is now accurate. [#1370](https://github.com/bigcommerce/cornerstone/pull/1370)
+- Fixes issue with Slick slider for mobile safari in iframe [#1371](https://github.com/bigcommerce/cornerstone/pull/1371)
 
 ## 2.5.1 (2018-10-10)
 - Fix broken breadcrumb schema markup [#1362](https://github.com/bigcommerce/cornerstone/pull/1362)

@@ -6,7 +6,8 @@
 // -----------------------------------------------------------------------------
 //
 // 1. Using display: inline-block; to vertically align blocks.
-//    Font-size gets redefined under the .paymentMethod block.
+//    Font-size gets redefined under the .paymentMethod and
+//    .paymentMethodForm block.
 //
 // -----------------------------------------------------------------------------
 
@@ -34,9 +35,35 @@
     }
 }
 
-.paymentMethodEdit {
+.paymentMethodForm {
+    font-size: 0; // 1
+
+    .paymentMethodForm-column:last-child .paymentMethodForm-inputs {
+        display: inline-block;
+        vertical-align: top;
+        width: 50%;
+
+        &:first-child {
+            padding-right: spacing("half");
+        }
+
+        &:last-child {
+            padding-left: spacing("half");
+        }
+    }
+
     @include breakpoint("small") {
-        max-width: 50%;
+        max-width: 60%;
+
+        .paymentMethodForm-column:last-child .paymentMethodForm-inputs:first-child,
+        .paymentMethodForm-column:last-child .paymentMethodForm-inputs:last-child {
+            padding: 0 0 0 spacing("single");
+            width: auto;
+        }
+
+        .paymentMethodForm-column .form-field:first-child {
+            margin-bottom: spacing("half");
+        }
     }
 }
 
@@ -181,17 +208,70 @@
     line-height: 1;
 }
 
-// Payment Method Edit
+// Payment Method Form - Add / Edit
+// -----------------------------------------------------------------------------
+//
+// 1. Redefine the font-size as we're removing white-space on the parent by
+//    reducing the size to 0.
+//
 // -----------------------------------------------------------------------------
 
-.paymentMethodEdit-heading {
+.paymentMethodForm-heading {
     color: color("greys", "darker");
     font-family: fontFamily("sans");
     margin-top: spacing("single");
     text-transform: capitalize;
 }
 
-.paymentMethodEdit-details {
+.paymentMethodForm-subheading {
+    display: flex;
+    font-weight: fontWeight("semibold");
+}
+
+.paymentMethodForm-cards {
+    @include breakpoint("small") {
+        margin-left: auto;
+    }
+}
+
+.paymentMethodForm-cards-icon {
+    margin-right: spacing("eighth");
+    width: remCalc(34px);
+}
+
+.paymentMethodForm-column {
+    @include breakpoint("small") {
+        display: inline-block;
+        vertical-align: top;
+
+        &:first-child {
+            width: calc(70%);
+        }
+
+        &:last-child {
+            width: calc(30%);
+        }
+    }
+}
+
+.paymentMethodForm-inputs {
+    font-size: fontSize("base"); // 1
+    position: relative;
+}
+
+.paymentMethodForm-inputs-icon {
+    position: absolute;
+    right: remCalc(9px);
+    top: remCalc(39px);
+
+    &.icon {
+        fill: color("greys", "light");
+        height: spacing("single");
+        width: spacing("single");
+    }
+}
+
+.paymentMethodForm-details {
     margin-bottom: 0;
 
     @include breakpoint("small") {
@@ -200,12 +280,12 @@
     }
 }
 
-.paymentMethodEdit-details-term {
+.paymentMethodForm-details-term {
     font-weight: fontWeight("normal");
     margin-bottom: spacing("half");
 }
 
-.paymentMethodEdit-details-description {
+.paymentMethodForm-details-description {
     font-size: fontSize("smaller");
     font-weight: fontWeight("semibold");
     letter-spacing: letterSpacing("large");

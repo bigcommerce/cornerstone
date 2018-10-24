@@ -1,6 +1,8 @@
 # Changelog
 
 ## Draft
+
+## 2.5.2 (2018-10-24)
 - Product review modal error message is now accurate. [#1370](https://github.com/bigcommerce/cornerstone/pull/1370)
 - Fixes issue with Slick slider for mobile safari in iframe [#1371](https://github.com/bigcommerce/cornerstone/pull/1371)
 

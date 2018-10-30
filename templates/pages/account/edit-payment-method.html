@@ -8,29 +8,27 @@
 
     <div class="account account--fixed">
 
-        {{#if forms.payment_methods.error}}
-            {{> components/common/alert-error forms.payment_methods.error}}
+        {{#if customer.payment_methods.selected_payment_method.forms.error}}
+            {{> components/common/alert-error customer.payment_methods.selected_payment_method.forms.error}}
         {{/if}}
 
         <form action="{{customer.payment_methods.selected_payment_method.forms.action}}" data-address-form class="form" method="post">
-            <h3 class="paymentMethodEdit-heading">{{lang 'account.payment_methods.payment_method'}}</h3>
+            <input type="hidden" name="bigpay_token" value="{{customer.payment_methods.selected_payment_method.bigpay_token}}">
 
-            <div class="paymentMethodEdit">
-                <dl class="paymentMethodEdit-details">
-                    <dt class="paymentMethodEdit-details-term">{{lang 'account.payment_methods.credit_card_number'}}</dt>
-                    <dd class="paymentMethodEdit-details-description">**** **** **** {{customer.payment_methods.selected_payment_method.last_4}}</dd>
+            <h3 class="paymentMethodForm-heading">{{lang 'account.payment_methods.payment_method'}}</h3>
+
+            <div class="paymentMethodForm">
+                <dl class="paymentMethodForm-details">
+                    <dt class="paymentMethodForm-details-term">{{lang 'account.payment_methods.credit_card_number'}}</dt>
+                    <dd class="paymentMethodForm-details-description">**** **** **** {{customer.payment_methods.selected_payment_method.last_4}}</dd>
                 </dl>
-                <dl class="paymentMethodEdit-details">
-                    <dt class="paymentMethodEdit-details-term">{{lang 'account.payment_methods.expiration'}}</dt>
-                    <dd class="paymentMethodEdit-details-description">{{customer.payment_methods.selected_payment_method.expiry_month}}/{{customer.payment_methods.selected_payment_method.expiry_year}}</dd>
+                <dl class="paymentMethodForm-details">
+                    <dt class="paymentMethodForm-details-term">{{lang 'account.payment_methods.expiration'}}</dt>
+                    <dd class="paymentMethodForm-details-description">{{customer.payment_methods.selected_payment_method.expiry_month}}/{{customer.payment_methods.selected_payment_method.expiry_year}}</dd>
                 </dl>
             </div>
 
-            <h3 class="paymentMethodEdit-heading">{{lang 'account.payment_methods.billing_address'}}</h3>
-
-            {{#if customer.payment_methods.selected_payment_method.bigpay_token}}
-                <input type="hidden" name="bigpay_token" value="{{customer.payment_methods.selected_payment_method.bigpay_token}}">
-            {{/if}}
+            <h3 class="paymentMethodForm-heading">{{lang 'account.payment_methods.billing_address'}}</h3>
 
             <fieldset class="form-fieldset">
                 <div class="form-row form-row--half">

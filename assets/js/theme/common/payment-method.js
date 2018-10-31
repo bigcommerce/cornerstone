@@ -47,6 +47,7 @@ export const storeInstrument = ({
     expiration,
     name_on_card,
     cvv,
+    default_instrument,
 
     // Billing Address
     address1,
@@ -97,7 +98,7 @@ export const storeInstrument = ({
                 phone,
             }),
             provider_id,
-            default_instrument: true,
+            default_instrument,
         }),
     })
         .done(done)

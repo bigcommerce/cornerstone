@@ -21,6 +21,11 @@
                                 <span class="paymentMethod-brand">{{lang 'account.payment_methods.card_types.credit_card'}} {{lang 'account.payment_methods.card_ending_in' last_four=last_4}}</span>
                             {{/if}}
                             <span class="paymentMethod-expiry">{{lang 'account.payment_methods.card_expiry' month=expiry_month year=expiry_year}}</span>
+                            {{#if default_instrument}}
+                                <svg class="paymentMethod-default icon">
+                                    <use xlink:href="#icon-star" />
+                                </svg>
+                            {{/if}}
                         </div>
                         <dl class="paymentMethod-details">
                             <dt class="paymentMethod-label">{{lang 'account.payment_methods.billing_address'}}:</dt>

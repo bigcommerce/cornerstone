@@ -6,8 +6,7 @@
 // -----------------------------------------------------------------------------
 //
 // 1. Using display: inline-block; to vertically align blocks.
-//    Font-size gets redefined under the .paymentMethod and
-//    .paymentMethodForm block.
+//    Font-size gets redefined under the .paymentMethod
 //
 // -----------------------------------------------------------------------------
 
@@ -36,32 +35,23 @@
 }
 
 .paymentMethodForm {
-    font-size: 0; // 1
-
-    .paymentMethodForm-column:last-child .paymentMethodForm-inputs {
-        display: inline-block;
-        vertical-align: top;
-        width: 50%;
-
-        &:first-child {
-            padding-right: spacing("half");
-        }
-
-        &:last-child {
-            padding-left: spacing("half");
-        }
-    }
-
     @include breakpoint("small") {
         max-width: 60%;
 
-        .paymentMethodForm-column:last-child .paymentMethodForm-inputs:first-child,
-        .paymentMethodForm-column:last-child .paymentMethodForm-inputs:last-child {
-            padding: 0 0 0 spacing("single");
-            width: auto;
+        .paymentMethodForm-column {
+            display: flex;
+
+            .paymentMethodForm-inputs:first-child {
+                width: 70%;
+            }
+
+            .paymentMethodForm-inputs:last-child {
+                padding-left: spacing("single");
+                width: 30%;
+            }
         }
 
-        .paymentMethodForm-column .form-field:first-child {
+        .paymentMethodForm-column:first-child .form-field {
             margin-bottom: spacing("half");
         }
     }
@@ -132,6 +122,21 @@
 
     @include breakpoint("large") {
         font-size: fontSize("base");
+    }
+}
+
+.paymentMethod-default {
+    margin-left: spacing("half");
+
+    &.icon {
+        fill: color("greys", "dark");
+        height: remCalc(18px);
+        width: remCalc(18px);
+
+        @include breakpoint("large") {
+            height: remCalc(20px);
+            width: remCalc(20px);
+        }
     }
 }
 
@@ -210,11 +215,6 @@
 
 // Payment Method Form - Add / Edit
 // -----------------------------------------------------------------------------
-//
-// 1. Redefine the font-size as we're removing white-space on the parent by
-//    reducing the size to 0.
-//
-// -----------------------------------------------------------------------------
 
 .paymentMethodForm-heading {
     color: color("greys", "darker");
@@ -239,23 +239,7 @@
     width: remCalc(34px);
 }
 
-.paymentMethodForm-column {
-    @include breakpoint("small") {
-        display: inline-block;
-        vertical-align: top;
-
-        &:first-child {
-            width: calc(70%);
-        }
-
-        &:last-child {
-            width: calc(30%);
-        }
-    }
-}
-
 .paymentMethodForm-inputs {
-    font-size: fontSize("base"); // 1
     position: relative;
 }
 
@@ -266,8 +250,8 @@
 
     &.icon {
         fill: color("greys", "light");
-        height: spacing("single");
-        width: spacing("single");
+        height: remCalc(21px);
+        width: remCalc(21px);
     }
 }
 

@@ -13,7 +13,7 @@ blog:
     <h1 class="page-heading">{{ blog.name }}</h1>
 
     {{#each blog.posts}}
-        {{> components/blog/post post=this settings=../settings}}
+        {{> components/blog/post post=this}}
     {{/each}}
 
     {{> components/common/paginator pagination.blog}}

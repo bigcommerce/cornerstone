@@ -1,8 +1,12 @@
 {{#if banners.top}}
 <div class="banners" data-banner-location="top">
-    <div class="banner">
-        {{{limit banners.top 1}}}
+    {{#each (limit banners.top_metadata 1)}}
+    <div class="banner" data-event-type="promotion" data-entity-id="{{this.id}}" data-name="{{this.banner-name}}" data-position="{{this.location}}" data-banner-id="{{this.banner-name}}">
+        <div data-event-type="promotion-click">
+            {{{this.content}}}
+        </div>
     </div>
+    {{/each}}
 </div>
 {{/if}}
 <header class="header" role="banner">

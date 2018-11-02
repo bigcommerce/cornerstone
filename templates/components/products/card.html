@@ -1,4 +1,4 @@
-<article class="card {{#if alternate}}card--alternate{{/if}}">
+<article class="card {{#if alternate}}card--alternate{{/if}}" {{#if settings.data_tag_enabled}} data-event-type="{{event}}" data-entity-id="{{id}}" data-position="{{position}}" data-name="{{name}}" data-product-category="{{#each category}}{{#if @last}}{{this}}{{else}}{{this}}, {{/if}}{{/each}}" data-product-brand="{{brand.name}}" data-product-price="{{#if price.with_tax}}{{price.with_tax.value}}{{else}}{{price.without_tax.value}}{{/if}}"  {{/if}}>
     <figure class="card-figure">
         {{#or price.non_sale_price_with_tax price.non_sale_price_without_tax}}
             {{#if theme_settings.product_sale_badges '===' 'sash'}}
@@ -21,7 +21,7 @@
                 <img class="card-image lazyload" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{getImage image 'productgallery_size' (cdn theme_settings.default_image_product)}}" alt="{{image.alt}}" title="{{image.alt}}">
             </div>
         {{else}}
-            <a href="{{url}}">
+            <a href="{{url}}" {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}}>
                 <div class="card-img-container">
                     <img class="card-image lazyload" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{getImage image 'productgallery_size' (cdn theme_settings.default_image_product)}}" alt="{{image.alt}}" title="{{image.alt}}">
                 </div>
@@ -32,7 +32,11 @@
                 {{#unless hide_product_quick_view}}
                     {{#if theme_settings.show_product_quick_view}}
                         {{#unless demo}}
-                            <a href="#" class="button button--small card-figcaption-button quickview" data-product-id="{{id}}">{{lang 'products.quick_view'}}</a>
+                            {{#if settings.data_tag_enabled}}
+                                <a href="#" class="button button--small card-figcaption-button quickview" data-event-type="product-click" data-product-id="{{id}}">{{lang 'products.quick_view'}}</a>
+                            {{else}}
+                                <a href="#" class="button button--small card-figcaption-button quickview" data-product-id="{{id}}">{{lang 'products.quick_view'}}</a>
+                            {{/if}}
                         {{/unless}}
                     {{/if}}
                 {{/unless}}
@@ -44,16 +48,16 @@
                 {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
                     {{#if show_cart_action}}
                         {{#if has_options}}
-                            <a href="{{url}}" class="button button--small card-figcaption-button" data-product-id="{{id}}">{{lang 'products.choose_options'}}</a>
+                            <a href="{{url}}" data-event-type="product-click" class="button button--small card-figcaption-button" data-product-id="{{id}}">{{lang 'products.choose_options'}}</a>
                         {{/if}}
                         {{#if pre_order}}
-                            <a href="{{pre_order_add_to_cart_url}}" class="button button--small card-figcaption-button">{{lang 'products.pre_order'}}</a>
+                            <a href="{{pre_order_add_to_cart_url}}" data-event-type="product-click" class="button button--small card-figcaption-button">{{lang 'products.pre_order'}}</a>
                         {{/if}}
                         {{#if add_to_cart_url }}
-                            <a href="{{add_to_cart_url}}" class="button button--small card-figcaption-button">{{lang 'products.add_to_cart'}}</a>
+                            <a href="{{add_to_cart_url}}" data-event-type="product-click" class="button button--small card-figcaption-button">{{lang 'products.add_to_cart'}}</a>
                         {{/if}}
                         {{#if out_of_stock_message }}
-                            <a href="{{url}}" class="button button--small card-figcaption-button" data-product-id="{{id}}">{{out_of_stock_message}}</a>
+                            <a href="{{url}}" data-event-type="product-click" class="button button--small card-figcaption-button" data-product-id="{{id}}">{{out_of_stock_message}}</a>
                         {{/if}}
                     {{/if}}
                 {{/or}}
@@ -75,7 +79,7 @@
             {{#if demo}}
                 {{name}}
             {{else}}
-                <a href="{{url}}">{{name}}</a>
+                <a href="{{url}}" {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}}>{{name}}</a>
             {{/if}}
         </h4>
 

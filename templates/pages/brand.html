@@ -29,7 +29,7 @@ brand:
 
     <main class="page-content" id="product-listing-container">
         {{#if brand.products}}
-            {{> components/brand/product-listing}}
+            {{> components/brand/product-listing settings=../settings}}
         {{else}}
             <p>{{lang 'brands.no_products'}}</p>
         {{/if}}

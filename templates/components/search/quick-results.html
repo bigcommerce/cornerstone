@@ -2,11 +2,12 @@
     <a class="modal-close" aria-label="{{lang 'common.close'}}" data-drop-down-close role="button">
         <span aria-hidden="true">&#215;</span>
     </a>
-    <ul class="productGrid">
+    <ul class="productGrid" {{#if settings.data_tag_enabled}} data-list-name="Quick Search Results" {{/if}}>
 
         {{#each product_results.products}}
         <li class="product">
-            {{> components/products/card alternate=true show_compare=../show_compare theme_settings=../theme_settings customer=../customer}}
+                {{> components/products/card settings=../settings alternate=true show_compare=../show_compare theme_settings=../theme_settings customer=../customer event="list" position=(add @index 1)}}
+
         </li>
         {{/each}}
     </ul>

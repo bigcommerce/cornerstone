@@ -1,0 +1,56 @@
+{{#unless customer.payment_methods}}
+    {{> components/common/alert-info (lang 'account.payment_methods.no_methods')}}
+{{/unless}}
+
+<ul class="paymentMethodList">
+    {{#each customer.payment_methods}}
+        {{#if @key '!==' 'selected_payment_method'}}
+            <h4 class="paymentMethodName">{{display_name}}</h4>
+            {{#each methods}}
+            <li class="paymentMethod">
+                <div class="panel panel--paymentMethod">
+                    <div class="panel-body">
+                        <div class="paymentMethod-card">
+                            {{#if brand}}
+                                {{#inArray ../../../../theme_settings.supported_card_type_icons brand}}
+                                    <img class="paymentMethod-icon" src="{{cdn (concat (concat 'img/payment-methods/' brand) '.svg')}}" alt="{{lang (concat 'account.payment_methods.card_types.' brand)}}" title="{{lang (concat 'account.payment_methods.card_types.' brand)}}">
+                                {{/inArray}}
+                                <span class="paymentMethod-brand">{{lang (concat 'account.payment_methods.card_types.' brand)}} {{lang 'account.payment_methods.card_ending_in' last_four=last_4}}</span>
+                            {{else}}
+                                <img class="paymentMethod-icon" src="{{cdn 'img/payment-methods/card.svg'}}" alt="{{lang 'account.payment_methods.card_types.credit_card'}}" title="{{lang 'account.payment_methods.card_types.credit_card'}}">
+                                <span class="paymentMethod-brand">{{lang 'account.payment_methods.card_types.credit_card'}} {{lang 'account.payment_methods.card_ending_in' last_four=last_4}}</span>
+                            {{/if}}
+                            <span class="paymentMethod-expiry">{{lang 'account.payment_methods.card_expiry' month=expiry_month year=expiry_year}}</span>
+                            {{#if default_instrument}}
+                                <svg class="paymentMethod-default icon">
+                                    <use xlink:href="#icon-star" />
+                                </svg>
+                            {{/if}}
+                        </div>
+                        <dl class="paymentMethod-details">
+                            <dt class="paymentMethod-label">{{lang 'account.payment_methods.billing_address'}}:</dt>
+                            <dd class="paymentMethod-description">{{billing_address.address_line_1}}, {{billing_address.address_line_2}}, {{billing_address.city}}, {{billing_address.state}}, {{billing_address.postal_code}}, {{billing_address.country_name}}</dd>
+                        </dl>
+                        <form class="paymentMethod-form" action="{{delete_url}}" method="post" data-delete-payment-method="{{lang 'forms.payment_methods.confirm_delete'}}">
+                            <div class="form-actions">
+                                <a class="button button--primary button--small" href="{{edit_url}}">{{lang 'common.edit' }}</a>
+                                <button type="submit" class="button button--small">{{lang 'common.delete' }}</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </li>
+            {{/each}}
+            <li class="paymentMethod">
+                <a class="panel panel--paymentMethod panel--newPaymentMethod" href="{{add_url}}">
+                    <div class="panel-body">
+                        <span class="paymentMethod-addNew">
+                            <span class="paymentMethod-symbol">&plus;</span>
+                            <h5 class="paymentMethod-title">{{lang 'account.payment_methods.new_payment_method' }}</h5>
+                        </span>
+                    </div>
+                </a>
+            </li>
+        {{/if}}
+    {{/each}}
+</ul>

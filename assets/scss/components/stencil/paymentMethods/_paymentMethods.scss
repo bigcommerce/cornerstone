@@ -1,0 +1,276 @@
+// =============================================================================
+// PAYMENT METHODS (CSS)
+// =============================================================================
+
+// Payment Methods layout
+// -----------------------------------------------------------------------------
+//
+// 1. Using display: inline-block; to vertically align blocks.
+//    Font-size gets redefined under the .paymentMethod
+//
+// -----------------------------------------------------------------------------
+
+.paymentMethodList {
+    font-size: 0; // 1
+    list-style: none;
+    margin-left: -(spacing("half"));
+    margin-right: -(spacing("half"));
+}
+
+.paymentMethodName {
+    margin-top: 0;
+    padding: 0 spacing("half");
+    text-transform: none;
+}
+
+.paymentMethod {
+    display: inline-block;
+    padding: 0 spacing("half");
+    vertical-align: top;
+    width: 100%;
+
+    @include breakpoint("small") {
+        width: grid-calc(6, $total-columns);
+    }
+}
+
+.paymentMethodForm {
+    @include breakpoint("small") {
+        max-width: 60%;
+
+        .paymentMethodForm-column {
+            display: flex;
+
+            .paymentMethodForm-inputs:first-child {
+                width: 70%;
+            }
+
+            .paymentMethodForm-inputs:last-child {
+                padding-left: spacing("single");
+                width: 30%;
+            }
+        }
+
+        .paymentMethodForm-column:first-child .form-field {
+            margin-bottom: spacing("half");
+        }
+    }
+}
+
+// Payment Method
+// -----------------------------------------------------------------------------
+//
+// 1. Redefine the font-size as we're removing white-space on the parent by
+//    reducing the size to 0.
+// 2. Adding a min-height to improve the consistency of the paymentMethod blocks.
+//
+// -----------------------------------------------------------------------------
+
+.panel--paymentMethod {
+    font-size: fontSize("base"); // 1
+    position: relative;
+
+    .panel-body {
+        border: container("border");
+        border-radius: remCalc(3px);
+        min-height: remCalc(228px); // 2
+        padding: 0;
+    }
+
+    .form-actions {
+        font-size: 0;
+        margin-top: 0;
+        text-align: left;
+
+        // scss-lint:disable NestingDepth
+        .button {
+            margin-top: 0;
+        }
+        // scss-lint:enable NestingDepth
+    }
+}
+
+.paymentMethod-card,
+.paymentMethod-details {
+    display: flex;
+    flex-flow: wrap;
+    margin-bottom: 0;
+}
+
+.paymentMethod-card {
+    align-items: center;
+    background: white;
+    padding: spacing("half");
+
+    @include breakpoint("large") {
+        padding: spacing("single");
+    }
+}
+
+.paymentMethod-icon {
+    margin-right: spacing("half");
+    width: remCalc(28px);
+
+    @include breakpoint("large") {
+        width: remCalc(42px);
+    }
+}
+
+.paymentMethod-brand {
+    font-size: fontSize("smallest");
+    font-weight: fontWeight("semibold");
+
+    @include breakpoint("large") {
+        font-size: fontSize("base");
+    }
+}
+
+.paymentMethod-default {
+    margin-left: spacing("half");
+
+    &.icon {
+        fill: color("greys", "dark");
+        height: remCalc(18px);
+        width: remCalc(18px);
+
+        @include breakpoint("large") {
+            height: remCalc(20px);
+            width: remCalc(20px);
+        }
+    }
+}
+
+.paymentMethod-expiry {
+    font-size: fontSize("smaller");
+    margin-left: auto;
+    text-transform: capitalize;
+}
+
+.paymentMethod-details {
+    padding: spacing("single");
+}
+
+.paymentMethod-label,
+.paymentMethod-description {
+    display: inline-block;
+    font-size: fontSize("smallest");
+    margin-bottom: spacing("half");
+}
+
+.paymentMethod-label {
+    flex: remCalc(100px);
+    font-weight: fontWeight("semibold");
+}
+
+.paymentMethod-description {
+    flex: calc(100% - 100px);
+    padding-left: spacing("half");
+}
+
+.paymentMethod-form {
+    padding: 0 spacing("single") spacing("half");
+
+    @include breakpoint("small") {
+        bottom: spacing("half");
+        position: absolute;
+        width: auto;
+    }
+}
+
+.panel--newPaymentMethod {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+
+    &:hover {
+        // scss-lint:disable NestingDepth
+        .paymentMethod-title {
+            color: stencilColor("color-textLink--hover");
+        }
+        // scss-lint:enable NestingDepth
+    }
+
+    .panel-body {
+        background-color: transparent;
+    }
+
+    .paymentMethod-title {
+        margin-bottom: 0;
+        text-transform: none;
+        transition: all 0.15s ease;
+    }
+}
+
+.paymentMethod-addNew {
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translateX(-50%) translateY(-55%);
+}
+
+.paymentMethod-symbol {
+    font-size: fontSize("hero");
+    line-height: 1;
+}
+
+// Payment Method Form - Add / Edit
+// -----------------------------------------------------------------------------
+
+.paymentMethodForm-heading {
+    color: color("greys", "darker");
+    font-family: fontFamily("sans");
+    margin-top: spacing("single");
+    text-transform: capitalize;
+}
+
+.paymentMethodForm-subheading {
+    display: flex;
+    font-weight: fontWeight("semibold");
+}
+
+.paymentMethodForm-cards {
+    @include breakpoint("small") {
+        margin-left: auto;
+    }
+}
+
+.paymentMethodForm-cards-icon {
+    margin-right: spacing("eighth");
+    width: remCalc(34px);
+}
+
+.paymentMethodForm-inputs {
+    position: relative;
+}
+
+.paymentMethodForm-inputs-icon {
+    position: absolute;
+    right: remCalc(9px);
+    top: remCalc(39px);
+
+    &.icon {
+        fill: color("greys", "light");
+        height: remCalc(21px);
+        width: remCalc(21px);
+    }
+}
+
+.paymentMethodForm-details {
+    margin-bottom: 0;
+
+    @include breakpoint("small") {
+        display: inline-block;
+        margin: 0 spacing("double") 0 0;
+    }
+}
+
+.paymentMethodForm-details-term {
+    font-weight: fontWeight("normal");
+    margin-bottom: spacing("half");
+}
+
+.paymentMethodForm-details-description {
+    font-size: fontSize("smaller");
+    font-weight: fontWeight("semibold");
+    letter-spacing: letterSpacing("large");
+}

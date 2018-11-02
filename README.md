@@ -18,6 +18,7 @@ When writing theme JavaScript (JS) there is an API in place for running JS on a 
 * "pages/account/edit"
 * "pages/account/return-saved"
 * "pages/account/returns"
+* "pages/account/payment-methods"
 * "pages/auth/login"
 * "pages/auth/account-created"
 * "pages/auth/create-account"

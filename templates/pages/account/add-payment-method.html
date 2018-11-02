@@ -1,0 +1,111 @@
+{{#partial "page"}}
+
+    {{inject 'creditCardNumber' (lang 'forms.validate.payment_method.credit_card_number')}}
+    {{inject 'expiration' (lang 'forms.validate.payment_method.expiration')}}
+    {{inject 'nameOnCard' (lang 'forms.validate.payment_method.name_on_card')}}
+    {{inject 'cvv' (lang 'forms.validate.payment_method.cvv')}}
+
+    {{inject 'firstNameLabel' (lang 'forms.payment_methods.first_name')}}
+    {{inject 'lastNameLabel' (lang 'forms.payment_methods.last_name')}}
+    {{inject 'companyLabel' (lang 'forms.payment_methods.company')}}
+    {{inject 'phoneLabel' (lang 'forms.payment_methods.phone')}}
+    {{inject 'address1Label' (lang 'forms.payment_methods.address1')}}
+    {{inject 'address2Label' (lang 'forms.payment_methods.address2')}}
+    {{inject 'cityLabel' (lang 'forms.payment_methods.city')}}
+    {{inject 'countryLabel' (lang 'forms.payment_methods.country')}}
+    {{inject 'stateLabel' (lang 'forms.payment_methods.state')}}
+    {{inject 'postalCodeLabel' (lang 'forms.payment_methods.postal_code')}}
+    {{inject 'chooseCountryLabel' (lang 'forms.payment_methods.choose_country')}}
+
+    {{inject 'paymentMethodsUrl' urls.account.payment_methods.all}}
+    {{inject 'paymentsUrl' settings.payments_url}}
+    {{inject 'storeHash' settings.store_hash}}
+    {{inject 'vaultToken' vault.access_token}}
+    {{inject 'shopperId' customer.id}}
+    {{inject 'countries' countries}}
+
+    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+
+    <h2 class="page-heading">{{lang 'forms.payment_methods.add.heading'}}</h2>
+
+    {{> components/account/navigation account_page='payment_methods'}}
+
+    <div class="account account--fixed">
+
+        {{#if forms.error}}
+            {{> components/common/alert-error forms.error}}
+        {{/if}}
+
+        <form data-payment-method-form class="form">
+            <input type="hidden" name="email" value="{{customer.email}}">
+            <input type="hidden" name="provider_id" value="{{forms.provider}}">
+
+            <h3 class="paymentMethodForm-heading">{{lang 'account.payment_methods.payment_method'}}</h3>
+
+            <div class="paymentMethodForm">
+                <p class="paymentMethodForm-subheading">
+                    {{forms.payment_method.provider_name}}
+                    <span class="paymentMethodForm-cards">
+                        {{#each ../theme_settings.supported_card_type_icons}}
+                            <img class="paymentMethodForm-cards-icon" src="{{cdn (concat (concat 'img/payment-methods/' this) '.svg')}}" alt="{{lang (concat 'account.payment_methods.card_types.' this)}}" title="{{lang (concat 'account.payment_methods.card_types.' this)}}">
+                        {{/each}}
+                    </span>
+                </p>
+                <fieldset class="form-fieldset">
+                    <div class="paymentMethodForm-column">
+                        <div class="paymentMethodForm-inputs">
+                            {{> components/common/forms/text id="credit_card_number" name="credit_card_number" label=(lang 'account.payment_methods.credit_card_number')}}
+                            <svg class="paymentMethodForm-inputs-icon icon">
+                                <use xlink:href="#icon-lock" />
+                            </svg>
+                        </div>
+                        <div class="paymentMethodForm-inputs">
+                            {{> components/common/forms/text id="expiration" name="expiration" label=(lang 'account.payment_methods.expiration') placeholder="MM/YY"}}
+                        </div>
+                    </div>
+                    <div class="paymentMethodForm-column">
+                        <div class="paymentMethodForm-inputs">
+                            {{> components/common/forms/text id="name_on_card" name="name_on_card" label=(lang 'account.payment_methods.name_on_card')}}
+                        </div>
+                        <div class="paymentMethodForm-inputs">
+                            {{> components/common/forms/text id="cvv" name="cvv" label=(lang 'account.payment_methods.cvv')}}
+                            <svg class="paymentMethodForm-inputs-icon icon">
+                                <use xlink:href="#icon-lock" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="form-field">
+                        <input type="checkbox" name="default_instrument" id="default_instrument" data-label="{{lang 'forms.payment_methods.default_instrument'}}" class="form-checkbox">
+                        <label class="form-label" for="default_instrument">{{lang 'forms.payment_methods.default_instrument'}}</label>
+                    </div>
+                </fieldset>
+            </div>
+
+            <h3 class="paymentMethodForm-heading">{{lang 'account.payment_methods.billing_address'}}</h3>
+
+            <fieldset class="form-fieldset">
+                <div class="form-row form-row--half">
+                    {{> components/common/forms/text private_id="FirstName" required=true id="first_name" name="first_name" label=(lang 'forms.payment_methods.first_name')}}
+                    {{> components/common/forms/text private_id="LastName" required=true id="last_name" name="last_name" label=(lang 'forms.payment_methods.last_name')}}
+                    {{> components/common/forms/text private_id="CompanyName" required=false id="company" name="company" label=(lang 'forms.payment_methods.company')}}
+                    {{> components/common/forms/text private_id="Phone" required=false id="phone" name="phone" label=(lang 'forms.payment_methods.phone')}}
+                    {{> components/common/forms/text private_id="AddressLine1" required=true id="address1" name="address1" label=(lang 'forms.payment_methods.address1')}}
+                    {{> components/common/forms/text private_id="AddressLine2" required=false id="address2" name="address2" label=(lang 'forms.payment_methods.address2')}}
+                    {{> components/common/forms/text private_id="City" required=true id="city" name="city" label=(lang 'forms.payment_methods.city')}}
+                    {{> components/common/forms/select private_id="Country" required=true id="country" name="country" label=(lang 'forms.payment_methods.country') chooseprefix=(lang 'forms.payment_methods.choose_country') options=countries}}
+                    {{> components/common/forms/text private_id="State" required=true id="state" name="state" label=(lang 'forms.payment_methods.state')}}
+                    {{> components/common/forms/text private_id="Zip" required=true id="postal_code" name="postal_code" label=(lang 'forms.payment_methods.postal_code')}}
+                </div>
+            </fieldset>
+            <div class="form-actions">
+                <input type="submit" class="button button--primary" value="{{lang 'forms.payment_methods.submit_value'}}">
+                <a href="{{urls.account.payment_methods.all}}" class="button">{{lang 'common.cancel'}}</a>
+                {{inject 'required' (lang 'common.required')}}
+                {{inject 'state_error' (lang 'errors.state_error')}}
+                {{inject 'generic_error' (lang 'common.generic_error')}}
+            </div>
+        </form>
+    </div>
+
+{{/partial}}
+{{> layout/base}}

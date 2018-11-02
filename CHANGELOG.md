@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+Add support for Card Management: List, Delete, Edit, Add and Default Payment Method [#1376](https://github.com/bigcommerce/cornerstone/pull/1376)
 
 ## 2.5.2 (2018-10-24)
 - Product review modal error message is now accurate. [#1370](https://github.com/bigcommerce/cornerstone/pull/1370)

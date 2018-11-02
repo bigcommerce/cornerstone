@@ -36,6 +36,15 @@
                 <a class="navBar-action" href="{{urls.account.addresses}}">{{lang 'account.nav.addresses'}}</a>
             </li>
         {{/if}}
+        {{#if settings.show_payment_methods}}
+            {{#if account_page '===' 'payment_methods'}}
+                <li class="navBar-item is-active">{{lang 'account.nav.payment_methods'}}</li>
+            {{else}}
+                <li class="navBar-item">
+                    <a class="navBar-action" href="{{urls.account.payment_methods.all}}">{{lang 'account.nav.payment_methods'}}</a>
+                </li>
+            {{/if}}
+        {{/if}}
         {{#if settings.show_wishlist}}
             {{#if account_page '===' 'wishlists'}}
                 <li class="navBar-item is-active">{{lang 'account.nav.wishlists' num_wishlists=customer.num_wishlists}}</li>

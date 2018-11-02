@@ -1,4 +1,5 @@
 <section class="productCarousel"
+    data-list-name="{{list}}"
     data-slick='{
         "dots": true,
         "infinite": false,
@@ -9,7 +10,7 @@
 >
     {{#each products}}
     <div class="productCarousel-slide">
-        {{> components/products/card theme_settings=../theme_settings customer=../customer}}
+            {{> components/products/card settings=../settings theme_settings=../theme_settings customer=../customer event="list" position=(add @index 1)}}
     </div>
     {{/each}}
 </section>

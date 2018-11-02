@@ -29,7 +29,7 @@
                         {{#if out_of_stock_message }}
                         <span href="{{url}}" class="button button--primary">{{out_of_stock_message}}</span>
                         {{else}}
-                        <a href="{{add_to_cart_url}}" class="button button--primary">{{lang "products.add_to_cart"}}</a>
+                        <a href="{{add_to_cart_url}}" {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}} class="button button--primary">{{lang "products.add_to_cart"}}</a>
                         {{/if}}
                     {{/if}}
                 {{/unless}}

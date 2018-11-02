@@ -50,15 +50,15 @@
                         {{#or ../customer (if ../theme_settings.restrict_to_login '!==' true)}}
                             {{#if show_cart_action}}
                                 {{#if has_options}}
-                                    <a href="{{url}}" class="button button--primary" data-product-id="{{id}}">{{lang 'products.choose_options'}}</a>
+                                    <a href="{{url}}" {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}} class="button button--primary" data-product-id="{{id}}">{{lang 'products.choose_options'}}</a>
                                 {{/if}}
                                 {{#if pre_order}}
-                                    <a href="{{url}}" class="button button--primary" data-product-id="{{id}}">
+                                    <a href="{{url}}" {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}} class="button button--primary" data-product-id="{{id}}">
                                         {{lang 'products.pre_order'}}
                                     </a>
                                 {{/if}}
                                 {{#if add_to_cart_url}}
-                                    <a href="{{add_to_cart_url}}" class="button button--primary" data-product-id="{{id}}">
+                                    <a href="{{add_to_cart_url}}" {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}} class="button button--primary" data-product-id="{{id}}">
                                         {{lang 'products.add_to_cart'}}
                                     </a>
                                 {{/if}}

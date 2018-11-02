@@ -1,5 +1,5 @@
 <p class="productView-title">{{lang 'products.description'}}</p>
-<div class="productView-description">
+<div class="productView-description" {{#if settings.data_tag_enabled}} data-event-type="product" {{/if}}>
     {{{product.description}}}
     {{{snippet 'product_description'}}}
 </div>

@@ -1,6 +1,8 @@
 # Changelog
 
 ## Draft
+
+## 2.6.0 (2018-11-05)
 - Add support for Card Management: List, Delete, Edit, Add and Default Payment Method [#1376](https://github.com/bigcommerce/cornerstone/pull/1376)
 - Add support for declarative data tag analytics. [#1377](https://github.com/bigcommerce/cornerstone/pull/1377)
 

@@ -24,11 +24,11 @@ export default class Global extends PageManager {
         window.lazySizesConfig = window.lazySizesConfig || {};
         window.lazySizesConfig.loadMode = 1;
 
+        cartPreview(this.context.secureBaseUrl);
         quickSearch();
         currencySelector();
         foundation($(document));
         quickView(this.context);
-        cartPreview();
         compareProducts(this.context.urls);
         carousel();
         menu();

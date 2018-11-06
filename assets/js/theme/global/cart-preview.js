@@ -8,13 +8,15 @@ export const CartPreviewEvents = {
     open: 'opened.fndtn.dropdown',
 };
 
-export default function () {
+export default function (secureBaseUrl) {
     const loadingClass = 'is-loading';
     const $cart = $('[data-cart-preview]');
     const $cartDropdown = $('#cart-preview-dropdown');
     const $cartLoading = $('<div class="loadingOverlay"></div>');
 
-    $('body').on('cart-quantity-update', (event, quantity) => {
+    const $body = $('body');
+
+    $body.on('cart-quantity-update', (event, quantity) => {
         $('.cart-quantity')
             .text(quantity)
             .toggleClass('countPill--positive', quantity > 0);
@@ -48,5 +50,33 @@ export default function () {
             $cartLoading
                 .hide();
         });
+    });
+
+    let quantity = 0;
+
+    // Get existing quantity from localStorage if found
+    if (utils.tools.storage.localStorageAvailable()) {
+        if (localStorage.getItem('cart-quantity')) {
+            quantity = Number(localStorage.getItem('cart-quantity'));
+            $body.trigger('cart-quantity-update', quantity);
+        }
+    }
+
+    // Get updated cart quantity from the Cart API
+    const cartQtyPromise = new Promise((resolve, reject) => {
+        utils.api.cart.getCartQuantity({ baseUrl: secureBaseUrl }, (err, qty) => {
+            if (err) {
+                reject(err);
+            }
+            resolve(qty);
+        });
+    });
+
+    // If the Cart API gives us a different quantity number, update it
+    cartQtyPromise.then(qty => {
+        $body.trigger('cart-quantity-update', qty);
+        if (utils.tools.storage.localStorageAvailable()) {
+            localStorage.setItem('cart-quantity', qty);
+        }
     });
 }

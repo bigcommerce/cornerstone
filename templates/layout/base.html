@@ -32,9 +32,9 @@
         {{{snippet 'header'}}}
         <svg data-src="{{cdn 'img/icon-sprite.svg'}}" class="icons-svg-sprite"></svg>
 
-        {{#if settings.privacy_cookie}}
+        {{#and settings.privacy_cookie settings.is_eu_ip_address}}
             {{> components/common/cookie}}
-        {{/if}}
+        {{/and}}
 
         {{> components/common/header }}
         {{> components/common/body }}

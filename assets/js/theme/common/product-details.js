@@ -380,7 +380,7 @@ export default class ProductDetails {
             if (this.previewModal) {
                 this.previewModal.open();
 
-                this.updateCartContent(this.previewModal, response.data.cart_item.hash);
+                this.updateCartContent(this.previewModal, response.data.cart_item.id);
             } else {
                 this.$overlay.show();
                 // if no modal, redirect to the cart page
@@ -392,14 +392,14 @@ export default class ProductDetails {
     /**
      * Get cart contents
      *
-     * @param {String} cartItemHash
+     * @param {String} cartItemId
      * @param {Function} onComplete
      */
-    getCartContent(cartItemHash, onComplete) {
+    getCartContent(cartItemId, onComplete) {
         const options = {
             template: 'cart/preview',
             params: {
-                suggest: cartItemHash,
+                suggest: cartItemId,
             },
             config: {
                 cart: {
@@ -430,11 +430,11 @@ export default class ProductDetails {
      * Update cart content
      *
      * @param {Modal} modal
-     * @param {String} cartItemHash
+     * @param {String} cartItemId
      * @param {Function} onComplete
      */
-    updateCartContent(modal, cartItemHash, onComplete) {
-        this.getCartContent(cartItemHash, (err, response) => {
+    updateCartContent(modal, cartItemId, onComplete) {
+        this.getCartContent(cartItemId, (err, response) => {
             if (err) {
                 return;
             }

@@ -168,6 +168,22 @@ describe('PaymentMethod', () => {
 
                 expect(callback).toHaveBeenCalledWith(true);
             });
+
+            it('should have invalid input cvv for American Express', () => {
+                const callback = jasmine.createSpy();
+                const validator = { add: ({ validate }) => validate(callback, '123') };
+                Validators.setCvvValidation(validator, 'selector', null, 'American Express');
+
+                expect(callback).toHaveBeenCalledWith(false);
+            });
+
+            it('should have valid input cvv for American Express', () => {
+                const callback = jasmine.createSpy();
+                const validator = { add: ({ validate }) => validate(callback, '1234') };
+                Validators.setCvvValidation(validator, 'selector', null, () => 'American Express');
+
+                expect(callback).toHaveBeenCalledWith(true);
+            });
         });
     });
 });

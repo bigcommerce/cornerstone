@@ -252,8 +252,9 @@ export default class Account extends PageManager {
         });
 
         // Use credit card number input listener to highlight credit card type
+        let cardType;
         $(`${paymentMethodSelector} input[name="credit_card_number"]`).on('keyup', ({ target }) => {
-            const cardType = creditCardType(target.value);
+            cardType = creditCardType(target.value);
             if (cardType) {
                 $(`${paymentMethodSelector} img[alt="${cardType}"`).siblings().css('opacity', '.2');
             } else {
@@ -265,7 +266,7 @@ export default class Account extends PageManager {
         CCValidators.setCreditCardNumberValidation(paymentMethodValidator, `${paymentMethodSelector} input[name="credit_card_number"]`, this.context.creditCardNumber);
         CCValidators.setExpirationValidation(paymentMethodValidator, `${paymentMethodSelector} input[name="expiration"]`, this.context.expiration);
         CCValidators.setNameOnCardValidation(paymentMethodValidator, `${paymentMethodSelector} input[name="name_on_card"]`, this.context.nameOnCard);
-        CCValidators.setCvvValidation(paymentMethodValidator, `${paymentMethodSelector} input[name="cvv"]`, this.context.cvv);
+        CCValidators.setCvvValidation(paymentMethodValidator, `${paymentMethodSelector} input[name="cvv"]`, this.context.cvv, () => cardType);
 
         // Set of credit card format
         CCFormatters.setCreditCardNumberFormat(`${paymentMethodSelector} input[name="credit_card_number"]`);

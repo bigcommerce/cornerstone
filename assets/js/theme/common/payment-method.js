@@ -151,6 +151,7 @@ export const Validators = {
      * Sets up a validation for credit card number
      * @param validator
      * @param field
+     * @param errorMessage
      */
     setCreditCardNumberValidation: (validator, field, errorMessage) => {
         if (field) {
@@ -170,6 +171,7 @@ export const Validators = {
      * Sets up a validation for expiration date
      * @param validator
      * @param field
+     * @param errorMessage
      */
     setExpirationValidation: (validator, field, errorMessage) => {
         if (field) {
@@ -191,6 +193,7 @@ export const Validators = {
      * Sets up a validation for name on card
      * @param validator
      * @param field
+     * @param errorMessage
      */
     setNameOnCardValidation: (validator, field, errorMessage) => {
         if (field) {
@@ -210,13 +213,16 @@ export const Validators = {
      * Sets up a validation for cvv
      * @param validator
      * @param field
+     * @param errorMessage
+     * @param {any} cardType The credit card number type
      */
-    setCvvValidation: (validator, field, errorMessage) => {
+    setCvvValidation: (validator, field, errorMessage, cardType) => {
         if (field) {
             validator.add({
                 selector: field,
                 validate: (cb, val) => {
-                    const result = val.length && creditcards.cvc.isValid(val);
+                    const type = typeof cardType === 'function' ? cardType() : cardType;
+                    const result = val.length && creditcards.cvc.isValid(val, type);
 
                     cb(result);
                 },

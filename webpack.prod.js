@@ -3,6 +3,7 @@ const webpack = require('webpack'),
       commonConfig = require('./webpack.common.js');
 
 module.exports = merge(commonConfig, {
+    devtool: 'source-map',
     mode: 'production',
     plugins: [
         new webpack.DefinePlugin({

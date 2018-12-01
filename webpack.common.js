@@ -44,6 +44,11 @@ module.exports = {
         filename: 'theme-bundle.[name].js',
         path: path.resolve(__dirname, 'assets/dist'),
     },
+    performance: {
+        hints: 'warning',
+        maxAssetSize: 100000,
+        maxEntrypointSize: 150000,
+    },
     plugins: [
         new CleanPlugin(['assets/dist'], {
             verbose: false,

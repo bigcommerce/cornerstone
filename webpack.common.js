@@ -1,4 +1,5 @@
-const CleanPlugin = require('clean-webpack-plugin'),
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin,
+      CleanPlugin = require('clean-webpack-plugin'),
       LodashPlugin = require('lodash-webpack-plugin'),
       path = require('path'),
       webpack = require('webpack');
@@ -19,15 +20,15 @@ module.exports = {
                     loader: 'babel-loader',
                     options: {
                         plugins: [
-                            'dynamic-import-webpack', // Needed for dynamic imports.
-                            'lodash', // Automagically tree-shakes lodash.
-                            'transform-regenerator', // Transforms async and generator functions.
+                            'dynamic-import-webpack', // Needed for dynamic imports in app.js
+                            'lodash', // Tree-shake lodash
                         ],
                         presets: [
-                            ['env', {
-                                loose: true, // Enable "loose" transformations for any plugins in this preset that allow them.
-                                modules: false, // Don't transform modules; needed for tree-shaking.
-                                useBuiltIns: true, // Tree-shake babel-polyfill.
+                            ['@babel/preset-env', {
+                                loose: true, // Enable "loose" transformations for any plugins in this preset that allow them
+                                modules: false, // Don't transform modules; needed for tree-shaking
+                                useBuiltIns: 'usage', // Tree-shake babel-polyfill
+                                targets: '> 1%, last 2 versions, Firefox ESR',
                             }],
                         ],
                     },
@@ -46,8 +47,8 @@ module.exports = {
     },
     performance: {
         hints: 'warning',
-        maxAssetSize: 100000,
-        maxEntrypointSize: 150000,
+        maxAssetSize: 1024 * 150,
+        maxEntrypointSize: 1024 * 300,
     },
     plugins: [
         new CleanPlugin(['assets/dist'], {
@@ -60,9 +61,14 @@ module.exports = {
             jQuery: 'jquery',
             'window.jQuery': 'jquery',
         }),
+        new BundleAnalyzerPlugin({
+            analyzerMode: 'static',
+            openAnalyzer: false,
+        }),
     ],
     resolve: {
         alias: {
+            jquery: path.resolve(__dirname, 'node_modules/jquery/dist/jquery.min.js'),
             'jquery-migrate': path.resolve(__dirname, 'node_modules/jquery-migrate/dist/jquery-migrate.min.js'),
             jstree: path.resolve(__dirname, 'node_modules/jstree/dist/jstree.min.js'),
             lazysizes: path.resolve(__dirname, 'node_modules/lazysizes/lazysizes.min.js'),

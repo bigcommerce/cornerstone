@@ -1,6 +1,5 @@
 __webpack_public_path__ = window.__webpack_public_path__; // eslint-disable-line
 
-import 'babel-polyfill';
 import $ from 'jquery';
 import 'jquery-migrate';
 import Global from './theme/global';
@@ -69,7 +68,7 @@ window.stencilBootstrap = function stencilBootstrap(pageType, contextJSON = null
 
     return {
         load() {
-            $(async () => {
+            $(document).ready(async () => {
                 // Load globals
                 if (loadGlobal) {
                     Global.load(context);

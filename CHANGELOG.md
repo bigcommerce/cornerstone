@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Defer loading addthis widget js script [#1395](https://github.com/bigcommerce/cornerstone/pull/1395)
 - Fixed compare buttons for product list display [#1384](https://github.com/bigcommerce/cornerstone/pull/1384)
 - Remove unnecessary API call to get cookie notification status [#1380](https://github.com/bigcommerce/cornerstone/pull/1380)
 - Cart switch from quote item hash to id which is immutable [#1387](https://github.com/bigcommerce/cornerstone/pull/1387)

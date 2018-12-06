@@ -246,6 +246,22 @@ export default function modalFactory(selector = '[data-reveal]', options = {}) {
  */
 export function defaultModal() {
     const modal = modalFactory('#modal')[0];
-
     return modal;
+}
+
+/*
+ * Return the default alert modal
+ */
+export function alertModal() {
+    const modal = modalFactory('#alert-modal')[0];
+    return modal;
+}
+
+/*
+ * Display the given message in the default alert modal
+ */
+export function showAlertModal(message) {
+    const modal = alertModal();
+    modal.open();
+    modal.updateContent(`<span>${message}</span>`);
 }

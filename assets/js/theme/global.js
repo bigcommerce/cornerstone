@@ -8,13 +8,11 @@ import menu from './global/menu';
 import foundation from './global/foundation';
 import quickView from './global/quick-view';
 import cartPreview from './global/cart-preview';
-import compareProducts from './global/compare-products';
 import privacyCookieNotification from './global/cookieNotification';
 import maintenanceMode from './global/maintenanceMode';
 import carousel from './common/carousel';
 import 'lazysizes';
 import loadingProgressBar from './global/loading-progress-bar';
-import sweetAlert from './global/sweet-alert';
 import svgInjector from './global/svg-injector';
 
 export default class Global extends PageManager {
@@ -29,14 +27,12 @@ export default class Global extends PageManager {
         currencySelector();
         foundation($(document));
         quickView(this.context);
-        compareProducts(this.context.urls);
         carousel();
         menu();
         mobileMenuToggle();
         privacyCookieNotification();
         maintenanceMode(this.context.maintenanceMode);
         loadingProgressBar();
-        sweetAlert();
         svgInjector();
     }
 }

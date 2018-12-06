@@ -3,9 +3,8 @@ import utils from '@bigcommerce/stencil-utils';
 import 'foundation-sites/js/foundation/foundation';
 import 'foundation-sites/js/foundation/foundation.reveal';
 import ImageGallery from '../product/image-gallery';
-import modalFactory from '../global/modal';
+import modalFactory, { showAlertModal } from '../global/modal';
 import _ from 'lodash';
-import swal from 'sweetalert2';
 import Wishlist from '../wishlist';
 
 export default class ProductDetails {
@@ -370,10 +369,7 @@ export default class ProductDetails {
                 const tmp = document.createElement('DIV');
                 tmp.innerHTML = errorMessage;
 
-                return swal({
-                    text: tmp.textContent || tmp.innerText,
-                    type: 'error',
-                });
+                return showAlertModal(tmp.textContent || tmp.innerText);
             }
 
             // Open preview modal and update content

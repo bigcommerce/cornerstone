@@ -1,10 +1,12 @@
-import swal from 'sweetalert2';
+import sweetAlert from 'sweetalert2';
 
 export default function () {
     // Set defaults for sweetalert2 popup boxes
-    swal.setDefaults({
+    sweetAlert.setDefaults({
         buttonsStyling: false,
         confirmButtonClass: 'button',
         cancelButtonClass: 'button',
     });
+
+    return sweetAlert;
 }

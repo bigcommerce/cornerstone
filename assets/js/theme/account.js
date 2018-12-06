@@ -7,7 +7,7 @@ import validation from './common/form-validation';
 import stateCountry from './common/state-country';
 import { classifyForm, Validators, insertStateHiddenField } from './common/form-utils';
 import { creditCardType, storeInstrument, Validators as CCValidators, Formatters as CCFormatters } from './common/payment-method';
-import swal from 'sweetalert2';
+import swal from './global/sweet-alert';
 
 export default class Account extends PageManager {
     constructor(context) {

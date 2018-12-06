@@ -6,6 +6,7 @@
 - Ensure SKU and UPC display correctly for Variants on PDP. [#1431](https://github.com/bigcommerce/cornerstone/pull/1431)
 - Corrected IDs in date.html form fields. [#1433](https://github.com/bigcommerce/cornerstone/pull/1433)
 - Cleanup and XSS fix on Cart page. [#1434](https://github.com/bigcommerce/cornerstone/pull/1434)
+- Fix for product without image on Compare page. [#1438](https://github.com/bigcommerce/cornerstone/pull/1438)
 
 ## 3.1.1 (2019-01-23)
 

@@ -34,10 +34,6 @@ module.exports = {
                     },
                 },
             },
-            {
-                test: /jquery-migrate/,
-                use: 'imports-loader?define=>false',
-            },
         ],
     },
     output: {
@@ -48,7 +44,7 @@ module.exports = {
     performance: {
         hints: 'warning',
         maxAssetSize: 1024 * 150,
-        maxEntrypointSize: 1024 * 300,
+        maxEntrypointSize: 1024 * 150,
     },
     plugins: [
         new CleanPlugin(['assets/dist'], {
@@ -69,7 +65,6 @@ module.exports = {
     resolve: {
         alias: {
             jquery: path.resolve(__dirname, 'node_modules/jquery/dist/jquery.min.js'),
-            'jquery-migrate': path.resolve(__dirname, 'node_modules/jquery-migrate/dist/jquery-migrate.min.js'),
             jstree: path.resolve(__dirname, 'node_modules/jstree/dist/jstree.min.js'),
             lazysizes: path.resolve(__dirname, 'node_modules/lazysizes/lazysizes.min.js'),
             pace: path.resolve(__dirname, 'node_modules/pace/pace.min.js'),

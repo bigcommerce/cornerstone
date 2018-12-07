@@ -6,6 +6,7 @@ module.exports = merge(commonConfig, {
     devtool: 'source-map',
     mode: 'production',
     optimization: {
+        noEmitOnErrors: true,
         splitChunks: {
             chunks: 'all',
         },

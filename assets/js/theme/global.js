@@ -1,4 +1,3 @@
-import $ from 'jquery';
 import './common/select-option-plugin';
 import PageManager from './page-manager';
 import quickSearch from './global/quick-search';

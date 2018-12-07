@@ -1,4 +1,3 @@
-import $ from 'jquery';
 import _ from 'lodash';
 import { showAlertModal } from './modal';
 

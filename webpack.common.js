@@ -56,7 +56,7 @@ module.exports = {
             watch: false,
         }),
         new LodashPlugin, // Complements babel-plugin-lodash by shrinking its cherry-picked builds further.
-        new webpack.ProvidePlugin({
+        new webpack.ProvidePlugin({ // Provide jquery automatically without explicit import
             $: 'jquery',
             jQuery: 'jquery',
             'window.jQuery': 'jquery',

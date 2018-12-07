@@ -1,4 +1,3 @@
-import $ from 'jquery';
 import utils from '@bigcommerce/stencil-utils';
 import _ from 'lodash';
 import { insertStateHiddenField } from './form-utils';

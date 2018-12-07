@@ -1,4 +1,3 @@
-import $ from 'jquery';
 import nod from '../common/nod';
 import { CollapsibleEvents } from '../common/collapsible';
 import forms from '../common/models/forms';

@@ -1,5 +1,4 @@
 import PageManager from './page-manager';
-import $ from 'jquery';
 import { showAlertModal } from './global/modal';
 import compareProducts from './global/compare-products';
 

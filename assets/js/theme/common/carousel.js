@@ -1,4 +1,3 @@
-import $ from 'jquery';
 import 'slick-carousel';
 
 export default function () {

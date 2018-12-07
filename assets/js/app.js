@@ -1,6 +1,5 @@
 __webpack_public_path__ = window.__webpack_public_path__; // eslint-disable-line
 
-import $ from 'jquery';
 import 'jquery-migrate';
 import Global from './theme/global';
 

@@ -1,4 +1,3 @@
-import $ from 'jquery';
 import collapsibleFactory from '../common/collapsible';
 import collapsibleGroupFactory from '../common/collapsible-group';
 

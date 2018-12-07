@@ -1,5 +1,4 @@
 import { hooks, api } from '@bigcommerce/stencil-utils';
-import $ from 'jquery';
 import _ from 'lodash';
 import Url from 'url';
 import urlUtils from './url-utils';

@@ -1,6 +1,5 @@
 import { hooks } from '@bigcommerce/stencil-utils';
 import CatalogPage from './catalog';
-import $ from 'jquery';
 import FacetedSearch from './common/faceted-search';
 import compareProducts from './global/compare-products';
 import urlUtils from './common/url-utils';

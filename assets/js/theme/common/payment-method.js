@@ -1,4 +1,3 @@
-import $ from 'jquery';
 import creditcards from 'creditcards';
 
 /**

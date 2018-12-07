@@ -1,4 +1,3 @@
-import $ from 'jquery';
 import foundation from './foundation';
 
 const bodyActiveClass = 'has-activeModal';

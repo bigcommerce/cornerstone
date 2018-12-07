@@ -1,4 +1,3 @@
-import $ from 'jquery';
 import stateCountry from '../common/state-country';
 import nod from '../common/nod';
 import utils from '@bigcommerce/stencil-utils';

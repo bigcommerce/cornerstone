@@ -63,32 +63,35 @@ const customClasses = {};
  */
 window.stencilBootstrap = function stencilBootstrap(pageType, contextJSON = null, loadGlobal = true) {
     const context = JSON.parse(contextJSON || '{}');
-    const template = context.template;
-    const templateCheck = Object.keys(customClasses).indexOf(template);
 
     return {
         load() {
-            $(document).ready(async () => {
+            $(() => {
                 // Load globals
                 if (loadGlobal) {
                     Global.load(context);
                 }
 
+                const importPromises = [];
+
                 // Find the appropriate page loader based on pageType
                 const pageClassImporter = pageClasses[pageType];
                 if (typeof pageClassImporter === 'function') {
-                    const PageClass = (await pageClassImporter()).default;
-                    PageClass.load(context);
+                    importPromises.push(pageClassImporter());
                 }
 
-                if (templateCheck > -1) {
-                    // Find the appropriate page loader based on template
-                    const customClassImporter = customClasses[template];
-                    if (typeof customClassImporter === 'function') {
-                        const CustomClass = (await customClassImporter()).default;
-                        CustomClass.load(context);
-                    }
+                // See if there is a page class default for a custom template
+                const customTemplateImporter = customClasses[context.template];
+                if (typeof customTemplateImporter === 'function') {
+                    importPromises.push(customTemplateImporter());
                 }
+
+                // Wait for imports to resolve, then call load() on them
+                Promise.all(importPromises).then(imports => {
+                    imports.forEach(imported => {
+                        imported.default.load(context);
+                    });
+                });
             });
         },
     };

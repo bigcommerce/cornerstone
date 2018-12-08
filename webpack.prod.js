@@ -7,8 +7,5 @@ module.exports = merge(commonConfig, {
     mode: 'production',
     optimization: {
         noEmitOnErrors: true,
-        splitChunks: {
-            chunks: 'all',
-        },
     },
 });

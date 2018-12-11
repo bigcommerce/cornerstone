@@ -22,7 +22,7 @@ export default class Global extends PageManager {
         window.lazySizesConfig = window.lazySizesConfig || {};
         window.lazySizesConfig.loadMode = 1;
 
-        cartPreview(this.context.secureBaseUrl);
+        cartPreview(this.context.secureBaseUrl, this.context.cartId);
         quickSearch();
         currencySelector();
         foundation($(document));

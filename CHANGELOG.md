@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Don't fire Cart API request if there is no cart [#1402](https://github.com/bigcommerce/cornerstone/pull/1402)
 
 ## 3.1.1 (2019-01-23)
 

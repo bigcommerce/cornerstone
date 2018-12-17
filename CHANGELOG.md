@@ -10,6 +10,7 @@
 - Only show cookie privacy notice for EU IP addresses [#1381](https://github.com/bigcommerce/cornerstone/pull/1381)
 - Move Cart Quantity header value to a FE API call [#1379](https://github.com/bigcommerce/cornerstone/pull/1379)
 - Make display of quantity selection box on PDP configurable. [#1398](https://github.com/bigcommerce/cornerstone/pull/1398)
+- Don't load Cart resource on non-Cart pages [#1401](https://github.com/bigcommerce/cornerstone/pull/1401)
 
 ## 2.6.0 (2018-11-05)
 - Add support for Card Management: List, Delete, Edit, Add and Default Payment Method [#1376](https://github.com/bigcommerce/cornerstone/pull/1376)

@@ -20,7 +20,7 @@ module.exports = {
                     loader: 'babel-loader',
                     options: {
                         plugins: [
-                            'dynamic-import-webpack', // Needed for dynamic imports in app.js
+                            '@babel/plugin-syntax-dynamic-import', // add support for dynamic imports (used in app.js)
                             'lodash', // Tree-shake lodash
                         ],
                         presets: [

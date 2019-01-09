@@ -244,16 +244,14 @@ export default function modalFactory(selector = '[data-reveal]', options = {}) {
  * Return the default page modal
  */
 export function defaultModal() {
-    const modal = modalFactory('#modal')[0];
-    return modal;
+    return modalFactory('#modal')[0];
 }
 
 /*
  * Return the default alert modal
  */
 export function alertModal() {
-    const modal = modalFactory('#alert-modal')[0];
-    return modal;
+    return modalFactory('#alert-modal')[0];
 }
 
 /*

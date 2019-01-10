@@ -1,4 +1,3 @@
-import $ from 'jquery';
 import _ from 'lodash';
 import nod from './nod';
 import forms from './models/forms';

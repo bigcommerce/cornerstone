@@ -1,4 +1,3 @@
-import $ from 'jquery';
 import foundation from './foundation';
 
 const bodyActiveClass = 'has-activeModal';
@@ -245,7 +244,21 @@ export default function modalFactory(selector = '[data-reveal]', options = {}) {
  * Return the default page modal
  */
 export function defaultModal() {
-    const modal = modalFactory('#modal')[0];
+    return modalFactory('#modal')[0];
+}
 
-    return modal;
+/*
+ * Return the default alert modal
+ */
+export function alertModal() {
+    return modalFactory('#alert-modal')[0];
+}
+
+/*
+ * Display the given message in the default alert modal
+ */
+export function showAlertModal(message) {
+    const modal = alertModal();
+    modal.open();
+    modal.updateContent(`<span>${message}</span>`);
 }

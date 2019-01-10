@@ -1,4 +1,3 @@
-import $ from 'jquery';
 import 'easyzoom';
 import _ from 'lodash';
 

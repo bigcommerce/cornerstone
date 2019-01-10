@@ -1,10 +1,12 @@
 import { hooks } from '@bigcommerce/stencil-utils';
 import CatalogPage from './catalog';
-import $ from 'jquery';
+import compareProducts from './global/compare-products';
 import FacetedSearch from './common/faceted-search';
 
 export default class Brand extends CatalogPage {
     onReady() {
+        compareProducts(this.context.urls);
+
         if ($('#facetedSearch').length > 0) {
             this.initFacetedSearch();
         } else {

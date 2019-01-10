@@ -1,10 +1,8 @@
 import $ from 'jquery'
 import utils from '@bigcommerce/stencil-utils';
 import Cart from '../../theme/cart.js';
-import * as SweetAlert from 'sweetalert2';
 
 var dataSpy;
-var swalSpy;
 var UpdateSpy;
 var c = new Cart();
 beforeEach(function() {

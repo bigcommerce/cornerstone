@@ -4,8 +4,6 @@
 
 
 .modal {
-    // scss-lint:disable ImportantRule
-    left: 50%;
     margin: 0 auto;
     max-height: 90%;
     max-width: 95%;
@@ -13,9 +11,6 @@
     outline: none;
     overflow: hidden;
     padding: 0;
-    right: 0;
-    top: 50% !important;
-    transform: translate(-50%, -50%);
 }
 
 .modal--large {
@@ -62,4 +57,39 @@
     overflow: auto;
     -webkit-overflow-scrolling: touch;
     padding: $reveal-modal-padding;
+}
+
+.modal--alert {
+    background-color: $alert-modal-bgColor;
+    border-radius: $alert-modal-borderRadius;
+    font-family: $alert-font-body;
+    padding: 40px 20px 20px 20px;
+    text-align: center;
+
+    .modal-content {
+        color: $alert-font-bodyColor;
+        font-size: $alert-font-bodySize;
+    }
+
+    .button-container {
+        margin: $alert-button-wrapperMargin;
+
+        .confirm {
+            background-color: $alert-button-bgColor;
+            border-color: $alert-button-borderColor;
+            color: $alert-button-color;
+        }
+
+        .confirm:focus, .confirm:hover {
+            background-color: $alert-button-bgColorHover;
+            border-color: $alert-button-borderColorHover;
+            color: $alert-button-colorHover;
+        }
+
+        .confirm:active {
+            background-color: $alert-button-bgColorActive;
+            border-color: $alert-button-borderColorActive;
+            color: $alert-button-colorActive;
+        }
+    }
 }

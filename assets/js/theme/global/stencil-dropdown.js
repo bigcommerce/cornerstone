@@ -1,5 +1,3 @@
-import $ from 'jquery';
-
 export default class StencilDropdown {
     constructor(extendables) {
         this.extendables = extendables;

@@ -1,8 +1,7 @@
-import $ from 'jquery';
 import utils from '@bigcommerce/stencil-utils';
 import _ from 'lodash';
 import { insertStateHiddenField } from './form-utils';
-import swal from 'sweetalert2';
+import { showAlertModal } from '../global/modal';
 
 /**
  * If there are no options from bcapp, a text field will be sent. This will create a select element to hold options after the remote request.
@@ -130,11 +129,7 @@ export default function (stateElement, context = {}, options, callback) {
 
         utils.api.country.getByName(countryName, (err, response) => {
             if (err) {
-                swal({
-                    text: context.state_error,
-                    type: 'error',
-                });
-
+                showAlertModal(context.state_error);
                 return callback(err);
             }
 

@@ -1,4 +1,3 @@
-import $ from 'jquery';
 import 'slick-carousel';
 
 export default function () {
@@ -10,8 +9,8 @@ export default function () {
 
     // Alternative image styling for IE, which doesn't support objectfit
     if (typeof document.documentElement.style.objectFit === 'undefined') {
-        $('.heroCarousel-slide').each(() => {
-            const $container = $(this);
+        $('.heroCarousel-slide').each((index, element) => {
+            const $container = $(element);
             const imgUrl = $container.find('img').data('lazy');
 
             if (imgUrl) {

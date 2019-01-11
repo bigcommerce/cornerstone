@@ -1,0 +1,53 @@
+---
+category:
+    shop_by_price: true
+    products:
+        limit: {{theme_settings.categorypage_products_per_page}}
+---
+{{inject "categoryProductsPerPage" theme_settings.categorypage_products_per_page}}
+{{#partial "head"}}
+    {{#if pagination.category.previous}}
+        <link rel="prev" href="{{pagination.category.previous}}">
+    {{/if}}
+    {{#if pagination.category.next}}
+        <link rel="next" href="{{pagination.category.next}}">
+    {{/if}}
+{{/partial}}
+
+{{#partial "page"}}
+
+{{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+{{#if category.image}}
+    <img class="lazyload" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{getImage category.image 'zoom_size'}}">
+{{/if}}
+<h1 class="page-heading">{{category.name}}</h1>
+{{{category.description}}}
+{{{snippet 'categories'}}}
+<div class="page">
+    <main class="page-content" id="product-listing-container">
+        <div id='bulk-order-form'></div>
+    </main>
+</div>
+
+{{/partial}}
+{{> layout/base}}
+{{inject "productIds" (pluck category.products 'id')}}
+{{inject "productNames" (pluck category.products 'name')}}
+{{inject "productImages" (pluck category.products 'image.data')}}
+{{inject "productPrices" (pluck category.products 'price.without_tax.formatted')}}
+
+<script>
+const pageContext = JSON.parse({{jsContext}});
+let productData = [];
+pageContext['productIds'].forEach((id, index) => {
+    productData.push({
+        id: id,
+        name: pageContext['productNames'][index],
+        image: pageContext['productImages'][index].replace('{:size}', '100x100'),
+        price: pageContext['productPrices'][index],
+        quantity: 0
+    })
+});
+
+window.initBulkOrderForm(productData)
+</script>

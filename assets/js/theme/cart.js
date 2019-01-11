@@ -226,7 +226,7 @@ export default class Cart extends PageManager {
         });
 
         // cart qty manually updates
-        $('.cart-item-qty-input', this.$cartContent).on('focus', () => {
+        $('.cart-item-qty-input', this.$cartContent).on('focus', function onQtyFocus() {
             preVal = this.value;
         }).change(event => {
             const $target = $(event.currentTarget);

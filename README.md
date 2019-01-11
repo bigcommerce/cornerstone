@@ -55,59 +55,6 @@ These page types will correspond to the pages within your theme. Each one of the
     }
 ```
 
-Within `PageManager` you will see methods that are available from all classes, but there are three really important methods. The following methods have the signature `func (callback)` and the callback takes `callback(err)` if there is an error.
-
-#### before(callback)
-When this method is implemented in your class, the code contained therein will be executed after the constructor but before the `loaded()` method. This provides a shim for your code before your main implementation logic runs.
-
-```javascript
-    export default class Auth extends PageManager {
-        constructor() {
-            // Set up code goes here
-        }
-        before(callback) {
-            // Code that should be run before any other code in this class
-
-            // Callback must be called to move on to the next method
-            callback();
-        }
-    }
-```
-
-#### loaded(callback)
-This method will be called when the constructor has run and `before()` has been executed. Main implementation code should live in the loaded method.
-
-```javascript
-    export default class Auth extends PageManager {
-        constructor() {
-            // Set up code goes here
-        }
-        loaded(callback) {
-            // Main implementation logic here
-
-            // Callback must be called to move on to the next method
-            callback();
-        }
-    }
-```
-
-#### after(callback)
-This method is for any cleanup that may need to happen and it will be executed after `before()` and `loaded()`.
-
-```javascript
-    export default class Auth extends PageManager {
-        constructor() {
-            // Set up code goes here
-        }
-        after(callback) {
-            // Main implementation logic here
-
-            // Callback must be called to move on to the next method
-            callback();
-        }
-    }
-```
-
 ### JS Template Context Injection
 Occasionally you may need to use dynamic data from the template context within your client-side theme application code.
 

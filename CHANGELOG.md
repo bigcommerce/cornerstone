@@ -6,6 +6,7 @@
 - Fixed breadcrumbs for product and category pages [#1403](https://github.com/bigcommerce/cornerstone/pull/1403)
 - Send GA tracking event whenever the last product is removed from the CART[#1409](https://github.com/bigcommerce/cornerstone/pull/1409)
 - Fix cart item quantity change rollback [#1418](https://github.com/bigcommerce/cornerstone/pull/1418)
+- Changed z-index to higher for header [#1422](https://github.com/bigcommerce/cornerstone/pull/1422)
 
 ## 3.0.0 (2018-12-21)
 ### Breaking Changes

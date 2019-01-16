@@ -378,15 +378,6 @@ export default class Account extends PageManager {
                 },
                 errorMessage: this.context.lastName,
             },
-            {
-                selector: `${formEditSelector} input[name='account_phone']`,
-                validate: (cb, val) => {
-                    const result = val.length;
-
-                    cb(result);
-                },
-                errorMessage: this.context.phoneNumber,
-            },
         ]);
 
         $editAccountForm.on('submit', event => {

@@ -5,11 +5,13 @@ const ProductGroup = (props) => {
     const productRows = props.products.map((product, index) => {
         return (
             <Product 
-              key={index}
-              name={product.name}
-              image={product.image}
-              price={product.price}
-              quantity={product.quantity}
+                key={index}
+                name={product.name}
+                product_id={product.id}
+                image={product.image}
+                price={product.price}
+                quantity={product.quantity}
+                updateQuantity={props.updateQuantity}
             />
         )
     });
@@ -25,7 +27,7 @@ const ProductGroup = (props) => {
             { productRows }
             <div className='cart-row'>
                 <div className='bulk-form-col'></div>
-                <button className='button button--primary bulk-add-cart'>Add to Cart</button>
+                <button className='button button--primary bulk-add-cart' onClick={props.addToCart}>Add to Cart</button>
             </div>
         </div>
     )

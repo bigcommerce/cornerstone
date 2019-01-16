@@ -2,7 +2,7 @@
 //
 // https://jquery.com/upgrade-guide/3.0/#data
 
-/* eslint-disable prefer-rest-params */
+/* eslint-disable prefer-rest-params, func-names */
 export default function () {
     const oldData = jQuery.data;
     jQuery.data = function (elem, name, value) {

@@ -2,7 +2,7 @@
 //
 // https://jquery.com/upgrade-guide/3.0/#breaking-change-deprecated-context-and-selector-properties-removed
 
-/* eslint-disable prefer-rest-params */
+/* eslint-disable prefer-rest-params, func-names */
 export default function () {
     const oldFnFind = jQuery.fn.find;
 

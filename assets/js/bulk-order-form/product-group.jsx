@@ -25,8 +25,8 @@ const ProductGroup = (props) => {
                 <div className='bulk-form-col'><strong>Quantity</strong></div>
             </div>
             { productRows }
-            <div className='cart-row'>
-                <div className='bulk-form-col'></div>
+            <div className='bulk-form-row'>
+                <div className='bulk-form-col message'><strong>{props.message}</strong></div>
                 <button className='button button--primary bulk-add-cart' onClick={props.addToCart}>Add to Cart</button>
             </div>
         </div>

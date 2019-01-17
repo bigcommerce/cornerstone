@@ -19,11 +19,13 @@ export default class BulkOrderForm extends Component {
                     product.id === id ? product.quantity = quantity : null
                 });
                 this.setState({
-                    products: products
+                    products: products,
+                    message: ''
                 })
             }
         }
-        this.addToCart = () => {
+        this.addToCart = (e) => {
+            const button = e.target;
             const lineItems = this.state.products.map(product => {
                 if (product.quantity > 0) {
                     return {
@@ -34,6 +36,7 @@ export default class BulkOrderForm extends Component {
             }).filter(item => item != null);
         
             if (lineItems.length > 0) {
+                button.disabled = true;
                 this.setState({message: "Adding items to your cart..."});
 
                 fetch(`/api/storefront/cart`)
@@ -45,7 +48,10 @@ export default class BulkOrderForm extends Component {
                         return createNewCart()
                     }
                 })
-                .catch(err => console.log(err))
+                .then(() => window.location = "/cart.php")
+                .catch(err => handleFailedAddToCart(err, this, button))
+            } else {
+                this.setState({message: "Please select a quantity for at least 1 item"});
             }
 
             async function createNewCart() {
@@ -75,6 +81,13 @@ export default class BulkOrderForm extends Component {
                     console.log(data);
                 }
             }
+
+            function handleFailedAddToCart(message, self,  button) {
+                self.setState({
+                    message: message
+                });
+                return button.disabled = false;
+            }
         }
     }
 
@@ -94,7 +107,7 @@ export default class BulkOrderForm extends Component {
                     products={this.state.products}
                     updateQuantity={this.updateQuantity}
                     addToCart={this.addToCart}
-                    />
+                    message={this.state.message}/>
             </div>
         )
     }

@@ -2,6 +2,8 @@
 
 ## Draft
 
+## 3.1.0 (2019-01-21)
+
 - Fix for ESLint "func-names" warnings. [#1420](https://github.com/bigcommerce/cornerstone/pull/1420)
 - Major performance improvements. Reduce Javascript bundle size from 376kb to 286kb. [#1390](https://github.com/bigcommerce/cornerstone/pull/1390)
 - Fixed breadcrumbs for product and category pages [#1403](https://github.com/bigcommerce/cornerstone/pull/1403)

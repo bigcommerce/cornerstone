@@ -61,14 +61,10 @@
             </div>
             {{product.detail_messages}}
             <dl class="productView-info">
-                {{#if product.sku}}
-                    <dt class="productView-info-name">{{lang 'products.sku'}}</dt>
-                    <dd class="productView-info-value" data-product-sku>{{product.sku}}</dd>
-                {{/if}}
-                {{#if product.upc}}
-                    <dt class="productView-info-name">{{lang 'products.upc'}}</dt>
-                    <dd class="productView-info-value" data-product-upc>{{product.upc}}</dd>
-                {{/if}}
+                <dt class="productView-info-name sku-label"{{#unless product.sku}} style="display: none;"{{/unless}}>{{lang 'products.sku'}}</dt>
+                <dd class="productView-info-value" data-product-sku>{{product.sku}}</dd>
+                <dt class="productView-info-name upc-label"{{#unless product.upc}} style="display: none;"{{/unless}}>{{lang 'products.upc'}}</dt>
+                <dd class="productView-info-value" data-product-upc>{{product.upc}}</dd>
                 {{#if product.condition}}
                     <dt class="productView-info-name">{{lang 'products.condition'}}</dt>
                     <dd class="productView-info-value">{{product.condition}}</dd>

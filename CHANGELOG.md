@@ -2,6 +2,8 @@
 
 ## Draft
 
+## 3.1.1 (2019-01-23)
+
 - Downgrade Webpack to last known good version during development. [#1428](https://github.com/bigcommerce/cornerstone/pull/1428)
 
 ## 3.1.0 (2019-01-21)

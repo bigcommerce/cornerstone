@@ -2,6 +2,8 @@
 
 ## Draft
 
+- Downgrade Webpack to last known good version during development. [#1428](https://github.com/bigcommerce/cornerstone/pull/1428)
+
 ## 3.1.0 (2019-01-21)
 
 - Fix for ESLint "func-names" warnings. [#1420](https://github.com/bigcommerce/cornerstone/pull/1420)

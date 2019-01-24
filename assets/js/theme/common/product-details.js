@@ -216,8 +216,14 @@ export default class ProductDetails {
                 $container: $('.form-field--stock', $scope),
                 $input: $('[data-product-stock]', $scope),
             },
-            $sku: $('[data-product-sku]'),
-            $upc: $('[data-product-upc]'),
+            sku: {
+                $label: $('dt.sku-label', $scope),
+                $value: $('[data-product-sku]', $scope),
+            },
+            upc: {
+                $label: $('dt.upc-label', $scope),
+                $value: $('[data-product-upc]', $scope),
+            },
             quantity: {
                 $text: $('.incrementTotal', $scope),
                 $input: $('[name=qty\\[\\]]', $scope),
@@ -552,12 +558,20 @@ export default class ProductDetails {
 
         // If SKU is available
         if (data.sku) {
-            viewModel.$sku.text(data.sku);
+            viewModel.sku.$value.text(data.sku);
+            viewModel.sku.$label.show();
+        } else {
+            viewModel.sku.$label.hide();
+            viewModel.sku.$value.text('');
         }
 
         // If UPC is available
         if (data.upc) {
-            viewModel.$upc.text(data.upc);
+            viewModel.upc.$value.text(data.upc);
+            viewModel.upc.$label.show();
+        } else {
+            viewModel.upc.$label.hide();
+            viewModel.upc.$value.text('');
         }
 
         // if stock view is on (CP settings)

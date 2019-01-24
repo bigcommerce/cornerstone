@@ -3,14 +3,14 @@
     {{#if required}}<small>{{lang 'common.required' }}</small>{{/if}}</label>
     <div class="form-row form-row--third">
         <div class="form-field">
-            <select class="form-select" name="{{month.name}}" id="{{id}}_day" data-label="month"  aria-required="{{required}}" {{#if private_id}}data-field-type="{{private_id}}"{{/if}}>
+            <select class="form-select" name="{{month.name}}" id="{{id}}_month" data-label="month"  aria-required="{{required}}" {{#if private_id}}data-field-type="{{private_id}}"{{/if}}>
                 {{#each month.items}}
                     <option {{#if ../month.value '==' value}} selected {{/if}}value="{{value}}">{{label}}</option>
                 {{/each}}
             </select>
         </div>
         <div class="form-field">
-            <select class="form-select" name="{{day.name}}" id="{{id}}_month" data-label="day" aria-required="{{required}}" {{#if private_id}}data-field-type="{{private_id}}"{{/if}}>
+            <select class="form-select" name="{{day.name}}" id="{{id}}_day" data-label="day" aria-required="{{required}}" {{#if private_id}}data-field-type="{{private_id}}"{{/if}}>
                 {{#each day.items}}
                     <option {{#if ../day.value '==' value}} selected {{/if}}value="{{value}}">{{label}}</option>
                 {{/each}}

@@ -24,7 +24,7 @@
 
 {{#if product.similar_by_views}}
     <div role="tabpanel" aria-hidden="{{#if product.related_products}}true{{else}}false{{/if}}" class="tab-content has-jsContent{{#unless product.related_products}} is-active{{/unless}}" id="tab-similar">
-            {{> components/products/carousel settings=../settings products=product.similar_by_views columns=6 list="Customers Also Viewed"}}
+            {{> components/products/carousel products=product.similar_by_views columns=6 list="Customers Also Viewed"}}
 
     </div>
 {{/if}}

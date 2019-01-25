@@ -3,6 +3,7 @@
 ## Draft
 
 - Ensure SKU and UPC display correctly for Variants on PDP. [#1431](https://github.com/bigcommerce/cornerstone/pull/1431)
+- Cleanup and XSS fix on Cart page. [#1434](https://github.com/bigcommerce/cornerstone/pull/1434)
 
 ## 3.1.1 (2019-01-23)
 

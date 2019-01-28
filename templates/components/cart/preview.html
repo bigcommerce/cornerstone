@@ -81,19 +81,6 @@
                         {{/or}}
                     </div>
 
-                    {{#each configurable_fields}}
-                        <dl class="productView-info">
-                            <dt class="productView-info-name">
-                                {{name}}
-                            </dt>
-                            {{#if is_file}}
-                                <a href="/viewfile.php?prodfield={{../id}}&cartitem={{../../id}}">{{{value}}}</a>
-                            {{else}}
-                                {{{value}}}
-                            {{/if}}
-                        </dl>
-                    {{/each}}
-
                     {{#each options}}
                         <dl class="productView-info">
                             <dt class="productView-info-name">

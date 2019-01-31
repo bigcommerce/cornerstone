@@ -5,6 +5,8 @@
 
 - Ensure SKU and UPC display correctly for Variants on PDP. [#1431](https://github.com/bigcommerce/cornerstone/pull/1431)
 
+- Resolve settings scope passed to components. [#1435](https://github.com/bigcommerce/cornerstone/pull/1435)
+
 ## 3.1.1 (2019-01-23)
 
 - Downgrade Webpack to last known good version during development. [#1428](https://github.com/bigcommerce/cornerstone/pull/1428)

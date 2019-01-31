@@ -7,6 +7,8 @@
 - Corrected IDs in date.html form fields. [#1433](https://github.com/bigcommerce/cornerstone/pull/1433)
 - Cleanup and XSS fix on Cart page. [#1434](https://github.com/bigcommerce/cornerstone/pull/1434)
 
+- Resolve settings scope passed to components. [#1435](https://github.com/bigcommerce/cornerstone/pull/1435)
+
 ## 3.1.1 (2019-01-23)
 
 - Downgrade Webpack to last known good version during development. [#1428](https://github.com/bigcommerce/cornerstone/pull/1428)

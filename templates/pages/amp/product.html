@@ -24,7 +24,7 @@ product:
 {{#partial "page"}}
     {{> components/amp/common/header }}
     <div itemscope itemtype="http://schema.org/Product">
-        {{> components/amp/products/product-view schema=true settings=../settings}}
+        {{> components/amp/products/product-view schema=true}}
     </div>
     {{#if settings.amp_analytics_id}}
         <amp-analytics type="googleanalytics">
@@ -69,6 +69,6 @@ product:
             </script>
         </amp-analytics>
     {{/if}}
-    {{> components/amp/common/footer settings=../settings}}
+    {{> components/amp/common/footer}}
 {{/partial}}
 {{> layout/amp }}

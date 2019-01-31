@@ -145,6 +145,9 @@ export default class Search extends CatalogPage {
                 selectedCategoryId: node.id,
                 prefix: 'category',
             },
+            headers: {
+                'x-xsrf-token': window.BCData && window.BCData.csrf_token ? window.BCData.csrf_token : '',
+            },
         }).done(data => {
             const formattedResults = [];
 

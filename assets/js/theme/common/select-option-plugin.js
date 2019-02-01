@@ -1,5 +1,3 @@
-import $ from 'jquery';
-
 /**
  * Visually hides the option from user by moving option to an invisible
  * and disabled select placeholder element.

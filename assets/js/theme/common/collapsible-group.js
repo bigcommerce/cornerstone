@@ -1,4 +1,3 @@
-import $ from 'jquery';
 import { CollapsibleEvents } from '../common/collapsible';
 
 const PLUGIN_KEY = 'collapsible-group';

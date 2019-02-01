@@ -25,6 +25,8 @@
         {{inject 'genericError' (lang 'common.generic_error')}}
         {{inject 'maintenanceMode' settings.maintenance}}
         {{inject 'urls' urls}}
+        {{inject 'secureBaseUrl' settings.secure_base_url}}
+        {{inject 'cartId' cart_id}}
         {{inject 'template' template}}
         {{{snippet 'htmlhead'}}}
     </head>
@@ -32,9 +34,9 @@
         {{{snippet 'header'}}}
         <svg data-src="{{cdn 'img/icon-sprite.svg'}}" class="icons-svg-sprite"></svg>
 
-        {{#if settings.privacy_cookie}}
+        {{#and settings.privacy_cookie settings.is_eu_ip_address}}
             {{> components/common/cookie}}
-        {{/if}}
+        {{/and}}
 
         {{> components/common/header }}
         {{> components/common/body }}
@@ -42,7 +44,6 @@
 
         <script>window.__webpack_public_path__ = "{{cdn 'assets/dist/'}}";</script>
         <script src="{{cdn 'assets/dist/theme-bundle.main.js'}}"></script>
-
         <script>
             // Exported in app.js
             window.stencilBootstrap("{{page_type}}", {{jsContext}}).load();

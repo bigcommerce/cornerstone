@@ -1,5 +1,3 @@
-import $ from 'jquery';
-
 /**
  * Validate that the given date for the day/month/year select inputs is within potential range
  * @param $formField

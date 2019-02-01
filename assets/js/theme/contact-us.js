@@ -1,6 +1,5 @@
 import PageManager from './page-manager';
 import nod from './common/nod';
-import $ from 'jquery';
 import forms from './common/models/forms';
 
 export default class ContactUs extends PageManager {

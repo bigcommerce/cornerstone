@@ -1,4 +1,3 @@
-import $ from 'jquery';
 import Url from 'url';
 
 const urlUtils = {

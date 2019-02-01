@@ -1,5 +1,3 @@
-import $ from 'jquery';
-
 const revealCloseAttr = 'revealClose';
 const revealCloseSelector = `[data-${revealCloseAttr}]`;
 const revealSelector = '[data-reveal]';

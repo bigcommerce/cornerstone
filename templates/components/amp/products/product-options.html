@@ -3,17 +3,11 @@
         <form class="form" method="post" action="{{product.cart_url}}" enctype="multipart/form-data" data-cart-item-add target="_self">
             <input type="hidden" name="action" value="add">
             <input type="hidden" name="product_id" value="{{product.id}}"/>
-            {{#each product.customizations}}
-                {{{dynamicComponent 'components/products/customizations'}}}
-            {{/each}}
             <div data-product-option-change>
                 {{#each product.options}}
                     {{{dynamicComponent 'components/products/options'}}}
                 {{/each}}
             </div>
-            {{#if product.event_date}}
-                {{> components/products/event-date}}
-            {{/if}}
             {{#if product.can_purchase}}
                 {{> components/products/add-to-cart}}
             {{/if}}

@@ -1,7 +1,6 @@
 /*
  Import all product specific js
  */
-import $ from 'jquery';
 import PageManager from './page-manager';
 import Review from './product/reviews';
 import collapsibleFactory from './common/collapsible';

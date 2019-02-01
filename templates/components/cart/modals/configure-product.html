@@ -9,9 +9,6 @@
     <form id="CartEditProductFieldsForm" method="post" action="cart.php" enctype="multipart/form-data">
         <input type="hidden" name="action" value="EditProductFieldsInCart">
         <input type="hidden" name="item_id" value="{{quote_item_id}}">
-        {{#each customizations}}
-            {{{dynamicComponent 'components/products/customizations'}}}
-        {{/each}}
 
         {{#each options}}
             {{{dynamicComponent 'components/products/options'}}}

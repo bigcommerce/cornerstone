@@ -26,39 +26,22 @@
                         <p>({{release_date}})</p>
                     {{/if}}
 
-                    {{#if configurable_fields}}
-                        <dl class="definitionList">
-                            {{#each configurable_fields}}
-                                <dt class="definitionList-key">{{name}}:</dt>
-                                <dd class="definitionList-value">
-                                    {{#if is_file}}
-                                        <a href="/viewfile.php?prodfield={{../id}}&cartitem={{../../id}}">{{{value}}}</a>
-                                    {{else}}
-                                        {{{value}}}
-                                    {{/if}}
-                                </dd>
-                            {{/each}}
-                        </dl>
-                    {{/if}}
-
                     {{#if options}}
                         <dl class="definitionList">
                             {{#each options}}
                                 <dt class="definitionList-key">{{name}}:</dt>
                                 <dd class="definitionList-value">
                                     {{#if is_file}}
-                                        <a href="/viewfile.php?attributeId={{../id}}&cartitem={{../../id}}">{{{value}}}</a>
+                                        <a href="/viewfile.php?attributeId={{../id}}&cartitem={{../../id}}">{{value}}</a>
                                     {{else}}
-                                        {{{value}}}
+                                        {{value}}
                                     {{/if}}
                                 </dd>
                             {{/each}}
                         </dl>
-                    {{/if}}
 
-                    {{#or options configurable_fields}}
                         <a href="#" data-item-edit="{{id}}">{{lang 'cart.checkout.change'}}</a>
-                    {{/or}}
+                    {{/if}}
 
                     {{#if type '==' 'GiftCertificate'}}
                         <a href="{{edit_url}}">{{lang 'cart.checkout.change'}}</a>

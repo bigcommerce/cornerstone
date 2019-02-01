@@ -1,10 +1,5 @@
  <form method="post" action="{{urls.cart}}" enctype="multipart/form-data">
     <input type="hidden" name="item_id" value="{{item.id}}">
-    <p>
-        {{#each product.customizations}}
-            <div>{{{dynamicComponent 'components/products/customizations'}}}</div>
-        {{/each}}
-    </p>
     <p> Options
         {{#each product.options}}
             <div>{{{dynamicComponent 'components/products/options'}}}</div>

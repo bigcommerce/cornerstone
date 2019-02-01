@@ -1,5 +1,3 @@
-import $ from 'jquery';
-
 export class VideoGallery {
     constructor($element) {
         this.$player = $element.find('[data-video-player]');

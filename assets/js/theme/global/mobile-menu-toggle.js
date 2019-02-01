@@ -1,4 +1,3 @@
-import $ from 'jquery';
 import _ from 'lodash';
 import mediaQueryListFactory from '../common/media-query-list';
 import { CartPreviewEvents } from './cart-preview';

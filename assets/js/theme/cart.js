@@ -1,11 +1,10 @@
 import PageManager from './page-manager';
-import $ from 'jquery';
 import _ from 'lodash';
 import giftCertCheck from './common/gift-certificate-validator';
 import utils from '@bigcommerce/stencil-utils';
 import ShippingEstimator from './cart/shipping-estimator';
 import { defaultModal } from './global/modal';
-import swal from 'sweetalert2';
+import swal from './global/sweet-alert';
 
 export default class Cart extends PageManager {
     onReady() {
@@ -227,7 +226,7 @@ export default class Cart extends PageManager {
         });
 
         // cart qty manually updates
-        $('.cart-item-qty-input', this.$cartContent).on('focus', () => {
+        $('.cart-item-qty-input', this.$cartContent).on('focus', function onQtyFocus() {
             preVal = this.value;
         }).change(event => {
             const $target = $(event.currentTarget);

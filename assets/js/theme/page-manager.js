@@ -1,5 +1,3 @@
-import $ from 'jquery';
-
 export default class PageManager {
     constructor(context) {
         this.context = context;

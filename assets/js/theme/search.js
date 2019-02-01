@@ -1,7 +1,7 @@
 import { hooks } from '@bigcommerce/stencil-utils';
 import CatalogPage from './catalog';
-import $ from 'jquery';
 import FacetedSearch from './common/faceted-search';
+import compareProducts from './global/compare-products';
 import urlUtils from './common/url-utils';
 import Url from 'url';
 import collapsibleFactory from './common/collapsible';
@@ -70,6 +70,8 @@ export default class Search extends CatalogPage {
     }
 
     onReady() {
+        compareProducts(this.context.urls);
+
         const $searchForm = $('[data-advanced-search-form]');
         const $categoryTreeContainer = $searchForm.find('[data-search-category-tree]');
         const url = Url.parse(window.location.href, true);
@@ -142,6 +144,9 @@ export default class Search extends CatalogPage {
             data: {
                 selectedCategoryId: node.id,
                 prefix: 'category',
+            },
+            headers: {
+                'x-xsrf-token': window.BCData && window.BCData.csrf_token ? window.BCData.csrf_token : '',
             },
         }).done(data => {
             const formattedResults = [];

@@ -11,6 +11,7 @@
 - Fix cart item quantity change rollback [#1418](https://github.com/bigcommerce/cornerstone/pull/1418)
 - Changed z-index to higher for header [#1422](https://github.com/bigcommerce/cornerstone/pull/1422)
 - Removed customer (not address) phone number requirement from Edit Account [#1417](https://github.com/bigcommerce/cornerstone/pull/1417)
+- Sanitize faceted search titles to remove HTML [#1426](https://github.com/bigcommerce/cornerstone/pull/1426)
 
 ## 3.0.0 (2018-12-21)
 ### Breaking Changes

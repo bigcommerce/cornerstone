@@ -156,16 +156,25 @@ const Validators = {
             {
                 selector: passwordSelector,
                 validate: (cb, val) => {
-                    const result = val.match(new RegExp(requirements.alpha))
+                    const upperLowerNumeric = val.match(new RegExp(requirements.alphaupper))
                         && val.match(new RegExp(requirements.numeric))
-                        && val.length >= requirements.minlength;
+                        && val.match(new RegExp(requirements.alphalower));
+                    const upperLowerSpecial = val.match(new RegExp(requirements.alphaupper))
+                        && val.match(new RegExp(requirements.alphalower))
+                        && val.match(new RegExp(requirements.specialchars));
+                    const upperSpecialNumeric = val.match(new RegExp(requirements.alphaupper))
+                        && val.match(new RegExp(requirements.numeric))
+                        && val.match(new RegExp(requirements.specialchars));
+                    const lowerSpecialNumeric = val.match(new RegExp(requirements.alphalower))
+                        && val.match(new RegExp(requirements.numeric))
+                        && val.match(new RegExp(requirements.specialchars));
 
                     // If optional and nothing entered, it is valid
                     if (isOptional && val.length === 0) {
                         return cb(true);
                     }
 
-                    cb(result);
+                    cb((upperLowerNumeric || upperLowerSpecial || upperSpecialNumeric || lowerSpecialNumeric) && val.length >= requirements.minlength);
                 },
                 errorMessage: requirements.error,
             },

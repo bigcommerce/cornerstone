@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Added package-lock.json. [#1441](https://github.com/bigcommerce/cornerstone/pull/1441)
 
 ## 3.2.0 (2019-02-05)
 - Align product thumbnail image slider arrows. [#1399](https://github.com/bigcommerce/cornerstone/pull/1399)

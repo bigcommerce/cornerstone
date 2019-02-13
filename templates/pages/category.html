@@ -20,7 +20,9 @@ category:
 {{#if category.image}}
     <img class="lazyload" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{getImage category.image 'zoom_size'}}">
 {{/if}}
-<h1 class="page-heading">{{category.name}}</h1>
+{{#unless theme_settings.hide_category_page_heading }}
+    <h1 class="page-heading">{{category.name}}</h1>
+{{/unless}}
 {{{category.description}}}
 {{{snippet 'categories'}}}
 <div class="page">

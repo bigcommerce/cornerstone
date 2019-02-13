@@ -1,13 +1,15 @@
 <ul class="breadcrumbs" itemscope itemtype="http://schema.org/BreadcrumbList">
-    {{#each breadcrumbs}}
-        <li class="breadcrumb {{#if @last}}is-active{{/if}}" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-            {{#or @last (if url "==" null)}}
-                <meta itemprop="item" content="{{url}}">
-                <span class="breadcrumb-label" itemprop="name">{{name}}</span>
-            {{else}}
-                <a href="{{url}}" class="breadcrumb-label" itemprop="item"><span itemprop="name">{{name}}</span></a>
-            {{/or}}
-            <meta itemprop="position" content="{{add @index 1}}" />
-        </li>
-    {{/each}}
+    {{#unless theme_settings.hide_breadcrumbs }}
+        {{#each breadcrumbs}}
+            <li class="breadcrumb {{#if @last}}is-active{{/if}}" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                {{#or @last (if url "==" null)}}
+                    <meta itemprop="item" content="{{url}}">
+                    <span class="breadcrumb-label" itemprop="name">{{name}}</span>
+                {{else}}
+                    <a href="{{url}}" class="breadcrumb-label" itemprop="item"><span itemprop="name">{{name}}</span></a>
+                {{/or}}
+                <meta itemprop="position" content="{{add @index 1}}" />
+            </li>
+        {{/each}}
+    {{/unless}}
 </ul>

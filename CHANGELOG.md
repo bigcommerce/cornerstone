@@ -2,6 +2,7 @@
 
 ## Draft
 - Added package-lock.json. [#1441](https://github.com/bigcommerce/cornerstone/pull/1441)
+- Product description in Compare no longer shows escaped HTML. [#1439](https://github.com/bigcommerce/cornerstone/pull/1439)
 
 ## 3.2.0 (2019-02-05)
 - Align product thumbnail image slider arrows. [#1399](https://github.com/bigcommerce/cornerstone/pull/1399)
@@ -10,7 +11,6 @@
 - Corrected IDs in date.html form fields. [#1433](https://github.com/bigcommerce/cornerstone/pull/1433)
 - Cleanup and XSS fix on Cart page. [#1434](https://github.com/bigcommerce/cornerstone/pull/1434)
 - Fix for product without image on Compare page. [#1438](https://github.com/bigcommerce/cornerstone/pull/1438)
-
 - Resolve settings scope passed to components. [#1435](https://github.com/bigcommerce/cornerstone/pull/1435)
 
 ## 3.1.1 (2019-01-23)

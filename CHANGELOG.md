@@ -4,6 +4,7 @@
 - Added package-lock.json. [#1441](https://github.com/bigcommerce/cornerstone/pull/1441)
 - Product description in Compare no longer shows escaped HTML. [#1439](https://github.com/bigcommerce/cornerstone/pull/1439)
 - Removed href="#" from quick view button. [#1445](https://github.com/bigcommerce/cornerstone/pull/1445)
+- Removed href="#" from quick view list item. [#1446](https://github.com/bigcommerce/cornerstone/pull/1446)
 
 ## 3.2.0 (2019-02-05)
 - Align product thumbnail image slider arrows. [#1399](https://github.com/bigcommerce/cornerstone/pull/1399)

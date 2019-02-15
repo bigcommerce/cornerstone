@@ -1,6 +1,8 @@
 # Changelog
 
 ## Draft
+
+## 3.2.1 (2019-02-15)
 - Added package-lock.json. [#1441](https://github.com/bigcommerce/cornerstone/pull/1441)
 - Product description in Compare no longer shows escaped HTML. [#1439](https://github.com/bigcommerce/cornerstone/pull/1439)
 - Removed href="#" from quick view button. [#1445](https://github.com/bigcommerce/cornerstone/pull/1445)

@@ -20,6 +20,7 @@
         {{#replace '%%Syndicate%%' page.content}}
             {{> components/page/rss_feed}}
         {{else}}
+            {{{region name="page_content"}}}
             <p>{{{page.content}}}</p>
         {{/replace}}
     </div>

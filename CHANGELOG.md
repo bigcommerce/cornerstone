@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Load gift certificate preview in iframe. [#1456](https://github.com/bigcommerce/cornerstone/pull/1456)
 - Resolve add to cart modal mobile isssue. [#1450](https://github.com/bigcommerce/cornerstone/pull/1450)
 
 ## 3.2.1 (2019-02-15)

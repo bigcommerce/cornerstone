@@ -4,13 +4,29 @@
         "dots": true,
         "infinite": false,
         "mobileFirst": true,
-        "slidesToShow": {{ columns }},
-        "slidesToScroll": 3
+        "slidesToShow": 2,
+        "slidesToScroll": 2,
+        "responsive": [
+            {
+                "breakpoint": 800,
+                "settings": {
+                    "slidesToShow": {{ columns }},
+                    "slidesToScroll": 3
+                }
+            },
+            {
+                "breakpoint": 550,
+                "settings": {
+                    "slidesToShow": 3,
+                    "slidesToScroll": 3
+                }
+            }
+        ]
     }'
 >
     {{#each products}}
     <div class="productCarousel-slide">
-            {{> components/products/card settings=../settings theme_settings=../theme_settings customer=../customer event="list" position=(add @index 1)}}
+        {{> components/products/card settings=../settings theme_settings=../theme_settings customer=../customer event="list" position=(add @index 1)}}
     </div>
     {{/each}}
 </section>

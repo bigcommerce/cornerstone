@@ -2,7 +2,6 @@ import PageManager from './page-manager';
 import nod from './common/nod';
 import giftCertChecker from './common/gift-certificate-validator';
 import formModel from './common/models/forms';
-import { api } from '@bigcommerce/stencil-utils';
 import { defaultModal } from './global/modal';
 
 export default class GiftCertificate extends PageManager {
@@ -168,16 +167,15 @@ export default class GiftCertificate extends PageManager {
 
             const modal = defaultModal();
             const previewUrl = `${$(event.currentTarget).data('previewUrl')}&${$purchaseForm.serialize()}`;
+            const frameOptions = {
+                height: '350px',
+                width: '560px',
+            };
+
+            const wrappedContent = `<div style="text-align:center;"><iframe src="${previewUrl}" style="border:0;" name="Gift Certificate Preview" scrolling="yes" frameborder="0" marginheight="0px" marginwidth="0px" height="${frameOptions.height}" width="${frameOptions.width}"></iframe></div>`;
 
             modal.open();
-
-            api.getPage(previewUrl, {}, (err, content) => {
-                if (err) {
-                    return modal.updateContent(this.context.previewError);
-                }
-
-                modal.updateContent(content, { wrap: true });
-            });
+            modal.updateContent(wrappedContent, { wrap: true });
         });
     }
 

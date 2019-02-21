@@ -2,6 +2,7 @@
 
 ## Draft
 - Resolve add to cart modal mobile isssue. [#1450](https://github.com/bigcommerce/cornerstone/pull/1450)
+- Add responsive breakpoints to product carousel. [#1458](https://github.com/bigcommerce/cornerstone/pull/1458)
 
 ## 3.2.1 (2019-02-15)
 - Added package-lock.json. [#1441](https://github.com/bigcommerce/cornerstone/pull/1441)

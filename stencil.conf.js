@@ -36,6 +36,10 @@ function development() {
             console.error(stats.toString({ all: false, errors: true, colors: true }));
         }
 
+        if (stats.hasWarnings()) {
+            console.error(stats.toString({ all: false, warnings: true, colors: true }));
+        }
+
         process.send('reload');
     });
 }
@@ -57,6 +61,10 @@ function production() {
             console.error(stats.toString({ all: false, errors: true, colors: true }));
             process.exit(1);
             return;
+        }
+
+        if (stats.hasWarnings()) {
+            console.error(stats.toString({ all: false, warnings: true, colors: true }));
         }
 
         process.send('done');

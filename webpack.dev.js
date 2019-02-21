@@ -5,4 +5,7 @@ const webpack = require('webpack'),
 module.exports = merge(commonConfig, {
     devtool: 'inline-source-map',
     mode: 'development',
+    performance: {
+        hints: false,
+    },
 });

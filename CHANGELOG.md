@@ -15,6 +15,7 @@
 - Utilize srcset for responsive images [#1507](https://github.com/bigcommerce/cornerstone/pull/1507)
 - Clean up conditional logic in a couple component templates [#1547](https://github.com/bigcommerce/cornerstone/pull/1547)
 - Remove "demo" product conditional logic [#1551](https://github.com/bigcommerce/cornerstone/pull/1551)
+- Add responsive breakpoints to product carousel. [#1458](https://github.com/bigcommerce/cornerstone/pull/1458)
 
 ## 3.5.1 (2019-06-24)
 - Fix conditional logic in share.html [#1522](https://github.com/bigcommerce/cornerstone/pull/1522)

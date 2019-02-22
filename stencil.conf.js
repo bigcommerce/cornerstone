@@ -27,9 +27,17 @@ function development() {
     var devConfig = require('./webpack.dev.js');
 
     // Rebuild the bundle once at bootup
-    webpack(devConfig).watch({}, err => {
+    webpack(devConfig).watch({}, (err, stats) => {
         if (err) {
             console.error(err.message, err.details);
+        }
+
+        if (stats.hasErrors()) {
+            console.error(stats.toString({ all: false, errors: true, colors: true }));
+        }
+
+        if (stats.hasWarnings()) {
+            console.error(stats.toString({ all: false, warnings: true, colors: true }));
         }
 
         process.send('reload');
@@ -42,11 +50,21 @@ function development() {
 function production() {
     var prodConfig = require('./webpack.prod.js');
 
-    webpack(prodConfig).run(err => {
+    webpack(prodConfig).run((err, stats) => {
         if (err) {
             console.error(err.message, err.details);
             process.exit(1);
             return;
+        }
+
+        if (stats.hasErrors()) {
+            console.error(stats.toString({ all: false, errors: true, colors: true }));
+            process.exit(1);
+            return;
+        }
+
+        if (stats.hasWarnings()) {
+            console.error(stats.toString({ all: false, warnings: true, colors: true }));
         }
 
         process.send('done');

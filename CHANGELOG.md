@@ -1,6 +1,8 @@
 # Changelog
 
 ## Draft
+
+## 3.2.2 (2019-02-26)
 - Resolve add to cart modal mobile isssue. [#1450](https://github.com/bigcommerce/cornerstone/pull/1450)
 - Fail stencil bundle on Webpack compile errors [#1457](https://github.com/bigcommerce/cornerstone/pull/1457)
 

@@ -10,7 +10,9 @@ blog:
 {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
 
 <main class="page">
-    <h1 class="page-heading">{{ blog.name }}</h1>
+    {{#unless theme_settings.hide_blog_page_heading }}
+        <h1 class="page-heading">{{ blog.name }}</h1>
+    {{/unless}}
 
     {{#each blog.posts}}
         {{> components/blog/post post=this}}

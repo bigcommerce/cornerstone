@@ -85,6 +85,11 @@ class FacetedSearch {
             }
         });
 
+        // Observe DOM events
+        window.onpopstate = () => {
+            $(window).trigger('statechange');
+        };
+
         // Observe user events
         this.onStateChange = this.onStateChange.bind(this);
         this.onToggleClick = this.onToggleClick.bind(this);

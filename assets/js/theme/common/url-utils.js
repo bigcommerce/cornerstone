@@ -8,6 +8,10 @@ const urlUtils = {
         $(window).trigger('statechange');
     },
 
+    searchGoToUrl: () => {
+        $(window).trigger('statechange');
+    },
+
     replaceParams: (url, params) => {
         const parsed = Url.parse(url, true);
         let param;

@@ -34,10 +34,6 @@ export default class Search extends CatalogPage {
     }
 
     showProducts() {
-        const url = urlUtils.replaceParams(window.location.href, {
-            section: 'product',
-        });
-
         this.$productListingContainer.removeClass('u-hiddenVisually');
         this.$facetedSearchContainer.removeClass('u-hiddenVisually');
         this.$contentResultsContainer.addClass('u-hiddenVisually');
@@ -48,14 +44,10 @@ export default class Search extends CatalogPage {
         $('[data-product-results-toggle]').removeClass('navBar-action');
         $('[data-product-results-toggle]').addClass('navBar-action-color--active');
 
-        urlUtils.goToUrl(url);
+        urlUtils.searchGoToUrl();
     }
 
     showContent() {
-        const url = urlUtils.replaceParams(window.location.href, {
-            section: 'content',
-        });
-
         this.$contentResultsContainer.removeClass('u-hiddenVisually');
         this.$productListingContainer.addClass('u-hiddenVisually');
         this.$facetedSearchContainer.addClass('u-hiddenVisually');
@@ -66,7 +58,7 @@ export default class Search extends CatalogPage {
         $('[data-content-results-toggle]').removeClass('navBar-action');
         $('[data-content-results-toggle]').addClass('navBar-action-color--active');
 
-        urlUtils.goToUrl(url);
+        urlUtils.searchGoToUrl();
     }
 
     onReady() {

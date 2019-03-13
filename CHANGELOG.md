@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Add option to hide breadcrumbs and page title. [#1444](https://github.com/bigcommerce/cornerstone/pull/1444)
 
 ## 3.2.2 (2019-02-26)
 - Resolve add to cart modal mobile isssue. [#1450](https://github.com/bigcommerce/cornerstone/pull/1450)

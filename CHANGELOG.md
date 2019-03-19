@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Explicitly disable autocomplete in password entry input fields. [#1465](https://github.com/bigcommerce/cornerstone/pull/1465)
 
 ## 3.3.0 (2019-03-18)
 - Add option to hide breadcrumbs and page title. [#1444](https://github.com/bigcommerce/cornerstone/pull/1444)

@@ -67,11 +67,12 @@ export default class Cart extends PageManager {
         const oldQty = preVal !== null ? preVal : minQty;
         const minError = $el.data('quantityMinError');
         const maxError = $el.data('quantityMaxError');
-        const newQty = parseInt(Number($el.attr('value')), 10);
+        const newQty = parseInt(Number($el.val()), 10);
         let invalidEntry;
+
         // Does not quality for min/max quantity
         if (!newQty) {
-            invalidEntry = $el.attr('value');
+            invalidEntry = $el.val();
             $el.val(oldQty);
             return swal({
                 text: `${invalidEntry} is not a valid entry`,

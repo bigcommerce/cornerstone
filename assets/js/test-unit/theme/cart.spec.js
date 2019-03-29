@@ -114,8 +114,7 @@ describe('cartUpdateQtyTextChange', () => {
     it('should CHANGE qty completly based on the cart-item-qty-input', () => {	
 		dataSpy
 		dataSpy('manualQtyChange');
-		spyOn(jQuery.fn, 'attr').and.returnValue(5);
-		spyOn(jQuery.fn, 'val').and.returnValue(2);
+		spyOn(jQuery.fn, 'val').and.returnValue(5, 2);
 		c.cartUpdateQtyTextChange($dom);
 		
 		expect(UpdateSpy).toHaveBeenCalledWith('11111', 5, jasmine.any(Function));  

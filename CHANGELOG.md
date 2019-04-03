@@ -1,6 +1,8 @@
 # Changelog
 
 ## Draft
+
+## 3.4.0 (2019-04-03)
 - Explicitly disable autocomplete in password entry input fields. [#1465](https://github.com/bigcommerce/cornerstone/pull/1465)
 - Fixed update product qty by typing the new qty in the cart page (not with the arrows). [#1469](https://github.com/bigcommerce/cornerstone/pull/1469)
 

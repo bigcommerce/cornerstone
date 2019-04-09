@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Update support URL [#1474](https://github.com/bigcommerce/cornerstone/pull/1474)
 
 ## 3.4.0 (2019-04-03)
 - Explicitly disable autocomplete in password entry input fields. [#1465](https://github.com/bigcommerce/cornerstone/pull/1465)

@@ -46,6 +46,12 @@ describe('FacetedSearch', () => {
                         '<input name="min_price" value="0">' +
                         '<input name="max_price" value="100">' +
                     '</form>' +
+                    '<form id="facet-range-form-with-other-facets">' +
+                        '<input name="brand[]" value="item1">' +
+                        '<input name="brand[]" value="item2">' +
+                        '<input name="min_price" value="0">' +
+                        '<input name="max_price" value="50">' +
+                    '</form>' +
                 '</div>' +
             '</div>';
 
@@ -216,10 +222,32 @@ describe('FacetedSearch', () => {
             expect(urlUtils.goToUrl).not.toHaveBeenCalled();
         });
 
-        it('should prevent default event', function() {
+        it('should prevent default event', () => {
             hooks.emit(eventName, event);
 
             expect(event.preventDefault).toHaveBeenCalled();
+        });
+    });
+
+    describe('when price range form is submitted with other facets selected', () => {
+        let event;
+        let eventName;
+
+        beforeEach(() => {
+            eventName = 'facetedSearch-range-submitted';
+            event = {
+                currentTarget: '#facet-range-form-with-other-facets',
+                preventDefault: jasmine.createSpy('preventDefault'),
+            };
+
+            spyOn(urlUtils, 'goToUrl');
+            spyOn(facetedSearch.priceRangeValidator, 'areAll').and.returnValue(true);
+        });
+
+        it('send `min_price` and `max_price` query params if form is valid', () => {
+            hooks.emit(eventName, event);
+
+            expect(urlUtils.goToUrl).toHaveBeenCalledWith('/context.html?brand[]=item1&brand[]=item2&min_price=0&max_price=50');
         });
     });
 

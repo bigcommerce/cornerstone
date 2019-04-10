@@ -1,6 +1,9 @@
 # Changelog
 
 ## Draft
+- Sanitize faceted search item's title [#1426](https://github.com/bigcommerce/cornerstone/pull/1426)
+- Fixed the filtering issues with price range filter selection [#1471](https://github.com/bigcommerce/cornerstone/pull/1471)
+- Fix submenu click on mobile navigation [#1472](https://github.com/bigcommerce/cornerstone/pull/1472)
 - Update support URL [#1474](https://github.com/bigcommerce/cornerstone/pull/1474)
 
 ## 3.4.0 (2019-04-03)
@@ -42,7 +45,6 @@
 - Fix cart item quantity change rollback [#1418](https://github.com/bigcommerce/cornerstone/pull/1418)
 - Changed z-index to higher for header [#1422](https://github.com/bigcommerce/cornerstone/pull/1422)
 - Removed customer (not address) phone number requirement from Edit Account [#1417](https://github.com/bigcommerce/cornerstone/pull/1417)
-- Sanitize faceted search titles to remove HTML [#1426](https://github.com/bigcommerce/cornerstone/pull/1426)
 
 ## 3.0.0 (2018-12-21)
 ### Breaking Changes
@@ -90,12 +92,12 @@
 - Add support for Paypal smart buttons settings [#1359](https://github.com/bigcommerce/cornerstone/pull/1359)
 
 ## 2.4.0 (2018-09-14)
-- Fix encoding issues on Account Signup Form ("&#039;" characters showing in country name)[#1341] (https://github.com/bigcommerce/cornerstone/pull/1341)
+- Fix encoding issues on Account Signup Form ("&#039;" characters showing in country name) [#1341](https://github.com/bigcommerce/cornerstone/pull/1341)
 - Require Webpack config only when used (reduce time to be ready for receiving messages from stencil-cli). [#1334](https://github.com/bigcommerce/cornerstone/pull/1334)
 - Fixed amp page error related to store logo [#1323](https://github.com/bigcommerce/cornerstone/pull/1323)
 - Add link to order status in account menu when viewing order [#1343](https://github.com/bigcommerce/cornerstone/pull/1343)
 - Update cart when quantity changed manually (without using the increase and decrease arrows). [#1338](https://github.com/bigcommerce/cornerstone/pull/1338)
-- Fix option set. Selection from option set that containes multiple similar options. [1347] (https://github.com/bigcommerce/cornerstone/pull/1347)
+- Fix option set. Selection from option set that containes multiple similar options. [#1347](https://github.com/bigcommerce/cornerstone/pull/1347)
 
 ## 2.3.2 (2018-08-17)
 - Fix zoom behavior for small images in gallery (turn off zoom if image is too small). [#1325](https://github.com/bigcommerce/cornerstone/pull/1325)

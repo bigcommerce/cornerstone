@@ -12,9 +12,11 @@ blog:
         limit: {{theme_settings.homepage_blog_posts_count}}
 ---
 {{#partial "hero"}}
+    {{{region name="home_below_menu"}}}
     {{#if carousel}}
         {{> components/carousel arrows=theme_settings.homepage_show_carousel_arrows}}
     {{/if}}
+    {{{region name="home_below_carousel"}}}
 {{/partial}}
 
 {{#partial "page"}}
@@ -27,14 +29,17 @@ blog:
     {{#if products.featured}}
         {{> components/products/featured products=products.featured columns=theme_settings.homepage_featured_products_column_count}}
     {{/if}}
+    {{{region name="home_below_featured_products"}}}
 
     {{#if products.top_sellers}}
         {{> components/products/top products=products.top_sellers columns=theme_settings.homepage_top_products_column_count}}
     {{/if}}
+    {{{region name="home_below_top_products"}}}
 
     {{#if products.new}}
         {{> components/products/new products=products.new columns=theme_settings.homepage_new_products_column_count}}
     {{/if}}
+    {{{region name="home_below_new_products"}}}
 </div>
 {{/partial}}
 {{> layout/base}}

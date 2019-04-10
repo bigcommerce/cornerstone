@@ -24,5 +24,25 @@ describe('Url Utilities', () => {
 
             expect(queryString).toEqual(expectedQueryString);
         });
+
+        it('should parse the input query params from the input array and return the query string object', () => {
+            const queryInput = [
+                'brand[]=38',
+                'brand[]=39',
+                'brand[]=40',
+                'search_query=',
+                'min_price=15',
+                'max_price=40',
+            ];
+            const expectedResult = {
+                'brand[]': ['38', '39', '40'],
+                max_price: '40',
+                min_price: '15',
+                search_query: '',
+            };
+            const queryStringObj = urlUtil.parseQueryParams(queryInput);
+
+            expect(queryStringObj).toEqual(expectedResult);
+        });
     });
 });

@@ -45,6 +45,26 @@ const urlUtils = {
 
         return out.substring(1);
     },
+
+    parseQueryParams: (queryData) => {
+        const params = {};
+
+        for (let i = 0; i < queryData.length; i++) {
+            const temp = queryData[i].split('=');
+
+            if (temp[0] in params) {
+                if (Array.isArray(params[temp[0]])) {
+                    params[temp[0]].push(temp[1]);
+                } else {
+                    params[temp[0]] = [params[temp[0]], temp[1]];
+                }
+            } else {
+                params[temp[0]] = temp[1];
+            }
+        }
+
+        return params;
+    },
 };
 
 export default urlUtils;

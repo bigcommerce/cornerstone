@@ -21,6 +21,7 @@ brand:
     </div>
 {{/if}}
 <h1 class="page-heading">{{brand.name}}</h1>
+{{{region name="brand_zone_1"}}}
 <div class="page">
     <aside class="page-sidebar" id="faceted-search-container">
         {{> components/brand/sidebar}}
@@ -32,6 +33,7 @@ brand:
         {{else}}
             <p>{{lang 'brands.no_products'}}</p>
         {{/if}}
+        {{{region name="brand_zone_2"}}}
     </main>
 </div>
 

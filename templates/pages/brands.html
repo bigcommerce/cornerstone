@@ -8,6 +8,7 @@ brands:
 
 <main class="page">
     <h1 class="page-heading">{{lang 'brand.label'}}</h1>
+    {{{region name="brands_zone_1"}}}
     <ul class="brandGrid">
         {{#each brands}}
             <li class="brand">
@@ -29,6 +30,7 @@ brands:
         {{/each}}
     </ul>
     {{> components/common/paginator pagination.brands}}
+    {{{region name="brands_zone_2"}}}
 </main>
 {{/partial}}
 {{> layout/base}}

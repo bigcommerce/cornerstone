@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Remove deprecated "snippet" locations [#1479](https://github.com/bigcommerce/cornerstone/pull/1479)
 
 ## 3.4.1 (2019-04-11)
 - Sanitize faceted search item's title [#1426](https://github.com/bigcommerce/cornerstone/pull/1426)

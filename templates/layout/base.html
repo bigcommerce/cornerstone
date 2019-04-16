@@ -28,10 +28,8 @@
         {{inject 'secureBaseUrl' settings.secure_base_url}}
         {{inject 'cartId' cart_id}}
         {{inject 'template' template}}
-        {{{snippet 'htmlhead'}}}
     </head>
     <body>
-        {{{snippet 'header'}}}
         <svg data-src="{{cdn 'img/icon-sprite.svg'}}" class="icons-svg-sprite"></svg>
 
         {{#and settings.privacy_cookie settings.is_eu_ip_address}}
@@ -50,6 +48,5 @@
         </script>
 
         {{{footer.scripts}}}
-        {{{snippet 'footer'}}}
     </body>
 </html>

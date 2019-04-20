@@ -2,6 +2,7 @@
 
 ## Draft
 - Remove deprecated "snippet" locations [#1479](https://github.com/bigcommerce/cornerstone/pull/1479)
+- Fix dropdown cart not showing discounts [#1481](https://github.com/bigcommerce/cornerstone/pull/1481)
 
 ## 3.4.1 (2019-04-11)
 - Sanitize faceted search item's title [#1426](https://github.com/bigcommerce/cornerstone/pull/1426)

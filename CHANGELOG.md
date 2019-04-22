@@ -4,6 +4,7 @@
 - Remove deprecated "snippet" locations [#1479](https://github.com/bigcommerce/cornerstone/pull/1479)
 - Fix dropdown cart not showing discounts [#1481](https://github.com/bigcommerce/cornerstone/pull/1481)
 - Fix mobile banner text displaying with underline on mobile. [#1482](https://github.com/bigcommerce/cornerstone/pull/1482)
+- Add option to display custom fields under "Specifications" tab on PDP [#1480](https://github.com/bigcommerce/cornerstone/pull/1480)
 
 ## 3.4.1 (2019-04-11)
 - Sanitize faceted search item's title [#1426](https://github.com/bigcommerce/cornerstone/pull/1426)

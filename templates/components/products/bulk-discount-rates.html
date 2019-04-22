@@ -1,12 +1,12 @@
 {{#if bulk_discount_rates.length}}
     {{#if product}}<dt class="productView-info-name">{{lang 'products.bulk_pricing.title'}}</dt>{{/if}}
     <dd class="productView-info-value">
-        <a href="{{url}}"
-           {{#unless is_ajax }}data-reveal-id="bulkPricingModal{{#if id}}-{{id}}-{{$index}}{{/if}}"{{/unless}}>
+        <a href="{{product.url}}#bulk_pricing"
+           {{#unless is_ajax }}data-reveal-id="modal-bulk-pricing"{{/unless}}>
             {{lang 'products.bulk_pricing.view'}}
         </a>
     </dd>
-    <div id="bulkPricingModal{{#if id}}-{{id}}-{{$index}}{{/if}}" class="modal modal--small" data-reveal>
+    <div id="modal-bulk-pricing" class="modal modal--small" data-reveal>
         <div class="modal-header">
             <h2 class="modal-header-title">{{lang 'products.bulk_pricing.modal_title'}}</h2>
             <a href="#" class="modal-close" aria-label="Close"><span aria-hidden="true">&#215;</span></a>

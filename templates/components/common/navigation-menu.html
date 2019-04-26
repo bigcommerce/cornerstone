@@ -10,10 +10,29 @@
     <div class="desktop-nav">
         <ul class="nav-bar">
             {{#each categories}}
-                <li class="nav-item" ><a href="#tab-{{name}}">{{ name }}</a>
+                <li class="nav-item" ><a href="{{ url }}">{{ name }}</a>
                     {{> components/common/navigation-list}}
                 </li>
             {{/each}}
+                <li class="nav-item">
+                    <a href="/about">About</a>
+                    <div class="navPage-subMenu one-column">
+                        <ul class="navPage-subMenu-list">
+                            <li class="navPage-subMenu-item">
+                                <a class="navPage-subMenu-action navPages-action" href="/about">About</a>
+                            </li>
+                            <li class="navPage-subMenu-item">  
+                                <a class="navPage-subMenu-action navPages-action" href="/moral-fiber">Moral Fiber</a>
+                            </li>
+                            <li class="navPage-subMenu-item">  
+                                <a class="navPage-subMenu-action navPages-action" href="/about">Story</a>
+                            </li>
+                            <li class="navPage-subMenu-item">  
+                                <a class="navPage-subMenu-action navPages-action" href="/blog">Blogs</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
         </ul>
         
     </div>

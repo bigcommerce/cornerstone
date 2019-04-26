@@ -194,8 +194,17 @@
       @include breakpoint("medium") {
         position: absolute;
         width: 600px;
-        top: 72px;
-        background: #fff;
+        top: 69px;
+        background: transparent;
+        padding: 0 !important;
+
+        &.one-column {
+          width: auto;
+
+          .navPage-subMenu-list {
+            column-count: 1;
+          }
+        }
 
         .navPage-subMenu-list {
           max-width: 85.71429rem;
@@ -204,6 +213,9 @@
           margin: auto;
           padding-left: 0;
           column-count: 3;
+          margin-top: 3px;
+          background: #fff;
+          padding: 15px;
 
           .navPage-subMenu-item {
             float: none;

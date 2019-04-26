@@ -7,4 +7,14 @@
             </section>
         {{/each}}
     </article>
+    <div class="desktop-nav">
+        <ul class="nav-bar">
+            {{#each categories}}
+                <li class="nav-item" ><a href="#tab-{{name}}">{{ name }}</a>
+                    {{> components/common/navigation-list}}
+                </li>
+            {{/each}}
+        </ul>
+        
+    </div>
 </nav>

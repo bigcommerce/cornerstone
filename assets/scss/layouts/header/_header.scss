@@ -13,7 +13,9 @@
   @include breakpoint("medium") {
     border-bottom: container("border");
     overflow: visible;
-    position: relative;
+    position: absolute;
+    height: 70px;
+    padding: 0;
 
     &.is-open {
       height: auto;
@@ -26,6 +28,15 @@
       padding-top: 0;
       z-index: 20;
     }
+
+    @include breakpoint("medium") {
+      display: block;
+      height: 70px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      max-width: 40%;
+    }
   }
 
 
@@ -35,8 +46,9 @@
     text-align: center;
 
     @include breakpoint("medium") {
-      margin: (spacing("double") + spacing("base")) auto (spacing("double") + spacing("single"));
+      margin: 0;
       padding: 0;
+      height: 70px;
 
       .header.fixed & {
         background-color: color("greys", "lightest");
@@ -60,11 +72,8 @@
 
       // scss-lint:disable NestingDepth
       @include breakpoint("medium") {
-        background: none;
-        border-bottom: 0;
-        display: inline;
         padding: 0;
-        width: 100%;
+        height: 100%;
       }
 
       &:hover {
@@ -167,6 +176,7 @@
 
       @include breakpoint("medium") {
         max-height: none;
+        height: 60px;
       }
     }
   }
@@ -179,6 +189,42 @@
       display: block;
       .navPage-subMenu-list li:first-child {
         display: none;
+      }
+
+      @include breakpoint("medium") {
+        position: absolute;
+        width: 600px;
+        top: 72px;
+        background: #fff;
+
+        .navPage-subMenu-list {
+          max-width: 85.71429rem;
+          width: 100%;
+          border-left: 0;
+          margin: auto;
+          padding-left: 0;
+          column-count: 3;
+
+          .navPage-subMenu-item {
+            float: none;
+            width: 100%;
+            padding: 0 !important;
+
+            a {
+              border-bottom: 0;
+              margin: 3px 0;
+              padding: 0;
+              background: #fff;
+            }
+          }
+          
+          .navPage-childList-item {
+            .navPage-childList-action {
+              text-transform: capitalize;
+              font-weight: 300 !important;
+            }
+          }
+        }
       }
     }
 
@@ -193,6 +239,10 @@
       height: 15em;
       margin-top: 5px;
       border: none;
+
+      @include breakpoint("medium") {
+        display: none;
+      }
     
       section {
         position: absolute;
@@ -239,6 +289,68 @@
         &:nth-child(2) h2 {
           left: 50%;
         }
+      }
+    }
+
+    .desktop-nav {
+      display: none;
+          
+      @include breakpoint("medium") {
+        height: 100%;
+        display: block;
+        padding-left: 1.5rem;
+
+        .nav-bar {
+          height: 100%;
+          text-align: left;
+
+          .nav-item {
+            height: 100%;
+            display: inline-flex;
+            align-items: center;
+
+            a {
+              font-size: 1rem;
+              font-weight: bold;
+              text-decoration: none;
+              padding: 0 15px;
+              cursor: pointer;
+
+            }
+
+            &:hover .navPage-subMenu {
+              display: block;
+            }
+
+            .navPage-subMenu {
+              display: none;
+              position: absolute;
+            }
+          }
+        }
+      }
+    }
+
+  }
+  
+  // Right Nav
+  .navUser {
+    .cart-icon {
+      width: 18px;
+      height: 18px;
+    }
+
+    @include breakpoint("medium") {
+      height: 70px;
+      line-height: 70px;
+      top: 0;
+      transform: translateY(0);
+      position: absolute;
+      max-width: 40%;
+      right: 0;
+
+      .navUser-action {
+        text-transform: capitalize;
       }
     }
   }

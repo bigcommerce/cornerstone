@@ -1,193 +1,84 @@
-// =============================================================================
-// HEADER (CSS)
-//
-// 1. Setting font size of header-logo to 0, since wrapper element may vary, and
-//    inline-block whitespace messes with header height. Font-size is reset to
-//    appropriate size on header-logo-text.
-// 2. Needs left/right margin so it doesn't cover left/right nav bar toggles
-// 3. Offset the letter-spacing on the last character by adding a right negative
-//    margin. This centers the text logo properly.
-// 4. When the word "cart" is added to the mobile header's cart link, add more
-//    margin to compensate.
-// 5. When logo size is set to "original", we don't have advance knowledge of the
-//    image size, so we can't use absolute positioning + padding to reserve space
-//    for lazy loading.
-//
-// -----------------------------------------------------------------------------
-
 .header {
-    background-color: $header-bg;
-    border-bottom: container("border");
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: zIndex("higher");
+  background-color: $header-bg;
+  border-bottom: container("border");
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: zIndex("higher");
 
-    @include breakpoint("medium") {
-        border-bottom: container("border");
-        overflow: visible;
-        position: relative;
-    }
+  &.is-open {
+    height: 100%;
+  }
+
+  @include breakpoint("medium") {
+    border-bottom: container("border");
+    overflow: visible;
+    position: relative;
 
     &.is-open {
-        height: 100%;
-
-        @include breakpoint("medium") {
-            height: auto;
-        }
+      height: auto;
     }
-}
+  }
 
-.header-logo {
-    font-size: 0;   // 1
+  .navPages-container {
+    &.is-open {
+      display: block;
+      padding-top: 0;
+      z-index: 20;
+    }
+  }
+
+
+  .header-logo {
+    font-size: 0; // 1
     margin: 0 remCalc($header-toggle-width); // 2
     text-align: center;
 
-    @include breakpoint("small") { // 4
-        margin-left: remCalc($header-toggle-width * 1.5);
-        margin-right: remCalc($header-toggle-width * 1.5);
-    }
-
     @include breakpoint("medium") {
-        margin: (spacing("double") + spacing("base")) auto (spacing("double") + spacing("single"));
-        padding: 0;
+      margin: (spacing("double") + spacing("base")) auto (spacing("double") + spacing("single"));
+      padding: 0;
 
-        .header.fixed & {
-            background-color: color("greys", "lightest");
-            margin: 0;
-            padding: spacing("quarter") 0;
-            position: absolute;
-            top: 0;
-            width: 100%;
-        }
+      .header.fixed & {
+        background-color: color("greys", "lightest");
+        margin: 0;
+        padding: spacing("quarter") 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+      }
     }
 
-    > a {
-        @include clearfix;
-        color: $storeName-color;
-        display: inline-block;
-        padding: $header-logo-paddingVertical 0;
-        position: relative;
-        text-decoration: none;
-        width: 60%;
-        z-index: zIndex("low");
+    & > a {
+      @include clearfix;
+      color: $storeName-color;
+      display: inline-block;
+      padding: $header-logo-paddingVertical 0;
+      position: relative;
+      text-decoration: none;
+      width: 60%;
+      z-index: zIndex("low");
 
-        // scss-lint:disable NestingDepth
-        @include breakpoint("medium") {
-            background: none;
-            border-bottom: 0;
-            display: inline;
-            padding: 0;
-            width: 100%;
-        }
-
-        &:hover {
-            color: color("link", "hover");
-        }
-
-        &:active {
-            color: color("link", "active");
-        }
-    }
-}
-
-.header-logo--left {
-    text-align: left;
-
-    @include breakpoint("medium") {
-        margin-left: remCalc(40px);
-    }
-
-    .header-logo-image {
-        right: unset;
-    }
-}
-
-.header-logo--right {
-    text-align: right;
-
-    @include breakpoint("medium") {
-        margin-right: remCalc(40px);
-    }
-
-    .header-logo-image {
-        left: unset;
-    }
-}
-
-.header-logo-text {
-    display: block;
-    font-family: $fontFamily-hero;
-    font-size: $fontSize-logo-small;   // 1
-    font-weight: stencilFontWeight("headings-font");
-    letter-spacing: remCalc(2px);
-    margin-left: auto;
-    margin-right: auto;
-    overflow: hidden;
-    padding: remCalc(3px) 0;
-    text-overflow: ellipsis;
-    text-transform: uppercase;
-    white-space: nowrap;
-
-    @include breakpoint("small") {
-        font-size: $fontSize-logo-medium;
-        padding-bottom: 0;
-        padding-top: 0;
-    }
-
-    @include breakpoint("medium") {
+      // scss-lint:disable NestingDepth
+      @include breakpoint("medium") {
+        background: none;
+        border-bottom: 0;
         display: inline;
-        font-size: $fontSize-logo-large;
-        margin-left: 0;
-        margin-right: -(remCalc(2px)); // 3
-        max-width: none;
-        overflow: auto;
-        white-space: normal;
+        padding: 0;
+        width: 100%;
+      }
 
-        .header.fixed & {
-            font-size: fontSize("larger");
-        }
+      &:hover {
+        color: color("link", "hover");
+      }
+
+      &:active {
+        color: color("link", "active");
+      }
     }
-}
+  }
 
-.header-logo-image-container {
-    position: relative;
-}
-
-.header-logo-image-container:after {
-    content: '';
-    display: block;
-    padding-bottom: remCalc($header-height) - $header-logo-marginVertical * 2;
-
-    @include breakpoint("medium") {
-        padding-bottom: get-height(stencilString('logo_size'));
-    }
-}
-
-.header-logo-image {
-    @include lazy-loaded-img;
-    max-height: remCalc($header-height) - $header-logo-marginVertical * 2;
-
-    @include breakpoint("medium") {
-        max-height: none;
-    }
-}
-
-.header-logo-image-unknown-size { // 5
-    max-height: remCalc($header-height) - $header-logo-marginVertical * 2;
-
-    @include breakpoint("medium") {
-        max-height: none;
-    }
-}
-
-//
-// Mobile Menu Toggle
-//
-// 1. Animate lines from 'x' to hamburger
-// -----------------------------------------------------------------------------
-
-.mobileMenu-toggle {
+  // Mobile Toggle Menu
+  .mobileMenu-toggle {
     @include square($header-toggle-width);
     display: inline-block;
     font-size: 0;
@@ -196,59 +87,159 @@
     padding: 0 remCalc(18);
     position: absolute;
     z-index: zIndex("high");
-
+  
     @include breakpoint("medium") {
-        display: none;
+      display: none;
     }
-
+  
     .mobileMenu-toggleIcon,
     .mobileMenu-toggleIcon::before,
     .mobileMenu-toggleIcon::after {
-        background: $header-font-color;
-        content: "";
-        display: block;
-        height: 2px;
-        position: absolute;
-        transform: rotate(0deg);
-        transition: transform 100ms ease-in, top 100ms ease-in 150ms, bottom 100ms ease-in 150ms; // 1
-        width: remCalc(20);
+      background: $header-font-color;
+      content: "";
+      display: block;
+      height: 3px;
+      position: absolute;
+      transform: rotate(0deg);
+      transition: transform 100ms ease-in, top 100ms ease-in 150ms, bottom 100ms ease-in 150ms; // 1
+      width: 1.22857rem;
     }
-
+  
     .mobileMenu-toggleIcon {
-        top: remCalc(27);
-        transition: background-color 10ms ease-in 100ms;
+      top: remCalc(27);
+      transition: background-color 10ms ease-in 100ms;
     }
-
+  
     .mobileMenu-toggleIcon::before {
-        top: -0.5rem;
+      top: -0.35rem;
     }
-
+  
     .mobileMenu-toggleIcon::after {
-        bottom: -0.5rem;
+      bottom: -0.35rem;
     }
+  
+    &.is-open {
+      left: auto;
+      right: 0;
 
-    &.is-open .mobileMenu-toggleIcon {
+      .mobileMenu-toggleIcon {
         background-color: transparent;
         transition-delay: 100ms;
-
+    
         // scss-lint:disable NestingDepth
         &::before,
         &::after {
-            background-color: $header-font-color;
-            bottom: auto;
-            top: auto;
-            transition: transform 100ms ease-in 150ms, top 100ms ease-in, bottom 100ms ease-in; // Animate lines from hamburger to 'x'
+          background-color: $header-font-color;
+          bottom: auto;
+          top: auto;
+          transition: transform 100ms ease-in 150ms, top 100ms ease-in, bottom 100ms ease-in; // Animate lines from hamburger to 'x'
         }
-
+    
         &::before {
-            top: 0;
-            transform: rotate(45deg);
+          top: 0;
+          transform: rotate(45deg);
         }
-
+    
         &::after {
-            bottom: 0;
-            transform: rotate(-45deg);
+          bottom: 0;
+          transform: rotate(-45deg);
         }
-
+      }
     }
+  }
+
+  .header-logo-image-container {
+    position: relative;
+
+    &:after {
+      content: '';
+      display: block;
+      padding-bottom: remCalc($header-height) - $header-logo-marginVertical * 2;
+  
+      @include breakpoint("medium") {
+          padding-bottom: get-height(stencilString('logo_size'));
+      }
+    }
+
+    .header-logo-image {
+      @include lazy-loaded-img;
+      height: 50px;
+
+      @include breakpoint("medium") {
+        max-height: none;
+      }
+    }
+  }
+
+  .navPages {
+    background: #fff;
+    padding-right: 4rem;
+
+    .navPage-subMenu {
+      display: block;
+      .navPage-subMenu-list li:first-child {
+        display: none;
+      }
+    }
+
+    .navPage-childList-item {
+      padding-left: 10px;
+    }
+
+    .tabs {
+      position: relative;
+      display: block;
+      width: 100%;
+      height: 15em;
+      margin-top: 5px;
+      border: none;
+    
+      section {
+        position: absolute;
+        display: block;
+        top: 1.8em;
+        left: 0;
+        height: calc(100vh - 60px);
+        background-color: #fff;
+        z-index: 0;
+        width: 100%;
+        &:first-child {
+          z-index: 1;
+        }
+        h2 {
+          position: absolute;
+          font-size: 1em;
+          font-weight: normal;
+          width: 50%;
+          top: -2.8em;
+          left: 0;
+          padding: 0;
+          margin: 0;
+          padding: 5px 15px;
+          color: #000;
+          font-weight: bold;
+    
+          a {
+            display: block;
+            width: 100%;
+            line-height: 1.8em;
+            text-align: center;
+            text-decoration: none;
+            color: inherit;
+            outline: 0 none;
+          }
+        }
+        &:target {
+          z-index: 2;
+          h2 {
+            z-index: 2;
+            border-bottom: solid 1px #000;
+          }
+        }
+        &:nth-child(2) h2 {
+          left: 50%;
+        }
+      }
+    }
+  }
 }

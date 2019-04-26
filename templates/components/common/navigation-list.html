@@ -1,35 +1,32 @@
 {{#if children}}
-<a class="navPages-action has-subMenu{{#if is_active}} activePage{{/if}}" href="{{url}}" data-collapsible="navPages-{{id}}">
-    {{name}} <i class="icon navPages-action-moreIcon" aria-hidden="true"><svg><use xlink:href="#icon-chevron-down" /></svg></i>
-</a>
 <div class="navPage-subMenu" id="navPages-{{id}}" aria-hidden="true" tabindex="-1">
     <ul class="navPage-subMenu-list">
         <li class="navPage-subMenu-item">
             <a class="navPage-subMenu-action navPages-action" href="{{url}}">{{lang 'category.view_all.name' category=name}}</a>
         </li>
         {{#each children}}
-            <li class="navPage-subMenu-item">
                 {{#if children}}
-                    <a
-                        class="navPage-subMenu-action navPages-action has-subMenu{{#if is_active}} activePage{{/if}}"
-                        href="{{url}}"
-                        data-collapsible="navPages-{{id}}"
-                        data-collapsible-disabled-breakpoint="medium"
-                        data-collapsible-disabled-state="open"
-                        data-collapsible-enabled-state="closed">
-                        {{name}} <i class="icon navPages-action-moreIcon" aria-hidden="true"><svg><use xlink:href="#icon-chevron-down" /></svg></i>
-                    </a>
-                    <ul class="navPage-childList" id="navPages-{{id}}">
-                        {{#each children}}
+                    <li class="navPage-subMenu-item">
+                        <a
+                            class="navPage-subMenu-action navPages-action has-subMenu{{#if is_active}} activePage{{/if}}"
+                            href="{{url}}"
+                            data-collapsible="navPages-{{id}}"
+                            data-collapsible-disabled-breakpoint="medium"
+                            data-collapsible-disabled-state="open"
+                            data-collapsible-enabled-state="closed">
+                            {{name}}
+                        </a>
+                    </li>
+                    {{#each children}}
                         <li class="navPage-childList-item">
                             <a class="navPage-childList-action navPages-action{{#if is_active}} activePage{{/if}}" href="{{url}}">{{name}}</a>
                         </li>
-                        {{/each}}
-                    </ul>
+                    {{/each}}
                 {{else}}
-                    <a class="navPage-subMenu-action navPages-action{{#if is_active}} activePage{{/if}}" href="{{url}}">{{name}}</a>
+                    <li class="navPage-subMenu-item">  
+                        <a class="navPage-subMenu-action navPages-action{{#if is_active}} activePage{{/if}}" href="{{url}}">{{name}}</a>
+                    </li>
                 {{/if}}
-            </li>
         {{/each}}
     </ul>
 </div>

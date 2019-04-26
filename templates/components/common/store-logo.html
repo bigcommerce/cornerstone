@@ -1,13 +1,3 @@
-<a href="{{urls.home}}">
-    {{#if settings.store_logo.image}}
-        {{#if theme_settings.logo_size '===' 'original'}}
-            <img class="header-logo-image-unknown-size" src="{{getImage settings.store_logo.image 'logo_size'}}" alt="{{settings.store_logo.title}}" title="{{settings.store_logo.title}}">
-        {{else}}
-            <div class="header-logo-image-container">
-                <img class="header-logo-image" src="{{getImage settings.store_logo.image 'logo_size'}}" alt="{{settings.store_logo.title}}" title="{{settings.store_logo.title}}">
-            </div>
-        {{/if}}
-    {{else}}
-        <span class="header-logo-text">{{settings.store_logo.title}}</span>
-    {{/if}}
+<a href="{{urls.home}}" class="header-logo-image-container">
+    <img class="header-logo-image" src="{{getImage settings.store_logo.image 'logo_size'}}" alt="{{settings.store_logo.title}}" title="{{settings.store_logo.title}}">
 </a>

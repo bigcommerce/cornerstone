@@ -65,16 +65,6 @@
         </figcaption>
     </figure>
     <div class="card-body">
-        {{#and rating show_rating}}
-            <p class="card-text" data-test-info-type="productRating">
-                <span class="rating--small">
-                    {{> components/products/ratings rating=rating}}
-                </span>
-            </p>
-        {{/and}}
-        {{#if brand.name}}
-            <p class="card-text" data-test-info-type="brandName">{{brand.name}}</p>
-        {{/if}}
         <h4 class="card-title">
             {{#if demo}}
                 {{name}}

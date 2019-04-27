@@ -1,10 +1,11 @@
 .header {
   background-color: $header-bg;
-  border-bottom: container("border");
   position: fixed;
   top: 0;
   width: 100%;
   z-index: zIndex("higher");
+  border-bottom: 0;
+  box-shadow: lightgrey 0 -21px 12px 22px;
 
   &.is-open {
     height: 100%;
@@ -13,7 +14,7 @@
   @include breakpoint("medium") {
     border-bottom: container("border");
     overflow: visible;
-    position: absolute;
+    position: fixed;
     height: 70px;
     padding: 0;
 

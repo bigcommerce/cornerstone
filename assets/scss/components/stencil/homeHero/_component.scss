@@ -1,0 +1,45 @@
+.home-hero {
+  .big-gender-link {
+    padding: 0;
+    text-align: center;
+    position: relative;
+  }
+
+  img {
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+    display: block;
+    width: 100%;
+    border: none;
+  }
+
+  .cta {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    width: 100%;
+    margin: 0;
+    text-align: center;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 500;
+    -moz-transition: .2s;
+    -o-transition: .2s;
+    -webkit-transition: .2s;
+    transition: .2s;
+    font-size: 24px;
+  }
+
+  @include breakpoint("medium") {
+    .big-gender-link {
+      .cta {
+        font-size: 40px;
+        opacity: 0;
+      }
+      &:hover .cta {
+        opacity: 1;
+      }
+    }
+  }
+}

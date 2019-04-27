@@ -11,11 +11,7 @@ blog:
     recent_posts:
         limit: {{theme_settings.homepage_blog_posts_count}}
 ---
-{{#partial "hero"}}
-    {{#if carousel}}
-        {{> components/carousel arrows=theme_settings.homepage_show_carousel_arrows}}
-    {{/if}}
-{{/partial}}
+
 
 {{#partial "page"}}
 
@@ -24,6 +20,14 @@ blog:
     {{/each}}
 
 <div class="main full">
+    <div class="grid-container full">
+        <div class="grid-x home-intro">
+            <div class="cell small-12">
+                <h1>Premium Denim + Essentials. No Retail Markup.</h1>
+            </div>
+        </div>
+    </div>
+
     {{#if products.featured}}
         {{> components/products/featured products=products.featured columns=theme_settings.homepage_featured_products_column_count}}
     {{/if}}

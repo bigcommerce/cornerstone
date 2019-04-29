@@ -1,0 +1,105 @@
+{{#if banners.bottom}}
+    {{#if settings.data_tag_enabled}}
+        <div class="banners" data-banner-location="bottom">
+            {{#each (limit banners.bottom_metadata 1)}}
+                <div class="banner" data-event-type="promotion" data-entity-id="{{this.id}}" data-name="{{this.banner-name}}" data-position="{{this.location}}" data-name="{{this.banner-name}}">
+                    <div data-event-type="promotion-click">
+                        {{{this.content}}}
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+    {{else}}
+        <div class="banners" data-banner-location="bottom">
+            <div class="banner">
+                {{{limit banners.bottom 1}}}
+            </div>
+        </div>
+    {{/if}}
+
+{{/if}}
+<footer class="footer" role="contentinfo">
+    <div class="container">
+        {{#if theme_settings.social_icon_placement_bottom '!==' 'bottom_none'}}
+            <article class="footer-info-col
+                footer-info-col--social
+                footer-info-col--{{#if theme_settings.social_icon_placement_bottom '===' 'bottom_left'}}left{{else}}right{{/if}}"
+                data-section-type="footer-webPages">
+                    <h5 class="footer-info-heading">{{lang 'social.connect'}}</h5>
+                    {{> components/common/social-links}}
+            </article>
+        {{/if}}
+        <section class="footer-info">
+            <article class="footer-info-col footer-info-col--small" data-section-type="footer-webPages">
+                <h5 class="footer-info-heading">{{lang 'footer.navigate'}}</h5>
+                <ul class="footer-info-list">
+                    {{#each pages}}
+                        <li>
+                            <a href="{{url}}">{{name}}</a>
+                        </li>
+                    {{/each}}
+                    <li>
+                        <a href="{{urls.sitemap}}">{{lang 'sitemap.page_title'}}</a>
+                    </li>
+                </ul>
+            </article>
+
+            <article class="footer-info-col footer-info-col--small" data-section-type="footer-categories">
+                <h5 class="footer-info-heading">{{lang 'footer.categories'}}</h5>
+                <ul class="footer-info-list">
+                    {{#each categories}}
+                        <li>
+                            <a href="{{url}}">{{name}}</a>
+                        </li>
+                    {{/each}}
+                </ul>
+            </article>
+
+            {{#and theme_settings.shop_by_brand_show_footer shop_by_brand.length}}
+            <article class="footer-info-col footer-info-col--small" data-section-type="footer-brands">
+                <h5 class="footer-info-heading">{{lang 'footer.brands'}}</h5>
+                <ul class="footer-info-list">
+                    {{#each shop_by_brand}}
+                        <li>
+                            <a href="{{url}}">{{name}}</a>
+                        </li>
+                    {{/each}}
+                    <li><a href="{{urls.brands}}">{{lang 'common.view_all'}}</a></li>
+                </ul>
+            </article>
+            {{/and}}
+
+            {{#if settings.address}}
+            <article class="footer-info-col footer-info-col--small" data-section-type="storeInfo">
+                <h5 class="footer-info-heading">{{lang 'footer.info'}}</h5>
+                <address>{{nl2br settings.address}}</address>
+                {{#if settings.phone_number}}
+                    <strong>{{lang 'footer.call_us' phone_number=settings.phone_number}}</strong>
+                {{/if}}
+            </article>
+            {{/if}}
+
+            <article class="footer-info-col" data-section-type="newsletterSubscription">
+                {{#if settings.show_newsletter_box}}
+                    {{> components/common/subscription-form}}
+                {{/if}}
+                {{> components/common/payment-icons}}
+            </article>
+        </section>
+        {{#if theme_settings.geotrust_ssl_common_name}}
+            <div class="footer-geotrust-ssl-seal">
+                {{> components/common/geotrust-ssl-seal}}
+            </div>
+        {{/if}}
+        {{#if theme_settings.show_powered_by}}
+            <div class="footer-copyright">
+                <p class="powered-by">Powered by <a href="https://www.bigcommerce.com?utm_source=merchant&amp;utm_medium=poweredbyBC" rel="nofollow">BigCommerce</a></p>
+            </div>
+        {{/if}}
+        {{#if theme_settings.show_copyright_footer}}
+            <div class="footer-copyright">
+                <p class="powered-by">&copy; {{moment format="YYYY"}} {{settings.store_name}} </p>
+            </div>
+        {{/if}}
+    </div>
+</footer>

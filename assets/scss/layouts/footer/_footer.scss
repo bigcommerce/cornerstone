@@ -12,157 +12,143 @@
 //
 // -----------------------------------------------------------------------------
 
-.footer {
-    background-color: $footer-background;
-    border-top: container("border");
-    padding: spacing("double") 0;
-}
-
-.footer-info {
-    @include grid-row($behavior: nest);
-    font-size: 0; // 1
-}
-
-.footer-info-col {
-    @include grid-column(12);
-    color: stencilColor("color-textSecondary");
-    display: inline-block;
-    float: none;
-    font-size: fontSize("base"); // 2
-    margin-bottom: spacing("double");
-    text-align: center;
-    vertical-align: top;
-
-    @include breakpoint("small") {
-        text-align: left;
-        width: width("6/12");
-    }
-
-    @include breakpoint("medium") {
-        width: width("4/12");
-    }
-
-    > :first-child {
-        margin-top: 0;
-    }
-
-    > :last-child {
-        margin-bottom: 0;
-    }
-}
-
-.footer-info-col--small {
-    @include breakpoint("medium") {
-        width: width("2/12");
-    }
-}
-
-.footer-info-col--social {
-    width: 100%;
-}
-
-.footer-info-col--left {
-    @include breakpoint("small") {
-        padding: 0;
-    }
-}
-
-.footer-info-col--right {
-    @include breakpoint("small") {
-        left: 50%;
-        position: inherit;
-    }
-
-    @include breakpoint("medium") {
-        left: 0;
-        padding: 0;
-        text-align: right;
-    }
-}
-
-
-// Content
-// -----------------------------------------------------------------------------
-
-.footer-info-heading {
-    color: $footer-heading-fontColor;
-    font-size: fontSize("base");
-    text-transform: inherit;
-}
-
-.footer-info-list {
-    list-style: none;
-    margin-left: 0;
-
-    a {
-        color: stencilColor("color-textSecondary");
-        text-decoration: none;
-
-        // scss-lint:disable NestingDepth
-        &:hover {
-            color: stencilColor("color-textSecondary--hover");
-        }
-        // scss-lint:enable NestingDepth
-    }
-}
-
-.footer-copyright {
+footer {
+    padding: 15px;
+    background: #fff;
+    margin-left: 15px;
+    margin-right: 15px;
+    z-index: 1;
+    -webkit-transform: translate3d(0,0,0);
     text-align: center;
 
-    @include breakpoint("small") {
-        text-align: left;
-    }
-
-    > .powered-by {
-        color: stencilColor("color-textSecondary");
-        font-size: fontSize("tiny");
-        margin: 0;
-    }
-
-    a {
-        color: stencilColor("color-textSecondary");
-        text-decoration: none;
-
-        // scss-lint:disable NestingDepth
-        &:hover {
-            color: stencilColor("color-textSecondary--hover");
-        }
-        // scss-lint:enable NestingDepth
-    }
-}
-
-.footer-payment-icons {
-    height: remCalc(40);
-    margin-top: spacing("single");
-
     @include breakpoint("medium") {
-        margin-top: spacing("double");
+        padding: 30px;
     }
 
-    .footer-payment-icon {
-        height: 100%;
-        margin: spacing("quarter");
-        vertical-align: middle;
-        width: remCalc(50);
+    .footer-nav {
+        line-height: 1.5;
+
+        a {
+            display: inline-block;
+            margin: 0 3px;
+            text-decoration: none;
+        }
+        .footer-menu {
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+        .footer-link-header {
+            margin-top: 15px;
+            font-weight: 600;
+        }
+    }
+    
+    .btn-to-top a {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: #ddd;
+
+        span {
+            font-size: 25px;
+            font-weight: 700;
+            line-height: .5;
+            color: #fff;
+            vertical-align: middle;
+        }
     }
 
-    svg {
-        fill: stencilColor("icon-color");
-    }
-}
+    .footer-email-signup {
+        margin-top: 20px;
+        text-align: left;
+        margin-bottom: 20px;
 
-.footer-geotrust-ssl-seal {
-    @include breakpoint("small") {
-        bottom: 0;
-        position: absolute;
-        right: 16px;
-    }
+        & div {
+            padding: 0;
+        }
 
-    table {
-        margin: auto;
-    }
-}
+        .privacy-notice {
+            text-align: left;
+            color: #888;
+            .underline {
+                text-decoration: underline;
+            }
+        }
+      
+        .big {
+            font-size: 16px;
+            line-height: 1.5;
+            font-weight: 600;
+        }
+        .form-control {
+            display: block;
+            width: 100%;
+            padding: 6px 12px;
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: #555;
+            background-color: #fff;
+            background-image: none;
+            border-bottom: 1px solid #ccc;
+            color: #0A0A0A;
+            outline: 0 !important;
+            border: none;
+            padding: 15px 10px;
+            border-bottom: 1px solid #ccc;
+            font-size: 16px;
 
-.footer-newsletter-summary {
-    text-align: left;
+
+            .underline {
+                background: 0 0;
+                border: none!important;
+                box-shadow: none;
+                border-bottom: 1px solid #AAA!important;
+                padding: 5px;
+                margin-bottom: 15px;
+            }
+        }
+
+        .email-col {
+            @include breakpoint("medium") {
+                padding-right: 15px;
+                padding-left: 15px;
+            }
+        }
+
+        #gender-choice-footer {
+            margin-bottom: 20px;
+
+            .gender-col {
+                padding: 0;
+                position: relative;
+                bottom: -2px;
+                left: 2px;
+                text-align: left;
+                left: 0;
+                input {
+                    margin: 0;
+                }
+            }
+            .gender-label {
+                color: #0A0A0A;
+            }
+        }
+        .signup-col {
+            padding: 0;
+            position: relative;
+            margin-bottom: 30px;
+            
+            #signup-footer {
+                background-color: #ccc!important;
+                border: none;
+                width: 100%;
+                padding: 15px;
+                color: white;
+                text-transform: uppercase;
+                &[disabled] {
+                    opacity: .65;
+                }
+            }
+        }
+    }
 }

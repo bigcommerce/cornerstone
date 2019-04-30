@@ -1,6 +1,8 @@
 # Changelog
 
 ## Draft
+
+## 3.4.2 (2019-04-30)
 - Remove deprecated "snippet" locations [#1479](https://github.com/bigcommerce/cornerstone/pull/1479)
 - Fix dropdown cart not showing discounts [#1481](https://github.com/bigcommerce/cornerstone/pull/1481)
 - Fix mobile banner text displaying with underline on mobile. [#1482](https://github.com/bigcommerce/cornerstone/pull/1482)

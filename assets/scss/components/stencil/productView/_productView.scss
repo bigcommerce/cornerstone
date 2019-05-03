@@ -26,7 +26,7 @@
     position: relative;
 
     @include breakpoint("medium") {
-        min-height: 366px;
+        min-height: remCalc(366px);
         min-width: inherit;
     }
 
@@ -76,8 +76,8 @@
 
     img {
         @include lazy-loaded-img;
-        max-height: 50px;
-        max-width: 50px;
+        max-height: remCalc(50px);
+        max-width: remCalc(50px);
         width: auto;
     }
 }
@@ -96,9 +96,9 @@
 .productView-thumbnail-link {
     border: container("border");
     display: inline-block;
-    height: 67px;
-    max-width: 75px;
-    padding: 2px;
+    height: remCalc(67px);
+    max-width: remCalc(75px);
+    padding: remCalc(2px);
     position: relative;
     text-align: center;
     width: 100%;
@@ -371,7 +371,7 @@
 
     .form-label {
         text-align: left;
-        top: -2px; // 1
+        top: remCalc(-2px); // 1
     }
 }
 

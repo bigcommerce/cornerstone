@@ -32,7 +32,7 @@
 // =============================================================================
 
 body.hasAdminBar {
-    padding-top: 101px; // 55px (Mobile Header) + 46px (Admin Bar)
+    padding-top: remCalc(101px); // 55px (Mobile Header) + 46px (Admin Bar)
 
     @include breakpoint("medium") {
         padding-top: 0;
@@ -51,7 +51,7 @@ body.hasAdminBar {
     }
 
     .navPages-container.is-open {
-        padding-top: 101px;
+        padding-top: remCalc(101px);
     }
 }
 
@@ -61,8 +61,8 @@ body.hasAdminBar {
     color: $adminBar-text-color;
     float: left;
     font-family: "Helvetica", arial, "sans serif", sans-serif;
-    font-size: 14px;
-    font-weight: 600;
+    font-size: fontSize("base");
+    font-weight: fontWeight("semibold");
     height: $adminBar-height;
     left: 0;
     position: fixed;
@@ -76,11 +76,11 @@ body.hasAdminBar {
     background-color: $adminBar-logo-color;
     float: left;
     height: $adminBar-height;
-    width: 45px;
+    width: remCalc(45px);
 
     svg {
         height: 100%;
-        padding: 7px 10px 11px 7px;
+        padding: remCalc(7px) remCalc(10px) remCalc(11px) remCalc(7px);
         width: 100%;
     }
 }
@@ -90,12 +90,12 @@ body.hasAdminBar {
     display: flex;
     height: $adminBar-height;
     justify-content: space-between;
-    margin-left: 45px;
-    padding: 17px 20.5px 14px 20px;
+    margin-left: remCalc(45px);
+    padding: remCalc(17px) remCalc(20.5px) remCalc(14px) remCalc(20px);
 
     a {
         color: $adminBar-contentLink-color;
-        font-weight: 600;
+        font-weight: fontWeight("semibold");
         text-decoration: none;
     }
 }
@@ -110,6 +110,6 @@ body.hasAdminBar {
 }
 
 .preview {
-    font-weight: 400;
-    padding-left: 9px;
+    font-weight: fontWeight("normal");
+    padding-left: remCalc(9px);
 }

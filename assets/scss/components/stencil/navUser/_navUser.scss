@@ -20,7 +20,7 @@
     @include nav($style: "navBar", $wrapper: "nav");
     @include verticalPositionMiddle("absolute");
     right: 0;
-    top: 26px; // 2
+    top: remCalc(26px); // 2
     width: 100%; // 4
     z-index: zIndex("lowest"); // 5.
 
@@ -55,7 +55,7 @@
             &:after {
                 @include css-triangle(
                     $triangle-direction: "bottom",
-                    $triangle-size: 8px,
+                    $triangle-size: remCalc(8px),
                     $triangle-color: stencilColor("navUser-dropdown-backgroundColor")
                 );
                 bottom: 100%;
@@ -82,7 +82,7 @@
     text-decoration: none;
     text-transform: uppercase;
     line-height: initial;
-    font-size: 12px;
+    font-size: remCalc(12px);
 
     &:hover,
     &.is-open {
@@ -247,7 +247,7 @@
     cursor: default;
     display: inline-block;
     margin: 0 remCalc(-12px);
-    padding: 0 2px;
+    padding: 0 remCalc(2px);
     position: relative;
     z-index: 1;
 }
@@ -334,11 +334,11 @@
     display: none;
     font-size: fontSize("tiny");
     font-weight: fontWeight("bold");
-    height: 20px; // 1
-    line-height: 20px; // 1
+    height: remCalc(20px); // 1
+    line-height: remCalc(20px); // 1
     margin-left: spacing("eighth");
     text-align: center;
-    width: 20px; // 1
+    width: remCalc(20px); // 1
 }
 
 .countPill--positive {

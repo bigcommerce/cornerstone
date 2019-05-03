@@ -1,23 +1,23 @@
 .afterpay-banner {
-  background: #000;
-  color: #fff;
+  background: stencilColor('color-greyDarkest');
+  color: stencilColor('color-white');
   text-align: center;
   text-transform: uppercase;
-  padding: 24px 0;
+  padding: stencilNumber("padding-small") * 2.4 0;
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: fontWeight("semibold");
 
   img {
     width: 45%;
     display: block;
-    margin: 10px auto;
-    max-width: 200px;
+    margin: stencilNumber("padding-small") auto;
+    max-width: remCalc(200px);
   }
   span {
-    margin-right: 6px;
+    margin-right: remCalc(6px);
   }
   em {
-    font-weight: 700;
+    font-weight: fontWeight("bold");
     font-style: normal;
   }
 
@@ -30,8 +30,8 @@
 
   @include breakpoint("medium") {
     text-align: left;
-    padding: 40px 24px;  
-    font-size: 16px;
+    padding: remCalc(40px) remCalc(24px);  
+    font-size: $fontSize-root;
 
     .visible-xs {
       display: none;
@@ -42,7 +42,7 @@
     img {
       width: 100%;
       display: inline-block;
-      margin: -15px 25px -15px 0;
+      margin: remCalc(-15px) remCalc(25px) remCalc(-15px) 0;
     }
   }
 

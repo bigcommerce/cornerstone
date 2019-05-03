@@ -21,20 +21,20 @@
     width: 100%;
     margin: 0;
     text-align: center;
-    color: #fff;
+    color: stencilColor('color-white');
     text-transform: uppercase;
-    font-weight: 500;
+    font-weight: fontWeight("semibold");
     -moz-transition: .2s;
     -o-transition: .2s;
     -webkit-transition: .2s;
     transition: .2s;
-    font-size: 24px;
+    font-size: $fontSize-root * 1.5;
   }
 
   @include breakpoint("medium") {
     .big-gender-link {
       .cta {
-        font-size: 40px;
+        font-size: remCalc(40);
         opacity: 0;
       }
       &:hover .cta {

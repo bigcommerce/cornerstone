@@ -5,8 +5,8 @@
   width: 100%;
   z-index: zIndex("higher");
   border-bottom: 0;
-  box-shadow: lightgrey 0 -21px 12px 22px;
-  height: 50px;
+  box-shadow: lightgrey 0 remCalc(-21) remCalc(12) remCalc(22);
+  height: spacing("single") * 2.5;
 
   &.is-open {
     height: 100%;
@@ -16,7 +16,7 @@
     border-bottom: container("border");
     overflow: visible;
     position: fixed;
-    height: 70px;
+    height: spacing("single") * 3.5;
     padding: 0;
 
     &.is-open {
@@ -28,12 +28,12 @@
     &.is-open {
       display: block;
       padding-top: 0;
-      z-index: 20;
+      z-index: zIndex('low');
     }
 
     @include breakpoint("medium") {
       display: block;
-      height: 70px;
+      height: spacing("single") * 3.5;
       position: absolute;
       top: 0;
       left: 0;
@@ -50,7 +50,7 @@
     @include breakpoint("medium") {
       margin: 0;
       padding: 0;
-      height: 70px;
+      height: spacing("single") * 3.5;
 
       .header.fixed & {
         background-color: color("greys", "lightest");
@@ -109,7 +109,7 @@
       background: $header-font-color;
       content: "";
       display: block;
-      height: 3px;
+      height: remCalc(3);
       position: absolute;
       transform: rotate(0deg);
       transition: transform 100ms ease-in, top 100ms ease-in 150ms, bottom 100ms ease-in 150ms; // 1
@@ -174,18 +174,18 @@
 
     .header-logo-image {
       @include lazy-loaded-img;
-      height: 50px;
+      height: spacing("single") * 2.5;
 
       @include breakpoint("medium") {
         max-height: none;
-        height: 60px;
+        height: spacing("single") * 3;
       }
     }
   }
 
   .navPages {
-    background: #fff;
-    padding-right: 4rem;
+    background: stencilColor("color-white");
+    padding-right: spacing("single") * 2.5;
 
     .navPage-subMenu {
       display: block;
@@ -195,8 +195,8 @@
 
       @include breakpoint("medium") {
         position: absolute;
-        width: 600px;
-        top: 69px;
+        width: remCalc(600);
+        top: remCalc(69);
         background: transparent;
         padding: 0 !important;
 
@@ -215,9 +215,9 @@
           margin: auto;
           padding-left: 0;
           column-count: 3;
-          margin-top: 3px;
-          background: #fff;
-          padding: 15px;
+          margin-top: remCalc(3);
+          background: stencilColor("color-white");
+          padding: stencilNumber("padding-normal");
 
           .navPage-subMenu-item {
             float: none;
@@ -226,16 +226,16 @@
 
             a {
               border-bottom: 0;
-              margin: 3px 0;
+              margin: remCalc(3) 0;
               padding: 0;
-              background: #fff;
+              background: stencilColor("color-white");
             }
           }
           
           .navPage-childList-item {
             .navPage-childList-action {
               text-transform: capitalize;
-              font-weight: 300 !important;
+              font-weight: fontWeight('thin') !important;
             }
           }
         }
@@ -243,15 +243,15 @@
     }
 
     .navPage-childList-item {
-      padding-left: 10px;
+      padding-left: stencilNumber("padding-small");
     }
 
     .tabs {
       position: relative;
       display: block;
       width: 100%;
-      height: 15em;
-      margin-top: 5px;
+      height: remCalc(210);
+      margin-top: stencilNumber("padding-small") * .5;
       border: none;
 
       @include breakpoint("medium") {
@@ -261,10 +261,10 @@
       section {
         position: absolute;
         display: block;
-        top: 1.8em;
+        top: remCalc(25);
         left: 0;
         height: calc(100vh - 60px);
-        background-color: #fff;
+        background-color: stencilColor("color-white");
         z-index: 0;
         width: 100%;
         &:first-child {
@@ -272,21 +272,21 @@
         }
         h2 {
           position: absolute;
-          font-size: 1em;
+          font-size: fontSize('base');
           font-weight: normal;
           width: 50%;
           top: -2.8em;
           left: 0;
           padding: 0;
           margin: 0;
-          padding: 5px 15px;
-          color: #000;
-          font-weight: bold;
+          padding: stencilNumber("padding-small") * .5 stencilNumber("padding-normal");
+          color: stencilColor("color-greyDarkest");
+          font-weight: fontWeight("bold");
     
           a {
             display: block;
             width: 100%;
-            line-height: 1.8em;
+            line-height: remCalc(25);
             text-align: center;
             text-decoration: none;
             color: inherit;
@@ -297,7 +297,7 @@
           z-index: 2;
           h2 {
             z-index: 2;
-            border-bottom: solid 1px #000;
+            border-bottom: solid 1px stencilColor("color-greyDarkest");
           }
         }
         &:nth-child(2) h2 {
@@ -324,10 +324,10 @@
             align-items: center;
 
             a {
-              font-size: 12px;
-              font-weight: bold;
+              font-size: fontSize('base');
+              font-weight: fontWeight("bold");
               text-decoration: none;
-              padding: 0 15px;
+              padding: 0 stencilNumber("padding-normal");
               cursor: pointer;
               color: stencilColor("navUser-color");
             }
@@ -350,13 +350,13 @@
   // Right Nav
   .navUser {
     .cart-icon {
-      width: 18px;
-      height: 18px;
+      width: remCalc(18);
+      height: remCalc(18);
     }
 
     @include breakpoint("medium") {
-      height: 70px;
-      line-height: 70px;
+      height: spacing("single") * 3.5;
+      line-height: spacing("single") * 3.5;
       top: 0;
       transform: translateY(0);
       position: absolute;

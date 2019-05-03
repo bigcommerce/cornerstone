@@ -1,45 +1,45 @@
 body {
-  background: #fff;
-  color: #000;
-  margin: 10px;
+  background: stencilColor("color-white");
+  color: stencilColor("color-greyDarkest");
+  margin: stencilNumber("padding-small");
 }
 
 body, td, th {
   font-family: Helvetica, Arial, Sans-Serif;
-  font-size: 12px;
+  font-size: remCalc(12);
 }
 
 h1, h1 a {
-  color: #000;
+  color: stencilColor("color-greyDarkest");
   text-decoration: none;
 }
 
 .Invoice,
 .PackingSlip {
   border: 2px solid #cacaca;
-  padding: 5px;
+  padding: stencilNumber("padding-small") * .5;
 }
 
 .InvoiceTitle,
 .PackingSlipTitle {
-  font-size: 15px;
-  font-weight: bold;
-  background: #000;
-  color: #fff;
-  padding: 5px;
-  margin-bottom: 10px;
+  font-size: $fontSize-root;
+  font-weight: fontWeight("bold");
+  background: stencilColor("color-greyDarkest");
+  color: stencilColor("color-white");
+  padding:stencilNumber("padding-small") * .5;
+  margin-bottom:stencilNumber("padding-normal");
 }
 
 .StoreAddress {
-  font-weight: bold;
-  margin-bottom: 10px;
+  font-weight: fontWeight("bold");
+  margin-bottom:stencilNumber("padding-normal");
 }
 
 .InvoiceHeading,
 .PackingSlipHeading {
-  font-size: 15px;
-  font-weight: bold;
-  margin-bottom: 10px;
+  font-size: $fontSize-root;
+  font-weight: fontWeight("bold");
+  margin-bottom:stencilNumber("padding-normal");
 }
 
 .CustomerDetails,
@@ -48,7 +48,7 @@ h1, h1 a {
 .InvoiceDetails,
 .PackingSlipItems,
 .PackingSlipDetails {
-  margin-bottom: 10px;
+  margin-bottom:stencilNumber("padding-normal");
 
   li {
     list-style-type: none;
@@ -63,15 +63,15 @@ h1, h1 a {
 
 .InvoiceTable th,
 .PackingSlipTable th {
-  font-weight: bold;
-  padding: 5px;
+  font-weight: fontWeight("bold");
+  padding:stencilNumber("padding-small") * .5;
   text-align: left;
 }
 
 
 .InvoiceTable td,
 .PackingSlipTable td {
-  padding: 5px;
+  padding:stencilNumber("padding-small") * .5;
   vertical-align: top;
   text-align: left;
 }
@@ -88,7 +88,7 @@ th.ProductTotal,
 }
 
 .InvoiceTotalRow:last-child {
-    font-weight: bold;
+    font-weight: fontWeight("bold");
 }
 
 .AddressRow, .InvoiceDetails, .PackingSlipDetails {
@@ -109,32 +109,32 @@ th.ProductTotal,
 
 .InvoiceItems,
 .PackingSlipItems {
-  border-top: 1px solid #000;
-  padding-top: 10px;
+  border-top: 1px solid stencilColor("color-greyDarkest");
+  padding-top:stencilNumber("padding-normal");
 }
 
 .InvoiceItemList {
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid stencilColor("color-greyDarkest");
 }
 
 .InvoiceItemDivider td {
-  padding-top: 10px;
-  border-top: 1px solid #000;
+  padding-top:stencilNumber("padding-normal");
+  border-top: 1px solid stencilColor("color-greyDarkest");
 }
 
 .DetailRow,
 .ConfigurableProductRow {
   clear: left;
-  margin-top: 6px;
-  padding-left: 140px;
+  margin-top: remCalc(6);
+  padding-left: remCalc(140);
 }
 
 .DetailRow .Label,
 .ConfigurableProductRow .Label {
-  margin: 0 0 6px -140px;
+  margin: 0 0 remCalc(6) remCalc(-140);
   float: left;
-  width: 130px;
-  padding-top: 1px;
+  width: remCalc(130);
+  padding-top: remCalc(1);
   display: inline;
   position: relative;
 
@@ -147,24 +147,24 @@ th.ProductTotal,
 
 .InvoiceDetails .DetailRow .Label,
 .PackingSlipDetails .DetailRow .Label {
-  font-weight: bold;
+  font-weight: fontWeight("bold");
 }
 
 .ConfigurableProductRow {
   font-size: 11px;
-  margin-left: 10px;
+  margin-left:stencilNumber("padding-normal");
 }
 
 .InvoiceTotals .InvoiceTotal td {
-  font-weight: bold;
+  font-weight: fontWeight("bold");
 }
 
 .ProductQuantity {
-  width: 50px;
+  width: remCalc(50);
 }
 
 .ProductCost, .ProductTotal {
-  width: 150px;
+  width: remCalc(150);
 }
 
 .PageBreak {

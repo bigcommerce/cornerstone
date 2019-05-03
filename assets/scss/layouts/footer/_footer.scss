@@ -13,20 +13,20 @@
 // -----------------------------------------------------------------------------
 
 footer {
-    padding: 15px;
-    background: #fff;
-    margin-left: 15px;
-    margin-right: 15px;
+    padding: stencilNumber("padding-normal");
+    background: stencilColor("color-white");
+    margin-left: stencilNumber("padding-normal");
+    margin-right: stencilNumber("padding-normal");
     z-index: 1;
     -webkit-transform: translate3d(0,0,0);
     text-align: center;
 
     @include breakpoint("medium") {
-        padding: 30px;
+        padding: stencilNumber("padding-normal") * 2;
     }
 
     .footer-nav {
-        line-height: 1.5;
+        line-height: lineHeight('base');
 
         a {
             display: inline-block;
@@ -34,12 +34,12 @@ footer {
             text-decoration: none;
         }
         .footer-menu {
-            padding-left: 15px;
-            padding-right: 15px;
+            padding-left: stencilNumber("padding-normal");
+            padding-right: stencilNumber("padding-normal");
         }
         .footer-link-header {
-            margin-top: 15px;
-            font-weight: 600;
+            margin-top: stencilNumber("padding-normal");
+            font-weight: fontWeight('semibold');
         }
     }
     
@@ -47,21 +47,21 @@ footer {
         width: 50px;
         height: 50px;
         border-radius: 50%;
-        background: #ddd;
+        background: stencilColor('color-greyLightest');
 
         span {
-            font-size: 25px;
-            font-weight: 700;
-            line-height: .5;
-            color: #fff;
+            font-size: $fontSize-root;
+            font-weight: fontWeight('bold');
+            line-height: lineHeight('base') / 3;
+            color: stencilColor('color-white');
             vertical-align: middle;
         }
     }
 
     .footer-email-signup {
-        margin-top: 20px;
+        margin-top: stencilNumber("padding-normal") * 1.5;
         text-align: left;
-        margin-bottom: 20px;
+        margin-bottom: stencilNumber("padding-normal") * 1.5;
 
         & div {
             padding: 0;
@@ -76,47 +76,47 @@ footer {
         }
       
         .big {
-            font-size: 16px;
-            line-height: 1.5;
-            font-weight: 600;
+            font-size: $fontSize-root;
+            line-height: lineHeight('base');
+            font-weight: fontWeight('semibold');
         }
         .form-control {
             display: block;
             width: 100%;
-            padding: 6px 12px;
-            font-size: 14px;
-            line-height: 1.42857143;
-            color: #555;
-            background-color: #fff;
+            padding: stencilNumber("padding-normal") * .5 stencilNumber("padding-normal");
+            font-size: fontSize("base");
+            line-height: lineHeight("base") * 0.9;
+            color: stencilColor("color-greyDark");
+            background-color: stencilColor("color-white");
             background-image: none;
-            border-bottom: 1px solid #ccc;
-            color: #0A0A0A;
+            border-bottom: 1px solid stencilColor("color-greyLighter");
+            color: stencilColor("navUser-color");
             outline: 0 !important;
             border: none;
-            padding: 15px 10px;
-            border-bottom: 1px solid #ccc;
-            font-size: 16px;
+            padding: stencilNumber("padding-normal") stencilNumber("padding-normal") * 0.7;
+            border-bottom: 1px solid stencilColor("color-greyLighter");
+            font-size: $fontSize-root;
 
 
             .underline {
                 background: 0 0;
                 border: none!important;
                 box-shadow: none;
-                border-bottom: 1px solid #AAA!important;
+                border-bottom: 1px solid stencilColor("color-greyDark") !important;
                 padding: 5px;
-                margin-bottom: 15px;
+                margin-bottom: stencilNumber("padding-normal");
             }
         }
 
         .email-col {
             @include breakpoint("medium") {
-                padding-right: 15px;
-                padding-left: 15px;
+                padding-right: stencilNumber("padding-normal");
+                padding-left: stencilNumber("padding-normal");
             }
         }
 
         #gender-choice-footer {
-            margin-bottom: 20px;
+            margin-bottom: stencilNumber("padding-normal") * 1.5;
 
             .gender-col {
                 padding: 0;
@@ -130,20 +130,20 @@ footer {
                 }
             }
             .gender-label {
-                color: #0A0A0A;
+                color: stencilColor("navUser-color");
             }
         }
         .signup-col {
             padding: 0;
             position: relative;
-            margin-bottom: 30px;
+            margin-bottom: spacing("double");
             
             #signup-footer {
-                background-color: #ccc!important;
+                background-color: stencilColor("color-greyLighter") !important;
                 border: none;
                 width: 100%;
-                padding: 15px;
-                color: white;
+                padding: stencilNumber("padding-normal");
+                color: stencilColor("color-white");
                 text-transform: uppercase;
                 &[disabled] {
                     opacity: .65;

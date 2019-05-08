@@ -14,6 +14,7 @@
 
         <form action="{{customer.payment_methods.selected_payment_method.forms.action}}" data-address-form class="form" method="post">
             <input type="hidden" name="bigpay_token" value="{{customer.payment_methods.selected_payment_method.bigpay_token}}">
+            <input type="hidden" name="currency_code" value="{{currency_selector.active_currency_code}}">
 
             <h3 class="paymentMethodForm-heading">{{lang 'account.payment_methods.payment_method'}}</h3>
 

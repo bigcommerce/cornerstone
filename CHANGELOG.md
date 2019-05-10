@@ -1,6 +1,8 @@
 # Changelog
 
 ## Draft
+
+## 3.4.3 (2019-05-10)
 - Fix to open Bulk Pricing modal from Quick View. [#1483](https://github.com/bigcommerce/cornerstone/pull/1483)
 - Update default layout settings for PayPal smart buttons [#1486](https://github.com/bigcommerce/cornerstone/pull/1486)
 

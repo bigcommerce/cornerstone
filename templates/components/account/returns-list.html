@@ -5,7 +5,11 @@
     <li class="account-listItem">
         <div class="account-product">
             <div class="account-product-figure">
-                <img class="lazyload" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{getImage product.image 'productthumb_size'}}" alt="{{product.image.alt}}" title="{{product.image.alt}}">
+                {{> components/common/responsive-img
+                    image=product.image
+                    fallback_size=../theme_settings.productthumb_size
+                    lazyload=../theme_settings.lazyload_mode
+                }}
             </div>
             <div class="account-product-body">
                 <div class="account-orderStatus">

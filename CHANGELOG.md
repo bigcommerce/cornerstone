@@ -12,6 +12,7 @@
 - Add Amazon Pay and Google Pay to payment icons in footer [#1542](https://github.com/bigcommerce/cornerstone/pull/1542)
 - Remove head.rsslinks [#1539](https://github.com/bigcommerce/cornerstone/pull/1539)
 - Prevent heading from displaying when no price ranges are available [#1545](https://github.com/bigcommerce/cornerstone/pull/1545)
+- Utilize srcset for responsive images [#1507](https://github.com/bigcommerce/cornerstone/pull/1507)
 
 ## 3.5.1 (2019-06-24)
 - Fix conditional logic in share.html [#1522](https://github.com/bigcommerce/cornerstone/pull/1522)

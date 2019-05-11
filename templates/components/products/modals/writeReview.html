@@ -12,7 +12,12 @@
     <div class="modal-body">
         <div class="writeReview-productDetails">
             <div class="writeReview-productImage-container">
-                <img class="lazyload" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{getImage product.main_image 'product_size' (cdn theme_settings.default_image_product)}}">
+                {{> components/common/responsive-img
+                    image=product.main_image
+                    fallback_size=theme_settings.product_size
+                    lazyload=theme_settings.lazyload_mode
+                    default_image=theme_settings.default_image_product
+                }}
             </div>
             <h6 class="product-brand">{{ product.brand.name }}</h6>
             <h5 class="product-title">{{ product.title }}</h5>

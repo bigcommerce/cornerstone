@@ -6,14 +6,15 @@
         <div class="account-product">
             <div class="account-product-figure">
                 {{#if items.0.type '===' 'giftcertificate'}}
-                    <img class="lazyload" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{cdn ../../theme_settings.default_image_gift_certificate}}" alt="GiftCertificate" title="GiftCertificate">
+                    <img src="{{cdn ../../theme_settings.default_image_gift_certificate}}" alt="GiftCertificate" title="GiftCertificate">
                 {{else}}
-                    <img class="account-product-image lazyload"
-                         data-sizes="auto"
-                         src="{{cdn 'img/loading.svg'}}"
-                         data-src="{{getImage image 'productthumb_size' (cdn ../../theme_settings.default_image_product)}}"
-                         alt="{{image.alt}}"
-                         title="{{image.alt}}">
+                    {{> components/common/responsive-img
+                        image=image
+                        class="account-product-image"
+                        fallback_size=../../theme_settings.productthumb_size
+                        lazyload=../../theme_settings.lazyload_mode
+                        default_image=../../theme_settings.default_image_product
+                    }}
                 {{/if}}
             </div>
             <div class="account-product-body">

@@ -1,7 +1,8 @@
 # Changelog
 
 ## Draft
---Fix to PDP Product Reviews Link Not Clickable. [1498](https://github.com/bigcommerce/cornerstone/pull/1498)
+- Fix to PDP Product Reviews Link Not Clickable. [#1498](https://github.com/bigcommerce/cornerstone/pull/1498)
+- Update jQuery to 3.4.1 [#1502](https://github.com/bigcommerce/cornerstone/pull/1502)
 
 ## 3.4.3 (2019-05-10)
 - Fix to open Bulk Pricing modal from Quick View. [#1483](https://github.com/bigcommerce/cornerstone/pull/1483)

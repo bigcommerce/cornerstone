@@ -1,6 +1,8 @@
 # Changelog
 
 ## Draft
+
+## 3.4.4 (2019-05-23)
 - Fix to PDP Product Reviews Link Not Clickable. [#1498](https://github.com/bigcommerce/cornerstone/pull/1498)
 - Update jQuery to 3.4.1 [#1502](https://github.com/bigcommerce/cornerstone/pull/1502)
 

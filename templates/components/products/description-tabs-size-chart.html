@@ -1,0 +1,53 @@
+<ul class="tabs" data-tab>
+    <li class="tab is-active">
+        <a class="tab-title" href="#tab-description">{{lang 'products.description'}}</a>
+    </li>
+    <li class="tab">
+            <a class="tab-title" href="#tab-size-chart">{{lang 'products.warranty'}}</a>
+    </li>
+    {{#if product.warranty}}
+        <li class="tab">
+            <a class="tab-title" href="#tab-warranty">{{lang 'products.warranty'}}</a>
+        </li>
+    {{/if}}
+    {{#all product.custom_fields theme_settings.show_custom_fields_tabs}}
+        <li class="tab">
+            <a class="tab-title" href="#tab-{{dashcase (lowercase (sanitize theme_settings.pdp-custom-fields-tab-label))}}">{{sanitize theme_settings.pdp-custom-fields-tab-label}}</a>
+        </li>
+    {{/all}}
+    {{#all settings.show_product_reviews theme_settings.show_product_reviews_tabs product.reviews.total}}
+        <li class="tab">
+            <a class="tab-title productView-reviewTabLink" href="#tab-reviews">{{lang 'products.reviews.header' total=product.reviews.total}}</a>
+        </li>
+    {{/all}}
+</ul>
+<div class="tabs-contents">
+    <div class="tab-content is-active" id="tab-description">
+        {{{product.description}}}
+    </div>
+    
+    <div class="tab-content is-active" id="tab-size-chart">
+        {{{product.description}}}
+    </div>
+    
+   {{#if product.warranty}}
+       <div class="tab-content" id="tab-warranty">
+           {{{product.warranty}}}
+       </div>
+   {{/if}}
+   {{#all product.custom_fields theme_settings.show_custom_fields_tabs}}
+      <div class="tab-content" id="tab-{{dashcase (lowercase (sanitize theme_settings.pdp-custom-fields-tab-label))}}">
+         <dl class="productView-info">
+            {{#each product.custom_fields}}
+               <dt class="productView-info-name">{{name}}:</dt>
+               <dd class="productView-info-value">{{{value}}}</dd>
+            {{/each}}
+         </dl>
+      </div>
+   {{/all}}
+   {{#all settings.show_product_reviews theme_settings.show_product_reviews_tabs}}
+       <div class="tab-content" id="tab-reviews">
+           {{> components/products/reviews reviews=product.reviews product=product urls=urls}}
+       </div>
+   {{/all}}
+</div>

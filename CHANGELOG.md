@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Update license year [#1510](https://github.com/bigcommerce/cornerstone/pull/1510)
 
 ## 3.4.4 (2019-05-23)
 - Fix to PDP Product Reviews Link Not Clickable. [#1498](https://github.com/bigcommerce/cornerstone/pull/1498)

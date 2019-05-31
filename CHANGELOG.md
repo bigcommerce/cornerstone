@@ -1,8 +1,7 @@
 # Changelog
 
 ## Draft
-
-## 3.5.0 (2019-06-06)
+- Fix conditional logic in returns-list.html [#1512](https://github.com/bigcommerce/cornerstone/pull/1512)
 
 ## 3.5.0 (2019-06-06)
 - Remove remote_api_scripts from the templates [#1505] (https://github.com/bigcommerce/cornerstone/pull/1505)

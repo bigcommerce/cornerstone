@@ -2,6 +2,7 @@
 
 ## Draft
 - Update license year [#1510](https://github.com/bigcommerce/cornerstone/pull/1510)
+- Remove Node 6 from Travis [#1511](https://github.com/bigcommerce/cornerstone/pull/1511)
 
 ## 3.4.4 (2019-05-23)
 - Fix to PDP Product Reviews Link Not Clickable. [#1498](https://github.com/bigcommerce/cornerstone/pull/1498)

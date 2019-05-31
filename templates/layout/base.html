@@ -11,7 +11,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
         <script>
-            // Change document class from no-js to js so we can detect this in css
+            {{!-- Change document class from no-js to js so we can detect this in css --}}
             document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
         </script>
 
@@ -21,18 +21,18 @@
         {{{head.scripts}}}
         {{{head.rsslinks}}}
 
-        {{inject 'themeSettings' theme_settings}}
-        {{inject 'genericError' (lang 'common.generic_error')}}
-        {{inject 'maintenanceMode' settings.maintenance}}
-        {{inject 'urls' urls}}
-        {{inject 'secureBaseUrl' settings.secure_base_url}}
-        {{inject 'cartId' cart_id}}
-        {{inject 'template' template}}
+        {{~inject 'themeSettings' theme_settings}}
+        {{~inject 'genericError' (lang 'common.generic_error')}}
+        {{~inject 'maintenanceMode' settings.maintenance}}
+        {{~inject 'urls' urls}}
+        {{~inject 'secureBaseUrl' settings.secure_base_url}}
+        {{~inject 'cartId' cart_id}}
+        {{~inject 'template' template}}
     </head>
     <body>
         <svg data-src="{{cdn 'img/icon-sprite.svg'}}" class="icons-svg-sprite"></svg>
 
-        {{#and settings.privacy_cookie settings.is_eu_ip_address}}
+        {{~#and settings.privacy_cookie settings.is_eu_ip_address}}
             {{> components/common/cookie}}
         {{/and}}
 
@@ -43,7 +43,7 @@
         <script>window.__webpack_public_path__ = "{{cdn 'assets/dist/'}}";</script>
         <script src="{{cdn 'assets/dist/theme-bundle.main.js'}}"></script>
         <script>
-            // Exported in app.js
+            {{!-- Exported in app.js --}}
             window.stencilBootstrap("{{page_type}}", {{jsContext}}).load();
         </script>
 

@@ -22,6 +22,7 @@ category:
 {{/if}}
 {{#unless theme_settings.hide_category_page_heading }}
     <h1 class="page-heading">{{category.name}}</h1>
+    {{{region name="category_below_header"}}}
 {{/unless}}
 {{{category.description}}}
 <div class="page">
@@ -47,6 +48,7 @@ category:
         {{else}}
             <p>{{lang 'categories.no_products'}}</p>
         {{/if}}
+        {{{region name="category_below_content"}}}
     </main>
 </div>
 

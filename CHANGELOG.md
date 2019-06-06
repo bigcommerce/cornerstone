@@ -1,6 +1,8 @@
 # Changelog
 
 ## Draft
+- Remove remote_api_scripts from the templates [#1505] (https://github.com/bigcommerce/cornerstone/pull/1505)
+- Add additional regions [#1491] (https://github.com/bigcommerce/cornerstone/pull/1491)
 - Update license year [#1510](https://github.com/bigcommerce/cornerstone/pull/1510)
 - Remove Node 6 from Travis [#1511](https://github.com/bigcommerce/cornerstone/pull/1511)
 - Clean up whitespace in <head> [#1513](https://github.com/bigcommerce/cornerstone/pull/1513)

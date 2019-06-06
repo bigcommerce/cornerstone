@@ -1,6 +1,8 @@
 # Changelog
 
 ## Draft
+
+## 3.5.0 (2019-06-06)
 - Remove remote_api_scripts from the templates [#1505] (https://github.com/bigcommerce/cornerstone/pull/1505)
 - Add additional regions [#1491] (https://github.com/bigcommerce/cornerstone/pull/1491)
 - Update license year [#1510](https://github.com/bigcommerce/cornerstone/pull/1510)

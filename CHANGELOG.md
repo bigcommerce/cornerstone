@@ -8,6 +8,7 @@
 ## 3.4.4 (2019-05-23)
 - Fix to PDP Product Reviews Link Not Clickable. [#1498](https://github.com/bigcommerce/cornerstone/pull/1498)
 - Update jQuery to 3.4.1 [#1502](https://github.com/bigcommerce/cornerstone/pull/1502)
+- Remove remote_api_scripts to avoid double firing analytics [#1505](https://github.com/bigcommerce/cornerstone/pull/1505)
 
 ## 3.4.3 (2019-05-10)
 - Fix to open Bulk Pricing modal from Quick View. [#1483](https://github.com/bigcommerce/cornerstone/pull/1483)

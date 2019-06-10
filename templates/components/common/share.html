@@ -3,6 +3,7 @@
          addthis:title="{{title}}">
         <ul class="socialLinks">
             {{#each settings.add_this.buttons}}
+            {{#unless service '===' 'google'}}
                 <li class="socialLinks-item socialLinks-item--{{service}}">
                     <a class="addthis_button_{{service}} icon icon--{{service}}" {{{annotation}}}>
                         {{#if service '===' 'google_plusone'}}
@@ -58,6 +59,7 @@
                         {{/if}}
                     </a>
                 </li>
+            {{/unless}}
             {{/each}}
         </ul>
         <script type="text/javascript"

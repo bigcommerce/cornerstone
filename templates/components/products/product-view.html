@@ -183,11 +183,11 @@
                 <li class="productView-thumbnail">
                     <a
                         class="productView-thumbnail-link"
-                        href="{{getImage this 'product_size' (cdn ../theme_settings.default_image_product)}}"
+                        href="https://static.trinityroad.com/prod/75/{{../product.sku}}{{#if @index}}-{{@index}}{{/if}}.jpg"
                         data-image-gallery-item
-                        data-image-gallery-new-image-url="{{getImage this 'product_size' (cdn ../theme_settings.default_image_product)}}"
-                        data-image-gallery-zoom-image-url="{{getImage this 'zoom_size' (cdn ../theme_settings.default_image_product)}}">
-                        <img class="lazyload" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{getImage this 'productview_thumb_size' (cdn ../theme_settings.default_image_product)}}" alt="{{this.alt}}" title="{{this.alt}}">
+                        data-image-gallery-new-image-url="https://static.trinityroad.com/prod/500/{{../product.sku}}{{#if @index}}-{{@index}}{{/if}}.jpg"
+                        data-image-gallery-zoom-image-url="https://static.trinityroad.com/prod/2000/{{../product.sku}}{{#if @index}}-{{@index}}{{/if}}.jpg">
+                        <img class="lazyload" data-sizes="auto" src="https://static.trinityroad.com/prod/75/{{../product.sku}}{{#if @index}}-{{@index}}{{/if}}.jpg" data-src="https://static.trinityroad.com/prod/75/{{../product.sku}}{{#if @index}}-{{@index}}{{/if}}.jpg" alt="{{this.alt}}" title="{{this.alt}}">
                     </a>
                 </li>
             {{/each}}

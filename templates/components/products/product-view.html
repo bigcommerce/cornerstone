@@ -159,13 +159,13 @@
             <div class="productView-img-container">
                 {{!-- Remove the surrounding a-element if there is no main image. --}}
                 {{#if product.main_image}}
-                    <a href="{{getImage product.main_image 'zoom_size' (cdn theme_settings.default_image_product)}}">
+                    <a href="https://static.trinityroad.com/prod/2000/{{product.sku}}.jpg">
                 {{/if}}
 
                 <img class="productView-image--default lazyload"
                      data-sizes="auto"
-                     src="{{cdn 'img/loading.svg'}}"
-                     data-src="{{getImage product.main_image 'product_size' (cdn theme_settings.default_image_product)}}"
+                     src="https://static.trinityroad.com/prod/500/{{product.sku}}.jpg"
+                     data-src="https://static.trinityroad.com/prod/500/{{product.sku}}.jpg"
                      alt="{{product.main_image.alt}}" title="{{product.main_image.alt}}" data-main-image>
 
                 {{#if product.main_image}}

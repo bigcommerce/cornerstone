@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Fix conditional logic in share.html [#1522](https://github.com/bigcommerce/cornerstone/pull/1522)
 - Fix conditional logic in returns-list.html [#1512](https://github.com/bigcommerce/cornerstone/pull/1512)
 
 ## 3.5.0 (2019-06-06)

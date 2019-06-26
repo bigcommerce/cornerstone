@@ -12,8 +12,7 @@ export default class Product extends PageManager {
     constructor(context) {
         super(context);
         this.url = window.location.href;
-        this.$reviewLink = $('[data-reveal-id="modal-review-form"]');
-        this.$bulkPricingLink = $('[data-reveal-id="modal-bulk-pricing"]');
+        this.$reviewLink = $('[data-reveal-id="modal-review-form"]')
     }
 
     onReady() {
@@ -51,18 +50,12 @@ export default class Product extends PageManager {
         });
 
         this.productReviewHandler();
-        this.bulkPricingHandler();
+
     }
 
     productReviewHandler() {
         if (this.url.indexOf('#write_review') !== -1) {
             this.$reviewLink.trigger('click');
-        }
-    }
-
-    bulkPricingHandler() {
-        if (this.url.indexOf('#bulk_pricing') !== -1) {
-            this.$bulkPricingLink.trigger('click');
         }
     }
 }

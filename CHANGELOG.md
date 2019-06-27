@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Update @babel/polyfill to 7.4.4 [#1521](https://github.com/bigcommerce/cornerstone/pull/1521)
 
 ## 3.5.1 (2019-06-24)
 - Fix conditional logic in share.html [#1522](https://github.com/bigcommerce/cornerstone/pull/1522)

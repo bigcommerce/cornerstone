@@ -1,12 +1,16 @@
 {{#partial "page"}}
 <div class="account">
     {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
-    <h2 class="page-heading">{{lang 'account.returns.heading' }}</h2>
+    <h2 class="page-heading">{{lang 'account.returns.heading'}}</h2>
     {{> components/account/navigation account_page='returns'}}
     <div class="account-row">
         <p>
             {{lang 'account.returns.successful'}}
         </p>
+        {{#if return.instructions}}
+            <h3>{{lang 'account.returns.instructions'}}</h3>
+            <p>{{return.instructions}}</p>
+        {{/if}}
     </div>
 </div>
 {{/partial}}

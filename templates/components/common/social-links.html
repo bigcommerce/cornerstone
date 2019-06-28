@@ -2,15 +2,9 @@
     <ul class="socialLinks socialLinks--alt">
         {{#each social_media}}
             <li class="socialLinks-item">
-                {{#if display_name '===' 'google+'}}
-                    <a class="icon icon--google" href="{{url}}" target="_blank">
-                        <svg><use xlink:href="#icon-google" /></svg>
-                    </a>
-                {{else}}
-                    <a class="icon icon--{{display_name}}" href="{{url}}" target="_blank">
-                        <svg><use xlink:href="#icon-{{display_name}}" /></svg>
-                    </a>
-                {{/if}}
+                <a class="icon icon--{{display_name}}" href="{{url}}" target="_blank">
+                    <svg><use xlink:href="#icon-{{display_name}}" /></svg>
+                </a>
             </li>
         {{/each}}
     </ul>

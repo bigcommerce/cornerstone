@@ -4,6 +4,7 @@
 - Update @babel/polyfill to 7.4.4 [#1521](https://github.com/bigcommerce/cornerstone/pull/1521)
 - Add maxlength to text options [#1531](https://github.com/bigcommerce/cornerstone/pull/1531)
 - Add return instructions in return-saved.html [#1525](https://github.com/bigcommerce/cornerstone/pull/1525)
+- Remove Google Plus [#1526](https://github.com/bigcommerce/cornerstone/pull/1526)
 
 ## 3.5.1 (2019-06-24)
 - Fix conditional logic in share.html [#1522](https://github.com/bigcommerce/cornerstone/pull/1522)

@@ -10,6 +10,7 @@
 - Remove nanobar (loading bar) [#1537](https://github.com/bigcommerce/cornerstone/pull/1537)
 - Fix incorrect DOM selectors causing the payment method form on the account page from working properly in Safari [#1541](https://github.com/bigcommerce/cornerstone/pull/1541)
 - Add Amazon Pay and Google Pay to payment icons in footer [#1542](https://github.com/bigcommerce/cornerstone/pull/1542)
+- Remove head.rsslinks [#1539](https://github.com/bigcommerce/cornerstone/pull/1539)
 - Prevent heading from displaying when no price ranges are available [#1545](https://github.com/bigcommerce/cornerstone/pull/1545)
 
 ## 3.5.1 (2019-06-24)

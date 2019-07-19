@@ -8,6 +8,7 @@
 - Fix broken conditional statement in share.html [#1533](https://github.com/bigcommerce/cornerstone/pull/1533)
 - Enable Facebook like button to be displayed on product page if enabled [#1530](https://github.com/bigcommerce/cornerstone/pull/1530)
 - Remove nanobar (loading bar) [#1537](https://github.com/bigcommerce/cornerstone/pull/1537)
+- Fix incorrect DOM selectors causing the payment method form on the account page from working properly in Safari [#1541](https://github.com/bigcommerce/cornerstone/pull/1541)
 
 ## 3.5.1 (2019-06-24)
 - Fix conditional logic in share.html [#1522](https://github.com/bigcommerce/cornerstone/pull/1522)

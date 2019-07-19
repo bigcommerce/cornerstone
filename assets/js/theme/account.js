@@ -255,7 +255,7 @@ export default class Account extends PageManager {
         $(`${paymentMethodSelector} input[name="credit_card_number"]`).on('keyup', ({ target }) => {
             cardType = creditCardType(target.value);
             if (cardType) {
-                $(`${paymentMethodSelector} img[alt="${cardType}"`).siblings().css('opacity', '.2');
+                $(`${paymentMethodSelector} img[alt="${cardType}"]`).siblings().css('opacity', '.2');
             } else {
                 $(`${paymentMethodSelector} img`).css('opacity', '1');
             }
@@ -269,7 +269,7 @@ export default class Account extends PageManager {
 
         // Set of credit card format
         CCFormatters.setCreditCardNumberFormat(`${paymentMethodSelector} input[name="credit_card_number"]`);
-        CCFormatters.setExpirationFormat(`${paymentMethodSelector} input[name="expiration"`);
+        CCFormatters.setExpirationFormat(`${paymentMethodSelector} input[name="expiration"]`);
 
         // Billing address validation
         paymentMethodValidator.add(validationModel);

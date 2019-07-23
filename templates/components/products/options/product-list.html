@@ -25,7 +25,11 @@
                 <li class="productOptions-list-item" data-product-attribute-value="{{id}}">
                     {{#if image}}
                         <figure class="productOptions-list-item-figure">
-                            <img class="productOptions-list-item-image lazyload" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{getImage image 'productthumb_size'}}" alt="{{image.alt}}" title="{{image.alt}}">
+                            {{> components/common/responsive-img
+                                image=image
+                                class="productOptions-list-item-image"
+                                lazyload='lazyload+lqip'
+                            }}
                         </figure>
                     {{/if}}
                     <div class="productOptions-list-item-content">

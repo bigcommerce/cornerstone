@@ -1,0 +1,61 @@
+{{!--
+This file implements the lazysizes srcset pattern (as seen on
+https://github.com/aFarkas/lazysizes#modern-transparent-srcset-pattern) for maximum performance on modern browsers
+and reasonable compatibility with legacy browsers.
+
+There are a few important arguments to know about when using this component:
+`lazyload`:
+    - If set to 'lazyload+lqip', will load a low-res image which will be replaced by lazysizes - ensuring that SOME
+    content is shown immediately on page load. Without LQIP, a transparent gif will be used instead, which reduces
+    the number of requests needed to load the page, making it even faster.
+    - If set to 'lazyload', the browser will not load the full-size image at first, instead the lazysizes plugin will
+        load it progressively after page load. This improves the load speed of the page, but it should be disabled for
+        high-priority above-the-fold images.
+    - If set to 'disabled', will not attempt to lazyload the image and instead tell the browser to load it immediately.
+        Use this for high-priority images that are above the fold.
+
+`fallback_size`:
+    This is the size to use for this image in legacy browsers that do not support srcset.
+    Can be defined as a pixel bounding-box size (e.g. "123x123) or inherent width (e.g. "123w").
+
+`class`:
+    The CSS classes to add to the image, e.g. "card-image". If lazyloading is enabled, all images will have the
+    "lazyload" class so that lazysizes will target them automatically.
+
+`otherAttributes`:
+    Any other HTML attributes you want on the img tag, for example "height='100' width='100'"
+
+`default_image`:
+    The default image to use if `image` is undefined or falsy. Should be a theme asset, usually defined as a relative
+    path in the theme config. If a default image is not provided, you'll get an image tag with no image if the primary
+    image is undefined.
+
+`lqip_size`:
+    If you want to specify a particular size for the LQIP image, you can do so with this argument. A default of 80
+    pixels wide will be used otherwise. This argument has no effect if the lazyload mode is not "lazyload+lqip".
+
+--}}
+<img {{#if image}}{{!-- Get the default image for legacy browsers that do not support srcset
+--}}src="{{getImageSrcset image 1x=(default fallback_size '160w')}}" alt="{{image.alt}}" title="{{image.alt}}" {{!--
+  Allow lazysizes to generate the 'sizes' attribute automatically --}}data-sizes="auto"
+  {{#unless lazyload '==' 'disabled'}}
+    {{#if lazyload '==' 'lazyload+lqip'}}
+    {{!-- If we want a LQIP, include it as the default srcset (will be overwritten by lazysizes) --}}
+    srcset="{{getImageSrcset image 1x=(default lqip_size '80w')}}"
+    {{else}}
+      {{!-- If we don't want a LQIP, use a 1px transparent gif for the stand-in image
+            This requires no additional network request, so it's fast --}}
+    srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+    {{/if}}
+{{/unless}}
+{{!-- If lazyloading is disabled, just use "srcset". If it is not disabled, use "data-srcset" so lazysizes will use
+      this after page load --}}
+{{!--
+Generate the srcset string using the default sizes defined in the helper. This will allow the browser to
+pick the best-sized image based on its own understanding of how it will render the page.
+--}}
+{{#unless lazyload '==' 'disabled'}}data-{{/unless}}srcset="{{getImageSrcset image use_default_sizes=true }}"
+{{else if default_image}}src="{{cdn default_image}}"{{/if}}
+class="{{#unless lazyload '==' 'disabled'}}lazyload{{/unless}}{{#if class}} {{class}}{{/if}}"
+{{#if lazyload '==' 'lazyload'}}loading="lazy"{{/if}}
+{{otherAttributes}} />

@@ -3,7 +3,11 @@
         {{#if post.thumbnail}}
             <figure class="blog-thumbnail">
                 <a href="{{post.url}}">
-                    <img class="lazyload" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{getImage post.thumbnail 'blog_size'}}" alt="{{post.thumbnail.alt}}" title="{{post.thumbnail.alt}}">
+                    {{> components/common/responsive-img
+                        image=post.thumbnail
+                        fallback_size=theme_settings.blog_size
+                        lazyload=theme_settings.lazyload_mode
+                    }}
                 </a>
             </figure>
         {{/if}}

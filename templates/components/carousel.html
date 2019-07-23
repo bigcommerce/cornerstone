@@ -12,8 +12,21 @@
     <a href="{{url}}">
         <div class="heroCarousel-slide {{#if ../theme_settings.homepage_stretch_carousel_images}}stretch{{/if}} {{#if @first}}heroCarousel-slide--first{{/if}}">
             <div class="heroCarousel-image-wrapper" {{#and image_height image_width}}style="height: {{multiply (divide image_height image_width) 100}}vw"{{/and}}>
-            <img class="heroCarousel-image" {{#if @first}}src{{else}}data-lazy{{/if}}="{{image}}" alt="{{alt_text}}" title="{{alt_text}}"
-                {{#if image_width}}width="{{image_width}}"{{/if}} {{#if image_height}}height="{{image_height}}"{{/if}} />
+            {{#if @first}}
+                {{> components/common/responsive-img
+                    image=stencil_image
+                    class="heroCarousel-image"
+                    fallback_size='1280w'
+                    lazyload='disabled'
+                }}
+            {{else}}
+                {{> components/common/responsive-img
+                    image=stencil_image
+                    class="heroCarousel-image"
+                    fallback_size='1280w'
+                    lazyload='lazyload'
+                }}
+            {{/if}}
             </div>
             {{#if heading}}
                 {{> components/carousel-content show_background=true}}

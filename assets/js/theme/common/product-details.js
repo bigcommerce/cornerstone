@@ -269,19 +269,38 @@ export default class ProductDetails {
 
     showProductImage(image) {
         if (_.isPlainObject(image)) {
-            const zoomImageUrl = utils.tools.image.getSrc(
+            const zoomImageUrl = utils.tools.imageSrcset.getSrcset(
                 image.data,
-                this.context.themeSettings.zoom_size,
+                { '1x': this.context.themeSettings.zoom_size },
+                /*
+                    Should match zoom size used for data-zoom-image in
+                    components/products/product-view.html
+
+                    Note that this will only be used as a fallback image for browsers that do not support srcset
+
+                    Also note that getSrcset returns a simple src string when exactly one size is provided
+                */
             );
 
-            const mainImageUrl = utils.tools.image.getSrc(
+            const mainImageUrl = utils.tools.imageSrcset.getSrcset(
                 image.data,
-                this.context.themeSettings.product_size,
+                { '1x': this.context.themeSettings.product_size },
+                /*
+                    Should match fallback image size used for the main product image in
+                    components/products/product-view.html
+
+                    Note that this will only be used as a fallback image for browsers that do not support srcset
+
+                    Also note that getSrcset returns a simple src string when exactly one size is provided
+                */
             );
+
+            const mainImageSrcset = utils.tools.imageSrcset.getSrcset(image.data);
 
             this.imageGallery.setAlternateImage({
                 mainImageUrl,
                 zoomImageUrl,
+                mainImageSrcset,
             });
         } else {
             this.imageGallery.restoreImage();

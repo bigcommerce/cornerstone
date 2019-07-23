@@ -17,7 +17,11 @@ brand:
 {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
 {{#if brand.image}}
     <div class="brand-image-container">
-        <img class="lazyload" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{getImage brand.image 'thumb_size'}}">
+        {{> components/common/responsive-img
+            image=brand.image
+            fallback_size=theme_settings.thumb_size
+            lazyload='disabled'
+        }}
     </div>
 {{/if}}
 <h1 class="page-heading">{{brand.name}}</h1>

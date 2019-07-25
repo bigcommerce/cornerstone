@@ -14,6 +14,7 @@
 - Prevent heading from displaying when no price ranges are available [#1545](https://github.com/bigcommerce/cornerstone/pull/1545)
 - Utilize srcset for responsive images [#1507](https://github.com/bigcommerce/cornerstone/pull/1507)
 - Clean up conditional logic in a couple component templates [#1547](https://github.com/bigcommerce/cornerstone/pull/1547)
+- Remove "demo" product conditional logic [#1551](https://github.com/bigcommerce/cornerstone/pull/1551)
 
 ## 3.5.1 (2019-06-24)
 - Fix conditional logic in share.html [#1522](https://github.com/bigcommerce/cornerstone/pull/1522)

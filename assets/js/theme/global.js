@@ -11,6 +11,7 @@ import cartPreview from './global/cart-preview';
 import privacyCookieNotification from './global/cookieNotification';
 import maintenanceMode from './global/maintenanceMode';
 import carousel from './common/carousel';
+import loadingProgressBar from './global/loading-progress-bar';
 import svgInjector from './global/svg-injector';
 
 export default class Global extends PageManager {
@@ -25,6 +26,7 @@ export default class Global extends PageManager {
         mobileMenuToggle();
         privacyCookieNotification();
         maintenanceMode(this.context.maintenanceMode);
+        loadingProgressBar();
         svgInjector();
     }
 }

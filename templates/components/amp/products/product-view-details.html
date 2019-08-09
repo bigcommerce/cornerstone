@@ -89,11 +89,9 @@
                                 {{lang 'products.bulk_pricing.range' min=min max=max}}
                                 {{#if type '===' 'percent'}}
                                     {{lang 'products.bulk_pricing.percent' discount=discount.formatted}}
-                                {{/if}}
-                                {{#if type '===' 'fixed'}}
+                                {{else if type '===' 'fixed'}}
                                     {{lang 'products.bulk_pricing.fixed' discount=discount.formatted}}
-                                {{/if}}
-                                {{#if type '===' 'price'}}
+                                {{else if type '===' 'price'}}
                                     {{lang 'products.bulk_pricing.price' discount=discount.formatted}}
                                 {{/if}}
                             </li>

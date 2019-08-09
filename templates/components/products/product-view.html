@@ -150,24 +150,40 @@
     </section>
 
     <section class="productView-images" data-image-gallery>
+        {{!--
+            Note that these image sizes are coupled to image sizes used in /assets/js/theme/common/product-details.js
+            for variant/rule image replacement
+        --}}
         <figure class="productView-image"
                 data-image-gallery-main
                 {{#if product.main_image}}
-                data-zoom-image="{{getImage product.main_image 'zoom_size' (cdn theme_settings.default_image_product)}}"
+                data-zoom-image="{{getImageSrcset product.main_image (cdn theme_settings.default_image_product) 1x=theme_settings.zoom_size }}"
                 {{/if}}
                 >
             <div class="productView-img-container">
                 {{!-- Remove the surrounding a-element if there is no main image. --}}
                 {{#if product.main_image}}
+                    {{#if product.sku}}
                     <a href="https://static.trinityroad.com/prod/2000/{{product.sku}}.jpg">
+	                <img class="productView-image--default lazyload"
+	                    data-sizes="auto"
+	                    src="https://static.trinityroad.com/prod/500/{{product.sku}}.jpg"
+	                    data-src="https://static.trinityroad.com/prod/500/{{product.sku}}.jpg"
+	                    alt="{{product.main_image.alt}}" title="{{product.main_image.alt}}" data-main-image>
+                    {{else}}
+                    <a href="{{getImageSrcset product.main_image (cdn theme_settings.default_image_product) 1x=theme_settings.zoom_size}}"
+                        target="_blank">
+                    {{> components/common/responsive-img
+	                    image=product.main_image
+	                    class="productView-image--default"
+	                    fallback_size=theme_settings.product_size
+	                    lazyload=theme_settings.lazyload_mode
+	                    default_image=theme_settings.default_image_product
+	                    otherAttributes="data-main-image"
+	                }}
+	                {{!-- Remove the surrounding a-element if there is no main image. --}}
+                    {{/if}}
                 {{/if}}
-
-                <img class="productView-image--default lazyload"
-                     data-sizes="auto"
-                     src="https://static.trinityroad.com/prod/500/{{product.sku}}.jpg"
-                     data-src="https://static.trinityroad.com/prod/500/{{product.sku}}.jpg"
-                     alt="{{product.main_image.alt}}" title="{{product.main_image.alt}}" data-main-image>
-
                 {{#if product.main_image}}
                     </a>
                 {{/if}}
@@ -183,11 +199,25 @@
                 <li class="productView-thumbnail">
                     <a
                         class="productView-thumbnail-link"
+                    {{#if ../product.sku}}
                         href="https://static.trinityroad.com/prod/75/{{../product.sku}}{{#if @index}}-{{@index}}{{/if}}.jpg"
                         data-image-gallery-item
                         data-image-gallery-new-image-url="https://static.trinityroad.com/prod/500/{{../product.sku}}{{#if @index}}-{{@index}}{{/if}}.jpg"
                         data-image-gallery-zoom-image-url="https://static.trinityroad.com/prod/2000/{{../product.sku}}{{#if @index}}-{{@index}}{{/if}}.jpg">
-                        <img class="lazyload" data-sizes="auto" src="https://static.trinityroad.com/prod/75/{{../product.sku}}{{#if @index}}-{{@index}}{{/if}}.jpg" data-src="https://static.trinityroad.com/prod/75/{{../product.sku}}{{#if @index}}-{{@index}}{{/if}}.jpg" alt="{{this.alt}}" title="{{this.alt}}">
+                    <img class="lazyload" data-sizes="auto" src="https://static.trinityroad.com/prod/75/{{../product.sku}}{{#if @index}}-{{@index}}{{/if}}.jpg" data-src="https://static.trinityroad.com/prod/75/{{../product.sku}}{{#if @index}}-{{@index}}{{/if}}.jpg" alt="{{this.alt}}" title="{{this.alt}}">
+                    {{else}}
+                        href="{{getImageSrcset this (cdn ../theme_settings.default_image_product) 1x=../theme_settings.zoom_size}}"
+                        data-image-gallery-item
+                        data-image-gallery-new-image-url="{{getImageSrcset this (cdn ../theme_settings.default_image_product) 1x=../theme_settings.product_size}}"
+                        data-image-gallery-new-image-srcset="{{getImageSrcset this use_default_sizes=true}}"
+                        data-image-gallery-zoom-image-url="{{getImageSrcset this (cdn ../theme_settings.default_image_product) 1x=../theme_settings.zoom_size}}"
+                    >
+                    {{> components/common/responsive-img
+                        image=this
+                        fallback_size=../theme_settings.productthumb_size
+                        lazyload=../theme_settings.lazyload_mode
+                    }}
+                    {{/if}}
                     </a>
                 </li>
             {{/each}}

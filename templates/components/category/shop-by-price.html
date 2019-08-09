@@ -1,4 +1,4 @@
-{{#if theme_settings.shop_by_price_visibility}}
+{{#and theme_settings.shop_by_price_visibility shop_by_price}}
     <div class="sidebarBlock">
         <h5 class="sidebarBlock-heading">{{lang 'category.shop_by_price'}}</h5>
         <ul class="navList">
@@ -17,4 +17,4 @@
             {{/any}}
         </ul>
     </div>
-{{/if}}
+{{/and}}

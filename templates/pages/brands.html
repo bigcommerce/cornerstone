@@ -16,7 +16,13 @@ brands:
                     <figure class="card-figure">
                         <a href="{{url}}">
                             <div class="card-img-container">
-                                <img class="card-image lazyload" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{getImage image 'brand_size' (cdn ../theme_settings.default_image_brand)}}" alt="{{name}}" title="{{name}}">
+                                {{> components/common/responsive-img
+                                    image=image
+                                    class="card-image"
+                                    fallback_size=../theme_settings.brand_size
+                                    lazyload=../theme_settings.lazyload_mode
+                                    default_image=../theme_settings.default_image_brand
+                                }}
                             </div>
                         </a>
                     </figure>

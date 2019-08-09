@@ -82,6 +82,12 @@
     }
 }
 
+.slick-slide img
+{
+    display: block;
+    width: 100%;
+}
+
 
 //
 // Carousel dots
@@ -164,3 +170,13 @@
     backface-visibility: hidden; // 2
     perspective: 1000px; // 2
 }
+
+//
+// iOS Safari fix https://github.com/kenwheeler/slick/issues/2834#issuecomment-389590661
+// -----------------------------------------------------------------------------
+div.slick-slider {
+    width: 1px;
+    min-width: 100%;
+    *width: 100%;
+}
+

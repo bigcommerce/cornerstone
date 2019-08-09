@@ -5,29 +5,27 @@
     <li class="account-listItem">
         <div class="account-product">
             <div class="account-product-figure">
-                <img class="lazyload" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{getImage product.image 'productthumb_size'}}" alt="{{product.image.alt}}" title="{{product.image.alt}}">
+                {{> components/common/responsive-img
+                    image=product.image
+                    fallback_size=../theme_settings.productthumb_size
+                    lazyload=../theme_settings.lazyload_mode
+                }}
             </div>
             <div class="account-product-body">
                 <div class="account-orderStatus">
                     {{#if status '===' 'ReturnStatusPending'}}
                         <h6 class="account-orderStatus-label">{{lang 'account.returns.status.pending'}}</h6>
-                    {{/if}}
-                    {{#if status '===' 'ReturnStatusReceived'}}
+                    {{else if status '===' 'ReturnStatusReceived'}}
                         <h6 class="account-orderStatus-label">{{lang 'account.returns.status.received'}}</h6>
-                    {{/if}}
-                    {{#if status '===' 'ReturnStatusAuthorized'}}
+                    {{else if status '===' 'ReturnStatusAuthorized'}}
                         <h6 class="account-orderStatus-label">{{lang 'account.returns.status.authorized'}}</h6>
-                    {{/if}}
-                    {{#if status '===' 'ReturnStatusRepaired'}}
+                    {{else if status '===' 'ReturnStatusRepaired'}}
                         <h6 class="account-orderStatus-label">{{lang 'account.returns.status.repaired'}}</h6>
-                    {{/if}}
-                    {{#if status '===' 'ReturnStatusRefunded'}}
+                    {{else if status '===' 'ReturnStatusRefunded'}}
                         <h6 class="account-orderStatus-label">{{lang 'account.returns.status.refunded'}}</h6>
-                    {{/if}}
-                    {{#if status '===' 'ReturnStatusRejected'}}
+                    {{else if status '===' 'ReturnStatusRejected'}}
                         <h6 class="account-orderStatus-label">{{lang 'account.returns.status.rejected'}}</h6>
-                    {{/if}}
-                    {{#if status '===' 'ReturnStatusCancelled'}}
+                    {{else if status '===' 'ReturnStatusCancelled'}}
                         <h6 class="account-orderStatus-label">{{lang 'account.returns.status.cancelled'}}</h6>
                     {{/if}}
                 </div>

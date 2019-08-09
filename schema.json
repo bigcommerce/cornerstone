@@ -358,6 +358,34 @@
       },
       {
         "type": "heading",
+        "content": "Image Loading"
+      },
+      {
+        "type": "paragraph",
+        "content": "Cornerstone doesn’t load most images until the user scrolls to them on the screen. Enable \"Lazyloading with LQIP\" below if you prefer to show a preview image and replace it with a better quality version as the user scrolls. Select \"Disabled\" below to fully turn off this feature."
+      },
+      {
+        "type": "select",
+        "id": "lazyload_mode",
+        "force_reload": true,
+        "label": "Lazyloading Mode",
+        "options": [
+          {
+            "value": "lazyload",
+            "label": "Lazyload"
+          },
+          {
+            "value": "lazyload+lqip",
+            "label": "Lazyload with LQIP"
+          },
+          {
+            "value": "disabled",
+            "label": "Disabled"
+          }
+        ]
+      },
+      {
+        "type": "heading",
         "content": "Pages"
       },
       {
@@ -810,7 +838,7 @@
       },
       {
         "type": "checkbox",
-        "label": "Show &quot;Powered by BigCommerce&quot;",
+        "label": "Show \"Powered by BigCommerce\"",
         "force_reload": true,
         "id": "show_powered_by"
       },
@@ -822,7 +850,7 @@
       },
       {
         "type": "checkbox",
-        "label": "Show &quot;&copy;&quot;, current year and store name",
+        "label": "Show \"&copy;\", current year and store name",
         "force_reload": true,
         "id": "show_copyright_footer"
       },
@@ -859,6 +887,18 @@
         "label": "Show Visa",
         "force_reload": true,
         "id": "show_accept_visa"
+      },
+      {
+        "type": "checkbox",
+        "label": "Show Amazon Pay",
+        "force_reload": true,
+        "id": "show_accept_amazonpay"
+      },
+      {
+        "type": "checkbox",
+        "label": "Show Google Pay",
+        "force_reload": true,
+        "id": "show_accept_googlepay"
       },
       {
         "type": "select",
@@ -1313,7 +1353,7 @@
       },
       {
         "type": "checkbox",
-        "label": "Show &quot;Shop by Price&quot; in filters",
+        "label": "Show \"Shop by Price\" in filters",
         "force_reload": true,
         "id": "shop_by_price_visibility"
       },

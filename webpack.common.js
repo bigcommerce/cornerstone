@@ -10,6 +10,7 @@ module.exports = {
     context: __dirname,
     entry: {
         main: './assets/js/app.js',
+        head_async: ['lazysizes'],
     },
     module: {
         rules: [

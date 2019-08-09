@@ -2,7 +2,27 @@
 
 ## Draft
 
-## 3.5.0 (2019-06-06)
+## 4.0.0 (2019-08-05)
+- Update @babel/polyfill to 7.4.4 [#1521](https://github.com/bigcommerce/cornerstone/pull/1521)
+- Add maxlength to text options [#1531](https://github.com/bigcommerce/cornerstone/pull/1531)
+- Add return instructions in return-saved.html [#1525](https://github.com/bigcommerce/cornerstone/pull/1525)
+- Remove Google Plus [#1526](https://github.com/bigcommerce/cornerstone/pull/1526)
+- Fix broken conditional statement in share.html [#1533](https://github.com/bigcommerce/cornerstone/pull/1533)
+- Enable Facebook like button to be displayed on product page if enabled [#1530](https://github.com/bigcommerce/cornerstone/pull/1530)
+- Remove nanobar (loading bar) [#1537](https://github.com/bigcommerce/cornerstone/pull/1537)
+- Fix incorrect DOM selectors causing the payment method form on the account page from working properly in Safari [#1541](https://github.com/bigcommerce/cornerstone/pull/1541)
+- Add Amazon Pay and Google Pay to payment icons in footer [#1542](https://github.com/bigcommerce/cornerstone/pull/1542)
+- Remove head.rsslinks [#1539](https://github.com/bigcommerce/cornerstone/pull/1539)
+- Prevent heading from displaying when no price ranges are available [#1545](https://github.com/bigcommerce/cornerstone/pull/1545)
+- Utilize srcset for responsive images [#1507](https://github.com/bigcommerce/cornerstone/pull/1507)
+- Clean up conditional logic in a couple component templates [#1547](https://github.com/bigcommerce/cornerstone/pull/1547)
+- Remove "demo" product conditional logic [#1551](https://github.com/bigcommerce/cornerstone/pull/1551)
+- Add responsive breakpoints to product carousel. [#1458](https://github.com/bigcommerce/cornerstone/pull/1458)
+- Add nanobar back to fix tests [#1553](https://github.com/bigcommerce/cornerstone/pull/1553)
+
+## 3.5.1 (2019-06-24)
+- Fix conditional logic in share.html [#1522](https://github.com/bigcommerce/cornerstone/pull/1522)
+- Fix conditional logic in returns-list.html [#1512](https://github.com/bigcommerce/cornerstone/pull/1512)
 
 ## 3.5.0 (2019-06-06)
 - Remove remote_api_scripts from the templates [#1505] (https://github.com/bigcommerce/cornerstone/pull/1505)

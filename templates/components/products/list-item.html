@@ -4,7 +4,13 @@
     <article class="listItem">
 {{/if}}
     <figure class="listItem-figure">
-        <img class="listItem-image lazyload" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{getImage image 'productgallery_size' (cdn theme_settings.default_image_product)}}" alt="{{image.alt}}" title="{{image.alt}}">
+        {{> components/common/responsive-img
+            image=image
+            class="listItem-image"
+            fallback_size=theme_settings.productgallery_size
+            lazyload=theme_settings.lazyload_mode
+            default_image=theme_settings.default_image_product
+        }}
         {{#unless hide_product_quick_view}}
             {{#if theme_settings.show_product_quick_view}}
                 <div class="listItem-figureBody">

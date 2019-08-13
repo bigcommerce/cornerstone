@@ -56,6 +56,8 @@
         {{~inject 'validationDictionaryJSON' (langJson 'validation_messages')}}
         {{~inject 'validationFallbackDictionaryJSON' (langJson 'validation_fallback_messages')}}
         {{~inject 'validationDefaultDictionaryJSON' (langJson 'default_messages')}} 
+        {{!-- Inject Storefront API Token into JS context so we can use it in our JavaScript --}}
+        {{~inject 'storefrontAPIToken' settings.storefront_api.token}}
     </head>
     <body>
         <svg data-src="{{cdn 'img/icon-sprite.svg'}}" class="icons-svg-sprite"></svg>

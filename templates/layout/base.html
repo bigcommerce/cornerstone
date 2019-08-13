@@ -34,6 +34,8 @@
         {{~inject 'secureBaseUrl' settings.secure_base_url}}
         {{~inject 'cartId' cart_id}}
         {{~inject 'template' template}}
+        {{!-- Inject Storefront API Token into JS context so we can use it in our JavaScript --}}
+        {{~inject 'storefrontAPIToken' settings.storefront_api.token}}
     </head>
     <body>
         <svg data-src="{{cdn 'img/icon-sprite.svg'}}" class="icons-svg-sprite"></svg>

@@ -2,6 +2,7 @@
 
 ## Draft
 - deleted whitespaces in if statments(content.html) [#1560](https://github.com/bigcommerce/cornerstone/pull/1560)
+- Remove aria-hidden attribute from main menu [#1563](https://github.com/bigcommerce/cornerstone/pull/1563)
 
 ## 4.0.0 (2019-08-05)
 - Update @babel/polyfill to 7.4.4 [#1521](https://github.com/bigcommerce/cornerstone/pull/1521)

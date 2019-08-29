@@ -1,6 +1,8 @@
 # Changelog
 
 ## Draft
+
+## 4.1.0 (2019-08-28)
 - deleted whitespaces in if statments(content.html) [#1560](https://github.com/bigcommerce/cornerstone/pull/1560)
 - Remove aria-hidden attribute from main menu [#1563](https://github.com/bigcommerce/cornerstone/pull/1563)
 - Fix tall images on PDPs and PLPs [#1559](https://github.com/bigcommerce/cornerstone/pull/1559)

@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Reset compare products counter after faceted search updates page content [#1571](https://github.com/bigcommerce/cornerstone/pull/1571)
 
 ## 4.1.0 (2019-08-28)
 - deleted whitespaces in if statments(content.html) [#1560](https://github.com/bigcommerce/cornerstone/pull/1560)

@@ -213,6 +213,8 @@ export default class Search extends CatalogPage {
             $searchHeading.html(content.heading);
             $searchCount.html(content.productCount);
 
+            $('body').triggerHandler('compareReset');
+
             $('html, body').animate({
                 scrollTop: 0,
             }, 100);

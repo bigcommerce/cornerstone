@@ -34,6 +34,23 @@
         {{~inject 'secureBaseUrl' settings.secure_base_url}}
         {{~inject 'cartId' cart_id}}
         {{~inject 'template' template}}
+
+        {{#if theme_settings.global.typography}}
+            <style id="theme-global-styles" type="text/css">
+                {{#each theme_settings.global.typography}}
+                    .{{@key}} {
+                        {{#each this as |childValue childKey|}}
+                            {{childKey}}:
+                            {{~#if childValue 'typeof' 'object'~}}
+                                {{childValue.value}}{{#if childValue.type}}{{childValue.type}}{{else}}px{{/if}};
+                            {{else~}}
+                                {{childValue}};
+                            {{/if~}}
+                        {{/each}}
+                    }
+                {{/each}}
+            </style>
+        {{/if}}
     </head>
     <body>
         <svg data-src="{{cdn 'img/icon-sprite.svg'}}" class="icons-svg-sprite"></svg>

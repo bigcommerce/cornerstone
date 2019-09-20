@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Added missing gift certificate translation
 
 ## 4.1.1 (2019-09-12)
 - Reset compare products counter after faceted search updates page content [#1571](https://github.com/bigcommerce/cornerstone/pull/1571)

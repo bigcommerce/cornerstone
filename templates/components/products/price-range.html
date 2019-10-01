@@ -29,8 +29,11 @@
             <abbr title="{{lang 'products.including_tax'}}">{{lang 'products.price_with_tax' tax_label=price.price_range.min.tax_label}}</abbr>
         {{/and}}
         {{#if schema_org}}
-            <meta itemprop="availability" content="{{product.availability}}">
+            <meta itemprop="availability" itemtype="http://schema.org/ItemAvailability"
+                    content="http://schema.org/{{#if product.pre_order}}PreOrder{{else if product.out_of_stock}}OutOfStock{{else if product.can_purchase '===' false}}OutOfStock{{else}}InStock{{/if}}">
             <meta itemprop="itemCondition" itemtype="http://schema.org/OfferItemCondition" content="http://schema.org/{{product.condition}}Condition">
+            <meta itemprop="priceCurrency" content="{{currency_selector.active_currency_code}}">
+            <meta itemprop="url" content="{{product.url}}">
             <div itemprop="priceSpecification" itemscope itemtype="http://schema.org/PriceSpecification">
                 <meta itemprop="minPrice" content="{{price_range.min.with_tax.value}}"  />
                 <meta itemprop="price" content="{{price_range.min.with_tax.value}}">
@@ -72,8 +75,11 @@
             <abbr title="{{lang 'products.excluding_tax'}}">{{lang 'products.price_without_tax' tax_label=price.price_range.min.tax_label}}</abbr>
         {{/and}}
         {{#if schema_org}}
-            <meta itemprop="availability" content="{{product.availability}}">
+            <meta itemprop="availability" itemtype="http://schema.org/ItemAvailability"
+                    content="http://schema.org/{{#if product.pre_order}}PreOrder{{else if product.out_of_stock}}OutOfStock{{else if product.can_purchase '===' false}}OutOfStock{{else}}InStock{{/if}}">
             <meta itemprop="itemCondition" itemtype="http://schema.org/OfferItemCondition" content="http://schema.org/{{product.condition}}Condition">
+            <meta itemprop="priceCurrency" content="{{currency_selector.active_currency_code}}">
+            <meta itemprop="url" content="{{product.url}}">
             <div itemprop="priceSpecification" itemscope itemtype="http://schema.org/PriceSpecification">
                 <meta itemprop="minPrice" content="{{price.price_range.min.without_tax.value}}"  />
                 <meta itemprop="price" content="{{price.price_range.min.without_tax.value}}">

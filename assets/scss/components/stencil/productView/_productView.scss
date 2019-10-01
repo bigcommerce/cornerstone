@@ -79,12 +79,12 @@
 
     img {
         @include lazy-loaded-img;
-        max-height: 50px;
-        max-width: 50px;
-        width: 100%;
+        margin: 0;
+        width: get-width(stencilString('productview_thumb_size'));
         object-fit: contain;
         /* Object-fit polyfill */
         font-family: 'object-fit: contain;';
+        position: relative;
     }
 }
 
@@ -101,13 +101,14 @@
 
 .productView-thumbnail-link {
     border: container("border");
-    display: inline-block;
+    display: inline-flex;
     height: 67px;
     max-width: 75px;
     padding: 2px;
     position: relative;
-    text-align: center;
     width: 100%;
+    box-sizing: content-box;
+    justify-content: center;
 
     &:hover,
     &.is-active {

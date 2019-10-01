@@ -124,6 +124,8 @@ $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-sp
 }
 
 .cart-item-image {
+    max-width: get-width(stencilString('productthumb_size'));
+
     @include lazy-loaded-img;
 
     @include breakpoint("medium") {

@@ -1,6 +1,8 @@
 # Changelog
 
 ## Draft
+
+## 4.2.0 (2019-10-02)
 - Fixes and some additions to our Google Structured Data schema for the product page template [#1577](https://github.com/bigcommerce/cornerstone/pull/1577)
 - Fix thumbnail image sizes [#1579](https://github.com/bigcommerce/cornerstone/pull/1579)
 

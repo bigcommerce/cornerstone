@@ -72,7 +72,7 @@ export default class {
             validate: 'presence',
             errorMessage: this.context.reviewComment,
         }, {
-            selector: '[name="email"]',
+            selector: '.writeReview-form [name="email"]',
             validate: (cb, val) => {
                 const result = forms.email(val);
                 cb(result);

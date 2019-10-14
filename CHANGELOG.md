@@ -2,6 +2,7 @@
 
 ## Draft
 - Added missing gift certificate translation
+- Fix registerValidation function to validate on writeReview-form email field [#1585](https://github.com/bigcommerce/cornerstone/pull/1585)
 
 ## 4.2.0 (2019-10-02)
 - Fixes and some additions to our Google Structured Data schema for the product page template [#1577](https://github.com/bigcommerce/cornerstone/pull/1577)

@@ -1,6 +1,8 @@
 # Changelog
 
 ## Draft
+
+## 4.2.1 (2019-10-15)
 - Added missing gift certificate translation
 - Fix registerValidation function to validate on writeReview-form email field [#1585](https://github.com/bigcommerce/cornerstone/pull/1585)
 

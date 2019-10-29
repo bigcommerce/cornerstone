@@ -5,6 +5,12 @@
 
     <div class="account account--fixedLarge">
         <div class="account-body">
+            {{#if customer.error}}
+                {{>components/common/alert-error customer.error}}
+            {{/if}}
+            {{#if customer.success}}
+                {{>components/common/alert-success customer.success}}
+            {{/if}}
             {{> components/account/address-list }}
         </div>
     </div>

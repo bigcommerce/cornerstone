@@ -2,6 +2,7 @@
 
 ## Draft
 - Fixes body text color not taking effect for cart item headings on mobile / tablet [#1586](https://github.com/bigcommerce/cornerstone/pull/1586)
+- Fix styling of review modal image [#1592](https://github.com/bigcommerce/cornerstone/pull/1592)
 
 ## 4.2.1 (2019-10-15)
 - Added missing gift certificate translation

@@ -42,7 +42,7 @@ When writing theme JavaScript (JS) there is an API in place for running JS on a 
 * "pages/search"
 * "pages/sitemap"
 * "pages/subscribed"
-* "page/account/wishlist-details"
+* "pages/account/wishlist-details"
 * "pages/account/wishlists"
 
 These page types will correspond to the pages within your theme. Each one of these page types map to an ES6 module that extends the base `PageManager` abstract class.

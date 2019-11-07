@@ -67,7 +67,7 @@ export default function (secureBaseUrl, cartId) {
 
         // Get updated cart quantity from the Cart API
         const cartQtyPromise = new Promise((resolve, reject) => {
-            utils.api.cart.getCartQuantity({ baseUrl: secureBaseUrl }, (err, qty) => {
+            utils.api.cart.getCartQuantity({ baseUrl: secureBaseUrl, cartId }, (err, qty) => {
                 if (err) {
                     reject(err);
                 }

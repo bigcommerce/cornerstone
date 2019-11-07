@@ -5,6 +5,7 @@
 - Fix styling of review modal image [#1592](https://github.com/bigcommerce/cornerstone/pull/1592)
 - Fix typo in README.md [#1588](https://github.com/bigcommerce/cornerstone/pull/1588)
 - Fix corejs warning [#1594](https://github.com/bigcommerce/cornerstone/pull/1594)
+- Fix cart quantity calculation for bundled products [#1596](https://github.com/bigcommerce/cornerstone/pull/1596)
 
 ## 4.2.1 (2019-10-15)
 - Added missing gift certificate translation

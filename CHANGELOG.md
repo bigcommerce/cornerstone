@@ -1,6 +1,8 @@
 # Changelog
 
 ## Draft
+
+## 4.3.0 (2019-11-12)
 - Fixes body text color not taking effect for cart item headings on mobile / tablet [#1586](https://github.com/bigcommerce/cornerstone/pull/1586)
 - Fix styling of review modal image [#1592](https://github.com/bigcommerce/cornerstone/pull/1592)
 - Fix typo in README.md [#1588](https://github.com/bigcommerce/cornerstone/pull/1588)

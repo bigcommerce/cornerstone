@@ -1,6 +1,8 @@
 # Changelog
 
 ## Draft
+- Add jquery-migrate to Modal test [#1599](https://github.com/bigcommerce/cornerstone/pull/1599)
+- Upgrade core-js to version 3 [#1598](https://github.com/bigcommerce/cornerstone/pull/1598)
 
 ## 4.3.0 (2019-11-12)
 - Fixes body text color not taking effect for cart item headings on mobile / tablet [#1586](https://github.com/bigcommerce/cornerstone/pull/1586)

@@ -2,6 +2,8 @@
 
 ## Draft
 - Add translation key for "read more" blog post link [#1625](https://github.com/bigcommerce/cornerstone/pull/1625)
+- Update My Account Payment Methods template to expose all new savable payment methods [1603](https://github.com/bigcommerce/cornerstone/pull/1603)
+
 
 ## 4.3.1 (2020-01-17)
 - Resolve visual regression in error modal icon animation [#1619](https://github.com/bigcommerce/cornerstone/pull/1619)

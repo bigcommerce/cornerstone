@@ -12,43 +12,61 @@
             {{> components/common/alert-error customer.payment_methods.selected_payment_method.forms.error}}
         {{/if}}
 
-        <form action="{{customer.payment_methods.selected_payment_method.forms.action}}" data-address-form class="form" method="post">
-            <input type="hidden" name="bigpay_token" value="{{customer.payment_methods.selected_payment_method.bigpay_token}}">
-            <input type="hidden" name="currency_code" value="{{currency_selector.active_currency_code}}">
+        {{#with customer.payment_methods.selected_payment_method}}
+            <form action="{{forms.action}}" data-address-form class="form" method="post">
+                <input type="hidden" name="bigpay_token" value="{{bigpay_token}}">
+                <input type="hidden" name="currency_code" value="{{currency_selector.active_currency_code}}">
+                {{!-- TODO: if this is empty/unset the endpoint should validate as if card for backwards compatability --}}
+                <input type="hidden" name="type" value="{{type}}">
 
-            <h3 class="paymentMethodForm-heading">{{lang 'account.payment_methods.payment_method'}}</h3>
+                <h3 class="paymentMethodForm-heading">{{lang 'account.payment_methods.payment_method'}}</h3>
 
-            <div class="paymentMethodForm">
-                <dl class="paymentMethodForm-details">
-                    <dt class="paymentMethodForm-details-term">{{lang 'account.payment_methods.credit_card_number'}}</dt>
-                    <dd class="paymentMethodForm-details-description">**** **** **** {{customer.payment_methods.selected_payment_method.last_4}}</dd>
-                </dl>
-                <dl class="paymentMethodForm-details">
-                    <dt class="paymentMethodForm-details-term">{{lang 'account.payment_methods.expiration'}}</dt>
-                    <dd class="paymentMethodForm-details-description">{{customer.payment_methods.selected_payment_method.expiry_month}}/{{customer.payment_methods.selected_payment_method.expiry_year}}</dd>
-                </dl>
-                <div class="form-field">
-                    <input type="checkbox" value="default_instrument" name="default_instrument" id="default_instrument" data-label="{{lang 'forms.payment_methods.default_instrument'}}" class="form-checkbox" {{#if customer.payment_methods.selected_payment_method.default_instrument}}checked{{/if}}>
-                    <label class="form-label" for="default_instrument">{{lang 'forms.payment_methods.default_instrument'}}</label>
+                <div class="paymentMethodForm">
+                    {{#if type '===' 'card'}}
+                        <dl class="paymentMethodForm-details">
+                            <dt class="paymentMethodForm-details-term">{{lang 'account.payment_methods.credit_card_number'}}</dt>
+                            <dd class="paymentMethodForm-details-description">**** **** **** {{last_4}}</dd>
+                        </dl>
+                        <dl class="paymentMethodForm-details">
+                            <dt class="paymentMethodForm-details-term">{{lang 'account.payment_methods.expiration'}}</dt>
+                            <dd class="paymentMethodForm-details-description">{{expiry_month}}/{{expiry_year}}</dd>
+                        </dl>
+                    {{/if}}
+                    {{#if type '===' 'paypal'}}
+                        <div class="form-field">
+                            <h3 class="paymentMethodForm-heading">
+                                {{lang 'account.payment_methods.paypal'}} {{lang 'common.account'}} 
+                            </h3>
+                            <p>
+                                {{email}}
+                            </p>
+                        </div>
+                    {{/if}}
+                    <div class="form-field">
+                        <input type="checkbox" value="default_instrument" name="default_instrument" id="default_instrument" data-label="{{lang 'forms.payment_methods.default_instrument'}}" class="form-checkbox" {{#if default_instrument}}checked{{/if}}>
+                        <label class="form-label" for="default_instrument">{{lang 'forms.payment_methods.default_instrument'}}</label>
+                    </div>
                 </div>
-            </div>
 
-            <h3 class="paymentMethodForm-heading">{{lang 'account.payment_methods.billing_address'}}</h3>
+                {{#if type '===' 'card'}}
+                    <h3 class="paymentMethodForm-heading">{{lang 'account.payment_methods.billing_address'}}</h3>
 
-            <fieldset class="form-fieldset">
-                <div class="form-row form-row--half">
-                    {{#each customer.payment_methods.selected_payment_method.forms.billing_fields}}
-                        {{{dynamicComponent 'components/common/forms'}}}
-                    {{/each}}
-                </div>
-            </fieldset>
-            <div class="form-actions">
-                <input type="submit" class="button button--primary" value="{{lang 'forms.payment_methods.submit_value'}}">
-                <a href="{{urls.account.payment_methods.all}}" class="button">{{lang 'common.cancel'}}</a>
-                {{inject 'required' (lang 'common.required')}}
-                {{inject 'state_error' (lang 'errors.state_error')}}
-            </div>
-        </form>
+                    <fieldset class="form-fieldset">
+                        <div class="form-row form-row--half">
+                            {{#each forms.billing_fields}}
+                                {{{dynamicComponent 'components/common/forms'}}}
+                            {{/each}}
+                        </div>
+                    </fieldset>
+                    <div class="form-actions">
+                        <input type="submit" class="button button--primary" value="{{lang 'forms.payment_methods.submit_value'}}">
+                        <a href="{{urls.account.payment_methods.all}}" class="button">{{lang 'common.cancel'}}</a>
+                        {{inject 'required' (lang 'common.required')}}
+                        {{inject 'state_error' (lang 'errors.state_error')}}
+                    </div>
+                {{/if}}
+            </form>
+        {{/with}}
     </div>
 
 {{/partial}}

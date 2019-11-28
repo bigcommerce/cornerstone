@@ -38,19 +38,30 @@
     }
 }
 
+@include breakpoint("medium") {
+    .header-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: remCalc(10px) remCalc(16px);
+    }
+}
+
 .header-logo {
     font-size: 0;   // 1
-    margin: 0 remCalc($header-toggle-width); // 2
+    // margin: 0 remCalc($header-toggle-width); // 2
+    margin: 0 auto;
     text-align: center;
 
-    @include breakpoint("small") { // 4
-        margin-left: remCalc($header-toggle-width * 1.5);
-        margin-right: remCalc($header-toggle-width * 1.5);
-    }
+    // @include breakpoint("small") { // 4
+    //     margin-left: remCalc($header-toggle-width * 1.5);
+    //     margin-right: remCalc($header-toggle-width * 1.5);
+    // }
 
     @include breakpoint("medium") {
-        margin: (spacing("double") + spacing("base")) auto (spacing("double") + spacing("single"));
-        padding: 0;
+        // margin: (spacing("double") + spacing("base")) auto (spacing("double") + spacing("single"));
+        margin: 0;
+        // padding: 0;
 
         .header.fixed & {
             background-color: color("greys", "lightest");
@@ -150,26 +161,26 @@
     }
 }
 
-.header-logo-image-container {
-    position: relative;
-}
+// .header-logo-image-container {
+//     position: relative;
+// }
 
-.header-logo-image-container:after {
-    content: '';
-    display: block;
-    padding-bottom: remCalc($header-height) - $header-logo-marginVertical * 2;
+// .header-logo-image-container:after {
+//     content: '';
+//     display: block;
+//     padding-bottom: remCalc($header-height) - $header-logo-marginVertical * 2;
 
-    @include breakpoint("medium") {
-        padding-bottom: get-height(stencilString('logo_size'));
-    }
-}
+//     @include breakpoint("medium") {
+//         padding-bottom: get-height(stencilString('logo_size'));
+//     }
+// }
 
 .header-logo-image {
-    @include lazy-loaded-img;
+    // @include lazy-loaded-img;
     max-height: remCalc($header-height) - $header-logo-marginVertical * 2;
 
     @include breakpoint("medium") {
-        max-height: none;
+        max-height: remCalc($header-height);
     }
 }
 
@@ -215,7 +226,7 @@
     }
 
     .mobileMenu-toggleIcon {
-        top: remCalc(27);
+        top: remCalc(30);
         transition: background-color 10ms ease-in 100ms;
     }
 

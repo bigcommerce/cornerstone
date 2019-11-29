@@ -7,6 +7,7 @@ products:
     top_sellers:
         limit: {{theme_settings.homepage_top_products_count}}
 carousel: {{theme_settings.homepage_show_carousel}}
+curation: {{theme_settings.homepage_show_curation_module}}
 blog:
     recent_posts:
         limit: {{theme_settings.homepage_blog_posts_count}}
@@ -14,7 +15,11 @@ blog:
 {{#partial "hero"}}
     {{{region name="home_below_menu"}}}
     {{#if carousel}}
-        {{> components/carousel arrows=theme_settings.homepage_show_carousel_arrows}}
+        {{#if theme_settings.homepage_show_curation_module}}
+            {{> components/curation-module}}
+        {{else}}
+            {{> components/carousel arrows=theme_settings.homepage_show_carousel_arrows}}
+        {{/if}}
     {{/if}}
     {{{region name="home_below_carousel"}}}
 {{/partial}}

@@ -1,23 +1,14 @@
 <section class="curationModule">
-    {{#each carousel.slides}}
-    <a href="{{url}}" class="{{#if @first}}curationModule--main{{/if}}">
+    {{#each theme_settings.curation_modules}}
+    <a href="{{url}}">
         <div class="curationModule-item {{#if @first}}item--first{{/if}}">
             <div class="curationModule-image-wrapper">
-            {{#if @first}}
                 {{> components/common/responsive-img
-                    image=stencil_image
+                    image=(cdn image)
                     class="heroCarousel-image"
-                    fallback_size='1280w'
-                    lazyload='disabled'
+                    fallback_size='420w'
+                    lazyload='lazyload+lqip'
                 }}
-            {{else}}
-                {{> components/common/responsive-img
-                    image=stencil_image
-                    class="heroCarousel-image"
-                    fallback_size='1280w'
-                    lazyload='lazyload'
-                }}
-            {{/if}}
             </div>
             {{#if heading}}
                 {{> components/carousel-content show_background=true}}
@@ -32,7 +23,5 @@
             {{/if}}
         </div>
     </a>
-    {{#if @first}}<div class="curationModule--aside">{{/if}}
-    {{#if @last}}</div>{{/if}}
     {{/each}}
 </section>

@@ -19,8 +19,35 @@
 
 .curationModule {
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: row nowrap;
+    justify-content: center;
     min-width: 100%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.curationModule-item {
+    margin-left: 5px;
+    margin-right: 5px;
+    position: relative;
+
+    // overriding .heroCarousel content
+    .heroCarousel-content {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        left: 0;
+        height: 100%;
+        display: flex;
+        text-align: center;
+        justify-content: center;
+        align-items: flex-end;
+        right: unset;
+        margin: unset;
+        padding: unset;
+        transform: unset;
+        padding-bottom: 30px;
+    }
 }
 
 .curationModule--aside {

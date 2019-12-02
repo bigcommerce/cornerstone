@@ -7,6 +7,7 @@ products:
     top_sellers:
         limit: {{theme_settings.homepage_top_products_count}}
 carousel: {{theme_settings.homepage_show_carousel}}
+curation: {{theme_settings.homepage_show_curation_module}}
 blog:
     recent_posts:
         limit: {{theme_settings.homepage_blog_posts_count}}
@@ -17,6 +18,9 @@ blog:
         {{> components/carousel arrows=theme_settings.homepage_show_carousel_arrows}}
     {{/if}}
     {{{region name="home_below_carousel"}}}
+    {{#if theme_settings.homepage_show_curation_module}}
+        {{> components/curation-module}}
+    {{/if}}
 {{/partial}}
 
 {{#partial "page"}}

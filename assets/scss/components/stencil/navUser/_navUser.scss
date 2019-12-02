@@ -20,7 +20,7 @@
     @include nav($style: "navBar", $wrapper: "nav");
     @include verticalPositionMiddle("absolute");
     right: 0;
-    top: 26px; // 2
+    top: 33px; // 2
     width: 100%; // 4
     z-index: zIndex("lowest"); // 5.
 
@@ -90,6 +90,10 @@
             stroke: stencilColor("navUser-color-hover");
         }
         // scss-lint:enable NestingDepth
+
+        @include breakpoint("medium") {
+            color: stencilColor("navUser-color-hover");
+        }
     }
 
     .icon {

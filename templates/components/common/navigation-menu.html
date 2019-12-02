@@ -3,20 +3,33 @@
         {{> components/common/quick-search}}
     </div>
     <ul class="navPages-list{{#if theme_settings.navigation_design '!==' 'simple'}} navPages-list-depth-max{{/if}}">
-        {{#each categories}}
+        {{#if categories.length '>' 0}}
             <li class="navPages-item">
-            {{#if ../theme_settings.navigation_design '===' 'simple'}}
-                {{> components/common/navigation-list}}
-            {{/if}}
-            {{#if ../theme_settings.navigation_design '===' 'alternate'}}
-                {{> components/common/navigation-list-alternate}}
-            {{/if}}
+                <a class="navPages-action has-subMenu{{#if is_active}} activePage{{/if}}" href="{{url}}" data-collapsible="navPages-categories">
+                    Shop <i class="icon navPages-action-moreIcon" aria-hidden="true"><svg><use xlink:href="#icon-chevron-down" /></svg></i>
+                </a>
+                <div class="navPage-subMenu" id="navPages-categories" aria-hidden="true" tabindex="-1">
+                    <ul class="navPage-subMenu-list">
+                    {{#each categories}}
+                        <li class="navPages-item">
+                        {{#if ../theme_settings.navigation_design '===' 'simple'}}
+                            {{> components/common/navigation-list}}
+                        {{/if}}
+                        {{#if ../theme_settings.navigation_design '===' 'alternate'}}
+                            {{> components/common/navigation-list-alternate}}
+                        {{/if}}
+                        </li>
+                    {{/each}}
+                    </ul>
+                </div>
             </li>
-        {{/each}}
+        {{/if}}
         {{#unless theme_settings.hide_content_navigation}}
             {{#each pages}}
                  <li class="navPages-item navPages-item-page">
-                     <a class="navPages-action{{#if name '==' ../page.title}} activePage{{/if}}" href="{{url}}">{{name}}</a>
+                     <a class="navPages-action{{#if name '==' ../page.title}} activePage{{/if}}" href="{{url}}">
+                        {{#if name '==' 'Artist Submissions and Guidelines'}}Submissions{{else}}{{name}}{{/if}}
+                    </a>
                  </li>
              {{/each}}
         {{/unless}}

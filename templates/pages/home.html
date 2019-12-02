@@ -34,7 +34,7 @@ blog:
     <!-- QUICK INTRO GOES HERE -->
     <!-- TWO COL ABOUT SECTION GOES HERE-->
     {{#if categories}}
-        {{> components/category/list categories}}
+        {{> components/category/list categories=categories}}
     {{/if}}
     {{#if products.featured}}
         {{> components/products/featured products=products.featured columns=theme_settings.homepage_featured_products_column_count}}

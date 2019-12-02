@@ -20,10 +20,20 @@
 .curationModule {
     display: flex;
     flex-flow: row nowrap;
-    justify-content: center;
+    justify-content: space-evenly;
     min-width: 100%;
-    margin-top: 30px;
+    margin-top: 5px;
     margin-bottom: 30px;
+
+    > a {
+        &:first-child .curationModule-item {
+            margin-right: 0;
+        }
+
+        &:last-child .curationModule-item {
+            margin-left: 0;
+        }
+    }
 }
 
 .curationModule-item {
@@ -47,6 +57,7 @@
         padding: unset;
         transform: unset;
         padding-bottom: 30px;
+        background-color: unset;
     }
 }
 

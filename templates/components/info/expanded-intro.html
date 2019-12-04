@@ -2,6 +2,14 @@
     <div>
         <div class="infoBox">
             <h2>Art is not a luxury.</h2>
+            <p>Located in Lincoln Square, Chicago.</p>
+            <h3>{{theme_settings.hoursHeading}}</h3>
+            <div class="page-content--textCenter">
+                {{#each theme_settings.storeHours}}
+                    <p><strong>{{day}}</strong><br />
+                        {{time}}</p>
+                {{/each}}
+            </div>
         </div>
     </div>
     <div>

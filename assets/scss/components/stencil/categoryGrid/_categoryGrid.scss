@@ -18,8 +18,41 @@
     margin-bottom: spacing("single");
 
     .card {
-        .card-image-container {
-            max-width: 400px;
+        flex: 0 1 auto;
+        margin-bottom: spacing("half");
+        padding: 0 spacing("quarter");
+
+        @include breakpoint("small") {
+            flex-basis: 50%;
+        }
+
+        @include breakpoint("medium") {
+            flex-basis: 25%;
+        }
+
+        .card-img-container {
+            max-width: 100%;
+
+            &:after {
+                padding-bottom: unset;
+            }
+        }
+
+        .card-figcaption {
+            display: block;
+            opacity: 1;
+            height: auto;
+            top: auto;
+
+            .card-figcaption-body {
+                background-color: rgba(53, 60, 70, .8);
+                display: block;
+                padding: 6px;
+
+                h3 {
+                    color: #ffffff;
+                }
+            }
         }
     }
 }

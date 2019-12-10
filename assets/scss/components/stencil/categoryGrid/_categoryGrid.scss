@@ -1,0 +1,76 @@
+// =============================================================================
+// CATEGORY GRID (CSS)
+// =============================================================================
+
+
+// Category grid view
+// -----------------------------------------------------------------------------
+//
+// 1. Re-set the font-size, as we're reducing it to 0 in the .categories class.
+//
+// -----------------------------------------------------------------------------
+
+.categoryGrid {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    font-size: 0; // 1
+    margin-bottom: spacing("single");
+
+    .card {
+        flex: 0 1 auto;
+        margin-bottom: spacing("half");
+        padding: 0 spacing("quarter");
+
+        .card-img-container {
+            max-width: 100%;
+
+            &:after {
+                padding-bottom: unset;
+            }
+        }
+
+        .card-figcaption {
+            display: block;
+            opacity: 1;
+            overflow: hidden;
+
+            .card-figcaption-body {
+                background-color: rgba(53, 60, 70, .8);
+                display: block;
+                padding: 8px;
+                transform: translateY(85%);
+                top: 0;
+                height: 100%;
+                transition: ease transform 250ms 250ms;
+
+                h3 {
+                    color: #ffffff;
+                }
+            }
+        }
+
+        @include breakpoint("small") {
+            flex-basis: 50%;
+        }
+
+        @include breakpoint("medium") {
+            flex-basis: 25%;
+
+            &.has-description:hover {
+                .card-figcaption-body {
+                    transform: translateY(0);
+                }
+            }
+        }
+    }
+
+    .card-title {
+        font-size: 18px;
+    }
+
+    .card-description {
+        color: #ffffff;
+        font-size: 14px;
+    }
+}

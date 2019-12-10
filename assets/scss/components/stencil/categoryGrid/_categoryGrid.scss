@@ -22,14 +22,6 @@
         margin-bottom: spacing("half");
         padding: 0 spacing("quarter");
 
-        @include breakpoint("small") {
-            flex-basis: 50%;
-        }
-
-        @include breakpoint("medium") {
-            flex-basis: 25%;
-        }
-
         .card-img-container {
             max-width: 100%;
 
@@ -41,18 +33,44 @@
         .card-figcaption {
             display: block;
             opacity: 1;
-            height: auto;
-            top: auto;
+            overflow: hidden;
 
             .card-figcaption-body {
                 background-color: rgba(53, 60, 70, .8);
                 display: block;
-                padding: 6px;
+                padding: 8px;
+                transform: translateY(85%);
+                top: 0;
+                height: 100%;
+                transition: ease transform 250ms 250ms;
 
                 h3 {
                     color: #ffffff;
                 }
             }
         }
+
+        @include breakpoint("small") {
+            flex-basis: 50%;
+        }
+
+        @include breakpoint("medium") {
+            flex-basis: 25%;
+
+            &.has-description:hover {
+                .card-figcaption-body {
+                    transform: translateY(0);
+                }
+            }
+        }
+    }
+
+    .card-title {
+        font-size: 18px;
+    }
+
+    .card-description {
+        color: #ffffff;
+        font-size: 14px;
     }
 }

@@ -7,6 +7,7 @@ products:
     top_sellers:
         limit: {{theme_settings.homepage_top_products_count}}
 carousel: {{theme_settings.homepage_show_carousel}}
+categories:
 curation: {{theme_settings.homepage_show_curation_module}}
 blog:
     recent_posts:
@@ -32,6 +33,11 @@ blog:
     {{/each}}
 
 <div class="main full">
+    <!-- QUICK INTRO GOES HERE -->
+    <!-- TWO COL ABOUT SECTION GOES HERE-->
+    {{#if categories}}
+        {{> components/category/list categories=(limit categories theme_settings.homepage_category_count)}}
+    {{/if}}
     {{#if products.featured}}
         {{> components/products/featured products=products.featured columns=theme_settings.homepage_featured_products_column_count}}
     {{/if}}

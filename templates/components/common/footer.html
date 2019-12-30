@@ -91,6 +91,11 @@
                 {{> components/common/geotrust-ssl-seal}}
             </div>
         {{/if}}
+        {{#if settings.shopper_consent_tracking_enabled}}
+            <div class="footer-consent-modal-launch-link">
+                <p class="powered-by" href="#" onclick="event.stopPropagation(); window.consentManager.openConsentManager();">{{lang 'privacy.data_collection_preferences'}}</p>
+            </div>
+        {{/if}}
         {{#if theme_settings.show_powered_by}}
             <div class="footer-copyright">
                 <p class="powered-by">Powered by <a href="https://www.bigcommerce.com?utm_source=merchant&amp;utm_medium=poweredbyBC" rel="nofollow">BigCommerce</a></p>

@@ -298,6 +298,7 @@ class FacetedSearch {
 
         // DOM events
         $(window).on('statechange', this.onStateChange);
+        $(window).on('popstate', this.onPopState);
         $(document).on('click', this.options.showMoreToggleSelector, this.onToggleClick);
         $(document).on('toggle.collapsible', this.options.accordionToggleSelector, this.onAccordionToggle);
         $(document).on('keyup', this.options.facetedSearchFilterItems, this.filterFacetItems);
@@ -312,6 +313,7 @@ class FacetedSearch {
     unbindEvents() {
         // DOM events
         $(window).off('statechange', this.onStateChange);
+        $(window).off('popstate', this.onPopState);
         $(document).off('click', this.options.showMoreToggleSelector, this.onToggleClick);
         $(document).off('toggle.collapsible', this.options.accordionToggleSelector, this.onAccordionToggle);
         $(document).off('keyup', this.options.facetedSearchFilterItems, this.filterFacetItems);
@@ -407,6 +409,19 @@ class FacetedSearch {
         } else {
             this.collapsedFacets = _.without(this.collapsedFacets, id);
         }
+    }
+
+    onPopState() {
+        const currentUrl = window.location.href;
+        const searchParams = new URLSearchParams(currentUrl);
+        // If searchParams does not contain a page value then modify url query string to have page=1
+        if (!searchParams.has('page')) {
+            const linkUrl = $('.pagination-link').attr('href');
+            const re = /page=[0-9]+/i;
+            const updatedLinkUrl = linkUrl.replace(re, 'page=1');
+            window.history.replaceState({}, document.title, updatedLinkUrl);
+        }
+        $(window).trigger('statechange');
     }
 }
 

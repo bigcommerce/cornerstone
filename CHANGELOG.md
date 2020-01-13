@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Allow alert text color editing from theme editor and update default alert text color for Bold variation [#1565](https://github.com/bigcommerce/cornerstone/pull/1565)
 - Add jquery-migrate to Modal test [#1599](https://github.com/bigcommerce/cornerstone/pull/1599)
 - Upgrade core-js to version 3 [#1598](https://github.com/bigcommerce/cornerstone/pull/1598)
 - Fix to make browser back button navigate pagination properly when faceted search is enabled [#1606](https://github.com/bigcommerce/cornerstone/pull/1606)

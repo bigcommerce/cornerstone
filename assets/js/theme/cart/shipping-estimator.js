@@ -100,9 +100,9 @@ export default class ShippingEstimator {
         // Requests the states for a country with AJAX
         stateCountry(this.$state, this.context, { useIdForStates: true }, (err, field) => {
             if (err) {
-                swal({
+                swal.fire({
                     text: err,
-                    type: 'error',
+                    icon: 'error',
                 });
 
                 throw new Error(err);

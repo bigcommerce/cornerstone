@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Add translation key for "read more" blog post link [#1625](https://github.com/bigcommerce/cornerstone/pull/1625)
 
 ## 4.3.1 (2020-01-17)
 - Resolve visual regression in error modal icon animation [#1619](https://github.com/bigcommerce/cornerstone/pull/1619)

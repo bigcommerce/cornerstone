@@ -4,11 +4,11 @@ describe('Validators', () => {
     let validator;
 
     beforeEach(() => {
-        validator = jasmine.createSpyObj('validator', [
-            'add',
-            'configure',
-            'setMessageOptions',
-        ]);
+        validator = {
+            add: jest.fn(),
+            configure: jest.fn(),
+            setMessageOptions: jest.fn()
+        };
     });
 
     describe('setMinMaxPriceValidation', () => {

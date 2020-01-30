@@ -52,7 +52,13 @@
                                 {{!-- If there is an address STARTS --}}
                                 <p class="methodDetails">
                                     <span class="methodDetails-label">{{lang 'account.payment_methods.billing_address'}}:</span>
-                                    <span class="methodDetails-description">{{billing_address.address1}}, {{billing_address.address2}}, {{billing_address.city}}, {{billing_address.state}}, {{billing_address.zip}}, {{billing_address.country}}</span>
+                                    <span class="methodDetails-description">
+                                        <span>{{billing_address.address1}}, </span>
+                                        {{#if billing_address.address2}}
+                                            <span>{{billing_address.address2}}, </span>
+                                        {{/if}}
+                                        <span>{{billing_address.city}}, {{billing_address.state}} {{billing_address.zip}} {{billing_address.country}}</span>
+                                    </span>
                                 </p>
                                 {{!-- If there is an address ENDS --}}
 

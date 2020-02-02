@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Prevent triggering quantity change when pressing enter [#1630](https://github.com/bigcommerce/cornerstone/pull/1630)
 
 ## 4.4.0 (2020-01-31)
 - Add translation key for "read more" blog post link [#1625](https://github.com/bigcommerce/cornerstone/pull/1625)

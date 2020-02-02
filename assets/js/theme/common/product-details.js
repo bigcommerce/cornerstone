@@ -351,6 +351,16 @@ export default class ProductDetails {
             // update text
             viewModel.quantity.$text.text(qty);
         });
+
+        // Prevent triggering quantity change when pressing enter
+        this.$scope.on('keypress', '.form-input--incrementTotal', event => {
+            // If the browser supports event.which, then use event.which, otherwise use event.keyCode
+            const x = event.which || event.keyCode;
+            if (x === 13) {
+                // Prevent default
+                event.preventDefault();
+            }
+        });
     }
 
     /**

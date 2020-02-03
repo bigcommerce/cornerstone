@@ -34,6 +34,12 @@
         {{~inject 'secureBaseUrl' settings.secure_base_url}}
         {{~inject 'cartId' cart_id}}
         {{~inject 'template' template}}
+        {{#isnt theme_settings.hide_buy_now_button true}}
+            {{inject 'buyNowModalTitle' (lang 'products.buy_now.modal-title')}}
+            {{inject 'buyNowModalText' (lang 'products.buy_now.modal-text')}}
+            {{inject 'buyNowModalCancelText' (lang 'products.buy_now.modal-cancel-text')}}
+            {{inject 'buyNowModalConfirmText' (lang 'products.buy_now.modal-confirm-text')}}
+        {{/isnt}}
     </head>
     <body>
         <svg data-src="{{cdn 'img/icon-sprite.svg'}}" class="icons-svg-sprite"></svg>

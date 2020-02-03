@@ -5,6 +5,7 @@ import ImageGallery from '../product/image-gallery';
 import modalFactory, { showAlertModal } from '../global/modal';
 import _ from 'lodash';
 import Wishlist from '../wishlist';
+import buyNowButton from '../product/buy-now-button';
 
 export default class ProductDetails {
     constructor($scope, context, productAttributesData = {}) {
@@ -17,6 +18,7 @@ export default class ProductDetails {
         this.initRadioAttributes();
         Wishlist.load(this.context);
         this.getTabRequests();
+        buyNowButton(this.context);
 
         const $form = $('form[data-cart-item-add]', $scope);
         const $productOptionsElement = $('[data-product-option-change]', $form);

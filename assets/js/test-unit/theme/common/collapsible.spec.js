@@ -32,9 +32,9 @@ describe('Collapsible', () => {
 
     describe('when clicking on a toggle', () => {
         beforeEach(() => {
-            spyOn(collapsible, 'open');
-            spyOn(collapsible, 'close');
-            spyOn(collapsible, 'toggle').and.callThrough();
+            jest.spyOn(collapsible, 'open').mockImplementation(() => {});
+            jest.spyOn(collapsible, 'close').mockImplementation(() => {});
+            jest.spyOn(collapsible, 'toggle');
         });
 
         it('should open if it is closed', () => {

@@ -370,9 +370,13 @@ class FacetedSearch {
         url.query[queryParams[0]] = queryParams[1];
         delete url.query.page;
 
+        // Url object `query` is not a traditional JavaScript Object on all systems, clone it instead
+        const urlQueryParams = {};
+        Object.assign(urlQueryParams, url.query);
+
         event.preventDefault();
 
-        urlUtils.goToUrl(Url.format({ pathname: url.pathname, search: urlUtils.buildQueryString(url.query) }));
+        urlUtils.goToUrl(Url.format({ pathname: url.pathname, search: urlUtils.buildQueryString(urlQueryParams) }));
     }
 
     onRangeSubmit(event) {
@@ -392,7 +396,11 @@ class FacetedSearch {
             }
         }
 
-        urlUtils.goToUrl(Url.format({ pathname: url.pathname, search: urlUtils.buildQueryString(url.query) }));
+        // Url object `query` is not a traditional JavaScript Object on all systems, clone it instead
+        const urlQueryParams = {};
+        Object.assign(urlQueryParams, url.query);
+
+        urlUtils.goToUrl(Url.format({ pathname: url.pathname, search: urlUtils.buildQueryString(urlQueryParams) }));
     }
 
     onStateChange() {

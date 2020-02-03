@@ -8,5 +8,6 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.registerTask('default', ['eslint', 'karma', 'scsslint', 'svgstore'])
+    grunt.loadNpmTasks('grunt-run');
+    grunt.registerTask('default', ['eslint', 'jest', 'scsslint', 'svgstore'])
 };

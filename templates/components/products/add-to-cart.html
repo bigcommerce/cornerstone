@@ -42,7 +42,7 @@
 {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
     <div class="form-action">
         {{#isnt theme_settings.hide_buy_now_button true}}
-            <input id="form-action-buyNowButton" class="button button--default" type="button" value="{{lang 'products.buy_now.pdp-button-text'}}">
+            <input id="form-action-buyNowButton" class="button button--default" type="button" value="{{lang 'products.buy_now_button'}}">
             <input id="form-action-validateForm" class="u-hiddenVisually" type="button" aria-hidden="true">
         {{/isnt}}
         <input id="form-action-addToCart" data-wait-message="{{lang 'products.adding_to_cart'}}" class="button button--primary" type="submit"

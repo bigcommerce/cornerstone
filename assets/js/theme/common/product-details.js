@@ -5,7 +5,6 @@ import ImageGallery from '../product/image-gallery';
 import modalFactory, { showAlertModal } from '../global/modal';
 import _ from 'lodash';
 import Wishlist from '../wishlist';
-import buyNowButton from '../product/buy-now-button';
 
 export default class ProductDetails {
     constructor($scope, context, productAttributesData = {}) {
@@ -18,7 +17,7 @@ export default class ProductDetails {
         this.initRadioAttributes();
         Wishlist.load(this.context);
         this.getTabRequests();
-        buyNowButton(this.context);
+        this.buyNowButton();
 
         const $form = $('form[data-cart-item-add]', $scope);
         const $productOptionsElement = $('[data-product-option-change]', $form);
@@ -765,5 +764,52 @@ export default class ProductDetails {
                     .removeClass('is-active');
             }
         }
+    }
+
+    /**
+     * https://stackoverflow.com/a/37949642
+     */
+    replaceBulk(str, findArray, replaceArray) {
+        let stringy = str;
+        let regex = [];
+        const map = {};
+        for (let i = 0; i < findArray.length; i++) {
+            regex.push(findArray[i].replace('[-[\]{}()*+?.\\^$|#,]', '\\$0'));
+            map[findArray[i]] = replaceArray[i];
+        }
+        regex = regex.join('|');
+        stringy = stringy.replace(new RegExp(regex, 'g'), (matched) => map[matched]);
+        return stringy;
+    }
+
+    /**
+     * Buy now functionality click events
+     */
+    buyNowButton() {
+        $('body').on('click', '#form-action-validateForm', event => {
+            const $form = $(event.currentTarget).closest('[data-cart-item-add]');
+            const attr = $form.find('#form-action-addToCart').attr('disabled');
+            // For some browsers, `attr` is undefined; for others,
+            // `attr` is false.  Check for both.
+            if (typeof attr !== typeof undefined && attr !== false) {
+                const message = $form.find('.alertBox-column.alertBox-message').text();
+                showAlertModal(message);
+                return false;
+            }
+            if ($form[0].checkValidity()) {
+                const formStr = $form.serialize();
+                const replacedString = this.replaceBulk(formStr, ['%5B', '%5D', 'add', 'qty%5B%5D'], ['[', ']', 'buy', 'qty']);
+                window.location.href = `/cart.php?${replacedString}&source=buy-now-button`;
+            } else {
+                // trigger html5 validation for required fields.
+                $form.find('#form-action-addToCart').trigger('click');
+            }
+            event.preventDefault();
+        });
+
+        $('body').on('click', '#form-action-buyNowButton', event => {
+            $(event.currentTarget).next().trigger('click');
+            event.preventDefault();
+        });
     }
 }

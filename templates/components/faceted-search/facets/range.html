@@ -1,6 +1,6 @@
 <div class="accordion-block">
     <div
-        class="accordion-navigation toggleLink {{#unless ../start_collapsed }} is-open {{/unless}}"
+        class="accordion-navigation toggleLink {{#unless start_collapsed }} is-open {{/unless}}"
         role="button"
         data-collapsible="#facetedSearch-content--{{hyphenate facet }}">
         <h5 class="accordion-title">
@@ -20,7 +20,7 @@
         </div>
     </div>
 
-    <div id="facetedSearch-content--{{hyphenate facet }}" class="accordion-content {{#unless ../start_collapsed }} is-open {{/unless}}">
+    <div id="facetedSearch-content--{{hyphenate facet }}" class="accordion-content {{#unless start_collapsed }} is-open {{/unless}}">
         <form id="facet-range-form" class="form" method="get" data-faceted-search-range novalidate>
             {{#each current_selected_items}}
                 <input type="hidden" name="{{ param_name }}[]" value="{{ param_value }}"/>

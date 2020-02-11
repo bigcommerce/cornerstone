@@ -2,6 +2,8 @@
 
 ## Draft
 - Prevent triggering quantity change when pressing enter [#1630](https://github.com/bigcommerce/cornerstone/pull/1630)
+- Replace Karma with Jest [#1627](https://github.com/bigcommerce/cornerstone/pull/1627)
+- Fix price filter to honor control panel settings[#1633](https://github.com/bigcommerce/cornerstone/pull/1633)
 
 ## 4.4.0 (2020-01-31)
 - Add translation key for "read more" blog post link [#1625](https://github.com/bigcommerce/cornerstone/pull/1625)

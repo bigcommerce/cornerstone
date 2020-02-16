@@ -29,8 +29,8 @@ product_results:
                 </a>
             </li>
             <li class="navBar-item">
-                <a class="navBar-action" href="{{forms.search.content_url}}" data-content-results-toggle>
-                    {{lang 'search.results.content_count' count=pagination.content_results.total}}
+                <a id="search-results-content-count" class="navBar-action" href="{{forms.search.content_url}}" data-content-results-toggle>
+                    {{>components/search/content-count}}
                 </a>
             </li>
             {{#unless product_results.faceted_search_enabled}}
@@ -53,16 +53,12 @@ product_results:
 </section>
 
 <section class="page">
-    {{#if product_results.products}}
-        {{#if product_results.faceted_search_enabled}}
-            <aside class="page-sidebar{{#if forms.search.section '!=' 'product'}} u-hiddenVisually{{/if}}" id="faceted-search-container">
-                {{> components/faceted-search/index product_results}}
-            </aside>
-        {{/if}}
-        <main class="page-content">
-    {{else}}
-        <main class="page-content page-content--centered">
+    {{#if product_results.faceted_search_enabled}}
+        <aside class="page-sidebar{{#if forms.search.section '!=' 'product'}} u-hiddenVisually{{/if}}" id="faceted-search-container">
+            {{> components/faceted-search/index product_results}}
+        </aside>
     {{/if}}
+    <main class="page-content">
         {{#if forms.search.has_suggestions}}
             <div class="panel panel--large">
                 <div class="panel-body">
@@ -126,18 +122,9 @@ product_results:
             </div>
         {{/if}}
 
-        {{#if content_results}}
-            <div id="search-results-content" {{#if forms.search.section '!=' 'content'}}class="u-hiddenVisually"{{/if}}>
-                {{> components/search/content-sort-box sort=pagination.content_results.sort}}
-                <ul>
-                    {{#each content_results}}
-                        <strong><a href="{{url}}">{{{title}}}</a></strong>({{type}})
-                        <p>{{{content}}}</p>
-                    {{/each}}
-                </ul>
-                {{> components/common/paginator pagination.content_results reload=true}}
-            </div>
-        {{/if}}
+        <div id="search-results-content" {{#if forms.search.section '!=' 'content'}}class="u-hiddenVisually"{{/if}}>
+            {{> components/search/content-listing}}
+        </div>
 
         <div id="product-listing-container" {{#if forms.search.section '!=' 'product'}}class="u-hiddenVisually"{{/if}}>
             {{> components/search/product-listing}}

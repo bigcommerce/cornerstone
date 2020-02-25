@@ -1,6 +1,11 @@
 # Changelog
 
 ## Draft
+- Remove "cookie notification" feature as it is no longer useful [#1636](https://github.com/bigcommerce/cornerstone/pull/1636)
+- Fix the html special chars issue in facet names (titles) [#1637](https://github.com/bigcommerce/cornerstone/pull/1637)
+- Fix category header image size [#1640](https://github.com/bigcommerce/cornerstone/pull/1640)
+- Fix navigation issues in Search Results [#1641](https://github.com/bigcommerce/cornerstone/pull/1641)
+- Bump stencil utils to 5.0.3 [#1642](https://github.com/bigcommerce/cornerstone/pull/1642)
 
 ## 4.4.1 (2020-02-11)
 - Prevent triggering quantity change when pressing enter [#1630](https://github.com/bigcommerce/cornerstone/pull/1630)

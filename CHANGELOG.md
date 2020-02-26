@@ -1,6 +1,8 @@
 # Changelog
 
 ## Draft
+
+## 4.4.2 (2020-02-25)
 - Remove "cookie notification" feature as it is no longer useful [#1636](https://github.com/bigcommerce/cornerstone/pull/1636)
 - Fix the html special chars issue in facet names (titles) [#1637](https://github.com/bigcommerce/cornerstone/pull/1637)
 - Fix category header image size [#1640](https://github.com/bigcommerce/cornerstone/pull/1640)

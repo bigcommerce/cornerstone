@@ -1,6 +1,8 @@
 # Changelog
 
 ## Draft
+- Fixed the check for max length in create account form fields [#1647](https://github.com/bigcommerce/cornerstone/pull/1647)
+- Add region to page.html [#1639](https://github.com/bigcommerce/cornerstone/pull/1639)
 
 ## 4.4.2 (2020-02-25)
 - Remove "cookie notification" feature as it is no longer useful [#1636](https://github.com/bigcommerce/cornerstone/pull/1636)

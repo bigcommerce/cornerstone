@@ -3,6 +3,8 @@
 ## Draft
 
 ## 4.5.0 (2020-03-16)
+
+## 4.5.0 (2020-03-16)
 - Fixed the check for max length in create account form fields [#1647](https://github.com/bigcommerce/cornerstone/pull/1647)
 - Add region to page.html [#1639](https://github.com/bigcommerce/cornerstone/pull/1639)
 

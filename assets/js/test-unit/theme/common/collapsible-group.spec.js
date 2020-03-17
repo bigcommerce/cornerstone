@@ -25,14 +25,17 @@ describe('CollapsibleGroup', () => {
         let childCollapsible;
 
         beforeEach(() => {
-            collapsible = jasmine.createSpyObj('collapsible', ['close', 'hasCollapsible']);
+            collapsible = {
+                close: jest.fn(),
+                hasCollapsible: jest.fn()
+            };
             childCollapsible = {};
 
             collapsibleGroup.openCollapsible = collapsible;
         });
 
         it('should close the currently open collapsible if it does not contain the newly open collapsible', () => {
-            collapsible.hasCollapsible.and.returnValue(false);
+            collapsible.hasCollapsible.mockImplementation(() => false);
             collapsibleGroup.$component.trigger(CollapsibleEvents.open, [childCollapsible]);
 
             expect(collapsible.close).toHaveBeenCalled();
@@ -40,7 +43,7 @@ describe('CollapsibleGroup', () => {
         });
 
         it('should not close the currently open collapsible if it contains the newly open collapsible', () => {
-            collapsible.hasCollapsible.and.returnValue(true);
+            collapsible.hasCollapsible.mockImplementation(() => true);
             collapsibleGroup.$component.trigger(CollapsibleEvents.open, [childCollapsible]);
 
             expect(collapsible.close).not.toHaveBeenCalled();
@@ -54,21 +57,24 @@ describe('CollapsibleGroup', () => {
         let childCollapsible;
 
         beforeEach(() => {
-            collapsible = jasmine.createSpyObj('collapsible', ['hasCollapsible']);
+            collapsible = {
+                close: jest.fn(),
+                hasCollapsible: jest.fn()
+            };
             childCollapsible = {};
 
             collapsibleGroup.openCollapsible = collapsible;
         });
 
         it('should unset `openCollapsible` if it does not contain the newly open collapsible', () => {
-            collapsible.hasCollapsible.and.returnValue(false);
+            collapsible.hasCollapsible.mockImplementation(() => false);
             collapsibleGroup.$component.trigger(CollapsibleEvents.close, [childCollapsible]);
 
             expect(collapsibleGroup.openCollapsible).toEqual(null);
         });
 
         it('should not unset `openCollapsible` if it contains the newly open collapsible', () => {
-            collapsible.hasCollapsible.and.returnValue(true);
+            collapsible.hasCollapsible.mockImplementation(() => true);
             collapsibleGroup.$component.trigger(CollapsibleEvents.close, [childCollapsible]);
 
             expect(collapsibleGroup.openCollapsible).not.toEqual(null);

@@ -9,12 +9,22 @@
         {{#each facets}}
             {{#if facet '===' ../all_facets}}
                 {{#each items}}
-                    <li class="navList-item"><a
+                    <li class="navList-item">
+                        <a
                         href="{{url}}"
                         class="navList-action {{#if selected }} is-active {{/if}}"
                         rel="nofollow"
                         data-id="{{ id }}"
-                        data-faceted-search-facet>{{title}} ({{count}})</a></li>
+                        data-faceted-search-facet
+                        >
+                            {{title}}
+                            {{#if ../show_product_counts}}
+                                {{#if count}}
+                                    <span>({{count}})</span>
+                                {{/if}}
+                            {{/if}}
+                        </a>
+                    </li>
                 {{/each}}
             {{/if}}
         {{/each}}

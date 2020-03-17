@@ -121,9 +121,9 @@ export default class Account extends PageManager {
 
             if (!submitForm) {
                 event.preventDefault();
-                swal({
+                swal.fire({
                     text: this.context.selectItem,
-                    type: 'error',
+                    icon: 'error',
                 });
             }
         });
@@ -198,9 +198,9 @@ export default class Account extends PageManager {
                 return true;
             }
 
-            swal({
+            swal.fire({
                 text: errorMessage,
-                type: 'error',
+                icon: 'error',
             });
 
             return event.preventDefault();
@@ -299,9 +299,9 @@ export default class Account extends PageManager {
                 storeInstrument(this.context, data, () => {
                     window.location.href = this.context.paymentMethodsUrl;
                 }, () => {
-                    swal({
+                    swal.fire({
                         text: this.context.generic_error,
-                        type: 'error',
+                        icon: 'error',
                     });
                 });
             }

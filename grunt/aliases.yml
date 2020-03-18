@@ -1,11 +1,14 @@
 ---
+jest:
+    - run:jest
+
 check:
     - check:js
     - check:css
 
 check:js:
     - eslint
-    - karma
+    - run:jest
 
 check:css:
     - scsslint

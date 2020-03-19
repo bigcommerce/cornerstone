@@ -15,6 +15,11 @@ blog:
 ---
 {{#partial "hero"}}
     {{{region name="home_below_menu"}}}
+    {{#if theme_settings.homepage_show_mobile_carousel}}
+        {{#if categories}}
+            {{> components/category/circle-list categories=categories}}
+        {{/if}}
+    {{/if}}
     {{#if carousel}}
         {{> components/carousel arrows=theme_settings.homepage_show_carousel_arrows dots=theme_settings.homepage_show_carousel_dots}}
     {{/if}}

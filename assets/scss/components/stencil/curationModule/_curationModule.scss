@@ -19,11 +19,15 @@
 
 .curationModule {
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: column nowrap;
     justify-content: space-evenly;
     min-width: 100%;
     margin-top: 5px;
     margin-bottom: 5px;
+
+    @include breakpoint("small") {
+        flex-direction: row;
+    }
 
     > a {
         &:first-child .curationModule-item {

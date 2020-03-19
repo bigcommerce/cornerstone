@@ -91,6 +91,15 @@
     &.slick-dotted.slick-slider {
         margin-bottom: 0;
     }
+
+    .slick-list .slick-track .slick-slide:nth-child(odd) {
+        
+        @include breakpoint("large") {
+            .heroCarousel-content {
+                transform: translate(25%, -50%);
+            }
+        }
+    }
 }
 
 .heroCarousel-slide {

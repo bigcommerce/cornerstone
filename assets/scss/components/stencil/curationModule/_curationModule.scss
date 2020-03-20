@@ -23,9 +23,9 @@
     justify-content: space-evenly;
     min-width: 100%;
     margin-top: 5px;
-    margin-bottom: 5px;
 
     @include breakpoint("small") {
+        margin-bottom: 5px;
         flex-direction: row;
     }
 
@@ -43,7 +43,12 @@
 .curationModule-item {
     margin-left: 5px;
     margin-right: 5px;
+    margin-bottom: 5px;
     position: relative;
+
+    @include breakpoint("small") {
+        margin-bottom: 0;
+    }
 
     // overriding .heroCarousel content
     .heroCarousel-content {

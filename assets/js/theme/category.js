@@ -20,11 +20,7 @@ export default class Category extends CatalogPage {
     initCategoryButton() {
         const button = document.querySelector('.mobileCategory--toggleButton');
         if (button) {
-            button.addEventListener('click', () => {
-                showCategoryModal({
-                    size: 'large'
-                })
-            });
+            button.addEventListener('click', showCategoryModal);
         }
     }
 

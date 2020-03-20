@@ -4,8 +4,6 @@ products:
         limit: {{theme_settings.homepage_new_products_count}}
     featured:
         limit: {{theme_settings.homepage_featured_products_count}}
-    top_sellers:
-        limit: {{theme_settings.homepage_top_products_count}}
 carousel: {{theme_settings.homepage_show_carousel}}
 categories:
 curation: {{theme_settings.homepage_show_curation_module}}
@@ -21,7 +19,7 @@ blog:
         {{/if}}
     {{/if}}
     {{#if carousel}}
-        {{> components/carousel arrows=theme_settings.homepage_show_carousel_arrows dots=theme_settings.homepage_show_carousel_dots}}
+        {{> components/carousel arrows=theme_settings.homepage_show_carousel_arrows dots=theme_settings.homepage_show_carousel_dots infinite=theme_settings.homepage_carousel_infinite}}
     {{/if}}
     {{{region name="home_below_carousel"}}}
     {{#if theme_settings.homepage_show_curation_module}}
@@ -48,9 +46,6 @@ blog:
     {{/if}}
     {{{region name="home_below_featured_products"}}}
 
-    {{#if products.top_sellers}}
-        {{> components/products/top products=products.top_sellers columns=theme_settings.homepage_top_products_column_count}}
-    {{/if}}
     {{{region name="home_below_top_products"}}}
 
     {{#if products.new}}

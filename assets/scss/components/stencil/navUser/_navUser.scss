@@ -227,6 +227,22 @@
     }
 }
 
+.navUser-item-cartIcon {
+    display: none;
+    position: absolute;
+    right: 11px;
+    top: 6px;
+    z-index: -1;
+
+    &.has-items {
+        display: block;
+    }
+
+    @include breakpoint("small") {
+        display: none;;
+    }
+}
+
 .navUser-item--compare {
     display: none;
 

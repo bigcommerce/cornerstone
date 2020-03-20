@@ -1,0 +1,22 @@
+<div class="mobileCategory-dropdown">
+    <div class="mobileCategory-dropdown--current">
+        <button class="mobileCategory--toggleButton">
+            <span>{{category.name}}</span>
+            <div class="toggleButton-moreIcon">
+                <svg><use xlink:href="#icon-chevron-down" /></svg>
+            </div>
+        </button>
+    </div>
+    <div id="category-modal" class="modal modal--large" data-reveal>
+        <a href="#" class="modal-close" aria-label="{{lang 'common.close'}}" role="button">
+            <span aria-hidden="true">&#215;</span>
+        </a>
+        <div class="modal-content">
+            <div>
+                {{#each categories}}
+                    <a href="{{url}}" class="category-modal-link">{{name}}</a>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,68 @@
+{{#partial "head"}}
+    <link rel="stylesheet" href="/assets/css/about-us.css" />
+{{/partial}}
+
+{{#partial "page"}}
+
+<main class="page">
+    <div class="page-header-image" style="background: url({{cdn 'https://cdn11.bigcommerce.com/s-2no392teb5/product_images/uploaded_images/storefront-1400x700.jpg'}}); background-size: cover;" />
+        <div class="header--wrapper">
+            <h1 class="page-heading">{{ page.title }}</h1>
+            <p>...or at least the story so far.</p>
+        </div>
+    </div>
+
+    {{#if page.sub_pages}}
+    <nav class="navBar navBar--sub">
+        <ul class="navBar-section account-navigation">
+        {{#each page.sub_pages}}
+            <li class="navBar-item"><a class="navBar-action" href="{{url}}">{{title}}</a></li>
+        {{/each}}
+        </ul>
+    </nav>
+    {{/if}}
+
+    {{{region name="page_builder_content"}}}
+
+    <div class="page-content">
+        <p>First conceived by Sarah Chazin in 2006, our first storefront in Roscoe Village was a great start for Sacred Art and our small community of artists. In 2009, we moved up the street into our current space in Lincoln Square, where we grew both in square footage and also as a community to over 100 independent artists and makers. One of Sacred Art's very first loyal customers, Kate Merena, took over the business in 2013 and continued to hone our mission of Local, Handmade &amp; Independent.</p>
+        <div class="newspaper-row">
+            <div>
+                <p>In the spring of 2018, Sacred Art welcomed new owners Kaitlin Fletcher and Brandon Comerford (pictured). They, along with Louie the Shop Dog (also pictured), are so excited to serve the community that they also call home. They are committed to providing the same quality of service and passion the shop has become known for and look forward to a bright and shiny future!</p>
+                <p>We sponsor and participate in events such as Show Of Hands, donate to local charities, and host art-related events to benefit local schools. You can find us at our neighborhood street festivals, Square Roots in July and AppleFest in October. We love to collaborate with other like-minded businesses on partnerships like Gift Chicago (2016) and events like Craft Party Craft Beer (2016).</p>
+                <p>We often get asked how we choose the items that we carry in the shop. At the heart of our process is community; we choose items that we like that are made by people we like. We know each of our 100 artists personally, and we believe in them and their work. Stop in, explore our selection, and ask us all your questions. We are here to connect you to the makers and the pieces that resonate with you.</p>
+                <br />
+                <p>It's our goal that you leave Sacred Art inspired!</p>
+            </div>
+            <div class="image-container">
+                <img src="{{cdn 'https://cdn11.bigcommerce.com/s-2no392teb5/product_images/uploaded_images/owners.jpg'}}" alt="Brandon & Kaitlin" title="Brandon & Kaitlin">
+            </div>
+        </div>
+        <div class="newspaper-row--alt">
+            <div>
+                <img src="{{cdn 'https://cdn11.bigcommerce.com/s-2no392teb5/product_images/uploaded_images/louie.jpg'}}" alt="@louietheshopdog" title="@louietheshopdog">
+            </div>
+            <div class="signature">
+                <div>
+                    <strong>Sincerely,</strong>
+                    <p>Kaitlin, Brandon & Louie</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{#if page.feed}}
+        <ul>
+            {{#each page.feed}}
+                <li>
+                    <h6><a href="{{url}}" target="_blank">{{title}}</a></h6>
+                    <p>{{content}}</p>
+                </li>
+            {{/each}}
+        </ul>
+    {{/if}}
+</main>
+
+{{/partial}}
+
+{{> layout/base}}

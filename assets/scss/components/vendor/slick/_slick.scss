@@ -99,28 +99,31 @@
 
 .slick-dots {  // 2
     margin: 0;
+    text-align: right;
 
     li {
         @include square(32px);
         margin: 0;
         padding: remCalc(5px);
+        width: 1.7rem;
 
         // scss-lint:disable SelectorDepth, NestingDepth
         button,
         button::before {
-            @include square(15px);
+            @include square(12px);
             border-radius: 50%;
         }
 
         button {
             // scss-lint:disable NestingDepth
-            border: 1px solid $slick-dot-color;
             display: inline-block;
             margin: 0;
             padding: 0;
             position: relative;
             text-align: center;
             vertical-align: middle;
+            border: 1px solid #ffffff;
+            box-shadow: 0 0 1px 1px #707070;
 
             &:hover {
                 &::before {
@@ -139,7 +142,7 @@
         &.slick-active {
             // scss-lint:disable NestingDepth
             button::before {
-                background: $slick-dot-color-active;
+                background: #707070;
             }
         }
     }

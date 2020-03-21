@@ -22,10 +22,23 @@ blog:
         {{> components/carousel arrows=theme_settings.homepage_show_carousel_arrows dots=theme_settings.homepage_show_carousel_dots infinite=theme_settings.homepage_carousel_infinite}}
     {{/if}}
     {{{region name="home_below_carousel"}}}
-    {{#if theme_settings.homepage_show_curation_module}}
-        {{> components/curation-module}}
+    {{#if products.featured}}
+        <div class="container">
+            {{> components/products/featured products=products.featured columns=theme_settings.homepage_featured_products_column_count}}
+        </div>
     {{/if}}
+    {{{region name="home_below_featured_products"}}}
+    <!-- QUICK INTRO GOES HERE -->
     {{> components/info/quick-intro}}
+    {{#if categories}}
+        <div class="container">
+            <div class="homePage-category">
+                {{> components/category/list categories=(limit categories theme_settings.homepage_category_count)}}
+            </div>
+        </div>
+    {{/if}}
+
+    <!-- TWO COL ABOUT SECTION GOES HERE-->
     {{> components/info/expanded-intro}}
 {{/partial}}
 
@@ -36,20 +49,6 @@ blog:
     {{/each}}
 
 <div class="main full">
-    <!-- QUICK INTRO GOES HERE -->
-    <!-- TWO COL ABOUT SECTION GOES HERE-->
-    {{#if categories}}
-        <div class="homePage-category">
-            {{> components/category/list categories=(limit categories theme_settings.homepage_category_count)}}
-        </div>
-    {{/if}}
-    {{#if products.featured}}
-        {{> components/products/featured products=products.featured columns=theme_settings.homepage_featured_products_column_count}}
-    {{/if}}
-    {{{region name="home_below_featured_products"}}}
-
-    {{{region name="home_below_top_products"}}}
-
     {{#if products.new}}
         {{> components/products/new products=products.new columns=theme_settings.homepage_new_products_column_count}}
     {{/if}}

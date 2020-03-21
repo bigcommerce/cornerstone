@@ -1,12 +1,17 @@
 .quick-intro {
     font-size: 1.5rem;
+    margin-bottom: 30px;
     padding: 20px 14px;
     color: #ffffff;
-    background-color: #99cccc;
+    background-color: #556d83;
+
+    > .infoBox {
+        max-width: 600px;
+        margin: 0 auto;
+    }
 
     h2 {
         color: #ffffff;
-        font-weight: 600;
         margin-top: 1rem;
         text-align: center;
     }
@@ -19,23 +24,27 @@
 }
 
 .expanded-info {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-between;
+    background-color: #ececec;
+    background-size: cover;
+    background-position: right center;
+    object-fit: contain;
     margin-bottom: 20px;
-
-    > div {
-        flex: 0 1 auto;
-    }
+    padding: 20px;
 
     > div:first-child {
-        flex: 1 1 30%;
-        padding: 24px;
-        background-color: #556d83;
+        max-width: 520px;
     }
 
     .infoBox {
         height: 100%;
+    }
+
+    @media (max-width: 940px) {
+        background-image: none !important;
+
+        > div:first-child {
+            margin: 0 auto;
+        }
     }
 }
 
@@ -58,13 +67,11 @@
         font-style: italic;
     }
 
-    @include breakpoint("large") {
-        p {
-            max-width: 387px;
-        }    
+    .button-container {
+        text-align: center;
     }
 
-    &:after {
+    &:before {
         content: '';
         display: block;
         width: calc(100% - 14px);

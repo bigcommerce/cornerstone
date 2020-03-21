@@ -227,6 +227,18 @@
     }
 }
 
+.navUser-item-cartIcon {
+    display: none;
+    position: absolute;
+    right: 11px;
+    top: 6px;
+    z-index: -1;
+
+    &.has-items {
+        display: block;
+    }
+}
+
 .navUser-item--compare {
     display: none;
 
@@ -336,8 +348,6 @@
 // -----------------------------------------------------------------------------
 
 .countPill {
-    background-color: stencilColor("navUser-indicator-backgroundColor");
-    border-radius: 50%;
     color: color("whites", "bright");
     display: none;
     font-size: fontSize("tiny");

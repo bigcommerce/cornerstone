@@ -1,6 +1,6 @@
 .quick-intro {
     font-size: 1.5rem;
-    padding: 20px 0;
+    padding: 20px 14px;
     color: #ffffff;
     background-color: #99cccc;
 
@@ -24,8 +24,12 @@
     justify-content: space-between;
     margin-bottom: 20px;
 
+    > div {
+        flex: 0 1 auto;
+    }
+
     > div:first-child {
-        flex: 1 1 auto;
+        flex: 1 1 30%;
         padding: 24px;
         background-color: #556d83;
     }
@@ -52,6 +56,12 @@
 
     h3 {
         font-style: italic;
+    }
+
+    @include breakpoint("large") {
+        p {
+            max-width: 387px;
+        }    
     }
 
     &:after {

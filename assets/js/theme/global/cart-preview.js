@@ -19,6 +19,8 @@ export default function (secureBaseUrl, cartId) {
         $('.cart-quantity')
             .text(quantity)
             .toggleClass('countPill--positive', quantity > 0);
+        $('.shopping-bag')
+            .toggleClass('has-items', quantity > 0);
         if (utils.tools.storage.localStorageAvailable()) {
             localStorage.setItem('cart-quantity', quantity);
         }

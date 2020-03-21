@@ -9,6 +9,13 @@
         {{> components/common/alert-error this}}
     {{/each}}
 
+    <div>
+        <p>We have two separate systems for gift card purchases, online and in-store that are currently not compatible with the other. We hope to solve this shortly but in the meantime, click the link below for in-store gift cards or fill out the form below to purchase an online gift card.</p>
+        <p style="text-align: center;">
+            <a class="button button--primary" href="https://squareup.com/gift/M1FBYW02JNG0M/order" target="_blank">Buy In-Store Gift Card</a>
+        </p>
+    </div>
+
     <form class="form gift-certificate-form" method="post" id="gift-certificate-form" action="{{forms.gift_certificate.action}}">
         {{#if forms.gift_certificate.cart_item_id}}
             <input type="hidden" name="cartitemid" value="{{forms.gift_certificate.cart_item_id}}">

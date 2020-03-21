@@ -31,8 +31,12 @@
     margin-bottom: 20px;
     padding: 20px;
 
-    > div:first-child {
+    .info--container {
         max-width: 520px;
+    }
+    
+    .info--image {
+        margin-bottom: 20px;
     }
 
     .infoBox {
@@ -42,8 +46,14 @@
     @media (max-width: 940px) {
         background-image: none !important;
 
-        > div:first-child {
+        .info--container {
             margin: 0 auto;
+        }
+    }
+
+    @include breakpoint("medium") {
+        .info--image {
+            display: none;
         }
     }
 }

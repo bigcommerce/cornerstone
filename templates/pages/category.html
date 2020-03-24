@@ -4,6 +4,7 @@ category:
     products:
         limit: {{theme_settings.categorypage_products_per_page}}
 categories:
+
 ---
 {{inject "categoryProductsPerPage" theme_settings.categorypage_products_per_page}}
 {{#partial "head"}}
@@ -17,7 +18,9 @@ categories:
 
 {{#partial "page"}}
 
-{{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+{{#if breadcrumbs.length '>' 2}}
+    {{> components/common/breadcrumbs breadcrumbs=(after breadcrumbs 1)}}
+{{/if}}
 
 {{#unless theme_settings.hide_category_page_heading }}
     <h1 class="page-heading page-heading--category">{{category.name}}</h1>
@@ -25,10 +28,14 @@ categories:
 {{/unless}}
 {{{category.description}}}
 <div class="page">
-    {{> components/category/dropdown-list}}
-    {{#if category.subcategories}}
-        {{> components/category/circle-subcategory}}
-    {{/if}}
+    {{#each categories}}
+        {{#if ../breadcrumbs.[1].name  '===' name}}
+        {{> components/category/dropdown-list category=this categories=../../categories}}
+            {{#if children}}
+                {{> components/category/circle-subcategory currentSubCategory=../../../breadcrumbs.[2].name subcategories=children}}
+            {{/if}}
+        {{/if}}
+    {{/each}}
 
     {{#if category.faceted_search_enabled}}
         <aside class="page-sidebar sidebar--category" id="faceted-search-container">

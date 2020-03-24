@@ -3,10 +3,17 @@
         <div class="scrollable-area--horizontal">
             <div class="scrollable-area-component">
                 <div class="scrollable-area-slider">
+                    <div class="scrollable-area-component">
+                        <div class="pill-item">
+                            <a class="pill-item--link {{#unless subCategory}}active{{/unless}}" href="{{category.url}}">
+                                <div class="item-link">All</div>
+                            </a>
+                        </div>
+                    </div>
                     {{#each subcategories}}
                         <div class="scrollable-area-component">
                             <div class="pill-item">
-                                <a class="pill-item--link {{#if ../currentSubCategory '===' name}}active{{/if}}" href="{{url}}">
+                                <a class="pill-item--link {{#if ../subCategory '===' name}}active{{/if}}" href="{{url}}">
                                     <div class="item-link">{{name}}</div>
                                 </a>
                             </div>

@@ -28,14 +28,12 @@ categories:
 {{/unless}}
 {{{category.description}}}
 <div class="page">
-    {{#each categories}}
-        {{#if ../breadcrumbs.[1].name  '===' name}}
+    {{#filter categories breadcrumbs.[1].name property='name'}}
         {{> components/category/dropdown-list category=this categories=../../categories}}
-            {{#if children}}
-                {{> components/category/circle-subcategory currentSubCategory=../../../breadcrumbs.[2].name subcategories=children}}
-            {{/if}}
+        {{#if children}}
+            {{> components/category/circle-subcategory category=this subCategory=../../../breadcrumbs.[2].name subcategories=children}}
         {{/if}}
-    {{/each}}
+    {{/filter}}
 
     {{#if category.faceted_search_enabled}}
         <aside class="page-sidebar sidebar--category" id="faceted-search-container">

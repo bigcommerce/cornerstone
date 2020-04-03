@@ -140,6 +140,16 @@
     }
 }
 
+.productView-heading {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    @include breakpoint("medium") {
+        display: block;
+    }
+}
+
 .productView-title {
     font-size: fontSize("small");
     margin: -(spacing("half")) 0 spacing("quarter");
@@ -177,12 +187,16 @@
 // -----------------------------------------------------------------------------
 
 .productView-price {
-    font-size: fontSize("smaller");
+    font-family: $font-family-serif;
+    font-size: fontSize("small");
     margin-bottom: spacing("third");
+
+    padding-left: 12px;
 
     @include breakpoint("medium") {
         font-size: fontSize("larger");
         margin-bottom: spacing("base");
+        padding-left: 0;
     }
 
     .price-section--saving {
@@ -351,6 +365,9 @@
         // scss-lint:disable SelectorDepth, NestingDepth
         .button {
             width: 100%;
+            height: 46px;
+            font-size: 1.3rem;
+            border-radius: 30px;
 
             @include breakpoint("large") {
                 margin-right: spacing("half");

@@ -52,6 +52,10 @@ export default class Product extends PageManager {
 
         this.productReviewHandler();
         this.bulkPricingHandler();
+
+        if (this.context.themeSettings.floating_cart_button) {
+            this.setBodyPadding();
+        }
     }
 
     productReviewHandler() {
@@ -63,6 +67,13 @@ export default class Product extends PageManager {
     bulkPricingHandler() {
         if (this.url.indexOf('#bulk_pricing') !== -1) {
             this.$bulkPricingLink.trigger('click');
+        }
+    }
+
+    setBodyPadding() {
+        const productOptions = document.querySelector('.productView-details--cartAction');
+        if (document.body.classList.contains('productPage') && productOptions) {
+            document.body.style.paddingBottom = `${productOptions.offsetHeight}px`;
         }
     }
 }

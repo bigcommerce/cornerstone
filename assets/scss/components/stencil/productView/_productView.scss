@@ -2,6 +2,10 @@
 // PRODUCT VIEW (CSS)
 // =============================================================================
 
+// Mobile Body
+.productPage {
+    padding-bottom: 157px;
+}
 
 // Container
 // -----------------------------------------------------------------------------
@@ -123,6 +127,27 @@
 
 .productView-details {
     margin-bottom: spacing("single") + spacing("third");
+
+    &.productView-details--cartAction {
+        position: fixed;
+        border-top: container("border");;
+        bottom: 0;
+        margin-bottom: 0;
+        z-index: 5;
+        background: #ffffff;
+        padding-top: 1rem;
+
+        @include breakpoint("medium") {
+            border-top: none;
+            padding-top: 0;
+            position: relative;
+            margin-bottom: spacing("single") + spacing("third");
+        }
+    }
+
+    &.productView-options {
+        margin-bottom: 0;
+    }
 }
 
 
@@ -300,11 +325,14 @@
 
 .productView-options {
     @include clearfix;
-    margin-bottom: spacing("single");
     text-align: center;
 
     @include breakpoint("small") {
         text-align: left;
+    }
+
+    @include breakpoint("medium") {
+        margin-bottom: spacing("single");
     }
 
     .form-input[type="number"] {

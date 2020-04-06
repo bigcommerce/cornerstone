@@ -209,7 +209,7 @@
         {{/if}}
     </section>
 
-    <section class="productView-details">
+    <section class="productView-details {{#if theme_settings.floating_cart_button}}productView-details--cartAction{{/if}}">
         <div class="productView-options">
             {{#if product.release_date }}
                 <p>{{product.release_date}}</p>
@@ -244,7 +244,6 @@
                 {{> components/common/wishlist-dropdown}}
             {{/if}}
         </div>
-        {{> components/common/share}}
     </section>
 
     {{#if product.description}}
@@ -256,6 +255,9 @@
             {{/if}}
         </article>
     {{/if}}
+    <section class="productView-details">
+        {{> components/common/share}}
+    </section>
 </div>
 
 <div id="previewModal" class="modal modal--large" data-reveal>

@@ -9,6 +9,7 @@ product:
     similar_by_views:
         limit: {{theme_settings.productpage_similar_by_views_count}}
 ---
+{{#if theme_settings.floating_cart_button}}{{#partial "bodyClass"}}productPage{{/partial}}{{/if}}
 {{#partial "page"}}
     {{> components/common/breadcrumbs breadcrumbs=(after breadcrumbs 1)}}
 

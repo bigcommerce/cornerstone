@@ -56,13 +56,19 @@ body.hasAdminBar {
 }
 
 .adminBar {
+    // Only show admin bar at desktop width
+    display: none;
+
+    @include breakpoint("medium") {
+        display: block;
+    }
+
     background-color: $adminBar-color;
     box-shadow: 0 remCalc(2) remCalc(7) 0 rgba(0, 0, 0, 0.2);
     color: $adminBar-text-color;
-    float: left;
     font-family: "Source Sans Pro", arial, "sans serif", sans-serif;
     font-size: 14px;
-    font-weight: 600;
+    font-weight: normal;
     height: $adminBar-height;
     left: 0;
     position: fixed;
@@ -70,10 +76,22 @@ body.hasAdminBar {
     top: 0;
     width: 100%;
     z-index: 10000;
+
+    .svg-icon {
+        display: inline-flex;
+        align-self: center;
+    }
+    .svg-icon svg {
+        height:1em;
+        width:1em;
+    }
+    .svg-icon.svg-baseline svg {
+        top: .125em;
+        position: relative;
+    }
 }
 
 .adminBar-logo {
-    background-color: $adminBar-logo-color;
     float: left;
     height: $adminBar-height;
     width: 45px;
@@ -90,22 +108,101 @@ body.hasAdminBar {
     display: flex;
     height: $adminBar-height;
     justify-content: space-between;
-    margin-left: 45px;
-    padding: 17px 20.5px 14px 20px;
 
     a {
         color: $adminBar-contentLink-color;
-        font-weight: 600;
         text-decoration: none;
     }
+
+    a:hover {
+        background-color: $adminBar-contentLink-hover-color;
+        border-radius: 5px;
+    }
+
 }
 
 .adminBar-private {
-    float: right;
-    text-align: right;
+    margin-right: auto;
+    text-align: left;
+
+    a {
+        padding: 10px;
+    }
 
     span {
         white-space: nowrap;
+    }
+
+    /* Tooltip container */
+    .tooltip {
+        position: relative;
+        display: inline-block;
+    }
+
+    /* Tooltip text */
+    .tooltip .tooltiptext {
+        visibility: hidden;
+        width: auto;
+        background-color: $adminBar-tooltip-bg-backgroundColor;
+        color: #fff;
+        text-align: center;
+        padding: 5px 10px;
+        border-radius: 6px;
+
+        /* Position the tooltip text - see examples below! */
+        position: absolute;
+        z-index: 1;
+    }
+
+    .tooltip-bottom {
+        top: 135%;
+        left: 50%;
+        margin-left: -60px;
+    }
+
+    /* Show the tooltip text when you mouse over the tooltip container */
+    .tooltip:hover .tooltiptext {
+        visibility: visible;
+    }
+}
+
+.adminBar-links {
+
+    margin-left: auto;
+    text-align: right;
+    padding-right: 5px;
+
+    a {
+        padding: 10px;
+    }
+
+    span {
+        white-space: nowrap;
+    }
+}
+
+.adminBar-large {
+    display:none;
+    @include breakpoint("large") {
+        display: initial;
+    }
+}
+
+.adminBar-close {
+    span {
+        padding: 10px;
+        margin-right: 5px;
+        margin-bottom: .25em;
+    }
+
+    span:hover {
+        background-color: $adminBar-contentLink-hover-color;
+        border-radius: 5px;
+    }
+
+    span svg {
+        height: 100%;
+        width: 100%;
     }
 }
 

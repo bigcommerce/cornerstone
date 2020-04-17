@@ -40,7 +40,7 @@
                                     {{#if is_file}}
                                         <a href="/viewfile.php?attributeId={{../id}}&cartitem={{../../id}}">{{value}}</a>
                                     {{else}}
-                                        {{value}}
+                                        {{{ sanitize value}}}
                                     {{/if}}
                                 </dd>
                             {{/each}}

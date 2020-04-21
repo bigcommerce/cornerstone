@@ -29,7 +29,7 @@ export default function (maintenanceMode = {}) {
         const url = encodeURIComponent((new URL(window.location.href).pathname + window.location.search).replace(/^\/|\/$/g, ''));
 
         $element.html(`<div class="adminBar-logo">
-            <a href="${securePath}/manage/dashboard"><svg><use xlink:href="#logo-small"></use></svg></a></div>
+            <a href="${securePath}/manage/dashboard"><svg><use xlink:href="#icon-logo-small"></use></svg></a></div>
             <div class="adminBar-content">
                 <a href="${securePath}/manage/theme-editor?redirectIframeUrl=${url}" target="_blank">Customize Theme</a>
                 <div class="adminBar-private">

@@ -2,6 +2,8 @@
 
 ## Draft
 
+## 4.5.2 (2020-05-12)
+
 ## 4.5.1 (2020-05-11)
 -Added SchemaTranslations.json for cornerstone [#1644|https://github.com/bigcommerce/cornerstone/pull/1644]
 -Facets with & symbol works now [#1654|https://github.com/bigcommerce/cornerstone/pull/1654]

@@ -311,8 +311,8 @@
         margin-bottom: 2rem;
 
         // scss-lint:disable SelectorDepth, NestingDepth
-        > .form-checkbox + .form-label,
-        > .form-radio + .form-label {
+        > .form-checkbox + .form-label
+        {
             display: inline-block;
             margin-left: spacing("single");
             width: auto;
@@ -321,6 +321,11 @@
                 margin-left: 0;
                 width: 100%;
             }
+        }
+
+        > .form-radio + .form-label {
+            text-align: justify;
+            display: inline-block;
         }
 
         > .form-label:nth-of-type(2) {

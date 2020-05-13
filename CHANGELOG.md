@@ -1,6 +1,8 @@
 # Changelog
 
 ## Draft
+
+## 4.5.4 (05-13-2020)
 -Bump jQuery version, expose jquery globally so it doesn't need to be loaded separately [#1671|https://github.com/bigcommerce/cornerstone/pull/1671]
 -Revert Add handlebars class/style variables for account fields [#1674|https://github.com/bigcommerce/cornerstone/pull/1674]
 

@@ -2,9 +2,20 @@
 
 ## Draft
 
-## 4.5.0 (2020-03-16)
+## 4.5.3 (05-12-2020)
 
-## 4.5.0 (2020-03-16)
+## 4.5.2 (2020-05-12)
+
+## 4.5.1 (2020-05-11)
+-Added SchemaTranslations.json for cornerstone [#1644|https://github.com/bigcommerce/cornerstone/pull/1644]
+-Facets with & symbol works now [#1654|https://github.com/bigcommerce/cornerstone/pull/1654]
+-Add handlebars class/style variables for account fields [#1655|https://github.com/bigcommerce/cornerstone/pull/1655]
+-Bump lazysizes to 5.2.0 [#1646|https://github.com/bigcommerce/cornerstone/pull/1646]
+-Fix logo in admin bar [#1657|https://github.com/bigcommerce/cornerstone/pull/1657]
+-Special characters to render properly on the cart modal pop up [#1658|https://github.com/bigcommerce/cornerstone/pull/1658]
+-Reset cart quantity to 0 if we get a 404 for the cart [#1661|https://github.com/bigcommerce/cornerstone/pull/1661]
+-Fixed the special characters display issue in the search results page [#1662|https://github.com/bigcommerce/cornerstone/pull/1662]
+-Special characters are not rendered for product review [#1665|https://github.com/bigcommerce/cornerstone/pull/1665]
 
 ## 4.5.0 (2020-03-16)
 - Fixed the check for max length in create account form fields [#1647](https://github.com/bigcommerce/cornerstone/pull/1647)

@@ -146,7 +146,7 @@
                 {{#if theme_settings.show_custom_fields_tabs '!==' true}}
                     {{#each product.custom_fields}}
                         <dt class="productView-info-name">{{name}}:</dt>
-                        <dd class="productView-info-value">{{{value}}}</dd>
+                        <dd class="productView-info-value">{{{ sanitize value}}}</dd>
                     {{/each}}
                 {{/if}}
             </dl>

@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+-Account: Product option special characters are not rendered on invoice, order contents and returns [#1681|https://github.com/bigcommerce/cornerstone/pull/1681]
 
 ## 4.5.4 (05-13-2020)
 -Bump jQuery version, expose jquery globally so it doesn't need to be loaded separately [#1671|https://github.com/bigcommerce/cornerstone/pull/1671]

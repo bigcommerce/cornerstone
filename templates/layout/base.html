@@ -29,10 +29,12 @@
 
         {{~inject 'themeSettings' theme_settings}}
         {{~inject 'genericError' (lang 'common.generic_error')}}
-        {{~inject 'maintenanceMode' settings.maintenance}}
+        {{~inject 'maintenanceModeSettings' settings.maintenance}}
+        {{~inject 'adminBarLanguage' (langJson 'admin')}}
         {{~inject 'urls' urls}}
         {{~inject 'secureBaseUrl' settings.secure_base_url}}
         {{~inject 'cartId' cart_id}}
+        {{~inject 'channelId' settings.channel_id}}
         {{~inject 'template' template}}
     </head>
     <body>

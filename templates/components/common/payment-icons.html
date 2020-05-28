@@ -1,5 +1,5 @@
 {{#with theme_settings}}
-    {{#or show_accept_amex show_accept_discover show_accept_mastercard show_accept_paypal show_accept_visa show_accept_amazonpay show_accept_googlepay}}
+    {{#or show_accept_amex show_accept_discover show_accept_mastercard show_accept_paypal show_accept_visa show_accept_amazonpay show_accept_googlepay show_accept_klarna}}
     <div class="footer-payment-icons">
         {{#if show_accept_amex}}
         <svg class="footer-payment-icon"><use xlink:href="#icon-logo-american-express"></use></svg>
@@ -21,6 +21,9 @@
         {{/if}}
         {{#if show_accept_googlepay}}
         <svg class="footer-payment-icon"><use xlink:href="#icon-logo-googlepay"></use></svg>
+        {{/if}}
+        {{#if show_accept_klarna}}
+        <svg class="footer-payment-icon"><use xlink:href="#icon-logo-klarna"></use></svg>
         {{/if}}
     </div>
     {{/or}}

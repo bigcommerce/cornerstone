@@ -2,6 +2,11 @@
 
 ## Draft
 -Account: Product option special characters are not rendered on invoice, order contents and returns [#1681|https://github.com/bigcommerce/cornerstone/pull/1681]
+-Bump lazysizes to 5.2.1 [#1682|https://github.com/bigcommerce/cornerstone/pull/1682]
+-Add rel="noopener" to social links [#1678|https://github.com/bigcommerce/cornerstone/pull/1678]
+-Display Klarna logo in payment icons [#1680|https://github.com/bigcommerce/cornerstone/pull/1680]
+-Add a better admin bar [#1664|https://github.com/bigcommerce/cornerstone/pull/1664]
+-Update package-lock.json [#1676|https://github.com/bigcommerce/cornerstone/pull/1676]
 
 ## 4.5.4 (05-13-2020)
 -Bump jQuery version, expose jquery globally so it doesn't need to be loaded separately [#1671|https://github.com/bigcommerce/cornerstone/pull/1671]

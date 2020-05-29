@@ -1,6 +1,8 @@
 # Changelog
 
 ## Draft
+
+## 4.6.0 (2020-05-28)
 -Account: Product option special characters are not rendered on invoice, order contents and returns [#1681|https://github.com/bigcommerce/cornerstone/pull/1681]
 -Bump lazysizes to 5.2.1 [#1682|https://github.com/bigcommerce/cornerstone/pull/1682]
 -Add rel="noopener" to social links [#1678|https://github.com/bigcommerce/cornerstone/pull/1678]

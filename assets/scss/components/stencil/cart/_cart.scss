@@ -16,6 +16,42 @@ $cart-thumbnail-height:                 remCalc(100px);
 
 $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-spacing;
 
+//
+// Shared styles for additional checkout buttons
+// -----------------------------------------------------------------------------
+
+%additionalCheckoutButtons {
+    @include clearfix;
+
+    // scss-lint:disable SelectorFormat
+    .FloatRight {
+        @include clearfix;
+
+        // scss-lint:disable SelectorDepth, NestingDepth
+        p {
+            // scss-lint:disable ImportantRule
+            float: none !important;
+            margin: spacing("third") 0;
+            text-align: right;
+        }
+
+        div {
+            float: right;
+        }
+    }
+
+    .CheckoutButton {
+        margin-bottom: spacing("base");
+
+        &:first-child {
+            margin-top: spacing("single");
+        }
+
+        &:last-child {
+            margin-bottom: spacing("single");
+        }
+    }
+}
 
 // Cart layout
 // -----------------------------------------------------------------------------
@@ -508,39 +544,14 @@ $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-sp
     }
 }
 
-.cart-additionalCheckoutButtons { // 1
-    @include clearfix;
-
-    // scss-lint:disable SelectorFormat
-    .FloatRight {
-        @include clearfix;
-
-        // scss-lint:disable SelectorDepth, NestingDepth
-        p {
-            // scss-lint:disable ImportantRule
-            float: none !important;
-            margin: spacing("third") 0;
-            text-align: right;
-        }
-
-        div {
-            float: right;
-        }
-    }
-
-    .CheckoutButton {
-        margin-bottom: spacing("base");
-
-        &:first-child {
-            margin-top: spacing("single");
-        }
-
-        &:last-child {
-            margin-bottom: spacing("single");
-        }
-    }
+.cart-additionalCheckoutButtons {
+    @extend %additionalCheckoutButtons;
 }
 
+.previewCart-additionalCheckoutButtons {
+    @extend %additionalCheckoutButtons;
+    padding-right: 1.5rem;
+}
 
 // Cart Preview
 // -----------------------------------------------------------------------------

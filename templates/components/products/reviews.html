@@ -27,7 +27,7 @@
                         {{#if name}}
                             <meta itemprop="author" content="{{name}}">
                             <p class="productReview-author">
-                                {{lang 'products.reviews.post_on_by' date=date name=name }}
+                                {{{lang 'products.reviews.post_on_by' date=date name=(sanitize name) }}}
                             </p>
                         {{else}}
                             <p class="productReview-author">

@@ -55,12 +55,12 @@
                 <section class="account-sidebar-block">
                     <h3 class="account-heading">{{lang 'account.orders.details.ship_to'}}</h3>
                     <ul class="account-order-address">
-                        <li>{{order.shipping_address.full_name}}</li>
-                        <li>{{order.shipping_address.company}}</li>
-                        <li>{{order.shipping_address.address_lines.[0]}}</li>
-                        <li>{{order.shipping_address.address_lines.[1]}}</li>
-                        <li>{{order.shipping_address.city}}, {{order.shipping_address.state}} {{order.shipping_address.zip}}</li>
-                        <li>{{order.shipping_address.country}}</li>
+                        <li>{{{ sanitize order.shipping_address.full_name}}}</li>
+                        <li>{{{ sanitize order.shipping_address.company}}}</li>
+                        <li>{{{ sanitize order.shipping_address.address_lines.[0]}}}</li>
+                        <li>{{{ sanitize order.shipping_address.address_lines.[1]}}}</li>
+                        <li>{{{ sanitize order.shipping_address.city}}}, {{{ sanitize order.shipping_address.state}}} {{{ sanitize order.shipping_address.zip}}}</li>
+                        <li>{{{ sanitize order.shipping_address.country}}}</li>
                     </ul>
                 </section>
             {{else}}
@@ -77,12 +77,12 @@
             <section class="account-sidebar-block">
                 <h3 class="account-heading">{{lang 'account.orders.details.bill_to'}}</h3>
                 <ul class="account-order-address">
-                    <li>{{order.billing_address.full_name}}</li>
-                    <li>{{order.billing_address.company}}</li>
-                    <li>{{order.billing_address.address_lines.[0]}}</li>
-                    <li>{{order.billing_address.address_lines.[1]}}</li>
-                    <li>{{order.billing_address.city}}, {{order.billing_address.state}} {{order.billing_address.zip}}</li>
-                    <li>{{order.billing_address.country}}</li>
+                    <li>{{{ sanitize order.billing_address.full_name}}}</li>
+                    <li>{{{ sanitize order.billing_address.company}}}</li>
+                    <li>{{{ sanitize order.billing_address.address_lines.[0]}}}</li>
+                    <li>{{{ sanitize order.billing_address.address_lines.[1]}}}</li>
+                    <li>{{{ sanitize order.billing_address.city}}}, {{{ sanitize order.billing_address.state}}} {{{ sanitize order.billing_address.zip}}}</li>
+                    <li>{{{ sanitize order.billing_address.country}}}</li>
                 </ul>
             </section>
 

@@ -65,6 +65,13 @@
                 </div>
             {{/if}}
         </div>
+        {{#if cart.additional_checkout_buttons}}
+            <div class="previewCart-additionalCheckoutButtons">
+                {{#each cart.additional_checkout_buttons}}
+                    {{{this}}}
+                {{/each}}
+            </div>
+        {{/if}}
     {{else}}
         <div class="previewCart-emptyBody">
             {{lang 'cart.checkout.empty_cart'}}

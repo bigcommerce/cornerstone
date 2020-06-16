@@ -1,4 +1,3 @@
-import 'weakmap-polyfill';
 import sweetAlert from 'sweetalert2';
 
 // WeakMap will defined in the global scope if native WeakMap is not supported.

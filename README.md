@@ -85,6 +85,14 @@ You can compose your JSON object across multiple pages to create a different set
 
 The stencil theme makes the jsContext available on both the active page scoped and global PageManager objects as `this.context`.
 
+## Polyfilling via Feature Detection
+Cornerstone implements [this strategy](https://philipwalton.com/articles/loading-polyfills-only-when-needed/) for polyfilling.
+
+In `templates/components/common/polyfill-script.html` there is a simple feature detection script which can be extended to detect any recent JS features you intend to use in your theme code.
+
+If any one of the conditions is not met, an additional blocking JS bundle configured in `assets/js/polyfills.js` will be loaded to polyfill modern JS features before the main bundle executes. 
+
+This intentionally prioritizes the experience of the 90%+ of shoppers who are on modern browsers in terms of performance, while maintaining compatibility (at the expense of additional JS download+parse for the polyfills) for users on legacy browsers.
 
 ## Static assets
 Some static assets in the Stencil theme are handled with Grunt if required. This

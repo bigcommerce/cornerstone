@@ -36,6 +36,23 @@
     width: rem-calc(50px);
 }
 
+.listItem-figure {
+
+    .starwrap {
+        transform: scale(0.7);
+
+        @include breakpoint("small") {
+            top: 0;
+            transform: scale(0.6);
+        }
+
+        @include breakpoint("large") {
+            top: 10px;
+            transform: scale(0.7);
+        }
+    }
+}
+
 .sale-text-burst {
     color: stencilColor("color_text_product_sale_badges");
     font-weight: 600;
@@ -92,6 +109,23 @@
     transition: 800ms ease;
     width: rem-calc(119px);
     z-index: zIndex("lower");
+}
+
+.listItem-figure {
+    
+    .sale-flag-sash {
+        left: -25px;
+
+        @include breakpoint("small") {
+            top: 15px;
+        }
+
+        @include breakpoint("large") {
+            left: -15px;
+            top: 25px;
+        }
+
+    }
 }
 
 .product:hover .sale-flag-sash {

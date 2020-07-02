@@ -12,7 +12,7 @@
             <a class="tab-title" href="#tab-{{dashcase (lowercase (sanitize theme_settings.pdp-custom-fields-tab-label))}}">{{sanitize theme_settings.pdp-custom-fields-tab-label}}</a>
         </li>
     {{/all}}
-    {{#all settings.show_product_reviews theme_settings.show_product_reviews_tabs product.reviews.total}}
+    {{#all settings.show_product_reviews theme_settings.show_product_reviews product.reviews.total}}
         <li class="tab">
             <a class="tab-title productView-reviewTabLink" href="#tab-reviews">{{lang 'products.reviews.header' total=product.reviews.total}}</a>
         </li>
@@ -37,7 +37,7 @@
          </dl>
       </div>
    {{/all}}
-   {{#all settings.show_product_reviews theme_settings.show_product_reviews_tabs}}
+   {{#all settings.show_product_reviews theme_settings.show_product_reviews}}
        <div class="tab-content" id="tab-reviews">
            {{> components/products/reviews reviews=product.reviews product=product urls=urls}}
        </div>

@@ -27,6 +27,7 @@
     @include breakpoint("small") {
         @include grid-row($behavior: "nest");
         display: table;
+        width: 100%;
     }
 }
 
@@ -64,16 +65,13 @@
 
 .listItem-figure {
     margin: 0 0 spacing("single");
-
+    position: relative;
+    
     @include breakpoint("small") {
         margin-bottom: 0;
         padding-left: spacing("half");
         padding-right: spacing("half");
         width: grid-calc(3, $total-columns);
-    }
-
-    @include breakpoint("large") {
-        position: relative;
     }
 
     .listItem-button {
@@ -87,6 +85,7 @@
             transform-style: preserve-3d;
         }
     }
+    
 }
 
 .listItem-figureBody {

@@ -2,9 +2,21 @@
 
 ## Draft
 
+- Fixes the Sale badge so that it displays in list views. [#1694](https://github.com/bigcommerce/cornerstone/pull/1694)
+
 ## 4.7.0 (06-26-2020)
+- Document polyfilling strategy in readme. [#1696](https://github.com/bigcommerce/cornerstone/pull/1696)
+- Optimize polyfills to reduce download sizes on newer browsers as a way to improve performance. [#1669](https://github.com/bigcommerce/cornerstone/pull/1669)
+- Fixed the expand/collapse behavior for Custom filters thad do not have an '&' in their name. [#1693](https://github.com/bigcommerce/cornerstone/pull/1693)
+- Line breaks are getting stripped from 'Return Instructions' printed to the storefront. [#1692](https://github.com/bigcommerce/cornerstone/pull/1692)
+- Fixes Acount Orders Ship/Bill page to correctly display '&' instead of the encoded version: '&amp'. [#1691](https://github.com/bigcommerce/cornerstone/pull/1691)
+- Fixed the expanding/collapsing behavior for Product Filters on category, brand, and search result pages. [#1689](https://github.com/bigcommerce/cornerstone/pull/1689)
+- Fix author field on Product Reviews from displaying HTML entities in place of special characters. [#1688](https://github.com/bigcommerce/cornerstone/pull/1688)
+- Display wallet on drop-down section from cart [#1687](https://github.com/bigcommerce/cornerstone/pull/1687)
+
 
 ## 4.6.1 (05-28-2020)
+No actual PR updates. Fixes config values.
 
 ## 4.6.0 (2020-05-28)
 -Account: Product option special characters are not rendered on invoice, order contents and returns [#1681|https://github.com/bigcommerce/cornerstone/pull/1681]

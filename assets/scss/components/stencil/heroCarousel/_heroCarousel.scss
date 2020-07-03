@@ -28,8 +28,18 @@
     }
 
     &.slick-initialized { // 2
-        max-height: remCalc(1000);
+        // max-height: remCalc(1000);
+        // max-height: remCalc(250px);
         opacity: 1;
+
+        @include breakpoint("small") {
+            max-height: remCalc(400px);            
+        }
+
+        @include breakpoint("medium") {
+            max-height: remCalc(600px);            
+        }
+
     }
 
     &:not(.slick-initialized) :not(.heroCarousel-slide--first).heroCarousel-slide {
@@ -40,9 +50,17 @@
         text-decoration: none;
     }
 
+    .slick-track {
+        // display: flex;
+        // justify-content: flex-start;
+        // align-items: center;
+    }
+
     .slick-next,
     .slick-prev {
         top: 50%;
+        transform: translateY(-50%);
+        margin: 0;
     }
 
     .slick-next {
@@ -77,39 +95,98 @@
 
 .heroCarousel-slide {
     position: relative;
+    // max-height: remCalc(400px);            
     a {
         text-decoration: none;
     }
+    
+    // @include breakpoint("medium") {
+    //     max-height: remCalc(600px);            
+    // }
 
     .heroCarousel-image {
+        object-fit: contain;
+        width: 100%;
+        height: 100%;
+        object-position: 50% 0%;
+        // width: 50px;
+        // max-height: remCalc(250px);
+
+        @include breakpoint("small") {
+            // object-fit: cover; // 1
+            // max-height: remCalc(600px);
+            // width: 100%;
+            // max-height: remCalc(400px);
+            object-position: 50% 50%;
+        }
+
         @include breakpoint("medium") {
-            object-fit: cover; // 1
-            max-height: remCalc(600px);
-            width: 100%;
+            // object-fit: cover; // 1
+            // max-height: remCalc(600px);
+            // width: 100%;
+            // max-height: remCalc(600px);
+        }
+
+    }
+
+    &.stretch {
+
+        .heroCarousel-image {
+            // display: block;
+            // width: 100vw;
+            // height: 100vh;
+            object-fit: cover;
+            object-position: 50% 50%;
+        }
+
+        &.compat-object-fit {
+            .heroCarousel-image {
+                width: 100%;
+            }
+        }
+    }    
+
+
+
+    &.compat-object-fit { // 1
+
+        .heroCarousel-image {
+            width: auto;
+            height: auto;
+            margin: 0 auto;    
         }
     }
 
     .heroCarousel-image-wrapper {
+        // max-height: remCalc(400px);
+
+        // @include breakpoint("medium") {
+        //     max-height: remCalc(600px);
+        // }
+        // height: 100%;
+
+        height: remCalc(250px);
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+
+        @include breakpoint("small") {
+            // object-fit: cover; // 1
+            // max-height: remCalc(600px);
+            // width: 100%;
+            height: remCalc(400px);
+        }
+
         @include breakpoint("medium") {
-            max-height: remCalc(600px);
+            // object-fit: cover; // 1
+            // max-height: remCalc(600px);
+            // width: 100%;
+            height: remCalc(600px);
         }
+
+
     }
 
-    &.compat-object-fit { // 1
-        background-size: cover;
-        background-position: 50%;
-        background-repeat: no-repeat;
-
-        &.stretch {
-            @include breakpoint("large") { // 4
-                background-size: 100% 100%;
-            }
-        }
-
-        .heroCarousel-image {
-            opacity: 0;
-        }
-    }
 }
 
 .heroCarousel-content {
@@ -117,17 +194,22 @@
     padding: spacing("half") spacing("single") (spacing("double"));
     text-align: center;
 
-    @include breakpoint("medium") {
+    @include breakpoint("small") {
         @include carouselOpaqueBackgrounds;
+        width: remCalc(700px);
+        padding: spacing("single") * 1.5;
+
+
+        width: 70%;
         background-color: rgba($carousel-bgColor, 0.9);
         left: 0;
+        padding: spacing("single");
         margin: 0 auto;
-        padding: spacing("single") * 1.5;
         position: absolute;
         right: 0;
         top: 50%;
         transform: translateY(-50%);
-        width: remCalc(700px);
+    
 
         &.heroCarousel-content--empty {
             background-color: transparent;

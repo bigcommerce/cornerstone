@@ -142,6 +142,28 @@
             max-height: remCalc(600px);
         }
     }
+
+    &.is-square-image-type {
+        
+        .heroCarousel-image-wrapper {
+            height: 100vw;
+        
+            @include breakpoint("small") {
+                height: 56.25vw;
+            }    
+        }
+    }
+
+    &.is-vertical-image-type {
+        
+        .heroCarousel-image-wrapper {
+            height: 110vw;
+        
+            @include breakpoint("small") {
+                height: 56.25vw;
+            }    
+        }
+    }
 }
 
 .heroCarousel-content {

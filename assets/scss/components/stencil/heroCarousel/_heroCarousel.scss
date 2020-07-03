@@ -28,8 +28,6 @@
     }
 
     &.slick-initialized { // 2
-        // max-height: remCalc(1000);
-        // max-height: remCalc(250px);
         opacity: 1;
 
         @include breakpoint("small") {
@@ -48,12 +46,6 @@
 
     a {
         text-decoration: none;
-    }
-
-    .slick-track {
-        // display: flex;
-        // justify-content: flex-start;
-        // align-items: center;
     }
 
     .slick-next,
@@ -95,46 +87,24 @@
 
 .heroCarousel-slide {
     position: relative;
-    // max-height: remCalc(400px);            
     a {
         text-decoration: none;
-    }
-    
-    // @include breakpoint("medium") {
-    //     max-height: remCalc(600px);            
-    // }
+    }   
 
     .heroCarousel-image {
         object-fit: contain;
         width: 100%;
         height: 100%;
         object-position: 50% 0%;
-        // width: 50px;
-        // max-height: remCalc(250px);
 
         @include breakpoint("small") {
-            // object-fit: cover; // 1
-            // max-height: remCalc(600px);
-            // width: 100%;
-            // max-height: remCalc(400px);
             object-position: 50% 50%;
         }
-
-        @include breakpoint("medium") {
-            // object-fit: cover; // 1
-            // max-height: remCalc(600px);
-            // width: 100%;
-            // max-height: remCalc(600px);
-        }
-
     }
 
     &.stretch {
 
         .heroCarousel-image {
-            // display: block;
-            // width: 100vw;
-            // height: 100vh;
             object-fit: cover;
             object-position: 50% 50%;
         }
@@ -146,8 +116,6 @@
         }
     }    
 
-
-
     &.compat-object-fit { // 1
 
         .heroCarousel-image {
@@ -158,35 +126,22 @@
     }
 
     .heroCarousel-image-wrapper {
-        // max-height: remCalc(400px);
-
-        // @include breakpoint("medium") {
-        //     max-height: remCalc(600px);
-        // }
-        // height: 100%;
 
         height: remCalc(250px);
         display: flex;
         justify-content: center;
         align-items: flex-start;
 
+        height: 56.25vw;
+
         @include breakpoint("small") {
-            // object-fit: cover; // 1
-            // max-height: remCalc(600px);
-            // width: 100%;
-            height: remCalc(400px);
+            max-height: remCalc(400px);
         }
 
         @include breakpoint("medium") {
-            // object-fit: cover; // 1
-            // max-height: remCalc(600px);
-            // width: 100%;
-            height: remCalc(600px);
+            max-height: remCalc(600px);
         }
-
-
     }
-
 }
 
 .heroCarousel-content {
@@ -209,7 +164,6 @@
         right: 0;
         top: 50%;
         transform: translateY(-50%);
-    
 
         &.heroCarousel-content--empty {
             background-color: transparent;

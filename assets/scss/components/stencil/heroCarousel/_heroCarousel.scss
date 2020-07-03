@@ -9,10 +9,6 @@
 //    object-fit and instead copy the image src to a the background-image of the
 //    wrapper div and add the compat-object-fit class.
 //
-// 2. Visually overrides the top margin for '.body' defined in _body.scss.
-//    The '.body' top margin creates space between the header and page content.
-//    However, on the homepage, we want the carousel to be flush with the header.
-//
 // 3. Allows image to scale on large screens while preventing the top and bottom
 //    from becoming cut off.
 // -----------------------------------------------------------------------------
@@ -22,14 +18,16 @@
     min-width: 100%;
     margin-bottom: (spacing("double") + spacing("single"));
     margin-top: -(spacing("single")); // 3
+    overflow: hidden;
 
     @include breakpoint("medium") {
         margin-top: -(spacing("single") + spacing("base")); // 3
     }
 
-    &.slick-initialized { // 2
+    &.slick-initialized {
         opacity: 1;
-
+        max-height: 100vh;
+        
         @include breakpoint("small") {
             max-height: remCalc(400px);            
         }
@@ -109,19 +107,19 @@
             object-position: 50% 50%;
         }
 
-        &.compat-object-fit {
+        &.compat-object-fit { // 1
             .heroCarousel-image {
                 width: 100%;
+                height: 100%;
             }
         }
     }    
 
     &.compat-object-fit { // 1
-
+        overflow: hidden;
+        
         .heroCarousel-image {
             width: auto;
-            height: auto;
-            margin: 0 auto;    
         }
     }
 

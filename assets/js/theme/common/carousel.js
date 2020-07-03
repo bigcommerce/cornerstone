@@ -37,7 +37,7 @@ export default function () {
     });
 
     // Alternative image styling for IE, which doesn't support objectfit
-    if (typeof document.documentElement.style.objectFit === 'undefined') {
+    if (document.documentElement.style.objectFit === undefined) {
         $slidesNodes.each((index, element) => {
             $(element).addClass('compat-object-fit');
         });

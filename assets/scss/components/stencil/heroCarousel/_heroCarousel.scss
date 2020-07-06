@@ -19,6 +19,11 @@
     margin-bottom: (spacing("double") + spacing("single"));
     margin-top: -(spacing("single")); // 3
     overflow: hidden;
+    visibility: hidden;
+
+    &.is-visible {
+        visibility: visible;
+    }
 
     @include breakpoint("medium") {
         margin-top: -(spacing("single") + spacing("base")); // 3
@@ -35,7 +40,6 @@
         @include breakpoint("medium") {
             max-height: remCalc(600px);            
         }
-
     }
 
     &:not(.slick-initialized) :not(.heroCarousel-slide--first).heroCarousel-slide {

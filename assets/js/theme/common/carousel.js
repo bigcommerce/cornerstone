@@ -1,20 +1,32 @@
 import 'slick-carousel';
 
+const showCarouselIfSlidesAnalizedSetup = ($carousel) => {
+    const analizedSlides = [];
+    return ($slides) => ($slide) => {
+        analizedSlides.push($slide);
+        return $slides.length === analizedSlides.length && $carousel.addClass('is-visible');
+    };
+};
+
 export default function () {
     const $carousel = $('[data-slick]');
 
     if ($carousel.length === 0) return;
 
-    const multipleSlides = $carousel[0].childElementCount > 1;
-    $carousel.slick({ dots: multipleSlides });
+    $carousel.slick({ dots: $carousel[0].childElementCount > 1 });
 
     const $slidesNodes = $('.heroCarousel-slide');
+
+    const showCarouselIfSlidesAnalized = showCarouselIfSlidesAnalizedSetup($carousel)($slidesNodes);
 
     $slidesNodes.each((index, element) => {
         const $element = $(element);
         const isContentBlock = !!$element.find('.heroCarousel-content').length;
 
-        if (isContentBlock) return true;
+        if (isContentBlock) {
+            showCarouselIfSlidesAnalized($element);
+            return true;
+        }
 
         const $image = $element.find('.heroCarousel-image-wrapper img');
         $('<img/>') // Make in memory copy of image to avoid css issues
@@ -33,6 +45,7 @@ export default function () {
                     || '';
 
                 $element.addClass(slideClass);
+                showCarouselIfSlidesAnalized($element);
             });
     });
 

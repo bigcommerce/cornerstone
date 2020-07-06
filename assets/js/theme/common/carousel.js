@@ -4,7 +4,8 @@ const showCarouselIfSlidesAnalizedSetup = ($carousel) => {
     const analizedSlides = [];
     return ($slides) => ($slide) => {
         analizedSlides.push($slide);
-        return $slides.length === analizedSlides.length && $carousel.addClass('is-visible');
+        return $slides.length === analizedSlides.length
+            && $carousel.addClass('is-visible');
     };
 };
 
@@ -29,22 +30,25 @@ export default function () {
         }
 
         const $image = $element.find('.heroCarousel-image-wrapper img');
-        $('<img/>') // Make in memory copy of image to avoid css issues
+        $('<img/>')
             .attr('src', $($image).attr('src'))
             .load(function getImageSizes() {
-                const imageRealWidth = this.width; // Note: $(this).width() will not
-                const imageRealHeight = this.height; // work for in memory images.
+                const imageRealWidth = this.width;
+                const imageRealHeight = this.height;
 
                 const imageAspectRatio = imageRealHeight / imageRealWidth;
 
-                const isImageSquare = imageAspectRatio > 0.8 && imageAspectRatio <= 1.2;
-                const isImageVertical = imageAspectRatio > 1.2;
+                $element.addClass(() => {
+                    switch (true) {
+                    case imageAspectRatio > 0.8 && imageAspectRatio <= 1.2:
+                        return 'is-square-image-type';
+                    case imageAspectRatio > 1.2:
+                        return 'is-vertical-image-type';
+                    default:
+                        return '';
+                    }
+                });
 
-                const slideClass = isImageSquare && 'is-square-image-type'
-                    || isImageVertical && 'is-vertical-image-type'
-                    || '';
-
-                $element.addClass(slideClass);
                 showCarouselIfSlidesAnalized($element);
             });
     });

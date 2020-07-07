@@ -11,13 +11,16 @@
             <li class="navPage-subMenu-item">
                 {{#if children}}
                     <a
-                        class="navPage-subMenu-action navPages-action has-subMenu{{#if is_active}} activePage{{/if}}"
+                        class="navPage-subMenu-action NESTED navPages-action has-subMenu{{#if is_active}} activePage{{/if}}"
                         href="{{url}}"
-                        data-collapsible="navPages-{{id}}"
-                        data-collapsible-disabled-breakpoint="medium"
-                        data-collapsible-disabled-state="open"
-                        data-collapsible-enabled-state="closed">
-                        {{name}} <i class="icon navPages-action-moreIcon" aria-hidden="true"><svg><use xlink:href="#icon-chevron-down" /></svg></i>
+>
+                        {{name}} <span class="collapsible-icon-wrapper"
+                                    data-collapsible="navPages-{{id}}"
+                                    data-collapsible-disabled-breakpoint="medium"
+                                    data-collapsible-disabled-state="open"
+                                    data-collapsible-enabled-state="closed">
+                                        <i class="icon navPages-action-moreIcon" aria-hidden="true"><svg><use xlink:href="#icon-chevron-down" /></svg></i>
+                                </span>
                     </a>
                     <ul class="navPage-childList" id="navPages-{{id}}">
                         {{#each children}}

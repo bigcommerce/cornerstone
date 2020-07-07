@@ -240,7 +240,7 @@
 
 .navPages-action-moreIcon {
     @include square(8px);
-    margin-left: spacing("quarter");
+    margin-left: spacing("half");
     transform: rotate(-90deg);
 
     @include breakpoint("medium") {
@@ -381,14 +381,24 @@
 }
 
 .navPage-subMenu-action {
-    padding: spacing("half") 0;
+    display: flex;
+    padding: 0;
+    align-items: center;
 
     @include breakpoint("medium") {
         padding: spacing("half") 0 (spacing("half") + spacing("quarter"));
     }
 
     .collapsible-icon-wrapper {
-        position: relative;
+        height: 100%;
+        width: 100%;
+        box-sizing: content-box;
+        padding: spacing("half") 0;
+        display: inline-block;
+
+        @include breakpoint("medium") {
+            display: none;
+        }    
     }
 }
 

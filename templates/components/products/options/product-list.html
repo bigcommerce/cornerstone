@@ -15,10 +15,10 @@
                     <input class="form-radio"
                            type="radio"
                            name="attribute[{{id}}]"
-                           value="0"
-                           id="attribute_productlist_0_{{id}}"
-                           checked="{{#if defaultValue '==' 0}}checked{{/if}}" required>
-                    <label class="form-label" for="attribute_productlist_0_{{id}}">{{lang 'products.none'}}</label>
+                           value=""
+                           id="attribute_productlist_{{../id}}_none"
+                           checked="{{#if defaultValue '==' ''}}checked{{/if}}">
+                    <label class="form-label" for="attribute_productlist_{{../id}}_none">{{lang 'products.none'}}</label>
                 </li>
             {{/unless}}
             {{#each values}}

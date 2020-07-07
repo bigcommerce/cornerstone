@@ -7,6 +7,18 @@
         {{/if}}
     </label>
 
+    {{#unless required}}
+        <input
+            class="form-radio"
+            type="radio"
+            id="attribute_radio_{{../id}}_none"
+            name="attribute[{{../id}}]"
+            value=""
+            checked="{{#if defaultValue '==' ''}}checked{{/if}}"
+        >
+        <label class="form-label" for="attribute_radio_{{../id}}_none">{{lang 'products.none'}}</label>
+    {{/unless}}
+
     {{#each this.values}}
         <input
             class="form-radio"

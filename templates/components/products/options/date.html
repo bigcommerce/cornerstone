@@ -2,9 +2,7 @@
     <label class="form-label form-label--alternate form-label--inlineSmall" {{#if style}}style="{{style}}" {{/if}}>
         {{this.display_name}}:
 
-        {{#if required}}
-            <small>{{lang 'common.required'}}</small>
-        {{/if}}
+        {{> components/common/requireness-msg}}
     </label>
     <select class="form-select form-select--date" name="attribute[{{this.id}}][month]" {{#if required}}required{{/if}}>
         <option value="">{{lang 'common.month'}}</option>

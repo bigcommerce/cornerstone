@@ -381,9 +381,17 @@
 }
 
 .navPage-subMenu-action {
-    display: flex;
-    padding: 0;
-    align-items: center;
+    padding: spacing("half") 0;
+
+    &.has-subMenu:not(.navPages-action-depth-max) {
+        display: flex;
+        padding: 0;
+        align-items: center;
+
+        @include breakpoint("medium") {
+            padding: spacing("half") 0 (spacing("half") + spacing("quarter"));
+        }
+    }
 
     @include breakpoint("medium") {
         padding: spacing("half") 0 (spacing("half") + spacing("quarter"));

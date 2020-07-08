@@ -194,6 +194,14 @@
     text-decoration: none;
     text-transform: uppercase;
 
+    &.has-subMenu {
+        .navPages-list:not(.navPages-list-depth-max) & {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;        
+        }
+    }
+
     @include breakpoint("medium") {
         display: inline-block;
         padding: spacing("half") (spacing("half") + spacing("quarter")) (spacing("half") + spacing("quarter"));
@@ -382,9 +390,7 @@
     padding: spacing("half") 0;
 
     &.has-subMenu:not(.navPages-action-depth-max) {
-        display: flex;
         padding: 0;
-        align-items: center;
 
         @include breakpoint("medium") {
             padding: spacing("half") 0 (spacing("half") + spacing("quarter"));
@@ -401,6 +407,7 @@
         box-sizing: content-box;
         padding: spacing("half") 0;
         display: inline-block;
+        text-align: right;
 
         @include breakpoint("medium") {
             display: none;

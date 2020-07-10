@@ -1,7 +1,7 @@
 # Changelog
 
 ## Draft
-
+- Bump easyzoom, lazysizes, sweetalert2 and whatwg-fetch versions [#1718](https://github.com/bigcommerce/cornerstone/pull/1718)
 - Fixes the Sale badge so that it displays in list views. [#1694](https://github.com/bigcommerce/cornerstone/pull/1694)
 
 ## 4.7.0 (06-26-2020)

@@ -289,8 +289,8 @@
         display: block;
     }
 
-    .navPage-subMenu-action:not(.navPages-action-depth-max) & {
-        margin-left: spacing("double");
+    .navPage-subMenu-action:not(.navPages-action-depth-max) + & {
+        margin-left: spacing("double"); // 
 
         @include breakpoint("medium") {
             margin-left: 0;
@@ -417,7 +417,7 @@
         padding: 0 0 0 spacing("single");
 
         @include breakpoint("medium") {
-            padding: spacing("half") 0 (spacing("half") + spacing("quarter"));
+            padding: spacing("half") spacing("single") (spacing("half") + spacing("quarter"));
         }
     }
 

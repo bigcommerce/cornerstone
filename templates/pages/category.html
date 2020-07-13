@@ -49,11 +49,7 @@ category:
     {{/if}}
 
     <main class="page-content" id="product-listing-container">
-        {{#if category.products}}
-            {{> components/category/product-listing}}
-        {{else}}
-            <p>{{lang 'categories.no_products'}}</p>
-        {{/if}}
+        {{> components/category/product-listing}}
         {{{region name="category_below_content"}}}
     </main>
 </div>

@@ -335,6 +335,10 @@
     .navPages-list:not(.navPages-list-depth-max) .navPages-action.has-subMenu + & {
         .navPage-subMenu-list {
             margin-right: 0;
+
+            @include breakpoint("medium") {
+                margin-right: auto;
+            }    
         }
     }
 }
@@ -417,7 +421,7 @@
         padding: 0 0 0 spacing("single");
 
         @include breakpoint("medium") {
-            padding: spacing("half") spacing("single") (spacing("half") + spacing("quarter"));
+            padding: spacing("half") 0 (spacing("half") + spacing("quarter"));
         }
     }
 

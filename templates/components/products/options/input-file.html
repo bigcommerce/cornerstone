@@ -10,6 +10,14 @@
         {{{lang 'products.file_option_set' url=file_url name=original_name}}}
         <label>{{lang 'cart.remove_file'}}<input type="checkbox" name="{{file_remove}}"></label>
     {{/if}}
-    <p class="form-fileDescription">{{#if file_size}}{{lang 'products.max_filesize'}} <strong>{{file_size}}</strong>, {{/if}}{{#if file_types}}{{lang 'products.filetypes'}} <strong>{{file_types}}</strong>{{/if}}</p>
+    <p class="form-fileDescription">
+        {{#if file_size}}
+            {{lang 'products.max_filesize'}}
+            <strong>{{file_size}}{{lang 'products.kilobytes_abbreviation'}}</strong>,
+        {{/if}}
+        {{#if file_types}}
+            {{lang 'products.filetypes'}} <strong>{{file_types}}</strong>
+        {{/if}}
+    </p>
 
 </div>

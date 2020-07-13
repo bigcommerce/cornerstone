@@ -4,21 +4,21 @@
     <article class="listItem">
 {{/if}}
     <figure class="listItem-figure">
-        {{#or price.non_sale_price_with_tax price.non_sale_price_without_tax}}
-        {{#if theme_settings.product_sale_badges '===' 'sash'}}
-            <div class="sale-flag-sash">
-                <span class="sale-text">On Sale!</span>
-            </div>
-        {{else if theme_settings.product_sale_badges '===' 'topleft'}}
-            <div class="sale-flag-side">
-                <span class="sale-text">On Sale!</span>
-            </div>
-        {{else if theme_settings.product_sale_badges '===' 'burst'}}
-            <div class="starwrap">
-                <div class="sale-text-burst">On Sale!</div>
-                <div class="sale-flag-star"></div>
-            </div>
-        {{/if}}
+        {{#or price.sale_price_with_tax.value price.sale_price_without_tax.value}}
+            {{#if theme_settings.product_sale_badges '===' 'sash'}}
+                <div class="sale-flag-sash">
+                    <span class="sale-text">On Sale!</span>
+                </div>
+            {{else if theme_settings.product_sale_badges '===' 'topleft'}}
+                <div class="sale-flag-side">
+                    <span class="sale-text">On Sale!</span>
+                </div>
+            {{else if theme_settings.product_sale_badges '===' 'burst'}}
+                <div class="starwrap">
+                    <div class="sale-text-burst">On Sale!</div>
+                    <div class="sale-flag-star"></div>
+                </div>
+            {{/if}}
         {{/or}}    
         {{> components/common/responsive-img
             image=image

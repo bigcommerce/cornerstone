@@ -9,10 +9,6 @@
 //    object-fit and instead copy the image src to a the background-image of the
 //    wrapper div and add the compat-object-fit class.
 //
-// 2. Visually overrides the top margin for '.body' defined in _body.scss.
-//    The '.body' top margin creates space between the header and page content.
-//    However, on the homepage, we want the carousel to be flush with the header.
-//
 // 3. Allows image to scale on large screens while preventing the top and bottom
 //    from becoming cut off.
 // -----------------------------------------------------------------------------
@@ -22,14 +18,28 @@
     min-width: 100%;
     margin-bottom: (spacing("double") + spacing("single"));
     margin-top: -(spacing("single")); // 3
+    overflow: hidden;
+    visibility: hidden;
+
+    &.is-visible {
+        visibility: visible;
+    }
 
     @include breakpoint("medium") {
         margin-top: -(spacing("single") + spacing("base")); // 3
     }
 
-    &.slick-initialized { // 2
-        max-height: remCalc(1000);
+    &.slick-initialized {
         opacity: 1;
+        max-height: 100vh;
+        
+        @include breakpoint("small") {
+            max-height: remCalc(400px);            
+        }
+
+        @include breakpoint("medium") {
+            max-height: remCalc(600px);            
+        }
     }
 
     &:not(.slick-initialized) :not(.heroCarousel-slide--first).heroCarousel-slide {
@@ -43,6 +53,8 @@
     .slick-next,
     .slick-prev {
         top: 50%;
+        transform: translateY(-50%);
+        margin: 0;
     }
 
     .slick-next {
@@ -82,32 +94,73 @@
     }
 
     .heroCarousel-image {
-        @include breakpoint("medium") {
-            object-fit: cover; // 1
-            max-height: remCalc(600px);
-            width: 100%;
+        object-fit: contain;
+        width: 100%;
+        height: 100%;
+        object-position: 50% 0%;
+
+        @include breakpoint("small") {
+            object-position: 50% 50%;
+        }
+    }
+
+    &.stretch {
+        .heroCarousel-image {
+            object-fit: cover;
+            object-position: 50% 50%;
+        }
+
+        &.compat-object-fit { // 1
+            .heroCarousel-image {
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }    
+
+    &.compat-object-fit { // 1
+        overflow: hidden;
+        
+        .heroCarousel-image {
+            width: auto;
         }
     }
 
     .heroCarousel-image-wrapper {
+        height: remCalc(250px);
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        height: 56.25vw;
+
+        @include breakpoint("small") {
+            max-height: remCalc(400px);
+        }
+
         @include breakpoint("medium") {
             max-height: remCalc(600px);
         }
     }
 
-    &.compat-object-fit { // 1
-        background-size: cover;
-        background-position: 50%;
-        background-repeat: no-repeat;
-
-        &.stretch {
-            @include breakpoint("large") { // 4
-                background-size: 100% 100%;
-            }
+    &.is-square-image-type {
+        
+        .heroCarousel-image-wrapper {
+            height: 100vw;
+        
+            @include breakpoint("small") {
+                height: 56.25vw;
+            }    
         }
+    }
 
-        .heroCarousel-image {
-            opacity: 0;
+    &.is-vertical-image-type {
+        
+        .heroCarousel-image-wrapper {
+            height: 110vw;
+        
+            @include breakpoint("small") {
+                height: 56.25vw;
+            }    
         }
     }
 }
@@ -117,17 +170,19 @@
     padding: spacing("half") spacing("single") (spacing("double"));
     text-align: center;
 
-    @include breakpoint("medium") {
+    @include breakpoint("small") {
         @include carouselOpaqueBackgrounds;
+        width: remCalc(700px);
+        padding: spacing("single") * 1.5;
+        width: 70%;
         background-color: rgba($carousel-bgColor, 0.9);
         left: 0;
+        padding: spacing("single");
         margin: 0 auto;
-        padding: spacing("single") * 1.5;
         position: absolute;
         right: 0;
         top: 50%;
         transform: translateY(-50%);
-        width: remCalc(700px);
 
         &.heroCarousel-content--empty {
             background-color: transparent;

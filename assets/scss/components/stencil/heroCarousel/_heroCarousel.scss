@@ -21,6 +21,10 @@
     overflow: hidden;
     visibility: hidden;
 
+    .dot {
+        display: block;
+    }
+
     &.is-visible {
         visibility: visible;
     }
@@ -218,5 +222,12 @@
 
     @include breakpoint("medium") {
         margin-top: spacing("single");
+    }
+}
+
+* {
+    &:focus {
+        background-color: violet !important;
+        transform: scale(1.5) !important;
     }
 }

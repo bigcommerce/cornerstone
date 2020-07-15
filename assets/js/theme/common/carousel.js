@@ -1,4 +1,6 @@
-import 'slick-carousel';
+// import 'slick-carousel';
+
+import './slick-carousel-1.8.0';
 
 const showCarouselIfSlidesAnalizedSetup = ($carousel) => {
     const analizedSlides = [];
@@ -14,7 +16,12 @@ export default function () {
 
     if ($carousel.length === 0) return;
 
-    $carousel.slick({ dots: $carousel[0].childElementCount > 1 });
+    $carousel.slick({ 
+        dots: $carousel[0].childElementCount > 1,
+        customPaging: function updateDots() {
+            return '<button class="dot" tabindex="0"></button>'
+        } 
+    });
 
     const $slidesNodes = $('.heroCarousel-slide');
 

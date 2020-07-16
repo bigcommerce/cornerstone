@@ -194,6 +194,14 @@
     text-decoration: none;
     text-transform: uppercase;
 
+    &.has-subMenu {
+        .navPages-list:not(.navPages-list-depth-max) & {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
+
     @include breakpoint("medium") {
         display: inline-block;
         padding: spacing("half") (spacing("half") + spacing("quarter")) (spacing("half") + spacing("quarter"));
@@ -240,15 +248,27 @@
 
 .navPages-action-moreIcon {
     @include square(8px);
-    margin-left: spacing("quarter");
+    margin-left: spacing("half");
     transform: rotate(-90deg);
 
     @include breakpoint("medium") {
         transform: none;
     }
 
-    .has-subMenu.is-open & {
+    .has-subMenu.is-open &,
+    .collapsible-icon-wrapper.is-open &
+    {
         transform: rotate(0);
+    }
+
+    .navPages-list:not(.navPages-list-depth-max) & {
+        @include square(11px);
+        margin: 0 spacing("single");
+
+        @include breakpoint("medium") {
+            @include square(8px);
+            margin: 0 0 0 spacing("half");
+        }    
     }
 }
 
@@ -267,6 +287,14 @@
 
     &.is-open {
         display: block;
+    }
+
+    .navPage-subMenu-action:not(.navPages-action-depth-max) + & {
+        margin-left: spacing("double"); // 
+
+        @include breakpoint("medium") {
+            margin-left: 0;
+        }
     }
 }
 
@@ -302,6 +330,16 @@
 
     &.is-open {
         display: block;
+    }
+
+    .navPages-list:not(.navPages-list-depth-max) .navPages-action.has-subMenu + & {
+        .navPage-subMenu-list {
+            margin-right: 0;
+
+            @include breakpoint("medium") {
+                margin-right: auto;
+            }    
+        }
     }
 }
 
@@ -379,8 +417,29 @@
 .navPage-subMenu-action {
     padding: spacing("half") 0;
 
+    .navPages-list:not(.navPages-list-depth-max) & {
+        padding: 0 0 0 spacing("single");
+
+        @include breakpoint("medium") {
+            padding: spacing("half") 0 (spacing("half") + spacing("quarter"));
+        }
+    }
+
     @include breakpoint("medium") {
         padding: spacing("half") 0 (spacing("half") + spacing("quarter"));
+    }
+
+    .collapsible-icon-wrapper {
+        height: 100%;
+        width: 100%;
+        box-sizing: content-box;
+        padding: spacing("half") 0;
+        display: inline-block;
+        text-align: right;
+
+        @include breakpoint("medium") {
+            display: none;
+        }
     }
 }
 

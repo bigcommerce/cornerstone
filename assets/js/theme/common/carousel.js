@@ -15,7 +15,7 @@ const showCarouselIfSlidesAnalizedSetup = ($carousel) => {
         if ($slides.length === analizedSlides.length) {
             $carousel.addClass('is-visible');
             setSlideTabindexes($('.slick-slide'));
-        }  
+        }
     };
 };
 
@@ -24,11 +24,11 @@ export default function () {
 
     if ($carousel.length === 0) return;
 
-    $carousel.slick({ 
+    $carousel.slick({
         dots: $carousel[0].childElementCount > 1,
         customPaging: function updateDots() {
-            return '<button></button>'
-        } 
+            return '<button aria-label="slide 1 of 5"></button>'
+        }
     });
 
     $carousel.on('afterChange', function() {

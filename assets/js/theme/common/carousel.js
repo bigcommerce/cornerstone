@@ -27,7 +27,7 @@ export default function () {
     $carousel.slick({
         dots: $carousel[0].childElementCount > 1,
         customPaging: function updateDots() {
-            return '<button aria-label="slide 1 of 5"></button>'
+            return '<button></button>'
         }
     });
 

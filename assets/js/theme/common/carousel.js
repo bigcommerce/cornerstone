@@ -30,7 +30,7 @@ export default function () {
         ? {
             dots: true,
             customPaging: () => (
-                '<button></button>'
+                '<button type="button"></button>'
             ),
         }
         : {

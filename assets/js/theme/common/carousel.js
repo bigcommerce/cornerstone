@@ -24,12 +24,20 @@ export default function () {
 
     if ($carousel.length === 0) return;
 
-    $carousel.slick({
-        dots: $carousel[0].childElementCount > 1,
-        customPaging: function updateDots() {
+    const isMultipleSlides = $carousel[0].childElementCount > 1;
+
+    const slickSettingsObj = isMultipleSlides
+        ? {
+          dots: true,
+          customPaging: () => {
             return '<button></button>'
+            }
         }
-    });
+        : {
+            dots: false
+        };
+
+    $carousel.slick(slickSettingsObj);
 
     $carousel.on('afterChange', function() {
         setSlideTabindexes($('.slick-slide'));

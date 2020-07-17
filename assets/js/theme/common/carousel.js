@@ -27,11 +27,11 @@ export default function () {
     const isMultipleSlides = $carousel[0].childElementCount > 1;
 
     const slickSettingsObj = isMultipleSlides
-            ? {
-                dots: true,
-                customPaging: () => {
-                return '<button></button>';
-            },
+        ? {
+            dots: true,
+            customPaging: () => (
+                '<button></button>'
+            ),
         }
         : {
             dots: false,

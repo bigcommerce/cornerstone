@@ -5,8 +5,8 @@ const setSlideTabindexes = ($slides) => {
         const $element = $(element);
         const tabIndex = $element.hasClass('slick-active') ? 0 : -1;
         $element.attr('tabindex', tabIndex);
-    })
-}
+    });
+};
 
 const showCarouselIfSlidesAnalizedSetup = ($carousel) => {
     const analizedSlides = [];
@@ -27,19 +27,19 @@ export default function () {
     const isMultipleSlides = $carousel[0].childElementCount > 1;
 
     const slickSettingsObj = isMultipleSlides
-        ? {
-          dots: true,
-          customPaging: () => {
-            return '<button></button>'
-            }
+            ? {
+                dots: true,
+                customPaging: () => {
+                return '<button></button>';
+            },
         }
         : {
-            dots: false
+            dots: false,
         };
 
     $carousel.slick(slickSettingsObj);
 
-    $carousel.on('afterChange', function() {
+    $carousel.on('afterChange', () => {
         setSlideTabindexes($('.slick-slide'));
     });
 

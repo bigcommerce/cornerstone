@@ -22,6 +22,8 @@ export default function (context) {
 
             modal.$content.find('[data-slick]').slick();
 
+            modal.setupFocusableElements('forQuickView');
+
             return new ProductDetails(modal.$content.find('.quickView'), context);
         });
     });

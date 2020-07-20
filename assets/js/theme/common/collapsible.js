@@ -82,6 +82,7 @@ export class Collapsible {
         // Assign DOM attributes
         this.$target.attr('aria-hidden', this.isCollapsed);
         this.$toggle
+            .attr('aria-label', $toggle.text().trim())
             .attr('aria-controls', $target.attr('id'))
             .attr('aria-expanded', this.isOpen);
 

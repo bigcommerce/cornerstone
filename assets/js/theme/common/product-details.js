@@ -271,7 +271,7 @@ export default class ProductDetails {
         if (_.isPlainObject(image)) {
             const zoomImageUrl = utils.tools.imageSrcset.getSrcset(
                 image.data,
-                { '1x': this.context.themeSettings.zoom_size },
+                { '1x': this.context.zoomSize },
                 /*
                     Should match zoom size used for data-zoom-image in
                     components/products/product-view.html
@@ -284,7 +284,7 @@ export default class ProductDetails {
 
             const mainImageUrl = utils.tools.imageSrcset.getSrcset(
                 image.data,
-                { '1x': this.context.themeSettings.product_size },
+                { '1x': this.context.productSize },
                 /*
                     Should match fallback image size used for the main product image in
                     components/products/product-view.html

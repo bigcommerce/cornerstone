@@ -227,29 +227,38 @@ export class Modal {
         if (!isTAB) return;
 
         const $collection = focusableElements[modalType]();
+        const collectionLastIdx = $collection.length - 1
 
         const $currentElement =  $collection.filter(`.${focusedClass}`);
         const currentElementIdx = $collection.index($currentElement);
 
         const direction = event.which === TAB && event.shiftKey ? 'backwards' : 'forwards';
 
-        const collectionLastIdx = $collection.length - 1
-
         let nextElementIdx;
+        let $candidatesCollection;
         if (direction === 'forwards') {
             nextElementIdx = currentElementIdx === collectionLastIdx
                 ? 0
                 : currentElementIdx + 1;
+            $candidatesCollection = $collection.slice(nextElementIdx);
         } else if (direction === 'backwards') {
             nextElementIdx = currentElementIdx === 0 
                 ? collectionLastIdx
-                : currentElementIdx - 1
+                : currentElementIdx - 1;
+            $candidatesCollection = $($collection.slice(0, nextElementIdx + 1).get().reverse());
         }
 
-        const $nextElement = $($collection.get(nextElementIdx));
-        $currentElement.removeClass(focusedClass);
-        $nextElement.focus().addClass(focusedClass); 
-        event.preventDefault();
+        $candidatesCollection.each((index, element) => {
+            const $focusCanditate = $(element);
+            $focusCanditate.focus();
+            console.log($focusCanditate.is($(document.activeElement)), '$focusCanditate.is($(document.activeElement))');            
+            if ($focusCanditate.is($(document.activeElement))) {
+                $focusCanditate.addClass(focusedClass);
+                $currentElement.removeClass(focusedClass);
+                event.preventDefault();
+                return false;
+            }
+        })
     }
 
     onModalClose() {

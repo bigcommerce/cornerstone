@@ -4,7 +4,9 @@ const bodyActiveClass = 'has-activeModal';
 const loadingOverlayClass = 'loadingOverlay';
 const modalBodyClass = 'modal-body';
 const modalContentClass = 'modal-content';
-const focusableElementsSelector = 'button, [href], input, select, textarea, [tabindex]:not([tabindex=“-1”]), [type]:not([type=“hidden”])';
+const focusableElementsSelector = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+const uselessFocusableElementsSelector = '[tabindex="-1"], [type="hidden"]'
+const focusedClass = 'focused';
 
 const TAB = 9;
 
@@ -15,7 +17,11 @@ const SizeClasses = {
 };
 
 const focusableElements = {
-    'forQuickView': () => $('#modal').find(focusableElementsSelector).not('#modal-review-form *').not('#previewModal *'),
+    'forQuickView': () => $('#modal')
+        .find(focusableElementsSelector)
+            .not('#modal-review-form *')
+            .not('#previewModal *')
+            .not(uselessFocusableElementsSelector)
 }
 
 export const ModalEvents = {
@@ -208,40 +214,49 @@ export class Modal {
         this.$lastPageFocusedElement = $(document.activeElement);
 
         const $collection = focusableElements[modalType]();
-        $collection.get(0).focus();
+        console.log($($collection.get(0)), '$collection.get(0)');
+        const $elementToFocus = $($collection.get(0));
+        $elementToFocus.focus().addClass('focused');
 
         $('#modal').on('keydown', this.onTabbing.bind(null, modalType));
     }
 
     onTabbing(modalType, event) {
-        console.log(modalType, 'modalType');
-        console.log(event, 'event');
         const isTAB = event.which === TAB;
             
         if (!isTAB) return;
 
         const $collection = focusableElements[modalType]();
-        
-        const $firstInCollection = $($collection.get(0));
-        const $lastInCollection = $($collection.get($collection.length - 1));
 
-        $firstInCollection.attr('data-first-focusable', true);
-        $lastInCollection.attr('data-last-focusable', true);
+        let currentElementIdx;
+        $collection.each((index, element) => {
+            const $element = $(element);
+            
+            if ($element.hasClass('focused')) {
+                currentElementIdx = index;
+            };
+        });
+
+        const $currentElement = $($collection.get(currentElementIdx));
 
         const direction = event.which === TAB && event.shiftKey ? 'backwards' : 'forwards';
 
         if (direction === 'forwards') {
-            const isLastElement = Boolean($(document.activeElement).attr('data-last-focusable'));
-            if (isLastElement) {
-                $firstInCollection.focus();
-                event.preventDefault();
-            }
+            const nextElementIdx = currentElementIdx === $collection.length - 1 
+                ? 0
+                : currentElementIdx + 1;
+            const $nextElement = $($collection.get(nextElementIdx));
+            $currentElement.removeClass('focused');
+            $nextElement.focus().addClass('focused'); 
+            event.preventDefault();
         } else if (direction === 'backwards') {
-            const isFirstElement = Boolean($(document.activeElement).attr('data-first-focusable'));
-            if (isFirstElement) {
-                $lastInCollection.focus();
-                event.preventDefault();
-            }
+            const nextElementIdx = currentElementIdx === 0 
+                ? $collection.length - 1
+                : currentElementIdx - 1
+            const $nextElement = $($collection.get(nextElementIdx));
+            $currentElement.removeClass('focused');
+            $nextElement.focus().addClass('focused'); 
+            event.preventDefault();
         }
     }
 

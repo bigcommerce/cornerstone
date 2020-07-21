@@ -107,9 +107,7 @@ export class Modal {
         this.defaultSize = size || getSizeFromModal($modal);
         this.size = this.defaultSize;
         this.pending = false;
-        this.$focusableElements = null;
         this.$lastPageFocusedElement = null;
-        this.focusedElementIndex = 0;
 
         this.onModalOpen = this.onModalOpen.bind(this);
         this.onModalOpened = this.onModalOpened.bind(this);
@@ -207,53 +205,44 @@ export class Modal {
     }
 
     setupFocusableElements(modalType) {
-        // return false;
+        this.$lastPageFocusedElement = $(document.activeElement);
+
         const $collection = focusableElements[modalType]();
-        console.log($collection, '$collection');
-
-
         $collection.get(0).focus();
 
-        $(window).bind('keydown', function(event) {
-            const isTAB = event.which === TAB;
+        $('#modal').on('keydown', this.onTabbing.bind(null, modalType));
+    }
+
+    onTabbing(modalType, event) {
+        console.log(modalType, 'modalType');
+        console.log(event, 'event');
+        const isTAB = event.which === TAB;
             
-            if (!isTAB) return;
+        if (!isTAB) return;
 
-            const $collection = focusableElements[modalType]();
-            
-            const $firstInCollection = $($collection.get(0));
-            const $lastInCollection = $($collection.get($collection.length - 1));
-            console.log($firstInCollection, '$firstInCollection');
-            console.log($lastInCollection, '$lastInCollection');
+        const $collection = focusableElements[modalType]();
+        
+        const $firstInCollection = $($collection.get(0));
+        const $lastInCollection = $($collection.get($collection.length - 1));
 
-            $firstInCollection.attr('data-first-focusable', true);
-            $lastInCollection.attr('data-last-focusable', true);
+        $firstInCollection.attr('data-first-focusable', true);
+        $lastInCollection.attr('data-last-focusable', true);
 
+        const direction = event.which === TAB && event.shiftKey ? 'backwards' : 'forwards';
 
-            const direction = event.which === TAB && event.shiftKey ? 'backwards' : 'forwards';
-
-            if (direction === 'forwards') {
-                console.log('forwards');
-                const isLastElement = Boolean($(document.activeElement).attr('data-last-focusable'));
-                console.log(isLastElement, 'isLastElement');
-                if (isLastElement) {
-                    console.log('last Element');
-                    $firstInCollection.focus();
-                    event.preventDefault();
-                }
-            } else if (direction === 'backwards') {
-                console.log('backwards');
-                const isFirstElement = Boolean($(document.activeElement).attr('data-first-focusable'));
-                console.log(isFirstElement, 'isFirstElement');
-                if (isFirstElement) {
-                    console.log('first Element');
-                    $lastInCollection.focus();
-                    event       .preventDefault();
-                }
-
+        if (direction === 'forwards') {
+            const isLastElement = Boolean($(document.activeElement).attr('data-last-focusable'));
+            if (isLastElement) {
+                $firstInCollection.focus();
+                event.preventDefault();
             }
-
-        });
+        } else if (direction === 'backwards') {
+            const isFirstElement = Boolean($(document.activeElement).attr('data-first-focusable'));
+            if (isFirstElement) {
+                $lastInCollection.focus();
+                event.preventDefault();
+            }
+        }
     }
 
     onModalClose() {
@@ -262,6 +251,9 @@ export class Modal {
 
     onModalClosed() {
         this.size = this.defaultSize;
+        this.unbindEvents();
+        this.$lastPageFocusedElement && this.$lastPageFocusedElement.focus();
+        $('#modal').off(ModalEvents.keyDown);
     }
 
     onModalOpen() {

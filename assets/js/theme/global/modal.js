@@ -238,7 +238,7 @@ export class Modal {
                 console.log(isLastElement, 'isLastElement');
                 if (isLastElement) {
                     console.log('last Element');
-                    $lastInCollection.focus();
+                    $firstInCollection.focus();
                     event.preventDefault();
                 }
             } else if (direction === 'backwards') {
@@ -247,8 +247,8 @@ export class Modal {
                 console.log(isFirstElement, 'isFirstElement');
                 if (isFirstElement) {
                     console.log('first Element');
-                    $firstInCollection.focus();
-                    event.preventDefault();
+                    $lastInCollection.focus();
+                    event       .preventDefault();
                 }
 
             }

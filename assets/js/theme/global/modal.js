@@ -6,9 +6,9 @@ const modalBodyClass = 'modal-body';
 const modalContentClass = 'modal-content';
 const focusableElementsSelector = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
 const uselessFocusableElementsSelector = '[tabindex="-1"], [type="hidden"]'
-const focusedClass = 'focused';
 
 const TAB = 9;
+const focusedClass = 'focused';
 
 const SizeClasses = {
     small: 'modal--small',
@@ -214,9 +214,9 @@ export class Modal {
         this.$lastPageFocusedElement = $(document.activeElement);
 
         const $collection = focusableElements[modalType]();
-        console.log($($collection.get(0)), '$collection.get(0)');
+        $collection.each((index, element) => $(element).removeClass(focusedClass)); 
         const $elementToFocus = $($collection.get(0));
-        $elementToFocus.focus().addClass('focused');
+        $elementToFocus.focus().addClass(focusedClass);
 
         $('#modal').on('keydown', this.onTabbing.bind(null, modalType));
     }
@@ -228,36 +228,28 @@ export class Modal {
 
         const $collection = focusableElements[modalType]();
 
-        let currentElementIdx;
-        $collection.each((index, element) => {
-            const $element = $(element);
-            
-            if ($element.hasClass('focused')) {
-                currentElementIdx = index;
-            };
-        });
-
-        const $currentElement = $($collection.get(currentElementIdx));
+        const $currentElement =  $collection.filter(`.${focusedClass}`);
+        const currentElementIdx = $collection.index($currentElement);
 
         const direction = event.which === TAB && event.shiftKey ? 'backwards' : 'forwards';
 
+        const collectionLastIdx = $collection.length - 1
+
+        let nextElementIdx;
         if (direction === 'forwards') {
-            const nextElementIdx = currentElementIdx === $collection.length - 1 
+            nextElementIdx = currentElementIdx === collectionLastIdx
                 ? 0
                 : currentElementIdx + 1;
-            const $nextElement = $($collection.get(nextElementIdx));
-            $currentElement.removeClass('focused');
-            $nextElement.focus().addClass('focused'); 
-            event.preventDefault();
         } else if (direction === 'backwards') {
-            const nextElementIdx = currentElementIdx === 0 
-                ? $collection.length - 1
+            nextElementIdx = currentElementIdx === 0 
+                ? collectionLastIdx
                 : currentElementIdx - 1
-            const $nextElement = $($collection.get(nextElementIdx));
-            $currentElement.removeClass('focused');
-            $nextElement.focus().addClass('focused'); 
-            event.preventDefault();
         }
+
+        const $nextElement = $($collection.get(nextElementIdx));
+        $currentElement.removeClass(focusedClass);
+        $nextElement.focus().addClass(focusedClass); 
+        event.preventDefault();
     }
 
     onModalClose() {
@@ -266,9 +258,9 @@ export class Modal {
 
     onModalClosed() {
         this.size = this.defaultSize;
-        this.unbindEvents();
-        this.$lastPageFocusedElement && this.$lastPageFocusedElement.focus();
+        this.$lastPageFocusedElement.focus();
         $('#modal').off(ModalEvents.keyDown);
+        this.unbindEvents();
     }
 
     onModalOpen() {

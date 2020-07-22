@@ -242,7 +242,7 @@ export class Modal {
                 : currentElementIdx + 1;
             $candidatesCollection = $collection.slice(nextElementIdx);
         } else if (direction === 'backwards') {
-            nextElementIdx = currentElementIdx === 0 
+            nextElementIdx = currentElementIdx === 0
                 ? collectionLastIdx
                 : currentElementIdx - 1;
             $candidatesCollection = $($collection.slice(0, nextElementIdx + 1).get().reverse());
@@ -251,7 +251,6 @@ export class Modal {
         $candidatesCollection.each((index, element) => {
             const $focusCanditate = $(element);
             $focusCanditate.focus();
-            console.log($focusCanditate.is($(document.activeElement)), '$focusCanditate.is($(document.activeElement))');            
             if ($focusCanditate.is($(document.activeElement))) {
                 $focusCanditate.addClass(focusedClass);
                 $currentElement.removeClass(focusedClass);

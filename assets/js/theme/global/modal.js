@@ -223,7 +223,7 @@ export class Modal {
 
     onTabbing(modalType, event) {
         const isTAB = event.which === TAB;
-            
+
         if (!isTAB) return;
 
         const $collection = focusableElements[modalType]();

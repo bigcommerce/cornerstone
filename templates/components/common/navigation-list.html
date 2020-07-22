@@ -1,6 +1,6 @@
 {{#if children}}
 <a class="navPages-action has-subMenu{{#if is_active}} activePage{{/if}}" href="{{url}}" data-collapsible="navPages-{{id}}">
-    {{name}} <i class="icon navPages-action-moreIcon" aria-hidden="true"><svg><use xlink:href="#icon-chevron-down" /></svg></i>
+    {{name}}<i class="icon navPages-action-moreIcon" aria-hidden="true"><svg><use xlink:href="#icon-chevron-down" /></svg></i>
 </a>
 <div class="navPage-subMenu" id="navPages-{{id}}" aria-hidden="true" tabindex="-1">
     <ul class="navPage-subMenu-list">
@@ -13,11 +13,14 @@
                     <a
                         class="navPage-subMenu-action navPages-action has-subMenu{{#if is_active}} activePage{{/if}}"
                         href="{{url}}"
-                        data-collapsible="navPages-{{id}}"
-                        data-collapsible-disabled-breakpoint="medium"
-                        data-collapsible-disabled-state="open"
-                        data-collapsible-enabled-state="closed">
-                        {{name}} <i class="icon navPages-action-moreIcon" aria-hidden="true"><svg><use xlink:href="#icon-chevron-down" /></svg></i>
+>
+                        {{name}}<span class="collapsible-icon-wrapper"
+                                    data-collapsible="navPages-{{id}}"
+                                    data-collapsible-disabled-breakpoint="medium"
+                                    data-collapsible-disabled-state="open"
+                                    data-collapsible-enabled-state="closed">
+                                        <i class="icon navPages-action-moreIcon" aria-hidden="true"><svg><use xlink:href="#icon-chevron-down" /></svg></i>
+                                </span>
                     </a>
                     <ul class="navPage-childList" id="navPages-{{id}}">
                         {{#each children}}

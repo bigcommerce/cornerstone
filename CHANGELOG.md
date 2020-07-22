@@ -1,8 +1,29 @@
 # Changelog
 
 ## Draft
+
+## 4.8.0 (07-20-2020)
+- Fixed Facebook button during modal scrolling behaviour. [#1724](https://github.com/bigcommerce/cornerstone/pull/1724)
+- Fixed Product Image dimensions not constrained proportionally on Cart page which can lead to element overlapping. [#1722](https://github.com/bigcommerce/cornerstone/pull/1722)
+- Added byte type on file upload options when max file size feature is enabled. [#1721](https://github.com/bigcommerce/cornerstone/pull/1721)
+- Fixed empty faceted search display message. [#1720](https://github.com/bigcommerce/cornerstone/pull/1720)
+- Updated CornerStone to Utilize Existence of sale_price property for Determining Product/Variant Sale Status [#1719](https://github.com/bigcommerce/cornerstone/pull/1719)
 - Bump easyzoom, lazysizes, sweetalert2 and whatwg-fetch versions [#1718](https://github.com/bigcommerce/cornerstone/pull/1718)
+- Fixed text logos truncating on mobile devices and smaller browser sizes. [#1717](https://github.com/bigcommerce/cornerstone/pull/1717)
+- Ability to load subcategories and expand them if there are other categories beneath it. [#1715](https://github.com/bigcommerce/cornerstone/pull/1715)
+- Changed the default layout shape for PayPal smart buttons. [#1713](https://github.com/bigcommerce/cornerstone/pull/1713)
+- Fixed Sale badge "Burst" on hover color changing behaviour. [#1712](https://github.com/bigcommerce/cornerstone/pull/1712)
+- Allowing carousel image to stretch distorts image. [#1711](https://github.com/bigcommerce/cornerstone/pull/1711)
+- Fixed cart content make gift certificate alt and title translatable. [#1709](https://github.com/bigcommerce/cornerstone/pull/1709)
+- Added Optional Custom Options (Modifiers). [#1708](https://github.com/bigcommerce/cornerstone/pull/1708)
+- Fixed Product List Options Max Height issue. [#1707](https://github.com/bigcommerce/cornerstone/pull/1707)
+- Suppressing 3rd party Related Videos on YouTube videos. [#1704](https://github.com/bigcommerce/cornerstone/pull/1704)
+- Enabling Facebook Likes causes iframe overlap in WYSIWYG. [#1702](https://github.com/bigcommerce/cornerstone/pull/1702)
+- Fixed misalignment of Product Listings on Category pages when using the list Display Style. [#1701](https://github.com/bigcommerce/cornerstone/pull/1701)
+- Fixed Product Reviews display behaviour. [#1699](https://github.com/bigcommerce/cornerstone/pull/1699)
+- Removed unnecessary horizontal scrolling on some resolutions. [#1698](https://github.com/bigcommerce/cornerstone/pull/1698)
 - Fixes the Sale badge so that it displays in list views. [#1694](https://github.com/bigcommerce/cornerstone/pull/1694)
+- Added modal before switching currencies. [#1668](https://github.com/bigcommerce/cornerstone/pull/1668)
 
 ## 4.7.0 (06-26-2020)
 - Document polyfilling strategy in readme. [#1696](https://github.com/bigcommerce/cornerstone/pull/1696)

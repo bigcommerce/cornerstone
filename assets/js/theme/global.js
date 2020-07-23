@@ -1,4 +1,4 @@
-import 'focus-within-polyfill'
+import 'focus-within-polyfill';
 
 import './global/jquery-migrate';
 import './common/select-option-plugin';

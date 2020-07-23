@@ -6,9 +6,7 @@
                     <a class="breadcrumb-label"
                        itemprop="item"
                        href="{{url}}"
-                       {{#or @last (if url "==" null)}}
-                           aria-current="page"
-                       {{/or}}
+                       {{#if @last}}aria-current="page"{{/if}}
                     >
                         <span itemprop="name">{{name}}</span>
                     </a>

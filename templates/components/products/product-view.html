@@ -50,9 +50,11 @@
                     </span>
                 {{/if}}
                 {{#if settings.show_product_reviews}}
-                    <span class="productView-reviewLink">
+                    <span class="productView-reviewLink" role="button">
                         <a href="{{product.url}}{{#if is_ajax}}#write_review{{/if}}"
-                           {{#unless is_ajax }}data-reveal-id="modal-review-form"{{/unless}}>
+                           {{#unless is_ajax}}data-reveal-id="modal-review-form"{{/unless}}
+                           role="button"
+                        >
                            {{lang 'products.reviews.new'}}
                         </a>
                     </span>

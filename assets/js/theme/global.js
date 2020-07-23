@@ -1,3 +1,5 @@
+import 'focus-within-polyfill'
+
 import './global/jquery-migrate';
 import './common/select-option-plugin';
 import PageManager from './page-manager';
@@ -14,7 +16,6 @@ import carousel from './common/carousel';
 import loadingProgressBar from './global/loading-progress-bar';
 import svgInjector from './global/svg-injector';
 import objectFitImages from './global/object-fit-polyfill';
-import productCard from './common/product-card';
 
 export default class Global extends PageManager {
     onReady() {
@@ -36,6 +37,5 @@ export default class Global extends PageManager {
         loadingProgressBar();
         svgInjector();
         objectFitImages();
-        productCard();
     }
 }

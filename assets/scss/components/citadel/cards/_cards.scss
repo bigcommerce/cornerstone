@@ -12,11 +12,17 @@
 // -----------------------------------------------------------------------------
 
 .card {
-    &.focused-card {
+    &:focus-within {
         .card-figcaption {
             opacity: 1;
         }
     }
+
+    &.focus-within {
+        .card-figcaption {
+            opacity: 1;
+        }
+    }    
 }
 
 .card-figure {

@@ -247,20 +247,34 @@ export class Modal {
         const currentElementIdx = $collection.index($currentElement);
 
         const direction = event.which === tabKeyCode && event.shiftKey ? 'backwards' : 'forwards';
+        
+        /* to jump to the first or last element (depends on direction)
+        if focused element NOT in collection
+        it is possible if user will focus for example element with tabindex=-1 using mouse */
+        const isValidElementActive = currentElementIdx !== -1;
+
+        let startingPoint;
+        if (isValidElementActive) {
+            startingPoint = currentElementIdx
+        } else if (direction === 'forwards') {
+            startingPoint = collectionLastIdx;
+        } else if (direction === 'backwards') {
+            startingPoint = 0;
+        }
 
         let nextElementIdx;
         let $candidatesCollection;
         let $reserveCollection;
         if (direction === 'forwards') {
-            nextElementIdx = currentElementIdx === collectionLastIdx
+            nextElementIdx = startingPoint === collectionLastIdx
                 ? 0
-                : currentElementIdx + 1;
+                : startingPoint + 1;
             $candidatesCollection = $collection.slice(nextElementIdx);
             $reserveCollection = $collection;
         } else if (direction === 'backwards') {
-            nextElementIdx = currentElementIdx === 0
+            nextElementIdx = startingPoint === 0
                 ? collectionLastIdx
-                : currentElementIdx - 1;
+                : startingPoint - 1;
             $candidatesCollection = $($collection.slice(0, nextElementIdx + 1).get().reverse());
             $reserveCollection = $($collection.get().reverse());
         }

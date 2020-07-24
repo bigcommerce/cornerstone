@@ -23,6 +23,10 @@ const focusableElements = {
             .not(uselessFocusableElementsSelector)
 }
 
+export const modalTypes = {
+    QUICK_VIEW: 'forQuickView'
+};
+
 export const ModalEvents = {
     close: 'close.fndtn.reveal',
     closed: 'closed.fndtn.reveal',

@@ -2,7 +2,7 @@ import 'foundation-sites/js/foundation/foundation';
 import 'foundation-sites/js/foundation/foundation.dropdown';
 import utils from '@bigcommerce/stencil-utils';
 import ProductDetails from '../common/product-details';
-import { defaultModal } from './modal';
+import { defaultModal, modalTypes } from './modal';
 import 'slick-carousel';
 
 export default function (context) {
@@ -22,7 +22,7 @@ export default function (context) {
 
             modal.$content.find('[data-slick]').slick();
 
-            modal.setupFocusableElements('forQuickView');
+            modal.setupFocusableElements(modalTypes.QUICK_VIEW);
 
             return new ProductDetails(modal.$content.find('.quickView'), context);
         });

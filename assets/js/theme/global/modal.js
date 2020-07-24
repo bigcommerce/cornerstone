@@ -4,11 +4,10 @@ const bodyActiveClass = 'has-activeModal';
 const loadingOverlayClass = 'loadingOverlay';
 const modalBodyClass = 'modal-body';
 const modalContentClass = 'modal-content';
-const focusableElementsSelector = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+const focusableElementsSelector = 'button, [href], input, select, textarea, [tabindex]';
 const uselessFocusableElementsSelector = '[tabindex="-1"], [type="hidden"]'
 
-const TAB = 9;
-const focusedClass = 'focused';
+const tabKeyCode = 9;
 
 const SizeClasses = {
     small: 'modal--small',
@@ -113,7 +112,7 @@ export class Modal {
         this.defaultSize = size || getSizeFromModal($modal);
         this.size = this.defaultSize;
         this.pending = false;
-        this.$lastPageFocusedElement = null;
+        this.$preModalFocusedEl = null;
 
         this.onModalOpen = this.onModalOpen.bind(this);
         this.onModalOpened = this.onModalOpened.bind(this);
@@ -211,53 +210,63 @@ export class Modal {
     }
 
     setupFocusableElements(modalType) {
-        this.$lastPageFocusedElement = $(document.activeElement);
-
+        this.$preModalFocusedEl = $(document.activeElement);
+        
         const $collection = focusableElements[modalType]();
-        $collection.each((index, element) => $(element).removeClass(focusedClass)); 
-        const $elementToFocus = $($collection.get(0));
-        $elementToFocus.focus().addClass(focusedClass);
 
-        $('#modal').on('keydown', this.onTabbing.bind(null, modalType));
+        this.findElementToFocus($collection);
+
+        const onTabbingWithArgs = (event) => this.onTabbing(event, modalType, this.findElementToFocus.bind(this));
+
+        $('#modal').on('keydown', onTabbingWithArgs);
     }
 
-    onTabbing(modalType, event) {
-        const isTAB = event.which === TAB;
+    findElementToFocus($candidatesCollection, $reserveCollection = null) {
+        $candidatesCollection.each((index, element) => {
+            const $focusCanditate = $(element);
+            $focusCanditate.focus();
+            if ($focusCanditate.is($(document.activeElement))) {
+                return false;
+            };
+            // if no appropriate candidate - find appropriate in full collection
+            if (index === $candidatesCollection.length - 1 && $reserveCollection) {
+                this.findElementToFocus($reserveCollection);
+            };
+        });
+    }
+
+    onTabbing(event, modalType, findElementToFocus) {
+        const isTAB = event.which === tabKeyCode;
 
         if (!isTAB) return;
 
         const $collection = focusableElements[modalType]();
         const collectionLastIdx = $collection.length - 1
 
-        const $currentElement =  $collection.filter(`.${focusedClass}`);
+        const $currentElement = $(document.activeElement);
         const currentElementIdx = $collection.index($currentElement);
 
-        const direction = event.which === TAB && event.shiftKey ? 'backwards' : 'forwards';
+        const direction = event.which === tabKeyCode && event.shiftKey ? 'backwards' : 'forwards';
 
         let nextElementIdx;
         let $candidatesCollection;
+        let $reserveCollection;
         if (direction === 'forwards') {
             nextElementIdx = currentElementIdx === collectionLastIdx
                 ? 0
                 : currentElementIdx + 1;
             $candidatesCollection = $collection.slice(nextElementIdx);
+            $reserveCollection = $collection;
         } else if (direction === 'backwards') {
             nextElementIdx = currentElementIdx === 0
                 ? collectionLastIdx
                 : currentElementIdx - 1;
             $candidatesCollection = $($collection.slice(0, nextElementIdx + 1).get().reverse());
+            $reserveCollection = $($collection.get().reverse());
         }
 
-        $candidatesCollection.each((index, element) => {
-            const $focusCanditate = $(element);
-            $focusCanditate.focus();
-            if ($focusCanditate.is($(document.activeElement))) {
-                $focusCanditate.addClass(focusedClass);
-                $currentElement.removeClass(focusedClass);
-                event.preventDefault();
-                return false;
-            }
-        })
+        findElementToFocus($candidatesCollection, $reserveCollection);
+        event.preventDefault();   
     }
 
     onModalClose() {
@@ -266,7 +275,7 @@ export class Modal {
 
     onModalClosed() {
         this.size = this.defaultSize;
-        this.$lastPageFocusedElement.focus();
+        this.$preModalFocusedEl.focus();
         $('#modal').off(ModalEvents.keyDown);
         this.unbindEvents();
     }

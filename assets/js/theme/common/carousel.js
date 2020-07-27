@@ -1,11 +1,21 @@
 import 'slick-carousel';
 
+const setSlideTabindexes = ($slides) => {
+    $slides.each((index, element) => {
+        const $element = $(element);
+        const tabIndex = $element.hasClass('slick-active') ? 0 : -1;
+        $element.attr('tabindex', tabIndex);
+    });
+};
+
 const showCarouselIfSlidesAnalizedSetup = ($carousel) => {
     const analizedSlides = [];
     return ($slides) => ($slide) => {
         analizedSlides.push($slide);
-        return $slides.length === analizedSlides.length
-            && $carousel.addClass('is-visible');
+        if ($slides.length === analizedSlides.length) {
+            $carousel.addClass('is-visible');
+            setSlideTabindexes($('.slick-slide'));
+        }
     };
 };
 
@@ -14,7 +24,24 @@ export default function () {
 
     if ($carousel.length === 0) return;
 
-    $carousel.slick({ dots: $carousel[0].childElementCount > 1 });
+    const isMultipleSlides = $carousel[0].childElementCount > 1;
+
+    const slickSettingsObj = isMultipleSlides
+        ? {
+            dots: true,
+            customPaging: () => (
+                '<button type="button"></button>'
+            ),
+        }
+        : {
+            dots: false,
+        };
+
+    $carousel.slick(slickSettingsObj);
+
+    $carousel.on('afterChange', () => {
+        setSlideTabindexes($('.slick-slide'));
+    });
 
     const $slidesNodes = $('.heroCarousel-slide');
 

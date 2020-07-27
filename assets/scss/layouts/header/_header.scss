@@ -15,6 +15,21 @@
 //
 // -----------------------------------------------------------------------------
 
+.skip-to-main-link {
+    background: #fff;
+    color: $primary-color;
+    font-weight: 700;
+    left: 50%;
+    padding: 4px;
+    position: absolute;
+    transform: translate(-50%, -100%);
+    transition: transform 0.3s;
+
+    &:focus {
+        transform: translate(-50%, 0%);
+    }
+}
+
 .header {
     background-color: $header-bg;
     border-bottom: container("border");

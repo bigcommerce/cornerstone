@@ -222,7 +222,7 @@ export class Modal {
         const $collection = focusableElements[modalType]();
         $collection.get(0).focus();
 
-        $('#modal').on('keydown', (event) => this.onTabbing(event, modalType));
+        $('#modal').on('keydown', event => this.onTabbing(event, modalType));
     }
 
     onTabbing(event, modalType) {

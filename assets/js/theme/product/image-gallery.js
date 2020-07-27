@@ -4,6 +4,7 @@ import _ from 'lodash';
 export default class ImageGallery {
     constructor($gallery) {
         this.$mainImage = $gallery.find('[data-image-gallery-main]');
+        this.$mainImageNested = $gallery.find('[data-main-image]');
         this.$selectableImages = $gallery.find('[data-image-gallery-item]');
         this.currentImage = {};
     }
@@ -47,8 +48,8 @@ export default class ImageGallery {
             zoomImageUrl: $target.attr('data-image-gallery-zoom-image-url'),
             mainImageSrcset: $target.attr('data-image-gallery-new-image-srcset'),
             $selectedThumb: $target,
+            mainImageAlt: $target.children().first().attr('alt'),
         };
-
         this.setMainImage(imgObj);
     }
 
@@ -68,6 +69,10 @@ export default class ImageGallery {
 
         this.$mainImage.attr({
             'data-zoom-image': this.currentImage.zoomImageUrl,
+        });
+        this.$mainImageNested.attr({
+            alt: this.currentImage.mainImageAlt,
+            title: this.currentImage.mainImageAlt,
         });
     }
 

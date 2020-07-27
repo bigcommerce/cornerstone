@@ -218,7 +218,7 @@ export class Modal {
 
     setupFocusableElements(modalType) {
         this.$preModalFocusedEl = $(document.activeElement);
-        
+
         const $collection = focusableElements[modalType]();
         $collection.get(0).focus();
 
@@ -227,14 +227,14 @@ export class Modal {
 
     onTabbing(event, modalType) {
         const isTab = event.which === tabKeyCode;
-    
+        
         if (!isTab) return;
-    
+        
         const $tabbableCollection = focusableElements[modalType]();
         const lastCollectionIdx = $tabbableCollection.length - 1;
         const $firstTabbable = $tabbableCollection.get(0);
         const $lastTabbable = $tabbableCollection.get(lastCollectionIdx);
-    
+        
         $tabbableCollection.each((index, element) => {
             const $element = $(element);
             if ($element.is($firstTabbable)) {
@@ -245,17 +245,17 @@ export class Modal {
                 $element.removeClass(firstTabbableClass, lastTabbableClass);
             }
         });
-    
+        
         const direction = (isTab && event.shiftKey) ? 'backwards' : 'forwards';
-    
+        
         const $activeElement = $(document.activeElement);
-    
+        
         if (direction === 'forwards') {
             const isLastActive = $activeElement.hasClass(lastTabbableClass);
             if (isLastActive) {
                 $tabbableCollection.get(0).focus();
                 event.preventDefault();
-            }        
+            }
         } else if (direction === 'backwards') {
             const isFirstActive = $activeElement.hasClass(firstTabbableClass);
             if (isFirstActive) {

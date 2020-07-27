@@ -271,7 +271,7 @@ export class Modal {
 
     onModalClosed() {
         this.size = this.defaultSize;
-        this.$preModalFocusedEl.focus();
+        if (this.$preModalFocusedEl) this.$preModalFocusedEl.focus();
         $('#modal').off(ModalEvents.keyDown);
         this.unbindEvents();
     }

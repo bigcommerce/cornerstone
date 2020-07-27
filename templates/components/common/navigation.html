@@ -7,8 +7,12 @@
                 <a class="navUser-action navUser-action--storeCredit"
                    data-dropdown="storeCredit-dropdown"
                    data-options="align:bottom"
-                   href="{{urls.cart}}">
-                        <span class="navUser-action-divider">{{lang 'common.store_credit_overview' credit=customer.store_credit.formatted}}</span>
+                   href="{{urls.cart}}"
+                   aria-label="{{lang 'common.store_credit_overview' credit=customer.store_credit.formatted}}"
+                >
+                    <span class="navUser-action-divider">
+                        {{lang 'common.store_credit_overview' credit=customer.store_credit.formatted}}
+                    </span>
                 </a>
                 <div class="dropdown-menu" id="storeCredit-dropdown" data-dropdown-content aria-hidden="true">
                     {{{lang 'common.store_credit' store_credit=customer.store_credit.formatted}}}
@@ -16,7 +20,13 @@
             </li>
         {{/if}}
         <li class="navUser-item">
-            <a class="navUser-action navUser-item--compare" href="{{urls.compare}}" data-compare-nav>{{lang 'common.compare'}} <span class="countPill countPill--positive countPill--alt"></span></a>
+            <a class="navUser-action navUser-item--compare"
+               href="{{urls.compare}}"
+               data-compare-nav
+               aria-label="{{lang 'common.compare'}}"
+            >
+                {{lang 'common.compare'}} <span class="countPill countPill--positive countPill--alt"></span>
+            </a>
         </li>
         {{#if theme_settings.social_icon_placement_top}}
             <li class="navUser-item navUser-item--social">
@@ -25,32 +35,67 @@
             <li class="navUser-item navUser-item--divider">|</li>
         {{/if}}
         <li class="navUser-item">
-            <a class="navUser-action navUser-action--quickSearch" href="#" data-search="quickSearch" aria-controls="quickSearch" aria-expanded="false">{{lang 'common.search'}}</a>
+            <a class="navUser-action navUser-action--quickSearch"
+               href="#" data-search="quickSearch"
+               aria-controls="quickSearch"
+               aria-expanded="false"
+               aria-label="{{lang 'common.search'}}"
+            >
+                {{lang 'common.search'}}
+            </a>
         </li>
         {{#if settings.gift_certificates_enabled}}
             <li class="navUser-item">
-                <a class="navUser-action" href="{{urls.gift_certificate.purchase}}">{{lang 'common.gift_cert'}}</a>
+                <a class="navUser-action"
+                   href="{{urls.gift_certificate.purchase}}"
+                   aria-label="{{lang 'common.gift_cert'}}"
+                >
+                    {{lang 'common.gift_cert'}}
+                </a>
             </li>
         {{/if}}
         <li class="navUser-item navUser-item--account">
             {{#if customer}}
-                <a class="navUser-action" href="{{urls.account.index}}">{{lang 'common.account'}}</a>
-                <a class="navUser-action" href="{{urls.auth.logout}}">{{lang 'common.logout'}}</a>
+                <a class="navUser-action"
+                   href="{{urls.account.index}}"
+                   aria-label="{{lang 'common.account'}}"
+                >
+                    {{lang 'common.account'}}
+                </a>
+                <a class="navUser-action"
+                   href="{{urls.auth.logout}}"
+                   aria-label="{{lang 'common.logout'}}"
+                >
+                    {{lang 'common.logout'}}
+                </a>
             {{else}}
-                <a class="navUser-action" href="{{urls.auth.login}}">{{lang 'common.login'}}</a>
+                <a class="navUser-action"
+                   href="{{urls.auth.login}}"
+                   aria-label="{{lang 'common.login'}}"
+                >
+                    {{lang 'common.login'}}
+                </a>
                 {{#if settings.account_creation_enabled}}
-                    <span class="navUser-or">{{lang 'common.or'}}</span> <a class="navUser-action" href="{{urls.auth.create_account}}">{{lang 'common.sign_up'}}</a>
+                    <span class="navUser-or">{{lang 'common.or'}}</span>
+                    <a class="navUser-action"
+                       href="{{urls.auth.create_account}}"
+                       aria-label="{{lang 'common.sign_up'}}"
+                    >
+                        {{lang 'common.sign_up'}}
+                    </a>
                 {{/if}}
             {{/if}}
         </li>
         <li class="navUser-item navUser-item--cart">
-            <a
-                class="navUser-action"
-                data-cart-preview
-                data-dropdown="cart-preview-dropdown"
-                data-options="align:right"
-                href="{{urls.cart}}">
-                <span class="navUser-item-cartLabel">{{lang 'common.cart'}}</span> <span class="countPill cart-quantity"></span>
+            <a class="navUser-action"
+               data-cart-preview
+               data-dropdown="cart-preview-dropdown"
+               data-options="align:right"
+               href="{{urls.cart}}"
+               aria-label="{{lang 'common.cart'}}"
+            >
+                <span class="navUser-item-cartLabel">{{lang 'common.cart'}}</span>
+                <span class="countPill cart-quantity"></span>
             </a>
 
             <div class="dropdown-menu" id="cart-preview-dropdown" data-dropdown-content aria-hidden="true"></div>

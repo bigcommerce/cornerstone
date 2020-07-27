@@ -7,7 +7,7 @@ const modalBodyClass = 'modal-body';
 const modalContentClass = 'modal-content';
 
 const allTabbableElementsSelector = ':tabbable';
-const inactiveTabbableElementsSelector = '[tabindex="-1"], [type="hidden"]'
+const inactiveTabbableElementsSelector = '[tabindex="-1"], [type="hidden"]';
 const tabKeyCode = 9;
 const firstTabbableClass = 'first-tabbable';
 const lastTabbableClass = 'last-tabbable';
@@ -19,16 +19,16 @@ const SizeClasses = {
 };
 
 export const modalTypes = {
-    QUICK_VIEW: 'forQuickView'
+    QUICK_VIEW: 'forQuickView',
 };
 
 const focusableElements = {
     [modalTypes.QUICK_VIEW]: () => $('#modal')
         .find(allTabbableElementsSelector)
-            .not('#modal-review-form *')
-            .not('#previewModal *')
-            .not(inactiveTabbableElementsSelector)
-}
+        .not('#modal-review-form *')
+        .not('#previewModal *')
+        .not(inactiveTabbableElementsSelector),
+};
 
 export const ModalEvents = {
     close: 'close.fndtn.reveal',
@@ -227,29 +227,29 @@ export class Modal {
 
     onTabbing(event, modalType) {
         const isTab = event.which === tabKeyCode;
-        
+
         if (!isTab) return;
-        
+
         const $tabbableCollection = focusableElements[modalType]();
         const lastCollectionIdx = $tabbableCollection.length - 1;
         const $firstTabbable = $tabbableCollection.get(0);
         const $lastTabbable = $tabbableCollection.get(lastCollectionIdx);
-        
+
         $tabbableCollection.each((index, element) => {
             const $element = $(element);
             if ($element.is($firstTabbable)) {
                 $element.addClass(firstTabbableClass).removeClass(lastTabbableClass);
             } else if ($element.is($lastTabbable)) {
-                $element.addClass(lastTabbableClass).removeClass(firstTabbableClass)
+                $element.addClass(lastTabbableClass).removeClass(firstTabbableClass);
             } else {
                 $element.removeClass(firstTabbableClass, lastTabbableClass);
             }
         });
-        
+
         const direction = (isTab && event.shiftKey) ? 'backwards' : 'forwards';
-        
+
         const $activeElement = $(document.activeElement);
-        
+
         if (direction === 'forwards') {
             const isLastActive = $activeElement.hasClass(lastTabbableClass);
             if (isLastActive) {

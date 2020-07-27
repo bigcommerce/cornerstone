@@ -20,7 +20,7 @@ import objectFitImages from './global/object-fit-polyfill';
 export default class Global extends PageManager {
     onReady() {
         const {
-            channelId, cartId, productId, categoryId, secureBaseUrl, maintenanceModeSettings, adminBarLanguage, themeSettings,
+            channelId, cartId, productId, categoryId, secureBaseUrl, maintenanceModeSettings, adminBarLanguage, showAdminBar,
         } = this.context;
         cartPreview(secureBaseUrl, cartId);
         quickSearch();
@@ -31,7 +31,7 @@ export default class Global extends PageManager {
         menu();
         mobileMenuToggle();
         privacyCookieNotification();
-        if (themeSettings['show-admin-bar']) {
+        if (showAdminBar) {
             adminBar(secureBaseUrl, channelId, maintenanceModeSettings, JSON.parse(adminBarLanguage), productId, categoryId);
         }
         loadingProgressBar();

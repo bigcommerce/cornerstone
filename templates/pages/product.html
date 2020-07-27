@@ -10,6 +10,9 @@ product:
         limit: {{theme_settings.productpage_similar_by_views_count}}
 ---
 {{inject "productId" product.id}}
+{{inject "zoomSize" theme_settings.zoom_size}}
+{{inject "productSize" theme_settings.product_size}}
+
 {{#partial "page"}}
 
     {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}

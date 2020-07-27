@@ -1,13 +1,16 @@
+import 'jquery.tabbable';
 import foundation from './foundation';
 
 const bodyActiveClass = 'has-activeModal';
 const loadingOverlayClass = 'loadingOverlay';
 const modalBodyClass = 'modal-body';
 const modalContentClass = 'modal-content';
-const focusableElementsSelector = 'button, [href], input, select, textarea, [tabindex]';
-const uselessFocusableElementsSelector = '[tabindex="-1"], [type="hidden"]'
 
+const allTabbableElementsSelector = ':tabbable';
+const inactiveTabbableElementsSelector = '[tabindex="-1"], [type="hidden"]'
 const tabKeyCode = 9;
+const firstTabbableClass = 'first-tabbable';
+const lastTabbableClass = 'last-tabbable';
 
 const SizeClasses = {
     small: 'modal--small',
@@ -15,17 +18,17 @@ const SizeClasses = {
     normal: '',
 };
 
-const focusableElements = {
-    'forQuickView': () => $('#modal')
-        .find(focusableElementsSelector)
-            .not('#modal-review-form *')
-            .not('#previewModal *')
-            .not(uselessFocusableElementsSelector)
-}
-
 export const modalTypes = {
     QUICK_VIEW: 'forQuickView'
 };
+
+const focusableElements = {
+    [modalTypes.QUICK_VIEW]: () => $('#modal')
+        .find(allTabbableElementsSelector)
+            .not('#modal-review-form *')
+            .not('#previewModal *')
+            .not(inactiveTabbableElementsSelector)
+}
 
 export const ModalEvents = {
     close: 'close.fndtn.reveal',
@@ -217,74 +220,49 @@ export class Modal {
         this.$preModalFocusedEl = $(document.activeElement);
         
         const $collection = focusableElements[modalType]();
+        $collection.get(0).focus();
 
-        this.findElementToFocus($collection);
-
-        const onTabbingWithArgs = (event) => this.onTabbing(event, modalType, this.findElementToFocus.bind(this));
-
-        $('#modal').on('keydown', onTabbingWithArgs);
+        $('#modal').on('keydown', (event) => this.onTabbing(event, modalType));
     }
 
-    findElementToFocus($candidatesCollection, $reserveCollection = null) {
-        $candidatesCollection.each((index, element) => {
-            const $focusCanditate = $(element);
-            $focusCanditate.focus();
-            if ($focusCanditate.is($(document.activeElement))) {
-                return false;
-            };
-            // if no appropriate candidate - find appropriate in full collection
-            if (index === $candidatesCollection.length - 1 && $reserveCollection) {
-                this.findElementToFocus($reserveCollection);
-            };
+    onTabbing(event, modalType) {
+        const isTab = event.which === tabKeyCode;
+    
+        if (!isTab) return;
+    
+        const $tabbableCollection = focusableElements[modalType]();
+        const lastCollectionIdx = $tabbableCollection.length - 1;
+        const $firstTabbable = $tabbableCollection.get(0);
+        const $lastTabbable = $tabbableCollection.get(lastCollectionIdx);
+    
+        $tabbableCollection.each((index, element) => {
+            const $element = $(element);
+            if ($element.is($firstTabbable)) {
+                $element.addClass(firstTabbableClass).removeClass(lastTabbableClass);
+            } else if ($element.is($lastTabbable)) {
+                $element.addClass(lastTabbableClass).removeClass(firstTabbableClass)
+            } else {
+                $element.removeClass(firstTabbableClass, lastTabbableClass);
+            }
         });
-    }
-
-    onTabbing(event, modalType, findElementToFocus) {
-        const isTAB = event.which === tabKeyCode;
-
-        if (!isTAB) return;
-
-        const $collection = focusableElements[modalType]();
-        const collectionLastIdx = $collection.length - 1
-
-        const $currentElement = $(document.activeElement);
-        const currentElementIdx = $collection.index($currentElement);
-
-        const direction = event.which === tabKeyCode && event.shiftKey ? 'backwards' : 'forwards';
-        
-        /* to jump to the first or last element (depends on direction)
-        if focused element NOT in collection
-        it is possible if user will focus for example element with tabindex=-1 using mouse */
-        const isValidElementActive = currentElementIdx !== -1;
-
-        let startingPoint;
-        if (isValidElementActive) {
-            startingPoint = currentElementIdx
-        } else if (direction === 'forwards') {
-            startingPoint = collectionLastIdx;
-        } else if (direction === 'backwards') {
-            startingPoint = 0;
-        }
-
-        let nextElementIdx;
-        let $candidatesCollection;
-        let $reserveCollection;
+    
+        const direction = (isTab && event.shiftKey) ? 'backwards' : 'forwards';
+    
+        const $activeElement = $(document.activeElement);
+    
         if (direction === 'forwards') {
-            nextElementIdx = startingPoint === collectionLastIdx
-                ? 0
-                : startingPoint + 1;
-            $candidatesCollection = $collection.slice(nextElementIdx);
-            $reserveCollection = $collection;
+            const isLastActive = $activeElement.hasClass(lastTabbableClass);
+            if (isLastActive) {
+                $tabbableCollection.get(0).focus();
+                event.preventDefault();
+            }        
         } else if (direction === 'backwards') {
-            nextElementIdx = startingPoint === 0
-                ? collectionLastIdx
-                : startingPoint - 1;
-            $candidatesCollection = $($collection.slice(0, nextElementIdx + 1).get().reverse());
-            $reserveCollection = $($collection.get().reverse());
+            const isFirstActive = $activeElement.hasClass(firstTabbableClass);
+            if (isFirstActive) {
+                $tabbableCollection.get(lastCollectionIdx).focus();
+                event.preventDefault();
+            }
         }
-
-        findElementToFocus($candidatesCollection, $reserveCollection);
-        event.preventDefault();   
     }
 
     onModalClose() {

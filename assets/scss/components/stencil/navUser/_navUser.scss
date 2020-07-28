@@ -277,12 +277,14 @@
 .dropdown--quickSearch {
     background-color: $dropdown--quickSearch-backgroundColor;
     padding: spacing("single") 0;
+    display: none;
 
     @include breakpoint("small") {
         padding: spacing("double");
     }
 
     &.is-open {
+        display: initial;
         // scss-lint:disable ImportantRule
         left: 0 !important; // 1
         outline: none;

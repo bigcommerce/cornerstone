@@ -1,6 +1,8 @@
 # Changelog
 
 ## Draft
+- Fixed product image doesn't change on click when viewing a product with multiple images in IE11 [#1748](https://github.com/bigcommerce/cornerstone/pull/1748)
+- Fixed alt text on image change in product view [#1747](https://github.com/bigcommerce/cornerstone/pull/1747)
 
 ## 4.8.0 (07-20-2020)
 - Fixed Facebook button during modal scrolling behaviour. [#1724](https://github.com/bigcommerce/cornerstone/pull/1724)

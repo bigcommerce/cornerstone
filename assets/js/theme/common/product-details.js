@@ -7,6 +7,8 @@ import _ from 'lodash';
 import Wishlist from '../wishlist';
 import { normalizeFormData } from './utils/api';
 
+require('formdata-polyfill');
+
 export default class ProductDetails {
     constructor($scope, context, productAttributesData = {}) {
         this.$overlay = $('[data-cart-item-add] .loadingOverlay');
@@ -107,16 +109,26 @@ export default class ProductDetails {
 
             if (type === 'set-rectangle' || type === 'set-radio' || type === 'swatch' || type === 'input-checkbox' || type === 'product-list') {
                 const checked = value.querySelector(':checked');
+
                 if (checked) {
+                    const isBrowserIE = navigator.userAgent.includes('Trident');
+                    const getCheckedProductOptionElement = () => {
+                        const productVariantslist = Array.prototype.slice.call(value.children);
+                        const matchLabelForCheckedInput = inpt => inpt.dataset.productAttributeValue === checked.value;
+                        return productVariantslist.filter(matchLabelForCheckedInput)[0];
+                    };
+
                     if (type === 'set-rectangle' || type === 'set-radio' || type === 'product-list') {
-                        const label = checked.labels[0].innerText;
+                        const label = isBrowserIE ? getCheckedProductOptionElement().innerText.trim() : checked.labels[0].innerText;
+
                         if (label) {
                             options.push(`${optionTitle}:${label}`);
                         }
                     }
 
                     if (type === 'swatch') {
-                        const label = checked.labels[0].children[0];
+                        const label = isBrowserIE ? getCheckedProductOptionElement().children[0] : checked.labels[0].children[0];
+
                         if (label) {
                             options.push(`${optionTitle}:${label.title}`);
                         }
@@ -391,7 +403,6 @@ export default class ProductDetails {
             // Open preview modal and update content
             if (this.previewModal) {
                 this.previewModal.open();
-
                 this.updateCartContent(this.previewModal, response.data.cart_item.id);
             } else {
                 this.$overlay.show();

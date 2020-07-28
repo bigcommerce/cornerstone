@@ -1,3 +1,5 @@
+require('formdata-polyfill');
+
 /**
  * This function removes any empty string values from the formData
  * @param formData: FormData object
@@ -5,7 +7,7 @@
 */
 export const filterEmptyValuesFromForm = formData => {
     const res = new FormData();
-
+     
     try {
         for (const [key, val] of formData) {
             if (val !== '') {

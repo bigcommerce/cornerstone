@@ -61,7 +61,7 @@ export default class ImageGallery {
     }
 
     swapMainImage() {
-        const isBrowserIE = navigator.userAgent.includes("Trident");
+        const isBrowserIE = navigator.userAgent.includes('Trident');
 
         this.easyzoom.data('easyZoom').swap(
             this.currentImage.mainImageUrl,
@@ -77,7 +77,7 @@ export default class ImageGallery {
             title: this.currentImage.mainImageAlt,
         });
 
-        if ( isBrowserIE) {
+        if (isBrowserIE) {
             const fallbackStylesIE = {
                 'background-image': `url(${this.currentImage.mainImageUrl}&ampimbypass=on)`,
                 'background-position': 'center',

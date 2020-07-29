@@ -2,6 +2,27 @@
 
 ## Draft
 
+## 4.9.0 (07-28-2020)
+- Added correct alt text on image change in product view. [#1747](https://github.com/bigcommerce/cornerstone/pull/1747)
+- Description tab is hidden in case of empty product descrioption. [#1746](https://github.com/bigcommerce/cornerstone/pull/1746)
+- Stencil cli updated to the latest version. [#1744](https://github.com/bigcommerce/cornerstone/pull/1744)
+- Added immediate keyboard focus for quick view modal. [#1743](https://github.com/bigcommerce/cornerstone/pull/1743)
+- Added ability to change sale badge text for merchants. [#1742](https://github.com/bigcommerce/cornerstone/pull/1742)
+- Fixed focusing for quick search aria hidden element. [#1739](https://github.com/bigcommerce/cornerstone/pull/1739)
+- Fixed 'Add To Cart' & 'Quick View' buttons appearing while tabbing. [#1738](https://github.com/bigcommerce/cornerstone/pull/1738)
+- PDP's 'Write a Review' role changed to 'button'. [#1737](https://github.com/bigcommerce/cornerstone/pull/1737)
+- Added ability to skip main content with keyboard. [#1736](https://github.com/bigcommerce/cornerstone/pull/1736)
+- Added labels for PLP pagination. [#1735](https://github.com/bigcommerce/cornerstone/pull/1735)
+- Added ability to open wishlist menu with keyboard. [#1732](https://github.com/bigcommerce/cornerstone/pull/1732)
+- Added aria label for breadcrumbs. [#1734](https://github.com/bigcommerce/cornerstone/pull/1734)
+- Email subscribe messages are readable by screen readers. [#1731](https://github.com/bigcommerce/cornerstone/pull/1731)
+- Optimize themeSettings injection. [#1730](https://github.com/bigcommerce/cornerstone/pull/1730)
+- Added aria labels to menu links. [#1729](https://github.com/bigcommerce/cornerstone/pull/1729)
+- Carousel bullets should be buttons. [#1727](https://github.com/bigcommerce/cornerstone/pull/1727)
+- Fixed causing of white space by long product descripitons. [#1723](https://github.com/bigcommerce/cornerstone/pull/1723)
+- Added 'none' options for non-required fields. [#1714](https://github.com/bigcommerce/cornerstone/pull/1714)
+- Fixed thumbnail videos behaviour on click. [#1706](https://github.com/bigcommerce/cornerstone/pull/1706)
+
 ## 4.8.0 (07-20-2020)
 - Fixed Facebook button during modal scrolling behaviour. [#1724](https://github.com/bigcommerce/cornerstone/pull/1724)
 - Fixed Product Image dimensions not constrained proportionally on Cart page which can lead to element overlapping. [#1722](https://github.com/bigcommerce/cornerstone/pull/1722)

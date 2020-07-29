@@ -33,6 +33,9 @@ jobs:
       with:
         node-version: ${{ matrix.node }}
 
+    - name: Install Stencil CLI Dependency
+      run: npm install -g @bigcommerce/stencil-cli
+
     - name: Install Dependencies  
       run: npm ci
 

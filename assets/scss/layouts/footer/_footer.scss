@@ -32,7 +32,9 @@
     margin-bottom: spacing("double");
     text-align: center;
     vertical-align: top;
-
+    // TODO: specifically use vendor only for IE11 since overflow-wrap is not supported here 
+    -ms-word-break: break-all;
+    overflow-wrap: break-word;
     @include breakpoint("small") {
         text-align: left;
         width: width("6/12");

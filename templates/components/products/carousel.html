@@ -5,7 +5,7 @@
         "mobileFirst": true,
         "slidesToShow": 2,
         "slidesToScroll": 1,
-        "slide": ".product-slide",
+        "slide": ".js-product-slide",
         "prevArrow": ".js-product-prev-arrow",
         "nextArrow": ".js-product-next-arrow",
         "responsive": [
@@ -29,7 +29,7 @@
     <button aria-label="{{lang 'carousel.arrowAriaLabel'}} {{products.length}}" class="js-product-prev-arrow slick-prev slick-arrow"></button>
     {{/if}}
     {{#each products}}
-    <div class="productCarousel-slide product-slide">
+    <div class="productCarousel-slide js-product-slide">
         {{> components/products/card settings=../settings theme_settings=../theme_settings customer=../customer event="list" position=(add @index 1)}}
     </div>
     {{/each}}

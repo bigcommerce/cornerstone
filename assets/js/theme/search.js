@@ -2,7 +2,7 @@ import { hooks } from '@bigcommerce/stencil-utils';
 import CatalogPage from './catalog';
 import FacetedSearch from './common/faceted-search';
 import compareProducts from './global/compare-products';
-import urlUtils from './common/url-utils';
+import urlUtils from './common/utils/url-utils';
 import Url from 'url';
 import collapsibleFactory from './common/collapsible';
 import 'jstree';

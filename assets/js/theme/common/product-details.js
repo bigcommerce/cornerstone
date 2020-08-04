@@ -6,6 +6,21 @@ import modalFactory, { showAlertModal } from '../global/modal';
 import _ from 'lodash';
 import Wishlist from '../wishlist';
 import { normalizeFormData } from './utils/api';
+import { initRadioOptions } from './aria';
+
+const optionsTypesMap = {
+    INPUT_FILE: 'input-file',
+    INPUT_TEXT: 'input-text',
+    INPUT_NUMBER: 'input-number',
+    INPUT_CHECKBOX: 'input-checkbox',
+    TEXTAREA: 'textarea',
+    DATE: 'date',
+    SET_SELECT: 'set-select',
+    SET_RECTANGLE: 'set-rectangle',
+    SET_RADIO: 'set-radio',
+    SWATCH: 'swatch',
+    PRODUCT_LIST: 'product-list',
+};
 
 export default class ProductDetails {
     constructor($scope, context, productAttributesData = {}) {
@@ -23,6 +38,12 @@ export default class ProductDetails {
         const $productOptionsElement = $('[data-product-option-change]', $form);
         const hasOptions = $productOptionsElement.html().trim().length;
         const hasDefaultOptions = $productOptionsElement.find('[data-default]').length;
+
+        $('[data-product-attribute]').each((__, value) => {
+            const type = value.getAttribute('data-product-attribute');
+
+            this._makeProductVariantAccessible(value, type);
+        });
 
         $productOptionsElement.on('change', event => {
             this.productOptionsChanged(event);
@@ -55,6 +76,18 @@ export default class ProductDetails {
         $productOptionsElement.show();
 
         this.previewModal = modalFactory('#previewModal')[0];
+    }
+
+    _makeProductVariantAccessible(variantDomNode, variantType) {
+        switch (variantType) {
+        case optionsTypesMap.SET_RADIO:
+        case optionsTypesMap.SWATCH: {
+            initRadioOptions($(variantDomNode), '[type=radio]');
+            break;
+        }
+
+        default: break;
+        }
     }
 
     setProductVariant() {

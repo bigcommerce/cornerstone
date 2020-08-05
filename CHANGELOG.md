@@ -2,6 +2,8 @@
 
 ## Draft
 
+## 4.9.0 (08-05-2020)
+
 ## 4.9.0 (07-28-2020)
 - Added correct alt text on image change in product view. [#1747](https://github.com/bigcommerce/cornerstone/pull/1747)
 - Description tab is hidden in case of empty product descrioption. [#1746](https://github.com/bigcommerce/cornerstone/pull/1746)

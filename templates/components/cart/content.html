@@ -122,17 +122,15 @@
                     {{else}}
                         {{> components/common/login-for-pricing}}
                     {{/or}}
-                    {{#if can_modify}}
-                        <a class="cart-remove icon" data-cart-itemid="{{id}}" href="#" data-confirm-delete="{{lang 'cart.confirm_delete'}}">
+                    {{#or can_modify (if type '==' 'GiftCertificate')}}
+                        <button class="cart-remove icon"
+                                data-cart-itemid="{{id}}"
+                                data-confirm-delete="{{lang 'cart.confirm_delete'}}"
+                                aria-label="{{lang 'cart.remove_item'}}"
+                        >
                             <svg><use xlink:href="#icon-close"></use></svg>
-                        </a>
-                    {{else}}
-                        {{#if type '==' 'GiftCertificate'}}
-                            <a class="cart-remove icon" data-cart-itemid="{{id}}" href="#" data-confirm-delete="{{lang 'cart.confirm_delete'}}">
-                                <svg><use xlink:href="#icon-close"></use></svg>
-                            </a>
-                        {{/if}}
-                    {{/if}}
+                        </button>
+                    {{/or}}
                 </td>
             </tr>
         {{/each}}

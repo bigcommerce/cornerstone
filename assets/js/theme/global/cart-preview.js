@@ -16,6 +16,7 @@ export default function (secureBaseUrl, cartId) {
     const $body = $('body');
 
     $body.on('cart-quantity-update', (event, quantity) => {
+        $cart.attr('aria-label', (_, prevValue) => prevValue.replace(/\d+/, quantity));
         $('.cart-quantity')
             .text(quantity)
             .toggleClass('countPill--positive', quantity > 0);

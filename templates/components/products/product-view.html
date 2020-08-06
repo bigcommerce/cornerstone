@@ -38,7 +38,12 @@
                             <meta itemprop="reviewCount" content="{{product.num_reviews}}">
                         {{/if}}
                     {{/if}}
-                    {{> components/products/ratings rating=product.rating}}
+                    <span title="{{lang 'products.reviews.rating_aria_label' current_rating=product.rating max_rating=5}}"
+                          tabindex="0"
+                          role="text"
+                    >
+                        {{> components/products/ratings rating=product.rating}}
+                    </span>
                     <span class="productView-reviewLink">
                         {{#if product.num_reviews '>' 0}}
                             <a href="{{product.url}}#product-reviews">

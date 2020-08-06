@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Added additional focusable element for rating announcing. [#1769](https://github.com/bigcommerce/cornerstone/pull/1769)
 
 ## 4.9.0 (08-05-2020)
 

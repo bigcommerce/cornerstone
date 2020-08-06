@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Fixed issue with missing logo on mobile and tablet. [#1767](https://github.com/bigcommerce/cornerstone/pull/1767)
 
 ## 4.9.0 (07-28-2020)
 - Added correct alt text on image change in product view. [#1747](https://github.com/bigcommerce/cornerstone/pull/1747)

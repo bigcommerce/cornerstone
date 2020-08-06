@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Visually hidden cart link read by screen reader. [#1770](https://github.com/bigcommerce/cornerstone/pull/1770)
 
 ## 4.9.0 (08-05-2020)
 

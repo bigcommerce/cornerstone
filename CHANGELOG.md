@@ -2,6 +2,8 @@
 
 ## Draft
 
+- Improper heading hierarchy on Cart page. [#1775](https://github.com/bigcommerce/cornerstone/pull/1775)
+
 ## 4.9.0 (08-05-2020)
 
 ## 4.9.0 (07-28-2020)

@@ -2,6 +2,8 @@
 
 ## Draft
 
+- Improper heading hierarchy on Sitemap. [#1774](https://github.com/bigcommerce/cornerstone/pull/1774)
+
 ## 4.9.0 (08-05-2020)
 
 ## 4.9.0 (07-28-2020)

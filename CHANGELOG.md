@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Added tooltip for modal close buttons. [#1773](https://github.com/bigcommerce/cornerstone/pull/1773)
 
 ## 4.9.0 (08-05-2020)
 

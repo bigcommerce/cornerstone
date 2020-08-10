@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Error messages from Write a Review should be announced. [#1777](https://github.com/bigcommerce/cornerstone/pull/1777)
 
 ## 4.9.0 (08-05-2020)
 

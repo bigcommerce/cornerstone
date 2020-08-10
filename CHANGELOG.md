@@ -2,6 +2,8 @@
 
 ## Draft
 
+Selected state on search page not announced. [#1788](https://github.com/bigcommerce/cornerstone/pull/1788)
+
 ## 4.9.0 (08-05-2020)
 
 ## 4.9.0 (07-28-2020)

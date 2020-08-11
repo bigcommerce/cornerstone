@@ -130,6 +130,31 @@ const Validators = {
     },
 
     /**
+     * Validate phone numbers fields
+     * @param validator
+     * @param field
+     * @param parentCssClassCleanerFn {function}
+     */
+    setPhoneNumberValidation: (validator, field, parentCssClassCleanerFn = Validators.cleanUpStateValidation) => {
+        if (field) {
+            validator.add({
+                selector: field,
+                validate: (cb, val) => {
+                    if (val.length === 0) {
+                        cb(true);
+                        parentCssClassCleanerFn($(field));
+
+                        return;
+                    }
+
+                    cb(forms.isPhoneNumberValid(val));
+                },
+                errorMessage: 'You must enter a valid phone number',
+            });
+        }
+    },
+
+    /**
      * Validate password fields
      * @param validator
      * @param passwordSelector
@@ -277,12 +302,20 @@ const Validators = {
      * Removes classes from dirty form if previously checked
      * @param field
      */
-    cleanUpStateValidation: (field) => {
-        const $fieldClassElement = $((`[data-type="${field.data('fieldType')}"]`));
+    cleanUpStateValidation: field =>
+        Validators.removeNodClassesFromParent(field, `[data-type="${field.data('fieldType')}"]`),
+
+    /**
+     * Removes nod classes from parent element by selector
+     * @param field
+     * @param parentSelector {string}
+     */
+    removeNodClassesFromParent: (field, parentSelector) => {
+        const $parentElement = field.parent(parentSelector);
 
         Object.keys(nod.classes).forEach((value) => {
-            if ($fieldClassElement.hasClass(nod.classes[value])) {
-                $fieldClassElement.removeClass(nod.classes[value]);
+            if ($parentElement.hasClass(nod.classes[value])) {
+                $parentElement.removeClass(nod.classes[value]);
             }
         });
     },

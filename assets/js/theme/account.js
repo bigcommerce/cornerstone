@@ -313,6 +313,7 @@ export default class Account extends PageManager {
         const formEditSelector = 'form[data-edit-account-form]';
         const editValidator = nod({
             submit: '${formEditSelector} input[type="submit"]',
+            delay: 0,
         });
         const emailSelector = `${formEditSelector} [data-field-type="EmailAddress"]`;
         const $emailElement = $(emailSelector);
@@ -322,6 +323,8 @@ export default class Account extends PageManager {
         const $password2Element = $(password2Selector);
         const currentPasswordSelector = `${formEditSelector} [data-field-type="CurrentPassword"]`;
         const $currentPassword = $(currentPasswordSelector);
+        const phoneNumberSelector = `${formEditSelector} input[name='account_phone']`;
+        const $phoneNumberElement = $(phoneNumberSelector);
 
         // This only handles the custom fields, standard fields are added below
         editValidator.add(validationModel);
@@ -329,6 +332,15 @@ export default class Account extends PageManager {
         if ($emailElement) {
             editValidator.remove(emailSelector);
             Validators.setEmailValidation(editValidator, emailSelector);
+        }
+
+        if ($phoneNumberElement) {
+            editValidator.remove(phoneNumberSelector);
+
+            const parentCssClassCleanerFn = field =>
+                Validators.removeNodClassesFromParent(field, '.form-field--input');
+
+            Validators.setPhoneNumberValidation(editValidator, phoneNumberSelector, parentCssClassCleanerFn);
         }
 
         if ($passwordElement && $password2Element) {

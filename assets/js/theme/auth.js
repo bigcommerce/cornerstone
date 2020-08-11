@@ -98,6 +98,7 @@ export default class Auth extends PageManager {
         const validationModel = validation($createAccountForm);
         const createAccountValidator = nod({
             submit: `${this.formCreateSelector} input[type='submit']`,
+            delay: 0,
         });
         const $stateElement = $('[data-field-type="State"]');
         const emailSelector = `${this.formCreateSelector} [data-field-type='EmailAddress']`;
@@ -106,6 +107,8 @@ export default class Auth extends PageManager {
         const $passwordElement = $(passwordSelector);
         const password2Selector = `${this.formCreateSelector} [data-field-type='ConfirmPassword']`;
         const $password2Element = $(password2Selector);
+        const phoneNumberSelector = `${this.formCreateSelector} [data-field-type='Phone']`;
+        const $phoneNumberElement = $(phoneNumberSelector);
 
         createAccountValidator.add(validationModel);
 
@@ -135,6 +138,11 @@ export default class Auth extends PageManager {
                     Validators.cleanUpStateValidation(field);
                 }
             });
+        }
+
+        if ($phoneNumberElement) {
+            createAccountValidator.remove(phoneNumberSelector);
+            Validators.setPhoneNumberValidation(createAccountValidator, phoneNumberSelector);
         }
 
         if ($emailElement) {

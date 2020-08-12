@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Fixed improper heading hierarchy on PLPs. [#1779](https://github.com/bigcommerce/cornerstone/pull/1779)
 
 ## 4.9.0 (08-05-2020)
 

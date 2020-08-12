@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Fixed improper heading hierarchy on Add to Cart modal recommendation. [#1784](https://github.com/bigcommerce/cornerstone/pull/1784)
 
 ## 4.9.0 (08-05-2020)
 

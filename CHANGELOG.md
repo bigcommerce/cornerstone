@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Added a valid ARIA role for li elemenents on "Related Products" tab [#1782](https://github.com/bigcommerce/cornerstone/pull/1782)
 
 ## 4.9.0 (08-05-2020)
 

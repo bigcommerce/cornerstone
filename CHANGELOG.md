@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Changed heading tag for carousel slides. [#1780](https://github.com/bigcommerce/cornerstone/pull/1780)
 
 ## 4.9.0 (08-05-2020)
 

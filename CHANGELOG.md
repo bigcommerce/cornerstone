@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Fixed Shop by price insufficient link text. [#1786](https://github.com/bigcommerce/cornerstone/pull/1786)
 
 ## 4.9.0 (08-05-2020)
 

@@ -1,7 +1,7 @@
 # Changelog
 
 ## Draft
-
+- Added presentation role for table on cart page. [#1785](https://github.com/bigcommerce/cornerstone/pull/1785) 
 ## 4.9.0 (08-05-2020)
 
 ## 4.9.0 (07-28-2020)

@@ -2,6 +2,8 @@
 
 ## Draft
 
+- Carousel links should have discernible text. [#1789](https://github.com/bigcommerce/cornerstone/pull/1789)
+
 ## 4.9.0 (08-05-2020)
 
 ## 4.9.0 (07-28-2020)

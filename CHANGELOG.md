@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- ARIA attributes on Write Review modal need valid values. [#1790](https://github.com/bigcommerce/cornerstone/pull/1790)
 
 ## 4.9.0 (08-05-2020)
 

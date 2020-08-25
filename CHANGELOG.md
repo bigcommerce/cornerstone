@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Fixed IDs used in ARIA and labels which are not unique. [#1791](https://github.com/bigcommerce/cornerstone/pull/1791)
 
 ## 4.9.0 (08-05-2020)
 

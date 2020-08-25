@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Button inputs with the same name attribute should be part of a group. [#1792](https://github.com/bigcommerce/cornerstone/pull/1792)
 
 ## 4.9.0 (08-05-2020)
 

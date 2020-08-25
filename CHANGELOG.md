@@ -2,6 +2,8 @@
 
 ## Draft
 
+- Cornerstone - Cart link not visible on mobile Chrome depending on swatch image size. [#1793](https://github.com/bigcommerce/cornerstone/pull/1793)
+
 ## 4.9.0 (08-05-2020)
 
 ## 4.9.0 (07-28-2020)

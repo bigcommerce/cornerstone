@@ -2,15 +2,15 @@
     {{#if settings.store_logo.image}}
         <amp-img src="{{getImage settings.store_logo.image 'logo_size'}}"
             {{#if theme_settings.logo_size '===' 'original' }}
-                width="100"
-                height="50"
+                width="200"
+                height="100"
             {{else}}
                 width="{{first (split theme_settings.logo_size 'x')}}"
                 height="{{last (split theme_settings.logo_size 'x')}}"
                 {{#if (last (split theme_settings.logo_size 'x')) 'gtnum' (first (split theme_settings.logo_size 'x')) }}
                     sizes="(max-width: 360px) 100vw, 1vw"
                 {{else}}
-                    sizes="(max-width: 360px) 100vw, 10vw"
+                    sizes="(max-width: 640px) 15vw, 7vw"
                 {{/if}}
                 layout="responsive"
             {{/if}}

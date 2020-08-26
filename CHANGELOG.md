@@ -3,12 +3,10 @@
 ## Draft
 - Fixed failing to add product to cart on IE11 [#1762](https://github.com/bigcommerce/cornerstone/pull/1762)
 - Fixed overlaping at footer columns when long texts (without spaces) are entered [#1753](https://jira.bigcommerce.com/browse/BCTHEME-43)
-
-Incorrect focus order on PDPs. [#1771](https://github.com/bigcommerce/cornerstone/pull/1771)
-
+- Incorrect focus order on PDPs. [#1771](https://github.com/bigcommerce/cornerstone/pull/1771)
+- Unnecessary heading on product cards. [#1768](https://github.com/bigcommerce/cornerstone/pull/1768)
 - Improper footer heading hierarchy. [#1760](https://github.com/bigcommerce/cornerstone/pull/1760/files)
-
-Unnecessary heading on product cards. [#1768](https://github.com/bigcommerce/cornerstone/pull/1768)
+- Improper heading hierarchy on Sitemap. [#1774](https://github.com/bigcommerce/cornerstone/pull/1774)
 
 ## 4.9.0 (07-28-2020)
 - Added correct alt text on image change in product view. [#1747](https://github.com/bigcommerce/cornerstone/pull/1747)

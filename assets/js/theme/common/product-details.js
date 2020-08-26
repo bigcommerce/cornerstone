@@ -2,10 +2,11 @@ import utils from '@bigcommerce/stencil-utils';
 import 'foundation-sites/js/foundation/foundation';
 import 'foundation-sites/js/foundation/foundation.reveal';
 import ImageGallery from '../product/image-gallery';
-import modalFactory, { showAlertModal } from '../global/modal';
+import modalFactory, { showAlertModal, modalTypes } from '../global/modal';
 import _ from 'lodash';
 import Wishlist from '../wishlist';
 import { normalizeFormData } from './utils/api';
+import { isBrowserIE, convertIntoArray } from './utils/ie-helpers';
 
 export default class ProductDetails {
     constructor($scope, context, productAttributesData = {}) {
@@ -108,15 +109,20 @@ export default class ProductDetails {
             if (type === 'set-rectangle' || type === 'set-radio' || type === 'swatch' || type === 'input-checkbox' || type === 'product-list') {
                 const checked = value.querySelector(':checked');
                 if (checked) {
+                    const getSelectedOptionLabel = () => {
+                        const productVariantslist = convertIntoArray(value.children);
+                        const matchLabelForCheckedInput = inpt => inpt.dataset.productAttributeValue === checked.value;
+                        return productVariantslist.filter(matchLabelForCheckedInput)[0];
+                    };
                     if (type === 'set-rectangle' || type === 'set-radio' || type === 'product-list') {
-                        const label = checked.labels[0].innerText;
+                        const label = isBrowserIE ? getSelectedOptionLabel().innerText.trim() : checked.labels[0].innerText;
                         if (label) {
                             options.push(`${optionTitle}:${label}`);
                         }
                     }
 
                     if (type === 'swatch') {
-                        const label = checked.labels[0].children[0];
+                        const label = isBrowserIE ? getSelectedOptionLabel().children[0] : checked.labels[0].children[0];
                         if (label) {
                             options.push(`${optionTitle}:${label.title}`);
                         }
@@ -392,7 +398,7 @@ export default class ProductDetails {
             if (this.previewModal) {
                 this.previewModal.open();
 
-                this.updateCartContent(this.previewModal, response.data.cart_item.id);
+                this.updateCartContent(this.previewModal, response.data.cart_item.id, () => this.previewModal.setupFocusableElements(modalTypes.PRODUCT_DETAILS));
             } else {
                 this.$overlay.show();
                 // if no modal, redirect to the cart page

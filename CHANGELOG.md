@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Error messages from Write a Review should be announced. [#1777](https://github.com/bigcommerce/cornerstone/pull/1777)
 - Fixed issue with missing logo on mobile and tablet. [#1767](https://github.com/bigcommerce/cornerstone/pull/1767)
 - Visually hidden cart link read by screen reader. [#1770](https://github.com/bigcommerce/cornerstone/pull/1770)
 - Improper heading hierarchy on Cart page. [#1775](https://github.com/bigcommerce/cornerstone/pull/1775)

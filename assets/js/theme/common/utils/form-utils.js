@@ -1,6 +1,6 @@
 import _ from 'lodash';
-import nod from './nod';
-import forms from './models/forms';
+import nod from '../nod';
+import forms from '../models/forms';
 
 const inputTagNames = [
     'input',

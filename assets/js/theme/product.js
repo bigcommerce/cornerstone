@@ -6,7 +6,7 @@ import Review from './product/reviews';
 import collapsibleFactory from './common/collapsible';
 import ProductDetails from './common/product-details';
 import videoGallery from './product/video-gallery';
-import { classifyForm } from './common/form-utils';
+import { classifyForm } from './common/utils/form-utils';
 
 export default class Product extends PageManager {
     constructor(context) {
@@ -39,6 +39,7 @@ export default class Product extends PageManager {
 
         $('body').on('click', '[data-reveal-id="modal-review-form"]', () => {
             validator = review.registerValidation(this.context);
+            this.ariaDescribeReviewInputs($reviewForm);
         });
 
         $reviewForm.on('submit', () => {
@@ -52,6 +53,16 @@ export default class Product extends PageManager {
 
         this.productReviewHandler();
         this.bulkPricingHandler();
+    }
+
+    ariaDescribeReviewInputs($form) {
+        $form.find('[data-input]').each((_, input) => {
+            const $input = $(input);
+            const msgSpanId = `${$input.attr('name')}-msg`;
+
+            $input.siblings('span').attr('id', msgSpanId);
+            $input.attr('aria-describedby', msgSpanId);
+        });
     }
 
     productReviewHandler() {

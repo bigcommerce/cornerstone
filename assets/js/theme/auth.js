@@ -3,7 +3,7 @@ import stateCountry from './common/state-country';
 import nod from './common/nod';
 import validation from './common/form-validation';
 import forms from './common/models/forms';
-import { classifyForm, Validators } from './common/form-utils';
+import { classifyForm, Validators } from './common/utils/form-utils';
 
 export default class Auth extends PageManager {
     constructor(context) {

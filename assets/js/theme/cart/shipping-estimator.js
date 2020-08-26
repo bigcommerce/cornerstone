@@ -1,7 +1,7 @@
 import stateCountry from '../common/state-country';
 import nod from '../common/nod';
 import utils from '@bigcommerce/stencil-utils';
-import { Validators } from '../common/form-utils';
+import { Validators } from '../common/utils/form-utils';
 import swal from '../global/sweet-alert';
 
 export default class ShippingEstimator {

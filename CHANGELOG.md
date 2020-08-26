@@ -2,8 +2,15 @@
 
 ## Draft
 - Visually hidden cart link read by screen reader. [#1770](https://github.com/bigcommerce/cornerstone/pull/1770)
-
-## 4.9.0 (08-05-2020)
+- Improper heading hierarchy on Cart page. [#1775](https://github.com/bigcommerce/cornerstone/pull/1775)
+- Fixed failing to add product to cart on IE11 [#1762](https://github.com/bigcommerce/cornerstone/pull/1762)
+- Fixed overlaping at footer columns when long texts (without spaces) are entered [#1753](https://jira.bigcommerce.com/browse/BCTHEME-43)
+- Incorrect focus order on PDPs. [#1771](https://github.com/bigcommerce/cornerstone/pull/1771)
+- Unnecessary heading on product cards. [#1768](https://github.com/bigcommerce/cornerstone/pull/1768)
+- Improper footer heading hierarchy. [#1760](https://github.com/bigcommerce/cornerstone/pull/1760/files)
+- Improper heading hierarchy on Sitemap. [#1774](https://github.com/bigcommerce/cornerstone/pull/1774)
+- Added modal trap for for product details. [#1758](https://github.com/bigcommerce/cornerstone/pull/1758)
+- Added tooltips for carousel Previous and Next buttons. [#1749](https://github.com/bigcommerce/cornerstone/pull/1749)
 
 ## 4.9.0 (07-28-2020)
 - Added correct alt text on image change in product view. [#1747](https://github.com/bigcommerce/cornerstone/pull/1747)

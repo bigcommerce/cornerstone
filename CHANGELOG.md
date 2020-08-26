@@ -1,8 +1,7 @@
 # Changelog
 
 ## Draft
-
-## 4.9.0 (08-05-2020)
+- Fixed overlaping at footer columns when long texts (without spaces) are entered [#1753](https://jira.bigcommerce.com/browse/BCTHEME-43)
 
 ## 4.9.0 (07-28-2020)
 - Added correct alt text on image change in product view. [#1747](https://github.com/bigcommerce/cornerstone/pull/1747)

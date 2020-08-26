@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Fixed Shop by price insufficient link text. [#1786](https://github.com/bigcommerce/cornerstone/pull/1786)
 - Fixed improper heading hierarchy on Add to Cart modal recommendation. [#1784](https://github.com/bigcommerce/cornerstone/pull/1784)
 - Fixed improper heading hierarchy on Add to Cart modal heading. [#1783](https://github.com/bigcommerce/cornerstone/pull/1783)
 - Changed heading tag for carousel slides. [#1780](https://github.com/bigcommerce/cornerstone/pull/1780)

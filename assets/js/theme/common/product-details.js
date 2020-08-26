@@ -2,7 +2,7 @@ import utils from '@bigcommerce/stencil-utils';
 import 'foundation-sites/js/foundation/foundation';
 import 'foundation-sites/js/foundation/foundation.reveal';
 import ImageGallery from '../product/image-gallery';
-import modalFactory, { showAlertModal } from '../global/modal';
+import modalFactory, { showAlertModal, modalTypes } from '../global/modal';
 import _ from 'lodash';
 import Wishlist from '../wishlist';
 import { normalizeFormData } from './utils/api';
@@ -398,7 +398,7 @@ export default class ProductDetails {
             if (this.previewModal) {
                 this.previewModal.open();
 
-                this.updateCartContent(this.previewModal, response.data.cart_item.id);
+                this.updateCartContent(this.previewModal, response.data.cart_item.id, () => this.previewModal.setupFocusableElements(modalTypes.PRODUCT_DETAILS));
             } else {
                 this.$overlay.show();
                 // if no modal, redirect to the cart page

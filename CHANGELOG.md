@@ -9,6 +9,9 @@
 - Improper footer heading hierarchy. [#1760](https://github.com/bigcommerce/cornerstone/pull/1760/files)
 - Improper heading hierarchy on Sitemap. [#1774](https://github.com/bigcommerce/cornerstone/pull/1774)
 
+- Added modal trap for for product details. [#1758](https://github.com/bigcommerce/cornerstone/pull/1758)
+- Added tooltips for carousel Previous and Next buttons. [#1749](https://github.com/bigcommerce/cornerstone/pull/1749)
+
 ## 4.9.0 (07-28-2020)
 - Added correct alt text on image change in product view. [#1747](https://github.com/bigcommerce/cornerstone/pull/1747)
 - Description tab is hidden in case of empty product descrioption. [#1746](https://github.com/bigcommerce/cornerstone/pull/1746)

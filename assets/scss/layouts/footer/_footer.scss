@@ -16,6 +16,16 @@
     background-color: $footer-background;
     border-top: container("border");
     padding: spacing("double") 0;
+    position: relative;
+}
+
+.footer-title-sr-only {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
 }
 
 .footer-info {
@@ -32,7 +42,9 @@
     margin-bottom: spacing("double");
     text-align: center;
     vertical-align: top;
-
+    // TODO: specifically use vendor only for IE11 since overflow-wrap is not supported here 
+    -ms-word-break: break-all;
+    overflow-wrap: break-word;
     @include breakpoint("small") {
         text-align: left;
         width: width("6/12");

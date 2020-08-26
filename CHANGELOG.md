@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Fixed improper heading hierarchy on Add to Cart modal heading. [#1783](https://github.com/bigcommerce/cornerstone/pull/1783)
 - Changed heading tag for carousel slides. [#1780](https://github.com/bigcommerce/cornerstone/pull/1780)
 - Selected state on search page not announced. [#1788](https://github.com/bigcommerce/cornerstone/pull/1788)
 - Added additional focusable element for rating announcing. [#1769](https://github.com/bigcommerce/cornerstone/pull/1769)
@@ -16,7 +17,6 @@
 - Improper heading hierarchy on Sitemap. [#1774](https://github.com/bigcommerce/cornerstone/pull/1774)
 - Added modal trap for for product details. [#1758](https://github.com/bigcommerce/cornerstone/pull/1758)
 - Added tooltips for carousel Previous and Next buttons. [#1749](https://github.com/bigcommerce/cornerstone/pull/1749)
-
 
 ## 4.9.0 (07-28-2020)
 - Added correct alt text on image change in product view. [#1747](https://github.com/bigcommerce/cornerstone/pull/1747)

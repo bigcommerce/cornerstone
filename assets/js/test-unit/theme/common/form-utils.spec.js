@@ -1,4 +1,4 @@
-import { Validators } from '../../../theme/common/form-utils';
+import { Validators } from '../../../theme/common/utils/form-utils';
 
 describe('Validators', () => {
     let validator;

@@ -1,5 +1,5 @@
-<div class="form-field" data-product-attribute="swatch">
-    <label class="form-label form-label--alternate form-label--inlineSmall">
+<div class="form-field" data-product-attribute="swatch" role="radiogroup" aria-labelledby="swatchGroup">
+    <label class="form-label form-label--alternate form-label--inlineSmall" id="swatchGroup">
         {{this.display_name}}:
         <span data-option-value></span>
 
@@ -14,6 +14,7 @@
             value=""
             id="attribute_swatch_{{../id}}_none"
             checked="{{#if defaultValue '==' ''}}checked{{/if}}"
+            aria-label="{{lang 'products.none'}}"
         >
         <label class="form-option form-option-swatch" for="attribute_swatch_{{../id}}_none">
             <span class='form-option-variant form-option-variant--none' title="{{lang 'products.none'}}">{{lang 'products.none'}}</span>
@@ -21,7 +22,15 @@
     {{/unless}}
 
     {{#each this.values}}
-        <input class="form-radio" type="radio" name="attribute[{{../id}}]" value="{{id}}" id="attribute_swatch_{{../id}}_{{id}}" {{#if selected}}checked data-default{{/if}} {{#if ../required}}required{{/if}}>
+        <input class="form-radio"
+               type="radio"
+               name="attribute[{{../id}}]"
+               value="{{id}}"
+               id="attribute_swatch_{{../id}}_{{id}}"
+               {{#if selected}}checked data-default{{/if}}
+               {{#if ../required}}required{{/if}}
+               aria-label="{{this.label}}"
+        >
         <label class="form-option form-option-swatch" for="attribute_swatch_{{../id}}_{{id}}" data-product-attribute-value="{{id}}">
             {{#if image}}
                 <span class='form-option-variant form-option-variant--pattern' title="{{this.label}}" style="background-image: url('{{getImage image "swatch_option_size"}}');"></span>

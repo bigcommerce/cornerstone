@@ -1,8 +1,8 @@
 import FacetedSearch from '../../../theme/common/faceted-search';
-import { Validators } from '../../../theme/common/form-utils';
+import { Validators } from '../../../theme/common/utils/form-utils';
 import $ from 'jquery';
 import { hooks, api } from '@bigcommerce/stencil-utils';
-import urlUtils from '../../../theme/common/url-utils';
+import urlUtils from '../../../theme/common/utils/url-utils';
 
 describe('FacetedSearch', () => {
     let facetedSearch;

@@ -1,5 +1,5 @@
 import PageManager from './page-manager';
-import urlUtils from './common/url-utils';
+import urlUtils from './common/utils/url-utils';
 import Url from 'url';
 
 export default class CatalogPage extends PageManager {

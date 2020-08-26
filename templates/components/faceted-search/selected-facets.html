@@ -1,21 +1,21 @@
 <div class="facetedSearch-refineFilters sidebarBlock">
-    <h5 class="sidebarBlock-heading">
+    <h2 class="sidebarBlock-heading">
         {{lang 'search.faceted.selected.title'}}
-    </h5>
+    </h2>
 
-    {{#if this.items}}
+    {{#if items}}
         <ul class="inlineList inlineList--labels">
-            {{#each this.items}}
+            {{#each items}}
                 <li>
                     <a
-                        href="{{ url }}"
+                        href="{{url}}"
                         class="facetLabel"
                         rel="nofollow"
                         data-faceted-search-facet>
                         {{#if facet '===' 'rating'}}
                             {{lang 'search.faceted.selected.rating-label' rating=title}}
                         {{else}}
-                            {{{ sanitize title }}}
+                            {{{sanitize title}}}
                         {{/if}}
 
                         <svg class="icon">
@@ -30,7 +30,7 @@
     {{/if}}
 
     {{#if remove_all_url}}
-        <a href="{{ remove_all_url }}" data-faceted-search-facet>
+        <a href="{{remove_all_url}}" data-faceted-search-facet>
             {{lang 'search.faceted.selected.clear-all'}}
         </a>
     {{/if}}

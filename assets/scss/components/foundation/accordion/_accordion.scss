@@ -21,6 +21,7 @@
 }
 
 .accordion-title {
+    font-size: remCalc(15px);
     margin: 0;
 }
 
@@ -63,9 +64,11 @@
     }
 
     .accordion-navigation {
+        padding-right: 70px;
         @include breakpoint("medium") {
             background-position: right 0 top 50%;
             border: 0;
+            padding-right: 50px;
         }
     }
 
@@ -139,15 +142,27 @@
     position: absolute;
     right: $accordion-navigation-paddingHorizontal;
     top: $accordion-navigation-paddingVertical;
+}
 
-    > a {
-        color: stencilColor("color-textSecondary");
-        vertical-align: middle;
+.accordion-nav-clear-holder {
+    position: relative;
+}
 
-        // scss-lint:disable NestingDepth
-        &:hover {
-            color: stencilColor("color-textSecondary--hover");
-        }
-        // scss-lint:enable NestingDepth
+.facetedSearch-clearLink {
+    position: absolute;
+    right: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: stencilColor("color-textSecondary");
+    @include breakpoint("medium") {
+        right: 20px;
+        top: 3px;
+        transform: none;
     }
+
+    // scss-lint:disable NestingDepth
+    &:hover {
+        color: stencilColor("color-textSecondary--hover");
+    }
+    // scss-lint:enable NestingDepth
 }

@@ -1,32 +1,13 @@
 {{#if items}}
 <div class="accordion-block">
-    <div
-        class="accordion-navigation toggleLink {{#unless ../start_collapsed }} is-open {{/unless}}"
-        role="button"
-        data-collapsible="#facetedSearch-content--{{hyphenate facet }}">
-        <h5 class="accordion-title">
-            {{ title }}
-        </h5>
+    {{> components/faceted-search/faceted-search-navigation}}
 
-        <div class="accordion-navigation-actions">
-            {{#if selected}}
-                <a href="{{ remove_url }}" class="facetedSearch-clearLink" data-faceted-search-facet>{{lang 'search.faceted.clear'}}</a>
-            {{/if}}
-            <svg class="icon accordion-indicator toggleLink-text toggleLink-text--off">
-                <use xlink:href="#icon-add" />
-            </svg>
-            <svg class="icon accordion-indicator toggleLink-text toggleLink-text--on">
-                <use xlink:href="#icon-remove" />
-            </svg>
-        </div>
-    </div>
-
-    <div id="facetedSearch-content--{{hyphenate facet }}" class="accordion-content facetedSearch-content--{{hyphenate facet}} {{#unless ../start_collapsed }} is-open {{/unless}}">
+    <div id="facetedSearch-content--{{dashcase facet}}" class="accordion-content facetedSearch-content--{{dashcase facet}}{{#unless start_collapsed}} is-open{{/unless}}">
         <ul class="navList">
             {{#each items}}
                 <li class="navList-item">
-                    <a href="{{ url }}"
-                       class="navList-action {{#if selected }} is-selected {{/if}}"
+                    <a href="{{url}}"
+                       class="navList-action{{#if selected}} is-selected{{/if}}"
                        rel="nofollow"
                        data-faceted-search-facet>
                         <span class="rating--small">
@@ -34,7 +15,7 @@
                         </span>
                         {{lang 'search.faceted.rating.and-up'}}
                         {{#if ../show_product_counts}}
-                            <span>({{ count }})</span>
+                            <span>({{count}})</span>
                         {{/if}}
                     </a>
                 </li>

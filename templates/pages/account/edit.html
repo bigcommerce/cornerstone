@@ -5,10 +5,10 @@
     <h2 class="page-heading">{{lang 'account.settings.heading' }}</h2>
     {{> components/account/navigation account_page='settings'}}
     {{#if forms.edit_account.error}}
-    {{> components/common/alert-error forms.edit_account.error}}
+    {{> components/common/alert/alert-error forms.edit_account.error}}
     {{/if}}
     {{#if forms.edit_account.success}}
-    {{> components/common/alert-success forms.edit_account.success}}
+    {{> components/common/alert/alert-success forms.edit_account.success}}
     {{/if}}
     {{> components/account/edit-account}}
 </div>

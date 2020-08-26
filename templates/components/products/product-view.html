@@ -1,10 +1,10 @@
 <div class="productView" {{#if settings.data_tag_enabled}} data-event-type="product" data-entity-id="{{product.id}}" data-name="{{product.title}}" data-product-category="{{#each product.category}}{{#if @last}}{{this}}{{else}}{{this}}, {{/if}}{{/each}}" data-product-brand="{{product.brand.name}}" data-product-price="{{#if product.price.with_tax}}{{product.price.with_tax.value}}{{else}}{{product.price.without_tax.value}}{{/if}}" data-product-variant="single-product-option"{{/if}}>
 {{#each product.reviews.messages}}
         {{#if error}}
-            {{> components/common/alert-error error}}
+            {{> components/common/alert/alert-error error}}
         {{/if}}
         {{#if success}}
-            {{> components/common/alert-success success}}
+            {{> components/common/alert/alert-success success}}
         {{/if}}
     {{/each}}
 
@@ -243,9 +243,9 @@
                 {{/if}}
                 {{#if product.out_of_stock}}
                     {{#if product.out_of_stock_message}}
-                        {{> components/common/alert-error product.out_of_stock_message}}
+                        {{> components/common/alert/alert-error product.out_of_stock_message}}
                     {{else}}
-                        {{> components/common/alert-error (lang 'products.sold_out')}}
+                        {{> components/common/alert/alert-error (lang 'products.sold_out')}}
                     {{/if}}
                 {{/if}}
             </form>
@@ -268,9 +268,7 @@
 </div>
 
 <div id="previewModal" class="modal modal--large" data-reveal>
-    <button class="modal-close" aria-label="{{lang 'common.close'}}">
-        <span aria-hidden="true">&#215;</span>
-    </button>
+    {{> components/common/modal/modal-close-btn }}
     <div class="modal-content"></div>
     <div class="loadingOverlay"></div>
 </div>

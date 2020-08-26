@@ -2,6 +2,32 @@
 // MODAL (CSS)
 // =============================================================================
 
+@mixin addFocusTooltip () {
+    &:focus {
+        &:before {
+            content: " ";
+            position: absolute;
+            top: 50%;
+            border-width: remCalc(10px);
+            border-style: solid;
+            border-color: transparent transparent $adminBar-tooltip-bg-backgroundColor transparent;
+        }
+
+        &:after {
+            content: attr(title);
+            padding: remCalc(4px) remCalc(6px);
+            background-color: $adminBar-tooltip-bg-backgroundColor;
+            color: white;
+            position: absolute;
+            font-size: 1rem;
+            white-space: nowrap;
+            right: 0;
+            top: 100%;
+            cursor: default;
+            border-radius: remCalc(8px);
+        }
+    }
+}
 
 .modal {
     margin: 0;
@@ -53,6 +79,12 @@
 
     &:hover {
         color: stencilColor("icon-color-hover");
+    }
+
+    @include addFocusTooltip;
+
+    &__aria-text {
+        font-size: 0;
     }
 }
 

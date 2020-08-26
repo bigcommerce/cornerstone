@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Added tooltip for modal close buttons. [#1773](https://github.com/bigcommerce/cornerstone/pull/1773)
 - Carousel links should have discernible text. [#1789](https://github.com/bigcommerce/cornerstone/pull/1789)
 - Add labels to swatches. [#1761](https://github.com/bigcommerce/cornerstone/pull/1761)
 - ARIA attributes on Write Review modal need valid values. [#1790](https://github.com/bigcommerce/cornerstone/pull/1790)

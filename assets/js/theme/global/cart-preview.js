@@ -17,13 +17,13 @@ export default function (secureBaseUrl, cartId) {
 
     $body.on('cart-quantity-update', (event, quantity) => {
         $cart.attr('aria-label', (_, prevValue) => prevValue.replace(/\d+/, quantity));
-      
+
         if (!quantity) {
             $cart.addClass('navUser-item--cart__hidden-s');
         } else {
             $cart.removeClass('navUser-item--cart__hidden-s');
         }
-      
+
         $('.cart-quantity')
             .text(quantity)
             .toggleClass('countPill--positive', quantity > 0);

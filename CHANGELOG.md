@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Button inputs with the same name attribute should be part of a group. [#1792](https://github.com/bigcommerce/cornerstone/pull/1792)
 - Fixed Shop by price insufficient link text. [#1786](https://github.com/bigcommerce/cornerstone/pull/1786)
 - Fixed improper heading hierarchy on Add to Cart modal recommendation. [#1784](https://github.com/bigcommerce/cornerstone/pull/1784)
 - Fixed improper heading hierarchy on Add to Cart modal heading. [#1783](https://github.com/bigcommerce/cornerstone/pull/1783)

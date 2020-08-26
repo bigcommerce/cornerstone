@@ -59,7 +59,7 @@
     font-size: 0;   // 1
     margin: 0 remCalc($header-toggle-width); // 2
     text-align: center;
-    height: inherit;
+    height: $header-height;
 
     @include breakpoint("small") { // 4
         margin-left: remCalc($header-toggle-width * 1.5);
@@ -167,6 +167,7 @@
 
 .header-logo-image-container {
     position: relative;
+    width: 100%;
 }
 
 .header-logo-image-container:after {

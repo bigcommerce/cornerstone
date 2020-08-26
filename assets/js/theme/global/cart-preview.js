@@ -16,6 +16,11 @@ export default function (secureBaseUrl, cartId) {
     const $body = $('body');
 
     $body.on('cart-quantity-update', (event, quantity) => {
+        if (!quantity) {
+            $cart.addClass('navUser-item--cart__hidden-s');
+        } else {
+            $cart.removeClass('navUser-item--cart__hidden-s');
+        }
         $('.cart-quantity')
             .text(quantity)
             .toggleClass('countPill--positive', quantity > 0);

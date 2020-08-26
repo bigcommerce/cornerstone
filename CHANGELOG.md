@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Fixed failing to add product to cart on IE11 [#1762](https://github.com/bigcommerce/cornerstone/pull/1762)
 - Fixed overlaping at footer columns when long texts (without spaces) are entered [#1753](https://jira.bigcommerce.com/browse/BCTHEME-43)
 
 ## 4.9.0 (07-28-2020)

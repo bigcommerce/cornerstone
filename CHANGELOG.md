@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Added a valid ARIA role for li elemenents on "Related Products" tab [#1782](https://github.com/bigcommerce/cornerstone/pull/1782)
 - Fixed IDs used in ARIA and labels which are not unique. [#1791](https://github.com/bigcommerce/cornerstone/pull/1791)
 - Button inputs with the same name attribute should be part of a group. [#1792](https://github.com/bigcommerce/cornerstone/pull/1792)
 - Fixed Shop by price insufficient link text. [#1786](https://github.com/bigcommerce/cornerstone/pull/1786)

@@ -30,7 +30,7 @@
                     </label>
                     <!-- Stars -->
                     <!-- TODO: Review Stars need to be componentised, both for display and input -->
-                    <select id="rating-rate" class="form-select" name="revrating" aria-required="true">
+                    <select id="rating-rate" class="form-select" name="revrating" data-input aria-required="true">
                         <option value="">{{lang 'products.reviews.select_rating'}}</option>
                         {{#for 1 5}}
                             {{#if ../product.reviews.selected_rating '===' $index}}

@@ -1,11 +1,11 @@
 <ul class="tabs" data-tab role="tablist">
     {{#if product.related_products}}
-        <li class="tab is-active" role="presentational">
+        <li class="tab is-active" role="presentation">
             <a class="tab-title" href="#tab-related" role="tab" tabindex="0" aria-selected="true" controls="tab-related">{{lang 'products.related_products'}}</a>
         </li>
     {{/if}}
     {{#if product.similar_by_views}}
-        <li class="tab{{#unless product.related_products}} is-active{{/unless}}" role="presentational">
+        <li class="tab{{#unless product.related_products}} is-active{{/unless}}" role="presentation">
             <a class="tab-title" href="#tab-similar" role="tab" tabindex="0" aria-selected="{{#if product.related_products}}false{{else}}true{{/if}}" controls="tab-similar">{{lang 'products.similar_by_views'}}</a>
         </li>
     {{/if}}

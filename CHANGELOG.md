@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Fixed IDs used in ARIA and labels which are not unique. [#1791](https://github.com/bigcommerce/cornerstone/pull/1791)
 - Button inputs with the same name attribute should be part of a group. [#1792](https://github.com/bigcommerce/cornerstone/pull/1792)
 - Fixed Shop by price insufficient link text. [#1786](https://github.com/bigcommerce/cornerstone/pull/1786)
 - Fixed improper heading hierarchy on Add to Cart modal recommendation. [#1784](https://github.com/bigcommerce/cornerstone/pull/1784)

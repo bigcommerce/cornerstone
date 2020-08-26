@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Add labels to swatches. [#1761](https://github.com/bigcommerce/cornerstone/pull/1761)
 - ARIA attributes on Write Review modal need valid values. [#1790](https://github.com/bigcommerce/cornerstone/pull/1790)
 - Fixed improper heading hierarchy on PLPs. [#1779](https://github.com/bigcommerce/cornerstone/pull/1779)
 - Cornerstone - Cart link not visible on mobile Chrome depending on swatch image size. [#1793](https://github.com/bigcommerce/cornerstone/pull/1793)

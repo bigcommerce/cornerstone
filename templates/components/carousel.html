@@ -1,16 +1,20 @@
 <section class="heroCarousel"
     data-slick='{
-        "arrows": {{arrows}},
         "mobileFirst": true,
         "slidesToShow": 1,
         "slidesToScroll": 1,
         "autoplay": true,
         "autoplaySpeed": {{carousel.swap_frequency}},
         "lazyLoad": "anticipated",
-        "accessibility": false
+        "slide": ".js-hero-slide",
+        "prevArrow": ".js-hero-prev-arrow",
+        "nextArrow": ".js-hero-next-arrow"
     }'>
+    {{#and arrows (if carousel.slides.length '>' 1)}}
+    <button aria-label="{{lang 'carousel.arrowAriaLabel'}} {{carousel.slides.length}}" class="js-hero-prev-arrow slick-prev slick-arrow">hero-prev-arrow</button>
+    {{/and}}
     {{#each carousel.slides}}
-    <a href="{{url}}">
+    <a class="js-hero-slide" href="{{url}}">
         <div class="heroCarousel-slide {{#if ../theme_settings.homepage_stretch_carousel_images}}stretch{{/if}} {{#if @first}}heroCarousel-slide--first{{/if}}">
             <div class="heroCarousel-image-wrapper">
             {{#if @first}}
@@ -43,4 +47,7 @@
         </div>
     </a>
     {{/each}}
+    {{#and arrows (if carousel.slides.length '>' 1)}}
+    <button aria-label="{{lang 'carousel.arrowAriaLabel'}} {{carousel.slides.length}}" class="js-hero-next-arrow slick-next slick-arrow">hero-next-arrow</button>
+    {{/and}}
 </section>

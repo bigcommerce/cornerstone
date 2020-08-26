@@ -1,10 +1,20 @@
 # Changelog
 
 ## Draft
-
 Selected state on search page not announced. [#1788](https://github.com/bigcommerce/cornerstone/pull/1788)
-
-## 4.9.0 (08-05-2020)
+- Added additional focusable element for rating announcing. [#1769](https://github.com/bigcommerce/cornerstone/pull/1769)
+- Error messages from Write a Review should be announced. [#1777](https://github.com/bigcommerce/cornerstone/pull/1777)
+- Fixed issue with missing logo on mobile and tablet. [#1767](https://github.com/bigcommerce/cornerstone/pull/1767)
+- Visually hidden cart link read by screen reader. [#1770](https://github.com/bigcommerce/cornerstone/pull/1770)
+- Improper heading hierarchy on Cart page. [#1775](https://github.com/bigcommerce/cornerstone/pull/1775)
+- Fixed failing to add product to cart on IE11 [#1762](https://github.com/bigcommerce/cornerstone/pull/1762)
+- Fixed overlaping at footer columns when long texts (without spaces) are entered [#1753](https://jira.bigcommerce.com/browse/BCTHEME-43)
+- Incorrect focus order on PDPs. [#1771](https://github.com/bigcommerce/cornerstone/pull/1771)
+- Unnecessary heading on product cards. [#1768](https://github.com/bigcommerce/cornerstone/pull/1768)
+- Improper footer heading hierarchy. [#1760](https://github.com/bigcommerce/cornerstone/pull/1760/files)
+- Improper heading hierarchy on Sitemap. [#1774](https://github.com/bigcommerce/cornerstone/pull/1774)
+- Added modal trap for for product details. [#1758](https://github.com/bigcommerce/cornerstone/pull/1758)
+- Added tooltips for carousel Previous and Next buttons. [#1749](https://github.com/bigcommerce/cornerstone/pull/1749)
 
 ## 4.9.0 (07-28-2020)
 - Added correct alt text on image change in product view. [#1747](https://github.com/bigcommerce/cornerstone/pull/1747)

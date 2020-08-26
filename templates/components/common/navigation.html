@@ -92,7 +92,7 @@
                data-dropdown="cart-preview-dropdown"
                data-options="align:right"
                href="{{urls.cart}}"
-               aria-label="{{lang 'common.cart'}}"
+               aria-label="{{lang 'cart.nav_aria_label'}}"
             >
                 <span class="navUser-item-cartLabel">{{lang 'common.cart'}}</span>
                 <span class="countPill cart-quantity"></span>
@@ -102,6 +102,6 @@
         </li>
     </ul>
     <div class="dropdown dropdown--quickSearch" id="quickSearch" aria-hidden="true" tabindex="-1" data-prevent-quick-search-close>
-        {{> components/common/quick-search}}
+        {{> components/common/quick-search name='nav-quick-search'}}
     </div>
 </nav>

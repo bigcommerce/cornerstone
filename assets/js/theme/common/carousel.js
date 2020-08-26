@@ -1,5 +1,7 @@
 import 'slick-carousel';
 
+const integerRegExp = /[0-9]+/;
+
 const setSlideTabindexes = ($slides) => {
     $slides.each((index, element) => {
         const $element = $(element);
@@ -14,38 +16,68 @@ const showCarouselIfSlidesAnalizedSetup = ($carousel) => {
         analizedSlides.push($slide);
         if ($slides.length === analizedSlides.length) {
             $carousel.addClass('is-visible');
-            setSlideTabindexes($('.slick-slide'));
         }
     };
 };
 
+const arrowAriaLabling = ($arrowLeft, $arrowRight, currentSlide, lastSlide) => {
+    if (lastSlide < 2) return;
+    if ($arrowLeft.length === 0 || $arrowRight.length === 0) return;
+
+    const arrowAriaLabelBaseText = $arrowLeft.attr('aria-label');
+
+    const isInit = arrowAriaLabelBaseText.includes(['NUMBER']);
+    const valueToReplace = isInit ? '[NUMBER]' : integerRegExp;
+
+    const leftGoToNumber = currentSlide === 1 ? lastSlide : currentSlide - 1;
+    const arrowLeftText = arrowAriaLabelBaseText.replace(valueToReplace, leftGoToNumber);
+    $arrowLeft.attr('aria-label', arrowLeftText);
+
+    const rightGoToNumber = currentSlide === lastSlide ? 1 : currentSlide + 1;
+    const arrowRightText = arrowAriaLabelBaseText.replace(valueToReplace, `${rightGoToNumber}`);
+    $arrowRight.attr('aria-label', arrowRightText);
+};
+
+const onCarouselChange = (event, carousel) => {
+    const { options: { prevArrow, nextArrow }, currentSlide, slideCount } = carousel;
+
+    setSlideTabindexes($(event.target).find('.slick-slide'));
+
+    arrowAriaLabling($(prevArrow), $(nextArrow), currentSlide + 1, slideCount);
+};
+
 export default function () {
-    const $carousel = $('[data-slick]');
+    const $carouselCollection = $('[data-slick]');
 
-    if ($carousel.length === 0) return;
+    if ($carouselCollection.length === 0) return;
 
-    const isMultipleSlides = $carousel[0].childElementCount > 1;
+    $carouselCollection.on('init', onCarouselChange);
+    $carouselCollection.on('afterChange', onCarouselChange);
 
-    const slickSettingsObj = isMultipleSlides
-        ? {
-            dots: true,
-            customPaging: () => (
+    $carouselCollection.each((index, carousel) => {
+        // getting element using find to pass jest test
+        const $carousel = $(document).find(carousel);
+
+        const isMultipleSlides = $carousel.children().length > 1;
+        const customPaging = isMultipleSlides
+            ? () => (
                 '<button type="button"></button>'
-            ),
-        }
-        : {
-            dots: false,
+            )
+            : () => {};
+
+        const options = {
+            accessibility: false,
+            arrows: isMultipleSlides,
+            customPaging,
+            dots: isMultipleSlides,
         };
 
-    $carousel.slick(slickSettingsObj);
-
-    $carousel.on('afterChange', () => {
-        setSlideTabindexes($('.slick-slide'));
+        $carousel.slick(options);
     });
 
-    const $slidesNodes = $('.heroCarousel-slide');
-
-    const showCarouselIfSlidesAnalized = showCarouselIfSlidesAnalizedSetup($carousel)($slidesNodes);
+    const $heroCarousel = $carouselCollection.filter('.heroCarousel');
+    const $slidesNodes = $heroCarousel.find('.heroCarousel-slide');
+    const showCarouselIfSlidesAnalized = showCarouselIfSlidesAnalizedSetup($heroCarousel)($slidesNodes);
 
     $slidesNodes.each((index, element) => {
         const $element = $(element);

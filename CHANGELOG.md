@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Fixed contrast on product ratings according to AA standard [#1799](https://github.com/bigcommerce/cornerstone/pull/1799)
 - Fixed product image doesn't change on click when viewing a product with multiple images in IE11 [#1748](https://github.com/bigcommerce/cornerstone/pull/1748)
 - Fixed alt text on image change in product view [#1747](https://github.com/bigcommerce/cornerstone/pull/1747)
 - Added tooltip for modal close buttons. [#1773](https://github.com/bigcommerce/cornerstone/pull/1773)

@@ -6,7 +6,7 @@
     <div class="account account--fixed">
         <div class="account-body">
             {{#if forms.create_account.error}}
-                {{> components/common/alert-error forms.create_account.error}}
+                {{> components/common/alert/alert-error forms.create_account.error}}
             {{/if}}
             {{#if settings.account_creation_enabled}}
                 <form action="{{urls.auth.save_new_account}}" data-create-account-form method="post" class="form">

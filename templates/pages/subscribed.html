@@ -11,9 +11,9 @@
         </h1>
 
         {{#if subscription.error}}
-            {{> components/common/alert-error subscription.error}}
+            {{> components/common/alert/alert-error subscription.error}}
         {{else}}
-            {{> components/common/alert-success (lang 'newsletter.subscribed_message')}}
+            {{> components/common/alert/alert-success (lang 'newsletter.subscribed_message')}}
         {{/if}}
 
     </div>

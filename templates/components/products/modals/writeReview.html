@@ -5,9 +5,7 @@
     {{inject 'reviewEmail' (lang 'forms.validate.common.email_address')}}
     <div class="modal-header">
         <h2 class="modal-header-title">{{lang 'products.reviews.write_a_review'}}</h2>
-        <a href="#" class="modal-close" aria-label="{{lang 'common.close'}}" role="button">
-            <span aria-hidden="true">&#215;</span>
-        </a>
+        {{> components/common/modal/modal-close-btn}}
     </div>
     <div class="modal-body">
         <div class="writeReview-productDetails">
@@ -30,7 +28,7 @@
                     </label>
                     <!-- Stars -->
                     <!-- TODO: Review Stars need to be componentised, both for display and input -->
-                    <select id="rating-rate" class="form-select" name="revrating">
+                    <select id="rating-rate" class="form-select" name="revrating" data-input aria-required="true">
                         <option value="">{{lang 'products.reviews.select_rating'}}</option>
                         {{#for 1 5}}
                             {{#if ../product.reviews.selected_rating '===' $index}}
@@ -44,17 +42,17 @@
 
                 <!-- Name -->
                 {{#if product.reviews.author}}
-                    {{> components/common/forms/text id="revfromname" name="revfromname" label=(lang 'products.reviews.form_write.name') value=product.reviews.author}}
+                    {{> components/common/forms/text id="revfromname" name="revfromname" required="true" label=(lang 'products.reviews.form_write.name') value=product.reviews.author}}
                 {{else}}
-                    {{> components/common/forms/text id="revfromname" name="revfromname" label=(lang 'products.reviews.form_write.name') value=customer.name}}
+                    {{> components/common/forms/text id="revfromname" name="revfromname" required="true" label=(lang 'products.reviews.form_write.name') value=customer.name}}
                 {{/if}}
 
                 {{#if product.reviews.show_review_email}}
                     <!-- Email -->
                     {{#if product.reviews.email}}
-                        {{> components/common/forms/text id="email" name="email" required="false" label=(lang 'products.reviews.form_write.email') value=product.reviews.email}}
+                        {{> components/common/forms/text id="email" name="email" required="true" label=(lang 'products.reviews.form_write.email') value=product.reviews.email}}
                     {{else}}
-                        {{> components/common/forms/text id="email" name="email" required="false" label=(lang 'products.reviews.form_write.email') value=customer.email}}
+                        {{> components/common/forms/text id="email" name="email" required="true" label=(lang 'products.reviews.form_write.email') value=customer.email}}
                     {{/if}}
                 {{/if}}
 

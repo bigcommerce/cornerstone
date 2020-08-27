@@ -5,7 +5,7 @@
     {{> components/account/navigation account_page='recent_items'}}
 
     {{#unless customer.recently_viewed_products.items}}
-        {{> components/common/alert-info (lang 'account.recent_items.no_items')}}
+        {{> components/common/alert/alert-info (lang 'account.recent_items.no_items')}}
     {{/unless}}
 
     <form action="{{urls.compare}}" method="post">

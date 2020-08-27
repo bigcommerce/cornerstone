@@ -8,10 +8,10 @@
     <div class="account-body">
         <section class="account-content">
             {{#if forms.inbox.error}}
-                {{> components/common/alert-error forms.inbox.error}}
+                {{> components/common/alert/alert-error forms.inbox.error}}
             {{/if}}
             {{#if forms.inbox.success}}
-                {{> components/common/alert-success forms.inbox.success}}
+                {{> components/common/alert/alert-success forms.inbox.success}}
             {{/if}}
             {{> components/account/messages-list messages=customer.inbox.messages}}
             {{> components/account/messages-form}}

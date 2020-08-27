@@ -1,10 +1,10 @@
 import { hooks, api } from '@bigcommerce/stencil-utils';
 import _ from 'lodash';
 import Url from 'url';
-import urlUtils from './url-utils';
+import urlUtils from './utils/url-utils';
 import modalFactory from '../global/modal';
 import collapsibleFactory from './collapsible';
-import { Validators } from './form-utils';
+import { Validators } from './utils/form-utils';
 import nod from './nod';
 
 /**

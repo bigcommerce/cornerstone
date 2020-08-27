@@ -7,11 +7,14 @@ export default function () {
     const $quickSearchResults = $('.quickSearchResults');
     const $quickSearchDiv = $('#quickSearch');
     const $searchQuery = $('[data-search-quick]');
+    const $quickSearchExpand = $('#quick-search-expand');
     const stencilDropDownExtendables = {
         hide: () => {
+            $quickSearchExpand.attr('aria-expanded', false);
             $searchQuery.trigger('blur');
         },
         show: (event) => {
+            $quickSearchExpand.attr('aria-expanded', true);
             $searchQuery.trigger('focus');
             event.stopPropagation();
         },

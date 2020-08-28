@@ -28,6 +28,7 @@
 - Improper heading hierarchy on Sitemap. [#1774](https://github.com/bigcommerce/cornerstone/pull/1774)
 - Added modal trap for for product details. [#1758](https://github.com/bigcommerce/cornerstone/pull/1758)
 - Added tooltips for carousel Previous and Next buttons. [#1749](https://github.com/bigcommerce/cornerstone/pull/1749)
+- Card content truncated on zooming browser to 400%. [#1803](https://github.com/bigcommerce/cornerstone/pull/1803)
 
 ## 4.9.0 (07-28-2020)
 - Added correct alt text on image change in product view. [#1747](https://github.com/bigcommerce/cornerstone/pull/1747)

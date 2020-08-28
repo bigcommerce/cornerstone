@@ -17,6 +17,7 @@ $cart-thumbnail-maxHeight:              14rem;
 $cart-thumbnail-paddingVertical:        0.5rem;
 
 $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-spacing;
+$card-preview-zoom-bottom-offset:       6rem;
 
 //
 // Shared styles for additional checkout buttons
@@ -557,6 +558,11 @@ $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-sp
 // 1. Need to vertically align a block of text
 //
 // -----------------------------------------------------------------------------
+
+.previewCartWrapper {
+    max-height: calc(100vh - #{$card-preview-zoom-bottom-offset});
+    overflow: auto;
+}
 
 .previewCartList {
     @include u-listReset;

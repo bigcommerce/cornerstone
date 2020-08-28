@@ -197,20 +197,17 @@
 
 .productView-reviewLink {
     display: inline-block;
-    margin-left: spacing("half");
+    margin-left: spacing("quarter");
     vertical-align: middle;
+    color: stencilColor("color-textSecondary");
+
+    // scss-lint:disable NestingDepth
+    &:hover {
+        color: stencilColor("color-textSecondary--hover");
+    }
 
     &--new {
         padding: 0;
-    }
-
-    > a {
-        color: stencilColor("color-textSecondary");
-
-        // scss-lint:disable NestingDepth
-        &:hover {
-            color: stencilColor("color-textSecondary--hover");
-        }
     }
 }
 

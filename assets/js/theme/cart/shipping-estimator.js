@@ -167,7 +167,7 @@ export default class ShippingEstimator {
             event.preventDefault();
 
             $(event.currentTarget).hide();
-            $estimatorContainer.removeClass('u-hiddenVisually');
+            $estimatorContainer.removeClass('u-hidden');
             $('.shipping-estimate-hide').show();
         });
 
@@ -175,7 +175,7 @@ export default class ShippingEstimator {
         $('.shipping-estimate-hide').on('click', event => {
             event.preventDefault();
 
-            $estimatorContainer.addClass('u-hiddenVisually');
+            $estimatorContainer.addClass('u-hidden');
             $('.shipping-estimate-show').show();
             $('.shipping-estimate-hide').hide();
         });

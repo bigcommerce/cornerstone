@@ -1,5 +1,7 @@
 # Changelog
 
+- Cross icon on close button missalignment. [#1822](https://github.com/bigcommerce/cornerstone/pull/1822)
+
 ## Draft
 - Review link in quick modal focused twice. [#1797](https://github.com/bigcommerce/cornerstone/pull/1797)
 - Fixed product image doesn't change on click when viewing a product with multiple images in IE11 [#1748](https://github.com/bigcommerce/cornerstone/pull/1748)

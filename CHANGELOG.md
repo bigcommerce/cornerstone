@@ -1,5 +1,7 @@
 # Changelog
 
+- Delete item button in cart cut off from right side when in focus. [#1823](https://github.com/bigcommerce/cornerstone/pull/1823)
+
 ## Draft
 - Review link in quick modal focused twice. [#1797](https://github.com/bigcommerce/cornerstone/pull/1797)
 - Fixed product image doesn't change on click when viewing a product with multiple images in IE11 [#1748](https://github.com/bigcommerce/cornerstone/pull/1748)

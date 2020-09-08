@@ -2,9 +2,76 @@ $font-big: 2.4rem;
 
 $spacing-size-1: 2.5rem;
 
-// Colours
+// Colours -move to _colours.scss
 $dark-text: #171c21;
 $dark-blue-1: #273a8a;
+
+$white: #ffffff;
+$black: #000000;
+$grey1: #e4eaee;
+$grey2: #cdd6da;
+$purple1: #ae93a9;
+$purple1-light: #cbbac7;
+$lightblue1: #d8e9f6;
+$lightblue2-text: #aacce5;
+$darkblue1: #476993;
+$darkblue2: #313c52;
+$darkblue3-text: #034985;
+
+// -----------------------------------------------------------------------------
+//
+// Overrides
+//
+// -----------------------------------------------------------------------------
+
+body {
+  background-color: $white;
+}
+
+.banners {
+  background-color: $purple1;
+}
+
+// -----------------------------------------------------------------------------
+//
+// Navigation
+//
+// -----------------------------------------------------------------------------
+
+
+
+.header {
+  border: none;
+}
+.navigation-main, .navigation-logo {
+  background: $white;
+
+  .top-bar {
+    background: $white;
+    .top-bar-section {
+      li {
+        background: $white;
+      }
+
+      ul {
+        display: table;
+        margin: 0 auto;
+      }
+
+      ul li {
+        display: table-cell;
+      }
+
+      .right, .left {
+        a {
+          background: $white;
+          text-decoration: none;
+          color: $black;
+        }
+      }
+    }
+  }
+}
 
 // -----------------------------------------------------------------------------
 //
@@ -12,9 +79,6 @@ $dark-blue-1: #273a8a;
 //
 // -----------------------------------------------------------------------------
 
-.container {
-  background-color: #eaeaea;
-}
 // Cards
 .home-cards {
 

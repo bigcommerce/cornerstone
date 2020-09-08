@@ -1,0 +1,38 @@
+<div class="contain-to-grid navigation-banner navigation-main">
+    <nav class="top-bar" data-topbar role="navigation">
+        <section class="top-bar-section">
+
+            <ul class="left">
+                {{#each categories}}
+                {{#if children}}
+                <li class="has-dropdown{{#if is_active}} active{{/if}}">
+                    <a href="#">{{name}}</a>
+                    <ul class="dropdown">
+                        {{#each children}}
+                        <li {{#if is_active}}class="active"{{/if}}>
+                            <a href="{{url}}">{{name}}</a>
+                        </li>
+                        {{/each}}
+                    </ul>
+                </li>
+                {{/if}}
+                {{/each}}
+            </ul>
+            <ul class="right">
+                {{#each pages}}
+                <li class="has-dropdown{{#if is_active}} active{{/if}}">
+                    <a href="#">{{name}}</a>
+                    <ul class="dropdown">
+                        {{#each children}}
+                        <li {{#if is_active}}class="active"{{/if}}>
+                            <a href="{{url}}">{{name}}</a>
+                        </li>
+                        {{/each}}
+                    </ul>
+                </li>
+
+                {{/each}}
+            </ul>
+        </section>
+    </nav>
+</div>

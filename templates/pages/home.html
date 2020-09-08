@@ -36,9 +36,14 @@ blog:
     {{/if}}
     {{{region name="home_below_top_products"}}}
 
-    {{#if products.new}}
-        {{> components/products/new products=products.new columns=theme_settings.homepage_new_products_column_count}}
-    {{/if}}
+    <!-- Cards -->
+    {{> components/page/home/cards}}
+
+    <!-- Block - Text Left -->
+    {{> components/page/home/block_text-left}}
+
+
+
     {{{region name="home_below_new_products"}}}
 </div>
 {{/partial}}

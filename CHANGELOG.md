@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Wishlist first option has no bottom outline when in focus. [#1825](https://github.com/bigcommerce/cornerstone/pull/1825)
 - Review link in quick modal focused twice. [#1797](https://github.com/bigcommerce/cornerstone/pull/1797)
 - Fixed product image doesn't change on click when viewing a product with multiple images in IE11 [#1748](https://github.com/bigcommerce/cornerstone/pull/1748)
 - Fixed alt text on image change in product view [#1747](https://github.com/bigcommerce/cornerstone/pull/1747)

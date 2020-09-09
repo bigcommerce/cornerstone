@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Product link has incorrect voice over focus on Cart Page. [#1830](https://github.com/bigcommerce/cornerstone/pull/1830)
 - Create unified focus styling in Cornerstone. [#1812](https://github.com/bigcommerce/cornerstone/pull/1812)
 - Review link in quick modal focused twice. [#1797](https://github.com/bigcommerce/cornerstone/pull/1797)
 - Fixed product image doesn't change on click when viewing a product with multiple images in IE11 [#1748](https://github.com/bigcommerce/cornerstone/pull/1748)

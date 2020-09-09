@@ -44,6 +44,8 @@
         overflow: visible;
         position: relative;
         height: auto;
+        display: flex;
+        flex-direction: column;
     }
 
     &.is-open {
@@ -69,6 +71,7 @@
     @include breakpoint("medium") {
         margin: (spacing("double") + spacing("base")) auto (spacing("double") + spacing("single"));
         padding: 0;
+        height: auto;
 
         .header.fixed & {
             background-color: color("greys", "lightest");
@@ -96,9 +99,10 @@
         @include breakpoint("medium") {
             background: none;
             border-bottom: 0;
-            display: inline;
+            display: inline-block;
             padding: 0;
             width: 100%;
+            height: auto;
         }
 
         &:hover {

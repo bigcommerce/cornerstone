@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Added immediate keyboard focus on write-a-review modal. [#1835](https://github.com/bigcommerce/cornerstone/pull/1835)
 - Create unified focus styling in Cornerstone. [#1812](https://github.com/bigcommerce/cornerstone/pull/1812)
 - Review link in quick modal focused twice. [#1797](https://github.com/bigcommerce/cornerstone/pull/1797)
 - Fixed product image doesn't change on click when viewing a product with multiple images in IE11 [#1748](https://github.com/bigcommerce/cornerstone/pull/1748)

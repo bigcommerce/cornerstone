@@ -1,5 +1,7 @@
 # Changelog
 
+- Rating and Other filter sections should be accessible by keyboard. [#1838](https://github.com/bigcommerce/cornerstone/pull/1838)
+
 ## Draft
 - Create unified focus styling in Cornerstone. [#1812](https://github.com/bigcommerce/cornerstone/pull/1812)
 - Review link in quick modal focused twice. [#1797](https://github.com/bigcommerce/cornerstone/pull/1797)

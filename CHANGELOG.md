@@ -1,5 +1,7 @@
 # Changelog
 
+- Options on change modal need focus border. [#1839](https://github.com/bigcommerce/cornerstone/pull/1839)
+
 ## Draft
 - Create unified focus styling in Cornerstone. [#1812](https://github.com/bigcommerce/cornerstone/pull/1812)
 - Review link in quick modal focused twice. [#1797](https://github.com/bigcommerce/cornerstone/pull/1797)

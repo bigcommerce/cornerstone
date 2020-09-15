@@ -1,34 +1,49 @@
 <div class="contain-to-grid navigation-banner navigation-main">
     <nav class="top-bar" data-topbar role="navigation">
+        <ul class="title-area">
+            <li class="name">
+                <!-- Leave Empty -->
+                <h1><a href="#"></a></h1>
+            </li>
+            <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+            <li class="toggle-topbar"><a href="#"><span>Menu</span></a></li>
+        </ul>
+
         <section class="top-bar-section">
-            <ul class="left">
+            <ul>
                 {{#each categories}}
                 {{#if children}}
-                <li class="has-dropdown{{#if is_active}} active{{/if}}">
+                <li class="not-click has-dropdown{{#if is_active}} active{{/if}}">
                     <a href="#">{{name}}</a>
                     <ul class="dropdown">
                         {{#each children}}
                         <li {{#if is_active}}class="active"{{/if}}>
-                            <a href="{{url}}">{{name}}</a>
+                        <a href="{{url}}">{{name}}</a>
                         </li>
                         {{/each}}
                     </ul>
+                </li>
+                {{else}}
+                <li {{#if is_active}}class="active"{{/if}}>
+                <a href="#">{{name}}</a>
                 </li>
                 {{/if}}
                 {{/each}}
-            </ul>
-            <ul class="right">
+
                 {{#each pages}}
-                <li class="has-dropdown{{#if is_active}} active{{/if}}">
-                    <a href="#">{{name}}</a>
+                <li class="{{#if has_children}}has-dropdown{{/if}}{{#if is_active}} active{{/if}}">
+                    <a href="{{url}}">{{name}}</a>
+                    {{#if has_children}}
                     <ul class="dropdown">
                         {{#each children}}
                         <li {{#if is_active}}class="active"{{/if}}>
-                            <a href="{{url}}">{{name}}</a>
+                        <a href="{{url}}">{{name}}</a>
                         </li>
                         {{/each}}
                     </ul>
+                    {{/if}}
                 </li>
+
                 {{/each}}
             </ul>
         </section>

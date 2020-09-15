@@ -158,3 +158,55 @@ body {
   }
 }
 
+// -----------------------------------------------------------------------------
+//
+// Product Page
+//
+// -----------------------------------------------------------------------------
+
+.productView-details {
+  .productView-product {
+    .productView-title {
+      font-size: 28px;
+      font-weight: bold;
+    }
+  }
+
+  .productView-options {
+    .button--icon {
+      position: absolute;
+      border: none;
+
+      // @todo make this work right
+      &.button--icon_left {
+        right: 29rem;
+      }
+
+      &.button--icon_right {
+        right: 34rem;
+      }
+
+      .icon {
+        width: 3rem;
+        height: 3rem;
+
+        svg {
+          fill: $black;
+        }
+      }
+    }
+
+    .form-input--incrementTotal {
+      float: left;
+      width: 7rem;
+    }
+
+    .form-input {
+      font-size: 25px;
+      font-weight: bold;
+      background-color: $white;
+      border: none;
+      border-bottom: 3px solid $black;
+    }
+  }
+}

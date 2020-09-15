@@ -1,5 +1,7 @@
 # Changelog
 
+- Product cards should link to products. [#1842](https://github.com/bigcommerce/cornerstone/pull/1842)
+
 ## Draft
 - Create unified focus styling in Cornerstone. [#1812](https://github.com/bigcommerce/cornerstone/pull/1812)
 - Review link in quick modal focused twice. [#1797](https://github.com/bigcommerce/cornerstone/pull/1797)

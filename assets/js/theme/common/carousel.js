@@ -1,12 +1,19 @@
 import 'slick-carousel';
 
 const integerRegExp = /[0-9]+/;
+const allFocusableElementsSelector = '[href], button, input, textarea, select, details, [contenteditable="true"], [tabindex]';
 
 const setSlideTabindexes = ($slides) => {
     $slides.each((index, element) => {
         const $element = $(element);
         const tabIndex = $element.hasClass('slick-active') ? 0 : -1;
-        $element.attr('tabindex', tabIndex);
+        if (!$element.hasClass('js-product-slide')) {
+            $element.attr('tabindex', tabIndex);
+        }
+
+        $element.find(allFocusableElementsSelector).each((idx, child) => {
+            $(child).attr('tabindex', tabIndex);
+        });
     });
 };
 

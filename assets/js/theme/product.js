@@ -23,8 +23,9 @@ export default class Product extends PageManager {
                 window.history.replaceState(null, document.title, window.location.pathname);
             }
         });
-
-        let validator;
+        $('.read-more').click(() => {
+            $('.readmore-box').css({ 'max-height': 'none' });
+        });
 
         // Init collapsible
         collapsibleFactory();

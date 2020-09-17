@@ -23,9 +23,9 @@ export default class Product extends PageManager {
                 window.history.replaceState(null, document.title, window.location.pathname);
             }
         });
-        $('.read-more').click(() => {
-            $('.readmore-box').css({ 'max-height': 'none' });
-        });
+
+        const originalHeight = $('.readmore-box').css('max-height');
+        this.readMore(originalHeight);
 
         // Init collapsible
         collapsibleFactory();
@@ -53,6 +53,25 @@ export default class Product extends PageManager {
 
         this.productReviewHandler();
         this.bulkPricingHandler();
+    }
+
+    readMore(originalHeight) {
+        const readMore = $('.read-more');
+        const readMoreBox = readMore.parent();
+
+        $(readMore).click(() => {
+            if (originalHeight === readMoreBox.css('max-height')) {
+                readMoreBox.animate({
+                    'max-height': 9999,
+                });
+            } else {
+                readMoreBox.animate({
+                    'max-height': originalHeight,
+                });
+            }
+        });
+
+        return false;
     }
 
     productReviewHandler() {

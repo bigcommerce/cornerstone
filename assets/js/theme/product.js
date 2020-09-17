@@ -56,6 +56,7 @@ export default class Product extends PageManager {
     }
 
     readMore(originalHeight) {
+        // @todo prevent screen from "Bouncing" on click
         const readMore = $('.read-more');
         const readMoreBox = readMore.parent();
 

@@ -8,7 +8,7 @@
         {{/if}}
     {{/each}}
 
-    <section class="productView-details">
+    <section class="productView-details product-info">
         <div class="productView-product">
             <h1 class="productView-title" {{#if schema}}itemprop="name"{{/if}}>{{product.title}}</h1>
             {{#if product.brand}}
@@ -212,6 +212,12 @@
     </section>
 
     <section class="productView-details">
+        <article class="productView-description description-readmore"{{#if schema}} itemprop="description"{{/if}}>
+            <!-- Description Accordion -->
+            {{> components/products/description-readmore }}
+
+
+        </article>
         <div class="productView-options">
             {{#if product.release_date }}
                 <p>{{product.release_date}}</p>
@@ -246,16 +252,10 @@
                 {{> components/common/wishlist-dropdown}}
             {{/if}}
         </div>
-        {{> components/common/share}}
+
     </section>
 
-    <article class="productView-description"{{#if schema}} itemprop="description"{{/if}}>
-        {{#if theme_settings.show_product_details_tabs}}
-            {{> components/products/description-tabs}}
-        {{else}}
-            {{> components/products/description}}
-        {{/if}}
-    </article>
+
 </div>
 
 <div id="previewModal" class="modal modal--large" data-reveal>

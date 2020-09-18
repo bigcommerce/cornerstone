@@ -1,6 +1,7 @@
 # Changelog
 
 - Quick search query param needs to be fixed while navigating to search page. [#230](https://jira.bigcommerce.com/browse/BCTHEME-230)
+- Zooming and scaling must not be disabled. [#1843](https://github.com/bigcommerce/cornerstone/pull/1843)
 
 ## Draft
 - Create unified focus styling in Cornerstone. [#1812](https://github.com/bigcommerce/cornerstone/pull/1812)

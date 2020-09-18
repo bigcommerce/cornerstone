@@ -158,3 +158,116 @@ body {
   }
 }
 
+// -----------------------------------------------------------------------------
+//
+// Product Page
+//
+// -----------------------------------------------------------------------------
+
+.productView-details {
+  &.product-info {
+    margin-bottom: 0;
+
+    .productView-product {
+    padding-bottom: 0Q;
+    }
+  }
+
+  .productView-product {
+    border: none;
+
+    .productView-title {
+      font-size: 28px;
+      font-weight: bold;
+    }
+  }
+
+  .productView-description {
+    padding-top: 0;
+    &.description-readmore {
+      width: 100%;
+    }
+
+    .readmore-box {
+      max-height: 420px;
+      position: relative;
+      overflow: hidden;
+
+      .read-more {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        margin: 0;
+        padding: 30px 0;
+        background-image: linear-gradient(to bottom, transparent, $white);
+
+        .button {
+          border: none;
+          background: $grey2;
+          border-radius: 20px;
+          color: $white;
+          font-weight: bold;
+          padding: 5px 15px;
+          z-index: 3;
+        }
+      }
+    }
+  }
+
+  .productView-options {
+    .button--icon {
+      //position: absolute;
+      border: none;
+
+      // @todo make this work right
+      &.button--icon_left {
+        //right: 29rem;
+      }
+
+      &.button--icon_right {
+        //right: 34rem;
+      }
+
+      .icon {
+        width: 3rem;
+        height: 3rem;
+
+        svg {
+          fill: $black;
+        }
+      }
+    }
+
+    .form-input--incrementTotal {
+      float: left;
+      width: 7rem;
+    }
+
+    .form-input {
+      font-size: 25px;
+      font-weight: bold;
+      background-color: $white;
+      border: none;
+      border-bottom: 3px solid $black;
+    }
+
+    .form-action {
+      width: 14rem;
+
+      input {
+        border: 3px solid black;
+        background-color: $white;
+        color: $black;
+        font-weight: bold;
+        font-size: 22px;
+
+        &:hover {
+          color: $white;
+          background-color: $black;
+        }
+      }
+    }
+  }
+}

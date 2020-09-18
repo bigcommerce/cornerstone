@@ -24,7 +24,8 @@ export default class Product extends PageManager {
             }
         });
 
-        let validator;
+        const originalHeight = $('.readmore-box').css('max-height');
+        this.readMore(originalHeight);
 
         // Init collapsible
         collapsibleFactory();
@@ -52,6 +53,26 @@ export default class Product extends PageManager {
 
         this.productReviewHandler();
         this.bulkPricingHandler();
+    }
+
+    readMore(originalHeight) {
+        // @todo prevent screen from "Bouncing" on click
+        const readMore = $('.read-more');
+        const readMoreBox = readMore.parent();
+
+        $(readMore).click(() => {
+            if (originalHeight === readMoreBox.css('max-height')) {
+                readMoreBox.animate({
+                    'max-height': 9999,
+                });
+            } else {
+                readMoreBox.animate({
+                    'max-height': originalHeight,
+                });
+            }
+        });
+
+        return false;
     }
 
     productReviewHandler() {

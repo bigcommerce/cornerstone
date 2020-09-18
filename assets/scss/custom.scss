@@ -14,9 +14,11 @@ $purple1: #ae93a9;
 $purple1-light: #cbbac7;
 $lightblue1: #d8e9f6;
 $lightblue2-text: #aacce5;
+$lightblue3: #b1d3ec;
 $darkblue1: #476993;
 $darkblue2: #313c52;
 $darkblue3-text: #034985;
+$darkblue4: #29426e;
 
 // -----------------------------------------------------------------------------
 //
@@ -100,16 +102,22 @@ body {
 
   .home-cards_title {
     margin-bottom: $spacing-size-1;
+    color: $black;
+    text-align: center;
+    font-size: 28px;
   }
 
   .home-cards_cards {
     .pricing-table {
       border: none;
+
+      li {
+        background-color: $lightblue3;
+      }
     }
 
     .title {
-      background-color: #ffffff;
-      color: $dark-blue-1;
+      color: $darkblue4;
       font-size: 1.4rem;
     }
 
@@ -118,7 +126,6 @@ body {
       text-align: left;
       border-bottom: none;
 
-      // Sorry style guide, you don't own me!
       p {
         font-size: 1.2rem;
         line-height: 1.4rem;
@@ -126,7 +133,7 @@ body {
     }
 
     .button {
-      background-color: orangered;
+      background-color: $darkblue4;
       color: #ffffff;
       font-weight: bold;
       border: none;
@@ -137,7 +144,7 @@ body {
 
   .home-cards_cards_border {
     margin: 0;
-    border: solid $dark-blue-1;
+    border: solid $darkblue4;
     border-width: 5px 0 0;
   }
 }

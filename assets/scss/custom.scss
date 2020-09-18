@@ -15,10 +15,12 @@ $purple1: #ae93a9;
 $purple1-light: #cbbac7;
 $lightblue1: #d8e9f6;
 $lightblue2-text: #aacce5;
+// Homepage Cards
 $lightblue3: #b1d3ec;
 $darkblue1: #476993;
 $darkblue2: #313c52;
 $darkblue3-text: #034985;
+// Homepage Cards
 $darkblue4: #29426e;
 
 // -----------------------------------------------------------------------------
@@ -98,6 +100,62 @@ body {
 //
 // -----------------------------------------------------------------------------
 
+// Hero Carousel
+.heroCarousel {
+  .slick-arrow, .slick-dots li {
+    background-color: rgba(0,0,0,0);
+    border: none;
+    color: $white;
+  }
+
+  .slick-dots {
+    li {
+      button {
+        background-color: #757575;
+        border: 1px solid #757575;
+      }
+
+      &.slick-active {
+        button::before {
+          background: $purple1;
+          border: 1px solid $purple1;
+        }
+      }
+    }
+  }
+
+  .heroCarousel-slide {
+    .heroCarousel-content {
+      background-color: rgba(0,0,0,0);
+      text-align: left;
+
+      .heroCarousel-title, .heroCarousel-description {
+        color: black;
+        font-weight: bold;
+      }
+
+      .heroCarousel-description {
+        font-size: 36px;
+      }
+
+      .heroCarousel-action {
+        padding: 20px 35px;
+        border: none;
+        border-radius: 0;
+        background-color: $lightblue3;
+        color: $black;
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 16px;
+
+        &:hover {
+          background-color: $lightblue1;
+        }
+      }
+    }
+  }
+}
+
 // Cards
 .home-cards {
 
@@ -126,6 +184,7 @@ body {
       color: $dark-text;
       text-align: left;
       border-bottom: none;
+      min-height: 12rem;
 
       p {
         font-size: 1.2rem;
@@ -140,6 +199,11 @@ body {
       border: none;
       border-radius: 0;
       width: 100%;
+
+      &:hover {
+        background-color: $darkblue1;
+        color: $grey3;
+      }
     }
   }
 
@@ -150,7 +214,31 @@ body {
   }
 }
 
-// Product Grid
+// Product Grid / Featured / Best Sellers
+.featured-products {
+  font-weight: bold;
+  margin-top: 3rem;
+}
+
+.center-button-large {
+  text-align: center;
+
+  .button {
+    padding: 20px 35px;
+    border: none;
+    border-radius: 0;
+    background-color: $lightblue3;
+    color: $black;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 16px;
+
+    &:hover {
+      background-color: $lightblue1;
+    }
+  }
+}
+
 .productGrid {
   .product {
     .card-figure {

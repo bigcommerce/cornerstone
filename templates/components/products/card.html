@@ -79,11 +79,11 @@
         </h4>
 
         <div class="card-text" data-test-info-type="price">
-            {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
-                {{> components/products/price price=price}}
-            {{else}}
-                {{> components/common/login-for-pricing}}
-            {{/or}}
+            {{#each custom_fields}}
+                {{#if name '===' 'featured_description'}}
+                    <a href="{{url}}">{{{ sanitize value }}} <br><b>Shop Now</b></a>
+                {{/if}}
+            {{/each}}
         </div>
         {{> components/products/bulk-discount-rates}}
     </div>

@@ -70,11 +70,13 @@
         </h4>
 
         <div class="card-text" data-test-info-type="price">
-            {{#each custom_fields}}
-                {{#if name '===' 'featured_description'}}
-                    <a href="{{url}}">{{{ sanitize value }}} <br><b>Shop Now</b></a>
-                {{/if}}
-            {{/each}}
+            <a href="{{url}}">
+                {{#each custom_fields}}
+                    {{#if name '===' 'featured_description'}}
+                        {{{ sanitize value }}} <br><b>Shop Now</b>
+                    {{/if}}
+                {{/each}}
+            </a>
         </div>
         {{> components/products/bulk-discount-rates}}
     </div>

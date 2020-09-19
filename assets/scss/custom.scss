@@ -39,19 +39,22 @@ body {
 //
 // -----------------------------------------------------------------------------
 
-.banners {
+.banner-promo, .banner-signup {
   background-color: $purple1;
 }
 
 // @todo needs testing on all sizes/browsers
-.banner-signup {
+.banner-signup, .banner-practitioner {
   width: 100vw;
   position: relative;
   left: 50%;
   right: 50%;
   margin-left: -50vw;
   margin-right: -50vw;
+}
 
+// Mailing List Signup Banner
+.banner-signup {
   .banner {
     margin-bottom: 0;
     display: inline-flex;
@@ -81,6 +84,34 @@ body {
 
       &:hover {
         background-color: $grey3;
+      }
+    }
+  }
+}
+
+.banner-practitioner {
+  background-color: $darkblue1;
+
+  .practitioner {
+    p {
+      font-size: 26px;
+      font-weight: bold;
+      margin-top: 2rem;
+    }
+  }
+
+  .banner {
+    .button {
+      background-color: $darkblue1;
+      border: 2px solid $lightblue3;
+      color: $lightblue3;
+      text-transform: uppercase;
+      font-weight: bold;
+      font-size: 18px;
+
+      &:hover {
+        background-color: $lightblue3;
+        color: $white;
       }
     }
   }

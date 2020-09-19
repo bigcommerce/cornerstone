@@ -53,28 +53,34 @@ body {
   margin-right: -50vw;
 
   .banner {
-    .subscription-form {
+    margin-bottom: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    p {
+      font-weight: bold;
+      font-size: 18px;
       margin-bottom: 0;
-      display: inline-flex;
-      align-items: center;
+    }
 
-      p {
-        font-weight: bold;
-        font-size: 18px;
-        margin-bottom: 0;
-      }
+    input {
+      margin-bottom: 0;
+    }
 
-      input {
-        margin-bottom: 1rem;
-      }
+    .form-input {
+      max-width: 200px;
+      margin-left: 1rem;
+    }
 
-      .form-input {
-        max-width: 200px;
-        margin-left: 1rem;
-      }
+    .button {
+      padding: 1rem;
+      text-transform: uppercase;
+      font-weight: bold;
+      border: none;
 
-      .button {
-        padding: 1rem;
+      &:hover {
+        background-color: $grey3;
       }
     }
   }

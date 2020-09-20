@@ -10,13 +10,18 @@ $white: #ffffff;
 $black: #000000;
 $grey1: #e4eaee;
 $grey2: #cdd6da;
+$grey3: #d8dfe2;
 $purple1: #ae93a9;
 $purple1-light: #cbbac7;
 $lightblue1: #d8e9f6;
 $lightblue2-text: #aacce5;
+// Homepage Cards
+$lightblue3: #b1d3ec;
 $darkblue1: #476993;
 $darkblue2: #313c52;
 $darkblue3-text: #034985;
+// Homepage Cards
+$darkblue4: #29426e;
 
 // -----------------------------------------------------------------------------
 //
@@ -28,8 +33,88 @@ body {
   background-color: $white;
 }
 
-.banners {
+// -----------------------------------------------------------------------------
+//
+// Common objects
+//
+// -----------------------------------------------------------------------------
+
+.banner-promo, .banner-signup {
   background-color: $purple1;
+}
+
+// @todo needs testing on all sizes/browsers
+.banner-signup, .banner-practitioner {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+
+// Mailing List Signup Banner
+.banner-signup {
+  .banner {
+    margin-bottom: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    p {
+      font-weight: bold;
+      font-size: 18px;
+      margin-bottom: 0;
+    }
+
+    input {
+      margin-bottom: 0;
+    }
+
+    .form-input {
+      max-width: 200px;
+      margin-left: 1rem;
+    }
+
+    .button {
+      padding: 1rem;
+      text-transform: uppercase;
+      font-weight: bold;
+      border: none;
+
+      &:hover {
+        background-color: $grey3;
+      }
+    }
+  }
+}
+
+.banner-practitioner {
+  background-color: $darkblue1;
+
+  .practitioner {
+    p {
+      font-size: 26px;
+      font-weight: bold;
+      margin-top: 2rem;
+    }
+  }
+
+  .banner {
+    .button {
+      background-color: $darkblue1;
+      border: 2px solid $lightblue3;
+      color: $lightblue3;
+      text-transform: uppercase;
+      font-weight: bold;
+      font-size: 18px;
+
+      &:hover {
+        background-color: $lightblue3;
+        color: $white;
+      }
+    }
+  }
 }
 
 // -----------------------------------------------------------------------------
@@ -95,21 +180,84 @@ body {
 //
 // -----------------------------------------------------------------------------
 
+// Hero Carousel
+.heroCarousel {
+  .slick-arrow, .slick-dots li {
+    background-color: rgba(0,0,0,0);
+    border: none;
+    color: $white;
+  }
+
+  .slick-dots {
+    li {
+      button {
+        background-color: #757575;
+        border: 1px solid #757575;
+      }
+
+      &.slick-active {
+        button::before {
+          background: $purple1;
+          border: 1px solid $purple1;
+        }
+      }
+    }
+  }
+
+  .heroCarousel-slide {
+    .heroCarousel-content {
+      background-color: rgba(0,0,0,0);
+      text-align: left;
+
+      .heroCarousel-title, .heroCarousel-description {
+        color: black;
+        font-weight: bold;
+      }
+
+      .heroCarousel-description {
+        font-size: 36px;
+      }
+
+      .heroCarousel-action {
+        padding: 20px 35px;
+        border: none;
+        border-radius: 0;
+        background-color: $lightblue3;
+        color: $black;
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 16px;
+
+        &:hover {
+          background-color: $lightblue1;
+        }
+      }
+    }
+  }
+}
+
 // Cards
 .home-cards {
 
   .home-cards_title {
     margin-bottom: $spacing-size-1;
+    color: $black;
+    text-align: center;
+    font-size: 28px;
+    line-height: 1.3;
   }
 
   .home-cards_cards {
     .pricing-table {
       border: none;
+
+      li {
+        background-color: $lightblue3;
+      }
     }
 
     .title {
-      background-color: #ffffff;
-      color: $dark-blue-1;
+      color: $darkblue4;
       font-size: 1.4rem;
     }
 
@@ -117,8 +265,8 @@ body {
       color: $dark-text;
       text-align: left;
       border-bottom: none;
+      min-height: 12rem;
 
-      // Sorry style guide, you don't own me!
       p {
         font-size: 1.2rem;
         line-height: 1.4rem;
@@ -126,19 +274,96 @@ body {
     }
 
     .button {
-      background-color: orangered;
+      background-color: $darkblue4;
       color: #ffffff;
       font-weight: bold;
       border: none;
       border-radius: 0;
       width: 100%;
+
+      &:hover {
+        background-color: $darkblue1;
+        color: $grey3;
+      }
     }
   }
 
   .home-cards_cards_border {
     margin: 0;
-    border: solid $dark-blue-1;
+    border: solid $darkblue4;
     border-width: 5px 0 0;
+  }
+}
+
+// Product Grid / Featured / Best Sellers
+.featured-products {
+  font-weight: bold;
+  margin-top: 3rem;
+  color: $black;
+}
+
+.center-button-large {
+  text-align: center;
+  margin-bottom: 3rem;
+
+  .button {
+    padding: 20px 35px;
+    border: none;
+    border-radius: 0;
+    background-color: $lightblue3;
+    color: $black;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 16px;
+
+    &:hover {
+      background-color: $lightblue1;
+    }
+  }
+}
+
+.productGrid {
+  .product {
+    .card-figure {
+      border: 1px solid $grey3;
+
+      .card-figcaption {
+        .card-figcaption-body {
+          .button {
+            border-radius: 0;
+            text-transform: uppercase;
+            font-weight: bold;
+            background-color: rgba(177,211,236,0.8);
+
+            &:hover {
+              background-color: rgba(216,233,246,0.8);
+            }
+          }
+
+          .out-of-stock {
+            background-color: rgba(255,0,0,0.8);
+            color: $white;
+            font-weight: bold;
+
+            &:hover {
+              background-color: rgba(255,0,0,1);
+            }
+          }
+        }
+      }
+    }
+
+    .card-body {
+      .card-title {
+        font-weight: bold;
+      }
+
+      .card-text {
+        a {
+          text-decoration: none;
+        }
+      }
+    }
   }
 }
 

@@ -26,18 +26,19 @@ blog:
     {{/each}}
 
 <div class="main full">
-    {{#if products.featured}}
-        {{> components/products/featured products=products.featured columns=theme_settings.homepage_featured_products_column_count}}
-    {{/if}}
-    {{{region name="home_below_featured_products"}}}
 
     {{#if products.top_sellers}}
-        {{> components/products/top products=products.top_sellers columns=theme_settings.homepage_top_products_column_count}}
+        {{> components/products/top products=products.top_sellers columns=4}}
     {{/if}}
     {{{region name="home_below_top_products"}}}
 
     <!-- Cards -->
     {{> components/page/home/cards}}
+
+    {{#if products.featured}}
+        {{> components/products/featured products=products.featured columns=theme_settings.homepage_featured_products_column_count}}
+    {{/if}}
+    {{{region name="home_below_featured_products"}}}
 
     <!-- Block - Text Left -->
     {{> components/page/home/block_text-left}}
@@ -45,6 +46,11 @@ blog:
 
 
     {{{region name="home_below_new_products"}}}
+
+    {{> components/common/signup-banner }}
+
+    {{> components/common/practitioner-banner }}
 </div>
 {{/partial}}
+
 {{> layout/base}}

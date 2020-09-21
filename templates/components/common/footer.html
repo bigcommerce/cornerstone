@@ -30,8 +30,12 @@
             </article>
         {{/if}}
         <section class="footer-info">
-            <article class="footer-info-col footer-info-col--small" data-section-type="footer-webPages">
-                <h5 class="footer-info-heading">{{lang 'footer.navigate'}}</h5>
+            <article class="footer-info-col footer-info-col--small footer-half border-right">
+                <p>Advanced products based on this revolutionary, patent-pending technology are only available through Tesseract. No other medical, pharma, or supplement companies have been licensed to utilize our proprietary methodologies.</p>
+            </article>
+
+            <article class="footer-info-col footer-info-col--small border-right" data-section-type="footer-webPages">
+                <h5 class="footer-info-heading">Support</h5>
                 <ul class="footer-info-list">
                     {{#each pages}}
                         <li>
@@ -45,7 +49,7 @@
             </article>
 
             <article class="footer-info-col footer-info-col--small" data-section-type="footer-categories">
-                <h5 class="footer-info-heading">{{lang 'footer.categories'}}</h5>
+                <h5 class="footer-info-heading">About</h5>
                 <ul class="footer-info-list">
                     {{#each categories}}
                         <li>
@@ -69,36 +73,18 @@
             </article>
             {{/and}}
 
-            {{#if settings.address}}
-            <article class="footer-info-col footer-info-col--small" data-section-type="storeInfo">
-                <h5 class="footer-info-heading">{{lang 'footer.info'}}</h5>
-                <address>{{nl2br settings.address}}</address>
-                {{#if settings.phone_number}}
-                    <strong>{{lang 'footer.call_us' phone_number=settings.phone_number}}</strong>
-                {{/if}}
-            </article>
-            {{/if}}
-
-            <article class="footer-info-col" data-section-type="newsletterSubscription">
-                {{#if settings.show_newsletter_box}}
-                    {{> components/common/subscription-form}}
-                {{/if}}
-                {{> components/common/payment-icons}}
-            </article>
         </section>
-        {{#if theme_settings.geotrust_ssl_common_name}}
-            <div class="footer-geotrust-ssl-seal">
-                {{> components/common/geotrust-ssl-seal}}
+        <section class="footer-fda">
+            <div class="fda-border-box">
+                <p>*These statements have not been evaluated by the Food and Drug Administration.<br> These products are not intended to diagnose, treat, cure, or prevent any disease.</p>
             </div>
-        {{/if}}
-        {{#if theme_settings.show_powered_by}}
-            <div class="footer-copyright">
-                <p class="powered-by">Powered by <a href="https://www.bigcommerce.com?utm_source=merchant&amp;utm_medium=poweredbyBC" rel="nofollow">BigCommerce</a></p>
-            </div>
-        {{/if}}
+        </section>
         {{#if theme_settings.show_copyright_footer}}
-            <div class="footer-copyright">
-                <p class="powered-by">&copy; {{moment format="YYYY"}} {{settings.store_name}} </p>
+            <div class="banners banner-footer">
+                <div class="banner subscription-form">
+                    <p class="powered-by">&copy; Copyright {{moment format="YYYY"}}, All Rights Reserved {{settings.store_name}}, LLC | </p>
+                    <a href="#">Privacy Policy</a><p> | </p><a href="#">Terms</a>
+                </div>
             </div>
         {{/if}}
     </div>

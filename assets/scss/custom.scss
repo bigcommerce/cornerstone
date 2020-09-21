@@ -14,7 +14,7 @@ $grey3: #d8dfe2;
 $purple1: #ae93a9;
 $purple1-light: #cbbac7;
 $lightblue1: #d8e9f6;
-$lightblue2-text: #aacce5;
+$lightblue2: #aacce5;
 // Homepage Cards
 $lightblue3: #b1d3ec;
 $darkblue1: #476993;
@@ -33,6 +33,10 @@ body {
   background-color: $white;
 }
 
+.body {
+  margin-bottom: 0;
+}
+
 // -----------------------------------------------------------------------------
 //
 // Common objects
@@ -44,7 +48,7 @@ body {
 }
 
 // @todo needs testing on all sizes/browsers
-.banner-signup, .banner-practitioner {
+.banner-signup, .banner-practitioner, .banner-footer {
   width: 100vw;
   position: relative;
   left: 50%;
@@ -170,6 +174,78 @@ body {
         text-decoration: none;
         color: $black;
       }
+    }
+  }
+}
+
+// -----------------------------------------------------------------------------
+//
+// Footer
+//
+// -----------------------------------------------------------------------------
+
+.footer {
+  background-color: $darkblue2;
+  padding: 3rem 0 0;
+  border-top: 0;
+
+  h5 {
+    color: $lightblue2;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 18px;
+  }
+
+  a {
+    color: $lightblue2;
+  }
+
+  .footer-info {
+    display: flex;
+    justify-content: center;
+
+    .footer-half {
+      width: 50%;
+
+      p {
+        color: $white;
+      }
+    }
+
+    .border-right {
+      border-right: 2px solid $lightblue2;
+    }
+  }
+
+  .footer-fda {
+    display: flex;
+    justify-content: center;
+
+    .fda-border-box {
+      max-width: 600px;
+      border: 2px solid $white;
+      margin-bottom: 2rem;
+      padding: 1px 8px;
+    }
+
+    p {
+      color: $white;
+      margin: 0;
+      text-align: justify;
+    }
+  }
+
+  .banner-footer {
+    background-color: $white;
+    color: $black;
+
+    p {
+      display: inline;
+    }
+
+    a {
+      color: $black;
+      text-decoration: none;
     }
   }
 }

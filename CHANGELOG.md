@@ -1,5 +1,6 @@
 # Changelog
 
+- Notification of number of products not announced. [#1845](https://github.com/bigcommerce/cornerstone/pull/1845)
 - Quick search query param needs to be fixed while navigating to search page. [#230](https://jira.bigcommerce.com/browse/BCTHEME-230)
 
 ## Draft

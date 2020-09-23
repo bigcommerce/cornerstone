@@ -1,5 +1,6 @@
 # Changelog
 
+- Return heading to product card. [#1848](https://github.com/bigcommerce/cornerstone/pull/1848)
 - Quick search query param needs to be fixed while navigating to search page. [#230](https://jira.bigcommerce.com/browse/BCTHEME-230)
 
 ## Draft

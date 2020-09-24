@@ -10,6 +10,7 @@ describe('FacetedSearch', () => {
     let onSearchSuccess;
     let html;
     let $element;
+    let options;
 
     beforeEach(() => {
         onSearchSuccess = jest.fn();
@@ -23,6 +24,16 @@ describe('FacetedSearch', () => {
             template: {
                 productListing: 'category/product-listing',
                 sidebar: 'category/sidebar',
+            },
+        };
+
+        options = {
+            validationErrorMessages: {
+                onMinPriceError: jasmine.any(String),
+                onMaxPriceError: jasmine.any(String),
+                minPriceNotEntered: jasmine.any(String),
+                maxPriceNotEntered: jasmine.any(String),
+                onInvalidPrice: jasmine.any(String),
             },
         };
 
@@ -57,8 +68,7 @@ describe('FacetedSearch', () => {
 
         $element = $(html);
         $element.appendTo(document.body);
-
-        facetedSearch = new FacetedSearch(requestOptions, onSearchSuccess);
+        facetedSearch = new FacetedSearch(requestOptions, onSearchSuccess, options);
     });
 
     afterEach(() => {
@@ -99,7 +109,7 @@ describe('FacetedSearch', () => {
         it('should re-init price range validator', function() {
             facetedSearch.refreshView(content);
 
-            expect(Validators.setMinMaxPriceValidation).toHaveBeenCalledWith(facetedSearch.priceRangeValidator, jasmine.any(Object));
+            expect(Validators.setMinMaxPriceValidation).toHaveBeenCalledWith(facetedSearch.priceRangeValidator, jasmine.any(Object), options.validationErrorMessages);
         });
     });
 

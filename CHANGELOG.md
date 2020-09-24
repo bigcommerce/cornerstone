@@ -3,6 +3,7 @@
 - Quick search query param needs to be fixed while navigating to search page. [#230](https://jira.bigcommerce.com/browse/BCTHEME-230)
 
 ## Draft
+- Move phrases and static strings to en.json for improving translation customizing. [#1850](https://github.com/bigcommerce/cornerstone/pull/1850)
 - Create unified focus styling in Cornerstone. [#1812](https://github.com/bigcommerce/cornerstone/pull/1812)
 - Review link in quick modal focused twice. [#1797](https://github.com/bigcommerce/cornerstone/pull/1797)
 - Fixed product image doesn't change on click when viewing a product with multiple images in IE11 [#1748](https://github.com/bigcommerce/cornerstone/pull/1748)

@@ -253,7 +253,7 @@ class FacetedSearch {
             minPriceSelector: this.options.priceRangeMinPriceSelector,
         };
 
-        Validators.setMinMaxPriceValidation(validator, selectors);
+        Validators.setMinMaxPriceValidation(validator, selectors, this.options.validationErrorMessages);
 
         this.priceRangeValidator = validator;
     }

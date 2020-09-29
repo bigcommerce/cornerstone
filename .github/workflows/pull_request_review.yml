@@ -60,4 +60,11 @@ jobs:
       run: npx grunt check
 
     - name: Validate theme successfully bundles
-      run: npx stencil bundle
+      run: npx stencil bundle --name bundle
+
+    - name: Upload bundled theme
+      uses: actions/upload-artifact@v2
+      with:
+        name: Bundled Theme
+        path: bundle.zip
+

@@ -1,5 +1,6 @@
 # Changelog
 
+- Content should not scroll in two directions when zoomed. [#1853](https://github.com/bigcommerce/cornerstone/pull/1853)
 - Quick search query param needs to be fixed while navigating to search page. [#230](https://jira.bigcommerce.com/browse/BCTHEME-230)
 
 ## Draft

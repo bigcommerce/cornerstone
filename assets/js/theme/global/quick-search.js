@@ -1,13 +1,13 @@
 import _ from 'lodash';
 import utils from '@bigcommerce/stencil-utils';
 import StencilDropDown from './stencil-dropdown';
+import urlUtils from '../common/utils/url-utils';
 
 export default function () {
     const TOP_STYLING = 'top: 49px;';
     const $quickSearchResults = $('.quickSearchResults');
-    const $quickSearchDiv = $('#quickSearch');
-    const $searchQuery = $('[data-search-quick]');
-    const $quickSearchExpand = $('#quick-search-expand');
+    const $quickSearchForms = $('[data-quick-search-form]');
+    const $searchQuery = $quickSearchForms.find('[data-search-quick]');
     const stencilDropDownExtendables = {
         hide: () => {
             $quickSearchExpand.attr('aria-expanded', false);
@@ -20,7 +20,7 @@ export default function () {
         },
     };
     const stencilDropDown = new StencilDropDown(stencilDropDownExtendables);
-    stencilDropDown.bind($('[data-search="quickSearch"]'), $quickSearchDiv, TOP_STYLING);
+    stencilDropDown.bind($('[data-search="quickSearch"]'), $('#quickSearch'), TOP_STYLING);
 
     stencilDropDownExtendables.onBodyClick = (e, $container) => {
         // If the target element has this data tag or one of it's parents, do not close the search results
@@ -53,14 +53,19 @@ export default function () {
         doSearch(searchQuery);
     });
 
-    // Catch the submission of the quick-search
-    $quickSearchDiv.on('submit', event => {
-        const searchQuery = $(event.currentTarget).find('input').val();
+    // Catch the submission of the quick-search forms
+    $quickSearchForms.on('submit', event => {
+        event.preventDefault();
+
+        const $target = $(event.currentTarget);
+        const searchQuery = $target.find('input').val();
+        const searchUrl = $target.data('url');
 
         if (searchQuery.length === 0) {
-            return event.preventDefault();
+            return;
         }
 
-        return true;
+        urlUtils.goToUrl(`${searchUrl}?search_query=${searchQuery}`);
+        window.location.reload();
     });
 }

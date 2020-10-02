@@ -1,5 +1,8 @@
 # Changelog
 
+##next draft
+- State of search link not announced. [#1798](https://github.com/bigcommerce/cornerstone/pull/1798)
+
 ## Draft
 
 ## 4.10.0 (10-01-2020)

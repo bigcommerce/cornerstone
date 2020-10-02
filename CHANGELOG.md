@@ -1,7 +1,17 @@
 # Changelog
 
 ## Draft
+- Cross icon on close button missalignment. [#1822](https://github.com/bigcommerce/cornerstone/pull/1822)
 - Fixed contrast on faceted search checkboxes in compliance with AA standard [#1815](https://github.com/bigcommerce/cornerstone/pull/1815)
+- Face accessibility standards with social links on PDP's page. [#1809](https://github.com/bigcommerce/cornerstone/pull/1809)
+- State of search link not announced. [#1798](https://github.com/bigcommerce/cornerstone/pull/1798)
+- Fixed subscription notification screen reader announcing. [#1813](https://github.com/bigcommerce/cornerstone/pull/1813)
+- Delete item button in cart cut off from right side when in focus. [#1823](https://github.com/bigcommerce/cornerstone/pull/1823)
+
+## 4.10.0 (10-01-2020)
+- Return heading to product card. [#1848](https://github.com/bigcommerce/cornerstone/pull/1848)
+- Quick search query param needs to be fixed while navigating to search page. [#1832](https://github.com/bigcommerce/cornerstone/pull/1832)
+- Create unified focus styling in Cornerstone. [#1812](https://github.com/bigcommerce/cornerstone/pull/1812)
 - Review link in quick modal focused twice. [#1797](https://github.com/bigcommerce/cornerstone/pull/1797)
 - Fixed product image doesn't change on click when viewing a product with multiple images in IE11 [#1748](https://github.com/bigcommerce/cornerstone/pull/1748)
 - Fixed alt text on image change in product view [#1747](https://github.com/bigcommerce/cornerstone/pull/1747)

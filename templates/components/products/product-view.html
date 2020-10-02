@@ -98,29 +98,25 @@
                     {{/if}}
                     <span title="{{lang 'products.reviews.rating_aria_label' current_rating=product.rating max_rating=5}}"
                           tabindex="0"
-                          role="text"
                     >
                         {{> components/products/ratings rating=product.rating}}
                     </span>
-                    <span class="productView-reviewLink">
-                        {{#if product.num_reviews '>' 0}}
-                            <a href="{{product.url}}#product-reviews">
-                                {{lang 'products.reviews.link_to_review' total=product.num_reviews}}
-                            </a>
-                        {{else}}
+                    {{#if product.num_reviews '>' 0}}
+                        <a href="{{product.url}}#product-reviews" class=" ">
                             {{lang 'products.reviews.link_to_review' total=product.num_reviews}}
-                        {{/if}}
-                    </span>
+                        </a>
+                    {{else}}
+                        <span>{{lang 'products.reviews.link_to_review' total=product.num_reviews}}</span>
+                    {{/if}}
                 {{/if}}
                 {{#if settings.show_product_reviews}}
-                    <button class="productView-reviewLink productView-reviewLink--new">
-                        <a href="{{product.url}}{{#if is_ajax}}#write_review{{/if}}"
-                           {{#unless is_ajax}}data-reveal-id="modal-review-form"{{/unless}}
-                           role="button"
-                        >
-                           {{lang 'products.reviews.new'}}
-                        </a>
-                    </button>
+                    <a href="{{product.url}}{{#if is_ajax}}#write_review{{/if}}"
+                       class="productView-reviewLink productView-reviewLink--new"
+                       {{#unless is_ajax}}data-reveal-id="modal-review-form"{{/unless}}
+                       role="button"
+                    >
+                       {{lang 'products.reviews.new'}}
+                    </a>
                     {{> components/products/modals/writeReview}}
                 {{/if}}
             </div>

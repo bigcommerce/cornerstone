@@ -1,8 +1,8 @@
 # Changelog
 
-- Cross icon on close button missalignment. [#1822](https://github.com/bigcommerce/cornerstone/pull/1822)
-
 ## Draft
+- Cross icon on close button missalignment. [#1822](https://github.com/bigcommerce/cornerstone/pull/1822)
+- Fixed contrast on faceted search checkboxes in compliance with AA standard [#1815](https://github.com/bigcommerce/cornerstone/pull/1815)
 - Face accessibility standards with social links on PDP's page. [#1809](https://github.com/bigcommerce/cornerstone/pull/1809)
 - State of search link not announced. [#1798](https://github.com/bigcommerce/cornerstone/pull/1798)
 - Fixed subscription notification screen reader announcing. [#1813](https://github.com/bigcommerce/cornerstone/pull/1813)

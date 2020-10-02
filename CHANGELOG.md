@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Fixed missing top outline on chosen filter's focused. [#1829](https://github.com/bigcommerce/cornerstone/pull/1829)
 - Added immediate keyboard focus on write-a-review modal. [#1835](https://github.com/bigcommerce/cornerstone/pull/1835)
 - Fixed VoiceOver focus is not sync with keyboard focus on Faceted Search.[#1826](https://github.com/bigcommerce/cornerstone/pull/1826)
 - Add collapsed/expanded state announcement by screen reader to add-info button within shipping estimator. [#1844](https://github.com/bigcommerce/cornerstone/pull/1844)

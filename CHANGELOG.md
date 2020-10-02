@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Fixed contrast on email address input according to AA standard [#1804](https://github.com/bigcommerce/cornerstone/pull/1804)
 - Cross icon on close button missalignment. [#1822](https://github.com/bigcommerce/cornerstone/pull/1822)
 - Fixed contrast on faceted search checkboxes in compliance with AA standard [#1815](https://github.com/bigcommerce/cornerstone/pull/1815)
 - Face accessibility standards with social links on PDP's page. [#1809](https://github.com/bigcommerce/cornerstone/pull/1809)

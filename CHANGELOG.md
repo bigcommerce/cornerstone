@@ -1,9 +1,8 @@
 # Changelog
 
-##next draft
-- State of search link not announced. [#1798](https://github.com/bigcommerce/cornerstone/pull/1798)
-
 ## Draft
+- Face accessibility standards with social links on PDP's page. [#1809](https://github.com/bigcommerce/cornerstone/pull/1809)
+- State of search link not announced. [#1798](https://github.com/bigcommerce/cornerstone/pull/1798)
 
 ## 4.10.0 (10-01-2020)
 - Return heading to product card. [#1848](https://github.com/bigcommerce/cornerstone/pull/1848)

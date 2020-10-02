@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Fixed outline styles for breadcrumbs on focus state. [#1824](https://github.com/bigcommerce/cornerstone/pull/1824)
 - Fixed review rating icons focus border. [#1818](https://github.com/bigcommerce/cornerstone/pull/1818)
 - Fixed announcement of SortBy Select to listbox from button via screen reader. [#1837](https://github.com/bigcommerce/cornerstone/pull/1837)
 - Fixed missing top outline on chosen filter's focused. [#1829](https://github.com/bigcommerce/cornerstone/pull/1829)

@@ -7,6 +7,9 @@ import collapsibleFactory from './common/collapsible';
 import ProductDetails from './common/product-details';
 import videoGallery from './product/video-gallery';
 import { classifyForm } from './common/utils/form-utils';
+import modalFactory, { modalTypes } from './global/modal';
+
+const { WRITE_REVIEW } = modalTypes;
 
 export default class Product extends PageManager {
     constructor(context) {
@@ -14,6 +17,7 @@ export default class Product extends PageManager {
         this.url = window.location.href;
         this.$reviewLink = $('[data-reveal-id="modal-review-form"]');
         this.$bulkPricingLink = $('[data-reveal-id="modal-bulk-pricing"]');
+        this.reviewModal = modalFactory('#modal-review-form')[0];
     }
 
     onReady() {
@@ -23,6 +27,8 @@ export default class Product extends PageManager {
                 window.history.replaceState(null, document.title, window.location.pathname);
             }
         });
+
+        $(document).on('opened.fndtn.reveal', () => this.reviewModal.setupFocusableElements(WRITE_REVIEW));
 
         let validator;
 

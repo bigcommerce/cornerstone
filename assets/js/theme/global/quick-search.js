@@ -7,6 +7,7 @@ export default function () {
     const TOP_STYLING = 'top: 49px;';
     const $quickSearchResults = $('.quickSearchResults');
     const $quickSearchForms = $('[data-quick-search-form]');
+    const $quickSearchExpand = $('#quick-search-expand');
     const $searchQuery = $quickSearchForms.find('[data-search-quick]');
     const stencilDropDownExtendables = {
         hide: () => {

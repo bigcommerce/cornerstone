@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Add collapsed/expanded state announcement by screen reader to add-info button within shipping estimator. [#1844](https://github.com/bigcommerce/cornerstone/pull/1844)
 - Fixed empty cart notification not announced by screen reader. [#1846](https://github.com/bigcommerce/cornerstone/pull/1846)
 - Product carousel with related products - arrows not working. [#1828](https://github.com/bigcommerce/cornerstone/pull/1828)
 - Fixed contrast on buttons border color in compliance with AA standard [#1817](https://github.com/bigcommerce/cornerstone/pull/1817)

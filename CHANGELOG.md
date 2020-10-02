@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Fixed contrast on buttons border color in compliance with AA standard [#1817](https://github.com/bigcommerce/cornerstone/pull/1817)
 - Fixed contrast on carousel arrows input according to AA standard [#1814](https://github.com/bigcommerce/cornerstone/pull/1814)
 - Fixed contrast on product ratings according to AA standard [#1799](https://github.com/bigcommerce/cornerstone/pull/1799)
 - Fixed contrast on email address input according to AA standard [#1804](https://github.com/bigcommerce/cornerstone/pull/1804)

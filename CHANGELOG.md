@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Fixed empty cart notification not announced by screen reader. [#1846](https://github.com/bigcommerce/cornerstone/pull/1846)
 - Product carousel with related products - arrows not working. [#1828](https://github.com/bigcommerce/cornerstone/pull/1828)
 - Fixed contrast on buttons border color in compliance with AA standard [#1817](https://github.com/bigcommerce/cornerstone/pull/1817)
 - Fixed contrast on carousel arrows input according to AA standard [#1814](https://github.com/bigcommerce/cornerstone/pull/1814)

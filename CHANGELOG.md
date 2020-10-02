@@ -1,5 +1,7 @@
 # Changelog
 
+- Delete item button in cart cut off from right side when in focus. [#1823](https://github.com/bigcommerce/cornerstone/pull/1823)
+
 ## Draft
 - Face accessibility standards with social links on PDP's page. [#1809](https://github.com/bigcommerce/cornerstone/pull/1809)
 - State of search link not announced. [#1798](https://github.com/bigcommerce/cornerstone/pull/1798)

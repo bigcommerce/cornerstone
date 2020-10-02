@@ -2,12 +2,13 @@
     data-list-name="{{list}}"
     data-slick='{
         "dots": true,
+        "infinite": false,
         "mobileFirst": true,
         "slidesToShow": 2,
         "slidesToScroll": 1,
         "slide": ".js-product-slide",
-        "prevArrow": ".js-product-prev-arrow",
-        "nextArrow": ".js-product-next-arrow",
+        "prevArrow": "{{#if customArrowClass}}.{{customArrowClass}}{{/if}}.js-product-prev-arrow",
+        "nextArrow": "{{#if customArrowClass}}.{{customArrowClass}}{{/if}}.js-product-next-arrow",
         "responsive": [
             {
                 "breakpoint": 800,
@@ -26,7 +27,7 @@
         ]
     }'>
     {{#if products.length '>' 1}}
-    <button aria-label="{{lang 'carousel.arrowAriaLabel'}} {{products.length}}" class="js-product-prev-arrow slick-prev slick-arrow"></button>
+    <button aria-label="{{lang 'carousel.arrowAriaLabel'}} {{products.length}}" class="{{#if customArrowClass}}{{customArrowClass}} {{/if}}js-product-prev-arrow slick-prev slick-arrow"></button>
     {{/if}}
     {{#each products}}
     <div class="productCarousel-slide js-product-slide">
@@ -34,6 +35,6 @@
     </div>
     {{/each}}
     {{#if products.length '>' 1}}
-    <button aria-label="{{lang 'carousel.arrowAriaLabel'}} {{products.length}}" class="js-product-next-arrow slick-next slick-arrow"></button>
+    <button aria-label="{{lang 'carousel.arrowAriaLabel'}} {{products.length}}" class="{{#if customArrowClass}}{{customArrowClass}} {{/if}}js-product-next-arrow slick-next slick-arrow"></button>
     {{/if}}
 </section>

@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Fixed VoiceOver focus is not sync with keyboard focus on Faceted Search.[#1826](https://github.com/bigcommerce/cornerstone/pull/1826)
 - Add collapsed/expanded state announcement by screen reader to add-info button within shipping estimator. [#1844](https://github.com/bigcommerce/cornerstone/pull/1844)
 - Fixed empty cart notification not announced by screen reader. [#1846](https://github.com/bigcommerce/cornerstone/pull/1846)
 - Product carousel with related products - arrows not working. [#1828](https://github.com/bigcommerce/cornerstone/pull/1828)

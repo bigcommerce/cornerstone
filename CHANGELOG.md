@@ -7,6 +7,8 @@
 - State of search link not announced. [#1798](https://github.com/bigcommerce/cornerstone/pull/1798)
 - Fixed subscription notification screen reader announcing. [#1813](https://github.com/bigcommerce/cornerstone/pull/1813)
 - Delete item button in cart cut off from right side when in focus. [#1823](https://github.com/bigcommerce/cornerstone/pull/1823)
+- Focus not visible on logo element. [#1800](https://github.com/bigcommerce/cornerstone/pull/1800)
+- Incorrect styles for focused buttons in grid card product item. [#1801](https://github.com/bigcommerce/cornerstone/pull/1801)
 
 ## 4.10.0 (10-01-2020)
 - Return heading to product card. [#1848](https://github.com/bigcommerce/cornerstone/pull/1848)
@@ -42,7 +44,6 @@
 - Improper heading hierarchy on Sitemap. [#1774](https://github.com/bigcommerce/cornerstone/pull/1774)
 - Added modal trap for for product details. [#1758](https://github.com/bigcommerce/cornerstone/pull/1758)
 - Added tooltips for carousel Previous and Next buttons. [#1749](https://github.com/bigcommerce/cornerstone/pull/1749)
-- Incorrect styles for focused buttons in grid card product item. [#1801](https://github.com/bigcommerce/cornerstone/pull/1801)
 
 ## 4.9.0 (07-28-2020)
 - Added correct alt text on image change in product view. [#1747](https://github.com/bigcommerce/cornerstone/pull/1747)

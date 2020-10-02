@@ -1,6 +1,22 @@
 # Changelog
 
 ## Draft
+- Cross icon on close button missalignment. [#1822](https://github.com/bigcommerce/cornerstone/pull/1822)
+- Fixed contrast on faceted search checkboxes in compliance with AA standard [#1815](https://github.com/bigcommerce/cornerstone/pull/1815)
+- Face accessibility standards with social links on PDP's page. [#1809](https://github.com/bigcommerce/cornerstone/pull/1809)
+- State of search link not announced. [#1798](https://github.com/bigcommerce/cornerstone/pull/1798)
+- Fixed subscription notification screen reader announcing. [#1813](https://github.com/bigcommerce/cornerstone/pull/1813)
+- Delete item button in cart cut off from right side when in focus. [#1823](https://github.com/bigcommerce/cornerstone/pull/1823)
+- Focus not visible on logo element. [#1800](https://github.com/bigcommerce/cornerstone/pull/1800)
+- Incorrect styles for focused buttons in grid card product item. [#1801](https://github.com/bigcommerce/cornerstone/pull/1801)
+
+## 4.10.0 (10-01-2020)
+- Return heading to product card. [#1848](https://github.com/bigcommerce/cornerstone/pull/1848)
+- Quick search query param needs to be fixed while navigating to search page. [#1832](https://github.com/bigcommerce/cornerstone/pull/1832)
+- Create unified focus styling in Cornerstone. [#1812](https://github.com/bigcommerce/cornerstone/pull/1812)
+- Review link in quick modal focused twice. [#1797](https://github.com/bigcommerce/cornerstone/pull/1797)
+- Fixed product image doesn't change on click when viewing a product with multiple images in IE11 [#1748](https://github.com/bigcommerce/cornerstone/pull/1748)
+- Fixed alt text on image change in product view [#1747](https://github.com/bigcommerce/cornerstone/pull/1747)
 - Added tooltip for modal close buttons. [#1773](https://github.com/bigcommerce/cornerstone/pull/1773)
 - Carousel links should have discernible text. [#1789](https://github.com/bigcommerce/cornerstone/pull/1789)
 - Add labels to swatches. [#1761](https://github.com/bigcommerce/cornerstone/pull/1761)
@@ -28,7 +44,6 @@
 - Improper heading hierarchy on Sitemap. [#1774](https://github.com/bigcommerce/cornerstone/pull/1774)
 - Added modal trap for for product details. [#1758](https://github.com/bigcommerce/cornerstone/pull/1758)
 - Added tooltips for carousel Previous and Next buttons. [#1749](https://github.com/bigcommerce/cornerstone/pull/1749)
-- Focus not visible on logo element. [#1800](https://github.com/bigcommerce/cornerstone/pull/1800)
 
 ## 4.9.0 (07-28-2020)
 - Added correct alt text on image change in product view. [#1747](https://github.com/bigcommerce/cornerstone/pull/1747)

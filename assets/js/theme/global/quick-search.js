@@ -7,12 +7,14 @@ export default function () {
     const TOP_STYLING = 'top: 49px;';
     const $quickSearchResults = $('.quickSearchResults');
     const $quickSearchForms = $('[data-quick-search-form]');
-    const $searchQuery = $quickSearchForms.find('[data-quick-search-input]');
+    const $searchQuery = $quickSearchForms.find('[data-search-quick]');
     const stencilDropDownExtendables = {
         hide: () => {
+            $quickSearchExpand.attr('aria-expanded', false);
             $searchQuery.trigger('blur');
         },
         show: (event) => {
+            $quickSearchExpand.attr('aria-expanded', true);
             $searchQuery.trigger('focus');
             event.stopPropagation();
         },

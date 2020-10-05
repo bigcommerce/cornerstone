@@ -2,6 +2,7 @@ import stateCountry from '../common/state-country';
 import nod from '../common/nod';
 import utils from '@bigcommerce/stencil-utils';
 import { Validators } from '../common/utils/form-utils';
+import collapsibleFactory from '../common/collapsible';
 import swal from '../global/sweet-alert';
 
 export default class ShippingEstimator {
@@ -9,6 +10,7 @@ export default class ShippingEstimator {
         this.$element = $element;
 
         this.$state = $('[data-field-type="State"]', this.$element);
+        this.isEstimatorFormOpened = false;
         this.initFormValidation();
         this.bindStateCountryChange();
         this.bindEstimatorEvents();
@@ -133,10 +135,26 @@ export default class ShippingEstimator {
         });
     }
 
+    toggleEstimatorFormState(toggleButton, buttonSelector, $toggleContainer) {
+        const changeAttributesOnToggle = (selectorToActivate) => {
+            $(toggleButton).attr('aria-labelledby', selectorToActivate);
+            $(buttonSelector).text($(`#${selectorToActivate}`).text());
+        };
+
+        if (!this.isEstimatorFormOpened) {
+            changeAttributesOnToggle('estimator-close');
+            $toggleContainer.removeClass('u-hidden');
+        } else {
+            changeAttributesOnToggle('estimator-add');
+            $toggleContainer.addClass('u-hidden');
+        }
+        this.isEstimatorFormOpened = !this.isEstimatorFormOpened;
+    }
+
     bindEstimatorEvents() {
         const $estimatorContainer = $('.shipping-estimator');
         const $estimatorForm = $('.estimator-form');
-
+        collapsibleFactory();
         $estimatorForm.on('submit', event => {
             const params = {
                 country_id: $('[name="shipping-country"]', $estimatorForm).val(),
@@ -165,19 +183,7 @@ export default class ShippingEstimator {
 
         $('.shipping-estimate-show').on('click', event => {
             event.preventDefault();
-
-            $(event.currentTarget).hide();
-            $estimatorContainer.removeClass('u-hidden');
-            $('.shipping-estimate-hide').show();
-        });
-
-
-        $('.shipping-estimate-hide').on('click', event => {
-            event.preventDefault();
-
-            $estimatorContainer.addClass('u-hidden');
-            $('.shipping-estimate-show').show();
-            $('.shipping-estimate-hide').hide();
+            this.toggleEstimatorFormState(event.currentTarget, '.shipping-estimate-show__btn-name', $estimatorContainer);
         });
     }
 }

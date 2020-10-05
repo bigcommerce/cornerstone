@@ -20,6 +20,7 @@ const SizeClasses = {
 export const modalTypes = {
     QUICK_VIEW: 'forQuickView',
     PRODUCT_DETAILS: 'forProductDetails',
+    WRITE_REVIEW: 'forWriteReview',
 };
 
 const focusableElements = {
@@ -31,6 +32,10 @@ const focusableElements = {
     ),
     [modalTypes.PRODUCT_DETAILS]: () => (
         $('#previewModal').find(allTabbableElementsSelector)
+    ),
+    [modalTypes.WRITE_REVIEW]: () => (
+        $('#modal-review-form')
+            .find(allTabbableElementsSelector)
     ),
 };
 
@@ -223,7 +228,6 @@ export class Modal {
     setupFocusableElements(modalType) {
         this.$preModalFocusedEl = $(document.activeElement);
         const $modalTabbableCollection = focusableElements[modalType]();
-
 
         const elementToFocus = $modalTabbableCollection.get(0);
         if (elementToFocus) elementToFocus.focus();

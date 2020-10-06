@@ -40,6 +40,27 @@ export default function () {
             }
 
             $quickSearchResults.html(response);
+            const $quickSearchResultsCurrent = $quickSearchResults.filter(':visible');
+
+            const $noResultsMessage = $quickSearchResultsCurrent.find('.quickSearchMessage');
+            if ($noResultsMessage.length) {
+                $noResultsMessage.attr({
+                    role: 'status',
+                    'aria-live': 'polite',
+                });
+            } else {
+                const $quickSearchAriaMessage = $quickSearchResultsCurrent.next();
+                $quickSearchAriaMessage.addClass('u-hidden');
+
+                const predefinedText = $quickSearchAriaMessage.data('search-aria-message-predefined-text');
+                const itemsFoundCount = $quickSearchResultsCurrent.find('.product').length;
+
+                $quickSearchAriaMessage.text(`${itemsFoundCount} ${predefinedText} ${searchQuery}`);
+
+                setTimeout(() => {
+                    $quickSearchAriaMessage.removeClass('u-hidden');
+                }, 100);
+            }
         });
     }, 200);
 

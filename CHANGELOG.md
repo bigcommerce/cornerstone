@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Search result not notified by screen reader. [#1867](https://github.com/bigcommerce/cornerstone/pull/1867)
 - Add Info and Add Coupon forms on Cart Page tabbable when hidden. [#1820](https://github.com/bigcommerce/cornerstone/pull/1820)
 - Fixed outline styles for breadcrumbs on focus state. [#1824](https://github.com/bigcommerce/cornerstone/pull/1824)
 - Fixed review rating icons focus border. [#1818](https://github.com/bigcommerce/cornerstone/pull/1818)

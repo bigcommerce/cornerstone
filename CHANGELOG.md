@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Fixed Logo displaying on mobile. [#1865](https://github.com/bigcommerce/cornerstone/pull/1865)
 - Add Info and Add Coupon forms on Cart Page tabbable when hidden. [#1820](https://github.com/bigcommerce/cornerstone/pull/1820)
 - Fixed outline styles for breadcrumbs on focus state. [#1824](https://github.com/bigcommerce/cornerstone/pull/1824)
 - Fixed review rating icons focus border. [#1818](https://github.com/bigcommerce/cornerstone/pull/1818)

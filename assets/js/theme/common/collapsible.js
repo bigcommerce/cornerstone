@@ -82,7 +82,7 @@ export class Collapsible {
         // Assign DOM attributes
         this.$target.attr('aria-hidden', this.isCollapsed);
         this.$toggle
-            .attr('aria-label', $toggle.text().trim())
+            .attr('aria-label', this._getToggleAriaLabelText($toggle))
             .attr('aria-controls', $target.attr('id'))
             .attr('aria-expanded', this.isOpen);
 
@@ -110,6 +110,13 @@ export class Collapsible {
 
     get disabled() {
         return this._disabled;
+    }
+
+    _getToggleAriaLabelText($toggle) {
+        const $textToggleChildren = $toggle.children().filter((__, child) => $(child).text().trim());
+        const $ariaLabelTarget = $textToggleChildren.length ? $textToggleChildren.first() : $toggle;
+
+        return $($ariaLabelTarget).text().trim();
     }
 
     open({ notify = true } = {}) {
@@ -202,12 +209,12 @@ export class Collapsible {
  * Convenience method for constructing Collapsible instance
  *
  * @param {string} [selector]
- * @param {Object} [options]
- * @param {Object} [options.$context]
- * @param {Object} [options.disabledBreakpoint]
- * @param {Object} [options.disabledState]
- * @param {Object} [options.enabledState]
- * @param {Object} [options.openClassName]
+ * @param {Object} [overrideOptions]
+ * @param {Object} [overrideOptions.$context]
+ * @param {Object} [overrideOptions.disabledBreakpoint]
+ * @param {Object} [overrideOptions.disabledState]
+ * @param {Object} [overrideOptions.enabledState]
+ * @param {Object} [overrideOptions.openClassName]
  * @return {Array} array of Collapsible instances
  *
  * @example

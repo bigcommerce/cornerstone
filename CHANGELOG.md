@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Fix aria-labels for collapsibleFactory elements. [#1868](https://github.com/bigcommerce/cornerstone/pull/1868)
 
 ## 4.11.0 (10-07-2020)
 - Add Info and Add Coupon forms on Cart Page tabbable when hidden. [#1820](https://github.com/bigcommerce/cornerstone/pull/1820)

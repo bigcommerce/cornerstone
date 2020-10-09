@@ -1,6 +1,8 @@
 # Changelog
 
 ## Draft
+- Unified browsers list that we support. [#1836](https://github.com/bigcommerce/cornerstone/pull/1836)
+- Bump stencil utils and update hooks to account for refactor to drop Jquery in stencil utils [#1821](https://github.com/bigcommerce/cornerstone/pull/1821)
 
 ## 4.11.0 (10-07-2020)
 - Add Info and Add Coupon forms on Cart Page tabbable when hidden. [#1820](https://github.com/bigcommerce/cornerstone/pull/1820)

@@ -43,8 +43,8 @@ export default function () {
         });
     }, 200);
 
-    utils.hooks.on('search-quick', (event) => {
-        const searchQuery = $(event.currentTarget).val();
+    utils.hooks.on('search-quick', (event, currentTarget) => {
+        const searchQuery = $(currentTarget).val();
 
         // server will only perform search with at least 3 characters
         if (searchQuery.length < 3) {

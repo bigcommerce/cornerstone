@@ -347,8 +347,8 @@ class FacetedSearch {
         this.toggleFacetItems($navList);
     }
 
-    onFacetClick(event) {
-        const $link = $(event.currentTarget);
+    onFacetClick(event, currentTarget) {
+        const $link = $(currentTarget);
         const url = $link.attr('href');
 
         event.preventDefault();
@@ -363,9 +363,9 @@ class FacetedSearch {
         }
     }
 
-    onSortBySubmit(event) {
+    onSortBySubmit(event, currentTarget) {
         const url = Url.parse(window.location.href, true);
-        const queryParams = $(event.currentTarget).serialize().split('=');
+        const queryParams = $(currentTarget).serialize().split('=');
 
         url.query[queryParams[0]] = queryParams[1];
         delete url.query.page;
@@ -379,7 +379,7 @@ class FacetedSearch {
         urlUtils.goToUrl(Url.format({ pathname: url.pathname, search: urlUtils.buildQueryString(urlQueryParams) }));
     }
 
-    onRangeSubmit(event) {
+    onRangeSubmit(event, currentTarget) {
         event.preventDefault();
 
         if (!this.priceRangeValidator.areAll(nod.constants.VALID)) {
@@ -387,7 +387,7 @@ class FacetedSearch {
         }
 
         const url = Url.parse(window.location.href, true);
-        let queryParams = decodeURI($(event.currentTarget).serialize()).split('&');
+        let queryParams = decodeURI($(currentTarget).serialize()).split('&');
         queryParams = urlUtils.parseQueryParams(queryParams);
 
         for (const key in queryParams) {

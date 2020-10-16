@@ -24,6 +24,9 @@ export default function (context) {
 
             modal.setupFocusableElements(modalTypes.QUICK_VIEW);
 
+            // eslint-disable-next-line no-undef
+            addthis.toolbox('.addthis_toolbox');
+
             return new ProductDetails(modal.$content.find('.quickView'), context);
         });
     });

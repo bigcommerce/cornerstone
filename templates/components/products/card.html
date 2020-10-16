@@ -16,7 +16,10 @@
                 </div>
             {{/if}}
         {{/or}}
-        <a href="{{url}}" {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}}>
+        <a href="{{url}}" 
+            aria-label="{{name}},{{> components/products/product-aria-label}}"
+            {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}}
+        >
             <div class="card-img-container">
                 {{> components/common/responsive-img
                     image=image
@@ -75,7 +78,9 @@
             <p class="card-text" data-test-info-type="brandName">{{brand.name}}</p>
         {{/if}}
         <h3 class="card-title">
-            <a href="{{url}}" {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}}>{{name}}</a>
+            <a aria-label="{{name}},{{> components/products/product-aria-label}}"
+               href="{{url}}" 
+               {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}}>{{name}}</a>
         </h3>
 
         <div class="card-text" data-test-info-type="price">

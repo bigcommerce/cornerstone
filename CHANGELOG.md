@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Add aria label with price to Product List Item. [#1878](https://github.com/bigcommerce/cornerstone/pull/1878)
 - Unified browsers list that we support. [#1836](https://github.com/bigcommerce/cornerstone/pull/1836)
 - Bump stencil utils and update hooks to account for refactor to drop Jquery in stencil utils [#1821](https://github.com/bigcommerce/cornerstone/pull/1821)
 

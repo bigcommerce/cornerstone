@@ -22,9 +22,9 @@
         {{#if brand.name}}
             <p class="card-text" data-test-info-type="brandName">{{brand.name}}</p>
         {{/if}}
-        <span class="card-title">
+        <h3 class="card-title">
             <a data-vars-product-link="{{url}}" data-vars-product-id="{{id}}" data-vars-product-name="{{name}}" href="{{url}}">{{name}}</a>
-        </span>
+        </h3>
 
         <div class="card-text" data-test-info-type="price">
             {{#or customer (if theme_settings.restrict_to_login '!==' true)}}

@@ -36,6 +36,7 @@ const focusableElements = {
     ),
     [modalTypes.CART_CHANGE_PRODUCT]: () => (
         $('#modal').find(allTabbableElementsSelector)
+    ),
     [modalTypes.WRITE_REVIEW]: () => (
         $('#modal-review-form').find(allTabbableElementsSelector)
     ),

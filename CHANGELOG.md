@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Product link has incorrect voice over focus on Cart Page. [#1830](https://github.com/bigcommerce/cornerstone/pull/1830)
 - Wishlist first option has no bottom outline when in focus. [#1825](https://github.com/bigcommerce/cornerstone/pull/1825)
 - Carousel hidden when one or more of its images not found. [#1816](https://github.com/bigcommerce/cornerstone/pull/1816)
 - Rating and Other filter sections should be accessible by keyboard. [#1838](https://github.com/bigcommerce/cornerstone/pull/1838)

@@ -35,14 +35,15 @@
             <li class="navUser-item navUser-item--divider">|</li>
         {{/if}}
         <li class="navUser-item">
-            <a class="navUser-action navUser-action--quickSearch"
-               href="#" data-search="quickSearch"
+            <button class="navUser-action navUser-action--quickSearch"
+               type="button"
+               id="quick-search-expand"
+               data-search="quickSearch"
                aria-controls="quickSearch"
-               aria-expanded="false"
                aria-label="{{lang 'common.search'}}"
             >
                 {{lang 'common.search'}}
-            </a>
+            </button>
         </li>
         {{#if settings.gift_certificates_enabled}}
             <li class="navUser-item">

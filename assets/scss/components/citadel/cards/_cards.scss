@@ -84,6 +84,7 @@
     > a {
         color: $card-title-color;
         text-decoration: $card-title-textDecoration;
+        display: block;
 
         // scss-lint:disable NestingDepth
         &:hover {
@@ -110,6 +111,13 @@
     &:active {
         background-color: $card-figcaption-button-backgroundHover;
         border: $card-figcaption-button-border;
+    }
+
+    .card-figcaption-body & {
+        &:focus {
+            background-color: $card-figcaption-button-backgroundHover;
+            outline: revert;
+        }
     }
 
     + .card-figcaption-button {

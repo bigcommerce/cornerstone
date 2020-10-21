@@ -10,11 +10,11 @@ const setSlideTabindexes = ($slides) => {
     });
 };
 
-const showCarouselIfSlidesAnalizedSetup = ($carousel) => {
-    const analizedSlides = [];
+const showCarouselIfSlidesAnalyzedSetup = ($carousel) => {
+    const analyzedSlides = [];
     return ($slides) => ($slide) => {
-        analizedSlides.push($slide);
-        if ($slides.length === analizedSlides.length) {
+        analyzedSlides.push($slide);
+        if ($slides.length === analyzedSlides.length) {
             $carousel.addClass('is-visible');
         }
     };
@@ -77,14 +77,14 @@ export default function () {
 
     const $heroCarousel = $carouselCollection.filter('.heroCarousel');
     const $slidesNodes = $heroCarousel.find('.heroCarousel-slide');
-    const showCarouselIfSlidesAnalized = showCarouselIfSlidesAnalizedSetup($heroCarousel)($slidesNodes);
+    const showCarouselIfSlidesAnalyzed = showCarouselIfSlidesAnalyzedSetup($heroCarousel)($slidesNodes);
 
     $slidesNodes.each((index, element) => {
         const $element = $(element);
         const isContentBlock = !!$element.find('.heroCarousel-content').length;
 
         if (isContentBlock) {
-            showCarouselIfSlidesAnalized($element);
+            showCarouselIfSlidesAnalyzed($element);
             return true;
         }
 
@@ -108,7 +108,10 @@ export default function () {
                     }
                 });
 
-                showCarouselIfSlidesAnalized($element);
+                showCarouselIfSlidesAnalyzed($element);
+            })
+            .error(() => {
+                showCarouselIfSlidesAnalyzed($element);
             });
     });
 

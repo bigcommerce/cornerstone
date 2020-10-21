@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Carousel hidden when one or more of its images not found. [#1816](https://github.com/bigcommerce/cornerstone/pull/1816)
 - Rating and Other filter sections should be accessible by keyboard. [#1838](https://github.com/bigcommerce/cornerstone/pull/1838)
 - Fixed header logo focus border for voiceover and browser. [#1831](https://github.com/bigcommerce/cornerstone/pull/1831)
 - Unified browsers list that we support. [#1836](https://github.com/bigcommerce/cornerstone/pull/1836)

@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Cornerstone 4.11.0 - Product Image Carousel Becomes Unresponsive on Product Page. [#1879](https://github.com/bigcommerce/cornerstone/pull/1879)
 - Unified browsers list that we support. [#1836](https://github.com/bigcommerce/cornerstone/pull/1836)
 - Bump stencil utils and update hooks to account for refactor to drop Jquery in stencil utils [#1821](https://github.com/bigcommerce/cornerstone/pull/1821)
 

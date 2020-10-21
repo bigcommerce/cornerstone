@@ -51,12 +51,17 @@ export default function () {
 
     if ($carouselCollection.length === 0) return;
 
-    $carouselCollection.on('init', onCarouselChange);
-    $carouselCollection.on('afterChange', onCarouselChange);
-
     $carouselCollection.each((index, carousel) => {
         // getting element using find to pass jest test
         const $carousel = $(document).find(carousel);
+
+        if ($carousel.hasClass('productView-thumbnails')) {
+            $carousel.slick();
+            return;
+        }
+
+        $carousel.on('init', onCarouselChange);
+        $carousel.on('afterChange', onCarouselChange);
 
         const isMultipleSlides = $carousel.children().length > 1;
         const customPaging = isMultipleSlides

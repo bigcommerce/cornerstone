@@ -2,6 +2,25 @@
 
 ## Draft
 - Fixed Logo displaying on mobile. [#1865](https://github.com/bigcommerce/cornerstone/pull/1865)
+- Fixed image in modal for IE. [#1840](https://github.com/bigcommerce/cornerstone/pull/1840)
+- Add announcement for filtered resutls on "Shop by Price". [#1854](https://github.com/bigcommerce/cornerstone/pull/1854)
+- Add Announcement for Reset Filter by Price. [#1858](https://github.com/bigcommerce/cornerstone/pull/1858)
+- Content should not scroll in two directions when zoomed. [#1853](https://github.com/bigcommerce/cornerstone/pull/1853)
+- Notification of number of products not announced. [#1845](https://github.com/bigcommerce/cornerstone/pull/1845)
+- Quick search query param needs to be fixed while navigating to search page. [#1832](https://github.com/bigcommerce/cornerstone/pull/1832)
+- Zooming and scaling must not be disabled. [#1843](https://github.com/bigcommerce/cornerstone/pull/1843)
+- Options on change modal need focus border. [#1839](https://github.com/bigcommerce/cornerstone/pull/1839)
+- Product cards should link to products. [#1842](https://github.com/bigcommerce/cornerstone/pull/1842)
+- Sort By dropdowns need visual focus border. [#1833](https://github.com/bigcommerce/cornerstone/pull/1833)
+- Product link has incorrect voice over focus on Cart Page. [#1830](https://github.com/bigcommerce/cornerstone/pull/1830)
+- Wishlist first option has no bottom outline when in focus. [#1825](https://github.com/bigcommerce/cornerstone/pull/1825)
+- Carousel hidden when one or more of its images not found. [#1816](https://github.com/bigcommerce/cornerstone/pull/1816)
+- Rating and Other filter sections should be accessible by keyboard. [#1838](https://github.com/bigcommerce/cornerstone/pull/1838)
+- Fixed header logo focus border for voiceover and browser. [#1831](https://github.com/bigcommerce/cornerstone/pull/1831)
+- Unified browsers list that we support. [#1836](https://github.com/bigcommerce/cornerstone/pull/1836)
+- Bump stencil utils and update hooks to account for refactor to drop Jquery in stencil utils [#1821](https://github.com/bigcommerce/cornerstone/pull/1821)
+
+## 4.11.0 (10-07-2020)
 - Add Info and Add Coupon forms on Cart Page tabbable when hidden. [#1820](https://github.com/bigcommerce/cornerstone/pull/1820)
 - Fixed outline styles for breadcrumbs on focus state. [#1824](https://github.com/bigcommerce/cornerstone/pull/1824)
 - Fixed review rating icons focus border. [#1818](https://github.com/bigcommerce/cornerstone/pull/1818)
@@ -60,6 +79,7 @@
 - Improper heading hierarchy on Sitemap. [#1774](https://github.com/bigcommerce/cornerstone/pull/1774)
 - Added modal trap for for product details. [#1758](https://github.com/bigcommerce/cornerstone/pull/1758)
 - Added tooltips for carousel Previous and Next buttons. [#1749](https://github.com/bigcommerce/cornerstone/pull/1749)
+- Card content truncated on zooming browser to 400%. [#1803](https://github.com/bigcommerce/cornerstone/pull/1803)
 
 ## 4.9.0 (07-28-2020)
 - Added correct alt text on image change in product view. [#1747](https://github.com/bigcommerce/cornerstone/pull/1747)

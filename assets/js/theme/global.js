@@ -15,7 +15,6 @@ import adminBar from './global/adminBar';
 import carousel from './common/carousel';
 import loadingProgressBar from './global/loading-progress-bar';
 import svgInjector from './global/svg-injector';
-import objectFitImages from './global/object-fit-polyfill';
 
 export default class Global extends PageManager {
     onReady() {
@@ -36,6 +35,5 @@ export default class Global extends PageManager {
         }
         loadingProgressBar();
         svgInjector();
-        objectFitImages();
     }
 }

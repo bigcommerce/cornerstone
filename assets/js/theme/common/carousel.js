@@ -26,7 +26,7 @@ const arrowAriaLabling = ($arrowLeft, $arrowRight, currentSlide, lastSlide) => {
 
     const arrowAriaLabelBaseText = $arrowLeft.attr('aria-label');
 
-    const isInit = arrowAriaLabelBaseText.includes(['NUMBER']);
+    const isInit = arrowAriaLabelBaseText.includes('[NUMBER]');
     const valueToReplace = isInit ? '[NUMBER]' : integerRegExp;
 
     const leftGoToNumber = currentSlide === 1 ? lastSlide : currentSlide - 1;
@@ -40,10 +40,10 @@ const arrowAriaLabling = ($arrowLeft, $arrowRight, currentSlide, lastSlide) => {
 
 const onCarouselChange = (event, carousel) => {
     const { options: { prevArrow, nextArrow }, currentSlide, slideCount } = carousel;
+    const $target = $(event.target);
 
-    setSlideTabindexes($(event.target).find('.slick-slide'));
-
-    arrowAriaLabling($(prevArrow), $(nextArrow), currentSlide + 1, slideCount);
+    setSlideTabindexes($target.find('.slick-slide'));
+    arrowAriaLabling($target.find(prevArrow), $target.find(nextArrow), currentSlide + 1, slideCount);
 };
 
 export default function () {

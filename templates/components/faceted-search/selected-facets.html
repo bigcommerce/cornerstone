@@ -7,11 +7,11 @@
         <ul class="inlineList inlineList--labels">
             {{#each items}}
                 <li>
-                    <a
-                        href="{{url}}"
-                        class="facetLabel"
-                        rel="nofollow"
-                        data-faceted-search-facet>
+                    <a href="{{url}}"
+                       class="facetLabel"
+                       rel="nofollow"
+                       data-faceted-search-facet
+                    >
                         {{#if facet '===' 'rating'}}
                             {{lang 'search.faceted.selected.rating-label' rating=title}}
                         {{else}}
@@ -26,7 +26,7 @@
             {{/each}}
         </ul>
     {{else}}
-        {{lang 'search.faceted.selected.no-filters'}}
+        <p>{{lang 'search.faceted.selected.no-filters'}}</p>
     {{/if}}
 
     {{#if remove_all_url}}

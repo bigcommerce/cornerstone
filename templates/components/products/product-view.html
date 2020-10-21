@@ -96,7 +96,8 @@
                             <meta itemprop="reviewCount" content="{{product.num_reviews}}">
                         {{/if}}
                     {{/if}}
-                    <span title="{{lang 'products.reviews.rating_aria_label' current_rating=product.rating max_rating=5}}"
+                    <span class="productView-ratingWrapper"
+                          title="{{lang 'products.reviews.rating_aria_label' current_rating=product.rating max_rating=5}}"
                           tabindex="0"
                     >
                         {{> components/products/ratings rating=product.rating}}

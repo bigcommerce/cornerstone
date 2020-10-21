@@ -1,5 +1,7 @@
 // =============================================================================
 // MODAL (CSS)
+//
+// // 1. Fix for content shifted to top in modal window when bottom variant option selected
 // =============================================================================
 
 @mixin addFocusTooltip () {
@@ -7,6 +9,7 @@
         &:before {
             content: " ";
             position: absolute;
+            right: 0;
             top: 50%;
             border-width: remCalc(10px);
             border-style: solid;
@@ -40,6 +43,10 @@
     left: 50%;
     top: 50% !important;
     transform: translate(-50%, -50%);
+
+    .form-field {
+        position: relative; // 1
+    }
 }
 
 .modal--large {
@@ -82,10 +89,6 @@
     }
 
     @include addFocusTooltip;
-
-    &__aria-text {
-        font-size: 0;
-    }
 }
 
 .modal-body {

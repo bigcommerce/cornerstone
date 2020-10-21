@@ -201,6 +201,10 @@ export default class Search extends CatalogPage {
                 $searchForm.append(input);
             }
         });
+
+        setTimeout(() => {
+            $('[data-search-aria-message]').removeClass('u-hidden');
+        }, 100);
     }
 
     loadTreeNodes(node, cb) {

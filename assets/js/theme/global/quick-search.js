@@ -7,12 +7,15 @@ export default function () {
     const TOP_STYLING = 'top: 49px;';
     const $quickSearchResults = $('.quickSearchResults');
     const $quickSearchForms = $('[data-quick-search-form]');
-    const $searchQuery = $quickSearchForms.find('[data-quick-search-input]');
+    const $quickSearchExpand = $('#quick-search-expand');
+    const $searchQuery = $quickSearchForms.find('[data-search-quick]');
     const stencilDropDownExtendables = {
         hide: () => {
+            $quickSearchExpand.attr('aria-expanded', false);
             $searchQuery.trigger('blur');
         },
         show: (event) => {
+            $quickSearchExpand.attr('aria-expanded', true);
             $searchQuery.trigger('focus');
             event.stopPropagation();
         },
@@ -37,11 +40,32 @@ export default function () {
             }
 
             $quickSearchResults.html(response);
+            const $quickSearchResultsCurrent = $quickSearchResults.filter(':visible');
+
+            const $noResultsMessage = $quickSearchResultsCurrent.find('.quickSearchMessage');
+            if ($noResultsMessage.length) {
+                $noResultsMessage.attr({
+                    role: 'status',
+                    'aria-live': 'polite',
+                });
+            } else {
+                const $quickSearchAriaMessage = $quickSearchResultsCurrent.next();
+                $quickSearchAriaMessage.addClass('u-hidden');
+
+                const predefinedText = $quickSearchAriaMessage.data('search-aria-message-predefined-text');
+                const itemsFoundCount = $quickSearchResultsCurrent.find('.product').length;
+
+                $quickSearchAriaMessage.text(`${itemsFoundCount} ${predefinedText} ${searchQuery}`);
+
+                setTimeout(() => {
+                    $quickSearchAriaMessage.removeClass('u-hidden');
+                }, 100);
+            }
         });
     }, 200);
 
-    utils.hooks.on('search-quick', (event) => {
-        const searchQuery = $(event.currentTarget).val();
+    utils.hooks.on('search-quick', (event, currentTarget) => {
+        const searchQuery = $(currentTarget).val();
 
         // server will only perform search with at least 3 characters
         if (searchQuery.length < 3) {

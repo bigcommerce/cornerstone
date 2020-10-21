@@ -125,6 +125,14 @@ product_results:
             </div>
         {{/if}}
 
+        <p role="status"
+           aria-live="polite"
+           class="quickSearchResultsAriaMessage aria-description--hidden u-hidden"
+           data-search-aria-message
+        >
+            {{{lang 'search.results.count' count=result_count search_query=(sanitize forms.search.query)}}}
+        </p>
+
         <div role="tabpanel" id="search-results-content" aria-labelledby="search-results-content-count" {{#if forms.search.section '!=' 'content'}}class="u-hidden"{{/if}}>
             {{> components/search/content-listing}}
         </div>

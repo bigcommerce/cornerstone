@@ -19,10 +19,10 @@
     margin-bottom: (spacing("double") + spacing("single"));
     margin-top: -(spacing("single")); // 3
     overflow: hidden;
-    visibility: hidden;
+    opacity: 0;
 
     &.is-visible {
-        visibility: visible;
+        opacity: 1;
     }
 
     @include breakpoint("medium") {
@@ -30,7 +30,6 @@
     }
 
     &.slick-initialized {
-        opacity: 1;
         max-height: 100vh;
         
         @include breakpoint("small") {

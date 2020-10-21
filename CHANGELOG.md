@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Remove layout shifts to improve CLS indicator from Lighthouse performance report. [#1869](https://github.com/bigcommerce/cornerstone/pull/1869)
 - Fix aria-labels for collapsibleFactory elements. [#1868](https://github.com/bigcommerce/cornerstone/pull/1868)
 - Fixed social icons click behaviour after quick view modal reopening. [#1874](https://github.com/bigcommerce/cornerstone/pull/1874)
 - Fixed Special Characters rendering under Wishlists. [#1873](https://github.com/bigcommerce/cornerstone/pull/1873)

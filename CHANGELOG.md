@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Fixed image in modal for IE. [#1840](https://github.com/bigcommerce/cornerstone/pull/1840)
 - Add announcement for filtered resutls on "Shop by Price". [#1854](https://github.com/bigcommerce/cornerstone/pull/1854)
 - Add Announcement for Reset Filter by Price. [#1858](https://github.com/bigcommerce/cornerstone/pull/1858)
 - Content should not scroll in two directions when zoomed. [#1853](https://github.com/bigcommerce/cornerstone/pull/1853)

@@ -256,6 +256,8 @@ export default class Search extends CatalogPage {
     }
 
     initFacetedSearch() {
+        // eslint-disable-next-line object-curly-newline
+        const { onMinPriceError, onMaxPriceError, minPriceNotEntered, maxPriceNotEntered, onInvalidPrice } = this.context;
         const $productListingContainer = $('#product-listing-container');
         const $contentListingContainer = $('#search-results-content');
         const $facetedSearchContainer = $('#faceted-search-container');
@@ -300,6 +302,14 @@ export default class Search extends CatalogPage {
             $('html, body').animate({
                 scrollTop: 0,
             }, 100);
+        }, {
+            validationErrorMessages: {
+                onMinPriceError,
+                onMaxPriceError,
+                minPriceNotEntered,
+                maxPriceNotEntered,
+                onInvalidPrice,
+            },
         });
     }
 

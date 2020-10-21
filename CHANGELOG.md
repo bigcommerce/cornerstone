@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Move phrases and static strings to en.json for improving translation customizing. [#1850](https://github.com/bigcommerce/cornerstone/pull/1850)
 - Update carousel images to improve LCP indicator from Lighthouse performance report. [#1876](https://github.com/bigcommerce/cornerstone/pull/1876)
 - Add aria label with price to Product Grid Item. [#1875](https://github.com/bigcommerce/cornerstone/pull/1875)
 - Search result not notified by screen reader. [#1867](https://github.com/bigcommerce/cornerstone/pull/1867)

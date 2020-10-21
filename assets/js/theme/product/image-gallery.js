@@ -61,6 +61,8 @@ export default class ImageGallery {
     }
 
     swapMainImage() {
+        const isBrowserIE = navigator.userAgent.includes('Trident');
+
         this.easyzoom.data('easyZoom').swap(
             this.currentImage.mainImageUrl,
             this.currentImage.zoomImageUrl,
@@ -74,6 +76,18 @@ export default class ImageGallery {
             alt: this.currentImage.mainImageAlt,
             title: this.currentImage.mainImageAlt,
         });
+
+        if (isBrowserIE) {
+            const fallbackStylesIE = {
+                'background-image': `url(${this.currentImage.mainImageUrl}&ampimbypass=on)`,
+                'background-position': 'center',
+                'background-repeat': 'no-repeat',
+                'background-origin': 'content-box',
+                'background-size': 'contain',
+            };
+
+            this.$mainImageNested.css(fallbackStylesIE);
+        }
     }
 
     checkImage() {

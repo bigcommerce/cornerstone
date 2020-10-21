@@ -1,22 +1,25 @@
 <div class="previewCartWrapper">
-    <div class="previewCart">
-        {{#if cart.items.length}}
-            <ul class="previewCartList">
-                {{#each (limit cart.items 4)}}
-                    <li class="previewCartItem">
-                        <div class="previewCartItem-image">
-                            {{#if type '==' 'GiftCertificate'}}
-                                <img src="{{cdn ../../theme_settings.default_image_gift_certificate}}" alt="GiftCertificate" title="GiftCertificate">
-                            {{else}}
-                                {{> components/common/responsive-img
-                                    image=image
-                                    fallback_size=../../theme_settings.productthumb_size
-                                    lazyload=../../theme_settings.lazyload_mode
-                                    default_image=../../theme_settings.default_image_product
-                                }}
-                            {{/if}}
-                        </div>
-
+  <div class="previewCart">
+    {{#if cart.items.length}}
+        <ul class="previewCartList">
+            {{#each (limit cart.items 4)}}
+                <li class="previewCartItem">
+                    <div class="previewCartItem-image">
+                        {{#if type '==' 'GiftCertificate'}}
+                            <img
+                                alt="GiftCertificate"
+                                title="GiftCertificate"
+                                src="{{cdn ../theme_settings.default_image_gift_certificate}}"
+                            >
+                        {{else}}
+                            {{> components/common/responsive-img
+                                image=image
+                                fallback_size=../theme_settings.productthumb_size
+                                lazyload=../theme_settings.lazyload_mode
+                                default_image=../theme_settings.default_image_product
+                            }}
+                        {{/if}}
+                    </div>
                         <div class="previewCartItem-content">
                             <span class="previewCartItem-brand">
                                 {{brand.name}}

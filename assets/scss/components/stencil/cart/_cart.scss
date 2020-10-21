@@ -10,6 +10,7 @@
 // -----------------------------------------------------------------------------
 
 $cart-item-spacing:                     spacing("single");
+$cart-content-padding-right:            4px;
 
 $cart-thumbnail-maxWidth:               remCalc(100px);
 $cart-thumbnail-height:                 remCalc(100px);
@@ -218,6 +219,9 @@ $card-preview-zoom-bottom-offset:       6rem;
 
 // Cart content
 // -----------------------------------------------------------------------------
+.cart-content-padding-right {
+    padding-right: $cart-content-padding-right;
+}
 
 .cart-header-quantity,
 .cart-item-quantity {
@@ -276,6 +280,11 @@ $card-preview-zoom-bottom-offset:       6rem;
 .cart-item-name {
     font-size: fontSize("smaller");
     margin: 0;
+    display: inline-block;
+
+    &__label {
+        display: inline-block;
+    }
 
     + .definitionList {
         margin-top: spacing("quarter");
@@ -427,7 +436,6 @@ $card-preview-zoom-bottom-offset:       6rem;
 .coupon-code-add,
 .coupon-code-cancel,
 .shipping-estimate-show,
-.shipping-estimate-hide,
 .gift-certificate-add,
 .gift-certificate-cancel {
     color: stencilColor("color-textSecondary");
@@ -441,7 +449,7 @@ $card-preview-zoom-bottom-offset:       6rem;
 }
 
 .coupon-code-cancel,
-.shipping-estimate-hide {
+.shipping-estimate-show[aria-expanded="true"] {
     font-style: italic;
 }
 

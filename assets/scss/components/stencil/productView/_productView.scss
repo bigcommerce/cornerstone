@@ -121,7 +121,8 @@
 // -----------------------------------------------------------------------------
 
 .productView-details {
-    margin-bottom: spacing("single") + spacing("third");
+    padding-bottom: spacing("single") + spacing("third");
+    overflow: hidden; // for Androind Chrome horizontal scroll fix
 }
 
 
@@ -195,22 +196,24 @@
     }
 }
 
+.productView-ratingWrapper {
+    display: inline-flex;
+    line-height: 1;
+}
+
 .productView-reviewLink {
     display: inline-block;
-    margin-left: spacing("half");
+    margin-left: spacing("quarter");
     vertical-align: middle;
+    color: stencilColor("color-textSecondary");
+
+    // scss-lint:disable NestingDepth
+    &:hover {
+        color: stencilColor("color-textSecondary--hover");
+    }
 
     &--new {
         padding: 0;
-    }
-
-    > a {
-        color: stencilColor("color-textSecondary");
-
-        // scss-lint:disable NestingDepth
-        &:hover {
-            color: stencilColor("color-textSecondary--hover");
-        }
     }
 }
 
@@ -281,7 +284,6 @@
     @include clearfix;
     margin-bottom: spacing("single");
     text-align: center;
-    overflow: hidden; // for Androind Chrome horizontal scroll fix
 
     @include breakpoint("small") {
         text-align: left;

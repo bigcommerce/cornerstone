@@ -1,6 +1,8 @@
 # Changelog
 
 ## Draft
+- Cornerstone quick view. [#1857](https://github.com/bigcommerce/cornerstone/pull/1857)
+- Return heading to product card. [#1848](https://github.com/bigcommerce/cornerstone/pull/1848)
 - Added announcement for "aadd to cart" button on PLP and PDP. [#1860](https://github.com/bigcommerce/cornerstone/pull/1860)
 - Fixed Logo displaying on mobile. [#1865](https://github.com/bigcommerce/cornerstone/pull/1865)
 - Fixed image in modal for IE. [#1840](https://github.com/bigcommerce/cornerstone/pull/1840)

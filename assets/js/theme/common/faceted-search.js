@@ -7,6 +7,23 @@ import collapsibleFactory from './collapsible';
 import { Validators } from './utils/form-utils';
 import nod from './nod';
 
+const defaultOptions = {
+    accordionToggleSelector: '#facetedSearch .accordion-navigation, #facetedSearch .facetedSearch-toggle',
+    blockerSelector: '#facetedSearch .blocker',
+    clearFacetSelector: '#facetedSearch .facetedSearch-clearLink',
+    componentSelector: '#facetedSearch-navList',
+    facetNavListSelector: '#facetedSearch .navList',
+    priceRangeErrorSelector: '#facet-range-form .form-inlineMessage',
+    priceRangeFieldsetSelector: '#facet-range-form .form-fieldset',
+    priceRangeFormSelector: '#facet-range-form',
+    priceRangeMaxPriceSelector: '#facet-range-form [name=max_price]',
+    priceRangeMinPriceSelector: '#facet-range-form [name=min_price]',
+    showMoreToggleSelector: '#facetedSearch .accordion-content .toggleLink',
+    facetedSearchFilterItems: '#facetedSearch-filterItems .form-input',
+    modal: modalFactory('#modal')[0],
+    modalOpen: false,
+};
+
 /**
  * Faceted search view component
  */
@@ -32,23 +49,6 @@ class FacetedSearch {
      * let facetedSearch = new FacetedSearch(requestOptions, templatesDidLoad);
      */
     constructor(requestOptions, callback, options) {
-        const defaultOptions = {
-            accordionToggleSelector: '#facetedSearch .accordion-navigation, #facetedSearch .facetedSearch-toggle',
-            blockerSelector: '#facetedSearch .blocker',
-            clearFacetSelector: '#facetedSearch .facetedSearch-clearLink',
-            componentSelector: '#facetedSearch-navList',
-            facetNavListSelector: '#facetedSearch .navList',
-            priceRangeErrorSelector: '#facet-range-form .form-inlineMessage',
-            priceRangeFieldsetSelector: '#facet-range-form .form-fieldset',
-            priceRangeFormSelector: '#facet-range-form',
-            priceRangeMaxPriceSelector: '#facet-range-form [name=max_price]',
-            priceRangeMinPriceSelector: '#facet-range-form [name=min_price]',
-            showMoreToggleSelector: '#facetedSearch .accordion-content .toggleLink',
-            facetedSearchFilterItems: '#facetedSearch-filterItems .form-input',
-            modal: modalFactory('#modal')[0],
-            modalOpen: false,
-        };
-
         // Private properties
         this.requestOptions = requestOptions;
         this.callback = callback;
@@ -253,7 +253,7 @@ class FacetedSearch {
             minPriceSelector: this.options.priceRangeMinPriceSelector,
         };
 
-        Validators.setMinMaxPriceValidation(validator, selectors);
+        Validators.setMinMaxPriceValidation(validator, selectors, this.options.validationErrorMessages);
 
         this.priceRangeValidator = validator;
     }

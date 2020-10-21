@@ -16,7 +16,11 @@
                 </div>
             {{/if}}
         {{/or}}
-        <a href="{{url}}" {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}}>
+        <a href="{{url}}" 
+           class="card-figure__link"
+           aria-label="{{name}},{{> components/products/product-aria-label}}"
+           {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}}
+        >
             <div class="card-img-container">
                 {{> components/common/responsive-img
                     image=image
@@ -53,7 +57,8 @@
                             <a href="{{pre_order_add_to_cart_url}}" data-event-type="product-click" class="button button--small card-figcaption-button">{{lang 'products.pre_order'}}</a>
                         {{/if}}
                         {{#if add_to_cart_url }}
-                            <a href="{{add_to_cart_url}}" data-event-type="product-click" class="button button--small card-figcaption-button">{{lang 'products.add_to_cart'}}</a>
+                            <a href="{{add_to_cart_url}}" data-event-type="product-click" data-button-type="add-cart" class="button button--small card-figcaption-button">{{lang 'products.add_to_cart'}}</a>
+                            <span class="product-status-message aria-description--hidden">{{lang 'category.add_cart_announcement'}}</span>
                         {{/if}}
                         {{#if out_of_stock_message }}
                             <a href="{{url}}" data-event-type="product-click" class="button button--small card-figcaption-button" data-product-id="{{id}}">{{out_of_stock_message}}</a>
@@ -75,7 +80,9 @@
             <p class="card-text" data-test-info-type="brandName">{{brand.name}}</p>
         {{/if}}
         <h3 class="card-title">
-            <a href="{{url}}" {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}}>{{name}}</a>
+            <a aria-label="{{name}},{{> components/products/product-aria-label}}"
+               href="{{url}}" 
+               {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}}>{{name}}</a>
         </h3>
 
         <div class="card-text" data-test-info-type="price">

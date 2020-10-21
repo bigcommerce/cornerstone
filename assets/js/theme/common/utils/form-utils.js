@@ -7,6 +7,21 @@ const inputTagNames = [
     'select',
     'textarea',
 ];
+/**
+ * Set up Object with Error Messages on Password Validation. Please use messages in mentioned order
+ * @param {string} empty defines error text for empty field
+ * @param {string} confirm defines error text for empty confirmation field
+ * @param {string} mismatch defines error text if confirm passford mismatches passford field
+ * @param {string} invalid defines error text for invalid password charaters sequence
+ * @return {object} messages or default texts if nothing is providing
+ */
+export const createPasswordValidationErrorTextObject = (empty, confirm, mismatch, invalid) => ({
+    onEmptyPasswordErrorText: empty,
+    onConfirmPasswordErrorText: confirm,
+    onMismatchPasswordErrorText: mismatch,
+    onNotValidPasswordErrorText: invalid,
+});
+
 
 /**
  * Apply class name to an input element on its type
@@ -114,8 +129,9 @@ const Validators = {
      * Sets up a new validation when the form is dirty
      * @param validator
      * @param field
+     * @param {string} errorText describes errorMassage on email validation
      */
-    setEmailValidation: (validator, field) => {
+    setEmailValidation: (validator, field, errorText) => {
         if (field) {
             validator.add({
                 selector: field,
@@ -124,7 +140,7 @@ const Validators = {
 
                     cb(result);
                 },
-                errorMessage: 'You must enter a valid email.',
+                errorMessage: errorText,
             });
         }
     },
@@ -135,9 +151,12 @@ const Validators = {
      * @param passwordSelector
      * @param password2Selector
      * @param requirements
+     * @param {object} errorTextsObject
      * @param isOptional
      */
-    setPasswordValidation: (validator, passwordSelector, password2Selector, requirements, isOptional) => {
+    setPasswordValidation: (validator, passwordSelector, password2Selector, requirements, {
+        onEmptyPasswordErrorText, onConfirmPasswordErrorText, onMismatchPasswordErrorText, onNotValidPasswordErrorText,
+    }, isOptional) => {
         const $password = $(passwordSelector);
         const passwordValidations = [
             {
@@ -151,7 +170,7 @@ const Validators = {
 
                     cb(result);
                 },
-                errorMessage: 'You must enter a password.',
+                errorMessage: onEmptyPasswordErrorText,
             },
             {
                 selector: passwordSelector,
@@ -167,7 +186,7 @@ const Validators = {
 
                     cb(result);
                 },
-                errorMessage: requirements.error,
+                errorMessage: onNotValidPasswordErrorText,
             },
             {
                 selector: password2Selector,
@@ -180,7 +199,7 @@ const Validators = {
 
                     cb(result);
                 },
-                errorMessage: 'You must enter a password.',
+                errorMessage: onConfirmPasswordErrorText,
             },
             {
                 selector: password2Selector,
@@ -189,7 +208,7 @@ const Validators = {
 
                     cb(result);
                 },
-                errorMessage: 'Your passwords do not match.',
+                errorMessage: onMismatchPasswordErrorText,
             },
         ];
 
@@ -206,7 +225,7 @@ const Validators = {
      * @param {string} selectors.maxPriceSelector
      * @param {string} selectors.minPriceSelector
      */
-    setMinMaxPriceValidation: (validator, selectors) => {
+    setMinMaxPriceValidation: (validator, selectors, priceValidationErrorTexts = {}) => {
         const {
             errorSelector,
             fieldsetSelector,
@@ -215,6 +234,9 @@ const Validators = {
             minPriceSelector,
         } = selectors;
 
+        // eslint-disable-next-line object-curly-newline
+        const { onMinPriceError, onMaxPriceError, minPriceNotEntered, maxPriceNotEntered, onInvalidPrice } = priceValidationErrorTexts;
+
         validator.configure({
             form: formSelector,
             preventSubmit: true,
@@ -222,31 +244,31 @@ const Validators = {
         });
 
         validator.add({
-            errorMessage: 'Min price must be less than max. price.',
+            errorMessage: onMinPriceError,
             selector: minPriceSelector,
             validate: `min-max:${minPriceSelector}:${maxPriceSelector}`,
         });
 
         validator.add({
-            errorMessage: 'Min price must be less than max. price.',
+            errorMessage: onMaxPriceError,
             selector: maxPriceSelector,
             validate: `min-max:${minPriceSelector}:${maxPriceSelector}`,
         });
 
         validator.add({
-            errorMessage: 'Max. price is required.',
+            errorMessage: maxPriceNotEntered,
             selector: maxPriceSelector,
             validate: 'presence',
         });
 
         validator.add({
-            errorMessage: 'Min. price is required.',
+            errorMessage: minPriceNotEntered,
             selector: minPriceSelector,
             validate: 'presence',
         });
 
         validator.add({
-            errorMessage: 'Input must be greater than 0.',
+            errorMessage: onInvalidPrice,
             selector: [minPriceSelector, maxPriceSelector],
             validate: 'min-number:0',
         });
@@ -263,12 +285,12 @@ const Validators = {
      * @param validator
      * @param field
      */
-    setStateCountryValidation: (validator, field) => {
+    setStateCountryValidation: (validator, field, errorText) => {
         if (field) {
             validator.add({
                 selector: field,
                 validate: 'presence',
-                errorMessage: 'The \'State/Province\' field cannot be blank.',
+                errorMessage: errorText,
             });
         }
     },

@@ -44,6 +44,8 @@
         overflow: visible;
         position: relative;
         height: auto;
+        display: flex;
+        flex-direction: column;
     }
 
     &.is-open {
@@ -69,6 +71,7 @@
     @include breakpoint("medium") {
         margin: (spacing("double") + spacing("base")) auto (spacing("double") + spacing("single"));
         padding: 0;
+        height: auto;
 
         .header.fixed & {
             background-color: color("greys", "lightest");
@@ -96,9 +99,9 @@
         @include breakpoint("medium") {
             background: none;
             border-bottom: 0;
-            display: inline;
+            display: inline-flex;
             padding: 0;
-            width: 100%;
+            width: auto;
         }
 
         &:hover {
@@ -158,6 +161,7 @@
         max-width: none;
         overflow: auto;
         white-space: normal;
+        padding: 0 10px;
 
         .header.fixed & {
             font-size: fontSize("larger");
@@ -168,21 +172,21 @@
 .header-logo-image-container {
     position: relative;
     width: 100%;
+    
+    @include breakpoint("medium") {
+        min-height: get-height(stencilString('logo_size'));
+    }
 }
 
 .header-logo-image-container:after {
     content: '';
     display: block;
-    padding-bottom: remCalc($header-height) - $header-logo-marginVertical * 2;
-
-    @include breakpoint("medium") {
-        padding-bottom: get-height(stencilString('logo_size'));
-    }
 }
 
 .header-logo-image {
-    @include lazy-loaded-img;
     max-height: remCalc($header-height) - $header-logo-marginVertical * 2;
+    display: block;
+    margin: 0 auto;
 
     @include breakpoint("medium") {
         max-height: none;

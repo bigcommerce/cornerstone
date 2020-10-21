@@ -141,8 +141,8 @@ export default class Cart extends PageManager {
             modal.setupFocusableElements(modalTypes.CART_CHANGE_PRODUCT);
         });
 
-        utils.hooks.on('product-option-change', (event, option) => {
-            const $changedOption = $(option);
+        utils.hooks.on('product-option-change', (event, currentTarget) => {
+            const $changedOption = $(currentTarget);
             const $form = $changedOption.parents('form');
             const $submit = $('input.button', $form);
             const $messageBox = $('.alertMessageBox');

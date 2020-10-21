@@ -3,7 +3,7 @@ import _ from 'lodash';
 import giftCertCheck from './common/gift-certificate-validator';
 import utils from '@bigcommerce/stencil-utils';
 import ShippingEstimator from './cart/shipping-estimator';
-import { defaultModal } from './global/modal';
+import { defaultModal, modalTypes } from './global/modal';
 import swal from './global/sweet-alert';
 
 export default class Cart extends PageManager {
@@ -137,10 +137,12 @@ export default class Cart extends PageManager {
             modal.updateContent(response.content);
 
             this.bindGiftWrappingForm();
+
+            modal.setupFocusableElements(modalTypes.CART_CHANGE_PRODUCT);
         });
 
-        utils.hooks.on('product-option-change', (event, option) => {
-            const $changedOption = $(option);
+        utils.hooks.on('product-option-change', (event, currentTarget) => {
+            const $changedOption = $(currentTarget);
             const $form = $changedOption.parents('form');
             const $submit = $('input.button', $form);
             const $messageBox = $('.alertMessageBox');

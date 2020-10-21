@@ -1,5 +1,7 @@
 # Changelog
 
+- Sort By dropdowns need visual focus border. [#1833](https://github.com/bigcommerce/cornerstone/pull/1833)
+
 ## Draft
 - Product link has incorrect voice over focus on Cart Page. [#1830](https://github.com/bigcommerce/cornerstone/pull/1830)
 - Wishlist first option has no bottom outline when in focus. [#1825](https://github.com/bigcommerce/cornerstone/pull/1825)

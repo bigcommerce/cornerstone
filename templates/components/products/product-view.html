@@ -96,7 +96,8 @@
                             <meta itemprop="reviewCount" content="{{product.num_reviews}}">
                         {{/if}}
                     {{/if}}
-                    <span title="{{lang 'products.reviews.rating_aria_label' current_rating=product.rating max_rating=5}}"
+                    <span class="productView-ratingWrapper"
+                          title="{{lang 'products.reviews.rating_aria_label' current_rating=product.rating max_rating=5}}"
                           tabindex="0"
                     >
                         {{> components/products/ratings rating=product.rating}}
@@ -214,7 +215,7 @@
         </div>
     </section>
 
-    <section class="productView-details">
+    <section class="productView-details product-options">
         <div class="productView-options">
             {{#if product.release_date }}
                 <p>{{product.release_date}}</p>

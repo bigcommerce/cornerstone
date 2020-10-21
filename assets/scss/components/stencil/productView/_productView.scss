@@ -119,10 +119,17 @@
 
 // Details
 // -----------------------------------------------------------------------------
+//
+// 1. for Androind Chrome and IE with zoom horizontal scroll fix
+//
+// -----------------------------------------------------------------------------
 
 .productView-details {
     padding-bottom: spacing("single") + spacing("third");
-    overflow: hidden; // for Androind Chrome horizontal scroll fix
+
+    &.product-options {
+        overflow: hidden; // 1
+    }
 }
 
 
@@ -194,6 +201,11 @@
         color: inherit;
         font-size: inherit;
     }
+}
+
+.productView-ratingWrapper {
+    display: inline-flex;
+    line-height: 1;
 }
 
 .productView-reviewLink {

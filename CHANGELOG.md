@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Update carousel images to improve LCP indicator from Lighthouse performance report. [#1876](https://github.com/bigcommerce/cornerstone/pull/1876)
 - Add aria label with price to Product Grid Item. [#1875](https://github.com/bigcommerce/cornerstone/pull/1875)
 - Search result not notified by screen reader. [#1867](https://github.com/bigcommerce/cornerstone/pull/1867)
 - Add aria label with price to Product List Item. [#1878](https://github.com/bigcommerce/cornerstone/pull/1878)

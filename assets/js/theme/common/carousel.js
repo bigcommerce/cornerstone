@@ -1,20 +1,27 @@
 import 'slick-carousel';
 
 const integerRegExp = /[0-9]+/;
+const allFocusableElementsSelector = '[href], button, input, textarea, select, details, [contenteditable="true"], [tabindex]';
 
 const setSlideTabindexes = ($slides) => {
     $slides.each((index, element) => {
         const $element = $(element);
         const tabIndex = $element.hasClass('slick-active') ? 0 : -1;
-        $element.attr('tabindex', tabIndex);
+        if (!$element.hasClass('js-product-slide')) {
+            $element.attr('tabindex', tabIndex);
+        }
+
+        $element.find(allFocusableElementsSelector).each((idx, child) => {
+            $(child).attr('tabindex', tabIndex);
+        });
     });
 };
 
-const showCarouselIfSlidesAnalizedSetup = ($carousel) => {
-    const analizedSlides = [];
+const showCarouselIfSlidesAnalyzedSetup = ($carousel) => {
+    const analyzedSlides = [];
     return ($slides) => ($slide) => {
-        analizedSlides.push($slide);
-        if ($slides.length === analizedSlides.length) {
+        analyzedSlides.push($slide);
+        if ($slides.length === analyzedSlides.length) {
             $carousel.addClass('is-visible');
         }
     };
@@ -26,7 +33,7 @@ const arrowAriaLabling = ($arrowLeft, $arrowRight, currentSlide, lastSlide) => {
 
     const arrowAriaLabelBaseText = $arrowLeft.attr('aria-label');
 
-    const isInit = arrowAriaLabelBaseText.includes(['NUMBER']);
+    const isInit = arrowAriaLabelBaseText.includes('[NUMBER]');
     const valueToReplace = isInit ? '[NUMBER]' : integerRegExp;
 
     const leftGoToNumber = currentSlide === 1 ? lastSlide : currentSlide - 1;
@@ -40,10 +47,10 @@ const arrowAriaLabling = ($arrowLeft, $arrowRight, currentSlide, lastSlide) => {
 
 const onCarouselChange = (event, carousel) => {
     const { options: { prevArrow, nextArrow }, currentSlide, slideCount } = carousel;
+    const $target = $(event.target);
 
-    setSlideTabindexes($(event.target).find('.slick-slide'));
-
-    arrowAriaLabling($(prevArrow), $(nextArrow), currentSlide + 1, slideCount);
+    setSlideTabindexes($target.find('.slick-slide'));
+    arrowAriaLabling($target.find(prevArrow), $target.find(nextArrow), currentSlide + 1, slideCount);
 };
 
 export default function () {
@@ -77,14 +84,14 @@ export default function () {
 
     const $heroCarousel = $carouselCollection.filter('.heroCarousel');
     const $slidesNodes = $heroCarousel.find('.heroCarousel-slide');
-    const showCarouselIfSlidesAnalized = showCarouselIfSlidesAnalizedSetup($heroCarousel)($slidesNodes);
+    const showCarouselIfSlidesAnalyzed = showCarouselIfSlidesAnalyzedSetup($heroCarousel)($slidesNodes);
 
     $slidesNodes.each((index, element) => {
         const $element = $(element);
         const isContentBlock = !!$element.find('.heroCarousel-content').length;
 
         if (isContentBlock) {
-            showCarouselIfSlidesAnalized($element);
+            showCarouselIfSlidesAnalyzed($element);
             return true;
         }
 
@@ -108,7 +115,10 @@ export default function () {
                     }
                 });
 
-                showCarouselIfSlidesAnalized($element);
+                showCarouselIfSlidesAnalyzed($element);
+            })
+            .error(() => {
+                showCarouselIfSlidesAnalyzed($element);
             });
     });
 

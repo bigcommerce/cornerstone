@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Add Announcement for Reset Filter by Price. [#1858](https://github.com/bigcommerce/cornerstone/pull/1858)
 - Content should not scroll in two directions when zoomed. [#1853](https://github.com/bigcommerce/cornerstone/pull/1853)
 - Notification of number of products not announced. [#1845](https://github.com/bigcommerce/cornerstone/pull/1845)
 - Quick search query param needs to be fixed while navigating to search page. [#1832](https://github.com/bigcommerce/cornerstone/pull/1832)

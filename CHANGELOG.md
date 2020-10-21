@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Add aria label with price to Product List Item. [#1878](https://github.com/bigcommerce/cornerstone/pull/1878)
 - Fixed comparing Products on 'Account - Recently Viewed' page. [#1877](https://github.com/bigcommerce/cornerstone/pull/1877)
 - Remove layout shifts to improve CLS indicator from Lighthouse performance report. [#1869](https://github.com/bigcommerce/cornerstone/pull/1869)
 - Fix aria-labels for collapsibleFactory elements. [#1868](https://github.com/bigcommerce/cornerstone/pull/1868)

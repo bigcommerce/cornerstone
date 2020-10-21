@@ -7,6 +7,7 @@ import stateCountry from './common/state-country';
 import { classifyForm, Validators, insertStateHiddenField } from './common/utils/form-utils';
 import { creditCardType, storeInstrument, Validators as CCValidators, Formatters as CCFormatters } from './common/payment-method';
 import swal from './global/sweet-alert';
+import compareProducts from './global/compare-products';
 
 export default class Account extends PageManager {
     constructor(context) {
@@ -24,6 +25,8 @@ export default class Account extends PageManager {
         const $paymentMethodForm = classifyForm('form[data-payment-method-form]');
         const $reorderForm = classifyForm('[data-account-reorder-form]');
         const $invoiceButton = $('[data-print-invoice]');
+
+        compareProducts(this.context.urls);
 
         // Injected via template
         this.passwordRequirements = this.context.passwordRequirements;

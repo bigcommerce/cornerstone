@@ -53,7 +53,7 @@
                             {{lang 'cart.gift_wrapping.item_multiple' index=$index name=product_name}}
                             {{#each gift_wrappings}}
                                 {{#if preview_image}}
-                                    <a id="giftWrapping-image-{{../../$index}}-{{id}}" class="giftWrapping-image-{{../../$index}}" style="display:none" target="_blank" href="{{getImage preview_image}}">
+                                    <a id="giftWrapping-image-{{../$index}}-{{id}}" class="giftWrapping-image-{{../$index}}" style="display:none" target="_blank" href="{{getImage preview_image}}">
                                         {{lang 'cart.gift_wrapping.preview'}}
                                     </a>
                                 {{/if}}

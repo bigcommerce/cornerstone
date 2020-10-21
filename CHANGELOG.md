@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Fixed Logo displaying on mobile. [#1865](https://github.com/bigcommerce/cornerstone/pull/1865)
 - Fixed image in modal for IE. [#1840](https://github.com/bigcommerce/cornerstone/pull/1840)
 - Add announcement for filtered resutls on "Shop by Price". [#1854](https://github.com/bigcommerce/cornerstone/pull/1854)
 - Add Announcement for Reset Filter by Price. [#1858](https://github.com/bigcommerce/cornerstone/pull/1858)

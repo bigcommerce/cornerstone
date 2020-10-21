@@ -12,6 +12,8 @@
 // 5. When logo size is set to "original", we don't have advance knowledge of the
 //    image size, so we can't use absolute positioning + padding to reserve space
 //    for lazy loading.
+// 6. When logo size is set to "original" and switch to mobile version, it keeps 
+//    content in center regardless its size.
 //
 // -----------------------------------------------------------------------------
 
@@ -88,6 +90,7 @@
         color: $storeName-color;
         height: inherit;
         display: flex;
+        justify-content: center; // 6
         align-items: center;
         margin: 0 auto;
         position: relative;

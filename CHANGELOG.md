@@ -1,8 +1,9 @@
 # Changelog
 
-- Options on change modal need focus border. [#1839](https://github.com/bigcommerce/cornerstone/pull/1839)
-
 ## Draft
+- Quick search query param needs to be fixed while navigating to search page. [#230](https://jira.bigcommerce.com/browse/BCTHEME-230)
+- Zooming and scaling must not be disabled. [#1843](https://github.com/bigcommerce/cornerstone/pull/1843)
+- Options on change modal need focus border. [#1839](https://github.com/bigcommerce/cornerstone/pull/1839)
 - Product cards should link to products. [#1842](https://github.com/bigcommerce/cornerstone/pull/1842)
 - Sort By dropdowns need visual focus border. [#1833](https://github.com/bigcommerce/cornerstone/pull/1833)
 - Product link has incorrect voice over focus on Cart Page. [#1830](https://github.com/bigcommerce/cornerstone/pull/1830)

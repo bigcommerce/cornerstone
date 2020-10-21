@@ -7,7 +7,8 @@
     display: none;
     max-height: remCalc(64px);
     min-height: remCalc(32px);
-    min-width: remCalc(134px);
+    min-width: 90px;
+    width: 160px;
     padding: spacing("single");
     @if stencilString("applePay-button") == "white" {
         background-color: $applePay-white;
@@ -33,16 +34,13 @@
 .apple-pay-supported {
     .apple-pay-checkout-button {
         display: block;
-
-        @include breakpoint("small") {
-            display: inline-block;
-            float: right;
-        }
+        float: right;
     }
 }
 
 .previewCartCheckout {
     .apple-pay-checkout-button {
+        display: inline-block;
         float: none;
         margin-top: spacing("half");
     }

@@ -1,9 +1,9 @@
 # Changelog
 
 ## Draft
+- Content should not scroll in two directions when zoomed. [#1853](https://github.com/bigcommerce/cornerstone/pull/1853)
 - Notification of number of products not announced. [#1845](https://github.com/bigcommerce/cornerstone/pull/1845)
-- Quick search query param needs to be fixed while navigating to search page. [#230](https://jira.bigcommerce.com/browse/BCTHEME-230)
-- Quick search query param needs to be fixed while navigating to search page. [#230](https://jira.bigcommerce.com/browse/BCTHEME-230)
+- Quick search query param needs to be fixed while navigating to search page. [#1832](https://github.com/bigcommerce/cornerstone/pull/1832)
 - Zooming and scaling must not be disabled. [#1843](https://github.com/bigcommerce/cornerstone/pull/1843)
 - Options on change modal need focus border. [#1839](https://github.com/bigcommerce/cornerstone/pull/1839)
 - Product cards should link to products. [#1842](https://github.com/bigcommerce/cornerstone/pull/1842)

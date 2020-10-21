@@ -1,8 +1,8 @@
 # Changelog
 
-- Fixed header logo focus border for voiceover and browser. [#1831](https://github.com/bigcommerce/cornerstone/pull/1831)
-
 ## Draft
+- Rating and Other filter sections should be accessible by keyboard. [#1838](https://github.com/bigcommerce/cornerstone/pull/1838)
+- Fixed header logo focus border for voiceover and browser. [#1831](https://github.com/bigcommerce/cornerstone/pull/1831)
 - Unified browsers list that we support. [#1836](https://github.com/bigcommerce/cornerstone/pull/1836)
 - Bump stencil utils and update hooks to account for refactor to drop Jquery in stencil utils [#1821](https://github.com/bigcommerce/cornerstone/pull/1821)
 

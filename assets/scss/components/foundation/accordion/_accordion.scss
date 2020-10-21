@@ -23,12 +23,19 @@
 .accordion-title {
     font-size: remCalc(15px);
     margin: 0;
+    color: stencilColor("color-textHeading");
+    font-family: "Montserrat", Arial, Helvetica, sans-serif;
 }
 
 .accordion-navigation {
-    margin-top: -1px;
     position: relative;
     text-decoration: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding-right: 1rem;
 }
 
 
@@ -64,11 +71,11 @@
     }
 
     .accordion-navigation {
-        padding-right: 70px;
         @include breakpoint("medium") {
             background-position: right 0 top 50%;
             border: 0;
-            padding-right: 50px;
+            margin-bottom: spacing("half") !important;
+            padding: 0;
         }
     }
 
@@ -79,24 +86,12 @@
         text-transform: inherit;
 
         @include breakpoint("medium") {
-            margin-bottom: spacing("half");
-            margin-top: 0;
             padding: 0;
         }
     }
 
     .accordion-indicator {
         fill: color("greys", "light");
-    }
-
-    .accordion-navigation-actions {
-        right: $accordion-navList-padding;
-        top: $accordion-navList-padding + spacing("eighth");
-
-        @include breakpoint("medium") {
-            right: 0;
-            top: 0;
-        }
     }
 }
 
@@ -130,18 +125,6 @@
             border-radius: 0;
         }
     }
-}
-
-// Accordion navigation actions
-// -----------------------------------------------------------------------------
-//
-// Purpose: Action links, usually aligned to the right of .accordion-navigation
-//
-// -----------------------------------------------------------------------------
-.accordion-navigation-actions {
-    position: absolute;
-    right: $accordion-navigation-paddingHorizontal;
-    top: $accordion-navigation-paddingVertical;
 }
 
 .accordion-nav-clear-holder {

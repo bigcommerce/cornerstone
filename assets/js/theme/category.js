@@ -5,6 +5,13 @@ import FacetedSearch from './common/faceted-search';
 
 export default class Category extends CatalogPage {
     onReady() {
+        $('[data-button-type="add-cart"]').on('click', (e) => {
+            $(e.currentTarget).next().attr({
+                role: 'status',
+                'aria-live': 'polite',
+            });
+        });
+
         compareProducts(this.context.urls);
 
         if ($('#facetedSearch').length > 0) {
@@ -13,6 +20,13 @@ export default class Category extends CatalogPage {
             this.onSortBySubmit = this.onSortBySubmit.bind(this);
             hooks.on('sortBy-submitted', this.onSortBySubmit);
         }
+
+        $('a.reset-btn').on('click', () => {
+            $('span.reset-message').attr({
+                role: 'status',
+                'aria-live': 'polite',
+            });
+        });
     }
 
     initFacetedSearch() {

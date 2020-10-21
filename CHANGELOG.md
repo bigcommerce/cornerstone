@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Fixed Special Characters rendering under Wishlists. [#1873](https://github.com/bigcommerce/cornerstone/pull/1873)
 - Cornerstone quick view. [#1857](https://github.com/bigcommerce/cornerstone/pull/1857)
 - Return heading to product card. [#1848](https://github.com/bigcommerce/cornerstone/pull/1848)
 - Added announcement for "aadd to cart" button on PLP and PDP. [#1860](https://github.com/bigcommerce/cornerstone/pull/1860)

@@ -20,6 +20,7 @@ const SizeClasses = {
 export const modalTypes = {
     QUICK_VIEW: 'forQuickView',
     PRODUCT_DETAILS: 'forProductDetails',
+    CART_CHANGE_PRODUCT: 'forCartChangeProduct',
     WRITE_REVIEW: 'forWriteReview',
 };
 
@@ -33,9 +34,10 @@ const focusableElements = {
     [modalTypes.PRODUCT_DETAILS]: () => (
         $('#previewModal').find(allTabbableElementsSelector)
     ),
+    [modalTypes.CART_CHANGE_PRODUCT]: () => (
+        $('#modal').find(allTabbableElementsSelector)
     [modalTypes.WRITE_REVIEW]: () => (
-        $('#modal-review-form')
-            .find(allTabbableElementsSelector)
+        $('#modal-review-form').find(allTabbableElementsSelector)
     ),
 };
 
@@ -241,14 +243,18 @@ export class Modal {
         if (!isTab) return;
 
         const $modalTabbableCollection = focusableElements[modalType]();
-        const lastCollectionIdx = $modalTabbableCollection.length - 1;
+        const modalTabbableCollectionLength = $modalTabbableCollection.length;
+
+        if (modalTabbableCollectionLength < 1) return;
+
+        const lastCollectionIdx = modalTabbableCollectionLength - 1;
         const $firstTabbable = $modalTabbableCollection.get(0);
         const $lastTabbable = $modalTabbableCollection.get(lastCollectionIdx);
 
         $modalTabbableCollection.each((index, element) => {
             const $element = $(element);
 
-            if ($modalTabbableCollection.length === 1) {
+            if (modalTabbableCollectionLength === 1) {
                 $element.addClass(`${firstTabbableClass} ${lastTabbableClass}`);
                 return false;
             }

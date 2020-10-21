@@ -8,7 +8,7 @@
         {{#block "head"}} {{/block}}
 
         <link href="{{ head.favicon }}" rel="shortcut icon">
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <script>
             {{!-- Change document class from no-js to js so we can detect this in css --}}
@@ -52,6 +52,12 @@
         <script>
             {{!-- Exported in app.js --}}
             window.stencilBootstrap("{{page_type}}", {{jsContext}}).load();
+        </script>
+
+        {{!-- Adding script for addthis social icons --}}
+        <script type="text/javascript"
+                defer
+                src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4e94ed470ee51e32">
         </script>
 
         {{{footer.scripts}}}

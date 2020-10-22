@@ -59,6 +59,7 @@
 - Focus not visible on logo element. [#1800](https://github.com/bigcommerce/cornerstone/pull/1800)
 - Incorrect styles for focused buttons in grid card product item. [#1801](https://github.com/bigcommerce/cornerstone/pull/1801)
 - Add global region to header. [#1859](https://github.com/bigcommerce/cornerstone/pull/1859)
+- Add search message on storefront if search fails on backend. [#1885](https://github.com/bigcommerce/cornerstone/pull/1885)
 
 ## 4.10.0 (10-01-2020)
 - Return heading to product card. [#1848](https://github.com/bigcommerce/cornerstone/pull/1848)

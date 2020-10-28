@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Reduce lodash usage in compare-products.js and image-gallery.js [#1827](https://github.com/bigcommerce/cornerstone/pull/1827)
 - Fixed Product Image Carousel Becomes Responsiveness on Product Page. [#1879](https://github.com/bigcommerce/cornerstone/pull/1879)
 - Move phrases and static strings to en.json for improving translation customizing. [#1850](https://github.com/bigcommerce/cornerstone/pull/1850)
 - Update carousel images to improve LCP indicator from Lighthouse performance report. [#1876](https://github.com/bigcommerce/cornerstone/pull/1876)

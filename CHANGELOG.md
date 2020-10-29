@@ -1,5 +1,7 @@
 # Changelog
 
+- HTML Entity displayed as is via system/error message on a Storefront. [#1888](https://github.com/bigcommerce/cornerstone/pull/1888)
+
 ## Draft
 - Reduce lodash usage in compare-products.js and image-gallery.js [#1827](https://github.com/bigcommerce/cornerstone/pull/1827)
 - Fixed Product Image Carousel Becomes Responsiveness on Product Page. [#1879](https://github.com/bigcommerce/cornerstone/pull/1879)

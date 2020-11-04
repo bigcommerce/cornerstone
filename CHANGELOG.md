@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Added styling config for the PayPal SPB on checkout page [#1866](https://github.com/bigcommerce/cornerstone/pull/1866)
 
 ## 4.12.0 (11-03-2020)
 - Reduce lodash usage in compare-products.js and image-gallery.js [#1827](https://github.com/bigcommerce/cornerstone/pull/1827)

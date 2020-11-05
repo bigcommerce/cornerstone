@@ -1,6 +1,8 @@
 # Changelog
 
 ## Draft
+- Reduce lodash usage in compare-products.js and image-gallery.js [#1894](https://github.com/bigcommerce/cornerstone/pull/1894)
+- Switch font loading to use display=block to improve Lighthouse results [#1895](https://github.com/bigcommerce/cornerstone/pull/1895)
 
 ## 4.12.0 (11-05-2020)
 - Reduce lodash usage in compare-products.js and image-gallery.js [#1827](https://github.com/bigcommerce/cornerstone/pull/1827)

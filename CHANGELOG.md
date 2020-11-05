@@ -1,8 +1,6 @@
 # Changelog
 
 ## Draft
-
-## 4.12.0 (11-03-2020)
 - Reduce lodash usage in compare-products.js and image-gallery.js [#1827](https://github.com/bigcommerce/cornerstone/pull/1827)
 - Fixed Product Image Carousel Becomes Responsiveness on Product Page. [#1879](https://github.com/bigcommerce/cornerstone/pull/1879)
 - Move phrases and static strings to en.json for improving translation customizing. [#1850](https://github.com/bigcommerce/cornerstone/pull/1850)

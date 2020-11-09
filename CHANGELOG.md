@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Faceted search filters are hidden from screen readers. [#1897](https://github.com/bigcommerce/cornerstone/pull/1897)
 
 ## 4.12.0 (11-05-2020)
 - Reduce lodash usage in compare-products.js and image-gallery.js [#1827](https://github.com/bigcommerce/cornerstone/pull/1827)

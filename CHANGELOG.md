@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Account >Payment Methods throws Server Error when using Cornerstone theme [#1898](https://github.com/bigcommerce/cornerstone/pull/1898)
 
 ## 4.12.0 (11-03-2020)
 - Reduce lodash usage in compare-products.js and image-gallery.js [#1827](https://github.com/bigcommerce/cornerstone/pull/1827)

@@ -19,11 +19,7 @@ export default function (cartId) {
         });
     }
 
-    $(document.body).on('click', '.currencySelector', () => {
-        $('.currency-selection-list').toggleClass('active');
-    });
-
-    $(document.body).on('click', '[data-cart-currency-switch-url]', event => {
+    $('[data-cart-currency-switch-url]').on('click', event => {
         const currencySessionSwitcher = event.target.href;
         if (!cartId) {
             return;

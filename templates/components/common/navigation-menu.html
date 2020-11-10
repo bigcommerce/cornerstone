@@ -50,6 +50,11 @@
                             <a class="navPage-subMenu-action navPages-action"
                                href="{{{switch_url}}}"
                                aria-label="{{name}}"
+                               data-currency-code="{{{code}}}"
+                               {{#if cart_currency_switch_url.length '>' 0 }}
+                               data-cart-currency-switch-url="{{{cart_currency_switch_url}}}"
+                               {{/if}}
+                               data-warning="{{lang 'common.currency_switch_promotion'}}"
                             >
                                 {{#if is_active}}
                                     <strong>{{name}}</strong>

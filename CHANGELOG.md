@@ -1,6 +1,8 @@
 # Changelog
 
 ## Draft
+
+## 4.12.1 (11-10-2020)
 - Write a Review modal cause TypeError. [#1899](https://github.com/bigcommerce/cornerstone/pull/1899)
 - Account >Payment Methods throws Server Error when using Cornerstone theme [#1898](https://github.com/bigcommerce/cornerstone/pull/1898)
 - Price in the cart is not updated when changing currency on mobile. [#1893](https://github.com/bigcommerce/cornerstone/pull/1893)

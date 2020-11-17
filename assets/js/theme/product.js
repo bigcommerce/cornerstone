@@ -28,8 +28,6 @@ export default class Product extends PageManager {
             }
         });
 
-        $(document).on('opened.fndtn.reveal', () => this.reviewModal.setupFocusableElements(WRITE_REVIEW));
-
         let validator;
 
         // Init collapsible
@@ -40,8 +38,15 @@ export default class Product extends PageManager {
 
         videoGallery();
 
+        this.bulkPricingHandler();
+
         const $reviewForm = classifyForm('.writeReview-form');
+
+        if ($reviewForm.length === 0) return;
+
         const review = new Review($reviewForm);
+
+        $(document).on('opened.fndtn.reveal', () => this.reviewModal.setupFocusableElements(WRITE_REVIEW));
 
         $('body').on('click', '[data-reveal-id="modal-review-form"]', () => {
             validator = review.registerValidation(this.context);
@@ -58,7 +63,6 @@ export default class Product extends PageManager {
         });
 
         this.productReviewHandler();
-        this.bulkPricingHandler();
     }
 
     ariaDescribeReviewInputs($form) {

@@ -67,4 +67,10 @@ jobs:
       with:
         name: Bundled Theme
         path: bundle.zip
+        
+    - name: Upload bundle analysis
+      uses: actions/upload-artifact@v2
+      with:
+        name: Webpack Analysis
+        path: assets/dist/report.html
 

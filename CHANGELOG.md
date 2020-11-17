@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Product list item Quick view button is not tabbable. [#1900](https://github.com/bigcommerce/cornerstone/pull/1900)
 - Social icon tooltip displaying should be fixed. [1907](https://github.com/bigcommerce/cornerstone/pull/1907)
 - Faceted search filters are hidden from screen readers. [#1897](https://github.com/bigcommerce/cornerstone/pull/1897)
 - Write a review modal extra executions. [#1902](https://github.com/bigcommerce/cornerstone/pull/1902)

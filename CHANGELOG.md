@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Add sufficient contrast for Upsell Banners in Cornerstone Theme according to AA Standard. [#1891](https://github.com/bigcommerce/cornerstone/pull/1891)
 - Add appropriate text contrast for "Skip to Main Content". [#1880](https://github.com/bigcommerce/cornerstone/pull/1880)
 - Product list item Quick view button is not tabbable. [#1900](https://github.com/bigcommerce/cornerstone/pull/1900)
 - Social icon tooltip displaying should be fixed. [1907](https://github.com/bigcommerce/cornerstone/pull/1907)

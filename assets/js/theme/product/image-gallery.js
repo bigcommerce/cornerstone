@@ -1,5 +1,4 @@
 import 'easyzoom';
-import _ from 'lodash';
 
 export default class ImageGallery {
     constructor($gallery) {
@@ -15,7 +14,7 @@ export default class ImageGallery {
     }
 
     setMainImage(imgObj) {
-        this.currentImage = _.clone(imgObj);
+        this.currentImage = { ...imgObj };
 
         this.setActiveThumb();
         this.swapMainImage();

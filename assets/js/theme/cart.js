@@ -304,7 +304,7 @@ export default class Cart extends PageManager {
                     this.refreshContent();
                 } else {
                     swal.fire({
-                        text: response.data.errors.join('\n'),
+                        html: response.data.errors.join('\n'),
                         icon: 'error',
                     });
                 }
@@ -348,7 +348,7 @@ export default class Cart extends PageManager {
                     this.refreshContent();
                 } else {
                     swal.fire({
-                        text: resp.data.errors.join('\n'),
+                        html: resp.data.errors.join('\n'),
                         icon: 'error',
                     });
                 }

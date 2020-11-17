@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Add appropriate text contrast for "Skip to Main Content". [#1880](https://github.com/bigcommerce/cornerstone/pull/1880)
 - Product list item Quick view button is not tabbable. [#1900](https://github.com/bigcommerce/cornerstone/pull/1900)
 - Social icon tooltip displaying should be fixed. [1907](https://github.com/bigcommerce/cornerstone/pull/1907)
 - Faceted search filters are hidden from screen readers. [#1897](https://github.com/bigcommerce/cornerstone/pull/1897)

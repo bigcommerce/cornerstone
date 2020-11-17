@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Faceted search filters are hidden from screen readers. [#1897](https://github.com/bigcommerce/cornerstone/pull/1897)
 - Write a review modal extra executions. [#1902](https://github.com/bigcommerce/cornerstone/pull/1902)
 - Add tooltips for carousel bullets (buttons). [#1889](https://github.com/bigcommerce/cornerstone/pull/1889)
 - Cornerstone - Body text size above 14px is cut off on cart shipping dropdowns. [#1881](https://github.com/bigcommerce/cornerstone/pull/1881)

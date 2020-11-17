@@ -46,7 +46,7 @@ export default class Product extends PageManager {
 
         const review = new Review($reviewForm);
 
-        $(document).on('opened.fndtn.reveal', () => this.reviewModal.setupFocusableElements(WRITE_REVIEW));
+        $(document).on('opened.fndtn.reveal', '#modal-review-form', () => this.reviewModal.setupFocusableElements(WRITE_REVIEW));
 
         $('body').on('click', '[data-reveal-id="modal-review-form"]', () => {
             validator = review.registerValidation(this.context);

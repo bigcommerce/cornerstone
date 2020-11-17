@@ -21,6 +21,7 @@
     {{/unless}}
 
     {{#each this.values}}
+    <div class="form-option-wrapper">    
         <input
             class="form-radio"
             type="radio"
@@ -31,9 +32,11 @@
                 checked
                 data-default
             {{/if}}
-            {{#if ../required}}required{{/if}}>
+            {{#if ../required}}required{{/if}}
+        >
         <label class="form-option" for="attribute_rectangle__{{../id}}_{{id}}" data-product-attribute-value="{{id}}">
             <span class="form-option-variant">{{this.label}}</span>
         </label>
+    </div>
     {{/each}}
 </div>

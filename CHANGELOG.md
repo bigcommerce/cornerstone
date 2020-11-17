@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Shoppers are not anchor-linked to reviews on PDPs if product description tabs are enabled. [#1883](https://github.com/bigcommerce/cornerstone/pull/1883)
 - Fixed text contrast for brand name on Cart page. [#1882](https://github.com/bigcommerce/cornerstone/pull/1882)
 - Add sufficient contrast for Upsell Banners in Cornerstone Theme according to AA Standard. [#1891](https://github.com/bigcommerce/cornerstone/pull/1891)
 - Add appropriate text contrast for "Skip to Main Content". [#1880](https://github.com/bigcommerce/cornerstone/pull/1880)

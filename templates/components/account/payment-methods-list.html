@@ -17,7 +17,7 @@
                                 {{#if type '===' 'stored_card'}}
                                     {{!-- If credit card STARTS --}}
                                     {{#if brand}}
-                                        {{#inArray ../../theme_settings.supported_card_type_icons brand) }}
+                                        {{#inArray ../../theme_settings.supported_card_type_icons brand }}
                                             <img class="methodHeader-icon" src="{{cdn (concat (concat 'img/payment-methods/' brand) '.svg')}}" alt="{{lang (concat 'account.payment_methods.card_types.' brand)}}" title="{{lang (concat 'account.payment_methods.card_types.' brand)}}">
                                         {{/inArray}}
                                         <span class="methodHeader-brand">{{lang (concat 'account.payment_methods.card_types.' brand)}} {{lang 'account.payment_methods.card_ending_in' last_four=last_4}}</span>

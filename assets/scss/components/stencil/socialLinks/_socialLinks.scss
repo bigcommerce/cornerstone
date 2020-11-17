@@ -66,6 +66,12 @@
         height: 2rem;
 
         @include addFocusTooltip;
+
+        // moving tooltip on the left side for avoiding by parent's cut with overflow: hidden
+        &:focus:after {
+            right: auto;
+            left: 0;
+        }
     }
 }
 

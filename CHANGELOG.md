@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Social icon tooltip displaying should be fixed. [1907](https://github.com/bigcommerce/cornerstone/pull/1907)
 
 ## 4.12.1 (11-10-2020)
 - Write a Review modal cause TypeError. [#1899](https://github.com/bigcommerce/cornerstone/pull/1899)

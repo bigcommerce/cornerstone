@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Add tooltips for carousel bullets (buttons). [#1889](https://github.com/bigcommerce/cornerstone/pull/1889)
 - Cornerstone - Body text size above 14px is cut off on cart shipping dropdowns. [#1881](https://github.com/bigcommerce/cornerstone/pull/1881)
 - Move Tax Field under Grand Total on Cart when Tax inclusive. [#1903](https://github.com/bigcommerce/cornerstone/pull/1903)
 - Added styling config for the PayPal SPB on checkout page [#1866](https://github.com/bigcommerce/cornerstone/pull/1866)

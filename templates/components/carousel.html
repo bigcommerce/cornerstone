@@ -1,5 +1,6 @@
 <section class="heroCarousel"
     data-slick='{
+        "arrows": {{arrows}},
         "mobileFirst": true,
         "slidesToShow": 1,
         "slidesToScroll": 1,
@@ -9,6 +10,10 @@
         "slide": ".js-hero-slide",
         "prevArrow": ".js-hero-prev-arrow",
         "nextArrow": ".js-hero-next-arrow"
+    }'
+    data-dots-labels='{
+        "dotAriaLabel": "{{lang 'carousel.dotAriaLabel'}}",
+        "activeDotAriaLabel": "{{lang 'carousel.activeDotAriaLabel'}}"
     }'>
     {{#and arrows (if carousel.slides.length '>' 1)}}
     <button aria-label="{{lang 'carousel.arrowAriaLabel'}} {{carousel.slides.length}}" class="js-hero-prev-arrow slick-prev slick-arrow">hero-prev-arrow</button>

@@ -250,7 +250,9 @@
                 {{> components/common/wishlist-dropdown}}
             {{/if}}
         </div>
-        {{> components/common/share}}
+        {{#unless is_ajax}}
+            {{> components/common/share}}
+        {{/unless}}
     </section>
 
     {{#if product.description}}

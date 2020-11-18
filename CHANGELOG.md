@@ -15,6 +15,7 @@
 - Cornerstone - Body text size above 14px is cut off on cart shipping dropdowns. [#1881](https://github.com/bigcommerce/cornerstone/pull/1881)
 - Move Tax Field under Grand Total on Cart when Tax inclusive. [#1903](https://github.com/bigcommerce/cornerstone/pull/1903)
 - Added styling config for the PayPal SPB on checkout page [#1866](https://github.com/bigcommerce/cornerstone/pull/1866)
+- Moved zoomSize and productSize to the upper level, cause product.js is not availabe on the Quick View [#1884](https://github.com/bigcommerce/cornerstone/pull/1884)
 
 ## 4.12.1 (11-10-2020)
 - Write a Review modal cause TypeError. [#1899](https://github.com/bigcommerce/cornerstone/pull/1899)
@@ -55,6 +56,7 @@
 - Fixed header logo focus border for voiceover and browser. [#1831](https://github.com/bigcommerce/cornerstone/pull/1831)
 - Unified browsers list that we support. [#1836](https://github.com/bigcommerce/cornerstone/pull/1836)
 - Bump stencil utils and update hooks to account for refactor to drop Jquery in stencil utils [#1821](https://github.com/bigcommerce/cornerstone/pull/1821)
+
 
 ## 4.11.0 (10-07-2020)
 - Add Info and Add Coupon forms on Cart Page tabbable when hidden. [#1820](https://github.com/bigcommerce/cornerstone/pull/1820)

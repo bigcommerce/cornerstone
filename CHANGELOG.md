@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Selecting product options doesn't update image on PDP in Internet Explorer. [#1913](https://github.com/bigcommerce/cornerstone/pull/1913)
 - HTML Entity displayed as is via system/error message on a Storefront. [#1888](https://github.com/bigcommerce/cornerstone/pull/1888)
 - Shoppers are not anchor-linked to reviews on PDPs if product description tabs are enabled. [#1883](https://github.com/bigcommerce/cornerstone/pull/1883)
 - Fixed text contrast for brand name on Cart page. [#1882](https://github.com/bigcommerce/cornerstone/pull/1882)

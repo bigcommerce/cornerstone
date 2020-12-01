@@ -1,9 +1,11 @@
 # Changelog
 
-- HTML Entity displayed as is via system/error message on a Storefront. [#1888](https://github.com/bigcommerce/cornerstone/pull/1888)
-
 ## Draft
 - “Sort by” dropdown selection not reflected on search results page for News and Information tab. [#1910](https://github.com/bigcommerce/cornerstone/pull/1910)
+- Header content placed out of the header block on mobile. [#1908](https://github.com/bigcommerce/cornerstone/pull/1908)
+- Fixed an issue with dispaying options that are out of stock for product on Cart. [#1911](https://github.com/bigcommerce/cornerstone/pull/1911)
+- Selecting product options doesn't update image on PDP in Internet Explorer. [#1913](https://github.com/bigcommerce/cornerstone/pull/1913)
+- HTML Entity displayed as is via system/error message on a Storefront. [#1888](https://github.com/bigcommerce/cornerstone/pull/1888)
 - Shoppers are not anchor-linked to reviews on PDPs if product description tabs are enabled. [#1883](https://github.com/bigcommerce/cornerstone/pull/1883)
 - Fixed text contrast for brand name on Cart page. [#1882](https://github.com/bigcommerce/cornerstone/pull/1882)
 - Add sufficient contrast for Upsell Banners in Cornerstone Theme according to AA Standard. [#1891](https://github.com/bigcommerce/cornerstone/pull/1891)
@@ -57,7 +59,6 @@
 - Fixed header logo focus border for voiceover and browser. [#1831](https://github.com/bigcommerce/cornerstone/pull/1831)
 - Unified browsers list that we support. [#1836](https://github.com/bigcommerce/cornerstone/pull/1836)
 - Bump stencil utils and update hooks to account for refactor to drop Jquery in stencil utils [#1821](https://github.com/bigcommerce/cornerstone/pull/1821)
-
 
 ## 4.11.0 (10-07-2020)
 - Add Info and Add Coupon forms on Cart Page tabbable when hidden. [#1820](https://github.com/bigcommerce/cornerstone/pull/1820)

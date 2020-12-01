@@ -12,7 +12,7 @@ export default class CartItemDetails extends ProductDetailsBase {
         const hasOptions = $productOptionsElement.html().trim().length;
         const hasDefaultOptions = $productOptionsElement.find('[data-default]').length;
 
-        $productOptionsElement.on('change', e => {
+        $productOptionsElement.on('change', () => {
             this.setProductVariant();
         });
 

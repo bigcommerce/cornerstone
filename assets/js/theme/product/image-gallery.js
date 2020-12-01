@@ -78,7 +78,7 @@ export default class ImageGallery {
 
         if (isBrowserIE) {
             const fallbackStylesIE = {
-                'background-image': `url(${this.currentImage.mainImageUrl}&ampimbypass=on)`,
+                'background-image': `url(${this.currentImage.mainImageUrl})`,
                 'background-position': 'center',
                 'background-repeat': 'no-repeat',
                 'background-origin': 'content-box',

@@ -9,6 +9,7 @@
     </label>
 
     {{#each this.values}}
+    <div class="form-option-wrapper">
         <input class="form-radio" type="radio" name="attribute[{{../id}}]" value="{{id}}" id="attribute_{{id}}" {{#if selected}}checked{{/if}} {{#if ../required}}required{{/if}}>
         <label class="form-option" for="attribute_{{id}}" data-product-attribute-value="{{id}}">
             {{#if image}}
@@ -29,5 +30,6 @@
                 {{/if}}
             {{/if}}
         </label>
+    </div>
     {{/each}}
 </div>

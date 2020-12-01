@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- “Sort by” dropdown selection not reflected on search results page for News and Information tab. [#1910](https://github.com/bigcommerce/cornerstone/pull/1910)
 - Header content placed out of the header block on mobile. [#1908](https://github.com/bigcommerce/cornerstone/pull/1908)
 - Fixed an issue with dispaying options that are out of stock for product on Cart. [#1911](https://github.com/bigcommerce/cornerstone/pull/1911)
 - Selecting product options doesn't update image on PDP in Internet Explorer. [#1913](https://github.com/bigcommerce/cornerstone/pull/1913)

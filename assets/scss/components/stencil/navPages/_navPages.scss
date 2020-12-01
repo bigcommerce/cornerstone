@@ -202,28 +202,31 @@
         }
     }
 
+    &.is-open,
+    .collapsible-icon-wrapper.is-open {
+        // scss-lint:disable NestingDepth
+        svg {
+            fill: $navPage-subMenu-item--is-highlighted-color;
+            stroke: $navPage-subMenu-item--is-highlighted-color;
+        }
+    }
+
     @include breakpoint("medium") {
         display: inline-block;
         padding: spacing("half") (spacing("half") + spacing("quarter")) (spacing("half") + spacing("quarter"));
 
         &.is-open {
-            background-color: stencilColor("navPages-subMenu-backgroundColor");
-
-            // scss-lint:disable NestingDepth
-            svg {
-                fill: stencilColor("navPages-color-hover");
-                stroke: stencilColor("navPages-color-hover");
-            }
+            background-color: $navPage-subMenu-item--is-highlighted-background;
         }
     }
 
     &:hover, &.activePage {
-        color: stencilColor("navPages-color-hover");
+        color: $navPage-subMenu-item--is-highlighted-color;
 
         // scss-lint:disable NestingDepth
         svg {
-            fill: stencilColor("navPages-color-hover");
-            stroke: stencilColor("navPages-color-hover");
+            fill: $navPage-subMenu-item--is-highlighted-color;
+            stroke: $navPage-subMenu-item--is-highlighted-color;
         }
     }
 
@@ -402,14 +405,6 @@
             padding-left: spacing("single");
             padding-right: spacing("single");
             width: 100%;
-        }
-
-        .navPage-subMenu-action.is-open,
-        .navPage-subMenu-action:hover {
-            background: $navPage-subMenu-item--is-highlighted-background;
-            color: $navPage-subMenu-item--is-highlighted-color;
-            font-weight: 500;
-            opacity: 0.3;
         }
     }
 }

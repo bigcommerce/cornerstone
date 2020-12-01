@@ -1,13 +1,15 @@
 import PageManager from './page-manager';
-import _ from 'lodash';
+import { bind, debounce } from 'lodash';
 import giftCertCheck from './common/gift-certificate-validator';
 import utils from '@bigcommerce/stencil-utils';
 import ShippingEstimator from './cart/shipping-estimator';
 import { defaultModal, modalTypes } from './global/modal';
 import swal from './global/sweet-alert';
+import CartItemDetails from './common/cart-item-details';
 
 export default class Cart extends PageManager {
     onReady() {
+        this.$modal = null;
         this.$cartContent = $('[data-cart-content]');
         this.$cartMessages = $('[data-cart-status]');
         this.$cartTotals = $('[data-cart-totals]');
@@ -125,16 +127,28 @@ export default class Cart extends PageManager {
         });
     }
 
-    cartEditOptions(itemId) {
+    cartEditOptions(itemId, productId) {
+        const context = { productForChangeId: productId, ...this.context };
         const modal = defaultModal();
+
+        if (this.$modal === null) {
+            this.$modal = $('#modal');
+        }
+
         const options = {
             template: 'cart/modals/configure-product',
         };
 
         modal.open();
+        this.$modal.find('.modal-content').addClass('hide-content');
 
         utils.api.productAttributes.configureInCart(itemId, options, (err, response) => {
             modal.updateContent(response.content);
+            const $productOptionsContainer = $('[data-product-attributes-wrapper]', this.$modal);
+            const modalBodyReservedHeight = $productOptionsContainer.outerHeight();
+            $productOptionsContainer.css('height', modalBodyReservedHeight);
+
+            this.productDetails = new CartItemDetails(this.$modal, context);
 
             this.bindGiftWrappingForm();
 
@@ -142,13 +156,11 @@ export default class Cart extends PageManager {
         });
 
         utils.hooks.on('product-option-change', (event, currentTarget) => {
-            const $changedOption = $(currentTarget);
-            const $form = $changedOption.parents('form');
+            const $form = $(currentTarget).find('form');
             const $submit = $('input.button', $form);
             const $messageBox = $('.alertMessageBox');
-            const item = $('[name="item_id"]', $form).attr('value');
 
-            utils.api.productAttributes.optionChange(item, $form.serialize(), (err, result) => {
+            utils.api.productAttributes.optionChange(productId, $form.serialize(), (err, result) => {
                 const data = result.data || {};
 
                 if (err) {
@@ -213,9 +225,9 @@ export default class Cart extends PageManager {
 
     bindCartEvents() {
         const debounceTimeout = 400;
-        const cartUpdate = _.bind(_.debounce(this.cartUpdate, debounceTimeout), this);
-        const cartUpdateQtyTextChange = _.bind(_.debounce(this.cartUpdateQtyTextChange, debounceTimeout), this);
-        const cartRemoveItem = _.bind(_.debounce(this.cartRemoveItem, debounceTimeout), this);
+        const cartUpdate = bind(debounce(this.cartUpdate, debounceTimeout), this);
+        const cartUpdateQtyTextChange = bind(debounce(this.cartUpdateQtyTextChange, debounceTimeout), this);
+        const cartRemoveItem = bind(debounce(this.cartRemoveItem, debounceTimeout), this);
         let preVal;
 
         // cart update
@@ -257,10 +269,10 @@ export default class Cart extends PageManager {
 
         $('[data-item-edit]', this.$cartContent).on('click', event => {
             const itemId = $(event.currentTarget).data('itemEdit');
-
+            const productId = $(event.currentTarget).data('productId');
             event.preventDefault();
             // edit item in cart
-            this.cartEditOptions(itemId);
+            this.cartEditOptions(itemId, productId);
         });
     }
 

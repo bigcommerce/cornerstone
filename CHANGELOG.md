@@ -1,9 +1,9 @@
 # Changelog
 
-- HTML Entity displayed as is via system/error message on a Storefront. [#1888](https://github.com/bigcommerce/cornerstone/pull/1888)
-
 ## Draft
 - Fixed an issue with dispaying options that are out of stock for product on Cart. [#1911](https://github.com/bigcommerce/cornerstone/pull/1911)
+- Selecting product options doesn't update image on PDP in Internet Explorer. [#1913](https://github.com/bigcommerce/cornerstone/pull/1913)
+- HTML Entity displayed as is via system/error message on a Storefront. [#1888](https://github.com/bigcommerce/cornerstone/pull/1888)
 - Shoppers are not anchor-linked to reviews on PDPs if product description tabs are enabled. [#1883](https://github.com/bigcommerce/cornerstone/pull/1883)
 - Fixed text contrast for brand name on Cart page. [#1882](https://github.com/bigcommerce/cornerstone/pull/1882)
 - Add sufficient contrast for Upsell Banners in Cornerstone Theme according to AA Standard. [#1891](https://github.com/bigcommerce/cornerstone/pull/1891)
@@ -16,6 +16,7 @@
 - Cornerstone - Body text size above 14px is cut off on cart shipping dropdowns. [#1881](https://github.com/bigcommerce/cornerstone/pull/1881)
 - Move Tax Field under Grand Total on Cart when Tax inclusive. [#1903](https://github.com/bigcommerce/cornerstone/pull/1903)
 - Added styling config for the PayPal SPB on checkout page [#1866](https://github.com/bigcommerce/cornerstone/pull/1866)
+- Moved zoomSize and productSize to the upper level, cause product.js is not availabe on the Quick View [#1884](https://github.com/bigcommerce/cornerstone/pull/1884)
 
 ## 4.12.1 (11-10-2020)
 - Write a Review modal cause TypeError. [#1899](https://github.com/bigcommerce/cornerstone/pull/1899)

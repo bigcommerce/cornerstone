@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Product images squashed in Category view in AMP. [#1921](https://github.com/bigcommerce/cornerstone/pull/1921)
 - Fixed misaligned tooltip for required product option. [#1915](https://github.com/bigcommerce/cornerstone/pull/1915)
 - Fixed tooltip overlaying by facebook button. [#1914](https://github.com/bigcommerce/cornerstone/pull/1914)
 - Cornerstone - Text hover color does not change when Dropdown menu display mode is set to 'Alternative'. [#1918](https://github.com/bigcommerce/cornerstone/pull/1918)

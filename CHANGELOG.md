@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Parse HTML entities in jsContext. [#1917](https://github.com/bigcommerce/cornerstone/pull/1917)
 - Product images squashed in Category view in AMP. [#1921](https://github.com/bigcommerce/cornerstone/pull/1921)
 - Fixed misaligned tooltip for required product option. [#1915](https://github.com/bigcommerce/cornerstone/pull/1915)
 - Fixed tooltip overlaying by facebook button. [#1914](https://github.com/bigcommerce/cornerstone/pull/1914)

@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Cornerstone - loading of thumbnail image delayed on cart page . [#1925](https://github.com/bigcommerce/cornerstone/pull/1925)
 - Parse HTML entities in jsContext. [#1917](https://github.com/bigcommerce/cornerstone/pull/1917)
 - Product images squashed in Category view in AMP. [#1921](https://github.com/bigcommerce/cornerstone/pull/1921)
 - Fixed misaligned tooltip for required product option. [#1915](https://github.com/bigcommerce/cornerstone/pull/1915)

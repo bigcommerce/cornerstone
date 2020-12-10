@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Added narrow down pricing during option selections [#1924](https://github.com/bigcommerce/cornerstone/pull/1924)
 
 ## 5.0.0 (12-14-2020)
 - Parse HTML entities in jsContext. [#1917](https://github.com/bigcommerce/cornerstone/pull/1917)

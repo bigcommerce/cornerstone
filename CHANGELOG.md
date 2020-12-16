@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Fixed unable to change product quantity several times on cart page using keyboard. [#1927](https://github.com/bigcommerce/cornerstone/pull/1927)
 
 ## 5.0.0 (12-14-2020)
 - Parse HTML entities in jsContext. [#1917](https://github.com/bigcommerce/cornerstone/pull/1917)

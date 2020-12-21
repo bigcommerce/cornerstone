@@ -18,7 +18,6 @@
     min-width: 100%;
     margin-bottom: (spacing("double") + spacing("single"));
     margin-top: -(spacing("single")); // 3
-    overflow: hidden;
     opacity: 0;
 
     &.is-visible {
@@ -30,8 +29,6 @@
     }
 
     &.slick-initialized {
-        max-height: 100vh;
-        
         @include breakpoint("small") {
             max-height: remCalc(400px);            
         }
@@ -126,11 +123,11 @@
     }
 
     .heroCarousel-image-wrapper {
-        height: remCalc(250px);
         display: flex;
         justify-content: center;
         align-items: flex-start;
         height: 56.25vw;
+        max-height: 100vh;
 
         @include breakpoint("small") {
             max-height: remCalc(400px);
@@ -142,24 +139,30 @@
     }
 
     &.is-square-image-type {
-        
         .heroCarousel-image-wrapper {
             height: 100vw;
-        
-            @include breakpoint("small") {
-                height: 56.25vw;
-            }    
         }
     }
 
     &.is-vertical-image-type {
-        
         .heroCarousel-image-wrapper {
             height: 110vw;
-        
+        }
+    }
+
+    &.is-square-image-type,
+    &.is-vertical-image-type {
+        .heroCarousel-image-wrapper {
+            max-height: 100vh;
+
             @include breakpoint("small") {
                 height: 56.25vw;
-            }    
+                max-height: remCalc(400px);
+            }
+
+            @include breakpoint("medium") {
+                max-height: remCalc(600px);
+            }
         }
     }
 }
@@ -182,6 +185,8 @@
         right: 0;
         top: 50%;
         transform: translateY(-50%);
+        max-height: 80%;
+        overflow: auto;
 
         &.heroCarousel-content--empty {
             background-color: transparent;

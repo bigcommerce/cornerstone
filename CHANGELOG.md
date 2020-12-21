@@ -1,7 +1,7 @@
 # Changelog
 
 ## Draft
-
+- Add main tag on pages like Homepage, Category, Product etc to define the dominant content. [#1929](https://github.com/bigcommerce/cornerstone/pull/1929)
 ## 5.0.0 (12-14-2020)
 - Parse HTML entities in jsContext. [#1917](https://github.com/bigcommerce/cornerstone/pull/1917)
 - Product images squashed in Category view in AMP. [#1921](https://github.com/bigcommerce/cornerstone/pull/1921)

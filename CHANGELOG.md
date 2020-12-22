@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Added announcement on shipping estimator errors. [#1932](https://github.com/bigcommerce/cornerstone/pull/1932)
 
 ## 5.0.0 (12-14-2020)
 - Parse HTML entities in jsContext. [#1917](https://github.com/bigcommerce/cornerstone/pull/1917)

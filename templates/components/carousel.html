@@ -19,7 +19,11 @@
     <button aria-label="{{lang 'carousel.arrowAriaLabel'}} {{carousel.slides.length}}" class="js-hero-prev-arrow slick-prev slick-arrow">hero-prev-arrow</button>
     {{/and}}
     {{#each carousel.slides}}
+    {{#if button_text}}
+    <div class="js-hero-slide">
+    {{else}}
     <a href="{{url}}" class="js-hero-slide" aria-label="{{#if this.alt_text.length '!=' 0}}{{this.alt_text}}{{else}}{{lang 'common.carousel_slide_number' slide_number=(add @index 1)}}{{/if}}">
+    {{/if}}
         <div class="heroCarousel-slide {{#if ../theme_settings.homepage_stretch_carousel_images}}stretch{{/if}} {{#if @first}}heroCarousel-slide--first{{/if}}">
             <div class="heroCarousel-image-wrapper">
             {{#if @first}}
@@ -50,7 +54,11 @@
                 {{/if}}
             {{/if}}
         </div>
+    {{#if button_text}}
+    </div>
+    {{else}}
     </a>
+    {{/if}}
     {{/each}}
     {{#and arrows (if carousel.slides.length '>' 1)}}
     <button aria-label="{{lang 'carousel.arrowAriaLabel'}} {{carousel.slides.length}}" class="js-hero-next-arrow slick-next slick-arrow">hero-next-arrow</button>

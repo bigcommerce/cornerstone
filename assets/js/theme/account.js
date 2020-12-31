@@ -84,22 +84,62 @@ export default class Account extends PageManager {
      * Binds a submit hook to ensure the customer receives a confirmation dialog before deleting an address
      */
     bindDeleteAddress() {
+        // Keep track of swal popup answer
+        let isConfirmed = false;
+
         $('[data-delete-address]').on('submit', event => {
+            // If answered "ok" previously continue submitting the form.
+            if (isConfirmed) {
+                return true;
+            }
+
             const message = $(event.currentTarget).data('deleteAddress');
 
-            if (!window.confirm(message)) {
-                event.preventDefault();
-            }
+            // Confirm is not ok yet so prevent the form from submitting and show the message.
+            event.preventDefault();
+
+            swal.fire({
+                icon: 'warning',
+                text: message,
+                showCloseButton: true,
+                showCancelButton: true,
+                reverseButtons: true,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    isConfirmed = true;
+                    $(event.currentTarget).trigger('submit');
+                }
+            });
         });
     }
 
     bindDeletePaymentMethod() {
+        // Keep track of swal popup answer
+        let isConfirmed = false;
+
         $('[data-delete-payment-method]').on('submit', event => {
+            // If answered "ok" previously continue submitting the form.
+            if (isConfirmed) {
+                return true;
+            }
+
             const message = $(event.currentTarget).data('deletePaymentMethod');
 
-            if (!window.confirm(message)) {
-                event.preventDefault();
-            }
+            // Confirm is not ok yet so prevent the form from submitting and show the message.
+            event.preventDefault();
+
+            swal.fire({
+                icon: 'warning',
+                text: message,
+                showCloseButton: true,
+                showCancelButton: true,
+                reverseButtons: true,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    isConfirmed = true;
+                    $(event.currentTarget).trigger('submit');
+                }
+            });
         });
     }
 

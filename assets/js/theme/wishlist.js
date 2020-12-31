@@ -2,6 +2,7 @@ import 'foundation-sites/js/foundation/foundation';
 import 'foundation-sites/js/foundation/foundation.reveal';
 import nod from './common/nod';
 import PageManager from './page-manager';
+import swal from './global/sweet-alert';
 
 export default class WishList extends PageManager {
     constructor(context) {
@@ -18,14 +19,32 @@ export default class WishList extends PageManager {
      * Creates a confirm box before deleting all wish lists
      */
     wishlistDeleteConfirm() {
-        $('body').on('click', '[data-wishlist-delete]', event => {
-            const confirmed = window.confirm(this.context.wishlistDelete);
+        // Keep track of swal popup answer
+        let isConfirmed = false;
 
-            if (confirmed) {
+        $('[data-wishlist-delete]').on('submit', event => {
+            // If answered "ok" previously continue submitting the form.
+            if (isConfirmed) {
                 return true;
             }
 
+            const message = this.context.wishlistDelete;
+
+            // Confirm is not ok yet so prevent the form from submitting and show the message.
             event.preventDefault();
+
+            swal.fire({
+                icon: 'warning',
+                text: message,
+                showCloseButton: true,
+                showCancelButton: true,
+                reverseButtons: true,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    isConfirmed = true;
+                    $(event.currentTarget).trigger('submit');
+                }
+            });
         });
     }
 

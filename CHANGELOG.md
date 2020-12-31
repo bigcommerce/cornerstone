@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Bump sweetalert2 and replace window.confirm() [#1938](https://github.com/bigcommerce/cornerstone/pull/1938)
 
 ## 5.0.0 (12-14-2020)
 - Parse HTML entities in jsContext. [#1917](https://github.com/bigcommerce/cornerstone/pull/1917)

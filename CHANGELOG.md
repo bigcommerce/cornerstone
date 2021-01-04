@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Add Play/Pause button to carousel. [#1944](https://github.com/bigcommerce/cornerstone/pull/1944)
 - Carousel buttons do not receive focus. [#1937](https://github.com/bigcommerce/cornerstone/pull/1937)
 - Empty cart message not read by screen reader. [#1935](https://github.com/bigcommerce/cornerstone/pull/1935)
 - No tooltips provided for carousel buttons. [#1934](https://github.com/bigcommerce/cornerstone/pull/1934)

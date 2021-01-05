@@ -2,6 +2,12 @@
 
 ## Draft
 - Added announcement on shipping estimator errors. [#1932](https://github.com/bigcommerce/cornerstone/pull/1932)
+- Add main tag on pages like Homepage, Category, Product etc to define the dominant content. [#1929](https://github.com/bigcommerce/cornerstone/pull/1929)
+- Fixed unable to change product quantity several times on cart page using keyboard. [#1927](https://github.com/bigcommerce/cornerstone/pull/1927)
+- Cornerstone - loading of thumbnail image delayed on cart page . [#1925](https://github.com/bigcommerce/cornerstone/pull/1925)
+- Added narrow down pricing during option selections [#1924](https://github.com/bigcommerce/cornerstone/pull/1924)
+- Cornerstone - Image Zoom Does Not Work on Internet Explorer. [#1923](https://github.com/bigcommerce/cornerstone/pull/1923)
+- Fixed input placeholder color contrast according to AA standard. [#1933](https://github.com/bigcommerce/cornerstone/pull/1933)
 
 ## 5.0.0 (12-14-2020)
 - Parse HTML entities in jsContext. [#1917](https://github.com/bigcommerce/cornerstone/pull/1917)
@@ -28,6 +34,7 @@
 - Added styling config for the PayPal SPB on checkout page [#1866](https://github.com/bigcommerce/cornerstone/pull/1866)
 - Moved zoomSize and productSize to the upper level, cause product.js is not availabe on the Quick View [#1884](https://github.com/bigcommerce/cornerstone/pull/1884)
 - Added new region on the cart page [#1901](https://github.com/bigcommerce/cornerstone/pull/1901)
+- Add pagination for Wishlists.[#1906](https://github.com/bigcommerce/cornerstone/pull/1906)
 
 ## 4.12.1 (11-10-2020)
 - Write a Review modal cause TypeError. [#1899](https://github.com/bigcommerce/cornerstone/pull/1899)

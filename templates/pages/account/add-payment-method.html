@@ -47,7 +47,7 @@
                 <p class="paymentMethodForm-subheading">
                     {{forms.payment_method.provider_name}}
                     <span class="paymentMethodForm-cards">
-                        {{#each ../theme_settings.supported_card_type_icons}}
+                        {{#each theme_settings.supported_card_type_icons}}
                             <img class="paymentMethodForm-cards-icon" src="{{cdn (concat (concat 'img/payment-methods/' this) '.svg')}}" alt="{{lang (concat 'account.payment_methods.card_types.' this)}}" title="{{lang (concat 'account.payment_methods.card_types.' this)}}">
                         {{/each}}
                     </span>

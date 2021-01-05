@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Fixed unable to change product quantity several times on cart page using keyboard. [#1927](https://github.com/bigcommerce/cornerstone/pull/1927)
 - Cornerstone - loading of thumbnail image delayed on cart page . [#1925](https://github.com/bigcommerce/cornerstone/pull/1925)
 - Added narrow down pricing during option selections [#1924](https://github.com/bigcommerce/cornerstone/pull/1924)
 - Cornerstone - Image Zoom Does Not Work on Internet Explorer. [#1923](https://github.com/bigcommerce/cornerstone/pull/1923)

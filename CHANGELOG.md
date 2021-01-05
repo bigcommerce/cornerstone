@@ -2,6 +2,8 @@
 
 ## Draft
 - Empty cart message not read by screen reader. [#1935](https://github.com/bigcommerce/cornerstone/pull/1935)
+- No tooltips provided for carousel buttons. [#1934](https://github.com/bigcommerce/cornerstone/pull/1934)
+- Added announcement on shipping estimator errors. [#1932](https://github.com/bigcommerce/cornerstone/pull/1932)
 - Add main tag on pages like Homepage, Category, Product etc to define the dominant content. [#1929](https://github.com/bigcommerce/cornerstone/pull/1929)
 - Fixed unable to change product quantity several times on cart page using keyboard. [#1927](https://github.com/bigcommerce/cornerstone/pull/1927)
 - Cornerstone - loading of thumbnail image delayed on cart page . [#1925](https://github.com/bigcommerce/cornerstone/pull/1925)

@@ -137,6 +137,11 @@
 //    appear before the button.
 //
 // -----------------------------------------------------------------------------
+@mixin placeholder {
+    &::-webkit-input-placeholder {@content}
+    &::-moz-placeholder          {@content}
+    &:-ms-input-placeholder      {@content}
+}
 
 .form-label--alternate {
     font-family: fontFamily("headingSans");
@@ -208,6 +213,10 @@
     .form-input {
         @include breakpoint("large") {
             width: auto;
+        }
+
+        @include placeholder {
+            color: $formInput-placeholder-color;
         }
     }
 

@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Cornerstone - Image Zoom Does Not Work on Internet Explorer. [#1923](https://github.com/bigcommerce/cornerstone/pull/1923)
 - Fixed input placeholder color contrast according to AA standard. [#1933](https://github.com/bigcommerce/cornerstone/pull/1933)
 
 ## 5.0.0 (12-14-2020)

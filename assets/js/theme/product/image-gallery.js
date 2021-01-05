@@ -90,10 +90,14 @@ export default class ImageGallery {
     }
 
     checkImage() {
-        const containerHeight = $('.productView-image').height();
-        const containerWidth = $('.productView-image').width();
-        const height = this.easyzoom.data('easyZoom').$zoom.context.height;
-        const width = this.easyzoom.data('easyZoom').$zoom.context.width;
+        const $imageContainer = $('.productView-image');
+        const containerHeight = $imageContainer.height();
+        const containerWidth = $imageContainer.width();
+
+        const $image = this.easyzoom.data('easyZoom').$zoom;
+        const height = $image.height();
+        const width = $image.width();
+
         if (height < containerHeight || width < containerWidth) {
             this.easyzoom.data('easyZoom').hide();
         }

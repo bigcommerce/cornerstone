@@ -2,6 +2,7 @@ import 'foundation-sites/js/foundation/foundation';
 import 'foundation-sites/js/foundation/foundation.reveal';
 import nod from './common/nod';
 import PageManager from './page-manager';
+import { wishlistPaginatorHelper } from './common/utils/pagination-utils';
 
 export default class WishList extends PageManager {
     constructor(context) {
@@ -59,6 +60,10 @@ export default class WishList extends PageManager {
 
     onReady() {
         const $addWishListForm = $('.wishlist-form');
+
+        if ($('[data-pagination-wishlist]').length) {
+            wishlistPaginatorHelper();
+        }
 
         if ($addWishListForm.length) {
             this.registerAddWishListValidation($addWishListForm);

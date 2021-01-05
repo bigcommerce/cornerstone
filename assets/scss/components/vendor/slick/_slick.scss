@@ -45,7 +45,7 @@
 }
 
 .slick-next {
-    right: -10px;
+    right: $slick-arrows-offset;
 
     @include breakpoint("large") {
         right: -(spacing("double") + spacing("quarter"));
@@ -64,7 +64,7 @@
 }
 
 .slick-prev {
-    left: -15px;
+    left: $slick-arrows-offset;
 
     @include breakpoint("large") {
         left: -(spacing("double") + spacing("quarter"));
@@ -180,3 +180,67 @@ div.slick-slider {
     *width: 100%;
 }
 
+
+//
+// Carousel tooltips for buttons and bullets
+// -----------------------------------------------------------------------------
+
+.carousel-tooltip {
+    height: 1px;
+    display: block;
+    position: relative;
+    margin-top: 10px;
+    @include addFocusTooltip($attr: aria-label);
+    
+    &:after {
+        padding: 15px 10px;
+        top: 10px;
+    }
+
+    .slick-prev:focus &,
+    .slick-next:focus &,
+    .slick-dots button:focus & {
+        &:before,
+        &:after {
+            display: block;
+        }
+    }
+
+    .slick-prev &,
+    .slick-next & {
+        &:before {
+            top: -7px;
+        }
+    }
+
+    .slick-prev & {
+        &:before {
+            right: -2px;
+        }
+
+        &:after {
+            right: auto;
+            left: -5px;
+        }
+    }
+
+    .slick-next & {
+        &:after {
+            right: -5px;
+        }
+    }
+
+    .slick-dots button & {
+        margin-top: 25px;
+
+        &:before,
+        &:after {
+            right: 50%;
+            transform: translateX(50%);        
+        }
+
+        &:before {
+            top: -7px;
+        }
+    }
+}

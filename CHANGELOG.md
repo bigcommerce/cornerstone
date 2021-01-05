@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Carousel buttons do not receive focus. [#1937](https://github.com/bigcommerce/cornerstone/pull/1937)
 - Empty cart message not read by screen reader. [#1935](https://github.com/bigcommerce/cornerstone/pull/1935)
 - No tooltips provided for carousel buttons. [#1934](https://github.com/bigcommerce/cornerstone/pull/1934)
 - Added announcement on shipping estimator errors. [#1932](https://github.com/bigcommerce/cornerstone/pull/1932)

@@ -255,15 +255,13 @@
         {{/unless}}
     </section>
 
-    {{#if product.description}}
-        <article class="productView-description"{{#if schema}} itemprop="description"{{/if}}>
-            {{#if theme_settings.show_product_details_tabs}}
-                {{> components/products/description-tabs}}
-            {{else}}
-                {{> components/products/description}}
-            {{/if}}
-        </article>
-    {{/if}}
+    <article class="productView-description"{{#if schema}} itemprop="description"{{/if}}>
+        {{#if theme_settings.show_product_details_tabs}}
+            {{> components/products/description-tabs}}
+        {{else}}
+            {{> components/products/description}}
+        {{/if}}
+    </article>
 </div>
 
 <div id="previewModal" class="modal modal--large" data-reveal>

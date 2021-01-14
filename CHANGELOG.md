@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Fixed announcement for product on adding to cart. [#1950](https://github.com/bigcommerce/cornerstone/pull/1950)
 - Carousel buttons do not receive focus. [#1937](https://github.com/bigcommerce/cornerstone/pull/1937)
 - Empty cart message not read by screen reader. [#1935](https://github.com/bigcommerce/cornerstone/pull/1935)
 - No tooltips provided for carousel buttons. [#1934](https://github.com/bigcommerce/cornerstone/pull/1934)

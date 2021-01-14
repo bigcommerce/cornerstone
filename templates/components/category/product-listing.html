@@ -19,5 +19,11 @@
 
     {{> components/common/paginator pagination.category}}
 {{else}}
-    <span role="text" tabindex="0">{{lang 'categories.no_products'}}</span>
+    <p data-no-products-notification
+       role="alert"
+       aria-live="assertive"
+       tabindex="-1"
+    >
+        {{lang 'categories.no_products'}}
+    </p>
 {{/if}}

@@ -183,7 +183,7 @@ export default class ProductDetails extends ProductDetailsBase {
             const productAttributesContent = response.content || {};
             this.updateProductAttributes(productAttributesData);
             this.updateView(productAttributesData, productAttributesContent);
-            bannerUtils.dispatchProductBannerEvent(response.data);
+            bannerUtils.dispatchProductBannerEvent(productAttributesData);
         });
     }
 

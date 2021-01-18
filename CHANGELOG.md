@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Fixed case when default option is out of stock add to cart button does not populate for in stock options. [#1955](https://github.com/bigcommerce/cornerstone/pull/1955)
 - Carousel buttons do not receive focus. [#1937](https://github.com/bigcommerce/cornerstone/pull/1937)
 - Empty cart message not read by screen reader. [#1935](https://github.com/bigcommerce/cornerstone/pull/1935)
 - No tooltips provided for carousel buttons. [#1934](https://github.com/bigcommerce/cornerstone/pull/1934)

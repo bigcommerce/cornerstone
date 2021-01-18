@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Fixed non-text contrast on add to cart modal according to WCAG AA standard.  [#1946](https://github.com/bigcommerce/cornerstone/pull/1946)
 - Fixed announcement of reCAPTCHA hidden content by screen reader. [#1943](https://github.com/bigcommerce/cornerstone/pull/1943)
 - Carousel buttons do not receive focus. [#1937](https://github.com/bigcommerce/cornerstone/pull/1937)
 - Empty cart message not read by screen reader. [#1935](https://github.com/bigcommerce/cornerstone/pull/1935)

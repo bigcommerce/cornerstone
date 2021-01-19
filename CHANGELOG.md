@@ -2,6 +2,9 @@
 
 ## Draft
 - Dots on carousel should have similar colours as other slider controls. [#1958](https://github.com/bigcommerce/cornerstone/pull/1958)
+- PDP - Fixed Empty "Description" Hiding All Tabs When in Tab View. [#1947](https://github.com/bigcommerce/cornerstone/pull/1947)
+- Added custom event for product price change on PDP page. [#1948](https://github.com/bigcommerce/cornerstone/pull/1948)
+- Fixed announcement of subscription message. [#1952](https://github.com/bigcommerce/cornerstone/pull/1952)
 - Error message on PLPs not announced by screen reader. [#1956](https://github.com/bigcommerce/cornerstone/pull/1956)
 - Add Play/Pause button to carousel. [#1944](https://github.com/bigcommerce/cornerstone/pull/1944)
 - Alt text not provided for ratings. [#1949](https://github.com/bigcommerce/cornerstone/pull/1949)

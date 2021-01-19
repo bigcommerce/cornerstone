@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Error message on PLPs not announced by screen reader. [#1956](https://github.com/bigcommerce/cornerstone/pull/1956)
 - Add Play/Pause button to carousel. [#1944](https://github.com/bigcommerce/cornerstone/pull/1944)
 - Alt text not provided for ratings. [#1949](https://github.com/bigcommerce/cornerstone/pull/1949)
 - Fixed announcement for product on adding to cart. [#1950](https://github.com/bigcommerce/cornerstone/pull/1950)

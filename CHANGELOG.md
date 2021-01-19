@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Alt text not provided for ratings. [#1949](https://github.com/bigcommerce/cornerstone/pull/1949)
 - Fixed announcement for product on adding to cart. [#1950](https://github.com/bigcommerce/cornerstone/pull/1950)
 - Fixed non-text contrast on add to cart modal according to WCAG AA standard.  [#1946](https://github.com/bigcommerce/cornerstone/pull/1946)
 - Fixed announcement of reCAPTCHA hidden content by screen reader. [#1943](https://github.com/bigcommerce/cornerstone/pull/1943)

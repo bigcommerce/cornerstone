@@ -2,6 +2,13 @@
 
 ## Draft
 - Added custom event for product price change on PDP page. [#1948](https://github.com/bigcommerce/cornerstone/pull/1948)
+- Fixed announcement of subscription message. [#1952](https://github.com/bigcommerce/cornerstone/pull/1952)
+- Error message on PLPs not announced by screen reader. [#1956](https://github.com/bigcommerce/cornerstone/pull/1956)
+- Add Play/Pause button to carousel. [#1944](https://github.com/bigcommerce/cornerstone/pull/1944)
+- Alt text not provided for ratings. [#1949](https://github.com/bigcommerce/cornerstone/pull/1949)
+- Fixed announcement for product on adding to cart. [#1950](https://github.com/bigcommerce/cornerstone/pull/1950)
+- Fixed non-text contrast on add to cart modal according to WCAG AA standard.  [#1946](https://github.com/bigcommerce/cornerstone/pull/1946)
+- Fixed announcement of reCAPTCHA hidden content by screen reader. [#1943](https://github.com/bigcommerce/cornerstone/pull/1943)
 - Carousel buttons do not receive focus. [#1937](https://github.com/bigcommerce/cornerstone/pull/1937)
 - Empty cart message not read by screen reader. [#1935](https://github.com/bigcommerce/cornerstone/pull/1935)
 - No tooltips provided for carousel buttons. [#1934](https://github.com/bigcommerce/cornerstone/pull/1934)

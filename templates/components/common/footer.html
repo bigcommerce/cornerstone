@@ -1,4 +1,4 @@
-{{#if banners.bottom}}
+<!--{{#if banners.bottom}}
     {{#if settings.data_tag_enabled}}
         <div class="banners" data-banner-location="bottom">
             {{#each (limit banners.bottom_metadata 1)}}
@@ -17,95 +17,131 @@
         </div>
     {{/if}}
 
-{{/if}}
-<footer class="footer" role="contentinfo">
-    <h2 class="footer-title-sr-only">{{lang 'footer.title'}}</h2>
-    <div class="container">
-        {{#if theme_settings.social_icon_placement_bottom '!==' 'bottom_none'}}
-            <article class="footer-info-col
-                footer-info-col--social
-                footer-info-col--{{#if theme_settings.social_icon_placement_bottom '===' 'bottom_left'}}left{{else}}right{{/if}}"
-                data-section-type="footer-webPages">
-                    <h3 class="footer-info-heading">{{lang 'social.connect'}}</h3>
-                    {{> components/common/social-links}}
-            </article>
-        {{/if}}
-        <section class="footer-info">
-            <article class="footer-info-col footer-info-col--small" data-section-type="footer-webPages">
-                <h3 class="footer-info-heading">{{lang 'footer.navigate'}}</h3>
-                <ul class="footer-info-list">
-                    {{#each pages}}
-                        <li>
-                            <a href="{{url}}">{{name}}</a>
-                        </li>
-                    {{/each}}
-                    <li>
-                        <a href="{{urls.sitemap}}">{{lang 'sitemap.page_title'}}</a>
-                    </li>
-                </ul>
-            </article>
+{{/if}}-->
 
-            <article class="footer-info-col footer-info-col--small" data-section-type="footer-categories">
-                <h3 class="footer-info-heading">{{lang 'footer.categories'}}</h3>
-                <ul class="footer-info-list">
-                    {{#each categories}}
-                        <li>
-                            <a href="{{url}}">{{name}}</a>
-                        </li>
-                    {{/each}}
-                </ul>
-            </article>
 
-            {{#and theme_settings.shop_by_brand_show_footer shop_by_brand.length}}
-            <article class="footer-info-col footer-info-col--small" data-section-type="footer-brands">
-                <h3 class="footer-info-heading">{{lang 'footer.brands'}}</h3>
-                <ul class="footer-info-list">
-                    {{#each shop_by_brand}}
-                        <li>
-                            <a href="{{url}}">{{name}}</a>
-                        </li>
-                    {{/each}}
-                    <li><a href="{{urls.brands}}">{{lang 'common.view_all'}}</a></li>
-                </ul>
-            </article>
-            {{/and}}
+      <div class="bluebar">
+        <div class="stayconnected-text w-row">
+          <div class="w-col w-col-4">
+            <div class="stayconnectedlarge">Stay Connected!</div>
+            <div class="stayconnected-p">Join our newsletter for exclusive savings and inspriation</div>
+          </div>
+          <div class="w-col w-col-4">
+            <div class="text-block-2">            
+              <!-- Begin Mailchimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+#mc_embed_signup{background:transparent; clear:left; font:14px Helvetica,Arial,sans-serif; }
 
-            {{#if settings.address}}
-            <article class="footer-info-col footer-info-col--small" data-section-type="storeInfo">
-                <h3 class="footer-info-heading">{{lang 'footer.info'}}</h3>
-                <address>{{nl2br settings.address}}</address>
-                {{#if settings.phone_number}}
-                    <strong>{{lang 'footer.call_us' phone_number=settings.phone_number}}</strong>
-                {{/if}}
-            </article>
-            {{/if}}
-
-            <article class="footer-info-col" data-section-type="newsletterSubscription">
-                {{#if settings.show_newsletter_box}}
-                    {{> components/common/subscription-form}}
-                {{/if}}
-                {{> components/common/payment-icons}}
-            </article>
-        </section>
-        {{#if theme_settings.geotrust_ssl_common_name}}
-            <div class="footer-geotrust-ssl-seal">
-                {{> components/common/geotrust-ssl-seal}}
+</style>
+<div id="mc_embed_signup">
+<form action="https://ebulbsplus.us7.list-manage.com/subscribe/post?u=58bcfef2965a507145fcb751e&amp;id=29571f0436" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+<div class="mc-field-group">
+</span>
+</label>
+<input style="display:inline;width:70%;" type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">  <input type="submit" style="width:20%;display:inline;" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button">
+</div>
+<div id="mce-responses" class="clear">
+<div class="response" id="mce-error-response" style="display:none"></div>
+<div class="response" id="mce-success-response" style="display:none"></div>
+</div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_58bcfef2965a507145fcb751e_29571f0436" tabindex="-1" value=""></div>
+  
+    </div>
+</form>
+</div>
+<script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
+<!--End mc_embed_signup--></div>
+          </div>
+          <div class="w-col w-col-4">
+            <div class="socialiconcont">
+              <a href="#" class="w-inline-block"><img src="{{cdn "webdav:img/001-facebook.svg"}}"  loading="lazy" alt="eBulbs Plus on Facebook Marketplace
+" class="socialicon"></a>
+              <a href="#" class="w-inline-block"><img src="{{cdn "webdav:img/013-twitter.svg"}}"  loading="lazy" alt="Connect with eBulbs Plus on Twitter
+" class="socialicon"></a>
+              <a href="#" class="w-inline-block"><img src="{{cdn "webdav:img/011-instagram.svg"}}"  loading="lazy" alt="eBulbs Plus on Instagram
+" class="socialicon"></a>
+              <a href="#" class="w-inline-block"><img src="{{cdn "webdav:img/010-linkedin.svg"}}"  loading="lazy" alt="eBulbs Plus LinkedIn Business Profile
+" class="socialicon"></a>
             </div>
-        {{/if}}
-        {{#if settings.paypal_commerce_credit_message}}
-        <div class="footer-copyright">
-            <p class="paypal-credit">{{nl2br settings.paypal_commerce_credit_message}}</p>
+          </div>
         </div>
-        {{/if}}
-        {{#if theme_settings.show_powered_by}}
-            <div class="footer-copyright">
-                <p class="powered-by">{{lang 'footer.powered_by'}} <a href="https://www.bigcommerce.com?utm_source=merchant&amp;utm_medium=poweredbyBC" rel="nofollow">BigCommerce</a></p>
+      </div>
+
+<footer class="footer" role="contentinfo">
+
+<div class="footer">
+      <div class="midfoot">
+        <div class="midfootcol w-row">
+          <div class="column-5 w-col w-col-4 w-col-stack"><img src="{{cdn "webdav:img/white logo footer.svg"}}"  loading="lazy" width="245" alt="eBulbs Plus since 1975 Colorado Springs" class="whitelogofooter">
+            <div class="footertextdiv">
+              <div class="footertext">Since 1975 we have established the reputation as the go to source for all commercial lighting needs. We have a wide selection of LED light bulbs, ballasts, LED retrofits, wall packs, HID options, and so much more! If you can&#x27;t find what you need, call us and we will find it for you.</div>
             </div>
-        {{/if}}
+          </div>
+          <div class="w-col w-col-2 w-col-stack">
+            <h4 class="heading-3">Quick Links</h4>
+            <ul role="list" class="footerlinks">
+              <li class="footerlistitems">
+                <a href="#" class="footerlistitems">About Us</a>
+              </li>
+              <li class="footerlistitems">
+                <a href="#" class="footerlistitems">Contact Us</a>
+              </li>
+              <li class="footerlistitems">
+                <a href="#" class="footerlistitems">Services</a>
+              </li>
+              <li class="footerlistitems">
+                <a href="#" class="footerlistitems">Online Policies</a>
+              </li>
+            </ul>
+          </div>
+          <div class="w-col w-col-2 w-col-stack">
+            <h4 class="heading-3">Categories</h4>
+            <ul role="list" class="footerlinks">
+              <li class="footerlistitems">
+                <a href="#" class="footerlistitems">Incandescent</a>
+              </li>
+              <li class="footerlistitems">
+                <a href="#" class="footerlistitems">Compact Fluorescent</a>
+              </li>
+              <li class="footerlistitems">
+                <a href="#" class="footerlistitems">Fluorescent Tubes</a>
+              </li>
+              <li class="footerlistitems">
+                <a href="#" class="footerlistitems">Halogen Light Bulbs</a>
+              </li>
+              <li class="footerlistitems">
+                <a href="#" class="footerlistitems">HID Light Bulbs</a>
+              </li>
+              <li class="footerlistitems">
+                <a href="#" class="footerlistitems">LED Light Bulbs</a>
+              </li>
+            </ul>
+          </div>
+          <div class="w-col w-col-2 w-col-stack">
+            <h4 class="heading-3">eBulbs Plus</h4>
+            <div class="footerlistitems part2">2324 E Bijou St<br>Colorado Springs, CO 80909</div>
+            <div class="heading-3 h3foot">
+              <a href="tel:(719)632-2670" class="h4footerlink">(719) 632-2670<br></a>
+              <a href="mailto:info@ebulbsplus.com" class="h4footerlink bottomlink">info@ebulbsplus.com<br></a>
+            </div>
+          </div>
+          <div class="w-col w-col-2 w-col-stack">
+            <h4 class="heading-3">Store Hours</h4>
+            <div class="footerlistitems part2">Monday - Friday  8AM - 5PM<br>Saturday &amp; Sunday  Closed</div>
+            <div class="footerlistitems part2 finally">We offer after-hour or weekend appointments if needed.</div>
+          </div>
+        </div>
+            {{> components/common/payment-icons}}
+      </div>
+      <div class="bottomfoot">         
         {{#if theme_settings.show_copyright_footer}}
             <div class="footer-copyright">
-                <p class="powered-by">&copy; {{moment format="YYYY"}} {{settings.store_name}} </p>
+                <p class="powered-by">&copy; {{moment format="YYYY"}} {{settings.store_name}} | <a href="/sitemap.php">Sitemap</a> </p>
             </div>
         {{/if}}
     </div>
+    </div>
+  </div>
 </footer>

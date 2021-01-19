@@ -13,10 +13,32 @@ blog:
 ---
 {{#partial "hero"}}
     {{{region name="home_below_menu"}}}
-    {{#if carousel}}
+    <!-- {{#if carousel}}
         {{> components/carousel arrows=theme_settings.homepage_show_carousel_arrows}}
-    {{/if}}
-    {{{region name="home_below_carousel"}}}
+    {{/if}} -->
+        <div class="mainsection">
+   
+    <h1 class="h1home">eBulbs Plus is Colorado&#x27;s #1 Wholesale Light Bulbs &amp; Ballast Dealer</h1>
+      <div class="herosection">
+        <div class="w-layout-grid bannergrid">{{#if banners.top}}
+<div class="banners" data-banner-location="top">
+    {{#each (limit banners.top_metadata 1)}}
+    <div class="banner" data-event-type="promotion" data-entity-id="{{this.id}}" data-name="{{this.banner-name}}" data-position="{{this.location}}" data-banner-id="{{this.banner-name}}">
+        <div data-event-type="promotion-click">
+            {{{this.content}}}
+        </div>
+    </div>
+    {{/each}}
+</div>
+{{/if}}
+          <div class="rightherogray">
+            <h2 class="heading">Commercial &amp; Residential Lighting Design &amp; Consulting</h2>
+            <p class="grayboxtext"><strong>We offer free energy audits, design, and consulting at eBulbs Plus, Inc.</strong> Let us assess your current lighting systems electrical demand and create economical retrofit solutions to increase efficiencies. Contact us to get started!</p>
+            <a href="#" class="yellowbutton w-button">CONTACT US</a>
+          </div>
+        </div>
+      </div>
+    
 {{/partial}}
 
 {{#partial "page"}}
@@ -25,11 +47,80 @@ blog:
         {{> components/common/alert/alert-info message}}
     {{/each}}
 
-<div class="main full">
-    {{#if products.featured}}
+      <div class="bluebar w-clearfix">
+        <div class="bluebar-left">
+          <div class="whychoose">Why Choose <strong class="bold-text">eBulbs Plus?</strong></div>
+        </div>
+        <div class="bluebar-right">
+          <ul role="list" class="toplist bluebox">
+            <li class="blue-item-list"><img src="{{cdn "webdav:img/checkbox.svg"}}"  loading="lazy" alt="" class="bulletchecky">
+              <div class="bluebartext">Largest Selection of Light Bulbs</div>
+            </li>
+            <li class="blue-item-list"><img src="{{cdn "webdav:img/checkbox.svg"}}"  loading="lazy" alt="" class="bulletchecky">
+              <div class="bluebartext">Low Price</div>
+            </li>
+            <li class="blue-item-list"><img src="{{cdn "webdav:img/checkbox.svg"}}"  loading="lazy" alt="" class="bulletchecky">
+              <div class="bluebartext">Quality Service</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="ebulbpluscategories">
+        <div class="toplevelcategories-col w-row">
+          <div class="w-col w-col-4"><a href="/led" title="LED Light Bulbs"><img src="https://cdn11.bigcommerce.com/s-i2ygigcq8a/product_images/uploaded_images/rectangle-39-1-.jpg" loading="lazy" alt="eBulbs Plus LED Light Bulbs " class="image-2"></a>
+            <div class="topcatbox">
+              <div class="columns-3 w-row">
+                <div class="column-4 w-col w-col-8 w-col-stack">
+                  <h3 class="heading-2">LED Light Bulbs</h3>
+                  <div class="text-block">This is some text inside of a div block. This is some text inside of a div block.</div>
+                </div>
+                <div class="w-clearfix w-col w-col-4 w-col-stack">
+                  <a href="/led" class="shopnowbutton w-button">SHOP NOW</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="w-col w-col-4"><a href="/fluorescent" title="Fluorescent Tubes"><img src="https://cdn11.bigcommerce.com/s-i2ygigcq8a/product_images/uploaded_images/rectangle-40-1-.jpg" loading="lazy" alt="eBulbs Plus Fluorescent Tubes
+" class="image-2"></a>
+            <div class="topcatbox">
+              <div class="columns-3 w-row">
+                <div class="column-4 w-col w-col-8 w-col-stack">
+                  <h3 class="heading-2">Fluorescent Tubes</h3>
+                  <div class="text-block">This is some text inside of a div block. This is some text inside of a div block.</div>
+                </div>
+                <div class="w-clearfix w-col w-col-4 w-col-stack">
+                  <a href="/fluorescent" class="shopnowbutton w-button">SHOP NOW</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="w-col w-col-4"><img src="https://cdn11.bigcommerce.com/s-i2ygigcq8a/product_images/uploaded_images/rectangle-41-1-.jpg" loading="lazy" alt="eBulbs Plus HID Light Bulbs" class="image-2">
+            <div class="topcatbox">
+              <div class="columns-3 w-row">
+                <div class="column-4 w-col w-col-8 w-col-stack">
+                  <h3 class="heading-2">HID Light Bulbs</h3>
+                  <div class="text-block">This is some text inside of a div block. This is some text inside of a div block.</div>
+                </div>
+                <div class="w-clearfix w-col w-col-4 w-col-stack">
+                  <a href="#" class="shopnowbutton w-button">SHOP NOW</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+            <div class="featuredproducts">
+                
+   {{#if products.featured}}
         {{> components/products/featured products=products.featured columns=theme_settings.homepage_featured_products_column_count}}
     {{/if}}
-    {{{region name="home_below_featured_products"}}}
+                
+            </div>
+      <div class="topbrands">
+        <div class="w-layout-grid brandlogos"><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" alt=""><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" alt=""><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" alt=""><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" alt=""><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" alt=""><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" alt=""></div>
+      </div>
+ 
+   <!-- {{{region name="home_below_featured_products"}}}
 
     {{#if products.top_sellers}}
         {{> components/products/top products=products.top_sellers columns=theme_settings.homepage_top_products_column_count}}
@@ -39,7 +130,7 @@ blog:
     {{#if products.new}}
         {{> components/products/new products=products.new columns=theme_settings.homepage_new_products_column_count}}
     {{/if}}
-    {{{region name="home_below_new_products"}}}
+    {{{region name="home_below_new_products"}}}-->
 </div>
 {{/partial}}
 {{> layout/base}}

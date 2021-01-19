@@ -96,12 +96,7 @@
                             <meta itemprop="reviewCount" content="{{product.num_reviews}}">
                         {{/if}}
                     {{/if}}
-                    <span class="productView-ratingWrapper"
-                          title="{{lang 'products.reviews.rating_aria_label' current_rating=product.rating max_rating=5}}"
-                          tabindex="0"
-                    >
                         {{> components/products/ratings rating=product.rating}}
-                    </span>
                     {{#if product.num_reviews '>' 0}}
                         <a href="{{product.url}}#product-reviews" id="productReview_link">
                             {{lang 'products.reviews.link_to_review' total=product.num_reviews}}
@@ -253,15 +248,13 @@
         {{/unless}}
     </section>
 
-    {{#if product.description}}
-        <article class="productView-description"{{#if schema}} itemprop="description"{{/if}}>
-            {{#if theme_settings.show_product_details_tabs}}
-                {{> components/products/description-tabs}}
-            {{else}}
-                {{> components/products/description}}
-            {{/if}}
-        </article>
-    {{/if}}
+    <article class="productView-description"{{#if schema}} itemprop="description"{{/if}}>
+        {{#if theme_settings.show_product_details_tabs}}
+            {{> components/products/description-tabs}}
+        {{else}}
+            {{> components/products/description}}
+        {{/if}}
+    </article>
 </div>
 
 <div id="previewModal" class="modal modal--large" data-reveal>

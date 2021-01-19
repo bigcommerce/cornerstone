@@ -7,6 +7,7 @@ import modalFactory, { showAlertModal, modalTypes } from '../global/modal';
 import { isEmpty, isPlainObject } from 'lodash';
 import { normalizeFormData } from './utils/api';
 import { isBrowserIE, convertIntoArray } from './utils/ie-helpers';
+import bannerUtils from './utils/banner-utils';
 
 export default class ProductDetails extends ProductDetailsBase {
     constructor($scope, context, productAttributesData = {}) {
@@ -40,6 +41,7 @@ export default class ProductDetails extends ProductDetailsBase {
             utils.api.productAttributes.optionChange($productId, $form.serialize(), 'products/bulk-discount-rates', optionChangeCallback);
         } else {
             this.updateProductAttributes(productAttributesData);
+            bannerUtils.dispatchProductBannerEvent(productAttributesData);
         }
 
         $productOptionsElement.show();
@@ -181,6 +183,7 @@ export default class ProductDetails extends ProductDetailsBase {
             const productAttributesContent = response.content || {};
             this.updateProductAttributes(productAttributesData);
             this.updateView(productAttributesData, productAttributesContent);
+            bannerUtils.dispatchProductBannerEvent(productAttributesData);
         });
     }
 
@@ -333,6 +336,11 @@ export default class ProductDetails extends ProductDetailsBase {
                 // if no modal, redirect to the cart page
                 this.redirectTo(response.data.cart_item.cart_url || this.context.urls.cart);
             }
+        });
+
+        $addToCartBtn.next().attr({
+            role: 'status',
+            'aria-live': 'polite',
         });
     }
 

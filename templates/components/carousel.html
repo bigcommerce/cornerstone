@@ -63,4 +63,19 @@
     {{#and arrows (if carousel.slides.length '>' 1)}}
     <button aria-label="{{lang 'carousel.arrowAriaLabel'}} {{carousel.slides.length}}" class="js-hero-next-arrow slick-next slick-arrow"></button>
     {{/and}}
+    {{#if play_pause_button}}
+        <button
+            type="button"
+            class="heroCarousel-play-pause-button js-hero-play-pause-button"
+            aria-label="{{lang 'carousel.playPauseButton.ariaPause'}}"
+            data-play="true"
+            data-labels='{
+                "play": "{{lang 'carousel.playPauseButtonPlay'}}",
+                "pause": "{{lang 'carousel.playPauseButtonPause'}}",
+                "ariaPlay": "{{lang 'carousel.playPauseButtonAriaPlay'}}",
+                "ariaPause": "{{lang 'carousel.playPauseButtonAriaPause'}}"
+            }'>
+            {{lang 'carousel.playPauseButtonPause'}}
+        </button>
+    {{/if}}
 </section>

@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Added custom event for product price change on PDP page. [#1948](https://github.com/bigcommerce/cornerstone/pull/1948)
 - Fixed announcement of subscription message. [#1952](https://github.com/bigcommerce/cornerstone/pull/1952)
 - Error message on PLPs not announced by screen reader. [#1956](https://github.com/bigcommerce/cornerstone/pull/1956)
 - Add Play/Pause button to carousel. [#1944](https://github.com/bigcommerce/cornerstone/pull/1944)

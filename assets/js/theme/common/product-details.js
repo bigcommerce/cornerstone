@@ -334,6 +334,11 @@ export default class ProductDetails extends ProductDetailsBase {
                 this.redirectTo(response.data.cart_item.cart_url || this.context.urls.cart);
             }
         });
+
+        $addToCartBtn.next().attr({
+            role: 'status',
+            'aria-live': 'polite',
+        });
     }
 
     /**

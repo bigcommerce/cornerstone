@@ -68,7 +68,6 @@
             left: 25px;
         }
     }
-
     .slick-dots {
         bottom: spacing("third");
 
@@ -222,5 +221,39 @@
 
     @include breakpoint("medium") {
         margin-top: spacing("single");
+    }
+}
+
+.heroCarousel-play-pause-button {
+    position: absolute;
+    left: 15px;
+    bottom: spacing("third");
+    height: 32px;
+    min-width: 80px;
+    max-width: 90px;
+    font-size: 14px;
+    line-height: 1.25;
+    font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: $slick-play-pause-button-color;
+    transition: color 100ms ease-out;
+    z-index: zIndex("lowest");
+    border: 1px solid $slick-play-pause-button-borderColor;
+    @include carouselOpaqueBackgrounds($slick-play-pause-button-bgColor);
+
+    @include breakpoint("small") {
+        max-width: 150px;
+        font-size: 18px;
+    }
+
+    @include breakpoint("medium") {
+        left: 25px;
+        bottom: spacing("single");
+    }
+
+    &:hover {
+        color: $slick-play-pause-button-color-hover;
     }
 }

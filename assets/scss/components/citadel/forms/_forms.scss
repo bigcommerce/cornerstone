@@ -67,8 +67,6 @@
 
 .form-checkbox,
 .form-radio {
-    bottom: 0.5rem;
-    left: 0.5rem;
 
     + .form-label {
 
@@ -91,6 +89,11 @@
 .form-option-wrapper {
     position: relative;
     display: inline-block;
+
+    & .form-radio, & .form-checkbox {
+        bottom: 0.5rem;
+        left: 0.5rem;
+    }
 }
 
 // Citadel form-actions

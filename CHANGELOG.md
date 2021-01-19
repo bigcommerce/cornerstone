@@ -2,6 +2,8 @@
 
 ## Draft
 - Fixed selecting certain option types which pushes window view to the bottom of the page. [#1959](https://github.com/bigcommerce/cornerstone/pull/1959)
+- Fixed case when default option is out of stock add to cart button does not populate for in stock options. [#1955](https://github.com/bigcommerce/cornerstone/pull/1955)
+- Dots on carousel should have similar colours as other slider controls. [#1958](https://github.com/bigcommerce/cornerstone/pull/1958)
 - PDP - Fixed Empty "Description" Hiding All Tabs When in Tab View. [#1947](https://github.com/bigcommerce/cornerstone/pull/1947)
 - Added custom event for product price change on PDP page. [#1948](https://github.com/bigcommerce/cornerstone/pull/1948)
 - Fixed announcement of subscription message. [#1952](https://github.com/bigcommerce/cornerstone/pull/1952)

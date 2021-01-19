@@ -264,6 +264,12 @@ export default class ProductDetailsBase {
         } else if (typeof (data.bulk_discount_rates) !== 'undefined') {
             viewModel.$bulkPricing.html('');
         }
+
+        const addToCartWrapper = $('#add-to-cart-wrapper');
+
+        if (addToCartWrapper.is(':hidden') && data.purchasable) {
+            addToCartWrapper.show();
+        }
     }
 
     /**

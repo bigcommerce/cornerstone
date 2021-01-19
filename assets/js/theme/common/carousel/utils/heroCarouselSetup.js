@@ -1,3 +1,5 @@
+import playPause from './playPause';
+
 const showCarouselIfSlidesAnalyzedSetup = ($carousel) => {
     const analyzedSlides = [];
     return ($slides) => ($slide) => {
@@ -10,6 +12,8 @@ const showCarouselIfSlidesAnalyzedSetup = ($carousel) => {
 
 export default ($heroCarousel) => {
     if ($heroCarousel.length === 0) return;
+
+    playPause($heroCarousel);
 
     const $slidesNodes = $heroCarousel.find('.heroCarousel-slide');
     const showCarouselIfSlidesAnalyzed = showCarouselIfSlidesAnalyzedSetup($heroCarousel)($slidesNodes);

@@ -1,33 +1,45 @@
 <a href="#main-content" class="skip-to-main-link">{{lang 'header.skip_to_main'}}</a>
-{{#if banners.top}}
-<div class="banners" data-banner-location="top">
-    {{#each (limit banners.top_metadata 1)}}
-    <div class="banner" data-event-type="promotion" data-entity-id="{{this.id}}" data-name="{{this.banner-name}}" data-position="{{this.location}}" data-banner-id="{{this.banner-name}}">
-        <div data-event-type="promotion-click">
-            {{{this.content}}}
-        </div>
-    </div>
-    {{/each}}
-</div>
-{{/if}}
+
 <header class="header" role="banner">
-    <a href="#" class="mobileMenu-toggle" data-mobile-menu-toggle="menu">
+<div class="topsection">
+      <div class="top w-clearfix">
+        <div class="topleft">
+          <a href="tel:719-632-2670" class="phonetop">Have questions?  (719) 632-2670</a>
+        </div>
+        <div class="topright">
+          {{> components/common/navigation}}
+ 
+        </div>
+      </div>
+      <div class="logonavi w-clearfix">
+        <h1>
+              <a href="/" class="brand w-nav-brand"><img src="{{cdn "webdav:img/ebulb-plus-logo.svg"}}" loading="eager" width="267" alt="eBulbs Plus Wholesale Light Bulbs &amp; Ballast Dealer" class="logo"></a>
+            </h1>
+
+  
+    
+     
+          <div class="navcont w-container">
+           <a href="#" class="mobileMenu-toggle" data-mobile-menu-toggle="menu">
         <span class="mobileMenu-toggleIcon">Toggle menu</span>
     </a>
-    {{> components/common/navigation}}
 
-    {{#if page_type '===' 'default'}}
-        <h1 class="header-logo header-logo--{{theme_settings.logo-position}}">
-            {{> components/common/store-logo}}
-        </h1>
-    {{else}}
-        <div class="header-logo header-logo--{{theme_settings.logo-position}}">
-            {{> components/common/store-logo}}
-        </div>
-    {{/if}}
-    <div class="navPages-container" id="menu" data-menu>
+    <div class="navPages-container nav-menu w-nav-menu" id="menu" data-menu>
         {{> components/common/navigation-menu}}
     </div>
+          </div>
+      
+       
+      </div>
+
+
+
+
+  </div><!-- end top section -->
+
+
+
+   
 </header>
 {{{region name="header_bottom--global"}}}
 {{{region name="header_bottom"}}}

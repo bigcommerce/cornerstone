@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Updated Cornerstone theme and respected variants to meet the verticals/industries documented in BCTHEME-387
 - Fixed selecting certain option types which pushes window view to the bottom of the page. [#1959](https://github.com/bigcommerce/cornerstone/pull/1959)
 - Fixed case when default option is out of stock add to cart button does not populate for in stock options. [#1955](https://github.com/bigcommerce/cornerstone/pull/1955)
 - Dots on carousel should have similar colours as other slider controls. [#1958](https://github.com/bigcommerce/cornerstone/pull/1958)

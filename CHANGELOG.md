@@ -1,5 +1,7 @@
 # Changelog
 
+- Fixed required checkbox message displaying. [1963](https://github.com/bigcommerce/cornerstone/pull/1963)
+
 ## Draft
 - Updated Cornerstone theme and respected variants to meet the verticals/industries documented in BCTHEME-387
 - Fixed selecting certain option types which pushes window view to the bottom of the page. [#1959](https://github.com/bigcommerce/cornerstone/pull/1959)

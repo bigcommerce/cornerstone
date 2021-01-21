@@ -11,6 +11,8 @@ export default class Category extends CatalogPage {
     }
 
     onReady() {
+        this.arrangeFocusOnSortBy();
+
         $('[data-button-type="add-cart"]').on('click', (e) => {
             $(e.currentTarget).next().attr({
                 role: 'status',

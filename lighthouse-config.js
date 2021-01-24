@@ -39,7 +39,7 @@ module.exports = {
         },
     ],
     audits: [
-        'time-to-first-byte',
+        'server-response-time',
         'metrics/first-meaningful-paint',
         'metrics/interactive',
     ],

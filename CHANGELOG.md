@@ -8,6 +8,7 @@
 - Fixed focus for sort by dropdown on reloading page. [#1964](https://github.com/bigcommerce/cornerstone/pull/1964)
 - Fixed filtered selection not announced by screen reader. [#1966](https://github.com/bigcommerce/cornerstone/pull/1966)
 - Integrate accessibility scripts to product images slider on PDP. [#1965](https://github.com/bigcommerce/cornerstone/pull/1965)
+- Move focus on filter items Modal after show more button was clicked and accessibility refactoring. [#1977](https://github.com/bigcommerce/cornerstone/pull/1977)
 
 ## 5.1.0 (01-26-2021)
 - Updated Cornerstone theme and respected variants to meet the verticals/industries documented in BCTHEME-387

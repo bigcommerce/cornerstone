@@ -401,12 +401,27 @@ export default class ProductDetails extends ProductDetailsBase {
             const $cartQuantity = $('[data-cart-quantity]', modal.$content);
             const $cartCounter = $('.navUser-action .cart-count');
             const quantity = $cartQuantity.data('cartQuantity') || 0;
+            const $promotionBanner = $('[data-promotion-banner]');
+            const $backToShopppingBtn = $('.previewCartCheckout > [data-reveal-close]');
+            const $modalCloseBtn = $('#previewModal > .modal-close');
+            const bannerUpdateHandler = () => {
+                const $productContainer = $('#main-content > .container');
+
+                $productContainer.append('<div class="loadingOverlay pdp-update"></div>');
+                $('.loadingOverlay.pdp-update', $productContainer).show();
+                window.location.reload();
+            };
 
             $cartCounter.addClass('cart-count--positive');
             $body.trigger('cart-quantity-update', quantity);
 
             if (onComplete) {
                 onComplete(response);
+            }
+
+            if ($promotionBanner.length && $backToShopppingBtn.length) {
+                $backToShopppingBtn.on('click', bannerUpdateHandler);
+                $modalCloseBtn.on('click', bannerUpdateHandler);
             }
         });
     }

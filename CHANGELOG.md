@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- If multiple Pick List Options are applied, customers cannot select "none" on both. [#1975](https://github.com/bigcommerce/cornerstone/pull/1975)
 
 ## 5.1.0 (01-26-2021)
 - Updated Cornerstone theme and respected variants to meet the verticals/industries documented in BCTHEME-387

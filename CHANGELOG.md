@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Provided sufficient & informative text along with the color swatches [#1976](https://github.com/bigcommerce/cornerstone/pull/1976)
 
 ## 5.1.0 (01-26-2021)
 - Updated Cornerstone theme and respected variants to meet the verticals/industries documented in BCTHEME-387

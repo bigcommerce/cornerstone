@@ -220,6 +220,7 @@
                 <input type="hidden" name="action" value="add">
                 <input type="hidden" name="product_id" value="{{product.id}}"/>
                 <div data-product-option-change style="display:none;">
+                    {{inject 'showSwatchNames' theme_settings.show_product_swatch_names}}
                     {{#each product.options}}
                         {{{dynamicComponent 'components/products/options'}}}
                     {{/each}}

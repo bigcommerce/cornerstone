@@ -27,6 +27,7 @@
 - Cornerstone - Image Zoom Does Not Work on Internet Explorer. [#1923](https://github.com/bigcommerce/cornerstone/pull/1923)
 - Fixed input placeholder color contrast according to AA standard. [#1933](https://github.com/bigcommerce/cornerstone/pull/1933)
 - Bump stencil utils to 6.8.0. [#1945](https://github.com/bigcommerce/cornerstone/pull/1945)
+- Bump stencil utils to 6.8.1. and removed changes from #1910 [#1945](https://github.com/bigcommerce/cornerstone/pull/1945)
 
 ## 5.0.0 (12-14-2020)
 - Parse HTML entities in jsContext. [#1917](https://github.com/bigcommerce/cornerstone/pull/1917)

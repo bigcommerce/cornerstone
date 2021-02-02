@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Fixed focus for sort by dropdown on reloading page. [#1964](https://github.com/bigcommerce/cornerstone/pull/1964)
 - Fixed filtered selection not announced by screen reader. [#1966](https://github.com/bigcommerce/cornerstone/pull/1966)
 
 ## 5.1.0 (01-26-2021)

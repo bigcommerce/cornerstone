@@ -28,6 +28,8 @@ export default class Category extends CatalogPage {
     }
 
     onReady() {
+        this.arrangeFocusOnSortBy();
+
         $('[data-button-type="add-cart"]').on('click', (e) => this.setLiveRegionAttributes($(e.currentTarget).next(), 'status', 'polite'));
 
         this.makeShopByPriceFilterAccessible();

@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Fixed filtered selection not announced by screen reader. [#1966](https://github.com/bigcommerce/cornerstone/pull/1966)
 
 ## 5.1.0 (01-26-2021)
 - Updated Cornerstone theme and respected variants to meet the verticals/industries documented in BCTHEME-387

@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Moved phrase from compare.html to en.json for increasing localization. [#1972](https://github.com/bigcommerce/cornerstone/pull/1972)
 - Fixed focus for sort by dropdown on reloading page. [#1964](https://github.com/bigcommerce/cornerstone/pull/1964)
 - Fixed filtered selection not announced by screen reader. [#1966](https://github.com/bigcommerce/cornerstone/pull/1966)
 

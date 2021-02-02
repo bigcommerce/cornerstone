@@ -10,15 +10,29 @@ export default class Category extends CatalogPage {
         this.validationDictionary = createTranslationDictionary(context);
     }
 
+    setLiveRegionAttributes($element, roleType, ariaLiveStatus) {
+        $element.attr({
+            role: roleType,
+            'aria-live': ariaLiveStatus,
+        });
+    }
+
+    makeShopByPriceFilterAccessible() {
+        if (!$('[data-shop-by-price]').length) return;
+
+        if ($('.navList-action').hasClass('is-active')) {
+            $('a.navList-action.is-active').focus();
+        }
+
+        $('a.navList-action').on('click', () => this.setLiveRegionAttributes($('span.price-filter-message'), 'status', 'assertive'));
+    }
+
     onReady() {
         this.arrangeFocusOnSortBy();
 
-        $('[data-button-type="add-cart"]').on('click', (e) => {
-            $(e.currentTarget).next().attr({
-                role: 'status',
-                'aria-live': 'polite',
-            });
-        });
+        $('[data-button-type="add-cart"]').on('click', (e) => this.setLiveRegionAttributes($(e.currentTarget).next(), 'status', 'polite'));
+
+        this.makeShopByPriceFilterAccessible();
 
         compareProducts(this.context.urls);
 
@@ -29,12 +43,7 @@ export default class Category extends CatalogPage {
             hooks.on('sortBy-submitted', this.onSortBySubmit);
         }
 
-        $('a.reset-btn').on('click', () => {
-            $('span.reset-message').attr({
-                role: 'status',
-                'aria-live': 'polite',
-            });
-        });
+        $('a.reset-btn').on('click', () => this.setLiveRegionsAttributes($('span.reset-message'), 'status', 'polite'));
 
         this.ariaNotifyNoProducts();
     }

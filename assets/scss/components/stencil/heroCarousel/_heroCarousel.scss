@@ -229,8 +229,8 @@
     left: 15px;
     bottom: spacing("third");
     height: 32px;
-    min-width: 80px;
-    max-width: 90px;
+    min-width: 60px;
+    max-width: 60px;
     font-size: 14px;
     line-height: 1.25;
     font-weight: 700;
@@ -242,6 +242,11 @@
     z-index: zIndex("lowest");
     border: 1px solid $slick-play-pause-button-borderColor;
     @include carouselOpaqueBackgrounds($slick-play-pause-button-bgColor);
+
+    @media (min-width: 375px) {
+        min-width: 80px;
+        max-width: 90px;
+    }
 
     @include breakpoint("small") {
         max-width: 150px;

@@ -5,17 +5,17 @@
 //
 // -----------------------------------------------------------------------------
 
-ul.inlineList { // 1
-    overflow: visible; 
-    @include clearfix;
+ul.inlineList { 
+  @include clearfix; // 1
+  overflow: visible;
 }
 
 .inlineList--labels {
-    margin-bottom: 0;
-    margin-left: -1 * spacing("half");
+  margin-bottom: 0;
+  margin-left: -1 * spacing('half');
 
-    > li {
-        margin-bottom: spacing("half");
-        margin-left: spacing("half");
-    }
+  > li {
+    margin-bottom: spacing('half');
+    margin-left: spacing('half');
+  }
 }

@@ -18,74 +18,67 @@
 
 .slick-next,
 .slick-prev {
-    @include carouselOpaqueBackgrounds($slick-arrow-bgColor);
-    z-index: 1;
-    border: 1px solid $slick-arrow-borderColor;
-    height: remCalc(61px);
-    margin-top: -(remCalc(15px));
-    padding: remCalc(10px);
-    width: remCalc(40px);
+  @include carouselOpaqueBackgrounds($slick-arrow-bgColor);
+  border: 1px solid $slick-arrow-borderColor;
+  height: remCalc(61px);
+  margin-top: -(remCalc(15px));
+  padding: remCalc(10px);
+  width: remCalc(40px);
+  z-index: 1;
 
-    &::before {
-        background-position: 50%;
-        background-repeat: no-repeat;
-        background-size: 100%;
-        display: block;
-        height: remCalc(41px);
-        width: remCalc(20px);
-    }
+  &::before {
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    display: block;
+    height: remCalc(41px);
+    width: remCalc(20px);
+  }
 
-    &:hover,
-    &:focus {
-        @include carouselOpaqueBackgrounds($slick-arrow-bgColor); // 1
-        background-position: 50%;
-        background-repeat: no-repeat;
-        background-size: 100%;
-    }
+  &:hover,
+  &:focus {
+    @include carouselOpaqueBackgrounds($slick-arrow-bgColor); // 1
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: 100%;
+  }
 }
 
 .slick-next {
-    right: $slick-arrows-offset;
+  right: $slick-arrows-offset;
 
-    @include breakpoint("large") {
-        right: -(spacing("double") + spacing("quarter"));
-    }
+  @include breakpoint('large') {
+    right: -(spacing('double') + spacing('quarter'));
+  }
 
+  &::before {
+    @include carousel-arrow-color( $slick-arrow-color, 'next'); }
+
+  &:hover {
     &::before {
-        @include carousel-arrow-color( $slick-arrow-color, 'next')
-    }
-
-    &:hover {
-        // scss-lint:disable NestingDepth
-        &::before {
-            @include carousel-arrow-color( $slick-arrow-color-hover, 'next')
-        }
-    }
+      @include carousel-arrow-color( $slick-arrow-color-hover, 'next'); }
+  }
 }
 
 .slick-prev {
-    left: $slick-arrows-offset;
+  left: $slick-arrows-offset;
 
-    @include breakpoint("large") {
-        left: -(spacing("double") + spacing("quarter"));
-    }
+  @include breakpoint('large') {
+    left: -(spacing('double') + spacing('quarter'));
+  }
 
+  &::before {
+    @include carousel-arrow-color( $slick-arrow-color, 'prev'); }
+
+  &:hover {
     &::before {
-        @include carousel-arrow-color( $slick-arrow-color, 'prev')
-    }
-
-    &:hover {
-        // scss-lint:disable NestingDepth
-        &::before {
-            @include carousel-arrow-color( $slick-arrow-color-hover, 'prev')
-        }
-    }
+      @include carousel-arrow-color( $slick-arrow-color-hover, 'prev'); }
+  }
 }
 
-.slick-slide img
-{
-    display: block;
-    width: 100%;
+.slick-slide img {
+  display: block;
+  width: 100%;
 }
 
 
@@ -98,59 +91,56 @@
 // -----------------------------------------------------------------------------
 
 .slick-dots {  // 2
+  margin: 0;
+
+  li {
+    @include square(32px);
     margin: 0;
+    padding: remCalc(5px);
 
-    li {
-        @include square(32px);
-        margin: 0;
-        padding: remCalc(5px);
-
-        // scss-lint:disable SelectorDepth, NestingDepth
-        button,
-        button::before {
-            @include square(15px);
-            border-radius: 50%;
-        }
-
-        button {
-            // scss-lint:disable NestingDepth
-            border: 1px solid $slick-dot-color;
-            display: inline-block;
-            margin: 0;
-            padding: 0;
-            position: relative;
-            text-align: center;
-            vertical-align: middle;
-
-            &:hover {
-                &::before {
-                    background: $slick-dot-color;
-                }
-            }
-        }
-
-        button::before {
-            display: block;
-            left: -1px;
-            top: -1px;
-            transition: background 100ms ease-out;
-        }
-
-        &.slick-active {
-            // scss-lint:disable NestingDepth
-            button::before {
-                background: $slick-dot-color-active;
-            }
-        }
+    button,
+    button::before {
+      @include square(15px);
+      border-radius: 50%;
     }
+
+    button {
+      border: 1px solid $slick-dot-color;
+      display: inline-block;
+      margin: 0;
+      padding: 0;
+      position: relative;
+      text-align: center;
+      vertical-align: middle;
+
+      &:hover {
+        &::before {
+          background: $slick-dot-color;
+        }
+      }
+    }
+
+    button::before {
+      display: block;
+      left: -1px;
+      top: -1px;
+      transition: background 100ms ease-out;
+    }
+
+    &.slick-active {
+      button::before {
+        background: $slick-dot-color-active;
+      }
+    }
+  }
 
 }
 
 //
 // Stencil override for product detail page thumbnail dots.
 // -----------------------------------------------------------------------------
-.productView .slick-dots  {
-    position: relative;
+.productView .slick-dots {
+  position: relative;
 }
 
 
@@ -158,8 +148,8 @@
 // disabled carousel elements
 // -----------------------------------------------------------------------------
 .slick-disabled {
-    cursor: $cursor-default-value;
-    opacity: 0.1;
+  cursor: $cursor-default-value;
+  opacity: 0.1;
 }
 
 
@@ -167,17 +157,17 @@
 // Slick track
 // -----------------------------------------------------------------------------
 .slick-track {
-    backface-visibility: hidden; // 2
-    perspective: 1000px; // 2
+  backface-visibility: hidden; // 2
+  perspective: 1000px; // 2
 }
 
 //
 // iOS Safari fix https://github.com/kenwheeler/slick/issues/2834#issuecomment-389590661
 // -----------------------------------------------------------------------------
 div.slick-slider {
-    width: 1px;
-    min-width: 100%;
-    *width: 100%;
+  min-width: 100%;
+  width: 1px;
+  *width: 100%;
 }
 
 
@@ -186,61 +176,61 @@ div.slick-slider {
 // -----------------------------------------------------------------------------
 
 .carousel-tooltip {
-    height: 1px;
-    display: block;
-    position: relative;
-    margin-top: 10px;
-    @include addFocusTooltip($attr: aria-label);
-    
-    &:after {
-        padding: 15px 10px;
-        top: 10px;
+  @include addFocusTooltip($attr: aria-label);
+  display: block;
+  height: 1px;
+  margin-top: 10px;
+  position: relative;
+
+  &::after {
+    padding: 15px 10px;
+    top: 10px;
+  }
+
+  .slick-prev:focus &,
+  .slick-next:focus &,
+  .slick-dots button:focus & {
+    &::before,
+    &::after {
+      display: block;
+    }
+  }
+
+  .slick-prev &,
+  .slick-next & {
+    &::before {
+      top: -7px;
+    }
+  }
+
+  .slick-prev & {
+    &::before {
+      right: -2px;
     }
 
-    .slick-prev:focus &,
-    .slick-next:focus &,
-    .slick-dots button:focus & {
-        &:before,
-        &:after {
-            display: block;
-        }
+    &::after {
+      left: -5px;
+      right: auto;
+    }
+  }
+
+  .slick-next & {
+    &::after {
+      right: -5px;
+    }
+  }
+
+  .slick-dots button & {
+    margin-top: 25px;
+
+    &::before,
+    &::after {
+      right: 50%;
+      transform: translateX(50%);
     }
 
-    .slick-prev &,
-    .slick-next & {
-        &:before {
-            top: -7px;
-        }
+    &::before {
+      top: -7px;
     }
-
-    .slick-prev & {
-        &:before {
-            right: -2px;
-        }
-
-        &:after {
-            right: auto;
-            left: -5px;
-        }
-    }
-
-    .slick-next & {
-        &:after {
-            right: -5px;
-        }
-    }
-
-    .slick-dots button & {
-        margin-top: 25px;
-
-        &:before,
-        &:after {
-            right: 50%;
-            transform: translateX(50%);        
-        }
-
-        &:before {
-            top: -7px;
-        }
-    }
+  }
 }

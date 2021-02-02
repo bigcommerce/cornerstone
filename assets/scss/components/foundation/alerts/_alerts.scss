@@ -3,25 +3,23 @@
 // =============================================================================
 
 .alertBox {
-    border-radius: $alert-radius;
-    color: stencilColor("alert-color");
+  border-radius: $alert-radius;
+  color: stencilColor('alert-color');
 }
 
 .alertBox-icon {
-    .icon {
-        @include square(25px);
-    }
+  .icon {
+    @include square(25px);
+  }
 }
 
 .alertBox--info {
-    color: stencilColor("alert-color-alt");
-    background-color: stencilColor("banner--deafault-backgroundColor");
+  background-color: stencilColor('banner--deafault-backgroundColor');
+  color: stencilColor('alert-color-alt');
 
-    .alertBox-close {
-
-        // scss-lint:disable SelectorDepth, NestingDepth
-        svg {
-            fill: $color-infoLight;
-        }
+  .alertBox-close {
+    svg {
+      fill: $color-infoLight;
     }
+  }
 }

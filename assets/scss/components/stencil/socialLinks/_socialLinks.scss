@@ -7,73 +7,62 @@
 //
 // -----------------------------------------------------------------------------
 .socialLinks {
-    @include clearfix;
-    @include u-listReset; // 2
-    line-height: lineHeight("largest");
+  @include clearfix;
+  @include u-listReset; // 2
+  line-height: lineHeight('largest');
 
-    .icon { // 1
-        @include square($socialLinks-iconSize);
-        margin: 0;
-        text-decoration: none;
+  .icon { // 1
+    @include square($socialLinks-iconSize);
+    margin: 0;
+    text-decoration: none;
 
-        // scss-lint:disable NestingDepth, SelectorDepth
-        &:hover {
-
-            svg {
-                fill: stencilColor("icon-color-hover");
-            }
-        }
-
-        svg {
-            fill: stencilColor("icon-color");
-            transition: all 0.15s ease;
-        }
-        // scss-lint:enable NestingDepth, SelectorDepth
+    &:hover {
+      svg {
+        fill: stencilColor('icon-color-hover');
+      }
     }
+
+    svg {
+      fill: stencilColor('icon-color');
+      transition: all 0.15s ease;
+    }
+  }
 }
 
-// scss-lint:enable SelectorFormat
-
-// scss-lint:disable SelectorFormat
 .socialLinks-item--pinterest {
-    width: 25px;
+  width: 25px;
 }
-// scss-lint:enable SelectorFormat
 
-// scss-lint:disable SelectorFormat
 .pin_it_iframe_widget {
-    display: none;
+  display: none;
 }
-// scss-lint:enable SelectorFormat
 
 .socialLinks-item {
-    display: inline-block;
-    font-size: 0; // 1
+  display: inline-block;
+  font-size: 0; // 1
 
-    .socialLinks & { // 2
-        margin-bottom: spacing("quarter");
-        margin-right: spacing("half");
+  .socialLinks & { // 2
+    margin-bottom: spacing('quarter');
+    margin-right: spacing('half');
 
-        // scss-lint:disable NestingDepth
-        &:last-child {
-            margin-right: 0;
-        }
-        // scss-lint:enable NestingDepth,
+    &:last-child {
+      margin-right: 0;
     }
+  }
 
-    & .socialLinks__link {
-        position: relative;
-        height: 2rem;
+  .socialLinks__link {
 
-        @include addFocusTooltip;
+    @include addFocusTooltip;
+    height: 2rem;
+    position: relative;
 
-        // moving tooltip on the left side for avoiding by parent's cut with overflow: hidden
-        &:focus:after {
-            right: auto;
-            left: 0;
-            z-index: zIndex("low");
-        }
+    // moving tooltip on the left side for avoiding by parent's cut with overflow: hidden
+    &:focus::after {
+      left: 0;
+      right: auto;
+      z-index: zIndex('low');
     }
+  }
 }
 
 
@@ -82,11 +71,11 @@
 // -----------------------------------------------------------------------------
 
 .socialLinks--alt {
-    .icon {
-        @include square($socialLinks-alt-iconSize);
-    }
+  .icon {
+    @include square($socialLinks-alt-iconSize);
+  }
 
-    svg {
-        fill: $socialLinks-alt-iconColor;
-    }
+  svg {
+    fill: $socialLinks-alt-iconColor;
+  }
 }

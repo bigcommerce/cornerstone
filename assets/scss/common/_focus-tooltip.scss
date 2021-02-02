@@ -1,37 +1,37 @@
 @mixin addFocusTooltip ($attr: title) {
-        &:before {
-            content: " ";
-            position: absolute;
-            right: 0;
-            top: 50%;
-            border-width: remCalc(10px);
-            border-style: solid;
-            border-color: transparent transparent $adminBar-tooltip-bg-backgroundColor transparent;
-        }
+  &::before {
+    border-color: transparent transparent $adminBar-tooltip-bg-backgroundColor transparent;
+    border-style: solid;
+    border-width: remCalc(10px);
+    content: ' ';
+    position: absolute;
+    right: 0;
+    top: 50%;
+  }
 
-        &:after {
-            content: attr($attr);
-            padding: remCalc(4px) remCalc(6px);
-            background-color: $adminBar-tooltip-bg-backgroundColor;
-            color: white;
-            position: absolute;
-            font-size: 1rem;
-            white-space: nowrap;
-            right: 0;
-            top: 100%;
-            cursor: default;
-            border-radius: remCalc(8px);
-        }
+  &::after {
+    background-color: $adminBar-tooltip-bg-backgroundColor;
+    border-radius: remCalc(8px);
+    color: #fff;
+    content: attr($attr);
+    cursor: default;
+    font-size: 1rem;
+    padding: remCalc(4px) remCalc(6px);
+    position: absolute;
+    right: 0;
+    top: 100%;
+    white-space: nowrap;
+  }
 
-        &:before,
-        &:after {
-            display: none;
-        }
+  &::before,
+  &::after {
+    display: none;
+  }
 
-        &:focus {
-            &:before,
-            &:after {
-                display: block;
-            }
-        }
+  &:focus {
+    &::before,
+    &::after {
+      display: block;
+    }
+  }
 }

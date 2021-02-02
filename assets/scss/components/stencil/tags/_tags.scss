@@ -7,24 +7,24 @@
 // -----------------------------------------------------------------------------
 
 .tags {
-    @include u-listBullets("none");
-    font-size: 0; // 1
-    text-align: center;
+  @include u-listBullets('none');
+  font-size: 0; // 1
+  text-align: center;
 }
 
 .tag {
+  display: inline-block;
+  font-size: $tag-fontSize;
+
+  a {
+    color: $tag-color;
     display: inline-block;
-    font-size: $tag-fontSize;
+    padding: $tag-padding;
+    text-decoration: $tag-textDecoration;
 
-    a {
-        color: $tag-color;
-        display: inline-block;
-        padding: $tag-padding;
-        text-decoration: $tag-textDecoration;
-
-        // scss-lint:disable NestingDepth
-        &:hover {
-            color: $tag-color-hover;
-        }
+    // scss-lint:disable NestingDepth
+    &:hover {
+      color: $tag-color-hover;
     }
+  }
 }

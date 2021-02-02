@@ -5,74 +5,72 @@
 // BURST BADGE
 // -----------------------------------------------------------------------------
 .sale-flag-star,
-.sale-flag-star:before,
-.sale-flag-star:after {
-    background: stencilColor("color_badge_product_sale_badges");
-    content: "";
-    display: block;
-    height: rem-calc(50px);
-    left: 0;
-    overflow: visible;
-    position: absolute;
-    top: 0;
-    transform: scaleX(1) scaleY(1) scaleZ(1);
-    transform-origin: 50% 50% 0;
-    transition: background-color 800ms ease;
-    width: rem-calc(50px);
-    z-index: zIndex("lower");
+.sale-flag-star::before,
+.sale-flag-star::after {
+  background: stencilColor('color_badge_product_sale_badges');
+  content: '';
+  display: block;
+  height: rem-calc(50px);
+  left: 0;
+  overflow: visible;
+  position: absolute;
+  top: 0;
+  transform: scaleX(1) scaleY(1) scaleZ(1);
+  transform-origin: 50% 50% 0;
+  transition: background-color 800ms ease;
+  width: rem-calc(50px);
+  z-index: zIndex('lower');
 }
 
-.sale-flag-star:before {
-    transform: rotateZ(30deg) scaleX(1) scaleY(1) scaleZ(1);
+.sale-flag-star::before {
+  transform: rotateZ(30deg) scaleX(1) scaleY(1) scaleZ(1);
 }
 
-.sale-flag-star:after {
-    transform: rotateZ(60deg) scaleX(1) scaleY(1) scaleZ(1);
+.sale-flag-star::after {
+  transform: rotateZ(60deg) scaleX(1) scaleY(1) scaleZ(1);
 }
 
 .starwrap {
-    height: rem-calc(50px);
-    position: absolute;
-    top: 12px;
-    left: 12px;
-    width: rem-calc(50px);
+  height: rem-calc(50px);
+  left: 12px;
+  position: absolute;
+  top: 12px;
+  width: rem-calc(50px);
 }
 
 .listItem-figure {
+  .starwrap {
+    transform: scale(0.7);
 
-    .starwrap {
-        transform: scale(0.7);
-
-        @include breakpoint("small") {
-            top: 0;
-            transform: scale(0.6);
-        }
-
-        @include breakpoint("large") {
-            top: 10px;
-            transform: scale(0.7);
-        }
+    @include breakpoint('small') {
+      top: 0;
+      transform: scale(0.6);
     }
+
+    @include breakpoint('large') {
+      top: 10px;
+      transform: scale(0.7);
+    }
+  }
 }
 
 .sale-text-burst {
-    color: stencilColor("color_text_product_sale_badges");
-    font-weight: 600;
-    line-height: rem-calc(15px);
-    position: absolute;
-    text-align: center;
-    top: 20%;
-    width: rem-calc(50px);
-    z-index: zIndex("high");
+  color: stencilColor('color_text_product_sale_badges');
+  font-weight: 600;
+  line-height: rem-calc(15px);
+  position: absolute;
+  text-align: center;
+  top: 20%;
+  width: rem-calc(50px);
+  z-index: zIndex('high');
 }
 
 .product:hover .starwrap {
-    
-    .sale-flag-star,
-    .sale-flag-star:before,
-    .sale-flag-star:after {
-        background: stencilColor("color_hover_product_sale_badges");
-    }    
+  .sale-flag-star,
+  .sale-flag-star::before,
+  .sale-flag-star::after {
+    background: stencilColor('color_hover_product_sale_badges');
+  }    
 }
 
 // -----------------------------------------------------------------------------
@@ -80,23 +78,23 @@
 // -----------------------------------------------------------------------------
 
 .sale-flag-side {
-    background: stencilColor("color_badge_product_sale_badges");
-    border-radius: 0 50px 50px 0;
-    color: stencilColor("color_text_product_sale_badges");
-    font-size: 15px;
-    font-weight: 700;
-    height: rem-calc(20px);
-    line-height: rem-calc(16px);
-    padding-left: spacing("third");
-    padding-right: spacing("half");
-    padding-top: spacing("eighth") / 2;
-    position: absolute;
-    transition: background-color 800ms ease;
-    z-index: zIndex("lower");
+  background: stencilColor('color_badge_product_sale_badges');
+  border-radius: 0 50px 50px 0;
+  color: stencilColor('color_text_product_sale_badges');
+  font-size: 15px;
+  font-weight: 700;
+  height: rem-calc(20px);
+  line-height: rem-calc(16px);
+  padding-left: spacing('third');
+  padding-right: spacing('half');
+  padding-top: spacing('eighth') / 2;
+  position: absolute;
+  transition: background-color 800ms ease;
+  z-index: zIndex('lower');
 }
 
 .product:hover .sale-flag-side {
-    background: stencilColor("color_hover_product_sale_badges");
+  background: stencilColor('color_hover_product_sale_badges');
 }
 
 // -----------------------------------------------------------------------------
@@ -104,45 +102,44 @@
 // -----------------------------------------------------------------------------
 
 .sale-flag-sash {
-    background: stencilColor("color_badge_product_sale_badges");
-    color: stencilColor("color_text_product_sale_badges");
-    font-size: 15px;
-    font-weight: 700;
-    height: rem-calc(20px);
-    left: -25px;
-    line-height: rem-calc(16px);
-    padding-top: spacing("eighth") / 2;
-    position: absolute;
-    text-align: center;
-    top: 25px;
-    transform: rotate(-45deg);
-    transition: background-color 800ms ease;
-    width: rem-calc(119px);
-    z-index: zIndex("lower");
+  background: stencilColor('color_badge_product_sale_badges');
+  color: stencilColor('color_text_product_sale_badges');
+  font-size: 15px;
+  font-weight: 700;
+  height: rem-calc(20px);
+  left: -25px;
+  line-height: rem-calc(16px);
+  padding-top: spacing('eighth') / 2;
+  position: absolute;
+  text-align: center;
+  top: 25px;
+  transform: rotate(-45deg);
+  transition: background-color 800ms ease;
+  width: rem-calc(119px);
+  z-index: zIndex('lower');
 }
 
 .listItem-figure {
-    
-    .sale-flag-sash {
-        top: 24px;
+  .sale-flag-sash {
+    top: 24px;
 
-        @include breakpoint("small") {
-            top: 19px;
-            left: -20px;
-        }
-
-        @include breakpoint("large") {
-            left: -15px;
-            top: 24px;
-        }
-
+    @include breakpoint('small') {
+      left: -20px;
+      top: 19px;
     }
+
+    @include breakpoint('large') {
+      left: -15px;
+      top: 24px;
+    }
+
+  }
 }
 
 .product:hover .sale-flag-sash {
-    background: stencilColor("color_hover_product_sale_badges");
+  background: stencilColor('color_hover_product_sale_badges');
 }
 
 .product {
-    overflow: hidden;
+  overflow: hidden;
 }

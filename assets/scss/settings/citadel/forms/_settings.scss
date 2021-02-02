@@ -17,7 +17,7 @@
 //
 // -----------------------------------------------------------------------------
 
-$exportCSS--bcForms:                        true; // 1
+$exportCSS--bcForms: true; // 1
 
 
 // =============================================================================
@@ -31,50 +31,50 @@ $exportCSS--bcForms:                        true; // 1
 // $formBody-maxWidth:                         none;
 // $formBody-padding:                          container("padding");
 
-$formRow-modernBrowsers:                    false;
+$formRow-modernBrowsers: false;
 // $formRow-flex-gutter:                       $column-gutter;
-$formColumn-gutter:                         $formRow-flex-gutter;
+$formColumn-gutter: $formRow-flex-gutter;
 
 
 // =============================================================================
 // CHECKS AND RADIOS
 // =============================================================================
 
-$checkRadio-borderStyle:                    solid;
-$checkRadio-borderWidth:                    1px;
-$checkRadio-borderColor:                    stencilColor("checkRadio-borderColor");
+$checkRadio-borderStyle: solid;
+$checkRadio-borderWidth: 1px;
+$checkRadio-borderColor: stencilColor('checkRadio-borderColor');
 // sizing
-$checkRadio-baseDimension:                  16px;
-$checkRadio-pip-scale:                      $checkRadio-borderWidth * 2;
-$checkRadio-outerSize:                      remCalc($checkRadio-baseDimension);
-$checkRadio-pip-size:                       remCalc($checkRadio-baseDimension - $checkRadio-pip-scale);
-$checkRadio-pip-zoomStart:                  scale(0);
-$checkRadio-pip-zoomEnd:                    scale(1);
+$checkRadio-baseDimension: 16px;
+$checkRadio-pip-scale: $checkRadio-borderWidth * 2;
+$checkRadio-outerSize: remCalc($checkRadio-baseDimension);
+$checkRadio-pip-size: remCalc($checkRadio-baseDimension - $checkRadio-pip-scale);
+$checkRadio-pip-zoomStart: scale(0);
+$checkRadio-pip-zoomEnd: scale(1);
 // label
-$checkRadio-label-fontSize:                 fontSize("base");
-$checkRadio-label-fontWeight:               fontWeight("normal");
-$checkRadio-label-lineHeight:               null;
-$checkRadio-label-spacing:                  spacing("single") + spacing("quarter");
-$checkRadio-label-marginBottom:             spacing("quarter");
+$checkRadio-label-fontSize: fontSize('base');
+$checkRadio-label-fontWeight: fontWeight('normal');
+$checkRadio-label-lineHeight: null;
+$checkRadio-label-spacing: spacing('single') + spacing('quarter');
+$checkRadio-label-marginBottom: spacing('quarter');
 // visual
-$checkRadio-bg:                             stencilColor("checkRadio-backgroundColor");
-$checkRadio-boxShadow:                      null;
-$checkRadio-focus-borderColor:              null;
-$checkRadio-focus-boxShadow:                null;
-$checkRadio-disabled-bg:                    $input-disabled-bg;
-$checkRadio-disabled-opacity:               null;
+$checkRadio-bg: stencilColor('checkRadio-backgroundColor');
+$checkRadio-boxShadow: null;
+$checkRadio-focus-borderColor: null;
+$checkRadio-focus-boxShadow: null;
+$checkRadio-disabled-bg: $input-disabled-bg;
+$checkRadio-disabled-opacity: null;
 
-$check-radius:                              $global-radius;
-$check-pip-color:                           rgba(stencilColor("checkRadio-color"), 0.999);
-$check-pip-backgroundImage:                 url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z' fill='#{$check-pip-color}' /%3E%3C/svg%3E");
-$check-pip-content:                         "";
-$check-pip-size:                            $checkRadio-pip-size;
+$check-radius: $global-radius;
+$check-pip-color: rgba(stencilColor('checkRadio-color'), 0.999);
+$check-pip-backgroundImage: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z' fill='#{$check-pip-color}' /%3E%3C/svg%3E");
+$check-pip-content: '';
+$check-pip-size: $checkRadio-pip-size;
 
-$radio-radius:                              50%;
-$radio-pip-color:                           $check-pip-color;
-$radio-pipInset:                            3px;
-$radio-pipInset-color:                      $checkRadio-bg;
-$radio-pip-size:                            $checkRadio-pip-size;
+$radio-radius: 50%;
+$radio-pip-color: $check-pip-color;
+$radio-pipInset: 3px;
+$radio-pipInset-color: $checkRadio-bg;
+$radio-pip-size: $checkRadio-pip-size;
 
 
 // =============================================================================
@@ -180,8 +180,8 @@ $radio-pip-size:                            $checkRadio-pip-size;
 
 // $form-actions-background:                   none;
 // $form-actions-border:                       0;
-$form-actions-margin:                       null;
-$form-actions-padding:                      null;
+$form-actions-margin: null;
+$form-actions-padding: null;
 // $form-actions-textAlign:                    left;
 
 // $form-actions--fixed-background:            container("fill");
@@ -203,33 +203,33 @@ $form-actions-padding:                      null;
 // $form-inputIndicator-size:                  22px;
 // $form-inputIndicator-top:                   remCalc(10px);
 
-$form-inlineMessage-fontWeight:             null;
-$form-inlineMessage-margin:                 spacing("quarter") 0 (-(spacing("third")));
+$form-inlineMessage-fontWeight: null;
+$form-inlineMessage-margin: spacing('quarter') 0 (-(spacing('third')));
 
 
 // Stencil Variables
 // -----------------------------------------------------------------------------
 
-$form-success-icon:                         url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z' fill='#{rgba(color("success"), 0.999)}' /%3E%3C/svg%3E");
-$form-success-icon-height:                  remCalc(24px);
-$form-success-icon-top:                     remCalc(37px);
-$form-success-icon-right:                   spacing("third") + spacing("eighth");
-$form-success-icon-width:                   remCalc(24px);
-$form-success-input-paddingRight:           spacing("double");
+$form-success-icon: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z' fill='#{rgba(color("success"), 0.999)}' /%3E%3C/svg%3E");
+$form-success-icon-height: remCalc(24px);
+$form-success-icon-top: remCalc(37px);
+$form-success-icon-right: spacing('third') + spacing('eighth');
+$form-success-icon-width: remCalc(24px);
+$form-success-input-paddingRight: spacing('double');
 
-$form-error-icon:                           url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z' fill='#{rgba(color("error"), 0.999)}' /%3E%3C/svg%3E");
-$form-error-icon-height:                    remCalc(14px);
-$form-error-icon-left:                      remCalc(-2px);
-$form-error-icon-marginRight:               remCalc(1px);
-$form-error-icon-top:                       remCalc(3px);
-$form-error-icon-width:                     remCalc(14px);
+$form-error-icon: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z' fill='#{rgba(color("error"), 0.999)}' /%3E%3C/svg%3E");
+$form-error-icon-height: remCalc(14px);
+$form-error-icon-left: remCalc(-2px);
+$form-error-icon-marginRight: remCalc(1px);
+$form-error-icon-top: remCalc(3px);
+$form-error-icon-width: remCalc(14px);
 
-$form-inlineMessage-backgroundSize:         100%;
+$form-inlineMessage-backgroundSize: 100%;
 
-$form-checkRadio-label-last-marginBottom:   -(spacing("fifth"));
-$form-checkRadio-labelBefore-top:           remCalc(3px);
-$form-checkRadio-labelAfter-top:            remCalc(4px);
+$form-checkRadio-label-last-marginBottom: -(spacing('fifth'));
+$form-checkRadio-labelBefore-top: remCalc(3px);
+$form-checkRadio-labelAfter-top: remCalc(4px);
 
-$form-minMaxRow-column-gutter:              $column-gutter / 4;
+$form-minMaxRow-column-gutter: $column-gutter / 4;
 
-$formInput-placeholder-color:                  stencilColor("input-font-color");
+$formInput-placeholder-color: stencilColor('input-font-color');

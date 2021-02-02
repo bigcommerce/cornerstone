@@ -1,4 +1,4 @@
-# This workflow will do a clean install of your theme's dependencies and attempt to bundle the theme with Stencil CLI. 
+# This workflow will do a clean install of your theme's dependencies and attempt to bundle the theme with Stencil CLI.
 # If the theme fails to bundle, you can review the error logs to find out why.
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
@@ -23,20 +23,6 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Ruby Gem cache
-      uses: actions/cache@v2.1.3
-      with:
-        path: vendor/bundle
-        key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-gems-
-
-    - name: Setup Ruby 2.7
-      uses: ruby/setup-ruby@v1.51.1
-      with:
-        ruby-version: 2.7
-    - run: bundle install
-
     - name: Use Node.js ${{ matrix.node }}
       uses: actions/setup-node@v2-beta
       with:
@@ -56,8 +42,8 @@ jobs:
     - name: Install Theme Dependencies
       run: npm ci
 
-    - name: Grunt Check  
-      run: npx grunt check
+    - name: Grunt Check JS
+      run: npx grunt check:js
 
     - name: Validate theme successfully bundles
       run: npx stencil bundle --name bundle
@@ -67,7 +53,7 @@ jobs:
       with:
         name: Bundled Theme
         path: bundle.zip
-        
+
     - name: Upload bundle analysis
       uses: actions/upload-artifact@v2
       with:

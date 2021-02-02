@@ -3,18 +3,18 @@
 // =============================================================================
 
 .nanobar {
-    display: none;
-    width: 100%;
-    height: remCalc(5px);
-    z-index: 9999;
-    top: 0;
-    pointer-events: none;
-    user-select: none;
+  display: none;
+  height: remCalc(5px);
+  pointer-events: none;
+  top: 0;
+  user-select: none;
+  width: 100%;
+  z-index: 9999;
 
-    .bar {
-        width: 0;
-        height: 100%;
-        transition: height .1s;
-        background-color: stencilColor("pace-progress-backgroundColor");
-    }
+  .bar {
+    background-color: stencilColor('pace-progress-backgroundColor');
+    height: 100%;
+    transition: height 0.1s;
+    width: 0;
+  }
 }

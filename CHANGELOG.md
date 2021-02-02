@@ -4,6 +4,7 @@
 - Moved phrase from compare.html to en.json for increasing localization. [#1972](https://github.com/bigcommerce/cornerstone/pull/1972)
 - Fixed focus for sort by dropdown on reloading page. [#1964](https://github.com/bigcommerce/cornerstone/pull/1964)
 - Fixed filtered selection not announced by screen reader. [#1966](https://github.com/bigcommerce/cornerstone/pull/1966)
+- Integrate accessibility scripts to product images slider on PDP. [#1965](https://github.com/bigcommerce/cornerstone/pull/1965)
 
 ## 5.1.0 (01-26-2021)
 - Updated Cornerstone theme and respected variants to meet the verticals/industries documented in BCTHEME-387

@@ -106,7 +106,7 @@
 ## 4.11.0 (10-07-2020)
 - Add Info and Add Coupon forms on Cart Page tabbable when hidden. [#1820](https://github.com/bigcommerce/cornerstone/pull/1820)
 - Fixed outline styles for breadcrumbs on focus state. [#1824](https://github.com/bigcommerce/cornerstone/pull/1824)
-- Fixed review rating icons focus border. [#1818](https://github.com/bigcommerce/cornerstone/pull/1818)
+- Fixed review rating icons focus border. [#1819](https://github.com/bigcommerce/cornerstone/pull/1819)
 - Fixed announcement of SortBy Select to listbox from button via screen reader. [#1837](https://github.com/bigcommerce/cornerstone/pull/1837)
 - Fixed missing top outline on chosen filter's focused. [#1829](https://github.com/bigcommerce/cornerstone/pull/1829)
 - Added immediate keyboard focus on write-a-review modal. [#1835](https://github.com/bigcommerce/cornerstone/pull/1835)

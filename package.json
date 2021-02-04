@@ -67,7 +67,7 @@
   },
   "scripts": {
     "start": "stencil start",
-    "deploy": "stencil release && stencil push",
+    "deploy": "stencil push",
     "build": "npx webpack --config webpack.prod.js",
     "buildDev": "npx webpack --config webpack.dev.js",
     "lighthouse": "npx lighthouse --config-path=lighthouse-config.js --quiet --output json --chrome-flags=\"--headless\" $URL | jq '.audits | map_values(.rawValue)'",

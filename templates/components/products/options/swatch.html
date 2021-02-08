@@ -5,6 +5,10 @@
 
         {{> components/common/requireness-msg}}
     </label>
+    <span 
+        class="swatch-option-message aria-description--hidden u-hidden">
+        {{ lang 'products.swatch_option_announcement' swatch_name=this.display_name}}
+    </span>
 
     {{#unless required}}
         <input

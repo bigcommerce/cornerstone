@@ -42,9 +42,13 @@
         <ul class="productView-thumbnails"{{#gt product.images.length 5}} data-slick='{
                 "infinite": false,
                 "mobileFirst": true,
+                "dots": false,
+                "accessibility": false,
                 "slidesToShow": 5,
-                "slidesToScroll": 1
-            }'{{/gt}}>
+                "slidesToScroll": 5
+            }'
+            data-arrow-label="{{lang 'carousel.arrowAriaLabel'}} {{product.images.length}}"
+            {{/gt}}>
             {{#each product.images}}
                 <li class="productView-thumbnail">
                     <a

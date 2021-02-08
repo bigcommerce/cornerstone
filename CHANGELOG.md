@@ -1,7 +1,15 @@
 # Changelog
 
+- Fixed required checkbox message displaying. [1963](https://github.com/bigcommerce/cornerstone/pull/1963)
+
 ## Draft
 - Provided sufficient & informative text along with the color swatches [#1976](https://github.com/bigcommerce/cornerstone/pull/1976)
+- If multiple Pick List Options are applied, customers cannot select "none" on both. [#1975](https://github.com/bigcommerce/cornerstone/pull/1975)
+- Moved phrase from compare.html to en.json for increasing localization. [#1972](https://github.com/bigcommerce/cornerstone/pull/1972)
+- Fixed focus for sort by dropdown on reloading page. [#1964](https://github.com/bigcommerce/cornerstone/pull/1964)
+- Fixed filtered selection not announced by screen reader. [#1966](https://github.com/bigcommerce/cornerstone/pull/1966)
+- Integrate accessibility scripts to product images slider on PDP. [#1965](https://github.com/bigcommerce/cornerstone/pull/1965)
+- Move focus on filter items Modal after show more button was clicked and accessibility refactoring. [#1977](https://github.com/bigcommerce/cornerstone/pull/1977)
 
 ## 5.1.0 (01-26-2021)
 - Updated Cornerstone theme and respected variants to meet the verticals/industries documented in BCTHEME-387
@@ -28,6 +36,7 @@
 - Cornerstone - Image Zoom Does Not Work on Internet Explorer. [#1923](https://github.com/bigcommerce/cornerstone/pull/1923)
 - Fixed input placeholder color contrast according to AA standard. [#1933](https://github.com/bigcommerce/cornerstone/pull/1933)
 - Bump stencil utils to 6.8.0. [#1945](https://github.com/bigcommerce/cornerstone/pull/1945)
+- Bump stencil utils to 6.8.1. and removed changes from #1910 [#1945](https://github.com/bigcommerce/cornerstone/pull/1945)
 
 ## 5.0.0 (12-14-2020)
 - Parse HTML entities in jsContext. [#1917](https://github.com/bigcommerce/cornerstone/pull/1917)
@@ -99,7 +108,7 @@
 ## 4.11.0 (10-07-2020)
 - Add Info and Add Coupon forms on Cart Page tabbable when hidden. [#1820](https://github.com/bigcommerce/cornerstone/pull/1820)
 - Fixed outline styles for breadcrumbs on focus state. [#1824](https://github.com/bigcommerce/cornerstone/pull/1824)
-- Fixed review rating icons focus border. [#1818](https://github.com/bigcommerce/cornerstone/pull/1818)
+- Fixed review rating icons focus border. [#1819](https://github.com/bigcommerce/cornerstone/pull/1819)
 - Fixed announcement of SortBy Select to listbox from button via screen reader. [#1837](https://github.com/bigcommerce/cornerstone/pull/1837)
 - Fixed missing top outline on chosen filter's focused. [#1829](https://github.com/bigcommerce/cornerstone/pull/1829)
 - Added immediate keyboard focus on write-a-review modal. [#1835](https://github.com/bigcommerce/cornerstone/pull/1835)

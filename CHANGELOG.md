@@ -1,8 +1,8 @@
 # Changelog
 
-- Fixed required checkbox message displaying. [1963](https://github.com/bigcommerce/cornerstone/pull/1963)
-
 ## Draft
+- Make every product option group id unique. [#1979](https://github.com/bigcommerce/cornerstone/pull/1979)
+- Fixed required checkbox message displaying. [1963](https://github.com/bigcommerce/cornerstone/pull/1963)
 - If multiple Pick List Options are applied, customers cannot select "none" on both. [#1975](https://github.com/bigcommerce/cornerstone/pull/1975)
 - Moved phrase from compare.html to en.json for increasing localization. [#1972](https://github.com/bigcommerce/cornerstone/pull/1972)
 - Fixed focus for sort by dropdown on reloading page. [#1964](https://github.com/bigcommerce/cornerstone/pull/1964)

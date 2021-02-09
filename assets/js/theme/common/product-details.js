@@ -7,6 +7,7 @@ import modalFactory, { showAlertModal, modalTypes } from '../global/modal';
 import { isEmpty, isPlainObject } from 'lodash';
 import { normalizeFormData } from './utils/api';
 import { isBrowserIE, convertIntoArray } from './utils/ie-helpers';
+import bannerUtils from './utils/banner-utils';
 
 export default class ProductDetails extends ProductDetailsBase {
     constructor($scope, context, productAttributesData = {}) {
@@ -16,11 +17,23 @@ export default class ProductDetails extends ProductDetailsBase {
         this.imageGallery = new ImageGallery($('[data-image-gallery]', this.$scope));
         this.imageGallery.init();
         this.listenQuantityChange();
+        this.$swatchOptionMessage = $('.swatch-option-message');
+        this.swatchOptionMessageInitText = this.$swatchOptionMessage.text();
 
         const $form = $('form[data-cart-item-add]', $scope);
         const $productOptionsElement = $('[data-product-option-change]', $form);
         const hasOptions = $productOptionsElement.html().trim().length;
         const hasDefaultOptions = $productOptionsElement.find('[data-default]').length;
+        const $productSwatchGroup = $('[id*="attribute_swatch"]', $form);
+
+        if (context.showSwatchNames) {
+            this.$swatchOptionMessage.removeClass('u-hidden');
+            $productSwatchGroup.on('change', ({ target }) => this.showSwatchNameOnOption($(target)));
+
+            $.each($productSwatchGroup, (_, element) => {
+                if ($(element).is(':checked')) this.showSwatchNameOnOption($(element));
+            });
+        }
 
         $productOptionsElement.on('change', event => {
             this.productOptionsChanged(event);
@@ -40,6 +53,7 @@ export default class ProductDetails extends ProductDetailsBase {
             utils.api.productAttributes.optionChange($productId, $form.serialize(), 'products/bulk-discount-rates', optionChangeCallback);
         } else {
             this.updateProductAttributes(productAttributesData);
+            bannerUtils.dispatchProductBannerEvent(productAttributesData);
         }
 
         $productOptionsElement.show();
@@ -181,6 +195,26 @@ export default class ProductDetails extends ProductDetailsBase {
             const productAttributesContent = response.content || {};
             this.updateProductAttributes(productAttributesData);
             this.updateView(productAttributesData, productAttributesContent);
+            bannerUtils.dispatchProductBannerEvent(productAttributesData);
+        });
+    }
+
+    /**
+     * if this setting is enabled in Page Builder
+     * show name for swatch option
+     */
+    showSwatchNameOnOption($swatch) {
+        const swatchName = $swatch.attr('aria-label');
+
+        $('[data-product-attribute="swatch"] [data-option-value]').text(swatchName);
+        this.$swatchOptionMessage.text(`${this.swatchOptionMessageInitText} ${swatchName}`);
+        this.setLiveRegionAttributes(this.$swatchOptionMessage, 'status', 'assertive');
+    }
+
+    setLiveRegionAttributes($element, roleType, ariaLiveStatus) {
+        $element.attr({
+            role: roleType,
+            'aria-live': ariaLiveStatus,
         });
     }
 
@@ -334,6 +368,8 @@ export default class ProductDetails extends ProductDetailsBase {
                 this.redirectTo(response.data.cart_item.cart_url || this.context.urls.cart);
             }
         });
+
+        this.setLiveRegionAttributes($addToCartBtn.next(), 'status', 'polite');
     }
 
     /**

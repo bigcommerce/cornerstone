@@ -18,7 +18,6 @@
     min-width: 100%;
     margin-bottom: (spacing("double") + spacing("single"));
     margin-top: -(spacing("single")); // 3
-    overflow: hidden;
     opacity: 0;
 
     &.is-visible {
@@ -30,8 +29,6 @@
     }
 
     &.slick-initialized {
-        max-height: 100vh;
-        
         @include breakpoint("small") {
             max-height: remCalc(400px);            
         }
@@ -71,7 +68,6 @@
             left: 25px;
         }
     }
-
     .slick-dots {
         bottom: spacing("third");
 
@@ -126,11 +122,11 @@
     }
 
     .heroCarousel-image-wrapper {
-        height: remCalc(250px);
         display: flex;
         justify-content: center;
         align-items: flex-start;
         height: 56.25vw;
+        max-height: 100vh;
 
         @include breakpoint("small") {
             max-height: remCalc(400px);
@@ -142,24 +138,30 @@
     }
 
     &.is-square-image-type {
-        
         .heroCarousel-image-wrapper {
             height: 100vw;
-        
-            @include breakpoint("small") {
-                height: 56.25vw;
-            }    
         }
     }
 
     &.is-vertical-image-type {
-        
         .heroCarousel-image-wrapper {
             height: 110vw;
-        
+        }
+    }
+
+    &.is-square-image-type,
+    &.is-vertical-image-type {
+        .heroCarousel-image-wrapper {
+            max-height: 100vh;
+
             @include breakpoint("small") {
                 height: 56.25vw;
-            }    
+                max-height: remCalc(400px);
+            }
+
+            @include breakpoint("medium") {
+                max-height: remCalc(600px);
+            }
         }
     }
 }
@@ -182,6 +184,8 @@
         right: 0;
         top: 50%;
         transform: translateY(-50%);
+        max-height: 80%;
+        overflow: auto;
 
         &.heroCarousel-content--empty {
             background-color: transparent;
@@ -217,5 +221,44 @@
 
     @include breakpoint("medium") {
         margin-top: spacing("single");
+    }
+}
+
+.heroCarousel-play-pause-button {
+    position: absolute;
+    left: 15px;
+    bottom: spacing("third");
+    height: 32px;
+    min-width: 60px;
+    max-width: 60px;
+    font-size: 14px;
+    line-height: 1.25;
+    font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: $slick-play-pause-button-color;
+    transition: color 100ms ease-out;
+    z-index: zIndex("lowest");
+    border: 1px solid $slick-play-pause-button-borderColor;
+    @include carouselOpaqueBackgrounds($slick-play-pause-button-bgColor);
+
+    @media (min-width: 375px) {
+        min-width: 80px;
+        max-width: 90px;
+    }
+
+    @include breakpoint("small") {
+        max-width: 150px;
+        font-size: 18px;
+    }
+
+    @include breakpoint("medium") {
+        left: 25px;
+        bottom: spacing("single");
+    }
+
+    &:hover {
+        color: $slick-play-pause-button-color-hover;
     }
 }

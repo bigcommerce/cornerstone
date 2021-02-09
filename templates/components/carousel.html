@@ -16,10 +16,14 @@
         "activeDotAriaLabel": "{{lang 'carousel.activeDotAriaLabel'}}"
     }'>
     {{#and arrows (if carousel.slides.length '>' 1)}}
-    <button aria-label="{{lang 'carousel.arrowAriaLabel'}} {{carousel.slides.length}}" class="js-hero-prev-arrow slick-prev slick-arrow">hero-prev-arrow</button>
+    <button aria-label="{{lang 'carousel.arrowAriaLabel'}} {{carousel.slides.length}}" class="js-hero-prev-arrow slick-prev slick-arrow"></button>
     {{/and}}
     {{#each carousel.slides}}
+    {{#if button_text}}
+    <div class="js-hero-slide">
+    {{else}}
     <a href="{{url}}" class="js-hero-slide" aria-label="{{#if this.alt_text.length '!=' 0}}{{this.alt_text}}{{else}}{{lang 'common.carousel_slide_number' slide_number=(add @index 1)}}{{/if}}">
+    {{/if}}
         <div class="heroCarousel-slide {{#if ../theme_settings.homepage_stretch_carousel_images}}stretch{{/if}} {{#if @first}}heroCarousel-slide--first{{/if}}">
             <div class="heroCarousel-image-wrapper">
             {{#if @first}}
@@ -50,9 +54,28 @@
                 {{/if}}
             {{/if}}
         </div>
+    {{#if button_text}}
+    </div>
+    {{else}}
     </a>
+    {{/if}}
     {{/each}}
     {{#and arrows (if carousel.slides.length '>' 1)}}
-    <button aria-label="{{lang 'carousel.arrowAriaLabel'}} {{carousel.slides.length}}" class="js-hero-next-arrow slick-next slick-arrow">hero-next-arrow</button>
+    <button aria-label="{{lang 'carousel.arrowAriaLabel'}} {{carousel.slides.length}}" class="js-hero-next-arrow slick-next slick-arrow"></button>
     {{/and}}
+    {{#if play_pause_button}}
+        <button
+            type="button"
+            class="heroCarousel-play-pause-button js-hero-play-pause-button"
+            aria-label="{{lang 'carousel.playPauseButtonAriaPause'}}"
+            data-play="true"
+            data-labels='{
+                "play": "{{lang 'carousel.playPauseButtonPlay'}}",
+                "pause": "{{lang 'carousel.playPauseButtonPause'}}",
+                "ariaPlay": "{{lang 'carousel.playPauseButtonAriaPlay'}}",
+                "ariaPause": "{{lang 'carousel.playPauseButtonAriaPause'}}"
+            }'>
+            {{lang 'carousel.playPauseButtonPause'}}
+        </button>
+    {{/if}}
 </section>

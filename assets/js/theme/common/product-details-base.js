@@ -264,6 +264,12 @@ export default class ProductDetailsBase {
         } else if (typeof (data.bulk_discount_rates) !== 'undefined') {
             viewModel.$bulkPricing.html('');
         }
+
+        const addToCartWrapper = $('#add-to-cart-wrapper');
+
+        if (addToCartWrapper.is(':hidden') && data.purchasable) {
+            addToCartWrapper.show();
+        }
     }
 
     /**
@@ -274,13 +280,19 @@ export default class ProductDetailsBase {
         this.clearPricingNotFound(viewModel);
 
         if (price.with_tax) {
+            const updatedPrice = price.price_range ?
+                `${price.price_range.min.with_tax.formatted} - ${price.price_range.max.with_tax.formatted}`
+                : price.with_tax.formatted;
             viewModel.priceLabel.$span.show();
-            viewModel.$priceWithTax.html(price.with_tax.formatted);
+            viewModel.$priceWithTax.html(updatedPrice);
         }
 
         if (price.without_tax) {
+            const updatedPrice = price.price_range ?
+                `${price.price_range.min.without_tax.formatted} - ${price.price_range.max.without_tax.formatted}`
+                : price.without_tax.formatted;
             viewModel.priceLabel.$span.show();
-            viewModel.$priceWithoutTax.html(price.without_tax.formatted);
+            viewModel.$priceWithoutTax.html(updatedPrice);
         }
 
         if (price.rrp_with_tax) {

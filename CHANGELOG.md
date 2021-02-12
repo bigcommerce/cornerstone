@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Add alt attribute for no image placeholders. [#1984](https://github.com/bigcommerce/cornerstone/pull/1984)
 - Make every product option group id unique. [#1979](https://github.com/bigcommerce/cornerstone/pull/1979)
 - Fixed required checkbox message displaying. [1963](https://github.com/bigcommerce/cornerstone/pull/1963)
 - Provided sufficient & informative text along with the color swatches [#1976](https://github.com/bigcommerce/cornerstone/pull/1976)

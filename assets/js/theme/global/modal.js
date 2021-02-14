@@ -1,47 +1,15 @@
-import 'jquery.tabbable';
 import foundation from './foundation';
+import * as focusTrap from 'focus-trap';
 
 const bodyActiveClass = 'has-activeModal';
 const loadingOverlayClass = 'loadingOverlay';
 const modalBodyClass = 'modal-body';
 const modalContentClass = 'modal-content';
 
-const allTabbableElementsSelector = ':tabbable';
-const tabKeyCode = 9;
-const firstTabbableClass = 'first-tabbable';
-const lastTabbableClass = 'last-tabbable';
-
 const SizeClasses = {
     small: 'modal--small',
     large: 'modal--large',
     normal: '',
-};
-
-export const modalTypes = {
-    QUICK_VIEW: 'forQuickView',
-    PRODUCT_DETAILS: 'forProductDetails',
-    CART_CHANGE_PRODUCT: 'forCartChangeProduct',
-    WRITE_REVIEW: 'forWriteReview',
-    SHOW_MORE_OPTIONS: 'forShowMore',
-};
-
-const findRootModalTabbableElements = () => (
-    $('#modal.open')
-        .find(allTabbableElementsSelector)
-        .not('#modal-review-form *')
-        .not('#previewModal *')
-);
-
-const focusableElements = {
-    [modalTypes.QUICK_VIEW]: findRootModalTabbableElements,
-    [modalTypes.PRODUCT_DETAILS]: () => (
-        $('#previewModal.open').find(allTabbableElementsSelector)
-    ),
-    [modalTypes.CART_CHANGE_PRODUCT]: findRootModalTabbableElements,
-    [modalTypes.WRITE_REVIEW]: () => (
-        $('#modal-review-form.open').find(allTabbableElementsSelector)
-    ),
-    [modalTypes.SHOW_MORE_OPTIONS]: findRootModalTabbableElements,
 };
 
 export const ModalEvents = {
@@ -139,6 +107,7 @@ export class Modal {
         this.size = this.defaultSize;
         this.pending = false;
         this.$preModalFocusedEl = null;
+        this.focusTrap = null;
 
         this.onModalOpen = this.onModalOpen.bind(this);
         this.onModalOpened = this.onModalOpened.bind(this);
@@ -228,64 +197,18 @@ export class Modal {
         this.$content.html('');
     }
 
-    setupFocusableElements(modalType) {
-        this.$preModalFocusedEl = $(document.activeElement);
-        const $modalTabbableCollection = focusableElements[modalType]();
+    setupFocusTrap() {
+        if (!this.$preModalFocusedEl) this.$preModalFocusedEl = $(document.activeElement);
 
-        const elementToFocus = $modalTabbableCollection.get(0);
-        if (elementToFocus) elementToFocus.focus();
-
-        this.$modal.on('keydown', event => this.onTabbing(event, modalType));
-    }
-
-    onTabbing(event, modalType) {
-        const isTab = event.which === tabKeyCode;
-
-        if (!isTab) return;
-
-        const $modalTabbableCollection = focusableElements[modalType]();
-        const modalTabbableCollectionLength = $modalTabbableCollection.length;
-
-        if (modalTabbableCollectionLength < 1) return;
-
-        const lastCollectionIdx = modalTabbableCollectionLength - 1;
-        const $firstTabbable = $modalTabbableCollection.get(0);
-        const $lastTabbable = $modalTabbableCollection.get(lastCollectionIdx);
-
-        $modalTabbableCollection.each((index, element) => {
-            const $element = $(element);
-
-            if (modalTabbableCollectionLength === 1) {
-                $element.addClass(`${firstTabbableClass} ${lastTabbableClass}`);
-                return false;
-            }
-
-            if ($element.is($firstTabbable)) {
-                $element.addClass(firstTabbableClass).removeClass(lastTabbableClass);
-            } else if ($element.is($lastTabbable)) {
-                $element.addClass(lastTabbableClass).removeClass(firstTabbableClass);
-            } else {
-                $element.removeClass(firstTabbableClass).removeClass(lastTabbableClass);
-            }
-        });
-
-        const direction = (isTab && event.shiftKey) ? 'backwards' : 'forwards';
-
-        const $activeElement = $(document.activeElement);
-
-        if (direction === 'forwards') {
-            const isLastActive = $activeElement.hasClass(lastTabbableClass);
-            if (isLastActive) {
-                $firstTabbable.focus();
-                event.preventDefault();
-            }
-        } else if (direction === 'backwards') {
-            const isFirstActive = $activeElement.hasClass(firstTabbableClass);
-            if (isFirstActive) {
-                $lastTabbable.focus();
-                event.preventDefault();
-            }
+        if (!this.focusTrap) {
+            this.focusTrap = focusTrap.createFocusTrap(this.$modal[0], {
+                escapeDeactivates: false,
+                returnFocusOnDeactivate: false,
+            });
         }
+
+        this.focusTrap.deactivate();
+        this.focusTrap.activate();
     }
 
     onModalClose() {
@@ -294,9 +217,12 @@ export class Modal {
 
     onModalClosed() {
         this.size = this.defaultSize;
+
+        if (this.focusTrap) this.focusTrap.deactivate();
+
         if (this.$preModalFocusedEl) this.$preModalFocusedEl.focus();
+
         this.$preModalFocusedEl = null;
-        this.$modal.off('keydown');
     }
 
     onModalOpen() {

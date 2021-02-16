@@ -17,11 +17,23 @@ export default class ProductDetails extends ProductDetailsBase {
         this.imageGallery = new ImageGallery($('[data-image-gallery]', this.$scope));
         this.imageGallery.init();
         this.listenQuantityChange();
+        this.$swatchOptionMessage = $('.swatch-option-message');
+        this.swatchOptionMessageInitText = this.$swatchOptionMessage.text();
 
         const $form = $('form[data-cart-item-add]', $scope);
         const $productOptionsElement = $('[data-product-option-change]', $form);
         const hasOptions = $productOptionsElement.html().trim().length;
         const hasDefaultOptions = $productOptionsElement.find('[data-default]').length;
+        const $productSwatchGroup = $('[id*="attribute_swatch"]', $form);
+
+        if (context.showSwatchNames) {
+            this.$swatchOptionMessage.removeClass('u-hidden');
+            $productSwatchGroup.on('change', ({ target }) => this.showSwatchNameOnOption($(target)));
+
+            $.each($productSwatchGroup, (_, element) => {
+                if ($(element).is(':checked')) this.showSwatchNameOnOption($(element));
+            });
+        }
 
         $productOptionsElement.on('change', event => {
             this.productOptionsChanged(event);
@@ -187,6 +199,25 @@ export default class ProductDetails extends ProductDetailsBase {
         });
     }
 
+    /**
+     * if this setting is enabled in Page Builder
+     * show name for swatch option
+     */
+    showSwatchNameOnOption($swatch) {
+        const swatchName = $swatch.attr('aria-label');
+
+        $('[data-product-attribute="swatch"] [data-option-value]').text(swatchName);
+        this.$swatchOptionMessage.text(`${this.swatchOptionMessageInitText} ${swatchName}`);
+        this.setLiveRegionAttributes(this.$swatchOptionMessage, 'status', 'assertive');
+    }
+
+    setLiveRegionAttributes($element, roleType, ariaLiveStatus) {
+        $element.attr({
+            role: roleType,
+            'aria-live': ariaLiveStatus,
+        });
+    }
+
     showProductImage(image) {
         if (isPlainObject(image)) {
             const zoomImageUrl = utils.tools.imageSrcset.getSrcset(
@@ -338,10 +369,7 @@ export default class ProductDetails extends ProductDetailsBase {
             }
         });
 
-        $addToCartBtn.next().attr({
-            role: 'status',
-            'aria-live': 'polite',
-        });
+        this.setLiveRegionAttributes($addToCartBtn.next(), 'status', 'polite');
     }
 
     /**
@@ -401,12 +429,27 @@ export default class ProductDetails extends ProductDetailsBase {
             const $cartQuantity = $('[data-cart-quantity]', modal.$content);
             const $cartCounter = $('.navUser-action .cart-count');
             const quantity = $cartQuantity.data('cartQuantity') || 0;
+            const $promotionBanner = $('[data-promotion-banner]');
+            const $backToShopppingBtn = $('.previewCartCheckout > [data-reveal-close]');
+            const $modalCloseBtn = $('#previewModal > .modal-close');
+            const bannerUpdateHandler = () => {
+                const $productContainer = $('#main-content > .container');
+
+                $productContainer.append('<div class="loadingOverlay pdp-update"></div>');
+                $('.loadingOverlay.pdp-update', $productContainer).show();
+                window.location.reload();
+            };
 
             $cartCounter.addClass('cart-count--positive');
             $body.trigger('cart-quantity-update', quantity);
 
             if (onComplete) {
                 onComplete(response);
+            }
+
+            if ($promotionBanner.length && $backToShopppingBtn.length) {
+                $backToShopppingBtn.on('click', bannerUpdateHandler);
+                $modalCloseBtn.on('click', bannerUpdateHandler);
             }
         });
     }

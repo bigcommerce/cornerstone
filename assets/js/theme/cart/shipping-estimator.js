@@ -1,7 +1,7 @@
 import stateCountry from '../common/state-country';
 import nod from '../common/nod';
 import utils from '@bigcommerce/stencil-utils';
-import { Validators } from '../common/utils/form-utils';
+import { Validators, announceInputErrorMessage } from '../common/utils/form-utils';
 import collapsibleFactory from '../common/collapsible';
 import swal from '../global/sweet-alert';
 
@@ -22,6 +22,7 @@ export default class ShippingEstimator {
         this.shippingEstimator = 'form[data-shipping-estimator]';
         this.shippingValidator = nod({
             submit: `${this.shippingEstimator} .shipping-estimate-submit`,
+            tap: announceInputErrorMessage,
         });
 
         $('.shipping-estimate-submit', this.$element).on('click', event => {

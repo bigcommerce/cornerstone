@@ -9,11 +9,13 @@ import {
     getRealSlidesQuantityAndCurrentSlide,
 } from './utils';
 
-const onCarouselChange = (event, carousel) => {
+export const onCarouselChange = (event, carousel) => {
     const {
         options: { prevArrow, nextArrow },
         currentSlide,
         slideCount,
+        $prevArrow,
+        $nextArrow,
         $dots,
         $slider,
         breakpointSettings,
@@ -28,13 +30,20 @@ const onCarouselChange = (event, carousel) => {
         $slider.data('slick').slidesToScroll,
     );
 
-    const $prevArrow = $slider.find(prevArrow);
-    const $nextArrow = $slider.find(nextArrow);
+    const $prevArrowNode = $prevArrow || $slider.find(prevArrow);
+    const $nextArrowNode = $nextArrow || $slider.find(nextArrow);
+
+    const dataArrowLabel = $slider.data('arrow-label');
+    if (dataArrowLabel) {
+        $prevArrowNode.attr('aria-label', dataArrowLabel);
+        $nextArrowNode.attr('aria-label', dataArrowLabel);
+        $slider.data('arrow-label', false);
+    }
 
     dotsSetup($dots, actualSlide, actualSlideCount, $slider.data('dots-labels'));
-    setTabindexes($slider.find('.slick-slide'), $prevArrow, $nextArrow, actualSlide, actualSlideCount);
-    arrowAriaLabling($prevArrow, $nextArrow, actualSlide, actualSlideCount);
-    tooltipSetup($prevArrow, $nextArrow, $dots);
+    setTabindexes($slider.find('.slick-slide'), $prevArrowNode, $nextArrowNode, actualSlide, actualSlideCount);
+    arrowAriaLabling($prevArrowNode, $nextArrowNode, actualSlide, actualSlideCount);
+    tooltipSetup($prevArrowNode, $nextArrowNode, $dots);
 };
 
 export default function () {
@@ -45,11 +54,6 @@ export default function () {
     $carouselCollection.each((index, carousel) => {
         // getting element using find to pass jest test
         const $carousel = $(document).find(carousel);
-
-        if ($carousel.hasClass('productView-thumbnails')) {
-            $carousel.slick();
-            return;
-        }
 
         $carousel.on('init', onCarouselChange);
         $carousel.on('afterChange', onCarouselChange);

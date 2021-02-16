@@ -22,24 +22,26 @@ export const modalTypes = {
     PRODUCT_DETAILS: 'forProductDetails',
     CART_CHANGE_PRODUCT: 'forCartChangeProduct',
     WRITE_REVIEW: 'forWriteReview',
+    SHOW_MORE_OPTIONS: 'forShowMore',
 };
 
+const findRootModalTabbableElements = () => (
+    $('#modal.open')
+        .find(allTabbableElementsSelector)
+        .not('#modal-review-form *')
+        .not('#previewModal *')
+);
+
 const focusableElements = {
-    [modalTypes.QUICK_VIEW]: () => (
-        $('#modal')
-            .find(allTabbableElementsSelector)
-            .not('#modal-review-form *')
-            .not('#previewModal *')
-    ),
+    [modalTypes.QUICK_VIEW]: findRootModalTabbableElements,
     [modalTypes.PRODUCT_DETAILS]: () => (
-        $('#previewModal').find(allTabbableElementsSelector)
+        $('#previewModal.open').find(allTabbableElementsSelector)
     ),
-    [modalTypes.CART_CHANGE_PRODUCT]: () => (
-        $('#modal').find(allTabbableElementsSelector)
-    ),
+    [modalTypes.CART_CHANGE_PRODUCT]: findRootModalTabbableElements,
     [modalTypes.WRITE_REVIEW]: () => (
-        $('#modal-review-form').find(allTabbableElementsSelector)
+        $('#modal-review-form.open').find(allTabbableElementsSelector)
     ),
+    [modalTypes.SHOW_MORE_OPTIONS]: findRootModalTabbableElements,
 };
 
 export const ModalEvents = {
@@ -78,7 +80,12 @@ function wrapModalBody(content) {
 }
 
 function restrainContentHeight($content) {
+    if ($content.length === 0) return;
+
     const $body = $(`.${modalBodyClass}`, $content);
+
+    if ($body.length === 0) return;
+
     const bodyHeight = $body.outerHeight();
     const contentHeight = $content.outerHeight();
     const viewportHeight = getViewportHeight(0.9);
@@ -181,13 +188,6 @@ export class Modal {
         this.$modal.on(ModalEvents.opened, this.onModalOpened);
     }
 
-    unbindEvents() {
-        this.$modal.off(ModalEvents.close, this.onModalClose);
-        this.$modal.off(ModalEvents.closed, this.onModalClosed);
-        this.$modal.off(ModalEvents.open, this.onModalOpen);
-        this.$modal.off(ModalEvents.opened, this.onModalOpened);
-    }
-
     open({
         size,
         pending = true,
@@ -265,7 +265,7 @@ export class Modal {
             } else if ($element.is($lastTabbable)) {
                 $element.addClass(lastTabbableClass).removeClass(firstTabbableClass);
             } else {
-                $element.removeClass(firstTabbableClass, lastTabbableClass);
+                $element.removeClass(firstTabbableClass).removeClass(lastTabbableClass);
             }
         });
 
@@ -276,13 +276,13 @@ export class Modal {
         if (direction === 'forwards') {
             const isLastActive = $activeElement.hasClass(lastTabbableClass);
             if (isLastActive) {
-                $modalTabbableCollection.get(0).focus();
+                $firstTabbable.focus();
                 event.preventDefault();
             }
         } else if (direction === 'backwards') {
             const isFirstActive = $activeElement.hasClass(firstTabbableClass);
             if (isFirstActive) {
-                $modalTabbableCollection.get(lastCollectionIdx).focus();
+                $lastTabbable.focus();
                 event.preventDefault();
             }
         }
@@ -295,8 +295,8 @@ export class Modal {
     onModalClosed() {
         this.size = this.defaultSize;
         if (this.$preModalFocusedEl) this.$preModalFocusedEl.focus();
+        this.$preModalFocusedEl = null;
         this.$modal.off('keydown');
-        this.unbindEvents();
     }
 
     onModalOpen() {

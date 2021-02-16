@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- For non-required options, when the "None" option displays on the storefront it should be deselected when another option is chosen. [#1980](https://github.com/bigcommerce/cornerstone/pull/1980)
 - Error message not announced automatically. [#1983](https://github.com/bigcommerce/cornerstone/pull/1983)
 - Fixed Discount Banner update on adding item to Cart from PDP [#1974](https://github.com/bigcommerce/cornerstone/pull/1974)
 - Make every product option group id unique. [#1979](https://github.com/bigcommerce/cornerstone/pull/1979)

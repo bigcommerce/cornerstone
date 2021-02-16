@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Fixed cut off on Cart button when Zooming up to 400%. [#1988](https://github.com/bigcommerce/cornerstone/pull/1988)
 - Make every product option group id unique. [#1979](https://github.com/bigcommerce/cornerstone/pull/1979)
 - Fixed required checkbox message displaying. [1963](https://github.com/bigcommerce/cornerstone/pull/1963)
 - Provided sufficient & informative text along with the color swatches [#1976](https://github.com/bigcommerce/cornerstone/pull/1976)

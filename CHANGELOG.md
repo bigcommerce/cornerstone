@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Fixed Discount Banner update on adding item to Cart from PDP [#1974](https://github.com/bigcommerce/cornerstone/pull/1974)
 - Make every product option group id unique. [#1979](https://github.com/bigcommerce/cornerstone/pull/1979)
 - Fixed required checkbox message displaying. [1963](https://github.com/bigcommerce/cornerstone/pull/1963)
 - Provided sufficient & informative text along with the color swatches [#1976](https://github.com/bigcommerce/cornerstone/pull/1976)

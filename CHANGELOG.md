@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Category pages are creating alt attribute within the span tag. [1987](https://github.com/bigcommerce/cornerstone/pull/1987)
 - Add alt attribute for no image placeholders. [#1984](https://github.com/bigcommerce/cornerstone/pull/1984)
 - For non-required options, when the "None" option displays on the storefront it should be deselected when another option is chosen. [#1980](https://github.com/bigcommerce/cornerstone/pull/1980)
 - Error message not announced automatically. [#1983](https://github.com/bigcommerce/cornerstone/pull/1983)

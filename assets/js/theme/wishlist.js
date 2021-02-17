@@ -3,6 +3,7 @@ import 'foundation-sites/js/foundation/foundation.reveal';
 import nod from './common/nod';
 import PageManager from './page-manager';
 import { wishlistPaginatorHelper } from './common/utils/pagination-utils';
+import { announceInputErrorMessage } from './common/utils/form-utils';
 
 export default class WishList extends PageManager {
     constructor(context) {
@@ -33,6 +34,7 @@ export default class WishList extends PageManager {
     registerAddWishListValidation($addWishlistForm) {
         this.addWishlistValidator = nod({
             submit: '.wishlist-form input[type="submit"]',
+            tap: announceInputErrorMessage,
         });
 
         this.addWishlistValidator.add([

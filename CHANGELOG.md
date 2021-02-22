@@ -1,6 +1,8 @@
 # Changelog
 
 ## Draft
+
+## 5.2.0 (02-22-2021)
 - Fixed cut off on Cart button when Zooming up to 400%. [#1988](https://github.com/bigcommerce/cornerstone/pull/1988)
 - Category pages are creating alt attribute within the span tag. [1987](https://github.com/bigcommerce/cornerstone/pull/1987)
 - Add alt attribute for no image placeholders. [#1984](https://github.com/bigcommerce/cornerstone/pull/1984)

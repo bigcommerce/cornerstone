@@ -21,15 +21,18 @@ product_results:
             {{>components/search/heading}}
         </div>
     {{/if}}
-    <nav class="navBar navBar--sub">
-        <ul class="navBar-section account-navigation">
-            <li class="navBar-item">
-                <a id="search-results-product-count" class="navBar-action" href="{{forms.search.product_url}}" data-product-results-toggle>
+    <nav class="navBar navBar--sub search-nav">
+        <span id="search-tabs-widget-description" class="aria-description--hidden">
+            {{lang 'search.tabs_accesibility_hint'}}
+        </span>
+        <ul role="tablist" class="navBar-section account-navigation" data-search-page-tabs>
+            <li role="presentation" class="navBar-item">
+                <a aria-describedby="search-tabs-widget-description" role="tab" aria-controls="product-listing-container" id="search-results-product-count" class="navBar-action" href="{{forms.search.product_url}}" data-product-results-toggle>
                     {{>components/search/product-count}}
                 </a>
             </li>
-            <li class="navBar-item">
-                <a id="search-results-content-count" class="navBar-action" href="{{forms.search.content_url}}" data-content-results-toggle>
+            <li role="presentation" class="navBar-item">
+                <a aria-describedby="search-tabs-widget-description" role="tab" aria-controls="search-results-content" id="search-results-content-count" class="navBar-action" href="{{forms.search.content_url}}" data-content-results-toggle>
                     {{>components/search/content-count}}
                 </a>
             </li>
@@ -122,11 +125,19 @@ product_results:
             </div>
         {{/if}}
 
-        <div id="search-results-content" {{#if forms.search.section '!=' 'content'}}class="u-hiddenVisually"{{/if}}>
+        <p role="status"
+           aria-live="polite"
+           class="quickSearchResultsAriaMessage aria-description--hidden u-hidden"
+           data-search-aria-message
+        >
+            {{{lang 'search.results.count' count=result_count search_query=(sanitize forms.search.query)}}}
+        </p>
+
+        <div role="tabpanel" id="search-results-content" aria-labelledby="search-results-content-count" {{#if forms.search.section '!=' 'content'}}class="u-hidden"{{/if}}>
             {{> components/search/content-listing}}
         </div>
 
-        <div id="product-listing-container" {{#if forms.search.section '!=' 'product'}}class="u-hiddenVisually"{{/if}}>
+        <div role="tabpanel" id="product-listing-container" aria-labelledby="search-results-product-count" {{#if forms.search.section '!=' 'product'}}class="u-hidden"{{/if}}>
             {{> components/search/product-listing}}
         </div>
 

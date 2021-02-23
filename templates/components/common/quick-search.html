@@ -1,11 +1,23 @@
 <div class="container">
-    <form class="form" action="{{urls.search}}">
+    <form class="form" onsubmit="return false" data-url="{{urls.search}}" data-quick-search-form>
         <fieldset class="form-fieldset">
             <div class="form-field">
-                <label class="is-srOnly" for="search_query">{{lang "search.quick_search.input_label"}}</label>
-                <input class="form-input" data-search-quick name="search_query" id="search_query" data-error-message="{{lang 'search.error.empty_field'}}" placeholder="{{lang 'search.quick_search.input_placeholder'}}" autocomplete="off">
+                <label class="is-srOnly" for="{{name}}">{{lang "search.quick_search.input_label"}}</label>
+                <input class="form-input"
+                       data-search-quick
+                       name="{{name}}"
+                       id="{{name}}"
+                       data-error-message="{{lang 'search.error.empty_field'}}"
+                       placeholder="{{lang 'search.quick_search.input_placeholder'}}"
+                       autocomplete="off"
+                >
             </div>
         </fieldset>
     </form>
     <section class="quickSearchResults" data-bind="html: results"></section>
+    <p role="status"
+       aria-live="polite"
+       class="aria-description--hidden"
+       data-search-aria-message-predefined-text="{{{lang 'search.results.quick_count_live'}}}"
+    ></p>
 </div>

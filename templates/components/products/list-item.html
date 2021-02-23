@@ -4,6 +4,13 @@
     <article class="listItem">
 {{/if}}
     <figure class="listItem-figure">
+        <a href="{{url}}"
+           class="listItem-figure__link"
+           aria-label="{{name}},{{> components/products/product-aria-label}}"
+           {{#if settings.data_tag_enabled}}
+           data-event-type="product-click"
+           {{/if}}
+        >
         {{#or price.sale_price_with_tax.value price.sale_price_without_tax.value}}
             {{#if theme_settings.product_sale_badges '===' 'sash'}}
                 <div class="sale-flag-sash">
@@ -19,7 +26,7 @@
                     <div class="sale-flag-star"></div>
                 </div>
             {{/if}}
-        {{/or}}    
+        {{/or}}
         {{> components/common/responsive-img
             image=image
             class="listItem-image"
@@ -27,10 +34,11 @@
             lazyload=theme_settings.lazyload_mode
             default_image=theme_settings.default_image_product
         }}
+        </a>
         {{#unless hide_product_quick_view}}
             {{#if theme_settings.show_product_quick_view}}
                 <div class="listItem-figureBody">
-                    <a {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}} class="button button--small listItem-button quickview" data-product-id="{{id}}">{{lang 'products.quick_view'}}</a>
+                    <button type="button" {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}} class="button button--small listItem-button quickview" data-product-id="{{id}}">{{lang 'products.quick_view'}}</button>
                 </div>
             {{/if}}
         {{/unless}}
@@ -45,7 +53,14 @@
                 <p class="listItem-brand">{{brand.name}}</p>
                 {{/if}}
                 <h4 class="listItem-title">
-                    <a href="{{url}}" {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}}>{{name}}</a>
+                    <a href="{{url}}" 
+                    aria-label="{{name}},{{> components/products/product-aria-label}}"
+                    {{#if settings.data_tag_enabled}}
+                    data-event-type="product-click"
+                    {{/if}}
+                    >
+                        {{name}}
+                    </a>
                 </h4>
                 {{#if summary}}
                     <p>{{{summary}}}</p>

@@ -1,7 +1,8 @@
 // =============================================================================
 // MODAL (CSS)
+//
+// // 1. Fix for content shifted to top in modal window when bottom variant option selected
 // =============================================================================
-
 
 .modal {
     margin: 0;
@@ -14,6 +15,10 @@
     left: 50%;
     top: 50% !important;
     transform: translate(-50%, -50%);
+
+    .form-field {
+        position: relative; // 1
+    }
 }
 
 .modal--large {
@@ -54,6 +59,8 @@
     &:hover {
         color: stencilColor("icon-color-hover");
     }
+
+    @include addFocusTooltip;
 }
 
 .modal-body {
@@ -95,4 +102,8 @@
             color: $alert-button-colorActive;
         }
     }
+}
+
+.hide-content {
+    opacity: 0;
 }

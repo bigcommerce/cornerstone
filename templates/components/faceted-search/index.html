@@ -1,14 +1,12 @@
 <div id="facetedSearch" class="facetedSearch sidebarBlock">
-    {{> components/faceted-search/selected-facets this.selected}}
+    {{> components/faceted-search/selected-facets selected}}
 
     <a href="#facetedSearch-navList" role="button" class="facetedSearch-toggle toggleLink" data-collapsible>
         <span class="facetedSearch-toggle-text">
             {{#if facets.length '>' 2}}
-                {{lang 'search.faceted.browse-by'}} {{ join (pluck facets 'title') ', ' limit=2 }} &amp; {{ toLowerCase (lang 'search.faceted.more') }}
-            {{/if}}
-
-            {{#if facets.length '<=' 2}}
-                {{lang 'search.faceted.browse-by'}} {{ join (pluck facets 'title') ', ' lastSeparator=' & ' }}
+                {{lang 'search.faceted.browse-by'}} {{join (pluck facets 'title') ', ' limit=2}} &amp; {{toLowerCase (lang 'search.faceted.more')}}
+            {{else}}
+                {{lang 'search.faceted.browse-by'}} {{join (pluck facets 'title') ', ' lastSeparator=' & '}}
             {{/if}}
         </span>
 
@@ -32,9 +30,9 @@
     </a>
 
     {{#any facets visible=true}}
-        <div
-            id="facetedSearch-navList"
-            class="facetedSearch-navList blocker-container">
+        <div id="facetedSearch-navList"
+            class="facetedSearch-navList"
+        >
             <div class="accordion accordion--navList">
                 {{#each facets}}
                     {{#if visible}}

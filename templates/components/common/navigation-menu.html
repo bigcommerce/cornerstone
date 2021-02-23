@@ -1,6 +1,6 @@
 <nav class="navPages">
     <div class="navPages-quickSearch">
-        {{> components/common/quick-search}}
+        {{> components/common/quick-search name='nav-menu-quick-search'}}
     </div>
     <ul class="navPages-list{{#if theme_settings.navigation_design '!==' 'simple'}} navPages-list-depth-max{{/if}}">
         {{#each categories}}
@@ -16,7 +16,12 @@
         {{#unless theme_settings.hide_content_navigation}}
             {{#each pages}}
                  <li class="navPages-item navPages-item-page">
-                     <a class="navPages-action{{#if name '==' ../page.title}} activePage{{/if}}" href="{{url}}">{{name}}</a>
+                     <a class="navPages-action{{#if name '==' ../page.title}} activePage{{/if}}"
+                        href="{{url}}"
+                        aria-label="{{name}}"
+                     >
+                         {{name}}
+                     </a>
                  </li>
              {{/each}}
         {{/unless}}
@@ -24,14 +29,33 @@
     <ul class="navPages-list navPages-list--user">
         {{#if currency_selector.currencies.length '>' 1}}
             <li class="navPages-item">
-                <a class="navPages-action has-subMenu" href="#" data-collapsible="navPages-currency" aria-controls="navPages-currency" aria-expanded="false">
-                    {{lang 'common.currency' code=currency_selector.active_currency_code}} <i class="icon navPages-action-moreIcon" aria-hidden="true"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-chevron-down"></use></svg></i>
+                <a class="navPages-action has-subMenu"
+                   href="#"
+                   data-collapsible="navPages-currency"
+                   aria-controls="navPages-currency"
+                   aria-expanded="false"
+                   aria-label="{{lang 'common.currency' code=currency_selector.active_currency_code}}"
+                >
+                    {{lang 'common.currency' code=currency_selector.active_currency_code}}
+                    <i class="icon navPages-action-moreIcon" aria-hidden="true">
+                        <svg>
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-chevron-down"></use>
+                        </svg>
+                    </i>
                 </a>
                 <div class="navPage-subMenu" id="navPages-currency" aria-hidden="true" tabindex="-1">
                     <ul class="navPage-subMenu-list">
                         {{#each currency_selector.currencies}}
                         <li class="navPage-subMenu-item">
-                            <a class="navPage-subMenu-action navPages-action" href="{{{switch_url}}}">
+                            <a class="navPage-subMenu-action navPages-action"
+                               href="{{{switch_url}}}"
+                               aria-label="{{name}}"
+                               data-currency-code="{{{code}}}"
+                               {{#if cart_currency_switch_url.length '>' 0 }}
+                               data-cart-currency-switch-url="{{{cart_currency_switch_url}}}"
+                               {{/if}}
+                               data-warning="{{lang 'common.currency_switch_promotion'}}"
+                            >
                                 {{#if is_active}}
                                     <strong>{{name}}</strong>
                                 {{else}}
@@ -46,7 +70,12 @@
         {{/if}}
         {{#if settings.gift_certificates_enabled}}
             <li class="navPages-item">
-                <a class="navPages-action" href="{{urls.gift_certificate.purchase}}">{{lang 'common.gift_cert'}}</a>
+                <a class="navPages-action"
+                   href="{{urls.gift_certificate.purchase}}"
+                   aria-label="{{lang 'common.gift_cert'}}"
+                >
+                    {{lang 'common.gift_cert'}}
+                </a>
             </li>
         {{/if}}
         {{#if customer.store_credit.value '>' 0}}
@@ -58,55 +87,125 @@
         {{/if}}
         {{#if theme_settings.product_list_display_mode '==' 'list'}}
             <li class="navPages-item">
-                <a class="navPages-action navPages-action--compare" href="{{urls.compare}}" data-compare-nav>{{lang 'common.compare'}} <span class="countPill countPill--positive countPill--alt"></span></a>
+                <a class="navPages-action navPages-action--compare"
+                   href="{{urls.compare}}"
+                   data-compare-nav
+                   aria-label="{{lang 'common.compare'}}"
+                >
+                    {{lang 'common.compare'}}
+                    <span class="countPill countPill--positive countPill--alt"></span>
+                </a>
             </li>
         {{/if}}
         {{#if customer}}
             <li class="navPages-item">
-                <a class="navPages-action has-subMenu" href="{{urls.account.index}}" data-collapsible="navPages-account">
-                    {{lang 'common.account'}} <i class="icon navPages-action-moreIcon" aria-hidden="true"><svg><use xlink:href="#icon-chevron-down" /></svg></i>
+                <a class="navPages-action has-subMenu"
+                   href="{{urls.account.index}}"
+                   data-collapsible="navPages-account"
+                   aria-label="{{lang 'common.account'}}"
+                >
+                    {{lang 'common.account'}}
+                    <i class="icon navPages-action-moreIcon" aria-hidden="true">
+                        <svg><use xlink:href="#icon-chevron-down" /></svg>
+                    </i>
                 </a>
                 <div class="navPage-subMenu" id="navPages-account" aria-hidden="true" tabindex="-1">
                     <ul class="navPage-subMenu-list">
                         <li class="navPage-subMenu-item">
-                            <a class="navPage-subMenu-action navPages-action" href="{{urls.account.orders.all}}">{{lang 'account.nav.orders'}}</a>
+                            <a class="navPage-subMenu-action navPages-action"
+                               href="{{urls.account.orders.all}}"
+                               aria-label="{{lang 'account.nav.orders'}}"
+                            >
+                                {{lang 'account.nav.orders'}}
+                            </a>
                         </li>
                         {{#if settings.returns_enabled}}
                             <li class="navPage-subMenu-item">
-                                <a class="navPage-subMenu-action navPages-action" href="{{urls.account.returns}}">{{lang 'account.nav.returns'}}</a>
+                                <a class="navPage-subMenu-action navPages-action"
+                                   href="{{urls.account.returns}}"
+                                   aria-label="{{lang 'account.nav.returns'}}"
+                                >
+                                    {{lang 'account.nav.returns'}}
+                                </a>
                             </li>
                         {{/if}}
                         <li class="navPage-subMenu-item">
-                            <a class="navPage-subMenu-action navPages-action" href="{{urls.account.inbox}}">{{lang 'account.mobile_nav.messages'}}</a>
+                            <a class="navPage-subMenu-action navPages-action"
+                               href="{{urls.account.inbox}}"
+                               aria-label="{{lang 'account.mobile_nav.messages'}}"
+                            >
+                                {{lang 'account.mobile_nav.messages'}}
+                            </a>
                         </li>
                         <li class="navPage-subMenu-item">
-                            <a class="navPage-subMenu-action navPages-action" href="{{urls.account.addresses}}">{{lang 'account.nav.addresses'}}</a>
+                            <a class="navPage-subMenu-action navPages-action"
+                               href="{{urls.account.addresses}}"
+                               aria-label="{{lang 'account.nav.addresses'}}"
+                            >
+                                {{lang 'account.nav.addresses'}}
+                            </a>
                         </li>
                         {{#if settings.show_payment_methods}}
                             <li class="navPage-subMenu-item">
-                                <a class="navPage-subMenu-action navPages-action" href="{{urls.account.payment_methods.all}}">{{lang 'account.nav.payment_methods'}}</a>
+                                <a class="navPage-subMenu-action navPages-action"
+                                   href="{{urls.account.payment_methods.all}}"
+                                   aria-label="{{lang 'account.nav.payment_methods'}}"
+                                >
+                                    {{lang 'account.nav.payment_methods'}}
+                                </a>
                             </li>
                         {{/if}}
                         <li class="navPage-subMenu-item">
-                            <a class="navPage-subMenu-action navPages-action" href="{{urls.account.wishlists.all}}">{{lang 'account.mobile_nav.wishlists'}}</a>
+                            <a class="navPage-subMenu-action navPages-action"
+                               href="{{urls.account.wishlists.all}}"
+                               aria-label="{{lang 'account.mobile_nav.wishlists'}}"
+                            >
+                                {{lang 'account.mobile_nav.wishlists'}}
+                            </a>
                         </li>
                         <li class="navPage-subMenu-item">
-                            <a class="navPage-subMenu-action navPages-action" href="{{urls.account.recent_items}}">{{lang 'account.nav.recently_viewed'}}</a>
+                            <a class="navPage-subMenu-action navPages-action"
+                               href="{{urls.account.recent_items}}"
+                               aria-label="{{lang 'account.nav.recently_viewed'}}"
+                            >
+                                {{lang 'account.nav.recently_viewed'}}
+                            </a>
                         </li>
                         <li class="navPage-subMenu-item">
-                            <a class="navPage-subMenu-action navPages-action" href="{{urls.account.details}}">{{lang 'account.nav.settings'}}</a>
+                            <a class="navPage-subMenu-action navPages-action"
+                               href="{{urls.account.details}}"
+                               aria-label="{{lang 'account.nav.settings'}}"
+                            >
+                                {{lang 'account.nav.settings'}}
+                            </a>
                         </li>
                     </ul>
                 </div>
             </li>
             <li class="navPages-item">
-                <a class="navPages-action" href="{{urls.auth.logout}}">{{lang 'common.logout'}}</a>
+                <a class="navPages-action"
+                   href="{{urls.auth.logout}}"
+                   aria-label="{{lang 'common.logout'}}"
+                >
+                    {{lang 'common.logout'}}
+                </a>
             </li>
         {{else}}
             <li class="navPages-item">
-                <a class="navPages-action" href="{{urls.auth.login}}">{{lang 'common.login'}}</a>
+                <a class="navPages-action"
+                   href="{{urls.auth.login}}"
+                   aria-label="{{lang 'common.login'}}"
+                >
+                    {{lang 'common.login'}}
+                </a>
                 {{#if settings.account_creation_enabled}}
-                    {{lang 'common.or'}} <a class="navPages-action" href="{{urls.auth.create_account}}">{{lang 'common.sign_up'}}</a>
+                    {{lang 'common.or'}}
+                    <a class="navPages-action"
+                       href="{{urls.auth.create_account}}"
+                       aria-label="{{lang 'common.sign_up'}}"
+                    >
+                        {{lang 'common.sign_up'}}
+                    </a>
                 {{/if}}
             </li>
         {{/if}}

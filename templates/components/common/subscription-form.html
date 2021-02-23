@@ -1,4 +1,4 @@
-<h5 class="footer-info-heading">{{lang 'newsletter.subscribe'}}</h5>
+<h3 class="footer-info-heading">{{lang 'newsletter.subscribe'}}</h3>
 <p>{{lang 'newsletter.subscribe_intro'}}</p>
 
 <form class="form" action="{{urls.subscribe.action}}" method="post">
@@ -9,8 +9,18 @@
         <div class="form-field">
             <label class="form-label is-srOnly" for="nl_email">{{lang 'common.email_address'}}</label>
             <div class="form-prefixPostfix wrap">
-                <input class="form-input" id="nl_email" name="nl_email" type="email" value="{{customer.email}}" placeholder="{{lang 'newsletter.email_placeholder'}}">
-                <input class="button button--primary form-prefixPostfix-button--postfix" type="submit" value="{{lang 'newsletter.subscribe_submit'}}">
+                <input class="form-input"
+                       id="nl_email"
+                       name="nl_email"
+                       type="email"
+                       value="{{customer.email}}"
+                       placeholder="{{lang 'newsletter.email_placeholder'}}"
+                       aria-describedby="alertBox-message-text"
+                >
+                <input class="button button--primary form-prefixPostfix-button--postfix"
+                       type="submit"
+                       value="{{lang 'newsletter.subscribe_submit'}}"
+                >
             </div>
             {{#if settings.show_newsletter_summary }}
                 <div class="footer-newsletter-summary">{{settings.newsletter_summary}}</div>

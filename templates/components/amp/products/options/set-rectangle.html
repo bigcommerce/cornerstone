@@ -7,6 +7,7 @@
         {{/if}}
     </label>
     {{#each this.values}}
+    <div class="form-option-wrapper">
         <input
             class="form-radio"
             type="radio"
@@ -18,5 +19,6 @@
         <label class="form-option" for="attribute_{{id}}" data-product-attribute-value="{{id}}">
             <span class="form-option-variant">{{this.label}}</span>
         </label>
+    </div>
     {{/each}}
 </div>

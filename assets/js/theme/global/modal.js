@@ -1,3 +1,4 @@
+import 'jquery.tabbable';
 import foundation from './foundation';
 
 const bodyActiveClass = 'has-activeModal';
@@ -5,10 +6,42 @@ const loadingOverlayClass = 'loadingOverlay';
 const modalBodyClass = 'modal-body';
 const modalContentClass = 'modal-content';
 
+const allTabbableElementsSelector = ':tabbable';
+const tabKeyCode = 9;
+const firstTabbableClass = 'first-tabbable';
+const lastTabbableClass = 'last-tabbable';
+
 const SizeClasses = {
     small: 'modal--small',
     large: 'modal--large',
     normal: '',
+};
+
+export const modalTypes = {
+    QUICK_VIEW: 'forQuickView',
+    PRODUCT_DETAILS: 'forProductDetails',
+    CART_CHANGE_PRODUCT: 'forCartChangeProduct',
+    WRITE_REVIEW: 'forWriteReview',
+    SHOW_MORE_OPTIONS: 'forShowMore',
+};
+
+const findRootModalTabbableElements = () => (
+    $('#modal.open')
+        .find(allTabbableElementsSelector)
+        .not('#modal-review-form *')
+        .not('#previewModal *')
+);
+
+const focusableElements = {
+    [modalTypes.QUICK_VIEW]: findRootModalTabbableElements,
+    [modalTypes.PRODUCT_DETAILS]: () => (
+        $('#previewModal.open').find(allTabbableElementsSelector)
+    ),
+    [modalTypes.CART_CHANGE_PRODUCT]: findRootModalTabbableElements,
+    [modalTypes.WRITE_REVIEW]: () => (
+        $('#modal-review-form.open').find(allTabbableElementsSelector)
+    ),
+    [modalTypes.SHOW_MORE_OPTIONS]: findRootModalTabbableElements,
 };
 
 export const ModalEvents = {
@@ -47,7 +80,12 @@ function wrapModalBody(content) {
 }
 
 function restrainContentHeight($content) {
+    if ($content.length === 0) return;
+
     const $body = $(`.${modalBodyClass}`, $content);
+
+    if ($body.length === 0) return;
+
     const bodyHeight = $body.outerHeight();
     const contentHeight = $content.outerHeight();
     const viewportHeight = getViewportHeight(0.9);
@@ -100,6 +138,7 @@ export class Modal {
         this.defaultSize = size || getSizeFromModal($modal);
         this.size = this.defaultSize;
         this.pending = false;
+        this.$preModalFocusedEl = null;
 
         this.onModalOpen = this.onModalOpen.bind(this);
         this.onModalOpened = this.onModalOpened.bind(this);
@@ -149,13 +188,6 @@ export class Modal {
         this.$modal.on(ModalEvents.opened, this.onModalOpened);
     }
 
-    unbindEvents() {
-        this.$modal.off(ModalEvents.close, this.onModalClose);
-        this.$modal.off(ModalEvents.closed, this.onModalClosed);
-        this.$modal.off(ModalEvents.open, this.onModalOpen);
-        this.$modal.off(ModalEvents.opened, this.onModalOpened);
-    }
-
     open({
         size,
         pending = true,
@@ -196,12 +228,75 @@ export class Modal {
         this.$content.html('');
     }
 
+    setupFocusableElements(modalType) {
+        this.$preModalFocusedEl = $(document.activeElement);
+        const $modalTabbableCollection = focusableElements[modalType]();
+
+        const elementToFocus = $modalTabbableCollection.get(0);
+        if (elementToFocus) elementToFocus.focus();
+
+        this.$modal.on('keydown', event => this.onTabbing(event, modalType));
+    }
+
+    onTabbing(event, modalType) {
+        const isTab = event.which === tabKeyCode;
+
+        if (!isTab) return;
+
+        const $modalTabbableCollection = focusableElements[modalType]();
+        const modalTabbableCollectionLength = $modalTabbableCollection.length;
+
+        if (modalTabbableCollectionLength < 1) return;
+
+        const lastCollectionIdx = modalTabbableCollectionLength - 1;
+        const $firstTabbable = $modalTabbableCollection.get(0);
+        const $lastTabbable = $modalTabbableCollection.get(lastCollectionIdx);
+
+        $modalTabbableCollection.each((index, element) => {
+            const $element = $(element);
+
+            if (modalTabbableCollectionLength === 1) {
+                $element.addClass(`${firstTabbableClass} ${lastTabbableClass}`);
+                return false;
+            }
+
+            if ($element.is($firstTabbable)) {
+                $element.addClass(firstTabbableClass).removeClass(lastTabbableClass);
+            } else if ($element.is($lastTabbable)) {
+                $element.addClass(lastTabbableClass).removeClass(firstTabbableClass);
+            } else {
+                $element.removeClass(firstTabbableClass).removeClass(lastTabbableClass);
+            }
+        });
+
+        const direction = (isTab && event.shiftKey) ? 'backwards' : 'forwards';
+
+        const $activeElement = $(document.activeElement);
+
+        if (direction === 'forwards') {
+            const isLastActive = $activeElement.hasClass(lastTabbableClass);
+            if (isLastActive) {
+                $firstTabbable.focus();
+                event.preventDefault();
+            }
+        } else if (direction === 'backwards') {
+            const isFirstActive = $activeElement.hasClass(firstTabbableClass);
+            if (isFirstActive) {
+                $lastTabbable.focus();
+                event.preventDefault();
+            }
+        }
+    }
+
     onModalClose() {
         $('body').removeClass(bodyActiveClass);
     }
 
     onModalClosed() {
         this.size = this.defaultSize;
+        if (this.$preModalFocusedEl) this.$preModalFocusedEl.focus();
+        this.$preModalFocusedEl = null;
+        this.$modal.off('keydown');
     }
 
     onModalOpen() {

@@ -119,9 +119,17 @@
 
 // Details
 // -----------------------------------------------------------------------------
+//
+// 1. for Androind Chrome and IE with zoom horizontal scroll fix
+//
+// -----------------------------------------------------------------------------
 
 .productView-details {
-    margin-bottom: spacing("single") + spacing("third");
+    padding-bottom: spacing("single") + spacing("third");
+
+    &.product-options {
+        overflow: hidden; // 1
+    }
 }
 
 
@@ -197,26 +205,17 @@
 
 .productView-reviewLink {
     display: inline-block;
-    margin-left: spacing("half");
+    margin-left: spacing("quarter");
     vertical-align: middle;
+    color: stencilColor("color-textSecondary");
 
-    + .productView-reviewLink {
-        display: block;
-        margin-left: auto;
-
-        @include breakpoint("small") {
-            display: inline-block;
-            margin-left: spacing("half");
-        }
+    // scss-lint:disable NestingDepth
+    &:hover {
+        color: stencilColor("color-textSecondary--hover");
     }
 
-    > a {
-        color: stencilColor("color-textSecondary");
-
-        // scss-lint:disable NestingDepth
-        &:hover {
-            color: stencilColor("color-textSecondary--hover");
-        }
+    &--new {
+        padding: 0;
     }
 }
 
@@ -418,6 +417,8 @@
 .productView-image .easyzoom-flyout {
     overflow: hidden;
     position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
 

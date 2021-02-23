@@ -86,6 +86,15 @@
     }
 }
 
+.form-option-wrapper {
+    position: relative;
+    display: inline-block;
+
+    & .form-radio, & .form-checkbox {
+        bottom: 0.5rem;
+        left: 0.5rem;
+    }
+}
 
 // Citadel form-actions
 // -----------------------------------------------------------------------------
@@ -131,6 +140,11 @@
 //    appear before the button.
 //
 // -----------------------------------------------------------------------------
+@mixin placeholder {
+    &::-webkit-input-placeholder {@content}
+    &::-moz-placeholder          {@content}
+    &:-ms-input-placeholder      {@content}
+}
 
 .form-label--alternate {
     font-family: fontFamily("headingSans");
@@ -202,6 +216,10 @@
     .form-input {
         @include breakpoint("large") {
             width: auto;
+        }
+
+        @include placeholder {
+            color: $formInput-placeholder-color;
         }
     }
 

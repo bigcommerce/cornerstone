@@ -2,5 +2,18 @@
     <label class="form-label" for="{{id}}_input">{{label}}
         {{#if required}}<small>{{lang 'common.required' }}</small>{{/if}}
     </label>
-    <input type="number" class="form-input" data-label="{{label}}" data-rule="lowerThan" min="{{limitfrom}}" max="{{limitto}}" title="{{lang 'forms.range' limitFrom=limitfrom limitTo=limitto}}" value="{{value}}" id="{{id}}_input" name="{{name}}" aria-required="{{required}}" {{#if private_id}}data-field-type="{{private_id}}"{{/if}}>
+    <input type="number"
+           class="form-input"
+           data-label="{{label}}"
+           data-input
+           data-rule="lowerThan"
+           min="{{limitfrom}}"
+           max="{{limitto}}"
+           title="{{lang 'forms.range' limitFrom=limitfrom limitTo=limitto}}"
+           value="{{value}}"
+           id="{{id}}_input"
+           name="{{name}}"
+           aria-required="{{required}}"
+           {{#if private_id}}data-field-type="{{private_id}}"{{/if}}
+    >
 </div>

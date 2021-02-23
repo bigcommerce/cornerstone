@@ -1,7 +1,8 @@
 import stateCountry from '../common/state-country';
 import nod from '../common/nod';
 import utils from '@bigcommerce/stencil-utils';
-import { Validators } from '../common/form-utils';
+import { Validators, announceInputErrorMessage } from '../common/utils/form-utils';
+import collapsibleFactory from '../common/collapsible';
 import swal from '../global/sweet-alert';
 
 export default class ShippingEstimator {
@@ -9,18 +10,30 @@ export default class ShippingEstimator {
         this.$element = $element;
 
         this.$state = $('[data-field-type="State"]', this.$element);
+        this.isEstimatorFormOpened = false;
         this.initFormValidation();
         this.bindStateCountryChange();
         this.bindEstimatorEvents();
     }
 
     initFormValidation() {
+        const shippingEstimatorAlert = $('.shipping-quotes');
+
         this.shippingEstimator = 'form[data-shipping-estimator]';
         this.shippingValidator = nod({
             submit: `${this.shippingEstimator} .shipping-estimate-submit`,
+            tap: announceInputErrorMessage,
         });
 
         $('.shipping-estimate-submit', this.$element).on('click', event => {
+            // estimator error messages are being injected in html as a result
+            // of user submit; clearing and adding role on submit provides
+            // regular announcement of these error messages
+            if (shippingEstimatorAlert.attr('role')) {
+                shippingEstimatorAlert.removeAttr('role');
+            }
+
+            shippingEstimatorAlert.attr('role', 'alert');
             // When switching between countries, the state/region is dynamic
             // Only perform a check for all fields when country has a value
             // Otherwise areAll('valid') will check country for validity
@@ -133,10 +146,26 @@ export default class ShippingEstimator {
         });
     }
 
+    toggleEstimatorFormState(toggleButton, buttonSelector, $toggleContainer) {
+        const changeAttributesOnToggle = (selectorToActivate) => {
+            $(toggleButton).attr('aria-labelledby', selectorToActivate);
+            $(buttonSelector).text($(`#${selectorToActivate}`).text());
+        };
+
+        if (!this.isEstimatorFormOpened) {
+            changeAttributesOnToggle('estimator-close');
+            $toggleContainer.removeClass('u-hidden');
+        } else {
+            changeAttributesOnToggle('estimator-add');
+            $toggleContainer.addClass('u-hidden');
+        }
+        this.isEstimatorFormOpened = !this.isEstimatorFormOpened;
+    }
+
     bindEstimatorEvents() {
         const $estimatorContainer = $('.shipping-estimator');
         const $estimatorForm = $('.estimator-form');
-
+        collapsibleFactory();
         $estimatorForm.on('submit', event => {
             const params = {
                 country_id: $('[name="shipping-country"]', $estimatorForm).val(),
@@ -165,19 +194,7 @@ export default class ShippingEstimator {
 
         $('.shipping-estimate-show').on('click', event => {
             event.preventDefault();
-
-            $(event.currentTarget).hide();
-            $estimatorContainer.removeClass('u-hiddenVisually');
-            $('.shipping-estimate-hide').show();
-        });
-
-
-        $('.shipping-estimate-hide').on('click', event => {
-            event.preventDefault();
-
-            $estimatorContainer.addClass('u-hiddenVisually');
-            $('.shipping-estimate-show').show();
-            $('.shipping-estimate-hide').hide();
+            this.toggleEstimatorFormState(event.currentTarget, '.shipping-estimate-show__btn-name', $estimatorContainer);
         });
     }
 }

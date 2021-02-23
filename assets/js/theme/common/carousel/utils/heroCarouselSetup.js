@@ -1,31 +1,29 @@
-import 'slick-carousel';
+import playPause from './playPause';
 
-const showCarouselIfSlidesAnalizedSetup = ($carousel) => {
-    const analizedSlides = [];
+const showCarouselIfSlidesAnalyzedSetup = ($carousel) => {
+    const analyzedSlides = [];
     return ($slides) => ($slide) => {
-        analizedSlides.push($slide);
-        return $slides.length === analizedSlides.length
-            && $carousel.addClass('is-visible');
+        analyzedSlides.push($slide);
+        if ($slides.length === analyzedSlides.length) {
+            $carousel.addClass('is-visible');
+        }
     };
 };
 
-export default function () {
-    const $carousel = $('[data-slick]');
+export default ($heroCarousel) => {
+    if ($heroCarousel.length === 0) return;
 
-    if ($carousel.length === 0) return;
+    playPause($heroCarousel);
 
-    $carousel.slick({ dots: $carousel[0].childElementCount > 1 });
-
-    const $slidesNodes = $('.heroCarousel-slide');
-
-    const showCarouselIfSlidesAnalized = showCarouselIfSlidesAnalizedSetup($carousel)($slidesNodes);
+    const $slidesNodes = $heroCarousel.find('.heroCarousel-slide');
+    const showCarouselIfSlidesAnalyzed = showCarouselIfSlidesAnalyzedSetup($heroCarousel)($slidesNodes);
 
     $slidesNodes.each((index, element) => {
         const $element = $(element);
         const isContentBlock = !!$element.find('.heroCarousel-content').length;
 
         if (isContentBlock) {
-            showCarouselIfSlidesAnalized($element);
+            showCarouselIfSlidesAnalyzed($element);
             return true;
         }
 
@@ -49,7 +47,10 @@ export default function () {
                     }
                 });
 
-                showCarouselIfSlidesAnalized($element);
+                showCarouselIfSlidesAnalyzed($element);
+            })
+            .error(() => {
+                showCarouselIfSlidesAnalyzed($element);
             });
     });
 
@@ -59,4 +60,4 @@ export default function () {
             $(element).addClass('compat-object-fit');
         });
     }
-}
+};

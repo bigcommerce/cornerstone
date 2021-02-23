@@ -4,5 +4,15 @@
             <small>{{lang 'common.required' }}</small>
         {{/if}}
     </label>
-    <textarea name="{{name}}" id="{{id}}_input" data-label="{{label}}" rows="{{rows}}" aria-required="{{required}}" class="form-input" {{#if private_id}}data-field-type="{{private_id}}"{{/if}}>{{value}}</textarea>
+    <textarea name="{{name}}"
+              id="{{id}}_input"
+              data-label="{{label}}"
+              rows="{{rows}}"
+              aria-required="{{required}}"
+              data-input
+              class="form-input"
+              {{#if private_id}}data-field-type="{{private_id}}"{{/if}}
+    >
+        {{value}}
+    </textarea>
 </div>

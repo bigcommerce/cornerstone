@@ -18,11 +18,12 @@
 //
 // 1. Stencil global settings get imported first.
 // 2. Import all Citadel and Foundation settings.
-// 3. Import Citadel's version of foundation.
-//      - This enables the ability to "null" variables in the Stencil settings.
+// 3. Common aria helpers.
 // 4. Import Stencil's component settings overrides.
 // 5. Import tools which set/reset Citadel's global settings, to be consumed by
 //    the rest of Stencil.
+// 6. Import Citadel's version of foundation.
+//      - This enables the ability to "null" variables in the Stencil settings.
 //
 // -----------------------------------------------------------------------------
 
@@ -36,7 +37,7 @@
 @import "../../node_modules/@bigcommerce/citadel/dist/settings/foundation/foundation"; // 2
 @import "../../node_modules/@bigcommerce/citadel/dist/settings/bigcommerce/bigcommerce"; // 2
 
-@import "../../node_modules/@bigcommerce/citadel/dist/vendor/foundation/foundation"; // 3
+@import "../../node_modules/@bigcommerce/citadel/dist/vendor/foundation/foundation"; // 6
 
 @import "settings/normalize/normalize"; // 4
 @import "settings/vendor/vendor"; // 4
@@ -70,7 +71,8 @@
 
 @import "../../node_modules/@bigcommerce/citadel/dist/vendor/normalize/normalize"; // 1
 @import "../../node_modules/@bigcommerce/citadel/dist/components/components"; // 2
-@import "components/components"; // 3
+@import "common/index"; // 3
+@import "components/components"; // 6
 
 
 // Layouts

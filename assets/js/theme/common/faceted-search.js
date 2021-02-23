@@ -1,11 +1,31 @@
 import { hooks, api } from '@bigcommerce/stencil-utils';
 import _ from 'lodash';
 import Url from 'url';
-import urlUtils from './url-utils';
-import modalFactory from '../global/modal';
+import urlUtils from './utils/url-utils';
+import modalFactory, { modalTypes, ModalEvents } from '../global/modal';
 import collapsibleFactory from './collapsible';
-import { Validators } from './form-utils';
+import { Validators } from './utils/form-utils';
 import nod from './nod';
+
+const { SHOW_MORE_OPTIONS } = modalTypes;
+const { opened } = ModalEvents;
+
+const defaultOptions = {
+    accordionToggleSelector: '#facetedSearch .accordion-navigation, #facetedSearch .facetedSearch-toggle',
+    blockerSelector: '#facetedSearch .blocker',
+    clearFacetSelector: '#facetedSearch .facetedSearch-clearLink',
+    componentSelector: '#facetedSearch-navList',
+    facetNavListSelector: '#facetedSearch .navList',
+    priceRangeErrorSelector: '#facet-range-form .form-inlineMessage',
+    priceRangeFieldsetSelector: '#facet-range-form .form-fieldset',
+    priceRangeFormSelector: '#facet-range-form',
+    priceRangeMaxPriceSelector: '#facet-range-form [name=max_price]',
+    priceRangeMinPriceSelector: '#facet-range-form [name=min_price]',
+    showMoreToggleSelector: '#facetedSearch .accordion-content .toggleLink',
+    facetedSearchFilterItems: '#facetedSearch-filterItems .form-input',
+    modal: modalFactory('#modal')[0],
+    modalOpen: false,
+};
 
 /**
  * Faceted search view component
@@ -32,29 +52,21 @@ class FacetedSearch {
      * let facetedSearch = new FacetedSearch(requestOptions, templatesDidLoad);
      */
     constructor(requestOptions, callback, options) {
-        const defaultOptions = {
-            accordionToggleSelector: '#facetedSearch .accordion-navigation, #facetedSearch .facetedSearch-toggle',
-            blockerSelector: '#facetedSearch .blocker',
-            clearFacetSelector: '#facetedSearch .facetedSearch-clearLink',
-            componentSelector: '#facetedSearch-navList',
-            facetNavListSelector: '#facetedSearch .navList',
-            priceRangeErrorSelector: '#facet-range-form .form-inlineMessage',
-            priceRangeFieldsetSelector: '#facet-range-form .form-fieldset',
-            priceRangeFormSelector: '#facet-range-form',
-            priceRangeMaxPriceSelector: '#facet-range-form [name=max_price]',
-            priceRangeMinPriceSelector: '#facet-range-form [name=min_price]',
-            showMoreToggleSelector: '#facetedSearch .accordion-content .toggleLink',
-            facetedSearchFilterItems: '#facetedSearch-filterItems .form-input',
-            modal: modalFactory('#modal')[0],
-            modalOpen: false,
-        };
-
         // Private properties
         this.requestOptions = requestOptions;
         this.callback = callback;
         this.options = _.extend({}, defaultOptions, options);
         this.collapsedFacets = [];
         this.collapsedFacetItems = [];
+
+        if (this.options.modal) {
+            this.options.modal.$modal.on(opened, event => {
+                const $filterItems = $(event.target).find('#facetedSearch-filterItems');
+                if ($filterItems.length) {
+                    this.options.modal.setupFocusableElements(SHOW_MORE_OPTIONS);
+                }
+            });
+        }
 
         // Init collapsibles
         collapsibleFactory();
@@ -253,7 +265,7 @@ class FacetedSearch {
             minPriceSelector: this.options.priceRangeMinPriceSelector,
         };
 
-        Validators.setMinMaxPriceValidation(validator, selectors);
+        Validators.setMinMaxPriceValidation(validator, selectors, this.options.validationErrorMessages);
 
         this.priceRangeValidator = validator;
     }
@@ -347,8 +359,8 @@ class FacetedSearch {
         this.toggleFacetItems($navList);
     }
 
-    onFacetClick(event) {
-        const $link = $(event.currentTarget);
+    onFacetClick(event, currentTarget) {
+        const $link = $(currentTarget);
         const url = $link.attr('href');
 
         event.preventDefault();
@@ -363,9 +375,9 @@ class FacetedSearch {
         }
     }
 
-    onSortBySubmit(event) {
+    onSortBySubmit(event, currentTarget) {
         const url = Url.parse(window.location.href, true);
-        const queryParams = $(event.currentTarget).serialize().split('=');
+        const queryParams = $(currentTarget).serialize().split('=');
 
         url.query[queryParams[0]] = queryParams[1];
         delete url.query.page;
@@ -379,7 +391,7 @@ class FacetedSearch {
         urlUtils.goToUrl(Url.format({ pathname: url.pathname, search: urlUtils.buildQueryString(urlQueryParams) }));
     }
 
-    onRangeSubmit(event) {
+    onRangeSubmit(event, currentTarget) {
         event.preventDefault();
 
         if (!this.priceRangeValidator.areAll(nod.constants.VALID)) {
@@ -387,7 +399,7 @@ class FacetedSearch {
         }
 
         const url = Url.parse(window.location.href, true);
-        let queryParams = decodeURI($(event.currentTarget).serialize()).split('&');
+        let queryParams = decodeURI($(currentTarget).serialize()).split('&');
         queryParams = urlUtils.parseQueryParams(queryParams);
 
         for (const key in queryParams) {

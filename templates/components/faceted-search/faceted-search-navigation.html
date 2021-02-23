@@ -1,0 +1,23 @@
+<div class="accordion-nav-clear-holder">
+    <button type="button"
+         class="accordion-navigation toggleLink{{#unless start_collapsed}} is-open{{/unless}}"
+         data-collapsible="#facetedSearch-content--{{dashcase facet}}"
+         aria-label="{{lang 'search.faceted.toggleSection' title=title}}"
+    >
+        <span class="accordion-title">
+            {{title}}
+        </span>
+
+        <span>
+            <svg class="icon accordion-indicator toggleLink-text toggleLink-text--off">
+                <use xlink:href="#icon-add" />
+            </svg>
+            <svg class="icon accordion-indicator toggleLink-text toggleLink-text--on">
+                <use xlink:href="#icon-remove" />
+            </svg>
+        </span>
+    </button>
+    {{#if selected}}
+        <a href="{{remove_url}}" class="facetedSearch-clearLink" data-faceted-search-facet>{{lang 'search.faceted.clear'}}</a>
+    {{/if}}
+</div>

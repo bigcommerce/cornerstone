@@ -1,11 +1,14 @@
 import nod from '../common/nod';
 import { CollapsibleEvents } from '../common/collapsible';
 import forms from '../common/models/forms';
+import { safeString } from '../common/utils/safe-string';
+import { announceInputErrorMessage } from '../common/utils/form-utils';
 
 export default class {
     constructor($reviewForm) {
         this.validator = nod({
             submit: $reviewForm.find('input[type="submit"]'),
+            tap: announceInputErrorMessage,
         });
 
         this.$reviewsContent = $('#product-reviews');
@@ -23,7 +26,7 @@ export default class {
     initLinkBind() {
         const $content = $('#productReviews-content', this.$reviewsContent);
 
-        $('.productView-reviewLink').on('click', () => {
+        $('#productReview_link').on('click', () => {
             $('.productView-reviewTabLink').trigger('click');
             if (!$content.hasClass('is-open')) {
                 this.$collapsible.trigger(CollapsibleEvents.click);
@@ -62,15 +65,15 @@ export default class {
         this.validator.add([{
             selector: '[name="revrating"]',
             validate: 'presence',
-            errorMessage: this.context.reviewRating,
+            errorMessage: safeString(this.context.reviewRating),
         }, {
             selector: '[name="revtitle"]',
             validate: 'presence',
-            errorMessage: this.context.reviewSubject,
+            errorMessage: safeString(this.context.reviewSubject),
         }, {
             selector: '[name="revtext"]',
             validate: 'presence',
-            errorMessage: this.context.reviewComment,
+            errorMessage: safeString(this.context.reviewComment),
         }, {
             selector: '.writeReview-form [name="email"]',
             validate: (cb, val) => {

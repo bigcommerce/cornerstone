@@ -41,10 +41,10 @@ export class Collapsible {
      * @param {jQuery} $target - Content to collapse / expand
      * @param {Object} [options] - Configurable options
      * @param {Object} [options.$context]
-     * @param {Object} [options.disabledBreakpoint]
+     * @param {String} [options.disabledBreakpoint]
      * @param {Object} [options.disabledState]
      * @param {Object} [options.enabledState]
-     * @param {Object} [options.openClassName]
+     * @param {String} [options.openClassName]
      * @example
      *
      * <button id="#more">Collapse</button>
@@ -82,6 +82,7 @@ export class Collapsible {
         // Assign DOM attributes
         this.$target.attr('aria-hidden', this.isCollapsed);
         this.$toggle
+            .attr('aria-label', this._getToggleAriaLabelText($toggle))
             .attr('aria-controls', $target.attr('id'))
             .attr('aria-expanded', this.isOpen);
 
@@ -90,7 +91,7 @@ export class Collapsible {
     }
 
     get isCollapsed() {
-        return !this.$target.hasClass(this.openClassName) || this.$target.is(':hidden');
+        return this.$target.is(':hidden') && !this.$target.hasClass(this.openClassName);
     }
 
     get isOpen() {
@@ -109,6 +110,13 @@ export class Collapsible {
 
     get disabled() {
         return this._disabled;
+    }
+
+    _getToggleAriaLabelText($toggle) {
+        const $textToggleChildren = $toggle.children().filter((__, child) => $(child).text().trim());
+        const $ariaLabelTarget = $textToggleChildren.length ? $textToggleChildren.first() : $toggle;
+
+        return $($ariaLabelTarget).text().trim();
     }
 
     open({ notify = true } = {}) {
@@ -201,12 +209,12 @@ export class Collapsible {
  * Convenience method for constructing Collapsible instance
  *
  * @param {string} [selector]
- * @param {Object} [options]
- * @param {Object} [options.$context]
- * @param {Object} [options.disabledBreakpoint]
- * @param {Object} [options.disabledState]
- * @param {Object} [options.enabledState]
- * @param {Object} [options.openClassName]
+ * @param {Object} [overrideOptions]
+ * @param {Object} [overrideOptions.$context]
+ * @param {String} [overrideOptions.disabledBreakpoint]
+ * @param {Object} [overrideOptions.disabledState]
+ * @param {Object} [overrideOptions.enabledState]
+ * @param {String} [overrideOptions.openClassName]
  * @return {Array} array of Collapsible instances
  *
  * @example

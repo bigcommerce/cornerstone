@@ -14,7 +14,7 @@ brands:
             <li class="brand">
                 <article class="card {{#if alternate}}card--alternate{{/if}}">
                     <figure class="card-figure">
-                        <a href="{{url}}">
+                        <a class="card-figure__link" aria-label="{{name}}" href="{{url}}">
                             <div class="card-img-container">
                                 {{> components/common/responsive-img
                                     image=image
@@ -27,9 +27,9 @@ brands:
                         </a>
                     </figure>
                     <div class="card-body">
-                        <h4 class="card-title">
+                        <h3 class="card-title">
                             <a href="{{url}}">{{name}}</a>
-                        </h4>
+                        </h3>
                     </div>
                 </article>
             </li>

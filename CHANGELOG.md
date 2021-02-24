@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Fixed line breaks on Dropdown menu display mode. [#1996](https://github.com/bigcommerce/cornerstone/pull/1996)
 
 ## 5.2.0 (02-22-2021)
 - Fixed cut off on Cart button when Zooming up to 400%. [#1988](https://github.com/bigcommerce/cornerstone/pull/1988)

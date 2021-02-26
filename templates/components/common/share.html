@@ -1,57 +1,90 @@
 {{#if settings.add_this.buttons}}
-    <div class="addthis_toolbox addthis_32x32_style" addthis:url="{{url}}"
-         addthis:title="{{title}}">
+    {{assignVar 'encodedUrl' (encodeURI url)}}
+    {{assignVar 'encodedTitle' (encodeURI head.title)}}
+    <div>
         <ul class="socialLinks">
             {{#each settings.add_this.buttons}}
                 <li class="socialLinks-item socialLinks-item--{{service}}">
-                    <a class="addthis_button_{{service}} socialLinks__link icon icon--{{service}}"
+                    {{#if service '===' 'facebook'}}
+                    <a class="socialLinks__link icon icon--{{service}}"
                        title="{{{capitalize service}}}"
-                       href="#"
+                       href="https://facebook.com/sharer/sharer.php?u={{getVar 'encodedUrl'}}"
+                       target="_blank"
+                       rel="noopener"
                        {{{annotation}}}
                     >
                         <span class="aria-description--hidden">{{{capitalize service}}}</span>
-                        {{#if service '===' 'facebook'}}
-                            <svg>
-                                <use xlink:href="#icon-facebook"/>
-                            </svg>
-                        {{else if service '===' 'email'}}
-                            <svg>
-                                <use xlink:href="#icon-envelope"/>
-                            </svg>
-                        {{else if service '===' 'print'}}
-                            <svg>
-                                <use xlink:href="#icon-print"/>
-                            </svg>
-                        {{else if service '===' 'twitter'}}
-                            <svg>
-                                <use xlink:href="#icon-twitter"/>
-                            </svg>
-                        {{else if service '===' 'linkedin'}}
-                            <svg>
-                                <use xlink:href="#icon-linkedin"/>
-                            </svg>
-                        {{else if service '===' 'google'}}
-                            <svg>
-                                <use xlink:href="#icon-google"/>
-                            </svg>
-                        {{else if service '===' 'pinterest'}}
-                            <svg>
-                                <use xlink:href="#icon-pinterest"/>
-                            </svg>
-                        {{/if}}
+                        <svg>
+                            <use xlink:href="#icon-facebook"/>
+                        </svg>
                     </a>
+                    {{else if service '===' 'email'}}
+                    <a class="socialLinks__link icon icon--{{service}}"
+                       title="{{{capitalize service}}}"
+                       href="mailto:?subject={{getVar 'encodedTitle'}}&amp;body={{getVar 'encodedUrl'}}"
+                       target="_self"
+                       rel="noopener"
+                       {{{annotation}}}
+                    >
+                        <span class="aria-description--hidden">{{{capitalize service}}}</span>
+                        <svg>
+                            <use xlink:href="#icon-envelope"/>
+                        </svg>
+                    </a>
+                    {{else if service '===' 'print'}}
+                    <a class="socialLinks__link icon icon--{{service}}"
+                       title="{{{capitalize service}}}"
+                       onclick="window.print();return false;"
+                       {{{annotation}}}
+                    >
+                        <span class="aria-description--hidden">{{{capitalize service}}}</span>
+                        <svg>
+                            <use xlink:href="#icon-print"/>
+                        </svg>
+                    </a>
+                    {{else if service '===' 'twitter'}}
+                    <a class="socialLinks__link icon icon--{{service}}"
+                       href="https://twitter.com/intent/tweet/?text={{getVar 'encodedTitle'}}&amp;url={{getVar 'encodedUrl'}}"
+                       target="_blank"
+                       rel="noopener"
+                       title="{{{capitalize service}}}"
+                       {{{annotation}}}
+                    >
+                        <span class="aria-description--hidden">{{{capitalize service}}}</span>
+                        <svg>
+                            <use xlink:href="#icon-twitter"/>
+                        </svg>
+                    </a>
+                    {{else if service '===' 'linkedin'}}
+                    <a class="socialLinks__link icon icon--{{service}}"
+                       title="{{{capitalize service}}}"
+                       href="https://www.linkedin.com/shareArticle?mini=true&amp;url={{getVar 'encodedUrl'}}&amp;title={{getVar 'encodedTitle'}}&amp;summary={{getVar 'encodedTitle'}}&amp;source={{getVar 'encodedUrl'}}"
+                       target="_blank"
+                       rel="noopener"
+                       {{{annotation}}}
+                    >
+                        <span class="aria-description--hidden">{{{capitalize service}}}</span>
+                        <svg>
+                            <use xlink:href="#icon-linkedin"/>
+                        </svg>
+                    </a>
+                    {{else if service '===' 'pinterest'}}
+                    <a class="socialLinks__link icon icon--{{service}}"
+                       title="{{{capitalize service}}}"
+                       href="https://pinterest.com/pin/create/button/?url={{getVar 'encodedUrl'}}&amp;description={{getVar 'encodedTitle'}}"
+                       target="_blank"
+                       rel="noopener"
+                       {{{annotation}}}
+                    >
+                        <span class="aria-description--hidden">{{{capitalize service}}}</span>
+                        <svg>
+                            <use xlink:href="#icon-pinterest"/>
+                        </svg>
+                    </a>
+                    {{/if}}
                 </li>
             {{/each}}
         </ul>
-        <script type="text/javascript"
-                defer src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4e94ed470ee51e32"></script>
-        <script>
-            window.addEventListener('DOMContentLoaded', function() {
-                if (typeof(addthis) === "object") {
-                    addthis.toolbox('.addthis_toolbox');
-                }
-            });
-        </script>
     </div>
 {{/if}}
 {{#if settings.facebook_like_button.enabled}}

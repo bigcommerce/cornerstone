@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Added unique identifiers to product cards on product list pages. [#1999](https://github.com/bigcommerce/cornerstone/pull/1999)
 
 ## 5.2.0 (02-22-2021)
 - Fixed cut off on Cart button when Zooming up to 400%. [#1988](https://github.com/bigcommerce/cornerstone/pull/1988)

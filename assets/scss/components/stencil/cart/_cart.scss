@@ -608,6 +608,16 @@ $card-preview-zoom-bottom-offset:       6rem;
     }
 
     @include lazy-loaded-padding('productthumb_size');
+    
+    &:after {
+        @include breakpoint("xxsmall") {
+            padding-bottom: 75%;
+        }
+
+        @include breakpoint("xsmall") {
+            padding-bottom: 100%;
+        }
+    }
 }
 
 .previewCartItem-content {
@@ -640,7 +650,14 @@ $card-preview-zoom-bottom-offset:       6rem;
     @include grid-row;
     border-top: container("border");
     display: block;
-    padding: spacing("single") spacing("half");
+
+    @include breakpoint("xxsmall") {
+        padding: spacing("half") spacing("quarter");
+    }
+
+    @include breakpoint("xsmall") {
+        padding: spacing("single") spacing("half");
+    }
 
     .button {
         margin: 0;

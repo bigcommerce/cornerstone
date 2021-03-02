@@ -1,6 +1,7 @@
 import { hooks } from '@bigcommerce/stencil-utils';
 import CatalogPage from './catalog';
 import FacetedSearch from './common/faceted-search';
+import { announceInputErrorMessage } from './common/utils/form-utils';
 import compareProducts from './global/compare-products';
 import urlUtils from './common/utils/url-utils';
 import Url from 'url';
@@ -318,6 +319,7 @@ export default class Search extends CatalogPage {
         this.$form = $form;
         this.validator = nod({
             submit: $form,
+            tap: announceInputErrorMessage,
         });
 
         return this;

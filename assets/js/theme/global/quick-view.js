@@ -2,7 +2,7 @@ import 'foundation-sites/js/foundation/foundation';
 import 'foundation-sites/js/foundation/foundation.dropdown';
 import utils from '@bigcommerce/stencil-utils';
 import ProductDetails from '../common/product-details';
-import { defaultModal, modalTypes } from './modal';
+import { defaultModal } from './modal';
 import 'slick-carousel';
 import { onCarouselChange, onCarouselClick } from '../common/carousel';
 
@@ -30,7 +30,7 @@ export default function (context) {
                 $carousel.slick();
             }
 
-            modal.setupFocusableElements(modalTypes.QUICK_VIEW);
+            modal.setupFocusTrap();
 
             return new ProductDetails(modal.$content.find('.quickView'), context);
         });

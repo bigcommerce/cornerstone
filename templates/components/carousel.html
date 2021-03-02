@@ -60,9 +60,11 @@
     </a>
     {{/if}}
     {{/each}}
-    {{#and arrows (if carousel.slides.length '>' 1)}}
+    {{#if carousel.slides.length '>' 1}}
+    {{> components/carousel-content-announcement slides_length=carousel.slides.length}}
+    {{#if arrows}}
     <button aria-label="{{lang 'carousel.arrowAriaLabel'}} {{carousel.slides.length}}" class="js-hero-next-arrow slick-next slick-arrow"></button>
-    {{/and}}
+    {{/if}}
     {{#if play_pause_button}}
         <button
             type="button"
@@ -77,5 +79,6 @@
             }'>
             {{lang 'carousel.playPauseButtonPause'}}
         </button>
+    {{/if}}
     {{/if}}
 </section>

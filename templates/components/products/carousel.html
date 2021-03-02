@@ -40,5 +40,6 @@
     {{/each}}
     {{#if products.length '>' 1}}
     <button aria-label="{{lang 'carousel.arrowAriaLabel'}} {{products.length}}" class="{{#if customArrowClass}}{{customArrowClass}} {{/if}}js-product-next-arrow slick-next slick-arrow"></button>
+    {{> components/carousel-content-announcement slides_length=products.length}}
     {{/if}}
 </section>

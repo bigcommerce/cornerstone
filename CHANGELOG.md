@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Fixed line breaks on Dropdown menu display mode. [#1996](https://github.com/bigcommerce/cornerstone/pull/1996)
 - Added notifications on Carousel's content cahnge through 'Next/Prev' buttons. [#1986](https://github.com/bigcommerce/cornerstone/pull/1986)
 
 ## 5.2.0 (02-22-2021)

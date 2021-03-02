@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Added sold out badge on products within PLP. [#2003](https://github.com/bigcommerce/cornerstone/pull/2003)
 
 ## 5.2.0 (02-22-2021)
 - Fixed cut off on Cart button when Zooming up to 400%. [#1988](https://github.com/bigcommerce/cornerstone/pull/1988)

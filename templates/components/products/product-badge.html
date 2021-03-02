@@ -1,0 +1,14 @@
+{{#if badge_view '===' 'sash'}}
+    <div class="{{badge-type}}-flag-sash">
+        <span class="{{badge-type}}-text">{{{badge_label}}}</span>
+    </div>
+{{else if badge_view '===' 'topleft'}}
+    <div class="{{badge-type}}-flag-side">
+        <span class="{{badge-type}}-text">{{{badge_label}}}</span>
+    </div>
+{{else if badge_view '===' 'burst'}}
+    <div class="starwrap">
+        <div class="{{badge-type}}-text-burst">{{{badge_label}}}</div>
+        <div class="{{badge-type}}-flag-star"></div>
+    </div>
+{{/if}}

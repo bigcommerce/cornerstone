@@ -1,6 +1,5 @@
 const carouselTooltipClass = 'carousel-tooltip';
 const carouselTooltip = `<span class="${carouselTooltipClass}"></span>`;
-
 const setupTooltipAriaLabel = ($node) => {
     const $existedTooltip = $node.find(`.${carouselTooltipClass}`);
 
@@ -17,7 +16,7 @@ const setupArrowTooltips = (...arrowNodes) => {
 };
 
 const setupDotTooltips = ($dots) => {
-    $dots.children().each((idx, dot) => setupTooltipAriaLabel($(dot).find('button')));
+    $dots.children().each((idx, dot) => setupTooltipAriaLabel($('.js-carousel-dot', dot)));
 };
 
 export default ($prevArrow, $nextArrow, $dots) => {

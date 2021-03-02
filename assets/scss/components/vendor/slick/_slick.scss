@@ -187,11 +187,15 @@ div.slick-slider {
 
 .carousel-tooltip {
     height: 1px;
-    display: block;
+    display: none;
     position: relative;
     margin-top: 10px;
     @include addFocusTooltip($attr: aria-label);
-    
+
+    @include breakpoint("small") {
+        display: block;
+    }
+
     &:after {
         padding: 15px 10px;
         top: 10px;
@@ -242,5 +246,49 @@ div.slick-slider {
         &:before {
             top: -7px;
         }
+    }
+}
+
+//
+// Carousel Play/Pause button
+// -----------------------------------------------------------------------------
+
+.carousel-play-pause-button {
+    display: none;
+    position: absolute;
+    left: 15px;
+    bottom: spacing("third");
+    height: 32px;
+    min-width: 60px;
+    max-width: 60px;
+    font-size: 14px;
+    line-height: 1.25;
+    font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: $slick-play-pause-button-color;
+    transition: color 100ms ease-out;
+    z-index: zIndex("lowest");
+    border: 1px solid $slick-play-pause-button-borderColor;
+    @include carouselOpaqueBackgrounds($slick-play-pause-button-bgColor);
+
+    @media (min-width: 375px) {
+        min-width: 80px;
+        max-width: 90px;
+    }
+
+    @include breakpoint("small") {
+        max-width: 150px;
+        font-size: 18px;
+    }
+
+    @include breakpoint("medium") {
+        left: 25px;
+        bottom: spacing("single");
+    }
+
+    &:hover {
+        color: $slick-play-pause-button-color-hover;
     }
 }

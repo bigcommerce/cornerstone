@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Add placeholder for failed to load carousel images and update scalability. [#2009](https://github.com/bigcommerce/cornerstone/pull/2009)
 - Update focus trap in Modal. [#1998](https://github.com/bigcommerce/cornerstone/pull/1998)
 - Added unique identifiers to product cards on product list pages. [#1999](https://github.com/bigcommerce/cornerstone/pull/1999)
 - Fixed line breaks on Dropdown menu display mode. [#1996](https://github.com/bigcommerce/cornerstone/pull/1996)

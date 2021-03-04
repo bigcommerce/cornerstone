@@ -20,7 +20,7 @@
     {{> components/common/paginator pagination.category}}
 {{else}}
     {{#if category.search_error}}
-        {{lang 'categories.search_error'}}
+        <p>{{lang 'search.errorMessage'}}</p>
     {{else}}
         <p data-no-products-notification
            role="alert"

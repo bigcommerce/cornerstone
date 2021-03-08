@@ -17,6 +17,17 @@ category:
 
 {{#partial "page"}}
 
+<!-- display customer information if one is logged in -->
+{{#if customer '!=' null}}
+    <div class="banners">
+        <p>Welcome {{customer.name}} ({{customer.phone}})
+            {{#if customer.address}} 
+                at {{customer.address}}
+            {{/if}}
+        </p>
+    </div>
+{{/if}}
+
 {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
 {{#if category.image}}
     {{> components/common/responsive-img
@@ -30,6 +41,14 @@ category:
     <h1 class="page-heading">{{category.name}}</h1>
     {{{region name="category_below_header"}}}
 {{/unless}}
+{{#if category.name '===' 'Special Items'}}
+    <!-- Inject products of this category into the context that is passed into ../category.js -->
+    {{inject "categoryProducts" category.products}}
+    <form id="dummy-form">
+        <input type="submit" class="button button--primary category" value="Add All to Cart" id="add-all-from-category" href="#uniqueID" data-reveal-id="uniqueID">
+        <input type="submit" class="button button--primary category" value="Remove All Items" id="remove-all">
+    </form>
+{{/if}}
 {{{category.description}}}
 <div class="page">
     {{#if category.faceted_search_enabled}}
@@ -52,6 +71,21 @@ category:
         {{> components/category/product-listing}}
         {{{region name="category_below_content"}}}
     </main>
+</div>
+
+<div id="uniqueID" class="modal modal--large" data-reveal>
+    <a href="#" class="modal-close" aria-label="{{lang 'common.close'}}" role="button">
+        <span aria-hidden="true">&#215;</span>
+    </a>
+    <div class="modal-content">
+        <h1 class="modal-header">
+            Added all items from this category to the cart.
+        </h1>
+        <h2 class="modal-body">
+            Continue shopping!
+        </h2>
+    </div>
+    <div class="loadingOverlay"></div>
 </div>
 
 {{/partial}}

@@ -36,9 +36,23 @@ There are a few important arguments to know about when using this component:
 
 --}}
 <img {{#if image}}{{!-- Get the default image for legacy browsers that do not support srcset
---}}src="{{getImageSrcset image 1x=(default fallback_size '160w')}}" alt="{{image.alt}}" title="{{image.alt}}" {{!--
-  Allow lazysizes to generate the 'sizes' attribute automatically --}}data-sizes="auto"
-  {{#unless lazyload '==' 'disabled'}}
+--}}
+    src="{{getImageSrcset image 1x=(default fallback_size '160w')}}" 
+    alt="{{image.alt}}" 
+    title="{{image.alt}}" 
+
+    {{#if images.length '>' 1}}
+    {{!-- If there are multiple images for this product, then encode the URL of the second image into the HTML,
+        so that it can be referenced in category.js --}}
+    data-hover-src="{{getImageSrcset images.[1] 1x=(default fallback_size '160w')}}"
+
+    data-hover-srcset="{{getImageSrcset images.[1] use_default_sizes=true }}"
+    {{/if}}
+
+    {{!-- Allow lazysizes to generate the 'sizes' attribute automatically --}}
+    data-sizes="auto"
+    
+    {{#unless lazyload '==' 'disabled'}}
     {{#if lazyload '==' 'lazyload+lqip'}}
     {{!-- If we want a LQIP, include it as the default srcset (will be overwritten by lazysizes) --}}
     srcset="{{getImageSrcset image 1x=(default lqip_size '80w')}}"

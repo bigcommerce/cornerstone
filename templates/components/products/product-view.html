@@ -13,6 +13,9 @@
             Note that these image sizes are coupled to image sizes used in /assets/js/theme/common/product-details.js
             for variant/rule image replacement
         --}}
+        {{#if product.images.length '>' 1 }}
+        {{> components/carousel-content-announcement slides_length=product.images.length}}
+        {{/if}}
         <figure class="productView-image"
                 data-image-gallery-main
                 {{#if product.main_image}}

@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- "Skip to main content" now is visible when top banned is absent. [#2010](https://github.com/bigcommerce/cornerstone/pull/2010)
 - Added sold out badge on products within PLP. [#2003](https://github.com/bigcommerce/cornerstone/pull/2003)
 - Update focus trap in Modal. [#1998](https://github.com/bigcommerce/cornerstone/pull/1998)
 - Added unique identifiers to product cards on product list pages. [#1999](https://github.com/bigcommerce/cornerstone/pull/1999)

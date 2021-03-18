@@ -1,19 +1,17 @@
 import updateTextWithLiveData from './updateTextWithLiveData';
 
-export default ($prevArrow, $nextArrow, actualSlide, actualSlideCount) => {
-    if (actualSlideCount < 2) return;
-    if ($prevArrow.length === 0 || $nextArrow.length === 0) return;
+export default ($prevArrow, $nextArrow, activeSlideIdx, slidesQuantity, ariaLabel) => {
+    if (slidesQuantity < 2 || !$prevArrow || !$nextArrow) return;
 
-    const arrowAriaLabelBaseText = $prevArrow.attr('aria-label');
-    const currentSlideNumber = actualSlide + 1;
+    const activeSlideNumber = activeSlideIdx + 1;
 
-    const prevSlideNumber = actualSlide === 0 ? actualSlideCount : currentSlideNumber - 1;
-    const arrowLeftText = updateTextWithLiveData(arrowAriaLabelBaseText, prevSlideNumber, actualSlideCount);
+    const prevSlideNumber = activeSlideIdx === 0 ? slidesQuantity : activeSlideNumber - 1;
+    const arrowLeftText = updateTextWithLiveData(ariaLabel, prevSlideNumber, slidesQuantity);
 
     $prevArrow.attr('aria-label', arrowLeftText);
 
-    const nextSlideNumber = actualSlide === actualSlideCount - 1 ? 1 : currentSlideNumber + 1;
-    const arrowRightText = updateTextWithLiveData(arrowAriaLabelBaseText, nextSlideNumber, actualSlideCount);
+    const nextSlideNumber = activeSlideIdx === slidesQuantity - 1 ? 1 : activeSlideNumber + 1;
+    const arrowRightText = updateTextWithLiveData(ariaLabel, nextSlideNumber, slidesQuantity);
 
     $nextArrow.attr('aria-label', arrowRightText);
 };

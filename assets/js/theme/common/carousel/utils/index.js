@@ -1,7 +1,9 @@
-export { default as heroCarouselSetup } from './heroCarouselSetup';
+export { default as activatePlayPauseButton } from './activatePlayPauseButton';
 export { default as arrowAriaLabling } from './arrowAriaLabling';
-export { default as updateTextWithLiveData } from './updateTextWithLiveData';
 export { default as dotsSetup } from './dotsSetup';
-export { default as getRealSlidesQuantityAndCurrentSlide } from './getRealSlidesQuantityAndCurrentSlide';
+export { default as getActiveSlideIdxAndSlidesQuantity } from './getActiveSlideIdxAndSlidesQuantity';
+export { default as handleImageAspectRatio } from './handleImageAspectRatio';
+export { default as handleImageLoad } from './handleImageLoad';
 export { default as setTabindexes } from './setTabindexes';
 export { default as tooltipSetup } from './tooltipSetup';
+export { default as updateTextWithLiveData } from './updateTextWithLiveData';

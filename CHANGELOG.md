@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Changed insufficient link text for "Read More" links. [#2012](https://github.com/bigcommerce/cornerstone/pull/2012)
 - Added sold out badge on products within PLP. [#2003](https://github.com/bigcommerce/cornerstone/pull/2003)
 - Update focus trap in Modal. [#1998](https://github.com/bigcommerce/cornerstone/pull/1998)
 - Added unique identifiers to product cards on product list pages. [#1999](https://github.com/bigcommerce/cornerstone/pull/1999)

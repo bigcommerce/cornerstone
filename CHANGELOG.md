@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Alt text should include product name for ratings. [#2015](https://github.com/bigcommerce/cornerstone/pull/2015)
 - Fixed insufficient button label on cart page from action controls. [#2013](https://github.com/bigcommerce/cornerstone/pull/2013)
 - "Skip to main content" now is visible when top banned is absent. [#2010](https://github.com/bigcommerce/cornerstone/pull/2010)
 - Announce subscribing email field as mandatory. [#2011](https://github.com/bigcommerce/cornerstone/pull/2011)

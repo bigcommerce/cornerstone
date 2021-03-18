@@ -2,10 +2,16 @@
 
 ## Draft
 - Add placeholder for failed to load carousel images and update scalability. [#2009](https://github.com/bigcommerce/cornerstone/pull/2009)
+- Fixed insufficient button label on cart page from action controls. [#2013](https://github.com/bigcommerce/cornerstone/pull/2013)
+- "Skip to main content" now is visible when top banned is absent. [#2010](https://github.com/bigcommerce/cornerstone/pull/2010)
+- Announce subscribing email field as mandatory. [#2011](https://github.com/bigcommerce/cornerstone/pull/2011)
+- Changed insufficient link text for "Read More" links. [#2012](https://github.com/bigcommerce/cornerstone/pull/2012)
+- Added sold out badge on products within PLP. [#2003](https://github.com/bigcommerce/cornerstone/pull/2003)
 - Update focus trap in Modal. [#1998](https://github.com/bigcommerce/cornerstone/pull/1998)
 - Added unique identifiers to product cards on product list pages. [#1999](https://github.com/bigcommerce/cornerstone/pull/1999)
 - Fixed line breaks on Dropdown menu display mode. [#1996](https://github.com/bigcommerce/cornerstone/pull/1996)
 - Added notifications on Carousel's content cahnge through 'Next/Prev' buttons. [#1986](https://github.com/bigcommerce/cornerstone/pull/1986)
+- Add error message when faceted search fails on search, category, brand pages [#2005](https://github.com/bigcommerce/cornerstone/pull/2005)
 
 ## 5.2.0 (02-22-2021)
 - Fixed cut off on Cart button when Zooming up to 400%. [#1988](https://github.com/bigcommerce/cornerstone/pull/1988)

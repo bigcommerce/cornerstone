@@ -90,8 +90,12 @@
                     <label class="form-label cart-item-label" for="qty-{{id}}">{{lang 'products.quantity'}}</label>
                     <div class="form-increment">
                         {{#if can_modify}}
-                            <button class="button button--icon" data-cart-update data-cart-itemid="{{id}}" data-action="dec">
-                                <span class="is-srOnly">{{lang 'products.quantity_decrease'}}</span>
+                            <button class="button button--icon"
+                                    data-cart-update
+                                    data-cart-itemid="{{id}}"
+                                    data-action="dec"
+                            >
+                                <span class="is-srOnly">{{lang 'products.quantity_decrease' name=name}}</span>
                                 <i class="icon" aria-hidden="true"><svg><use xlink:href="#icon-keyboard-arrow-down" /></svg></i>
                             </button>
                         {{/if}}
@@ -110,8 +114,12 @@
                                data-action="manualQtyChange"
                                aria-live="polite"{{#unless can_modify}} disabled{{/unless}}>
                         {{#if can_modify}}
-                            <button class="button button--icon" data-cart-update data-cart-itemid="{{id}}" data-action="inc">
-                                <span class="is-srOnly">{{lang 'products.quantity_increase'}}</span>
+                            <button class="button button--icon"
+                                    data-cart-update
+                                    data-cart-itemid="{{id}}"
+                                    data-action="inc"
+                            >
+                                <span class="is-srOnly">{{lang 'products.quantity_increase' name=name}}</span>
                                 <i class="icon" aria-hidden="true"><svg><use xlink:href="#icon-keyboard-arrow-up" /></svg></i>
                             </button>
                         {{/if}}
@@ -133,7 +141,7 @@
                         <button class="cart-remove icon"
                                 data-cart-itemid="{{id}}"
                                 data-confirm-delete="{{lang 'cart.confirm_delete'}}"
-                                aria-label="{{lang 'cart.remove_item'}}"
+                                aria-label="{{lang 'cart.remove_item' name=name}}"
                         >
                             <svg><use xlink:href="#icon-close"></use></svg>
                         </button>

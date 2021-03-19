@@ -14,7 +14,7 @@
             for variant/rule image replacement
         --}}
         {{#if product.images.length '>' 1 }}
-        {{> components/carousel-content-announcement slides_length=product.images.length}}
+        {{> components/carousel-content-announcement}}
         {{/if}}
         <figure class="productView-image"
                 data-image-gallery-main
@@ -49,9 +49,7 @@
                 "accessibility": false,
                 "slidesToShow": 5,
                 "slidesToScroll": 5
-            }'
-            data-arrow-label="{{lang 'carousel.arrowAriaLabel'}} {{product.images.length}}"
-            {{/gt}}>
+            }'{{/gt}}>
             {{#each product.images}}
                 <li class="productView-thumbnail">
                     <a

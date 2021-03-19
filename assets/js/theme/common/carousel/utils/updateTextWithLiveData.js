@@ -1,11 +1,8 @@
-const NUMBER = '[NUMBER]';
-const integerRegExp = /[0-9]+/;
-const lastIntegerRegExp = /(\d+)(?!.*\d)/;
+const SLIDE_NUMBER = '[SLIDE_NUMBER]';
+const SLIDES_QUANTITY = '[SLIDES_QUANTITY]';
 
-export default (textForChange, slideNumber, slideCount) => {
-    const valueToReplace = textForChange.includes(NUMBER) ? NUMBER : integerRegExp;
-
-    return textForChange
-        .replace(valueToReplace, slideNumber)
-        .replace(lastIntegerRegExp, slideCount);
-};
+export default (textForChange, slideNumber, slidesQuantity) => (
+    textForChange
+        .replace(SLIDE_NUMBER, slideNumber)
+        .replace(SLIDES_QUANTITY, slidesQuantity)
+);

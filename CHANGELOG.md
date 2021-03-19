@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Changed insufficient "Change" link text on cart page. [#2014](https://github.com/bigcommerce/cornerstone/pull/2014)
 - Added labeling for edit fields on cart page. [#2016](https://github.com/bigcommerce/cornerstone/pull/2016)
 - Add placeholder for failed to load carousel images and update scalability. [#2009](https://github.com/bigcommerce/cornerstone/pull/2009)
 - Fixed insufficient button label on cart page from action controls. [#2013](https://github.com/bigcommerce/cornerstone/pull/2013)

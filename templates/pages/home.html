@@ -13,9 +13,9 @@ blog:
 ---
 {{#partial "hero"}}
     {{{region name="home_below_menu"}}}
-    {{#if carousel}}
+    {{#and carousel carousel.slides.length}}
         {{> components/carousel arrows=theme_settings.homepage_show_carousel_arrows play_pause_button=theme_settings.homepage_show_carousel_play_pause_button}}
-    {{/if}}
+    {{/and}}
     {{{region name="home_below_carousel"}}}
 {{/partial}}
 

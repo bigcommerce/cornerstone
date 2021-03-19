@@ -1,21 +1,20 @@
-export default ($dots, actualSlide, actualSlideCount, dotLabels) => {
+import updateTextWithLiveData from './updateTextWithLiveData';
+
+export default ($dots, activeSlideIdx, slidesQuantity, { carouselArrowAndDotAriaLabel, carouselActiveDotAriaLabel }) => {
     if (!$dots) return;
 
-    if (actualSlideCount === 1) {
+    if (slidesQuantity < 2) {
         $dots.css('display', 'none');
         return;
     }
 
     $dots.css('display', 'block');
 
-    const { dotAriaLabel, activeDotAriaLabel } = dotLabels;
+    $dots.children().each((idx, dot) => {
+        const dotLabelText = updateTextWithLiveData(carouselArrowAndDotAriaLabel, idx + 1, slidesQuantity);
+        const dotSlideStatusText = idx === activeSlideIdx ? `, ${carouselActiveDotAriaLabel}` : '';
+        const dotAriaLabel = `${dotLabelText}${dotSlideStatusText}`;
 
-    $dots.children().each((index, dot) => {
-        const $dot = $(dot);
-        const dotSlideNumber = index + 1;
-        const dotAriaLabelComputed = index === actualSlide
-            ? `${dotAriaLabel} ${dotSlideNumber}, ${activeDotAriaLabel}`
-            : `${dotAriaLabel} ${dotSlideNumber}`;
-        $dot.find('button').attr('aria-label', dotAriaLabelComputed);
+        $(dot).find('[data-carousel-dot]').attr('aria-label', dotAriaLabel);
     });
 };

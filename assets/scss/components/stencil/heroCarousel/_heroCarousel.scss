@@ -33,6 +33,15 @@
         }
     }
 
+    // for IE
+    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+        opacity: 0;
+
+        &.slick-initialized {
+            opacity: 1;
+        }
+    }
+
     &:not(.slick-initialized) :not(.heroCarousel-slide--first).heroCarousel-slide {
         display: none;
     }

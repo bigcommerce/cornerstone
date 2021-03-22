@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Improve performance of analyzing homepage carousel images. [#2027](https://github.com/bigcommerce/cornerstone/pull/2027)
 
 ## 5.3.0 (03-25-2021)
 - Remove AddThis for social sharing, replace with provider sharing links. [#1997](https://github.com/bigcommerce/cornerstone/pull/1997)

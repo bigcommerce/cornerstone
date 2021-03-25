@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Remove AddThis for social sharing, replace with provider sharing links. [#1997](https://github.com/bigcommerce/cornerstone/pull/1997)
 - IE11 - Clicking on Search Does Not Display Search Bar. [#2017](https://github.com/bigcommerce/cornerstone/pull/2017)
 - Alt text should include product name for ratings. [#2015](https://github.com/bigcommerce/cornerstone/pull/2015)
 - Changed insufficient "Change" link text on cart page. [#2014](https://github.com/bigcommerce/cornerstone/pull/2014)

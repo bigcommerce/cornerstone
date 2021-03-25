@@ -249,9 +249,7 @@
                 {{> components/common/wishlist-dropdown}}
             {{/if}}
         </div>
-        {{#unless is_ajax}}
-            {{> components/common/share}}
-        {{/unless}}
+        {{> components/common/share url=product.url}}
     </section>
 
     <article class="productView-description"{{#if schema}} itemprop="description"{{/if}}>

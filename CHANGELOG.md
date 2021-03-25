@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Added settings for payment banners. [#2021](https://github.com/bigcommerce/cornerstone/pull/2021)
 
 ## 5.4.0 (04-26-2021)
 - Incorrect focus order for product carousels. [#2034](https://github.com/bigcommerce/cornerstone/pull/2034)

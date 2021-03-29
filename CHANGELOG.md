@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Fixed unnecessary horizontal scroll on swatch options on PDP. [#2023](https://github.com/bigcommerce/cornerstone/pull/2023)
 
 ## 5.3.0 (03-24-2021)
 - IE11 - Clicking on Search Does Not Display Search Bar. [#2017](https://github.com/bigcommerce/cornerstone/pull/2017)

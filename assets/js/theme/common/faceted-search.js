@@ -2,10 +2,11 @@ import { hooks, api } from '@bigcommerce/stencil-utils';
 import _ from 'lodash';
 import Url from 'url';
 import urlUtils from './utils/url-utils';
-import modalFactory from '../global/modal';
+import modalFactory, { ModalEvents } from '../global/modal';
 import collapsibleFactory from './collapsible';
 import { Validators } from './utils/form-utils';
 import nod from './nod';
+
 
 const defaultOptions = {
     accordionToggleSelector: '#facetedSearch .accordion-navigation, #facetedSearch .facetedSearch-toggle',
@@ -55,6 +56,15 @@ class FacetedSearch {
         this.options = _.extend({}, defaultOptions, options);
         this.collapsedFacets = [];
         this.collapsedFacetItems = [];
+
+        if (this.options.modal) {
+            this.options.modal.$modal.on(ModalEvents.opened, event => {
+                const $filterItems = $(event.target).find('#facetedSearch-filterItems');
+                if ($filterItems.length) {
+                    this.options.modal.setupFocusTrap();
+                }
+            });
+        }
 
         // Init collapsibles
         collapsibleFactory();

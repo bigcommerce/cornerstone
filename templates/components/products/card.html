@@ -1,22 +1,45 @@
-<article class="card {{#if alternate}}card--alternate{{/if}}" {{#if settings.data_tag_enabled}} data-event-type="{{event}}" data-entity-id="{{id}}" data-position="{{position}}" data-name="{{name}}" data-product-category="{{#each category}}{{#if @last}}{{this}}{{else}}{{this}}, {{/if}}{{/each}}" data-product-brand="{{brand.name}}" data-product-price="{{#if price.with_tax}}{{price.with_tax.value}}{{else}}{{price.without_tax.value}}{{/if}}"  {{/if}}>
-    <figure class="card-figure">
-        {{#or price.sale_price_with_tax.value price.sale_price_without_tax.value}}
-            {{#if theme_settings.product_sale_badges '===' 'sash'}}
-                <div class="sale-flag-sash">
-                    <span class="sale-text">{{{theme_settings.pdp_sale_badge_label}}}</span>
-                </div>
-            {{else if theme_settings.product_sale_badges '===' 'topleft'}}
-                <div class="sale-flag-side">
-                    <span class="sale-text">{{{theme_settings.pdp_sale_badge_label}}}</span>
-                </div>
-            {{else if theme_settings.product_sale_badges '===' 'burst'}}
-                <div class="starwrap">
-                    <div class="sale-text-burst">{{{theme_settings.pdp_sale_badge_label}}}</div>
-                    <div class="sale-flag-star"></div>
-                </div>
+<article
+    class="card
+    {{#if alternate}} card--alternate{{/if}}"
+    data-test="card-{{id}}"
+    {{#if settings.data_tag_enabled}}
+        data-event-type="{{event}}"
+        data-entity-id="{{id}}"
+        data-position="{{position}}"
+        data-name="{{name}}"
+        data-product-category="
+        {{#each category}}
+            {{#if @last}}
+                {{this}}
+            {{else}}
+                {{this}},
             {{/if}}
-        {{/or}}
-        <a href="{{url}}" 
+        {{/each}}"
+        data-product-brand="{{brand.name}}"
+        data-product-price="
+        {{#if price.with_tax}}
+            {{price.with_tax.value}}
+        {{else}}
+            {{price.without_tax.value}}
+        {{/if}}"
+    {{/if}}>
+    <figure class="card-figure">
+        {{#if stock_level '===' 0}}
+            {{> components/products/product-badge
+                badge-type='sold-out'
+                badge_view=theme_settings.product_sold_out_badges
+                badge_label=theme_settings.pdp_sold_out_label
+            }}
+        {{else}}
+            {{#or price.sale_price_with_tax.value price.sale_price_without_tax.value}}
+                {{> components/products/product-badge
+                    badge-type='sale'
+                    badge_view=theme_settings.product_sale_badges
+                    badge_label=theme_settings.pdp_sale_badge_label
+                }}
+            {{/or}}
+        {{/if}}
+        <a href="{{url}}"
            class="card-figure__link"
            aria-label="{{name}},{{> components/products/product-aria-label}}"
            {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}}
@@ -72,7 +95,7 @@
         {{#and rating show_rating}}
             <p class="card-text" data-test-info-type="productRating">
                 <span class="rating--small">
-                    {{> components/products/ratings rating=rating}}
+                    {{> components/products/ratings rating_target=name rating=rating}}
                 </span>
             </p>
         {{/and}}
@@ -81,7 +104,7 @@
         {{/if}}
         <h3 class="card-title">
             <a aria-label="{{name}},{{> components/products/product-aria-label}}"
-               href="{{url}}" 
+               href="{{url}}"
                {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}}>{{name}}</a>
         </h3>
 

@@ -3,9 +3,6 @@
 
     <div id="facetedSearch-content--{{dashcase facet}}" class="accordion-content{{#unless start_collapsed}} is-open{{/unless}}">
         <form id="facet-range-form" class="form" method="get" data-faceted-search-range novalidate>
-            {{#each current_selected_items}}
-                <input type="hidden" name="{{param_name}}[]" value="{{param_value}}"/>
-            {{/each}}
             <input type="hidden" name="search_query" value="{{search_query}}">
             {{#if this.sort}}
                 <input type="hidden" name="sort" value="{{this.sort}}">

@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Fixed unnecessary horizontal scroll on swatch options on PDP. [#2023](https://github.com/bigcommerce/cornerstone/pull/2023)
 
 ## 5.3.0 (03-25-2021)
 - Remove AddThis for social sharing, replace with provider sharing links. [#1997](https://github.com/bigcommerce/cornerstone/pull/1997)

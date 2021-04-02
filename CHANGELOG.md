@@ -1,7 +1,7 @@
 # Changelog
 
 ## Draft
-
+- Added keyboard support on radio buttons. [#2028](https://github.com/bigcommerce/cornerstone/pull/2028)
 ## 5.3.0 (03-25-2021)
 - Remove AddThis for social sharing, replace with provider sharing links. [#1997](https://github.com/bigcommerce/cornerstone/pull/1997)
 - IE11 - Clicking on Search Does Not Display Search Bar. [#2017](https://github.com/bigcommerce/cornerstone/pull/2017)

@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Replace SSL settings in Page builder with global region for SSL certificate. [#2026](https://github.com/bigcommerce/cornerstone/pull/2026)
 - fixed email address validation in forms. [#2029](https://github.com/bigcommerce/cornerstone/pull/2029)
 - Fixed unnecessary horizontal scroll on swatch options on PDP. [#2023](https://github.com/bigcommerce/cornerstone/pull/2023)
 - Always showing product counts for Category facet in the faceted search results page. [#2035](https://github.com/bigcommerce/cornerstone/pull/2035)

@@ -25,6 +25,21 @@ export default class ProductDetails extends ProductDetailsBase {
         const hasOptions = $productOptionsElement.html().trim().length;
         const hasDefaultOptions = $productOptionsElement.find('[data-default]').length;
         const $productSwatchGroup = $('[id*="attribute_swatch"]', $form);
+        const $productSwatchLabels = $('.form-option-swatch', $form);
+        const placeSwatchLabelImage = (_, label) => {
+            const $optionImage = $('.form-option-expanded', $(label));
+            const optionImageWidth = $optionImage.outerWidth();
+            const extendedOptionImageOffsetLeft = 55;
+            const { right } = label.getBoundingClientRect();
+            const emptySpaceToScreenRightBorder = window.screen.width - right;
+            const shiftValue = optionImageWidth - emptySpaceToScreenRightBorder;
+
+            if (emptySpaceToScreenRightBorder < (optionImageWidth + extendedOptionImageOffsetLeft)) {
+                $optionImage.css('left', `${shiftValue > 0 ? -shiftValue : shiftValue}px`);
+            }
+        };
+
+        $(window).on('load', () => $.each($productSwatchLabels, placeSwatchLabelImage));
 
         if (context.showSwatchNames) {
             this.$swatchOptionMessage.removeClass('u-hidden');

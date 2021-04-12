@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Added keyboard support on radio buttons. [#2028](https://github.com/bigcommerce/cornerstone/pull/2028)
 - Replace SSL settings in Page builder with global region for SSL certificate. [#2026](https://github.com/bigcommerce/cornerstone/pull/2026)
 - fixed email address validation in forms. [#2029](https://github.com/bigcommerce/cornerstone/pull/2029)
 - Fixed unnecessary horizontal scroll on swatch options on PDP. [#2023](https://github.com/bigcommerce/cornerstone/pull/2023)

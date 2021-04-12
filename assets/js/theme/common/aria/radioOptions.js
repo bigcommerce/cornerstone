@@ -9,6 +9,7 @@ const setCheckedRadioItem = (itemCollection, itemIdx) => {
         }
 
         $item.attr('aria-checked', true).prop('checked', true).focus();
+        $item.trigger('change');
     });
 };
 
@@ -31,21 +32,18 @@ const handleItemKeyDown = itemCollection => e => {
     }
 
     switch (keyCode) {
-    case ariaKeyCodes.RETURN:
-    case ariaKeyCodes.SPACE: {
-        setCheckedRadioItem(itemCollection, itemIdx);
-        break;
-    }
     case ariaKeyCodes.LEFT:
     case ariaKeyCodes.UP: {
         const prevItemIdx = calculateTargetItemPosition(lastCollectionItemIdx, itemIdx - 1);
         itemCollection.get(prevItemIdx).focus();
+        setCheckedRadioItem(itemCollection, itemIdx - 1);
         break;
     }
     case ariaKeyCodes.RIGHT:
     case ariaKeyCodes.DOWN: {
         const nextItemIdx = calculateTargetItemPosition(lastCollectionItemIdx, itemIdx + 1);
         itemCollection.get(nextItemIdx).focus();
+        setCheckedRadioItem(itemCollection, itemIdx + 1);
         break;
     }
 

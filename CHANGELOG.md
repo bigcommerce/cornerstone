@@ -6,6 +6,7 @@
 - fixed email address validation in forms. [#2029](https://github.com/bigcommerce/cornerstone/pull/2029)
 - Fixed unnecessary horizontal scroll on swatch options on PDP. [#2023](https://github.com/bigcommerce/cornerstone/pull/2023)
 - Always showing product counts for Category facet in the faceted search results page. [#2035](https://github.com/bigcommerce/cornerstone/pull/2035)
+- Fix conditional display of Apple Pay button in preview cart. [#2036](https://github.com/bigcommerce/cornerstone/pull/2036)
 
 ## 5.3.0 (03-25-2021)
 - Remove AddThis for social sharing, replace with provider sharing links. [#1997](https://github.com/bigcommerce/cornerstone/pull/1997)

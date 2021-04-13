@@ -15,8 +15,8 @@
                         <img
                             class="cart-item-fixed-image"
                             src="{{cdn ../theme_settings.default_image_gift_certificate}}"
-                            alt="{{lang 'cart.gift_certificate'}}"
-                            title="{{lang 'cart.gift_certificate'}}"
+                            alt="{{lang 'cart.gift_certificates.gift_certificate'}}"
+                            title="{{lang 'cart.gift_certificates.gift_certificate'}}"
                         >
                     {{else}}
                         {{> components/common/responsive-img
@@ -53,11 +53,21 @@
                             {{/each}}
                         </dl>
 
-                        <a href="#" data-item-edit="{{id}}" data-product-id="{{product_id}}">{{lang 'cart.checkout.change'}}</a>
+                        <a href="#"
+                           data-item-edit="{{id}}"
+                           data-product-id="{{product_id}}"
+                           aria-label="{{lang 'products.change_product_options' name=name}}"
+                        >
+                            {{lang 'common.change'}}
+                        </a>
                     {{/if}}
 
                     {{#if type '==' 'GiftCertificate'}}
-                        <a href="{{edit_url}}">{{lang 'cart.checkout.change'}}</a>
+                        <a href="{{edit_url}}"
+                           aria-label="{{lang 'cart.gift_certificates.change_gift_certificate' certificate_name=name}}"
+                        >
+                            {{lang 'common.change'}}
+                        </a>
                     {{/if}}
                     {{> components/cart/item-giftwrap this}}
                     {{#if event_date}}
@@ -90,8 +100,12 @@
                     <label class="form-label cart-item-label" for="qty-{{id}}">{{lang 'products.quantity'}}</label>
                     <div class="form-increment">
                         {{#if can_modify}}
-                            <button class="button button--icon" data-cart-update data-cart-itemid="{{id}}" data-action="dec">
-                                <span class="is-srOnly">{{lang 'products.quantity_decrease'}}</span>
+                            <button class="button button--icon"
+                                    data-cart-update
+                                    data-cart-itemid="{{id}}"
+                                    data-action="dec"
+                            >
+                                <span class="is-srOnly">{{lang 'products.quantity_decrease' name=name}}</span>
                                 <i class="icon" aria-hidden="true"><svg><use xlink:href="#icon-keyboard-arrow-down" /></svg></i>
                             </button>
                         {{/if}}
@@ -108,10 +122,15 @@
                                pattern="[0-9]*"
                                data-cart-itemid="{{id}}"
                                data-action="manualQtyChange"
+                               aria-label="{{name}}"
                                aria-live="polite"{{#unless can_modify}} disabled{{/unless}}>
                         {{#if can_modify}}
-                            <button class="button button--icon" data-cart-update data-cart-itemid="{{id}}" data-action="inc">
-                                <span class="is-srOnly">{{lang 'products.quantity_increase'}}</span>
+                            <button class="button button--icon"
+                                    data-cart-update
+                                    data-cart-itemid="{{id}}"
+                                    data-action="inc"
+                            >
+                                <span class="is-srOnly">{{lang 'products.quantity_increase' name=name}}</span>
                                 <i class="icon" aria-hidden="true"><svg><use xlink:href="#icon-keyboard-arrow-up" /></svg></i>
                             </button>
                         {{/if}}
@@ -133,7 +152,7 @@
                         <button class="cart-remove icon"
                                 data-cart-itemid="{{id}}"
                                 data-confirm-delete="{{lang 'cart.confirm_delete'}}"
-                                aria-label="{{lang 'cart.remove_item'}}"
+                                aria-label="{{lang 'cart.remove_item' name=name}}"
                         >
                             <svg><use xlink:href="#icon-close"></use></svg>
                         </button>

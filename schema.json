@@ -938,36 +938,6 @@
         "label": "i18n.ShowKlarna",
         "force_reload": true,
         "id": "show_accept_klarna"
-      },
-      {
-        "type": "heading",
-        "content": "i18n.GeoTrustSSL"
-      },
-      {
-        "type": "paragraph",
-        "content": "i18n.IfYouvePurchasedAGeoTrust"
-      },
-      {
-        "type": "text",
-        "label": "i18n.SSLCommonName",
-        "force_reload": true,
-        "id": "geotrust_ssl_common_name"
-      },
-      {
-        "type": "select",
-        "label": "i18n.SealSize",
-        "id": "geotrust_ssl_seal_size",
-        "options": [
-          {
-            "value": "M",
-            "label": "i18n.Medium"
-          },
-          {
-            "value": "S",
-            "label": "i18n.Small"
-          }
-        ],
-        "force_reload": true
       }
     ]
   },
@@ -1350,6 +1320,59 @@
         "type": "paragraph",
         "content": "i18n.ForTextureSwatchesMaxDimensions",
         "reference": "product_sale_badges",
+        "reference_default": "none"
+      },
+      {
+        "type": "select",
+        "label": "i18n.ShowProductSoldOutBadges",
+        "id": "product_sold_out_badges",
+        "force_reload": true,
+        "options": [
+          {
+            "value": "none",
+            "label": "i18n.None"
+          },
+          {
+            "value": "topleft",
+            "label": "i18n.TopLeft"
+          },
+          {
+            "value": "sash",
+            "label": "i18n.Diagonal"
+          },
+          {
+            "value": "burst",
+            "label": "i18n.Burst"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "label": "i18n.ProductSoldOutBadgeLabel",
+        "force_reload": true,
+        "id": "pdp_sold_out_label",
+        "reference": "product_sold_out_badges",
+        "reference_default": "none"
+      },
+      {
+        "type": "color",
+        "label": "i18n.BadgeTextColor",
+        "id": "color_text_product_sold_out_badges",
+        "reference": "product_sold_out_badges",
+        "reference_default": "none"
+      },
+      {
+        "type": "color",
+        "label": "i18n.BadgeColor",
+        "id": "color_badge_product_sold_out_badges",
+        "reference": "product_sold_out_badges",
+        "reference_default": "none"
+      },
+      {
+        "type": "color",
+        "label": "i18n.BadgeHoverColor",
+        "id": "color_hover_product_sold_out_badges",
+        "reference": "product_sold_out_badges",
         "reference_default": "none"
       },
       {

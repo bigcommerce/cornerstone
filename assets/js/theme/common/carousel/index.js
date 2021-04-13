@@ -1,67 +1,84 @@
 import 'slick-carousel';
 
 import {
-    dotsSetup,
-    tooltipSetup,
-    setTabindexes,
+    activatePlayPauseButton,
     arrowAriaLabling,
-    heroCarouselSetup,
-    getRealSlidesQuantityAndCurrentSlide,
+    dotsSetup,
+    getActiveSlideIdxAndSlidesQuantity,
+    handleImageAspectRatio,
+    handleImageLoad,
+    setTabindexes,
+    tooltipSetup,
+    updateTextWithLiveData,
 } from './utils';
 
-export const onCarouselChange = (event, carousel) => {
-    const {
-        options: { prevArrow, nextArrow },
-        currentSlide,
-        slideCount,
-        $prevArrow,
-        $nextArrow,
-        $dots,
-        $slider,
-        breakpointSettings,
-        activeBreakpoint,
-    } = carousel;
+/**
+ * returns activeSlideIdx and slidesQuantity
+ * based on provided carousel settings
+ * @param {Object} $slickSettings
+ * @returns {Object}
+ */
+const extractSlidesDetails = ({
+    slideCount, $slides, options: { slidesToShow, slidesToScroll },
+}) => getActiveSlideIdxAndSlidesQuantity(
+    slideCount,
+    slidesToShow,
+    slidesToScroll,
+    $slides,
+);
 
-    const { actualSlideCount, actualSlide } = getRealSlidesQuantityAndCurrentSlide(
-        breakpointSettings,
-        activeBreakpoint,
-        currentSlide,
-        slideCount,
-        $slider.data('slick').slidesToScroll,
-    );
+export const onUserCarouselChange = ({ data }, context, $slider) => {
+    const $activeSlider = $slider || data;
+    const $parentContainer = $activeSlider.hasClass('productView-thumbnails') ? $('.productView-images') : $activeSlider;
+    const { activeSlideIdx, slidesQuantity } = extractSlidesDetails($activeSlider[0].slick);
+    const $carouselContentElement = $('[data-carousel-content-change-message]', $parentContainer);
+    const carouselContentAnnounceMessage = updateTextWithLiveData(context.carouselContentAnnounceMessage, (activeSlideIdx + 1), slidesQuantity);
 
-    const $prevArrowNode = $prevArrow || $slider.find(prevArrow);
-    const $nextArrowNode = $nextArrow || $slider.find(nextArrow);
-
-    const dataArrowLabel = $slider.data('arrow-label');
-    if (dataArrowLabel) {
-        $prevArrowNode.attr('aria-label', dataArrowLabel);
-        $nextArrowNode.attr('aria-label', dataArrowLabel);
-        $slider.data('arrow-label', false);
-    }
-
-    dotsSetup($dots, actualSlide, actualSlideCount, $slider.data('dots-labels'));
-    setTabindexes($slider.find('.slick-slide'), $prevArrowNode, $nextArrowNode, actualSlide, actualSlideCount);
-    arrowAriaLabling($prevArrowNode, $nextArrowNode, actualSlide, actualSlideCount);
-    tooltipSetup($prevArrowNode, $nextArrowNode, $dots);
+    $carouselContentElement.text(carouselContentAnnounceMessage);
 };
 
-export default function () {
-    const $carouselCollection = $('[data-slick]');
+export const onSlickCarouselChange = (e, carousel, context) => {
+    const {
+        $dots,
+        $slider,
+        $prevArrow,
+        $nextArrow,
+    } = carousel;
 
-    if ($carouselCollection.length === 0) return;
+    const { activeSlideIdx, slidesQuantity } = extractSlidesDetails(carousel);
 
-    $carouselCollection.each((index, carousel) => {
+    dotsSetup($dots, activeSlideIdx, slidesQuantity, context);
+    arrowAriaLabling($prevArrow, $nextArrow, activeSlideIdx, slidesQuantity, context.carouselArrowAndDotAriaLabel);
+    setTabindexes($slider.find('.slick-slide'));
+    tooltipSetup($prevArrow, $nextArrow, $dots);
+    activatePlayPauseButton(carousel, slidesQuantity, context);
+};
+
+export default function (context) {
+    $('[data-slick]').each((idx, carousel) => {
         // getting element using find to pass jest test
         const $carousel = $(document).find(carousel);
+        $carousel.on('init afterChange', (e, carouselObj) => onSlickCarouselChange(e, carouselObj, context));
+        $carousel.on('click', '.slick-arrow, .slick-dots', $carousel, e => onUserCarouselChange(e, context));
+        $carousel.on('swipe', (e, carouselObj) => onUserCarouselChange(e, context, carouselObj.$slider));
 
-        $carousel.on('init', onCarouselChange);
-        $carousel.on('afterChange', onCarouselChange);
+        if ($carousel.hasClass('heroCarousel')) {
+            $carousel.on('init afterChange', handleImageLoad);
+            $carousel.on('swipe', handleImageAspectRatio);
+            $carousel.on('click', '.slick-arrow, .slick-dots', $carousel, handleImageAspectRatio);
+
+            // Alternative image styling for IE, which doesn't support objectfit
+            if (typeof document.documentElement.style.objectFit === 'undefined') {
+                $carousel.find('.heroCarousel-slide').each((index, slide) => {
+                    $(slide).addClass('compat-object-fit');
+                });
+            }
+        }
 
         const isMultipleSlides = $carousel.children().length > 1;
         const customPaging = isMultipleSlides
             ? () => (
-                '<button type="button"></button>'
+                '<button data-carousel-dot type="button"></button>'
             )
             : () => {};
 
@@ -72,6 +89,4 @@ export default function () {
             dots: isMultipleSlides,
         });
     });
-
-    heroCarouselSetup($carouselCollection.filter('.heroCarousel'));
 }

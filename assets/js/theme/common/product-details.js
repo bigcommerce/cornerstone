@@ -3,7 +3,7 @@ import ProductDetailsBase, { optionChangeDecorator } from './product-details-bas
 import 'foundation-sites/js/foundation/foundation';
 import 'foundation-sites/js/foundation/foundation.reveal';
 import ImageGallery from '../product/image-gallery';
-import modalFactory, { showAlertModal, modalTypes } from '../global/modal';
+import modalFactory, { showAlertModal } from '../global/modal';
 import { isEmpty, isPlainObject } from 'lodash';
 import { normalizeFormData } from './utils/api';
 import { isBrowserIE, convertIntoArray } from './utils/ie-helpers';
@@ -25,6 +25,21 @@ export default class ProductDetails extends ProductDetailsBase {
         const hasOptions = $productOptionsElement.html().trim().length;
         const hasDefaultOptions = $productOptionsElement.find('[data-default]').length;
         const $productSwatchGroup = $('[id*="attribute_swatch"]', $form);
+        const $productSwatchLabels = $('.form-option-swatch', $form);
+        const placeSwatchLabelImage = (_, label) => {
+            const $optionImage = $('.form-option-expanded', $(label));
+            const optionImageWidth = $optionImage.outerWidth();
+            const extendedOptionImageOffsetLeft = 55;
+            const { right } = label.getBoundingClientRect();
+            const emptySpaceToScreenRightBorder = window.screen.width - right;
+            const shiftValue = optionImageWidth - emptySpaceToScreenRightBorder;
+
+            if (emptySpaceToScreenRightBorder < (optionImageWidth + extendedOptionImageOffsetLeft)) {
+                $optionImage.css('left', `${shiftValue > 0 ? -shiftValue : shiftValue}px`);
+            }
+        };
+
+        $(window).on('load', () => $.each($productSwatchLabels, placeSwatchLabelImage));
 
         if (context.showSwatchNames) {
             this.$swatchOptionMessage.removeClass('u-hidden');
@@ -361,7 +376,8 @@ export default class ProductDetails extends ProductDetailsBase {
             if (this.previewModal) {
                 this.previewModal.open();
 
-                this.updateCartContent(this.previewModal, response.data.cart_item.id, () => this.previewModal.setupFocusableElements(modalTypes.PRODUCT_DETAILS));
+                if ($addToCartBtn.parents('.quickView').length === 0) this.previewModal.$preModalFocusedEl = $addToCartBtn;
+                this.updateCartContent(this.previewModal, response.data.cart_item.id, () => this.previewModal.setupFocusTrap());
             } else {
                 this.$overlay.show();
                 // if no modal, redirect to the cart page

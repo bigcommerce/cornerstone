@@ -13,6 +13,9 @@
             Note that these image sizes are coupled to image sizes used in /assets/js/theme/common/product-details.js
             for variant/rule image replacement
         --}}
+        {{#if product.images.length '>' 1 }}
+        {{> components/carousel-content-announcement}}
+        {{/if}}
         <figure class="productView-image"
                 data-image-gallery-main
                 {{#if product.main_image}}
@@ -46,9 +49,7 @@
                 "accessibility": false,
                 "slidesToShow": 5,
                 "slidesToScroll": 5
-            }'
-            data-arrow-label="{{lang 'carousel.arrowAriaLabel'}} {{product.images.length}}"
-            {{/gt}}>
+            }'{{/gt}}>
             {{#each product.images}}
                 <li class="productView-thumbnail">
                     <a
@@ -248,9 +249,7 @@
                 {{> components/common/wishlist-dropdown}}
             {{/if}}
         </div>
-        {{#unless is_ajax}}
-            {{> components/common/share}}
-        {{/unless}}
+        {{> components/common/share url=product.url}}
     </section>
 
     <article class="productView-description"{{#if schema}} itemprop="description"{{/if}}>

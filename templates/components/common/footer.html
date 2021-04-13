@@ -87,11 +87,6 @@
                 {{> components/common/payment-icons}}
             </article>
         </section>
-        {{#if theme_settings.geotrust_ssl_common_name}}
-            <div class="footer-geotrust-ssl-seal">
-                {{> components/common/geotrust-ssl-seal}}
-            </div>
-        {{/if}}
         {{#if settings.paypal_commerce_credit_message}}
         <div class="footer-copyright">
             <p class="paypal-credit">{{nl2br settings.paypal_commerce_credit_message}}</p>
@@ -108,4 +103,5 @@
             </div>
         {{/if}}
     </div>
+    {{{region name="ssl_site_seal--global"}}}
 </footer>

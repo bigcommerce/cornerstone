@@ -1,6 +1,6 @@
 const forms = {
     email(value) {
-        const re = /^.+@.+\..+/;
+        const re = /^\S+@\S+\.\S+/;
         return re.test(value);
     },
 

@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Wish List drop down is truncated on product page. [#2001](https://github.com/bigcommerce/cornerstone/pull/2001)
 - Improve performance of analyzing homepage carousel images. [#2027](https://github.com/bigcommerce/cornerstone/pull/2027)
 - Added keyboard support on radio buttons. [#2028](https://github.com/bigcommerce/cornerstone/pull/2028)
 - Replace SSL settings in Page builder with global region for SSL certificate. [#2026](https://github.com/bigcommerce/cornerstone/pull/2026)

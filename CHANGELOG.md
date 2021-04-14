@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Removed duplicates of main tag.[#2032](https://github.com/bigcommerce/cornerstone/pull/2032)
 - Hamburger Menu Icon missing on Google AMP Pages. [#2022](https://github.com/bigcommerce/cornerstone/pull/2022)
 - Wish List drop down is truncated on product page. [#2001](https://github.com/bigcommerce/cornerstone/pull/2001)
 - Improve performance of analyzing homepage carousel images. [#2027](https://github.com/bigcommerce/cornerstone/pull/2027)

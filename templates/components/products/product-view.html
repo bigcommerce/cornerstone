@@ -79,19 +79,10 @@
                     <a href="{{product.brand.url}}"{{#if schema}} itemprop="url"{{/if}}><span{{#if schema}} itemprop="name"{{/if}}>{{product.brand.name}}</span></a>
                 </h2>
             {{/if}}
-            {{#if product.call_for_price}}
-                <p class="productView-price">
-                    <span>{{product.call_for_price}}</span>
-                </p>
+
+            {{#if product.custom_fields.1.name}}
+                <p class="{{product.custom_fields.1.name}}">{{product.custom_fields.1.value}}</p>
             {{/if}}
-            <div class="productView-price">
-                {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
-                    {{> components/products/price price=product.price schema_org=schema}}
-                {{else}}
-                    {{> components/common/login-for-pricing}}
-                {{/or}}
-            </div>
-            {{{region name="product_below_price"}}}
             <div class="productView-rating"{{#if product.num_reviews '>' 0}}{{#if schema}} itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating"{{/if}}{{/if}}>
                 {{#if settings.show_product_rating}}
                     {{#if product.num_reviews '>' 0}}
@@ -121,6 +112,27 @@
                     {{> components/products/modals/writeReview}}
                 {{/if}}
             </div>
+
+            {{#if product.description}}
+                <div class="productView-description">
+                    {{{product.description}}}
+                </div>
+            {{/if}}
+
+            {{#if product.call_for_price}}
+                <p class="productView-price">
+                    <span>{{product.call_for_price}}</span>
+                </p>
+            {{/if}}
+            <div class="productView-price">
+                {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+                    {{> components/products/price price=product.price schema_org=schema}}
+                {{else}}
+                    {{> components/common/login-for-pricing}}
+                {{/or}}
+            </div>
+            {{{region name="product_below_price"}}}
+
             {{product.detail_messages}}
             <dl class="productView-info">
                 <dt class="productView-info-name sku-label"{{#unless product.sku}} style="display: none;"{{/unless}}>{{lang 'products.sku'}}</dt>
@@ -204,13 +216,15 @@
                         {{> components/products/bulk-discount-rates bulk_discount_rates=product.bulk_discount_rates}}
                     </div>
                 {{/if}}
-
+                
+                <!--
                 {{#if theme_settings.show_custom_fields_tabs '!==' true}}
                     {{#each product.custom_fields}}
                         <dt class="productView-info-name">{{name}}:</dt>
                         <dd class="productView-info-value">{{{ sanitize value}}}</dd>
                     {{/each}}
                 {{/if}}
+                -->
             </dl>
         </div>
     </section>

@@ -6,6 +6,7 @@ import Review from './product/reviews';
 import collapsibleFactory from './common/collapsible';
 import ProductDetails from './common/product-details';
 import videoGallery from './product/video-gallery';
+import BazaarVoice from './product/bazaar-voice';
 import { classifyForm } from './common/utils/form-utils';
 import modalFactory, { ModalEvents } from './global/modal';
 
@@ -61,6 +62,12 @@ export default class Product extends PageManager {
         });
 
         this.productReviewHandler();
+
+        // BazaarVoice reviews
+        const rnrId = "E00000012";
+        const bv = new BazaarVoice(rnrId);
+        // get list of reviews
+        bv.getReviews();
     }
 
     ariaDescribeReviewInputs($form) {

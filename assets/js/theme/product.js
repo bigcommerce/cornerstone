@@ -63,8 +63,11 @@ export default class Product extends PageManager {
 
         this.productReviewHandler();
 
+
+
         // BazaarVoice reviews
-        const rnrId = "E00000012";
+        //TO DO add js-rnr-id in custom fields
+        const rnrId = $(".js-rnr-id").val() || "E00000012";
         const bv = new BazaarVoice(rnrId);
         // get list of reviews
         bv.getReviews();

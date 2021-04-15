@@ -216,7 +216,7 @@
                         {{> components/products/bulk-discount-rates bulk_discount_rates=product.bulk_discount_rates}}
                     </div>
                 {{/if}}
-                
+                {{!--
                 <!--
                 {{#if theme_settings.show_custom_fields_tabs '!==' true}}
                     {{#each product.custom_fields}}
@@ -225,6 +225,7 @@
                     {{/each}}
                 {{/if}}
                 -->
+                --}}
             </dl>
         </div>
     </section>
@@ -263,8 +264,13 @@
                 {{> components/common/wishlist-dropdown}}
             {{/if}}
         </div>
+        {{!--
+        <!--
         {{> components/common/share url=product.url}}
+        -->
+        --}}
     </section>
+    {{!--
     <!--
     <article class="productView-description"{{#if schema}} itemprop="description"{{/if}}>
         {{#if theme_settings.show_product_details_tabs}}
@@ -274,6 +280,7 @@
         {{/if}}
     </article>
     -->
+    --}}
 </div>
 
 <div id="previewModal" class="modal modal--large" data-reveal>

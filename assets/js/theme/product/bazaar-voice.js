@@ -27,11 +27,31 @@ export default class BazaarVoice{
             success: function(myReviews){
                 console.log(myReviews);
                 var renderReviews = Handlebars.compile(reviewListTemplate);
-                document.getElementById('review-list').innerHTML = renderReviews({
+                document.getElementById('bv-reviews__list').innerHTML = renderReviews({
                     reviews: myReviews.Results,
                 });
             }
         });
+    }
+
+    getReviewSummary(){
+        //
+    }
+
+    openRnRModal(){
+        //
+    }
+
+    validateForm(){
+        //
+    }
+
+    submitForm(){
+        //
+    }
+
+    sortBy(type){
+        //switchcase for type
     }
 
 }

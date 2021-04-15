@@ -1,34 +1,35 @@
 {{#partial "page"}}
 
-{{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+<div class="container" >
+    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
 
-<main class="page">
-    {{#unless theme_settings.hide_contact_us_page_heading }}
-        <h1 class="page-heading">{{page.title}}</h1>
-    {{/unless}}
+    <main class="page">
+        {{#unless theme_settings.hide_contact_us_page_heading }}
+            <h1 class="page-heading">{{page.title}}</h1>
+        {{/unless}}
 
-    {{#if page.sub_pages}}
-        <nav class="navBar navBar--sub">
-            <ul class="navBar-section account-navigation">
-                {{#each page.sub_pages}}
-                    <li class="navBar-item"><a class="navBar-action" href="{{url}}">{{title}}</a></li>
-                {{/each}}
-            </ul>
-        </nav>
-    {{/if}}
-
-    <div id="contact-us-page" class="page-content page-content--centered">
-        {{#if forms.contact.success}}
-            <div id="contact-us-success">{{{lang 'forms.contact_us.successful' shopPath=urls.home}}}</div>
-        {{else}}
-            <p>{{{page.content}}}</p>
-            {{> components/page/contact-us-form}}
+        {{#if page.sub_pages}}
+            <nav class="navBar navBar--sub">
+                <ul class="navBar-section account-navigation">
+                    {{#each page.sub_pages}}
+                        <li class="navBar-item"><a class="navBar-action" href="{{url}}">{{title}}</a></li>
+                    {{/each}}
+                </ul>
+            </nav>
         {{/if}}
 
-    </div>
+        <div id="contact-us-page" class="page-content page-content--centered">
+            {{#if forms.contact.success}}
+                <div id="contact-us-success">{{{lang 'forms.contact_us.successful' shopPath=urls.home}}}</div>
+            {{else}}
+                <p>{{{page.content}}}</p>
+                {{> components/page/contact-us-form}}
+            {{/if}}
 
-</main>
+        </div>
 
+    </main>
+</div>
 {{/partial}}
 
 {{> layout/base}}

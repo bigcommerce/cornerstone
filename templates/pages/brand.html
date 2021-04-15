@@ -14,36 +14,37 @@ brand:
 {{/partial}}
 
 {{#partial "page"}}
-{{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
-{{#if brand.image}}
-    <div class="brand-image-container">
-        {{> components/common/responsive-img
-            image=brand.image
-            fallback_size=theme_settings.thumb_size
-            lazyload='disabled'
-        }}
-    </div>
-{{/if}}
-<h1 class="page-heading">{{brand.name}}</h1>
-{{{region name="brand_below_header"}}}
-<div class="page">
-    <aside class="page-sidebar" id="faceted-search-container">
-        {{> components/brand/sidebar}}
-    </aside>
+<div class="container" >
+    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+    {{#if brand.image}}
+        <div class="brand-image-container">
+            {{> components/common/responsive-img
+                image=brand.image
+                fallback_size=theme_settings.thumb_size
+                lazyload='disabled'
+            }}
+        </div>
+    {{/if}}
+    <h1 class="page-heading">{{brand.name}}</h1>
+    {{{region name="brand_below_header"}}}
+    <div class="page">
+        <aside class="page-sidebar" id="faceted-search-container">
+            {{> components/brand/sidebar}}
+        </aside>
 
-    <main class="page-content" id="product-listing-container">
-        {{#if brand.search_error }}
-            <p>{{lang 'search.errorMessage'}}</p>
-        {{else}}
-            {{#if brand.products}}
-                {{> components/brand/product-listing}}
+        <main class="page-content" id="product-listing-container">
+            {{#if brand.search_error }}
+                <p>{{lang 'search.errorMessage'}}</p>
             {{else}}
-                <p>{{lang 'brands.no_products'}}</p>
+                {{#if brand.products}}
+                    {{> components/brand/product-listing}}
+                {{else}}
+                    <p>{{lang 'brands.no_products'}}</p>
+                {{/if}}
+                {{{region name="brand_below_content"}}}
             {{/if}}
-            {{{region name="brand_below_content"}}}
-        {{/if}}
-    </main>
+        </main>
+    </div>
 </div>
-
 {{/partial}}
 {{> layout/base}}

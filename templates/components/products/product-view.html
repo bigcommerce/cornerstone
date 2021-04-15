@@ -216,6 +216,7 @@
                         {{> components/products/bulk-discount-rates bulk_discount_rates=product.bulk_discount_rates}}
                     </div>
                 {{/if}}
+                
                 {{!--
                 <!--
                 {{#if theme_settings.show_custom_fields_tabs '!==' true}}
@@ -226,6 +227,11 @@
                 {{/if}}
                 -->
                 --}}
+
+                {{#each product.custom_fields}}
+                    <input type="hidden" name="{{name}}" class="{{name}}" value="{{{ sanitize value}}}" />
+                {{/each}}
+
             </dl>
         </div>
     </section>

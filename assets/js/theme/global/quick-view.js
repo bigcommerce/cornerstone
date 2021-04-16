@@ -4,7 +4,7 @@ import utils from '@bigcommerce/stencil-utils';
 import ProductDetails from '../common/product-details';
 import { defaultModal } from './modal';
 import 'slick-carousel';
-import { onSlickCarouselChange, onUserCarouselChange } from '../common/carousel';
+import { setCarouselState, onSlickCarouselChange, onUserCarouselChange } from '../common/carousel';
 
 export default function (context) {
     const modal = defaultModal();
@@ -24,7 +24,10 @@ export default function (context) {
             const $carousel = modal.$content.find('[data-slick]');
 
             if ($carousel.length) {
-                $carousel.on('init afterChange', (e, carousel) => onSlickCarouselChange(e, carousel, context));
+                $carousel.on('init breakpoint swipe', setCarouselState);
+                $carousel.on('click', '.slick-arrow, .slick-dots', setCarouselState);
+
+                $carousel.on('init afterChange', (e, carouselObj) => onSlickCarouselChange(e, carouselObj, context));
                 $carousel.on('click', '.slick-arrow, .slick-dots', $carousel, e => onUserCarouselChange(e, context));
                 $carousel.on('swipe', (e, carouselObj) => onUserCarouselChange(e, context, carouselObj.$slider));
 

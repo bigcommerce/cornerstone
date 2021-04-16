@@ -1,4 +1,4 @@
-const FOCUSABLE_ELEMENTS_SELECTOR = '[href], button, input, textarea, select, details, [contenteditable="true"], [tabindex]';
+import { FOCUSABLE_ELEMENTS_SELECTOR } from '../constants';
 
 export default ($slides) => {
     $slides.each((idx, slide) => {

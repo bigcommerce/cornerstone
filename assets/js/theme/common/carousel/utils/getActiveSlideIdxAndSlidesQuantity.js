@@ -1,4 +1,4 @@
-export default (slideCount, slidesToShow, slidesToScroll, $slides) => {
+export default ({ slideCount, $slides, options: { slidesToShow, slidesToScroll } }) => {
     const lastVisibleIdx = $slides.get().reduce((acc, curr, idx) => {
         if ($(curr).hasClass('slick-active')) return idx;
         return acc;

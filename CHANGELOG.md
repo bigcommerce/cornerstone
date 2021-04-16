@@ -1,6 +1,14 @@
 # Changelog
 
 ## Draft
+- Incorrect focus order for product carousels. [#2034](https://github.com/bigcommerce/cornerstone/pull/2034)
+- Removed duplicates of main tag.[#2032](https://github.com/bigcommerce/cornerstone/pull/2032)
+- Hamburger Menu Icon missing on Google AMP Pages. [#2022](https://github.com/bigcommerce/cornerstone/pull/2022)
+- Wish List drop down is truncated on product page. [#2001](https://github.com/bigcommerce/cornerstone/pull/2001)
+- Improve performance of analyzing homepage carousel images. [#2027](https://github.com/bigcommerce/cornerstone/pull/2027)
+- Added keyboard support on radio buttons. [#2028](https://github.com/bigcommerce/cornerstone/pull/2028)
+- Replace SSL settings in Page builder with global region for SSL certificate. [#2026](https://github.com/bigcommerce/cornerstone/pull/2026)
+- fixed email address validation in forms. [#2029](https://github.com/bigcommerce/cornerstone/pull/2029)
 - Fixed unnecessary horizontal scroll on swatch options on PDP. [#2023](https://github.com/bigcommerce/cornerstone/pull/2023)
 - Always showing product counts for Category facet in the faceted search results page. [#2035](https://github.com/bigcommerce/cornerstone/pull/2035)
 

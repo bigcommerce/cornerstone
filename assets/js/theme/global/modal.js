@@ -232,6 +232,10 @@ export class Modal {
     onModalOpened() {
         restrainContentHeight(this.$content);
     }
+
+    getJqueryElement() {
+        return this.$modal;
+    }
 }
 
 /**

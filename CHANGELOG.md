@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Update focus tooltip styles contrast to achieve accessibility AA Complaince. [#2047](https://github.com/bigcommerce/cornerstone/pull/2047)
 - Incorrect focus order for product carousels. [#2034](https://github.com/bigcommerce/cornerstone/pull/2034)
 - Removed duplicates of main tag.[#2032](https://github.com/bigcommerce/cornerstone/pull/2032)
 - Hamburger Menu Icon missing on Google AMP Pages. [#2022](https://github.com/bigcommerce/cornerstone/pull/2022)

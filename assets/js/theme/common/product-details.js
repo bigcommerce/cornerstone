@@ -377,7 +377,7 @@ export default class ProductDetails extends ProductDetailsBase {
                 this.previewModal.open();
 
                 if (window.ApplePaySession) {
-                    this.previewModal.getJqueryElement().addClass('apple-pay-supported');
+                    this.previewModal.$modal.addClass('apple-pay-supported');
                 }
 
                 if ($addToCartBtn.parents('.quickView').length === 0) this.previewModal.$preModalFocusedEl = $addToCartBtn;

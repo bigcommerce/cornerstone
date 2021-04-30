@@ -376,6 +376,10 @@ export default class ProductDetails extends ProductDetailsBase {
             if (this.previewModal) {
                 this.previewModal.open();
 
+                if (window.ApplePaySession) {
+                    this.previewModal.$modal.addClass('apple-pay-supported');
+                }
+
                 if ($addToCartBtn.parents('.quickView').length === 0) this.previewModal.$preModalFocusedEl = $addToCartBtn;
                 this.updateCartContent(this.previewModal, response.data.cart_item.id, () => this.previewModal.setupFocusTrap());
             } else {

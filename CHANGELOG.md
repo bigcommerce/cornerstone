@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Reviews pagination navigation buttons reload page and does not open the Reviews tab. [#2048](https://github.com/bigcommerce/cornerstone/pull/2048)
 
 ## 5.7.0 (07-01-2021)
 - Implement CEV language files into Cornerstone. [#2084](https://github.com/bigcommerce/cornerstone/pull/2084)

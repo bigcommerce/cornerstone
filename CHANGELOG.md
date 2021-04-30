@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Display credit card icons when adding payment method in development [#1941](https://github.com/bigcommerce/cornerstone/pull/1941)
 - Added settings for payment banners. [#2021](https://github.com/bigcommerce/cornerstone/pull/2021)
 - Use https:// for schema markup. [#2039](https://github.com/bigcommerce/cornerstone/pull/2039)
 - Update focus tooltip styles contrast to achieve accessibility AA Complaince. [#2047](https://github.com/bigcommerce/cornerstone/pull/2047)

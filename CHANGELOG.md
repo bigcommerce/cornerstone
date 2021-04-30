@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Update focus tooltip styles contrast to achieve accessibility AA Complaince. [#2047](https://github.com/bigcommerce/cornerstone/pull/2047)
 - Apple pay button displaying needs to be fixed. [#2043](https://github.com/bigcommerce/cornerstone/pull/2043)
 
 ## 5.4.0 (04-26-2021)

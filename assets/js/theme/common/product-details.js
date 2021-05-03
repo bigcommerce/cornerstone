@@ -3,7 +3,7 @@ import ProductDetailsBase, { optionChangeDecorator } from './product-details-bas
 import 'foundation-sites/js/foundation/foundation';
 import 'foundation-sites/js/foundation/foundation.reveal';
 import ImageGallery from '../product/image-gallery';
-import modalFactory, { showAlertModal } from '../global/modal';
+import modalFactory, { alertModal, showAlertModal } from '../global/modal';
 import { isEmpty, isPlainObject } from 'lodash';
 import { normalizeFormData } from './utils/api';
 import { isBrowserIE, convertIntoArray } from './utils/ie-helpers';
@@ -211,6 +211,11 @@ export default class ProductDetails extends ProductDetailsBase {
             this.updateProductAttributes(productAttributesData);
             this.updateView(productAttributesData, productAttributesContent);
             bannerUtils.dispatchProductBannerEvent(productAttributesData);
+
+            if (!this.checkIsQuickViewChild($form)) {
+                const $context = $form.parents('.productView').find('.productView-info');
+                modalFactory('[data-reveal]', { $context });
+            }
         });
     }
 
@@ -231,6 +236,10 @@ export default class ProductDetails extends ProductDetailsBase {
             role: roleType,
             'aria-live': ariaLiveStatus,
         });
+    }
+
+    checkIsQuickViewChild($element) {
+        return !!$element.parents('.quickView').length;
     }
 
     showProductImage(image) {
@@ -369,6 +378,10 @@ export default class ProductDetails extends ProductDetailsBase {
                 const tmp = document.createElement('DIV');
                 tmp.innerHTML = errorMessage;
 
+                if (!this.checkIsQuickViewChild($addToCartBtn)) {
+                    alertModal().$preModalFocusedEl = $addToCartBtn;
+                }
+
                 return showAlertModal(tmp.textContent || tmp.innerText);
             }
 
@@ -380,8 +393,11 @@ export default class ProductDetails extends ProductDetailsBase {
                     this.previewModal.$modal.addClass('apple-pay-supported');
                 }
 
-                if ($addToCartBtn.parents('.quickView').length === 0) this.previewModal.$preModalFocusedEl = $addToCartBtn;
-                this.updateCartContent(this.previewModal, response.data.cart_item.id, () => this.previewModal.setupFocusTrap());
+                if (!this.checkIsQuickViewChild($addToCartBtn)) {
+                    this.previewModal.$preModalFocusedEl = $addToCartBtn;
+                }
+
+                this.updateCartContent(this.previewModal, response.data.cart_item.id);
             } else {
                 this.$overlay.show();
                 // if no modal, redirect to the cart page

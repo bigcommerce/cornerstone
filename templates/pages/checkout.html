@@ -293,6 +293,71 @@
 
 // ]]></script>
 
+<script>
+// 1. OnLoad of payment methods list page
+// Call OrderGroove to know if subscription present for this payment ID
+
+function checkOrderGrooveSubscription(token) {
+    var middlewareUrl = "{{theme_settings.api_middleware_url}}";
+    var appClientId = "{{theme_settings.devtools_client_id}}";
+    return fetch(middlewareUrl + '/api/v1/ordergroove/customer/has_subscriptions', {
+        'headers': {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'authorization-client': appClientId,
+            'Authorization': 'BigCommerce',
+            'signed-payload': token
+        }
+    });
+}
+
+// 2. function checkOrderGrooveSubscription called from checkAndSubmit function.
+// OnClick Of Delete Button
+function checkAndSubmit(identifier) {
+    var formIndex = identifier.getAttribute("data-button-index");
+    var isDefaultPayment = false;
+    var isDefaultPaymentTrue = false;
+    var isDefaultPayment = identifier.getAttribute("data-is-default");
+    var isDefaultPaymentTrue = (isDefaultPayment === 'true');
+    var form = document.getElementById("paymentMethod-form-" + formIndex);
+    console.log("token value " + jwtToken);
+    console.log("isDefaultPayment " + isDefaultPayment);
+    console.log("isDefaultPaymentTrue value " + isDefaultPaymentTrue);
+    if (!isDefaultPaymentTrue) {
+        form.submit();
+        returntrue;
+    }
+    console.log("isDefaultPayment check over");
+    if (jwtToken !== '') {
+        checkOrderGrooveSubscription(jwtToken).then(function (response) {
+            response.json().then(function (data) {
+                var responseData = data;
+                console.log("response data " + JSON.stringify(responseData));
+                var statusValue = responseData['status'];
+                console.log("status value is " + statusValue);
+                if (statusValue == true) {
+                    // Show Error popup, Not Allowed to delete
+                    document.getElementById("showErrorPop").value = 1;
+                    var element = document.getElementById('showErrorPop');
+                    var event = newEvent('change');
+                    element.dispatchEvent(event);
+                    // .trigger('change');
+                    returnfalse;
+
+                } else {
+                    // Allow to Delete
+                    form.submit();
+                    return true;
+                }
+            });
+        });
+        // console.log("API response " + JSON.stringify(apiResponse));
+    } else {
+        console.log("Token not generated.");
+    }
+}
+</script>
+
 {{/partial}}
 
 {{> layout/empty}}

@@ -291,6 +291,10 @@
 
     .form {
         display: inline;
+
+        .add-to-cart-wrapper {
+            display: inline;
+        }
     }
 
     input[type="file"] {
@@ -333,7 +337,6 @@
         }
 
         @include breakpoint("medium") {
-            float: none;
             padding: 0;
             width: auto;
         }
@@ -347,10 +350,17 @@
         .button {
             width: 100%;
 
-            @include breakpoint("large") {
-                margin-right: spacing("half");
+            @include breakpoint("medium") {
                 width: auto;
             }
+
+            @include breakpoint("large") {
+                margin-right: spacing("half");
+            }
+        }
+
+        .button--primary {
+            margin-right: spacing("half");
         }
     }
 }

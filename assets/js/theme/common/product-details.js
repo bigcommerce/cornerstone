@@ -5,6 +5,9 @@ import 'foundation-sites/js/foundation/foundation.reveal';
 import ImageGallery from '../product/image-gallery';
 import modalFactory, { showAlertModal } from '../global/modal';
 import { isEmpty, isPlainObject } from 'lodash';
+import nod from '../common/nod';
+import { announceInputErrorMessage } from '../common/utils/form-utils';
+import forms from '../common/models/forms';
 import { normalizeFormData } from './utils/api';
 import { isBrowserIE, convertIntoArray } from './utils/ie-helpers';
 import bannerUtils from './utils/banner-utils';
@@ -21,6 +24,13 @@ export default class ProductDetails extends ProductDetailsBase {
         this.swatchOptionMessageInitText = this.$swatchOptionMessage.text();
 
         const $form = $('form[data-cart-item-add]', $scope);
+
+        this.addToCartValidator = nod({
+            submit: $form.find('input#form-action-addToCart'),
+            tap: announceInputErrorMessage,
+            disableSubmit: true,
+        });
+
         const $productOptionsElement = $('[data-product-option-change]', $form);
         const hasOptions = $productOptionsElement.html().trim().length;
         const hasDefaultOptions = $productOptionsElement.find('[data-default]').length;
@@ -39,7 +49,10 @@ export default class ProductDetails extends ProductDetailsBase {
             }
         };
 
-        $(window).on('load', () => $.each($productSwatchLabels, placeSwatchLabelImage));
+        $(window).on('load', () => {
+            this.registerAddToCartValidation();
+            $.each($productSwatchLabels, placeSwatchLabelImage);
+        });
 
         if (context.showSwatchNames) {
             this.$swatchOptionMessage.removeClass('u-hidden');
@@ -56,7 +69,11 @@ export default class ProductDetails extends ProductDetailsBase {
         });
 
         $form.on('submit', event => {
-            this.addProductToCart(event, $form[0]);
+            this.addToCartValidator.performCheck();
+
+            if (this.addToCartValidator.areAll('valid')) {
+                this.addProductToCart(event, $form[0]);
+            }
         });
 
         // Update product attributes. Also update the initial view in case items are oos
@@ -74,6 +91,19 @@ export default class ProductDetails extends ProductDetailsBase {
         $productOptionsElement.show();
 
         this.previewModal = modalFactory('#previewModal')[0];
+    }
+
+    registerAddToCartValidation() {
+        this.addToCartValidator.add([{
+            selector: '[data-quantity-change] > .form-input--incrementTotal',
+            validate: (cb, val) => {
+                const result = forms.numbersOnly(val);
+                cb(result);
+            },
+            errorMessage: this.context.productQuantityErrorMessage,
+        }]);
+
+        return this.addToCartValidator;
     }
 
     setProductVariant() {
@@ -287,35 +317,20 @@ export default class ProductDetails extends ProductDetailsBase {
             const quantityMin = parseInt($input.data('quantityMin'), 10);
             const quantityMax = parseInt($input.data('quantityMax'), 10);
 
-            let qty = parseInt($input.val(), 10);
-
+            let qty = forms.numbersOnly($input.val()) ? parseInt($input.val(), 10) : quantityMin;
             // If action is incrementing
             if ($target.data('action') === 'inc') {
-                // If quantity max option is set
-                if (quantityMax > 0) {
-                    // Check quantity does not exceed max
-                    if ((qty + 1) <= quantityMax) {
-                        qty++;
-                    }
-                } else {
-                    qty++;
-                }
+                qty = forms.validateIncreaseAgainstMaxBoundary(qty, quantityMax);
             } else if (qty > 1) {
-                // If quantity min option is set
-                if (quantityMin > 0) {
-                    // Check quantity does not fall below min
-                    if ((qty - 1) >= quantityMin) {
-                        qty--;
-                    }
-                } else {
-                    qty--;
-                }
+                qty = forms.validateDecreaseAgainstMinBoundary(qty, quantityMin);
             }
 
             // update hidden input
             viewModel.quantity.$input.val(qty);
             // update text
             viewModel.quantity.$text.text(qty);
+            // perform validation after updating product quantity
+            this.addToCartValidator.performCheck();
         });
 
         // Prevent triggering quantity change when pressing enter

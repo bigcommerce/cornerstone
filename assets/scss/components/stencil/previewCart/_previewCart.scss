@@ -56,9 +56,12 @@
         width: 100%;
 
         // scss-lint:disable NestingDepth
-        + .button,
         + p {
             margin-top: spacing("half");
+        }
+
+        &:not(:last-child) {
+            margin-bottom: spacing("half");
         }
     }
 }

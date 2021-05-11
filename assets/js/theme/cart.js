@@ -10,6 +10,7 @@ import CartItemDetails from './common/cart-item-details';
 export default class Cart extends PageManager {
     onReady() {
         this.$modal = null;
+        this.$cartPageContent = $('[data-cart]');
         this.$cartContent = $('[data-cart-content]');
         this.$cartMessages = $('[data-cart-status]');
         this.$cartTotals = $('[data-cart-totals]');
@@ -18,7 +19,14 @@ export default class Cart extends PageManager {
         this.$activeCartItemId = null;
         this.$activeCartItemBtnAction = null;
 
+        this.setApplePaySupport();
         this.bindEvents();
+    }
+
+    setApplePaySupport() {
+        if (window.ApplePaySession) {
+            this.$cartPageContent.addClass('apple-pay-supported');
+        }
     }
 
     cartUpdate($target) {

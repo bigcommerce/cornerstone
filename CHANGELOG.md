@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Logo on AMP Product details page (PDP) doesn't fit header. [#2054](https://github.com/bigcommerce/cornerstone/pull/2054)
 - Added settings for payment banners. [#2021](https://github.com/bigcommerce/cornerstone/pull/2021)
 - Use https:// for schema markup. [#2039](https://github.com/bigcommerce/cornerstone/pull/2039)
 - Update focus tooltip styles contrast to achieve accessibility AA Complaince. [#2047](https://github.com/bigcommerce/cornerstone/pull/2047)

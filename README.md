@@ -1,7 +1,78 @@
-# Cornerstone
+# HNCornerstone
 ![tests](https://github.com/bigcommerce/cornerstone/workflows/Theme%20Bundling%20Test/badge.svg?branch=master)
 
-Stencil's Cornerstone theme is the building block for BigCommerce theme developers to get started quickly developing premium quality themes on the BigCommerce platform.
+This HNCornerstone theme is based upon the BigCommerce Cornerstone theme and is currently used to apply a HN style to Checkout-JS.
+
+## Quickstart
+First, create a `config.stencil.json` file at the **root** level which contains the port number and store URL, following the example below.
+
+```
+{
+  "normalStoreUrl": "https://harveynichols-sb.mybigcommerce.com/",
+  "port": "3500",
+  "customLayouts": {
+    "brand": {},
+    "category": {},
+    "page": {},
+    "product": {}
+  }
+}
+```
+
+Next, create a `secrets.stencil.json` file at the **root** level which contains your unique access token, following the example below.
+
+```
+{
+  "accessToken": "YOUR_ACCESSS_TOKEN"
+}
+```
+
+Then, `npm install`.
+
+Then, `npm install -g @bigcommerce/stencil-cli`.
+
+Then, `stencil init` and follow the interactive CLI to initialise your stencil config.
+
+If developing locally, you must also comment out the handlebar content line and uncomment the `<div>` and scripts in the following files:
+
+1. `templates/pages/order-confirmation.html`
+2. `templates/pages/checkout.html`
+
+Finally, run `stencil start`.
+
+### Docker
+
+Alternatively, Docker can be used to run this theme (instead of running `stencil start`).
+
+Note that, if you change the port number in `stencil.conf.js`, you must open both the `Dockerfile` and `docker-compose.yml` and update the port ARG to match.
+
+Next, build the docker image from the root of this repo.
+
+```
+docker-compose build
+```
+
+If you prefer to use the Docker BuildKit, then run the below instead:
+
+```
+COMPOSE_DOCKER_CLI_BUILD=1 DOCKER_BUILDKIT=1 docker-compose build
+```
+
+Finally, run the docker image. Ensure you expose the port the container uses (refer to your `.stencil` file) and match the image name with what you used when building.
+
+```
+docker compose up
+```
+
+Note, you can add the `-d` flag to run the image as a daemon. If you run using `-d`, run the following to stop the instance:
+
+```
+docker compose stop
+```
+
+Also note, you can add the `--remove-orphan` flag to clean up previous docker instances.
+
+Ensure your  `checkout-js` instance is running; you should be able to see the storefront on localhost: congratulations!
 
 ### Stencil Utils
 [Stencil-utils](https://github.com/bigcommerce/stencil-utils) is our supporting library for our events and remote interactions.

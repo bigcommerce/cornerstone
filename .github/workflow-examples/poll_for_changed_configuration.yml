@@ -49,8 +49,8 @@ jobs:
         TOKEN: ${{ secrets.STENCIL_ACCESS_TOKEN_PRODUCTION }}
       run: stencil init -u $URL -t $TOKEN -p 3000
 
-    - name: Check for an updated configuration on the live store
-      run: stencil pull
+    - name: Check for an updated configuration on the live default storefront (channel ID 1)
+      run: stencil pull -c 1
 
     - name: Create Pull Request
       id: cpr

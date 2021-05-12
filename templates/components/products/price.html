@@ -20,7 +20,7 @@ If you are making a change here or in price-range.html, you probably want to mak
                 {{price.non_sale_price_with_tax.formatted}}
             </span>
         </div>
-        <div class="price-section price-section--withTax" {{#if schema_org}}itemprop="offers" itemscope itemtype="http://schema.org/Offer"{{/if}}>
+        <div class="price-section price-section--withTax" {{#if schema_org}}itemprop="offers" itemscope itemtype="https://schema.org/Offer"{{/if}}>
             <span class="price-label" {{#if price.non_sale_price_with_tax}}style="display: none;"{{/if}}>
                 {{theme_settings.pdp-price-label}}
             </span>
@@ -29,12 +29,12 @@ If you are making a change here or in price-range.html, you probably want to mak
             </span>
             <span data-product-price-with-tax class="price price--withTax">{{price.with_tax.formatted}}</span>
             {{#if schema_org}}
-                <meta itemprop="availability" itemtype="http://schema.org/ItemAvailability" 
-                	content="http://schema.org/{{#if product.pre_order}}PreOrder{{else if product.out_of_stock}}OutOfStock{{else if product.can_purchase '===' false}}OutOfStock{{else}}InStock{{/if}}">
-                <meta itemprop="itemCondition" itemtype="http://schema.org/OfferItemCondition" content="http://schema.org/{{product.condition}}Condition">
+                <meta itemprop="availability" itemtype="https://schema.org/ItemAvailability" 
+                	content="https://schema.org/{{#if product.pre_order}}PreOrder{{else if product.out_of_stock}}OutOfStock{{else if product.can_purchase '===' false}}OutOfStock{{else}}InStock{{/if}}">
+                <meta itemprop="itemCondition" itemtype="https://schema.org/OfferItemCondition" content="https://schema.org/{{product.condition}}Condition">
                 <meta itemprop="priceCurrency" content="{{currency_selector.active_currency_code}}">
                 <meta itemprop="url" content="{{product.url}}">
-                <div itemprop="priceSpecification" itemscope itemtype="http://schema.org/PriceSpecification">
+                <div itemprop="priceSpecification" itemscope itemtype="https://schema.org/PriceSpecification">
                     <meta itemprop="price" content="{{price.with_tax.value}}">
                     <meta itemprop="priceCurrency" content="{{currency_selector.active_currency_code}}">
                     <meta itemprop="valueAddedTaxIncluded" content="true">
@@ -58,7 +58,7 @@ If you are making a change here or in price-range.html, you probably want to mak
                 {{price.non_sale_price_without_tax.formatted}}
             </span>
         </div>
-        <div class="price-section price-section--withoutTax" {{#if schema_org}}itemprop="offers" itemscope itemtype="http://schema.org/Offer"{{/if}}>
+        <div class="price-section price-section--withoutTax" {{#if schema_org}}itemprop="offers" itemscope itemtype="https://schema.org/Offer"{{/if}}>
             <span class="price-label" {{#if price.non_sale_price_without_tax}}style="display: none;"{{/if}}>
                 {{theme_settings.pdp-price-label}}
             </span>
@@ -67,12 +67,12 @@ If you are making a change here or in price-range.html, you probably want to mak
             </span>
             <span data-product-price-without-tax class="price price--withoutTax{{#if price.with_tax}} price-section--minor{{/if}}">{{price.without_tax.formatted}}</span>
             {{#if schema_org}}
-                <meta itemprop="availability" itemtype="http://schema.org/ItemAvailability"
-                    content="http://schema.org/{{#if product.pre_order}}PreOrder{{else if product.out_of_stock}}OutOfStock{{else if product.can_purchase '===' false}}OutOfStock{{else}}InStock{{/if}}">
-                <meta itemprop="itemCondition" itemtype="http://schema.org/OfferItemCondition" content="http://schema.org/{{product.condition}}Condition">
+                <meta itemprop="availability" itemtype="https://schema.org/ItemAvailability"
+                    content="https://schema.org/{{#if product.pre_order}}PreOrder{{else if product.out_of_stock}}OutOfStock{{else if product.can_purchase '===' false}}OutOfStock{{else}}InStock{{/if}}">
+                <meta itemprop="itemCondition" itemtype="https://schema.org/OfferItemCondition" content="https://schema.org/{{product.condition}}Condition">
                 <meta itemprop="priceCurrency" content="{{currency_selector.active_currency_code}}">
                 <meta itemprop="url" content="{{product.url}}">
-                <div itemprop="priceSpecification" itemscope itemtype="http://schema.org/PriceSpecification">
+                <div itemprop="priceSpecification" itemscope itemtype="https://schema.org/PriceSpecification">
                     <meta itemprop="price" content="{{price.without_tax.value}}">
                     <meta itemprop="priceCurrency" content="{{currency_selector.active_currency_code}}">
                     <meta itemprop="valueAddedTaxIncluded" content="false">

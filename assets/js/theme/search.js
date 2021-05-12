@@ -204,9 +204,15 @@ export default class Search extends CatalogPage {
             }
         });
 
-        setTimeout(() => {
-            $('[data-search-aria-message]').removeClass('u-hidden');
-        }, 100);
+        const $searchResultsMessage = $(`<p
+            class="aria-description--hidden"
+            tabindex="-1"
+            role="status"
+            aria-live="polite"
+            >${this.context.searchResultsCount}</p>`)
+            .prependTo('body');
+
+        setTimeout(() => $searchResultsMessage.focus(), 100);
     }
 
     loadTreeNodes(node, cb) {

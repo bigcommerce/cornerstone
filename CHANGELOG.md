@@ -2,6 +2,7 @@
 
 ## Draft
 - Scale focus trap for all modals. [#2049](https://github.com/bigcommerce/cornerstone/pull/2049)
+- Fixed displaying swatch name for multiple swatch options on page. [#2040](https://github.com/bigcommerce/cornerstone/pull/2040)
 - Added settings for payment banners. [#2021](https://github.com/bigcommerce/cornerstone/pull/2021)
 - Use https:// for schema markup. [#2039](https://github.com/bigcommerce/cornerstone/pull/2039)
 - Update focus tooltip styles contrast to achieve accessibility AA Complaince. [#2047](https://github.com/bigcommerce/cornerstone/pull/2047)

@@ -15,6 +15,8 @@
 // Background, Logo Position
 // -----------------------------------------------------------------------------
 
+@import "settings/global/screensizes/screensizes"; // 1
+
 *:focus {
     outline-color: stencilColor("optimizedCheckout-colorFocus");
 }
@@ -32,7 +34,7 @@
     // TODO:
     // Configure media query to be 'desktop' breakpoint size
     // -----------------------------------------------------------------------------
-    @media (min-width: 801px) {
+    @media (min-width: $screen-medium) {
         text-align: stencilString("optimizedCheckout-logo-position");
     }
 }

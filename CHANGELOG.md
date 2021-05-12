@@ -1,6 +1,10 @@
 # Changelog
 
 ## Draft
+- Fixed displaying swatch name for multiple swatch options on page. [#2040](https://github.com/bigcommerce/cornerstone/pull/2040)
+- Added settings for payment banners. [#2021](https://github.com/bigcommerce/cornerstone/pull/2021)
+- Use https:// for schema markup. [#2039](https://github.com/bigcommerce/cornerstone/pull/2039)
+- Update focus tooltip styles contrast to achieve accessibility AA Complaince. [#2047](https://github.com/bigcommerce/cornerstone/pull/2047)
 - Apple pay button displaying needs to be fixed. [#2043](https://github.com/bigcommerce/cornerstone/pull/2043)
 - Fixed NaN error on increase/decrease product quantity by adding field validation. [#2052](https://github.com/bigcommerce/cornerstone/pull/2052)
 

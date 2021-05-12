@@ -21,7 +21,9 @@ export default class ProductDetails extends ProductDetailsBase {
         this.imageGallery.init();
         this.listenQuantityChange();
         this.$swatchOptionMessage = $('.swatch-option-message');
-        this.swatchOptionMessageInitText = this.$swatchOptionMessage.text();
+        this.swatchInitMessageStorage = {};
+        this.swatchGroupIdList = $('[id^="swatchGroup"]').map((_, group) => $(group).attr('id'));
+        this.storeInitMessagesForSwatches();
 
         const $form = $('form[data-cart-item-add]', $scope);
 
@@ -56,10 +58,17 @@ export default class ProductDetails extends ProductDetailsBase {
 
         if (context.showSwatchNames) {
             this.$swatchOptionMessage.removeClass('u-hidden');
-            $productSwatchGroup.on('change', ({ target }) => this.showSwatchNameOnOption($(target)));
+
+            $productSwatchGroup.on('change', ({ target }) => {
+                const swatchGroupElement = target.parentNode.parentNode;
+
+                this.showSwatchNameOnOption($(target), $(swatchGroupElement));
+            });
 
             $.each($productSwatchGroup, (_, element) => {
-                if ($(element).is(':checked')) this.showSwatchNameOnOption($(element));
+                const swatchGroupElement = element.parentNode.parentNode;
+
+                if ($(element).is(':checked')) this.showSwatchNameOnOption($(element), $(swatchGroupElement));
             });
         }
 
@@ -104,6 +113,16 @@ export default class ProductDetails extends ProductDetailsBase {
         }]);
 
         return this.addToCartValidator;
+    }
+
+    storeInitMessagesForSwatches() {
+        if (this.swatchGroupIdList.length && isEmpty(this.swatchInitMessageStorage)) {
+            this.swatchGroupIdList.each((_, swatchGroupId) => {
+                if (!this.swatchInitMessageStorage[swatchGroupId]) {
+                    this.swatchInitMessageStorage[swatchGroupId] = $(`#${swatchGroupId} ~ .swatch-option-message`).text().trim();
+                }
+            });
+        }
     }
 
     setProductVariant() {
@@ -248,12 +267,14 @@ export default class ProductDetails extends ProductDetailsBase {
      * if this setting is enabled in Page Builder
      * show name for swatch option
      */
-    showSwatchNameOnOption($swatch) {
+    showSwatchNameOnOption($swatch, $swatchGroup) {
         const swatchName = $swatch.attr('aria-label');
+        const activeSwatchGroupId = $swatchGroup.attr('aria-labelledby');
+        const $swatchOptionMessage = $(`#${activeSwatchGroupId} ~ .swatch-option-message`);
 
-        $('[data-product-attribute="swatch"] [data-option-value]').text(swatchName);
-        this.$swatchOptionMessage.text(`${this.swatchOptionMessageInitText} ${swatchName}`);
-        this.setLiveRegionAttributes(this.$swatchOptionMessage, 'status', 'assertive');
+        $('[data-option-value]', $swatchGroup).text(swatchName);
+        $swatchOptionMessage.text(`${this.swatchInitMessageStorage[activeSwatchGroupId]} ${swatchName}`);
+        this.setLiveRegionAttributes($swatchOptionMessage, 'status', 'assertive');
     }
 
     setLiveRegionAttributes($element, roleType, ariaLiveStatus) {

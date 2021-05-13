@@ -34,8 +34,6 @@ export default function (context) {
                 $carousel.slick();
             }
 
-            modal.setupFocusTrap();
-
             return new ProductDetails(modal.$content.find('.quickView'), context);
         });
     });

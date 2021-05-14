@@ -30,7 +30,6 @@ export default class ProductDetails extends ProductDetailsBase {
         this.addToCartValidator = nod({
             submit: $form.find('input#form-action-addToCart'),
             tap: announceInputErrorMessage,
-            disableSubmit: true,
         });
 
         const $productOptionsElement = $('[data-product-option-change]', $form);

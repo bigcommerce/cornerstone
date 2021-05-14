@@ -37,6 +37,26 @@
         </script>
 
         {{ getFontsCollection }}
+
+        <style type="text/css" media="screen, print">
+            @font-face {
+                font-family: "FB";
+                src: url("{{cdn 'webdav:Futura-Book.eot'}}"); /* IE9 Compat Modes */
+                src: url("{{cdn 'webdav:Futura-Book.eot?#iefix'}}"), /* IE6-IE8 */
+                url("{{cdn 'webdav:Futura-Book.woff'}}"), /* Pretty Modern Browsers */
+                url("{{cdn 'webdav:Futura-Book.ttf'}}"), /* Older Browsers */
+                url("{{cdn 'webdav:Futura-Book.svg#Futura-Book'}}"); /* Legacy iOS */
+            }
+            @font-face {
+                font-family: "FL";
+                src: url("{{cdn 'webdav:Futura-Light.eot'}}"); /* IE9 Compat Modes */
+                src: url("{{cdn 'webdav:Futura-Light.eot?#iefix'}}"), /* IE6-IE8 */
+                url("{{cdn 'webdav:Futura-Light.woff'}}"), /* Pretty Modern Browsers */
+                url("{{cdn 'webdav:Futura-Light.ttf'}}"), /* Older Browsers */
+                url("{{cdn 'webdav:Futura-Light.svg#Futura-Light'}}"); /* Legacy iOS */
+            }
+        </style>
+
         {{{stylesheet '/assets/css/theme.css'}}}
 
         {{{head.scripts}}}

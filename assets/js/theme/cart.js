@@ -1,6 +1,7 @@
 import PageManager from './page-manager';
 import { bind, debounce } from 'lodash';
-import giftCertCheck from './common/gift-certificate-validator';
+import checkIsGiftCertValid from './common/gift-certificate-validator';
+import { createTranslationDictionary } from './common/utils/translations-utils';
 import utils from '@bigcommerce/stencil-utils';
 import ShippingEstimator from './cart/shipping-estimator';
 import { defaultModal } from './global/modal';
@@ -363,9 +364,10 @@ export default class Cart extends PageManager {
 
             event.preventDefault();
 
-            if (!giftCertCheck(code)) {
+            if (!checkIsGiftCertValid(code)) {
+                const validationDictionary = createTranslationDictionary(this.context);
                 return swal.fire({
-                    text: $certInput.data('error'),
+                    text: validationDictionary.invalid_gift_certificate,
                     icon: 'error',
                 });
             }

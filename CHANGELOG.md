@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Translation Gap: Compare products error message. [#2061](https://github.com/bigcommerce/cornerstone/pull/2061)
 - Fixed displaying swatch name for multiple swatch options on page. [#2040](https://github.com/bigcommerce/cornerstone/pull/2040)
 - Added settings for payment banners. [#2021](https://github.com/bigcommerce/cornerstone/pull/2021)
 - Use https:// for schema markup. [#2039](https://github.com/bigcommerce/cornerstone/pull/2039)

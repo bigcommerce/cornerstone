@@ -3,6 +3,7 @@
 ## Draft
 - Added translation for invalid quantity value error on Cart. [#2062](https://github.com/bigcommerce/cornerstone/pull/2062)
 - Translation Gap: Delete from Cart confirmation popup. [#2065](https://github.com/bigcommerce/cornerstone/pull/2065)
+- Fixed NaN error on increase/decrease product quantity by adding field validation. [#2052](https://github.com/bigcommerce/cornerstone/pull/2052)
 
 ## 5.5.0 (05-20-2021)
 - Scale focus trap for all modals. [#2049](https://github.com/bigcommerce/cornerstone/pull/2049)
@@ -11,7 +12,6 @@
 - Use https:// for schema markup. [#2039](https://github.com/bigcommerce/cornerstone/pull/2039)
 - Update focus tooltip styles contrast to achieve accessibility AA Complaince. [#2047](https://github.com/bigcommerce/cornerstone/pull/2047)
 - Apple pay button displaying needs to be fixed. [#2043](https://github.com/bigcommerce/cornerstone/pull/2043)
-- Fixed NaN error on increase/decrease product quantity by adding field validation. [#2052](https://github.com/bigcommerce/cornerstone/pull/2052)
 
 ## 5.4.0 (04-26-2021)
 - Incorrect focus order for product carousels. [#2034](https://github.com/bigcommerce/cornerstone/pull/2034)

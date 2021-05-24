@@ -273,7 +273,7 @@ export default class Cart extends PageManager {
                 text: string,
                 icon: 'warning',
                 showCancelButton: true,
-                cancelButtonText: this.context.cancelButtonText
+                cancelButtonText: this.context.cancelButtonText,
             }).then((result) => {
                 if (result.value) {
                     // remove item from cart

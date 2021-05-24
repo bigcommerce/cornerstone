@@ -164,8 +164,6 @@ export default class Cart extends PageManager {
             this.productDetails = new CartItemDetails(this.$modal, context);
 
             this.bindGiftWrappingForm();
-
-            modal.setupFocusTrap();
         });
 
         utils.hooks.on('product-option-change', (event, currentTarget) => {
@@ -275,6 +273,7 @@ export default class Cart extends PageManager {
                 text: string,
                 icon: 'warning',
                 showCancelButton: true,
+                cancelButtonText: this.context.cancelButtonText
             }).then((result) => {
                 if (result.value) {
                     // remove item from cart

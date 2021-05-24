@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Added translation for invalid quantity value error on Cart. [#2062](https://github.com/bigcommerce/cornerstone/pull/2062)
 - Translation Gap: Delete from Cart confirmation popup. [#2065](https://github.com/bigcommerce/cornerstone/pull/2065)
 
 ## 5.5.0 (05-20-2021)

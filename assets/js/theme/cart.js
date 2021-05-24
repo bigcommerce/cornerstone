@@ -90,7 +90,7 @@ export default class Cart extends PageManager {
             invalidEntry = $el.val();
             $el.val(oldQty);
             return swal.fire({
-                text: `${invalidEntry} is not a valid entry`,
+                text: this.context.invalidEntryMessage.replace('[ENTRY]', invalidEntry),
                 icon: 'error',
             });
         } else if (newQty < minQty) {

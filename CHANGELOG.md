@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Translation Gap: Delete from Cart confirmation popup. [#2065](https://github.com/bigcommerce/cornerstone/pull/2065)
 
 ## 5.5.0 (05-20-2021)
 - Scale focus trap for all modals. [#2049](https://github.com/bigcommerce/cornerstone/pull/2049)

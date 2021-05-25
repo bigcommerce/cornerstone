@@ -91,7 +91,7 @@ export default class Cart extends PageManager {
             invalidEntry = $el.val();
             $el.val(oldQty);
             return swal.fire({
-                text: `${invalidEntry} is not a valid entry`,
+                text: this.context.invalidEntryMessage.replace('[ENTRY]', invalidEntry),
                 icon: 'error',
             });
         } else if (newQty < minQty) {
@@ -274,6 +274,7 @@ export default class Cart extends PageManager {
                 text: string,
                 icon: 'warning',
                 showCancelButton: true,
+                cancelButtonText: this.context.cancelButtonText,
             }).then((result) => {
                 if (result.value) {
                     // remove item from cart

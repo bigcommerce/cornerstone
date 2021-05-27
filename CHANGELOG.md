@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Translation Gap: Compare products error message. [#2061](https://github.com/bigcommerce/cornerstone/pull/2061)
 - Translation Gap: Gift Certificate -> Code required message. [#2064](https://github.com/bigcommerce/cornerstone/pull/2064)
 - Added translation for invalid quantity value error on Cart. [#2062](https://github.com/bigcommerce/cornerstone/pull/2062)
 - Translation Gap: Delete from Cart confirmation popup. [#2065](https://github.com/bigcommerce/cornerstone/pull/2065)

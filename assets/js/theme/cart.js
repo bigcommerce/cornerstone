@@ -1,6 +1,7 @@
 import PageManager from './page-manager';
 import { bind, debounce } from 'lodash';
-import giftCertCheck from './common/gift-certificate-validator';
+import checkIsGiftCertValid from './common/gift-certificate-validator';
+import { createTranslationDictionary } from './common/utils/translations-utils';
 import utils from '@bigcommerce/stencil-utils';
 import ShippingEstimator from './cart/shipping-estimator';
 import { defaultModal } from './global/modal';
@@ -90,7 +91,7 @@ export default class Cart extends PageManager {
             invalidEntry = $el.val();
             $el.val(oldQty);
             return swal.fire({
-                text: `${invalidEntry} is not a valid entry`,
+                text: this.context.invalidEntryMessage.replace('[ENTRY]', invalidEntry),
                 icon: 'error',
             });
         } else if (newQty < minQty) {
@@ -164,8 +165,6 @@ export default class Cart extends PageManager {
             this.productDetails = new CartItemDetails(this.$modal, context);
 
             this.bindGiftWrappingForm();
-
-            modal.setupFocusTrap();
         });
 
         utils.hooks.on('product-option-change', (event, currentTarget) => {
@@ -275,6 +274,7 @@ export default class Cart extends PageManager {
                 text: string,
                 icon: 'warning',
                 showCancelButton: true,
+                cancelButtonText: this.context.cancelButtonText,
             }).then((result) => {
                 if (result.value) {
                     // remove item from cart
@@ -365,9 +365,10 @@ export default class Cart extends PageManager {
 
             event.preventDefault();
 
-            if (!giftCertCheck(code)) {
+            if (!checkIsGiftCertValid(code)) {
+                const validationDictionary = createTranslationDictionary(this.context);
                 return swal.fire({
-                    text: $certInput.data('error'),
+                    text: validationDictionary.invalid_gift_certificate,
                     icon: 'error',
                 });
             }

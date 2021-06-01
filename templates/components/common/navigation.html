@@ -1,5 +1,7 @@
 <nav class="navUser">
-    {{> components/common/currency-selector}}
+    {{#if customer.id}}
+        {{> components/common/currency-selector}}
+    {{/if}}
 
     <ul class="navUser-section navUser-section--alt">
         {{#if customer.store_credit.value '>' 0}}

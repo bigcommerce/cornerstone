@@ -23,6 +23,13 @@
 // -----------------------------------------------------------------------------
 
 .listItem {
+
+    @include breakpoint("small") {
+        @include grid-row($behavior: "nest");
+        display: table;
+        width: 100%;
+    }
+
     &:focus-within {
         .listItem-figureBody {
             @include breakpoint("large") {
@@ -37,12 +44,6 @@
                 opacity: 1;
             }
         }
-    }
-
-    @include breakpoint("small") {
-        @include grid-row($behavior: "nest");
-        display: table;
-        width: 100%;
     }
 }
 
@@ -82,17 +83,17 @@
 .listItem-figure {
     margin: 0 0 spacing("single");
     position: relative;
-    
-    &__link {
-        display: block;
-        margin: 3px;
-    }
 
     @include breakpoint("small") {
         margin-bottom: 0;
         padding-left: spacing("half");
         padding-right: spacing("half");
         width: grid-calc(3, $total-columns);
+    }
+    
+    &__link {
+        display: block;
+        margin: 3px;
     }
 
     .listItem-button {
@@ -111,11 +112,11 @@
     text-align: center;
 
     @include breakpoint("large") {
-        top: 50%;
         left: 50%;
-        transform: translateX(-50%) translateY(-50%);
         opacity: 0;
         position: absolute;
+        top: 50%;
+        transform: translateX(-50%) translateY(-50%);
 
         .listItem:hover & {
             opacity: 1;
@@ -245,7 +246,6 @@
 // -----------------------------------------------------------------------------
 
 .page-sidebar + .page-content {
-
     .productList {
 
         // scss-lint:disable SelectorDepth, NestingDepth

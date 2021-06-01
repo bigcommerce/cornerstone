@@ -41,7 +41,7 @@
 
         // scss-lint:disable NestingDepth
         &.is-open {
-            &:before {
+            &::before {
                 @include css-triangle(
                     $triangle-direction: "bottom",
                     $triangle-size: 10px,
@@ -52,7 +52,7 @@
                 position: absolute;
             }
 
-            &:after {
+            &::after {
                 @include css-triangle(
                     $triangle-direction: "bottom",
                     $triangle-size: 8px,
@@ -104,13 +104,13 @@
 }
 
 .navUser-action--currencySelector + .dropdown-menu {
-    &:before {
+    &::before {
         // scss-lint:disable ImportantRule
         left: auto !important; // 6
         right: spacing("half"); // 6
     }
 
-    &:after {
+    &::after {
         // scss-lint:disable ImportantRule
         left: auto !important; // 6
         right: spacing("half") + remCalc(2px); // 6
@@ -121,12 +121,12 @@
     max-width: remCalc(300px);
     padding: spacing("single");
 
-    &:before {
+    &::before {
         // scss-lint:disable ImportantRule
         left: remCalc(140px) !important; // 3
     }
 
-    &:after {
+    &::after {
         // scss-lint:disable ImportantRule
         left: remCalc(142px) !important; // 3
     }
@@ -184,26 +184,26 @@
 
         // scss-lint:disable NestingDepth
         &.is-open {
-            top: auto !important; // 7
             left: auto !important; // 7
             right: remCalc(5px); // 7
+            top: auto !important; // 7
             @include breakpoint("medium") {
                 right: 0; // 7
             }
 
-            &:before,
-            &:after {
+            &::before,
+            &::after {
                 left: auto;
             }
 
-            &:before {
+            &::before {
                 right: spacing("half") - remCalc(5px); // 8
                 @include breakpoint("medium") {
                     right: spacing("half"); // 8
                 }
             }
 
-            &:after {
+            &::after {
                 right: spacing("half") - remCalc(3px); // 8
                 @include breakpoint("medium") {
                     right: spacing("half") + remCalc(2px); // 8
@@ -230,7 +230,6 @@
 }
 
 .navUser-item--account {
-
     .navUser-or {
 
         // scss-lint:disable NestingDepth
@@ -262,12 +261,11 @@
 // -----------------------------------------------------------------------------
 
 .navUser-action--quickSearch {
-
     &.is-open {
         position: relative;
 
         // scss-lint:disable NestingDepth
-        &:before {
+        &::before {
             @include css-triangle(
                 $triangle-direction: "bottom",
                 $triangle-size: 10px,
@@ -283,8 +281,8 @@
 
 .dropdown--quickSearch {
     background-color: $dropdown--quickSearch-backgroundColor;
-    padding: spacing("single") 0;
     display: none;
+    padding: spacing("single") 0;
 
     @include breakpoint("small") {
         padding: spacing("double");

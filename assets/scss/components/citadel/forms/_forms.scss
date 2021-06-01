@@ -7,7 +7,6 @@
 // -----------------------------------------------------------------------------
 
 .form--hiddenLabels {
-
     .form-label {
         @include u-hidden("visually");
     }
@@ -26,7 +25,6 @@
 // -----------------------------------------------------------------------------
 
 .form-field--error {
-
     .form-input {
         float: none;
     }
@@ -34,7 +32,7 @@
     .form-inlineMessage {
 
         // scss-lint:disable NestingDepth
-        &:before {
+        &::before {
             background: $form-error-icon no-repeat;
             background-size: $form-inlineMessage-backgroundSize;
             content: "";
@@ -50,14 +48,13 @@
 }
 
 .form-field--success {
-
     .form-input[type="text"] {
+        padding-right: $form-success-input-paddingRight;
         background: {
             image: $form-success-icon;
             position: right $form-success-icon-right center;
             repeat: no-repeat;
         }
-        padding-right: $form-success-input-paddingRight;
     }
 }
 
@@ -67,7 +64,6 @@
 
 .form-checkbox,
 .form-radio {
-
     + .form-label {
 
         // scss-lint:disable NestingDepth
@@ -87,10 +83,11 @@
 }
 
 .form-option-wrapper {
-    position: relative;
     display: inline-block;
+    position: relative;
 
-    & .form-radio, & .form-checkbox {
+    .form-radio,
+    .form-checkbox {
         bottom: 0.5rem;
         left: 0.5rem;
     }
@@ -141,9 +138,9 @@
 //
 // -----------------------------------------------------------------------------
 @mixin placeholder {
-    &::-webkit-input-placeholder {@content}
-    &::-moz-placeholder          {@content}
-    &:-ms-input-placeholder      {@content}
+    &::-webkit-input-placeholder {@content; }
+    &::-moz-placeholder {@content; }
+    &:-ms-input-placeholder {@content; }
 }
 
 .form-label--alternate {
@@ -202,7 +199,6 @@
 }
 
 .form-prefixPostfix {
-
     &.wrap {
         flex-wrap: wrap;
     }
@@ -271,7 +267,7 @@
     width: remCalc(35px);
 
     .form-field--success & {
-        float:none;
+        float: none;
     }
 }
 
@@ -321,7 +317,7 @@
     min-width: initial;
     padding: 0;
 
-    @include breakpoint('small') { // 4
+    @include breakpoint("small") { // 4
         pointer-events: inherit; // 3
     }
 }
@@ -390,7 +386,7 @@
             background-color: $productOptions-disable-background-color;
             opacity: $productOptions-disable-opacity;
 
-            &:before {
+            &::before {
                 background-color: $productOptions-strikethrough-color;
                 content: "";
                 height: 2px;

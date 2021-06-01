@@ -194,11 +194,20 @@
     text-decoration: none;
     text-transform: uppercase;
 
+    @include breakpoint("medium") {
+        display: inline-block;
+        padding: spacing("half") (spacing("half") + spacing("quarter")) (spacing("half") + spacing("quarter"));
+
+        &.is-open {
+            background-color: $navPage-subMenu-item--is-highlighted-background;
+        }
+    }
+
     &.has-subMenu {
         .navPages-list:not(.navPages-list-depth-max) & {
+            align-items: center;
             display: flex;
             justify-content: space-between;
-            align-items: center;
         }
     }
 
@@ -211,16 +220,8 @@
         }
     }
 
-    @include breakpoint("medium") {
-        display: inline-block;
-        padding: spacing("half") (spacing("half") + spacing("quarter")) (spacing("half") + spacing("quarter"));
-
-        &.is-open {
-            background-color: $navPage-subMenu-item--is-highlighted-background;
-        }
-    }
-
-    &:hover, &.activePage {
+    &:hover,
+    &.activePage {
         color: $navPage-subMenu-item--is-highlighted-color;
 
         // scss-lint:disable NestingDepth
@@ -259,8 +260,7 @@
     }
 
     .has-subMenu.is-open &,
-    .collapsible-icon-wrapper.is-open &
-    {
+    .collapsible-icon-wrapper.is-open & {
         transform: rotate(0);
     }
 
@@ -271,7 +271,7 @@
         @include breakpoint("medium") {
             @include square(8px);
             margin: 0 0 0 spacing("half");
-        }    
+        }
     }
 }
 
@@ -293,7 +293,7 @@
     }
 
     .navPage-subMenu-action:not(.navPages-action-depth-max) + & {
-        margin-left: spacing("double"); // 
+        margin-left: spacing("double"); //
 
         @include breakpoint("medium") {
             margin-left: 0;
@@ -341,7 +341,7 @@
 
             @include breakpoint("medium") {
                 margin-right: auto;
-            }    
+            }
         }
     }
 }
@@ -414,6 +414,10 @@
 .navPage-subMenu-action {
     padding: spacing("half") 0;
 
+    @include breakpoint("medium") {
+        padding: spacing("half") 0 (spacing("half") + spacing("quarter"));
+    }
+
     .navPages-list:not(.navPages-list-depth-max) & {
         padding: 0 0 0 spacing("single");
 
@@ -422,16 +426,12 @@
         }
     }
 
-    @include breakpoint("medium") {
-        padding: spacing("half") 0 (spacing("half") + spacing("quarter"));
-    }
-
     .collapsible-icon-wrapper {
-        height: 100%;
-        width: 100%;
         box-sizing: content-box;
         display: inline-block;
+        height: 100%;
         text-align: right;
+        width: 100%;
 
         @include breakpoint("medium") {
             display: none;
@@ -443,12 +443,6 @@
 //
 // Child pages of sub pages navigation lists
 // -----------------------------------------------------------------------------
-
-.navPage-childList-item {
-    @include breakpoint("medium") {
-    }
-}
-
 .navPage-childList-action {
     font-weight: fontWeight("normal");
     padding: 0 0 spacing("quarter");

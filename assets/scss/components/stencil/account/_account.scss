@@ -68,14 +68,14 @@
 }
 
 .account-product-figure {
+
+    @include lazy-loaded-padding("productthumb_size");
     align-items: center;
     display: flex;
     flex-direction: column;
     margin: 0 spacing("single") + spacing("third") 0 0;
     position: relative;
     width: 70px;
-
-    @include lazy-loaded-padding('productthumb_size');
 }
 
 .account-product-download {
@@ -339,7 +339,6 @@
 // -----------------------------------------------------------------------------
 
 .account {
-
     .pagination {
         color: color("greys", "light");
         margin-top: spacing("double");
@@ -352,7 +351,6 @@
 // -----------------------------------------------------------------------------
 
 .account-message {
-
     .is-read {
         color: color("greys", "light");
     }

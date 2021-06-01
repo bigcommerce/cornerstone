@@ -18,7 +18,6 @@
 
         // scss-lint:disable NestingDepth, SelectorDepth
         &:hover {
-
             svg {
                 fill: stencilColor("icon-color-hover");
             }
@@ -61,16 +60,15 @@
         // scss-lint:enable NestingDepth,
     }
 
-    & .socialLinks__link {
-        position: relative;
-        height: 2rem;
-
+    .socialLinks__link {
         @include addFocusTooltip;
+        height: 2rem;
+        position: relative;
 
         // moving tooltip on the left side for avoiding by parent's cut with overflow: hidden
-        &:focus:after {
-            right: auto;
+        &:focus::after {
             left: 0;
+            right: auto;
             z-index: zIndex("low");
         }
     }

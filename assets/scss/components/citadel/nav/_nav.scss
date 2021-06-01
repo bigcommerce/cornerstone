@@ -39,16 +39,16 @@
     @include checkRadioBase();
     @include checkBox-base();
 
-    &:before,
-    &:after {
+    &::before,
+    &::after {
         top: 50%; // 1
     }
 
-    &:before {
+    &::before {
         margin-top: -$checkRadio-outerSize / 2;
     }
 
-    &:after {
+    &::after {
         margin-top: -$checkRadio-outerSize / 2 + remCalc(1);
     }
 

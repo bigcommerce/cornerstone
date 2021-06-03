@@ -4,7 +4,7 @@ import compareProducts from './global/compare-products';
 
 export default class Compare extends PageManager {
     onReady() {
-        compareProducts(this.context.urls);
+        compareProducts(this.context);
 
         const message = this.context.compareRemoveMessage;
 

@@ -1,6 +1,6 @@
 import PageManager from './page-manager';
 import nod from './common/nod';
-import giftCertChecker from './common/gift-certificate-validator';
+import checkIsGiftCertValid from './common/gift-certificate-validator';
 import formModel from './common/models/forms';
 import { createTranslationDictionary } from './common/utils/translations-utils';
 import { announceInputErrorMessage } from './common/utils/form-utils';
@@ -204,9 +204,9 @@ export default class GiftCertificate extends PageManager {
         balanceValidator.add({
             selector: $balanceForm.find('input[name="giftcertificatecode"]'),
             validate(cb, val) {
-                cb(giftCertChecker(val));
+                cb(checkIsGiftCertValid(val));
             },
-            errorMessage: 'You must enter a certificate code.',
+            errorMessage: this.validationDictionary.invalid_gift_certificate,
         });
 
         return balanceValidator;

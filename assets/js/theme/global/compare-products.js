@@ -12,19 +12,19 @@ function incrementCounter(counter, item) {
     counter.push(item);
 }
 
-function updateCounterNav(counter, $link, urlContext) {
+function updateCounterNav(counter, $link, urls) {
     if (counter.length !== 0) {
         if (!$link.is('visible')) {
             $link.addClass('show');
         }
-        $link.attr('href', `${urlContext.compare}/${counter.join('/')}`);
+        $link.attr('href', `${urls.compare}/${counter.join('/')}`);
         $link.find('span.countPill').html(counter.length);
     } else {
         $link.removeClass('show');
     }
 }
 
-export default function (urlContext) {
+export default function ({ noCompareMessage, urls }) {
     let compareCounter = [];
 
     const $compareLink = $('a[data-compare-nav]');
@@ -33,7 +33,7 @@ export default function (urlContext) {
         const $checked = $('body').find('input[name="products\[\]"]:checked');
 
         compareCounter = $checked.length ? $checked.map((index, element) => element.value).get() : [];
-        updateCounterNav(compareCounter, $compareLink, urlContext);
+        updateCounterNav(compareCounter, $compareLink, urls);
     });
 
     $('body').triggerHandler('compareReset');
@@ -48,7 +48,7 @@ export default function (urlContext) {
             decrementCounter(compareCounter, product);
         }
 
-        updateCounterNav(compareCounter, $clickedCompareLink, urlContext);
+        updateCounterNav(compareCounter, $clickedCompareLink, urls);
     });
 
     $('body').on('submit', '[data-product-compare]', event => {
@@ -56,7 +56,7 @@ export default function (urlContext) {
         const productsToCompare = $this.find('input[name="products\[\]"]:checked');
 
         if (productsToCompare.length <= 1) {
-            showAlertModal('You must select at least two products to compare');
+            showAlertModal(noCompareMessage);
             event.preventDefault();
         }
     });
@@ -65,7 +65,7 @@ export default function (urlContext) {
         const $clickedCheckedInput = $('body').find('input[name="products\[\]"]:checked');
 
         if ($clickedCheckedInput.length <= 1) {
-            showAlertModal('You must select at least two products to compare');
+            showAlertModal(noCompareMessage);
             return false;
         }
     });

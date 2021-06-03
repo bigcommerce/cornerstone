@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Logo on AMP Product details page (PDP) doesn't fit header. [#2054](https://github.com/bigcommerce/cornerstone/pull/2054)
 - Translation Gap: Compare page fields (Description, Rating and Availability). [#2059](https://github.com/bigcommerce/cornerstone/pull/2059)
 - Translation Gap: Compare products error message. [#2061](https://github.com/bigcommerce/cornerstone/pull/2061)
 - Translation Gap: Gift Certificate -> Code required message. [#2064](https://github.com/bigcommerce/cornerstone/pull/2064)

@@ -20,31 +20,6 @@ $cart-thumbnail-paddingVertical:        0.5rem;
 $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-spacing;
 $card-preview-zoom-bottom-offset:       6rem;
 
-//
-// Shared styles for additional checkout buttons
-// -----------------------------------------------------------------------------
-
-%additionalCheckoutButtons {
-    @include clearfix;
-
-    // scss-lint:disable SelectorFormat
-    .FloatRight {
-        @include clearfix;
-
-        // scss-lint:disable SelectorDepth, NestingDepth
-        p {
-            // scss-lint:disable ImportantRule
-            float: none !important;
-            margin: spacing("third") 0;
-            text-align: right;
-        }
-
-        div {
-            float: right;
-        }
-    }
-}
-
 // Cart layout
 // -----------------------------------------------------------------------------
 //
@@ -209,6 +184,10 @@ $card-preview-zoom-bottom-offset:       6rem;
 // -----------------------------------------------------------------------------
 .cart-content-padding-right {
     padding-right: $cart-content-padding-right;
+
+    @media (max-width: $screen-small) {
+        padding-right: 0;
+    }
 }
 
 .cart-header-quantity,
@@ -540,13 +519,42 @@ $card-preview-zoom-bottom-offset:       6rem;
 }
 
 .cart-additionalCheckoutButtons {
-    @extend %additionalCheckoutButtons;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    text-align: right;
+
+    @media (max-width: $screen-medium) {
+        > div {
+            div {
+                z-index: $zIndex-lowest;
+            }
+        }
+    }
+
+    @media (max-width: $screen-small) {
+        align-items: center;
+        text-align: center;
+
+        > div {
+            width: 100% !important;
+        }
+    }
 }
 
 .previewCart-additionalCheckoutButtons {
-    @extend %additionalCheckoutButtons;
-    padding-right: spacing('single');
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 (spacing('half') + spacing("quarter"));
     padding-bottom: spacing('single');
+    text-align: center;
+
+    @media (max-width: $screen-small) {
+        > div {
+            width: 100% !important;
+        }
+    }
 }
 
 // Cart Preview

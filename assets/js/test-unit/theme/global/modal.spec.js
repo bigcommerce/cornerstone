@@ -16,6 +16,9 @@ describe('Modal', () => {
     beforeEach(() => {
         $element = attachHtml(`
             <div id="modal" class="modal" data-reveal>
+                <button class="modal-close" type="button">
+                    <span aria-hidden="true">&#215;</span>
+                </button>
                 <div class="modal-content"></div>
                 <div class="loadingOverlay"></div>
             </div>

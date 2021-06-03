@@ -33,7 +33,7 @@ export default class Account extends PageManager {
         const $reorderForm = classifyForm('[data-account-reorder-form]');
         const $invoiceButton = $('[data-print-invoice]');
 
-        compareProducts(this.context.urls);
+        compareProducts(this.context);
 
         // Injected via template
         this.passwordRequirements = this.context.passwordRequirements;

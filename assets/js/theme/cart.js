@@ -4,7 +4,7 @@ import checkIsGiftCertValid from './common/gift-certificate-validator';
 import { createTranslationDictionary } from './common/utils/translations-utils';
 import utils from '@bigcommerce/stencil-utils';
 import ShippingEstimator from './cart/shipping-estimator';
-import { defaultModal } from './global/modal';
+import { defaultModal, ModalEvents } from './global/modal';
 import swal from './global/sweet-alert';
 import CartItemDetails from './common/cart-item-details';
 
@@ -158,9 +158,20 @@ export default class Cart extends PageManager {
 
         utils.api.productAttributes.configureInCart(itemId, options, (err, response) => {
             modal.updateContent(response.content);
-            const $productOptionsContainer = $('[data-product-attributes-wrapper]', this.$modal);
-            const modalBodyReservedHeight = $productOptionsContainer.outerHeight();
-            $productOptionsContainer.css('height', modalBodyReservedHeight);
+            const optionChangeHandler = () => {
+                const $productOptionsContainer = $('[data-product-attributes-wrapper]', this.$modal);
+                const modalBodyReservedHeight = $productOptionsContainer.outerHeight();
+
+                if ($productOptionsContainer.length && modalBodyReservedHeight) {
+                    $productOptionsContainer.css('height', modalBodyReservedHeight);
+                }
+            };
+
+            if (this.$modal.hasClass('open')) {
+                optionChangeHandler();
+            } else {
+                this.$modal.one(ModalEvents.opened, optionChangeHandler);
+            }
 
             this.productDetails = new CartItemDetails(this.$modal, context);
 

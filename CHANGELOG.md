@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Translation Gap: Account -> Wish List -> Name required message. [#2060](https://github.com/bigcommerce/cornerstone/pull/2060)
 - Translation Gap: Cart -> Shipping estimator error messages. [#2066](https://github.com/bigcommerce/cornerstone/pull/2066)
 - Add to cart button and Wishlist should be on one line on desktop. [#2050](https://github.com/bigcommerce/cornerstone/pull/2050)
 - Logo on AMP Product details page (PDP) doesn't fit header. [#2054](https://github.com/bigcommerce/cornerstone/pull/2054)

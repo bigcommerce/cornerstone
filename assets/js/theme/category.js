@@ -34,7 +34,7 @@ export default class Category extends CatalogPage {
 
         this.makeShopByPriceFilterAccessible();
 
-        compareProducts(this.context.urls);
+        compareProducts(this.context);
 
         if ($('#facetedSearch').length > 0) {
             this.initFacetedSearch();

@@ -457,6 +457,10 @@ export default class Cart extends PageManager {
         this.bindGiftCertificateEvents();
 
         // initiate shipping estimator module
-        this.shippingEstimator = new ShippingEstimator($('[data-shipping-estimator]'));
+        const shippingErrorMessages = {
+            country: this.context.shippingCountryErrorMessage,
+            province: this.context.shippingProvinceErrorMessage,
+        };
+        this.shippingEstimator = new ShippingEstimator($('[data-shipping-estimator]'), shippingErrorMessages);
     }
 }

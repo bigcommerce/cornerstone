@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Enter press on Compare checkbox cause quick view opening. [#2074](https://github.com/bigcommerce/cornerstone/pull/2074)
 - Fixed possibility to select 'None' on multi unrequired Swatch Options. [#2068](https://github.com/bigcommerce/cornerstone/pull/2068)
 - Translation Gap: Account -> Wish List -> Name required message. [#2060](https://github.com/bigcommerce/cornerstone/pull/2060)
 - Translation Gap: Cart -> Shipping estimator error messages. [#2066](https://github.com/bigcommerce/cornerstone/pull/2066)

@@ -64,7 +64,7 @@ export default class ShippingEstimator {
 
                     cb(result);
                 },
-                errorMessage: this.shippingErrorMessages.country
+                errorMessage: this.shippingErrorMessages.country,
             },
         ]);
     }
@@ -86,7 +86,7 @@ export default class ShippingEstimator {
 
                     cb(result);
                 },
-                errorMessage: this.shippingErrorMessages.province
+                errorMessage: this.shippingErrorMessages.province,
             },
         ]);
     }

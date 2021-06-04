@@ -55,7 +55,6 @@
         @include carousel-arrow-color( $slick-arrow-color, "next"); }
 
     &:hover {
-        // scss-lint:disable NestingDepth
         &::before {
             @include carousel-arrow-color( $slick-arrow-color-hover, "next"); }
     }
@@ -72,9 +71,9 @@
         @include carousel-arrow-color( $slick-arrow-color, "prev"); }
 
     &:hover {
-        // scss-lint:disable NestingDepth
         &::before {
-            @include carousel-arrow-color( $slick-arrow-color-hover, "prev"); }
+            @include carousel-arrow-color( $slick-arrow-color-hover, "prev");
+        }
     }
 }
 
@@ -100,7 +99,6 @@
         margin: 0;
         padding: remCalc(5px);
 
-        // scss-lint:disable SelectorDepth, NestingDepth
         button,
         button::before {
             @include square(15px);
@@ -108,7 +106,6 @@
         }
 
         button {
-            // scss-lint:disable NestingDepth
             border: 1px solid $slick-dot-color;
             display: inline-block;
             margin: 0;
@@ -132,7 +129,6 @@
         }
 
         &.slick-active {
-            // scss-lint:disable NestingDepth
             button::before {
                 background: $slick-dot-color-active;
             }
@@ -235,7 +231,7 @@ div.slick-slider {
         &::before,
         &::after {
             right: 50%;
-            transform: translateX(50%);        
+            transform: translateX(50%);
         }
 
         &::before {

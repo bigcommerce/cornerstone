@@ -11,7 +11,6 @@
     margin: spacing("half");
 
     .product {
-        // scss-lint:disable NestingDepth
         + .product {
             margin-top: spacing("base") * 4;
         }
@@ -90,7 +89,7 @@
         padding-right: spacing("half");
         width: grid-calc(3, $total-columns);
     }
-    
+
     &__link {
         display: block;
         margin: 3px;
@@ -104,7 +103,7 @@
             margin: 0;
             pointer-events: all;
         }
-    }    
+    }
 }
 
 .listItem-figureBody {
@@ -233,7 +232,6 @@
         @include breakpoint("large") {
             width: 100%;
 
-            // scss-lint:disable NestingDepth
             + .button {
                 margin: spacing("half") 0 0;
             }
@@ -247,8 +245,6 @@
 
 .page-sidebar + .page-content {
     .productList {
-
-        // scss-lint:disable SelectorDepth, NestingDepth
         .listItem-details {
 
             @include breakpoint("large") {

@@ -39,7 +39,6 @@
         box-shadow: container("dropShadow");
         position: absolute;
 
-        // scss-lint:disable NestingDepth
         &.is-open {
             &::before {
                 @include css-triangle(
@@ -83,12 +82,10 @@
     &.is-open {
         color: stencilColor("navUser-color-hover");
 
-        // scss-lint:disable NestingDepth
         svg {
             fill: stencilColor("navUser-color-hover");
             stroke: stencilColor("navUser-color-hover");
         }
-        // scss-lint:enable NestingDepth
     }
 
     .icon {
@@ -105,13 +102,11 @@
 
 .navUser-action--currencySelector + .dropdown-menu {
     &::before {
-        // scss-lint:disable ImportantRule
         left: auto !important; // 6
         right: spacing("half"); // 6
     }
 
     &::after {
-        // scss-lint:disable ImportantRule
         left: auto !important; // 6
         right: spacing("half") + remCalc(2px); // 6
     }
@@ -122,12 +117,10 @@
     padding: spacing("single");
 
     &::before {
-        // scss-lint:disable ImportantRule
         left: remCalc(140px) !important; // 3
     }
 
     &::after {
-        // scss-lint:disable ImportantRule
         left: remCalc(142px) !important; // 3
     }
 }
@@ -172,7 +165,6 @@
     .navUser-action {
         color: stencilColor("navUser-color");
 
-        // scss-lint:disable NestingDepth
         &:hover,
         &.is-open {
             color: stencilColor("navUser-color-hover");
@@ -182,7 +174,6 @@
     .dropdown-menu {
         max-width: remCalc(320px);
 
-        // scss-lint:disable NestingDepth
         &.is-open {
             left: auto !important; // 7
             right: remCalc(5px); // 7
@@ -231,8 +222,6 @@
 
 .navUser-item--account {
     .navUser-or {
-
-        // scss-lint:disable NestingDepth
         + .navUser-action {
             margin-right: -0.5rem; // 1
         }
@@ -264,7 +253,6 @@
     &.is-open {
         position: relative;
 
-        // scss-lint:disable NestingDepth
         &::before {
             @include css-triangle(
                 $triangle-direction: "bottom",
@@ -290,7 +278,6 @@
 
     &.is-open {
         display: block;
-        // scss-lint:disable ImportantRule
         left: 0 !important; // 1
         outline: none;
         right: 0 !important; // 1

@@ -27,7 +27,6 @@
 // -----------------------------------------------------------------------------
 
 .has-activeNavPages {
-    // scss-lint:disable VendorPrefix
     overflow: hidden; // 2
     -webkit-overflow-scrolling: auto; // 3
 }
@@ -37,7 +36,6 @@
 // -----------------------------------------------------------------------------
 
 .navPages-container {
-    // scss-lint:disable VendorPrefix
     bottom: 0;
     display: none;
     height: 100%;
@@ -213,7 +211,6 @@
 
     &.is-open,
     .collapsible-icon-wrapper.is-open {
-        // scss-lint:disable NestingDepth
         svg {
             fill: $navPage-subMenu-item--is-highlighted-color;
             stroke: $navPage-subMenu-item--is-highlighted-color;
@@ -224,7 +221,6 @@
     &.activePage {
         color: $navPage-subMenu-item--is-highlighted-color;
 
-        // scss-lint:disable NestingDepth
         svg {
             fill: $navPage-subMenu-item--is-highlighted-color;
             stroke: $navPage-subMenu-item--is-highlighted-color;
@@ -314,7 +310,6 @@
     outline: 0;
 
     @include breakpoint("medium") {
-        // scss-lint:disable ImportantRule
         background-color: stencilColor("navPages-subMenu-backgroundColor");
         padding: spacing("single") spacing("single") (spacing("single") + spacing("half")) !important;
         position: absolute;
@@ -364,7 +359,7 @@
             display: inherit;
             height: $navPage-subMenu-horizontal-height;
             margin-left: $navPage-subMenu-horizontal-width;
-            padding: 0 !important; // scss-lint:disable ImportantRule
+            padding: 0 !important;
             top: 0;
             width: $navPage-subMenu-horizontal-width + 1;
         }
@@ -382,7 +377,6 @@
     padding: spacing("half") 0;
 
     @include breakpoint("medium") {
-        // scss-lint:disable ImportantRule
         @include grid-column(3);
         padding: 0 0.75rem !important; // 1
 
@@ -484,7 +478,6 @@
         display: none;
     }
 
-    // scss-lint:disable SelectorDepth, NestingDepth, IdSelector
     #currencySelection2 {
         background-color: color("whites", "bright");
         border: container("border");
@@ -492,7 +485,6 @@
         .dropdown-menu-item {
             padding: 0;
 
-            // scss-lint:disable NestingDepth
             &:not(:last-child) {
                 border-bottom: container("border");
             }

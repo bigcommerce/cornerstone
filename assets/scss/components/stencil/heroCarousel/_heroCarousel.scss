@@ -25,11 +25,11 @@
 
     &.slick-initialized {
         @include breakpoint("small") {
-            max-height: remCalc(400px);            
+            max-height: remCalc(400px);
         }
 
         @include breakpoint("medium") {
-            max-height: remCalc(600px);            
+            max-height: remCalc(600px);
         }
     }
 
@@ -80,7 +80,6 @@
             bottom: spacing("single");
         }
 
-        // scss-lint:disable SelectorDepth, NestingDepth
         li {
             @include carouselOpaqueBackgrounds($slick-dot-bgColor);
         }
@@ -92,26 +91,26 @@
                 height: 100vw;
             }
         }
-    
+
         &.is-vertical-image-type {
             .heroCarousel-image-wrapper {
                 height: 110vw;
             }
         }
-    
+
         &.is-square-image-type,
         &.is-vertical-image-type {
-            .heroCarousel-image-wrapper {    
+            .heroCarousel-image-wrapper {
                 @include breakpoint("small") {
                     height: 56.25vw;
                 }
             }
         }
-    
+
         &.is-image-error {
             background: url("../img/hero-carousel-image-load-error.svg") center center no-repeat;
             background-size: contain;
-        }    
+        }
     }
 }
 
@@ -145,11 +144,11 @@
                 width: 100%;
             }
         }
-    }    
+    }
 
     &.compat-object-fit { // 1
         overflow: hidden;
-        
+
         .heroCarousel-image {
             width: auto;
         }

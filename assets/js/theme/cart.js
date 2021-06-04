@@ -459,8 +459,8 @@ export default class Cart extends PageManager {
         // initiate shipping estimator module
         const shippingErrorMessages = {
             country: this.context.shippingCountryErrorMessage,
-            province: this.context.shippingProvinceErrorMessage
-        }
+            province: this.context.shippingProvinceErrorMessage,
+        };
         this.shippingEstimator = new ShippingEstimator($('[data-shipping-estimator]'), shippingErrorMessages);
     }
 }

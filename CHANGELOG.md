@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Product images in quick view can be squashed. [#2075](https://github.com/bigcommerce/cornerstone/pull/2075)
 - Fixed possibility to select 'None' on multi unrequired Swatch Options. [#2068](https://github.com/bigcommerce/cornerstone/pull/2068)
 - Translation Gap: Account -> Wish List -> Name required message. [#2060](https://github.com/bigcommerce/cornerstone/pull/2060)
 - Translation Gap: Cart -> Shipping estimator error messages. [#2066](https://github.com/bigcommerce/cornerstone/pull/2066)

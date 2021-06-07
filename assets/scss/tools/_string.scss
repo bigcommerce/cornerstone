@@ -56,7 +56,8 @@
         $character: str-slice($value, $i, $i);
 
         @if not (index(map-keys($numbers), $character) or $character == ".") {
-            @return to-length(if($minus, -$result, $result), str-slice($value, $i)); }
+            @return to-length(if($minus, -$result, $result), str-slice($value, $i));
+        }
 
         @if $character == "." {
             $digits: 1;
@@ -82,7 +83,7 @@
 ///
 @function to-length($value, $unit) {
     $units: ("px": 1px, "cm": 1cm, "mm": 1mm, "%": 1%, "ch": 1ch, "pc": 1pc, "in": 1in, "em": 1em, "rem": 1rem, "pt": 1pt, "ex": 1ex, "vw": 1vw, "vh": 1vh, "vmin": 1vmin, "vmax": 1vmax);
-  
+
     @if not index(map-keys($units), $unit) {
         $_: log("Invalid unit `#{$unit}`.");
     }

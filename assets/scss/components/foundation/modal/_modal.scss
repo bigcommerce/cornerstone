@@ -5,6 +5,7 @@
 // =============================================================================
 
 .modal {
+    left: 50%;
     margin: 0;
     max-height: 90%;
     max-width: 95%;
@@ -12,7 +13,6 @@
     outline: none;
     overflow: hidden;
     padding: 0;
-    left: 50%;
     top: 50% !important;
     transform: translate(-50%, -50%);
 
@@ -43,6 +43,8 @@
 
 .modal-close {
     @include square($reveal-close-height);
+
+    @include addFocusTooltip;
     color: stencilColor("icon-color");
     font-size: 26px;
     line-height: remCalc($reveal-close-height);
@@ -59,8 +61,6 @@
     &:hover {
         color: stencilColor("icon-color-hover");
     }
-
-    @include addFocusTooltip;
 }
 
 .modal-body {
@@ -73,7 +73,7 @@
     background-color: $alert-modal-bgColor;
     border-radius: $alert-modal-borderRadius;
     font-family: $alert-font-body;
-    padding: 40px 20px 20px 20px;
+    padding: 40px 20px 20px;
     text-align: center;
 
     .modal-content {
@@ -90,7 +90,8 @@
             color: $alert-button-color;
         }
 
-        .confirm:focus, .confirm:hover {
+        .confirm:focus,
+        .confirm:hover {
             background-color: $alert-button-bgColorHover;
             border-color: $alert-button-borderColorHover;
             color: $alert-button-colorHover;

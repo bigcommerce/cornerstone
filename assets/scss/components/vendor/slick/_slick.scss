@@ -19,12 +19,12 @@
 .slick-next,
 .slick-prev {
     @include carouselOpaqueBackgrounds($slick-arrow-bgColor);
-    z-index: 1;
     border: 1px solid $slick-arrow-borderColor;
     height: remCalc(61px);
     margin-top: -(remCalc(15px));
     padding: remCalc(10px);
     width: remCalc(40px);
+    z-index: 1;
 
     &::before {
         background-position: 50%;
@@ -52,13 +52,12 @@
     }
 
     &::before {
-        @include carousel-arrow-color( $slick-arrow-color, 'next')
+        @include carousel-arrow-color( $slick-arrow-color, "next");
     }
 
     &:hover {
-        // scss-lint:disable NestingDepth
         &::before {
-            @include carousel-arrow-color( $slick-arrow-color-hover, 'next')
+            @include carousel-arrow-color( $slick-arrow-color-hover, "next");
         }
     }
 }
@@ -71,19 +70,17 @@
     }
 
     &::before {
-        @include carousel-arrow-color( $slick-arrow-color, 'prev')
+        @include carousel-arrow-color( $slick-arrow-color, "prev");
     }
 
     &:hover {
-        // scss-lint:disable NestingDepth
         &::before {
-            @include carousel-arrow-color( $slick-arrow-color-hover, 'prev')
+            @include carousel-arrow-color( $slick-arrow-color-hover, "prev");
         }
     }
 }
 
-.slick-slide img
-{
+.slick-slide img {
     display: block;
     width: 100%;
 }
@@ -105,7 +102,6 @@
         margin: 0;
         padding: remCalc(5px);
 
-        // scss-lint:disable SelectorDepth, NestingDepth
         button,
         button::before {
             @include square(15px);
@@ -113,7 +109,6 @@
         }
 
         button {
-            // scss-lint:disable NestingDepth
             border: 1px solid $slick-dot-color;
             display: inline-block;
             margin: 0;
@@ -137,7 +132,6 @@
         }
 
         &.slick-active {
-            // scss-lint:disable NestingDepth
             button::before {
                 background: $slick-dot-color-active;
             }
@@ -149,7 +143,7 @@
 //
 // Stencil override for product detail page thumbnail dots.
 // -----------------------------------------------------------------------------
-.productView .slick-dots  {
+.productView .slick-dots {
     position: relative;
 }
 
@@ -175,8 +169,8 @@
 // iOS Safari fix https://github.com/kenwheeler/slick/issues/2834#issuecomment-389590661
 // -----------------------------------------------------------------------------
 div.slick-slider {
-    width: 1px;
     min-width: 100%;
+    width: 1px;
     *width: 100%;
 }
 
@@ -186,17 +180,17 @@ div.slick-slider {
 // -----------------------------------------------------------------------------
 
 .carousel-tooltip {
-    height: 1px;
-    display: none;
-    position: relative;
-    margin-top: 10px;
     @include addFocusTooltip($attr: aria-label);
+    display: none;
+    height: 1px;
+    margin-top: 10px;
+    position: relative;
 
     @include breakpoint("small") {
         display: block;
     }
 
-    &:after {
+    &::after {
         padding: 15px 10px;
         top: 10px;
     }
@@ -204,32 +198,32 @@ div.slick-slider {
     .slick-prev:focus &,
     .slick-next:focus &,
     .slick-dots button:focus & {
-        &:before,
-        &:after {
+        &::before,
+        &::after {
             display: block;
         }
     }
 
     .slick-prev &,
     .slick-next & {
-        &:before {
+        &::before {
             top: -7px;
         }
     }
 
     .slick-prev & {
-        &:before {
+        &::before {
             right: -2px;
         }
 
-        &:after {
-            right: auto;
+        &::after {
             left: -5px;
+            right: auto;
         }
     }
 
     .slick-next & {
-        &:after {
+        &::after {
             right: -5px;
         }
     }
@@ -237,13 +231,13 @@ div.slick-slider {
     .slick-dots button & {
         margin-top: 25px;
 
-        &:before,
-        &:after {
+        &::before,
+        &::after {
             right: 50%;
-            transform: translateX(50%);        
+            transform: translateX(50%);
         }
 
-        &:before {
+        &::before {
             top: -7px;
         }
     }
@@ -254,41 +248,41 @@ div.slick-slider {
 // -----------------------------------------------------------------------------
 
 .carousel-play-pause-button {
-    display: none;
-    position: absolute;
-    left: 15px;
-    bottom: spacing("third");
-    height: 32px;
-    min-width: 60px;
-    max-width: 60px;
-    font-size: 14px;
-    line-height: 1.25;
-    font-weight: 700;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    color: $slick-play-pause-button-color;
-    transition: color 100ms ease-out;
-    z-index: zIndex("lowest");
-    border: 1px solid $slick-play-pause-button-borderColor;
     @include carouselOpaqueBackgrounds($slick-play-pause-button-bgColor);
-
-    @media (min-width: 375px) {
-        min-width: 80px;
-        max-width: 90px;
-    }
+    border: 1px solid $slick-play-pause-button-borderColor;
+    bottom: spacing("third");
+    color: $slick-play-pause-button-color;
+    display: none;
+    font-size: 14px;
+    font-weight: 700;
+    height: 32px;
+    left: 15px;
+    line-height: 1.25;
+    max-width: 60px;
+    min-width: 60px;
+    overflow: hidden;
+    position: absolute;
+    text-overflow: ellipsis;
+    transition: color 100ms ease-out;
+    white-space: nowrap;
+    z-index: zIndex("lowest");
 
     @include breakpoint("small") {
-        max-width: 150px;
         font-size: 18px;
+        max-width: 150px;
     }
 
     @include breakpoint("medium") {
-        left: 25px;
         bottom: spacing("single");
+        left: 25px;
     }
 
     &:hover {
         color: $slick-play-pause-button-color-hover;
+    }
+
+    @media (min-width: 375px) {
+        max-width: 90px;
+        min-width: 80px;
     }
 }

@@ -14,10 +14,10 @@
 // -----------------------------------------------------------------------------
 
 .heroCarousel {
-    width: 1px;
-    min-width: 100%;
     margin-bottom: (spacing("double") + spacing("single"));
     margin-top: -(spacing("single")); // 3
+    min-width: 100%;
+    width: 1px;
 
     @include breakpoint("medium") {
         margin-top: -(spacing("single") + spacing("base")); // 3
@@ -25,11 +25,11 @@
 
     &.slick-initialized {
         @include breakpoint("small") {
-            max-height: remCalc(400px);            
+            max-height: remCalc(400px);
         }
 
         @include breakpoint("medium") {
-            max-height: remCalc(600px);            
+            max-height: remCalc(600px);
         }
     }
 
@@ -52,9 +52,9 @@
 
     .slick-next,
     .slick-prev {
+        margin: 0;
         top: 50%;
         transform: translateY(-50%);
-        margin: 0;
     }
 
     .slick-next {
@@ -72,6 +72,7 @@
             left: 25px;
         }
     }
+
     .slick-dots {
         bottom: spacing("third");
 
@@ -79,7 +80,6 @@
             bottom: spacing("single");
         }
 
-        // scss-lint:disable SelectorDepth, NestingDepth
         li {
             @include carouselOpaqueBackgrounds($slick-dot-bgColor);
         }
@@ -91,40 +91,41 @@
                 height: 100vw;
             }
         }
-    
+
         &.is-vertical-image-type {
             .heroCarousel-image-wrapper {
                 height: 110vw;
             }
         }
-    
+
         &.is-square-image-type,
         &.is-vertical-image-type {
-            .heroCarousel-image-wrapper {    
+            .heroCarousel-image-wrapper {
                 @include breakpoint("small") {
                     height: 56.25vw;
                 }
             }
         }
-    
+
         &.is-image-error {
             background: url("../img/hero-carousel-image-load-error.svg") center center no-repeat;
             background-size: contain;
-        }    
+        }
     }
 }
 
 .heroCarousel-slide {
     position: relative;
+
     a {
         text-decoration: none;
     }
 
     .heroCarousel-image {
-        object-fit: contain;
-        width: 100%;
         height: 100%;
+        object-fit: contain;
         object-position: 50% 0%;
+        width: 100%;
 
         @include breakpoint("small") {
             object-position: 50% 50%;
@@ -139,27 +140,27 @@
 
         &.compat-object-fit { // 1
             .heroCarousel-image {
-                width: 100%;
                 height: 100%;
+                width: 100%;
             }
         }
-    }    
+    }
 
     &.compat-object-fit { // 1
         overflow: hidden;
-        
+
         .heroCarousel-image {
             width: auto;
         }
     }
 
     .heroCarousel-image-wrapper {
-        display: flex;
-        justify-content: center;
         align-items: flex-start;
+        display: flex;
         height: 56.25vw;
+        justify-content: center;
         max-height: 100vh;
-        transition: height .3s ease;
+        transition: height 0.3s ease;
 
         @include breakpoint("small") {
             max-height: remCalc(400px);
@@ -178,19 +179,19 @@
 
     @include breakpoint("small") {
         @include carouselOpaqueBackgrounds;
-        width: remCalc(700px);
-        padding: spacing("single") * 1.5;
-        width: 70%;
         background-color: rgba($carousel-bgColor, 0.9);
         left: 0;
-        padding: spacing("single");
         margin: 0 auto;
+        max-height: 80%;
+        overflow: auto;
+        padding: spacing("single") * 1.5;
+        padding: spacing("single");
         position: absolute;
         right: 0;
         top: 50%;
         transform: translateY(-50%);
-        max-height: 80%;
-        overflow: auto;
+        width: remCalc(700px);
+        width: 70%;
 
         &.heroCarousel-content--empty {
             background-color: transparent;

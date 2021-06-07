@@ -42,9 +42,7 @@
 // -----------------------------------------------------------------------------
 
 .page-sidebar + .page-content {
-
     .productGrid {
-        // scss-lint:disable SelectorDepth, NestingDepth
         .product { // 1
             @include breakpoint("small") {
                 width: grid-calc(4, $total-columns);
@@ -80,10 +78,10 @@
 
     .product {
         break-inside: avoid;
-        page-break-inside: avoid; // for firefox
         display: block;
         margin-bottom: spacing("double");
         padding: 0;
+        page-break-inside: avoid; // for firefox
         width: 100%;
     }
 
@@ -98,7 +96,6 @@
 
 .productGrid--maxCol6 {
     .no-csscolumns & {
-        // scss-lint:disable SelectorDepth, NestingDepth
         .product {
             @include breakpoint("medium") {
                 width: grid-calc(2, $total-columns);
@@ -115,7 +112,6 @@
 
 .productGrid--maxCol3 {
     .no-csscolumns & {
-        // scss-lint:disable SelectorDepth, NestingDepth
         .product {
             @include breakpoint("medium") {
                 width: grid-calc(4, $total-columns);
@@ -129,7 +125,6 @@
 
             float: none;
 
-            // scss-lint:disable SelectorDepth, NestingDepth
             .product {
                 @include grid-column(4, $float: none);
             }

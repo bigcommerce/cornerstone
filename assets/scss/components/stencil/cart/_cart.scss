@@ -27,13 +27,10 @@ $card-preview-zoom-bottom-offset:       6rem;
 %additionalCheckoutButtons {
     @include clearfix;
 
-    // scss-lint:disable SelectorFormat
     .FloatRight {
         @include clearfix;
 
-        // scss-lint:disable SelectorDepth, NestingDepth
         p {
-            // scss-lint:disable ImportantRule
             float: none !important;
             margin: spacing("third") 0;
             text-align: right;
@@ -106,8 +103,8 @@ $card-preview-zoom-bottom-offset:       6rem;
         display: table-row; // 1
         padding-left: 0;
 
-        &:before,
-        &:after {
+        &::before,
+        &::after {
             display: none;
         }
     }
@@ -126,11 +123,13 @@ $card-preview-zoom-bottom-offset:       6rem;
 }
 
 .cart-item-figure {
+
+    @include cart-item-lazy-load-img-placeholder;
     float: left;
-    text-align: center;
     margin-bottom: $cart-item-spacing;
-    width: grid-calc(4, $total-columns);
     position: relative;
+    text-align: center;
+    width: grid-calc(4, $total-columns);
 
     @include breakpoint("small") {
         // height: auto;
@@ -141,11 +140,9 @@ $card-preview-zoom-bottom-offset:       6rem;
 
     @include breakpoint("medium") {
         float: none;
-        width: grid-calc(1, $total-columns);
         padding: $cart-thumbnail-paddingVertical 0;
+        width: grid-calc(1, $total-columns);
     }
-
-    @include cart-item-lazy-load-img-placeholder;
 }
 
 .cart-item-fixed-image {
@@ -154,10 +151,10 @@ $card-preview-zoom-bottom-offset:       6rem;
 
 .cart-item-image {
     max-height: $cart-thumbnail-maxHeight;
-    max-width: get-width(stencilString('productthumb_size'));
+    max-width: get-width(stencilString("productthumb_size"));
 
     @include breakpoint("medium") {
-        margin-left:0;
+        margin-left: 0;
     }
 }
 
@@ -220,7 +217,6 @@ $card-preview-zoom-bottom-offset:       6rem;
 }
 
 .cart-item-quantity {
-
     .form-increment {
         display: inline-block;
         margin: 0 spacing("eighth") 1px spacing("single");
@@ -266,9 +262,9 @@ $card-preview-zoom-bottom-offset:       6rem;
 }
 
 .cart-item-name {
+    display: inline-block;
     font-size: fontSize("smaller");
     margin: 0;
-    display: inline-block;
 
     &__label {
         display: inline-block;
@@ -545,8 +541,8 @@ $card-preview-zoom-bottom-offset:       6rem;
 
 .previewCart-additionalCheckoutButtons {
     @extend %additionalCheckoutButtons;
-    padding-right: spacing('single');
-    padding-bottom: spacing('single');
+    padding-bottom: spacing("single");
+    padding-right: spacing("single");
 }
 
 // Cart Preview
@@ -587,18 +583,18 @@ $card-preview-zoom-bottom-offset:       6rem;
 
 .previewCartItem-image {
     @include grid-column(4, $float: false);
+
+    @include lazy-loaded-padding("productthumb_size");
     padding: 0;
-    text-align: center;
     position: relative;
+    text-align: center;
 
     img {
-        max-height: 90%;
         @include lazy-loaded-img;
+        max-height: 90%;
     }
 
-    @include lazy-loaded-padding('productthumb_size');
-
-    &:after {
+    &::after {
         @include breakpoint("xxsmall") {
             padding-bottom: 75%;
         }

@@ -11,7 +11,6 @@
     margin: spacing("half");
 
     .product {
-        // scss-lint:disable NestingDepth
         + .product {
             margin-top: spacing("base") * 4;
         }
@@ -23,6 +22,13 @@
 // -----------------------------------------------------------------------------
 
 .listItem {
+
+    @include breakpoint("small") {
+        @include grid-row($behavior: "nest");
+        display: table;
+        width: 100%;
+    }
+
     &:focus-within {
         .listItem-figureBody {
             @include breakpoint("large") {
@@ -37,12 +43,6 @@
                 opacity: 1;
             }
         }
-    }
-
-    @include breakpoint("small") {
-        @include grid-row($behavior: "nest");
-        display: table;
-        width: 100%;
     }
 }
 
@@ -82,17 +82,17 @@
 .listItem-figure {
     margin: 0 0 spacing("single");
     position: relative;
-    
-    &__link {
-        display: block;
-        margin: 3px;
-    }
 
     @include breakpoint("small") {
         margin-bottom: 0;
         padding-left: spacing("half");
         padding-right: spacing("half");
         width: grid-calc(3, $total-columns);
+    }
+
+    &__link {
+        display: block;
+        margin: 3px;
     }
 
     .listItem-button {
@@ -103,7 +103,7 @@
             margin: 0;
             pointer-events: all;
         }
-    }    
+    }
 }
 
 .listItem-figureBody {
@@ -111,11 +111,11 @@
     text-align: center;
 
     @include breakpoint("large") {
-        top: 50%;
         left: 50%;
-        transform: translateX(-50%) translateY(-50%);
         opacity: 0;
         position: absolute;
+        top: 50%;
+        transform: translateX(-50%) translateY(-50%);
 
         .listItem:hover & {
             opacity: 1;
@@ -232,7 +232,6 @@
         @include breakpoint("large") {
             width: 100%;
 
-            // scss-lint:disable NestingDepth
             + .button {
                 margin: spacing("half") 0 0;
             }
@@ -245,10 +244,7 @@
 // -----------------------------------------------------------------------------
 
 .page-sidebar + .page-content {
-
     .productList {
-
-        // scss-lint:disable SelectorDepth, NestingDepth
         .listItem-details {
 
             @include breakpoint("large") {

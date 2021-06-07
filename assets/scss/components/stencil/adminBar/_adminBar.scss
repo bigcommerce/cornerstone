@@ -52,16 +52,12 @@ body.hasAdminBar {
 }
 
 .adminBar {
-    // Only show admin bar at desktop width
-    display: none;
-
-    @include breakpoint("medium") {
-        display: block;
-    }
 
     background-color: $adminBar-color;
     box-shadow: 0 remCalc(2) remCalc(7) 0 rgba(0, 0, 0, 0.2);
     color: $adminBar-text-color;
+    // Only show admin bar at desktop width
+    display: none;
     font-family: "Source Sans Pro", arial, "sans serif", sans-serif;
     font-size: 14px;
     font-weight: normal;
@@ -73,17 +69,23 @@ body.hasAdminBar {
     width: 100%;
     z-index: 10000;
 
+    @include breakpoint("medium") {
+        display: block;
+    }
+
     .svg-icon {
-        display: inline-flex;
         align-self: center;
+        display: inline-flex;
     }
+
     .svg-icon svg {
-        height:1em;
-        width:1em;
+        height: 1em;
+        width: 1em;
     }
+
     .svg-icon.svg-baseline svg {
-        top: .125em;
         position: relative;
+        top: 0.125em;
     }
 }
 
@@ -131,29 +133,29 @@ body.hasAdminBar {
 
     /* Tooltip container */
     .tooltip {
-        position: relative;
         display: inline-block;
+        position: relative;
     }
 
     /* Tooltip text */
     .tooltip .tooltiptext {
-        visibility: hidden;
-        width: auto;
         background-color: $adminBar-tooltip-bg-backgroundColor;
-        color: #fff;
-        text-align: center;
-        padding: 5px 10px;
         border-radius: 6px;
+        color: #fff;
+        padding: 5px 10px;
 
         /* Position the tooltip text - see examples below! */
         position: absolute;
+        text-align: center;
+        visibility: hidden;
+        width: auto;
         z-index: 1;
     }
 
     .tooltip-bottom {
-        top: 135%;
         left: 50%;
         margin-left: -60px;
+        top: 135%;
     }
 
     /* Show the tooltip text when you mouse over the tooltip container */
@@ -165,8 +167,8 @@ body.hasAdminBar {
 .adminBar-links {
 
     margin-left: auto;
-    text-align: right;
     padding-right: 5px;
+    text-align: right;
 
     a {
         padding: 10px;
@@ -178,7 +180,7 @@ body.hasAdminBar {
 }
 
 .adminBar-large {
-    display:none;
+    display: none;
     @include breakpoint("large") {
         display: initial;
     }
@@ -186,9 +188,9 @@ body.hasAdminBar {
 
 .adminBar-close {
     span {
-        padding: 10px;
+        margin-bottom: 0.25em;
         margin-right: 5px;
-        margin-bottom: .25em;
+        padding: 10px;
     }
 
     span:hover {

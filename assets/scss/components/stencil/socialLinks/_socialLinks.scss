@@ -16,9 +16,7 @@
         margin: 0;
         text-decoration: none;
 
-        // scss-lint:disable NestingDepth, SelectorDepth
         &:hover {
-
             svg {
                 fill: stencilColor("icon-color-hover");
             }
@@ -28,23 +26,16 @@
             fill: stencilColor("icon-color");
             transition: all 0.15s ease;
         }
-        // scss-lint:enable NestingDepth, SelectorDepth
     }
 }
 
-// scss-lint:enable SelectorFormat
-
-// scss-lint:disable SelectorFormat
 .socialLinks-item--pinterest {
     width: 25px;
 }
-// scss-lint:enable SelectorFormat
 
-// scss-lint:disable SelectorFormat
 .pin_it_iframe_widget {
     display: none;
 }
-// scss-lint:enable SelectorFormat
 
 .socialLinks-item {
     display: inline-block;
@@ -54,23 +45,20 @@
         margin-bottom: spacing("quarter");
         margin-right: spacing("half");
 
-        // scss-lint:disable NestingDepth
         &:last-child {
             margin-right: 0;
         }
-        // scss-lint:enable NestingDepth,
     }
 
-    & .socialLinks__link {
-        position: relative;
-        height: 2rem;
-
+    .socialLinks__link {
         @include addFocusTooltip;
+        height: 2rem;
+        position: relative;
 
         // moving tooltip on the left side for avoiding by parent's cut with overflow: hidden
-        &:focus:after {
-            right: auto;
+        &:focus::after {
             left: 0;
+            right: auto;
             z-index: zIndex("low");
         }
     }

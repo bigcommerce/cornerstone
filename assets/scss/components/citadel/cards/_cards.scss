@@ -22,18 +22,16 @@
         .card-figcaption {
             opacity: 1;
         }
-    }    
+    }
 }
 
 .card-figure {
     margin-top: $card-figure-marginTop;
-    position: relative;
-    padding: 3px;
     overflow: hidden;
+    padding: 3px;
+    position: relative;
 
     &:hover {
-
-        // scss-lint:disable NestingDepth
         .card-figcaption {
             opacity: 1;
         }
@@ -46,9 +44,9 @@
 }
 
 .card-img-container {
-    max-width: get-width(stencilString('productgallery_size'));
 
-    @include lazy-loaded-padding('productgallery_size');
+    @include lazy-loaded-padding("productgallery_size");
+    max-width: get-width(stencilString("productgallery_size"));
 }
 
 .card-figcaption {
@@ -70,11 +68,11 @@
 .card-image {
     @include lazy-loaded-img;
     border: 0;
-    width: 100%;
+    /* Object-fit polyfill */
+    font-family: "object-fit: contain;";
     max-height: 100%;
     object-fit: contain;
-    /* Object-fit polyfill */
-    font-family: 'object-fit: contain;';
+    width: 100%;
 }
 
 .card-title {
@@ -83,10 +81,9 @@
 
     > a {
         color: $card-title-color;
-        text-decoration: $card-title-textDecoration;
         display: block;
+        text-decoration: $card-title-textDecoration;
 
-        // scss-lint:disable NestingDepth
         &:hover {
             color: $card-title-color-hover;
         }
@@ -157,7 +154,6 @@
     &:hover {
         border-color: stencilColor("color-primary");
 
-        // scss-lint:disable SelectorDepth, NestingDepth
         .card-body {
             background-color: stencilColor("color-primary");
 

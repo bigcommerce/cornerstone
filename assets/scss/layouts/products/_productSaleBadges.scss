@@ -23,38 +23,38 @@
     width: rem-calc(50px);
     z-index: zIndex("lower");
 
-    &:before {
+    &::before {
         transform: rotateZ(30deg) scaleX(1) scaleY(1) scaleZ(1);
     }
     
-    &:after {
+    &::after {
         transform: rotateZ(60deg) scaleX(1) scaleY(1) scaleZ(1);
     }
 }
+
 .sale-flag-star,
-.sale-flag-star:before,
-.sale-flag-star:after {
-    background: stencilColor("color_badge_product_sale_badges");
+.sale-flag-star::before,
+.sale-flag-star::after {
     @extend %base-flag-star;
+    background: stencilColor("color_badge_product_sale_badges");
 }
 
 .sold-out-flag-star,
-.sold-out-flag-star:before,
-.sold-out-flag-star:after {
-    background: stencilColor("color_badge_product_sold_out_badges");
+.sold-out-flag-star::before,
+.sold-out-flag-star::after {
     @extend %base-flag-star;
+    background: stencilColor("color_badge_product_sold_out_badges");
 }
 
 .starwrap {
     height: rem-calc(50px);
+    left: 12px;
     position: absolute;
     top: 12px;
-    left: 12px;
     width: rem-calc(50px);
 }
 
 .listItem-figure {
-
     .starwrap {
         transform: scale(0.7);
 
@@ -81,26 +81,25 @@
 }
 
 .sale-text-burst {
-    color: stencilColor("color_text_product_sale_badges");
     @extend %base-text-burst;
+    color: stencilColor("color_text_product_sale_badges");
 }
 
 .sold-out-text-burst {
-    color: stencilColor("color_text_product_sold_out_badges");
     @extend %base-text-burst;
+    color: stencilColor("color_text_product_sold_out_badges");
 }
 
 .product:hover .starwrap {
-    
     .sale-flag-star,
-    .sale-flag-star:before,
-    .sale-flag-star:after {
+    .sale-flag-star::before,
+    .sale-flag-star::after {
         background: stencilColor("color_hover_product_sale_badges");
     }
     
     .sold-out-flag-star,
-    .sold-out-flag-star:before,
-    .sold-out-flag-star:after {
+    .sold-out-flag-star::before,
+    .sold-out-flag-star::after {
         background: stencilColor("color_hover_product_sold_out_badges");
     }    
 }
@@ -123,13 +122,15 @@
 }
 
 .sale-flag-side {
+    @extend %base-flag-side;
     @include setFlagColors("color_badge_product_sale_badges", "color_text_product_sale_badges");
-    @extend %base-flag-side;
 }
+
 .sold-out-flag-side {
-    @include setFlagColors("color_badge_product_sold_out_badges", "color_text_product_sold_out_badges");
     @extend %base-flag-side;
+    @include setFlagColors("color_badge_product_sold_out_badges", "color_text_product_sold_out_badges");
 }
+
 .product:hover .sale-flag-side {
     background: stencilColor("color_hover_product_sale_badges");
 }
@@ -158,24 +159,23 @@
 }
 
 .sale-flag-sash {
-    @include setFlagColors("color_badge_product_sale_badges", "color_text_product_sale_badges");
     @extend %base-flag-sash;
+    @include setFlagColors("color_badge_product_sale_badges", "color_text_product_sale_badges");
 }
 
 .sold-out-flag-sash {
-    @include setFlagColors("color_badge_product_sold_out_badges", "color_text_product_sold_out_badges");
     @extend %base-flag-sash;
+    @include setFlagColors("color_badge_product_sold_out_badges", "color_text_product_sold_out_badges");
 }
 
 .listItem-figure {
-    
     .sale-flag-sash,
     .sold-out-flag-sash {
         top: 24px;
 
         @include breakpoint("small") {
-            top: 19px;
             left: -20px;
+            top: 19px;
         }
 
         @include breakpoint("large") {
@@ -189,6 +189,7 @@
 .product:hover .sale-flag-sash {
     background: stencilColor("color_hover_product_sale_badges");
 }
+
 .product:hover .sold-out-flag-sash {
     background: stencilColor("color_hover_product_sold_out_badges");
 }

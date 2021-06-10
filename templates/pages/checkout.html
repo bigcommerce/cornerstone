@@ -32,6 +32,332 @@
 
 {{{ footer.scripts }}}
 
+<script type="text/javascript" src="{{theme_settings.ordergroove_auth_url}}"></script>
+<script type="text/javascript">// <![CDATA[
+    var checkoutId = '';
+    var newLabelText = "To complete this order, you must save your card information, or" + " use a previously saved card.";
+    var isAddressEdit = false;
+    var isPaymentOpen = false;
+    var og_state = localStorage.getItem('OG_STATE');
+    var optins = JSON.parse(og_state);
+    setInterval(function () {
+        $('.checkout-step--shipping').click(function () {
+            isAddressEdit = true;
+        });
+        $('.checkout-step--billing').click(function () {
+            isAddressEdit = true;
+        });
+    }, 500);
+    
+    setInterval(function () {
+        if ($('.checkout-step--payment .checkout-view-content').length > 0) {
+            isPaymentOpen = true;
+        } else {
+            isPaymentOpen = false;
+        }
+        if (checkoutId !== '' && isAddressEdit && isPaymentOpen) {
+            getBillingAddress(checkoutId);
+        }
+    }, 500);
+
+    // Function 1: (1.1) To read cookie
+    function readCookie(name) {
+        var nameEQ = name + "=";
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+        }
+        return null;
+    }
+    
+    // Function 1: (1.2) Condition for future safe
+    // Replace this function with a check for the condition that requires a saved payment method.
+    var condition = function () {
+        return true;
+    };
+
+    //Check If customer logged In every 2 seconds and set the custom Address Field value
+    function checkCustomerLogin() {
+        if (condition() && document.getElementById('checkout-customer-continue')) {
+            //Reset the Checkout ID
+            checkoutId = '';
+        }
+        if (condition() && document.getElementById('checkout-payment-continue')) {
+            // Assumption: Customer cannot be on payment step without logged in
+            if (checkoutId === '') {
+                fetch('/api/storefront/carts?include=', { 
+                    'headers': {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    }
+                }).then(function (response) {
+                    response.json().then(function (data) {
+                        var responseData = data;
+                        if (responseData[0]['customerId'] > 0) {
+                            // Logged In Customer, set og_auth cookie
+                            customerJWT();
+                        } else {
+                            if (optins.optedin.length > 0) {
+                                window.location.href = "/login.php";
+                            }
+                        }
+                        checkoutId = responseData[0]['id'];
+                        getBillingAddress(responseData[0]['id']);
+                    })
+                });
+            }
+        }
+    }
+
+    // Function 2: (2.2) Get the Billing Address of this Checkout ID
+    function getBillingAddress(checkoutId) {
+        fetch('/api/storefront/checkouts/' + checkoutId, {
+            credentials: 'same-origin'
+        }).then(function (response) {
+            return response.json();
+        }).then(function (myJson) {
+            var billingAddressData = myJson['billingAddress'];
+            updateCheckoutField(billingAddressData, checkoutId); //Update the custom address value    
+        });
+    }
+
+    // Function 2: (2.3) Update the custom field value with the session 'og_session_id' value
+    function updateCheckoutField(billingData, checkoutId) {
+        var billingAddressUpdated;
+        var customFieldValue = "og_session_id"; // default value
+        if (localStorage.getItem("OG_STATE")) {
+            var og_state = JSON.parse(localStorage.getItem("OG_STATE"));
+            var customFieldValue = {};
+            customFieldValue.sessionId = og_state.sessionId;
+            var subscriptionInfo = OG.getOptins();
+            customFieldValue.subscriptionInfo = subscriptionInfo;
+            customFieldValue = JSON.stringify(customFieldValue);
+        }
+
+        billingData["customFields"].forEach(function (item, index) {
+            if (item["fieldId"] == "field_26") {
+                currentOgSessionValue = item["fieldValue"];
+            }
+        });
+
+        if (currentOgSessionValue == customFieldValue) {
+            return true;
+        }
+
+        var billingAddressData = {
+            firstName: billingData["firstName"],
+            lastName: billingData["lastName"],
+            email: billingData["email"],
+            company: billingData["company"],
+            address1: billingData["address1"],
+            address2: billingData["address2"],
+            city: billingData["city"],
+            stateOrProvinceCode: billingData["stateOrProvinceCode"],
+            stateOrProvince: billingData["stateOrProvince"],
+            countryCode: billingData["countryCode"],
+            country: billingData["country"],
+            postalCode: billingData["postalCode"],
+            phone: billingData["phone"],
+            customFields: [{
+                fieldId: "field_26",
+                fieldValue: customFieldValue,
+            },],
+        };
+
+        if (!billingAddressUpdated) {
+            // Update API call
+            fetch(
+                    "/api/storefront/checkouts/" +
+                    checkoutId +
+                    "/billing-address/" +
+                    billingData["id"], {
+                            method: "PUT",
+                            credentials: "same-origin",
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                            body: JSON.stringify(billingAddressData),
+                    }
+                )
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (responseJson) {
+                    console.log("Billing address updated");
+                });
+            billingAddressUpdated = true;
+            isPaymentOpen = false;
+            isAddressEdit = false;
+        }
+    }   
+    
+    // Function 4: (4.1) Set og_auth cookie if customer logged in
+    function customerJWT() {
+        var appClientId = "{{theme_settings.devtools_client_id}}";
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4) {
+                if (xmlhttp.status == 200) {
+                        var token = xmlhttp.responseText;
+                        var customerObj = JSON.parse(atob(token.split('.')[1]));
+                        var customerId = customerObj.customer.id;
+                        if (customerId) {
+                            var timestampValue = Math.round(Date.now() / 1000);
+                            var message = customerId + "|" + timestampValue;
+                            //Call BC-OG Middleware for Signature Value
+                            getSignatureValueFromMiddleware(token).then(function (response) {
+                                response.json().then(function (data) {
+                                    var responseData = data;
+                                    var signatureValue = responseData['data'];
+                                    var cookieValue = message + "|" + decodeURIComponent(signatureValue);
+                                    if (signatureValue) {
+                                            setCookie('og_auth', cookieValue, 2);
+                                    } else {
+                                            console.log('Signature From middleware is false.');
+                                    }
+                                })
+                            });
+
+                        } else {
+                            console.log('customerId not set');
+                        }
+
+                } else if (xmlhttp.status == 404) {
+                        console.log('Customer not logged in!');
+                        setCookie('og_auth', '', -1);
+                } else {
+                        console.log('Something went wrong');
+                }
+            }
+        }; // End: onreadystatechange
+        xmlhttp.open("GET", "/customer/current.jwt?app_client_id="+ appClientId, true);
+        xmlhttp.send();
+    } // End: customerJWT
+    
+    // Function 4: (4.2) Set Cookie Function
+    function setCookie(cname, cvalue, exdays) {
+        var d = new Date();
+        d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+        var expires = "expires=" + d.toUTCString();
+        document.cookie = cname + "=" + cvalue + ";" + expires + ";secure; path = /";
+    }
+    // Function 4: (4.3) Delete Cookie function
+    var delete_cookie = function (name) {
+        document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT; ';
+    };
+    
+    // Function 4: (4.4) Get Signature Value from Middleware
+    function getSignatureValueFromMiddleware(token) {
+        console.log('token =>', token);
+        var middlewareUrl = "{{theme_settings.api_middleware_url}}";
+        var appClientId = "{{theme_settings.devtools_client_id}}";
+        var timestampValueForApi = Math.round(Date.now() / 1000);
+        return fetch(middlewareUrl + '/api/v1/merchant/ordergroove/signature?ts=' + timestampValueForApi, {
+            'headers': {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'authorization-client': appClientId,
+                'Authorization': 'BigCommerce',
+                'signed-payload': token
+            }
+        });
+    } 
+    
+        // Action 1: Set some CSS class based on the cookie
+    jQuery(document).ready(function () {
+        if (optins.optedin.length > 0) {
+            console.log("cookie deteted for og authship");
+            if (!jQuery('body').hasClass('og_autoship_set')) {
+                jQuery('body').addClass("og_autoship_set");
+            }
+        }
+        if (
+            optins.optedin.length > 0 &&
+            readCookie('guest_customer') === '1'
+        ) { // 'guest_customer'
+            console.log("cookie deteted for guest customer");
+            if (!jQuery('body').hasClass('og_allowed')) {
+                jQuery('body').addClass("og_allowed");
+            }
+        } else {
+            if (!jQuery('body').hasClass('without_subscription')) {
+                jQuery('body').addClass("without_subscription");
+            }
+        }
+
+    });
+    // Action 2: Update the custom address field value
+    var customerLoginTimer = setInterval(checkCustomerLogin, 2000);
+
+// ]]></script>
+
+<script>
+// 1. OnLoad of payment methods list page
+// Call OrderGroove to know if subscription present for this payment ID
+
+function checkOrderGrooveSubscription(token) {
+    var middlewareUrl = "{{theme_settings.api_middleware_url}}";
+    var appClientId = "{{theme_settings.devtools_client_id}}";
+    return fetch(middlewareUrl + '/api/v1/ordergroove/customer/has_subscriptions', {
+        'headers': {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'authorization-client': appClientId,
+            'Authorization': 'BigCommerce',
+            'signed-payload': token
+        }
+    });
+}
+
+// 2. function checkOrderGrooveSubscription called from checkAndSubmit function.
+// OnClick Of Delete Button
+function checkAndSubmit(identifier) {
+    var formIndex = identifier.getAttribute("data-button-index");
+    var isDefaultPayment = false;
+    var isDefaultPaymentTrue = false;
+    var isDefaultPayment = identifier.getAttribute("data-is-default");
+    var isDefaultPaymentTrue = (isDefaultPayment === 'true');
+    var form = document.getElementById("paymentMethod-form-" + formIndex);
+    console.log("token value " + jwtToken);
+    console.log("isDefaultPayment " + isDefaultPayment);
+    console.log("isDefaultPaymentTrue value " + isDefaultPaymentTrue);
+    if (!isDefaultPaymentTrue) {
+        form.submit();
+        returntrue;
+    }
+    console.log("isDefaultPayment check over");
+    if (jwtToken !== '') {
+        checkOrderGrooveSubscription(jwtToken).then(function (response) {
+            response.json().then(function (data) {
+                var responseData = data;
+                console.log("response data " + JSON.stringify(responseData));
+                var statusValue = responseData['status'];
+                console.log("status value is " + statusValue);
+                if (statusValue == true) {
+                    // Show Error popup, Not Allowed to delete
+                    document.getElementById("showErrorPop").value = 1;
+                    var element = document.getElementById('showErrorPop');
+                    var event = newEvent('change');
+                    element.dispatchEvent(event);
+                    // .trigger('change');
+                    returnfalse;
+
+                } else {
+                    // Allow to Delete
+                    form.submit();
+                    return true;
+                }
+            });
+        });
+        // console.log("API response " + JSON.stringify(apiResponse));
+    } else {
+        console.log("Token not generated.");
+    }
+}
+</script>
+
 {{/partial}}
 
 {{> layout/empty}}

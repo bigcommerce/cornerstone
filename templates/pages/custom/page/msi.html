@@ -7,10 +7,10 @@ customer:
 {{#partial "page"}}
 
 {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
-<h1 class="page-heading">{{lang 'account.orders.heading' }}</h1>
-{{> components/account/navigation account_page='orders'}}
+<h1 class="page-heading"><span>{{lang 'account.orders.heading' }}</span></h1>
+{{> components/account/navigation account_page='msi'}}
 
-<div class="account account--fixed">
+<main class="account account--fixed">
     <div class="account-head">
         {{#if customer.store_credit.value '>' 0}}
             <div class="alertBox alertBox--storeCredit">
@@ -19,19 +19,28 @@ customer:
         {{/if}}
     </div>
     <div class="account-body">
+        <!-- digitlhaus -->
+        {{#if customer}}
+        <div id="og-msi"></div>
+        <script type="text/javascript" src="https://static.ordergroove.com/bffa483e881711eb9e7cd23c8e43b1e5/msi.js"></script>
+        {{else}}
+            <script>
+                if(window.location.pathname == '/account/manage-subscriptions') {
+                    window.location.href = '/login.php';
+                }
+            </script>
+        {{/if}}
         <section class="account-content">
             {{#if customer.orders.length}}
                 {{> components/account/orders-list orders=customer.orders}}
                 {{> components/common/small-paginator pagination.orders}}
             {{else}}
-                {{> components/common/alert/alert-info (lang 'account.orders.none')}}
+                {{> components/common/alert-info (lang 'account.orders.none')}}
             {{/if}}
         </section>
     </div>
-</div>
-
-<!-- digitlhaus -->
-{{> components/common/og-auth}}
+    {{{snippet 'account'}}}
+</main>
 
 {{/partial}}
 {{> layout/base}}

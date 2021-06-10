@@ -1,0 +1,91 @@
+<!-- Modify the value of the header tag below, as appropriate -->
+<h1 style="display:none">MyProject</h1>
+ 
+<!-- Custom Script for og_auth cookie set on the page -->
+ 
+<script type="text/javascript">
+ 
+ 
+    function setOgAuthCookie() {
+        //This is app Client Id, to get the JWT token
+        var appClientId = "{{theme_settings.devtools_client_id}}";
+        var xmlhttp = new XMLHttpRequest();
+ 
+
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == 4 ) {
+                if (xmlhttp.status == 200) {
+                    var token = xmlhttp.responseText;
+                    var customerObj = JSON.parse(atob(token.split('.')[1]));
+                        var customerId = customerObj.customer.id;
+     
+ 
+            if (customerId) {
+                var timestampValue = Math.round(Date.now() / 1000);
+                var message = customerId + "|" + timestampValue;
+ 
+ 
+                getSignatureValueFromMiddleware(token)
+                .then(function(response){
+                    response.json().then(function(data) {
+                        console.log(JSON.stringify(data, null, 3))
+                        var responseData = data;
+ 
+                        var signatureValue = responseData['data'];
+ 
+                        var cookieValue = message + "|" + decodeURIComponent(signatureValue);
+                        if(signatureValue) {
+                        setCookie('og_auth', cookieValue, 2); // setCookie function call
+                        } else {
+                        console.log('Signature From middleware is false. ');
+                         }
+                    })
+                 });
+            } else {
+                console.log('customerId not set');
+             }
+ 
+             
+             } else if (xmlhttp.status == 404) {
+                console.log('Not logged in!');
+                setCookie('og_auth', '', -1);
+            } else {
+                console.log('Something went wrong' + "please check og auth file in common component");
+         }
+     }
+ };
+            xmlhttp.open("GET", "/customer/current.jwt?app_client_id="+appClientId, true);
+            xmlhttp.send();
+ }
+ 
+    // Call Middleware API with customer Token and
+    //    get the signature value for og_auth cookie
+    function getSignatureValueFromMiddleware(token) {
+        var middlewareUrl = "{{theme_settings.api_middleware_url}}";
+        var appClientId = "{{theme_settings.devtools_client_id}}";
+  
+        var timestampValueForApi = Math.round(Date.now() / 1000);
+        return fetch(middlewareUrl+'/api/v1/merchant/ordergroove/signature?ts=' + timestampValueForApi, {
+            'headers':{
+                'Accept':'application/json',
+                'Content-Type': 'application/json',
+                'authorization-client': appClientId,
+                'Authorization': 'BigCommerce',
+                'signed-payload': token
+            }
+         });
+     }
+        // Function to set Cookie
+        function setCookie(cname, cvalue, exdays) {
+            var d = new Date();
+            d.setTime(d.getTime() + (exdays*24*60*60*1000));
+            var expires = "expires="+ d.toUTCString();
+            document.cookie = cname + "=" + cvalue + ";" + expires + ";secure ;path=/";
+    }
+    // Function to delete cookie
+    var delete_cookie = function(name) {
+        document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    };
+    setOgAuthCookie(); // Call to the main function
+ 
+</script>

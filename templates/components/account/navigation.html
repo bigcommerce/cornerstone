@@ -22,13 +22,36 @@
                 </li>
             {{/if}}
         {{/if}}
+         
+        <!-- digitlhaus -->
         {{#if account_page '===' 'messages'}}
-            <li class="navBar-item is-active">{{lang 'account.nav.messages' num_new_messages=customer.num_new_messages}}</li>
+            <li class="navBar-item is-active">
+                {{#if customer.num_new_messages}}
+                    {{lang 'account.nav.messages' num_new_messages=(concat (concat '(' customer.num_new_messages) ')')}}
+                {{else}}
+                    {{#if customer.num_new_messages '===' 0}}
+                        {{lang 'account.nav.messages' num_new_messages=(concat (concat '(' customer.num_new_messages) ')')}}
+                    {{else}}
+                        {{lang 'account.nav.messages' num_new_messages=''}}
+                    {{/if}}
+                {{/if}}
+            </li>
         {{else}}
             <li class="navBar-item">
-                <a class="navBar-action" href="{{urls.account.inbox}}">{{lang 'account.nav.messages' num_new_messages=customer.num_new_messages}}</a>
+                <a class="navBar-action" href="{{urls.account.inbox}}">
+                    {{#if customer.num_new_messages}}
+                        {{lang 'account.nav.messages' num_new_messages=(concat (concat '(' customer.num_new_messages) ')')}}
+                    {{else}}
+                        {{#if customer.num_new_messages '===' 0}}
+                            {{lang 'account.nav.messages' num_new_messages=(concat (concat '(' customer.num_new_messages) ')')}}
+                        {{else}}
+                            {{lang 'account.nav.messages' num_new_messages=''}}
+                        {{/if}}
+                    {{/if}}
+                </a>
             </li>
         {{/if}}
+
         {{#if account_page '===' 'addresses'}}
             <li class="navBar-item is-active">{{lang 'account.nav.addresses'}}</li>
         {{else}}
@@ -46,13 +69,36 @@
             {{/if}}
         {{/if}}
         {{#if settings.show_wishlist}}
+            <!-- digitlhaus -->
             {{#if account_page '===' 'wishlists'}}
-                <li class="navBar-item is-active">{{lang 'account.nav.wishlists' num_wishlists=customer.num_wishlists}}</li>
+                <li class="navBar-item is-active">
+                    {{#if customer.num_wishlists}}
+                        {{lang 'account.nav.wishlists' num_wishlists=(concat (concat '(' customer.num_wishlists) ')')}}
+                    {{else}}
+                        {{#if customer.num_wishlists '===' '0'}}
+                            {{lang 'account.nav.wishlists' num_wishlists=(concat (concat '(' customer.num_wishlists) ')')}}
+                        {{else}}
+                            {{lang 'account.nav.wishlists' num_wishlists=''}}
+                        {{/if}}
+                    {{/if}}
+                </li>
             {{else}}
                 <li class="navBar-item">
-                    <a class="navBar-action" href="{{urls.account.wishlists.all}}">{{lang 'account.nav.wishlists' num_wishlists=customer.num_wishlists}}</a>
+                    <a class="navBar-action" href="{{urls.account.wishlists.all}}">
+                        {{#if customer.num_wishlists}}
+                            {{lang 'account.nav.wishlists' num_wishlists=(concat (concat '(' customer.num_wishlists) ')')}}
+                        {{else}}
+                            {{#if customer.num_wishlists '===' '0'}}
+                                {{lang 'account.nav.wishlists' num_wishlists=(concat (concat '(' customer.num_wishlists) ')')}}
+                            {{else}}
+                                {{lang 'account.nav.wishlists' num_wishlists=''}}
+                            {{/if}}
+                        {{/if}}
+                    </a>
                 </li>
             {{/if}}
+
+
         {{/if}}
         {{#if account_page '===' 'recent_items'}}
             <li class="navBar-item is-active">{{lang 'account.nav.recently_viewed'}}</li>
@@ -68,5 +114,15 @@
                 <a class="navBar-action" href="{{urls.account.details}}">{{lang 'account.nav.settings'}}</a>
             </li>
         {{/if}}
+
+        <!-- digitlhaus -->
+        {{#if account_page '===' 'msi'}}
+            <li class="navBar-item is-active">{{lang 'account.nav.msi'}}</li>
+        {{else}}
+            <li class="navBar-item">
+                <a class="navBar-action" href="/account/manage-subscriptions">{{lang 'account.nav.msi'}}</a>
+            </li>
+        {{/if}}
+
     </ul>
 </nav>

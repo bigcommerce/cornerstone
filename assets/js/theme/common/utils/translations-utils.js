@@ -42,9 +42,11 @@ const defaultPageBuilderValues = {
 export const translatePageBuilderValues = () => {
     $('[data-page-builder-key]').each((_, selector) => {
         const $item = $(selector);
+        const itemText = $item.text().trim();
+        const itemDefaultTranslation = $item.data('default-translation');
 
-        if ($item.text().trim() === defaultPageBuilderValues[$item.data('page-builder-key')]) {
-            $item.text($item.data('default-translation'));
+        if (itemText === defaultPageBuilderValues[$item.data('page-builder-key')] && itemText !== itemDefaultTranslation) {
+            $item.text(itemDefaultTranslation);
         }
     });
 };

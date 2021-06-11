@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Translation mechanism for config.json values have been implemented. [#2076](https://github.com/bigcommerce/cornerstone/pull/2076)
 - Enter press on Compare checkbox cause quick view opening. [#2074](https://github.com/bigcommerce/cornerstone/pull/2074)
 - Product images in quick view can be squashed. [#2075](https://github.com/bigcommerce/cornerstone/pull/2075)
 - Fixed shift in change options popup on Cart page.[#2071](https://github.com/bigcommerce/cornerstone/pull/2071)

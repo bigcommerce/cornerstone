@@ -2,11 +2,18 @@
 
 ## Draft
 - Fixed shift in change options popup on Cart page.[#2071](https://github.com/bigcommerce/cornerstone/pull/2071)
+- Fixed possibility to select 'None' on multi unrequired Swatch Options. [#2068](https://github.com/bigcommerce/cornerstone/pull/2068)
+- Translation Gap: Account -> Wish List -> Name required message. [#2060](https://github.com/bigcommerce/cornerstone/pull/2060)
+- Translation Gap: Cart -> Shipping estimator error messages. [#2066](https://github.com/bigcommerce/cornerstone/pull/2066)
+- Add to cart button and Wishlist should be on one line on desktop. [#2050](https://github.com/bigcommerce/cornerstone/pull/2050)
+- Logo on AMP Product details page (PDP) doesn't fit header. [#2054](https://github.com/bigcommerce/cornerstone/pull/2054)
+- Translation Gap: Compare page fields (Description, Rating and Availability). [#2059](https://github.com/bigcommerce/cornerstone/pull/2059)
 - Translation Gap: Compare products error message. [#2061](https://github.com/bigcommerce/cornerstone/pull/2061)
 - Translation Gap: Gift Certificate -> Code required message. [#2064](https://github.com/bigcommerce/cornerstone/pull/2064)
 - Added translation for invalid quantity value error on Cart. [#2062](https://github.com/bigcommerce/cornerstone/pull/2062)
 - Translation Gap: Delete from Cart confirmation popup. [#2065](https://github.com/bigcommerce/cornerstone/pull/2065)
 - Fixed NaN error on increase/decrease product quantity by adding field validation. [#2052](https://github.com/bigcommerce/cornerstone/pull/2052)
+- Fixed social share links on blog post. [#2077](https://github.com/bigcommerce/cornerstone/pull/2077)
 
 ## 5.5.0 (05-20-2021)
 - Scale focus trap for all modals. [#2049](https://github.com/bigcommerce/cornerstone/pull/2049)

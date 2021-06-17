@@ -4,7 +4,7 @@
 {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
 <h1 class="page-heading">{{lang 'compare.header' products=comparisons.length}}</h1>
 <div class="page">
-    <main class="page-content">
+    <div class="page-content">
 
         <table class="compareTable">
             <tr class="compareTable-row">
@@ -80,7 +80,7 @@
             </tr>
             <tr class="compareTable-row">
                 <th class="compareTable-heading">
-                    <span class="compareTable-headingText">Description</span>
+                    <span class="compareTable-headingText">{{lang 'products.description'}}</span>
                 </th>
                 {{#each comparisons}}
                 <td class="compareTable-item">{{{ summary }}}</td>
@@ -89,7 +89,7 @@
             {{#if settings.show_product_rating}}
                 <tr class="compareTable-row">
                     <th class="compareTable-heading">
-                        <span class="compareTable-headingText">Rating</span>
+                        <span class="compareTable-headingText">{{lang 'products.reviews.rating_label'}}</span>
                     </th>
                     {{#each comparisons}}
                     <td class="compareTable-item">
@@ -104,7 +104,7 @@
             {{/if}}
             <tr class="compareTable-row">
                 <th class="compareTable-heading">
-                    <span class="compareTable-headingText">Availability</span>
+                    <span class="compareTable-headingText">{{lang 'products.availability'}}</span>
                 </th>
                 {{#each comparisons}}
                 <td class="compareTable-item">
@@ -136,7 +136,7 @@
             </tr>
         </table>
 
-    </main>
+    </div>
 </div>
 
 {{/partial}}

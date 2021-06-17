@@ -1,0 +1,29 @@
+{{#if badge_view '===' 'sash'}}
+    <div class="{{badge-type}}-flag-sash">
+        <span class="{{badge-type}}-text"
+              data-page-builder-key="{{page_builder_key}}"
+              data-default-translation="{{default_translation}}"
+        >
+            {{{badge_label}}}
+        </span>
+    </div>
+{{else if badge_view '===' 'topleft'}}
+    <div class="{{badge-type}}-flag-side">
+        <span class="{{badge-type}}-text"
+              data-page-builder-key="{{page_builder_key}}"
+              data-default-translation="{{default_translation}}"
+        >
+            {{{badge_label}}}
+        </span>
+    </div>
+{{else if badge_view '===' 'burst'}}
+    <div class="starwrap">
+        <div class="{{badge-type}}-text-burst"
+             data-page-builder-key="{{page_builder_key}}"
+             data-default-translation="{{default_translation}}"
+        >
+            {{{badge_label}}}
+        </div>
+        <div class="{{badge-type}}-flag-star"></div>
+    </div>
+{{/if}}

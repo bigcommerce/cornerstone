@@ -43,18 +43,6 @@ $card-preview-zoom-bottom-offset:       6rem;
             float: right;
         }
     }
-
-    .CheckoutButton {
-        margin-bottom: spacing("base");
-
-        &:first-child {
-            margin-top: spacing("single");
-        }
-
-        &:last-child {
-            margin-bottom: spacing("single");
-        }
-    }
 }
 
 // Cart layout
@@ -557,7 +545,8 @@ $card-preview-zoom-bottom-offset:       6rem;
 
 .previewCart-additionalCheckoutButtons {
     @extend %additionalCheckoutButtons;
-    padding-right: 1.5rem;
+    padding-right: spacing('single');
+    padding-bottom: spacing('single');
 }
 
 // Cart Preview
@@ -608,6 +597,16 @@ $card-preview-zoom-bottom-offset:       6rem;
     }
 
     @include lazy-loaded-padding('productthumb_size');
+
+    &:after {
+        @include breakpoint("xxsmall") {
+            padding-bottom: 75%;
+        }
+
+        @include breakpoint("xsmall") {
+            padding-bottom: 100%;
+        }
+    }
 }
 
 .previewCartItem-content {
@@ -640,7 +639,14 @@ $card-preview-zoom-bottom-offset:       6rem;
     @include grid-row;
     border-top: container("border");
     display: block;
-    padding: spacing("single") spacing("half");
+
+    @include breakpoint("xxsmall") {
+        padding: spacing("half") spacing("quarter");
+    }
+
+    @include breakpoint("xsmall") {
+        padding: spacing("single") spacing("half");
+    }
 
     .button {
         margin: 0;

@@ -4,7 +4,13 @@ import nod from './common/nod';
 import Wishlist from './wishlist';
 import validation from './common/form-validation';
 import stateCountry from './common/state-country';
-import { classifyForm, Validators, insertStateHiddenField, createPasswordValidationErrorTextObject } from './common/utils/form-utils';
+import {
+    classifyForm,
+    Validators,
+    announceInputErrorMessage,
+    insertStateHiddenField,
+    createPasswordValidationErrorTextObject,
+} from './common/utils/form-utils';
 import { createTranslationDictionary } from './common/utils/translations-utils';
 import { creditCardType, storeInstrument, Validators as CCValidators, Formatters as CCFormatters } from './common/payment-method';
 import swal from './global/sweet-alert';
@@ -27,7 +33,7 @@ export default class Account extends PageManager {
         const $reorderForm = classifyForm('[data-account-reorder-form]');
         const $invoiceButton = $('[data-print-invoice]');
 
-        compareProducts(this.context.urls);
+        compareProducts(this.context);
 
         // Injected via template
         this.passwordRequirements = this.context.passwordRequirements;
@@ -139,6 +145,7 @@ export default class Account extends PageManager {
         const $stateElement = $(stateSelector);
         const addressValidator = nod({
             submit: 'form[data-address-form] input[type="submit"]',
+            tap: announceInputErrorMessage,
         });
 
         addressValidator.add(validationModel);
@@ -226,7 +233,10 @@ export default class Account extends PageManager {
 
         const validationModel = validation($paymentMethodForm, this.context);
         const paymentMethodSelector = 'form[data-payment-method-form]';
-        const paymentMethodValidator = nod({ submit: `${paymentMethodSelector} input[type="submit"]` });
+        const paymentMethodValidator = nod({
+            submit: `${paymentMethodSelector} input[type="submit"]`,
+            tap: announceInputErrorMessage,
+        });
         const $stateElement = $(`${paymentMethodSelector} [data-field-type="State"]`);
 
         let $last;
@@ -317,6 +327,7 @@ export default class Account extends PageManager {
         const formEditSelector = 'form[data-edit-account-form]';
         const editValidator = nod({
             submit: '${formEditSelector} input[type="submit"]',
+            tap: announceInputErrorMessage,
         });
         const emailSelector = `${formEditSelector} [data-field-type="EmailAddress"]`;
         const $emailElement = $(emailSelector);
@@ -400,6 +411,7 @@ export default class Account extends PageManager {
     registerInboxValidation($inboxForm) {
         const inboxValidator = nod({
             submit: 'form[data-inbox-form] input[type="submit"]',
+            tap: announceInputErrorMessage,
         });
 
         inboxValidator.add([

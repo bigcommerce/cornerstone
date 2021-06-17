@@ -938,36 +938,6 @@
         "label": "i18n.ShowKlarna",
         "force_reload": true,
         "id": "show_accept_klarna"
-      },
-      {
-        "type": "heading",
-        "content": "i18n.GeoTrustSSL"
-      },
-      {
-        "type": "paragraph",
-        "content": "i18n.IfYouvePurchasedAGeoTrust"
-      },
-      {
-        "type": "text",
-        "label": "i18n.SSLCommonName",
-        "force_reload": true,
-        "id": "geotrust_ssl_common_name"
-      },
-      {
-        "type": "select",
-        "label": "i18n.SealSize",
-        "id": "geotrust_ssl_seal_size",
-        "options": [
-          {
-            "value": "M",
-            "label": "i18n.Medium"
-          },
-          {
-            "value": "S",
-            "label": "i18n.Small"
-          }
-        ],
-        "force_reload": true
       }
     ]
   },
@@ -1350,6 +1320,59 @@
         "type": "paragraph",
         "content": "i18n.ForTextureSwatchesMaxDimensions",
         "reference": "product_sale_badges",
+        "reference_default": "none"
+      },
+      {
+        "type": "select",
+        "label": "i18n.ShowProductSoldOutBadges",
+        "id": "product_sold_out_badges",
+        "force_reload": true,
+        "options": [
+          {
+            "value": "none",
+            "label": "i18n.None"
+          },
+          {
+            "value": "topleft",
+            "label": "i18n.TopLeft"
+          },
+          {
+            "value": "sash",
+            "label": "i18n.Diagonal"
+          },
+          {
+            "value": "burst",
+            "label": "i18n.Burst"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "label": "i18n.ProductSoldOutBadgeLabel",
+        "force_reload": true,
+        "id": "pdp_sold_out_label",
+        "reference": "product_sold_out_badges",
+        "reference_default": "none"
+      },
+      {
+        "type": "color",
+        "label": "i18n.BadgeTextColor",
+        "id": "color_text_product_sold_out_badges",
+        "reference": "product_sold_out_badges",
+        "reference_default": "none"
+      },
+      {
+        "type": "color",
+        "label": "i18n.BadgeColor",
+        "id": "color_badge_product_sold_out_badges",
+        "reference": "product_sold_out_badges",
+        "reference_default": "none"
+      },
+      {
+        "type": "color",
+        "label": "i18n.BadgeHoverColor",
+        "id": "color_hover_product_sold_out_badges",
+        "reference": "product_sold_out_badges",
         "reference_default": "none"
       },
       {
@@ -3005,6 +3028,200 @@
           {
             "value": "paypal",
             "label": "i18n.PayPal"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "i18n.PaymentBanners",
+    "enable": "paymentBanners",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "i18n.BannersMessaging"
+      },
+      {
+        "type": "heading",
+        "content": "i18n.ProductPageBanner"
+      },
+      {
+        "type": "select",
+        "label": "i18n.BannerStyleColor",
+        "id": "paymentbanners-proddetailspage-color",
+        "force_reload": true,
+        "options": [
+          {
+            "value": "blue",
+            "label": "i18n.Blue"
+          },
+          {
+            "value": "black",
+            "label": "i18n.Black"
+          },
+          {
+            "value": "white",
+            "label": "i18n.White"
+          },
+          {
+            "value": "white-no-border",
+            "label": "i18n.White-no-border"
+          },
+          {
+            "value": "gray",
+            "label": "i18n.gray"
+          },
+          {
+            "value": "monochrome",
+            "label": "i18n.monochrome"
+          },
+          {
+            "value": "grayscale",
+            "label": "i18n.grayscale"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "label": "i18n.BannerStyleRatio",
+        "id": "paymentbanners-proddetailspage-ratio",
+        "force_reload": true,
+        "options": [
+          {
+            "value": "8x1",
+            "label": "i18n.8x1"
+          },
+          {
+            "value": "20x1",
+            "label": "i18n.20x1"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "content": "i18n.HomePageBanner"
+      },
+      {
+        "type": "select",
+        "label": "i18n.BannerStyleColor",
+        "id": "paymentbanners-homepage-color",
+        "force_reload": true,
+        "options": [
+          {
+            "value": "blue",
+            "label": "i18n.Blue"
+          },
+          {
+            "value": "black",
+            "label": "i18n.Black"
+          },
+          {
+            "value": "white",
+            "label": "i18n.White"
+          },
+          {
+            "value": "white-no-border",
+            "label": "i18n.White-no-border"
+          },
+          {
+            "value": "gray",
+            "label": "i18n.gray"
+          },
+          {
+            "value": "monochrome",
+            "label": "i18n.monochrome"
+          },
+          {
+            "value": "grayscale",
+            "label": "i18n.grayscale"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "label": "i18n.BannerStyleRatio",
+        "id": "paymentbanners-homepage-ratio",
+        "force_reload": true,
+        "options": [
+          {
+            "value": "8x1",
+            "label": "i18n.8x1"
+          },
+          {
+            "value": "20x1",
+            "label": "i18n.20x1"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "content": "i18n.CartPageBanner"
+      },
+      {
+        "type": "select",
+        "label": "i18n.BannerTextStyleColor",
+        "id": "paymentbanners-cartpage-text-color",
+        "force_reload": true,
+        "options": [
+          {
+            "value": "black",
+            "label": "i18n.Black"
+          },
+          {
+            "value": "white",
+            "label": "i18n.White"
+          },
+          {
+            "value": "monochrome",
+            "label": "i18n.monochrome"
+          },
+          {
+            "value": "grayscale",
+            "label": "i18n.grayscale"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "label": "i18n.BannerStyleLogoPosition",
+        "id": "paymentbanners-cartpage-logo-position",
+        "force_reload": true,
+        "options": [
+          {
+            "value": "left",
+            "label": "i18n.left"
+          },
+          {
+            "value": "right",
+            "label": "i18n.right"
+          },
+          {
+            "value": "top",
+            "label": "i18n.top"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "label": "i18n.BannerStyleLogoType",
+        "id": "paymentbanners-cartpage-logo-type",
+        "force_reload": true,
+        "options": [
+          {
+            "value": "inline",
+            "label": "i18n.inline"
+          },
+          {
+            "value": "primary",
+            "label": "i18n.primary"
+          },
+          {
+            "value": "alternative",
+            "label": "i18n.alternative"
+          },
+          {
+            "value": "none",
+            "label": "i18n.none"
           }
         ]
       }

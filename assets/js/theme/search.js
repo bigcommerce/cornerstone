@@ -1,6 +1,7 @@
 import { hooks } from '@bigcommerce/stencil-utils';
 import CatalogPage from './catalog';
 import FacetedSearch from './common/faceted-search';
+import { announceInputErrorMessage } from './common/utils/form-utils';
 import compareProducts from './global/compare-products';
 import urlUtils from './common/utils/url-utils';
 import Url from 'url';
@@ -133,7 +134,7 @@ export default class Search extends CatalogPage {
     }
 
     onReady() {
-        compareProducts(this.context.urls);
+        compareProducts(this.context);
         this.arrangeFocusOnSortBy();
 
         const $searchForm = $('[data-advanced-search-form]');
@@ -203,9 +204,15 @@ export default class Search extends CatalogPage {
             }
         });
 
-        setTimeout(() => {
-            $('[data-search-aria-message]').removeClass('u-hidden');
-        }, 100);
+        const $searchResultsMessage = $(`<p
+            class="aria-description--hidden"
+            tabindex="-1"
+            role="status"
+            aria-live="polite"
+            >${this.context.searchResultsCount}</p>`)
+            .prependTo('body');
+
+        setTimeout(() => $searchResultsMessage.focus(), 100);
     }
 
     loadTreeNodes(node, cb) {
@@ -318,6 +325,7 @@ export default class Search extends CatalogPage {
         this.$form = $form;
         this.validator = nod({
             submit: $form,
+            tap: announceInputErrorMessage,
         });
 
         return this;

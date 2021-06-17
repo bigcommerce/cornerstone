@@ -1,8 +1,9 @@
 import PageManager from './page-manager';
 import nod from './common/nod';
-import giftCertChecker from './common/gift-certificate-validator';
+import checkIsGiftCertValid from './common/gift-certificate-validator';
 import formModel from './common/models/forms';
 import { createTranslationDictionary } from './common/utils/translations-utils';
+import { announceInputErrorMessage } from './common/utils/form-utils';
 import { api } from '@bigcommerce/stencil-utils';
 import { defaultModal } from './global/modal';
 
@@ -48,6 +49,7 @@ export default class GiftCertificate extends PageManager {
         const purchaseValidator = nod({
             submit: '#gift-certificate-form input[type="submit"]',
             delay: 300,
+            tap: announceInputErrorMessage,
         });
 
         if ($customAmounts.length) {
@@ -196,14 +198,15 @@ export default class GiftCertificate extends PageManager {
     checkCertBalanceValidator($balanceForm) {
         const balanceValidator = nod({
             submit: $balanceForm.find('input[type="submit"]'),
+            tap: announceInputErrorMessage,
         });
 
         balanceValidator.add({
             selector: $balanceForm.find('input[name="giftcertificatecode"]'),
             validate(cb, val) {
-                cb(giftCertChecker(val));
+                cb(checkIsGiftCertValid(val));
             },
-            errorMessage: 'You must enter a certificate code.',
+            errorMessage: this.validationDictionary.invalid_gift_certificate,
         });
 
         return balanceValidator;

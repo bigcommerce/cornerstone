@@ -124,6 +124,30 @@ function insertStateHiddenField($stateField) {
     $stateField.after($('<input />', stateFieldAttrs));
 }
 
+/**
+ * Announce form input error message by screen reader
+ * @param {params.element} dom input element where checking is happened
+ * @param {params.result} result of validation check
+ */
+function announceInputErrorMessage({ element, result }) {
+    if (result) {
+        return;
+    }
+    const activeInputContainer = $(element).parent();
+    // the reason for using span tag is nod-validate lib
+    // which does not add error message class while initialising form.
+    // specific class is added since it can be multiple spans
+    const errorMessage = $(activeInputContainer).find('span.form-inlineMessage');
+
+    if (errorMessage.length) {
+        const $errMessage = $(errorMessage[0]);
+
+        if (!$errMessage.attr('role')) {
+            $errMessage.attr('role', 'alert');
+        }
+    }
+}
+
 const Validators = {
     /**
      * Sets up a new validation when the form is dirty
@@ -310,4 +334,4 @@ const Validators = {
     },
 };
 
-export { Validators, insertStateHiddenField };
+export { Validators, insertStateHiddenField, announceInputErrorMessage };

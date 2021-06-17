@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Revert "Reset cart quantity to 0 if we get a 404 for the cart" [#1920](https://github.com/bigcommerce/cornerstone/pull/1920)
 
 ## 5.6.0 (06-15-2021)
 - Translation mechanism for config.json values have been implemented. [#2076](https://github.com/bigcommerce/cornerstone/pull/2076)

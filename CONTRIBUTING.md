@@ -28,6 +28,7 @@ Unsure where to begin contributing to Stencil? Check our [forums](https://forum.
 * Fill in [the required template](https://github.com/bigcommerce/cornerstone/pull/new/master)
 * Include screenshots and animated GIFs in your pull request whenever possible.
 * End files with a newline.
+* Update CHANGELOG.md with a reference to your pull request if changing code
 
 ## Styleguides
 

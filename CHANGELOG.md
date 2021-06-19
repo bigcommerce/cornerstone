@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Fix social share links for product pages and blog posts [#2082](https://github.com/bigcommerce/cornerstone/pull/2082)
 
 ## 5.6.0 (06-15-2021)
 - Translation mechanism for config.json values have been implemented. [#2076](https://github.com/bigcommerce/cornerstone/pull/2076)

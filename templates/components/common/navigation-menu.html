@@ -27,7 +27,7 @@
         {{#unless theme_settings.hide_content_navigation}}
             {{#each pages}}
                  <li class="navPages-item navPages-item-page">
-                     <a class="navPages-action{{#if name '==' ../page.title}} activePage{{/if}}" href="{{url}}">
+                     <a class="navPages-action{{#if name '==' ../page.title}} activePage{{/if}}{{#if name '==' 'Book Appointment'}} highlightPage{{/if}}" href="{{url}}">
                         {{#if name '==' 'Artist Submissions and Guidelines'}}Submissions{{else}}{{name}}{{/if}}
                     </a>
                  </li>

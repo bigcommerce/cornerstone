@@ -74,7 +74,14 @@
                 <h5 class="footer-info-heading">{{lang 'footer.info'}}</h5>
                 <address>{{nl2br settings.address}}</address>
                 {{#if settings.phone_number}}
-                    <strong>{{lang 'footer.call_us' phone_number=settings.phone_number}}</strong>
+                    <p><strong>{{lang 'footer.call_us' phone_number=settings.phone_number}}</strong></p>
+                {{/if}}
+                {{#if theme_settings.storeHours}}
+                    <em>{{theme_settings.hoursHeading}}</em>
+                    {{#each theme_settings.storeHours}}
+                        <div><strong>{{day}}</strong><br />
+                            {{time}}</div>
+                    {{/each}}
                 {{/if}}
             </article>
             {{/if}}

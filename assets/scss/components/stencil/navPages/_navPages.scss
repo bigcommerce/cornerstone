@@ -196,7 +196,7 @@
 
     @include breakpoint("medium") {
         display: inline-block;
-        padding: spacing("half") (spacing("half") + spacing("quarter")) (spacing("half") + spacing("quarter"));
+        padding: spacing("half") (spacing("half") + spacing("quarter"));
 
         &.is-open {
             background-color: stencilColor("navPages-subMenu-backgroundColor");
@@ -217,6 +217,13 @@
             fill: stencilColor("navPages-color-hover");
             stroke: stencilColor("navPages-color-hover");
         }
+    }
+
+    // turn a highlight into a button
+    &.highlightPage {
+        background-color: black;
+        color: white;
+        border-radius: 4px;
     }
 
     svg {

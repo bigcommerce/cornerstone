@@ -22,7 +22,7 @@
         "read_more": "leia mais"
     },
     "unavailable": {
-        "hibernation_title": "Retornaremos",
+        "hibernation_title": "Voltaremos",
         "hibernation_message": "Agradecemos a visita. Nossa loja está indisponível no momento. Lamentamos o transtorno.",
         "maintenance_title": "Fora do ar para manutenção",
         "maintenance_message": "Esta loja está indisponível no momento para manutenção. Ela estará disponível novamente em breve. Lamentamos o transtorno."
@@ -65,8 +65,9 @@
             "checkout_multiple": "ou finalize o pedido com vários endereços",
             "view_cart": "Ver carrinho"
         },
-        "label": "Seu carinho ({quantity, plural, one {# item} other {# itens}})",
+        "label": "Seu carrinho ({quantity, plural, one {# item} other {# items}})",
         "is_empty": "Seu carrinho está vazio",
+        "invalid_entry_message": "[ENTRY] não é uma entrada válida",
         "coupon_code": "Código de cupom",
         "discount": "Desconto",
         "included_in_total": " Incluído no total",
@@ -74,7 +75,7 @@
         "freeshipping": "Frete grátis",
         "reconfigure_product": "Configurar '{name}'",
         "shipping_peritem": "Envio por item",
-        "remove_item": "Remover item do carrinho",
+        "remove_item": "Remover {name} do carrinho",
         "confirm_delete": "Deseja mesmo excluir esse item?",
         "coupons": {
             "empty_error": "Digite o código do cupom.",
@@ -87,12 +88,11 @@
             "remove": "Remover"
         },
         "gift_certificates": {
-            "change_gift_certificate": "Adicionar certificado",
+            "change_gift_certificate": "Alterar {certificate_name}",
             "add_cert_code": "Adicionar certificado",
             "gift_certificate": "Vale-presente",
             "code_label": "Vale-presente ({code})",
             "cert_code": "Digite o código do seu certificado",
-            "empty_error": "Digite um código de vale válido.",
             "remove": "Remover"
         },
         "shipping_estimator": {
@@ -105,7 +105,9 @@
             "zip_postal_code": "CEP/Código Postal",
             "free_shipping": "Frete gratuito",
             "hide_ups_rates": "Ocultar taxas da UPS",
-            "show_ups_rates": "Exibir taxas de UPS"
+            "show_ups_rates": "Exibir taxas de UPS",
+            "empty_country_error": "O campo país não pode ficar em branco.",
+            "empty_province_error": "O campo Estado/província não pode ficar em branco."
         },
         "gift_wrapping": {
             "title": "Embalagem de presente",
@@ -123,8 +125,8 @@
             "preview": "Prévia"
         },
         "added_to_cart": {
-            "what_next": "Ok, {num_products, plural, one {1 item foi} outro {# itens foram}} adicionados ao seu carrinho. E agora?",
-            "your_cart_contains": "Seu carrinho contém {num_products, plural, one {1 item} other {# itens}}",
+            "what_next": "Ok, {num_products, plural, one {Um item foi} outro {# itens foram}} adicionados ao seu carrinho. E agora?",
+            "your_cart_contains": "Seu carrinho contém {{num_products, plural, one {{Um item}} other {# items}}}",
             "proceed_to_checkout": "Prosseguir para a finalização da compra",
             "order_subtotal": "Subtotal do pedido",
             "continue_shopping": "Continuar comprando",
@@ -137,7 +139,7 @@
         "store_credit_overview": "Crédito na loja de {credit}",
         "generic_error": "Opa! Ocorreu um erro.",
         "currency": "Selecione a moeda: {code}",
-        "currency_switch_promotion": "Promoções e vales-presente que não se aplicam à nova moeda serão removidos do seu carrinho. Deseja mesmo continuar?",
+        "currency_switch_promotion": "Promoções e vales-presente que não se aplicarem à nova moeda serão removidos do seu carrinho. Deseja mesmo continuar?",
         "newsletter_signup": "Assine nosso boletim informativo",
         "form_submit": "Enviar",
         "no_preference": "Nenhuma preferência",
@@ -210,10 +212,11 @@
     },
     "compare": {
         "button": "Comparar produtos",
-        "header": "Comparando {products, plural, one {# produto} other {# produtos}}",
+        "header": "Comparando {{products, plural, one {# Product} other {# Products}}}",
         "remove": "Remover",
         "no_remove": "É necessário ter pelo menos dois produtos para fazer uma comparação.",
-        "add_to_cart": "Adicionar ao carrinho"
+        "add_to_cart": "Adicionar ao carrinho",
+        "no_compare": "Selecione pelo menos dois produtos para comparar"
     },
     "category": {
         "label": "Categorias",
@@ -333,7 +336,7 @@
             "last_update": "Última atualização",
             "list": {
                 "order_number": "Pedido n.º {number}",
-                "product_details": "{num_products, plural, one {1 produto} other {# produtos}} no total de {cost}"
+                "product_details": "{num_products, plural, one {1 product} other {# products}} totalizando {cost}"
             },
             "details": {
                 "heading": "Pedido n.º {number}",
@@ -366,8 +369,8 @@
                 "heading": "Downloads do pedido n.º {number}",
                 "download_files_below": "Abaixo você pode baixar os arquivos para",
                 "expired_content": "O arquivo expirou",
-                "days_remaining": "{number, plural, one {1 dia} other {# dias}}",
-                "downloads_remaining": "{number, plural, one {1 download} other {# downloads}} restante(s)",
+                "days_remaining": "{number, plural, one {1 day} other {# days}}",
+                "downloads_remaining": "{number, plural, one {1 download} other {# downloads}} restantes",
                 "days_or_downloads": "ou {number} downloads",
                 "remaining": "restante"
             }
@@ -469,12 +472,13 @@
             "edit": "Editar lista de desejos",
             "view_heading": "Listas de desejos: {name}",
             "share_intro": "Compartilhar esta lista de desejos com amigos:",
-            "num_products": "{num_products, plural, one {Um produto} other {# produtos}}",
+            "num_products": "{num_products, plural, one {1 product} other {# products}}",
             "create": "Criar lista de desejos",
             "save": "Salvar lista de desejos",
             "delete_alert": "Deseja mesmo excluir suas listas de desejos? Esta ação não pode ser desfeita.",
             "create_new": "Criar nova lista de desejos",
-            "add_to_default": "Adicionar à minha lista de desejos"
+            "add_to_default": "Adicionar à minha lista de desejos",
+            "enter_wishlist_name_error": "É necessário informar um nome para a lista de desejos."
         }
     },
     "page": {
@@ -580,7 +584,7 @@
                 "amount": "Quantidade",
                 "theme": "Tema do vale-presente",
                 "custom_range": "(O valor deve estar entre {min} e {max})",
-                "agree": "Entendo que os vales-presente expiram após {days, plural, one {1 dia} other {# dias}}",
+                "agree": "Entendo que os vales-presente expiram após {days, plural, one {Um dia} other {# days}}",
                 "agree2": "Estou ciente de que os vales-presente não podem ser reembolsados",
                 "preview": "Prévia",
                 "preview_error": "Houve um problema na carregamento do tema. Tente novamente mais tarde.",
@@ -689,10 +693,11 @@
     "products": {
         "current_stock": "Estoque atual:",
         "quantity": "Quantidade:",
-        "change_product_options": "Alterar opções",
-        "quantity_decrease": "Reduzir quantidade:",
-        "quantity_increase": "Aumentar quantidade:",
-        "purchase_units": "{quantity, plural, =0{0 unidades} one {# unidade} other {# unidades}}",
+        "change_product_options": "Alterar opções para {name}",
+        "quantity_decrease": "Reduzir quantidade de {name}",
+        "quantity_increase": "Reduzir quantidade de {name}",
+        "quantity_error_message": "A quantidade deve conter somente números",
+        "purchase_units": "{quantity, plural, =0{0 unidades} one {# unit} other {# units}}",
         "max_purchase_quantity": "Compra máxima:",
         "min_purchase_quantity": "Compra mínima:",
         "related_products": "Produtos relacionados",
@@ -706,13 +711,13 @@
             "hide": "Ocultar avaliações",
             "new": "Escreva uma avaliação",
             "show": "Exibir avaliações",
-            "header": "{total, plural, =0{0 avaliações} one {# avaliação} other {# avaliações}}",
-            "link_to_review": "({total, plural, =0{Nenhuma avaliação ainda} one {# avaliação} other {# avaliações}})",
+            "header": "{total, plural, =0{0 avaliações} one {# Review} other {# Reviews}}",
+            "link_to_review": "({total, plural, =0{nenhuma avaliação ainda} one {# review} other {# reviews}})",
             "post_on_by": "Publicado por { name } em { date }",
             "rating_label": "Taxa",
             "select_rating": "Selecionar classificação",
             "anonymous_poster": "desconhecido",
-            "rating_aria_label": "A classificação do produtos é {current_rating} de {max_rating}",
+            "rating_aria_label": "A classificação de {rating_target} é {rating_target} de {current_rating}",
             "rating": {
                 "1": "1 estrela (mínima)",
                 "2": "2 estrelas",
@@ -833,8 +838,8 @@
         "results": {
             "form_label": "Pesquisar palavra-chave:",
             "form_button_text": "Pesquisar",
-            "count": "{ count, plural, one {# resultado} other {# resultados} } for '{ search_query }'",
-            "quick_count": "{ count, plural, one {# resultado de produto} other {# resultados de produtos} } for '{ search_query }'",
+            "count": "{ count, plural, one {# result} other {# results} } para '{ search_query }'",
+            "quick_count": "{ count, plural, one {resultado do n.º do produto} other {resultados do n.º do produto} } for '{ search_query }'",
             "quick_count_live": "resultados de produtos para",
             "product_count": "Produtos ({count})",
             "content_count": "Notícias e informações ({count})"
@@ -842,7 +847,7 @@
         "faceted": {
             "selected": {
                 "title": "Refinar por",
-                "rating-label": "Com classificação de {rating, plural, one {# estrela} other {# estrelas}} ou mais",
+                "rating-label": "Classificado {rating, plural, one {# Star} other {# Stars}} Ou mais",
                 "no-filters": "Nenhum filtro aplicado",
                 "clear-all": "Limpar tudo"
             },
@@ -901,9 +906,9 @@
         "page_builder_link": "Fazer o design desta página no Page Builder"
     },
     "carousel": {
-        "arrow_and_dot_aria_label": "Ir para o slide [NÚMERO] de",
+        "arrow_and_dot_aria_label": "Ir para o slide [SLIDE_NUMBER] de [SLIDES_QUANTITY]",
         "active_dot_aria_label": "Ativo",
-        "content_announce_message": "Você está atualmente no slide [NUMBER] de",
+        "content_announce_message": "Você está atualmente no slide [SLIDE_NUMBER] de [SLIDES_QUANTITY]",
         "play_pause_button_play": "Reproduzir",
         "play_pause_button_pause": "Pausar",
         "play_pause_button_aria_play": "Reproduzir carrossel",
@@ -917,12 +922,13 @@
         "invalid_password": "As senhas devem ter pelo menos sete caracteres e conter caracteres alfabéticos e numéricos.",
         "field_not_blank": " o campo não pode ficar em branco.",
         "certificate_amount": "É necessário informar um valor para o vale-presente.",
-        "certificate_amount_range": "É necessário informar um valor para o vale entre [MÍN] e [MÁX].",
+        "certificate_amount_range": "É necessário informar um valor para o vale entre [MIN] e [MAX]",
         "price_min_evaluation": "O preço mínimo deve ser menor que o preço máximo.",
         "price_max_evaluation": "O preço mínimo deve ser menor que o preço máximo.",
         "price_min_not_entered": "É obrigatório informar o preço mínimo.",
         "price_max_not_entered": "É obrigatório informar o preço máximo.",
-        "price_invalid_value": "O valor inserido deve ser maior que 0."
+        "price_invalid_value": "O valor inserido deve ser maior que 0.",
+        "invalid_gift_certificate": "Digite um código de vale válido."
     },
     "validation_fallback_messages": {
         "valid_email": "É necessário informar um email válido.",
@@ -931,12 +937,13 @@
         "invalid_password": "As senhas devem ter pelo menos sete caracteres e conter caracteres alfabéticos e numéricos.",
         "field_not_blank": " o campo não pode ficar em branco.",
         "certificate_amount": "É necessário informar um valor para o vale-presente.",
-        "certificate_amount_range": "É necessário informar um valor para o vale entre [MÍN] e [MÁX].",
+        "certificate_amount_range": "É necessário informar um valor para o vale entre [MIN] e [MAX]",
         "price_min_evaluation": "O preço mínimo deve ser menor que o preço máximo.",
         "price_max_evaluation": "O preço mínimo deve ser menor que o preço máximo.",
         "price_min_not_entered": "É obrigatório informar o preço mínimo.",
         "price_max_not_entered": "É obrigatório informar o preço máximo.",
-        "price_invalid_value": "O valor inserido deve ser maior que 0."
+        "price_invalid_value": "O valor inserido deve ser maior que 0.",
+        "invalid_gift_certificate": "Digite um código de vale válido."
     },
     "validation_default_messages": {
         "valid_email": "É necessário informar um email válido.",
@@ -945,11 +952,59 @@
         "invalid_password": "As senhas devem ter pelo menos sete caracteres e conter caracteres alfabéticos e numéricos.",
         "field_not_blank": "O campo não pode ficar em branco.",
         "certificate_amount": "É necessário informar um valor para o vale-presente.",
-        "certificate_amount_range": "É necessário informar um valor para o vale entre [MÍN] e [MÁX].",
+        "certificate_amount_range": "É necessário informar um valor para o vale entre [MIN] e [MAX]",
         "price_min_evaluation": "O preço mínimo deve ser menor que o preço máximo.",
         "price_max_evaluation": "O preço mínimo deve ser menor que o preço máximo.",
         "price_min_not_entered": "É obrigatório informar o preço mínimo.",
         "price_max_not_entered": "É obrigatório informar o preço máximo.",
-        "price_invalid_value": "O valor inserido deve ser maior que 0."
+        "price_invalid_value": "O valor inserido deve ser maior que 0.",
+        "invalid_gift_certificate": "Digite um código de vale válido."
+    },
+    "page_builder": {
+        "pdp_sale_badge_label": "Em promoção!",
+        "pdp_sold_out_label": "Sair",
+        "pdp-sale-price-label": "Agora:",
+        "pdp-non-sale-price-label": "Antes:",
+        "pdp-retail-price-label": "MSRP:",
+        "pdp-custom-fields-tab-label": "Outras informações"
+    },
+    "consent_manager": {
+        "data_collection_warning": "Utilizamos cookies (e outras tecnologias semelhantes) para coletar dados para melhorar a sua experiência de compra.",
+        "accept_all_cookies": "Aceitar todos os cookies",
+        "gdpr_settings": "Configurações",
+        "data_collection_preferences": "Preferências de coleta de dados do site",
+        "use_data_by_cookies": "utiliza dados coletados por cookies e bibliotecas de JavaScript para melhorar a sua experiência de compra.",
+        "data_categories_table": "A tabela abaixo descreve a forma como usamos esses dados por categoria. Para desativar uma categoria de coleta de dados, selecione \"Não\" e salve suas preferências.",
+        "allow": "Permitir",
+        "accept": "aceitar",
+        "deny": "Negar",
+        "dismiss": "Ignorar",
+        "reject_all": "Rejeitar tudo",
+        "category": "Categoria",
+        "purpose": "Propósito",
+        "functional_category": "Funcional",
+        "functional_purpose": "Habilita a funcionalidade aprimorada, como vídeos e bate-papo em tempo real. Se não permitir isso, algumas ou todas essas funções poderão não funcionar corretamente.",
+        "analytics_category": "Análise",
+        "analytics_purpose": "Forneça informações estatísticas sobre o uso do site, como análises da web, para que possamos melhorar o site com o tempo.",
+        "targeting_category": "Direcionamento",
+        "advertising_category": "Publicidade",
+        "advertising_purpose": "Utilizado para criar perfis ou personalizar conteúdo para aprimorar sua experiência de compra.",
+        "essential_category": "Essencial",
+        "esential_purpose": "Essencial para o funcionamento do site e de qualquer serviço solicitado, mas não executa nenhuma função adicional ou secundária.",
+        "yes": "Sim",
+        "no": "Não",
+        "not_available": "N/D",
+        "cancel": "Cancelar",
+        "save": "Salvar",
+        "back_to_preferences": "Voltar às preferências",
+        "close_without_changes": "Você tem alterações que não foram salvas nas suas preferências referentes à coleta de dados. Deseja mesmo fechar sem salvar?",
+        "unsaved_changes": "Algumas alterações não foram salvas",
+        "by_using": "Ao utilizar o nosso site, você concorda com nosso(a)",
+        "agree_on_data_collection": "Ao utilizar o nosso site, você concorda com a coleta de dados conforme descrito em nosso(a) ",
+        "change_preferences": "Você pode alterar as suas preferências quando quiser",
+        "cancel_dialog_title": "Deseja mesmo cancelar?",
+        "privacy_policy": "Política de privacidade",
+        "allow_category_tracking": "Permitir monitoramento de [CATEGORY_NAME]",
+        "disallow_category_tracking": "Não permitir monitoramento de [CATEGORY_NAME]"
     }
 }

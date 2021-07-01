@@ -22,7 +22,7 @@
         "read_more": "Scopri di più"
     },
     "unavailable": {
-        "hibernation_title": "Torneremo presto",
+        "hibernation_title": "Torneremo",
         "hibernation_message": "Grazie della visita. Il nostro negozio non è attualmente disponibile. Ci scusiamo per l'inconveniente.",
         "maintenance_title": "Inattivo per manutenzione",
         "maintenance_message": "Il negozio non è attualmente disponibile perché è in manutenzione. Tornerà a essere disponibile a breve. Ci scusiamo per l'inconveniente."
@@ -65,16 +65,17 @@
             "checkout_multiple": "o completa l'acquisto con molteplici indirizzi",
             "view_cart": "Visualizza carrello"
         },
-        "label": "Il tuo carrello ({quantity, plural, one {# articolo} other {# articoli}})",
+        "label": "Il tuo carrello ({quantity, plural, one {# item} other {# items}})",
         "is_empty": "Il tuo carrello è vuoto",
+        "invalid_entry_message": "[ENTRY] non è una voce valida",
         "coupon_code": "Codice promozionale",
         "discount": "Sconto",
         "included_in_total": " Incluso nel totale",
         "remove_file": "Rimuovi questo file",
         "freeshipping": "Spedizione gratuita",
-        "reconfigure_product": "Configura '{name}'",
+        "reconfigure_product": "Configura \"{name}\"",
         "shipping_peritem": "Spedizione per articolo",
-        "remove_item": "Rimuovi articolo dal carrello",
+        "remove_item": "Rimuovi {name} dal carrello",
         "confirm_delete": "Vuoi davvero eliminare questo articolo?",
         "coupons": {
             "empty_error": "Inserisci il codice coupon.",
@@ -87,12 +88,11 @@
             "remove": "Rimuovi"
         },
         "gift_certificates": {
-            "change_gift_certificate": "Aggiungi buono",
+            "change_gift_certificate": "Modifica {certificate_name}",
             "add_cert_code": "Aggiungi buono",
             "gift_certificate": "Buono regalo",
             "code_label": "Buono regalo ({code})",
             "cert_code": "Inserisci il codice del buono",
-            "empty_error": "Inserisci un codice del buono valido.",
             "remove": "Rimuovi"
         },
         "shipping_estimator": {
@@ -105,7 +105,9 @@
             "zip_postal_code": "CAP",
             "free_shipping": "Spedizione gratuita",
             "hide_ups_rates": "Nascondi tariffe UPS",
-            "show_ups_rates": "Mostra tariffe UPS"
+            "show_ups_rates": "Mostra tariffe UPS",
+            "empty_country_error": "Il campo Paese non può essere vuoto.",
+            "empty_province_error": "Il campo Stato/Provincia non può essere vuoto."
         },
         "gift_wrapping": {
             "title": "Confezione regalo",
@@ -123,8 +125,8 @@
             "preview": "Anteprima"
         },
         "added_to_cart": {
-            "what_next": "Ok, abbiamo aggiunto {num_products, plural, one {1 articolo} other {# articoli}} al tuo carrello. Cos'altro?",
-            "your_cart_contains": "Il tuo carrello contiene {num_products, plural, one {1 articolo} other {# articoli}}",
+            "what_next": "Ok, abbiamo aggiunto {num_products, plural, one {1 articolo} other {# articoli}} al tuo carrello. E adesso?",
+            "your_cart_contains": "Il tuo carrello contiene {num_products, plural, one {1 articolo} other {# items}}",
             "proceed_to_checkout": "Procedi al checkout",
             "order_subtotal": "Subtotale ordine",
             "continue_shopping": "Continua a fare acquisti",
@@ -210,10 +212,11 @@
     },
     "compare": {
         "button": "Compara prodotti",
-        "header": "Confronto tra {products, plural, one {# prodotto} other {# prodotti}}",
+        "header": "Confronto tra {prodotti, plural, one {# Product} other {# Products}}",
         "remove": "Rimuovi",
         "no_remove": "Sono necessari almeno 2 prodotti per fare un confronto valido.",
-        "add_to_cart": "Aggiungi al carrello"
+        "add_to_cart": "Aggiungi al carrello",
+        "no_compare": "Devi selezionare almeno due prodotti da confrontare"
     },
     "category": {
         "label": "Categorie",
@@ -333,7 +336,7 @@
             "last_update": "Ultimo aggiornamento",
             "list": {
                 "order_number": "Ordine n. {number}",
-                "product_details": "{num_products, plural, one {1 prodotto} other {# prodotti}} per un totale di {cost}"
+                "product_details": "{num_products, plural, one {1 prodotto} other {# products}} per un totale di {cost}"
             },
             "details": {
                 "heading": "Ordine n. {number}",
@@ -342,7 +345,7 @@
                 "ship_to_multi": "Articoli spediti a {street}, {city}, {state}, {zip}, {country}",
                 "ship_to_multi_text": "L'ordine sarà spedito a molteplici indirizzi",
                 "bill_to": "Indirizzo di fatturazione",
-                "how_to_pay": "Ecco come effettuare il pagamento del tuo ordine:",
+                "how_to_pay": "Ecco come pagare per il tuo ordine:",
                 "order_details": "Altri dettagli",
                 "order_total": "Totale ordine:",
                 "order_status": "Stato dell'ordine:",
@@ -366,8 +369,8 @@
                 "heading": "Ordina #{number} download",
                 "download_files_below": "Qui sotto puoi scaricare i file per",
                 "expired_content": "Il file è scaduto",
-                "days_remaining": "{number, plural, one {1 giorno} other {# giorni}}",
-                "downloads_remaining": "{number, plural, one {1 download} other {# download}} remaining",
+                "days_remaining": "{number, plural, one {1 giorno} other {# days}}",
+                "downloads_remaining": "{number, plural, one {1 download} other {# downloads}} rimanenti",
                 "days_or_downloads": "o {number} download",
                 "remaining": "rimanente"
             }
@@ -469,12 +472,13 @@
             "edit": "Modifica Lista desideri",
             "view_heading": "Lista desideri: {name}",
             "share_intro": "Condividi questa Lista desideri con gli amici:",
-            "num_products": "{num_products, plural, one {1 prodotto} other {# prodotti}}",
+            "num_products": "{num_products, plural, one {1 prodotto} other {# products}}",
             "create": "Crea Lista desideri",
             "save": "Salva Lista desideri",
             "delete_alert": "Eliminare le liste desideri? L'azione non può essere annullata.",
             "create_new": "Crea una nuova Lista desideri",
-            "add_to_default": "Aggiungi alla mia Lista desideri"
+            "add_to_default": "Aggiungi alla mia Lista desideri",
+            "enter_wishlist_name_error": "Inserisci un nome per la lista desideri."
         }
     },
     "page": {
@@ -526,7 +530,7 @@
             "rma": "Numero RMA",
             "question": "Commenti/domande",
             "submit": "Invia modulo",
-            "successful": "Abbiamo ricevuto il tuo feedback e, se necessario, ti risponderemo a breve. <a href=\"{shopPath}\">Continua.</a>"
+            "successful": "Abbiamo ricevuto il tuo feedback e, se necessario, ti risponderemo a breve. <a href=\"{shopPath}\">Continua</a>."
         },
         "create_account": {
             "submit_value": "Crea account"
@@ -572,15 +576,15 @@
         },
         "gift_certificate": {
             "purchase": {
-                "to_name": "Nome destinatario",
-                "to_email": "E-mail destinatario",
+                "to_name": "Nome del destinatario",
+                "to_email": "E-mail del destinatario",
                 "from_name": "Il tuo nome",
                 "from_email": "La tua e-mail",
                 "message": "Messaggio facoltativo",
                 "amount": "Importo",
                 "theme": "Tema buono regalo",
                 "custom_range": "(Il valore deve essere compreso tra {min} e {max})",
-                "agree": "Sono consapevole che i buoni regalo scadono dopo {days, plural, one {1 giorno} other {# giorni}}",
+                "agree": "Sono consapevole che i buoni regalo scadono dopo {days, plural, one {1 giorno} other {# days}}",
                 "agree2": "Accetto che i buoni regalo non sono rimborsabili",
                 "preview": "Anteprima",
                 "preview_error": "Si è verificato un problema durante il caricamento dell'anteprima. Riprova più tardi.",
@@ -689,10 +693,11 @@
     "products": {
         "current_stock": "Disponibilità attuale:",
         "quantity": "Quantità:",
-        "change_product_options": "Modifica opzioni",
-        "quantity_decrease": "Riduci quantità:",
-        "quantity_increase": "Aumenta quantità:",
-        "purchase_units": "{quantity, plural, =0{0 unità} one {# unità} other {# unità}}",
+        "change_product_options": "Modifica le opzioni per {name}",
+        "quantity_decrease": "Diminuisci la quantità di {name}",
+        "quantity_increase": "Aumenta la quantità di {name}",
+        "quantity_error_message": "La quantità deve contenere solo numeri",
+        "purchase_units": "{quantity, plural, =0{0 unità} one {# unit} other {# units}}",
         "max_purchase_quantity": "Spesa massima:",
         "min_purchase_quantity": "Spesa minima:",
         "related_products": "Prodotti simili",
@@ -706,13 +711,13 @@
             "hide": "Nascondi recensioni",
             "new": "Scrivi una recensione",
             "show": "Mostra recensioni",
-            "header": "{total, plural, =0{0 recensioni} one {# recensione} other {# recensioni}}",
-            "link_to_review": "({total, plural, =0{Non ci sono ancora recensioni} one {# recensione} other {# recensioni}})",
+            "header": "{total, plural, =0{0 recensioni} one {# Review} other {# Reviews}}",
+            "link_to_review": "({total, plural, =0{Ancora nessuna recensione} one {# review} other {# reviews}})",
             "post_on_by": "Pubblicato da { name } il { date }",
             "rating_label": "Valutazione",
             "select_rating": "Seleziona valutazione",
             "anonymous_poster": "sconosciuto",
-            "rating_aria_label": "La valutazione del prodotto è {current_rating} di {max_rating}",
+            "rating_aria_label": "La valutazione di {rating_target} è di {current_rating} su {max_rating}",
             "rating": {
                 "1": "1 stella (peggiore)",
                 "2": "2 stelle",
@@ -813,7 +818,7 @@
         "email_placeholder": "Il tuo indirizzo e-mail",
         "subscribed_heading": "Grazie per l'iscrizione!",
         "subscribed_heading_error": "Oops...",
-        "subscribed_message": "Grazie per l'iscrizione alla nostra mailing list. A breve riceverai il prossimo numero della newsletter",
+        "subscribed_message": "Grazie per l'iscrizione alla nostra mailing list. A breve riceverai il prossimo numero della newsletter.",
         "unsubscribed_heading": "Iscrizione annullata!",
         "unsubscribed_message": "Non riceverai più email di marketing da <b>{store_name}</b>"
     },
@@ -833,7 +838,7 @@
         "results": {
             "form_label": "Cerca parola chiave:",
             "form_button_text": "Cerca",
-            "count": "{ count, plural, one {# risultato} other {# risultati} } per \"{ search_query }\"",
+            "count": "{ count, plural, one {# result} other {# results} } per \"{ search_query }\"",
             "quick_count": "{ count, plural, one {# prodotto corrispondente} other {# prodotti corrispondenti} } per \"{ search_query }\"",
             "quick_count_live": "risultati prodotto per",
             "product_count": "Prodotti ({count})",
@@ -842,7 +847,7 @@
         "faceted": {
             "selected": {
                 "title": "Affina per",
-                "rating-label": "Valutato {rating, plural, one {# stella} other {# stelle}} o più",
+                "rating-label": "Valutato {rating, plural, one {# Star} other {# Stars}} o più",
                 "no-filters": "Nessun filtro applicato",
                 "clear-all": "Cancella tutto"
             },
@@ -901,9 +906,9 @@
         "page_builder_link": "Progetta questa pagina con Page Builder"
     },
     "carousel": {
-        "arrow_and_dot_aria_label": "Vai alla slide [NUMBER] di",
+        "arrow_and_dot_aria_label": "Vai alla slide [SLIDE_NUMBER] di [SLIDES_QUANTITY]",
         "active_dot_aria_label": "attivo",
-        "content_announce_message": "Sei alla slide [NUMBER] di",
+        "content_announce_message": "Attualmente sei alla slide [SLIDE_NUMBER] di [SLIDES_QUANTITY]",
         "play_pause_button_play": "Avvia",
         "play_pause_button_pause": "Sospendi",
         "play_pause_button_aria_play": "Avvia carosello",
@@ -917,12 +922,13 @@
         "invalid_password": "Le password devono avere almeno 7 caratteri e contenere caratteri alfabetici e numerici.",
         "field_not_blank": " campo non può essere vuoto.",
         "certificate_amount": "Inserisci un importo per il buono regalo.",
-        "certificate_amount_range": "L'importo del buono dovrebbe essere compreso tra [MIN] e [MAX]",
+        "certificate_amount_range": "Inserisci un importo del buono compreso tra [MIN] e [MAX]",
         "price_min_evaluation": "Il prezzo min. deve essere inferiore al prezzo max.",
         "price_max_evaluation": "Il prezzo min. deve essere inferiore al prezzo max.",
         "price_min_not_entered": "Il prezzo min. è obbligatorio.",
         "price_max_not_entered": "Il prezzo massimo è obbligatorio.",
-        "price_invalid_value": "Il valore deve essere maggiore di 0."
+        "price_invalid_value": "Il valore deve essere maggiore di 0.",
+        "invalid_gift_certificate": "Inserisci un codice del buono valido."
     },
     "validation_fallback_messages": {
         "valid_email": "Inserisci un indirizzo e-mail valido.",
@@ -931,12 +937,13 @@
         "invalid_password": "Le password devono avere almeno 7 caratteri e contenere caratteri alfabetici e numerici.",
         "field_not_blank": " campo non può essere vuoto.",
         "certificate_amount": "Inserisci un importo per il buono regalo.",
-        "certificate_amount_range": "L'importo del buono dovrebbe essere compreso tra [MIN] e [MAX]",
+        "certificate_amount_range": "Inserisci un importo del buono compreso tra [MIN] e [MAX]",
         "price_min_evaluation": "Il prezzo min. deve essere inferiore al prezzo max.",
         "price_max_evaluation": "Il prezzo min. deve essere inferiore al prezzo max.",
         "price_min_not_entered": "Il prezzo min. è obbligatorio.",
         "price_max_not_entered": "Il prezzo massimo è obbligatorio.",
-        "price_invalid_value": "Il valore deve essere maggiore di 0."
+        "price_invalid_value": "Il valore deve essere maggiore di 0.",
+        "invalid_gift_certificate": "Inserisci un codice del buono valido."
     },
     "validation_default_messages": {
         "valid_email": "Inserisci un indirizzo e-mail valido.",
@@ -945,11 +952,59 @@
         "invalid_password": "Le password devono avere almeno 7 caratteri e contenere caratteri alfabetici e numerici.",
         "field_not_blank": "Il campo non può essere vuoto.",
         "certificate_amount": "Inserisci un importo per il buono regalo.",
-        "certificate_amount_range": "L'importo del buono dovrebbe essere compreso tra [MIN] e [MAX]",
+        "certificate_amount_range": "Inserisci un importo del buono compreso tra [MIN] e [MAX]",
         "price_min_evaluation": "Il prezzo min. deve essere inferiore al prezzo max.",
         "price_max_evaluation": "Il prezzo min. deve essere inferiore al prezzo max.",
         "price_min_not_entered": "Il prezzo min. è obbligatorio.",
         "price_max_not_entered": "Il prezzo massimo è obbligatorio.",
-        "price_invalid_value": "Il valore deve essere maggiore di 0."
+        "price_invalid_value": "Il valore deve essere maggiore di 0.",
+        "invalid_gift_certificate": "Inserisci un codice del buono valido."
+    },
+    "page_builder": {
+        "pdp_sale_badge_label": "In saldo!",
+        "pdp_sold_out_label": "Esaurito",
+        "pdp-sale-price-label": "Ora:",
+        "pdp-non-sale-price-label": "Prima:",
+        "pdp-retail-price-label": "Prezzo di listino:",
+        "pdp-custom-fields-tab-label": "Informazioni aggiuntive"
+    },
+    "consent_manager": {
+        "data_collection_warning": "Utilizziamo i cookie (e tecnologie simili) per raccogliere dati con cui migliorare la tua esperienza di acquisto.",
+        "accept_all_cookies": "Accetta tutti i cookie",
+        "gdpr_settings": "Impostazioni",
+        "data_collection_preferences": "Preferenze per la raccolta dei dati sul sito web",
+        "use_data_by_cookies": "usa i dati raccolti dai cookie e dalle librerie JavaScript per migliorare la tua esperienza di acquisto.",
+        "data_categories_table": "La tabella di seguito illustra come vengono utilizzati questi dati per categoria. Per disattivare una categoria di raccolta dati, seleziona \"No\" e salva le tue preferenze.",
+        "allow": "Consenti",
+        "accept": "accetta",
+        "deny": "Nega",
+        "dismiss": "Ignora",
+        "reject_all": "Rifiuta tutto",
+        "category": "Categoria",
+        "purpose": "Scopo",
+        "functional_category": "Funzionali",
+        "functional_purpose": "Consente funzionalità avanzate, come video e chat dal vivo. Se non acconsenti, alcune o tutte queste funzioni potrebbero non funzionare correttamente.",
+        "analytics_category": "Analisi",
+        "analytics_purpose": "Fornire informazioni statistiche sull'utilizzo del sito, ad es. analisi web, per permetterci di migliorare questo sito.",
+        "targeting_category": "Targeting",
+        "advertising_category": "Pubblicità",
+        "advertising_purpose": "Utilizzato per creare profili o personalizzare i contenuti per migliorare la tua esperienza di acquisto.",
+        "essential_category": "Essenziali",
+        "esential_purpose": "Essenziali per il funzionamento del sito e dei servizi richiesti, ma non svolgono alcuna funzione secondaria o aggiuntiva.",
+        "yes": "Sì",
+        "no": "No",
+        "not_available": "N.D.",
+        "cancel": "Annulla",
+        "save": "Salva",
+        "back_to_preferences": "Torna alle preferenze",
+        "close_without_changes": "Sono state apportate modifiche non salvate alle preferenze di raccolta dati. Chiudere senza salvare?",
+        "unsaved_changes": "Sono state apportate modifiche non salvate",
+        "by_using": "Utilizzando il nostro sito, accetti i",
+        "agree_on_data_collection": "Utilizzando il nostro sito, acconsenti alla raccolta di dati come descritto nella nostra ",
+        "change_preferences": "Puoi modificare le tue preferenze in qualsiasi momento",
+        "cancel_dialog_title": "Vuoi davvero annullare?",
+        "privacy_policy": "Informativa sulla privacy",
+        "allow_category_tracking": "Consenti il tracciamento di [CATEGORY_NAME]",
+        "disallow_category_tracking": "Non consentire il tracciamento di [CATEGORY_NAME]"
     }
 }

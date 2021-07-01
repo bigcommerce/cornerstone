@@ -22,7 +22,7 @@
         "read_more": "meer lezen"
     },
     "unavailable": {
-        "hibernation_title": "We zijn zo weer terug",
+        "hibernation_title": "We komen bij u terug",
         "hibernation_message": "Bedankt voor uw bezoek. Onze winkel is momenteel niet beschikbaar. Onze excuses voor het ongemak.",
         "maintenance_title": "Offline voor onderhoud",
         "maintenance_message": "Deze winkel is momenteel wegens onderhoud niet beschikbaar. De winkel is binnenkort weer beschikbaar. Onze excuses voor het ongemak."
@@ -67,6 +67,7 @@
         },
         "label": "Uw winkelmandje ({quantity, plural, one {# item} other {# items}})",
         "is_empty": "Uw winkelmandje is leeg",
+        "invalid_entry_message": "[ENTRY] is geen geldige invoer",
         "coupon_code": "Couponcode",
         "discount": "Korting",
         "included_in_total": " Opgenomen in totaal",
@@ -74,7 +75,7 @@
         "freeshipping": "Gratis verzending",
         "reconfigure_product": "'{name}' configureren",
         "shipping_peritem": "Verzendkosten per artikel",
-        "remove_item": "Artikel verwijderen uit winkelmandje",
+        "remove_item": "{name} verwijderen uit winkelmandje",
         "confirm_delete": "Weet u zeker dat u dit artikel wilt verwijderen?",
         "coupons": {
             "empty_error": "Voer uw couponcode in.",
@@ -87,12 +88,11 @@
             "remove": "Verwijderen"
         },
         "gift_certificates": {
-            "change_gift_certificate": "Cadeaubon toevoegen",
+            "change_gift_certificate": "{certificate_name} wijzigen",
             "add_cert_code": "Bon toevoegen",
             "gift_certificate": "Cadeaubon",
             "code_label": "Cadeaubon ({code})",
             "cert_code": "Voer uw code in",
-            "empty_error": "Voer uw geldige code in.",
             "remove": "Verwijderen"
         },
         "shipping_estimator": {
@@ -105,7 +105,9 @@
             "zip_postal_code": "Postcode",
             "free_shipping": "Gratis verzending",
             "hide_ups_rates": "UPS-tarieven verbergen",
-            "show_ups_rates": "UPS-tarieven weergeven"
+            "show_ups_rates": "UPS-tarieven weergeven",
+            "empty_country_error": "Het veld 'Land' mag niet leeg zijn.",
+            "empty_province_error": "Het veld 'Staat/provincie' mag niet leeg zijn"
         },
         "gift_wrapping": {
             "title": "Cadeauverpakking",
@@ -124,7 +126,7 @@
         },
         "added_to_cart": {
             "what_next": "Oké, {num_products, plural, one {er is 1 artikel} other {er zijn # artikelen}} toegevoegd aan uw winkelmandje. Wat nu?",
-            "your_cart_contains": "Uw winkelmandje bevat {num_products, plural, one {1 artikel} other {# artikelen}}",
+            "your_cart_contains": "Uw winkelmandje bevat {num_products, plural, one {1 item} other {# items}}",
             "proceed_to_checkout": "Doorgaan naar betaalomgeving",
             "order_subtotal": "Subtotaal bestelling",
             "continue_shopping": "Verdergaan met winkelen",
@@ -213,7 +215,8 @@
         "header": "{products, plural, one {# Product} other {# Products}} vergelijken",
         "remove": "Verwijderen",
         "no_remove": "U moet ten minste 2 producten selecteren om een geldige vergelijking te kunnen maken.",
-        "add_to_cart": "Toevoegen aan winkelmandje"
+        "add_to_cart": "Toevoegen aan winkelmandje",
+        "no_compare": "U moet ten minste twee producten selecteren om te vergelijken"
     },
     "category": {
         "label": "Categorieën",
@@ -333,7 +336,7 @@
             "last_update": "Meest recente update",
             "list": {
                 "order_number": "Bestelnummer {number}",
-                "product_details": "{num_products, plural, one {1 product} other {# producten}} voor in totaal {cost}"
+                "product_details": "{num_products, plural, one {1 product} other {# products}} voor in totaal {cost}"
             },
             "details": {
                 "heading": "Bestelnummer {number}",
@@ -366,7 +369,7 @@
                 "heading": "Bestelling #{number} downloads",
                 "download_files_below": "Hieronder kunt u de bestanden downloaden voor",
                 "expired_content": "Bestand is verlopen",
-                "days_remaining": "{number, plural, one {1 day} other {# days}}",
+                "days_remaining": "{number, plural, one {1 dag} other {# days}}",
                 "downloads_remaining": "{number, plural, one {1 download} other {# downloads}} resterend",
                 "days_or_downloads": "of {number} downloads",
                 "remaining": "resterend"
@@ -474,7 +477,8 @@
             "save": "Verlanglijstje opslaan",
             "delete_alert": "Weet u zeker dat u uw verlanglijstje(s) wilt verwijderen? Dit kan niet ongedaan worden gemaakt.",
             "create_new": "Nieuw verlanglijstje aanmaken",
-            "add_to_default": "Aan mijn verlanglijstje toevoegen"
+            "add_to_default": "Aan mijn verlanglijstje toevoegen",
+            "enter_wishlist_name_error": "U moet een naam voor het verlanglijstje invoeren."
         }
     },
     "page": {
@@ -580,7 +584,7 @@
                 "amount": "Bedrag",
                 "theme": "Thema cadeaubon",
                 "custom_range": "(Waarde moet tussen {min} en {max} liggen)",
-                "agree": "Ik begrijp dat cadeaubonnen na {days, plural, one {1 dag} other {# dagen}} verlopen",
+                "agree": "Ik begrijp dat cadeaubonnen na {days, plural, one {1 dag} other {# days}} verlopen",
                 "agree2": "Ik ga ermee akkoord dat de aankoopsom van cadeaubonnen niet terugbetaald kan worden",
                 "preview": "Voorbeeld",
                 "preview_error": "Er is een probleem opgetreden bij het laden van het voorbeeld. Probeer het later opnieuw.",
@@ -689,9 +693,10 @@
     "products": {
         "current_stock": "Huidige voorraad:",
         "quantity": "Aantal:",
-        "change_product_options": "Opties wijzigen",
-        "quantity_decrease": "Aantal verminderen:",
-        "quantity_increase": "Aantal verhogen:",
+        "change_product_options": "Opties wijzigen voor {name}",
+        "quantity_decrease": "Hoeveelheid verlagen van {name}",
+        "quantity_increase": "Hoeveelheid verhogen van {name}",
+        "quantity_error_message": "De hoeveelheid mag alleen cijfers bevatten",
         "purchase_units": "{quantity, plural, =0{0 units} one {# unit} other {# units}}",
         "max_purchase_quantity": "Maximale aankoop:",
         "min_purchase_quantity": "Minimale aankoop:",
@@ -706,13 +711,13 @@
             "hide": "Beoordelingen verbergen",
             "new": "Een beoordeling schrijven",
             "show": "Beoordelingen weergeven",
-            "header": "{total, plural, =0{0 Reviews} one {# Review} other {# Reviews}}",
-            "link_to_review": "({total, plural, =0{Nog geen beoordelingen} one {# beoordeling} other {# beoordelingen}})",
+            "header": "{total, plural, =0{0 recensies} one {# Review} other {# Reviews}}",
+            "link_to_review": "({total, plural, =0{Nog geen recensies} one {# review} other {# reviews}})",
             "post_on_by": "Geplaatst door { name } op { date }",
             "rating_label": "Beoordeling",
             "select_rating": "Beoordeling selecteren",
             "anonymous_poster": "onbekend",
-            "rating_aria_label": "Productbeoordeling is {current_rating} van {max_rating}",
+            "rating_aria_label": "{rating_target} beoordeling is {current_rating} van {max_rating}",
             "rating": {
                 "1": "1 ster (slechtste)",
                 "2": "2 sterren",
@@ -833,8 +838,8 @@
         "results": {
             "form_label": "Trefwoord zoeken:",
             "form_button_text": "Zoeken",
-            "count": "{ count, plural, one {# resultaat} other {# resultaten} } voor '{ search_query }'",
-            "quick_count": "{ count, plural, one {# productresultaat} other {# productresultaten} } voor '{ search_query }'",
+            "count": "{ count, plural, one {# result} other {# results} } voor '{ search_query }'",
+            "quick_count": "{ count, plural, one {# productresult} other {# productresultaten} } voor '{ search_query }'",
             "quick_count_live": "producten gevonden voor",
             "product_count": "Producten ({count})",
             "content_count": "Nieuws en informatie ({count})"
@@ -901,9 +906,9 @@
         "page_builder_link": "Deze pagina in Page Builder ontwerpen"
     },
     "carousel": {
-        "arrow_and_dot_aria_label": "Ga naar dia [NUMBER] van",
+        "arrow_and_dot_aria_label": "Ga naar dia [SLIDE_NUMBER] van [SLIDES_QUANTITY]",
         "active_dot_aria_label": "actief",
-        "content_announce_message": "U bekijkt momenteel dia [NUMBER] van",
+        "content_announce_message": "U zit momenteel op dia [SLIDE_NUMBER] van [SLIDES_QUANTITY]",
         "play_pause_button_play": "Afspelen",
         "play_pause_button_pause": "Pauzeren",
         "play_pause_button_aria_play": "Carrousel afspelen",
@@ -917,12 +922,13 @@
         "invalid_password": "Wachtwoorden moeten minimaal 7 tekens lang zijn en zowel cijfers als letters bevatten.",
         "field_not_blank": " veld mag niet leeg zijn.",
         "certificate_amount": "U moet een bedrag voor de cadeaubon invoeren.",
-        "certificate_amount_range": "U moet een bedrag voor de cadeaubon invoeren dat tussen [MIN] en [MAX] ligt",
+        "certificate_amount_range": "U moet een bedrag voor de cadeaubon invoeren tussen [MIN] en [MAX]",
         "price_min_evaluation": "Minimumprijs moet minder zijn dan maximumprijs.",
         "price_max_evaluation": "Minimumprijs moet minder zijn dan maximumprijs.",
         "price_min_not_entered": "Minimumprijs is vereist.",
         "price_max_not_entered": "Maximumprijs is vereist.",
-        "price_invalid_value": "Invoer moet groter zijn dan 0."
+        "price_invalid_value": "Invoer moet groter zijn dan 0.",
+        "invalid_gift_certificate": "Voer uw geldige code in."
     },
     "validation_fallback_messages": {
         "valid_email": "U moet een geldig e-mailadres invoeren.",
@@ -931,12 +937,13 @@
         "invalid_password": "Wachtwoorden moeten minimaal 7 tekens lang zijn en zowel cijfers als letters bevatten.",
         "field_not_blank": " veld mag niet leeg zijn.",
         "certificate_amount": "U moet een bedrag voor de cadeaubon invoeren.",
-        "certificate_amount_range": "U moet een bedrag voor de cadeaubon invoeren dat tussen [MIN] en [MAX] ligt",
+        "certificate_amount_range": "U moet een bedrag voor de cadeaubon invoeren tussen [MIN] en [MAX]",
         "price_min_evaluation": "Minimumprijs moet minder zijn dan maximumprijs.",
         "price_max_evaluation": "Minimumprijs moet minder zijn dan maximumprijs.",
         "price_min_not_entered": "Minimumprijs is vereist.",
         "price_max_not_entered": "Maximumprijs is vereist.",
-        "price_invalid_value": "Invoer moet groter zijn dan 0."
+        "price_invalid_value": "Invoer moet groter zijn dan 0.",
+        "invalid_gift_certificate": "Voer uw geldige code in."
     },
     "validation_default_messages": {
         "valid_email": "U moet een geldig e-mailadres invoeren.",
@@ -945,11 +952,59 @@
         "invalid_password": "Wachtwoorden moeten minimaal 7 tekens lang zijn en zowel cijfers als letters bevatten.",
         "field_not_blank": "Het veld mag niet leeg zijn.",
         "certificate_amount": "U moet een bedrag voor de cadeaubon invoeren.",
-        "certificate_amount_range": "U moet een bedrag voor de cadeaubon invoeren dat tussen [MIN] en [MAX] ligt",
+        "certificate_amount_range": "U moet een bedrag voor de cadeaubon invoeren tussen [MIN] en [MAX]",
         "price_min_evaluation": "Minimumprijs moet minder zijn dan maximumprijs.",
         "price_max_evaluation": "Minimumprijs moet minder zijn dan maximumprijs.",
         "price_min_not_entered": "Minimumprijs is vereist.",
         "price_max_not_entered": "Maximumprijs is vereist.",
-        "price_invalid_value": "Invoer moet groter zijn dan 0."
+        "price_invalid_value": "Invoer moet groter zijn dan 0.",
+        "invalid_gift_certificate": "Voer uw geldige code in."
+    },
+    "page_builder": {
+        "pdp_sale_badge_label": "Afgeprijsd!",
+        "pdp_sold_out_label": "Uitverkocht",
+        "pdp-sale-price-label": "Nu:",
+        "pdp-non-sale-price-label": "Was:",
+        "pdp-retail-price-label": "Adviesprijs:",
+        "pdp-custom-fields-tab-label": "Aanvullende informatie"
+    },
+    "consent_manager": {
+        "data_collection_warning": "Wij gebruiken cookies (en andere soortgelijke technologieën) om gegevens te verzamelen en zo uw winkelervaring te verbeteren.",
+        "accept_all_cookies": "Alle cookies aanvaarden",
+        "gdpr_settings": "Instellingen",
+        "data_collection_preferences": "Voorkeuren voor het verzamelen van gegevens op de website",
+        "use_data_by_cookies": "gebruikt door cookies en JavaScript-bibliotheken verzamelde gegevens om uw winkelervaring te verbeteren.",
+        "data_categories_table": "In de onderstaande tabel wordt per categorie aangegeven hoe wij deze gegevens gebruiken. Om een categorie van gegevensverzameling uit te schakelen, selecteert u 'Nee' en slaat u uw voorkeuren op.",
+        "allow": "Toestaan",
+        "accept": "accepteren",
+        "deny": "Weigeren",
+        "dismiss": "Sluiten",
+        "reject_all": "Alles afwijzen",
+        "category": "Categorie",
+        "purpose": "Doel",
+        "functional_category": "Functioneel",
+        "functional_purpose": "Maken extra functies mogelijk, zoals video's en livechat. Als u deze niet toestaat, werken sommige of al deze functies mogelijk niet correct.",
+        "analytics_category": "Analyses",
+        "analytics_purpose": "Leveren statistieken over websitegebruik, bijvoorbeeld webanalytics, zodat we deze website steeds kunnen verbeteren.",
+        "targeting_category": "Targeting",
+        "advertising_category": "Reclame",
+        "advertising_purpose": "Worden gebruikt om profielen aan te maken of inhoud te personaliseren om uw winkelervaring te verbeteren.",
+        "essential_category": "Essentieel",
+        "esential_purpose": "Essentieel voor het functioneren van de site en de gevraagde diensten, maar voeren geen extra of secundaire functies uit.",
+        "yes": "Ja",
+        "no": "Nee",
+        "not_available": "N.v.t.",
+        "cancel": "Annuleren",
+        "save": "Opslaan",
+        "back_to_preferences": "Terug naar Voorkeuren",
+        "close_without_changes": "U heeft niet-opgeslagen wijzigingen aan uw voorkeuren voor gegevensverzameling. Weet u zeker dat u wilt afsluiten zonder op te slaan?",
+        "unsaved_changes": "U heeft niet-opgeslagen wijzigingen",
+        "by_using": "Door onze website te gebruiken, gaat u akkoord met onze",
+        "agree_on_data_collection": "Door onze website te gebruiken, gaat u akkoord met het verzamelen van gegevens zoals beschreven in ons ",
+        "change_preferences": "U kunt uw voorkeuren op elk moment wijzigen",
+        "cancel_dialog_title": "Weet u zeker dat u uw instellingen wilt annuleren?",
+        "privacy_policy": "Privacybeleid",
+        "allow_category_tracking": "Tracking van [CATEGORY_NAME] toestaan",
+        "disallow_category_tracking": "Tracking van [CATEGORY_NAME] weigeren"
     }
 }

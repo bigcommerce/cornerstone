@@ -1,6 +1,8 @@
 # Changelog
 
 ## Draft
+
+## 5.7.0 (07-01-2021)
 - Implement CEV language files into Cornerstone. [#2084](https://github.com/bigcommerce/cornerstone/pull/2084)
 - Added translations for Consent Manager. [#2083](https://github.com/bigcommerce/cornerstone/pull/2083)
 

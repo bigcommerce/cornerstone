@@ -2,6 +2,7 @@
 
 ## Draft
 - Implement CEV language files into Cornerstone. [#2084](https://github.com/bigcommerce/cornerstone/pull/2084)
+- Added translations for Consent Manager. [#2083](https://github.com/bigcommerce/cornerstone/pull/2083)
 
 ## 5.6.0 (06-15-2021)
 - Translation mechanism for config.json values have been implemented. [#2076](https://github.com/bigcommerce/cornerstone/pull/2076)

@@ -2,6 +2,8 @@
 
 ## Draft
 - Added translations for Consent Manager. [#2083](https://github.com/bigcommerce/cornerstone/pull/2083)
+
+## 5.6.0 (06-15-2021)
 - Translation mechanism for config.json values have been implemented. [#2076](https://github.com/bigcommerce/cornerstone/pull/2076)
 - Enter press on Compare checkbox cause quick view opening. [#2074](https://github.com/bigcommerce/cornerstone/pull/2074)
 - Product images in quick view can be squashed. [#2075](https://github.com/bigcommerce/cornerstone/pull/2075)

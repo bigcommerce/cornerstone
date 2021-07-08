@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- User Account, bug styles in section payment methods. [#2085](https://github.com/bigcommerce/cornerstone/pull/2085)
 - Fixed displaying swatch name for multiple swatch options on page. [#2040](https://github.com/bigcommerce/cornerstone/pull/2040)
 - Added settings for payment banners. [#2021](https://github.com/bigcommerce/cornerstone/pull/2021)
 - Use https:// for schema markup. [#2039](https://github.com/bigcommerce/cornerstone/pull/2039)

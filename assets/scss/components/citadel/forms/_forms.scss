@@ -52,12 +52,20 @@
 .form-field--success {
 
     .form-input[type="text"] {
+        padding-right: $form-success-input-paddingRight;
         background: {
             image: $form-success-icon;
             position: right $form-success-icon-right center;
             repeat: no-repeat;
         }
-        padding-right: $form-success-input-paddingRight;
+    }
+
+    .form-input[name="credit_card_number"] {
+        background-position: right $form-success-icon-check-right center;
+    }
+
+    .form-input[name="cvv"] {
+        background-position: right $form-success-icon-check-right center;
     }
 }
 

@@ -1,6 +1,8 @@
 # Changelog
 
 ## Draft
+- Update lang files for some locales. [#2086](https://github.com/bigcommerce/cornerstone/pull/2086)
+
 
 ## 5.7.0 (07-01-2021)
 - Implement CEV language files into Cornerstone. [#2084](https://github.com/bigcommerce/cornerstone/pull/2084)

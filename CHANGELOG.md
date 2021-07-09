@@ -1,6 +1,8 @@
 # Changelog
 
 ## Draft
+
+## 5.7.1 (07-09-2021)
 - Update lang files for some locales. [#2086](https://github.com/bigcommerce/cornerstone/pull/2086)
 
 

@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Counter on the Wish Lists tab on Account page has been removed. [#2087](https://github.com/bigcommerce/cornerstone/pull/2087)
 
 ## 5.7.0 (07-01-2021)
 - Implement CEV language files into Cornerstone. [#2084](https://github.com/bigcommerce/cornerstone/pull/2084)

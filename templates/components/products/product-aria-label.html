@@ -1,8 +1,14 @@
 {{#and price.price_range (if theme_settings.price_ranges '==' true)}}
     {{#and price.price_range.min.with_tax price.price_range.max.with_tax}}
-{{lang 'category.shop_by_price_range_aria' from=price.price_range.min.with_tax.formatted to=price.price_range.max.with_tax.formatted}}
+{{lang 'category.shop_by_price_range_aria'
+       from=price.price_range.min.with_tax.formatted
+       to=price.price_range.max.with_tax.formatted
+}}
     {{else}}
-{{lang 'category.shop_by_price_range_aria' from=price.price_range.min.without_tax.formatted to=price.price_range.max.without_tax.formatted}}
+{{lang 'category.shop_by_price_range_aria'
+       from=price.price_range.min.without_tax.formatted
+       to=price.price_range.max.without_tax.formatted
+}}
     {{/and}}
 {{else}}
     {{#if price.with_tax}}

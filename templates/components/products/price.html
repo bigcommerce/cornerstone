@@ -32,10 +32,7 @@ If you are making a change here or in price-range.html, you probably want to mak
         </div>
         <div class="price-section price-section--withTax" {{#if schema_org}}itemprop="offers" itemscope itemtype="https://schema.org/Offer"{{/if}}>
             <span class="price-label" {{#if price.non_sale_price_with_tax}}style="display: none;"{{/if}}>
-                {{> components/products/price-label
-                    label_value=theme_settings.pdp-price-label
-                    fallback=(lang "page_builder.pdp-price-label")
-                }}
+                {{theme_settings.pdp-price-label}}
             </span>
             <span class="price-now-label" {{#unless price.non_sale_price_with_tax}}style="display: none;"{{/unless}}>
                 {{> components/products/price-label
@@ -86,10 +83,7 @@ If you are making a change here or in price-range.html, you probably want to mak
         </div>
         <div class="price-section price-section--withoutTax" {{#if schema_org}}itemprop="offers" itemscope itemtype="https://schema.org/Offer"{{/if}}>
             <span class="price-label" {{#if price.non_sale_price_without_tax}}style="display: none;"{{/if}}>
-                {{> components/products/price-label
-                    label_value=theme_settings.pdp-price-label
-                    fallback=(lang "page_builder.pdp-price-label")
-                }}
+                {{theme_settings.pdp-price-label}}
             </span>
             <span class="price-now-label" {{#unless price.non_sale_price_without_tax}}style="display: none;"{{/unless}}>
                 {{> components/products/price-label

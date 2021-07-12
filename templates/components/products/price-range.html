@@ -37,12 +37,7 @@
         </span>
     </div>
     <div class="price-section price-section--withTax" {{#if schema_org}}itemprop="offers" itemscope itemtype="https://schema.org/Offer"{{/if}}>
-        <span class="price-label">
-            {{> components/products/price-label
-                label_value=theme_settings.pdp-price-label
-                fallback=(lang "page_builder.pdp-price-label")
-            }}
-        </span>
+        <span class="price-label">{{theme_settings.pdp-price-label}}</span>
         <span class="price-now-label" style="display: none;">
             {{> components/products/price-label
                 label_value=theme_settings.pdp-sale-price-label
@@ -108,12 +103,7 @@
         </span>
     </div>
     <div class="price-section price-section--withoutTax{{#and price_range.min.with_tax price_range.max.with_tax}} price-section--minor{{/and}}" {{#if schema_org}}itemprop="offers" itemscope itemtype="https://schema.org/Offer"{{/if}}>
-        <span class="price-label">
-            {{> components/products/price-label
-                label_value=theme_settings.pdp-price-label
-                fallback=(lang "page_builder.pdp-price-label")
-            }}
-        </span>
+        <span class="price-label">{{theme_settings.pdp-price-label}}</span>
         <span class="price-now-label" style="display: none;">
             {{> components/products/price-label
                 label_value=theme_settings.pdp-sale-price-label

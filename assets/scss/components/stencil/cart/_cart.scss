@@ -502,11 +502,20 @@ $card-preview-zoom-bottom-offset:       6rem;
 
     .button {
         display: block;
+        width: 25%;
         margin-bottom: 0;
 
         @include breakpoint("small") {
             display: inline-block;
             float: right;
+        }
+
+        @media (max-width: $screen-medium) {
+            width: 35%;
+        }
+
+        @media (max-width: $screen-small) {
+            width: 100%;
         }
     }
 
@@ -524,8 +533,19 @@ $card-preview-zoom-bottom-offset:       6rem;
     align-items: flex-end;
     text-align: right;
 
+    > div {
+        width: 25% !important;
+
+        div, button {
+            width: 100% !important;
+            max-width: 100% !important;
+        }
+    }
+
     @media (max-width: $screen-medium) {
         > div {
+            width: 35% !important;
+            
             div {
                 z-index: $zIndex-lowest;
             }
@@ -550,9 +570,12 @@ $card-preview-zoom-bottom-offset:       6rem;
     padding-bottom: spacing('single');
     text-align: center;
 
-    @media (max-width: $screen-small) {
-        > div {
+    > div {
+        width: 100% !important;
+
+        div, button {
             width: 100% !important;
+            max-width: 100% !important;
         }
     }
 }

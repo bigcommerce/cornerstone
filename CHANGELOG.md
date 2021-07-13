@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- Payment methods buttons have different size. [#2091](https://github.com/bigcommerce/cornerstone/pull/2091)
 - Payment methods are not centered in the Cart page and Cart preview form. [#2073](https://github.com/bigcommerce/cornerstone/pull/2073)
 
 ## 5.7.0 (07-01-2021)

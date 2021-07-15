@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- As a shopper I want to see gift wrapping price in product list the cart. [#2093](https://github.com/bigcommerce/cornerstone/pull/2093)
 
 ## 5.7.1 (07-09-2021)
 - Update lang files for some locales. [#2086](https://github.com/bigcommerce/cornerstone/pull/2086)

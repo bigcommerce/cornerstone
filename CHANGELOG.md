@@ -1,10 +1,10 @@
 # Changelog
 
 ## Draft
+- 'undefined' is announced with screen reader while changing Product quantity on PDP. [#2094](https://github.com/bigcommerce/cornerstone/pull/2094)
 
 ## 5.7.1 (07-09-2021)
 - Update lang files for some locales. [#2086](https://github.com/bigcommerce/cornerstone/pull/2086)
-
 
 ## 5.7.0 (07-01-2021)
 - Implement CEV language files into Cornerstone. [#2084](https://github.com/bigcommerce/cornerstone/pull/2084)

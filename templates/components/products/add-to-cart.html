@@ -6,13 +6,14 @@
                    for="qty[]">{{lang 'products.quantity'}}</label>
                 <div class="form-increment" data-quantity-change>
                     <button class="button button--icon" data-action="dec">
-                        <span class="is-srOnly">{{lang 'products.quantity_decrease'}}</span>
+                        <span class="is-srOnly">{{lang 'products.quantity_decrease' name=product.title}}</span>
                         <i class="icon" aria-hidden="true">
                             <svg>
                                 <use xlink:href="#icon-keyboard-arrow-down"/>
                             </svg>
                         </i>
                     </button>
+                    {{ log product }}
                     <input class="form-input form-input--incrementTotal"
                            id="qty[]"
                            name="qty[]"
@@ -24,7 +25,7 @@
                            pattern="[0-9]*"
                            aria-live="polite">
                     <button class="button button--icon" data-action="inc">
-                        <span class="is-srOnly">{{lang 'products.quantity_increase'}}</span>
+                        <span class="is-srOnly">{{lang 'products.quantity_increase' name=product.title}}</span>
                         <i class="icon" aria-hidden="true">
                             <svg>
                                 <use xlink:href="#icon-keyboard-arrow-up"/>

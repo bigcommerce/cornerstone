@@ -2820,16 +2820,32 @@
     "enable": "smartButtons",
     "settings": [
       {
-        "type": "checkbox",
-        "label": "i18n.ShowPayPalTagline",
-        "force_reload": true,
-        "id": "paymentbuttons-paypal-tagline"
+        "type": "heading",
+        "content": "i18n.PaymentButtonsContainer"
       },
       {
-        "type": "checkbox",
-        "label": "i18n.ShowFundingIcons",
+        "type": "select",
+        "label": "i18n.ButtonContainer",
         "force_reload": true,
-        "id": "paymentbuttons-paypal-fundingicons"
+        "id": "paymentbuttons-container",
+        "options": [
+          {
+            "value": "small",
+            "label": "Small"
+          },
+          {
+            "value": "medium",
+            "label": "Medium"
+          },
+          {
+            "value": "large",
+            "label": "Large"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "content": "i18n.SmartPaypalButton"
       },
       {
         "type": "select",
@@ -2872,30 +2888,6 @@
           {
             "value": "rect",
             "label": "i18n.Rectangle"
-          }
-        ]
-      },
-      {
-        "type": "select",
-        "label": "i18n.ButtonSize",
-        "id": "paymentbuttons-paypal-size",
-        "force_reload": true,
-        "options": [
-          {
-            "value": "small",
-            "label": "i18n.Small"
-          },
-          {
-            "value": "medium",
-            "label": "i18n.Medium"
-          },
-          {
-            "value": "large",
-            "label": "i18n.Large"
-          },
-          {
-            "value": "responsive",
-            "label": "i18n.Responsive"
           }
         ]
       },

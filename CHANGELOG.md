@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Draft
+- Revert "Reset cart quantity to 0 if we get a 404 for the cart" [#1920](https://github.com/bigcommerce/cornerstone/pull/1920)
 
 ## 5.7.1 (2021-07-09)
 - Update lang files for some locales. [#2086](https://github.com/bigcommerce/cornerstone/pull/2086)

@@ -1,6 +1,7 @@
 import 'foundation-sites/js/foundation/foundation';
 import 'foundation-sites/js/foundation/foundation.dropdown';
 import utils from '@bigcommerce/stencil-utils';
+import Review from '../product/reviews';
 import ProductDetails from '../common/product-details';
 import { defaultModal, ModalEvents } from './modal';
 import 'slick-carousel';
@@ -40,6 +41,9 @@ export default function (context) {
                     });
                 }
             }
+
+            /* eslint-disable no-new */
+            new Review({ $context: modal.$content });
 
             return new ProductDetails(modal.$content.find('.quickView'), context);
         });

@@ -26,27 +26,3 @@ export const createTranslationDictionary = (context) => {
         return acc;
     }, {});
 };
-
-const defaultPageBuilderValues = {
-    pdp_sale_badge_label: 'On Sale!',
-    pdp_sold_out_label: 'Sold Out',
-    'pdp-sale-price-label': 'Now:',
-    'pdp-non-sale-price-label': 'Was:',
-    'pdp-retail-price-label': 'MSRP:',
-    'pdp-custom-fields-tab-label': 'Additional Information',
-};
-
-/**
- * defines Translation for values from page builder (locally could be found in config.json)
- */
-export const translatePageBuilderValues = () => {
-    $('[data-page-builder-key]').each((_, selector) => {
-        const $item = $(selector);
-        const itemText = $item.text().trim();
-        const itemDefaultTranslation = $item.data('default-translation');
-
-        if (itemText === defaultPageBuilderValues[$item.data('page-builder-key')] && itemText !== itemDefaultTranslation) {
-            $item.text(itemDefaultTranslation);
-        }
-    });
-};

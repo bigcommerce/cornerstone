@@ -64,6 +64,14 @@
     margin-left: -(spacing("quarter"));
     margin-right: -(spacing("quarter"));
 
+    &[data-slick] {
+        opacity: 0;
+
+        &.slick-initialized {
+            opacity: 1;
+        }
+    }
+
     .slick-list {
         margin-left: remCalc(40px);
         margin-right: remCalc(40px);
@@ -291,6 +299,10 @@
 
     .form {
         display: inline;
+
+        .add-to-cart-wrapper {
+            display: inline;
+        }
     }
 
     input[type="file"] {
@@ -300,6 +312,10 @@
     .form-field {
         font-size: 0; // 2
         margin-bottom: 2rem;
+
+        &--error > .form-inlineMessage {
+            font-size: 1rem;
+        }
 
         // scss-lint:disable SelectorDepth, NestingDepth
         > .form-checkbox + .form-label
@@ -333,7 +349,6 @@
         }
 
         @include breakpoint("medium") {
-            float: none;
             padding: 0;
             width: auto;
         }
@@ -347,10 +362,17 @@
         .button {
             width: 100%;
 
-            @include breakpoint("large") {
-                margin-right: spacing("half");
+            @include breakpoint("medium") {
                 width: auto;
             }
+
+            @include breakpoint("large") {
+                margin-right: spacing("half");
+            }
+        }
+
+        .button--primary {
+            margin-right: spacing("half");
         }
     }
 }

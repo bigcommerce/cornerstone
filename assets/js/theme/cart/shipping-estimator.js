@@ -6,11 +6,12 @@ import collapsibleFactory from '../common/collapsible';
 import swal from '../global/sweet-alert';
 
 export default class ShippingEstimator {
-    constructor($element) {
+    constructor($element, shippingErrorMessages) {
         this.$element = $element;
 
         this.$state = $('[data-field-type="State"]', this.$element);
         this.isEstimatorFormOpened = false;
+        this.shippingErrorMessages = shippingErrorMessages;
         this.initFormValidation();
         this.bindStateCountryChange();
         this.bindEstimatorEvents();
@@ -63,7 +64,7 @@ export default class ShippingEstimator {
 
                     cb(result);
                 },
-                errorMessage: 'The \'Country\' field cannot be blank.',
+                errorMessage: this.shippingErrorMessages.country,
             },
         ]);
     }
@@ -85,7 +86,7 @@ export default class ShippingEstimator {
 
                     cb(result);
                 },
-                errorMessage: 'The \'State/Province\' field cannot be blank.',
+                errorMessage: this.shippingErrorMessages.province,
             },
         ]);
     }

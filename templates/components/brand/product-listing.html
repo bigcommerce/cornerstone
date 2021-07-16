@@ -1,3 +1,5 @@
+{{inject 'noCompareMessage' (lang 'compare.no_compare')}}
+
 {{> components/products/filter sort=pagination.brand.sort}}
 
 <form action="{{urls.compare}}" method='POST' {{#if settings.data_tag_enabled}} data-list-name="Brand: {{brand.name}}" {{/if}} data-product-compare>

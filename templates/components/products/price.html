@@ -1,4 +1,4 @@
-{{!-- There are 2 code paths for generating the PDP pricing HTML determined by the following #and condition. 
+{{!-- There are 2 code paths for generating the PDP pricing HTML determined by the following #and condition.
 If a 'price_range' exists then we generate all HTML in price-range.html, otherwise it is defined here. Both code
 paths generate the same HTML structure with some differences in whether that element is displayed by default (css styling).
 
@@ -9,13 +9,17 @@ If you are making a change here or in price-range.html, you probably want to mak
 {{else}}
     {{#if price.with_tax}}
         <div class="price-section price-section--withTax rrp-price--withTax" {{#unless price.rrp_with_tax}}style="display: none;"{{/unless}}>
-            {{theme_settings.pdp-retail-price-label}}
+            <span data-page-builder-key="pdp-retail-price-label" data-default-translation="{{lang "page_builder.pdp-retail-price-label"}}">
+                {{theme_settings.pdp-retail-price-label}}
+            </span>
             <span data-product-rrp-with-tax class="price price--rrp">
                 {{price.rrp_with_tax.formatted}}
             </span>
         </div>
         <div class="price-section price-section--withTax non-sale-price--withTax" {{#unless price.non_sale_price_with_tax}}style="display: none;"{{/unless}}>
-            {{theme_settings.pdp-non-sale-price-label}}
+            <span data-page-builder-key="pdp-non-sale-price-label" data-default-translation="{{lang "page_builder.pdp-non-sale-price-label"}}">
+                {{theme_settings.pdp-non-sale-price-label}}
+            </span>
             <span data-product-non-sale-price-with-tax class="price price--non-sale">
                 {{price.non_sale_price_with_tax.formatted}}
             </span>
@@ -24,12 +28,16 @@ If you are making a change here or in price-range.html, you probably want to mak
             <span class="price-label" {{#if price.non_sale_price_with_tax}}style="display: none;"{{/if}}>
                 {{theme_settings.pdp-price-label}}
             </span>
-            <span class="price-now-label" {{#unless price.non_sale_price_with_tax}}style="display: none;"{{/unless}}>
+            <span class="price-now-label"
+                  {{#unless price.non_sale_price_with_tax}}style="display: none;"{{/unless}}
+                  data-page-builder-key="pdp-sale-price-label"
+                  data-default-translation="{{lang "page_builder.pdp-sale-price-label"}}"
+            >
                 {{theme_settings.pdp-sale-price-label}}
             </span>
             <span data-product-price-with-tax class="price price--withTax">{{price.with_tax.formatted}}</span>
             {{#if schema_org}}
-                <meta itemprop="availability" itemtype="https://schema.org/ItemAvailability" 
+                <meta itemprop="availability" itemtype="https://schema.org/ItemAvailability"
                 	content="https://schema.org/{{#if product.pre_order}}PreOrder{{else if product.out_of_stock}}OutOfStock{{else if product.can_purchase '===' false}}OutOfStock{{else}}InStock{{/if}}">
                 <meta itemprop="itemCondition" itemtype="https://schema.org/OfferItemCondition" content="https://schema.org/{{product.condition}}Condition">
                 <meta itemprop="priceCurrency" content="{{currency_selector.active_currency_code}}">
@@ -47,13 +55,17 @@ If you are making a change here or in price-range.html, you probably want to mak
     {{/if}}
     {{#if price.without_tax}}
         <div class="price-section price-section--withoutTax rrp-price--withoutTax{{#if price.with_tax}} price-section--minor{{/if}}" {{#unless price.rrp_without_tax}}style="display: none;"{{/unless}}>
-            {{theme_settings.pdp-retail-price-label}}
-            <span data-product-rrp-price-without-tax class="price price--rrp"> 
+            <span data-page-builder-key="pdp-retail-price-label" data-default-translation="{{lang "page_builder.pdp-retail-price-label"}}">
+                {{theme_settings.pdp-retail-price-label}}
+            </span>
+            <span data-product-rrp-price-without-tax class="price price--rrp">
                 {{price.rrp_without_tax.formatted}}
             </span>
         </div>
         <div class="price-section price-section--withoutTax non-sale-price--withoutTax{{#if price.with_tax}} price-section--minor{{/if}}" {{#unless price.non_sale_price_without_tax}}style="display: none;"{{/unless}}>
-            {{theme_settings.pdp-non-sale-price-label}}
+            <span data-page-builder-key="pdp-non-sale-price-label" data-default-translation="{{lang "page_builder.pdp-non-sale-price-label"}}">
+                {{theme_settings.pdp-non-sale-price-label}}
+            </span>
             <span data-product-non-sale-price-without-tax class="price price--non-sale">
                 {{price.non_sale_price_without_tax.formatted}}
             </span>
@@ -62,7 +74,11 @@ If you are making a change here or in price-range.html, you probably want to mak
             <span class="price-label" {{#if price.non_sale_price_without_tax}}style="display: none;"{{/if}}>
                 {{theme_settings.pdp-price-label}}
             </span>
-            <span class="price-now-label" {{#unless price.non_sale_price_without_tax}}style="display: none;"{{/unless}}>
+            <span class="price-now-label"
+                  {{#unless price.non_sale_price_without_tax}}style="display: none;"{{/unless}}
+                  data-page-builder-key="pdp-sale-price-label"
+                  data-default-translation="{{lang "page_builder.pdp-sale-price-label"}}"
+            >
                 {{theme_settings.pdp-sale-price-label}}
             </span>
             <span data-product-price-without-tax class="price price--withoutTax{{#if price.with_tax}} price-section--minor{{/if}}">{{price.without_tax.formatted}}</span>

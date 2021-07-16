@@ -1,5 +1,13 @@
 {{#if settings.data_tag_enabled}}
-    <article class="listItem" data-event-type="{{event}}" data-entity-id="{{id}}" data-position="{{position}}" data-name="{{name}}" data-product-category="{{#each category}}{{#if @last}}{{this}}{{else}}{{this}}, {{/if}}{{/each}}" data-product-brand="{{brand.name}}" data-product-price="{{#if price.with_tax}}{{price.with_tax.value}}{{else}}{{price.without_tax.value}}{{/if}}">
+    <article class="listItem"
+             data-event-type="{{event}}"
+             data-entity-id="{{id}}"
+             data-position="{{position}}"
+             data-name="{{name}}"
+             data-product-category="{{#each category}}{{#if @last}}{{this}}{{else}}{{this}}, {{/if}}{{/each}}"
+             data-product-brand="{{brand.name}}"
+             data-product-price="{{#if price.with_tax}}{{price.with_tax.value}}{{else}}{{price.without_tax.value}}{{/if}}"
+    >
 {{else}}
     <article class="listItem">
 {{/if}}
@@ -16,6 +24,8 @@
                 badge-type='sold-out'
                 badge_view=theme_settings.product_sold_out_badges
                 badge_label=theme_settings.pdp_sold_out_label
+                page_builder_key="pdp_sold_out_label"
+                default_translation=(lang "page_builder.pdp_sold_out_label")
             }}
         {{else}}
             {{#or price.sale_price_with_tax.value price.sale_price_without_tax.value}}
@@ -23,6 +33,8 @@
                     badge-type='sale'
                     badge_view=theme_settings.product_sale_badges
                     badge_label=theme_settings.pdp_sale_badge_label
+                    page_builder_key="pdp_sale_badge_label"
+                    default_translation=(lang "page_builder.pdp_sale_badge_label")
                 }}
             {{/or}}
         {{/if}}
@@ -53,10 +65,8 @@
                 {{/if}}
                 <h4 class="listItem-title">
                     <a href="{{url}}"
-                    aria-label="{{name}},{{> components/products/product-aria-label}}"
-                    {{#if settings.data_tag_enabled}}
-                    data-event-type="product-click"
-                    {{/if}}
+                       aria-label="{{name}},{{> components/products/product-aria-label}}"
+                       {{#if settings.data_tag_enabled}}data-event-type="product-click"{{/if}}
                     >
                         {{name}}
                     </a>

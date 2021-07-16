@@ -1,3 +1,5 @@
+{{inject "isProductCardPresented" true}}
+
 <article
     class="card
     {{#if alternate}} card--alternate{{/if}}"
@@ -29,6 +31,8 @@
                 badge-type='sold-out'
                 badge_view=theme_settings.product_sold_out_badges
                 badge_label=theme_settings.pdp_sold_out_label
+                page_builder_key="pdp_sold_out_label"
+                default_translation=(lang "page_builder.pdp_sold_out_label")
             }}
         {{else}}
             {{#or price.sale_price_with_tax.value price.sale_price_without_tax.value}}
@@ -36,6 +40,8 @@
                     badge-type='sale'
                     badge_view=theme_settings.product_sale_badges
                     badge_label=theme_settings.pdp_sale_badge_label
+                    page_builder_key="pdp_sale_badge_label"
+                    default_translation=(lang "page_builder.pdp_sale_badge_label")
                 }}
             {{/or}}
         {{/if}}
@@ -60,9 +66,9 @@
                 {{#unless hide_product_quick_view}}
                     {{#if theme_settings.show_product_quick_view}}
                         {{#if settings.data_tag_enabled}}
-                            <button class="button button--small card-figcaption-button quickview" data-event-type="product-click" data-product-id="{{id}}">{{lang 'products.quick_view'}}</button>
+                            <button type="button" class="button button--small card-figcaption-button quickview" data-event-type="product-click" data-product-id="{{id}}">{{lang 'products.quick_view'}}</button>
                         {{else}}
-                            <button class="button button--small card-figcaption-button quickview" data-product-id="{{id}}">{{lang 'products.quick_view'}}</button>
+                            <button type="button" class="button button--small card-figcaption-button quickview" data-product-id="{{id}}">{{lang 'products.quick_view'}}</button>
                         {{/if}}
                     {{/if}}
                 {{/unless}}
@@ -105,7 +111,10 @@
         <h3 class="card-title">
             <a aria-label="{{name}},{{> components/products/product-aria-label}}"
                href="{{url}}"
-               {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}}>{{name}}</a>
+               {{#if settings.data_tag_enabled}}data-event-type="product-click"{{/if}}
+            >
+                {{name}}
+            </a>
         </h3>
 
         <div class="card-text" data-test-info-type="price">

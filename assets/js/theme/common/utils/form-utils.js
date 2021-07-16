@@ -135,8 +135,9 @@ function announceInputErrorMessage({ element, result }) {
     }
     const activeInputContainer = $(element).parent();
     // the reason for using span tag is nod-validate lib
-    // which does not add error message class while initialising form
-    const errorMessage = $(activeInputContainer).find('span');
+    // which does not add error message class while initialising form.
+    // specific class is added since it can be multiple spans
+    const errorMessage = $(activeInputContainer).find('span.form-inlineMessage');
 
     if (errorMessage.length) {
         const $errMessage = $(errorMessage[0]);

@@ -64,6 +64,14 @@
     margin-left: -(spacing("quarter"));
     margin-right: -(spacing("quarter"));
 
+    &[data-slick] {
+        opacity: 0;
+
+        &.slick-initialized {
+            opacity: 1;
+        }
+    }
+
     .slick-list {
         margin-left: remCalc(40px);
         margin-right: remCalc(40px);

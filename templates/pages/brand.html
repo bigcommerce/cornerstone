@@ -14,7 +14,18 @@ brand:
 {{/partial}}
 
 {{#partial "page"}}
-<h1 class="page-heading">{{brand.name}}</h1>
+<h1 class="page-heading">
+    {{#if brand.image}}
+        {{> components/common/responsive-img
+            image=brand.image
+            lazyload="lazyload+lqip"
+            fallback_size=theme_settings.brand_size
+            default_image=theme_settings.default_image_brand
+        }}
+    {{else}}
+        {{brand.name}}
+    {{/if}}
+</h1>
 {{{region name="brand_below_header"}}}
 <div class="page">
 

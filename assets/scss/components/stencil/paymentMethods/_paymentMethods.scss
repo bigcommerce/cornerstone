@@ -3,20 +3,20 @@
 // =============================================================================
 
 .paymentMethodsTitle {
+    margin: 0 0 spacing("half");
     padding: 0;
     text-transform: none;
     width: 100%;
-    margin: 0 0 spacing("half");
 }
 
 .paymentMethodsGrid {
-    margin: -(spacing("half"));
-    margin-bottom: spacing("single");
     display: flex;
     flex-wrap: wrap;
+    margin: -(spacing("half"));
+    margin-bottom: spacing("single");
 
     &-item {
-        padding: spacing("half");;
+        padding: spacing("half");
         width: 100%;
 
         @include breakpoint("small") {
@@ -26,18 +26,18 @@
 }
 
 .paymentMethod {
-    border: container("border");
     background-color: #e5e5e5;
+    border: container("border");
     border-radius: remCalc(3px);
-    height: 100%;
     display: flex;
     flex-flow: column nowrap;
+    height: 100%;
 
     &-row {
         padding: 1.5rem;
 
         &:first-child {
-            background-color: #ffffff;
+            background-color: #fff;
         }
 
         &:last-child {
@@ -56,10 +56,10 @@
 }
 
 .methodHeader {
-    justify-content: space-between;
+    align-items: center;
     display: flex;
     flex-flow: row;
-    align-items: center;
+    justify-content: space-between;
 
     &-icon {
         margin-right: spacing("half");
@@ -89,16 +89,16 @@
     }
 
     &-meta {
-        padding-left: spacing("half");
-        margin-left: auto;
         display: flex;
         flex-wrap: nowrap;
+        margin-left: auto;
+        padding-left: spacing("half");
     }
 
     &-default {
-        margin-left: spacing("half");
         fill: color("greys", "dark");
         height: remCalc(18px);
+        margin-left: spacing("half");
         width: remCalc(18px);
 
         @include breakpoint("large") {
@@ -114,8 +114,8 @@
 }
 
 .methodDetails {
-    margin: 0;
     display: flex;
+    margin: 0;
 
     &-label {
         flex: 1;
@@ -129,13 +129,13 @@
 }
 
 .newPaymentMethod {
-    text-decoration: none;
-    display: flex;
     align-items: center;
-    justify-items: center;
+    display: flex;
     flex-direction: column;
-    min-height: remCalc(186px);
     height: 100%;
+    justify-items: center;
+    min-height: remCalc(186px);
+    text-decoration: none;
 
     &-icon {
         font-size: 50px;

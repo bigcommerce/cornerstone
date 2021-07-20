@@ -17,6 +17,7 @@ export const ModalEvents = {
     closed: 'closed.fndtn.reveal',
     open: 'open.fndtn.reveal',
     opened: 'opened.fndtn.reveal',
+    loaded: 'loaded.data.custom',
 };
 
 function getSizeFromModal($modal) {
@@ -188,6 +189,7 @@ export class Modal {
 
         this.pending = false;
         this.$content.html($content);
+        this.$modal.trigger(ModalEvents.loaded);
 
         restrainContentHeight(this.$content);
         foundation(this.$content);
@@ -204,6 +206,14 @@ export class Modal {
             this.focusTrap = focusTrap.createFocusTrap(this.$modal[0], {
                 escapeDeactivates: false,
                 returnFocusOnDeactivate: false,
+                allowOutsideClick: true,
+                fallbackFocus: () => {
+                    const fallbackNode = this.$preModalFocusedEl && this.$preModalFocusedEl.length
+                        ? this.$preModalFocusedEl[0]
+                        : $('[data-header-logo-link]')[0];
+
+                    return fallbackNode;
+                },
             });
         }
 
@@ -230,6 +240,14 @@ export class Modal {
     }
 
     onModalOpened() {
+        if (this.pending) {
+            this.$modal.one(ModalEvents.loaded, () => {
+                if (this.$modal.hasClass('open')) this.setupFocusTrap();
+            });
+        } else {
+            this.setupFocusTrap();
+        }
+
         restrainContentHeight(this.$content);
     }
 }

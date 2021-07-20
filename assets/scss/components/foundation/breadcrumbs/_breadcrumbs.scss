@@ -15,8 +15,8 @@
 ol.breadcrumbs {
     display: none; // 1
     font-size: 0; // 2
-    text-align: center;
     overflow: visible;
+    text-align: center;
     @include breakpoint("small") {
         display: block; // 1
     }
@@ -28,8 +28,6 @@ ol.breadcrumbs {
     margin-right: 0.25rem;
 
     &.is-active {
-
-        // scss-lint:disable NestingDepth
         > .breadcrumb-label {
             cursor: pointer;
             font-weight: 700;
@@ -37,12 +35,12 @@ ol.breadcrumbs {
     }
 
     // needs to override common bigcommerce styles for accessibility improvements
-    &:not(:first-child):before {
+    &:not(:first-child)::before {
+        border-right: 0.1em solid $primary-color;
+        content: "";
         display: inline-block;
+        height: 0.8em;
         margin: 0 0.25rem;
         transform: rotate(15deg);
-        border-right: 0.1em solid $primary-color;
-        height: 0.8em;
-        content: '';
     }
 }

@@ -5,6 +5,10 @@ import Cart from '../../theme/cart.js';
 var dataSpy;
 var UpdateSpy;
 var c = new Cart();
+c.context = {
+    shippingCountryErrorMessage: `The 'Country' field cannot be blank.`,
+    shippingProvinceErrorMessage: `The 'State/Province' field cannot be blank.`,
+};
 beforeEach(function() {
 	UpdateSpy = spyOn(utils.api.cart, 'itemUpdate');
 

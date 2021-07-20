@@ -3,8 +3,11 @@ import ProductDetailsBase, { optionChangeDecorator } from './product-details-bas
 import 'foundation-sites/js/foundation/foundation';
 import 'foundation-sites/js/foundation/foundation.reveal';
 import ImageGallery from '../product/image-gallery';
-import modalFactory, { showAlertModal } from '../global/modal';
+import modalFactory, { alertModal, showAlertModal } from '../global/modal';
 import { isEmpty, isPlainObject } from 'lodash';
+import nod from '../common/nod';
+import { announceInputErrorMessage } from '../common/utils/form-utils';
+import forms from '../common/models/forms';
 import { normalizeFormData } from './utils/api';
 import { isBrowserIE, convertIntoArray } from './utils/ie-helpers';
 import bannerUtils from './utils/banner-utils';
@@ -23,6 +26,12 @@ export default class ProductDetails extends ProductDetailsBase {
         this.storeInitMessagesForSwatches();
 
         const $form = $('form[data-cart-item-add]', $scope);
+
+        this.addToCartValidator = nod({
+            submit: $form.find('input#form-action-addToCart'),
+            tap: announceInputErrorMessage,
+        });
+
         const $productOptionsElement = $('[data-product-option-change]', $form);
         const hasOptions = $productOptionsElement.html().trim().length;
         const hasDefaultOptions = $productOptionsElement.find('[data-default]').length;
@@ -41,7 +50,10 @@ export default class ProductDetails extends ProductDetailsBase {
             }
         };
 
-        $(window).on('load', () => $.each($productSwatchLabels, placeSwatchLabelImage));
+        $(window).on('load', () => {
+            this.registerAddToCartValidation();
+            $.each($productSwatchLabels, placeSwatchLabelImage);
+        });
 
         if (context.showSwatchNames) {
             this.$swatchOptionMessage.removeClass('u-hidden');
@@ -65,7 +77,11 @@ export default class ProductDetails extends ProductDetailsBase {
         });
 
         $form.on('submit', event => {
-            this.addProductToCart(event, $form[0]);
+            this.addToCartValidator.performCheck();
+
+            if (this.addToCartValidator.areAll('valid')) {
+                this.addProductToCart(event, $form[0]);
+            }
         });
 
         // Update product attributes. Also update the initial view in case items are oos
@@ -83,6 +99,19 @@ export default class ProductDetails extends ProductDetailsBase {
         $productOptionsElement.show();
 
         this.previewModal = modalFactory('#previewModal')[0];
+    }
+
+    registerAddToCartValidation() {
+        this.addToCartValidator.add([{
+            selector: '[data-quantity-change] > .form-input--incrementTotal',
+            validate: (cb, val) => {
+                const result = forms.numbersOnly(val);
+                cb(result);
+            },
+            errorMessage: this.context.productQuantityErrorMessage,
+        }]);
+
+        return this.addToCartValidator;
     }
 
     storeInitMessagesForSwatches() {
@@ -230,6 +259,11 @@ export default class ProductDetails extends ProductDetailsBase {
             this.updateProductAttributes(productAttributesData);
             this.updateView(productAttributesData, productAttributesContent);
             bannerUtils.dispatchProductBannerEvent(productAttributesData);
+
+            if (!this.checkIsQuickViewChild($form)) {
+                const $context = $form.parents('.productView').find('.productView-info');
+                modalFactory('[data-reveal]', { $context });
+            }
         });
     }
 
@@ -252,6 +286,10 @@ export default class ProductDetails extends ProductDetailsBase {
             role: roleType,
             'aria-live': ariaLiveStatus,
         });
+    }
+
+    checkIsQuickViewChild($element) {
+        return !!$element.parents('.quickView').length;
     }
 
     showProductImage(image) {
@@ -308,35 +346,20 @@ export default class ProductDetails extends ProductDetailsBase {
             const quantityMin = parseInt($input.data('quantityMin'), 10);
             const quantityMax = parseInt($input.data('quantityMax'), 10);
 
-            let qty = parseInt($input.val(), 10);
-
+            let qty = forms.numbersOnly($input.val()) ? parseInt($input.val(), 10) : quantityMin;
             // If action is incrementing
             if ($target.data('action') === 'inc') {
-                // If quantity max option is set
-                if (quantityMax > 0) {
-                    // Check quantity does not exceed max
-                    if ((qty + 1) <= quantityMax) {
-                        qty++;
-                    }
-                } else {
-                    qty++;
-                }
+                qty = forms.validateIncreaseAgainstMaxBoundary(qty, quantityMax);
             } else if (qty > 1) {
-                // If quantity min option is set
-                if (quantityMin > 0) {
-                    // Check quantity does not fall below min
-                    if ((qty - 1) >= quantityMin) {
-                        qty--;
-                    }
-                } else {
-                    qty--;
-                }
+                qty = forms.validateDecreaseAgainstMinBoundary(qty, quantityMin);
             }
 
             // update hidden input
             viewModel.quantity.$input.val(qty);
             // update text
             viewModel.quantity.$text.text(qty);
+            // perform validation after updating product quantity
+            this.addToCartValidator.performCheck();
         });
 
         // Prevent triggering quantity change when pressing enter
@@ -390,6 +413,10 @@ export default class ProductDetails extends ProductDetailsBase {
                 const tmp = document.createElement('DIV');
                 tmp.innerHTML = errorMessage;
 
+                if (!this.checkIsQuickViewChild($addToCartBtn)) {
+                    alertModal().$preModalFocusedEl = $addToCartBtn;
+                }
+
                 return showAlertModal(tmp.textContent || tmp.innerText);
             }
 
@@ -401,8 +428,11 @@ export default class ProductDetails extends ProductDetailsBase {
                     this.previewModal.$modal.addClass('apple-pay-supported');
                 }
 
-                if ($addToCartBtn.parents('.quickView').length === 0) this.previewModal.$preModalFocusedEl = $addToCartBtn;
-                this.updateCartContent(this.previewModal, response.data.cart_item.id, () => this.previewModal.setupFocusTrap());
+                if (!this.checkIsQuickViewChild($addToCartBtn)) {
+                    this.previewModal.$preModalFocusedEl = $addToCartBtn;
+                }
+
+                this.updateCartContent(this.previewModal, response.data.cart_item.id);
             } else {
                 this.$overlay.show();
                 // if no modal, redirect to the cart page

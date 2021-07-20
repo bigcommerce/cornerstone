@@ -67,6 +67,7 @@
         },
         "label": "Your Cart ({quantity, plural, one {# item} other {# items}})",
         "is_empty": "Your cart is empty",
+        "invalid_entry_message": "[ENTRY] is not a valid entry",
         "coupon_code": "Coupon Code",
         "discount": "Discount",
         "included_in_total": " Included in Total",
@@ -92,7 +93,6 @@
             "gift_certificate": "Gift Certificate",
             "code_label": "Gift Certificate ({code})",
             "cert_code": "Enter your certificate code",
-            "empty_error": "Please enter your valid certificate code.",
             "remove": "Remove"
         },
         "shipping_estimator": {
@@ -105,7 +105,9 @@
             "zip_postal_code": "Zip/postcode",
             "free_shipping": "Free shipping",
             "hide_ups_rates": "Hide UPS Rates",
-            "show_ups_rates": "Show UPS Rates"
+            "show_ups_rates": "Show UPS Rates",
+            "empty_country_error": "The 'Country' field cannot be blank.",
+            "empty_province_error": "The 'State/Province' field cannot be blank."
         },
         "gift_wrapping": {
             "title": "Gift Wrapping",
@@ -213,7 +215,8 @@
         "header": "Comparing {products, plural, one {# Product} other {# Products}}",
         "remove": "Remove",
         "no_remove": "At least 2 products are needed to make a valid comparison.",
-        "add_to_cart": "Add to cart"
+        "add_to_cart": "Add to cart",
+        "no_compare": "You must select at least two products to compare"
     },
     "category": {
         "label": "Categories",
@@ -474,7 +477,8 @@
             "save": "Save Wish List",
             "delete_alert": "Are you sure you want to delete your Wish List(s)? This action cannot be undone.",
             "create_new": "Create New Wish List",
-            "add_to_default": "Add to My Wish List"
+            "add_to_default": "Add to My Wish List",
+            "enter_wishlist_name_error": "You must enter a wishlist name."
         }
     },
     "page": {
@@ -693,6 +697,7 @@
         "change_product_options": "Change options for {name}",
         "quantity_decrease": "Decrease Quantity of {name}",
         "quantity_increase": "Increase Quantity of {name}",
+        "quantity_error_message":"The quantity should contain only numbers",
         "purchase_units": "{quantity, plural, =0{0 units} one {# unit} other {# units}}",
         "max_purchase_quantity": "Maximum Purchase:",
         "min_purchase_quantity": "Minimum Purchase:",
@@ -923,7 +928,8 @@
         "price_max_evaluation": "Min. price must be less than max. price.",
         "price_min_not_entered": "Min. price is required.",
         "price_max_not_entered": "Max. price is required.",
-        "price_invalid_value": "Input must be greater than 0."
+        "price_invalid_value": "Input must be greater than 0.",
+        "invalid_gift_certificate": "Please enter your valid certificate code."
     },
     "validation_fallback_messages": {
         "valid_email": "You must enter a valid email.",
@@ -937,7 +943,8 @@
         "price_max_evaluation": "Min. price must be less than max. price.",
         "price_min_not_entered": "Min. price is required.",
         "price_max_not_entered": "Max. price is required.",
-        "price_invalid_value": "Input must be greater than 0."
+        "price_invalid_value": "Input must be greater than 0.",
+        "invalid_gift_certificate": "Please enter your valid certificate code."
     },
     "validation_default_messages": {
         "valid_email": "You must enter a valid email.",
@@ -951,6 +958,54 @@
         "price_max_evaluation": "Min. price must be less than max. price.",
         "price_min_not_entered": "Min. price is required.",
         "price_max_not_entered": "Max. price is required.",
-        "price_invalid_value": "Input must be greater than 0."
+        "price_invalid_value": "Input must be greater than 0.",
+        "invalid_gift_certificate": "Please enter your valid certificate code."
+    },
+    "page_builder": {
+        "pdp_sale_badge_label": "On Sale!",
+        "pdp_sold_out_label": "Sold Out",
+        "pdp-sale-price-label": "Now:",
+        "pdp-non-sale-price-label": "Was:",
+        "pdp-retail-price-label": "MSRP:",
+        "pdp-custom-fields-tab-label": "Additional Information"
+    },
+    "consent_manager": {
+        "data_collection_warning": "We use cookies (and other similar technologies) to collect data to improve your shopping experience.",
+        "accept_all_cookies": "Accept All Cookies",
+        "gdpr_settings": "Settings",
+        "data_collection_preferences": "Website Data Collection Preferences",
+        "use_data_by_cookies": " uses data collected by cookies and JavaScript libraries to improve your shopping experience.",
+        "data_categories_table": "The table below outlines how we use this data by category. To opt out of a category of data collection, select 'No' and save your preferences.",
+        "allow": "Allow",
+        "accept": "Accept",
+        "deny": "Deny",
+        "dismiss": "Dismiss",
+        "reject_all": "Reject all",
+        "category": "Category",
+        "purpose": "Purpose",
+        "functional_category": "Functional",
+        "functional_purpose": "Enables enhanced functionality, such as videos and live chat. If you do not allow these, then some or all of these functions may not work properly.",
+        "analytics_category": "Analytics",
+        "analytics_purpose": "Provide statistical information on site usage, e.g., web analytics so we can improve this website over time.",
+        "targeting_category": "Targeting",
+        "advertising_category": "Advertising",
+        "advertising_purpose": "Used to create profiles or personalize content to enhance your shopping experience.",
+        "essential_category": "Essential",
+        "esential_purpose": "Essential for the site and any requested services to work, but do not perform any additional or secondary function.",
+        "yes": "Yes",
+        "no": "No",
+        "not_available": "N/A",
+        "cancel": "Cancel",
+        "save": "Save",
+        "back_to_preferences": "Back to Preferences",
+        "close_without_changes": "You have unsaved changes to your data collection preferences. Are you sure you want to close without saving?",
+        "unsaved_changes": "You have unsaved changes",
+        "by_using": "By using our website, you're agreeing to our",
+        "agree_on_data_collection":"By using our website, you're agreeing to the collection of data as described in our ",
+        "change_preferences": "You can change your preferences at any time",
+        "cancel_dialog_title": "Are you sure you want to cancel?",
+        "privacy_policy": "Privacy Policy",
+        "allow_category_tracking": "Allow [CATEGORY_NAME] tracking",
+        "disallow_category_tracking": "Disallow [CATEGORY_NAME] tracking"
     }
 }

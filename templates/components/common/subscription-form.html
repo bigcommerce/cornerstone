@@ -1,20 +1,24 @@
 <h5 class="footer-info-heading">{{lang 'newsletter.subscribe'}}</h5>
 <p>{{lang 'newsletter.subscribe_intro'}}</p>
 
-<form class="form" action="{{urls.subscribe.action}}" method="post">
-    <fieldset class="form-fieldset">
-        <input type="hidden" name="action" value="subscribe">
-        <input type="hidden" name="nl_first_name" value="bc">
-        <input type="hidden" name="check" value="1">
-        <div class="form-field">
-            <label class="form-label is-srOnly" for="nl_email">{{lang 'common.email_address'}}</label>
-            <div class="form-prefixPostfix wrap">
-                <input class="form-input" id="nl_email" name="nl_email" type="email" value="{{customer.email}}" placeholder="{{lang 'newsletter.email_placeholder'}}">
-                <input class="button button--primary form-prefixPostfix-button--postfix" type="submit" value="{{lang 'newsletter.subscribe_submit'}}">
+{{#if theme_settings.show_ac_footer_form}}
+    {{> components/common/ac-subscription-form }}
+{{else}}
+    <form class="form" action="{{urls.subscribe.action}}" method="post">
+        <fieldset class="form-fieldset">
+            <input type="hidden" name="action" value="subscribe">
+            <input type="hidden" name="nl_first_name" value="bc">
+            <input type="hidden" name="check" value="1">
+            <div class="form-field">
+                <label class="form-label is-srOnly" for="nl_email">{{lang 'common.email_address'}}</label>
+                <div class="form-prefixPostfix wrap">
+                    <input class="form-input" id="nl_email" name="nl_email" type="email" value="{{customer.email}}" placeholder="{{lang 'newsletter.email_placeholder'}}">
+                    <input class="button button--primary form-prefixPostfix-button--postfix" type="submit" value="{{lang 'newsletter.subscribe_submit'}}">
+                </div>
+                {{#if settings.show_newsletter_summary }}
+                    <div class="footer-newsletter-summary">{{settings.newsletter_summary}}</div>
+                {{/if}}
             </div>
-            {{#if settings.show_newsletter_summary }}
-                <div class="footer-newsletter-summary">{{settings.newsletter_summary}}</div>
-            {{/if}}
-        </div>
-    </fieldset>
-</form>
+        </fieldset>
+    </form>
+{{/if}}

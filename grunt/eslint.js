@@ -5,6 +5,6 @@ module.exports = {
         '!assets/js/**/*.spec.js',
     ],
     options: {
-        quiet: true
-    }
+        quiet: true,
+    },
 };

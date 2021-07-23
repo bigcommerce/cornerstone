@@ -249,6 +249,14 @@
                 {{> components/common/wishlist-dropdown}}
             {{/if}}
         </div>
+
+        <div id="alertBox-success-message" style="display:none">
+            {{> components/common/alert/alert-success (lang 'products.add_to_wishlist_success_message' wishlistPath=urls.account.wishlists.all)}}
+        </div>
+        <div id="alertBox-error-message" style="display:none">
+            {{> components/common/alert/alert-error (lang 'common.generic_error')}}
+        </div>
+
         {{> components/common/share url=product.url}}
     </section>
 

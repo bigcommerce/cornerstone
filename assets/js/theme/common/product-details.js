@@ -11,6 +11,7 @@ import forms from '../common/models/forms';
 import { normalizeFormData } from './utils/api';
 import { isBrowserIE, convertIntoArray } from './utils/ie-helpers';
 import bannerUtils from './utils/banner-utils';
+import urlUtils from './utils/url-utils';
 
 export default class ProductDetails extends ProductDetailsBase {
     constructor($scope, context, productAttributesData = {}) {
@@ -441,6 +442,45 @@ export default class ProductDetails extends ProductDetailsBase {
         });
 
         this.setLiveRegionAttributes($addToCartBtn.next(), 'status', 'polite');
+    }
+
+    /**
+     *
+     * Add a product to the wishlist for authorized users on the product page
+     *
+     */
+    addProductToWishlist() {
+        const $addToWishlistForm = $('.productView-options .form-wishlist');
+
+        $addToWishlistForm.on('submit', event => {
+            event.preventDefault();
+
+            const customerWishlists = !!this.context.customerWishlists;
+            const wishlistId = $(event.originalEvent.submitter).attr('data-wishlist-id');
+            const productId = this.context.productId;
+
+            utils.api.wishlist.itemAdd(wishlistId, productId, (err, response) => {
+                const errorMessage = err || response.error;
+
+                if(errorMessage) {
+                    const $messageBox = $('#alertBox-error-message');
+                    $messageBox.show();
+                    return;
+                }
+
+                const $messageBox = $('#alertBox-success-message');
+                
+                if(customerWishlists) {
+                    const $wishlistDetailsLink = $('#alertBox-success-message a');
+                    const storeName = urlUtils.getOrigin();
+                    const viewUrl = `${storeName}/wishlist.php?action=viewwishlistitems&wishlistid=${wishlistId}`;
+
+                    $wishlistDetailsLink.attr('href', viewUrl);
+                }
+
+                $messageBox.show();
+            });
+        });
     }
 
     /**

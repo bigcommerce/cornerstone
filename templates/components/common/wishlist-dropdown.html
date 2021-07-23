@@ -1,3 +1,5 @@
+{{inject 'customerWishlists' this.customer.wishlists}}
+
 <form action="{{product.add_to_wishlist_url}}" class="form form-wishlist form-action" data-wishlist-add method="post">
     <a aria-controls="wishlist-dropdown"
        aria-expanded="false"
@@ -20,6 +22,7 @@
                            formaction="{{this.add_url}}&product_id={{../product.id}}"
                            type="submit"
                            value="{{this.name}}"
+                           data-wishlist-id="{{this.id}}"
                     >
                 </li>
             {{/each}}

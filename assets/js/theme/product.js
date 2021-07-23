@@ -33,6 +33,7 @@ export default class Product extends PageManager {
 
         this.productDetails = new ProductDetails($('.productView'), this.context, window.BCData.product_attributes);
         this.productDetails.setProductVariant();
+        this.productDetails.addProductToWishlist();
 
         videoGallery();
 

@@ -1,6 +1,7 @@
 # Changelog
 
 ## Draft
+- An authorized user must remain on the Product detail page after adding the product to the wishlist. [#2099](https://github.com/bigcommerce/cornerstone/pull/2099)
 
 ## 5.7.1 (07-09-2021)
 - Update lang files for some locales. [#2086](https://github.com/bigcommerce/cornerstone/pull/2086)

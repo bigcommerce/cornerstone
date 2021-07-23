@@ -3,6 +3,8 @@ import Url from 'url';
 const urlUtils = {
     getUrl: () => `${window.location.pathname}${window.location.search}`,
 
+    getOrigin: () => window.location.origin,
+
     goToUrl: (url) => {
         window.history.pushState({}, document.title, url);
         $(window).trigger('statechange');

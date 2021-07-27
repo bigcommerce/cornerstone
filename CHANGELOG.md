@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Draft
 - No navigation back to wishlist tab when you are in a wishlist. [#2096](https://github.com/bigcommerce/cornerstone/pull/2096)
+<<<<<<< HEAD
+=======
+- Reviews pagination navigation buttons reload page and does not open the Reviews tab. [#2048](https://github.com/bigcommerce/cornerstone/pull/2048)
+- Fix social share links for product pages and blog posts [#2082](https://github.com/bigcommerce/cornerstone/pull/2082)
+- 'undefined' is announced with screen reader while changing Product quantity on PDP. [#2094](https://github.com/bigcommerce/cornerstone/pull/2094)
+- Counter on the Wish Lists tab on Account page has been removed. [#2087](https://github.com/bigcommerce/cornerstone/pull/2087)
+- User Account, bug styles in section payment methods. [#2085](https://github.com/bigcommerce/cornerstone/pull/2085)
+>>>>>>> master
 - Scss lint has been replaced with stylelint. [#2069](https://github.com/bigcommerce/cornerstone/pull/2069)
 
 ## 5.7.1 (2021-07-09)

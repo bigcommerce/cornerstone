@@ -1,7 +1,7 @@
 export default class Popover {
-  constructor(element, trigger, options) {
+    constructor(element, trigger, options) {
     this.options = {
-      position: Popover.BOTTOM
+        position: Popover.BOTTOM
     };
     this.element = element;
     this.trigger = trigger;
@@ -9,86 +9,86 @@ export default class Popover {
     Object.assign(this.options, options);
     this.events();
     this.initialPosition();
-  }
+    }
 
-  events() {
-    this.trigger.addEventListener('click', this.toggle.bind(this));
-  }
+    events() {
+        this.trigger.addEventListener('click', this.toggle.bind(this));
+    }
 
-  initialPosition() {
+initialPosition() {
     let triggerRect = this.trigger.getBoundingClientRect();
 
     this.element.style.display = 'none';
     this.element.style.top = triggerRect.top + 'px';
     this.element.style.left = triggerRect.left + 'px';
-  }
-  
-  toggle(e) {
+}
+
+toggle(e) {
     e.stopPropagation();
     if (this._isOpen) {
-      this.close(e);
+    this.close(e);
     } else {
-      this.element.style.display = 'block';
-      this._isOpen = true;
-      this.outsideClick();
-      this.position();
+    this.element.style.display = 'block';
+    this._isOpen = true;
+    this.outsideClick();
+    this.position();
     }
-  }
-  
-  targetIsInsideElement(e) {
+}
+
+targetIsInsideElement(e) {
     let target = e.target;
+
     if (target) {
-      do {
-        if (target === this.element) {
-          return true;
-        }
-      } while (target = target.parentNode);
+        do {
+            if (target === this.element) {
+                return true;
+            }
+        } while (target = target.parentNode);
     }
     return false;
-  }
+}
 
-  close(e) {
+close(e) {
     if (!this.targetIsInsideElement(e)) {
-      this.element.style.display = 'none';
-      this._isOpen = false;
-      this.killOutSideClick();
+        this.element.style.display = 'none';
+        this._isOpen = false;
+        this.killOutSideClick();
     }
-  }
-  
-  position(overridePosition) {
+}
+
+position(overridePosition) {
     let triggerRect = this.trigger.getBoundingClientRect(),
-      elementRect = this.element.getBoundingClientRect(),
-      position = overridePosition || this.options.position;
+    elementRect = this.element.getBoundingClientRect(),
+    position = overridePosition || this.options.position;
     this.element.classList.remove(Popover.TOP, Popover.BOTTOM, Popover.LEFT, Popover.RIGHT); // remove all possible values
     this.element.classList.add(position);
 
-    console.log('position', overridePosition, this.options.position);
     if (position.indexOf(Popover.BOTTOM) !== -1) {
-      this.element.style.left = ~~triggerRect.left + ~~((triggerRect.width / 2) - ~~(elementRect.width / 2)) + 'px';
-      this.element.style.top = ~~triggerRect.bottom + 10 + 'px';
+        this.element.style.left = ~~triggerRect.left + ~~((triggerRect.width / 2) - ~~(elementRect.width / 2)) + 'px';
+        this.element.style.top = ~~triggerRect.bottom + 10 + 'px';
     } else if (position.indexOf(Popover.TOP) !== -1) {
-      this.element.style.left = ~~triggerRect.left + ~~((triggerRect.width / 2) - ~~(elementRect.width / 2)) + 'px';
-      this.element.style.top = ~~(triggerRect.top - elementRect.height) + 'px';
+        this.element.style.left = ~~triggerRect.left + ~~((triggerRect.width / 2) - ~~(elementRect.width / 2)) + 'px';
+        this.element.style.top = ~~(triggerRect.top - elementRect.height) + 'px';
     } else if (position.indexOf(Popover.LEFT) !== -1) {
-      this.element.style.top = ~~((triggerRect.top + triggerRect.height / 2) - ~~(elementRect.height / 2)) + 'px';
-      this.element.style.left = ~~(triggerRect.left - elementRect.width) + 'px';
+        this.element.style.top = ~~((triggerRect.top + triggerRect.height / 2) - ~~(elementRect.height / 2)) + 'px';
+        this.element.style.left = ~~(triggerRect.left - elementRect.width) + 'px';
     } else {
-      this.element.style.top = ~~((triggerRect.top + triggerRect.height / 2) - ~~(elementRect.height / 2)) + 'px';
-      this.element.style.left = ~~triggerRect.right + 'px';
+        this.element.style.top = ~~((triggerRect.top + triggerRect.height / 2) - ~~(elementRect.height / 2)) + 'px';
+        this.element.style.left = ~~triggerRect.right + 'px';
     }
-  }
-  
-  outsideClick() {
+}
+
+outsideClick() {
     document.addEventListener('click', this.close.bind(this));
-  }
+}
 
-  killOutSideClick() {
+killOutSideClick() {
     document.removeEventListener('click', this.close.bind(this));
-  }
+}
 
-  isOpen() {
+isOpen() {
     return this._isOpen;
-  }
+}
 }
 
 Popover.TOP = 'top';

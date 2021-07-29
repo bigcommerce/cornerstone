@@ -4,6 +4,7 @@ import './global/jquery-migrate';
 import './common/select-option-plugin';
 import PageManager from './page-manager';
 import quickSearch from './global/quick-search';
+import storeLocator from './global/store-locator';
 import currencySelector from './global/currency-selector';
 import mobileMenuToggle from './global/mobile-menu-toggle';
 import menu from './global/menu';
@@ -33,6 +34,7 @@ export default class Global extends PageManager {
         } = this.context;
         cartPreview(secureBaseUrl, cartId);
         quickSearch();
+        storeLocator();
         currencySelector(cartId);
         foundation($(document));
         quickView(this.context);

@@ -1,0 +1,106 @@
+---
+gql: "query {
+    inventory {
+        locations {
+            edges {
+                node {
+                    entityId
+                    code
+                    description
+                    label
+                    typeId
+                    address {
+                        code
+                        address1
+                        city
+                        stateOrProvince
+                        countryCode
+                        phone
+                        email
+                        latitude
+                        longitude
+                    }
+                }
+            }
+        }
+    }
+}"
+---
+{{#partial "page"}}
+
+{{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+
+{{inject "locations" gql.data.inventory.locations.edges}}
+
+{{inject "myProductName" product.title}}
+<script>
+    const jsContext = JSON.parse({{jsContext}});
+    const locations = (jsContext.locations || [
+          {
+            "node": {
+              "entityId": 1,
+              "code": "123",
+              "description": "asdasd",
+              "label": "a",
+              "typeId": "PHYSICAL",
+              "address": {
+                "code": "BC-ADDRESS-1",
+                "address1": "123",
+                "city": "Test city",
+                "stateOrProvince": "asdasdasdas",
+                "countryCode": "JM",
+                "phone": "",
+                "email": "asdasd@mail.com",
+                "latitude": null,
+                "longitude": null
+              }
+            }
+          },
+          {
+            "node": {
+              "entityId": 29,
+              "code": "123123",
+              "description": null,
+              "label": "Test",
+              "typeId": "PHYSICAL",
+              "address": {
+                "code": "67d6114c-2f35-4bd7-9f10-b69e8b5bf1c2",
+                "address1": "123",
+                "city": "Test city",
+                "stateOrProvince": "12",
+                "countryCode": "AL",
+                "phone": "123",
+                "email": "asdasd@asda.cm",
+                "latitude": 12,
+                "longitude": 12
+              }
+            }
+          },
+          {
+            "node": {
+              "entityId": 31,
+              "code": "1231234535435",
+              "description": null,
+              "label": "Test",
+              "typeId": "PHYSICAL",
+              "address": {
+                "code": "816292f7-821e-44bf-a19c-c32dc70ca7b1",
+                "address1": "Test address",
+                "city": "Test city",
+                "stateOrProvince": "asdsad",
+                "countryCode": "AL",
+                "phone": "",
+                "email": "asdasd@mail.com",
+                "latitude": 10,
+                "longitude": 12
+              }
+            }
+          }
+        ]).map(({ node }) => node);
+
+    console.log('locations', locations);
+</script>
+
+{{/partial}}
+
+{{> layout/base}}

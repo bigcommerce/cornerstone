@@ -1,31 +1,4 @@
----
-gql: "query {
-    inventory {
-        locations {
-            edges {
-                node {
-                    entityId
-                    code
-                    description
-                    label
-                    typeId
-                    address {
-                        code
-                        address1
-                        city
-                        stateOrProvince
-                        countryCode
-                        phone
-                        email
-                        latitude
-                        longitude
-                    }
-                }
-            }
-        }
-    }
-}"
----
+
 <nav class="navUser">
     {{> components/common/currency-selector}}
 
@@ -75,28 +48,15 @@ gql: "query {
             <div id="popoverWrapper">
                 <div class="arrow"></div>
                 <div class="popover" role="tooltip">
-                    {{#each gql.data.inventory.locations.edges}}
-                    <div class="location-item" data-location-id="{{node.entityId}}">
-                        <p class="location-item__title">{{node.label}}</p>
-                        <p class="location-item__description">{{node.description}}</p>
-                        -
-                        <p class="location-item__address">
-                            <strong>{{node.address.address1}}</strong>
-                            {{node.address.city}}, {{node.address.stateOrProvince}}, {{node.address.countryCode}}
-                        </p>
-                    </div>
-                    {{/each}}
-                   
-                    <!-- <h3 class="popover-title">Popover title</h3>
-                    <div class="popover-content">
-                    And here's some amazing content. It's very engaging. Right?
-                    <div>
-                        <a href="#" class="top">Top</a>
-                        <a href="#" class="right">Right</a>
-                        <a href="#" class="bottom">Bottom</a>
-                        <a href="#" class="left">Left</a>
-                    </div>
-                    <p>This is the Bootstrap example btw.</p> -->
+
+                    <div> some data</div>
+                    <div> some data</div>
+                    <div> some data</div>
+                    <div> some data</div>
+                    <div> some data</div>
+                    <div> some data</div>
+                    <div> some data</div>
+                    <div> some data</div>
                     </div>
                 </div>
             </div>

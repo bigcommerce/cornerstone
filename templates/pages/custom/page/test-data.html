@@ -30,11 +30,14 @@ gql: "query {
 
 {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
 
-{{inject "locations" gql.data.inventory.locations.edges}}
+test page еуіеуеціаіва віаів
 
-{{inject "myProductName" product.title}}
+{{inject "locations" gql.data.inventory.locations.edges}}
 <script>
     const jsContext = JSON.parse({{jsContext}});
+    console.log('-----', jsContext);
+    console.log('-----', jsContext);
+
     const locations = (jsContext.locations || [
           {
             "node": {

@@ -1,0 +1,346 @@
+<div id="popoverWrapper">
+    <div class="arrow"></div>
+    <div id="locations-list" class="popover" role="tooltip">
+    </div>
+</div>
+
+{{inject 'token' settings.storefront_api.token}}
+
+<script>
+    console.log('window.location', window.location);
+    var jsContext = JSON.parse({{jsContext}});
+
+    const mockedLocations = {
+        "data": {
+            "inventory": {
+            "locations": {
+                "edges": [
+                {
+                    "node": {
+                    "entityId": 1,
+                    "code": "123",
+                    "description": "asdasd",
+                    "label": "a",
+                    "typeId": "PHYSICAL",
+                    "address": {
+                        "code": "BC-ADDRESS-1",
+                        "address1": "123",
+                        "city": "London",
+                        "stateOrProvince": "asdasdasdas",
+                        "countryCode": "JM",
+                        "phone": "",
+                        "email": "asdasd@mail.com",
+                        "latitude": 51.5074,
+                        "longitude": 0.1278
+                    },
+                    "operatingHours": {
+                        "sunday": {
+                        "open": true,
+                        "opening": "02:00",
+                        "closing": "00:00"
+                        },
+                        "monday": {
+                        "open": true,
+                        "opening": "00:30",
+                        "closing": "02:30"
+                        },
+                        "thursday": {
+                        "open": true,
+                        "opening": "01:30",
+                        "closing": "01:30"
+                        },
+                        "wednesday": {
+                        "open": false,
+                        "opening": "",
+                        "closing": ""
+                        },
+                        "tuesday": {
+                        "open": false,
+                        "opening": "01:00",
+                        "closing": "01:30"
+                        },
+                        "friday": {
+                        "open": false,
+                        "opening": "02:00",
+                        "closing": "01:00"
+                        },
+                        "saturday": {
+                        "open": false,
+                        "opening": "",
+                        "closing": ""
+                        }
+                    }
+                    }
+                },
+                {
+                    "node": {
+                    "entityId": 29,
+                    "code": "123123",
+                    "description": null,
+                    "label": "Test",
+                    "typeId": "PHYSICAL",
+                    "address": {
+                        "code": "67d6114c-2f35-4bd7-9f10-b69e8b5bf1c2",
+                        "address1": "123",
+                        "city": "Ternopil",
+                        "stateOrProvince": "12",
+                        "countryCode": "AL",
+                        "phone": "123",
+                        "email": "asdasd@asda.cm",
+                        "latitude": 49.5535,
+                        "longitude": 25.5948
+                    },
+                    "operatingHours": {
+                        "sunday": {
+                        "open": false,
+                        "opening": "",
+                        "closing": ""
+                        },
+                        "monday": {
+                        "open": false,
+                        "opening": "",
+                        "closing": ""
+                        },
+                        "thursday": {
+                        "open": false,
+                        "opening": "",
+                        "closing": ""
+                        },
+                        "wednesday": {
+                        "open": false,
+                        "opening": "",
+                        "closing": ""
+                        },
+                        "tuesday": {
+                        "open": false,
+                        "opening": "",
+                        "closing": ""
+                        },
+                        "friday": {
+                        "open": false,
+                        "opening": "",
+                        "closing": ""
+                        },
+                        "saturday": {
+                        "open": false,
+                        "opening": "",
+                        "closing": ""
+                        }
+                    }
+                    }
+                },
+                {
+                    "node": {
+                    "entityId": 31,
+                    "code": "1231234535435",
+                    "description": null,
+                    "label": "Test",
+                    "typeId": "PHYSICAL",
+                    "address": {
+                        "code": "816292f7-821e-44bf-a19c-c32dc70ca7b1",
+                        "address1": "Test address",
+                        "city": "Kyiv",
+                        "stateOrProvince": "asdsad",
+                        "countryCode": "AL",
+                        "phone": "",
+                        "email": "asdasd@mail.com",
+                        "latitude": 50.4501,
+                        "longitude": 30.5234
+                    },
+                    "operatingHours": {
+                        "sunday": {
+                        "open": false,
+                        "opening": "00:00",
+                        "closing": "00:00"
+                        },
+                        "monday": {
+                        "open": true,
+                        "opening": "09:00",
+                        "closing": "17:00"
+                        },
+                        "thursday": {
+                        "open": true,
+                        "opening": "09:00",
+                        "closing": "17:00"
+                        },
+                        "wednesday": {
+                        "open": true,
+                        "opening": "09:00",
+                        "closing": "17:00"
+                        },
+                        "tuesday": {
+                        "open": true,
+                        "opening": "09:00",
+                        "closing": "17:00"
+                        },
+                        "friday": {
+                        "open": true,
+                        "opening": "09:00",
+                        "closing": "17:00"
+                        },
+                        "saturday": {
+                        "open": false,
+                        "opening": "00:00",
+                        "closing": "00:00"
+                        }
+                    }
+                    }
+                }
+                ]
+            }
+            }
+        }
+    }
+
+    fetch('/graphql', {
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${jsContext.token}`
+        },
+        body: JSON.stringify({ query: `
+            {
+                inventory {
+                    locations {
+                        edges {
+                            node {
+                                entityId
+                                code
+                                description
+                                label
+                                typeId
+                                address {
+                                    code
+                                    address1
+                                    city
+                                    stateOrProvince
+                                    countryCode
+                                    phone
+                                    email
+                                    latitude
+                                    longitude
+                                }
+                                operatingHours {
+                                    sunday {
+                                        open
+                                        opening
+                                        closing
+                                    }
+                                    monday {
+                                        open
+                                        opening
+                                        closing
+                                    }
+                                    thursday {
+                                        open
+                                        opening
+                                        closing
+                                    }
+                                    wednesday {
+                                        open
+                                        opening
+                                        closing
+                                    }
+                                    tuesday {
+                                        open
+                                        opening
+                                        closing
+                                    }
+                                    friday {
+                                        open
+                                        opening
+                                        closing
+                                    }
+                                    saturday {
+                                        open
+                                        opening
+                                        closing
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        ` }),
+    }).then((response) => {
+        response.json().then((result) => {
+            const _data = result?.data?.inventory ? result : mockedLocations;
+            const locations = getLocationsList(_data);
+
+            setInnerHTMLlocationsString(locations);
+
+            getUserLocation().then((data) => {
+                if (data.coords) {
+                    data.coords.longitude
+                    data.coords.latitude
+
+                    const distancesList = getLocationsList(mockedLocations).map(({ entityId, address }) => {
+                        return {
+                            entityId,
+                            distance: getDistanceBetweenTwoLocations(data.coords, address) };
+                    });
+
+                    const closestLocationDistance = Math.min.apply(Math, distancesList.map(({ distance }) => distance));
+
+                    const closestLocationId = distancesList.find(({ distance }) => distance === closestLocationDistance);
+
+                    const defaultLocation = locations.find(({ entityId }) => entityId === closestLocationId.entityId);
+                    
+                    const a =document.querySelector(`div[data-id="${defaultLocation.entityId}"]`);
+
+                    a.appendChild(document.createTextNode(' - active location'));
+                    
+                }
+            });
+        });
+    });
+
+    const getLocationsList = ({ data: { inventory: { locations: { edges } } } }) => {
+        return edges.map(({ node }) => node);
+    };
+
+    const setInnerHTMLlocationsString = (locations = []) => {
+        const locationsSection = document.getElementById('locations-list');
+        const locationItems = locations.map(({ entityId, address: { city } }) => {
+            return `<div data-id="${entityId}">${city}</div>`;
+        }).join('');
+
+        locationsSection.innerHTML = locationItems;
+    };
+
+    const getUserLocation = () => {
+        const promise = new Promise((resolve, reject) => {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition((_location) => {
+                    resolve(_location);
+                });
+            } else {
+                reject('The Browser Does not Support Geolocation');
+            }
+        });
+
+        return promise;
+    };
+
+    function getDistanceBetweenTwoLocations(location1, location2) {
+        const { latitude: latitude1, longitude: longitude1 } = location1;
+        const { latitude: latitude2, longitude: longitude2 } = location2;
+        const radlat1 = Math.PI * latitude1/180;
+        const radlat2 = Math.PI * latitude2/180;
+        const theta = longitude1 - longitude2;
+        const radtheta = Math.PI * theta/180;
+
+        let dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+
+        if (dist > 1) {
+            dist = 1;
+        }
+
+        dist = Math.acos(dist);
+        dist = dist * 180/Math.PI;
+        dist = dist * 60 * 1.1515;
+    
+        return dist
+    }
+</script>

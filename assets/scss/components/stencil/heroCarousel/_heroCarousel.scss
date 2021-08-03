@@ -195,6 +195,12 @@
 
         &.heroCarousel-content--empty {
             background-color: transparent;
+            left: 50%;
+            overflow: visible;
+            padding: 0;
+            right: auto;
+            transform: translateX(-50%) translateY(-50%);
+            width: auto;
         }
     }
 }
@@ -202,7 +208,7 @@
 .heroCarousel-title {
     color: $carousel-title-color;
     font-size: fontSize("small");
-    margin-top: 0;
+    margin: 0;
 
     @include breakpoint("medium") {
         font-size: fontSize("hero");
@@ -212,6 +218,7 @@
 .heroCarousel-description {
     color: $carousel-description-color;
     font-size: fontSize("tiny");
+    margin: 0;
 
     @include breakpoint("small") {
         font-size: fontSize("smallest");
@@ -223,9 +230,5 @@
 }
 
 .heroCarousel-action {
-    margin: 0;
-
-    @include breakpoint("medium") {
-        margin-top: spacing("single");
-    }
+    margin: spacing("single") 0 0;
 }

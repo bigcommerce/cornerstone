@@ -1,13 +1,23 @@
 <div id="popoverWrapper">
     <div class="arrow"></div>
     <div id="locations-list" class="popover" role="tooltip">
+        <div id="store-locator-title">You`re shoping at:</div>
+        <div class="preferred-location-wrapper">
+            <h6 id="store-locator-city"></h6>
+            <input id="set-preferred-location-button" type="button" title="Set as prefered" value="Set as prefered" />
+            <span id="preferred-location-label" class="preferred-location-label"> - preferred location</span>
+        </div>
+        <div id="store-locator-search">
+            <label class="store-locator-search-label" for="store-locator-input">Change store</label>
+            <input id="store-locator-input" name="store-locator-input" />
+            <div id="store-locator-search-results"></div>
+        </div>
     </div>
 </div>
 
 {{inject 'token' settings.storefront_api.token}}
 
 <script>
-    console.log('window.location', window.location);
     var jsContext = JSON.parse({{jsContext}});
 
     const mockedLocations = {
@@ -268,13 +278,10 @@
             const _data = result?.data?.inventory ? result : mockedLocations;
             const locations = getLocationsList(_data);
 
-            setInnerHTMLlocationsString(locations);
+            const getLocationById = getLocationFinderById(locations);
 
             getUserLocation().then((data) => {
                 if (data.coords) {
-                    data.coords.longitude
-                    data.coords.latitude
-
                     const distancesList = getLocationsList(mockedLocations).map(({ entityId, address }) => {
                         return {
                             entityId,
@@ -285,20 +292,81 @@
 
                     const closestLocationId = distancesList.find(({ distance }) => distance === closestLocationDistance);
 
-                    const defaultLocation = locations.find(({ entityId }) => entityId === closestLocationId.entityId);
-                    
-                    const a =document.querySelector(`div[data-id="${defaultLocation.entityId}"]`);
+                    const defaultLocation = getLocationById(closestLocationId.entityId);
 
-                    a.appendChild(document.createTextNode(' - active location'));
-                    
+                    const locationBlock = document.getElementById('store-locator-city');
+
+                    const preferredLocationId = getPreferedLocationId();
+
+                    locationBlock.innerHTML = preferredLocationId ? getLocationById(preferredLocationId).address.city : defaultLocation.address.city;
+
+                    const input = document.getElementById('store-locator-input');
+
+                    const locationItems = locations.map(({ entityId, address: { city } }) => {
+                        return `<div data-id="${entityId}" class="serched-location-item">${city}</div>`;
+                    }).join('');
+
+                    const list = document.getElementById('store-locator-search-results');
+                    list.innerHTML = locationItems;
+
+                    input.addEventListener('input', (e) => {
+                        const value = e.target.value.toLowerCase();
+                        const resultLocations = locations.filter(({ address: { city } }) => {
+                            return (city.toLowerCase().match(value) !== null) && value.length !== 0;
+                        });
+
+                        const locationItems = resultLocations.map(({ entityId, address: { city } }) => {
+                            return `<div data-id="${entityId}" class="serched-location-item">${city}</div>`;
+                        }).join('');
+
+
+                        list.innerHTML = locationItems;
+
+                    });
+
+                    const setPreferredButton = document.getElementById('set-preferred-location-button');
+                    const setPreferredLabel = document.getElementById('preferred-location-label');
+
+                    // definition of the state of preferred location
+                    if (preferredLocationId) {
+                        setPreferredButton.style.display = 'none';
+                        setPreferredLabel.style.display = 'inline';
+                    }
+
+
+                    setPreferredButton.addEventListener('click', (event) => {
+                        setPreferredButton.style.display = 'none';
+                        setPreferredLabel.style.display = 'inline';
+
+                        window.localStorage.setItem('peferedLocationId', defaultLocation.entityId);
+                    });
+
+                    list.addEventListener('click', (event) => {
+                        const cityName = getLocationById(event.target.getAttribute('data-id'));
+
+                        setPreferredLocation(cityName);
+                    })
                 }
             });
         });
     });
 
+    const setPreferredLocation = (location) => {
+        const locationBlock = document.getElementById('store-locator-city');
+
+        setPreferedLocationIdToLocalStorage(location.entityId);
+
+        locationBlock.innerHTML = location.address.city;
+    };
+
+    const setPreferedLocationIdToLocalStorage = (id) => window.localStorage.setItem('peferedLocationId', id);
+    const getPreferedLocationId = () => window.localStorage.getItem('peferedLocationId');
+
     const getLocationsList = ({ data: { inventory: { locations: { edges } } } }) => {
         return edges.map(({ node }) => node);
     };
+
+    const getLocationFinderById = (locations = []) => (id) => locations.find(({ entityId }) => Number(id) === entityId);
 
     const setInnerHTMLlocationsString = (locations = []) => {
         const locationsSection = document.getElementById('locations-list');

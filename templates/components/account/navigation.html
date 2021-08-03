@@ -1,72 +1,34 @@
 <nav class="navBar navBar--sub navBar--account">
     <ul class="navBar-section">
-        {{#if account_page '===' 'orders'}}
-            {{#if page_type '===' 'account_order'}}
-                <li class="navBar-item is-active">
-                    <a class="navBar-action" href="{{urls.account.orders.all}}">{{lang 'account.nav.orders'}}</a>
-                </li>
-            {{else}}
-                <li class="navBar-item is-active">{{lang 'account.nav.orders'}}</li>
-            {{/if}}
-        {{else}}
-            <li class="navBar-item">
-                <a class="navBar-action" href="{{urls.account.orders.all}}">{{lang 'account.nav.orders'}}</a>
-            </li>
-        {{/if}}
+        <li class="navBar-item {{#if account_page '===' 'orders'}}is-active{{/if}}">
+            <a class="navBar-action" href="{{urls.account.orders.all}}">{{lang 'account.nav.orders'}}</a>
+        </li>
         {{#if settings.returns_enabled}}
-            {{#if account_page '===' 'returns'}}
-                <li class="navBar-item is-active">{{lang 'account.nav.returns'}}</li>
-            {{else}}
-                <li class="navBar-item">
-                    <a class="navBar-action" href="{{urls.account.returns}}">{{lang 'account.nav.returns'}}</a>
-                </li>
-            {{/if}}
-        {{/if}}
-        {{#if account_page '===' 'messages'}}
-            <li class="navBar-item is-active">{{lang 'account.nav.messages' num_new_messages=customer.num_new_messages}}</li>
-        {{else}}
-            <li class="navBar-item">
-                <a class="navBar-action" href="{{urls.account.inbox}}">{{lang 'account.nav.messages' num_new_messages=customer.num_new_messages}}</a>
+            <li class="navBar-item {{#if account_page '===' 'returns'}}is-active{{/if}}">
+                <a class="navBar-action" href="{{urls.account.returns}}">{{lang 'account.nav.returns'}}</a>
             </li>
         {{/if}}
-        {{#if account_page '===' 'addresses'}}
-            <li class="navBar-item is-active">{{lang 'account.nav.addresses'}}</li>
-        {{else}}
-            <li class="navBar-item">
-                <a class="navBar-action" href="{{urls.account.addresses}}">{{lang 'account.nav.addresses'}}</a>
-            </li>
-        {{/if}}
+        <li class="navBar-item {{#if account_page '===' 'messages'}}is-active{{/if}}">
+            <a class="navBar-action" href="{{urls.account.inbox}}">{{lang 'account.nav.messages' num_new_messages=customer.num_new_messages}}</a>
+        </li>
+        <li class="navBar-item {{#if account_page '===' 'addresses'}}is-active{{/if}}">
+            <a class="navBar-action" href="{{urls.account.addresses}}">{{lang 'account.nav.addresses'}}</a>
+        </li>
         {{#if settings.show_payment_methods}}
-            {{#if account_page '===' 'payment_methods'}}
-                <li class="navBar-item is-active">{{lang 'account.nav.payment_methods'}}</li>
-            {{else}}
-                <li class="navBar-item">
-                    <a class="navBar-action" href="{{urls.account.payment_methods.all}}">{{lang 'account.nav.payment_methods'}}</a>
-                </li>
-            {{/if}}
+            <li class="navBar-item {{#if account_page '===' 'payment_methods'}}is-active{{/if}}">
+                <a class="navBar-action" href="{{urls.account.payment_methods.all}}">{{lang 'account.nav.payment_methods'}}</a>
+            </li>
         {{/if}}
         {{#if settings.show_wishlist}}
-            {{#if account_page '===' 'wishlists'}}
-                <li class="navBar-item is-active">{{lang 'account.nav.wishlists' num_wishlists=customer.num_wishlists}}</li>
-            {{else}}
-                <li class="navBar-item">
-                    <a class="navBar-action" href="{{urls.account.wishlists.all}}">{{lang 'account.nav.wishlists' num_wishlists=customer.num_wishlists}}</a>
-                </li>
-            {{/if}}
-        {{/if}}
-        {{#if account_page '===' 'recent_items'}}
-            <li class="navBar-item is-active">{{lang 'account.nav.recently_viewed'}}</li>
-        {{else}}
-            <li class="navBar-item">
-                <a class="navBar-action" href="{{urls.account.recent_items}}">{{lang 'account.nav.recently_viewed'}}</a>
+            <li class="navBar-item {{#if account_page '===' 'wishlists'}}is-active{{/if}}">
+                <a class="navBar-action" href="{{urls.account.wishlists.all}}">{{lang 'account.nav.wishlists'}}</a>
             </li>
         {{/if}}
-        {{#if account_page '===' 'settings'}}
-            <li class="navBar-item is-active">{{lang 'account.nav.settings'}}</li>
-        {{else}}
-            <li class="navBar-item">
-                <a class="navBar-action" href="{{urls.account.details}}">{{lang 'account.nav.settings'}}</a>
-            </li>
-        {{/if}}
+        <li class="navBar-item {{#if account_page '===' 'recent_items'}}is-active{{/if}}">
+            <a class="navBar-action" href="{{urls.account.recent_items}}">{{lang 'account.nav.recently_viewed'}}</a>
+        </li>
+        <li class="navBar-item {{#if account_page '===' 'settings'}}is-active{{/if}}">
+            <a class="navBar-action" href="{{urls.account.details}}">{{lang 'account.nav.settings'}}</a>
+        </li>
     </ul>
 </nav>

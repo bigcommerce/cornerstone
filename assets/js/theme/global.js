@@ -15,21 +15,11 @@ import adminBar from './global/adminBar';
 import carousel from './common/carousel';
 import loadingProgressBar from './global/loading-progress-bar';
 import svgInjector from './global/svg-injector';
-import { translatePageBuilderValues } from './common/utils/translations-utils';
 
 export default class Global extends PageManager {
     onReady() {
         const {
-            channelId,
-            cartId,
-            productId,
-            categoryId,
-            secureBaseUrl,
-            maintenanceModeSettings,
-            adminBarLanguage,
-            showAdminBar,
-            isProductCardPresented,
-            isProductListPresented,
+            channelId, cartId, productId, categoryId, secureBaseUrl, maintenanceModeSettings, adminBarLanguage, showAdminBar,
         } = this.context;
         cartPreview(secureBaseUrl, cartId);
         quickSearch();
@@ -45,9 +35,5 @@ export default class Global extends PageManager {
         }
         loadingProgressBar();
         svgInjector();
-
-        if (isProductListPresented || isProductCardPresented) {
-            translatePageBuilderValues();
-        }
     }
 }

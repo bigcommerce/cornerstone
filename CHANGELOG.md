@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Draft
+- "Manage Website Data Collection Preferences" phrase is not translatable. [#2090](https://github.com/bigcommerce/cornerstone/pull/2090)
 - No navigation back to wishlist tab when you are in a wishlist. [#2096](https://github.com/bigcommerce/cornerstone/pull/2096)
 - Reviews pagination navigation buttons reload page and does not open the Reviews tab. [#2048](https://github.com/bigcommerce/cornerstone/pull/2048)
 - Fix social share links for product pages and blog posts [#2082](https://github.com/bigcommerce/cornerstone/pull/2082)

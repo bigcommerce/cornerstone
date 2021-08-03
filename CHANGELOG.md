@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Draft
+- As a shopper I want to see gift wrapping price in product list the cart. [#2093](https://github.com/bigcommerce/cornerstone/pull/2093)
 - Fixed wishlist dropdown shift on quick view modal. [#2102](https://github.com/bigcommerce/cornerstone/pull/2102)
 - Empty email input in newsletter field should trigger an error. [#2101](https://github.com/bigcommerce/cornerstone/pull/2101)
 - Make Hero Carousel both slide and button clickable when button enabled. [#2098](https://github.com/bigcommerce/cornerstone/pull/2098)

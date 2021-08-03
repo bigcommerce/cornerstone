@@ -16,7 +16,11 @@
     <a href="{{url}}" data-hero-slide="{{@index}}" aria-label="{{#if this.alt_text.length '!=' 0}}{{this.alt_text}}{{else}}{{lang 'carousel.slide_number' slide_number=(add @index 1)}}{{/if}}">
     {{/if}}
         <div class="heroCarousel-slide {{#if ../theme_settings.homepage_stretch_carousel_images}}stretch{{/if}} {{#if @first}}heroCarousel-slide--first{{/if}}">
+            {{#if button_text}}
+            <a href="{{url}}" class="heroCarousel-image-wrapper">
+            {{else}}
             <div class="heroCarousel-image-wrapper">
+            {{/if}}
             {{#if @first}}
                 {{> components/common/responsive-img
                     image=stencil_image
@@ -32,18 +36,14 @@
                     lazyload='lazyload'
                 }}
             {{/if}}
-            </div>
-            {{#if heading}}
-                {{> components/carousel-content show_background=true}}
+            {{#if button_text}}
+            </a>
             {{else}}
-                {{#if text}}
-                    {{> components/carousel-content show_background=true}}
-                {{else}}
-                    {{#if button_text}}
-                        {{> components/carousel-content show_background=false}}
-                    {{/if}}
-                {{/if}}
+            </div>
             {{/if}}
+            {{#or heading text button_text}}
+                {{> components/carousel-content}}
+            {{/or}}
         </div>
     {{#if button_text}}
     </div>

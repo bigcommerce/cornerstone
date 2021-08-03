@@ -6,11 +6,13 @@ export default ({ $slider }, isAnalyzedDataAttr) => {
 
     const $activeSlideImg = $activeSlide.find('.heroCarousel-image');
     const activeSlideImgNode = $activeSlideImg[0];
+    const $activeSlideAndClones = $slider.find(`[data-hero-slide=${$activeSlide.data('hero-slide')}]`);
 
     return {
         $slider,
         $activeSlide,
         $activeSlideImg,
         activeSlideImgNode,
+        $activeSlideAndClones,
     };
 };

@@ -7,14 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Draft
 
 ## 6.0.0 (08-06-2021)
-
-## 5.7.5 (08-05-2021)
-
-## 5.7.4 (08-05-2021)
-
-## 5.7.3 (08-05-2021)
-
-## 5.7.2 (08-05-2021)
+- Translation mechanism for config.json has been updated. [#2089](https://github.com/bigcommerce/cornerstone/pull/2089)
+- As a shopper I want to see gift wrapping price in product list the cart. [#2093](https://github.com/bigcommerce/cornerstone/pull/2093)
+- Fixed wishlist dropdown shift on quick view modal. [#2102](https://github.com/bigcommerce/cornerstone/pull/2102)
+- Empty email input in newsletter field should trigger an error. [#2101](https://github.com/bigcommerce/cornerstone/pull/2101)
+- Make Hero Carousel both slide and button clickable when button enabled. [#2098](https://github.com/bigcommerce/cornerstone/pull/2098)
+- "Manage Website Data Collection Preferences" phrase is not translatable. [#2090](https://github.com/bigcommerce/cornerstone/pull/2090)
+- No navigation back to wishlist tab when you are in a wishlist. [#2096](https://github.com/bigcommerce/cornerstone/pull/2096)
+- Reviews pagination navigation buttons reload page and does not open the Reviews tab. [#2048](https://github.com/bigcommerce/cornerstone/pull/2048)
+- Fix social share links for product pages and blog posts [#2082](https://github.com/bigcommerce/cornerstone/pull/2082)
 - 'undefined' is announced with screen reader while changing Product quantity on PDP. [#2094](https://github.com/bigcommerce/cornerstone/pull/2094)
 - Counter on the Wish Lists tab on Account page has been removed. [#2087](https://github.com/bigcommerce/cornerstone/pull/2087)
 - User Account, bug styles in section payment methods. [#2085](https://github.com/bigcommerce/cornerstone/pull/2085)

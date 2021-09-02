@@ -62,7 +62,7 @@ export default function () {
                 }, 100);
             }
         });
-    }, 200);
+    }, 1200);
 
     utils.hooks.on('search-quick', (event, currentTarget) => {
         const searchQuery = $(currentTarget).val();

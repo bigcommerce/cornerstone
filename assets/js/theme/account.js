@@ -140,12 +140,12 @@ export default class Account extends PageManager {
     }
 
     initAddressFormValidation($addressForm) {
-        const validationModel = validation($addressForm, this.context);
+        const validationModel = validation($addressForm);
         const stateSelector = 'form[data-address-form] [data-field-type="State"]';
         const $stateElement = $(stateSelector);
         const addressValidator = nod({
-            submit: 'form[data-address-form] input[type="submit"]',
-            tap: announceInputErrorMessage,
+            submit: 'form[data-address-form] input[type="submit"]'
+           
         });
 
         addressValidator.add(validationModel);
@@ -171,7 +171,7 @@ export default class Account extends PageManager {
 
                 if ($field.is('select')) {
                     $last = field;
-                    Validators.setStateCountryValidation(addressValidator, field, this.validationDictionary.field_not_blank);
+                    Validators.setStateCountryValidation(addressValidator, field);
                 } else {
                     Validators.cleanUpStateValidation(field);
                 }
@@ -323,7 +323,7 @@ export default class Account extends PageManager {
     }
 
     registerEditAccountValidation($editAccountForm) {
-        const validationModel = validation($editAccountForm, this.context);
+        const validationModel = validation($editAccountForm);
         const formEditSelector = 'form[data-edit-account-form]';
         const editValidator = nod({
             submit: '${formEditSelector} input[type="submit"]',
@@ -343,7 +343,7 @@ export default class Account extends PageManager {
 
         if ($emailElement) {
             editValidator.remove(emailSelector);
-            Validators.setEmailValidation(editValidator, emailSelector, this.validationDictionary.valid_email);
+            Validators.setEmailValidation(editValidator, emailSelector);
         }
 
         if ($passwordElement && $password2Element) {
@@ -355,7 +355,7 @@ export default class Account extends PageManager {
                 passwordSelector,
                 password2Selector,
                 this.passwordRequirements,
-                createPasswordValidationErrorTextObject(enterPassword, enterPassword, matchPassword, invalidPassword),
+              
                 true,
             );
         }

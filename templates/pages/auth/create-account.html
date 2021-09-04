@@ -10,7 +10,7 @@
                 {{> components/common/alert/alert-error forms.create_account.error}}
             {{/if}}
             {{#if settings.account_creation_enabled}}
-                <form action="{{urls.auth.save_new_account}}" data-create-account-form method="post" class="form">
+                <form action="{{urls.auth.save_new_account}}" id="data-create-account-form" method="post" class="form">
                     <div class="form-row form-row--half">
                         {{#each forms.create_account.account_fields }}
                             {{{dynamicComponent 'components/common/forms'}}}

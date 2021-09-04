@@ -16,7 +16,7 @@
                             {{{dynamicComponent 'components/common/forms'}}}
                         {{/each}}
                         {{#each forms.create_account.address_fields }}
-                            {{{dynamicComponent 'components/common/forms'}}}
+                            {{{> dynamicComponent 'components/common/forms'}}}
                         {{/each}}
                         {{inject 'required' (lang 'common.required')}}
                         {{inject 'state_error' (lang 'errors.state_error')}}

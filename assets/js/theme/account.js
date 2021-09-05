@@ -140,12 +140,12 @@ export default class Account extends PageManager {
     }
 
     initAddressFormValidation($addressForm) {
-        const validationModel = validation($addressForm);
+        const validationModel = validation($addressForm, this.context);
         const stateSelector = 'form[data-address-form] [data-field-type="State"]';
         const $stateElement = $(stateSelector);
         const addressValidator = nod({
-            submit: 'form[data-address-form] input[type="submit"]'
-           
+            submit: 'form[data-address-form] input[type="submit"]',
+            tap: announceInputErrorMessage,
         });
 
         addressValidator.add(validationModel);
@@ -171,7 +171,7 @@ export default class Account extends PageManager {
 
                 if ($field.is('select')) {
                     $last = field;
-                    Validators.setStateCountryValidation(addressValidator, field);
+                    Validators.setStateCountryValidation(addressValidator, field, this.validationDictionary.field_not_blank);
                 } else {
                     Validators.cleanUpStateValidation(field);
                 }
@@ -227,7 +227,7 @@ export default class Account extends PageManager {
         $paymentMethodForm.find('#address1.form-field').attr('data-validation', `{ "type": "singleline", "label": "${this.context.address1Label}", "required": true, "maxlength": 0 }`);
         $paymentMethodForm.find('#address2.form-field').attr('data-validation', `{ "type": "singleline", "label": "${this.context.address2Label}", "required": false, "maxlength": 0 }`);
         $paymentMethodForm.find('#city.form-field').attr('data-validation', `{ "type": "singleline", "label": "${this.context.cityLabel}", "required": true, "maxlength": 0 }`);
-        $paymentMethodForm.find('#country.form-field').attr('data-validation', `{ "type": "singleselect", "label": "${this.context.countryLabel}", "required": true, "maxlength": 0 }`);
+        $paymentMethodForm.find('#country.form-field').attr('data-validation', `{ "type": "singleselect", "label": "${this.context.countryLabel}", "required": true, prefix: "${this.context.chooseCountryLabel}" }`);
         $paymentMethodForm.find('#state.form-field').attr('data-validation', `{ "type": "singleline", "label": "${this.context.stateLabel}", "required": true, "maxlength": 0 }`);
         $paymentMethodForm.find('#postal_code.form-field').attr('data-validation', `{ "type": "singleline", "label": "${this.context.postalCodeLabel}", "required": true, "maxlength": 0 }`);
 
@@ -258,7 +258,7 @@ export default class Account extends PageManager {
 
             if ($field.is('select')) {
                 $last = field;
-                Validators.setStateCountryValidation(paymentMethodValidator, field);
+                Validators.setStateCountryValidation(paymentMethodValidator, field, this.validationDictionary.field_not_blank);
             } else {
                 Validators.cleanUpStateValidation(field);
             }
@@ -323,7 +323,7 @@ export default class Account extends PageManager {
     }
 
     registerEditAccountValidation($editAccountForm) {
-        const validationModel = validation($editAccountForm);
+        const validationModel = validation($editAccountForm, this.context);
         const formEditSelector = 'form[data-edit-account-form]';
         const editValidator = nod({
             submit: '${formEditSelector} input[type="submit"]',
@@ -343,7 +343,7 @@ export default class Account extends PageManager {
 
         if ($emailElement) {
             editValidator.remove(emailSelector);
-            Validators.setEmailValidation(editValidator, emailSelector);
+            Validators.setEmailValidation(editValidator, emailSelector, this.validationDictionary.valid_email);
         }
 
         if ($passwordElement && $password2Element) {
@@ -355,7 +355,7 @@ export default class Account extends PageManager {
                 passwordSelector,
                 password2Selector,
                 this.passwordRequirements,
-              
+                createPasswordValidationErrorTextObject(enterPassword, enterPassword, matchPassword, invalidPassword),
                 true,
             );
         }

@@ -20,6 +20,9 @@
         {{#if settings.show_product_rating}}
             {{> components/amp/products/ratings rating=product.rating}}
         {{/if}}
+        {{#if product.release_date }}
+            <p>{{product.release_date}}</p>
+        {{/if}}
         <dl class="productView-info">
             {{#if product.sku}}
                 <dt class="productView-info-name">{{lang 'products.sku'}}</dt>

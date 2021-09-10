@@ -16,9 +16,21 @@
                             {{{dynamicComponent 'components/common/forms'}}}
                         {{/each}}
                       
-                            {{#each forms.create_account.address_fields }}
-                            {{{dynamicComponent 'components/common/forms'}}}
-                        {{/each}}
+                <fieldset class="form-fieldset">
+                <div class="form-row form-row--half">
+                    {{> components/common/forms/text private_id="FirstName" required=true id="first_name" name="first_name" label=(lang 'forms.payment_methods.first_name')}}
+                    {{> components/common/forms/text private_id="LastName" required=true id="last_name" name="last_name" label=(lang 'forms.payment_methods.last_name')}}
+                    {{> components/common/forms/text private_id="CompanyName" required=false id="company" name="company" label=(lang 'forms.payment_methods.company')}}
+                    {{> components/common/forms/text private_id="Phone" required=false id="phone" name="phone" label=(lang 'forms.payment_methods.phone')}}
+                    {{> components/common/forms/text private_id="AddressLine1" required=true id="address1" name="address1" label=(lang 'forms.payment_methods.address1')}}
+                    {{> components/common/forms/text private_id="AddressLine2" required=false id="address2" name="address2" label=(lang 'forms.payment_methods.address2')}}
+                    {{> components/common/forms/text private_id="City" required=true id="city" name="city" label=(lang 'forms.payment_methods.city')}}
+                    {{> components/common/forms/select private_id="Country" required=true id="country" name="country" label=(lang 'forms.payment_methods.country') chooseprefix=(lang 'forms.payment_methods.choose_country') options=countries}}
+                    {{> components/common/forms/text private_id="State" required=true id="state" name="state" label=(lang 'forms.payment_methods.state')}}
+                    {{> components/common/forms/text private_id="Zip" required=true id="postal_code" name="postal_code" label=(lang 'forms.payment_methods.postal_code')}}
+                </div>
+            </fieldset>
+                           
                         {{inject 'required' (lang 'common.required')}}
                         {{inject 'state_error' (lang 'errors.state_error')}}
                     </div>

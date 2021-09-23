@@ -6,7 +6,7 @@ import { createTranslationDictionary } from './utils/translations-utils';
  * @param validation
  * @returns {{selector: string, triggeredBy: string, validate: Function, errorMessage: string}}
  */
-function buildDateValidation($formField, validation) {
+function buildDateValidation($formField, validation, requiredMessage) {
     // No date range restriction, skip
     if (validation.min_date && validation.max_date) {
         const invalidMessage = `Your chosen date must fall between ${validation.min_date} and ${validation.max_date}.`;
@@ -28,6 +28,23 @@ function buildDateValidation($formField, validation) {
                 cb(chosenDate >= minDate && chosenDate <= maxDate);
             },
             errorMessage: invalidMessage,
+        };
+    }
+    // Required Empty Date field
+    if (validation.required && (!validation.min_date || !validation.max_date)) {
+        const formElementId = $formField.attr('id');
+
+        return {
+            selector: `#${formElementId} select[data-label="year"]`,
+            triggeredBy: `#${formElementId} select:not([data-label="year"])`,
+            validate: (cb, val) => {
+                const day = $formField.find('select[data-label="day"]').val();
+                const month = $formField.find('select[data-label="month"]').val();
+                const year = val;
+
+                cb(day && month && year);
+            },
+            errorMessage: requiredMessage,
         };
     }
 }
@@ -97,7 +114,7 @@ function buildValidation($validateableElement, errorMessage) {
     const formFieldSelector = `#${$validateableElement.attr('id')}`;
 
     if (validation.type === 'datechooser') {
-        const dateValidation = buildDateValidation($validateableElement, validation);
+        const dateValidation = buildDateValidation($validateableElement, validation, errorMessage);
 
         if (dateValidation) {
             fieldValidations.push(dateValidation);

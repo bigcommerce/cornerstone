@@ -1,15 +1,13 @@
-import PageManager from './page-manager';
-import stateCountry from './common/state-country';
-import nod from './common/nod';
 import validation from './common/form-validation';
 import forms from './common/models/forms';
+import nod from './common/nod';
+import stateCountry from './common/state-country';
 import {
-    classifyForm,
+    announceInputErrorMessage, classifyForm,
     Validators,
-    createPasswordValidationErrorTextObject,
-    announceInputErrorMessage,
 } from './common/utils/form-utils';
 import { createTranslationDictionary } from './common/utils/translations-utils';
+import PageManager from './page-manager';
 
 export default class Auth extends PageManager {
     constructor(context) {
@@ -89,7 +87,6 @@ export default class Auth extends PageManager {
     }
 
     registerNewPasswordValidation() {
-       
         const newPasswordForm = '.new-password-form';
         const newPasswordValidator = nod({
             submit: $(`${newPasswordForm} input[type="submit"]`),
@@ -97,12 +94,12 @@ export default class Auth extends PageManager {
         });
         const passwordSelector = $(`${newPasswordForm} input[name="password"]`);
         const password2Selector = $(`${newPasswordForm} input[name="password_confirm"]`);
-       
+
         Validators.setPasswordValidation(
             newPasswordValidator,
             passwordSelector,
             password2Selector,
-            this.passwordRequirements 
+            this.passwordRequirements,
         );
     }
 
@@ -156,16 +153,14 @@ export default class Auth extends PageManager {
         }
 
         if ($passwordElement && $password2Element) {
-           
-
             createAccountValidator.remove(passwordSelector);
             createAccountValidator.remove(password2Selector);
             Validators.setPasswordValidation(
                 createAccountValidator,
                 passwordSelector,
                 password2Selector,
-                this.passwordRequirements
-                
+                this.passwordRequirements,
+
             );
         }
 

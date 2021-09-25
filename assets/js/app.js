@@ -1,4 +1,4 @@
-__webpack_public_path__ = window.__webpack_public_path__; // eslint-disable-line
+__webpack_public_path__ = window.__webpack_public_path__; 
 
 import Global from './theme/global';
 

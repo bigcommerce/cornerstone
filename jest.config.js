@@ -5,7 +5,7 @@ const path = require('path');
 
 module.exports = {
   // All imported modules in your tests should be mocked automatically
-  //automock: true,
+  automock: true,
 
   // Stop running tests after `n` failures
   // bail: 0,
@@ -17,7 +17,7 @@ module.exports = {
   // cacheDirectory: "/private/var/folders/1v/x2k0cf994gd_zpn_2vnz3ly800010p/T/jest_t2",
 
   // Automatically clear mock calls and instances between every test
-  clearMocks: true,
+//  clearMocks: true,
 
   // Indicates whether the coverage information should be collected while executing the test
   // collectCoverage: false,

@@ -15,12 +15,10 @@ describe('PaymentMethod', () => {
         let $form;
 
         beforeEach(() => {
-            $form = $(
-              `<form>
+            $form = $(`<form>
                   <input name="credit_card_number" />
                   <input name="expiration" />
-              '</form>`
-            );
+              '</form>`);
             $form.appendTo(document.body);
         });
 

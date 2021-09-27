@@ -9,25 +9,46 @@
             {{#if forms.create_account.error}}
                 {{> components/common/alert/alert-error forms.create_account.error}}
             {{/if}}
-            {{#if settings.account_creation_enabled}}
-                <form action="{{urls.auth.save_new_account}}" data-create-account-form method="post" class="form">
-                    <div class="form-row form-row--half">
-                        {{#each forms.create_account.account_fields }}
-                            {{{dynamicComponent 'components/common/forms'}}}
-                        {{/each}}
-                        {{#each forms.create_account.address_fields }}
-                            {{{dynamicComponent 'components/common/forms'}}}
-                        {{/each}}
-                        {{inject 'required' (lang 'common.required')}}
-                        {{inject 'state_error' (lang 'errors.state_error')}}
-                    </div>
-                    {{{ forms.create_account.recaptcha.markup}}}
-                    <div class="form-actions">
-                        <input type="submit" class="button button--primary" value="{{lang 'forms.create_account.submit_value' }}" />
-                    </div>
-                </form>
-            {{/if}}
-        </div>
+            
+            
+             <form action="{{urls.auth.save_new_account}}" data-create-account-form method="post" class="form">
+                <div class="form-row form-row--half">
+                    {{#each forms.create_account.account_fields }}
+                        {{{dynamicComponent 'components/common/forms'}}}
+                    {{/each}}
+                    {{#each forms.create_account.address_fields }}
+                        {{{dynamicComponent 'components/common/forms'}}}
+                    {{/each}}
+                     {{inject 'dynamicComponent' (lang 'forms.create_account.address_fields')}}
+                    {{inject 'required' (lang 'common.required')}}
+                    {{inject 'state_error' (lang 'errors.state_error')}}
+                </div>
+                {{#if forms.create_account.recaptcha.enabled }}
+                <div class="panel">
+
+                    <header class="panel-header">
+                        <h3 class="panel-title">{{lang 'create_account.captcha_heading' }}</h3>
+                    </header>
+                    <div class="panel-body">
+                        <script type="text/javascript"
+                                src="https://www.google.com/recaptcha/api/challenge?k={{forms.create_account.recaptcha.public_key}}">
+                        </script>
+                        <noscript>
+                            <iframe src="https://www.google.com/recaptcha/api/noscript?k={{forms.create_account.recaptcha.public_key}}" height="300" width="500" frameborder="0"></iframe>
+                            <br>
+                            <textarea name="recaptcha_challenge_field" rows="3" cols="40">
+                            </textarea>
+                            <input type="hidden" name="recaptcha_response_field" value="manual_challenge">
+                        </noscript>
+            </div>
+       </div>
+                {{/if}}
+                <div class="form-actions">
+                    <input type="submit" class="button button--primary" value="{{lang 'forms.create_account.submit_value' }}" />
+                </div>
+            </form>
+                    
+            </div>
     </div>
 {{/partial}}
 {{> layout/base}}

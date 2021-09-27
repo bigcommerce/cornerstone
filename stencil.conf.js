@@ -16,7 +16,7 @@ var watchOptions = {
         '/assets/scss',
         '/assets/less',
         '/assets/css',
-        '/assets/dist',
+        '/assets/js/dist',
     ]
 };
 

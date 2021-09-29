@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Draft
 - Changed debounce wait time for search to 1200 ms from 200 ms. [#2115](https://github.com/bigcommerce/cornerstone/pull/2115)
+- additional checkout buttons don't work on applying 100% discount coupon. [#2109](https://github.com/bigcommerce/cornerstone/pull/2109)
+- Fix sliding carousel with products cause footer headers flickering. [#2119](https://github.com/bigcommerce/cornerstone/pull/2119)
 
 ## 6.1.0 (09-03-2021)
 - Fixed images placeholder on hero carousel shifted on mobile when slide has content. [#2112](https://github.com/bigcommerce/cornerstone/pull/2112)

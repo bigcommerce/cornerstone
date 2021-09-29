@@ -43,13 +43,10 @@ cart: true
                 </div>
             {{/if}}
 
-            {{#if cart.additional_checkout_buttons}}
-                <div class="cart-additionalCheckoutButtons cart-content-padding-right">
-                    {{#each cart.additional_checkout_buttons}}
-                        {{{this}}}
-                    {{/each}}
-                </div>
-            {{/if}}
+            <div data-cart-additional-checkout-buttons class="cart-additionalCheckoutButtons cart-content-padding-right">
+                {{> components/cart/additional-checkout-buttons}}
+            </div>
+
         {{else}}
             <h3 tabindex="0">{{lang 'cart.checkout.empty_cart'}}</h3>
         {{/if}}

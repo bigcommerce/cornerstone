@@ -51,7 +51,7 @@
         @include lazy-loaded-img;
         /* Object-fit polyfill */
         font-family: "object-fit: contain;";
-        max-height: 100%;
+        height: 100%;
         object-fit: contain;
         width: 100%;
     }
@@ -98,8 +98,7 @@
 
 .productView-thumbnail {
     @include grid-column(3);
-    padding-left: spacing("quarter");
-    padding-right: spacing("quarter");
+    padding: spacing("quarter");
     text-align: center;
 
     @include breakpoint("large") {
@@ -110,7 +109,7 @@
 .productView-thumbnail-link {
     border: container("border");
     box-sizing: content-box;
-    display: inline-flex;
+    display: flex;
     height: 67px;
     justify-content: center;
     max-width: 75px;

@@ -7,6 +7,82 @@
         <div class="account-body">
             {{> components/account/payment-methods-list }}
         </div>
+        <div id="vaulting-widget"></div>
     </div>
+    
+    <script src="https://checkoutshopper-live.adyen.com/checkoutshopper/sdk/3.10.0/adyen.js"
+     integrity="sha384-ghytckjc6RtqM4eKYE4LBJRtqZWcxPv/sGamiebH2dY3tyiQYUOZnPJ0s27de7vB"
+     crossorigin="anonymous"></script>
+
+    <link rel="stylesheet"
+    href="https://checkoutshopper-live.adyen.com/checkoutshopper/sdk/3.10.0/adyen.css"
+    integrity="sha384-8ofgICZZ/k5cC5N7xegqFZOA73H9RQ7H13439JfAZW8Gj3qjuKL2isaTD3GMIhDE"
+    crossorigin="anonymous">
+    <!-- Adyen provides the SRI hash that you include as the integrity attribute.-->
+    <!-- Refer to our release notes to get the SRI hash for the specific version: https://docs.adyen.com/online-payments/release-notes -->
+
+    <script>
+        (async function () {
+            const init = () => {
+                const widgetArea = document.getElementById('vaulting-widget');
+                const adyenWidget = document.createElement('div');
+                adyenWidget.setAttribute("id", "component-container");
+                widgetArea.appendChild(adyenWidget);
+
+                const saveButton = document.createElement('button');
+                saveButton.setAttribute("id", "saveButton");
+                saveButton.setAttribute("class", "button button--small button--primary");
+                saveButton.textContent = 'Save';
+                widgetArea.appendChild(saveButton);
+                saveButton.addEventListener('click', () => console.log(value))
+            }
+            init();
+            
+            let value = {};
+
+            const getConfig = async () => {
+                const url = '/api/storefront/payments';
+                const response = await fetch(url, {
+                    method: 'GET',
+                    headers: {
+                        Accept: 'application/vnd.bc.v1+json',
+                        'X-API-INTERNAL':  'This API endpoint is for internal use only and may change in the future',
+                    },
+                });
+                const json = await response.json(); // parses JSON response into native JavaScript objects
+                return json;
+            }
+            const config = await getConfig();
+            console.log({config});
+
+            function handleOnChange(state, component) {
+                console.log(state.isValid); // True or false. Specifies if all the information that the shopper provided is valid.
+                console.log(state.data);
+                value = state.data; // Provides the data that you need to pass in the `/payments` call.
+                console.log(component); // Provides the active component instance that called this event.
+            }
+            
+            // function handleOnAdditionalDetails(state, component) {
+            //     state.data // Provides the data that you need to pass in the `/payments/details` call.
+            //     component // Provides the active component instance that called this event.
+            // }
+            // 
+            
+            const configuration = {
+                locale: "en_US", // The shopper's locale. For a list of supported locales, see https://docs.adyen.com/online-payments/components-web/localization-components.
+                environment: "test", // When you're ready to accept live payments, change the value to one of our live environments https://docs.adyen.com/online-payments/components-web#testing-your-integration.  
+                originKey: config[0].initializationData.originKey, //"pub.v2.8116106318209806.aHR0cHM6Ly9teS1kZXYtc3RvcmUtNzc5OTE1OTkyLnN0b3JlLmJjZGV2.wqS1fIT9U8b0SPOSQPWMlt37xkhc-ebsnX7rYjDKFc4",
+                paymentMethodsResponse: config[0].initializationData.paymentMethodsResponse,
+                onChange: handleOnChange, // Your function for handling onChange event
+                showPayButton: false,
+                // onAdditionalDetails: handleOnAdditionalDetails // Your function for handling onAdditionalDetails event
+            };
+
+            const checkout = new AdyenCheckout(configuration);
+            const card = checkout.create('card').mount('#component-container');
+
+
+        })();
+    </script>
 {{/partial}}
 {{> layout/base}}

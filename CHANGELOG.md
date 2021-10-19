@@ -6,33 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Draft
 
-## 6.7.0 (09-30-2021)
-
-## 6.6.0 (09-30-2021)
-
-## 6.5.0 (09-30-2021)
-
-## custom (09-30-2021)
-
-## custom (09-30-2021)
-
-## custom (09-30-2021)
-
-## 6.2.7 (09-30-2021)
-
-## 6.2.6 (09-30-2021)
-
-## 6.2.5 (09-30-2021)
-
-## 6.2.4 (09-30-2021)
-
-## 6.2.3 (09-30-2021)
-
-## 6.2.2 (09-30-2021)
-
-## 6.2.1 (09-30-2021)
-
-## custom (09-30-2021)
+## 6.1.1 (10-01-2021)
 - Fix product images on PDP has clipped outline. [#2124](https://github.com/bigcommerce/cornerstone/pull/2124)
 - Changed debounce wait time for search to 1200 ms from 200 ms. [#2115](https://github.com/bigcommerce/cornerstone/pull/2115)
 - additional checkout buttons don't work on applying 100% discount coupon. [#2109](https://github.com/bigcommerce/cornerstone/pull/2109)

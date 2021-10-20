@@ -25,8 +25,7 @@
                         </span>
                         <h5 itemprop="name" class="productReview-title">{{{ sanitize title }}}</h5>
                         {{#if name}}
-                            <meta itemprop="author" content="{{name}}">
-                            <p class="productReview-author">
+                            <p class="productReview-author" itemprop="author" itemscope itemtype="https://schema.org/Person">
                                 {{{lang 'products.reviews.post_on_by' date=date name=(sanitize name) }}}
                             </p>
                         {{else}}

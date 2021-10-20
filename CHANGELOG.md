@@ -5,7 +5,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Draft
-- Fixes to Gogle Structured Data schema for product reviews - Invalid object type for field "author" 
+- Fixes to Google Structured Data schema for product reviews - Invalid object type for field "author" 
 
 ## 6.1.1 (10-01-2021)
 - Fix product images on PDP has clipped outline. [#2124](https://github.com/bigcommerce/cornerstone/pull/2124)

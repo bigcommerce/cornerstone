@@ -39,16 +39,16 @@
     @include checkRadioBase();
     @include checkBox-base();
 
-    &:before,
-    &:after {
+    &::before,
+    &::after {
         top: 50%; // 1
     }
 
-    &:before {
+    &::before {
         margin-top: -$checkRadio-outerSize / 2;
     }
 
-    &:after {
+    &::after {
         margin-top: -$checkRadio-outerSize / 2 + remCalc(1);
     }
 
@@ -112,7 +112,6 @@
             display: inline-block;
         }
 
-        // scss-lint:disable SelectorDepth, NestingDepth
         &.is-active {
             @include breakpoint("medium") {
                 border-bottom: 1px solid stencilColor("color-textBase");
@@ -137,7 +136,6 @@
         font-size: fontSize("base");
         padding: 0;
 
-        // scss-lint:disable NestingDepth
         &:hover {
             color: stencilColor("color-textSecondary--hover");
         }

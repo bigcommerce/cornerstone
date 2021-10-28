@@ -1,11 +1,11 @@
-<div class="form-field" data-product-attribute="swatch" role="radiogroup" aria-labelledby="swatchGroup">
-    <label class="form-label form-label--alternate form-label--inlineSmall" id="swatchGroup">
+<div class="form-field" data-product-attribute="swatch" role="radiogroup" aria-labelledby="swatchGroup_{{id}}">
+    <label class="form-label form-label--alternate form-label--inlineSmall" id="swatchGroup_{{id}}">
         {{this.display_name}}:
         <span data-option-value></span>
 
         {{> components/common/requireness-msg}}
     </label>
-    <span 
+    <span
         class="swatch-option-message aria-description--hidden u-hidden">
         {{ lang 'products.swatch_option_announcement' swatch_name=this.display_name}}
     </span>
@@ -14,13 +14,13 @@
         <input
             class="form-radio"
             type="radio"
-            name="attribute[{{../id}}]"
+            name="attribute[{{id}}]"
             value=""
-            id="attribute_swatch_{{../id}}_none"
+            id="attribute_swatch_{{id}}_none"
             checked="{{#if defaultValue '==' ''}}checked{{/if}}"
             aria-label="{{lang 'products.none'}}"
         >
-        <label class="form-option form-option-swatch" for="attribute_swatch_{{../id}}_none">
+        <label class="form-option form-option-swatch" for="attribute_swatch_{{id}}_none">
             <span class='form-option-variant form-option-variant--none' title="{{lang 'products.none'}}">{{lang 'products.none'}}</span>
         </label>
     {{/unless}}

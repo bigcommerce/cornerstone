@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Draft
 - Fixed Quick View modal "X" button focus bubble being slightly off center [#2130](https://github.com/bigcommerce/cornerstone/pull/2130)
 - Apply dependency updates (jest & lighthouse). [#2132](https://github.com/bigcommerce/cornerstone/pull/2132)
+- Replace schema microdata with LD+JSON tag. [#2138](https://github.com/bigcommerce/cornerstone/pull/2138)
 
 ## 6.1.1 (10-01-2021)
 - Fix product images on PDP has clipped outline. [#2124](https://github.com/bigcommerce/cornerstone/pull/2124)

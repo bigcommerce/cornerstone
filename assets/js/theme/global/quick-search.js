@@ -32,7 +32,8 @@ export default function () {
         }
     };
 
-    // stagger searching for 200ms after last input
+    // stagger searching for 1200ms after last input
+    const debounceWaitTime = 1200;
     const doSearch = _.debounce((searchQuery) => {
         utils.api.search.search(searchQuery, { template: 'search/quick-results' }, (err, response) => {
             if (err) {
@@ -62,7 +63,7 @@ export default function () {
                 }, 100);
             }
         });
-    }, 200);
+    }, debounceWaitTime);
 
     utils.hooks.on('search-quick', (event, currentTarget) => {
         const searchQuery = $(currentTarget).val();

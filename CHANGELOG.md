@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added basic validation for Account Signup Date Field when it's empty [#2126](https://github.com/bigcommerce/cornerstone/pull/2126)
 - Fixed Quick View modal "X" button focus bubble being slightly off center [#2130](https://github.com/bigcommerce/cornerstone/pull/2130)
 - Apply dependency updates (jest & lighthouse). [#2132](https://github.com/bigcommerce/cornerstone/pull/2132)
+- Update lang file for FR locale. [#2139](https://github.com/bigcommerce/cornerstone/pull/2139)
 
 ## 6.1.1 (10-01-2021)
 - Fix product images on PDP has clipped outline. [#2124](https://github.com/bigcommerce/cornerstone/pull/2124)

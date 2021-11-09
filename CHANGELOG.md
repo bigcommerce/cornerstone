@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Draft
+- Cannot see currency dropdown in storefront. [#2141](https://github.com/bigcommerce/cornerstone/pull/2141)
 
 ## 6.1.2 (11-05-2021)
 - Hide prices for aria-label and data-product-price attributes if set to "Hidden for guests". Hide currency selection for non-logged in users. [#2131](https://github.com/bigcommerce/cornerstone/pull/2131)

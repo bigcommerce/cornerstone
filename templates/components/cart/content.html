@@ -47,7 +47,7 @@
                                     {{#if is_file}}
                                         <a href="/viewfile.php?attributeId={{id}}&cartitem={{../id}}">{{value}}</a>
                                     {{else}}
-                                        {{{ sanitize value}}}
+                                        {{> components/common/product-options}}
                                     {{/if}}
                                 </dd>
                             {{/each}}

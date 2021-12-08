@@ -5,8 +5,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Draft
+- Fix tooltip on close button of modal is shifted. [#2148](https://github.com/bigcommerce/cornerstone/pull/2148)
+- Optimized usage of jsTree library. [#2145](https://github.com/bigcommerce/cornerstone/pull/2145)
+- Replace schema microdata with LD+JSON tag. [#2138](https://github.com/bigcommerce/cornerstone/pull/2138)
+- Translation Gap: Checkbox Option selection on Product. [#2063](https://github.com/bigcommerce/cornerstone/pull/2063)
 - Admin Bar displays regardless of setting. [#2144](https://github.com/bigcommerce/cornerstone/pull/2144)
-Fix Loading unnecessary product lqip images on cart page. [#2149](https://github.com/bigcommerce/cornerstone/pull/2149)
+- Fix Loading unnecessary product lqip images on cart page. [#2149](https://github.com/bigcommerce/cornerstone/pull/2149)
+- Translation updates November 2021. [#2146](https://github.com/bigcommerce/cornerstone/pull/2146)
 
 ## 6.1.3 (11-10-2021)
 - Cannot see currency dropdown in storefront. [#2141](https://github.com/bigcommerce/cornerstone/pull/2141)

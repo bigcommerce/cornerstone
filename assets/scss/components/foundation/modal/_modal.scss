@@ -61,6 +61,15 @@
     &:hover {
         color: stencilColor("icon-color-hover");
     }
+
+    &::before {
+        right: 50%;
+        transform: translateX(50%);
+    }
+
+    &::after {
+        right: calc(50% - remCalc(10px));
+    }
 }
 
 .modal-body {

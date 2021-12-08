@@ -1,0 +1,13 @@
+{{#unless this.value}}
+    <option value="">---</option>
+    {{#each this.items}}
+        <option value="{{value}}">{{label}}</option>
+    {{/each}}
+{{else}}
+    {{#unless this.isRequired}}
+        <option value="">---</option>
+    {{/unless}}
+    {{#each this.items}}
+        <option {{#if ../this.value '==' value}} selected {{/if}}value="{{value}}">{{label}}</option>
+    {{/each}}
+{{/unless}}

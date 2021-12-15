@@ -31,6 +31,7 @@ There are a few important arguments to know about when using this component:
        srcset="{{getImageSrcset image use_default_sizes=true }}"
      {{else if default_image}}src="{{cdn default_image}}" alt="{{lang 'products.card_default_image_alt'}}"
      {{/if}}
-     class="{{#if class}}{{class}}{{/if}}"
+     {{#if class}}class="{{class}}"{{/if}}
+     {{#if sizes}}sizes="{{sizes}}"{{/if}}
 {{#unless lazyload '==' 'disabled'}}loading="lazy"{{/unless}}
 {{otherAttributes}} />

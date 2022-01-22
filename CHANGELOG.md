@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Draft
 
+- Add google recaptcha to password reset request page [#2164](https://github.com/bigcommerce/cornerstone/pull/2164)
+
 ## 6.2.0 (12-13-2021)
 - Fix tooltip on close button of modal is shifted. [#2148](https://github.com/bigcommerce/cornerstone/pull/2148)
 - Optimized usage of jsTree library. [#2145](https://github.com/bigcommerce/cornerstone/pull/2145)

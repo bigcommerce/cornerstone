@@ -17,11 +17,15 @@
         {{/each}}"
         data-product-brand="{{brand.name}}"
         data-product-price="
-        {{#if price.with_tax}}
-            {{price.with_tax.value}}
+        {{#or customer (unless theme_settings.restrict_to_login)}}
+            {{#if price.with_tax}}
+                {{price.with_tax.value}}
+            {{else}}
+                {{price.without_tax.value}}
+            {{/if}}
         {{else}}
-            {{price.without_tax.value}}
-        {{/if}}"
+            {{lang 'common.login_for_pricing'}}
+        {{/or}}"
     {{/if}}>
     <figure class="card-figure">
         {{#if stock_level '===' 0}}
@@ -55,9 +59,10 @@
                 {{/if}}
             {{/or}}
         {{/if}}
+
         <a href="{{url}}"
            class="card-figure__link"
-           aria-label="{{name}},{{> components/products/product-aria-label}}"
+           aria-label="{{> components/products/product-info}}"
            {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}}
         >
             <div class="card-img-container">
@@ -119,7 +124,7 @@
             <p class="card-text" data-test-info-type="brandName">{{brand.name}}</p>
         {{/if}}
         <h3 class="card-title">
-            <a aria-label="{{name}},{{> components/products/product-aria-label}}"
+            <a aria-label="{{> components/products/product-info}}"
                href="{{url}}"
                {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}}
             >

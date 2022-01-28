@@ -6,8 +6,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Draft
 - Fixed password complexity error not displaying the complexity rules set in the store settings [#2117](https://github.com/bigcommerce/cornerstone/pull/2117)
+
+## 6.2.0 (12-13-2021)
+- Fix tooltip on close button of modal is shifted. [#2148](https://github.com/bigcommerce/cornerstone/pull/2148)
+- Optimized usage of jsTree library. [#2145](https://github.com/bigcommerce/cornerstone/pull/2145)
+- Replace schema microdata with LD+JSON tag. [#2138](https://github.com/bigcommerce/cornerstone/pull/2138)
+- Translation Gap: Checkbox Option selection on Product. [#2063](https://github.com/bigcommerce/cornerstone/pull/2063)
+- Admin Bar displays regardless of setting. [#2144](https://github.com/bigcommerce/cornerstone/pull/2144)
+- Fix Loading unnecessary product lqip images on cart page. [#2149](https://github.com/bigcommerce/cornerstone/pull/2149)
+- Translation updates November 2021. [#2146](https://github.com/bigcommerce/cornerstone/pull/2146)
+
+## 6.1.3 (11-10-2021)
+- Cannot see currency dropdown in storefront. [#2141](https://github.com/bigcommerce/cornerstone/pull/2141)
+
+## 6.1.2 (11-05-2021)
+- Hide prices for aria-label and data-product-price attributes if set to "Hidden for guests". Hide currency selection for non-logged in users. [#2131](https://github.com/bigcommerce/cornerstone/pull/2131)
+- Added basic validation for Account Signup Date Field when it's empty [#2126](https://github.com/bigcommerce/cornerstone/pull/2126)
 - Fixed Quick View modal "X" button focus bubble being slightly off center [#2130](https://github.com/bigcommerce/cornerstone/pull/2130)
 - Apply dependency updates (jest & lighthouse). [#2132](https://github.com/bigcommerce/cornerstone/pull/2132)
+- Update lang file for FR locale. [#2139](https://github.com/bigcommerce/cornerstone/pull/2139)
+- Update store logo to use `srcset`. [#2136](https://github.com/bigcommerce/cornerstone/pull/2136)
 
 ## 6.1.1 (10-01-2021)
 - Fix product images on PDP has clipped outline. [#2124](https://github.com/bigcommerce/cornerstone/pull/2124)

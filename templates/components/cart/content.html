@@ -23,7 +23,7 @@
                             image=image
                             class="cart-item-image"
                             fallback_size=../theme_settings.productthumb_size
-                            lazyload=../theme_settings.lazyload_mode
+                            lazyload="lazyload"
                             default_image=../theme_settings.default_image_product
                         }}
                     {{/if}}
@@ -47,7 +47,7 @@
                                     {{#if is_file}}
                                         <a href="/viewfile.php?attributeId={{id}}&cartitem={{../id}}">{{value}}</a>
                                     {{else}}
-                                        {{{ sanitize value}}}
+                                        {{> components/common/product-options}}
                                     {{/if}}
                                 </dd>
                             {{/each}}

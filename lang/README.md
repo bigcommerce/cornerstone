@@ -1,0 +1,2 @@
+Please do not submit any changes to the translations in this folder since BigCommerce supports official translations only and 
+all changes will be overwritten during translation process done by BigCommerce.

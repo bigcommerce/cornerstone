@@ -21,6 +21,7 @@ brand:
             image=brand.image
             fallback_size=theme_settings.thumb_size
             lazyload='disabled'
+            sizes=(concat (first (split theme_settings.thumb_size 'x')) 'px')
         }}
     </div>
 {{/if}}

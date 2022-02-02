@@ -24,6 +24,7 @@ category:
         fallback_size=theme_settings.zoom_size
         lazyload=theme_settings.lazyload_mode
         class="category-header-image"
+        sizes=(concat (first (split ../theme_settings.zoom_size 'x')) 'px')
     }}
 {{/if}}
 {{#unless theme_settings.hide_category_page_heading }}

@@ -56,6 +56,7 @@
                     lazyload=theme_settings.lazyload_mode
                     default_image=theme_settings.default_image_product
                     otherAttributes="data-main-image"
+                    sizes=(concat (first (split theme_settings.product_size 'x')) 'px')
                 }}
                 {{!-- Remove the surrounding a-element if there is no main image. --}}
                 {{#if product.main_image}}
@@ -85,7 +86,8 @@
                         image=this
                         fallback_size=../theme_settings.productview_thumb_size
                         lazyload=../theme_settings.lazyload_mode
-                    }}
+                        sizes=(concat (first (split ../theme_settings.productview_thumb_size 'x')) 'px')
+                        }}
                     </a>
                 </li>
             {{/each}}

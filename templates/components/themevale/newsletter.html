@@ -1,0 +1,60 @@
+<div id="themevale_newsletter" class="hide">
+    <div class="popup-overlay"></div>
+    <div class="newsletter-popup-container{{#if theme_settings.newsletter_popup_image '==' ''}} no-image{{/if}}">
+        <div class="newsletter-popup-inner">
+            <a href="#" class="modal-close" aria-label="{{lang 'common.close'}}" role="button" data-close-newsletter-popup>
+                <svg class="icon"><use xlink:href="#icon-close"></use></svg>
+            </a>
+            <div class="newsletter-popup-wrap ">
+                {{#if theme_settings.newsletter_popup_image '!=' ''}}
+                    <div class="newsletter-image">
+                        <div class="card-img-container">
+                            {{> components/themevale/themevale-responsive-img
+                                image=theme_settings.newsletter_popup_image
+                                alt=theme_settings.newsletter_popup_image
+                                class="card-image"
+                                fallback_size=theme_settings.newsletter_popup_image_size
+                                lazyload=theme_settings.lazyload_mode
+                            }}
+                        </div>
+                    </div>
+                {{/if}}
+                <div class="newsletter-content modal-content">
+                    <div class="newsletter-content-inner">
+                        {{#if theme_settings.newsletter_popup_heading '!=' ''}}
+                            <h2 class="newsletter-heading">{{theme_settings.newsletter_popup_heading}}</h2>
+                        {{/if}}
+                        {{#if theme_settings.newsletter_popup_sub-heading_1 '!=' ''}}
+                            <p class="newsletter-sub-heading">{{theme_settings.newsletter_popup_sub-heading_1}}{{theme_settings.newsletter_popup_sub-heading_2}}</p>
+                       {{/if}}
+                        <div id="popupSubcribeForm">
+                            <form class="form" action="{{urls.subscribe.action}}" method="post" id="popupSubcribeFormSubmit">
+                                <fieldset class="form-fieldset">
+                                    <input type="hidden" name="action" value="subscribe">
+                                    <input type="hidden" name="nl_first_name" value="bc">
+                                    <input type="hidden" name="check" value="1">
+                                    <div class="form-field">
+                                        <div class="form-wrap">
+                                            <input class="form-input" id="nl_email" name="nl_email" type="email" placeholder="{{lang 'newsletter.email_placeholder'}}">
+                                            <input class="btn button button-transparent" type="submit" value="{{lang 'newsletter.subscribe_submit'}}">
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+
+                        <div class="black-icons">
+                            {{> components/common/social-links}}
+                        </div>
+                        {{#if theme_settings.newsletter_popup_checkbox_show '!=' ''}}
+                        <div class="form-check newsletter-show-again">
+                            <input id="do-not-show-again" class="do-not-show-again" type="checkbox" name="don't show again">
+                            <label for="do-not-show-again">Don't show again</label>
+                        </div>
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

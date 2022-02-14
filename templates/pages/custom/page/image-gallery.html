@@ -1,0 +1,54 @@
+---
+gallerys:
+    limit: {{theme_settings.webpage_gallery_per_page}}
+---
+{{#partial "page"}}
+
+<main class="page themevale_image_gallery">
+    <div class="container container-small">
+        {{#unless theme_settings.hide_page_heading }}
+            <div class="themevale-heading">
+                <h1 class="page-heading">{{ page.title }}</h1>
+             </div>
+        {{/unless}}
+        {{#if page.sub_pages}}
+            <nav class="navBar navBar--sub">
+                <ul class="navBar-section account-navigation">
+                    {{#each page.sub_pages}}
+                        <li class="navBar-item"><a class="navBar-action" href="{{url}}">{{title}}</a></li>
+                    {{/each}}
+                </ul>
+            </nav>
+        {{/if}}
+        <div class="page-content">
+            <section class="ImageGallery">
+                {{#replace '%%Syndicate%%' page.content}}
+                    {{> components/page/rss_feed}}
+                {{else}}
+                    {{{page.content}}}
+                {{/replace}}
+                <div class="pagination-wrapper">
+                    {{> components/themevale/themevale-paginator}}
+                </div>
+            </section>
+
+
+            {{#if page.feed}}
+                <ul>
+                    {{#each page.feed}}
+                        <li>
+                            <h6><a href="{{url}}" target="_blank">{{title}}</a></h6>
+                            <p>{{content}}</p>
+                        </li>
+                    {{/each}}
+                </ul>
+            {{/if}}
+        </div>
+
+        {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+    </div>
+</main>
+
+{{/partial}}
+
+{{> layout/base}}

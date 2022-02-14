@@ -8,7 +8,21 @@
         {{#block "head"}} {{/block}}
 
         <link href="{{ head.favicon }}" rel="shortcut icon">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta name="theme-color" content="#212121">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+        <script>
+            {{!-- Change document class from no-js to js so we can detect this in css --}}
+            document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+        </script>
+        {{!-- Load Lazysizes script ASAP so images will appear --}}
+        <script>
+            {{!-- Only load visible elements until the onload event fires, after which preload nearby elements. --}}
+            window.lazySizesConfig = window.lazySizesConfig || {};
+            window.lazySizesConfig.loadMode = 1;
+        </script>
+        <script async src="{{cdn 'assets/dist/theme-bundle.head_async.js'}}"></script>
 
         <script>
             {{!-- Change document class from no-js to js so we can detect this in css --}}
@@ -59,12 +73,54 @@
         {{~inject 'carouselActiveDotAriaLabel' (lang 'carousel.active_dot_aria_label')}}
         {{~inject 'carouselContentAnnounceMessage' (lang 'carousel.content_announce_message')}}
     </head>
-    <body>
+    <body class="page-type-{{page_type}}{{#if theme_settings.themevale_homepage_layout_1}} homepage-layout-1{{else}} homepage-layout-2{{/if}}{{#if customer}} wl-login{{/if}}">
         <svg data-src="{{cdn 'img/icon-sprite.svg'}}" class="icons-svg-sprite"></svg>
+
+        <!-- menu mobile  -->
+        <div class="themevale_Mobile themevale_MobileMenu" id="menu-mobile">
+            <div class="themevale_close">
+                <a href="javascript:void(0)" class="close">&times;</a>
+            </div>
+            <div class="navPages-container" id="menuMobile" data-menu>
+            </div>
+        </div>
+
+        <!-- Account mobile  -->
+        <div class="themevale_Mobile themevale_MobileAccount" id="account-mobile">
+            <div class="themevale_close2">
+                <a href="javascript:void(0)" class="close">&times;<span class="text">close</span></a>
+            </div>
+            <div id="accountMobile">
+                {{#if page_type '!==' 'login'}}
+                    {{> components/themevale/header/navigation-accountMobile}}
+                {{/if}}
+            </div>
+        </div>
+
+        <!-- Cart mobile  -->
+        <div class="themevale_Mobile themevale_MobileCart" id="cart-mobile">
+            <div class="themevale_close2">
+                <a href="javascript:void(0)" class="close">&times;<span class="text">close</span></a>
+            </div>
+            <div class="dropdown-cart" id="cart-preview-dropdown" aria-hidden="true"></div>
+        </div>
+
+        <!-- Search mobile  -->
+        <div class="themevale_Mobile themevale_MobileSearch" id="search-mobile">
+            <div class="themevale_close2">
+                <a href="javascript:void(0)" class="close">&times;<span class="text">close</span></a>
+            </div>
+            <div class="dropdown dropdown--quickSearch" id="dropdown--quickSearch" aria-hidden="true"></div>
+        </div>
+
+        <div class="themevale_popup"></div>
 
         {{> components/common/header }}
         {{> components/common/body }}
         {{> components/common/footer }}
+
+
+        <div class="themevale_background"></div>
 
         <script>window.__webpack_public_path__ = "{{cdn 'assets/dist/'}}";</script>
         <script src="{{cdn 'assets/dist/theme-bundle.main.js'}}"></script>
@@ -72,6 +128,11 @@
             {{!-- Exported in app.js --}}
             window.stencilBootstrap("{{page_type}}", {{jsContext}}).load();
         </script>
+
+        <!-- MegaMenu -->
+        {{#if theme_settings.themevale_megamenu}}
+            {{> components/themevale/header/megamenu }}
+        {{/if}}
 
         {{{footer.scripts}}}
     </body>

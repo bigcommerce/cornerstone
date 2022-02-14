@@ -1,0 +1,56 @@
+<div class="productTabs">
+    <ul class="tabs themevale_tabs" data-tab>
+      <li class="tab is-active">
+          <a class="tab-title" href="#tab-description">{{lang 'products.description'}}</a>
+      </li>
+      {{#all settings.show_product_reviews theme_settings.show_product_reviews}}
+         {{#if theme_settings.show_product_reviews_tab}}
+            <li class="tab">
+                <a class="tab-title" href="#tab-review">{{lang 'products.reviews_tab'}}</a>
+            </li>
+          {{/if}}
+      {{/all}}
+      {{#if theme_settings.show_shipping_tabs}}
+          <li class="tab">
+            <a class="tab-title" href="#tab-shipping">{{lang 'products.shipping_tab'}}</a>
+          </li>
+      {{/if}}
+      {{#if product.warranty}}
+        <li class="tab">
+            <a class="tab-title" href="#tab-warranty">{{lang 'products.warranty'}}</a>
+        </li>
+     {{/if}}
+      {{#if theme_settings.show_custom_tabs}}
+          <li class="tab">
+            <a class="tab-title" href="#tab-custom">{{lang 'products.custom_tab'}}</a>
+          </li>
+      {{/if}}
+    </ul>
+    <div class="tabs-contents">
+      <div class="tab-content is-active" id="tab-description">
+            <div class="description">{{{product.description}}}</div>
+            {{> components/products/description-tabs-custom}}
+            {{#if theme_settings.enable_banner_product_custom}}
+              {{> components/themevale/product/banner-product-custom }}
+            {{/if}}
+      </div>
+      {{#all settings.show_product_reviews theme_settings.show_product_reviews}}
+        {{#if theme_settings.show_product_reviews_tab}}
+          <div class="tab-content" id="tab-review">
+             {{> components/products/reviews reviews=product.reviews product=product urls=urls}}
+          </div>
+        {{/if}}
+      {{/all}}
+      {{#if theme_settings.show_shipping_tabs}}
+          <div class="tab-content" id="tab-shipping"></div>
+      {{/if}}
+      {{#if product.warranty}}
+        <div class="tab-content" id="tab-warranty">
+           {{{product.warranty}}}
+        </div>
+      {{/if}}
+      {{#if theme_settings.show_custom_tabs}}
+          <div class="tab-content" id="tab-custom"></div>
+      {{/if}}
+  </div>
+</div>

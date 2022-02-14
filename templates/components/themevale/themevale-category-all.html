@@ -1,0 +1,22 @@
+<ul>
+    {{#each children}}
+        <li data-id="{{id}}">
+            {{#if children}}
+                <div class="cateImage">
+                    <img src="{{getImage image '210x140' (cdn 'img/SubCategoryDefault.png')}}" alt="{{name}}">
+                </div>
+                <a href="{{url}}">
+                    {{name}}
+                </a>
+                <div class="total-products">{{product_count}}</div>
+                {{> components/themevale/themevale-category-all}}
+            {{else}}
+                <div class="cateImage">
+                    <img src="{{getImage image '210x140' (cdn 'img/SubCategoryDefault.png')}}" alt="{{name}}">
+                </div>
+                <a href="{{url}}">{{name}}</a>
+                <div class="total-products">{{product_count}}</div>
+            {{/if}}
+        </li>
+    {{/each}}
+</ul>

@@ -1,0 +1,57 @@
+<header class="header themevale-header-layout-1" role="banner">
+    <div class="themevale-header-PC">
+        {{> components/themevale/header/top-bar-promotion}}
+
+        <div class="container">
+            <div class="themevale_header">
+                <div class="header-left">
+                    {{#if page_type '===' 'default'}}
+                        <h1 class="header-logo">
+                            {{> components/common/store-logo}}
+                        </h1>
+                    {{else}}
+                        <div class="header-logo">
+                            {{> components/common/store-logo}}
+                        </div>
+                    {{/if}}
+                </div>
+                <div class="header-center">
+                     <div class="navPages-container" id="menu" data-menu>
+                        {{> components/common/navigation-menu}}
+                    </div>
+                </div>
+                <div class="header-right">
+                    <div class="account-link"><a class="navUser-action" href="{{urls.account.index}}"><span>{{lang 'common.account'}}</span><svg class="icon"><use xlink:href="#icon-user"></use></svg></a></div>
+                     <div class="wrapper-top-cart">
+                         <a class="navUser-action cart-icon" data-cart-preview data-options="align:right" href="{{urls.cart}}">
+                            <span class="navUser-item-cartLabel">{{lang 'common.cart'}}</span>
+                            <svg class="icon"><use xlink:href="#icon-cart"></use></svg>
+                            <span class="countPill cart-quantity"></span>
+                        </a>
+
+                        <div class="themevale_dropdown dropdown-cart" id="cart-preview-dropdown"></div>
+                     </div>
+                     <div class="search-nav">
+                        <div id="quickSearch" aria-hidden="true" tabindex="-1" data-prevent-quick-search-close>
+                            <a class="search-icon" href="#" data-search="quickSearch" aria-controls="quickSearch" aria-expanded="false">
+                                <svg class="icon icon-close"><use xlink:href="#icon-close"></use></svg>
+                                <svg class="icon icon-search"><use xlink:href="#icon-search"></use></svg>
+                            </a>
+                            {{> components/common/quick-search}}
+                        </div>
+                     </div>
+                     <div class="right-nav">
+                        <a href="#" class="mobileMenu-toggle">
+                            <span class="mobileMenu-toggleIcon">Toggle menu</span>
+                        </a>
+                        {{> components/common/navigation}}</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="themevale-header-Mobile">
+        {{> components/themevale/header/top-bar-promotion}}
+        {{> components/themevale/header/header-mobile}}
+   </div>
+</header>

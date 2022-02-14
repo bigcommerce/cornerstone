@@ -1,0 +1,73 @@
+<header class="header themevale-header-layout-2" role="banner">
+    <div class="themevale-header-PC">
+        {{> components/themevale/header/top-bar-promotion}}
+
+        <div class="container">
+            <div class="themevale_header">
+                <div class="header-top">
+                    <div class="header-left">
+                        {{#if settings.phone_number}}
+                            <span class="phone-number info"><a href="tel:{{settings.phone_number}}">{{settings.phone_number}}</a></span>
+                        {{/if}}
+                        {{#if theme_settings.shopper_email '!=' ''}}
+                            <span class="email"><a href="mailto:{{settings.shopper_email}}">{{theme_settings.shopper_email}}</a></span>
+                        {{/if}}
+                    </div>
+                    <div class="header-center">
+                        {{#if page_type '===' 'default'}}
+                            <h1 class="header-logo">
+                                {{> components/common/store-logo}}
+                            </h1>
+                        {{else}}
+                            <div class="header-logo">
+                                {{> components/common/store-logo}}
+                            </div>
+                        {{/if}}
+                    </div>
+                    <div class="header-right">
+                        <div class="account-link"><a class="navUser-action" href="{{urls.account.index}}">{{lang 'common.account'}} <svg class="icon"><use xlink:href="#icon-user"></use></svg></a></div>
+                         <div class="wrapper-top-cart">
+                             <a class="navUser-action cart-icon" data-cart-preview data-options="align:right" href="{{urls.cart}}">
+                                <span class="navUser-item-cartLabel">{{lang 'common.cart'}}</span>
+                                <svg class="icon"><use xlink:href="#icon-cart"></use></svg>
+                                <span class="countPill cart-quantity"></span>
+                            </a>
+
+                            <div class="themevale_dropdown dropdown-cart" id="cart-preview-dropdown"></div>
+                         </div>
+                         <div class="search-nav">
+                            <div id="quickSearch" aria-hidden="true" tabindex="-1" data-prevent-quick-search-close>
+                                <a class="search-icon" href="#" data-search="quickSearch" aria-controls="quickSearch" aria-expanded="false">
+                                    <svg class="icon icon-close"><use xlink:href="#icon-close"></use></svg>
+                                    <svg class="icon icon-search"><use xlink:href="#icon-search"></use></svg>
+                                </a>
+                                {{> components/common/quick-search}}
+                            </div>
+                         </div>
+                         <div class="right-nav">
+                            <a href="#" class="mobileMenu-toggle">
+                                <span class="mobileMenu-toggleIcon">Toggle menu</span>
+                            </a>
+                            {{> components/common/navigation}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   <div class="themevale-header-Mobile">
+    {{> components/themevale/header/top-bar-promotion}}
+    {{> components/themevale/header/header-mobile}}
+   </div>
+</header>
+
+<div class="navPages-container navPages-layout-2{{#if theme_settings.themevale_homepage_layout_1}} homepage-layout-1{{else}} homepage-layout-2{{/if}}"" id="menu" data-menu>
+    <div class="container">
+        <div class="logo-wrapper">
+            <div class="header-sticky-logo">
+                <a href="{{urls.home}}"><img src="/product_images/uploaded_images/logo-scroll.png" title="{{settings.store_logo.title}}" alt="{{settings.store_logo.title}}"/></a>
+            </div>
+        </div>
+        {{> components/common/navigation-menu}}
+    </div>
+</div>

@@ -1,0 +1,52 @@
+<section id="InstagramGallery" class="themevale-section module-wrapper">
+    <div class="container">
+        {{#if theme_settings.instagram_product_title '!=' ''}}
+            <h2 class="page-heading{{#if theme_settings.instagram_product_desc '==' ''}} no-desc{{/if}}">
+                <span class="title">{{theme_settings.instagram_product_title}}</span>
+            </h2>
+        {{/if}}
+        {{#if theme_settings.instagram_product_desc '!=' ''}}
+            <p class="page-description text-center">{{theme_settings.instagram_product_desc}}</p>
+        {{/if}}
+
+        {{#if theme_settings.instagram_product_layout '==' 'gallery'}}
+            <div id="instafeed" data-slick='{
+                "dots": false,
+                "arrows": true,
+                "infinite": false,
+                "mobileFirst": true,
+                "slidesToShow": 2,
+                "slidesToScroll": 2,
+                "responsive": [
+                    {
+                        "breakpoint": 1024,
+                        "settings": {
+                            "slidesToShow": 5,
+                            "slidesToScroll": 5
+                        }
+                    },
+                    {
+                        "breakpoint": 767,
+                        "settings": {
+                            "slidesToShow": 4,
+                            "slidesToScroll": 4
+                        }
+                    },
+                    {
+                        "breakpoint": 550,
+                        "settings": {
+                            "slidesToShow": 3,
+                            "slidesToScroll": 3
+                        }
+                    }
+                ]
+            }'>
+                {{> components/themevale/product/instagram-product-gallery}}
+            </div>
+        {{else}}
+            <div id="instafeed">
+                <script src='https://snapppt.com/widgets/widget_loader/{{theme_settings.instagram_product_app_code}}' defer class='snapppt-widget'></script>
+            </div>
+        {{/if}}
+    </div>
+</section>

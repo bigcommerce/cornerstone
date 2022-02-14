@@ -20,12 +20,12 @@ export default function () {
     }
 
     $(".productCarousel").each(function (index) {
-        var height = $(this).find('.card .card-figure').height();
+        const height = $(this).find('.card .card-figure').height();
         $(this).find('.slick-arrow').css('top', (height / 2));
     });
     if ($(window).width() > 1280) {
         $(".collection-list").each(function (index) {
-            var height = $(this).find('.collection-item .collection-image').height();
+            const height = $(this).find('.collection-item .collection-image').height();
             $(this).find('.slick-arrow').css('top', (height / 2));
         });
     }

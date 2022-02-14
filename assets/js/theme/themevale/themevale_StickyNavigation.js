@@ -1,9 +1,10 @@
 import $ from 'jquery';
 
-export default function(context) {
+export default function (context) {
     function header_sticky() {
         // Add class fixed for menu when scroll
-        var header_position, header_height = $('.header').height();
+        let header_position; const
+header_height = $('.header').height();
 
         if ($(window).width() > 1024) {
             if ($('.header').hasClass('themevale-header-layout-2')) {
@@ -12,43 +13,36 @@ export default function(context) {
                 header_position = $('.themevale_header').offset();
             }
             header_scroll(header_position.top, header_height);
-        }
-        else {
+        } else {
             header_position = $('.themevale-header-Mobile').offset();
             header_scroll(header_position.top, header_height);
         }
     }
    header_sticky();
 
-   
-
     function header_scroll(header_position, header_height) {
-        $(window).on('scroll', function(event) {
-            var scroll = $(window).scrollTop();
-            
-            if (scroll > header_position) {             
+        $(window).on('scroll', (event) => {
+            const scroll = $(window).scrollTop();
 
+            if (scroll > header_position) {
                 if (context.themeSettings.themevale_stickyHeader) {
                     $('.header').addClass('is-sticky');
                     if ($('.header').hasClass('themevale-header-layout-2')) {
                         var header_scroll = $('.navPages-container .navPages').height();
-                    } else {
-                        if ($('header').hasClass('is-sticky')) {
+                    } else if ($('header').hasClass('is-sticky')) {
                             var header_scroll = $('.themevale_header').height();
                         } else {
                             var header_scroll = $('.themevale-header-PC').height();
                         }
-                    }
                 } else {
                     var header_scroll = 0;
                 }
-                
-                
+
                 $('.themevale_dropdown').css('top', header_scroll);
                 $('#sticky_addtocart').css('top', header_scroll);
 
                 if ($('.header').hasClass('themevale-header-layout-2')) {
-                   var heightNav = $('.navPages-container .navPages').height();
+                   const heightNav = $('.navPages-container .navPages').height();
                    $('.themevale_header .header-right').css('min-height',heightNav);
                 }
 
@@ -60,9 +54,7 @@ export default function(context) {
                         $('.heroCarousel').css('margin-top', top);
                      }
                 }
-            }
-            else {
-
+            } else {
                 $('.header').removeClass('is-sticky');
 
                 $('.themevale_dropdown').css('top', header_height);
@@ -77,24 +69,21 @@ export default function(context) {
                 }
             }
         });
-        
-        window.onload = function() {
+
+        window.onload = function () {
             $('.themevale_dropdown').css('top', header_scroll);
             if ($(window).scrollTop() > header_position) {
                 if (context.themeSettings.themevale_stickyHeader) {
                     $('.header').addClass('is-sticky');
                 }
 
-
                 if ($('.header').hasClass('themevale-header-layout-2')) {
                     var header_scroll = $('.navPages-container .navPages').height();
-                } else {
-                    if ($('.header').hasClass('is-sticky')) {
+                } else if ($('.header').hasClass('is-sticky')) {
                         var header_scroll = $('.themevale-header-PC').height();
                     } else {
                         var header_scroll = $('.themevale_header').height();
                     }
-                }
                 $('.themevale_dropdown').css('top', header_scroll);
                 if ($('.header').hasClass('is-sticky')) {
                     $('#sticky_addtocart').css('top', header_scroll);
@@ -103,14 +92,12 @@ export default function(context) {
                 }
 
                 if ($('.header').hasClass('themevale-header-layout-2')) {
-                   var heightNav = $('.navPages-container .navPages').height();
+                   const heightNav = $('.navPages-container .navPages').height();
                    $('.themevale_header .header-right').css('min-height',heightNav);
                 }
-                
             } else {
                 $('.header').removeClass('is-sticky');
             }
         };
     }
-
 }

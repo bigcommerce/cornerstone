@@ -7,14 +7,13 @@ import $ from 'jquery';
 /* eslint-disable func-names */
 
 export default function() {
-
    const product_class = ".product";
 
    // Product List
-   $('#list-view').on('click', function() { 
+   $('#list-view').on('click', function() {
       if (!$(this).hasClass('current-view')) {
          // show loading
-         setTimeout(function(){ 
+         setTimeout(() => {
             $('#list-view').addClass('current-view');
             $('#grid-view').removeClass('current-view');
             $('#product-listing-container .productListing').removeClass('productGrid').addClass('productList');
@@ -23,9 +22,9 @@ export default function() {
    });
 
    // Product Grid
-   $('#grid-view').on('click', function() { 
+   $('#grid-view').on('click', function() {
       if (!$(this).hasClass('current-view')) {
-         setTimeout(function(){ 
+         setTimeout(() => {
             $('#grid-view').addClass('current-view');
             $('#list-view').removeClass('current-view');
             $('#product-listing-container .productListing').removeClass('productList').addClass('productGrid');

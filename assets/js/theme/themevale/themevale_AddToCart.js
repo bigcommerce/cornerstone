@@ -5,53 +5,48 @@ import utils from '@bigcommerce/stencil-utils';
 import { defaultModal } from '../global/modal';
 
 // We want to ensure that the events are bound to a single instance of the product details component
-let productSingleton = null;
-
+const productSingleton = null;
 
 export default function (context) {
-
     const modal = defaultModal();
 
     const $ajaxcart = $("a.themevale_btnATC");
     const $content = $('<div class="modal-body quickView"></div>');
-    var j, count = 0, error = 0, qty = 0;
-    var list_product = "";
+    let j; let count = 0; let error = 0; let
+qty = 0;
+    let list_product = "";
 
-    $(document).ready(function() {
-
+    $(document).ready(() => {
         $('body').on('click', '.themevale_btnATC', (event) => {
-
             event.preventDefault();
-            var pro;
+            let pro;
             qty = 0;
             const productId = $(event.currentTarget).data('product-id');
             pro = { "action": "add", "fastcart": "1", "product_id": productId, "qty[]": "1" };
             qty += 1;
 
-            //var check = checkBeforeAdd(pro);
+            // var check = checkBeforeAdd(pro);
             error = 0;
             addToCart(pro);
         });
-        
 
         function checkBeforeAdd(data) {
-
             const product_id = data.product_id;
             const $el = $(`#data-product-qty-${product_id}`);
             const oldQty = parseInt($el.val(), 10);
 
-            var product_name = $el.find("img").attr("alt");
-            list_product += '<li class="previewCartItem"><div class="previewCartItem-image"><a href="' + $el.find("a").attr("href") + '">\
-                <img src="' + $el.find("img").attr("src") + '" ></a></div>\
-                <div class="previewCartItem-content"><h6 class="previewCartItem-name"><a href="' + $el.find("a").attr("href") + '">' + product_name + '</a></h6><dl class="definitionList">';
+            const product_name = $el.find("img").attr("alt");
+            list_product += `<li class="previewCartItem"><div class="previewCartItem-image"><a href="${$el.find("a").attr("href")}">\
+                <img src="${$el.find("img").attr("src")}" ></a></div>\
+                <div class="previewCartItem-content"><h6 class="previewCartItem-name"><a href="${$el.find("a").attr("href")}">${product_name}</a></h6><dl class="definitionList">`;
         }
 
         function addToCart(data) {
             const product_id = data.product_id;
             const $el = $(`#data-product-qty-${product_id}`);
-            
-            var form_data = new FormData();
-            for (var key in data) {
+
+            const form_data = new FormData();
+            for (const key in data) {
                 form_data.append(key, data[key]);
             }
 
@@ -106,12 +101,10 @@ export default function (context) {
                 } else {
                     $('body').addClass('themevale_open-Cart');
                 }
-                
-                getCart(qty, response.data.cart_item.hash);
 
+                getCart(qty, response.data.cart_item.hash);
             });
         }
-
 
         function getCart(qty, cartItemHash) {
             // modal.open();
@@ -139,7 +132,5 @@ export default function (context) {
                 $('body').trigger('cart-quantity-update', quantity);
             });
         }
-
     });
-
 }

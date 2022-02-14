@@ -4,14 +4,14 @@ import swal from 'sweetalert2';
 import _ from 'lodash';
 import modalFactory, { showAlertModal } from '../global/modal';
 
-export default function(context) {
+export default function (context) {
     const relate_tab = "#tab-related";
     const previewModal = modalFactory('#previewModal')[0];
 
     // check custom field fbt
     showFBT();
 
-    $(document).on('click', '.themvale-fbt-toggle-options', function() {
+    $(document).on('click', '.themvale-fbt-toggle-options', function () {
         if ($(this).next().is(':visible') == false) {
             $(this).next().slideDown();
         } else {
@@ -19,38 +19,37 @@ export default function(context) {
         }
     });
 
-    $(document).on('change', '.themvale-fbt-detail-checkbox', function() {
-        var id = $(this).attr('id').replace('fbt_product', '');
+    $(document).on('change', '.themvale-fbt-detail-checkbox', function () {
+        const id = $(this).attr('id').replace('fbt_product', '');
         if ($(this).is(':checked') == false) {
-            $('.themvale-fbt-product-item[data-product-id="' + id + '"]').removeClass('isChecked');
+            $(`.themvale-fbt-product-item[data-product-id="${id}"]`).removeClass('isChecked');
             $(this).parents('form').find('.themvale-fbt-detail-options').slideUp();
         } else {
-            $('.themvale-fbt-product-item[data-product-id="' + id + '"]').addClass('isChecked');
+            $(`.themvale-fbt-product-item[data-product-id="${id}"]`).addClass('isChecked');
         }
         totalPrice();
     });
 
-    $(document).on('click', '#themvale-fbt-addAll', function(event) {
+    $(document).on('click', '#themvale-fbt-addAll', (event) => {
         if ($('#themvale-fbt-addAll').hasClass('disabled')) {
             event.preventDefault();
             event.stopPropagation();
         } else {
             const $form = $('form', $('#themvale-fbt'));
-            var arrPro = new Array();
-            $('.themvale-fbt-detail-checkbox').each(function(i, val) {
+            const arrPro = new Array();
+            $('.themvale-fbt-detail-checkbox').each((i, val) => {
                 if ($(val).is(':checked')) {
                     arrPro.push(i);
                 }
             });
-            
-            var check = false;
+
+            let check = false;
 
             check = checkMainProduct();
 
             if (check && arrPro.length > 0) {
                 check = checkProduct($form, arrPro);
             }
-            
 
             if (check) {
                 $('#themvale-fbt .loadingOverlay').show();
@@ -67,14 +66,14 @@ export default function(context) {
     });
 
     function checkAddToCartButton() {
-        var arrPro = new Array();
-        $('.themvale-fbt-detail-checkbox').each(function(i, val) {
+        const arrPro = new Array();
+        $('.themvale-fbt-detail-checkbox').each((i, val) => {
             if ($(val).is(':checked')) {
                 arrPro.push(i);
             }
         });
-        var check;
-        if($('#form-action-addToCart').is(":disabled")) {
+        let check;
+        if ($('#form-action-addToCart').is(":disabled")) {
             check = false;
         } else {
             check = true;
@@ -100,25 +99,23 @@ export default function(context) {
             var num = 0;
             var list = [];
 
-            $(relate_tab + ' .card').each(function(i, val) {
-                    list.push( {i:i, data: ""} );
-                    
-                    var pId = $(val).data('product-id');
+            $(`${relate_tab} .card`).each((i, val) => {
+                    list.push({ i, data: "" });
+
+                    const pId = $(val).data('product-id');
                     if (pId != undefined) {
                         utils.api.product.getById(pId, options, (err, response) => {
                             if (err) {
                                 return '';
                             }
-                            list.forEach(function(element) {
-                                if(element.i == i){
+                            list.forEach((element) => {
+                                if (element.i == i) {
                                     element.data = response;
                                 }
                             });
-                            
+
                             num++;
-                            if(num == $(relate_tab + ' .card').length)
-                                showList(list);
-                     
+                            if (num == $(`${relate_tab} .card`).length) showList(list);
                         });
                     }
             });
@@ -126,37 +123,34 @@ export default function(context) {
             var num = 0;
             var list = [];
 
-            $('.productView-info-value.fbt-product').each(function(i) {
-                list.push( {i:i, data: ""} );
+            $('.productView-info-value.fbt-product').each(function (i) {
+                list.push({ i, data: "" });
                 if (!isNaN(Number($(this).text()))) {
-                    var productId = Number($(this).text())
+                    const productId = Number($(this).text());
                     utils.api.product.getById(productId, options, (err, response) => {
                         if (err) {
                             return '';
                         }
-                        list.forEach(function(element) {
-                            if(element.i == i){
+                        list.forEach((element) => {
+                            if (element.i == i) {
                                 element.data = response;
                             }
                         });
                         num++;
-                        if(num == $('.productView-info-value.fbt-product').length)
-                            showList(list);
+                        if (num == $('.productView-info-value.fbt-product').length) showList(list);
                     });
                 } else {
                     utils.api.getPage($(this).text(), options, (err, response) => {
                         if (err) {
                             return '';
                         }
-                        list.forEach(function(element) {
-                            if(element.i == i){
+                        list.forEach((element) => {
+                            if (element.i == i) {
                                 element.data = response;
                             }
                         });
                         num++;
-                        if(num == $('.productView-info-value.fbt-product').length)
-                            showList(list);
-          
+                        if (num == $('.productView-info-value.fbt-product').length) showList(list);
                     });
                 }
             });
@@ -167,18 +161,18 @@ export default function(context) {
         }
     }
 
-    function showList(list){
-        list.forEach(function(element) {
-            var response = element.data;
+    function showList(list) {
+        list.forEach((element) => {
+            const response = element.data;
             $('#themvale-fbt .themvale-fbt-product-list').append(response.item);
             if (response.options.trim() != "") {
-                var pId = $(response.item).data('product-id');
-                const $form = $('#themvale-fbt .themvale-fbt-product-list .themvale-fbt-product-item[data-product-id="' + pId + '"] form');
+                const pId = $(response.item).data('product-id');
+                const $form = $(`#themvale-fbt .themvale-fbt-product-list .themvale-fbt-product-item[data-product-id="${pId}"] form`);
                 $form.append(response.options);
                 const $productOptionsElement = $('[data-fbt-option-change]', $form);
                 const hasOptions = $productOptionsElement.html().trim().length;
                 const hasDefaultOptions = $(response.options).find('[data-default]').length;
-                if ( hasDefaultOptions && hasOptions) {
+                if (hasDefaultOptions && hasOptions) {
                     utils.api.productAttributes.optionChange(pId, $form.serialize(), 'products/bulk-discount-rates', (err, response) => {
                         const attributesData = response.data || {};
                         const attributesContent = response.content || {};
@@ -211,13 +205,13 @@ export default function(context) {
         if ($previewFbtDetailOptions.length) {
             $previewFbtDetailOptions.mCustomScrollbar({
                 scrollInertia: 400,
-                mouseWheel:true
+                mouseWheel: true
             });
         }
-        $('.themvale-fbt-product-list .themvale-fbt-product-item').each(function(index) {
-            var title = $(this).find('.themvale-fbt-detail-label .card-title').text().trim();
+        $('.themvale-fbt-product-list .themvale-fbt-product-item').each(function (index) {
+            const title = $(this).find('.themvale-fbt-detail-label .card-title').text().trim();
             if (title.length > 30) {
-              var truncated = title.substring(0, 30).split(" ").slice(0, -1).join(" ") + "…";
+              const truncated = `${title.substring(0, 30).split(" ").slice(0, -1).join(" ")}…`;
               $(this).find('.themvale-fbt-detail-label .card-title').text(truncated);
             }
         });
@@ -275,65 +269,57 @@ export default function(context) {
     }
 
     function checkProduct(form, arrPro) {
-        var check = true;
+        let check = true;
 
-        for (var i = 0; i < arrPro.length; i++) {
-            var k = arrPro[i];
-            var $form = $(form[k]);
-            
+        for (let i = 0; i < arrPro.length; i++) {
+            const k = arrPro[i];
+            const $form = $(form[k]);
+
             if ($form.find('[data-fbt-option-change]').length) {
                 check = checkBeforeAdd($form);
-                if (check == false)
-                    return false;
+                if (check == false) return false;
             }
         }
         return check;
     }
 
     function checkBeforeAdd($attributes) {
-        var check = true;
-        $attributes.find('input:text, input:password, input:file, textarea').each(function() {
-
-            if (!$(this).prop('required')) {} else {
-                if ($(this).val()) {} else {
+        let check = true;
+        $attributes.find('input:text, input:password, input:file, textarea').each(function () {
+            if (!$(this).prop('required')) {} else if ($(this).val()) {} else {
                     $(this).focus();
                     check = false;
                 }
-            }
         });
 
-        $attributes.find('select').each(function() {
-
+        $attributes.find('select').each(function () {
             if (!$(this).prop('required')) {
 
-            } else {
-                if ($(this).val()) {} else {
+            } else if ($(this).val()) {} else {
                     $(this).focus();
                     check = false;
                 }
-            }
         });
 
-        var att = "";
-        $attributes.find('input:radio, input:checkbox').each(function() {
+        let att = "";
+        $attributes.find('input:radio, input:checkbox').each(function () {
             if (att != $(this).attr("name")) {
-
                 att = $(this).attr("name");
                 if (!$(this).prop('required')) {
                     if ($(this).attr("type") == "checkbox") {
-                        if ($("[name='" + att + "']:checked").val()) {}
+                        if ($(`[name='${att}']:checked`).val()) {}
                     }
                     if ($(this).attr("type") == "radio") {
-                        if ($("[name='" + att + "']:checked").val()) {}
+                        if ($(`[name='${att}']:checked`).val()) {}
                     }
                 } else {
                     if ($(this).attr("type") == "checkbox") {
-                        if ($("[name='" + att + "']:checked").val()) {} else {
+                        if ($(`[name='${att}']:checked`).val()) {} else {
                             check = false;
                         }
                     }
                     if ($(this).attr("type") == "radio") {
-                        if ($("[name='" + att + "']:checked").val()) {} else {
+                        if ($(`[name='${att}']:checked`).val()) {} else {
                             check = false;
                         }
                     }
@@ -344,23 +330,23 @@ export default function(context) {
         return check;
     }
 
-    function checkMainProduct(){
-        var check = true;
+    function checkMainProduct() {
+        let check = true;
         const $form = $('form[data-cart-item-add]', $('.productView'));
-        
+
         if ($form.find('[data-product-option-change]').length) {
             check = checkBeforeAdd($form.find('[data-product-option-change]'));
         }
         return check;
     }
-    function addMainProductToCart(form, arrP){
+    function addMainProductToCart(form, arrP) {
         if (window.FormData === undefined) {
             return;
         }
 
         const $form = $('form[data-cart-item-add]', $('.productView'));
         // Add item to cart
-        utils.api.cart.itemAdd(filterEmptyFilesFromForm(new FormData( $form[0] ) ), (err, response) => {
+        utils.api.cart.itemAdd(filterEmptyFilesFromForm(new FormData($form[0])), (err, response) => {
             const errorMessage = err || response.data.error;
             $('#themvale-fbt .loadingOverlay').hide();
 
@@ -371,8 +357,8 @@ export default function(context) {
                 tmp.innerHTML = errorMessage;
                 return showAlertModal(tmp.textContent || tmp.innerText);
             }
-            
-            if ( arrP.length == 0 ) {
+
+            if (arrP.length == 0) {
                 const loadingClass = 'is-loading';
                 const $cart = $('[data-cart-preview]');
                 const $cartDropdown = $('.dropdown-cart');
@@ -402,7 +388,7 @@ export default function(context) {
                 });
 
                 updateCartContent(previewModal, response.data.cart_item.id);
-                
+
                 if ($(window).width() > 1024) {
                     $('body').addClass('themevale_open_cart');
                     $('.wrapper-top-cart .cart-icon').addClass('is-open');
@@ -417,7 +403,6 @@ export default function(context) {
     }
 
     function addToCart(form, i, arrP) {
-
         if (i >= arrP.length) {
             window.location = '/cart.php';
             return;
@@ -426,11 +411,10 @@ export default function(context) {
         if (window.FormData === undefined) {
             return;
         }
-        var k = arrP[i];
+        const k = arrP[i];
 
         // Add item to cart
         utils.api.cart.itemAdd(filterEmptyFilesFromForm(new FormData(form[k])), (err, response) => {
-
             const errorMessage = err || response.data.error;
 
             $('#themvale-fbt .loadingOverlay').hide();
@@ -479,14 +463,13 @@ export default function(context) {
                         $('body').addClass('themevale_open-Cart');
                     }
                 });
-                
+
                 return;
             }
             addToCart(form, i, arrP);
-            
         });
     }
-    
+
     function updateCartContent(modal, cartItemId, onComplete) {
         getCartContent(cartItemId, (err, response) => {
             if (err) {
@@ -529,27 +512,21 @@ export default function(context) {
     }
 
     function totalPrice() {
-        var total = 0;
-        var pos = 0;
-        var symbol = "$";
-        $('.themvale-fbt-product-item.isChecked').each(function(i, val) {
-            if ($(val).find('.price-section .price.price--withTax').length)
-                var currency = $(val).find('.price-section .price.price--withTax').text();
-            else
-                var currency = $(val).find('.price-section .price.price--withoutTax').text();
-            var price = parseFloat(currency.replace(/[^0-9.-]+/g, ""));
-            var s = currency.replace(parseFloat(price).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ","), "");
-            if (isNaN(parseFloat(s.replace(/[^0-9.-]+/g, ""))))
-                symbol = s;
-            if (currency.indexOf(symbol) != -1)
-                pos = currency.indexOf(symbol);
-            total = total + price;
+        let total = 0;
+        let pos = 0;
+        let symbol = "$";
+        $('.themvale-fbt-product-item.isChecked').each((i, val) => {
+            if ($(val).find('.price-section .price.price--withTax').length) var currency = $(val).find('.price-section .price.price--withTax').text();
+            else var currency = $(val).find('.price-section .price.price--withoutTax').text();
+            const price = parseFloat(currency.replace(/[^0-9.-]+/g, ""));
+            const s = currency.replace(parseFloat(price).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ","), "");
+            if (isNaN(parseFloat(s.replace(/[^0-9.-]+/g, "")))) symbol = s;
+            if (currency.indexOf(symbol) != -1) pos = currency.indexOf(symbol);
+            total += price;
         });
         total = parseFloat(total).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-        if (pos == 0)
-            total = symbol + total;
-        else
-            total = total + symbol;
+        if (pos == 0) total = symbol + total;
+        else total += symbol;
         $('#themvale-fbt-totalPrice').html(total);
     }
 
@@ -562,7 +539,7 @@ export default function(context) {
             productOptionsChanged(event);
         });
 
-        $(document).on('click', '.close-options', function() {
+        $(document).on('click', '.close-options', function () {
             $(this).parents('.themvale-fbt-detail-options[data-fbt-option-change]').slideUp();
         });
     }
@@ -575,10 +552,10 @@ export default function(context) {
         if ($changedOption.attr('type') === 'file' || window.FormData === undefined) {
             return;
         }
-        if ($changedOption.attr('id') === 'fbt_product' + productId) {
+        if ($changedOption.attr('id') === `fbt_product${productId}`) {
             return;
         }
-        
+
         utils.api.productAttributes.optionChange(productId, $form.serialize(), 'products/bulk-discount-rates', (err, response) => {
             const productAttributesData = response.data || {};
             const productAttributesContent = response.content || {};
@@ -589,7 +566,7 @@ export default function(context) {
         });
         return false;
     }
-    
+
     function updateProductAttributes($scope, data) {
         const behavior = data.out_of_stock_behavior;
         const inStockIds = data.in_stock_attributes;
@@ -602,7 +579,7 @@ export default function(context) {
         $('[data-product-attribute-value]', $scope).each((i, attribute) => {
             const $attribute = $(attribute);
             const attrId = parseInt($attribute.data('productAttributeValue'), 10);
-            
+
             if (inStockIds.indexOf(attrId) !== -1) {
                 enableAttribute($attribute, behavior, outOfStockMessage);
             } else {
@@ -667,20 +644,18 @@ export default function(context) {
 
     function showProductImage(productId, data) {
         if (_.isPlainObject(data.image)) {
-
             const mainImageUrl = utils.tools.image.getSrc(
                 data.image.data,
                 context.themeSettings.product_size,
             );
 
-            $('.themvale-fbt-product-item[data-product-id="' + productId + '"]').find('img').attr({
+            $(`.themvale-fbt-product-item[data-product-id="${productId}"]`).find('img').attr({
                 'src': mainImageUrl,
                 'data-src': $(this).attr('src'),
             });
-
         } else {
-            const mainImageUrl = $('.themvale-fbt-product-item[data-product-id="' + productId + '"]').find('img').attr('data-src');
-            $('.themvale-fbt-product-item[data-product-id="' + productId + '"]').find('img').attr({
+            const mainImageUrl = $(`.themvale-fbt-product-item[data-product-id="${productId}"]`).find('img').attr('data-src');
+            $(`.themvale-fbt-product-item[data-product-id="${productId}"]`).find('img').attr({
                 'src': mainImageUrl,
                 'data-src': $(this).attr('src'),
             });
@@ -693,40 +668,40 @@ export default function(context) {
         if (_.isObject(data.price)) {
             updatePriceView(viewModel, data.price);
         }
-        var productId = $('[name="product_id"]', $scope).val();
+        const productId = $('[name="product_id"]', $scope).val();
 
         if (!data.purchasable || !data.instock) {
-            $('#fbt_product' + productId).prop('checked', false).prop('disabled', true);
-            $('.themvale-fbt-product-item[data-product-id="' + productId + '"]').removeClass('hasOptions--selected');
-            $('.themvale-fbt-product-item[data-product-id="' + productId + '"]').addClass('out-stock');
+            $(`#fbt_product${productId}`).prop('checked', false).prop('disabled', true);
+            $(`.themvale-fbt-product-item[data-product-id="${productId}"]`).removeClass('hasOptions--selected');
+            $(`.themvale-fbt-product-item[data-product-id="${productId}"]`).addClass('out-stock');
         } else {
-            $('#fbt_product' + productId).prop('checked', false).prop('disabled', false);
-            $('.themvale-fbt-product-item[data-product-id="' + productId + '"]').removeClass('out-stock');
+            $(`#fbt_product${productId}`).prop('checked', false).prop('disabled', false);
+            $(`.themvale-fbt-product-item[data-product-id="${productId}"]`).removeClass('out-stock');
             if ($scope.find('[data-fbt-option-change]').length) {
-                var check = checkBeforeAdd($scope);
+                const check = checkBeforeAdd($scope);
                 if (check == true) {
-                    $('.themvale-fbt-product-item[data-product-id="' + productId + '"]').addClass('hasOptions--selected');
-                    //$('[data-fbt-option-change]', $scope).slideUp();
+                    $(`.themvale-fbt-product-item[data-product-id="${productId}"]`).addClass('hasOptions--selected');
+                    // $('[data-fbt-option-change]', $scope).slideUp();
                 }
             }
         }
     }
 
     function updateDefaultAttributesForOOS($scope, data) {
-        var productId = $('[name="product_id"]', $scope).val();
+        const productId = $('[name="product_id"]', $scope).val();
 
         if (!data.purchasable || !data.instock) {
-            $('#fbt_product' + productId).prop('checked', false).prop('disabled', true);
-            $('.themvale-fbt-product-item[data-product-id="' + productId + '"]').removeClass('hasOptions--selected');
-            $('.themvale-fbt-product-item[data-product-id="' + productId + '"]').addClass('out-stock');
+            $(`#fbt_product${productId}`).prop('checked', false).prop('disabled', true);
+            $(`.themvale-fbt-product-item[data-product-id="${productId}"]`).removeClass('hasOptions--selected');
+            $(`.themvale-fbt-product-item[data-product-id="${productId}"]`).addClass('out-stock');
         } else {
-            $('#fbt_product' + productId).prop('checked', true).prop('disabled', false);
-            $('.themvale-fbt-product-item[data-product-id="' + productId + '"]').removeClass('out-stock');
+            $(`#fbt_product${productId}`).prop('checked', true).prop('disabled', false);
+            $(`.themvale-fbt-product-item[data-product-id="${productId}"]`).removeClass('out-stock');
             if ($scope.find('[data-fbt-option-change]').length) {
-                var check = checkBeforeAdd($scope);
+                const check = checkBeforeAdd($scope);
                 if (check == true) {
-                    $('.themvale-fbt-product-item[data-product-id="' + productId + '"]').addClass('hasOptions--selected');
-                    //$('[data-fbt-option-change]', $scope).slideUp();
+                    $(`.themvale-fbt-product-item[data-product-id="${productId}"]`).addClass('hasOptions--selected');
+                    // $('[data-fbt-option-change]', $scope).slideUp();
                 }
             }
         }
@@ -854,5 +829,4 @@ export default function(context) {
         }
         return formData;
     }
-
 }

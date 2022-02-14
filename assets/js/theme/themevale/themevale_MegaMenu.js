@@ -1,10 +1,8 @@
-export default class themevaleMenu
-{
+export default class themevaleMenu {
     constructor() {
     }
 
     menuItem(num) {
- 
         return {
             themevaleMegaMenu(param) {
                 // Defaut params
@@ -20,7 +18,7 @@ export default class themevaleMenu
                 label: '',
                 }, param);
 
-                $('.navPages > ul.navPages-list:not(.navPages-list--user) > li:nth-child(' + num + ')').each(function(idx, el) {
+                $(`.navPages > ul.navPages-list:not(.navPages-list--user) > li:nth-child(${num})`).each((idx, el) => {
                     if (param.disabled === false) {
                         const subMegaMenu = $(el).children('.navPage-subMenu');
                         const navPages_action = $(el).children('.navPages-action');
@@ -46,7 +44,7 @@ export default class themevaleMenu
                             $(el).addClass('alignRight');
                         } else if (param.dropAlign == 'left-edge') {
                             $(el).addClass('alignLeftEdge');
-                        }  else {
+                        } else {
                             $(el).addClass('alignLeft');
                         }
 
@@ -54,11 +52,11 @@ export default class themevaleMenu
                         if (param.dropType === 'imageLeft') {
                             subMegaMenu.addClass('imageLeft');
                             subMegaMenu.wrapInner('<div class="cateArea colRight"></div>');
-                            subMegaMenu.append('<div class="imageArea colLeft">' + param.images + '</div>');
+                            subMegaMenu.append(`<div class="imageArea colLeft">${param.images}</div>`);
                         } else if (param.dropType === 'imageRight') {
                             subMegaMenu.addClass('imageRight');
                             subMegaMenu.wrapInner('<div class="cateArea colLeft"></div>');
-                            subMegaMenu.append('<div class="imageArea colRight">' + param.images + '</div>');
+                            subMegaMenu.append(`<div class="imageArea colRight">${param.images}</div>`);
                         } else if (param.dropType === 'noImage') {
                             subMegaMenu.addClass('noImage').wrapInner('<div class="cateArea"></div>');
                             subMegaMenu.find('.cateArea').css({
@@ -67,7 +65,6 @@ export default class themevaleMenu
                         } else if (param.dropType === 'imageTop') {
                             subMegaMenu.addClass('imageTop').wrapInner('<div class="cateArea"></div>');
                         }
-
 
                         // dropdown Width
                         if ((param.dropAlign === 'fullWidth')) {
@@ -115,22 +112,22 @@ export default class themevaleMenu
 
                         if (param.bottomCates.length && (param.bottomCates !== '')) {
                             subMegaMenu.find('.cateArea').addClass('has-bottom-cates');
-                            subMegaMenu.find('.cateArea > ul').append('<div class="bottomCate" style="max-width: ' + param.cateAreaWidth + '">' + param.bottomCates + '</div>');
+                            subMegaMenu.find('.cateArea > ul').append(`<div class="bottomCate" style="max-width: ${param.cateAreaWidth}">${param.bottomCates}</div>`);
                         }
 
                         if (param.imagesTop.length && (param.imagesTop !== '')) {
                             function megamenuImageTop($_image_array) {
-                                var j = 1;
-                                for (var i = 0; i < $_image_array.length; i++) {
-                                    j = j + 1;
-                                    subMegaMenu.find('.cateArea > ul > li:nth-child(' + j + ') > .navPages-action').after($_image_array[i]);
+                                let j = 1;
+                                for (let i = 0; i < $_image_array.length; i++) {
+                                    j += 1;
+                                    subMegaMenu.find(`.cateArea > ul > li:nth-child(${j}) > .navPages-action`).after($_image_array[i]);
                                 }
                             }
                             megamenuImageTop(param.imagesTop);
                         }
 
                         if (param.bottomMegamenu.length && (param.bottomMegamenu !== 'none')) {
-                            subMegaMenu.append('<div class="bottomMegamenu">' + param.bottomMegamenu + '</div>');
+                            subMegaMenu.append(`<div class="bottomMegamenu">${param.bottomMegamenu}</div>`);
                         }
                     } else {
                         const navPages_action = $(el).children('.navPages-action');
@@ -146,6 +143,6 @@ export default class themevaleMenu
                 });
                 return this;
             }
-        }
+        };
 }
 }

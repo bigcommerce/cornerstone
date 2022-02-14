@@ -1,8 +1,7 @@
 import $ from 'jquery';
 import utils from '@bigcommerce/stencil-utils';
 
-
-export default class AZBrands {    
+export default class AZBrands {
     loaded(limit) {
         const $brands = $('[data-brands-list]');
         if ($brands.length > 0) {
@@ -23,7 +22,7 @@ export default class AZBrands {
         const $atozBrandsTable = $(`#${azBrandsTableID}`);
 
         $atozBrandsTable.append('<li data-letter=""><a href="#">All</a></li>');
-        var ch = '#';
+        const ch = '#';
         $atozBrands.append(`<div class="azBrands-group" data-letter="${ch}" id="azBrands-code-123"><h3 class="azBrands-group-title">${ch}</h3><ul class="brandList"></ul></div>`);
         $atozBrandsTable.append(`<li data-letter="${ch}"><a href="#azBrands-code-123" data-target="azBrands-code-123">${ch}</a></li>`);
 
@@ -97,18 +96,18 @@ export default class AZBrands {
             }
         });
 
-        setTimeout(function(){ 
-            $('#azBrands .azBrands-group ul').each(function(e){
-                var check = ($(this).find("li").length);
-                if(check === 0){
+        setTimeout(() => {
+            $('#azBrands .azBrands-group ul').each(function (e) {
+                const check = ($(this).find("li").length);
+                if (check === 0) {
                     $(this).prev(".azBrands-group-title").addClass("not_valued");
                 }
             });
 
-            $atozBrands.children().each(function(){
-                var temp = $(this).find(".azBrands-group-title.not_valued").text().trim();
-                $atozBrandsTable.children().each(function(){
-                    if( $(this).find('a').text().trim() == temp){
+            $atozBrands.children().each(function () {
+                const temp = $(this).find(".azBrands-group-title.not_valued").text().trim();
+                $atozBrandsTable.children().each(function () {
+                    if ($(this).find('a').text().trim() == temp) {
                         $(this).find('a').addClass('disable');
                     }
                 });
@@ -121,7 +120,7 @@ export default class AZBrands {
             template: 'themevale/brands-list',
             config: {
                 brands: {
-                    limit: limit,
+                    limit,
                 },
             },
         }, (err, resp) => {

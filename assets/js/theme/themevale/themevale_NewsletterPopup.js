@@ -46,7 +46,6 @@ export default function (t, ev) {
          $('#themevale_newsletter').removeClass('hide').addClass('animated fadeIn');
          $('body').addClass('has-newsletter');
       }, 500);
-      
 
       $('#popupSubcribeFormSubmit').submit(function(event) {
          if ($('#popupSubcribeFormSubmit').find('#nl_email').val() === '') {
@@ -76,7 +75,7 @@ export default function (t, ev) {
       $(document).on('click', '[data-close-newsletter-popup]', function() {
          setClosePopup();
       });
-      
+
       $('.popup-overlay').on('click', function(ev) {
          if ($('body').hasClass('has-newsletter')) {
             setClosePopup();

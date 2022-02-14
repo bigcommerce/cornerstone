@@ -13,15 +13,15 @@ export default class Home extends PageManager {
     loadOptionForProductCard() {
     	const context = this.context;
 
-        if($('.tab-content').length > 0){
+        if ($('.tab-content').length > 0) {
             $('.tab-content').each((index, element) => {
-                var $prodWrapId = $(element).attr('id');
+                const $prodWrapId = $(element).attr('id');
                 haloAddOptionForProduct(context, $prodWrapId);
             });
         }
-        if($('.productCarousel').length > 0 && $('.homepage-layout-2').length > 0){
+        if ($('.productCarousel').length > 0 && $('.homepage-layout-2').length > 0) {
             $('.productCarousel').each((index, element) => {
-                var $prodWrapId = $(element).attr('id');
+                const $prodWrapId = $(element).attr('id');
                 haloAddOptionForProduct(context, $prodWrapId);
             });
         }

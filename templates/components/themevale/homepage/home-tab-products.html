@@ -1,0 +1,39 @@
+<script type="text/javascript">
+  var arrNew2 = [0{{#each productsnew}},{{id}}{{/each}}];
+</script>
+<div id="homeTabsProducts" class="module-wrapper">
+    <div class="container">
+        <ul class="tabs themevale_tabs" data-tab>
+            {{#if theme_settings.enable_home_custom_tab}}
+                <li class="tab is-active">
+                    <a class="tab-title custom-tab-title" cat-url="{{theme_settings.home_custom_tab_url}}" href="#tab-custom">{{theme_settings.home_custom_tab_title}}</a>
+                </li>
+            {{/if}}
+            {{#if products.featured}}
+                <li class="tab {{#if theme_settings.enable_home_custom_tab '==' false}}is-active{{/if}}"><a class="tab-title" href="#tab-featured">{{lang 'products.featured_tab' }}</a></li>
+            {{/if}}
+            {{#if products.top_sellers}}
+                <li class="tab"><a class="tab-title" href="#tab-sellers">{{lang 'products.top' }}</a></li>
+            {{/if}}
+        </ul>
+        <div class="tabs-contents themevale_tabs-contents">
+            {{#if theme_settings.enable_home_custom_tab}}
+                <div class="tab-content tab-content-custom is-active" id="tab-custom">
+              </div>
+            {{/if}}
+
+            {{#if products.featured}}
+                <div class="tab-content {{#if theme_settings.enable_home_custom_tab '==' false}}is-active{{/if}}" id="tab-featured">
+                    {{> components/products/home-product products=products.featured productsnew=../products.new columns=../theme_settings.homepage_carousel_products_column}}
+                </div>
+            {{/if}}
+
+            {{#if products.top_sellers}}
+                <div class="tab-content" id="tab-sellers">
+                    {{> components/products/home-product products=products.top_sellers productsnew=../products.new columns=../theme_settings.homepage_carousel_products_column}}
+                </div>
+            {{/if}}
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,64 @@
+{{#partial "page"}}
+
+<main class="page themevale_faq">
+    {{#if theme_settings.faqs-banner-img}}
+        <div class="banner-top">
+            <a href="{{theme_settings.faqs-banner-link}}" title="{{theme_settings.faqs-banner-heading}}">
+                <div class="card-img-container">
+                    {{> components/themevale/themevale-responsive-img
+                        image=theme_settings.faqs-banner-img
+                        alt=theme_settings.faqs-banner-heading
+                        class="card-image"
+                        fallback_size=theme_settings.faqs-banner-img-size
+                        lazyload=theme_settings.lazyload_mode
+                    }}
+                </div>
+                {{#if theme_settings.faqs-banner-heading '!=' ''}}
+                    <h2 class="heading">{{theme_settings.faqs-banner-heading}}</h2>
+                {{/if}}
+            </a>
+        </div>
+    {{/if}}
+
+    <div class="container container-smaller">
+        {{#if page.sub_pages}}
+            <nav class="navBar navBar--sub">
+                <ul class="navBar-section account-navigation">
+                {{#each page.sub_pages}}
+                    <li class="navBar-item"><a class="navBar-action" href="{{url}}">{{title}}</a></li>
+                {{/each}}
+                </ul>
+            </nav>
+        {{/if}}
+
+        <div class="page-content">
+            {{#if theme_settings.faqs_need_help}}
+                {{> components/themevale/faqs-need-help}}
+            {{/if}}
+            <div class="right-column">
+                {{#replace '%%Syndicate%%' page.content}}
+                    {{> components/page/rss_feed}}
+                {{else}}
+                    <p>{{{page.content}}}</p>
+                {{/replace}}
+            </div>
+
+            {{#if page.feed}}
+                <ul>
+                    {{#each page.feed}}
+                        <li>
+                            <h6><a href="{{url}}" target="_blank">{{title}}</a></h6>
+                            <p>{{content}}</p>
+                        </li>
+                    {{/each}}
+                </ul>
+            {{/if}}
+        </div>
+
+        {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+    </div>
+</main>
+
+{{/partial}}
+
+{{> layout/base}}

@@ -1,0 +1,64 @@
+<div class="sidebarBlock sidebarBorder" id="sideAllCategories">
+    <h5 class="sidebarBlock-heading">Categories</h5>
+    {{#if categories}}
+    <ul class="all-categories-list">
+        {{#each categories}}
+        <li class="navPages-item">
+            {{#if children}}
+            <a class="navPages-action has-subMenu" href="{{url}}">
+                <span>{{name}}</span>
+            </a>
+            <i class="icon-dropdown" aria-hidden="true"><svg><use xlink:href="#icon-chevron-right" /></svg></i>
+            <ul class="dropdown-category-list navPages-level-2">
+                {{#each children}}
+                    <li class="navPage-subMenu-item">
+                        {{#if children}}
+                            <a class="navPage-subMenu-action navPages-action has-subMenu" href="{{url}}">
+                                <span>{{name}}</span>
+                            </a>
+                            <i class="icon-dropdown" aria-hidden="true"><svg><use xlink:href="#icon-chevron-right" /></svg></i>
+                            <ul class="dropdown-category-list navPages-level-3">
+                                {{#each children}}
+                                <li class="navPage-childList-item">
+                                    {{#if children}}
+                                    <a class="navPage-childList-action navPages-action has-subMenu" href="{{url}}"><span>{{name}}</span></a>
+                                    <i class="icon-dropdown" aria-hidden="true"><svg><use xlink:href="#icon-chevron-right" /></svg></i>
+                                    <ul class="dropdown-category-list navPages-level-4">
+                                        {{#each children}}
+                                        <li class="navPage-childList-item">
+                                            {{#if children}}
+                                                <a class="navPage-childList-action navPages-action has-subMenu" href="{{url}}"><span>{{name}}</span></a>
+                                                <i class="icon-dropdown" aria-hidden="true"><svg><use xlink:href="#icon-chevron-right" /></svg></i>
+                                                <ul class="dropdown-category-list navPages-level-5">
+                                                    {{#each children}}
+                                                     <li class="navPage-childList-item">
+                                                         <a class="navPage-childList-action navPages-action " href="{{url}}"><span>{{name}}</span></a>
+                                                     </li>
+                                                     {{/each}}
+                                                </ul>
+                                            {{else}}
+                                            <a class="navPage-childList-action navPages-action " href="{{url}}"><span>{{name}}</span></a>
+                                            {{/if}}
+                                        </li>
+                                        {{/each}}
+                                    </ul>
+                                    {{else}}
+                                    <a class="navPage-childList-action navPages-action " href="{{url}}"><span>{{name}}</span></a>
+                                    {{/if}}
+                                </li>
+                                {{/each}}
+                            </ul>
+                        {{else}}
+                            <a class="navPage-subMenu-action navPages-action" href="{{url}}"><span>{{name}}</span></a>
+                        {{/if}}
+                    </li>
+                {{/each}}
+            </ul>
+            {{else}}
+            <a class="navPages-action" href="{{url}}"><span>{{name}}</span></a>
+            {{/if}}
+        </li>
+        {{/each}}
+    </ul>
+    {{/if}}
+</div>

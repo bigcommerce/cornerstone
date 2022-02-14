@@ -1,0 +1,74 @@
+<div id="sticky_addtocart" class="{{#if theme_settings.themevale_header_layout '==' 'header-layout-1'}}header-layout-1{{else}}header-layout-2{{/if}}">
+    <div class="container">
+        <div class="item product-name">
+            <div class="product-wrapper">
+                <div class="product-content">
+                    <h1 class="productView-title" {{#if schema}}itemprop="name"{{/if}}><span class="selected">{{theme_settings.sticky_add_to_cart_text_select}}</span> {{product.title}}</h1>
+                </div>
+            </div>
+        </div>
+        <div class="item count-down">
+            {{#each product.custom_fields}}
+                {{#if name '===' 'count-down'}}
+                <div class="product-count-down countDowntimer2" data-count-down2="{{{value}}}"></div>
+                {{/if}}
+            {{/each}}
+        </div>
+        <div class="item">
+            <div class="productView-price">
+                {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+                    {{> components/products/price price=product.price schema_org=schema}}
+                {{else}}
+                    {{> components/common/login-for-pricing}}
+                {{/or}}
+            </div>
+            <form class="form form-popup product-main" method="post" action="{{product.cart_url}}" enctype="multipart/form-data" data-cart-item-add-2>
+                <input type="hidden" name="action" value="add">
+                <input type="hidden" name="product_id" value="{{product.id}}"/>
+                {{#each product.customizations}}
+                    {{{dynamicComponent 'components/products/customizations'}}}
+                {{/each}}
+                {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+                    <div class="form-action">
+                        <input id="form-action-addToCart" data-wait-message="{{lang 'products.adding_to_cart'}}" class="btn button button--primary button--large themevale" type="submit" value="{{#if product.pre_order}}{{lang 'products.pre_order'}}{{else}}{{lang 'products.add_to_cart'}}{{/if}}">
+
+                        {{#if product.options}}
+                            <a href="javascript:void(0)" class="btn button choose_options_add">
+                                <span>Choose Option</span>
+                            </a>
+                        {{/if}}
+                    </div>
+                     {{{snippet 'product_addtocart'}}}
+                {{/or}}
+                {{#if product.options}}
+                    <div class="pop-up-option">
+                        <div class="container">
+                            <div class="data-product-name">
+                                <h1 class="productView-title" {{#if schema}}itemprop="name"{{/if}}>{{product.title}}</h1>
+                                <div class="productView-price">
+                                    {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+                                        {{> components/products/price price=product.price schema_org=schema}}
+                                    {{else}}
+                                        {{> components/common/login-for-pricing}}
+                                    {{/or}}
+                                </div>
+                            </div>
+                            <div class="data-product-option" data-product-option-change-2>
+                                {{#each product.options}}
+                                    {{{dynamicComponent 'components/themevale/options-2'}}}
+                                {{/each}}
+                                <a href="javascript:void(0)" class="close">✕</a>
+                            </div>
+                            <div class="alertBox productAttributes-message" style="display:none">
+                                <div class="alertBox-column alertBox-icon">
+                                    <icon glyph="ic-success" class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path></svg></icon>
+                                </div>
+                                <p class="alertBox-column alertBox-message"></p>
+                            </div>
+                        </div>
+                    </div>
+                {{/if}}
+            </form>
+        </div>
+    </div>
+</div>

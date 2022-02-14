@@ -1,0 +1,13 @@
+<div class="form-field">
+    <label class="form-label form-label--alternate form-label--inlineSmall" for="customization_{{this.id}}_{{../id}}">
+        {{ this.display_name }}:
+        {{#if required}}
+            <small>{{lang 'common.required'}}</small>
+        {{/if}}
+    </label>
+    <input class="form-file" type="file" id="customization_{{this.id}}_{{../id}}" {{#if required}}required {{/if}}name="ProductFields[{{this.id}}]">
+    {{#if original_name}}
+        {{{lang 'products.file_option_set' url=file_url name=original_name}}}
+    {{/if}}
+    <p class="form-fileDescription">{{#if file_size}}{{lang 'products.max_filesize'}} <strong>{{file_size}}</strong>, {{/if}}{{#if file_types}}{{lang 'products.filetypes'}} <strong>{{file_types}}</strong>{{/if}}</p>
+</div>

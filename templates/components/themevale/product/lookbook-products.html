@@ -1,0 +1,71 @@
+<article class="card {{#if alternate}}card--alternate{{/if}}" data-product-id="{{id}}" {{#if settings.data_tag_enabled}} data-event-type="{{event}}" data-entity-id="{{id}}" data-position="{{position}}" data-name="{{name}}" data-product-category="{{#each category}}{{#if @last}}{{this}}{{else}}{{this}}, {{/if}}{{/each}}" data-product-brand="{{brand.name}}" data-product-price="{{#if price.with_tax}}{{price.with_tax.value}}{{else}}{{price.without_tax.value}}{{/if}}"  {{/if}}>
+    <figure class="card-figure">
+        <div class="themevale_badges">
+            {{#or product.price.non_sale_price_with_tax price.non_sale_price_without_tax}}
+                <div class="sale-badge themevale_badge">
+                    <span class="text">Sale</span>
+                </div>
+            {{/or}}
+            {{#each product.custom_fields}}
+                {{#if name '===' 'custom label'}}
+                <div class="custom-badge themevale_badge">
+                    <span class="text">{{{value}}}</span>
+                </div>
+                {{/if}}
+            {{/each}}
+            {{#if product.out_of_stock_message}}
+                <div class="soldOut-badge themevale_badge">
+                    <span class="text">sold out</span>
+                </div>
+            {{/if}}
+        </div>
+        <a href="{{product.url}}" class="product_img_link" {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}}>
+            <div class="card-img-container {{#if product.images.length '>=' 2}}card-img-hover{{/if}}">
+                <img class="card-image lazyload" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{getImage product.main_image 'productgallery_size' (cdn theme_settings.default_image_product)}}" alt="{{image.alt}}" title="{{image.alt}}">
+                {{#if product.images.length '>=' 2}}
+                    {{#each product.images}}
+                        {{#if @index '==' 1}}
+                            <span class="product-additional" data-product-id="">
+                                <img class="replace-2x img-responsive lazyload" src="{{cdn 'img/loading.svg'}}" data-src="{{getImage this 'productgallery_size' (cdn theme_settings.default_image_product)}}" alt="{{image.alt}}" title="{{image.alt}}">
+                            </span>
+                        {{/if}}
+                    {{/each}}
+                {{/if}}
+            </div>
+        </a>
+    </figure>
+    <div class="card-body">
+        {{#if product.brand.name}}
+            <p class="card-brand" data-test-info-type="brandName">{{product.brand.name}}</p>
+        {{/if}}
+        <h4 class="card-title">
+            <a href="{{product.url}}" {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}}>{{product.title}}</a>
+        </h4>
+        <div class="card-price" data-test-info-type="price">
+            {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+                {{> components/products/price price=product.price}}
+            {{else}}
+                {{> components/common/login-for-pricing}}
+            {{/or}}
+        </div>
+        <div class="card-figcaption">
+            {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+                {{#if product.options}}
+                    <a href="{{product.url}}" data-event-type="product-click" class="btn button card-figcaption-button" data-product-id="{{product.id}}">{{lang 'products.choose_options'}}</a>
+                {{/if}}
+                {{#if product.pre_order}}
+                    <a href="{{product.pre_order_add_to_cart_url}}" data-event-type="product-click" class="btn button card-figcaption-button">{{lang 'products.pre_order'}}</a>
+                {{/if}}
+                {{#if product.add_to_cart_url}}
+                    <a href="{{product.add_to_cart_url}}" class="btn button card-figcaption-button themevale_btnATC" data-product-id="{{product.id}}">{{lang 'products.add_to_cart'}}</a>
+                {{/if}}
+                {{#if product.out_of_stock_message}}
+                    <a href="{{product.url}}" data-event-type="product-click" class="btn button card-figcaption-button card_out_of_stock" data-product-id="{{product.id}}">{{out_of_stock_message}}</a>
+                {{/if}}
+            {{/or}}
+        </div>
+        <div class="card-detail">
+            <a class="link button" href="{{product.url}}">details</a>
+        </div>
+    </div>
+</article>

@@ -1,0 +1,8 @@
+<div id="sideFeatured" class="sidebarBlock sidebarBorder">
+	<h5 class="sidebarBlock-heading"><span>{{lang 'products.featured'}}</span></h5>
+	{{#if settings.data_tag_enabled}}
+		{{> components/themevale/sidebar/slider-products products=products productsnew=products_new}}
+	{{else}}
+		{{> components/themevale/sidebar/slider-products products=products productsnew=products_new list="Featured Products"}}
+	{{/if}}
+</div>

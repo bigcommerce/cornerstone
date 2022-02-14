@@ -1,0 +1,11 @@
+<div class="form-field" data-product-attribute="textarea">
+    <label class="form-label form-label--alternate form-label--inlineSmall" for="fbt_attribute_textarea_{{id}}">
+        {{display_name}}
+
+        {{#if required}}
+            <small>{{lang 'common.required'}}</small>
+        {{/if}}
+    </label>
+
+    <textarea class="form-input" id="fbt_attribute_textarea_{{id}}" name="attribute[{{id}}]" {{#if required}}required{{/if}}>{{prefill}}</textarea>
+</div>

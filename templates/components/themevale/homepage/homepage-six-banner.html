@@ -1,0 +1,237 @@
+{{#if theme_settings.enable_homepage_banner}}
+<div id="home-six-banner" class="module-wrapper themevale_banner_six_images">
+	<div class="container container-smaller">
+		<div class="banner-list" data-slick='{
+		        "dots": true,
+		        "arrows": false,
+		        "infinite": false,
+		        "mobileFirst": true,
+		        "rows": 2,
+		        "slidesToShow": 1,
+		        "slidesToScroll": 1,
+		        "responsive": [
+		        	{
+		              "breakpoint": 991,
+		              "settings": {
+		                  "rows": 2,
+		                  "slidesToShow": 3,
+		                  "slidesToScroll": 3
+		              }
+		            },
+		            {
+		              "breakpoint": 767,
+		              "settings": {
+		                  "rows": 2,
+		                  "slidesToShow": 2,
+		                  "slidesToScroll": 2
+		              }
+		            },
+		            {
+		              "breakpoint": 480,
+		              "settings": {
+		                  "rows": 2,
+		                  "slidesPerRow": 1,
+		                  "slidesToShow": 1,
+		                  "slidesToScroll": 1
+		              }
+		            }
+		        ]
+		    }'>
+		    {{#if theme_settings.homepage_banner_1}}
+				<div class="banner-item{{#if theme_settings.homepage_banner_image_1 '!=' ''}} has-image{{else}} background-gray{{/if}}">
+					<div class="banner-item-inner">
+						{{#if theme_settings.homepage_banner_image_1 '!=' ''}}
+						<a class="image-wrapper animate-hvr" href="{{theme_settings.homepage_banner_link_1}}" title="{{theme_settings.homepage_banner_heading_1}}">
+							<div class="card-img-container">
+								{{> components/themevale/themevale-responsive-img
+				                    image=theme_settings.homepage_banner_image_1
+				                    alt=theme_settings.homepage_banner_heading_1
+				                    class="card-image"
+				                    fallback_size=theme_settings.homepage-banner-image-size
+				                    lazyload=theme_settings.lazyload_mode
+				                }}
+				            </div>
+						</a>
+						{{/if}}
+						<div class="caption text-center{{#if theme_settings.homepage_banner_position_1 '==' 'top'}} position-top{{else if theme_settings.homepage_banner_position_1 '==' 'bottom'}} position-bottom{{else}} position-center{{/if}}">
+							{{#if theme_settings.homepage_banner_heading_1 '!=' ''}}
+								<h3 class="heading">{{theme_settings.homepage_banner_heading_1}}</h3>
+							{{/if}}
+							{{#if theme_settings.homepage_banner_desc_1_1 '!=' ''}}
+								<p class="desc">{{theme_settings.homepage_banner_desc_1_1}}{{theme_settings.homepage_banner_desc_1_2}}</p>
+							{{/if}}
+							{{#if theme_settings.homepage_banner_link_text_1 '!=' ''}}
+							<a href="{{theme_settings.homepage_banner_link_1}}" title="{{theme_settings.homepage_banner_link_text_1}}">
+								<h5 class="link_text"><span>{{theme_settings.homepage_banner_link_text_1}}</span></h5>
+							</a>
+							{{/if}}
+						</div>
+					</div>
+				</div> <!-- end banner item 1 -->
+			{{/if}}
+
+			{{#if theme_settings.homepage_banner_4}}
+				<div class="banner-item{{#if theme_settings.homepage_banner_image_4 '!=' ''}} has-image{{else}} background-gray{{/if}}">
+					<div class="banner-item-inner">
+						{{#if theme_settings.homepage_banner_image_4 '!=' ''}}
+						<a class="image-wrapper animate-hvr" href="{{theme_settings.homepage_banner_link_4}}" title="{{theme_settings.homepage_banner_heading_4}}">
+							<div class="card-img-container">
+								{{> components/themevale/themevale-responsive-img
+				                    image=theme_settings.homepage_banner_image_4
+				                    alt=theme_settings.homepage_banner_heading_4
+				                    class="card-image"
+				                    fallback_size=theme_settings.homepage-banner-image-size
+				                    lazyload=theme_settings.lazyload_mode
+				                }}
+				            </div>
+						</a>
+						{{/if}}
+						<div class="caption text-center{{#if theme_settings.homepage_banner_position_4 '==' 'top'}} position-top{{else if theme_settings.homepage_banner_position_4 '==' 'bottom'}} position-bottom{{else}} position-center{{/if}}">
+							{{#if theme_settings.homepage_banner_heading_4 '!=' ''}}
+								<h3 class="heading">{{theme_settings.homepage_banner_heading_4}}</h3>
+							{{/if}}
+							{{#if theme_settings.homepage_banner_desc_4_1 '!=' ''}}
+								<p class="desc">{{theme_settings.homepage_banner_desc_4_1}}{{theme_settings.homepage_banner_desc_4_2}}</p>
+							{{/if}}
+							{{#if theme_settings.homepage_banner_link_text_4 '!=' ''}}
+							<a href="{{theme_settings.homepage_banner_link_4}}" title="{{theme_settings.homepage_banner_link_text_4}}">
+								<h5 class="link_text"><span>{{theme_settings.homepage_banner_link_text_4}}</span></h5>
+							</a>
+							{{/if}}
+						</div>
+					</div>
+				</div> <!-- end banner item 4 -->
+			{{/if}}
+
+			{{#if theme_settings.homepage_banner_2}}
+				<div class="banner-item{{#if theme_settings.homepage_banner_image_2 '!=' ''}} has-image{{else}} background-gray{{/if}}">
+					<div class="banner-item-inner">
+						{{#if theme_settings.homepage_banner_image_2 '!=' ''}}
+						<a class="image-wrapper animate-hvr" href="{{theme_settings.homepage_banner_link_2}}" title="{{theme_settings.homepage_banner_heading_2}}">
+							<div class="card-img-container">
+								{{> components/themevale/themevale-responsive-img
+				                    image=theme_settings.homepage_banner_image_2
+				                    alt=theme_settings.homepage_banner_heading_2
+				                    class="card-image"
+				                    fallback_size=theme_settings.homepage-banner-image-size
+				                    lazyload=theme_settings.lazyload_mode
+				                }}
+				            </div>
+						</a>
+						{{/if}}
+						<div class="caption text-center{{#if theme_settings.homepage_banner_position_2 '==' 'top'}} position-top{{else if theme_settings.homepage_banner_position_2 '==' 'bottom'}} position-bottom{{else}} position-center{{/if}}">
+							{{#if theme_settings.homepage_banner_heading_2 '!=' ''}}
+								<h3 class="heading">{{theme_settings.homepage_banner_heading_2}}</h3>
+							{{/if}}
+							{{#if theme_settings.homepage_banner_desc_2_1 '!=' ''}}
+								<p class="desc">{{theme_settings.homepage_banner_desc_2_1}}{{theme_settings.homepage_banner_desc_2_2}}</p>
+							{{/if}}
+							{{#if theme_settings.homepage_banner_link_text_2 '!=' ''}}
+							<a href="{{theme_settings.homepage_banner_link_2}}" title="{{theme_settings.homepage_banner_link_text_2}}">
+								<h5 class="link_text"><span>{{theme_settings.homepage_banner_link_text_2}}</span></h5>
+							</a>
+							{{/if}}
+						</div>
+					</div>
+				</div> <!-- end banner item 2 -->
+			{{/if}}
+			{{#if theme_settings.homepage_banner_5}}
+				<div class="banner-item{{#if theme_settings.homepage_banner_image_5 '!=' ''}} has-image{{else}} background-gray{{/if}}">
+					<div class="banner-item-inner">
+						{{#if theme_settings.homepage_banner_image_5 '!=' ''}}
+						<a class="image-wrapper animate-hvr" href="{{theme_settings.homepage_banner_link_5}}" title="{{theme_settings.homepage_banner_heading_5}}">
+							<div class="card-img-container">
+								{{> components/themevale/themevale-responsive-img
+				                    image=theme_settings.homepage_banner_image_5
+				                    alt=theme_settings.homepage_banner_heading_5
+				                    class="card-image"
+				                    fallback_size=theme_settings.homepage-banner-image-size
+				                    lazyload=theme_settings.lazyload_mode
+				                }}
+				            </div>
+						</a>
+						{{/if}}
+						<div class="caption text-center{{#if theme_settings.homepage_banner_position_5 '==' 'top'}} position-top{{else if theme_settings.homepage_banner_position_5 '==' 'bottom'}} position-bottom{{else}} position-center{{/if}}">
+							{{#if theme_settings.homepage_banner_heading_5 '!=' ''}}
+								<h3 class="heading">{{theme_settings.homepage_banner_heading_5}}</h3>
+							{{/if}}
+							{{#if theme_settings.homepage_banner_desc_5_1 '!=' ''}}
+								<p class="desc">{{theme_settings.homepage_banner_desc_5_1}}{{theme_settings.homepage_banner_desc_5_2}}</p>
+							{{/if}}
+							{{#if theme_settings.homepage_banner_link_text_5 '!=' ''}}
+							<a href="{{theme_settings.homepage_banner_link_5}}" title="{{theme_settings.homepage_banner_link_text_5}}">
+								<h5 class="link_text"><span>{{theme_settings.homepage_banner_link_text_5}}</span></h5>
+							</a>
+							{{/if}}
+						</div>
+					</div>
+				</div> <!-- end banner item 5 -->
+			{{/if}}
+			{{#if theme_settings.homepage_banner_3}}
+				<div class="banner-item{{#if theme_settings.homepage_banner_image_3 '!=' ''}} has-image{{else}} background-gray{{/if}}">
+					<div class="banner-item-inner">
+						{{#if theme_settings.homepage_banner_image_3 '!=' ''}}
+						<a class="image-wrapper animate-hvr" href="{{theme_settings.homepage_banner_link_3}}" title="{{theme_settings.homepage_banner_heading_3}}">
+							<div class="card-img-container">
+								{{> components/themevale/themevale-responsive-img
+				                    image=theme_settings.homepage_banner_image_3
+				                    alt=theme_settings.homepage_banner_heading_3
+				                    class="card-image"
+				                    fallback_size=theme_settings.homepage-banner-image-size
+				                    lazyload=theme_settings.lazyload_mode
+				                }}
+				            </div>
+						</a>
+						{{/if}}
+						<div class="caption text-center{{#if theme_settings.homepage_banner_position_3 '==' 'top'}} position-top{{else if theme_settings.homepage_banner_position_3 '==' 'bottom'}} position-bottom{{else}} position-center{{/if}}">
+							{{#if theme_settings.homepage_banner_heading_3 '!=' ''}}
+								<h3 class="heading">{{theme_settings.homepage_banner_heading_3}}</h3>
+							{{/if}}
+							{{#if theme_settings.homepage_banner_desc_3_1 '!=' ''}}
+								<p class="desc">{{theme_settings.homepage_banner_desc_3_1}}{{theme_settings.homepage_banner_desc_3_2}}</p>
+							{{/if}}
+							{{#if theme_settings.homepage_banner_link_text_3 '!=' ''}}
+							<a href="{{theme_settings.homepage_banner_link_3}}" title="{{theme_settings.homepage_banner_link_text_3}}">
+								<h5 class="link_text"><span>{{theme_settings.homepage_banner_link_text_3}}</span></h5>
+							</a>
+							{{/if}}
+						</div>
+					</div>
+				</div> <!-- end banner item 3 -->
+			{{/if}}
+			{{#if theme_settings.homepage_banner_6}}
+				<div class="banner-item{{#if theme_settings.homepage_banner_image_6 '!=' ''}} has-image{{else}} background-gray{{/if}}">
+					<div class="banner-item-inner">
+						{{#if theme_settings.homepage_banner_image_6 '!=' ''}}
+							<a class="image-wrapper animate-hvr" href="{{theme_settings.homepage_banner_link_6}}" title="{{theme_settings.homepage_banner_heading_6}}">
+								<div class="card-img-container">
+									{{> components/themevale/themevale-responsive-img
+					                    image=theme_settings.homepage_banner_image_6
+					                    alt=theme_settings.homepage_banner_heading_6
+					                    class="card-image"
+					                    fallback_size=theme_settings.homepage-banner-image-size
+					                    lazyload=theme_settings.lazyload_mode
+					                }}
+					            </div>
+							</a>
+						{{/if}}
+						<div class="caption text-center{{#if theme_settings.homepage_banner_position_6 '==' 'top'}} position-top{{else if theme_settings.homepage_banner_position_6 '==' 'bottom'}} position-bottom{{else}} position-center{{/if}}">
+							{{#if theme_settings.homepage_banner_heading_6 '!=' ''}}
+								<h3 class="heading">{{theme_settings.homepage_banner_heading_6}}</h3>
+							{{/if}}
+							{{#if theme_settings.homepage_banner_desc_6_1 '!=' ''}}
+								<p class="desc">{{theme_settings.homepage_banner_desc_6_1}}{{theme_settings.homepage_banner_desc_6_2}}</p>
+							{{/if}}
+							{{#if theme_settings.homepage_banner_link_text_6 '!=' ''}}
+							<a href="{{theme_settings.homepage_banner_link_6}}" title="{{theme_settings.homepage_banner_link_text_6}}">
+								<h5 class="link_text"><span>{{theme_settings.homepage_banner_link_text_6}}</span></h5>
+							</a>
+							{{/if}}
+						</div>
+					</div>
+				</div> <!-- end banner item 6 -->
+			{{/if}}
+		</div>
+	</div>
+</div>
+{{/if}}

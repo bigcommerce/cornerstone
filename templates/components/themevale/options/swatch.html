@@ -1,0 +1,38 @@
+<div class="form-field" data-product-attribute="swatch">
+    <label class="form-label form-label--alternate form-label--inlineSmall">
+        {{this.display_name}}
+        <span data-option-value></span>
+
+        {{#if required}}
+            <small>{{lang 'common.required'}}</small>
+        {{/if}}
+    </label>
+
+    {{#each this.values}}
+        <input class="form-radio" type="radio" name="attribute[{{../id}}]" value="{{id}}" id="fbt_attribute_swatch_{{../id}}_{{id}}" {{#if selected}}checked data-default{{/if}} {{#if ../required}}required{{/if}}>
+        <label class="form-option form-option-swatch" for="fbt_attribute_swatch_{{../id}}_{{id}}" data-product-attribute-value="{{id}}">
+            {{#if image}}
+                <span class='form-option-variant form-option-variant--pattern' title="{{this.label}}" style="background-image: url('{{getImage image "swatch_option_size"}}');" img-src='{{getImage image "productgallery_size"}}'></span>
+            {{/if}}
+            {{#if data.[2]}}
+                <span class='form-option-variant form-option-variant--color {{this.label}}' title="{{this.label}}" style="background-color: #{{data.[0]}}"></span>
+                <span class='form-option-variant form-option-variant--color {{this.label}}' title="{{this.label}}" style="background-color: #{{data.[1]}}"></span>
+                <span class='form-option-variant form-option-variant--color {{this.label}}' title="{{this.label}}" style="background-color: #{{data.[2]}}"></span>
+            {{else}}
+                {{#if data.[1]}}
+                    <span class='form-option-variant form-option-variant--color {{this.label}}' title="{{this.label}}" style="background-color: #{{data.[0]}}"></span>
+                    <span class='form-option-variant form-option-variant--color {{this.label}}' title="{{this.label}}" style="background-color: #{{data.[1]}}"></span>
+                {{else}}
+                    {{#if data.[0]}}
+                        <span class='form-option-variant form-option-variant--color {{this.label}}' title="{{this.label}}" style="background-color: #{{data.[0]}}"></span>
+                    {{/if}}
+                {{/if}}
+            {{/if}}
+            {{#if pattern}}
+                <span class="form-option-expanded">
+                    <span class="form-option-image" style="background-image: url('{{getImage image 'core-swatch'}}');"></span>
+                </span>
+            {{/if}}
+        </label>
+    {{/each}}
+</div>

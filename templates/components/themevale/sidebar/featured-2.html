@@ -1,0 +1,10 @@
+<div id="sideFeatured" class="sidebarBlock sidebarBorder">
+	<h5 class="sidebarBlock-heading"><span>{{lang 'products.featured'}}</span></h5>
+	<div class="productCarousel">
+		{{#each products}}
+		<div class="productCarousel-slide product">
+	        {{> components/products/card settings=../settings theme_settings=../theme_settings customer=../customer show_rating=../settings.show_product_rating show_wishlist=../settings.show_wishlist productsnew=../productsnew event="list" position=(add @index 1)}}
+	    </div>
+		{{/each}}
+	</div>
+</div>

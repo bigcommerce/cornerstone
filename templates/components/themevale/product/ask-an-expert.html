@@ -1,0 +1,89 @@
+<div id="ask-an-expert" class="modal" data-reveal data-title="{{product.title}}" data-url="{{product.url}}">
+   <a href="#" class="modal-close" aria-label="{{lang 'common.close'}}" role="button">
+      <span aria-hidden="true">&#215;</span>
+   </a>
+   {{> components/themevale/product/ask-an-expert-content}}
+</div>
+
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script>
+$(document).ready(function() {
+
+   $("#ask-an-expert-button").click(function() {
+
+      var ask_proceed = true;
+      //simple validation at client's end
+      //loop through each field and we simply change border color to red for invalid fields
+      $("#ask-an-expert #contact_form input[required=true], #ask-an-expert #contact_form textarea[required=true]").each(function() {
+         if (!$.trim($(this).val())) { //if this field is empty
+            $(this).parent('.form-field').removeClass('form-field--success').addClass('form-field--error');
+            ask_proceed = false; //set do not proceed flag
+         } else {
+            $(this).parent('.form-field').removeClass('form-field--error').addClass('form-field--success');
+         }
+         //check invalid email
+         var email_reg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+         if ($(this).attr("name") == "customer_email" && !email_reg.test($.trim($(this).val()))) {
+            $(this).parent('.form-field').removeClass('form-field--success').addClass('form-field--error');
+            ask_proceed = false; //set do not proceed flag
+         }
+      });
+
+      var title = $('#ask-an-expert').data('title');
+      var link = $('#ask-an-expert').data('url');
+
+      if (ask_proceed) //everything looks good! proceed...
+      {
+
+         //get input field values data to be sent to server
+         ask_post_data = {
+            'api': 'i_send_mail',
+            'subject': '{{theme_settings.ask_an_expert_subject}}',
+            'from_name': '{{theme_settings.ask_an_expert_name}}',
+            'email': '{{theme_settings.ask_an_expert_email}}',
+            'email_from': $('#ask-an-expert #contact_form input[name=customer_email]').val(),
+            'message': '<h2 style="text-transform:uppercase;color:#000000;">{{theme_settings.ask_an_expert_subject}}</h2><table>\
+                  <tr><td><strong>Product Title</strong></td><td>'+ title +'</td></tr>\
+                  <tr><td><strong>Product Link</strong></td><td><a href="' + link +'">' + link +'</a></td></tr>\
+                  <tr><td><strong>Your Name</strong></td><td>' + $('#ask-an-expert #contact_form input[name=customer_name]').val() + '</td></tr>\
+                  <tr><td><strong>Email Address</strong></td><td>' + $('#ask-an-expert #contact_form input[name=customer_email]').val() + '</td></tr>\
+                  <tr><td><strong>Phone Number</strong></td><td>' + $('#ask-an-expert #contact_form input[name=customer_phone]').val() + '</td></tr>\
+                  <tr><td><strong>How would you like me to contact you ?</strong></td><td>' + $('#ask-an-expert #contact_form input[name=type_contact]:checked').val() + '</td></tr>\
+                  <tr><td><strong>Do you need</strong></td><td>' + $('#ask-an-expert #contact_form input[name=type_package]:checked').val() + '</td></tr>\
+                  <tr><td><strong>What can i help you with today ?</strong></td><td>' + $('#ask-an-expert #contact_form textarea[name=message]').val() + '</td></tr>\
+               </table>'
+         };
+
+         //Ajax post data to server
+         $.post('https://themevale.net/tools/sendmail/ask-an-expert/', ask_post_data, function(response) {
+            if (response.type == 'error') { //load json data from server and output message
+               output = '<div class="error">' + response.text + '</div>';
+            } else {
+               output = '<div class="alert alert-success">Thank you. We\'ve received your feedback and will respond shortly.</div>';
+               //reset values in all input fields
+               $("#ask-an-expert #contact_form  input[required=true], #ask-an-expert #contact_form textarea[required=true]").val('');
+               $(".form-inner").hide(); //hide form after success
+            }
+            $("#ask-an-expert #contact_results").hide().html(output).show();
+         }, 'json');
+      }
+   });
+
+   //reset previously set border colors and hide all message on .keyup()
+   $("#ask-an-expert #contact_form input[required=true], #ask-an-expert #contact_form textarea[required=true]").keyup(function() {
+      if (!$.trim($(this).val())) { //if this field is empty
+         $(this).parent('.form-field').removeClass('form-field--success').addClass('form-field--error');
+         ask_proceed = false; //set do not proceed flag
+      } else {
+         $(this).parent('.form-field').removeClass('form-field--error').addClass('form-field--success');
+      }
+      //check invalid email
+      var email_reg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+      if ($(this).attr("name") == "customer_email" && !email_reg.test($.trim($(this).val()))) {
+         $(this).parent('.form-field').removeClass('form-field--success').addClass('form-field--error');
+         ask_proceed = false; //set do not proceed flag
+      }
+      $("#ask-an-expert #contact_results").hide();
+   });
+});
+</script>

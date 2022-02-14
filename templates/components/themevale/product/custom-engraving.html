@@ -1,0 +1,53 @@
+<div id="add-custom-engraving" class="modal" data-reveal>
+    <a href="#" class="modal-close" aria-label="{{lang 'common.close'}}" role="button">
+        <span aria-hidden="true">&#215;</span>
+    </a>
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 class="modal-header-title">{{theme_settings.custom_engraving_subject}}</h2>
+        </div>
+        <div class="modal-body">
+            <div class="form-inner">
+                <div class="col-left col">
+                    <h5 class="title">Enter Text</h5>
+                        <fieldset class="form-fieldset">
+                            <div class="form-field Line1">
+                                <input required="true" type="text" class="form-input" name="line1" placeholder="Line 1" maxlength="20">
+                                <div class="notes">
+                                    <span class="note">Max <span>20</span>characters, including spaces</span>
+                                    <span class="num">20</span>
+                                </div>
+                            </div>
+                            <div class="form-field Line2">
+                                <input required="true" type="text" class="form-input" name="line2" placeholder="Line 2" maxlength="20">
+                                <div class="notes">
+                                    <span class="note">Max <span>20</span>characters, including spaces</span>
+                                    <span class="num">20</span>
+                                </div>
+                            </div>
+                            {{> components/themevale/product/custom-engraving-notes }}
+                            <div class="total-price">
+                              <label>Total:</label>
+                              <span>{{#if theme_settings.custom_engraving_price '!=' ''}}{{theme_settings.custom_engraving_price}}{{else}}$39.00{{/if}}</span>
+                            </div>
+                            <div class="form-actions">
+                                <input type="submit" class="btn button button--primary" id="add-custom-engraving-button" value="Add Cutomize">
+                            </div>
+                        </fieldset>
+                </div>
+                <div class="col-right col">
+                    <h5 class="title">Example</h5>
+                    <div class="card-img-container">
+                        {{> components/themevale/themevale-responsive-img
+                            image=theme_settings.custom_engraving_img
+                            alt=theme_settings.custom_engraving_img
+                            class="card-image"
+                            fallback_size=theme_settings.custom_engraving_img_size
+                            lazyload=theme_settings.lazyload_mode
+                        }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

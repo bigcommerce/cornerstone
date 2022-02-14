@@ -1,0 +1,29 @@
+<div class="themvale-fbt-product-item" data-product-id="{{product.id}}">
+    <div class="themvale-fbt-product-image">
+        <a class="themvale-fbt-image-link" href="{{product.url}}">
+            <img class="themvale-fbt-image lazyautosizes lazyload" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{getImage product.main_image 'productgallery_size' (cdn theme_settings.default_image_product)}}" alt="{{product.alt}}" title="{{product.alt}}" sizes="50px">
+        </a>
+    </div>
+    <div class="themvale-fbt-product-content">
+        <form method="post" action="/cart.php" enctype="multipart/form-data">
+            <input type="hidden" name="action" value="add">
+            <input type="hidden" name="product_id" value="{{product.id}}">
+            <div class="themvale-fbt-detail-field card-body">
+                <div class="input-wrap">
+                    <input class="themvale-fbt-detail-checkbox form-checkbox" type="checkbox" id="fbt_product{{product.id}}">
+                    <label class="themvale-fbt-detail-label form-label" for="fbt_product{{product.id}}"></label>
+                </div>
+
+                {{#if product.brand}}
+                    <span class="themvale-fbt-detail-brand card-brand">{{product.brand.name}}</span>
+                {{/if}}
+                <label class="themvale-fbt-detail-label form-label" for="fbt_product{{product.id}}">
+                    <span class="themvale-fbt-detail-name card-title">{{product.title}}</span>
+                </label>
+                <div class="themvale-fbt-detail-price card-price">
+                    {{> components/products/price price=product.price schema_org=schema}}
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

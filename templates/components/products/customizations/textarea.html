@@ -1,0 +1,9 @@
+<div class="form-field">
+    <label class="form-label form-label--alternate form-label--inlineSmall" for="customization_{{id}}_{{../id}}">
+        {{display_name}}:
+        {{#if required}}
+            <small>{{lang 'common.required'}}</small>
+        {{/if}}
+    </label>
+    <textarea class="form-input" id="customization_{{id}}_{{../id}}" {{#if required}}required {{/if}}name="ProductFields[{{id}}]">{{value}}</textarea>
+</div>

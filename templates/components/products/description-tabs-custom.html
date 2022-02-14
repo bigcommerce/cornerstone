@@ -1,0 +1,35 @@
+<div class="custom-product-description">
+    <div class="container">
+        <div class="product-description-content">
+            <div class="product-img col">
+                {{#if theme_settings.custom-product-description_img '!=' ''}}
+                    <div class="card-img-container">
+                        {{> components/themevale/themevale-responsive-img
+                            image=theme_settings.custom-product-description_img
+                            alt=theme_settings.custom-product-description_img
+                            class="card-image"
+                            fallback_size=theme_settings.custom-product-description_img_size
+                            lazyload=theme_settings.lazyload_mode
+                        }}
+                    </div>
+                {{else}}
+                    <figure class="productView-image">
+                    <div class="productView-img-container">
+                        {{> components/common/responsive-img
+                            image=product.main_image
+                            class="productView-image--default"
+                            fallback_size=theme_settings.custom-product-description_img_size
+                            lazyload=theme_settings.lazyload_mode
+                            default_image=theme_settings.default_image_product
+                            otherAttributes="data-main-image"
+                        }}
+                    </div>
+                </figure>
+                {{/if}}
+            </div>
+            <div class="product-tab col">
+                {{> components/products/description-tabs}}
+            </div>
+        </div>
+    </div>
+</div>

@@ -15,9 +15,9 @@
 
     <div class="blog-post-body">
         <header class="blog-header">
-            <h2 class="blog-title">
+            <h{{#if is_blog_post}}1{{else}}2{{/if}} class="blog-title">
                 <a href="{{post.url}}">{{post.title}}</a>
-            </h2>
+            </h{{#if is_blog_post}}1{{else}}2{{/if}}>
             <p class="blog-date">{{#if post.author}}{{lang 'blog.posted_by' name=post.author}} on {{/if}}{{post.date_published}}</p>
         </header>
 

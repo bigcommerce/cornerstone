@@ -40,21 +40,21 @@
 }
 
 .productView-img-container {
-    position: relative;
+
+    @include lazy-loaded-padding("product_size");
     margin: auto;
-    max-width: get-width(stencilString('product_size'));
+    max-width: get-width(stencilString("product_size"));
+    position: relative;
     width: 100%;
 
     img {
         @include lazy-loaded-img;
-        max-height: 100%;
-        width: 100%;
-        object-fit: contain;
         /* Object-fit polyfill */
-        font-family: 'object-fit: contain;';
+        font-family: "object-fit: contain;";
+        height: 100%;
+        object-fit: contain;
+        width: 100%;
     }
-
-    @include lazy-loaded-padding('product_size');
 }
 
 .productView-thumbnails {
@@ -63,6 +63,14 @@
 
     margin-left: -(spacing("quarter"));
     margin-right: -(spacing("quarter"));
+
+    &[data-slick] {
+        opacity: 0;
+
+        &.slick-initialized {
+            opacity: 1;
+        }
+    }
 
     .slick-list {
         margin-left: remCalc(40px);
@@ -79,19 +87,18 @@
 
     img {
         @include lazy-loaded-img;
-        margin: 0;
-        width: get-width(stencilString('productview_thumb_size'));
-        object-fit: contain;
         /* Object-fit polyfill */
-        font-family: 'object-fit: contain;';
+        font-family: "object-fit: contain;";
+        margin: 0;
+        object-fit: contain;
         position: relative;
+        width: get-width(stencilString("productview_thumb_size"));
     }
 }
 
 .productView-thumbnail {
     @include grid-column(3);
-    padding-left: spacing("quarter");
-    padding-right: spacing("quarter");
+    padding: spacing("quarter");
     text-align: center;
 
     @include breakpoint("large") {
@@ -101,14 +108,14 @@
 
 .productView-thumbnail-link {
     border: container("border");
-    display: inline-flex;
+    box-sizing: content-box;
+    display: flex;
     height: 67px;
+    justify-content: center;
     max-width: 75px;
     padding: 2px;
     position: relative;
     width: 100%;
-    box-sizing: content-box;
-    justify-content: center;
 
     &:hover,
     &.is-active {
@@ -121,7 +128,7 @@
 // -----------------------------------------------------------------------------
 
 .productView-details {
-    margin-bottom: spacing("single") + spacing("third");
+    padding-bottom: spacing("single") + spacing("third");
 }
 
 
@@ -165,7 +172,6 @@
     a {
         color: $productView-brand-link-color;
 
-        // scss-lint:disable NestingDepth
         &:hover {
             color: $productView-brand-link-color--hover;
         }
@@ -196,27 +202,17 @@
 }
 
 .productView-reviewLink {
+    color: stencilColor("color-textSecondary");
     display: inline-block;
-    margin-left: spacing("half");
+    margin-left: spacing("quarter");
     vertical-align: middle;
 
-    + .productView-reviewLink {
-        display: block;
-        margin-left: auto;
-
-        @include breakpoint("small") {
-            display: inline-block;
-            margin-left: spacing("half");
-        }
+    &:hover {
+        color: stencilColor("color-textSecondary--hover");
     }
 
-    > a {
-        color: stencilColor("color-textSecondary");
-
-        // scss-lint:disable NestingDepth
-        &:hover {
-            color: stencilColor("color-textSecondary--hover");
-        }
+    &--new {
+        padding: 0;
     }
 }
 
@@ -300,6 +296,10 @@
 
     .form {
         display: inline;
+
+        .add-to-cart-wrapper {
+            display: inline;
+        }
     }
 
     input[type="file"] {
@@ -310,9 +310,11 @@
         font-size: 0; // 2
         margin-bottom: 2rem;
 
-        // scss-lint:disable SelectorDepth, NestingDepth
-        > .form-checkbox + .form-label
-        {
+        &--error > .form-inlineMessage {
+            font-size: 1rem;
+        }
+
+        > .form-checkbox + .form-label {
             display: inline-block;
             margin-left: spacing("single");
             width: auto;
@@ -324,8 +326,8 @@
         }
 
         > .form-radio + .form-label {
-            text-align: justify;
             display: inline-block;
+            text-align: justify;
         }
 
         > .form-label:nth-of-type(2) {
@@ -342,7 +344,6 @@
         }
 
         @include breakpoint("medium") {
-            float: none;
             padding: 0;
             width: auto;
         }
@@ -352,14 +353,20 @@
             margin-top: 1rem;
         }
 
-        // scss-lint:disable SelectorDepth, NestingDepth
         .button {
             width: 100%;
 
-            @include breakpoint("large") {
-                margin-right: spacing("half");
+            @include breakpoint("medium") {
                 width: auto;
             }
+
+            @include breakpoint("large") {
+                margin-right: spacing("half");
+            }
+        }
+
+        .button--primary {
+            margin-right: spacing("half");
         }
     }
 }
@@ -416,10 +423,12 @@
 // -----------------------------------------------------------------------------
 
 .productView-image .easyzoom-flyout {
+    height: 100%;
+    left: 0;
     overflow: hidden;
     position: absolute;
+    top: 0;
     width: 100%;
-    height: 100%;
 
     img {
         max-width: none;

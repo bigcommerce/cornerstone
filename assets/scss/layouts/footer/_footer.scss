@@ -9,6 +9,7 @@
 // 1. To enable the grid's display: inline-block; to work properly, we need to
 //    remove the white-space that it creates between columns with font-size: 0;
 // 2. Re-set the font-size that was reduced to 0 in point 1 for children.
+// 3. Fix for text flickers on windows devices
 //
 // -----------------------------------------------------------------------------
 
@@ -16,6 +17,17 @@
     background-color: $footer-background;
     border-top: container("border");
     padding: spacing("double") 0;
+    position: relative;
+    transform: translateZ(0); // 3
+}
+
+.footer-title-sr-only {
+    height: 1px;
+    left: -10000px;
+    overflow: hidden;
+    position: absolute;
+    top: auto;
+    width: 1px;
 }
 
 .footer-info {
@@ -30,9 +42,11 @@
     float: none;
     font-size: fontSize("base"); // 2
     margin-bottom: spacing("double");
+    overflow-wrap: break-word;
     text-align: center;
     vertical-align: top;
-
+    // TODO: specifically use vendor only for IE11 since overflow-wrap is not supported here
+    -ms-word-break: break-all;
     @include breakpoint("small") {
         text-align: left;
         width: width("6/12");
@@ -100,11 +114,9 @@
         color: stencilColor("color-textSecondary");
         text-decoration: none;
 
-        // scss-lint:disable NestingDepth
         &:hover {
             color: stencilColor("color-textSecondary--hover");
         }
-        // scss-lint:enable NestingDepth
     }
 }
 
@@ -121,15 +133,19 @@
         margin: 0;
     }
 
+    > .paypal-credit {
+        color: stencilColor("color-textSecondary");
+        font-size: fontSize("tiny");
+        margin: 1em 0 2em;
+    }
+
     a {
         color: stencilColor("color-textSecondary");
         text-decoration: none;
 
-        // scss-lint:disable NestingDepth
         &:hover {
             color: stencilColor("color-textSecondary--hover");
         }
-        // scss-lint:enable NestingDepth
     }
 }
 
@@ -150,18 +166,6 @@
 
     svg {
         fill: stencilColor("icon-color");
-    }
-}
-
-.footer-geotrust-ssl-seal {
-    @include breakpoint("small") {
-        bottom: 0;
-        position: absolute;
-        right: 16px;
-    }
-
-    table {
-        margin: auto;
     }
 }
 

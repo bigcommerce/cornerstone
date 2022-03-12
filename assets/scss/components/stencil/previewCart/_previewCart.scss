@@ -55,10 +55,12 @@
         margin: 0;
         width: 100%;
 
-        // scss-lint:disable NestingDepth
-        + .button,
         + p {
             margin-top: spacing("half");
+        }
+
+        &:not(:last-child) {
+            margin-bottom: spacing("half");
         }
     }
 }
@@ -78,7 +80,6 @@
 
 .previewCartCheckout-additionalCheckoutButtons {
     p {
-        // scss-lint:disable ImportantRule
         float: none !important; // 1
         margin: spacing("third") 0;
     }

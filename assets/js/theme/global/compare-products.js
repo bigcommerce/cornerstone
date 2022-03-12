@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import { showAlertModal } from './modal';
 
 function decrementCounter(counter, item) {
@@ -13,19 +12,19 @@ function incrementCounter(counter, item) {
     counter.push(item);
 }
 
-function updateCounterNav(counter, $link, urlContext) {
+function updateCounterNav(counter, $link, urls) {
     if (counter.length !== 0) {
         if (!$link.is('visible')) {
             $link.addClass('show');
         }
-        $link.attr('href', `${urlContext.compare}/${counter.join('/')}`);
+        $link.attr('href', `${urls.compare}/${counter.join('/')}`);
         $link.find('span.countPill').html(counter.length);
     } else {
         $link.removeClass('show');
     }
 }
 
-export default function (urlContext) {
+export default function ({ noCompareMessage, urls }) {
     let compareCounter = [];
 
     const $compareLink = $('a[data-compare-nav]');
@@ -33,8 +32,8 @@ export default function (urlContext) {
     $('body').on('compareReset', () => {
         const $checked = $('body').find('input[name="products\[\]"]:checked');
 
-        compareCounter = $checked.length ? _.map($checked, element => element.value) : [];
-        updateCounterNav(compareCounter, $compareLink, urlContext);
+        compareCounter = $checked.length ? $checked.map((index, element) => element.value).get() : [];
+        updateCounterNav(compareCounter, $compareLink, urls);
     });
 
     $('body').triggerHandler('compareReset');
@@ -49,24 +48,14 @@ export default function (urlContext) {
             decrementCounter(compareCounter, product);
         }
 
-        updateCounterNav(compareCounter, $clickedCompareLink, urlContext);
-    });
-
-    $('body').on('submit', '[data-product-compare]', event => {
-        const $this = $(event.currentTarget);
-        const productsToCompare = $this.find('input[name="products\[\]"]:checked');
-
-        if (productsToCompare.length <= 1) {
-            showAlertModal('You must select at least two products to compare');
-            event.preventDefault();
-        }
+        updateCounterNav(compareCounter, $clickedCompareLink, urls);
     });
 
     $('body').on('click', 'a[data-compare-nav]', () => {
         const $clickedCheckedInput = $('body').find('input[name="products\[\]"]:checked');
 
         if ($clickedCheckedInput.length <= 1) {
-            showAlertModal('You must select at least two products to compare');
+            showAlertModal(noCompareMessage);
             return false;
         }
     });

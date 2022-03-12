@@ -1,12 +1,16 @@
 import { hooks } from '@bigcommerce/stencil-utils';
 import CatalogPage from './catalog';
 import FacetedSearch from './common/faceted-search';
+import { announceInputErrorMessage } from './common/utils/form-utils';
 import compareProducts from './global/compare-products';
-import urlUtils from './common/url-utils';
+import urlUtils from './common/utils/url-utils';
 import Url from 'url';
 import collapsibleFactory from './common/collapsible';
 import 'jstree';
 import nod from './common/nod';
+
+const leftArrowKey = 37;
+const rightArrowKey = 39;
 
 export default class Search extends CatalogPage {
     formatCategoryTreeForJSTree(node) {
@@ -34,15 +38,17 @@ export default class Search extends CatalogPage {
     }
 
     showProducts(navigate = true) {
-        this.$productListingContainer.removeClass('u-hiddenVisually');
-        this.$facetedSearchContainer.removeClass('u-hiddenVisually');
-        this.$contentResultsContainer.addClass('u-hiddenVisually');
+        this.$productListingContainer.removeClass('u-hidden');
+        this.$facetedSearchContainer.removeClass('u-hidden');
+        this.$contentResultsContainer.addClass('u-hidden');
 
         $('[data-content-results-toggle]').removeClass('navBar-action-color--active');
         $('[data-content-results-toggle]').addClass('navBar-action');
 
         $('[data-product-results-toggle]').removeClass('navBar-action');
         $('[data-product-results-toggle]').addClass('navBar-action-color--active');
+
+        this.activateTab($('[data-product-results-toggle]'));
 
         if (!navigate) {
             return;
@@ -57,15 +63,17 @@ export default class Search extends CatalogPage {
     }
 
     showContent(navigate = true) {
-        this.$contentResultsContainer.removeClass('u-hiddenVisually');
-        this.$productListingContainer.addClass('u-hiddenVisually');
-        this.$facetedSearchContainer.addClass('u-hiddenVisually');
+        this.$contentResultsContainer.removeClass('u-hidden');
+        this.$productListingContainer.addClass('u-hidden');
+        this.$facetedSearchContainer.addClass('u-hidden');
 
         $('[data-product-results-toggle]').removeClass('navBar-action-color--active');
         $('[data-product-results-toggle]').addClass('navBar-action');
 
         $('[data-content-results-toggle]').removeClass('navBar-action');
         $('[data-content-results-toggle]').addClass('navBar-action-color--active');
+
+        this.activateTab($('[data-content-results-toggle]'));
 
         if (!navigate) {
             return;
@@ -79,8 +87,55 @@ export default class Search extends CatalogPage {
         urlUtils.goToUrl(url);
     }
 
+    activateTab($tabToActivate) {
+        const $tabsCollection = $('[data-search-page-tabs]').find('[role="tab"]');
+
+        $tabsCollection.each((idx, tab) => {
+            const $tab = $(tab);
+
+            if ($tab.is($tabToActivate)) {
+                $tab.removeAttr('tabindex');
+                $tab.attr('aria-selected', true);
+                return;
+            }
+
+            $tab.attr('tabindex', '-1');
+            $tab.attr('aria-selected', false);
+        });
+    }
+
+    onTabChangeWithArrows(event) {
+        const eventKey = event.which;
+        const isLeftOrRightArrowKeydown = eventKey === leftArrowKey
+            || eventKey === rightArrowKey;
+        if (!isLeftOrRightArrowKeydown) return;
+
+        const $tabsCollection = $('[data-search-page-tabs]').find('[role="tab"]');
+
+        const isActiveElementNotTab = $tabsCollection.index($(document.activeElement)) === -1;
+        if (isActiveElementNotTab) return;
+
+        const $activeTab = $(`#${document.activeElement.id}`);
+        const activeTabIdx = $tabsCollection.index($activeTab);
+        const lastTabIdx = $tabsCollection.length - 1;
+
+        let nextTabIdx;
+        switch (eventKey) {
+        case leftArrowKey:
+            nextTabIdx = activeTabIdx === 0 ? lastTabIdx : activeTabIdx - 1;
+            break;
+        case rightArrowKey:
+            nextTabIdx = activeTabIdx === lastTabIdx ? 0 : activeTabIdx + 1;
+            break;
+        default: break;
+        }
+
+        $($tabsCollection.get(nextTabIdx)).focus().trigger('click');
+    }
+
     onReady() {
-        compareProducts(this.context.urls);
+        compareProducts(this.context);
+        this.arrangeFocusOnSortBy();
 
         const $searchForm = $('[data-advanced-search-form]');
         const $categoryTreeContainer = $searchForm.find('[data-search-category-tree]');
@@ -110,6 +165,8 @@ export default class Search extends CatalogPage {
             event.preventDefault();
             this.showContent();
         });
+
+        $('[data-search-page-tabs]').on('keyup', this.onTabChangeWithArrows);
 
         if (this.$productListingContainer.find('li.product').length === 0 || url.query.section === 'content') {
             this.showContent(false);
@@ -146,6 +203,16 @@ export default class Search extends CatalogPage {
                 $searchForm.append(input);
             }
         });
+
+        const $searchResultsMessage = $(`<p
+            class="aria-description--hidden"
+            tabindex="-1"
+            role="status"
+            aria-live="polite"
+            >${this.context.searchResultsCount}</p>`)
+            .prependTo('body');
+
+        setTimeout(() => $searchResultsMessage.focus(), 100);
     }
 
     loadTreeNodes(node, cb) {
@@ -197,6 +264,8 @@ export default class Search extends CatalogPage {
     }
 
     initFacetedSearch() {
+        // eslint-disable-next-line object-curly-newline
+        const { onMinPriceError, onMaxPriceError, minPriceNotEntered, maxPriceNotEntered, onInvalidPrice } = this.context;
         const $productListingContainer = $('#product-listing-container');
         const $contentListingContainer = $('#search-results-content');
         const $facetedSearchContainer = $('#faceted-search-container');
@@ -241,6 +310,14 @@ export default class Search extends CatalogPage {
             $('html, body').animate({
                 scrollTop: 0,
             }, 100);
+        }, {
+            validationErrorMessages: {
+                onMinPriceError,
+                onMaxPriceError,
+                minPriceNotEntered,
+                maxPriceNotEntered,
+                onInvalidPrice,
+            },
         });
     }
 
@@ -248,6 +325,7 @@ export default class Search extends CatalogPage {
         this.$form = $form;
         this.validator = nod({
             submit: $form,
+            tap: announceInputErrorMessage,
         });
 
         return this;

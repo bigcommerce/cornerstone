@@ -1,3 +1,5 @@
+import 'focus-within-polyfill';
+
 import './global/jquery-migrate';
 import './common/select-option-plugin';
 import PageManager from './page-manager';
@@ -13,27 +15,23 @@ import adminBar from './global/adminBar';
 import carousel from './common/carousel';
 import loadingProgressBar from './global/loading-progress-bar';
 import svgInjector from './global/svg-injector';
-import objectFitImages from './global/object-fit-polyfill';
 
 export default class Global extends PageManager {
     onReady() {
         const {
-            channelId, cartId, productId, categoryId, secureBaseUrl, maintenanceModeSettings, adminBarLanguage, themeSettings,
+            channelId, cartId, productId, categoryId, secureBaseUrl, maintenanceModeSettings, adminBarLanguage,
         } = this.context;
         cartPreview(secureBaseUrl, cartId);
         quickSearch();
         currencySelector(cartId);
         foundation($(document));
         quickView(this.context);
-        carousel();
+        carousel(this.context);
         menu();
         mobileMenuToggle();
         privacyCookieNotification();
-        if (themeSettings['show-admin-bar']) {
-            adminBar(secureBaseUrl, channelId, maintenanceModeSettings, JSON.parse(adminBarLanguage), productId, categoryId);
-        }
+        adminBar(secureBaseUrl, channelId, maintenanceModeSettings, JSON.parse(adminBarLanguage), productId, categoryId);
         loadingProgressBar();
         svgInjector();
-        objectFitImages();
     }
 }

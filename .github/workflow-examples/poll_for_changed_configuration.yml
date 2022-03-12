@@ -1,0 +1,72 @@
+# Create PRs for updated configurations caused by changes in Page Builder as a scheduled job.
+
+name: Check for updated configuration on production store
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Runs every 3 hours
+    # * is a special character in YAML so you have to quote this string
+    - cron:  '0 */3 * * *'
+  push:
+    branches: [ master, main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node: [12.x]
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Use Node.js ${{ matrix.node }}
+      uses: actions/setup-node@v2-beta
+      with:
+        node-version: ${{ matrix.node }}
+
+    - name: npm cache
+      uses: actions/cache@v2
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
+
+    - name: Install Stencil CLI Dependency
+      run: npm install -g @bigcommerce/stencil-cli
+
+#
+# You must configure store credentials as secrets on your GitHub repo for this job to work
+#
+
+    - name: Connect to store
+      env:
+        URL: ${{ secrets.STENCIL_STORE_URL_PRODUCTION }}
+        TOKEN: ${{ secrets.STENCIL_ACCESS_TOKEN_PRODUCTION }}
+      run: stencil init -u $URL -t $TOKEN -p 3000
+
+    - name: Check for an updated configuration on the live default storefront (channel ID 1)
+      run: stencil pull -c 1
+
+    - name: Create Pull Request
+      id: cpr
+      uses: peter-evans/create-pull-request@v3
+      with:
+        delete-branch: true
+        commit-message: Update config.json to match production store
+        branch: configuration-sync
+        title: 'Update config.json based on changes in Page Builder'
+        body: |
+          Changes were detected between your live store's Theme Configuration and config.json.
+
+          These may have been due to changes made in Page Builder, or because a theme was uploaded to your store out of sync with your source control.
+
+          By merging this PR, you can bring your local config.json in sync with the live store, and prevent issues where deploying your theme would overwrite recent changes.
+
+          Note that this is checked every few hours, so it's possible changes made very recently are not accounted for. You may re-run this action again manually to make sure everything is up to date.
+        labels: |
+          automated pr

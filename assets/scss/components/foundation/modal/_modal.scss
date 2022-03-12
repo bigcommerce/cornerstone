@@ -1,9 +1,11 @@
 // =============================================================================
 // MODAL (CSS)
+//
+// // 1. Fix for content shifted to top in modal window when bottom variant option selected
 // =============================================================================
 
-
 .modal {
+    left: 50%;
     margin: 0;
     max-height: 90%;
     max-width: 95%;
@@ -11,9 +13,12 @@
     outline: none;
     overflow: hidden;
     padding: 0;
-    left: 50%;
     top: 50% !important;
     transform: translate(-50%, -50%);
+
+    .form-field {
+        position: relative; // 1
+    }
 }
 
 .modal--large {
@@ -38,6 +43,8 @@
 
 .modal-close {
     @include square($reveal-close-height);
+
+    @include addFocusTooltip;
     color: stencilColor("icon-color");
     font-size: 26px;
     line-height: remCalc($reveal-close-height);
@@ -54,6 +61,16 @@
     &:hover {
         color: stencilColor("icon-color-hover");
     }
+
+    &::before {
+        right: 50%;
+        transform: translateX(50%);
+    }
+
+    &::after {
+        right: 50%;
+        transform: translateX(remCalc(10px));
+    }
 }
 
 .modal-body {
@@ -66,7 +83,7 @@
     background-color: $alert-modal-bgColor;
     border-radius: $alert-modal-borderRadius;
     font-family: $alert-font-body;
-    padding: 40px 20px 20px 20px;
+    padding: 40px 20px 20px;
     text-align: center;
 
     .modal-content {
@@ -83,7 +100,8 @@
             color: $alert-button-color;
         }
 
-        .confirm:focus, .confirm:hover {
+        .confirm:focus,
+        .confirm:hover {
             background-color: $alert-button-bgColorHover;
             border-color: $alert-button-borderColorHover;
             color: $alert-button-colorHover;
@@ -95,4 +113,8 @@
             color: $alert-button-colorActive;
         }
     }
+}
+
+.hide-content {
+    opacity: 0;
 }

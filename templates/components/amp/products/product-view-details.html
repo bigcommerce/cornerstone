@@ -1,9 +1,9 @@
 <section class="productView-details">
     <div class="productView-product">
-        <h1 class="productView-title" {{#if schema}}itemprop="name"{{/if}}>{{product.title}}</h1>
+        <h1 class="productView-title">{{product.title}}</h1>
         {{#if product.brand }}
-        <h2 class="productView-brand"{{#if schema}} itemprop="brand" itemscope itemtype="http://schema.org/Brand"{{/if}}>
-            <a href="{{product.brand.url}}"{{#if schema}} itemprop="url"{{/if}}><span{{#if schema}} itemprop="name"{{/if}}>{{product.brand.name}}</span></a>
+        <h2 class="productView-brand">
+            <a href="{{product.brand.url}}"><span>{{product.brand.name}}</span></a>
         </h2>
         {{/if}}
         {{#if product.call_for_price}}
@@ -13,12 +13,15 @@
         {{/if}}
         {{#if product.price}}
             <div class="productView-price">
-                {{> components/products/price price=product.price schema_org=schema}}
+                {{> components/products/price price=product.price}}
             </div>
         {{/if}}
         {{product.detail_messages}}
         {{#if settings.show_product_rating}}
             {{> components/amp/products/ratings rating=product.rating}}
+        {{/if}}
+        {{#if product.release_date }}
+            <p>{{product.release_date}}</p>
         {{/if}}
         <dl class="productView-info">
             {{#if product.sku}}
@@ -79,7 +82,7 @@
                 <div id="bulkPricingModal" class="modal modal--small" data-reveal>
                     <div class="modal-header">
                         <h2 class="modal-header-title">{{lang 'products.bulk_pricing.modal_title'}}</h2>
-                        <a href="#" class="modal-close" aria-label="Close"><span aria-hidden="true">&#215;</span></a>
+                        {{> components/common/modal/modal-close-btn}}
                     </div>
                     <div class="modal-body">
                         <p>{{lang 'products.bulk_pricing.instructions'}}</p>

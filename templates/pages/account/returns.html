@@ -4,17 +4,17 @@
 <h1 class="page-heading">{{lang 'account.returns.heading' }}</h1>
 {{> components/account/navigation account_page='returns'}}
 
-<main class="account account--fixed">
+<div class="account account--fixed">
     <div class="account-body">
         <section class="account-content">
             {{#if customer.returns}}
                 {{> components/account/returns-list returns=customer.returns}}
             {{else}}
-                {{> components/common/alert-info (lang 'account.returns.none')}}
+                {{> components/common/alert/alert-info (lang 'account.returns.none')}}
             {{/if}}
         </section>
     </div>
-</main>
+</div>
 
 {{/partial}}
 {{> layout/base}}

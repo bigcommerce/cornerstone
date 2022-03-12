@@ -1,0 +1,37 @@
+@mixin addFocusTooltip ($attr: title) {
+    &::before {
+        border-color: transparent transparent $focusTooltip-backgroundColor transparent;
+        border-style: solid;
+        border-width: remCalc(10px);
+        content: " ";
+        position: absolute;
+        right: 0;
+        top: 50%;
+    }
+
+    &::after {
+        background-color: $focusTooltip-backgroundColor;
+        border-radius: remCalc(8px);
+        color: $focusTooltip-textColor;
+        content: attr($attr);
+        cursor: default;
+        font-size: 1rem;
+        padding: remCalc(4px) remCalc(6px);
+        position: absolute;
+        right: 0;
+        top: 100%;
+        white-space: nowrap;
+    }
+
+    &::before,
+    &::after {
+        display: none;
+    }
+
+    &:focus {
+        &::before,
+        &::after {
+            display: block;
+        }
+    }
+}

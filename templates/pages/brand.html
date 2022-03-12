@@ -31,14 +31,18 @@ brand:
         {{> components/brand/sidebar}}
     </aside>
 
-    <main class="page-content" id="product-listing-container">
-        {{#if brand.products}}
-            {{> components/brand/product-listing}}
+    <div class="page-content" id="product-listing-container">
+        {{#if brand.search_error }}
+            <p>{{lang 'search.errorMessage'}}</p>
         {{else}}
-            <p>{{lang 'brands.no_products'}}</p>
+            {{#if brand.products}}
+                {{> components/brand/product-listing}}
+            {{else}}
+                <p>{{lang 'brands.no_products'}}</p>
+            {{/if}}
+            {{{region name="brand_below_content"}}}
         {{/if}}
-        {{{region name="brand_below_content"}}}
-    </main>
+    </div>
 </div>
 
 {{/partial}}

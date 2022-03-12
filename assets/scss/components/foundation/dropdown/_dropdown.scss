@@ -10,6 +10,8 @@
 }
 
 .dropdown-menu {
+    z-index: $zIndex-lowest;
+
     &.is-loading .loadingOverlay {
         background: none;
         padding: (spacing("double") + spacing("single")) 0;
@@ -19,22 +21,24 @@
     &.is-open {
         display: block;
     }
+
+    .button {
+        &:focus {
+            z-index: $zIndex-lowest;
+        }
+    }
 }
 
 .dropdown-menu-item {
     text-align: left;
 
     &:first-child {
-
-        // scss-lint:disable NestingDepth
         > a {
             padding-top: spacing("half");
         }
     }
 
     &:last-child {
-
-        // scss-lint:disable NestingDepth
         > a {
             padding-bottom: spacing("base");
         }
@@ -55,13 +59,17 @@
     width: 100%;
 
     &.is-open {
-        border-bottom-left-radius: 0px;
-        border-bottom-right-radius: 0px;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
     }
 
     .icon {
         float: right;
         margin-left: 10px;
+    }
+
+    &:focus {
+        z-index: $zIndex-lower;
     }
 }
 
@@ -71,15 +79,15 @@
     max-width: none !important;
     width: 100% !important;
 
-    @include breakpoint('small') {
+    @include breakpoint("small") {
         padding-right: 20px;
     }
 
-    @include breakpoint('medium') {
-        padding-right: 0px;
+    @include breakpoint("medium") {
+        padding-right: 0;
     }
 
-    @include breakpoint('large') {
+    @include breakpoint("large") {
         padding-right: 11px;
     }
 
@@ -88,15 +96,15 @@
     }
 
     [data-wishlist] {
-        border-top: none;
-        margin-bottom: 0px;
+        border-top: 0;
+        margin-bottom: 0;
         width: 100%;
     }
 
     .button {
         background-color: stencilColor("dropdown--wishList-backgroundColor");
-        border-top-left-radius: 0px;
-        border-top-right-radius: 0px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
         width: 100%;
     }
 
@@ -105,9 +113,9 @@
     }
 
     li:not(:last-child) .button {
-        border-bottom: none;
-        border-radius: 0px;
-        border-top: none;
-        margin-bottom: 0px;
+        border-bottom: 0;
+        border-radius: 0;
+        border-top: 0;
+        margin-bottom: 0;
     }
 }

@@ -7,8 +7,9 @@
     display: none;
     max-height: remCalc(64px);
     min-height: remCalc(32px);
-    min-width: remCalc(134px);
+    min-width: 90px;
     padding: spacing("single");
+    width: 160px;
     @if stencilString("applePay-button") == "white" {
         background-color: $applePay-white;
         background-image: -webkit-named-image(apple-pay-logo-black);
@@ -24,26 +25,14 @@
     }
 }
 
-.cart-additionalCheckoutButtons {
-    .apple-pay-checkout-button {
-        margin-top: spacing("half");
-    }
-}
-
 .apple-pay-supported {
     .apple-pay-checkout-button {
         display: block;
-
-        @include breakpoint("small") {
-            display: inline-block;
-            float: right;
-        }
+        float: right;
     }
-}
 
-.previewCartCheckout {
-    .apple-pay-checkout-button {
+    .previewCartCheckout .apple-pay-checkout-button {
+        display: inline-block;
         float: none;
-        margin-top: spacing("half");
     }
 }

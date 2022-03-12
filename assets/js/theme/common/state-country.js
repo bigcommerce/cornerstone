@@ -1,6 +1,6 @@
 import utils from '@bigcommerce/stencil-utils';
 import _ from 'lodash';
-import { insertStateHiddenField } from './form-utils';
+import { insertStateHiddenField } from './utils/form-utils';
 import { showAlertModal } from '../global/modal';
 
 /**
@@ -90,7 +90,7 @@ function addOptions(statesArray, $selectElement, options) {
             if (options.useIdForStates) {
                 container.push(`<option value="${stateObj.id}">${stateObj.name}</option>`);
             } else {
-                container.push(`<option value="${stateObj.name}">${stateObj.name}</option>`);
+                container.push(`<option value="${stateObj.name}">${stateObj.label ? stateObj.label : stateObj.name}</option>`);
             }
         });
 

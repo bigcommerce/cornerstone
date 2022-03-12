@@ -1,9 +1,9 @@
 import 'easyzoom';
-import _ from 'lodash';
 
 export default class ImageGallery {
     constructor($gallery) {
         this.$mainImage = $gallery.find('[data-image-gallery-main]');
+        this.$mainImageNested = $gallery.find('[data-main-image]');
         this.$selectableImages = $gallery.find('[data-image-gallery-item]');
         this.currentImage = {};
     }
@@ -14,7 +14,7 @@ export default class ImageGallery {
     }
 
     setMainImage(imgObj) {
-        this.currentImage = _.clone(imgObj);
+        this.currentImage = { ...imgObj };
 
         this.setActiveThumb();
         this.swapMainImage();
@@ -47,8 +47,8 @@ export default class ImageGallery {
             zoomImageUrl: $target.attr('data-image-gallery-zoom-image-url'),
             mainImageSrcset: $target.attr('data-image-gallery-new-image-srcset'),
             $selectedThumb: $target,
+            mainImageAlt: $target.children().first().attr('alt'),
         };
-
         this.setMainImage(imgObj);
     }
 
@@ -60,6 +60,8 @@ export default class ImageGallery {
     }
 
     swapMainImage() {
+        const isBrowserIE = navigator.userAgent.includes('Trident');
+
         this.easyzoom.data('easyZoom').swap(
             this.currentImage.mainImageUrl,
             this.currentImage.zoomImageUrl,
@@ -69,13 +71,33 @@ export default class ImageGallery {
         this.$mainImage.attr({
             'data-zoom-image': this.currentImage.zoomImageUrl,
         });
+        this.$mainImageNested.attr({
+            alt: this.currentImage.mainImageAlt,
+            title: this.currentImage.mainImageAlt,
+        });
+
+        if (isBrowserIE) {
+            const fallbackStylesIE = {
+                'background-image': `url(${this.currentImage.mainImageUrl})`,
+                'background-position': 'center',
+                'background-repeat': 'no-repeat',
+                'background-origin': 'content-box',
+                'background-size': 'contain',
+            };
+
+            this.$mainImageNested.css(fallbackStylesIE);
+        }
     }
 
     checkImage() {
-        const containerHeight = $('.productView-image').height();
-        const containerWidth = $('.productView-image').width();
-        const height = this.easyzoom.data('easyZoom').$zoom.context.height;
-        const width = this.easyzoom.data('easyZoom').$zoom.context.width;
+        const $imageContainer = $('.productView-image');
+        const containerHeight = $imageContainer.height();
+        const containerWidth = $imageContainer.width();
+
+        const $image = this.easyzoom.data('easyZoom').$zoom;
+        const height = $image.height();
+        const width = $image.width();
+
         if (height < containerHeight || width < containerWidth) {
             this.easyzoom.data('easyZoom').hide();
         }

@@ -10,7 +10,7 @@
     <tbody class="table-tbody">
     {{#each customer.wishlists}}
         <tr>
-            <td><a href="{{view_url}}">{{name}}</a></td>
+            <td><a href="{{view_url}}">{{{name}}}</a></td>
             <td>{{num_items}}</td>
             <td>
                 {{#if is_public }}
@@ -37,7 +37,7 @@
 </table>
 <form method="post" action="{{this.urls.account.wishlists.delete}}" class="form">
     {{#unless customer.wishlists}}
-        <p class="form-actions">{{> components/common/alert-info (lang 'account.wishlists.you_have_none')}}</p>
+        <p class="form-actions">{{> components/common/alert/alert-info (lang 'account.wishlists.you_have_none')}}</p>
 
     {{/unless}}
     <div class="form-actions">

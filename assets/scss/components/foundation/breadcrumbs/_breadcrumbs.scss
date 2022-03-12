@@ -12,12 +12,11 @@
 //
 // -----------------------------------------------------------------------------
 
-
-.breadcrumbs {
+ol.breadcrumbs {
     display: none; // 1
     font-size: 0; // 2
+    overflow: visible;
     text-align: center;
-
     @include breakpoint("small") {
         display: block; // 1
     }
@@ -26,16 +25,22 @@
 .breadcrumb {
     display: inline-block;
     float: none;
+    margin-right: 0.25rem;
 
     &.is-active {
-
-        // scss-lint:disable NestingDepth
         > .breadcrumb-label {
-            cursor: text;
+            cursor: pointer;
+            font-weight: 700;
         }
     }
-}
 
-.breadcrumb-label {
-    text-decoration: none;
+    // needs to override common bigcommerce styles for accessibility improvements
+    &:not(:first-child)::before {
+        border-right: 0.1em solid $primary-color;
+        content: "";
+        display: inline-block;
+        height: 0.8em;
+        margin: 0 0.25rem;
+        transform: rotate(15deg);
+    }
 }

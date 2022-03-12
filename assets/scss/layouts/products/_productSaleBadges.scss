@@ -2,12 +2,14 @@
 // PRODUCT Sale Badges (CSS)
 // =============================================================================
 
+@mixin setFlagColors($badge-color, $text-color) {
+    background: stencilColor($badge-color);
+    color: stencilColor($text-color);
+}
 // BURST BADGE
 // -----------------------------------------------------------------------------
-.sale-flag-star,
-.sale-flag-star:before,
-.sale-flag-star:after {
-    background: stencilColor("color_badge_product_sale_badges");
+
+%base-flag-star {
     content: "";
     display: block;
     height: rem-calc(50px);
@@ -20,25 +22,39 @@
     transition: background-color 800ms ease;
     width: rem-calc(50px);
     z-index: zIndex("lower");
+
+    &::before {
+        transform: rotateZ(30deg) scaleX(1) scaleY(1) scaleZ(1);
+    }
+    
+    &::after {
+        transform: rotateZ(60deg) scaleX(1) scaleY(1) scaleZ(1);
+    }
 }
 
-.sale-flag-star:before {
-    transform: rotateZ(30deg) scaleX(1) scaleY(1) scaleZ(1);
+.sale-flag-star,
+.sale-flag-star::before,
+.sale-flag-star::after {
+    @extend %base-flag-star;
+    background: stencilColor("color_badge_product_sale_badges");
 }
 
-.sale-flag-star:after {
-    transform: rotateZ(60deg) scaleX(1) scaleY(1) scaleZ(1);
+.sold-out-flag-star,
+.sold-out-flag-star::before,
+.sold-out-flag-star::after {
+    @extend %base-flag-star;
+    background: stencilColor("color_badge_product_sold_out_badges");
 }
 
 .starwrap {
     height: rem-calc(50px);
+    left: 12px;
     position: absolute;
-    top: 10px;
+    top: 12px;
     width: rem-calc(50px);
 }
 
 .listItem-figure {
-
     .starwrap {
         transform: scale(0.7);
 
@@ -54,8 +70,7 @@
     }
 }
 
-.sale-text-burst {
-    color: stencilColor("color_text_product_sale_badges");
+%base-text-burst {
     font-weight: 600;
     line-height: rem-calc(15px);
     position: absolute;
@@ -65,23 +80,35 @@
     z-index: zIndex("high");
 }
 
+.sale-text-burst {
+    @extend %base-text-burst;
+    color: stencilColor("color_text_product_sale_badges");
+}
+
+.sold-out-text-burst {
+    @extend %base-text-burst;
+    color: stencilColor("color_text_product_sold_out_badges");
+}
+
 .product:hover .starwrap {
-    
     .sale-flag-star,
-    .sale-flag-star:before,
-    .sale-flag-star:after {
+    .sale-flag-star::before,
+    .sale-flag-star::after {
         background: stencilColor("color_hover_product_sale_badges");
+    }
+    
+    .sold-out-flag-star,
+    .sold-out-flag-star::before,
+    .sold-out-flag-star::after {
+        background: stencilColor("color_hover_product_sold_out_badges");
     }    
 }
 
 // -----------------------------------------------------------------------------
 // TOP LEFT BADGE
 // -----------------------------------------------------------------------------
-
-.sale-flag-side {
-    background: stencilColor("color_badge_product_sale_badges");
+%base-flag-side {
     border-radius: 0 50px 50px 0;
-    color: stencilColor("color_text_product_sale_badges");
     font-size: 15px;
     font-weight: 700;
     height: rem-calc(20px);
@@ -94,21 +121,32 @@
     z-index: zIndex("lower");
 }
 
+.sale-flag-side {
+    @extend %base-flag-side;
+    @include setFlagColors("color_badge_product_sale_badges", "color_text_product_sale_badges");
+}
+
+.sold-out-flag-side {
+    @extend %base-flag-side;
+    @include setFlagColors("color_badge_product_sold_out_badges", "color_text_product_sold_out_badges");
+}
+
 .product:hover .sale-flag-side {
     background: stencilColor("color_hover_product_sale_badges");
+}
+
+.product:hover .sold-out-flag-side {
+    background: stencilColor("color_hover_product_sold_out_badges");
 }
 
 // -----------------------------------------------------------------------------
 // SASH BADGE
 // -----------------------------------------------------------------------------
-
-.sale-flag-sash {
-    background: stencilColor("color_badge_product_sale_badges");
-    color: stencilColor("color_text_product_sale_badges");
+%base-flag-sash {
     font-size: 15px;
     font-weight: 700;
     height: rem-calc(20px);
-    left: -35px;
+    left: -25px;
     line-height: rem-calc(16px);
     padding-top: spacing("eighth") / 2;
     position: absolute;
@@ -120,18 +158,29 @@
     z-index: zIndex("lower");
 }
 
+.sale-flag-sash {
+    @extend %base-flag-sash;
+    @include setFlagColors("color_badge_product_sale_badges", "color_text_product_sale_badges");
+}
+
+.sold-out-flag-sash {
+    @extend %base-flag-sash;
+    @include setFlagColors("color_badge_product_sold_out_badges", "color_text_product_sold_out_badges");
+}
+
 .listItem-figure {
-    
-    .sale-flag-sash {
-        left: -25px;
+    .sale-flag-sash,
+    .sold-out-flag-sash {
+        top: 24px;
 
         @include breakpoint("small") {
-            top: 15px;
+            left: -20px;
+            top: 19px;
         }
 
         @include breakpoint("large") {
             left: -15px;
-            top: 25px;
+            top: 24px;
         }
 
     }
@@ -139,6 +188,10 @@
 
 .product:hover .sale-flag-sash {
     background: stencilColor("color_hover_product_sale_badges");
+}
+
+.product:hover .sold-out-flag-sash {
+    background: stencilColor("color_hover_product_sold_out_badges");
 }
 
 .product {

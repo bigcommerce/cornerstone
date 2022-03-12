@@ -7,13 +7,18 @@
 // -----------------------------------------------------------------------------
 
 // do some math
-$value_of_swatch_size : stencilString("swatch_option_size");
-$position_of_x : str-index($value_of_swatch_size, "x");
-$first_value : str-slice($value_of_swatch_size, 0, $position_of_x - 1);
-$second_value : str-slice($value_of_swatch_size, $position_of_x + 1);
+$value_of_swatch_size: stencilString("swatch_option_size");
+$position_of_x: str-index($value_of_swatch_size, "x");
+$first_value: str-slice($value_of_swatch_size, 0, $position_of_x - 1);
+$second_value: str-slice($value_of_swatch_size, $position_of_x + 1);
 
 [data-product-attribute] .form-option.form-option-swatch {
     overflow: visible;
+}
+
+.form-option-variant--none {
+    height: 22px;
+    overflow: hidden;
 }
 
 .form-option-variant--color,
@@ -44,12 +49,12 @@ $second_value : str-slice($value_of_swatch_size, $position_of_x + 1);
 }
 
 .form-option-image {
+    display: block;
+    height: 100px;
+    width: 100px;
     background: {
         position: 50%;
         repeat: no-repeat;
         size: cover;
     }
-    display: block;
-    height: 100px;
-    width: 100px;
 }

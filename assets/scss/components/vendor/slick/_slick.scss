@@ -19,12 +19,12 @@
 .slick-next,
 .slick-prev {
     @include carouselOpaqueBackgrounds($slick-arrow-bgColor);
-    z-index: 1;
     border: 1px solid $slick-arrow-borderColor;
     height: remCalc(61px);
     margin-top: -(remCalc(15px));
     padding: remCalc(10px);
     width: remCalc(40px);
+    z-index: 1;
 
     &::before {
         background-position: 50%;
@@ -45,45 +45,42 @@
 }
 
 .slick-next {
-    right: -10px;
+    right: $slick-arrows-offset;
 
     @include breakpoint("large") {
         right: -(spacing("double") + spacing("quarter"));
     }
 
     &::before {
-        background-image: $slick-arrow-next;
+        @include carousel-arrow-color( $slick-arrow-color, "next");
     }
 
     &:hover {
-        // scss-lint:disable NestingDepth
         &::before {
-            background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iNDIiIHZpZXdCb3g9IjAgMCAyNCA0MiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMS40NTY3OSAxLjAwNzQ2MTQ3bDIxIDIwLjAyNDgyMTQzTDEuNTA4ODUgNDEuMDA3NDYxNSIgc3Ryb2tlPSIjOTg5ODk4IiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIi8+PC9zdmc+");
+            @include carousel-arrow-color( $slick-arrow-color-hover, "next");
         }
     }
 }
 
 .slick-prev {
-    left: -15px;
+    left: $slick-arrows-offset;
 
     @include breakpoint("large") {
         left: -(spacing("double") + spacing("quarter"));
     }
 
     &::before {
-        background-image: $slick-arrow-prev;
+        @include carousel-arrow-color( $slick-arrow-color, "prev");
     }
 
     &:hover {
-        // scss-lint:disable NestingDepth
         &::before {
-            background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iNDIiIHZpZXdCb3g9IjAgMCAyNCA0MiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMjIuNDU3MjA3NCAxLjAwNzQ2MTQ3bC0yMSAyMC4wMjQ4MjE0MyAyMC45NDc5Mzk3IDE5Ljk3NTE3ODYiIHN0cm9rZT0iIzk4OTg5OCIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPjwvc3ZnPg==");
+            @include carousel-arrow-color( $slick-arrow-color-hover, "prev");
         }
     }
 }
 
-.slick-slide img
-{
+.slick-slide img {
     display: block;
     width: 100%;
 }
@@ -105,7 +102,6 @@
         margin: 0;
         padding: remCalc(5px);
 
-        // scss-lint:disable SelectorDepth, NestingDepth
         button,
         button::before {
             @include square(15px);
@@ -113,7 +109,6 @@
         }
 
         button {
-            // scss-lint:disable NestingDepth
             border: 1px solid $slick-dot-color;
             display: inline-block;
             margin: 0;
@@ -137,7 +132,6 @@
         }
 
         &.slick-active {
-            // scss-lint:disable NestingDepth
             button::before {
                 background: $slick-dot-color-active;
             }
@@ -149,7 +143,7 @@
 //
 // Stencil override for product detail page thumbnail dots.
 // -----------------------------------------------------------------------------
-.productView .slick-dots  {
+.productView .slick-dots {
     position: relative;
 }
 
@@ -175,8 +169,120 @@
 // iOS Safari fix https://github.com/kenwheeler/slick/issues/2834#issuecomment-389590661
 // -----------------------------------------------------------------------------
 div.slick-slider {
-    width: 1px;
     min-width: 100%;
+    width: 1px;
     *width: 100%;
 }
 
+
+//
+// Carousel tooltips for buttons and bullets
+// -----------------------------------------------------------------------------
+
+.carousel-tooltip {
+    @include addFocusTooltip($attr: aria-label);
+    display: none;
+    height: 1px;
+    margin-top: 10px;
+    position: relative;
+
+    @include breakpoint("small") {
+        display: block;
+    }
+
+    &::after {
+        padding: 15px 10px;
+        top: 10px;
+    }
+
+    .slick-prev:focus &,
+    .slick-next:focus &,
+    .slick-dots button:focus & {
+        &::before,
+        &::after {
+            display: block;
+        }
+    }
+
+    .slick-prev &,
+    .slick-next & {
+        &::before {
+            top: -7px;
+        }
+    }
+
+    .slick-prev & {
+        &::before {
+            right: -2px;
+        }
+
+        &::after {
+            left: -5px;
+            right: auto;
+        }
+    }
+
+    .slick-next & {
+        &::after {
+            right: -5px;
+        }
+    }
+
+    .slick-dots button & {
+        margin-top: 25px;
+
+        &::before,
+        &::after {
+            right: 50%;
+            transform: translateX(50%);
+        }
+
+        &::before {
+            top: -7px;
+        }
+    }
+}
+
+//
+// Carousel Play/Pause button
+// -----------------------------------------------------------------------------
+
+.carousel-play-pause-button {
+    @include carouselOpaqueBackgrounds($slick-play-pause-button-bgColor);
+    border: 1px solid $slick-play-pause-button-borderColor;
+    bottom: spacing("third");
+    color: $slick-play-pause-button-color;
+    display: none;
+    font-size: 14px;
+    font-weight: 700;
+    height: 32px;
+    left: 15px;
+    line-height: 1.25;
+    max-width: 60px;
+    min-width: 60px;
+    overflow: hidden;
+    position: absolute;
+    text-overflow: ellipsis;
+    transition: color 100ms ease-out;
+    white-space: nowrap;
+    z-index: zIndex("lowest");
+
+    @include breakpoint("small") {
+        font-size: 18px;
+        max-width: 150px;
+    }
+
+    @include breakpoint("medium") {
+        bottom: spacing("single");
+        left: 25px;
+    }
+
+    &:hover {
+        color: $slick-play-pause-button-color-hover;
+    }
+
+    @media (min-width: 375px) {
+        max-width: 90px;
+        min-width: 80px;
+    }
+}

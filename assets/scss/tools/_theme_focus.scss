@@ -1,0 +1,29 @@
+// =============================================================================
+// THEME FOCUS (global)
+// =============================================================================
+
+$outline-width:  2px;
+$outline-style:  solid;
+$outline-color:  #0f7fff;
+$outline-offset: 1px;
+
+input,
+button,
+textarea,
+select,
+details,
+[href],
+[tabindex]:not([tabindex="-1"]),
+[contenteditable="true"] {        
+    &:focus {
+        outline: $outline-width $outline-style $outline-color !important;
+        outline-offset: $outline-offset !important;        
+    }
+}
+
+label {
+    input:focus + & {
+        outline: $outline-width $outline-style $outline-color !important;
+        outline-offset: $outline-offset !important;        
+    }
+}

@@ -1,4 +1,4 @@
-import urlUtil from '../../../theme/common/url-utils';
+import urlUtil from '../../../theme/common/utils/url-utils';
 
 describe('Url Utilities', () => {
     describe('urlUtils', () => {

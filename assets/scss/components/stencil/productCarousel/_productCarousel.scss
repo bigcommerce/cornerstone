@@ -8,12 +8,13 @@
 //
 // -----------------------------------------------------------------------------
 
-.productCarousel { // 1
-    width: 1px;
-    min-width: 100%;
+.productCarousel {
     @include grid-row(
         $behavior: nest
-    );
+    ); // 1
+    min-width: 100%;
+    position: relative;
+    width: 1px;
 }
 
 .productCarousel-slide { // 1

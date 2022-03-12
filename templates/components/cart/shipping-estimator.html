@@ -1,3 +1,6 @@
+{{inject 'shippingCountryErrorMessage' (lang 'cart.shipping_estimator.empty_country_error')}}
+{{inject 'shippingProvinceErrorMessage' (lang 'cart.shipping_estimator.empty_province_error')}}
+
 {{#if shipping_cost}}
     <div class="cart-total-value">
         <div class="subtotal shipping-estimate-show">
@@ -6,12 +9,15 @@
     </div>
 {{else}}
     <div class="cart-total-value">
-        <button class="shipping-estimate-show">{{lang 'cart.shipping_estimator.add_info'}}</button>
-        <button class="shipping-estimate-hide" style="display: none;">Cancel</button>
+        <button data-collapsible="add-shipping" class="shipping-estimate-show" aria-labelledby="estimator-add">
+            <span class="shipping-estimate-show__btn-name">{{lang 'cart.shipping_estimator.add_info'}}</span>
+            <span id="estimator-add" class="u-hidden">{{lang 'cart.shipping_estimator.add_info'}}</span>
+            <span id="estimator-close" class="u-hidden">{{lang 'cart.shipping_estimator.cancel'}}</span>
+        </button>
     </div>
 {{/if}}
 
-<div class="shipping-estimator u-hiddenVisually">
+<div id="add-shipping" class="shipping-estimator u-hidden">
     <form class="form estimator-form" data-shipping-estimator>
         <dl>
             <dt class="estimator-form-label">
@@ -64,5 +70,5 @@
             <button class="button button--primary button--small shipping-estimate-submit">{{lang 'cart.shipping_estimator.estimate_shipping'}}</button>
         </dl>
     </form>
-    <div class="shipping-quotes"></div>
+    <div class="shipping-quotes" role="alert" aria-atomic="true" aria-live="assertive"></div>
 </div>

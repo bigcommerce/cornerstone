@@ -11,7 +11,7 @@
             {{/or}}
         </div>
     </li>
-    {{#if cart.gift_wrapping_cost.amount}}
+    {{#if cart.gift_wrapping_cost.value}}
         <li class="cart-total">
             <div class="cart-total-label">
                 <strong>{{lang 'cart.checkout.gift_wrapping'}}:</strong>
@@ -30,14 +30,16 @@
         </li>
     {{/if}}
     {{#each cart.taxes}}
-        <li class="cart-total">
-            <div class="cart-total-label">
-                <strong>{{name}}:</strong>
-            </div>
-            <div class="cart-total-value">
-                <span>{{cost.formatted}}</span>
-            </div>
-        </li>
+        {{#unless included}}
+            <li class="cart-total">
+                <div class="cart-total-label">
+                    <strong>{{name}}:</strong>
+                </div>
+                <div class="cart-total-value">
+                    <span>{{cost.formatted}}</span>
+                </div>
+            </li>
+        {{/unless}}
     {{/each}}
     {{#if cart.discount }}
         <li class="cart-total">
@@ -104,4 +106,16 @@
             {{/or}}
         </div>
     </li>
+    {{#each cart.taxes}}
+        {{#if included}}
+            <li class="cart-total">
+                <div class="cart-total-label">
+                    <strong>{{concat name (lang 'cart.included_in_total')}}:</strong>
+                </div>
+                <div class="cart-total-value">
+                    <span>{{cost.formatted}}</span>
+                </div>
+            </li>
+        {{/if}}
+    {{/each}}
 </ul>

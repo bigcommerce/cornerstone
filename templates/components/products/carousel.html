@@ -1,17 +1,17 @@
 <section class="productCarousel"
     data-list-name="{{list}}"
     data-slick='{
-        "dots": true,
         "infinite": false,
         "mobileFirst": true,
         "slidesToShow": 2,
         "slidesToScroll": 2,
+        "slide": "[data-product-slide]",
         "responsive": [
             {
                 "breakpoint": 800,
                 "settings": {
                     "slidesToShow": {{ columns }},
-                    "slidesToScroll": 3
+                    "slidesToScroll": {{ columns }}
                 }
             },
             {
@@ -25,8 +25,11 @@
     }'
 >
     {{#each products}}
-    <div class="productCarousel-slide">
+    <div data-product-slide class="productCarousel-slide">
         {{> components/products/card settings=../settings theme_settings=../theme_settings customer=../customer event="list" position=(add @index 1)}}
     </div>
     {{/each}}
+    {{#if products.length '>' 1}}
+        {{> components/carousel-content-announcement}}
+    {{/if}}
 </section>

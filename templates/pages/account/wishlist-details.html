@@ -1,5 +1,5 @@
 {{#partial "page"}}
-<div class="account">
+<div class="account" data-pagination-wishlist>
 
     {{#if wishlist.is_editable}}
         {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
@@ -23,7 +23,7 @@
     {{#if wishlist.items}}
         {{> components/account/wishlist-item-list show_remove=wishlist.is_editable}}
     {{else}}
-        {{> components/common/alert-info (lang 'account.wishlists.empty_wishlist')}}
+        {{> components/common/alert/alert-info (lang 'account.wishlists.empty_wishlist')}}
     {{/if}}
 
 </div>

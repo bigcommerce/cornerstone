@@ -1,8 +1,12 @@
-<div class="pagination">
+<nav class="pagination" aria-label="pagination">
     <ul class="pagination-list">
         {{#if previous}}
             <li class="pagination-item pagination-item--previous">
-                <a class="pagination-link" href="{{previous}}" {{#unless reload}}data-faceted-search-facet{{/unless}}>
+                <a class="pagination-link"
+                   href="{{previous}}"
+                   {{#unless reload}}data-faceted-search-facet{{/unless}}
+                   aria-label="{{lang 'common.previous'}}"
+                >
                     <i class="icon" aria-hidden="true">
                         <svg>
                             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-chevron-left"></use>
@@ -13,20 +17,28 @@
             </li>
         {{/if}}
         {{#each links}}
-            {{#if this.number '==' ../current}}
-                <li class="pagination-item pagination-item--current">
-                    <a class="pagination-link" href="{{this.url}}" {{#unless reload}}data-faceted-search-facet{{/unless}}>{{this.number}}</a>
-                </li>
-            {{else}}
-                <li class="pagination-item">
-                    <a class="pagination-link" href="{{this.url}}" {{#unless reload}}data-faceted-search-facet{{/unless}}>{{this.number}}</a>
-                </li>
-            {{/if}}
+            <li class="pagination-item {{#if this.number '==' ../current}}pagination-item--current{{/if}}">
+                <a class="pagination-link"
+                   href="{{this.url}}"
+                   {{#unless reload}}data-faceted-search-facet{{/unless}}
+                   {{#if this.number '==' ../current}}
+                   aria-current="page"
+                   data-pagination-current-page-link
+                   {{/if}}
+                   aria-label="{{lang 'common.paginator.page_of' current=this.number total=../links.length}}"
+                >
+                    {{this.number}}
+                </a>
+            </li>
         {{/each}}
 
         {{#if next}}
             <li class="pagination-item pagination-item--next">
-                <a class="pagination-link" href="{{next}}" {{#unless reload}}data-faceted-search-facet{{/unless}}>
+                <a class="pagination-link"
+                   href="{{next}}"
+                   {{#unless reload}}data-faceted-search-facet{{/unless}}
+                   aria-label="{{lang 'common.next'}}"
+                >
                     {{lang 'common.next'}}
                     <i class="icon" aria-hidden="true">
                         <svg>
@@ -37,4 +49,4 @@
             </li>
         {{/if}}
     </ul>
-</div>
+</nav>

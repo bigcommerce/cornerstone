@@ -2,6 +2,8 @@ import 'foundation-sites/js/foundation/foundation';
 import 'foundation-sites/js/foundation/foundation.reveal';
 import nod from './common/nod';
 import PageManager from './page-manager';
+import { wishlistPaginatorHelper } from './common/utils/pagination-utils';
+import { announceInputErrorMessage } from './common/utils/form-utils';
 
 export default class WishList extends PageManager {
     constructor(context) {
@@ -32,6 +34,7 @@ export default class WishList extends PageManager {
     registerAddWishListValidation($addWishlistForm) {
         this.addWishlistValidator = nod({
             submit: '.wishlist-form input[type="submit"]',
+            tap: announceInputErrorMessage,
         });
 
         this.addWishlistValidator.add([
@@ -42,7 +45,7 @@ export default class WishList extends PageManager {
 
                     cb(result);
                 },
-                errorMessage: 'You must enter a wishlist name.',
+                errorMessage: this.context.enterWishlistNameError,
             },
         ]);
 
@@ -59,6 +62,10 @@ export default class WishList extends PageManager {
 
     onReady() {
         const $addWishListForm = $('.wishlist-form');
+
+        if ($('[data-pagination-wishlist]').length) {
+            wishlistPaginatorHelper();
+        }
 
         if ($addWishListForm.length) {
             this.registerAddWishListValidation($addWishListForm);

@@ -1,10 +1,12 @@
 ---
 cart: true
 ---
+{{inject 'cancelButtonText' (lang 'common.cancel')}}
 {{#partial "page"}}
+{{inject 'invalidEntryMessage' (lang 'cart.invalid_entry_message')}}
 <div class="page">
 
-    <main class="page-content" data-cart>
+    <div class="page-content" data-cart>
         {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
 
         {{> components/cart/page-title}}
@@ -16,16 +18,18 @@ cart: true
         {{#if cart.items.length}}
             <div class="loadingOverlay"></div>
 
-            <div data-cart-content>
+            <div data-cart-content class="cart-content-padding-right">
                 {{> components/cart/content}}
             </div>
 
-            <div data-cart-totals>
+            <div data-cart-totals class="cart-content-padding-right">
                 {{> components/cart/totals}}
             </div>
 
+            {{{region name="cart_below_totals"}}}
+
             {{#if cart.show_primary_checkout_button}}
-                <div class="cart-actions">
+                <div class="cart-actions cart-content-padding-right">
                     <a class="button button--primary" href="{{urls.checkout.single_address}}" title="{{lang 'cart.checkout.title'}}">{{lang 'cart.checkout.button'}}</a>
                     {{#if cart.show_multiple_address_shipping}}
                         <a class="checkoutMultiple" href="{{urls.checkout.multiple_address}}">
@@ -34,23 +38,20 @@ cart: true
                     {{/if}}
                 </div>
             {{else}}
-                <div class="cart-actions">
+                <div class="cart-actions cart-content-padding-right">
                     <a class="button" href="{{urls.home}}" title="{{lang 'cart.continue_shopping'}}">{{lang 'cart.continue_shopping'}}</a>
                 </div>
             {{/if}}
 
-            {{#if cart.additional_checkout_buttons}}
-                <div class="cart-additionalCheckoutButtons">
-                    {{#each cart.additional_checkout_buttons}}
-                        {{{this}}}
-                    {{/each}}
-                </div>
-            {{/if}}
+            <div data-cart-additional-checkout-buttons class="cart-additionalCheckoutButtons cart-content-padding-right">
+                {{> components/cart/additional-checkout-buttons}}
+            </div>
+
         {{else}}
-            <h3>{{lang 'cart.checkout.empty_cart'}}</h3>
+            <h3 tabindex="0">{{lang 'cart.checkout.empty_cart'}}</h3>
         {{/if}}
 
-    </main>
+    </div>
 </div>
 {{/partial}}
 {{> layout/base}}

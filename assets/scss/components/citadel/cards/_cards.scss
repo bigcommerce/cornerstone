@@ -11,23 +11,42 @@
 //
 // -----------------------------------------------------------------------------
 
+.card {
+    &:focus-within {
+        .card-figcaption {
+            opacity: 1;
+        }
+    }
 
-.card-figure {
-    margin-top: $card-figure-marginTop;
-    position: relative;
-    &:hover {
-
-        // scss-lint:disable NestingDepth
+    &.focus-within {
         .card-figcaption {
             opacity: 1;
         }
     }
 }
 
-.card-img-container {
-    max-width: get-width(stencilString('productgallery_size'));
+.card-figure {
+    margin-top: $card-figure-marginTop;
+    overflow: hidden;
+    padding: 3px;
+    position: relative;
 
-    @include lazy-loaded-padding('productgallery_size');
+    &:hover {
+        .card-figcaption {
+            opacity: 1;
+        }
+    }
+
+    &__link {
+        display: block;
+        position: relative;
+    }
+}
+
+.card-img-container {
+
+    @include lazy-loaded-padding("productgallery_size");
+    max-width: get-width(stencilString("productgallery_size"));
 }
 
 .card-figcaption {
@@ -49,11 +68,11 @@
 .card-image {
     @include lazy-loaded-img;
     border: 0;
-    width: 100%;
+    /* Object-fit polyfill */
+    font-family: "object-fit: contain;";
     max-height: 100%;
     object-fit: contain;
-    /* Object-fit polyfill */
-    font-family: 'object-fit: contain;';
+    width: 100%;
 }
 
 .card-title {
@@ -62,9 +81,9 @@
 
     > a {
         color: $card-title-color;
+        display: block;
         text-decoration: $card-title-textDecoration;
 
-        // scss-lint:disable NestingDepth
         &:hover {
             color: $card-title-color-hover;
         }
@@ -89,6 +108,13 @@
     &:active {
         background-color: $card-figcaption-button-backgroundHover;
         border: $card-figcaption-button-border;
+    }
+
+    .card-figcaption-body & {
+        &:focus {
+            background-color: $card-figcaption-button-backgroundHover;
+            outline: revert;
+        }
     }
 
     + .card-figcaption-button {
@@ -128,7 +154,6 @@
     &:hover {
         border-color: stencilColor("color-primary");
 
-        // scss-lint:disable SelectorDepth, NestingDepth
         .card-body {
             background-color: stencilColor("color-primary");
 

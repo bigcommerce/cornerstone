@@ -1,0 +1,23 @@
+<div class="form-field" data-product-attribute="input-checkbox">
+    <label class="form-label form-label--alternate form-label--inlineSmall">
+        {{display_name}}
+
+        {{#if required}}
+            <small>{{lang 'common.required'}}</small>
+        {{/if}}
+    </label>
+    <input type="hidden" name="attribute[{{id}}]" value="{{noValue}}" />
+    <input
+        class="form-checkbox"
+        type="checkbox"
+        name="attribute[{{id}}]"
+        id="ft_attribute-check-{{id}}"
+        value="{{value}}"
+        {{#if checked}}
+            checked
+            data-default
+        {{/if}}
+        {{#if required}}required{{/if}}>
+
+    <label class="form-label {{class}}" for="ft_attribute-check-{{id}}">{{label}}</label>
+</div>

@@ -1,0 +1,22 @@
+<a class="close-sidebar" href="javascript:void(0)" title="close">{{lang 'common.sidebar_shop_by'}}<svg class="icon"><use xlink:href="#icon-close"></use></svg></a>
+<nav class="sidebar-layout-2">
+     <!-- All categories -->
+    {{> components/themevale/sidebar/side-all-categories}}
+
+    {{#if category.faceted_search_enabled}}
+        {{> components/faceted-search/index category}}
+    {{else}}
+        {{> components/category/shop-by-price shop_by_price=category.shop_by_price category_url=category.url}}
+        {{#if shop_by_brand}}
+            {{> components/themevale/sidebar/side-shop-by-brand}}
+        {{/if}}
+        <!-- slider featured product -->
+        {{#if products.featured}}
+            {{> components/themevale/sidebar/featured-2 products=products.featured products_new=products.new}}
+        {{/if}}
+    {{/if}}
+    <!-- Custom CMS Block image -->
+    {{> components/themevale/sidebar/side-custom-image}}
+    <!-- Custom CMS Block -->
+    {{> components/themevale/sidebar/side-custom-content}}
+</nav>

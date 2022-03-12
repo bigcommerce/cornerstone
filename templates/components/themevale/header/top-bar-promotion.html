@@ -1,0 +1,49 @@
+{{#if theme_settings.enable_top_promotion}}
+	{{#if theme_settings.top_promotion_style '==' 'style-1'}}
+	    <div id="top-bar-promotion" class="top-bar-promotion-layout-1">
+	        <div class="container">
+	            <p class="banner-header-top{{#if theme_settings.top-promotion-alignment '==' 'left'}} text-left{{else if theme_settings.top-promotion-alignment '==' 'right'}} text-right{{else}} text-center{{/if}}">{{theme_settings.top-promotion-text}}</p>
+	        </div>
+	    </div>
+	{{else}}
+	    <div id="top-bar-promotion" class="top-bar-promotion-layout-2">
+	        <div class="container">
+	        	<div class="item-list" data-slick='{
+		        "dots": false,
+		        "arrows": false,
+		        "infinite": true,
+		        "mobileFirst": true,
+		        "slidesToShow": 1,
+		        "slidesToScroll": 1,
+		        "vertical": true,
+		        "autoplay": true
+		    }'>
+		    		{{#or theme_settings.top-promotion-text-1 '!=' '' theme_settings.top-promotion-text-2 '!=' ''}}
+	            	<div class="banner-header-top{{#if theme_settings.top-promotion-alignment '==' 'left'}} text-left{{else if theme_settings.top-promotion-alignment '==' 'right'}} text-right{{else}} text-center{{/if}}">
+	            		<div class="banner-header-top-inner">
+	            			{{#if theme_settings.top-promotion-text-1 '!=' ''}}
+		            			<span>{{theme_settings.top-promotion-text-1}}</span>
+		            		{{/if}}
+		            		{{#if theme_settings.top-promotion-text-2 '!=' ''}}
+		            			{{theme_settings.top-promotion-text-2}}
+		            		{{/if}}
+		            	</div>
+	            	</div>
+	            	{{/or}}
+	            	{{#or theme_settings.top-promotion-text-3 '!=' '' theme_settings.top-promotion-text-4 '!=' ''}}
+	            	<div class="banner-header-top{{#if theme_settings.top-promotion-alignment '==' 'left'}} text-left{{else if theme_settings.top-promotion-alignment '==' 'right'}} text-right{{else}} text-center{{/if}}">
+	            		<div class="banner-header-top-inner">
+	            			{{#if theme_settings.top-promotion-text-3 '!=' ''}}
+		            			<span>{{theme_settings.top-promotion-text-3}}</span>
+		            		{{/if}}
+		            		{{#if theme_settings.top-promotion-text-4 '!=' ''}}
+		            			{{theme_settings.top-promotion-text-4}}
+		            		{{/if}}
+		            	</div>
+	            	</div>
+	            	{{/or}}
+	            </div>
+	        </div>
+	    </div>
+	{{/if}}
+{{/if}}

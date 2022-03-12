@@ -1,0 +1,12 @@
+<a class="close-sidebar" href="javascript:void(0)" title="close">{{lang 'common.sidebar_shop_by'}}<svg class="icon"><use xlink:href="#icon-close"></use></svg></a>
+<nav>
+    {{> components/themevale/sidebar/recent-post}}
+
+    {{#if products.featured}}
+        {{> components/themevale/sidebar/featured products=products.featured products_new=products.new}}
+    {{/if}}
+
+    {{> components/themevale/sidebar/side-custom-image}}
+
+    {{> components/themevale/sidebar/side-custom-content}}
+</nav>

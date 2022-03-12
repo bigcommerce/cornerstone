@@ -1,0 +1,53 @@
+<div class="modal-content">
+   <div class="modal-header">
+      <h2 class="modal-header-title">Have Questions?</h2>
+   </div>
+   <div class="modal-body">
+      <div id="contact_results"></div>
+      <div class="form-inner">
+         <div class="title-wrapper">
+             <h4 class="title">Ask the Expert anything on LuxWatches</h4>
+             <div class="description">We will follow up with you via email within 24-36 hours</div>
+         </div>
+         <div class="questions">Please answer the following questionnaire</div>
+         <form class="form" id="contact_form">
+            <fieldset class="form-fieldset">
+               <div class="form-field mb-4">
+                  <input required="true" type="text" class="form-control form-input" name="customer_name" placeholder="Your Name" value="{{customer.name}}">
+               </div>
+               <div class="form-field mb-4">
+                  <input required="true" type="text" class="form-control form-input" name="customer_email" placeholder="Email Address" value="{{customer.email}}">
+               </div>
+               <div class="form-field mb-4">
+                  <input required="true" type="text" class="form-control form-input" name="customer_phone" placeholder="Phone Number" value="{{customer.phone}}">
+               </div>
+               <div class="form-field form-field-1 form-field-radio">
+                  <label class="form-label">Do you need:</label>
+                  <input class="form-radio" id="pricing-radio" type="radio" name="type_package" checked value="Pricing">
+                  <label class="form-label" for="pricing-radio">Pricing</label>
+                  <input class="form-radio" id="answers-radio" type="radio" name="type_package" value="Answers">
+                  <label class="form-label" for="answers-radio">Answers</label>
+                  <input class="form-radio" id="both-radio" type="radio" name="type_package" value="Pricing & Answers">
+                  <label class="form-label" for="both-radio">Both</label>
+               </div>
+               <div class="form-field mb-4">
+                  <label class="form-label" for="comment-area">What can i help you with today ?</label>
+                  <textarea name="message" cols="30" rows="6" class="form-control form-input" id="comment-area" required="true"></textarea>
+               </div>
+               <div class="form-field mb-4 form-check ">
+                  <label class="form-check-label form-label label-last">How would you like me to contact you ?</label>
+                  <input class="form-check-input form-radio" id="phone-radio" type="radio" name="type_contact" checked value="Phone">
+                  <label class="form-check-label form-label" for="phone-radio">Phone</label>
+                  <input class="form-check-input form-radio" id="email-radio" type="radio" name="type_contact" value="Email">
+                  <label class="form-check-label form-label" for="email-radio">Email</label>
+                  <input class="form-check-input form-radio" id="both-radio-2" type="radio" name="type_contact" value="Phone & Email">
+                  <label class="form-check-label form-label" for="both-radio-2">Both</label>
+               </div>
+               <div class="form-actions">
+                 <button type="button" class="btn btn-lg btn-block mb-4 button button--primary" id="ask-an-expert-button">Send Question</button>
+               </div>
+            </fieldset>
+         </form>
+      </div>
+   </div>
+</div>

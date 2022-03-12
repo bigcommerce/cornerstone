@@ -1,0 +1,41 @@
+<fieldset class="form-fieldset actionBar-section">
+    <div class="form-field">
+        <label class="form-label" for="limit">{{lang 'common.number_products.show'}}</label>
+        <select class="form-select form-select--small" name="limit" id="limit">
+            <option value="8">8 {{lang 'common.number_products.show_text'}}</option>
+            <option value="9">9 {{lang 'common.number_products.show_text'}}</option>
+            <option value="12">12 {{lang 'common.number_products.show_text'}}</option>
+            <option value="15">15 {{lang 'common.number_products.show_text'}}</option>
+            <option value="16">16 {{lang 'common.number_products.show_text'}}</option>
+            <option value="18">18 {{lang 'common.number_products.show_text'}}</option>
+            <option value="20">20 {{lang 'common.number_products.show_text'}}</option>
+            <option value="21">21 {{lang 'common.number_products.show_text'}}</option>
+            <option value="24">24 {{lang 'common.number_products.show_text'}}</option>
+            <option value="28">28 {{lang 'common.number_products.show_text'}}</option>
+        </select>
+    </div>
+</fieldset>
+<script>
+function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+        vars[key] = value;
+    });
+    return vars;
+}
+(function(){
+    try {
+        var c = getUrlVars()["limit"];
+
+        if(c == undefined) c = {{theme_settings.searchpage_products_per_page}};
+        if(c != undefined){
+            var limit = document.querySelectorAll('select#limit option');
+            Array.prototype.forEach.call(limit, function(element) {
+                if(element.value == c){
+                    element.selected = true;
+                }
+            });
+        }
+    } catch(e) {}
+}());
+</script>

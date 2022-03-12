@@ -1,0 +1,66 @@
+<nav class="navPages-mobile">
+    <ul class="navPages-list navPages-list--user">
+        {{#if customer}}
+            <li class="navPages-item">
+                <p class="navPage-subMenu-title">
+                    <span class="text">{{lang 'common.account'}}</span>
+                </p>
+            </li>
+            <li class="navPages-item">
+                <a class="navPage-subMenu-action navPages-action" href="{{urls.account.orders.all}}"><span class="text">{{lang 'account.nav.orders'}}</span></a>
+            </li>
+            {{#if settings.returns_enabled}}
+                <li class="navPages-item">
+                    <a class="navPage-subMenu-action navPages-action" href="{{urls.account.returns}}"><span class="text">{{lang 'account.nav.returns'}}</span></a>
+                </li>
+            {{/if}}
+            <li class="navPages-item">
+                <a class="navPage-subMenu-action navPages-action" href="{{urls.account.inbox}}"><span class="text">{{lang 'account.mobile_nav.messages'}}</span></a>
+            </li>
+            <li class="navPages-item">
+                <a class="navPage-subMenu-action navPages-action" href="{{urls.account.addresses}}"><span class="text">{{lang 'account.nav.addresses'}}</span></a>
+            </li>
+            <li class="navPages-item">
+                <a class="navPage-subMenu-action navPages-action" href="{{urls.account.wishlists.all}}"><span class="text">{{lang 'account.mobile_nav.wishlists'}}</span></a>
+            </li>
+            <li class="navPages-item">
+                <a class="navPage-subMenu-action navPages-action" href="{{urls.account.recent_items}}"><span class="text">{{lang 'account.nav.recently_viewed'}}</span></a>
+            </li>
+            <li class="navPages-item">
+                <a class="navPage-subMenu-action navPages-action" href="{{urls.account.details}}"><span class="text">{{lang 'account.nav.settings'}}</span></a>
+            </li>
+            <li class="navPages-item">
+                <a class="navPage-subMenu-action navPages-action" href="{{urls.auth.logout}}"><span class="text">{{lang 'common.logout'}}</span></a>
+            </li>
+        {{else}}
+            <li class="navPages-item">
+                <p class="navPage-subMenu-title">
+                    <span class="text">Customer Login:</span>
+                </p>
+                <div class="login-content">
+                    <form class="login-form form" action="{{settings.secure_base_url}}/login.php?action=check_login" method="post">
+                        {{inject 'useValidEmail' (lang 'forms.validate.common.email_address')}}
+                        {{inject 'enterPass' (lang 'forms.validate.common.password')}}
+                        <div class="form-field">
+                            <label class="form-label" for="login_email3">{{lang 'login.field_email'}}</label>
+                            <input class="form-input" name="login_email" id="login_email3" type="email">
+                        </div>
+                        <div class="form-field">
+                            <label class="form-label" for="login_pass3">{{lang 'login.field_password'}}</label>
+                            <input class="form-input" id="login_pass3" type="password" name="login_pass">
+                        </div>
+                        <div class="form-actions">
+                            <input type="submit" class="btn button button--border" value="{{lang 'login.button' }}">
+                            <a class="forgot-password" href="{{urls.auth.forgot_password}}">{{lang 'login.forgot_password' }}</a>
+                        </div>
+                    </form>
+                </div>
+                <div class="new-customer">
+                    {{#if settings.account_creation_enabled}}
+                        <a class="btn button button--primary" href="{{urls.auth.create_account}}">{{lang 'create_account.button' }}</a>
+                    {{/if}}
+                </div>
+            </li>
+        {{/if}}
+    </ul>
+</nav>

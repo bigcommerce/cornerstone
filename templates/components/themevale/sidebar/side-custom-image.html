@@ -1,0 +1,33 @@
+{{#if theme_settings.show_sidebar_image}}
+<div class="sidebarBlock" id="sideBannerImage">
+    <div class="side-cms-content">
+        {{#if theme_settings.sidebar_image_1 '!=' ''}}
+    		<a class="cms-image" href="{{theme_settings.sidebar_image_link_1}}">
+    			<div class="card-img-container">
+                    <img class="card-image lazyload" data-src="/product_images/uploaded_images/left-sidebar-banner-1.jpg" />
+    				{{> components/themevale/themevale-responsive-img
+                        image=theme_settings.sidebar_image_1
+                        alt=theme_settings.sidebar_image_1
+                        class="card-image"
+                        fallback_size=theme_settings.sidebar_image_size
+                        lazyload=theme_settings.lazyload_mode
+                    }}
+                </div>
+    		</a>
+        {{/if}}
+        {{#if theme_settings.sidebar_image_2 '!=' ''}}
+            <a class="cms-image" href="{{theme_settings.sidebar_image_link_2}}">
+                <div class="card-img-container">
+                    {{> components/themevale/themevale-responsive-img
+                        image=theme_settings.sidebar_image_2
+                        alt=theme_settings.sidebar_image_2
+                        class="card-image"
+                        fallback_size=theme_settings.sidebar_image_size
+                        lazyload=theme_settings.lazyload_mode
+                    }}
+                </div>
+            </a>
+        {{/if}}
+    </div>
+</div>
+{{/if}}

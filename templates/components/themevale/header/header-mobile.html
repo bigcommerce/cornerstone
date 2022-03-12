@@ -1,0 +1,51 @@
+<div class="themevale_header">
+    <div class="header-Mobile-item text-left">
+        <div class="items item--hamburger">
+            <a class="mobileMenu-toggle" href="#" data-mobile-menu-toggle="menu">
+                <span class="mobileMenu-toggleIcon">Toggle menu</span>
+            </a>
+        </div>
+        <div class="items item--searchMobile">
+            <a class="navUser-action searchMobile" href="#" data-search="quickSearch" aria-controls="quickSearch" aria-expanded="false">
+                <div class="search-icon">
+                    <svg class="icon"><use xlink:href="#icon-search"></use></svg>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="header-Mobile-item text-center">
+        <div class="items">
+            <div class="logo-wrapper">
+                {{#if page_type '===' 'default'}}
+                    <h1 class="header-logo">
+                        {{> components/common/store-logo}}
+                    </h1>
+                {{else}}
+                    <div class="header-logo">
+                        {{> components/common/store-logo}}
+                    </div>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+    <div class="header-Mobile-item text-right">
+        <div class="items item--account">
+            <a class="navUser-action accountMobile" href="javascript:void(0)">
+                <div class="navUser-icon">
+                    <svg class="icon"><use xlink:href="#icon-user"/></svg>
+                </div>
+            </a>
+        </div>
+        <div class="items item--cart themevale_cart">
+            <a class="navUser-action cartMobile"
+                data-cart-preview
+                data-options="align:right"
+                href="{{urls.cart}}">
+                <div class="navUser-icon navUser-item-cartIcon cart-icon">
+                    <svg class="icon"><use xlink:href="#icon-cart"></use></svg>
+                    <span class="countPill cart-quantity"></span>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>

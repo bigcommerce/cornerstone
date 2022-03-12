@@ -1,0 +1,35 @@
+<script type="text/javascript">
+  var arrNew = [0{{#each productsnew}},{{id}}{{/each}}];
+</script>
+<div id="home_new_products">
+  <div class="container">
+      <div class="themevale_page-heading-wrapper has-view-all">
+        <h2 class="page-heading ">
+        	<span class="title">{{theme_settings.home_category_tab_title}}</span>
+        </h2>
+      </div>
+      <div class="tab-category-wrap">
+        <ul class="tab-category" data-tab="">
+        	<li class="tab is-active">
+        		<a class="new_cat all" href="#tab-all">All Category</a>
+        	</li>
+            {{#each categories}}
+            <li class="tab tab-new">
+                <a class="new_cat" cat-id="{{id}}" cat-url="{{url}}" href="#tab-{{id}}">{{name}}</a>
+            </li>
+            {{/each}}
+        </ul>
+      </div>
+      <div class="tabs-contents">
+      		<div class="tab-content is-active" id="tab-all">
+      			<div class="module-wrapper">
+      				{{> components/products/new products=productsnew columns=theme_settings.homepage_carousel_products_column}}
+      			</div>
+            </div>
+          {{#each categories}}
+            <div class="tab-content tab-content-new" id="tab-{{id}}">
+            </div>
+          {{/each}}
+      </div>
+  	</div>
+  </div>

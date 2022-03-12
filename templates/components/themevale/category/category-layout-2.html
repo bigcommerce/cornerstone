@@ -1,0 +1,121 @@
+<div class="page category-layout-2">
+    <div class="category-description">
+        {{#if category.image}}
+            <div class="card-img-container">
+                {{> components/common/responsive-img
+                    image=category.image
+                    fallback_size=theme_settings.category_image_size
+                    lazyload=theme_settings.lazyload_mode
+                    class="card-image"
+                }}
+            </div>
+        {{/if}}
+        <div class="content{{#if category.image}} has-img{{/if}}">
+            {{#unless theme_settings.hide_category_page_heading }}
+                <h1 class="page-heading">{{category.name}}</h1>
+            {{/unless}}
+            {{{category.description}}}
+        </div>
+    </div>
+    <div class="subcategories">
+        {{{region name="category_below_header"}}}
+        <div class="container">
+            {{#if category.subcategories}}
+                <ul class="subList">
+                    {{#each category.subcategories}}
+                    <li class="subList-item">
+                        <a class="navList-action" href="{{url}}" alt="{{name}}" title="{{name}}">{{name}}</a>
+                    </li>
+                    {{/each}}
+                </ul>
+            {{/if}}
+        </div>
+    </div>
+    <div class="container">
+        <div class="themevale_category-toolbar">
+            {{#if theme_settings.show_sidebar}}
+            <div class="column-left">
+                <div class="sidebar-label">
+                    <span class="icon-filter">
+                        <svg class="icon"><use xlink:href="#icon-filter"></use></svg>
+                    </span>
+                    <span class="sidebar_more">{{lang 'common.show_sidebar'}}</span>
+                </div>
+            </div>
+            {{/if}}
+            <div class="column-right">
+                <div class="view-as-btn">
+                    <label class="form-label">{{lang 'products.view_as'}}</label>
+                    <div class="btn-group">
+                        <a href="javascript:void(0);" id="grid-view" title="Grid View" class="{{#if theme_settings.product_list_display_mode '===' 'grid'}}current-view{{/if}}">
+                            <div>
+                                <div class="icon-bar"></div>
+                                <div class="icon-bar"></div>
+                                <div class="icon-bar"></div>
+                            </div>
+                        </a>
+                        <a href="javascript:void(0);" id="list-view" title="List View" class="{{#if theme_settings.product_list_display_mode '===' 'list'}}current-view{{/if}}">
+                            <div>
+                                <div class="icon-bar"></div>
+                                <div class="icon-bar"></div>
+                                <div class="icon-bar"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <form class="actionBar show-product" method="get" data-sort-by data-show-products>
+                    {{> components/category/show-product products_per_page=theme_settings.categorypage_products_per_page}}
+                </form>
+
+                {{> components/products/filter sort=pagination.brand.sort}}
+
+            </div>
+        </div>
+
+        {{#if theme_settings.show_sidebar}}
+            <aside class="page-sidebar sidebar-{{theme_settings.sidebar_position}}" id="faceted-search-container">
+                {{> components/category/sidebar-2}}
+            </aside>
+        {{/if}}
+
+        <main class="page-content" id="product-listing-container">
+            {{#if category.products}}
+                {{> components/category/product-listing settings=../settings }}
+            {{else}}
+                <p>{{lang 'categories.no_products'}}</p>
+            {{/if}}
+
+        </main>
+
+        {{{region name="category_below_content"}}}
+
+        {{#if banners.bottom}}
+            {{#if settings.data_tag_enabled}}
+                <div class="banners category-banner" data-banner-location="bottom">
+                    <div class="container container-smaller ">
+                    {{#each (limit banners.bottom_metadata 1)}}
+                        <div class="banner" data-event-type="promotion" data-entity-id="{{this.id}}" data-name="{{this.banner-name}}" data-position="{{this.location}}" data-name="{{this.banner-name}}">
+                            <div data-event-type="promotion-click">
+                                {{{this.content}}}
+                            </div>
+                        </div>
+                        </div>
+                    {{/each}}
+                </div>
+            {{else}}
+                <div class="banners category-banner" data-banner-location="bottom">
+                    <div class="container container-smaller ">
+                        <div class="banner">
+                            {{{limit banners.bottom 1}}}
+                        </div>
+                    </div>
+                </div>
+            {{/if}}
+
+        {{/if}}
+
+    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+    </div>
+
+</div>

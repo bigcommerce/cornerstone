@@ -1,0 +1,191 @@
+<footer class="footer footer-layout-2" role="contentinfo">
+    <div class="footer-top">
+        <article class="footer-info-col text-center" data-section-type="newsletterSubscription">
+            <img src="/product_images/uploaded_images/{{theme_settings.footer-parallax-image}}" alt="banner-parallax-1" data-parallax="{&quot;y&quot;: 200 , &quot;smoothness&quot;: 50}">
+
+            <div class="footer-parallax-content" >
+                {{#if settings.show_newsletter_box}}
+                    {{> components/common/subscription-form}}
+                {{/if}}
+                {{> components/common/social-links}}
+            </div>
+        </article>
+    </div>
+    <div class="footer-midle">
+        <div class="container container-small">
+             <section class="footer-info">
+                <div class="footer-column">
+                    <article class="footer-info-col footer-dropdownmobile{{#if settings.enable_footer_custom_link}} four-column{{else}} three-column{{/if}}" data-section-type="footer-categories">
+                        <h5 class="footer-info-heading">
+                            <span>{{lang 'footer.categories'}}</span>
+                            <span class="icon icon-dropdown">&#10095;</span>
+                        </h5>
+
+                        <ul class="footer-info-list">
+                            {{#each categories}}
+                                <li>
+                                    <a href="{{url}}"><span>{{name}}</span></a>
+                                </li>
+                            {{/each}}
+                        </ul>
+                    </article>
+
+                    <article class="footer-info-col footer-dropdownmobile{{#if settings.enable_footer_custom_link}} four-column{{else}} three-column{{/if}}" data-section-type="footer-webPages">
+                        <h5 class="footer-info-heading">
+                            <span>{{lang 'footer.navigate'}}</span>
+                            <span class="icon icon-dropdown">&#10095;</span>
+                        </h5>
+                        <ul class="footer-info-list">
+                            {{#if theme_settings.footer-webpages-text-1 '!=' ''}}
+                                <li>
+                                    <a href="{{theme_settings.footer-webpages-link-1}}"><span>{{theme_settings.footer-webpages-text-1}}</span></a>
+                                </li>
+                            {{/if}}
+                            {{#if theme_settings.footer-webpages-text-2 '!=' ''}}
+                                <li>
+                                    <a href="{{theme_settings.footer-webpages-link-2}}"><span>{{theme_settings.footer-webpages-text-2}}</span></a>
+                                </li>
+                            {{/if}}
+                            {{#if theme_settings.footer-webpages-text-3 '!=' ''}}
+                                <li>
+                                    <a href="{{theme_settings.footer-webpages-link-3}}"><span>{{theme_settings.footer-webpages-text-3}}</span></a>
+                                </li>
+                            {{/if}}
+                            {{#if theme_settings.footer-webpages-text-4 '!=' ''}}
+                                <li>
+                                    <a href="{{theme_settings.footer-webpages-link-4}}"><span>{{theme_settings.footer-webpages-text-4}}</span></a>
+                                </li>
+                            {{/if}}
+                            {{#if theme_settings.footer-webpages-text-5 '!=' ''}}
+                                <li>
+                                    <a href="{{theme_settings.footer-webpages-link-5}}"><span>{{theme_settings.footer-webpages-text-5}}</span></a>
+                                </li>
+                            {{/if}}
+                            {{#if theme_settings.footer-webpages-text-6 '!=' ''}}
+                                <li>
+                                    <a href="{{theme_settings.footer-webpages-link-6}}"><span>{{theme_settings.footer-webpages-text-6}}</span></a>
+                                </li>
+                            {{/if}}
+                            {{#if theme_settings.footer-webpages-text-7 '!=' ''}}
+                                <li>
+                                    <a href="{{theme_settings.footer-webpages-link-7}}"><span>{{theme_settings.footer-webpages-text-7}}</span></a>
+                                </li>
+                            {{/if}}
+                        </ul>
+                    </article>
+
+                    {{#if theme_settings.enable_footer_custom_link}}
+                    <article class="footer-info-col footer-dropdownmobile{{#if settings.enable_footer_custom_link}} four-column{{else}} three-column{{/if}}" data-section-type="footer-customLinks">
+                        {{#if theme_settings.footer_custom_link_title '!=' ''}}
+                            <h5 class="footer-info-heading">
+                                <span>{{theme_settings.footer_custom_link_title}}</span>
+                                <span class="icon icon-dropdown">&#10095;</span>
+                            </h5>
+                        {{/if}}
+
+                        <ul class="footer-info-list">
+                            {{#if theme_settings.footer_custom_link_text_1 '!=' ''}}
+                                <li>
+                                    <a href="{{theme_settings.footer_custom_link_url_1}}"><span>{{theme_settings.footer_custom_link_text_1}}</span></a>
+                                </li>
+                            {{/if}}
+                            {{#if theme_settings.footer_custom_link_text_2 '!=' ''}}
+                                <li>
+                                    <a href="{{theme_settings.footer_custom_link_url_2}}"><span>{{theme_settings.footer_custom_link_text_2}}</span></a>
+                                </li>
+                            {{/if}}
+                            {{#if theme_settings.footer_custom_link_text_3 '!=' ''}}
+                                <li>
+                                    <a href="{{theme_settings.footer_custom_link_url_3}}"><span>{{theme_settings.footer_custom_link_text_3}}</span></a>
+                                </li>
+                            {{/if}}
+                            {{#if theme_settings.footer_custom_link_text_4 '!=' ''}}
+                                <li>
+                                    <a href="{{theme_settings.footer_custom_link_url_4}}"><span>{{theme_settings.footer_custom_link_text_4}}</span></a>
+                                </li>
+                            {{/if}}
+                            {{#if theme_settings.footer_custom_link_text_5 '!=' ''}}
+                                <li>
+                                    <a href="{{theme_settings.footer_custom_link_url_5}}"><span>{{theme_settings.footer_custom_link_text_5}}</span></a>
+                                </li>
+                            {{/if}}
+                            {{#if theme_settings.footer_custom_link_text_6 '!=' ''}}
+                                <li>
+                                    <a href="{{theme_settings.footer_custom_link_url_6}}"><span>{{theme_settings.footer_custom_link_text_6}}</span></a>
+                                </li>
+                            {{/if}}
+                            {{#if theme_settings.footer_custom_link_text_7 '!=' ''}}
+                                <li>
+                                    <a href="{{theme_settings.footer_custom_link_url_7}}"><span>{{theme_settings.footer_custom_link_text_7}}</span></a>
+                                </li>
+                            {{/if}}
+                        </ul>
+                    </article>
+                    {{/if}}
+                    <article class="footer-info-col footer-dropdownmobile{{#if settings.enable_footer_custom_link}} four-column{{else}} three-column{{/if}}" data-section-type="storeInfo">
+                    	{{#if theme_settings.footer-info-title '!=' ''}}
+                            <h5 class="footer-info-heading">
+                                <span>{{theme_settings.footer-info-title}}</span>
+                                <span class="icon icon-dropdown">&#10095;</span>
+                            </h5>
+                        {{/if}}
+                        <ul class="footer-info-list">
+                            {{#if settings.address}}
+                                <address>{{nl2br settings.address}}</address>
+                            {{/if}}
+                            {{#if settings.phone_number}}
+                                <span class="phone-number info"><a href="tel:{{settings.phone_number}}">{{settings.phone_number}}</a></span>
+                            {{/if}}
+                            {{#if theme_settings.shopper_email '!=' ''}}
+                            <span class="email info"><a href="mailto:{{theme_settings.shopper_email}}">{{theme_settings.shopper_email}}</a></span>
+                            {{/if}}
+                            {{#if theme_settings.footer-info-hour-1 '!=' ''}}
+                            <span class="hour info">{{theme_settings.footer-info-hour-1}}</span>
+                            {{/if}}
+                            {{#if theme_settings.footer-info-hour-2 '!=' ''}}
+                            <span class="hour info">{{theme_settings.footer-info-hour-2}}</span>
+                            {{/if}}
+                            {{> components/common/currency-selector}}
+                        </ul>
+                    </article>
+                </div>
+            </section>
+        </div>
+    </div>
+
+
+    <div class="footer-bottom">
+        <div class="container container-small">
+            <div class="column-left footer2-bottom-column">
+                {{> components/common/payment-icons}}
+                {{#if theme_settings.geotrust_ssl_common_name}}
+                    <div class="footer-geotrust-ssl-seal">
+                        {{> components/common/geotrust-ssl-seal}}
+                    </div>
+                {{/if}}
+            </div>
+            <div class="column-center footer2-bottom-column">
+            	<div class="header-logo">
+                    <a href="/">
+                        <div class="footer-logo-image-container">
+                            <img class="footer-logo-image lazyload" data-src="https://rhinorails.com/product_images/uploaded_images/{{theme_settings.footer-logo}}" alt="{{settings.store_logo.title}}" title="{{settings.store_logo.title}}">
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="column-right footer2-bottom-column">
+                {{#if theme_settings.show_copyright_footer}}
+                    <div class="footer-copyright">
+                        <p class="powered-by">&copy; {{moment format="YYYY"}} {{settings.store_name}}. All Rights Reserved.  </p>
+                    </div>
+                {{/if}}
+                {{#if theme_settings.show_powered_by}}
+                    <div class="footer-copyright">
+                        <p class="powered-by"><a href="https://rhinorails.com/">Rhino Rails</a></p>
+                    </div>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+
+</footer>

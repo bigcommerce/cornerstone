@@ -1,0 +1,23 @@
+<div class="productCarousel" data-slick='{
+            "arrows": false,
+            "dots": true,
+            "autoplay": false,
+            "infinite": true,
+            "slidesToShow": 1,
+            "slidesToScroll": 1,
+            "mobileFirst": true,
+            "responsive": [
+                {
+                    "breakpoint": 1025,
+                    "settings": {
+                        "arrows": true,
+                        "dots": false
+                    }
+                }
+        ]}'>
+    {{#each products}}
+    <div class="productCarousel-slide product">
+        {{> components/products/card settings=../settings theme_settings=../theme_settings customer=../customer show_rating=../settings.show_product_rating show_wishlist=../settings.show_wishlist productsnew=../productsnew event="list" position=(add @index 1)}}
+    </div>
+    {{/each}}
+</div>

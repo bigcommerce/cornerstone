@@ -1,0 +1,11 @@
+{{!--
+Arguments:
+	- find (string)
+--}}
+{{#if banners.top}}
+	{{#each banners.top}}
+	    {{#if (occurrences this ../find) '>' 0}}
+	        {{{this}}}
+	    {{/if}}
+	{{/each}}
+{{/if}}

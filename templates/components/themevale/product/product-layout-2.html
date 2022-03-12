@@ -1,0 +1,56 @@
+<div class="page productLayout product-layout-2">
+	<div class="container">
+		{{#if theme_settings.show_sidebar}}
+			<div class="sidebar-label">
+	            <span class="icon-filter">
+	                <svg class="icon"><use xlink:href="#icon-filter"></use></svg>
+	            </span>
+	            <span class="sidebar_more">{{lang 'common.sidebar_shop_by'}}</span>
+	        </div>
+	        <aside class="page-sidebar sidebar-{{theme_settings.sidebar_position}}" id="faceted-search-container">
+	            {{> components/category/sidebar-2 }}
+	        </aside>
+	    {{/if}}
+
+		<main id="product-listing-container" itemscope itemtype="http://schema.org/Product">
+			{{> components/products/product-view productsnew=products.new schema=true  }}
+
+			{{{region name="product_below_content"}}}
+
+			{{#if product.related_products}}
+				<div id="tab-related" class="relatedProduct module-wrapper">
+					<h2 class="page-heading"><span class="text">{{lang 'products.related_products'}}</span></h2>
+				    <div id="related-product">
+				        {{#if settings.data_tag_enabled}}
+				            {{> components/products/carousel-2 products=product.related_products productsnew=products.new columns=3 list="Related Products" block_id="halo-product-related"}}
+				        {{else}}
+				            {{> components/products/carousel-2 products=product.related_products productsnew=products.new columns=3 block_id="halo-product-related"}}
+				        {{/if}}
+				    </div>
+				</div>
+			{{/if}}
+
+			{{#if product.similar_by_views}}
+				<div class="similarProduct module-wrapper">
+					<h2 class="page-heading"><span class="text">{{lang 'products.similar_by_views'}}</span></h2>
+				    <div id="similar-product">
+				    	{{#if settings.data_tag_enabled}}
+				        	{{> components/products/carousel-2 products=product.similar_by_views productsnew=products.new columns=3 list="Customers Also Viewed" block_id="halo-product-block1"}}
+				        {{else}}
+				        	{{> components/products/carousel-2 products=product.similar_by_views productsnew=products.new columns=3 block_id="halo-product-block1"}}
+				        {{/if}}
+				    </div>
+				</div>
+			{{/if}}
+
+			{{#if theme_settings.show_product_details_tabs '==' false }}
+				{{> components/products/reviews reviews=product.reviews product=product urls=urls}}
+			{{else}}
+				{{#if theme_settings.show_product_reviews_tab '==' false}}
+					{{> components/products/reviews reviews=product.reviews product=product urls=urls}}
+				{{/if}}
+			{{/if}}
+		</main>
+		{{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+	</div>
+</div>

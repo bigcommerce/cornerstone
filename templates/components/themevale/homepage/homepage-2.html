@@ -1,0 +1,65 @@
+{{> components/themevale/banners/banner banner="shipping_block"}}
+{{{region name="home_below_shipping_block"}}}
+
+{{> components/themevale/banners/banner banner="banner_collection"}}
+{{{region name="home_below_banner_collection"}}}
+
+{{> components/themevale/homepage/homepage-six-banner}}
+{{{region name="home_below_banner_six_images"}}}
+
+{{#if products.top_sellers}}
+    <div id="topSellerProduct" class="module-wrapper margin-top-70">
+    	<div class="container container-small">
+        	{{> components/products/top products=products.top_sellers products_new=products.new columns=theme_settings.homepage_carousel_products_column block_id="block_top_SellerProduct"}}
+    	</div>
+    </div>
+{{/if}}
+{{{region name="home_below_top_products"}}}
+
+{{> components/themevale/banners/banner banner="banner_two_images"}}
+{{{region name="home_below_banner_two_images"}}}
+
+{{#if products.featured}}
+    <div id="featuredProduct" class="module-wrapper margin-top-70">
+    	<div class="container container-small">
+        	{{> components/products/featured products=products.featured columns=theme_settings.homepage_carousel_products_column block_id="block_featured"}}
+        </div>
+    </div>
+{{/if}}
+{{{region name="home_below_featured_products"}}}
+
+{{> components/themevale/banners/banner banner="home_2_banner_custom_block"}}
+{{{region name="home_below_custom_block_2"}}}
+
+{{> components/themevale/banners/banner banner="home_1_banner_custom_block"}}
+{{{region name="home_below_custom_block_1"}}}
+
+{{> components/themevale/banners/banner banner="banner_customer_reviews"}}
+{{{region name="home_below_customer_reviews"}}}
+
+{{> components/themevale/banners/banner banner="banner_brands"}}
+{{{region name="home_below_banner_brands"}}}
+
+{{> components/themevale/banners/banner banner="instagram"}}
+{{{region name="home_below_instagram"}}}
+
+{{#if banners.bottom}}
+    {{#if settings.data_tag_enabled}}
+        <div class="banners" data-banner-location="bottom">
+            {{#each (limit banners.bottom_metadata 1)}}
+                <div class="banner" data-event-type="promotion" data-entity-id="{{this.id}}" data-name="{{this.banner-name}}" data-position="{{this.location}}" data-name="{{this.banner-name}}">
+                    <div data-event-type="promotion-click">
+                        {{{this.content}}}
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+    {{else}}
+        <div class="banners" data-banner-location="bottom">
+            <div class="banner">
+                {{{limit banners.bottom 1}}}
+            </div>
+        </div>
+    {{/if}}
+
+{{/if}}

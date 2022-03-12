@@ -1,0 +1,82 @@
+---
+products:
+    new:
+        limit: {{theme_settings.homepage_new_products_count}}
+    featured:
+        limit: {{theme_settings.homepage_featured_products_count}}
+    top_sellers:
+        limit: {{theme_settings.homepage_top_products_count}}
+---
+{{#partial "page"}}
+
+<main class="page themevale_lookbook">
+    <div class="container container-small">
+        {{#unless theme_settings.hide_page_heading }}
+            <div class="themevale-heading">
+                <h1 class="page-heading">{{ page.title }}</h1>
+             </div>
+        {{/unless}}
+
+        {{#if page.sub_pages}}
+            <nav class="navBar navBar--sub">
+                <ul class="navBar-section account-navigation">
+                    {{#each page.sub_pages}}
+                        <li class="navBar-item"><a class="navBar-action" href="{{url}}">{{title}}</a></li>
+                    {{/each}}
+                </ul>
+            </nav>
+        {{/if}}
+        <div class="page-content">
+            <section class="lookbook">
+                {{#replace '%%Syndicate%%' page.content}}
+                    {{> components/page/rss_feed}}
+                {{else}}
+                    {{{page.content}}}
+                {{/replace}}
+
+                <div class="lookbook-popup"></div>
+
+                <div class="black-icons">
+                    <span class="share-text">{{lang 'common.share'}}</span>
+                    {{> components/common/share}}
+
+                </div>
+
+                {{#if theme_settings.lookbook-btn-text '!=' ''}}
+                    <div class="lookbook-bottom">
+                        <a href="{{theme_settings.lookbook-btn-link}}" class="btn button button--primary btn-lookbook">{{theme_settings.lookbook-btn-text}}</a>
+                    </div>
+                {{/if}}
+
+                {{#if products.top_sellers}}
+                    <div id="topSellerProduct" class="module-wrapper margin-top-70">
+                        <div class="container container-small">
+                            <h2 class="page-heading lookbook{{#if theme_settings.lookbook-best-sellers-desc '==' ''}}no-desc{{/if}}"><span class="title">{{lang 'products.top' }}</span></h2>
+                            {{#if theme_settings.lookbook-best-sellers-desc '!=' ''}}
+                                <p class="description">{{theme_settings.lookbook-best-sellers-desc}}</p>
+                            {{/if}}
+                            {{> components/products/top products=products.top_sellers products_new=products.new columns=theme_settings.homepage_carousel_products_column block_id="lookbook-block-best-sellers"}}
+                        </div>
+                    </div>
+                    {{/if}}
+            </section>
+
+            {{#if page.feed}}
+                <ul>
+                    {{#each page.feed}}
+                        <li>
+                            <h6><a href="{{url}}" target="_blank">{{title}}</a></h6>
+                            <p>{{content}}</p>
+                        </li>
+                    {{/each}}
+                </ul>
+            {{/if}}
+        </div>
+
+        {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+    </div>
+</main>
+
+{{/partial}}
+
+{{> layout/base}}

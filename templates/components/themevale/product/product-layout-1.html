@@ -1,0 +1,23 @@
+<div class="page productLayout product-layout-1">
+	<main id="product-listing-container" itemscope itemtype="http://schema.org/Product">
+		{{> components/products/product-view schema=true }}
+
+		{{{region name="product_below_content"}}}
+
+		<div class="productTabsProducts module-wrapper">
+			<div class="container container-smaller">
+				{{> components/products/tabs}}
+			</div>
+		</div>
+
+		{{#if theme_settings.show_product_details_tabs '==' false }}
+			{{> components/products/reviews reviews=product.reviews product=product urls=urls}}
+		{{else}}
+			{{#if theme_settings.show_product_reviews_tab '==' false}}
+				{{> components/products/reviews reviews=product.reviews product=product urls=urls}}
+			{{/if}}
+		{{/if}}
+
+	</main>
+	{{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+</div>

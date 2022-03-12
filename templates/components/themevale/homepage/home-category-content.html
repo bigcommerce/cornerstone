@@ -1,0 +1,13 @@
+{{#if category.products}}
+	<div id= "homeNewProducts" class="module-wrapper product_category">
+	   <div class="productCarousel">
+	       {{#each (limit category.products theme_settings.homepage_carousel_products_count)}}
+	       <div class="productCarousel-slide">
+	           {{>components/products/card show_compare=../show_compare show_rating=../settings.show_product_rating show_wishlist=../settings.show_wishlist theme_settings=../theme_settings customer=../customer productsnew=../productsnew}}
+	       </div>
+	       {{/each}}
+	   </div>
+	</div>
+{{else}}
+	<div class="product_category alert alert-warning text-center"><p>{{lang 'categories.no_products'}}</p></div>
+{{/if}}

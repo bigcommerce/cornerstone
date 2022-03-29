@@ -13,7 +13,7 @@ import {
 } from './common/utils/form-utils';
 import { createTranslationDictionary } from './common/utils/translations-utils';
 import { creditCardType, storeInstrument, Validators as CCValidators, Formatters as CCFormatters } from './common/payment-method';
-import swal from './global/sweet-alert';
+import { showAlertModal } from './global/modal';
 import compareProducts from './global/compare-products';
 
 export default class Account extends PageManager {
@@ -131,10 +131,7 @@ export default class Account extends PageManager {
 
             if (!submitForm) {
                 event.preventDefault();
-                swal.fire({
-                    text: this.context.selectItem,
-                    icon: 'error',
-                });
+                showAlertModal(this.context.selectItem);
             }
         });
     }
@@ -209,10 +206,7 @@ export default class Account extends PageManager {
                 return true;
             }
 
-            swal.fire({
-                text: errorMessage,
-                icon: 'error',
-            });
+            showAlertModal(errorMessage);
 
             return event.preventDefault();
         });
@@ -313,10 +307,7 @@ export default class Account extends PageManager {
                 storeInstrument(this.context, data, () => {
                     window.location.href = this.context.paymentMethodsUrl;
                 }, () => {
-                    swal.fire({
-                        text: this.context.generic_error,
-                        icon: 'error',
-                    });
+                    showAlertModal(this.context.generic_error);
                 });
             }
         });

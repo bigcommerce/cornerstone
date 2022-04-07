@@ -5,7 +5,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Draft
-- Stored XSS within Wishlist creation. [#2193](https://github.com/bigcommerce/cornerstone/issues/2193)
+- Stored XSS within Wishlist creation.[#2193](https://github.com/bigcommerce/cornerstone/issues/2193)
+- When price list price is set for currency, the cart does not respect product's price.[#2190](https://github.com/bigcommerce/cornerstone/issues/2190)
 
 ## 6.3.0 (03-11-2022)
 - Update blog component to use H1 tags on posts [#2179](https://github.com/bigcommerce/cornerstone/issues/2179)

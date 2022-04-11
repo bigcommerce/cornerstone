@@ -63,6 +63,41 @@
                         <li>{{{ sanitize order.shipping_address.country}}}</li>
                     </ul>
                 </section>
+            {{/if}}
+            {{#if order.pickup_address}}
+            <section class="account-sidebar-block">
+                <h3 class="account-heading">{{lang 'account.orders.details.pickup'}}</h3>
+                {{#each order.pickup_address}}
+                <dl class="definitionList">
+                    <dt class="definitionList-key">{{lang 'account.orders.details.pickup_method'}}</dt>
+                    <dd class="definitionList-value">{{sanitize pickup_method_display_name}}</dd>
+                </dl>
+
+                <ul class="account-order-address">
+                    <li><b>{{{ sanitize location_name}}}</b></li>
+                    <li>{{{ sanitize location_line_1}}}</li>
+                    <li>{{{ sanitize location_line_2}}}</li>
+                    <li>{{{ sanitize location_city}}}, {{{ sanitize location_state}}}, {{{ sanitize location_zip}}}</li>
+                    <li>{{{ sanitize location_country_name}}}</li>
+                </ul>
+
+                <dl class="definitionList">
+                    {{#if location_phone}}
+                    <dt class="definitionList-key">{{lang 'account.orders.details.phone'}}</dt>
+                    <dd class="definitionList-value">{{{ sanitize location_phone}}}</dd>
+                    {{/if}}
+                    {{#if order.pickup_address.location_email}}
+                    <dt class="definitionList-key">{{lang 'account.orders.details.email'}}</dt>
+                    <dd class="definitionList-value">{{{ sanitize location_email}}}</dd>
+                    {{/if}}
+                </dl>
+
+                <ul class="account-order-address">
+                    <li><b>{{{ lang 'account.orders.details.opening_hours'}}}</b></li>
+                    <li>{{{ sanitize collection_time_description}}}</li>
+                </ul>
+                {{/each}}
+            </section>
             {{else}}
                 {{#if order.has_multiple_shipping_addresses}}
                     <section class="account-sidebar-block">

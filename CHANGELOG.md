@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Draft
+- Translation updates April 2022 [#2204](https://github.com/bigcommerce/cornerstone/issues/2204)
 - Remove translations for adminBar component [#2196](https://github.com/bigcommerce/cornerstone/issues/2196)
 - Remove adminBar. [#2191](https://github.com/bigcommerce/cornerstone/issues/2191)
 - When price list price is set for currency, the cart does not respect product's price.[#2190](https://github.com/bigcommerce/cornerstone/issues/2190)

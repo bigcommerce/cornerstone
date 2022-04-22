@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Draft
 - Search results containing % symbol result in errored page. [#2205](https://github.com/bigcommerce/cornerstone/issues/2205)
+- Remove translations for adminBar component [#2196](https://github.com/bigcommerce/cornerstone/issues/2196)
+- Remove adminBar. [#2191](https://github.com/bigcommerce/cornerstone/issues/2191)
+- When price list price is set for currency, the cart does not respect product's price.[#2190](https://github.com/bigcommerce/cornerstone/issues/2190)
 
 ## 6.3.0 (03-11-2022)
 - Update blog component to use H1 tags on posts [#2179](https://github.com/bigcommerce/cornerstone/issues/2179)

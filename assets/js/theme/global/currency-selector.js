@@ -1,7 +1,17 @@
 import { showAlertModal } from './modal';
 import utils from '@bigcommerce/stencil-utils';
 
+let currencySelectorCalled = false;
+
 export default function (cartId) {
+    if (!cartId) return;
+
+    if (!currencySelectorCalled) {
+        currencySelectorCalled = true;
+    } else {
+        return;
+    }
+
     function changeCurrency(url, currencyCode) {
         $.ajax({
             url,
@@ -17,9 +27,6 @@ export default function (cartId) {
 
     $('[data-cart-currency-switch-url]').on('click', event => {
         const currencySessionSwitcher = event.target.href;
-        if (!cartId) {
-            return;
-        }
         event.preventDefault();
         utils.api.cart.getCart({ cartId }, (err, response) => {
             if (err || response === undefined) {

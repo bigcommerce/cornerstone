@@ -88,7 +88,7 @@ export default function () {
             return;
         }
 
-        urlUtils.goToUrl(`${searchUrl}?search_query=${searchQuery}`);
+        urlUtils.goToUrl(`${searchUrl}?search_query=${encodeURIComponent(searchQuery)}`);
         window.location.reload();
     });
 }

@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Draft
+- Reviews form not submitting after quick view opening on PDP. [#2201](https://github.com/bigcommerce/cornerstone/issues/2201)
 - Social media icons failing wave scan with "Empty Link". [#2202](https://github.com/bigcommerce/cornerstone/issues/2202)
 - Search results containing % symbol result in errored page. [#2205](https://github.com/bigcommerce/cornerstone/issues/2205)
 - Remove translations for adminBar component [#2196](https://github.com/bigcommerce/cornerstone/issues/2196)

@@ -296,8 +296,38 @@ export function alertModal() {
 /*
  * Display the given message in the default alert modal
  */
-export function showAlertModal(message) {
+export function showAlertModal(message, options = {}) {
     const modal = alertModal();
+    const cancelBtn = modal.$modal.find('.cancel');
+    const {
+        icon = 'error',
+        $preModalFocusedEl = null,
+        showCancelButton,
+        onConfirm,
+    } = options;
+
+    if ($preModalFocusedEl) {
+        modal.$preModalFocusedEl = $preModalFocusedEl;
+    }
+
     modal.open();
+    modal.$modal.find('.alert-icon').hide();
+
+    if (icon === 'error') {
+        modal.$modal.find('.error-icon').show();
+    } else if (icon === 'warning') {
+        modal.$modal.find('.warning-icon').show();
+    }
+
     modal.updateContent(`<span>${message}</span>`);
+
+    if (onConfirm) {
+        modal.$modal.find('.confirm').on('click', onConfirm);
+    }
+
+    if (showCancelButton) {
+        cancelBtn.show();
+    } else {
+        cancelBtn.hide();
+    }
 }

@@ -6,6 +6,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Draft
 - Fix Workflow examples missing api host. [#2161](https://github.com/bigcommerce/cornerstone/pull/2161)
+- Remove sweetAlert. [#2189](https://github.com/bigcommerce/cornerstone/issues/2189)
+- Apply security updates (April 2022) [#2200](https://github.com/bigcommerce/cornerstone/issues/2200)
+- Reviews form not submitting after quick view opening on PDP. [#2201](https://github.com/bigcommerce/cornerstone/issues/2201)
+- Social media icons failing wave scan with "Empty Link". [#2202](https://github.com/bigcommerce/cornerstone/issues/2202)
+- Search results containing % symbol result in errored page. [#2205](https://github.com/bigcommerce/cornerstone/issues/2205)
+- Remove translations for adminBar component [#2196](https://github.com/bigcommerce/cornerstone/issues/2196)
+- Remove adminBar. [#2191](https://github.com/bigcommerce/cornerstone/issues/2191)
+- When price list price is set for currency, the cart does not respect product's price.[#2190](https://github.com/bigcommerce/cornerstone/issues/2190)
+- Stored Payment Methods form can be submitted without selecting a Country.[#2194](https://github.com/bigcommerce/cornerstone/issues/2194)
+
+## 6.3.0 (03-11-2022)
+- Update blog component to use H1 tags on posts [#2179](https://github.com/bigcommerce/cornerstone/issues/2179)
+- Remove Compare Form. [#2162](https://github.com/bigcommerce/cornerstone/pull/2162)
+- Fixed password complexity error not displaying the complexity rules set in the store settings [#2117](https://github.com/bigcommerce/cornerstone/pull/2117)
+- Translation updates February 2022. [#2177](https://github.com/bigcommerce/cornerstone/pull/2177)
+- Cornerstone performance optimizations: blocking scripts delaying DomContentLoaded. [#2158](https://github.com/bigcommerce/cornerstone/pull/2158)
+- Cornerstone performance optimizations: remove unused fonts. [#2176](https://github.com/bigcommerce/cornerstone/pull/2176)
+- Update stencil-utils package. [#2157](https://github.com/bigcommerce/cornerstone/pull/2157)
+- Add google recaptcha to password reset request page [#2164](https://github.com/bigcommerce/cornerstone/pull/2164)
 
 ## 6.2.0 (12-13-2021)
 - Fix tooltip on close button of modal is shifted. [#2148](https://github.com/bigcommerce/cornerstone/pull/2148)

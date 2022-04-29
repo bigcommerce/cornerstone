@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Draft
+- Remove nanobar (loading progress bar). [#2192](https://github.com/bigcommerce/cornerstone/issues/2192)
 - Fix Workflow examples missing api host. [#2161](https://github.com/bigcommerce/cornerstone/pull/2161)
 - Remove sweetAlert. [#2189](https://github.com/bigcommerce/cornerstone/issues/2189)
 - Apply security updates (April 2022) [#2200](https://github.com/bigcommerce/cornerstone/issues/2200)

@@ -3,7 +3,7 @@ import nod from '../common/nod';
 import utils from '@bigcommerce/stencil-utils';
 import { Validators, announceInputErrorMessage } from '../common/utils/form-utils';
 import collapsibleFactory from '../common/collapsible';
-import swal from '../global/sweet-alert';
+import { showAlertModal } from '../global/modal';
 
 export default class ShippingEstimator {
     constructor($element, shippingErrorMessages) {
@@ -114,11 +114,7 @@ export default class ShippingEstimator {
         // Requests the states for a country with AJAX
         stateCountry(this.$state, this.context, { useIdForStates: true }, (err, field) => {
             if (err) {
-                swal.fire({
-                    text: err,
-                    icon: 'error',
-                });
-
+                showAlertModal(err);
                 throw new Error(err);
             }
 

@@ -132,7 +132,9 @@
                     >
                        {{lang 'products.reviews.new'}}
                     </a>
-                    {{> components/products/modals/writeReview}}
+                    {{#unless is_ajax}}
+                        {{> components/products/modals/writeReview}}
+                    {{/unless}}
                 {{/if}}
             </div>
             {{product.detail_messages}}

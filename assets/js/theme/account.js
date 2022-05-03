@@ -13,7 +13,7 @@ import {
 } from './common/utils/form-utils';
 import { createTranslationDictionary } from './common/utils/translations-utils';
 import { creditCardType, storeInstrument, Validators as CCValidators, Formatters as CCFormatters } from './common/payment-method';
-import swal from './global/sweet-alert';
+import { showAlertModal } from './global/modal';
 import compareProducts from './global/compare-products';
 
 export default class Account extends PageManager {
@@ -131,10 +131,7 @@ export default class Account extends PageManager {
 
             if (!submitForm) {
                 event.preventDefault();
-                swal.fire({
-                    text: this.context.selectItem,
-                    icon: 'error',
-                });
+                showAlertModal(this.context.selectItem);
             }
         });
     }
@@ -209,10 +206,7 @@ export default class Account extends PageManager {
                 return true;
             }
 
-            swal.fire({
-                text: errorMessage,
-                icon: 'error',
-            });
+            showAlertModal(errorMessage);
 
             return event.preventDefault();
         });
@@ -227,7 +221,7 @@ export default class Account extends PageManager {
         $paymentMethodForm.find('#address1.form-field').attr('data-validation', `{ "type": "singleline", "label": "${this.context.address1Label}", "required": true, "maxlength": 0 }`);
         $paymentMethodForm.find('#address2.form-field').attr('data-validation', `{ "type": "singleline", "label": "${this.context.address2Label}", "required": false, "maxlength": 0 }`);
         $paymentMethodForm.find('#city.form-field').attr('data-validation', `{ "type": "singleline", "label": "${this.context.cityLabel}", "required": true, "maxlength": 0 }`);
-        $paymentMethodForm.find('#country.form-field').attr('data-validation', `{ "type": "singleselect", "label": "${this.context.countryLabel}", "required": true, prefix: "${this.context.chooseCountryLabel}" }`);
+        $paymentMethodForm.find('#country.form-field').attr('data-validation', `{ "type": "singleselect", "label": "${this.context.countryLabel}", "required": true, "prefix": "${this.context.chooseCountryLabel}" }`);
         $paymentMethodForm.find('#state.form-field').attr('data-validation', `{ "type": "singleline", "label": "${this.context.stateLabel}", "required": true, "maxlength": 0 }`);
         $paymentMethodForm.find('#postal_code.form-field').attr('data-validation', `{ "type": "singleline", "label": "${this.context.postalCodeLabel}", "required": true, "maxlength": 0 }`);
 
@@ -313,10 +307,7 @@ export default class Account extends PageManager {
                 storeInstrument(this.context, data, () => {
                     window.location.href = this.context.paymentMethodsUrl;
                 }, () => {
-                    swal.fire({
-                        text: this.context.generic_error,
-                        icon: 'error',
-                    });
+                    showAlertModal(this.context.generic_error);
                 });
             }
         });

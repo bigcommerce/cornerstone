@@ -2,6 +2,7 @@
 // MODAL (CSS)
 //
 // // 1. Fix for content shifted to top in modal window when bottom variant option selected
+// // 2. Icon styles and icon animations moved from the removed "sweetalert2" library
 // =============================================================================
 
 .modal {
@@ -86,6 +87,67 @@
     padding: 40px 20px 20px;
     text-align: center;
 
+    .alert-icon { // 2
+        border: 0.25em solid transparent;
+        border-radius: 50%;
+        box-sizing: content-box;
+        cursor: default;
+        display: flex;
+        font-family: inherit;
+        height: 5em;
+        justify-content: center;
+        line-height: 5em;
+        margin: 1.25em auto 1.875em;
+        position: relative;
+        user-select: none;
+        width: 5em;
+    }
+
+    .error-icon {
+        animation: animate-icon 0.5s;
+        border-color: #f27474;
+        color: #f27474;
+
+        .icon-content {
+            animation: animate-icon-content 0.5s;
+            flex-grow: 1;
+            position: relative;
+
+            .line {
+                background-color: #f27474;
+                border-radius: 0.125em;
+                display: block;
+                height: 0.3125em;
+                position: absolute;
+                top: 2.3125em;
+                width: 2.9375em;
+
+                &-left {
+                    left: 1.0625em;
+                    transform: rotate(45deg);
+                }
+
+                &-right {
+                    right: 1em;
+                    transform: rotate(-45deg);
+                }
+            }
+        }
+    }
+
+    .warning-icon { 
+        animation: animate-icon 0.5s;
+        border-color: #facea8;
+        color: #f8bb86;
+
+        .icon-content {
+            align-items: center;
+            animation: animate-icon-content 0.5s;
+            display: flex;
+            font-size: 3.75em;
+        }
+    }
+
     .modal-content {
         color: $alert-font-bodyColor;
         font-size: $alert-font-bodySize;
@@ -117,4 +179,42 @@
 
 .hide-content {
     opacity: 0;
+}
+
+//Icon animations
+@keyframes animate-icon { // 2
+    0% {
+        opacity: 0;
+        transform: rotateX(100deg);
+    }
+
+    100% {
+        opacity: 1;
+        transform: rotateX(0deg);
+    }
+}
+
+@keyframes animate-icon-content {
+    0% {
+        margin-top: 1.625em;
+        opacity: 0;
+        transform: scale(0.4);
+    }
+
+    50% {
+        margin-top: 1.625em;
+        opacity: 0;
+        transform: scale(0.4);
+    }
+
+    80% {
+        margin-top: -0.375em;
+        transform: scale(1.15);
+    }
+
+    100% {
+        margin-top: 0;
+        opacity: 1;
+        transform: scale(1);
+    }
 }

@@ -298,7 +298,8 @@ export function alertModal() {
  */
 export function showAlertModal(message, options = {}) {
     const modal = alertModal();
-    const cancelBtn = modal.$modal.find('.cancel');
+    const $cancelBtn = modal.$modal.find('.cancel');
+    const $confirmBtn = modal.$modal.find('.confirm');
     const {
         icon = 'error',
         $preModalFocusedEl = null,
@@ -322,12 +323,16 @@ export function showAlertModal(message, options = {}) {
     modal.updateContent(`<span>${message}</span>`);
 
     if (onConfirm) {
-        modal.$modal.find('.confirm').on('click', onConfirm);
+        $confirmBtn.on('click', onConfirm);
+
+        modal.$modal.one(ModalEvents.closed, () => {
+            $confirmBtn.off('click', onConfirm);
+        });
     }
 
     if (showCancelButton) {
-        cancelBtn.show();
+        $cancelBtn.show();
     } else {
-        cancelBtn.hide();
+        $cancelBtn.hide();
     }
 }

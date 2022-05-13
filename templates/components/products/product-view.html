@@ -249,13 +249,6 @@
                     </label>
                 </div>
                 {{> components/products/add-to-cart}}
-                {{#if product.out_of_stock}}
-                    {{#if product.out_of_stock_message}}
-                        {{> components/common/alert/alert-error product.out_of_stock_message}}
-                    {{else}}
-                        {{> components/common/alert/alert-error (lang 'products.sold_out')}}
-                    {{/if}}
-                {{/if}}
             </form>
             {{#if settings.show_wishlist}}
                 {{> components/common/wishlist-dropdown}}

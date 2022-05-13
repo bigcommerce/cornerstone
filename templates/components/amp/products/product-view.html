@@ -26,8 +26,8 @@
             {{/each}}
         </amp-carousel>
     </section>
-    <div class="productView-action">
-        {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+    {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+        <div class="productView-action">
             <amp-iframe height="400" width="250"
                 layout="responsive"
                 sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals"
@@ -35,15 +35,8 @@
                 src="{{product.amp_options_url}}">
                 <div class="button button--primary button--wide" overflow tabindex="0" role="button">Choose Options</div>
             </amp-iframe>
-        {{/or}}
-        {{#if product.out_of_stock}}
-            {{#if product.out_of_stock_message}}
-                {{>components/amp/common/alert-error product.out_of_stock_message}}
-            {{else}}
-                {{>components/amp/common/alert-error (lang 'products.sold_out')}}
-            {{/if}}
-        {{/if}}
-    </div>
+        </div>
+    {{/or}}
 
     <amp-accordion class="productAccordion-wrapper">
         {{#if product.description}}

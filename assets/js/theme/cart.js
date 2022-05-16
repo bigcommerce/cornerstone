@@ -113,6 +113,7 @@ export default class Cart extends PageManager {
             if (response.data.status === 'succeed') {
                 this.refreshContent(true);
             } else {
+                this.$overlay.hide();
                 showAlertModal(response.data.errors.join('\n'));
             }
         });

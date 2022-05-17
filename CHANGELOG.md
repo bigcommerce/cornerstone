@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Draft
+- "Out of Stock" banner is duplicated and overlaps "Add to cart" button on PDP.[#2198](https://github.com/bigcommerce/cornerstone/issues/2198)
 
 ## 6.4.1 (05-16-2022)
 - Incorrect handling of unsuccessful item removing from cart on the Cart page. [#2211](https://github.com/bigcommerce/cornerstone/issues/2211)

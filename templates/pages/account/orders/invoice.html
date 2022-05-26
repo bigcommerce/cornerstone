@@ -59,10 +59,9 @@
             {{#if order.pickup_address}}
                 {{#unless order.has_multiple_shipping_addresses}}
                     <div class="ShippingAddress">
-                        <h3>{{lang 'account.orders.details.pickup_from'}}</h3>
+                        <h3>{{lang 'account.orders.details.pickup_details'}}</h3>
                         <ul>
-                            <li><strong>{{order.pickup_address.name}}</strong></li>
-                            <li>{{order.pickup_address.line1}}</li>
+                            <li><strong>{{order.pickup_address.line1}}</strong></li>
                             <li>{{order.pickup_address.line2}}</li>
                             <li>{{order.pickup_address.city}}, {{order.pickup_address.state}} {{order.pickup_address.zip}}</li>
                             <li>{{order.pickup_address.country}}</li>

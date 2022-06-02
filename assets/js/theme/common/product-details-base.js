@@ -43,6 +43,11 @@ export default class ProductDetailsBase {
 
             this._makeProductVariantAccessible(value, type);
         });
+
+        if (this.context.outOfStock) {
+            const outOfStockAlert = this.context.outOfStockMessage || this.context.soldOutMessage;
+            this.showMessageBox(outOfStockAlert);
+        }
     }
 
     _makeProductVariantAccessible(variantDomNode, variantType) {

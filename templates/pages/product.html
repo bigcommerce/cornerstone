@@ -10,6 +10,9 @@ product:
         limit: {{theme_settings.productpage_similar_by_views_count}}
 ---
 {{inject 'productId' product.id}}
+{{inject 'outOfStock' product.out_of_stock}}
+{{inject 'outOfStockMessage' product.out_of_stock_message}}
+{{inject 'soldOutMessage' (lang 'products.sold_out')}}
 
 {{#partial "page"}}
 

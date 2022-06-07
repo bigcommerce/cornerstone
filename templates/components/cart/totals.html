@@ -5,7 +5,7 @@
         </div>
         <div class="cart-total-value">
             {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
-                <span>{{cart.sub_total.formatted}}</span>
+                <span id="cart-total-formatted">{{cart.sub_total.formatted}}</span>
             {{else}}
                 {{> components/common/login-for-pricing}}
             {{/or}}
@@ -100,7 +100,7 @@
         </div>
         <div class="cart-total-value cart-total-grandTotal">
             {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
-                <span>{{cart.grand_total.formatted}}</span>
+                <span id="cart-grand-total-formatted">{{cart.grand_total.formatted}}</span>
             {{else}}
                 {{> components/common/login-for-pricing}}
             {{/or}}

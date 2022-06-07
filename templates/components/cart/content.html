@@ -10,6 +10,9 @@
     <tbody class="cart-list">
         {{#each cart.items}}
             <tr class="cart-item" data-item-row>
+                <td class="cart-item-block cart-item-selection">
+                    <input type="checkbox" class="cart-item-selection-checkbox" name="selected-items" value="{{product_id}}" data-itemTotal="{{total.formatted}}">
+                </td>
                 <td class="cart-item-block cart-item-figure">
                     {{#if type '==' 'GiftCertificate'}}
                         <img

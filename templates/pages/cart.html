@@ -13,6 +13,7 @@ cart: true
 
         <div data-cart-status>
             {{> components/cart/status-messages}}
+            hello: {{cart.cart_item_selector}}
         </div>
 
         {{#if cart.items.length}}
@@ -30,7 +31,8 @@ cart: true
 
             {{#if cart.show_primary_checkout_button}}
                 <div class="cart-actions cart-content-padding-right">
-                    <a class="button button--primary" href="{{urls.checkout.single_address}}" title="{{lang 'cart.checkout.title'}}">{{lang 'cart.checkout.button'}}</a>
+                    <a class="button button--primary" data-url="{{urls.checkout.single_address}}" title="{{lang 'cart.checkout.title'}}"
+                    onclick="goToSchekout(this)">{{lang 'cart.checkout.button'}}</a>
                     {{#if cart.show_multiple_address_shipping}}
                         <a class="checkoutMultiple" href="{{urls.checkout.multiple_address}}">
                             {{lang 'cart.preview.checkout_multiple'}}
@@ -52,6 +54,59 @@ cart: true
         {{/if}}
 
     </div>
+    <script>
+        function goToSchekout(e) {
+            let url = e.dataset.url;
+
+            let checkedItems = document.querySelectorAll('input[name=selected-items]:checked');
+
+            let selections = Array.from(checkedItems).map((i) => i.value);
+
+            url = selections.length > 0 ? url + "?productId=" + selections.join(',') : url;
+            window.location.href = url;
+
+        }
+
+        function addTotal(amount){
+            // hack: assume currency is dollar, and we can only check item one by one
+
+            totalOld = document.getElementById("cart-total-formatted").innerHTML;
+            totalOld = parseFloat(totalOld.replace(/\$/g, ''));
+            totalNow = (totalOld + amount).toFixed(2);
+            document.getElementById("cart-total-formatted").innerHTML = "$" + totalNow;
+
+            grandTotalOld = document.getElementById("cart-grand-total-formatted").innerHTML;
+            grandTotalOld = parseFloat(grandTotalOld.replace(/\$/g, ''));
+            grandTotalNow = (grandTotalOld + amount).toFixed(2);
+            document.getElementById("cart-grand-total-formatted").innerHTML = "$" + grandTotalNow;
+        }
+
+        let checkboxes=document.getElementsByClassName("cart-item-selection-checkbox");
+
+        // bind checkbox click event
+        for(let i=0;i<checkboxes.length;i++){
+            checkboxes[i].onclick=function(){
+                let checked = document.querySelectorAll('input[name=selected-items]:checked');
+                let unCheckedItems = document.querySelectorAll('input[name=selected-items]:not(:checked)');
+                if (checked.length === 1 && this.checked){
+                    // special case #1, from all unselected to selected only 1.
+                    itemtotal = Array.from(unCheckedItems).reduce((partialSum, i) => partialSum - parseFloat(i.dataset.itemtotal.replace(/\$/g, '')), 0);
+                } else if (checked.length === 0 && !this.checked){
+                    // special case #2, unselected all, back to full selection
+                    itemtotal = Array.from(unCheckedItems).reduce((partialSum, i) => partialSum + parseFloat(i.dataset.itemtotal.replace(/\$/g, '')), 0)
+                    - parseFloat(this.dataset.itemtotal.replace(/\$/g, ''));
+                }
+                else {
+                    itemtotal = parseFloat(this.dataset.itemtotal.replace(/\$/g, ''));
+                    itemtotal = this.checked ? itemtotal : -itemtotal;
+                }
+
+                addTotal(itemtotal);
+            };
+        }
+    </script>
 </div>
+
+
 {{/partial}}
 {{> layout/base}}

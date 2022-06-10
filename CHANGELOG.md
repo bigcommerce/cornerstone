@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add pickups to storefront invoice [#2216](https://github.com/bigcommerce/cornerstone/pull/2216)
 
 ## Unreleased (unreleased)
+- Fixed The stored bank account was not displayed in the "payment methods" section [#2225](https://github.com/bigcommerce/cornerstone/pull/2225)
 - Fixed "None" not being selected by default on unrequired Pick Lists without images [#2215](https://github.com/bigcommerce/cornerstone/pull/2215)
 
 ## 6.4.1 (05-16-2022)

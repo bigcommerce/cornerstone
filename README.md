@@ -1,3 +1,26 @@
+# Neopraxis fork of cornerstone theme
+
+This is the first theme forked from Original cornerstone. We will use this theme to make a customised theme for a client by cloning it and working it on a development branch. 
+use **git clone** to clone this repo. Once the clone is done, cd to the repo and then, execute the following  command/
+
+**git checkout -b _dev-branchname_**
+
+Whenever cornerstone major updates come, we shall fetch those changes from upstream.
+
+In order to directly get latest changes from bigcommerce cornerstone, we need to add the original repo as an **upstream** follow steps below.
+**git remote add upstream https://github.com/bigcommerce/cornerstone.git**
+
+Whenever you see a need to pull cornerstone changes into your development branch, follow steps below
+**git pull upstream master**
+
+As far as custom development is concerned, Check for pull requests in this repo. In order to get latest changes came as part of pull requests from other developers, 
+
+do a **git pull origin main** from your development branch
+
+To push your changes into this repo, commit your changes with proper commit message and push changes using **git push origin _branchname_**
+
+Then, create a pull request with a reviewer to merge your changes into main. Once development is done and all development branches are merged into main, we shall release the custom theme into store.
+
 # Cornerstone
 ![tests](https://github.com/bigcommerce/cornerstone/workflows/Theme%20Bundling%20Test/badge.svg?branch=master)
 

@@ -25,7 +25,6 @@
     {{inject 'countries' countries}}
 
     {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
-
     <h2 class="page-heading">{{lang 'forms.payment_methods.add.heading'}}</h2>
 
     {{> components/account/navigation account_page='payment_methods'}}
@@ -42,6 +41,8 @@
             <input type="hidden" name="currency_code" value="{{currency_selector.active_currency_code}}">
 
             <h3 class="paymentMethodForm-heading">{{lang 'account.payment_methods.payment_method'}}</h3>
+            
+            <div id="vaulting-widget"></div>
 
             <div class="paymentMethodForm">
                 <p class="paymentMethodForm-subheading">

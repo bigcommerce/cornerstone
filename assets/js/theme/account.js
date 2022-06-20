@@ -2,6 +2,7 @@ import PageManager from './page-manager';
 import _ from 'lodash';
 import nod from './common/nod';
 import Wishlist from './wishlist';
+import mountPaymentWidget from './add-payment-mathod/common/mountPaymentWidget';
 import validation from './common/form-validation';
 import stateCountry from './common/state-country';
 import {
@@ -75,6 +76,28 @@ export default class Account extends PageManager {
         }
 
         if ($paymentMethodForm.length) {
+            console.log(123);
+            mountPaymentWidget({
+                widgetStyles: {
+                    base: {
+                        color: '#666666',
+                        cursor: 'pointer',
+                        display: 'block',
+                        fontSize: '1rem',
+                        lineHeight: '1.5',
+                        marginBottom: '0.5rem',
+                    },
+                    error: {
+                        color: 'red',
+                    },
+                    placeholder: {
+                        color: '#d8d8d8',
+                    },
+                    validated: {
+                        color: 'green',
+                    },
+                },
+            });
             this.initPaymentMethodFormValidation($paymentMethodForm);
         }
 

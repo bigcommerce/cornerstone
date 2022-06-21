@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Draft
+- Category icons do not appear in Search Form [#2221]https://github.com/bigcommerce/cornerstone/pull/2221
 - Incorrect translation displaying in Home Page Carousel for da, sv and no. [#2224]https://github.com/bigcommerce/cornerstone/pull/2224
 - Blog Pages Do Not Include Link Rel Next/Prev Tags. [#2214](https://github.com/bigcommerce/cornerstone/issues/2214).
 - Add lang attribute to html tag to improve checkout accesibility [#2210]https://github.com/bigcommerce/cornerstone/pull/2210

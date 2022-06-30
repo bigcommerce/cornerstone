@@ -8,9 +8,9 @@
         {{> components/common/alert/alert-info (lang 'account.recent_items.no_items')}}
     {{/unless}}
 
-    <form action="{{urls.compare}}" method="post">
+    <div>
         {{> components/products/grid products=customer.recently_viewed_products.items show_compare=customer.recently_viewed_products.show_compare}}
-    </form>
+    </div>
 </div>
 {{/partial}}
 {{> layout/base}}

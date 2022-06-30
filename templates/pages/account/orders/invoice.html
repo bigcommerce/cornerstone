@@ -56,6 +56,22 @@
                     </div>
                 {{/unless}}
             {{/if}}
+            {{#if order.pickup_address}}
+                {{#unless order.has_multiple_shipping_addresses}}
+                    <div class="ShippingAddress">
+                        <h3>{{lang 'account.orders.details.pickup_details'}}</h3>
+                        <ul>
+                            <li><strong>{{order.pickup_address.line1}}</strong></li>
+                            <li>{{order.pickup_address.line2}}</li>
+                            <li>{{order.pickup_address.city}}, {{order.pickup_address.state}} {{order.pickup_address.zip}}</li>
+                            <li>{{order.pickup_address.country}}</li>
+                            <li>&nbsp;</li>
+                            <li>{{lang 'invoice.phone' number=order.pickup_address.phone}}</li>
+                            {{#if order.pickup_address.email}}<li>{{lang 'invoice.email' email=order.pickup_address.email}}</li>{{/if}}
+                        </ul>
+                    </div>
+                {{/unless}}
+            {{/if}}
         </div>
 
         <div class="InvoiceDetails">
@@ -89,7 +105,7 @@
                 <thead>
                 <tr>
                     {{#if order.has_multiple_shipping_addresses}}
-                        <th class="ProductAddress">{{lang 'invoice.shipping_address'}}</th>
+                        <th class="ProductAddress">{{lang 'invoice.fulfillment'}}</th>
                     {{/if}}
                     <th class="ProductQuantity">{{lang 'invoice.qty'}}</th>
                     <th class="ProductSku">{{lang 'invoice.code'}}</th>
@@ -100,12 +116,21 @@
                 </thead>
                 <tbody class="InvoiceItemList">
                 {{#each order.items}}
-                    <tr>
+                    <tr {{#if new_address}}class="NewAddress"{{/if}}>
                         {{#if ../order.has_multiple_shipping_addresses}}
                             <td class="ProductAddress">
                                 {{#each shipping_rows}}
+                                    {{#if is_pickup}}
+                                        <div><b>{{lang 'invoice.pickup'}}</b></div>
+                                    {{/if}}
+                                    {{#if is_shipping}}
+                                        <div><b>{{lang 'invoice.shipping'}}</b></div>
+                                    {{/if}}
+                                    {{#if is_digital}}
+                                        <div><b>{{lang 'invoice.digital'}}</b></div>
+                                    {{/if}}
                                     <div>{{address}}</div>
-                                    <div>{{city}}, {{state}} {{zip}}</div>
+                                    <div>{{city}} {{state}} {{zip}}</div>
                                     <div>{{country}}</div>
                                 {{/each}}
                             </td>
@@ -115,7 +140,6 @@
                         <td class="ProductDetails">
                             {{name}}
                             <div class="ProductAttributes">
-
                                 {{#each options}}
                                     <div class="ConfigurableProductRow">
                                         <div class="Label">{{name}}:</div>

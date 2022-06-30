@@ -71,7 +71,7 @@
                     {{else if service '===' 'pinterest'}}
                     <a class="socialLinks__link icon icon--{{service}}"
                        title="{{{capitalize service}}}"
-                       href="https://pinterest.com/pin/create/button/?url={{getVar 'encodedUrl'}}&amp;description={{getVar 'encodedTitle'}}"
+                       href="https://pinterest.com/pin/create/button/?url={{getVar 'encodedUrl'}}&amp;media={{getImageSrcset ../product.main_image (cdn ../theme_settings.default_image_product) 1x=../theme_settings.zoom_size}}&amp;description={{getVar 'encodedTitle'}}"
                        target="_blank"
                        rel="noopener"
                        {{{annotation}}}

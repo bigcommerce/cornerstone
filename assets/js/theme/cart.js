@@ -4,7 +4,8 @@ import checkIsGiftCertValid from './common/gift-certificate-validator';
 import { createTranslationDictionary } from './common/utils/translations-utils';
 import utils from '@bigcommerce/stencil-utils';
 import ShippingEstimator from './cart/shipping-estimator';
-import { defaultModal, showAlertModal, ModalEvents } from './global/modal';
+import { defaultModal, ModalEvents } from './global/modal';
+import swal from './global/sweet-alert';
 import CartItemDetails from './common/cart-item-details';
 
 export default class Cart extends PageManager {
@@ -44,9 +45,15 @@ export default class Cart extends PageManager {
         const newQty = $target.data('action') === 'inc' ? oldQty + 1 : oldQty - 1;
         // Does not quality for min/max quantity
         if (newQty < minQty) {
-            return showAlertModal(minError);
+            return swal.fire({
+                text: minError,
+                icon: 'error',
+            });
         } else if (maxQty > 0 && newQty > maxQty) {
-            return showAlertModal(maxError);
+            return swal.fire({
+                text: maxError,
+                icon: 'error',
+            });
         }
 
         this.$overlay.show();
@@ -61,7 +68,10 @@ export default class Cart extends PageManager {
                 this.refreshContent(remove);
             } else {
                 $el.val(oldQty);
-                showAlertModal(response.data.errors.join('\n'));
+                swal.fire({
+                    text: response.data.errors.join('\n'),
+                    icon: 'error',
+                });
             }
         });
     }
@@ -81,13 +91,22 @@ export default class Cart extends PageManager {
         if (!newQty) {
             invalidEntry = $el.val();
             $el.val(oldQty);
-            return showAlertModal(this.context.invalidEntryMessage.replace('[ENTRY]', invalidEntry));
+            return swal.fire({
+                text: this.context.invalidEntryMessage.replace('[ENTRY]', invalidEntry),
+                icon: 'error',
+            });
         } else if (newQty < minQty) {
             $el.val(oldQty);
-            return showAlertModal(minError);
+            return swal.fire({
+                text: minError,
+                icon: 'error',
+            });
         } else if (maxQty > 0 && newQty > maxQty) {
             $el.val(oldQty);
-            return showAlertModal(maxError);
+            return swal.fire({
+                text: maxError,
+                icon: 'error',
+            });
         }
 
         this.$overlay.show();
@@ -101,8 +120,10 @@ export default class Cart extends PageManager {
                 this.refreshContent(remove);
             } else {
                 $el.val(oldQty);
-
-                return showAlertModal(response.data.errors.join('\n'));
+                swal.fire({
+                    text: response.data.errors.join('\n'),
+                    icon: 'error',
+                });
             }
         });
     }
@@ -113,8 +134,10 @@ export default class Cart extends PageManager {
             if (response.data.status === 'succeed') {
                 this.refreshContent(true);
             } else {
-                this.$overlay.hide();
-                showAlertModal(response.data.errors.join('\n'));
+                swal.fire({
+                    text: response.data.errors.join('\n'),
+                    icon: 'error',
+                });
             }
         });
     }
@@ -165,7 +188,10 @@ export default class Cart extends PageManager {
                 const data = result.data || {};
 
                 if (err) {
-                    showAlertModal(err);
+                    swal.fire({
+                        text: err,
+                        icon: 'error',
+                    });
                     return false;
                 }
 
@@ -258,13 +284,16 @@ export default class Cart extends PageManager {
         $('.cart-remove', this.$cartContent).on('click', event => {
             const itemId = $(event.currentTarget).data('cartItemid');
             const string = $(event.currentTarget).data('confirmDelete');
-            showAlertModal(string, {
+            swal.fire({
+                text: string,
                 icon: 'warning',
                 showCancelButton: true,
-                onConfirm: () => {
+                cancelButtonText: this.context.cancelButtonText,
+            }).then((result) => {
+                if (result.value) {
                     // remove item from cart
                     cartRemoveItem(itemId);
-                },
+                }
             });
             event.preventDefault();
         });
@@ -307,14 +336,20 @@ export default class Cart extends PageManager {
 
             // Empty code
             if (!code) {
-                return showAlertModal($codeInput.data('error'));
+                return swal.fire({
+                    text: $codeInput.data('error'),
+                    icon: 'error',
+                });
             }
 
             utils.api.cart.applyCode(code, (err, response) => {
                 if (response.data.status === 'success') {
                     this.refreshContent();
                 } else {
-                    showAlertModal(response.data.errors.join('\n'));
+                    swal.fire({
+                        html: response.data.errors.join('\n'),
+                        icon: 'error',
+                    });
                 }
             });
         });
@@ -346,14 +381,20 @@ export default class Cart extends PageManager {
 
             if (!checkIsGiftCertValid(code)) {
                 const validationDictionary = createTranslationDictionary(this.context);
-                return showAlertModal(validationDictionary.invalid_gift_certificate);
+                return swal.fire({
+                    text: validationDictionary.invalid_gift_certificate,
+                    icon: 'error',
+                });
             }
 
             utils.api.cart.applyGiftCertificate(code, (err, resp) => {
                 if (resp.data.status === 'success') {
                     this.refreshContent();
                 } else {
-                    showAlertModal(resp.data.errors.join('\n'));
+                    swal.fire({
+                        html: resp.data.errors.join('\n'),
+                        icon: 'error',
+                    });
                 }
             });
         });

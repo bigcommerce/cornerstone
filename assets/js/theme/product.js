@@ -2,84 +2,81 @@
  Import all product specific js
  */
 import PageManager from './page-manager';
-import Review from './product/reviews';
 import collapsibleFactory from './common/collapsible';
 import ProductDetails from './common/product-details';
 import videoGallery from './product/video-gallery';
-import { classifyForm } from './common/utils/form-utils';
-import modalFactory from './global/modal';
+import { specTabClick } from "./global/gtm";
 
 export default class Product extends PageManager {
     constructor(context) {
         super(context);
         this.url = window.location.href;
-        this.$reviewLink = $('[data-reveal-id="modal-review-form"]');
-        this.$bulkPricingLink = $('[data-reveal-id="modal-bulk-pricing"]');
-        this.reviewModal = modalFactory('#modal-review-form')[0];
     }
 
     onReady() {
-        // Listen for foundation modal close events to sanitize URL after review.
-        $(document).on('close.fndtn.reveal', () => {
-            if (this.url.indexOf('#write_review') !== -1 && typeof window.history.replaceState === 'function') {
-                window.history.replaceState(null, document.title, window.location.pathname);
-            }
-        });
-
-        let validator;
-
         // Init collapsible
-        collapsibleFactory();
+        collapsibleFactory('[data-collapsible]', { disabledBreakpoint:  'small'});
 
-        this.productDetails = new ProductDetails($('.productView'), this.context, window.BCData.product_attributes);
-        this.productDetails.setProductVariant();
+        this.productDetails = new ProductDetails($('.productView'), this.context);
 
         videoGallery();
-
-        this.bulkPricingHandler();
-
-        const $reviewForm = classifyForm('.writeReview-form');
-
-        if ($reviewForm.length === 0) return;
-
-        const review = new Review({ $reviewForm });
-
-        $('body').on('click', '[data-reveal-id="modal-review-form"]', () => {
-            validator = review.registerValidation(this.context);
-            this.ariaDescribeReviewInputs($reviewForm);
+        
+        document.querySelector('#about-product').addEventListener('click', () => {
+            document.querySelector('[href="#about"]').click();
         });
-
-        $reviewForm.on('submit', () => {
-            if (validator) {
-                validator.performCheck();
-                return validator.areAll('valid');
+        
+        this.sendGTMEvents(this.context.productObj);
+    }
+    
+    // GTM events
+    sendGTMEvents(product) {
+        // PDP View
+        let name = product.title;
+        let sku = product.sku;
+        let brand = product.brand ? product.brand : undefined;
+        let category = product.category.length ? product.category.toString() : undefined;
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+            'event': 'product-detail-view',
+            'ecommerce': {
+                'currencyCode': 'USD',
+                'detail': {
+                    'actionField': {},
+                    'products': [
+                        {
+                            'name': name,
+                            'id': sku, 
+                            'price': undefined,
+                            'brand': brand,
+                            'category': category,
+                            'variant': undefined,
+                            'dimension70': undefined
+                        }
+                    ]
+                }
             }
-
-            return false;
         });
-
-        this.productReviewHandler();
-    }
-
-    ariaDescribeReviewInputs($form) {
-        $form.find('[data-input]').each((_, input) => {
-            const $input = $(input);
-            const msgSpanId = `${$input.attr('name')}-msg`;
-
-            $input.siblings('span').attr('id', msgSpanId);
-            $input.attr('aria-describedby', msgSpanId);
+        
+        // spec ownership click
+        document.querySelectorAll('.support-box')
+        .forEach(specOwnerbox => {
+            specOwnerbox.addEventListener('click', e => {
+                window.dataLayer = window.dataLayer || [];
+                window.dataLayer.push({
+                    'event': 'spec-ownership-click',
+                    'supportSection': e.target.closest('.support-box')
+                    .querySelector('h3').innerText.trim()
+                });
+            });
         });
-    }
-
-    productReviewHandler() {
-        if (this.url.indexOf('#write_review') !== -1) {
-            this.$reviewLink.trigger('click');
-        }
-    }
-
-    bulkPricingHandler() {
-        if (this.url.indexOf('#bulk_pricing') !== -1) {
-            this.$bulkPricingLink.trigger('click');
-        }
+        
+        // spectab click event
+        document.querySelectorAll('.productTabs-heading a, .productTabs-sticky-header-links a')
+            .forEach(specTab => {
+            specTab.addEventListener('click', e => {
+                let productObj = this.context.productObj
+                specTabClick(e.target.innerText.trim(), productObj.title, productObj.sku);
+            });
+        });
     }
 }

@@ -14,11 +14,82 @@
 // -----------------------------------------------------------------------------
 
 .footer {
-    background-color: $footer-background;
+    background-color: $color-primary;
     border-top: container("border");
-    padding: spacing("double") 0;
+    padding: spacing("single") 0 0 0;
     position: relative;
-    transform: translateZ(0); // 3
+    @include breakpoint("small") {
+        padding: spacing("double") 0 0 0;
+    }
+    a {
+        // color: stencilColor("color-white");
+        text-decoration: none;
+    }
+    
+    .footer-sub {
+        padding: spacing('base') * 2;
+        background-color: stencilColor('color-white');
+    }
+
+    .footer-sub-nav {
+        padding: 1.75rem 0 0;
+        margin-bottom: 1rem;
+        
+        .container {
+            display: flex;
+        }
+        
+        ul {
+            margin: 0 auto;
+            list-style-type: none;
+            display: inline-block;
+            text-align: center;
+            word-break: break-word;
+            // padding: 0 40px;
+            line-height: 22px;
+            
+            li {
+                padding: 0 spacing("single") - spacing("base");
+                display: inline;
+                
+                a {
+                    color: stencilColor('color-textSecondary');
+                    
+                    &:hover {
+                        color: stencilColor('color-textSecondary--hover');
+                    }
+                }
+                
+                &:not(:last-child):after {
+                    content: "|";
+                    color: stencilColor('color-textSecondary');
+                    
+                    &:hover {
+                        color: stencilColor('color-textSecondary--hover');
+                    }
+                }
+            }
+        }
+    }
+    
+    @include breakpoint("medium") {
+        .footer-sub {
+            margin-bottom: 10rem;
+        }
+        
+        .footer-sub-nav {
+            border-bottom: none;
+            
+            .container {
+                text-align: center;
+                ul li {
+                    -ms-flex-positive: 1;
+                    flex-grow: 1;
+                    display: inline-block;
+                }
+            }
+        }
+    }
 }
 
 .footer-title-sr-only {
@@ -33,6 +104,9 @@
 .footer-info {
     @include grid-row($behavior: nest);
     font-size: 0; // 1
+    @include breakpoint("medium") {
+        padding: 0 spacing('base') * 2;
+    }
 }
 
 .footer-info-col {
@@ -41,19 +115,24 @@
     display: inline-block;
     float: none;
     font-size: fontSize("base"); // 2
-    margin-bottom: spacing("double");
+    margin-bottom: spacing("single");
     overflow-wrap: break-word;
-    text-align: center;
+    text-align: left;
     vertical-align: top;
     // TODO: specifically use vendor only for IE11 since overflow-wrap is not supported here
     -ms-word-break: break-all;
+    border-bottom : 1px solid #D4D4D4;
     @include breakpoint("small") {
         text-align: left;
         width: width("6/12");
+        margin-bottom: spacing("double");
+        border-bottom: none;
     }
-
+    &:last-child{
+        border-bottom:none;
+    }
     @include breakpoint("medium") {
-        width: width("4/12");
+        width: width("3/12");
     }
 
     > :first-child {
@@ -101,7 +180,7 @@
 // -----------------------------------------------------------------------------
 
 .footer-info-heading {
-    color: $footer-heading-fontColor;
+    color: stencilColor('color-white');
     font-size: fontSize("base");
     text-transform: inherit;
 }
@@ -110,22 +189,22 @@
     list-style: none;
     margin-left: 0;
 
-    a {
-        color: stencilColor("color-textSecondary");
-        text-decoration: none;
+    li {
+        margin-bottom: 0.5rem;
+        a {
+            color: stencilColor("color-white");
+            text-decoration: none;
 
-        &:hover {
-            color: stencilColor("color-textSecondary--hover");
+            &:hover {
+                color: stencilColor("color-white");
+                text-decoration: underline;
+            }
         }
     }
 }
 
 .footer-copyright {
     text-align: center;
-
-    @include breakpoint("small") {
-        text-align: left;
-    }
 
     > .powered-by {
         color: stencilColor("color-textSecondary");
@@ -169,6 +248,89 @@
     }
 }
 
+.footer-geotrust-ssl-seal {
+    @include breakpoint("small") {
+        bottom: 0;
+        position: absolute;
+        right: 16px;
+    }
+
+    table {
+        margin: auto;
+    }
+}
+
 .footer-newsletter-summary {
     text-align: left;
+}
+
+/* ==========================================================
+ * ## TODO: Refactor the below css 
+ * ========================================================== */
+
+.scroll-top-wrapper {
+    position: fixed;
+    right: 12px;
+    bottom: 90px;
+    display: none;
+    z-index: 99999;
+
+    @include breakpoint("small") {
+        bottom: 12px;
+    }
+
+    .scroll-top-button {
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        background: #FFF;
+        display: flex;
+        display: none;
+        flex-wrap: wrap;
+        flex-direction: column;
+        border: 1px solid #cfcfcf;
+        align-items: center;
+        justify-content: center;
+        font-family: $body-font-family;
+        font-size: 14px;
+        font-weight: 700;
+        color: #1A63A2;
+        position: relative;
+        -webkit-transition: background-color .3s ease-out;
+        -moz-transition: background-color .3s ease-out;
+        -o-transition: background-color .3s ease-out;
+        transition: background-color .3s ease-out;
+
+        &:before {
+            content: "";
+            position: relative;
+            border: solid #1A63A2;
+            border-width: 0 2px 2px 0;
+            display: inline-block;
+            padding: 5.5px;
+            transform: rotate(-135deg);
+            -webkit-transform: rotate(-135deg);
+            display: block;
+            /*
+            transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+            */
+        }
+
+        @include breakpoint("medium") {
+
+            &:hover {
+                background: #DDE8F1;
+            }
+
+            &:active {
+                background: #EAF8F8;
+            }
+        }
+    }
+}
+
+.footer-trust{
+    text-align:center;
+    text-decoration: underline;
 }

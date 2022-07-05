@@ -8,9 +8,6 @@
         <h4 class="paymentMethodsTitle">
             {{display_name}}
         </h4>
-        {{#if description}}
-            <p>{{description}}</p>
-        {{/if}}
         <div class="paymentMethodsGrid">
             {{#each stored_instruments}}
                 <div class="paymentMethodsGrid-item">
@@ -30,16 +27,6 @@
                                     {{/if}}
                                     {{!-- If credit card ENDS --}}
                                 {{/if}}
-
-                                {{#if type '===' 'stored_bank_account'}}
-                                    {{!-- If bank_account STARTS --}}
-                                    <img class="methodHeader-icon" src="{{cdn 'img/payment-methods/card.svg'}}"
-                                         alt="{{lang 'account.payment_methods.card_types.credit_card'}}"
-                                         title="{{lang 'account.payment_methods.card_types.credit_card'}}">
-                                    <span class="methodHeader-brand">{{ lang 'account.payment_methods.payment_method'}}</span>
-                                    {{!-- If bank_account ENDS --}}
-                                {{/if}}
-
                                 {{#if type '===' 'stored_paypal_account'}}
                                     {{!-- If paypal STARTS --}}
                                     <img class="methodHeader-icon" src="{{cdn 'img/payment-methods/paypal.svg'}}" alt="{{lang 'account.payment_methods.paypal'}}" title="{{lang 'account.payment_methods.paypal'}}">

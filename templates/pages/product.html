@@ -10,19 +10,28 @@ product:
         limit: {{theme_settings.productpage_similar_by_views_count}}
 ---
 {{inject 'productId' product.id}}
+{{inject 'productObj' product}}
+{{inject 'productNoSpecs' (lang 'products.no_specs')}}
+{{inject 'productNoManuals' (lang 'products.no_manuals')}}
+{{inject 'productNoFeatures' (lang 'products.no_features')}}
 
 {{#partial "page"}}
 
-    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+    <div class="container">    
+        {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
 
-    {{#each product.shipping_messages}}
-        {{> components/common/alert/alert-info message}}
-    {{/each}}
+        {{#each product.shipping_messages}}
+            {{> components/common/alert/alert-info message}}
+        {{/each}}
+    </div>
 
-    <div>
-        {{> components/products/product-view}}
+    <div itemscope itemtype="https://schema.org/Product">
 
-        {{{region name="product_below_content"}}}
+        <div class="container">
+            {{> components/products/product-view schema=true  }}        
+        
+            {{{region name="product_below_content"}}}
+        </div>
 
         {{#if product.videos.list.length}}
             {{> components/products/videos product.videos}}
@@ -32,9 +41,7 @@ product:
             {{> components/products/reviews reviews=product.reviews product=product urls=urls}}
         {{/all}}
 
-        {{> components/products/tabs}}
+        {{> components/products/product-tabs}}
     </div>
-
-    {{> components/products/schema}}
 {{/partial}}
 {{> layout/base}}

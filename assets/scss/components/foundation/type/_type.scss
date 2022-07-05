@@ -36,32 +36,39 @@ cite {
 }
 
 .page-heading {
-    margin: 0 0 spacing("double");
-    text-align: center;
+    font-size: fontSize("large");
+    font-weight: fontWeight("medium");
+    margin: 0 0 spacing("single");
 }
 
 h1 {
     font-size: $h1-font-size;
+    margin-top: 0;
 }
 
 h2 {
     font-size: $h2-font-size;
+    margin-top: 0;
 }
 
 h3 {
     font-size: $h3-font-size;
+    margin-top: 0;
 }
 
 h4 {
     font-size: $h4-font-size;
+    margin-top: 0;
 }
 
 h5 {
     font-size: $h5-font-size;
+    margin-top: 0;
 }
 
 h6 {
     font-size: $h6-font-size;
+    margin-top: 0;
 }
 
 .definitionList {
@@ -78,3 +85,16 @@ h6 {
 .definitionList-value {
     margin: 0;
 }
+blockquote:before {
+    position: absolute;
+    content: "“";
+    font-size: 2em;
+    margin-left: -0.7em;
+    color: #003B71;
+    font-family: -webkit-body;
+    font-weight: bold;
+  }
+  blockquote{
+      border-left:none !important;
+      color: #003B71;
+  }

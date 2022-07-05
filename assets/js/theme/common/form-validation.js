@@ -6,7 +6,7 @@ import { createTranslationDictionary } from './utils/translations-utils';
  * @param validation
  * @returns {{selector: string, triggeredBy: string, validate: Function, errorMessage: string}}
  */
-function buildDateValidation($formField, validation, requiredMessage) {
+function buildDateValidation($formField, validation) {
     // No date range restriction, skip
     if (validation.min_date && validation.max_date) {
         const invalidMessage = `Your chosen date must fall between ${validation.min_date} and ${validation.max_date}.`;
@@ -28,23 +28,6 @@ function buildDateValidation($formField, validation, requiredMessage) {
                 cb(chosenDate >= minDate && chosenDate <= maxDate);
             },
             errorMessage: invalidMessage,
-        };
-    }
-    // Required Empty Date field
-    if (validation.required && (!validation.min_date || !validation.max_date)) {
-        const formElementId = $formField.attr('id');
-
-        return {
-            selector: `#${formElementId} select[data-label="year"]`,
-            triggeredBy: `#${formElementId} select:not([data-label="year"])`,
-            validate: (cb, val) => {
-                const day = $formField.find('select[data-label="day"]').val();
-                const month = $formField.find('select[data-label="month"]').val();
-                const year = val;
-
-                cb(day && month && year);
-            },
-            errorMessage: requiredMessage,
         };
     }
 }
@@ -107,6 +90,83 @@ function buildNumberRangeValidation(validation, formFieldSelector) {
     };
 }
 
+function buildEmailValidation(validation, selector) {
+    return {
+        selector,
+        validate(cb, val) {
+            const re = /^[A-Za-z0-9']([\.\-\+]?[a-zA-Z0-9'_])*\@([A-Za-z0-9\-]+\.)+[A-Za-z]{2,5}$/;
+            cb(re.test(val));
+        },
+        errorMessage: 'Please enter a valid email address.',
+    };
+}
+
+function buildNameValidation(validation, selector) {
+    return {
+        selector,
+        validate(cb, val) {
+            const re = /^[a-zA-Z0-9\s-']*$/;
+            cb(re.test(val));
+        },
+        errorMessage: 'Please enter valid characters: a-zA-Z0-9 -\'',
+    };
+}
+
+function buildAddressLineValidation(validation, selector) {
+    return {
+        selector,
+        validate(cb, val) {
+            const re = /^[a-zA-Z0-9\s-,.#]*$/;
+            cb(re.test(val));
+        },
+        errorMessage: 'Please enter valid characters: a-zA-Z0-9 -,.#',
+    };
+}
+
+function buildShippingAddressLineValidation(validation, selector) {
+    return {
+        selector,
+        validate(cb, val) {
+            const re = /^[a-zA-Z0-9\s-,.#]*$/;
+            const reNo = /p\.*o\.*\s*box.*/i;
+            cb(re.test(val) && !reNo.test(val));
+        },
+        errorMessage: 'Please enter valid characters: a-zA-Z0-9 -,.# and no PO Box',
+    };
+}
+
+function buildCityValidation(validation, selector) {
+    return {
+        selector,
+        validate(cb, val) {
+            const re = /^[a-zA-Z\s-]*$/;
+            cb(re.test(val));
+        },
+        errorMessage: 'Please enter valid characters: a-zA-Z -',
+    };
+}
+
+function buildZipValidation(validation, selector) {
+    return {
+        selector,
+        validate(cb, val) {
+            const re = /^\d{5}(-\d{4})?$/;
+            cb(re.test(val));
+        },
+        errorMessage: 'Please enter a valid zip code.',
+    };
+}
+
+function buildPhoneValidation(validation, selector) {
+    return {
+        selector,
+        validate(cb, val) {
+            const re = /^\d{10}$/;
+            cb(re.test(val));
+        },
+        errorMessage: 'Please enter a 10-digit phone number.',
+    };
+}
 
 function buildValidation($validateableElement, errorMessage) {
     const validation = $validateableElement.data('validation');
@@ -114,7 +174,7 @@ function buildValidation($validateableElement, errorMessage) {
     const formFieldSelector = `#${$validateableElement.attr('id')}`;
 
     if (validation.type === 'datechooser') {
-        const dateValidation = buildDateValidation($validateableElement, validation, errorMessage);
+        const dateValidation = buildDateValidation($validateableElement, validation);
 
         if (dateValidation) {
             fieldValidations.push(dateValidation);
@@ -130,6 +190,27 @@ function buildValidation($validateableElement, errorMessage) {
 
             if (validation.type === 'numberonly') {
                 fieldValidations.push(buildNumberRangeValidation(validation, formFieldSelector));
+            }
+            if (validation.type === 'email') {
+                fieldValidations.push(buildEmailValidation(validation, elementSelector));
+            }
+            if (validation.type === 'name') {
+                fieldValidations.push(buildNameValidation(validation, elementSelector));
+            }
+            if (validation.type === 'addressLine') {
+                fieldValidations.push(buildAddressLineValidation(validation, elementSelector));
+            }
+            if (validation.type === 'shippingAddressLine') {
+                fieldValidations.push(buildShippingAddressLineValidation(validation, elementSelector));
+            }
+            if (validation.type === 'city') {
+                fieldValidations.push(buildCityValidation(validation, elementSelector));
+            }
+            if (validation.type === 'zip') {
+                fieldValidations.push(buildZipValidation(validation, elementSelector));
+            }
+            if (validation.type === 'phone') {
+                fieldValidations.push(buildPhoneValidation(validation, elementSelector));
             }
             if (validation.required) {
                 fieldValidations.push(buildRequiredValidation(validation, elementSelector, errorMessage));
@@ -148,13 +229,13 @@ function buildValidation($validateableElement, errorMessage) {
  */
 export default function ($form, context) {
     let validationsToPerform = [];
-    const { field_not_blank: requiredFieldValidationText } = createTranslationDictionary(context);
+    // const { field_not_blank: requiredFieldValidationText } = createTranslationDictionary(context);
 
     $form.find('[data-validation]').each((index, input) => {
-        const getLabel = $el => $el.first().data('validation').label;
-        const requiredValidationMessage = getLabel($(input)) + requiredFieldValidationText;
+        // const getLabel = $el => $el.first().data('validation').label;
+        // const requiredValidationMessage = getLabel($(input)) + requiredFieldValidationText;
 
-        validationsToPerform = validationsToPerform.concat(buildValidation($(input), requiredValidationMessage));
+        validationsToPerform = validationsToPerform.concat(buildValidation($(input)));
     });
 
     return validationsToPerform;

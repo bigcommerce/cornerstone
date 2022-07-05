@@ -11,6 +11,36 @@ export default class CatalogPage extends PageManager {
                 window.localStorage.setItem('sortByStatus', 'selected');
             }
         });
+        
+        $('#product-listView, #product-gridView').on('click', e => {
+            $('.search-item').removeClass('active');
+            
+            if (e.target.closest('a').id === 'product-gridView') {
+                $('.productGrid').removeClass('list-view');
+            } else {
+                $('.productGrid').addClass('list-view');
+            }
+            
+            $(e.target.closest('a')).addClass('active');
+        });
+        
+        $(window).on('resize', function () {
+            if ($(window).width() < 801) {
+                if ($('#product-listView').hasClass('active')) {
+                    sessionStorage.setItem('wasList', true);
+                }
+                $(".productGrid").removeClass("list-view");
+                $('.search-item').removeClass('active');
+                $('#product-gridView').addClass('active');
+            } else {
+                if (sessionStorage.getItem('wasList')) {
+                    $(".productGrid").addClass("list-view");
+                    $('.search-item').removeClass('active');
+                    $('#product-listView').addClass('active');
+                    sessionStorage.removeItem('wasList');
+                }
+            }
+        });
     }
 
     arrangeFocusOnSortBy() {
@@ -31,5 +61,10 @@ export default class CatalogPage extends PageManager {
 
         event.preventDefault();
         window.location = Url.format({ pathname: url.pathname, search: urlUtils.buildQueryString(url.query) });
+    }
+    
+    onSidebarToggle(event) {
+        let toggleLink = event.target.closest('.toggleLink');
+        $(`#${toggleLink.dataset.collapsible}`).toggleClass('is-open');
     }
 }

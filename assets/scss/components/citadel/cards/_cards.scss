@@ -76,21 +76,44 @@
 }
 
 .card-title {
-    font-size: $card-title-fontSize;
+    font-size: 1rem;
+    font-weight: fontWeight("medium");
     margin: $card-title-margin;
+    letter-spacing: 0.25px;
+    line-height: 1.25;
 
     > a {
-        color: $card-title-color;
         display: block;
-        text-decoration: $card-title-textDecoration;
-
-        &:hover {
-            color: $card-title-color-hover;
-        }
     }
 }
 
+.no-longer-manufactured {
+    text-transform: uppercase;
+    color: stencilColor('color-black');
+    font-size: 1rem;
+}
+
+#search-page {
+    .no-longer-manufactured {
+        font-weight: bold;
+    }
+}
+
+.card-sub-title {
+    color: $card-sub-title-color;
+    font-size: 1rem;
+    font-weight: fontWeight("bold");
+    margin: $card-sub-title-margin;
+    line-height: 1.25;
+}
+
+.card-out-of-stock {
+    font-weight: fontWeight("medium");
+    margin: $card-sub-title-margin;
+}
+
 .card-text {
+    font-size: fontSize("base");
     margin-bottom: $card-text-marginBottom;
 
     abbr {
@@ -123,10 +146,9 @@
 }
 
 .card-body {
-    text-align: center;
 
-    @include breakpoint("small") {
-        text-align: left;
+    .card-text {
+        color: $color-greyDark;
     }
 }
 
@@ -138,32 +160,18 @@
 // -----------------------------------------------------------------------------
 
 .card--alternate {
-    border: 3px solid stencilColor("card--alternate-borderColor");
+    height: 100%;
+    border: 1px solid stencilColor("card--alternate-borderColor");
     transition: all 0.15s ease;
+    padding: spacing("single") spacing("base");
+    margin-bottom: 0;
 
     .card-body {
         background-color: stencilColor("card--alternate-backgroundColor");
-        padding: spacing("half");
         transition: all 0.15s ease;
 
-        @include breakpoint("small") {
-            padding: spacing("single");
-        }
-    }
-
-    &:hover {
-        border-color: stencilColor("color-primary");
-
-        .card-body {
-            background-color: stencilColor("color-primary");
-
-            .card-text {
-                color: stencilColor("card--alternate-color--hover");
-            }
-        }
-
-        .card-title > a {
-            color: stencilColor("card--alternate-color--hover");
-        }
+        // .card-title > a {
+        //     color: stencilColor("card--alternate-title--color");
+        // }
     }
 }

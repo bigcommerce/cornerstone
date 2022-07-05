@@ -1,0 +1,104 @@
+.button-primary{
+    color: #FFFFFF;
+    background: #003B71 0% 0% no-repeat padding-box;
+    border: none;
+}
+.button-primary:hover{
+    color: #FFFFFF;
+    background: #2063A2 0% 0% no-repeat padding-box;
+}
+.button-secondary{
+    color: #003B71;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #003B71;
+}
+.button-secondary:hover{
+    color: #003B71;
+    background: #CEE2F466 0% 0% no-repeat padding-box;
+}
+.btn:disabled{
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #C5C5C5;
+    color: #C8C9CA;
+}
+
+.fancy-color{
+  background-color: #2063A2 ;
+  color:white;
+}
+.fancy-white{
+  color:#2063A2;
+}
+.fancy {
+    line-height: 0.5;
+    text-align: center;
+    padding : 2%;
+    font-size:24px;
+    font-weight : bold;
+
+  }
+@include breakpoint("medium") {
+  .fancy span {
+    display: inline-block;
+    position: relative;  
+  }
+  .fancy span:before,
+  .fancy span:after {
+    content: "";
+    position: absolute;
+    height: 10px;
+    border-bottom: 4px solid white;
+    top: 0;
+    width: 100px;
+  }
+  .fancy-white span:before,
+  .fancy-white span:after {
+    border-bottom: 4px solid #2063A2;
+  }
+  .fancy span:before {
+    right: 100%;
+    margin-right: 15px;
+  }
+  .fancy span:after {
+    left: 100%;
+    margin-left: 15px;
+  }
+}
+.disclaimer{
+  color: #6E6E6E;
+  font-style: italic;
+  font-size: 14px;
+  font-weight: bold;
+}
+.mobileMenu-icons{
+  display:flex;
+  float: right;
+  margin: 0px;
+}
+.mobileMenu-icons li{
+  list-style-type: none;
+  height: 3.92857rem;
+    width: 3.92857rem;
+    padding: 1.28571rem;
+}
+.mobileMenu-box{
+  background-color: #EFF0F0;
+  position: absolute;
+  width: 100%;
+  border-top: 1px solid #D9D9D9;
+  display:block;
+  @include breakpoint("large") {
+    display:none;
+  }
+}
+.mobileMenu-icons .fa{
+  font-size: 20px;
+}
+.fab, .fal, .far, .fas {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

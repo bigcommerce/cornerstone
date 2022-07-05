@@ -1,17 +1,7 @@
-import { showAlertModal } from './modal';
+import swal from './sweet-alert';
 import utils from '@bigcommerce/stencil-utils';
 
-let currencySelectorCalled = false;
-
 export default function (cartId) {
-    if (!cartId) return;
-
-    if (!currencySelectorCalled) {
-        currencySelectorCalled = true;
-    } else {
-        return;
-    }
-
     function changeCurrency(url, currencyCode) {
         $.ajax({
             url,
@@ -21,12 +11,19 @@ export default function (cartId) {
         }).done(() => {
             window.location.reload();
         }).fail((e) => {
-            showAlertModal(JSON.parse(e.responseText).error);
+            swal.fire({
+                text: JSON.parse(e.responseText).error,
+                icon: 'warning',
+                showCancelButton: true,
+            });
         });
     }
 
     $('[data-cart-currency-switch-url]').on('click', event => {
         const currencySessionSwitcher = event.target.href;
+        if (!cartId) {
+            return;
+        }
         event.preventDefault();
         utils.api.cart.getCart({ cartId }, (err, response) => {
             if (err || response === undefined) {
@@ -39,16 +36,14 @@ export default function (cartId) {
                 response.lineItems.giftCertificates.length > 0;
 
             if (showWarning) {
-                const text = $(event.target).data('warning');
-                const $preModalFocusedEl = $('.navUser-action--currencySelector');
-
-                showAlertModal(text, {
+                swal.fire({
+                    text: $(event.target).data('warning'),
                     icon: 'warning',
                     showCancelButton: true,
-                    $preModalFocusedEl,
-                    onConfirm: () => {
+                }).then(result => {
+                    if (result.value && result.value === true) {
                         changeCurrency($(event.target).data('cart-currency-switch-url'), $(event.target).data('currency-code'));
-                    },
+                    }
                 });
             } else {
                 changeCurrency($(event.target).data('cart-currency-switch-url'), $(event.target).data('currency-code'));

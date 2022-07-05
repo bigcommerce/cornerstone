@@ -1,10 +1,11 @@
 <section class="productCarousel"
     data-list-name="{{list}}"
     data-slick='{
+        "dots": false,
         "infinite": false,
         "mobileFirst": true,
-        "slidesToShow": 2,
-        "slidesToScroll": 2,
+        "slidesToShow": 1,
+        "slidesToScroll": 1,
         "slide": "[data-product-slide]",
         "responsive": [
             {
@@ -17,8 +18,8 @@
             {
                 "breakpoint": 550,
                 "settings": {
-                    "slidesToShow": 3,
-                    "slidesToScroll": 3
+                    "slidesToShow": 2,
+                    "slidesToScroll": 2
                 }
             }
         ]
@@ -26,10 +27,47 @@
 >
     {{#each products}}
     <div data-product-slide class="productCarousel-slide">
-        {{> components/products/card settings=../settings theme_settings=../theme_settings customer=../customer event="list" position=(add @index 1)}}
+
+        <article class="card
+            {{#if alternate}} card--alternate{{/if}}" data-event-type="{{list}}" data-entity-id="{{id}}" data-position="{{add @index 1}}" data-name="{{name}}"
+            data-product-category="{{~#each category~}}
+                {{~#if @last~}}
+                    {{this}}
+                {{~else~}}
+                    {{this}},
+                {{~/if~}}
+            {{~/each~}}"
+            data-product-brand="{{brand.name}}"
+            data-variant="">
+            <figure class="card-figure">
+                <a href="{{url}}" class="card-figure__link" aria-label="{{name}},{{> components/products/product-aria-label}}"
+                     data-event-type="product-click">
+                    <div class="card-img-container">
+                        {{> components/common/responsive-img
+                        image=image
+                        class="card-image"
+                        fallback_size= ../theme_setting.productgallery_size
+                        lazyload= ../theme_setting.lazyload_mode
+                        default_image= ../theme_setting.default_image_product
+                        }}
+                    </div>
+                </a>
+            </figure>
+            <div class="card-body">
+        
+                {{#if brand.name}}
+                <p class="card-text">{{brand.name}}</p>
+                {{/if}}
+                <h3 class="card-title">
+                    <a aria-label="{{name}},{{> components/products/product-aria-label}}" href="{{url}}" data-event-type="product-click">
+                        {{first (split name '|^|')}}
+                    </a>
+                </h3>
+                <p class="card-sub-title">{{sku}}</p>
+        
+                <div data-bv-show="inline_rating" data-bv-product-id="{{sku}}"></div>
+            </div>
+        </article>
     </div>
     {{/each}}
-    {{#if products.length '>' 1}}
-        {{> components/carousel-content-announcement}}
-    {{/if}}
 </section>

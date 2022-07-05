@@ -1,230 +1,23 @@
 import utils from '@bigcommerce/stencil-utils';
-import ProductDetailsBase, { optionChangeDecorator } from './product-details-base';
+import ProductDetailsBase from './product-details-base';
 import 'foundation-sites/js/foundation/foundation';
 import 'foundation-sites/js/foundation/foundation.reveal';
 import ImageGallery from '../product/image-gallery';
-import modalFactory, { alertModal, showAlertModal } from '../global/modal';
-import { isEmpty, isPlainObject } from 'lodash';
-import nod from '../common/nod';
-import { announceInputErrorMessage } from '../common/utils/form-utils';
-import forms from '../common/models/forms';
-import { normalizeFormData } from './utils/api';
-import { isBrowserIE, convertIntoArray } from './utils/ie-helpers';
-import bannerUtils from './utils/banner-utils';
-import currencySelector from '../global/currency-selector';
+import { isPlainObject } from 'lodash';
+import { downloadClick } from "../global/gtm";
 
 export default class ProductDetails extends ProductDetailsBase {
-    constructor($scope, context, productAttributesData = {}) {
+    constructor($scope, context) {
         super($scope, context);
-
-        this.$overlay = $('[data-cart-item-add] .loadingOverlay');
+        this.context = context;
         this.imageGallery = new ImageGallery($('[data-image-gallery]', this.$scope));
         this.imageGallery.init();
-        this.listenQuantityChange();
-        this.$swatchOptionMessage = $('.swatch-option-message');
-        this.swatchInitMessageStorage = {};
-        this.swatchGroupIdList = $('[id^="swatchGroup"]').map((_, group) => $(group).attr('id'));
-        this.storeInitMessagesForSwatches();
 
-        const $form = $('form[data-cart-item-add]', $scope);
-
-        this.addToCartValidator = nod({
-            submit: $form.find('input#form-action-addToCart'),
-            tap: announceInputErrorMessage,
-        });
-
-        const $productOptionsElement = $('[data-product-option-change]', $form);
-        const hasOptions = $productOptionsElement.html().trim().length;
-        const hasDefaultOptions = $productOptionsElement.find('[data-default]').length;
-        const $productSwatchGroup = $('[id*="attribute_swatch"]', $form);
-        const $productSwatchLabels = $('.form-option-swatch', $form);
-        const placeSwatchLabelImage = (_, label) => {
-            const $optionImage = $('.form-option-expanded', $(label));
-            const optionImageWidth = $optionImage.outerWidth();
-            const extendedOptionImageOffsetLeft = 55;
-            const { right } = label.getBoundingClientRect();
-            const emptySpaceToScreenRightBorder = window.screen.width - right;
-            const shiftValue = optionImageWidth - emptySpaceToScreenRightBorder;
-
-            if (emptySpaceToScreenRightBorder < (optionImageWidth + extendedOptionImageOffsetLeft)) {
-                $optionImage.css('left', `${shiftValue > 0 ? -shiftValue : shiftValue}px`);
-            }
-        };
-
-        $(window).on('load', () => {
-            this.registerAddToCartValidation();
-            $.each($productSwatchLabels, placeSwatchLabelImage);
-        });
-
-        if (context.showSwatchNames) {
-            this.$swatchOptionMessage.removeClass('u-hidden');
-
-            $productSwatchGroup.on('change', ({ target }) => {
-                const swatchGroupElement = target.parentNode.parentNode;
-
-                this.showSwatchNameOnOption($(target), $(swatchGroupElement));
-            });
-
-            $.each($productSwatchGroup, (_, element) => {
-                const swatchGroupElement = element.parentNode.parentNode;
-
-                if ($(element).is(':checked')) this.showSwatchNameOnOption($(element), $(swatchGroupElement));
-            });
-        }
-
-        $productOptionsElement.on('change', event => {
-            this.productOptionsChanged(event);
-            this.setProductVariant();
-        });
-
-        $form.on('submit', event => {
-            this.addToCartValidator.performCheck();
-
-            if (this.addToCartValidator.areAll('valid')) {
-                this.addProductToCart(event, $form[0]);
-            }
-        });
-
-        // Update product attributes. Also update the initial view in case items are oos
-        // or have default variant properties that change the view
-        if ((isEmpty(productAttributesData) || hasDefaultOptions) && hasOptions) {
-            const $productId = $('[name="product_id"]', $form).val();
-            const optionChangeCallback = optionChangeDecorator.call(this, hasDefaultOptions);
-
-            utils.api.productAttributes.optionChange($productId, $form.serialize(), 'products/bulk-discount-rates', optionChangeCallback);
-        } else {
-            this.updateProductAttributes(productAttributesData);
-            bannerUtils.dispatchProductBannerEvent(productAttributesData);
-        }
-
-        $productOptionsElement.show();
-
-        this.previewModal = modalFactory('#previewModal')[0];
-    }
-
-    registerAddToCartValidation() {
-        this.addToCartValidator.add([{
-            selector: '[data-quantity-change] > .form-input--incrementTotal',
-            validate: (cb, val) => {
-                const result = forms.numbersOnly(val);
-                cb(result);
-            },
-            errorMessage: this.context.productQuantityErrorMessage,
-        }]);
-
-        return this.addToCartValidator;
-    }
-
-    storeInitMessagesForSwatches() {
-        if (this.swatchGroupIdList.length && isEmpty(this.swatchInitMessageStorage)) {
-            this.swatchGroupIdList.each((_, swatchGroupId) => {
-                if (!this.swatchInitMessageStorage[swatchGroupId]) {
-                    this.swatchInitMessageStorage[swatchGroupId] = $(`#${swatchGroupId} ~ .swatch-option-message`).text().trim();
-                }
-            });
-        }
-    }
-
-    setProductVariant() {
-        const unsatisfiedRequiredFields = [];
-        const options = [];
-
-        $.each($('[data-product-attribute]'), (index, value) => {
-            const optionLabel = value.children[0].innerText;
-            const optionTitle = optionLabel.split(':')[0].trim();
-            const required = optionLabel.toLowerCase().includes('required');
-            const type = value.getAttribute('data-product-attribute');
-
-            if ((type === 'input-file' || type === 'input-text' || type === 'input-number') && value.querySelector('input').value === '' && required) {
-                unsatisfiedRequiredFields.push(value);
-            }
-
-            if (type === 'textarea' && value.querySelector('textarea').value === '' && required) {
-                unsatisfiedRequiredFields.push(value);
-            }
-
-            if (type === 'date') {
-                const isSatisfied = Array.from(value.querySelectorAll('select')).every((select) => select.selectedIndex !== 0);
-
-                if (isSatisfied) {
-                    const dateString = Array.from(value.querySelectorAll('select')).map((x) => x.value).join('-');
-                    options.push(`${optionTitle}:${dateString}`);
-
-                    return;
-                }
-
-                if (required) {
-                    unsatisfiedRequiredFields.push(value);
-                }
-            }
-
-            if (type === 'set-select') {
-                const select = value.querySelector('select');
-                const selectedIndex = select.selectedIndex;
-
-                if (selectedIndex !== 0) {
-                    options.push(`${optionTitle}:${select.options[selectedIndex].innerText}`);
-
-                    return;
-                }
-
-                if (required) {
-                    unsatisfiedRequiredFields.push(value);
-                }
-            }
-
-            if (type === 'set-rectangle' || type === 'set-radio' || type === 'swatch' || type === 'input-checkbox' || type === 'product-list') {
-                const checked = value.querySelector(':checked');
-                if (checked) {
-                    const getSelectedOptionLabel = () => {
-                        const productVariantslist = convertIntoArray(value.children);
-                        const matchLabelForCheckedInput = inpt => inpt.dataset.productAttributeValue === checked.value;
-                        return productVariantslist.filter(matchLabelForCheckedInput)[0];
-                    };
-                    if (type === 'set-rectangle' || type === 'set-radio' || type === 'product-list') {
-                        const label = isBrowserIE ? getSelectedOptionLabel().innerText.trim() : checked.labels[0].innerText;
-                        if (label) {
-                            options.push(`${optionTitle}:${label}`);
-                        }
-                    }
-
-                    if (type === 'swatch') {
-                        const label = isBrowserIE ? getSelectedOptionLabel().children[0] : checked.labels[0].children[0];
-                        if (label) {
-                            options.push(`${optionTitle}:${label.title}`);
-                        }
-                    }
-
-                    if (type === 'input-checkbox') {
-                        options.push(`${optionTitle}:Yes`);
-                    }
-
-                    return;
-                }
-
-                if (type === 'input-checkbox') {
-                    options.push(`${optionTitle}:No`);
-                }
-
-                if (required) {
-                    unsatisfiedRequiredFields.push(value);
-                }
-            }
-        });
-
-        let productVariant = unsatisfiedRequiredFields.length === 0 ? options.sort().join(', ') : 'unsatisfied';
-        const view = $('.productView');
-
-        if (productVariant) {
-            productVariant = productVariant === 'unsatisfied' ? '' : productVariant;
-            if (view.attr('data-event-type')) {
-                view.attr('data-product-variant', productVariant);
-            } else {
-                const productName = view.find('.productView-title')[0].innerText.replace(/"/g, '\\$&');
-                const card = $(`[data-name="${productName}"]`);
-                card.attr('data-product-variant', productVariant);
-            }
-        }
+        this.initStickyHeader();
+        this.buildHighlightsHtml();
+        this.buildSpecTable();
+        this.buildWarrantyHtml();
+        this.buildDocHtml();
     }
 
     /**
@@ -237,49 +30,6 @@ export default class ProductDetails extends ProductDetailsBase {
         } catch (e) {
             return true;
         }
-    }
-
-    /**
-     *
-     * Handle product options changes
-     *
-     */
-    productOptionsChanged(event) {
-        const $changedOption = $(event.target);
-        const $form = $changedOption.parents('form');
-        const productId = $('[name="product_id"]', $form).val();
-
-        // Do not trigger an ajax request if it's a file or if the browser doesn't support FormData
-        if ($changedOption.attr('type') === 'file' || window.FormData === undefined) {
-            return;
-        }
-
-        utils.api.productAttributes.optionChange(productId, $form.serialize(), 'products/bulk-discount-rates', (err, response) => {
-            const productAttributesData = response.data || {};
-            const productAttributesContent = response.content || {};
-            this.updateProductAttributes(productAttributesData);
-            this.updateView(productAttributesData, productAttributesContent);
-            bannerUtils.dispatchProductBannerEvent(productAttributesData);
-
-            if (!this.checkIsQuickViewChild($form)) {
-                const $context = $form.parents('.productView').find('.productView-info');
-                modalFactory('[data-reveal]', { $context });
-            }
-        });
-    }
-
-    /**
-     * if this setting is enabled in Page Builder
-     * show name for swatch option
-     */
-    showSwatchNameOnOption($swatch, $swatchGroup) {
-        const swatchName = $swatch.attr('aria-label');
-        const activeSwatchGroupId = $swatchGroup.attr('aria-labelledby');
-        const $swatchOptionMessage = $(`#${activeSwatchGroupId} ~ .swatch-option-message`);
-
-        $('[data-option-value]', $swatchGroup).text(swatchName);
-        $swatchOptionMessage.text(`${this.swatchInitMessageStorage[activeSwatchGroupId]} ${swatchName}`);
-        this.setLiveRegionAttributes($swatchOptionMessage, 'status', 'assertive');
     }
 
     setLiveRegionAttributes($element, roleType, ariaLiveStatus) {
@@ -334,142 +84,6 @@ export default class ProductDetails extends ProductDetailsBase {
     }
 
     /**
-     *
-     * Handle action when the shopper clicks on + / - for quantity
-     *
-     */
-    listenQuantityChange() {
-        this.$scope.on('click', '[data-quantity-change] button', event => {
-            event.preventDefault();
-            const $target = $(event.currentTarget);
-            const viewModel = this.getViewModel(this.$scope);
-            const $input = viewModel.quantity.$input;
-            const quantityMin = parseInt($input.data('quantityMin'), 10);
-            const quantityMax = parseInt($input.data('quantityMax'), 10);
-
-            let qty = forms.numbersOnly($input.val()) ? parseInt($input.val(), 10) : quantityMin;
-            // If action is incrementing
-            if ($target.data('action') === 'inc') {
-                qty = forms.validateIncreaseAgainstMaxBoundary(qty, quantityMax);
-            } else if (qty > 1) {
-                qty = forms.validateDecreaseAgainstMinBoundary(qty, quantityMin);
-            }
-
-            // update hidden input
-            viewModel.quantity.$input.val(qty);
-            // update text
-            viewModel.quantity.$text.text(qty);
-            // perform validation after updating product quantity
-            this.addToCartValidator.performCheck();
-        });
-
-        // Prevent triggering quantity change when pressing enter
-        this.$scope.on('keypress', '.form-input--incrementTotal', event => {
-            // If the browser supports event.which, then use event.which, otherwise use event.keyCode
-            const x = event.which || event.keyCode;
-            if (x === 13) {
-                // Prevent default
-                event.preventDefault();
-            }
-        });
-    }
-
-    /**
-     *
-     * Add a product to cart
-     *
-     */
-    addProductToCart(event, form) {
-        const $addToCartBtn = $('#form-action-addToCart', $(event.target));
-        const originalBtnVal = $addToCartBtn.val();
-        const waitMessage = $addToCartBtn.data('waitMessage');
-
-        // Do not do AJAX if browser doesn't support FormData
-        if (window.FormData === undefined) {
-            return;
-        }
-
-        // Prevent default
-        event.preventDefault();
-
-        $addToCartBtn
-            .val(waitMessage)
-            .prop('disabled', true);
-
-        this.$overlay.show();
-
-        // Add item to cart
-        utils.api.cart.itemAdd(normalizeFormData(new FormData(form)), (err, response) => {
-            currencySelector(response.data.cart_id);
-            const errorMessage = err || response.data.error;
-
-            $addToCartBtn
-                .val(originalBtnVal)
-                .prop('disabled', false);
-
-            this.$overlay.hide();
-
-            // Guard statement
-            if (errorMessage) {
-                // Strip the HTML from the error message
-                const tmp = document.createElement('DIV');
-                tmp.innerHTML = errorMessage;
-
-                if (!this.checkIsQuickViewChild($addToCartBtn)) {
-                    alertModal().$preModalFocusedEl = $addToCartBtn;
-                }
-
-                return showAlertModal(tmp.textContent || tmp.innerText);
-            }
-
-            // Open preview modal and update content
-            if (this.previewModal) {
-                this.previewModal.open();
-
-                if (window.ApplePaySession) {
-                    this.previewModal.$modal.addClass('apple-pay-supported');
-                }
-
-                if (!this.checkIsQuickViewChild($addToCartBtn)) {
-                    this.previewModal.$preModalFocusedEl = $addToCartBtn;
-                }
-
-                this.updateCartContent(this.previewModal, response.data.cart_item.id);
-            } else {
-                this.$overlay.show();
-                // if no modal, redirect to the cart page
-                this.redirectTo(response.data.cart_item.cart_url || this.context.urls.cart);
-            }
-        });
-
-        this.setLiveRegionAttributes($addToCartBtn.next(), 'status', 'polite');
-    }
-
-    /**
-     * Get cart contents
-     *
-     * @param {String} cartItemId
-     * @param {Function} onComplete
-     */
-    getCartContent(cartItemId, onComplete) {
-        const options = {
-            template: 'cart/preview',
-            params: {
-                suggest: cartItemId,
-            },
-            config: {
-                cart: {
-                    suggestions: {
-                        limit: 4,
-                    },
-                },
-            },
-        };
-
-        utils.api.cart.getContent(options, onComplete);
-    }
-
-    /**
      * Redirect to url
      *
      * @param {String} url
@@ -482,57 +96,308 @@ export default class ProductDetails extends ProductDetailsBase {
         }
     }
 
-    /**
-     * Update cart content
-     *
-     * @param {Modal} modal
-     * @param {String} cartItemId
-     * @param {Function} onComplete
+    /*
+     * Sticky header shows on scroll
      */
-    updateCartContent(modal, cartItemId, onComplete) {
-        this.getCartContent(cartItemId, (err, response) => {
-            if (err) {
-                return;
-            }
-
-            modal.updateContent(response);
-
-            // Update cart counter
-            const $body = $('body');
-            const $cartQuantity = $('[data-cart-quantity]', modal.$content);
-            const $cartCounter = $('.navUser-action .cart-count');
-            const quantity = $cartQuantity.data('cartQuantity') || 0;
-            const $promotionBanner = $('[data-promotion-banner]');
-            const $backToShopppingBtn = $('.previewCartCheckout > [data-reveal-close]');
-            const $modalCloseBtn = $('#previewModal > .modal-close');
-            const bannerUpdateHandler = () => {
-                const $productContainer = $('#main-content > .container');
-
-                $productContainer.append('<div class="loadingOverlay pdp-update"></div>');
-                $('.loadingOverlay.pdp-update', $productContainer).show();
-                window.location.reload();
-            };
-
-            $cartCounter.addClass('cart-count--positive');
-            $body.trigger('cart-quantity-update', quantity);
-
-            if (onComplete) {
-                onComplete(response);
-            }
-
-            if ($promotionBanner.length && $backToShopppingBtn.length) {
-                $backToShopppingBtn.on('click', bannerUpdateHandler);
-                $modalCloseBtn.on('click', bannerUpdateHandler);
+    initStickyHeader() {
+        // show sticky header if scrolled past tabs
+        $(window).on('scroll', () => {
+            if ($(window).scrollTop() > $('#productStickyHeaderAnchor').offset().top) {
+                $('#productStickyHeader').show();
+            } else {
+                $('#productStickyHeader').hide();
             }
         });
     }
 
-    /**
-     * Hide or mark as unavailable out of stock attributes if enabled
-     * @param  {Object} data Product attribute data
+    sortList(prefix, orderIndex) {
+        if (this.context.productObj.custom_fields) {
+            const customFields = this.context.productObj.custom_fields;
+            // add all custom fields starting with prefix to an array
+            const listArr = [];
+            for (let i = 0; i < customFields.length; i++) {
+                if (customFields[i].name.indexOf(prefix) == 0) {
+                    listArr.push(customFields[i]);
+                }
+            }
+
+            // sort by name and index
+            listArr.sort((a, b) => {
+                let aIndex = 0;
+                let aName = '';
+                const aSplit = a.name.split('_');
+                if (aSplit.length > orderIndex) {
+                    //aIndex = parseInt(aSplit[orderIndex], 10);
+                    aIndex = parseInt(aSplit[aSplit.length - 1]);
+                    aName = aSplit[orderIndex - 1];
+                }
+
+                let bIndex = 0;
+                let bName = '';
+                const bSplit = b.name.split('_');
+                if (bSplit.length > orderIndex) {
+                    //bIndex = parseInt(bSplit[orderIndex], 10);
+                    bIndex = parseInt(bSplit[bSplit.length - 1]);
+                    bName = bSplit[orderIndex - 1];
+                }
+
+                if (aName == bName) {
+                    return (aIndex > bIndex) ? 1 : -1;
+                }
+
+                return (a.name > b.name) ? 1 : -1;
+            });
+
+            return listArr;
+        }
+
+        return null;
+    }
+
+    /*
+     * Build highlights list
      */
-    updateProductAttributes(data) {
-        super.updateProductAttributes(data);
-        this.showProductImage(data.image);
+    buildHighlightsHtml() {
+        try {
+            const warranty = JSON.parse(this.context.productObj.warranty);
+            if (warranty && warranty.BenefitCopy && warranty.BenefitCopy.length) {
+                
+                // top 4 features
+                let benefitCopy = warranty.BenefitCopy.filter(benefit => {
+                    let flag = false;
+                    for (const key in benefit) {
+                        if (
+                            !key.includes('Image') &&
+                            !key.includes('Video') &&
+                            !key.includes('Copy')
+                        ) {
+                            flag = true;
+                        }
+                    }
+                    return flag;
+                });
+                const features = benefitCopy.slice(0, 4).map((item, index) => {
+                    // return item[`Feature-${index + 1}`];
+                    let element;
+                    for (const key in item) {
+                        if (Object.hasOwnProperty.call(item, key)) {
+                            element = item[key];
+                        }
+                    }
+                    return element;
+                });
+
+                if (features && features.length) {
+                    features.forEach(feature => {
+                        $('#productHighlights').append(`<li class="feature">${feature}</li>`);
+                    });
+                    $(".productView-highlights").removeClass('u-hidden');
+                }
+                $('.productView-highlights').siblings('.loadingOverlay').css('display', 'none');
+            }
+        } catch (err) {
+            console.error(err)
+            $('.productView-highlights').siblings('.loadingOverlay').css('display', 'none');
+        }
+    }
+
+    buildSpecTable() {
+        // sort custom fields starting with Attributes_
+        const listArr = this.sortList('Attributes_', 3);
+
+        if (listArr && listArr.length) {
+            for (let i = 0; i < listArr.length; i++) {
+                // ignore app filter
+                if (listArr[i].name.indexOf('GEAParts.com filter') < 0) {
+                    const nameSplit = listArr[i].name.split('_');
+                    if (nameSplit.length > 2) {
+                        // remove \
+                        const customFieldTitle = nameSplit[1].replace(/\\/g, '');
+                        const customFieldName = nameSplit[2].replace(/\\/g, '');
+                        const customFieldValue = listArr[i].value.replace(/\\/g, '');
+
+                        // if table for this attribute already exists, add row
+                        // else add new table
+                        let tableExists = false;
+                        $('.productTabs-specs-table').each((index, elem) => {
+                            if ($('.productTabs-specsTable--heading', elem).text() == customFieldTitle) {
+                                tableExists = true;
+
+                                // if row for this name already exists, add to column
+                                // else add new row
+                                let rowExists = false;
+                                $('tr', elem).each((indexRow, elemRow) => {
+                                    if ($('.specName', elemRow).text() == customFieldName) {
+                                        rowExists = true;
+
+                                        $('.specValues', elemRow).append(`<br>${customFieldValue}`);
+                                    }
+                                });
+                                if (!rowExists) {
+                                    $('table', elem).append(`<tr><td class="specName">${customFieldName}</td><td class="specValues">${customFieldValue}</td></tr>`);
+                                }
+                            }
+                        });
+                        if (!tableExists) {
+                            $('#productTabsSpecs').append(`
+                                <div class="productTabs-specs-table">
+                                    <table class="table">
+                                        <tr class="productTabs-specsTable--heading"><td class="specName" colspan="2"><strong>${customFieldTitle}</strong></td></tr>
+                                        <tr><td class="specName">${customFieldName}</td><td class="specValues">${customFieldValue}</td></tr>
+                                    </table>
+                                </div>
+                            `);
+                        }
+                    }
+                }
+            }
+        } else {
+            $('#productTabsSpecs').append(`<p>${this.context.productNoSpecs}</p>`)
+        }
+    }
+
+    buildWarrantyHtml() {
+        try {
+            if (this.context.productObj.warranty) {
+                const warranty = JSON.parse(this.context.productObj.warranty);
+
+                if (warranty && warranty.BenefitCopy && warranty.BenefitCopy.length) {
+
+                    let warrantyHtml = '';
+                    let features4HTML = '';
+                    let features3HTML = '';
+                    let features2HTML = '';
+                    let features1HTML = '';
+                    let features = {};
+                    
+                    warranty.BenefitCopy.forEach((item) => {
+                        let keys = Object.keys(item)[0].split(' ');
+                        features[keys[0]] = features[keys[0]] || {};
+                        features[keys[0]][keys[1] ? keys[1].toLowerCase() :
+                         'label'] = item[Object.keys(item)[0]];
+                    });
+                    
+                    for (const key in features) {
+                        if (Object.hasOwnProperty.call(features, key)) {
+                            const feature = features[key];
+                            
+                            if (Object.keys(feature).length === 4) {
+                                features4HTML += `<article class="product-feature d-flex align-items-top">
+                                    <div class="product-feature-content">
+                                        <figure class="product-feature-figure">
+                                            <img src="${feature.image}" alt=${feature.label}/>
+                                        </figure>
+                                        <div class="product-feature-body">
+                                            <h4>${feature.label}</h4>
+                                            <p>${feature.copy}</p>
+                                            <a href="${feature.video}" target="_blank">
+                                            <span class="icon icon--play">
+                                                <svg><use xlink:href="#icon-play-circle-regular" /></svg>
+                                            </span>Play Video</a>
+                                        </div>
+                                    </div>
+                                </article>`;
+                            }
+                            
+                            if (Object.keys(feature).length === 3) {
+                                features3HTML += `<article class="product-feature d-flex align-items-top">
+                                    <div class="product-feature-content">
+                                        ${feature.image ? `<figure class="product-feature-figure">
+                                            <img src="${feature.image}" alt=${feature.label}/>
+                                        </figure>`: ''}
+                                        <div class="product-feature-body">
+                                            <h4>${feature.label}</h4>
+                                            ${feature.copy ? `<p>${feature.copy}</p>` : ''}
+                                            ${feature.video ? `<a href="${feature.video}" target="_blank">
+                                            <span class="icon icon--play">
+                                                <svg><use xlink:href="#icon-play-circle-regular" /></svg>
+                                            </span>Play Video</a>` : ''}
+                                        </div>
+                                    </div>
+                                </article>`;
+                            }
+                            
+                            if (Object.keys(feature).length === 2) {
+                                features2HTML += `<article class="product-feature d-flex align-items-top">
+                                    <div class="product-feature-content">
+                                        ${feature.image ? `<figure class="product-feature-figure">
+                                            <img src="${feature.image}" alt=${feature.label}/>
+                                        </figure>`: ''}
+                                        <div class="product-feature-body">
+                                            <h4>${feature.label}</h4>
+                                            ${feature.copy ? `<p>${feature.copy}</p>` : ''}
+                                            ${feature.video ? `<a href="${feature.video}" target="_blank">
+                                            <span class="icon icon--play">
+                                                <svg><use xlink:href="#icon-play-circle-regular" /></svg>
+                                            </span>Play Video</a>` : ''}
+                                        </div>
+                                    </div>
+                                </article>`;
+                            }
+                            
+                            if (Object.keys(feature).length === 1) {
+                                features1HTML += `<article class="product-feature">
+                                    <div class="product-feature-content">
+                                        <div class="product-feature-body">
+                                            <h4>${feature.label}</h4>
+                                        </div>
+                                    </div>
+                                </article>`;
+                            }
+                        }
+                    }
+
+                    warrantyHtml = `${features4HTML}
+                    ${features3HTML}
+                    ${features2HTML}
+                    ${features1HTML}`;
+                    if (warrantyHtml && warrantyHtml !== '') {
+                        $('#productTabsFeatures').append(warrantyHtml);
+                    } else {
+                        $('#about').hide();
+                    }
+                }
+            }
+        } catch (err) {
+            console.error(err);
+            $('#about').hide();
+        }
+    }
+
+    /*
+     * Build documents list
+     */
+    buildDocHtml() {
+        // sort custom fields starting with Documents_ and CAD_
+        let listHtml = '';
+        const listArr = this.sortList('Document_', 1);
+        if (listArr) {
+            for (let i = 0; i < listArr.length; i++) {
+                // name for documents link is everything after 'documents_x_'
+                // href is custom field value
+                const nameArr = listArr[i].name.split('_');
+                nameArr.splice(0, 2);
+                const docName = nameArr.join(' ').replace(/\\/g, '');
+                if (docName && docName !== '') {
+                    listHtml += `
+                        <li>
+                            <a class="d-flex align-items-top productTabs-ownerSupport--docLink" href="${listArr[i].value}" target="_blank">
+                                ${docName}
+                            </a>
+                        </li>
+                    `;
+                }
+            }
+        }
+
+        if (listHtml && listHtml != '') {
+            $('#productTabsManuals').html(listHtml);
+            document.querySelectorAll('.productTabs-ownerSupport--docLink')
+            .forEach(docLink => {
+                docLink.addEventListener('click', downloadClick);
+            });
+        } else {
+            $('#productTabsManuals').html(`<li>${this.context.productNoManuals}</li>`)
+        }
     }
 }

@@ -1,0 +1,79 @@
+<article
+    class="card manuals-card
+    {{#if alternate}} card--alternate{{/if}}"
+    data-event-type="{{event}}"
+    data-entity-id="{{id}}"
+    data-position="{{position}}"
+    data-name="{{name}}"
+    data-product-category="
+    {{#each category}}
+        {{#if @last}}
+            {{this}}
+        {{else}}
+            {{this}},
+        {{/if}}
+    {{/each}}"
+    data-product-brand="{{brand.name}}"
+    data-variant=""
+>
+    <figure class="card-figure">
+        <a href="{{url}}"
+           class="card-figure__link"
+           aria-label="{{name}},{{> components/products/product-aria-label}}"
+           data-event-type="manual-click"
+        >
+            <div class="card-img-container">
+                {{> components/common/responsive-img
+                    image=image
+                    class="card-image"
+                    fallback_size=theme_settings.productgallery_size
+                    lazyload=theme_settings.lazyload_mode
+                    default_image=theme_settings.default_image_product
+                }}
+            </div>
+        </a>
+        <p class="new-flag">New</p>  
+    </figure>
+    <div class="card-body">
+        <div class="card-text">
+            <div class="card-text-container">
+                <h3 class="card-title">
+                    <a aria-label="{{name}},{{> components/products/product-aria-label}}"
+                    href="{{url}}" data-event-type="manual-click"
+                    >
+                        {{sku}}
+                    </a>
+                </h3>
+                
+                <p class="card-sub-title">{{first (split name '|^|')}}</p>
+                <p class="no-longer-manufactured">This Model Is No Longer Being Manufactured</p>
+                <ul class="card-highlights manual-highlights">
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="10.5" height="14" viewBox="0 0 10.5 14">
+                            <path id="file-download-solid" d="M6.125,3.719V0H.656A.655.655,0,0,0,0,.656V13.344A.655.655,0,0,0,.656,14H9.844a.655.655,0,0,0,.656-.656V4.375H6.781A.658.658,0,0,1,6.125,3.719ZM8.215,9.5,5.579,12.115a.466.466,0,0,1-.657,0L2.285,9.5a.437.437,0,0,1,.308-.748H4.375V6.563a.437.437,0,0,1,.438-.437h.875a.437.437,0,0,1,.438.438V8.75H7.907A.438.438,0,0,1,8.215,9.5Zm2.093-6.627L7.632.191A.656.656,0,0,0,7.167,0H7V3.5h3.5V3.333A.654.654,0,0,0,10.309,2.871Z" fill="#0a2c74"/>
+                        </svg>
+                        <a href="#">Energy Guide</a>
+                    </li>
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="10.5" height="14" viewBox="0 0 10.5 14">
+                            <path id="file-download-solid" d="M6.125,3.719V0H.656A.655.655,0,0,0,0,.656V13.344A.655.655,0,0,0,.656,14H9.844a.655.655,0,0,0,.656-.656V4.375H6.781A.658.658,0,0,1,6.125,3.719ZM8.215,9.5,5.579,12.115a.466.466,0,0,1-.657,0L2.285,9.5a.437.437,0,0,1,.308-.748H4.375V6.563a.437.437,0,0,1,.438-.437h.875a.437.437,0,0,1,.438.438V8.75H7.907A.438.438,0,0,1,8.215,9.5Zm2.093-6.627L7.632.191A.656.656,0,0,0,7.167,0H7V3.5h3.5V3.333A.654.654,0,0,0,10.309,2.871Z" fill="#0a2c74"/>
+                        </svg>
+                        <a href="#">User and Care Manual</a>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="card-text-container">
+                <div class="card-dimensions">
+                    <p>Dimensions:</p>
+                    <p>46 H x 27 W x 30 1/2 D</p>
+                </div>
+                <div class="card-energy-guide">
+                    <a href="#">
+                        <img src="{{cdn 'webdav:images/energy guide.jpg'}}" alt="Energy Guide">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</article>

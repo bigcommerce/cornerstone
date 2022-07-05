@@ -1,0 +1,20 @@
+// =============================================================================
+// NANOBAR - AJAX LOADING PROGRESS
+// =============================================================================
+
+.nanobar {
+    display: none;
+    height: remCalc(5px);
+    pointer-events: none;
+    top: 0;
+    user-select: none;
+    width: 100%;
+    z-index: 9999;
+
+    .bar {
+        background-color: stencilColor("pace-progress-backgroundColor");
+        height: 100%;
+        transition: height 0.1s;
+        width: 0;
+    }
+}

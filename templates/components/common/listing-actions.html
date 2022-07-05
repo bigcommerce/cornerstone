@@ -1,0 +1,35 @@
+<nav class="category-search-actions">
+    <a href="javaScript:void(0);" class="search-item button--filters">
+        <button type="button" class="button button--slab">Filters</button>
+    </a>
+    {{#or search manuals}}
+    <div class="flex-spacer"></div>
+    {{/or}}
+    <a href="javascript:void(0);" class="search-item select--sortBy">
+        <label class="form-label" for="sortBy">
+            <span class="sortby-label sortby-label--desktop">Sort by:</span>
+            <span class="sortby-label sortby-label--mobile">Sort: </span>
+        </label>
+        <select class="form-select form-select--small" id="sortBy" name="sortBy">
+            <option value="featured">Featured Items</option>
+            <option value="newest">Newest Items</option>
+            <option value="bestselling">Best Selling</option>
+            <option value="alphaasc">A to Z</option>
+            <option value="alphadesc">Z to A</option>
+            <option value="avgcustomerreview">By Review</option>
+            <option value="priceasc">Price: Ascending</option>
+            <option value="pricedesc">Price: Descending</option>
+            <option value="relevance">Relevance</option>
+        </select>
+    </a>
+    <a href="javascript:void(0);" id="product-listView" class="search-item button--listView">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18.286" height="16" viewBox="0 0 18.286 16">
+            <path id="regular_list-alt" data-name="regular list-alt" d="M16.571,32H1.714A1.714,1.714,0,0,0,0,33.714V46.286A1.714,1.714,0,0,0,1.714,48H16.571a1.714,1.714,0,0,0,1.714-1.714V33.714A1.714,1.714,0,0,0,16.571,32Zm-.214,14.286H1.929a.214.214,0,0,1-.214-.214V33.929a.214.214,0,0,1,.214-.214H16.357a.214.214,0,0,1,.214.214V46.071A.214.214,0,0,1,16.357,46.286ZM14.857,43v.857a.429.429,0,0,1-.429.429H7.286a.429.429,0,0,1-.429-.429V43a.429.429,0,0,1,.429-.429h7.143A.429.429,0,0,1,14.857,43Zm0-3.429v.857a.429.429,0,0,1-.429.429H7.286a.429.429,0,0,1-.429-.429v-.857a.429.429,0,0,1,.429-.429h7.143A.429.429,0,0,1,14.857,39.571Zm0-3.429V37a.429.429,0,0,1-.429.429H7.286A.429.429,0,0,1,6.857,37v-.857a.429.429,0,0,1,.429-.429h7.143A.429.429,0,0,1,14.857,36.143Zm-9,.429a1.286,1.286,0,1,1-1.286-1.286A1.286,1.286,0,0,1,5.857,36.571Zm0,3.429a1.286,1.286,0,1,1-1.286-1.286A1.286,1.286,0,0,1,5.857,40Zm0,3.429a1.286,1.286,0,1,1-1.286-1.286A1.286,1.286,0,0,1,5.857,43.429Z" transform="translate(0 -32)" />
+        </svg>
+    </a>
+    <a href="javascript:void(0);" id="product-gridView" class="search-item button--gridView active">
+        <svg id="solid_th-large" data-name="solid th-large" xmlns="http://www.w3.org/2000/svg" width="15.998" height="13.999" viewBox="0 0 15.998 13.999">
+            <path id="solid_th-large-2" data-name="solid th-large" d="M9.249,32h6a.75.75,0,0,1,.75.75v5a.75.75,0,0,1-.75.75h-6a.75.75,0,0,1-.75-.75v-5A.75.75,0,0,1,9.249,32Zm-2.5,0h-6a.75.75,0,0,0-.75.75v5a.75.75,0,0,0,.75.75h6a.75.75,0,0,0,.75-.75v-5A.75.75,0,0,0,6.749,32ZM0,40.249v5A.75.75,0,0,0,.75,46h6a.75.75,0,0,0,.75-.75v-5a.75.75,0,0,0-.75-.75h-6A.75.75,0,0,0,0,40.249ZM9.249,46h6a.75.75,0,0,0,.75-.75v-5a.75.75,0,0,0-.75-.75h-6a.75.75,0,0,0-.75.75v5A.75.75,0,0,0,9.249,46Z" transform="translate(0 -32)" />
+        </svg>
+    </a>
+</nav>

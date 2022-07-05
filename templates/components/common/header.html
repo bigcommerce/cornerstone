@@ -11,20 +11,43 @@
 </div>
 {{/if}}
 <header class="header" role="banner">
+    <div class="product-catalog-banner">
+        <a href="https://www.geappliancesairandwater.com/content/pdfs/2021_GE_Air_Water_Catalog_Digital_FINAL_04152021.pdf"
+            target="_blank">
+            Download our Air &amp; Water Product Catalog Here
+        </a>
+    </div>
     <a href="#" class="mobileMenu-toggle" data-mobile-menu-toggle="menu">
         <span class="mobileMenu-toggleIcon">Toggle menu</span>
     </a>
-    {{> components/common/navigation}}
 
-    {{#if page_type '===' 'default'}}
-        <h1 class="header-logo header-logo--{{theme_settings.logo-position}}">
-            {{> components/common/store-logo}}
-        </h1>
-    {{else}}
-        <div class="header-logo header-logo--{{theme_settings.logo-position}}">
-            {{> components/common/store-logo}}
+    <div class="container">
+        <div class="header-search-wrapper">
+            {{#if page_type '===' 'default'}}
+                <h1 class="header-logo header-logo--{{theme_settings.logo-position}}">
+                    {{> components/common/store-logo}}
+                </h1>
+            {{else}}
+                <div class="header-logo header-logo--{{theme_settings.logo-position}}">
+                    {{> components/common/store-logo}}
+                </div>
+            {{/if}}
+            <form class="header-search-form" action="/shop/" method="get" id="search-dropdown" data-dropdown-content>
+                <div class="form-field">
+                    <label class="is-srOnly" for="search_query">{{lang "search.quick_search.input_label"}}</label>
+                    <input class="form-input has-action" type="text" name="search_query" autocomplete="off"
+                        aria-label="{{lang 'search.quick_search.input_placeholder'}}" aria-required="true">
+                    <button class="button button--icon button--inputAction" type="submit"
+                        value="{{lang 'search.quick_search.input_label'}}">
+                        <span class="u-hiddenVisually">Search</span>
+                        <svg class="icon">
+                            <use xlink:href="#icon-search"></use>
+                        </svg>
+                    </button>
+                </div>
+            </form>
         </div>
-    {{/if}}
+    </div>
     <div class="navPages-container" id="menu" data-menu>
         {{> components/common/navigation-menu}}
     </div>

@@ -1,0 +1,16 @@
+{{#or product.price.non_sale_price_with_tax product.price.non_sale_price_without_tax}}
+	{{#if theme_settings.product_sale_badges '===' 'sash'}}
+		<div class="sale-flag-sash">
+			<span class="sale-text">{{lang 'products.sale_badge'}}</span>
+		</div>
+	{{else if theme_settings.product_sale_badges '===' 'topleft'}}
+		<div class="sale-flag-side">
+			<span class="sale-text">{{lang 'products.sale_badge'}}</span>
+		</div>
+	{{else if theme_settings.product_sale_badges '===' 'burst'}}
+		<div class="starwrap">
+			<div class="sale-text-burst">{{lang 'products.sale_badge'}}</div>
+			<div class="sale-flag-star"></div>
+		</div>
+	{{/if}}
+{{/or}}

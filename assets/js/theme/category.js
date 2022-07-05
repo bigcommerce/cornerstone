@@ -2,59 +2,63 @@ import { hooks } from '@bigcommerce/stencil-utils';
 import CatalogPage from './catalog';
 import compareProducts from './global/compare-products';
 import FacetedSearch from './common/faceted-search';
+import collapsibleFactory from './common/collapsible';
 import { createTranslationDictionary } from '../theme/common/utils/translations-utils';
-
 export default class Category extends CatalogPage {
     constructor(context) {
         super(context);
         this.validationDictionary = createTranslationDictionary(context);
+        collapsibleFactory();
     }
-
     setLiveRegionAttributes($element, roleType, ariaLiveStatus) {
         $element.attr({
             role: roleType,
             'aria-live': ariaLiveStatus,
         });
     }
-
     makeShopByPriceFilterAccessible() {
         if (!$('[data-shop-by-price]').length) return;
-
         if ($('.navList-action').hasClass('is-active')) {
             $('a.navList-action.is-active').focus();
         }
-
         $('a.navList-action').on('click', () => this.setLiveRegionAttributes($('span.price-filter-message'), 'status', 'assertive'));
     }
-
     onReady() {
         this.arrangeFocusOnSortBy();
-
         $('[data-button-type="add-cart"]').on('click', (e) => this.setLiveRegionAttributes($(e.currentTarget).next(), 'status', 'polite'));
-
         this.makeShopByPriceFilterAccessible();
-
         compareProducts(this.context);
-
         if ($('#facetedSearch').length > 0) {
             this.initFacetedSearch();
         } else {
             this.onSortBySubmit = this.onSortBySubmit.bind(this);
             hooks.on('sortBy-submitted', this.onSortBySubmit);
+            this.onSidebarToggle = this.onSidebarToggle.bind(this);
         }
-
         $('a.reset-btn').on('click', () => this.setLiveRegionsAttributes($('span.reset-message'), 'status', 'polite'));
+        $('a.button--filters').on('click', () => {
+            $( "body" ).addClass( "product-filter--mobile-active" );
+        });
+        $(window).on('resize', function () {
+            if ($(window).width() >= 801) {
+                $("body").removeClass("product-filter--mobile-active");
+            }
+        });
 
+        $('.product-filter--mobile-bg-overlay, .product-filter-close').on('click', ()=> {
+            $("body").removeClass("product-filter--mobile-active");
+        });
+
+        $('#faceted-search-container .sidebarBlock-heading .toggleLink').on('click', this.onSidebarToggle);
+        
         this.ariaNotifyNoProducts();
     }
-
     ariaNotifyNoProducts() {
         const $noProductsMessage = $('[data-no-products-notification]');
         if ($noProductsMessage.length) {
             $noProductsMessage.focus();
         }
     }
-
     initFacetedSearch() {
         const {
             price_min_evaluation: onMinPriceError,
@@ -81,13 +85,10 @@ export default class Category extends CatalogPage {
             },
             showMore: 'category/show-more',
         };
-
         this.facetedSearch = new FacetedSearch(requestOptions, (content) => {
             $productListingContainer.html(content.productListing);
             $facetedSearchContainer.html(content.sidebar);
-
             $('body').triggerHandler('compareReset');
-
             $('html, body').animate({
                 scrollTop: 0,
             }, 100);

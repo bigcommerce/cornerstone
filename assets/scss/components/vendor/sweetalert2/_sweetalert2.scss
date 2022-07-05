@@ -1,0 +1,108 @@
+// SWEETALERT2
+// -----------------------------------------------------------------------------
+//
+// Purpose: Styles for the vendor popup box replacement, SweetAlert2
+//
+// -----------------------------------------------------------------------------
+//
+// Purpose: Override the plugin to give some Stencil styling
+//
+// -----------------------------------------------------------------------------
+
+.swal2-modal {
+    background-color: $alert-modal-bgColor;
+    border-radius: $alert-modal-borderRadius;
+    font-family: $alert-font-body;
+
+    .swal2-title {
+        color: $alert-font-headingsColor;
+        font-size: $alert-font-headingsSize;
+    }
+
+    .swal2-content {
+        color: $alert-font-bodyColor;
+        font-size: $alert-font-bodySize;
+    }
+
+    .swal2-file,
+    .swal2-input,
+    .swal2-textarea {
+        border: 1px solid $alert-input-borderColor;
+        color: $alert-input-color;
+    }
+
+    .swal2-checkbox,
+    .swal2-select {
+        color: $alert-input-color;
+    }
+
+    .swal2-buttonswrapper {
+        margin: $alert-button-wrapperMargin;
+    }
+
+    .swal2-styled {
+        @include button-base;
+        @include buttonVariant("default");
+        @include buttonSize("default");
+        border-radius: $button-radius;
+        line-height: 1rem;
+        outline: none;
+        transition: all 0.15s ease;
+        vertical-align: $button-vAlign;
+    }
+
+    .swal2-styled:focus {
+        box-shadow: $button-focus-boxShadow;
+        outline: none;
+    }
+
+    .swal2-confirm {
+        background-color: $alert-button-bgColor;
+        border-color: $alert-button-borderColor;
+        color: $alert-button-color;
+    }
+
+    .swal2-confirm:focus,
+    .swal2-confirm:hover {
+        background-color: $alert-button-bgColorHover;
+        border-color: $alert-button-borderColorHover;
+        color: $alert-button-colorHover;
+    }
+
+    .swal2-confirm:active {
+        background-color: $alert-button-bgColorActive;
+        border-color: $alert-button-borderColorActive;
+        color: $alert-button-colorActive;
+    }
+
+    .swal2-cancel {
+        background-color: $alert-button-cancel-bgColor;
+        border-color: $alert-button-cancel-borderColor;
+        color: $alert-button-cancel-color;
+    }
+
+    .swal2-cancel:focus,
+    .swal2-cancel:hover {
+        background-color: $alert-button-cancel-bgColorHover;
+        border-color: $alert-button-cancel-borderColorHover;
+        color: $alert-button-cancel-colorHover;
+    }
+
+    .swal2-cancel:active {
+        background-color: $alert-button-cancel-bgColorActive;
+        border-color: $alert-button-cancel-borderColorActive;
+        color: $alert-button-cancel-colorActive;
+    }
+
+    .button + .button {
+        margin-left: $button-adjacentButton-marginLeft;
+    }
+}
+
+.swal2-icon {
+    display: flex;
+}
+
+.swal2-container {
+    z-index: 1000; // should be less then foundation modal
+}

@@ -1,21 +1,20 @@
 {{#if settings.data_tag_enabled}}
-    <article class="listItem" data-event-type="{{event}}" data-entity-id="{{id}}" data-position="{{position}}" data-name="{{name}}" data-product-category="{{#each category}}{{#if @last}}{{this}}{{else}}{{this}}, {{/if}}{{/each}}" data-product-brand="{{brand.name}}" data-product-price="
-    {{#or customer (unless theme_settings.restrict_to_login)}}
-        {{#if price.with_tax}}
-            {{price.with_tax.value}}
-        {{else}}
-            {{price.without_tax.value}}
-        {{/if}}
-    {{else}}
-        {{lang 'common.login_for_pricing'}}
-    {{/or}}">
+    <article class="listItem"
+             data-event-type="{{event}}"
+             data-entity-id="{{id}}"
+             data-position="{{position}}"
+             data-name="{{name}}"
+             data-product-category="{{#each category}}{{#if @last}}{{this}}{{else}}{{this}}, {{/if}}{{/each}}"
+             data-product-brand="{{brand.name}}"
+             data-product-price="{{#if price.with_tax}}{{price.with_tax.value}}{{else}}{{price.without_tax.value}}{{/if}}"
+    >
 {{else}}
     <article class="listItem">
 {{/if}}
     <figure class="listItem-figure">
         <a href="{{url}}"
            class="listItem-figure__link"
-           aria-label="{{> components/products/product-info}}"
+           aria-label="{{name}},{{> components/products/product-aria-label}}"
            {{#if settings.data_tag_enabled}}
            data-event-type="product-click"
            {{/if}}
@@ -78,10 +77,8 @@
                 {{/if}}
                 <h4 class="listItem-title">
                     <a href="{{url}}"
-                    aria-label="{{> components/products/product-info}}"
-                    {{#if settings.data_tag_enabled}}
-                    data-event-type="product-click"
-                    {{/if}}
+                        aria-label="{{name}},{{> components/products/product-aria-label}}"
+                        {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}}
                     >
                         {{name}}
                     </a>

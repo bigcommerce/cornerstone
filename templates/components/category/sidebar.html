@@ -1,20 +1,261 @@
 <nav>
-    {{#if category.subcategories}}
-        <div class="sidebarBlock">
-            <h2 class="sidebarBlock-heading">{{category.name}}</h2>
-            <ul class="navList">
-                {{#each category.subcategories}}
-                <li class="navList-item">
-                    <a class="navList-action" href="{{url}}" title="{{name}}">{{name}}</a>
-                </li>
-                {{/each}}
-            </ul>
-        </div>
-    {{/if}}
 
-    {{#if category.faceted_search_enabled}}
-        {{> components/faceted-search/index category}}
-    {{else}}
-        {{> components/category/shop-by-price shop_by_price=category.shop_by_price category_url=category.url}}
-    {{/if}}
+    <div class="sidebarBlock">
+        <h5 class="sidebarBlock-heading filter-title">REFINE YOUR RESULTS</h5>
+    </div>
+
+    <div class="sidebarBlock">
+        <div class="sidebarBlock-head">
+            <h5 class="sidebarBlock-heading">            
+                <a class="toggleLink is-open" data-collapsible="type">
+                    Type
+                    <span class="toggleLink-text toggleLink-text--on u-floatRight"><span class="icon" aria-hidden="true"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-chevron-up"></use></svg></span></span>
+                    <span class="toggleLink-text toggleLink-text--off u-floatRight"><span class="icon" aria-hidden="true"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-chevron-down"></use></svg></span></span>
+                </a>
+            </h5>
+        </div>
+        <div class="toggle-content is-open" id="type">
+            <div class="form-field" data-product-attribute="input-checkbox">
+                <div class="form-option-wrapper">
+                    <input class="form-checkbox" type="checkbox" name="attribute[test2]" id="attribute-check-test2" value="" required="">
+                    <label class="form-label " for="attribute-check-test2">
+                        <span>Portable</span>
+                        <span class="form-label-count">(10)</span>
+                    </label>
+                </div>
+            </div>
+            <div class="form-field" data-product-attribute="input-checkbox">
+                <div class="form-option-wrapper">
+                    <input class="form-checkbox" type="checkbox" name="attribute[test]" id="attribute-check-test" value="" required="">
+                    <label class="form-label " for="attribute-check-test2">
+                        <span>Window</span>
+                        <span class="form-label-count">(15)</span>
+                    </label>
+                </div>
+            </div>
+            <div class="form-field" data-product-attribute="input-checkbox">
+                <div class="form-option-wrapper">
+                    <input class="form-checkbox" type="checkbox" name="attribute[test3]" id="attribute-check-test3" value="" required="">
+                    <label class="form-label " for="attribute-check-test3">
+                        <span>Wall</span>
+                        <span class="form-label-count">(12)</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="sidebarBlock">
+        <div class="sidebarBlock-head">
+            <h5 class="sidebarBlock-heading">            
+                <a class="toggleLink is-open" data-collapsible="color">
+                    Color
+                    <span class="toggleLink-text toggleLink-text--on u-floatRight"><span class="icon" aria-hidden="true"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-chevron-up"></use></svg></span></span>
+                    <span class="toggleLink-text toggleLink-text--off u-floatRight"><span class="icon" aria-hidden="true"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-chevron-down"></use></svg></span></span>
+                </a>
+            </h5>
+        </div>
+        <div class="toggle-content is-open" id="color">
+            <div class="form-field" data-product-attribute="input-checkbox">
+                <div class="form-option-wrapper">
+                    <input class="form-checkbox" type="checkbox" name="attribute[test4]" id="attribute-check-test4" value="" required="">
+                    <label class="form-label " for="attribute-check-test4">
+                        <span>Gray</span>
+                        <span class="form-label-count">(10)</span>
+                    </label>
+                </div>
+            </div>
+            <div class="form-field" data-product-attribute="input-checkbox">
+                <div class="form-option-wrapper">
+                    <input class="form-checkbox" type="checkbox" name="attribute[test5]" id="attribute-check-test5" value="" required="">
+                    <label class="form-label " for="attribute-check-test5">
+                        <span>White</span>
+                        <span class="form-label-count">(15)</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="sidebarBlock">
+        <div class="sidebarBlock-head">
+            <h5 class="sidebarBlock-heading">            
+                <a class="toggleLink is-open" data-collapsible="features">
+                    Features
+                    <span class="toggleLink-text toggleLink-text--on u-floatRight"><span class="icon" aria-hidden="true"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-chevron-up"></use></svg></span></span>
+                    <span class="toggleLink-text toggleLink-text--off u-floatRight"><span class="icon" aria-hidden="true"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-chevron-down"></use></svg></span></span>
+                </a>
+            </h5>
+        </div>
+        <div class="toggle-content is-open" id="features">
+            <div class="form-field" data-product-attribute="input-checkbox">
+                <div class="form-option-wrapper">
+                    <input class="form-checkbox" type="checkbox" name="attribute[test6]" id="attribute-check-test6" value="" required="">
+                    <label class="form-label " for="attribute-check-test6">
+                        <span>ADA Compliant</span>
+                        <span class="form-label-count">(24)</span>
+                    </label>
+                </div>
+            </div>
+            <div class="form-field" data-product-attribute="input-checkbox">
+                <div class="form-option-wrapper">
+                    <input class="form-checkbox" type="checkbox" name="attribute[test7]" id="attribute-check-test7" value="" required="">
+                    <label class="form-label " for="attribute-check-test7">
+                        <span>Energy Efficient</span>
+                        <span class="form-label-count">(30)</span>
+                    </label>
+                </div>
+            </div>
+            <div class="form-field" data-product-attribute="input-checkbox">
+                <div class="form-option-wrapper">
+                    <input class="form-checkbox" type="checkbox" name="attribute[test8]" id="attribute-check-test8" value="" required="">
+                    <label class="form-label " for="attribute-check-test8">
+                        <span>Remote Control</span>
+                        <span class="form-label-count">(47)</span>
+                    </label>
+                </div>
+            </div>
+            <div class="form-field" data-product-attribute="input-checkbox">
+                <div class="form-option-wrapper">
+                    <input class="form-checkbox" type="checkbox" name="attribute[test9]" id="attribute-check-test9" value="" required="">
+                    <label class="form-label " for="attribute-check-test9">
+                        <span>WiFi Built-in</span>
+                        <span class="form-label-count">(34)</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="sidebarBlock">
+        <div class="sidebarBlock-head">
+            <h5 class="sidebarBlock-heading">            
+                <a class="toggleLink is-open" data-collapsible="brand">
+                    Brand
+                    <span class="toggleLink-text toggleLink-text--on u-floatRight"><span class="icon" aria-hidden="true"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-chevron-up"></use></svg></span></span>
+                    <span class="toggleLink-text toggleLink-text--off u-floatRight"><span class="icon" aria-hidden="true"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-chevron-down"></use></svg></span></span>
+                </a>
+            </h5>
+        </div>
+        <div class="toggle-content is-open" id="brand">
+            <div class="form-field" data-product-attribute="input-checkbox">
+                <div class="form-option-wrapper">
+                    <input class="form-checkbox" type="checkbox" name="attribute[test2]" id="attribute-check-test2" value="" required="">
+                    <label class="form-label " for="attribute-check-test2">
+                        <span>GE</span>
+                        <span class="form-label-count">(12)</span>
+                    </label>
+                </div>
+            </div>
+            <div class="form-field" data-product-attribute="input-checkbox">
+                <div class="form-option-wrapper">
+                    <input class="form-checkbox" type="checkbox" name="attribute[test]" id="attribute-check-test" value="" required="">
+                    <label class="form-label " for="attribute-check-test2">
+                        <span>Haier</span>
+                        <span class="form-label-count">(15)</span>
+                    </label>
+                </div>
+            </div>
+            <div class="form-field" data-product-attribute="input-checkbox">
+                <div class="form-option-wrapper">
+                    <input class="form-checkbox" type="checkbox" name="attribute[test3]" id="attribute-check-test3" value="" required="">
+                    <label class="form-label " for="attribute-check-test3">
+                        <span>Hotpoint</span>
+                        <span class="form-label-count">(12)</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="sidebarBlock">
+        <div class="sidebarBlock-head">
+            <h5 class="sidebarBlock-heading">            
+                <a class="toggleLink is-open" data-collapsible="installation">
+                    Installation
+                    <span class="toggleLink-text toggleLink-text--on u-floatRight"><span class="icon" aria-hidden="true"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-chevron-up"></use></svg></span></span>
+                    <span class="toggleLink-text toggleLink-text--off u-floatRight"><span class="icon" aria-hidden="true"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-chevron-down"></use></svg></span></span>
+                </a>
+            </h5>
+        </div>
+        <div class="toggle-content is-open" id="installation">
+            <div class="form-field" data-product-attribute="input-checkbox">
+                <div class="form-option-wrapper">
+                    <input class="form-checkbox" type="checkbox" name="attribute[test2]" id="attribute-check-test2" value="" required="">
+                    <label class="form-label " for="attribute-check-test2">
+                        <span>EZ Mount</span>
+                        <span class="form-label-count">(8)</span>
+                    </label>
+                </div>
+            </div>
+            <div class="form-field" data-product-attribute="input-checkbox">
+                <div class="form-option-wrapper">
+                    <input class="form-checkbox" type="checkbox" name="attribute[test]" id="attribute-check-test" value="" required="">
+                    <label class="form-label " for="attribute-check-test2">
+                        <span>Wall Mount</span>
+                        <span class="form-label-count">(36)</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="sidebarBlock">
+        <div class="sidebarBlock-head">
+            <h5 class="sidebarBlock-heading">            
+                <a class="toggleLink is-open" data-collapsible="cooling">
+                    Cooling (BTUH)
+                    <span class="toggleLink-text toggleLink-text--on u-floatRight"><span class="icon" aria-hidden="true"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-chevron-up"></use></svg></span></span>
+                    <span class="toggleLink-text toggleLink-text--off u-floatRight"><span class="icon" aria-hidden="true"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-chevron-down"></use></svg></span></span>
+                </a>
+            </h5>
+        </div>
+        <div class="toggle-content is-open" id="type">
+            <div class="form-field" data-product-attribute="input-checkbox">
+                <div class="form-option-wrapper">
+                    <input class="form-checkbox" type="checkbox" name="attribute[test2]" id="attribute-check-test2" value="" required="">
+                    <label class="form-label " for="attribute-check-test2">
+                        <span>11000 - 12999</span>
+                        <span class="form-label-count">(16)</span>
+                    </label>
+                </div>
+            </div>
+            <div class="form-field" data-product-attribute="input-checkbox">
+                <div class="form-option-wrapper">
+                    <input class="form-checkbox" type="checkbox" name="attribute[test]" id="attribute-check-test" value="" required="">
+                    <label class="form-label " for="attribute-check-test2">
+                        <span>13000 - 17999</span>
+                        <span class="form-label-count">(15)</span>
+                    </label>
+                </div>
+            </div>
+            <div class="form-field" data-product-attribute="input-checkbox">
+                <div class="form-option-wrapper">
+                    <input class="form-checkbox" type="checkbox" name="attribute[test3]" id="attribute-check-test3" value="" required="">
+                    <label class="form-label " for="attribute-check-test3">
+                        <span>5000 - 6999</span>
+                        <span class="form-label-count">(12)</span>
+                    </label>
+                </div>
+            </div>
+            <div class="form-field" data-product-attribute="input-checkbox">
+                <div class="form-option-wrapper">
+                    <input class="form-checkbox" type="checkbox" name="attribute[test3]" id="attribute-check-test3" value="" required="">
+                    <label class="form-label " for="attribute-check-test3">
+                        <span>7000 - 8999</span>
+                        <span class="form-label-count">(12)</span>
+                    </label>
+                </div>
+            </div>
+            <div class="form-field" data-product-attribute="input-checkbox">
+                <div class="form-option-wrapper">
+                    <input class="form-checkbox" type="checkbox" name="attribute[test3]" id="attribute-check-test3" value="" required="">
+                    <label class="form-label " for="attribute-check-test3">
+                        <span>9000 - 10999</span>
+                        <span class="form-label-count">(12)</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
 </nav>

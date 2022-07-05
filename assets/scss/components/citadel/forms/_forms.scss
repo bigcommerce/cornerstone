@@ -1,7 +1,13 @@
 // =============================================================================
 // FORMS (CSS)
 // =============================================================================
-
+.form-field {
+    margin-bottom: spacing("single");
+    
+    &.form-field--mobileTabs {
+        margin: spacing("single") 0 0;
+    }
+}
 
 // Form variants
 // -----------------------------------------------------------------------------
@@ -145,6 +151,10 @@
     &:-ms-input-placeholder {@content; }
 }
 
+.sidebarBlock .form-label--alternate {
+    display: none;
+}
+
 .form-label--alternate {
     font-family: fontFamily("headingSans");
     font-size: fontSize("smallest");
@@ -222,9 +232,7 @@
     }
 
     .button {
-        @include breakpoint("large") {
-            width: auto;
-        }
+        width: auto;
     }
 
     .form-inlineMessage {
@@ -234,24 +242,6 @@
             margin-bottom: 0;
         }
     }
-}
-
-.form-prefixPostfix--centeredColumn {
-    &.wrap {
-        flex-direction: column;
-    }
-
-    .g-recaptcha {
-        margin: 2em auto 0;
-    }
-
-    .form-prefixPostfix-button--postfix {
-    
-        @include breakpoint("large") {
-            margin: 1em 0 spacing("half");
-        }
-    }
-
 }
 
 .form-prefixPostfix-button--postfix {

@@ -1,7 +1,23 @@
 <ul class="productGrid">
     {{#each products}}
     <li class="product">
-            {{>components/products/card settings=../settings show_compare=../show_compare show_rating=../settings.show_product_rating theme_settings=../theme_settings customer=../customer event=../event position=(add @index 1)}}
+        {{#unless ../manuals}}
+            {{>components/products/card 
+                settings=../settings 
+                alternate=true
+                show_compare=../show_compare 
+                show_rating=../settings.show_product_rating 
+                theme_settings=../theme_settings 
+                customer=../customer event=../event position=(add @index 1)}}
+        {{else}}
+            {{>components/products/manuals-card 
+                settings=../settings 
+                alternate=true
+                show_compare=../show_compare 
+                show_rating=../settings.show_product_rating 
+                theme_settings=../theme_settings 
+                customer=../customer event=../event position=(add @index 1)}}
+        {{/unless}}
     </li>
     {{/each}}
 </ul>

@@ -36,7 +36,7 @@
             {{price.non_sale_price_with_tax.formatted}}
         </span>
     </div>
-    <div class="price-section price-section--withTax">
+    <div class="price-section price-section--withTax" {{#if schema_org}}itemprop="offers" itemscope itemtype="https://schema.org/Offer"{{/if}}>
         <span class="price-label">{{theme_settings.pdp-price-label}}</span>
         <span class="price-now-label" style="display: none;">
             {{> components/products/price-label
@@ -48,6 +48,20 @@
         {{#and price.price_range.min.without_tax price.price_range.max.without_tax}}
             <abbr title="{{lang 'products.including_tax'}}">{{lang 'products.price_with_tax' tax_label=price.price_range.min.tax_label}}</abbr>
         {{/and}}
+        {{#if schema_org}}
+            <meta itemprop="availability" itemtype="https://schema.org/ItemAvailability"
+                    content="https://schema.org/{{#if product.pre_order}}PreOrder{{else if product.out_of_stock}}OutOfStock{{else if product.can_purchase '===' false}}OutOfStock{{else}}InStock{{/if}}">
+            <meta itemprop="itemCondition" itemtype="https://schema.org/OfferItemCondition" content="https://schema.org/{{product.condition}}Condition">
+            <meta itemprop="priceCurrency" content="{{currency_selector.active_currency_code}}">
+            <meta itemprop="url" content="{{product.url}}">
+            <div itemprop="priceSpecification" itemscope itemtype="https://schema.org/PriceSpecification">
+                <meta itemprop="minPrice" content="{{price_range.min.with_tax.value}}"  />
+                <meta itemprop="price" content="{{price_range.min.with_tax.value}}">
+                <meta itemprop="maxPrice" content="{{price_range.max.with_tax.value}}"  />
+                <meta itemprop="priceCurrency" content="{{currency_selector.active_currency_code}}">
+                <meta itemprop="valueAddedTaxIncluded" content="true">
+            </div>
+        {{/if}}
     </div>
 {{/and}}
 {{#and price.retail_price_range.min.without_tax price.retail_price_range.max.without_tax}}
@@ -88,7 +102,7 @@
             {{price.non_sale_price_without_tax.formatted}}
         </span>
     </div>
-    <div class="price-section price-section--withoutTax{{#and price_range.min.with_tax price_range.max.with_tax}} price-section--minor{{/and}}">
+    <div class="price-section price-section--withoutTax{{#and price_range.min.with_tax price_range.max.with_tax}} price-section--minor{{/and}}" {{#if schema_org}}itemprop="offers" itemscope itemtype="https://schema.org/Offer"{{/if}}>
         <span class="price-label">{{theme_settings.pdp-price-label}}</span>
         <span class="price-now-label" style="display: none;">
             {{> components/products/price-label
@@ -100,6 +114,20 @@
         {{#and price.price_range.min.with_tax price.price_range.max.with_tax}}
             <abbr title="{{lang 'products.excluding_tax'}}">{{lang 'products.price_without_tax' tax_label=price.price_range.min.tax_label}}</abbr>
         {{/and}}
+        {{#if schema_org}}
+            <meta itemprop="availability" itemtype="https://schema.org/ItemAvailability"
+                    content="https://schema.org/{{#if product.pre_order}}PreOrder{{else if product.out_of_stock}}OutOfStock{{else if product.can_purchase '===' false}}OutOfStock{{else}}InStock{{/if}}">
+            <meta itemprop="itemCondition" itemtype="https://schema.org/OfferItemCondition" content="https://schema.org/{{product.condition}}Condition">
+            <meta itemprop="priceCurrency" content="{{currency_selector.active_currency_code}}">
+            <meta itemprop="url" content="{{product.url}}">
+            <div itemprop="priceSpecification" itemscope itemtype="https://schema.org/PriceSpecification">
+                <meta itemprop="minPrice" content="{{price.price_range.min.without_tax.value}}"  />
+                <meta itemprop="price" content="{{price.price_range.min.without_tax.value}}">
+                <meta itemprop="maxPrice" content="{{price.price_range.max.without_tax.value}}"  />
+                <meta itemprop="priceCurrency" content="{{currency_selector.active_currency_code}}">
+                <meta itemprop="valueAddedTaxIncluded" content="false">
+            </div>
+        {{/if}}
     </div>
 {{/and}}
 

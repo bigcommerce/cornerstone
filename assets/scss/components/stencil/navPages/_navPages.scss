@@ -41,11 +41,11 @@
     height: 100%;
     left: 0;
     -webkit-overflow-scrolling: touch;
-    position: absolute;
+    position: relative;
     right: 0;
     z-index: zIndex("lower");
 
-    @include breakpoint("medium") {
+    @include breakpoint("large") {
         background: transparent;
         display: block;
         height: auto;
@@ -55,8 +55,21 @@
 
     &.is-open {
         display: block;
-        padding-top: $header-height;
         z-index: 0;
+        
+        .navPages-action {
+            &:hover {
+                svg {
+                    fill: #41a6df;
+                    stroke: #41a6df;
+                }
+            }
+            
+            svg {
+                fill: stencilColor('color-white');
+                stroke: stencilColor('color-white');
+            }
+        }
     }
 }
 
@@ -70,13 +83,13 @@
     overflow-y: auto;
     padding: spacing("single");
 
-    @include breakpoint("medium") {
+    @include breakpoint("large") {
         @include grid-row(); // 1
         @include nav($style: "navBar", $wrapper: "nav");
         background: none;
         font-size: 0; // 1
         overflow-y: visible;
-        padding: 0;
+        padding: 0 ($container-padding * 2);
         text-align: center;
     }
 
@@ -92,7 +105,7 @@
         margin-left: 0;
         padding-left: 0;
 
-        @include breakpoint("medium") {
+        @include breakpoint("large") {
             @include grid-row();
             border-left: 0;
             margin: auto;
@@ -104,9 +117,10 @@
 .navPages-list {
     margin: 0;
 
-    @include breakpoint("medium") {
+    @include breakpoint("large") {
         display: inline-block;
         float: none;
+        position: relative;
     }
 
     + .navPages-list {
@@ -120,7 +134,7 @@
     .is-hidden {
         display: none;
 
-        @include breakpoint("medium") {
+        @include breakpoint("large") {
             display: inline-block;
         }
     }
@@ -128,7 +142,7 @@
     .navPages-item-page {
         display: none;
 
-        @include breakpoint("medium") {
+        @include breakpoint("large") {
             display: inline-block;
         }
     }
@@ -136,7 +150,7 @@
 
 .navPages-action-depth-max.has-subMenu.is-root.is-open {
     .navPages-action-moreIcon {
-        @include breakpoint("medium") {
+        @include breakpoint("large") {
             transform: rotate(0);
         }
     }
@@ -146,7 +160,7 @@
     border-bottom: 1px solid $navPages-list--user-borderColor;
     text-align: center;
 
-    @include breakpoint("medium") {
+    @include breakpoint("large") {
         border-bottom: 0;
         text-align: left;
     }
@@ -161,7 +175,7 @@
         transform: rotate(90deg);
         width: 35px;
 
-        @include breakpoint("medium") {
+        @include breakpoint("large") {
             @include square(8px);
             border: 0;
             border-radius: 0;
@@ -176,7 +190,7 @@
         height: 9.6px;
         width: 9.6px;
 
-        @include breakpoint("medium") {
+        @include breakpoint("large") {
             height: 100%;
             width: 100%;
         }
@@ -184,20 +198,22 @@
 }
 
 .navPages-action {
-    color: stencilColor("navPages-color");
+    color: stencilColor("navPages-open-color");
     display: block;
-    font-size: fontSize("smaller");
+    font-size: fontSize("smallest");
     font-weight: fontWeight("bold");
     padding: spacing("half") 0;
     text-decoration: none;
     text-transform: uppercase;
 
-    @include breakpoint("medium") {
+    @include breakpoint("large") {
+        color: stencilColor("navPages-color");
         display: inline-block;
         padding: spacing("half") (spacing("half") + spacing("quarter")) (spacing("half") + spacing("quarter"));
 
         &.is-open {
             background-color: $navPage-subMenu-item--is-highlighted-background;
+            color: stencilColor("navPages-color");
         }
     }
 
@@ -211,14 +227,15 @@
 
     &.is-open,
     .collapsible-icon-wrapper.is-open {
+        color: stencilColor("navPages-open-color");
         svg {
-            fill: $navPage-subMenu-item--is-highlighted-color;
-            stroke: $navPage-subMenu-item--is-highlighted-color;
+            fill: stencilColor("navPages-open-color");
+            stroke: stencilColor("navPages-open-color");
         }
     }
 
-    &:hover,
-    &.activePage {
+    &:hover {
+    // &.activePage {
         color: $navPage-subMenu-item--is-highlighted-color;
 
         svg {
@@ -251,7 +268,7 @@
     margin-left: spacing("half");
     transform: rotate(-90deg);
 
-    @include breakpoint("medium") {
+    @include breakpoint("large") {
         transform: none;
     }
 
@@ -264,7 +281,7 @@
         @include square(11px);
         margin: 0 spacing("single");
 
-        @include breakpoint("medium") {
+        @include breakpoint("large") {
             @include square(8px);
             margin: 0 0 0 spacing("half");
         }
@@ -279,7 +296,7 @@
     @extend %navPage-childList;
     display: none;
 
-    @include breakpoint("medium") {
+    @include breakpoint("large") {
         border: 0;
         display: block;
     }
@@ -291,7 +308,7 @@
     .navPage-subMenu-action:not(.navPages-action-depth-max) + & {
         margin-left: spacing("double"); //
 
-        @include breakpoint("medium") {
+        @include breakpoint("large") {
             margin-left: 0;
         }
     }
@@ -309,7 +326,15 @@
     display: none;
     outline: 0;
 
-    @include breakpoint("medium") {
+    .navPages-action {
+        color: stencilColor("navPages-subMenu-color");
+        
+        &:hover {
+            color: $navPage-subMenu-item--is-highlighted-color;
+        }
+    }
+
+    @include breakpoint("large") {
         background-color: stencilColor("navPages-subMenu-backgroundColor");
         padding: spacing("single") spacing("single") (spacing("single") + spacing("half")) !important;
         position: absolute;
@@ -318,7 +343,26 @@
         &.is-open {
             display: block;
             left: 0;
-            width: 100%;
+            width: calc(100% + 12rem);
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+            
+            &::before, &::after {
+                content: "";
+                position: absolute;
+                top: 0;
+                background-color: stencilColor("navPages-subMenu-backgroundColor");
+                height: 100%;
+                width: 100%;
+            }
+            
+            &::before {
+                left: -100%;
+            }
+            
+            &::after {
+                right: -100%;
+            }
         }
 
         .navPages-action-moreIcon {
@@ -328,13 +372,14 @@
 
     &.is-open {
         display: block;
+        color: stencilColor("navPages-open-color");
     }
 
     .navPages-list:not(.navPages-list-depth-max) .navPages-action.has-subMenu + & {
         .navPage-subMenu-list {
             margin-right: 0;
 
-            @include breakpoint("medium") {
+            @include breakpoint("large") {
                 margin-right: auto;
             }
         }
@@ -342,7 +387,7 @@
 }
 
 .has-subMenu.is-root + .navPage-subMenu-horizontal {
-    @include breakpoint("medium") {
+    @include breakpoint("large") {
         border-left: 0;
         height: $navPage-subMenu-horizontal-height;
         left: inherit;
@@ -354,7 +399,7 @@
 
 .navPage-subMenu-horizontal {
     &.is-open {
-        @include breakpoint("medium") {
+        @include breakpoint("large") {
             border-left: 1px solid stencilColor("navPages-subMenu-separatorColor");
             display: inherit;
             height: $navPage-subMenu-horizontal-height;
@@ -366,7 +411,7 @@
     }
 
     .navPages-action-moreIcon {
-        @include breakpoint("medium") {
+        @include breakpoint("large") {
             display: inline-block;
             transform: rotate(-90deg);
         }
@@ -376,9 +421,13 @@
 .navPage-subMenu-item {
     padding: spacing("half") 0;
 
-    @include breakpoint("medium") {
+    @include breakpoint("large") {
         @include grid-column(3);
-        padding: 0 0.75rem !important; // 1
+        padding: 0 0.75rem 0 1.15rem !important; // 1
+        
+        &:nth-child(4n + 1) {
+            clear: left;
+        }
 
         .navPages-action {
             text-transform: none;
@@ -386,8 +435,7 @@
         }
 
         > .navPage-subMenu-action {
-            border-bottom: 1px solid stencilColor("navPages-subMenu-separatorColor");
-            margin-bottom: spacing("half") + spacing("quarter");
+            text-transform: uppercase;
         }
     }
 }
@@ -396,7 +444,7 @@
 .navPage-subMenu-item-parent {
     width: 100%;
 
-    @include breakpoint("medium") {
+    @include breakpoint("large") {
         .navPage-subMenu-action {
             padding-left: spacing("single");
             padding-right: spacing("single");
@@ -408,14 +456,14 @@
 .navPage-subMenu-action {
     padding: spacing("half") 0;
 
-    @include breakpoint("medium") {
+    @include breakpoint("large") {
         padding: spacing("half") 0 (spacing("half") + spacing("quarter"));
     }
 
     .navPages-list:not(.navPages-list-depth-max) & {
         padding: 0 0 0 spacing("single");
 
-        @include breakpoint("medium") {
+        @include breakpoint("large") {
             padding: spacing("half") 0 (spacing("half") + spacing("quarter"));
         }
     }
@@ -427,7 +475,7 @@
         text-align: right;
         width: 100%;
 
-        @include breakpoint("medium") {
+        @include breakpoint("large") {
             display: none;
         }
     }
@@ -451,7 +499,7 @@
     border-bottom: container("border");
     margin-bottom: spacing("half");
 
-    @include breakpoint("medium") {
+    @include breakpoint("large") {
         display: none;
     }
 
@@ -474,7 +522,7 @@
 // -----------------------------------------------------------------------------
 
 .navPages-list--user {
-    @include breakpoint("medium") {
+    @include breakpoint("large") {
         display: none;
     }
 

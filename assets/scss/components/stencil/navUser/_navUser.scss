@@ -12,25 +12,36 @@
 // 7. Corrects mini cart positioned outside viewport. Since this resets right
 //    position, nudge dropdown away from the side of viewport in mobile viewport.
 // 8. This corrects mini cart dropdown arrow alignment in mobile viewport by
-//    setting the previous styles to medium breakpoint and adjusts for nudge in (7).
+//    setting the previous styles to large breakpoint and adjusts for nudge in (7).
 //
 // -----------------------------------------------------------------------------
 
 .navUser {
     @include nav($style: "navBar", $wrapper: "nav");
     @include verticalPositionMiddle("absolute");
-    right: 0;
-    top: 26px; // 2
+    right: 27px;
+    top: 28px; // 2
     width: 100%; // 4
     z-index: zIndex("lowest"); // 5.
 
-    @include breakpoint("medium") {
-        padding: 0 spacing("single");
+    @include breakpoint("large") {
+        // padding: 0 spacing("single");
         position: relative;
         right: auto;
         top: auto;
         transform: none;
         z-index: zIndex("high");
+
+        &:after{
+            content: "";
+            display: block;
+            position: absolute;
+            right: 0;
+            z-index: -1;
+            width: 30%;
+            height: 35px;
+            background: stencilColor("navUser-backgroundColor");
+        }
     }
 
     .dropdown-menu {
@@ -66,17 +77,34 @@
 }
 
 .navUser-section {
-    @include breakpoint("medium") {
+    @include breakpoint("large") {
+        background-color: stencilColor("navUser-backgroundColor");
         position: relative; // 7
+
+        &::before {
+            content: "";
+            position: absolute;
+            left: -36px;
+            display: inline-block;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 36px 36px 0;
+            border-color: transparent stencilColor("navUser-backgroundColor") transparent transparent;
+        }
     }
 }
 
 .navUser-action {
     color: stencilColor("navUser-color");
-    font-weight: fontWeight("bold");
-    padding: spacing("base") spacing("half");
+    // font-weight: fontWeight("bold");   
+    padding: spacing("third") spacing("third"); 
     text-decoration: none;
     text-transform: uppercase;
+
+    @include breakpoint("large") {
+        padding: spacing("third") spacing("single");
+    }
 
     &:hover,
     &.is-open {
@@ -89,8 +117,12 @@
     }
 
     .icon {
-        @include square(8px);
+        @include square(24px);
         margin: -1px 0 0 spacing("eighth");
+
+        @include breakpoint("large") {
+            @include square(16px);
+        }
     }
 
     svg {
@@ -135,8 +167,9 @@
 
 .navUser-item {
     display: none;
+    float: left;
 
-    @include breakpoint("medium") {
+    @include breakpoint("large") {
         display: block;
 
         &.navUser-item--social {
@@ -169,6 +202,14 @@
         &.is-open {
             color: stencilColor("navUser-color-hover");
         }
+
+        .cart-quantity {
+            display: none;
+
+            @include breakpoint("large") {
+                display: inline-block;
+            }
+        }
     }
 
     .dropdown-menu {
@@ -178,7 +219,7 @@
             left: auto !important; // 7
             right: remCalc(5px); // 7
             top: auto !important; // 7
-            @include breakpoint("medium") {
+            @include breakpoint("large") {
                 right: 0; // 7
             }
 
@@ -189,14 +230,14 @@
 
             &::before {
                 right: spacing("half") - remCalc(5px); // 8
-                @include breakpoint("medium") {
+                @include breakpoint("large") {
                     right: spacing("half"); // 8
                 }
             }
 
             &::after {
                 right: spacing("half") - remCalc(3px); // 8
-                @include breakpoint("medium") {
+                @include breakpoint("large") {
                     right: spacing("half") + remCalc(2px); // 8
                 }
             }
@@ -207,7 +248,7 @@
 .navUser-item-cartLabel {
     display: none;
 
-    @include breakpoint("small") {
+    @include breakpoint("large") {
         display: inline;
     }
 }
@@ -217,6 +258,14 @@
 
     &.show {
         display: block;
+    }
+}
+
+.navUser-item--search {
+    display: block;
+
+    @include breakpoint("large") {
+        display: none;
     }
 }
 

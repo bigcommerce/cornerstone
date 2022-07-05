@@ -21,12 +21,11 @@
 // Font families
 // -----------------------------------------------------------------------------
 
-$fontFamily-sans:               stencilFontFamily("body-font"), Arial, Helvetica, sans-serif;
+$fontFamily-sans:               stencilString("body-font"), Arial, Helvetica, sans-serif;
 $fontFamily-serif:              null;
 $fontFamily-mono:               null;
-$fontFamily-headings:           stencilFontFamily("headings-font"), Arial, Helvetica, sans-serif;
-
-$fontFamily-hero:               stencilFontFamily("headings-font"), Arial, Helvetica, sans-serif;
+$fontFamily-headings:           stencilString("headings-font"), Arial, Helvetica, sans-serif;
+$fontFamily-hero:               stencilString("headings-font"), Arial, Helvetica, sans-serif;
 
 
 // Font sizes
@@ -34,14 +33,14 @@ $fontFamily-hero:               stencilFontFamily("headings-font"), Arial, Helve
 
 $fontSize-root:                 stencilNumber("fontSize-root"); // 1
 $fontSize-base:                 1rem; // 2
-$fontSize-hero:                 50px;
+$fontSize-hero:                 remCalc(50px);
 $fontSize-largest:              stencilNumber("fontSize-h1");
-$fontSize-larger:               stencilNumber("fontSize-h2");
-$fontSize-large:                stencilNumber("fontSize-h3");
-$fontSize-small:                stencilNumber("fontSize-h4");
-$fontSize-smaller:              stencilNumber("fontSize-h5");
-$fontSize-smallest:             stencilNumber("fontSize-h6");
-$fontSize-tiny:                 12px;
+$fontSize-larger:               remCalc(stencilNumber("fontSize-h2"));
+$fontSize-large:                remCalc(stencilNumber("fontSize-h3"));
+$fontSize-small:                remCalc(stencilNumber("fontSize-h4"));
+$fontSize-smaller:              remCalc(stencilNumber("fontSize-h5"));
+$fontSize-smallest:             remCalc(stencilNumber("fontSize-h6"));
+$fontSize-tiny:                 remCalc(12px);
 $fontSize-logo-large:           stencilNumber("logo_fontSize");
 $fontSize-logo-medium:          2.5vw;
 $fontSize-logo-small:           $fontSize-logo-medium - 0.25vw;

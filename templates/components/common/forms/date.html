@@ -1,10 +1,6 @@
 <div class="form-field" id="{{id}}" data-validation="{{validation}}" {{#if private_id}}data-type="{{private_id}}"{{/if}}>
-    <label class="form-label" for="{{id}}">
-        {{label}}
-        {{#if required}}
-            <small>{{lang 'common.required' }}</small>
-        {{/if}}
-    </label>
+    <label class="form-label" for="{{id}}" >{{label}}
+    {{#if required}}<small>{{lang 'common.required' }}</small>{{/if}}</label>
     <div class="form-row form-row--third">
         <div class="form-field">
             <select class="form-select"
@@ -15,7 +11,9 @@
                     aria-required="{{required}}"
                     {{#if private_id}}data-field-type="{{private_id}}"{{/if}}
             >
-            {{> components/common/forms/date-options month isRequired=required}}
+                {{#each month.items}}
+                    <option {{#if ../month.value '==' value}} selected {{/if}}value="{{value}}">{{label}}</option>
+                {{/each}}
             </select>
         </div>
         <div class="form-field">
@@ -27,7 +25,9 @@
                     aria-required="{{required}}"
                     {{#if private_id}}data-field-type="{{private_id}}"{{/if}}
             >
-            {{> components/common/forms/date-options day isRequired=required}}
+                {{#each day.items}}
+                    <option {{#if ../day.value '==' value}} selected {{/if}}value="{{value}}">{{label}}</option>
+                {{/each}}
             </select>
         </div>
         <div class="form-field">
@@ -39,7 +39,9 @@
                     aria-required="{{required}}"
                     {{#if private_id}}data-field-type="{{private_id}}"{{/if}}
             >
-            {{> components/common/forms/date-options year isRequired=required}}
+                {{#each year.items}}
+                    <option {{#if ../year.value '==' value}} selected {{/if}}value="{{value}}">{{label}}</option>
+                {{/each}}
             </select>
         </div>
     </div>

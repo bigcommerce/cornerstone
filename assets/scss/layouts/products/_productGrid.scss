@@ -13,22 +13,181 @@
 .productGrid {
 
     @include u-listBullets("none");
-    @include grid-row($behavior: "nest");
+    display: grid;
+    grid-template-rows: repeat(1, 1fr);
+    grid-template-columns: repeat(12, 1fr);
+    gap: spacing("double") spacing("single");
     font-size: 0; // 1
     margin-bottom: spacing("single");
 
     .product {
-        @include grid-column(6, $float: none);
-        display: inline-block;
+        grid-column: auto/span 12;
         font-size: fontSize("base"); // 1
         vertical-align: top;
 
         @include breakpoint("small") {
-            width: grid-calc(4, $total-columns);
+            grid-column: auto/span 12;
         }
 
         @include breakpoint("medium") {
-            width: grid-calc(3, $total-columns);
+            grid-column: auto/span 6;
+        }
+
+        @include breakpoint("large") {
+            grid-column: auto/span 4;
+        }
+
+        .card {
+            display: flex;
+            flex-direction: column;
+            
+            .card-body {
+                flex-grow: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+            }
+
+            .card-highlights {
+                @include u-listBullets("disc");
+                li {
+                    font-size: fontSize("smallest");
+                    margin-bottom: spacing("third");
+                    color: stencilColor("color-black");
+                }
+            }
+            .card-dimensions {
+                margin-top: spacing("single");
+                p {
+                    color: stencilColor("color-black");
+                    margin: 0;
+                    font-size: fontSize("smallest");
+                }
+            }
+                    
+            &.manuals-card {
+                .card-sub-title {
+                    font-weight: normal;
+                }
+                
+                .card-energy-guide {
+                    margin-top: spacing('base');
+                }
+                
+                .card-highlights {
+                    @include u-listBullets("none");
+                }
+                
+                .card-text {
+                    display: flex;
+                    flex-direction: column;
+                    flex-grow: 1;
+                    justify-content: space-between;
+                }
+            }
+        }
+    }
+    
+    @include breakpoint("medium") {
+        padding: 0 0.75rem;
+        
+        // list view
+        &.list-view {
+            .product {
+                grid-column: auto/span 12;
+                
+                .card {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: flex-start;
+                
+                    .card-figure {
+                        width: 25%;
+                    }
+                    .card-body {
+                        width: 70%;
+                        justify-content: start;
+                        
+                        .card-text {
+                            display: flex;
+                            justify-content: space-between;
+                            color: stencilColor("color-black");
+                            flex-direction: row;
+                            margin-top: 2rem;
+                            
+                            &.ss-product-info {
+                                margin: 0;
+                                flex-direction: column;
+                            }
+                            
+                            .card-highlights {
+                                @include u-listBullets("disc");
+                                li {
+                                    font-size: fontSize("smallest");
+                                    margin-bottom: spacing("third");
+                                    color: stencilColor("color-black");
+                                }
+                            }
+                            .card-dimensions {
+                                margin-top: 0;
+                                margin-right: 4rem;
+                                p {
+                                    color: stencilColor("color-black");
+                                    margin: 0;
+                                    font-size: fontSize("smallest");
+                                }
+                            }
+                        }
+                    }
+                    
+                    &.manuals-card {
+                        .card-sub-title {
+                            font-weight: normal;
+                        }
+                        
+                        .card-energy-guide {
+                            margin-top: spacing('base');
+                        }
+                        
+                        .card-highlights {
+                            @include u-listBullets("none");
+                        }
+                    
+                        .card-dimensions {
+                            margin-top: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.page-content {
+    #tab-manuals {
+        .productGrid:not(.list-view) {
+            .product {
+                @include breakpoint("medium") {
+                    grid-column: auto/span 4;
+                }
+
+                @include breakpoint("large") {
+                    grid-column: auto/span 3;
+                }
+            }
+        }
+    }
+    .productGrid, .productGrid.list-view {
+        @include breakpoint("medium") {
+            margin-top: 2.9rem;
+        }
+    }
+}
+
+#search-page {
+    .productGrid, .productGrid.list-view {
+        @include breakpoint("medium") {
+            margin-top: 1.35rem;
         }
     }
 }
@@ -43,13 +202,85 @@
 
 .page-sidebar + .page-content {
     .productGrid {
-        .product { // 1
-            @include breakpoint("small") {
-                width: grid-calc(4, $total-columns);
+        .product { // 1            
+            @include breakpoint("medium") {
+                grid-column: auto/span 6;
+            }
+
+            @include breakpoint("large") {
+                grid-column: auto/span 4;
+            }
+        }
+    
+        // list view
+        @include breakpoint("medium") {
+            &.list-view {
+                .product {
+                    grid-column: auto/span 12;
+                    
+                    .card {
+                        display: flex;
+                        flex-direction: row;
+                    }
+                    
+                    .card-figure {
+                        width: 25%;
+                    }
+                    .card-body {
+                        width: 70%;
+                        justify-content: start;
+                        
+                        .card-text {
+                            display: flex;
+                            justify-content: space-between;
+                            color: stencilColor("color-black");
+                            flex-direction: row;
+                            
+                            &.ss-product-info {
+                                margin: 0;
+                                flex-direction: column;
+                            }
+                            
+                            .card-highlights {
+                                @include u-listBullets("disc");
+                                li {
+                                    font-size: fontSize("smallest");
+                                    margin-bottom: spacing("third");
+                                    color: stencilColor("color-black");
+                                }
+                            }
+                            .card-dimensions {
+                                margin-top: 0;
+                                p {
+                                    color: stencilColor("color-black");
+                                    margin: 0;
+                                    font-size: fontSize("smallest");
+                                }
+                            }
+                        }
+                    }
+                    
+                    &.manuals-card {
+                        .card-sub-title {
+                            font-weight: normal;
+                        }
+                        
+                        .card-energy-guide {
+                            margin-top: spacing('base');
+                        }
+                        
+                        .card-highlights {
+                            @include u-listBullets("none");
+                        }
+                    
+                        .card-dimensions {
+                            margin-top: 0;
+                        }
+                    }
+                }
             }
         }
     }
-
 }
 
 

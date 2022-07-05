@@ -213,6 +213,61 @@ export default class Search extends CatalogPage {
             .prependTo('body');
 
         setTimeout(() => $searchResultsMessage.focus(), 100);
+        if ($('#facetedSearch').length > 0) {
+            this.initFacetedSearch();
+        } else {
+            this.onSortBySubmit = this.onSortBySubmit.bind(this);
+            hooks.on('sortBy-submitted', this.onSortBySubmit);
+            this.onSidebarToggle = this.onSidebarToggle.bind(this);
+        }
+        $('a.reset-btn').on('click', () =>
+        this.setLiveRegionsAttributes($('span.reset-message'), 'status', 'polite'));
+        $('a.button--filters').on('click', () => {
+            $( "body" ).addClass( "product-filter--mobile-active" );
+        });
+        $(window).on('resize', function () {
+            if ($(window).width() >= 801) {
+                $("body").removeClass("product-filter--mobile-active");
+                $('.mobileTabContainer .tab').removeClass('is-open');
+            }
+        });
+
+        $('.product-filter--mobile-bg-overlay, .product-filter-close').on('click', ()=> {
+            $("body").removeClass("product-filter--mobile-active");
+        });
+
+        $('#faceted-search-container .sidebarBlock-heading .toggleLink').on('click', this.onSidebarToggle);
+        
+        // open the mobile tabs
+        $('.mobileTabSelected').on('click', e => {
+            $(e.target).parents('.mobileTabContainer').find('.tabs').toggleClass('is-open');
+        });
+        
+        // display the tab selection
+        $('.mobileTabContainer .tab').on('click', e => {
+            $('.mobileTabSelected').text(e.target.innerText);
+            $('.tabs-wrapper .tab').removeClass('is-active');
+            if (e.target.innerText.trim() === 'Products') {
+                $('.tabs-wrapper .tab > [href="#tab-products"').parent().addClass('is-active');
+            } else {
+                $('.tabs-wrapper .tab > [href="#tab-manuals"').parent().addClass('is-active');
+            }
+            
+            // close tabs dropdown
+            $('.mobileTabSelected').trigger('click');
+        });
+        
+        // sync desktop - mobile tabs
+        $('.tabs-wrapper .tab').on('click', e => {
+            $('.mobileTabContainer .tab').removeClass('is-open');
+            $('.mobileTabContainer .tab').removeClass('is-active');
+            $('.mobileTabSelected').text(e.target.innerText.trim());
+            if (e.target.innerText.trim() === 'Products') {
+                $('.mobileTabContainer .tab > [href="#tab-products"').parent().addClass('is-active');
+            } else {
+                $('.mobileTabContainer .tab > [href="#tab-manuals"').parent().addClass('is-active');
+            }
+        });
     }
 
     loadTreeNodes(node, cb) {

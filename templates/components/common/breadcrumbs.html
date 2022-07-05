@@ -1,36 +1,18 @@
 <nav aria-label="Breadcrumb">
-    <ol class="breadcrumbs">
+    <ol class="breadcrumbs" itemscope itemtype="https://schema.org/BreadcrumbList">
         {{#unless theme_settings.hide_breadcrumbs }}
             {{#each breadcrumbs}}
-                <li class="breadcrumb {{#if @last}}is-active{{/if}}">
+                <li class="breadcrumb {{#if @last}}is-active{{/if}}" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
                     <a class="breadcrumb-label"
+                       itemprop="item"
                        href="{{url}}"
                        {{#if @last}}aria-current="page"{{/if}}
                     >
-                        <span>{{name}}</span>
+                        <span itemprop="name">{{first (split name '|^|')}}</span>
                     </a>
+                    <meta itemprop="position" content="{{add @index 1}}" />
                 </li>
             {{/each}}
         {{/unless}}
     </ol>
 </nav>
-
-<script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement":
-    [
-        {{#each breadcrumbs}}
-        {
-            "@type": "ListItem",
-            "position": {{add @index 1}},
-            "item": {
-                "@id": {{{JSONstringify url}}},
-                "name": {{{JSONstringify name}}}
-            }
-        }{{#unless @last}},{{/unless}}
-        {{/each}}
-    ]
-}
-</script>

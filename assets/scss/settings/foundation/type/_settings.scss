@@ -68,7 +68,7 @@ $font-weight-bold:              fontWeight("bold");
 // We use these to control various global styles
 $body-bg:                       stencilColor("body-bg");
 $body-font-color:               stencilColor("color-textBase");
-$body-font-family:              stencilFontFamily("body-font"), Arial, Helvetica, sans-serif;
+$body-font-family:              stencilString("body-font"), Arial, Helvetica, sans-serif;
 $body-font-weight:              stencilFontWeight("body-font");
 $body-font-style:               null;
 
@@ -76,7 +76,7 @@ $body-font-style:               null;
 $font-smoothing:                antialiased;
 
 // We use these to control header font styles
-$header-font-family:            stencilFontFamily("headings-font"), Arial, Helvetica, sans-serif;
+$header-font-family:            stencilString("headings-font"), Arial, Helvetica, sans-serif;
 $header-font-weight:            stencilFontWeight("headings-font");
 $header-font-style:             null;
 $header-font-color:             stencilColor("color-textHeading");
@@ -103,14 +103,14 @@ $subheader-bottom-margin:       spacing("half");
 
 // A general <small> styling
 $small-font-size:               60%;
-$small-font-color:              stencilColor("color-textSecondary");
+$small-font-color:              null;
 
 // We use these to style paragraphs
 $paragraph-font-family:         null;
 $paragraph-font-weight:         null;
 $paragraph-font-size:           null;
 $paragraph-line-height:         null;
-$paragraph-margin-bottom:       spacing("single");
+$paragraph-margin-bottom:       spacing("base");
 $paragraph-aside-font-size:     null;
 $paragraph-aside-line-height:   null;
 $paragraph-aside-font-style:    null;
@@ -127,8 +127,8 @@ $code-border-color:             null;
 $code-padding:                  null;
 
 // We use these to style anchors
-$anchor-text-decoration:        underline;
-$anchor-text-decoration-hover:  null;
+$anchor-text-decoration:        none;
+$anchor-text-decoration-hover:  none;
 $anchor-font-color:             color("link", "text");
 $anchor-font-color-hover:       color("link", "text-hover");
 

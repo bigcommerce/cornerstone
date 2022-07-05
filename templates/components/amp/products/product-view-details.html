@@ -104,7 +104,10 @@
                 </div>
             {{/if}}
 
-            {{> components/products/custom-fields }}
+            {{#each product.custom_fields}}
+                <dt class="productView-info-name">{{name}}:</dt>
+                <dd class="productView-info-value">{{{value}}}</dd>
+            {{/each}}
         </dl>
     </div>
 </section>

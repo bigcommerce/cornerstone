@@ -8,18 +8,38 @@
 //
 // -----------------------------------------------------------------------------
 
+
+.tabs-wrapper {
+    display: none;
+    border-bottom: $tabs-bottom-border;
+
+    @include breakpoint('medium') {
+        display: block;
+    }
+
+    .tabs {
+        border-bottom: none;
+    }
+}
+
 .tab {
-    border-top: $tab-active-border;
+    background-color: stencilColor("tab-bg-color");
+    border: $tab-active-border;
+    border-bottom: 0;
     float: none;
+    margin-right: spacing("single");
 
     @include breakpoint("medium") {
-        border-top-color: $tab-title-border-color;
         float: left;
     }
 
     &.is-active {
-        border-left-color: $tab-title-border-color;
-        border-right-color: $tab-title-border-color;
+        background-color: stencilColor("tab-bg-color-active");
+
+        .tab-title {
+            color: stencilColor("tab-title-color-active");
+            text-decoration: underline;
+        }
 
         @include breakpoint("small") {
             margin-bottom: $tab-title-border-bottom-offset;
@@ -33,20 +53,12 @@
 }
 
 .tab-title {
-    padding: spacing("half") + spacing("quarter") 0;
+    padding: spacing("third") spacing("double");
     text-align: center;
     text-decoration: $tab-title-text-decoration;
 
     @include breakpoint("small") {
         text-align: left;
-    }
-
-    @include breakpoint("medium") {
-        padding: spacing("half") spacing("single");
-    }
-
-    @include breakpoint("large") {
-        padding: remCalc(11px) remCalc(18px);
     }
 }
 

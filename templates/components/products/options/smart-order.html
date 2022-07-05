@@ -1,0 +1,80 @@
+
+<div class="smartOrder">  
+
+    <span class="icon" aria-hidden="true">
+        <svg>
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-logo-smart-order"></use>
+        </svg>
+    </span>
+
+    <div class="smartOrder-options">
+        <p class="smartOrder-offer">{{{lang 'products.smart_order_offer'}}}</p>        
+
+        {{#if display_name '===' 'Delivery Every'}}
+            <div class="form-field" data-product-attribute="set-radio" role="radiogroup" aria-labelledby="radio-group-label-{{id}}">
+
+                <label class="form-label form-label--alternate form-label--inlineSmall u-hidden" id="radio-group-label-{{id}}">
+                    {{ display_name }}:
+            
+                    {{> components/common/requireness-msg}}
+                </label>
+
+                {{#unless required}}
+                    <input
+                        class="form-radio"
+                        type="radio"
+                        id="attribute_radio_{{id}}_none"
+                        name="attribute[{{id}}]"
+                        value=""
+                        checked="{{#if defaultValue '==' ''}}checked{{/if}}"
+                    >
+                    <label class="form-label" for="attribute_radio_{{../id}}_none">{{lang 'products.none'}}</label>
+                {{/unless}}
+
+                {{#each values}}
+
+                    <div class="d-md-flex smartOrder-option">
+                        <input
+                            class="form-radio"
+                            type="radio"
+                            id="attribute_radio_{{../id}}_{{id}}"
+                            name="attribute[{{../id}}]"
+                            value="{{id}}"
+                            {{#if selected}}
+                                checked
+                                data-default
+                            {{/if}}
+                            {{#if ../option.required}}required{{/if}}>
+                        <label data-product-attribute-value="{{id}}" class="form-label" for="attribute_radio_{{../id}}_{{id}}">
+                            {{this.label}}
+                        </label>
+                        {{#if this.label '===' 'Deliver every'}} 
+                            {{#each ../options}}
+                                {{#if display_name '===' 'Subscription Options'}}
+                                    <div class="form-field" data-product-attribute="set-select">   
+                                        <label class="form-label form-label--alternate form-label--inlineSmall u-hidden" for="attribute_select_{{id}}">
+                                            {{ display_name }}:
+                                    
+                                            {{> components/common/requireness-msg}}
+                                        </label>     
+                                        <select class="form-select form-select--small" name="attribute[{{id}}]" id="attribute_select_{{id}}" {{#if required}}required{{/if}}>
+                                            {{#each values}}
+                                                <option data-product-attribute-value="{{id}}" value="{{id}}" {{#if selected}}selected data-default{{/if}}>{{label}}</option>
+                                            {{/each}}
+                                        </select>
+                                    </div>  
+                                {{/if}}
+                            {{/each}}   
+                        {{/if}}
+                    </div>
+                        
+                    {{#if this.label '===' 'Deliver every'}} 
+                        <p class="form-label learn-more"><a href="#">Learn More</a></p>
+                        <hr>
+                    {{/if}}
+                {{/each}}
+            </div>
+        {{/if}}
+    </div>
+</div>
+

@@ -9,12 +9,29 @@
 
         <link href="{{ head.favicon }}" rel="shortcut icon">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        {{#if theme_settings.variation '===' 'production'}}
+        <!-- OneTrust Cookies Consent Notice start for geappliancesairandwater.com -->
+        <script type="text/javascript" src="https://cdn.cookielaw.org/consent/aab23e88-9af6-4baa-a734-07297a26acee/OtAutoBlock.js" ></script>
+        <script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js"  type="text/javascript" charset="UTF-8" data-domain-script="aab23e88-9af6-4baa-a734-07297a26acee" ></script>
+        <script type="text/javascript">
+        function OptanonWrapper() { }
+        </script>
+        <!-- OneTrust Cookies Consent Notice end for geappliancesairandwater.com -->
+        {{else if theme_settings.variation '===' 'staging'}}
+        <!-- OneTrust Cookies Consent Notice start for airwaterdivision-sandbox.mybigcommerce.com -->
+        <script type="text/javascript" src=https://cdn.cookielaw.org/consent/e9f45ac1-4ad3-4698-89ee-4297992f506d/OtAutoBlock.js ></script>
+        <script src=https://cdn.cookielaw.org/scripttemplates/otSDKStub.js  type="text/javascript" charset="UTF-8" data-domain-script="e9f45ac1-4ad3-4698-89ee-4297992f506d" ></script>
+        <script type="text/javascript">
+        function OptanonWrapper() { }
+        </script>
+        <!-- OneTrust Cookies Consent Notice end for airwaterdivision-sandbox.mybigcommerce.com -->
+        {{/if}}
 
         <script>
-            {{!-- Change document class from no-js to js so we can detect this in css --}}
+            // Change document class from no-js to js so we can detect this in css
             document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
         </script>
-
         {{> components/common/polyfill-script }}
         <script>window.consentManagerTranslations = `{{{langJson 'consent_manager'}}}`;</script>
 
@@ -26,47 +43,101 @@
         </script>
         <script async src="{{cdn 'assets/dist/theme-bundle.head_async.js'}}"></script>
         
-        {{getFontsCollection font-display='block'}}
-        
-        <link rel="preload" href="{{cdn 'assets/dist/theme-bundle.font.js'}}" as="script">
-        <script async src="{{cdn 'assets/dist/theme-bundle.font.js'}}"></script>
-
+        {{ getFontsCollection }}
         {{{stylesheet '/assets/css/theme.css'}}}
+        
+        <script>
+            let pageType = '{{page_type}}';
+            let productType = undefined;
+            {{#if page_type '===' 'page'}}
+            pageType = document.location.pathname === '/' ? 'default' : pageType;
+            {{else if page_type '===' 'product'}}
+            let breadcrumbs = {{{json breadcrumbs}}};
+            productType = breadcrumbs[breadcrumbs.length - 2].name;
+            {{else if page_type '===' 'category'}}
+            productType = '{{ category.name }}' || undefined;
+            {{/if}}
+            
+            // dataLayer initialization
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                'event': 'dataLayer-initialized',
+                'userId': {{#if customer}}'{{customer.id}}'{{else}}undefined{{/if}},
+                'zipCode': localStorage.getItem('postalCode') == null ? undefined :
+                `${localStorage.getItem('postalCode')}`,
+                'loggedIn': {{#if customer}}'true'{{else}}'false'{{/if}}, //true, false
+                'productType': productType, //wall ovens, washers, room air, etc.
+                'pageType': pageType, //product landing, product article, spec, etc.
+                'storeType': '{{theme_settings.store_type}}', //dtc
+                'storeId': '{{settings.general.storeId}}', //dtc001
+                'storeName': '{{{settings.store_name}}}', //dtc direct to consumer
+                'bcPage': 'true' //true, false
+            });
+        </script>
 
+        {{#if category}}
+        <script src="//cdn.searchspring.net/search/v3/lts/searchspring.catalog.js?8th15c" search="search_query"{{#if customer}} shopper.id="{{ customer.id }}"{{/if}}
+        category="{{~#each breadcrumbs~}}{{~#unless @first~}}{{name}}{{~#unless @last~}}>{{~/unless~}} {{~/unless~}}{{~/each~}}"
+        name="{{ category.name }}" hide-content="#searchspring-header, #searchspring-summary, #searchspring-sidebar, #searchspring-content"></script>
+        {{else if brand}}
+        <script src="//cdn.searchspring.net/search/v3/lts/searchspring.catalog.js?8th15c" search="search_query"{{#if customer}} shopper.id="{{ customer.id }}"{{/if}}
+        brand="{{ brand.name }}" hide-content="#searchspring-header, #searchspring-summary, #searchspring-sidebar, #searchspring-content"></script>
+        {{else}}
+        <script src="//cdn.searchspring.net/search/v3/lts/searchspring.catalog.js?8th15c" search="search_query"{{#if customer}} shopper.id="{{ customer.id }}"{{/if}}{{#if
+        page.title "==" 'Search Results'}}searchpage hide-content="#searchspring-search"
+        {{else}}defer{{/if}}></script>
+        {{/if}}
+        
         {{{head.scripts}}}
+        
+        <!-- Google Tag Manager - Install in Head -->
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-K342LPW');</script>
+        <!-- End Google Tag Manager - Install in Head -->
 
         {{~inject 'zoomSize' theme_settings.zoom_size}}
         {{~inject 'productSize' theme_settings.product_size}}
+        {{~inject 'showAdminBar' theme_settings.show-admin-bar}}
         {{~inject 'genericError' (lang 'common.generic_error')}}
+        {{~inject 'maintenanceModeSettings' settings.maintenance}}
+        {{~inject 'adminBarLanguage' (langJson 'admin')}}
         {{~inject 'urls' urls}}
         {{~inject 'secureBaseUrl' settings.secure_base_url}}
         {{~inject 'cartId' cart_id}}
+        {{~inject 'channelId' settings.channel_id}}
         {{~inject 'template' template}}
+        {{~inject 'storefrontToken' settings.storefront_api.token}}
         {{~inject 'validationDictionaryJSON' (langJson 'validation_messages')}}
         {{~inject 'validationFallbackDictionaryJSON' (langJson 'validation_fallback_messages')}}
         {{~inject 'validationDefaultDictionaryJSON' (langJson 'validation_default_messages')}}
         {{~inject 'carouselArrowAndDotAriaLabel' (lang 'carousel.arrow_and_dot_aria_label')}}
         {{~inject 'carouselActiveDotAriaLabel' (lang 'carousel.active_dot_aria_label')}}
         {{~inject 'carouselContentAnnounceMessage' (lang 'carousel.content_announce_message')}}
-
-        {{!-- Get this loading ASAP --}}
-        <link rel="preload" href="{{cdn 'assets/dist/theme-bundle.main.js'}}" as="script">
     </head>
     <body>
+        <!-- Google Tag Manager (noscript) - Install in Body -->
+        <noscript><iframe 
+        src="https://www.googletagmanager.com/ns.html?id=GTM-K342LPW"
+        height="0" width="0" 
+        style="display:none;visibility:hidden"></iframe></noscript>
+        <!-- End Google Tag Manager (noscript) - Install in Body -->
+        
         <svg data-src="{{cdn 'img/icon-sprite.svg'}}" class="icons-svg-sprite"></svg>
 
         {{> components/common/header }}
+
         {{> components/common/body }}
         {{> components/common/footer }}
 
         <script>window.__webpack_public_path__ = "{{cdn 'assets/dist/'}}";</script>
+        <script src="{{cdn 'assets/dist/theme-bundle.main.js'}}"></script>
         <script>
             {{!-- Exported in app.js --}}
-            function onThemeBundleMain() {
-                window.stencilBootstrap("{{page_type}}", {{jsContext}}).load();
-            }
+            window.stencilBootstrap("{{page_type}}", {{jsContext}}).load();
         </script>
-        <script async defer src="{{cdn 'assets/dist/theme-bundle.main.js'}}" onload="onThemeBundleMain()"></script>
 
         {{{footer.scripts}}}
     </body>

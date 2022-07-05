@@ -1,0 +1,107 @@
+// =============================================================================
+// Category page search filters
+// =============================================================================
+
+.product-filters {
+    display: none;
+    
+    @include breakpoint("medium") {
+        display: block;
+    }
+
+    .filter-title .icon{
+        display: none;
+    }
+}
+
+#search-page .filter-title {
+    margin-bottom: 2.25rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.product-filter--mobile, .product-filters {
+
+    .filter-title {
+        font-weight: fontWeight("normal");
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .toggleLink .icon svg {
+        fill: stencilColor("color-black");
+    }
+
+    .form-option-wrapper {
+        display: block;
+    }
+
+    .form-checkbox {
+        + .form-label {
+            display: flex;                 
+
+            .form-label-count {
+                margin-left: auto;
+            }
+        }  
+    }
+}
+
+.product-filter--mobile {
+    position: fixed;
+    top: 0;
+    left: -300px;
+    max-width: 300px;
+    height: 100%;
+    background-color: stencilColor("color-white");
+    z-index: 99999;
+    transition: left 0.5s;
+    padding-right: 0;
+    padding-left: 0;
+
+    .filter-title {
+        background-color: stencilColor("color-primary");
+        color: stencilColor("color-white");
+        padding: spacing("base");
+        margin-bottom: 0;
+
+        .icon {
+            display: inline;
+            float: right;
+
+            svg {
+                fill: stencilColor("color-white")
+            }
+        }
+    }
+
+    .sidebarBlock + .sidebarBlock {
+        margin-top: 0;
+        padding-left: spacing("base");
+        padding-right: spacing("base");
+    }
+
+}
+
+.product-filter--mobile-active {
+    overflow: hidden;
+
+    .product-filter--mobile  {
+        overflow-y: auto;
+        left: 0;
+    }
+
+    .product-filter--mobile-bg-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        z-index: 99998;
+        background-color: stencilColor("color-black");
+        opacity: 0.6;
+    }
+}
+

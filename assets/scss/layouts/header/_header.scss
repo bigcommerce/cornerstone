@@ -26,7 +26,7 @@
     position: absolute;
     transform: translate(-50%, calc(-100% - #{$header-height}));
     transition: transform 0.3s;
-    z-index: zIndex("highest");
+    z-index: zIndex("high");
 
     &:focus {
         transform: translate(-50%, 0%);
@@ -36,13 +36,12 @@
 .header {
     background-color: $header-bg;
     border-bottom: container("border");
-    height: $header-height;
     position: fixed;
     top: 0;
     width: 100%;
     z-index: zIndex("higher");
 
-    @include breakpoint("medium") {
+    @include breakpoint("large") {
         border-bottom: container("border");
         display: flex;
         flex-direction: column;
@@ -54,7 +53,7 @@
     &.is-open {
         height: 100%;
 
-        @include breakpoint("medium") {
+        @include breakpoint("large") {
             height: auto;
         }
     }
@@ -62,18 +61,18 @@
 
 .header-logo {
     font-size: 0;   // 1
-    height: $header-height;
-    margin: 0 remCalc($header-toggle-width); // 2
+    // height: $header-height;
+    // margin: 0 remCalc($header-toggle-width); // 2
     text-align: center;
 
-    @include breakpoint("small") { // 4
-        margin-left: remCalc($header-toggle-width * 1.5);
-        margin-right: remCalc($header-toggle-width * 1.5);
-    }
+    // @include breakpoint("small") { // 4
+    //     margin-left: remCalc($header-toggle-width * 1.5);
+    //     margin-right: remCalc($header-toggle-width * 1.5);
+    // }
 
-    @include breakpoint("medium") {
+    @include breakpoint("large") {
         height: auto;
-        margin: (spacing("double") + spacing("base")) auto (spacing("double") + spacing("single"));
+        // margin: (spacing("double") + spacing("base")) auto (spacing("double") + spacing("single"));
         padding: 0;
 
         .header.fixed & {
@@ -93,13 +92,13 @@
         display: flex;
         height: inherit;
         justify-content: center; // 6
-        margin: 0 auto;
+        // margin: 0 auto;
         position: relative;
         text-decoration: none;
-        width: 70%;
+        // width: 70%;
         z-index: zIndex("low");
 
-        @include breakpoint("medium") {
+        @include breakpoint("large") {
             background: none;
             border-bottom: 0;
             display: inline-flex;
@@ -120,8 +119,8 @@
 .header-logo--left {
     text-align: left;
 
-    @include breakpoint("medium") {
-        margin-left: remCalc(40px);
+    @include breakpoint("large") {
+        // margin-left: remCalc(40px);
     }
 
     .header-logo-image {
@@ -132,7 +131,7 @@
 .header-logo--right {
     text-align: right;
 
-    @include breakpoint("medium") {
+    @include breakpoint("large") {
         margin-right: remCalc(40px);
     }
 
@@ -155,10 +154,10 @@
     white-space: nowrap;
 
     @include breakpoint("small") {
-        font-size: $fontSize-logo-medium;
+        font-size: $fontSize-logo-large;
     }
 
-    @include breakpoint("medium") {
+    @include breakpoint("large") {
         display: inline;
         font-size: $fontSize-logo-large;
         max-width: none;
@@ -174,10 +173,18 @@
 
 .header-logo-image-container {
     position: relative;
-    width: 100%;
+    width: 13.9442857143rem;
+    height: 4.635rem;
 
-    @include breakpoint("medium") {
+    @include breakpoint("large") {
+        width: 26.19571428571429rem;
+        height: 8.642857142857143rem;
+        margin-left: 2rem;
         min-height: get-height(stencilString("logo_size"));
+        
+        > img {
+            width: 100%;
+        }
     }
 }
 
@@ -189,9 +196,8 @@
 .header-logo-image {
     display: block;
     margin: 0 auto;
-    max-height: remCalc($header-height) - $header-logo-marginVertical * 2;
 
-    @include breakpoint("medium") {
+    @include breakpoint("large") {
         max-height: none;
     }
 }
@@ -199,8 +205,34 @@
 .header-logo-image-unknown-size { // 5
     max-height: remCalc($header-height) - $header-logo-marginVertical * 2;
 
-    @include breakpoint("medium") {
+    @include breakpoint("large") {
         max-height: none;
+    }
+}
+
+.header-search-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.header-search-form {
+    display: none;
+    margin-left: auto;
+
+    &.is-open {
+        left: 0 !important;
+        display: block;
+        width: 100% !important;
+        top: 55.5px !important;
+    }
+
+    @include breakpoint("large") {
+        display: block;
+        flex: 0 0 50%;
+    }    
+
+    .form-field {
+        margin-bottom: 0;
     }
 }
 
@@ -214,27 +246,27 @@
     @include square($header-toggle-width);
     display: inline-block;
     font-size: 0;
-    left: 0;
+    right: 0;
     overflow: hidden;
     padding: 0 remCalc(18);
     position: absolute;
     z-index: zIndex("high");
 
-    @include breakpoint("medium") {
+    @include breakpoint("large") {
         display: none;
     }
 
     .mobileMenu-toggleIcon,
     .mobileMenu-toggleIcon::before,
     .mobileMenu-toggleIcon::after {
-        background: $header-font-color;
+        background: stencilColor("navUser-color");
         content: "";
         display: block;
-        height: 2px;
+        height: 3px;
         position: absolute;
         transform: rotate(0deg);
         transition: transform 100ms ease-in, top 100ms ease-in 150ms, bottom 100ms ease-in 150ms; // 1
-        width: remCalc(20);
+        width: remCalc(24);
     }
 
     .mobileMenu-toggleIcon {
@@ -256,7 +288,7 @@
 
         &::before,
         &::after {
-            background-color: $header-font-color;
+            background-color: stencilColor("navUser-color");
             bottom: auto;
             top: auto;
             transition: transform 100ms ease-in 150ms, top 100ms ease-in, bottom 100ms ease-in; // Animate lines from hamburger to 'x'

@@ -1,0 +1,109 @@
+<div class="productTabs-sticky-header" id="productStickyHeader" style="display: none;">
+	<div class="container d-flex">
+		<div class="productTabs-sticky-header-img">
+			<img class="lazyload" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{getImage product.main_image 'productthumb_size' (cdn ../theme_settings.default_image_product)}}" alt="{{product.main_image.alt}}" title="{{product.main_image.alt}}">
+		</div>
+		<div class="productTabs-sticky-header-content">
+			<div class="d-flex justify-content-spaceBetween">
+				<div>
+					<h2 class="productTabs-stickyHeader-title">{{first (split product.title '|^|')}}</h2>
+					<div class="d-flex">
+						<div class="d-none d-md-flex productTabs-stickyHeader-sku">{{lang 'products.sku'}} {{product.sku}}</div>
+					</div>
+				</div>
+			</div>
+			<div class="productTabs-sticky-header-links">
+				<ul>
+                        <li class="u-inlineBlock"><a class="smoothScroll" href="#about">{{lang 'products.tabs.about'}}</a></li>
+                        <li class="u-inlineBlock"><a class="smoothScroll" href="#specDetails">{{lang
+                                'products.tabs.spec_details'}}</a></li>
+                        <li class="u-inlineBlock"><a class="smoothScroll" href="#support">{{lang 'products.tabs.support'}}</a></li>
+				</ul>
+				<a class="smoothScroll">
+					<span class="icon" aria-hidden="true">
+						<svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-chevron-up"></use></svg>
+					</span>
+					{{lang 'products.tabs.back_to_top'}}
+				</a>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="productStickyHeaderAnchor"></div>
+
+<nav class="productTabs" aria-label="{{lang 'products.tabs.label'}}">
+    <div class="container">
+        <ul class="productTabs-heading">
+            <li class="u-inlineBlock"><a class="smoothScroll" href="#about">{{lang 'products.tabs.about'}}</a></li>
+            <li class="u-inlineBlock"><a class="smoothScroll" href="#specDetails">{{lang
+                    'products.tabs.spec_details'}}</a></li>
+            <li class="u-inlineBlock"><a class="smoothScroll" href="#support">{{lang 'products.tabs.support'}}</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="productTabs-section" id="about">
+    <div class="container">
+        <h2 class="productTabs-sectionHeading">{{lang 'products.tabs.about'}}</h2>
+        <div class="productTabs-features" id="productTabsFeatures"></div>
+    </div>
+</div>
+
+<div class="productTabs-section" id="specDetails">
+    <div class="container">
+        <div class="productTabs-content">
+            <h2 class="productTabs-sectionHeading">
+                <a class="toggleLink" data-collapsible="productSpecs">
+                    {{lang 'products.tabs.spec_details'}}
+                    <span class="toggleLink-text toggleLink-text--on u-floatRight"><span class="icon"
+                            aria-hidden="true"><svg>
+                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-chevron-up"></use>
+                            </svg></span></span>
+                    <span class="toggleLink-text toggleLink-text--off u-floatRight"><span class="icon"
+                            aria-hidden="true"><svg>
+                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-chevron-down"></use>
+                            </svg></span></span>
+                </a>
+            </h2>
+            <div class="productTabs-body toggle-content" id="productSpecs">
+                <div id="productTabsSpecs">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="productTabs-section" id="support">
+    <div class="container">
+        <div class="productTabs-content">
+            <h2 class="productTabs-sectionHeading">
+                <a class="toggleLink" data-collapsible="productSupport">
+                    {{lang 'products.tabs.support'}}
+                    <span class="toggleLink-text toggleLink-text--on u-floatRight"><span class="icon"
+                            aria-hidden="true"><svg>
+                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-chevron-up"></use>
+                            </svg></span></span>
+                    <span class="toggleLink-text toggleLink-text--off u-floatRight"><span class="icon"
+                            aria-hidden="true"><svg>
+                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-chevron-down"></use>
+                            </svg></span></span>
+                </a>
+            </h2>
+            <div class="productTabs-body toggle-content" id="productSupport">
+                <div class="productTabs-support">
+                    <div class="support-box">
+                        <div class="support-icon">
+                            <svg class="icon">
+                                <use xlink:href="#icon-book-solid" />
+                            </svg>
+                        </div>
+                        <div class="support-body">
+                            <h3 class="u-textAlignCenter">{{lang 'products.tabs.manuals_support'}}</h3>
+                            <ul id="productTabsManuals"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

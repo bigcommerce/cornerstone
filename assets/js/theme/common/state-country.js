@@ -90,7 +90,7 @@ function addOptions(statesArray, $selectElement, options) {
             if (options.useIdForStates) {
                 container.push(`<option value="${stateObj.id}">${stateObj.name}</option>`);
             } else {
-                container.push(`<option value="${stateObj.name}">${stateObj.label ? stateObj.label : stateObj.name}</option>`);
+                container.push(`<option value="${stateObj.name}">${stateObj.name}</option>`);
             }
         });
 
@@ -120,8 +120,9 @@ export default function (stateElement, context = {}, options, callback) {
         /* eslint-enable no-param-reassign */
     }
 
-    $('select[data-field-type="Country"]').on('change', event => {
-        const countryName = $(event.currentTarget).val();
+    // $('select[data-field-type="Country"]').on('change', event => {
+    if ($('select[data-field-type="Country"]').length) {
+        const countryName = $('select[data-field-type="Country"]').val();
 
         if (countryName === '') {
             return;
@@ -147,5 +148,6 @@ export default function (stateElement, context = {}, options, callback) {
                 callback(null, newElement);
             }
         });
-    });
+    }
+    // });
 }

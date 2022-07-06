@@ -133,6 +133,10 @@
 .navPages-item {
     
     &-contact {
+        .icon,
+        .text-wrapper span:nth-child(1) {
+            display: none;
+        }
 
         @include breakpoint("large") {
             a {
@@ -152,6 +156,7 @@
             }
             
             .icon {
+                display: block;
                 height: 26px;
                 width: 45px;
 
@@ -168,6 +173,10 @@
                 line-height: 1;
                 margin-left: 15px;
 
+                span:nth-child(1) {
+                    display: block;
+                }
+                
                 span:nth-child(2) {
                     color: #fff;
                     font-size: 18px;

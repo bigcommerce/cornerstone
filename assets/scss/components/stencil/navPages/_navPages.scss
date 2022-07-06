@@ -130,6 +130,53 @@
     }
 }
 
+.navPages-item {
+    
+    &-contact {
+
+        @include breakpoint("large") {
+            a {
+                align-items: center;
+                background: #53BCEB;
+                display: flex;
+                padding: 15px 35px 15px 20px;
+    
+                &:hover {
+                    color: currentColor;
+
+                    svg {
+                        fill: #fff;
+                        stroke: #fff;
+                    }
+                }
+            }
+            
+            .icon {
+                height: 26px;
+                width: 45px;
+
+                svg {
+                    fill: #fff;
+                    stroke: #fff;
+                }
+            }
+
+            .text-wrapper {
+                display: flex;
+                flex-direction: column;
+                font-size: 19px;
+                line-height: 1;
+                margin-left: 15px;
+
+                span:nth-child(2) {
+                    color: #fff;
+                    font-size: 18px;
+                }
+            }
+        }
+    }
+}
+
 .navPages-list-depth-max.subMenu-is-open {
     .is-hidden {
         display: none;

@@ -172,10 +172,12 @@
 }
 
 .header-logo-image-container {
+    padding: 15px 0;
     position: relative;
     width: 13.9442857143rem;
 
     @include breakpoint("large") {
+        padding: 0;
         width: 385px;
         
         > img {
@@ -209,6 +211,11 @@
 .header-search-wrapper {
     display: flex;
     align-items: center;
+    padding: 4px 0;
+
+    @include breakpoint("large") {
+        padding: 0;
+    }
 }
 
 .header-search-form {
@@ -259,6 +266,32 @@
                     width: 20px;
                 }
             }
+        }
+    }
+}
+
+.header-mobile-search-form {
+    .form-input {
+        border-color: #1981C336;
+        box-shadow: 0px 6px 24px #0000000D;
+        color: #8393A3;
+        font-size: 18px;
+        padding-left: 15px;
+        padding-right: 50px;
+
+        &::placeholder {
+            color: #8393A3;
+        }
+    }
+
+    .button {
+        height: auto;
+        right: 2px;
+        width: auto;
+
+        svg {
+            height: 20px;
+            width: 20px;
         }
     }
 }

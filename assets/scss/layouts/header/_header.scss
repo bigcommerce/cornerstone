@@ -224,11 +224,42 @@
 
     @include breakpoint("large") {
         display: block;
-        flex: 0 0 50%;
+        flex: 0 0 55%;
+        padding: 30px 0;
     }    
 
     .form-field {
         margin-bottom: 0;
+
+        @include breakpoint("large") {
+            align-items: center;
+            display: flex;
+
+            .form-input {
+                border-color: #1981C336;
+                box-shadow: 0px 6px 24px #0000000D;
+                color: #8393A3;
+                font-size: 18px;
+                height: 4rem;
+                padding-left: 25px;
+                padding-right: 60px;
+
+                &::placeholder {
+                    color: #8393A3;
+                }
+            }
+
+            .button {
+                height: auto;
+                right: 12px;
+                width: auto;
+
+                svg {
+                    height: 20px;
+                    width: 20px;
+                }
+            }
+        }
     }
 }
 

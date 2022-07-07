@@ -21,8 +21,6 @@
         display: flex;
         height: 7.142857rem;
         align-items: center;
-        border-bottom: 1px solid #707070;
-        margin-bottom: 0.5rem;
     }
 
     .header-mobile-search-form {
@@ -36,11 +34,28 @@
     }
 }
 
+main.body {
+
+    @include breakpoint("large") {
+        margin-top: 0;
+    }
+}
+
+#searchspring-header {
+    margin-top: 1rem;
+}
 
 .page {
     @include grid-row(
         $behavior: nest
     );
+}
+
+.page-content {
+
+    & > p:empty {
+        display: none;
+    }
 }
 
 .page-content,

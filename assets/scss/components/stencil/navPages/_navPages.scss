@@ -118,8 +118,10 @@
     margin: 0;
 
     @include breakpoint("large") {
-        display: inline-block;
+        align-items: center;
+        display: flex;
         float: none;
+        right: (spacing("half") + spacing("quarter"));
         position: relative;
     }
 
@@ -131,6 +133,16 @@
 }
 
 .navPages-item {
+
+    @include breakpoint("large") {
+        .navPages & {
+            margin-right: 60px;
+        }
+        
+        & > a {
+            font-size: 18px;
+        }
+    }
     
     &-contact {
         .icon,
@@ -139,6 +151,13 @@
         }
 
         @include breakpoint("large") {
+            .navPages & {
+                left: (spacing("half") + spacing("quarter"));
+                margin-left: auto;
+                margin-right: 0;
+                position: relative;
+            }
+            
             a {
                 align-items: center;
                 background: #53BCEB;
@@ -265,7 +284,7 @@
     @include breakpoint("large") {
         color: stencilColor("navPages-color");
         display: inline-block;
-        padding: spacing("half") (spacing("half") + spacing("quarter")) (spacing("half") + spacing("quarter"));
+        padding: spacing("half") (spacing("half") + spacing("quarter"));
 
         &.is-open {
             background-color: $navPage-subMenu-item--is-highlighted-background;

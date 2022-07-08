@@ -41,7 +41,7 @@ const pageClasses = {
     giftcertificates_balance: () => import('./theme/gift-certificate'),
     giftcertificates_redeem: () => import('./theme/gift-certificate'),
     default: noop,
-    page: noop,
+    page: () => import('./theme/page'),
     product: () => import('./theme/product'),
     amp_product_options: () => import('./theme/product'),
     search: () => import('./theme/search'),

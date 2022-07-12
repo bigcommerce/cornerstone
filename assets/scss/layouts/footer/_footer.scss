@@ -15,12 +15,8 @@
 
 .footer {
     background-color: $color-primary;
-    border-top: container("border");
-    padding: spacing("single") 0 0 0;
     position: relative;
-    @include breakpoint("small") {
-        padding: spacing("double") 0 0 0;
-    }
+    
     a {
         // color: stencilColor("color-white");
         text-decoration: none;
@@ -101,11 +97,17 @@
     width: 1px;
 }
 
+.footer-primary-wrapper {
+    background-image: linear-gradient(to top, #34719C, #162F48);
+}
+
 .footer-info {
     @include grid-row($behavior: nest);
     font-size: 0; // 1
-    @include breakpoint("medium") {
-        padding: 0 spacing('base') * 2;
+    padding: 40px 0 30px 0;
+
+    @include breakpoint("small") {
+        padding: 120px 0 90px 0;
     }
 }
 
@@ -115,7 +117,6 @@
     display: inline-block;
     float: none;
     font-size: fontSize("base"); // 2
-    margin-bottom: spacing("single");
     overflow-wrap: break-word;
     text-align: left;
     vertical-align: top;
@@ -125,7 +126,6 @@
     @include breakpoint("small") {
         text-align: left;
         width: width("6/12");
-        margin-bottom: spacing("double");
         border-bottom: none;
     }
     &:last-child{
@@ -181,8 +181,10 @@
 
 .footer-info-heading {
     color: stencilColor('color-white');
-    font-size: fontSize("base");
-    text-transform: inherit;
+    font-size: 26px;
+    line-height: normal;
+    margin-bottom: 40px;
+    text-transform: uppercase;
 }
 
 .footer-info-list {
@@ -190,17 +192,58 @@
     margin-left: 0;
 
     li {
-        margin-bottom: 0.5rem;
-        a {
-            color: stencilColor("color-white");
-            text-decoration: none;
+        line-height: normal;
+        margin-bottom: 25px;
 
-            &:hover {
-                color: stencilColor("color-white");
-                text-decoration: underline;
-            }
+        a {
+            color: #53BCEB;
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
         }
     }
+}
+
+.footer .socialLinks {
+    align-items: center;
+    display: flex;
+    line-height: normal;
+
+    .socialLinks-item {
+        margin: 0 25px 0 0;
+    }
+    
+    .icon {
+
+        &--facebook {
+            height: 30px;
+            width: 16px;
+        }
+
+        &--instagram {
+            height: 28px;
+            width: 28px;
+        }
+
+        &--linkedin {
+            height: 29px;
+            width: 29px;
+        }
+
+        &--youtube {
+            height: 35px;
+            width: 35px;
+        }
+
+        &--twitter {
+            height: 24px;
+            width: 29px;
+        }
+    }
+}
+
+.footer-logo {
+    margin-top: 140px;
 }
 
 .footer-copyright {

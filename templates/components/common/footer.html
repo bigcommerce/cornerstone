@@ -26,67 +26,80 @@
 </div>
 
 <footer class="footer u-textAlignCenter" role="contentinfo">
-    <h2 class="footer-title-sr-only">{{lang 'footer.title'}}</h2>
-    <div class="container">
-        <section class="footer-info">
-            <article class="footer-info-col" data-section-type="footer-products">
-                <h3 class="footer-info-heading">{{lang 'footer.products'}}</h3>
-                <ul class="footer-info-list">
-                    <li>
-                        <a href="https://www.geappliances.com/pro/">B2B Kitchen</a>
-                    </li>
-                    <li>
-                        <a href="https://www.geappliances.com/">GE Appliances</a>
-                    </li>
-                    <li>
-                        <a href="https://www.haierappliances.com/">Haier Appliances</a>
-                    </li>
-                    <li>
-                        <a href="https://www.hotpoint.com/">Hotpoint Appliances</a>
-                    </li>
-                </ul>
-            </article>
+    <div class="footer-primary-wrapper">
+        <h2 class="footer-title-sr-only">{{lang 'footer.title'}}</h2>
+        <div class="container">
+            <section class="footer-info">
+                
+                <article class="footer-info-col" data-section-type="footer-products">
+                    <h3 class="footer-info-heading">Air Products</h3>
+                    <ul class="footer-info-list">
+                        <li>
+                            <a href="https://www.geappliances.com/">LIGHT COMMERCIAL AIR CONDITIONERS</a>
+                        </li>
+                        <li>
+                            <a href="https://www.geappliances.com/">RESIDENTIAL AIR CONDITIONERS</a>
+                        </li>
+                        <li>
+                            <a href="https://www.geappliances.com/">DUCTLESS SYSTEMS</a>
+                        </li>
+                        <li>
+                            <a href="https://www.geappliances.com/">VRF</a>
+                        </li>
+                        <li>
+                            <a href="https://www.geappliances.com/">DEHUMIDIFIERS</a>
+                        </li>
+                    </ul>
+                </article>
 
-            <article class="footer-info-col" data-section-type="footer-customerCare">
-                <h3 class="footer-info-heading">{{lang 'footer.customer_care'}}</h3>
-                <ul class="footer-info-list">
-                    <li>
-                        <a href="/contact-us/">Contact Us</a>
-                    </li>
-                    <li>
-                        <a href="https://www.geappliances.com/ge/parts/">Parts &amp; Accessories</a>
-                    </li>
-                </ul>
-            </article>
+                <article class="footer-info-col" data-section-type="footer-products">
+                    <h3 class="footer-info-heading">Water Products</h3>
+                    <ul class="footer-info-list">
+                        <li>
+                            <a href="https://www.geappliances.com/">WATER HEATERS</a>
+                        </li>
+                        <li>
+                            <a href="https://www.geappliances.com/">WATER TREATMENT</a>
+                        </li>
+                        <li>
+                            <a href="https://www.geappliances.com/">DISPOSERS</a>
+                        </li>
+                    </ul>
+                </article>
 
-            <article class="footer-info-col" data-section-type="footer-ourCompany">
-                <h3 class="footer-info-heading">{{lang 'footer.our_company'}}</h3>
-                <ul class="footer-info-list">
-                    <li>
-                        <a href="https://geappliancesco.com/">About Our Company</a>
-                    </li>
-                    <li>
-                        <a href="https://careers.geappliances.com/">Careers</a>
-                    </li>
-                    <li>
-                        <a href="https://pressroom.geappliances.com/">Pressroom</a>
-                    </li>
-                </ul>
-            </article>
-            
-            {{#if theme_settings.social_icon_placement_bottom '!==' 'bottom_none'}}
-            <article class="footer-info-col" data-section-type="footer-socialLinks">
-                <h3 class="footer-info-heading">{{lang 'footer.follow_us'}}</h3>
-                {{> components/common/social-links}}
-            </article>
-            {{/if}}
-        </section>
+                <article class="footer-info-col" data-section-type="footer-ourCompany">
+                    <h3 class="footer-info-heading">{{lang 'footer.our_company'}}</h3>
+                    <ul class="footer-info-list">
+                        <li>
+                            <a href="https://www.geappliances.com/">WHY WORK WITH US</a>
+                        </li>
+                        <li>
+                            <a href="https://www.geappliances.com/">TOOLS &amp; SUPPORT</a>
+                        </li>
+                        <li>
+                            <a href="https://www.geappliances.com/">OUR BLOG</a>
+                        </li>
+                        <li>
+                            <a href="https://www.geappliances.com/">CONTACT US</a>
+                        </li>
+                    </ul>
+                </article>
+                
+                {{#if theme_settings.social_icon_placement_bottom '!==' 'bottom_none'}}
+                <article class="footer-info-col" data-section-type="footer-socialLinks">
+                    <h3 class="footer-info-heading">{{lang 'footer.follow_us'}}</h3>
+                    {{> components/common/social-links-footer}}
+                </article>
+                {{/if}}
+
+                <div class="footer-logo">
+                    <a href="{{urls.home}}"><img src="{{cdn 'assets/img/logo-ge-appliances-air-and-water-white.svg'}}" alt="{{settings.store_logo.title}}" title="{{settings.store_logo.title}}"></a>
+                </div>
+                
+            </section>
+        </div>
     </div>
     <div class="footer-sub">
-        <div class="header-logo">
-            {{> components/common/store-logo}}
-        </div>
-        
         <div class="footer-sub-nav">
             <div class="container">
                 <ul>

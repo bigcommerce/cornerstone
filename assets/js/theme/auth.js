@@ -112,6 +112,7 @@ export default class Auth extends PageManager {
         const createAccountValidator = nod({
             submit: `${this.formCreateSelector} input[type='submit']`,
             tap: announceInputErrorMessage,
+            delay: 0,
         });
         const $stateElement = $('[data-field-type="State"]');
         const emailSelector = `${this.formCreateSelector} [data-field-type='EmailAddress']`;
@@ -176,6 +177,19 @@ export default class Auth extends PageManager {
             if (createAccountValidator.areAll('valid')) {
                 return;
             }
+
+            const errorFormFields = $createAccountForm.find('.form-field--error .focus-field');
+            const formFieldErrorMessages = $createAccountForm.find('span.form-inlineMessage');
+
+            $(formFieldErrorMessages).each((index, message) => {
+                if (index > 0) {
+                    $(message).removeAttr('id');
+                    $(message).removeAttr('role');
+                    $(message).removeAttr('aria-live');
+                }
+            });
+
+            errorFormFields[0].focus();
 
             event.preventDefault();
         });

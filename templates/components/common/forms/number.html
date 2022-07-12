@@ -3,7 +3,7 @@
         {{#if required}}<small>{{lang 'common.required' }}</small>{{/if}}
     </label>
     <input type="number"
-           class="form-input"
+           class="form-input focus-field"
            data-label="{{label}}"
            data-input
            data-rule="lowerThan"
@@ -14,6 +14,7 @@
            id="{{id}}_input"
            name="{{name}}"
            aria-required="{{required}}"
+           aria-describedby="{{id}}_describedby"
            {{#if private_id}}data-field-type="{{private_id}}"{{/if}}
     >
 </div>

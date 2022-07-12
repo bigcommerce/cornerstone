@@ -141,9 +141,12 @@ function announceInputErrorMessage({ element, result }) {
 
     if (errorMessage.length) {
         const $errMessage = $(errorMessage[0]);
+        const ariaDescribedby = $(element).attr('aria-describedby');
 
-        if (!$errMessage.attr('role')) {
-            $errMessage.attr('role', 'alert');
+        if (!$errMessage.attr('role') && !$errMessage.attr('aria-live') && !$errMessage.attr('id')) {
+            $errMessage.attr('role', 'status');
+            $errMessage.attr('aria-live', 'polite');
+            $errMessage.attr('id', `${ariaDescribedby}`);
         }
     }
 }

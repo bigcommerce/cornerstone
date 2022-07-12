@@ -8,13 +8,14 @@
         {{#each radios}}
             <input
                 type="radio"
-                class="form-radio"
+                class="form-radio focus-field"
                 name="{{../name}}"
                 id="{{../name}}_{{@index}}"
                 value="{{value}}"
                 data-label="{{label}}"
                 data-input
                 aria-required="{{required}}"
+                aria-describedby="{{id}}_describedby"
                 {{#if checked}}checked{{/if}}
                 {{#if private_id}}data-field-type="{{private_id}}"{{/if}}
             >

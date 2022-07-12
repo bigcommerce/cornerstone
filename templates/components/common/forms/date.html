@@ -7,36 +7,39 @@
     </label>
     <div class="form-row form-row--third">
         <div class="form-field">
-            <select class="form-select"
+            <select class="form-select focus-field"
                     name="{{month.name}}"
                     id="{{id}}_month"
                     data-label="month"
                     data-input
                     aria-required="{{required}}"
+                    aria-describedby="{{id}}_describedby"
                     {{#if private_id}}data-field-type="{{private_id}}"{{/if}}
             >
             {{> components/common/forms/date-options month isRequired=required}}
             </select>
         </div>
         <div class="form-field">
-            <select class="form-select"
+            <select class="form-select focus-field"
                     name="{{day.name}}"
                     id="{{id}}_day"
                     data-label="day"
                     data-input
                     aria-required="{{required}}"
+                    aria-describedby="{{id}}_describedby"
                     {{#if private_id}}data-field-type="{{private_id}}"{{/if}}
             >
             {{> components/common/forms/date-options day isRequired=required}}
             </select>
         </div>
         <div class="form-field">
-            <select class="form-select"
+            <select class="form-select focus-field"
                     name="{{year.name}}"
                     id="{{id}}_year"
                     data-label="year"
                     data-input
                     aria-required="{{required}}"
+                    aria-describedby="{{id}}_describedby"
                     {{#if private_id}}data-field-type="{{private_id}}"{{/if}}
             >
             {{> components/common/forms/date-options year isRequired=required}}

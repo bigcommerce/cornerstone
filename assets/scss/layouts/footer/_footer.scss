@@ -117,16 +117,16 @@
     display: inline-block;
     float: none;
     font-size: fontSize("base"); // 2
+    margin-bottom: 20px;
     overflow-wrap: break-word;
     text-align: left;
     vertical-align: top;
     // TODO: specifically use vendor only for IE11 since overflow-wrap is not supported here
     -ms-word-break: break-all;
-    border-bottom : 1px solid #D4D4D4;
     @include breakpoint("small") {
+        margin-bottom: 0;
         text-align: left;
         width: width("6/12");
-        border-bottom: none;
     }
     &:last-child{
         border-bottom:none;
@@ -181,10 +181,15 @@
 
 .footer-info-heading {
     color: stencilColor('color-white');
-    font-size: 26px;
+    font-size: 18px;
     line-height: normal;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
     text-transform: uppercase;
+
+    @include breakpoint("small") {
+        font-size: 26px;
+        margin-bottom: 40px;
+    }
 }
 
 .footer-info-list {
@@ -193,13 +198,21 @@
 
     li {
         line-height: normal;
-        margin-bottom: 25px;
+        margin-bottom: 15px;
+
+        @include breakpoint("small") {
+            margin-bottom: 25px;
+        }
 
         a {
             color: #53BCEB;
-            font-size: 18px;
+            font-size: 14px;
             font-weight: bold;
             text-decoration: none;
+
+            @include breakpoint("small") {
+                font-size: 18px;
+            }
         }
     }
 }
@@ -210,40 +223,75 @@
     line-height: normal;
 
     .socialLinks-item {
-        margin: 0 25px 0 0;
+        margin: 0 20px 0 0;
+
+        @include breakpoint("small") {
+            margin: 0 25px 0 0;
+        }
     }
     
     .icon {
 
         &--facebook {
-            height: 30px;
-            width: 16px;
+            height: 20px;
+            width: 11px;
+
+            @include breakpoint("small") {
+                height: 30px;
+                width: 16px;
+            }
         }
 
         &--instagram {
-            height: 28px;
-            width: 28px;
+            height: 20px;
+            width: 20px;
+
+            @include breakpoint("small") {
+                height: 28px;
+                width: 28px;
+            }
         }
 
         &--linkedin {
-            height: 29px;
-            width: 29px;
+            height: 20px;
+            width: 20px;
+
+            @include breakpoint("small") {
+                height: 29px;
+                width: 29px;
+            }
         }
 
         &--youtube {
-            height: 35px;
-            width: 35px;
+            height: 25px;
+            width: 25px;
+
+            @include breakpoint("small") {
+                height: 35px;
+                width: 35px;
+            }
         }
 
         &--twitter {
-            height: 24px;
-            width: 29px;
+            height: 20px;
+            width: 25px;
+
+            @include breakpoint("small") {
+                height: 24px;
+                width: 29px;
+            }
         }
     }
 }
 
 .footer-logo {
-    margin-top: 140px;
+    margin-top: 70px;
+    padding: 0 10px;
+
+    @include breakpoint("small") {
+        margin-top: 140px;
+        padding: 0;
+    }
 }
 
 .footer-copyright {

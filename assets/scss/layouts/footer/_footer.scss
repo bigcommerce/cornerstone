@@ -25,44 +25,48 @@
     .footer-sub {
         padding: spacing('base') * 2;
         background-color: stencilColor('color-white');
+
+        & > .container {
+            display: flex;
+            justify-content: space-between;
+            flex-direction: column;
+
+            @include breakpoint("large") {
+                flex-direction: row;
+            }
+        }
     }
 
     .footer-sub-nav {
-        padding: 1.75rem 0 0;
-        margin-bottom: 1rem;
-        
-        .container {
-            display: flex;
-        }
+        display: flex;
         
         ul {
-            margin: 0 auto;
+            align-self: center;
+            display: flex;
+            margin: 0 auto 20px;
             list-style-type: none;
-            display: inline-block;
             text-align: center;
             word-break: break-word;
-            // padding: 0 40px;
-            line-height: 22px;
+            flex-direction: column;
+
+            @include breakpoint("large") {
+                flex-direction: row;
+                margin: 0 auto;
+            }
             
             li {
-                padding: 0 spacing("single") - spacing("base");
-                display: inline;
-                
-                a {
-                    color: stencilColor('color-textSecondary');
-                    
-                    &:hover {
-                        color: stencilColor('color-textSecondary--hover');
+                &:not(:last-child) {
+                    margin-right: none;
+
+                    @include breakpoint("large") {
+                        margin-right: 20px;
                     }
                 }
                 
-                &:not(:last-child):after {
-                    content: "|";
-                    color: stencilColor('color-textSecondary');
-                    
-                    &:hover {
-                        color: stencilColor('color-textSecondary--hover');
-                    }
+                a {
+                    font-size: 13px;
+                    font-weight: bold;
+                    text-transform: uppercase;
                 }
             }
         }
@@ -295,12 +299,21 @@
 }
 
 .footer-copyright {
-    text-align: center;
+    order: 2;
+
+    @include breakpoint("large") {
+        order: unset;
+    }
 
     > .powered-by {
         color: stencilColor("color-textSecondary");
-        font-size: fontSize("tiny");
+        font-size: 15px;
         margin: 0;
+        text-align: center;
+
+        @include breakpoint("large") {
+            text-align: left;
+        }
     }
 
     > .paypal-credit {

@@ -6,51 +6,24 @@ export default class Page extends PageManager {
         this.pathname = window.location.pathname;
     }
 
-    
-
     addVideoClickLayer() {
+        // 1. add a click layer over the top of the video
         const videoContainer = document.getElementsByClassName('video-container-realmax');
         const videoClickLayer = document.createElement('div');
         videoClickLayer.classList.add('video-click-layer');
-
         videoContainer[0].appendChild(videoClickLayer);
 
         videoClickLayer.addEventListener('click', (el) => {
-            // 1. unmute the video
-
-            // 2. play the video from the beginning
+            // 2. reload the video into the iframe, but with mute removed and controls showing
+            const videoIframe = document.getElementById('realmax-iframe');
+            videoIframe.setAttribute('src', 'https://www.youtube.com/embed/bfctwig1HUQ?enablejsapi=1&start=0&end=0&autoplay=1&loop=1&playlist=bfctwig1HUQ&version=3&rel=0');
             
-            // 3. remove the clicklayer
+            // 3. remove the click layer
             el.target.style.display = 'none';
         });
     }
     
     onReady() {
-        var tag = document.createElement('script');
-        tag.src = "https://www.youtube.com/iframe_api";
-        var firstScriptTag = document.getElementsByTagName('script')[0];
-        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-        var player;
-        function onYouTubeIframeAPIReady() {
-            player = new YT.Player('realmax-iframe', {
-                events: {
-                    'onReady': onPlayerReady,
-                    'onStateChange': onPlayerStateChange
-                }
-            });
-        }
-
-        function onPlayerReady() {
-            console.log('testing onPlayerReady');
-        }
-        
-        function onPlayerStateChange(event) {
-            console.log('testing onPlayerStateChange', event.data);
-        }
-
-        console.log('testing...');
-        
         this.pathname === '/home-test' && this.addVideoClickLayer();
     }
 }

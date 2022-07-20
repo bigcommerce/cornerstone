@@ -1,0 +1,32 @@
+// =============================================================================
+// PAGE (CSS)
+// =============================================================================
+
+
+// override for Shogun's insistence on making empty DIVs display: inline-block!
+.shogun-root .video-click-layer:empty {
+    display: flex;
+}
+
+.video-click-layer {
+    align-items: center;
+    cursor: pointer;
+    justify-content: center;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 4;
+
+    &::after {
+        background: #53BCEB url("../img/icon-play.svg") no-repeat 30px center;
+        background-size: 15px;
+        color: #fff;
+        content: 'WATCH VIDEO';
+        font-size: 18px;
+        font-weight: bold;
+        padding: 20px 30px 20px 60px;
+        position: absolute;
+    }
+}

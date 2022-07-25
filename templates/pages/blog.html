@@ -1,7 +1,7 @@
 ---
 blog:
     posts:
-        limit: 5
+        limit: 20
         pages: 3
         summary: 200
 ---
@@ -15,7 +15,7 @@ blog:
     {{/unless}}
 
     {{#each blog.posts}}
-        {{> components/blog/post post=this}}
+        {{> components/blog/feed-post post=this}}
     {{/each}}
 
     {{> components/common/paginator pagination.blog}}

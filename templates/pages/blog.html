@@ -11,13 +11,17 @@ blog:
     <div class="blog-feed">
 
         {{#unless theme_settings.hide_blog_page_heading }}
-            <h1 class="page-heading">{{ blog.name }}</h1>
+            <div class="blog-feed-header full-width">
+                <h1 class="page-heading">{{ blog.name }}</h1>
+            </div>
         {{/unless}}
-
-        <div class=”featured-posts” data-featured-posts>[ featured ]</div>
         
         {{#each blog.posts}}
+
+            <div>hello!</div>
+        
             {{> components/blog/feed-post post=this}}
+
         {{/each}}
 
         {{> components/common/paginator pagination.blog}}

@@ -7,18 +7,22 @@ blog:
 ---
 {{#partial "page"}}
 
-{{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
-
 <section class="page">
-    {{#unless theme_settings.hide_blog_page_heading }}
-        <h1 class="page-heading">{{ blog.name }}</h1>
-    {{/unless}}
+    <div class="blog-feed">
 
-    {{#each blog.posts}}
-        {{> components/blog/feed-post post=this}}
-    {{/each}}
+        {{#unless theme_settings.hide_blog_page_heading }}
+            <h1 class="page-heading">{{ blog.name }}</h1>
+        {{/unless}}
 
-    {{> components/common/paginator pagination.blog}}
+        <div class=”featured-posts” data-featured-posts>[ featured ]</div>
+        
+        {{#each blog.posts}}
+            {{> components/blog/feed-post post=this}}
+        {{/each}}
+
+        {{> components/common/paginator pagination.blog}}
+
+    </div>
 </section>
 
 {{/partial}}

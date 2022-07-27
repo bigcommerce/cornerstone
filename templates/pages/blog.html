@@ -18,7 +18,18 @@ blog:
         
         {{#each blog.posts}}
 
-            <div>hello!</div>
+            <ul>
+                <li>Title: {{title}}</li>
+                <li>URL: {{url}}</li>
+                <li>
+                    Tags:
+                    {{#each tags}}
+                        {{name}}{{#unless @last}},{{/unless}}
+                    {{/each}}
+                </li>
+                <li>Summary: <span class="summary-text">{{summary}}</span></li>
+                <li>Thumbnail: {{thumbnail.data}}</li>
+            </ul>
         
             {{> components/blog/feed-post post=this}}
 

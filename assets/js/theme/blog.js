@@ -15,12 +15,15 @@ const options = {
     },
 };
 
+const blogTypes = ['industry trend', 'installation', 'news', 'press release', 'service'];
+
+// ----------------------------------------------------------------------------------------------------
+
 const extractSummary = (initialSummary) => {
     return initialSummary.match('BLOG-SUMMARY-TEXT-BEGIN' + '(.*?)' + 'BLOG-SUMMARY-TEXT-END')[1];
 };
 
 const extractTag = (tags) => {
-    const blogTypes = ['industry trend', 'installation', 'news', 'press release', 'service'];
     const blogType = tags.filter(tag => blogTypes.includes(tag.name.toLowerCase()));
     return blogType.length > 0 ? blogType[0].name : '';
 }

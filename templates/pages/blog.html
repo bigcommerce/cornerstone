@@ -10,11 +10,13 @@ blog:
 <section class="page">
     <div class="blog-feed">
 
-        {{#unless theme_settings.hide_blog_page_heading }}
+        {{#unless theme_settings.hide_blog_page_heading}}
             <div class="blog-feed-header full-width">
-                <h1 class="page-heading">{{ blog.name }}</h1>
+                <h1 class="page-heading">{{blog.name}}</h1>
             </div>
         {{/unless}}
+
+        <div id="featured-3"></div>
         
         {{#each blog.posts}}
 
@@ -28,7 +30,14 @@ blog:
                     {{/each}}
                 </li>
                 <li>Summary: <span class="summary-text">{{summary}}</span></li>
-                <li>Thumbnail: {{thumbnail.data}}</li>
+                <li>
+                    Thumbnail:
+                    {{> components/common/responsive-img
+                        image=thumbnail
+                        fallback_size=theme_settings.blog_size
+                        lazyload=theme_settings.lazyload_mode
+                    }}
+                </li>
             </ul>
         
             {{> components/blog/feed-post post=this}}

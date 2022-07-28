@@ -20,37 +20,10 @@ const extractSummary = (initialSummary) => {
 };
 
 const extractTag = (tags) => {
-    let tagName;
-    let breakLoop;
-    for (const tag of tags) {
-        switch(tag.name.toLowerCase()) {
-            case 'industry trend':
-                tagName = 'Industry Trend';
-                breakLoop = true;
-                break;
-            case 'installation':
-                tagName = 'Installation';
-                breakLoop = true;
-                break;
-            case 'news':
-                tagName = 'News';
-                breakLoop = true;
-                break;
-            case 'press release':
-                tagName = 'Press Release';
-                breakLoop = true;
-                break;
-            case 'service':
-                tagName = 'Service';
-                breakLoop = true;
-                break;
-            default:
-                tagName = '';
-        }
-        if (breakLoop) { break; }
-    };
-    return tagName;
-};
+    const blogTypes = ['industry trend', 'installation', 'news', 'press release', 'service'];
+    const blogType = tags.filter(tag => blogTypes.includes(tag.name));
+    return blogType.length > 0 ? blogType[0].name : '';
+}
 
 // ----------------------------------------------------------------------------------------------------
 

@@ -25,7 +25,7 @@ const extractSummary = (initialSummary) => {
 
 const extractTag = (tags) => {
     const blogType = tags.filter(tag => blogTypes.includes(tag.name.toLowerCase()));
-    return blogType.length > 0 ? blogType[0].name : '';
+    return blogType.length ? blogType[0].name : '';
 }
 
 // ----------------------------------------------------------------------------------------------------

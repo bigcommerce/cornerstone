@@ -20,29 +20,35 @@ const extractSummary = (initialSummary) => {
 };
 
 const extractTag = (tags) => {
-    var tagName;
-    tags.forEach((tag) => {
-        console.log('tag.name', tag.name);
-        switch(tag.name) {
+    let tagName;
+    let breakLoop;
+    for (const tag of tags) {
+        switch(tag.name.toLowerCase()) {
             case 'industry trend':
                 tagName = 'Industry Trend';
+                breakLoop = true;
                 break;
             case 'installation':
                 tagName = 'Installation';
+                breakLoop = true;
                 break;
             case 'news':
                 tagName = 'News';
+                breakLoop = true;
                 break;
             case 'press release':
                 tagName = 'Press Release';
+                breakLoop = true;
                 break;
             case 'service':
                 tagName = 'Service';
+                breakLoop = true;
                 break;
             default:
-                '';
+                tagName = '';
         }
-    });
+        if (breakLoop) { break; }
+    };
     return tagName;
 };
 

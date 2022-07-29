@@ -24,8 +24,8 @@ const extractSummary = (initialSummary) => {
 };
 
 const extractTag = (tags) => {
-    const postType = tags.filter(tag => postTypes.includes(tag.name.toLowerCase()));
-    return postType.length ? postType[0].name : '';
+    const postType = tags.find(tag => postTypes.includes(tag.name.toLowerCase()));
+    return postType ? postType.name : '';
 }
 
 // ----------------------------------------------------------------------------------------------------

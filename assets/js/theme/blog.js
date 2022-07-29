@@ -17,6 +17,8 @@ const options = {
 
 const postTypes = ['industry trend', 'installation', 'news', 'press release', 'service'];
 
+const imgPaths = Array.from(document.querySelectorAll('.blog-thumbnail img'));
+
 // ----------------------------------------------------------------------------------------------------
 
 const extractSummary = (initialSummary) => {
@@ -38,10 +40,11 @@ const buildFeatured3 = () => {
         const featuredPost = postsJson.posts.find(post => post.tags.some(tag => tag.name === 'featured'));
 
         if (featuredPost) {
+            const postImg = imgPaths.find(item => item.alt === featuredPost.title);
             const container = document.getElementById('featured-3');
             const html = `
                 <section class="featured featured--featured-3">
-                    [ img ]
+                    ${postImg.outerHTML}
                     <h3>${extractTag(featuredPost.tags)}</h3>
                     <h2>${featuredPost.title}</h2>
                     <p>${extractSummary(featuredPost.summary)}</p>

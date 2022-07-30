@@ -14,9 +14,11 @@
         {{/if}}
 
         {{#if this.links.length}}
-            <li class="pagination-item">{{lang 'common.paginator.page_of' current=this.current total=this.links.length}}</li>
-        {{else}}
-            <li class="pagination-item">{{lang 'common.paginator.page_of' current=1 total=1}}</li>
+        {{#each this.links}}
+            <a class="pagination-link" href="{{this.link}}">
+                <li class="pagination-item">{{this.number}}</li>
+            </a>
+        {{/each}}
         {{/if}}
 
         {{#if next}}

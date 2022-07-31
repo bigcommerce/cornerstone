@@ -61,6 +61,20 @@ const buildFeatured4 = () => {
         
         const postsJson = JSON.parse(response);
 
+        const latestNewsPosts = postsJson.posts.filter(post => post.tags.some(tag => tag.name === 'news'));
+
+        const latestNews = latestNewsPosts.slice(0,5).map((post) => {
+            const postImg = imgPaths.find(item => item.alt === post.title);
+            return `
+                <div>
+                    <div style="width: 200px;">${postImg && postImg.outerHTML}</div>
+                    <h3>${extractTag(post.tags)}</h3>
+                    <h2>${post.title}</h2>
+                    <p>${extractSummary(post.summary)}</p>
+                </div>
+            `;
+        }).join('');
+
         const latestPosts = postsJson.posts.slice(0,4).map((post) => {
             const postImg = imgPaths.find(item => item.alt === post.title);
             return `
@@ -76,7 +90,11 @@ const buildFeatured4 = () => {
         const container = document.getElementById('featured-4');
         const html = `
             <section class="featured featured--featured-4">
-                ${latestPosts}
+                <div class="latest-posts">${latestPosts}</div>
+                <div class="latest-news">
+                    <h2>TRENDING ARTICLES</h2>
+                    ${latestNews}
+                </div>
             </section>
         `;
         container.innerHTML = html;

@@ -55,10 +55,39 @@ const buildFeatured3 = () => {
     });
 }
 
+const buildFeatured4 = () => {
+    api.getPage('/blog/', options, (error, response) => {
+        if (error) return console.error(error);
+        
+        const postsJson = JSON.parse(response);
+
+        const latestPosts = postsJson.posts.slice(0,4).map((post) => {
+            const postImg = imgPaths.find(item => item.alt === post.title);
+            return `
+                <div>
+                    <div style="width: 200px;">${postImg && postImg.outerHTML}</div>
+                    <h3>${extractTag(post.tags)}</h3>
+                    <h2>${post.title}</h2>
+                    <p>${extractSummary(post.summary)}</p>
+                </div>
+            `;
+        }).join('');
+
+        const container = document.getElementById('featured-4');
+        const html = `
+            <section class="featured featured--featured-4">
+                ${latestPosts}
+            </section>
+        `;
+        container.innerHTML = html;
+    });
+}
+
 // ----------------------------------------------------------------------------------------------------
 
 export default class Blog extends PageManager {
     onReady() {
         buildFeatured3();
+        buildFeatured4();
     }
 }

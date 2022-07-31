@@ -62,7 +62,6 @@ const buildFeatured4 = () => {
         const postsJson = JSON.parse(response);
 
         const latestNewsPosts = postsJson.posts.filter(post => post.tags.some(tag => tag.name === 'news'));
-
         const latestNews = latestNewsPosts.slice(0,5).map((post) => {
             const postImg = imgPaths.find(item => item.alt === post.title);
             return `
@@ -75,7 +74,8 @@ const buildFeatured4 = () => {
             `;
         }).join('');
 
-        const latestPosts = postsJson.posts.slice(0,4).map((post) => {
+        const latestBlogPosts = postsJson.posts.filter(post => post.tags.some(tag => tag.name !== 'news'));
+        const latestPosts = latestBlogPosts.slice(0,4).map((post) => {
             const postImg = imgPaths.find(item => item.alt === post.title);
             return `
                 <div>

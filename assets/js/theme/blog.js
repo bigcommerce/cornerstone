@@ -107,46 +107,31 @@ const buildSpotlight = () => {
         
         const postsJson = JSON.parse(response);
 
-        const spotlightLeftPost = postsJson.posts.find(post => post.tags.some(tag => tag.name.includes('spotlight-left')));
-        const spotlightLeftImg = imgPaths.find(item => item.alt === spotlightLeftPost.title);
-        const spotlightLeft = `
-            <div>
-                ${spotlightLeftImg.outerHTML}
-                <h3>${extractTag(spotlightLeftPost.tags)}</h3>
-                <h2>${spotlightLeftPost.title}</h2>
-                <p>${extractSummary(spotlightLeftPost.summary)}</p>
-            </div>
-        `;
+        const spotlightPositions = ['spotlight-left', 'spotlight-center', 'spotlight-right'];
+        const spotlightPostsExist = spotlightPositions.every(position => postsJson.posts.find(post => post.tags.some(tag => tag.name.includes(position))));
 
-        const spotlightCenterPost = postsJson.posts.find(post => post.tags.some(tag => tag.name.includes('spotlight-center')));
-        const spotlightCenterImg = imgPaths.find(item => item.alt === spotlightCenterPost.title);
-        const spotlightCenter = `
-            <div>
-                ${spotlightCenterImg.outerHTML}
-                <h3>${extractTag(spotlightCenterPost.tags)}</h3>
-                <h2>${spotlightCenterPost.title}</h2>
-                <p>${extractSummary(spotlightCenterPost.summary)}</p>
-            </div>
-        `;
+        const spotLightBuilder = (position) => {
+            const spotlightPost = postsJson.posts.find(post => post.tags.some(tag => tag.name.includes(position)));
+            const spotlightImg = imgPaths.find(item => item.alt === spotlightPost.title);
+            const spotlight = `
+                <div>
+                    ${spotlightImg.outerHTML}
+                    <h3>${extractTag(spotlightPost.tags)}</h3>
+                    <h2>${spotlightPost.title}</h2>
+                    <p>${extractSummary(spotlightPost.summary)}</p>
+                </div>
+            `;
+            return spotlight;
+        }
 
-        const spotlightRightPost = postsJson.posts.find(post => post.tags.some(tag => tag.name.includes('spotlight-right')));
-        const spotlightRightImg = imgPaths.find(item => item.alt === spotlightRightPost.title);
-        const spotlightRight = `
-            <div>
-                ${spotlightRightImg.outerHTML}
-                <h3>${extractTag(spotlightRightPost.tags)}</h3>
-                <h2>${spotlightRightPost.title}</h2>
-                <p>${extractSummary(spotlightRightPost.summary)}</p>
-            </div>
-        `;
-
-        if (spotlightLeftPost && spotlightCenterPost && spotlightRightPost) {
+        if (spotlightPostsExist) {
             const container = document.getElementById('spotlight');
             const html = `
                 <section class="featured featured--spotlight">
-                    <div class="spotlight-left">${spotlightLeft}</div>
-                    <div class="spotlight-center">${spotlightCenter}</div>
-                    <div class="spotlight-right">${spotlightRight}</div>
+                    <h2>LEARN MORE ABOUT OUR INNOVATIONS</h2>
+                    <div class="spotlight-left">${spotLightBuilder('spotlight-left')}</div>
+                    <div class="spotlight-center">${spotLightBuilder('spotlight-center')}</div>
+                    <div class="spotlight-right">${spotLightBuilder('spotlight-right')}</div>
                 </section>
             `;
             container.innerHTML = html;

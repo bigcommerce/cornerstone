@@ -53,6 +53,34 @@
 
 .form-wishlist {
     position: relative;
+
+    @include breakpoint("small") {
+        float: left;
+        padding: 0 remCalc(10);
+        width: 50%;
+    }
+
+    @include breakpoint("medium") {
+        padding: 0;
+        width: auto;
+    }
+
+    @include breakpoint("large") {
+        display: inline-block;
+        margin-top: 1rem;
+    }
+
+    .button {
+        width: 100%;
+
+        @include breakpoint("medium") {
+            width: auto;
+        }
+
+        @include breakpoint("large") {
+            margin-right: spacing("half");
+        }
+    }
 }
 
 .dropdown-menu-button {

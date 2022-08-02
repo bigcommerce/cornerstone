@@ -72,10 +72,13 @@ const buildFeatured4 = () => {
             const postImg = imgPaths.find(item => item.alt === post.title);
             return `
                 <div class="blog-feed__post">
-                    <div style="width: 200px;">${postImg && postImg.outerHTML}</div>
-                    <h3 class="blog-feed__tag">${extractTag(post.tags)}</h3>
-                    <h2 class="blog-feed__title">${post.title}</h2>
-                    <p class="blog-feed__summary">${extractSummary(post.summary)}</p>
+                    <div class="blog-feed__post-text">
+                        <h3 class="blog-feed__tag">${extractTag(post.tags)}</h3>
+                        <h2 class="blog-feed__title">${post.title}</h2>
+                    </div>
+                    <div class="blog-feed__post-image">
+                        ${postImg && postImg.outerHTML}
+                    </div>
                 </div>
             `;
         }).join('');
@@ -85,19 +88,25 @@ const buildFeatured4 = () => {
             const postImg = imgPaths.find(item => item.alt === post.title);
             return `
                 <div class="blog-feed__post">
-                    <div style="width: 200px;">${postImg && postImg.outerHTML}</div>
-                    <h3 class="blog-feed__tag">${extractTag(post.tags)}</h3>
-                    <h2 class="blog-feed__title">${post.title}</h2>
-                    <p class="blog-feed__summary">${extractSummary(post.summary)}</p>
+                    <div class="blog-feed__post-image">
+                        ${postImg && postImg.outerHTML}
+                    </div>
+                    <div class="blog-feed__post-text">
+                        <h3 class="blog-feed__tag">${extractTag(post.tags)}</h3>
+                        <h2 class="blog-feed__title">${post.title}</h2>
+                        <p class="blog-feed__summary">${extractSummary(post.summary)}</p>
+                    </div>
                 </div>
             `;
         }).join('');
 
         const container = document.getElementById('featured-4');
         const html = `
-            <section>
-                ${latestPosts}
-                <div class="latest-news">
+            <section class="blog-feed--featured-4">
+                <div class="blog-feed__primary-container">
+                    ${latestPosts}
+                </div>
+                <div class="blog-feed__secondary-container">
                     <h2>TRENDING ARTICLES</h2>
                     ${latestNews}
                 </div>

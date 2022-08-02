@@ -6,15 +6,32 @@
 // -----------------------------------------------------------------------------
 
 .blog-feed {
-    border: 10px solid red;
 
     .blog-feed-header {
-        border: 10px solid blue;
-        padding: 30px;
+        background: linear-gradient(45deg, rgba(52,113,156,1) 0%, rgba(22,47,72,1) 100%);
+        padding: 60px 0 50px 0;
 
+        @include breakpoint("small") {
+            padding: 80px 0 70px 0;
+        }
+        
+        .page-subheading {
+            color: #53BCEB;
+            font-size: 18px;
+            line-height: normal;
+            margin: 0 0 25px 0;
+            text-align: center;
+            text-transform: uppercase;
+        }
+        
         .page-heading {
+            color: #fff;
+            font-size: clamp(40px, 5vw, 70px);
+            font-weight: bold;
+            line-height: normal;
             margin: 0;
             text-align: center;
+            text-transform: uppercase;
         }
     }
 

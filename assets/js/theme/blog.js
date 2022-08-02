@@ -43,11 +43,17 @@ const buildFeatured3 = () => {
             const postImg = imgPaths.find(item => item.alt === featuredPost.title);
             const container = document.getElementById('featured-3');
             const html = `
-                <section class="featured featured--featured-3">
-                    ${postImg.outerHTML}
-                    <h3>${extractTag(featuredPost.tags)}</h3>
-                    <h2>${featuredPost.title}</h2>
-                    <p>${extractSummary(featuredPost.summary)}</p>
+                <section class="blog-feed--featured-3">
+                    <div class="blog-feed__post">
+                        <div class="blog-feed__post-image">
+                            ${postImg.outerHTML}
+                        </div>
+                        <div class="blog-feed__post-text">
+                            <h3 class="blog-feed__tag">${extractTag(featuredPost.tags)}</h3>
+                            <h2 class="blog-feed__title">${featuredPost.title}</h2>
+                            <p class="blog-feed__summary">${extractSummary(featuredPost.summary)}</p>
+                        </div>
+                    </div>
                 </section>
             `;
             container.innerHTML = html;
@@ -65,11 +71,11 @@ const buildFeatured4 = () => {
         const latestNews = latestNewsPosts.slice(0,5).map((post) => {
             const postImg = imgPaths.find(item => item.alt === post.title);
             return `
-                <div>
+                <div class="blog-feed__post">
                     <div style="width: 200px;">${postImg && postImg.outerHTML}</div>
-                    <h3>${extractTag(post.tags)}</h3>
-                    <h2>${post.title}</h2>
-                    <p>${extractSummary(post.summary)}</p>
+                    <h3 class="blog-feed__tag">${extractTag(post.tags)}</h3>
+                    <h2 class="blog-feed__title">${post.title}</h2>
+                    <p class="blog-feed__summary">${extractSummary(post.summary)}</p>
                 </div>
             `;
         }).join('');
@@ -78,19 +84,19 @@ const buildFeatured4 = () => {
         const latestPosts = latestBlogPosts.slice(0,4).map((post) => {
             const postImg = imgPaths.find(item => item.alt === post.title);
             return `
-                <div>
+                <div class="blog-feed__post">
                     <div style="width: 200px;">${postImg && postImg.outerHTML}</div>
-                    <h3>${extractTag(post.tags)}</h3>
-                    <h2>${post.title}</h2>
-                    <p>${extractSummary(post.summary)}</p>
+                    <h3 class="blog-feed__tag">${extractTag(post.tags)}</h3>
+                    <h2 class="blog-feed__title">${post.title}</h2>
+                    <p class="blog-feed__summary">${extractSummary(post.summary)}</p>
                 </div>
             `;
         }).join('');
 
         const container = document.getElementById('featured-4');
         const html = `
-            <section class="featured featured--featured-4">
-                <div class="latest-posts">${latestPosts}</div>
+            <section>
+                ${latestPosts}
                 <div class="latest-news">
                     <h2>TRENDING ARTICLES</h2>
                     ${latestNews}

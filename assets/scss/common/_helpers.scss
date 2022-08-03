@@ -3,3 +3,9 @@
     transform: translate3d(-50%, 0, 0);
     width: 100vw;
 }
+
+@mixin truncate($numberOfLines) {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-line-clamp: #{$numberOfLines};
+}

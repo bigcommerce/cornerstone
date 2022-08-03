@@ -93,8 +93,8 @@ const buildFeatured4 = () => {
                     </div>
                     <div class="blog-feed__post-text">
                         <h3 class="blog-feed__tag">${extractTag(post.tags)}</h3>
-                        <h2 class="blog-feed__title">${post.title}</h2>
-                        <p class="blog-feed__summary">${extractSummary(post.summary)}</p>
+                        <h2 class="blog-feed__title"  style="-webkit-box-orient: vertical">${post.title}</h2>
+                        <p class="blog-feed__summary" style="-webkit-box-orient: vertical">${extractSummary(post.summary)}</p>
                     </div>
                 </div>
             `;

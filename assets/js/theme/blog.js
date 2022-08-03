@@ -129,11 +129,15 @@ const buildSpotlight = () => {
             const spotlightPost = postsJson.posts.find(post => post.tags.some(tag => tag.name.includes(position)));
             const spotlightImg = imgPaths.find(item => item.alt === spotlightPost.title);
             const spotlight = `
-                <div>
-                    ${spotlightImg.outerHTML}
-                    <h3>${extractTag(spotlightPost.tags)}</h3>
-                    <h2>${spotlightPost.title}</h2>
-                    <p>${extractSummary(spotlightPost.summary)}</p>
+                <div class="blog-feed__post">
+                    <div class="blog-feed__post-image">
+                        ${spotlightImg && spotlightImg.outerHTML}
+                    </div>
+                    <div class="blog-feed__post-text">
+                        <h3 class="blog-feed__tag">${extractTag(spotlightPost.tags)}</h3>
+                        <h2 class="blog-feed__title"  style="-webkit-box-orient: vertical">${spotlightPost.title}</h2>
+                        <p class="blog-feed__summary" style="-webkit-box-orient: vertical">${extractSummary(spotlightPost.summary)}</p>
+                    </div>
                 </div>
             `;
             return spotlight;
@@ -142,11 +146,13 @@ const buildSpotlight = () => {
         if (spotlightPostsExist) {
             const container = document.getElementById('spotlight');
             const html = `
-                <section class="featured featured--spotlight">
+                <section class="blog-feed--spotlight">
                     <h2>LEARN MORE ABOUT OUR INNOVATIONS</h2>
-                    <div class="spotlight-left">${spotLightBuilder('spotlight-left')}</div>
-                    <div class="spotlight-center">${spotLightBuilder('spotlight-center')}</div>
-                    <div class="spotlight-right">${spotLightBuilder('spotlight-right')}</div>
+                    <div class="blog-feed--spotlight-container">
+                        <div class="spotlight-left">${spotLightBuilder('spotlight-left')}</div>
+                        <div class="spotlight-center">${spotLightBuilder('spotlight-center')}</div>
+                        <div class="spotlight-right">${spotLightBuilder('spotlight-right')}</div>
+                    </div>
                 </section>
             `;
             container.innerHTML = html;

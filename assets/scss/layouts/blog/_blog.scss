@@ -252,6 +252,46 @@
         }
     }
 
+    &--spotlight {
+        
+        & > h2 {
+            color: #0E3D71;
+            font-size: 54px;
+            line-height: normal;
+            margin-bottom: 50px;
+            padding: 0 50px;
+            text-align: center;
+        }
+
+        .blog-feed--spotlight-container {
+            display: flex;
+        }
+
+        .blog-feed__post {
+            flex-direction: column;
+        }
+
+        .blog-feed__post-text {
+            padding: 20px;
+
+            @include breakpoint("small") {
+                padding-top: 25px;
+            }
+        }
+
+        .blog-feed__title {
+            @include truncate(2);
+        }
+
+        .blog-feed__summary {
+            @include truncate(3);
+
+            @include breakpoint("small") {
+                @include truncate(4);
+            }
+        }
+    }
+
     article.blog {
         display: none;
     }

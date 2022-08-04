@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - On customer message page, screen reader should say each error [#2234]https://github.com/bigcommerce/cornerstone/pull/2234
 - Bump webpack-bundle-analyzer [#2229]https://github.com/bigcommerce/cornerstone/pull/2229
 - Make screen reader say all errors then each error while tabbing. [#2230]https://github.com/bigcommerce/cornerstone/pull/2230
+- Clarify customer order pagination. [#2241]https://github.com/bigcommerce/cornerstone/pull/2241
 
 ## 6.5.0 (06-24-2022)
 - Category icons do not appear in Search Form [#2221]https://github.com/bigcommerce/cornerstone/pull/2221

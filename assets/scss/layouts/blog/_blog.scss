@@ -201,6 +201,7 @@
                 color: #0E3D71;
                 font-size: 22px;
                 line-height: normal;
+                margin-bottom: 10px;
                 text-align: center;
 
                 @include breakpoint("small") {
@@ -256,15 +257,61 @@
         
         & > h2 {
             color: #0E3D71;
-            font-size: 54px;
+            font-size: 30px;
             line-height: normal;
-            margin-bottom: 50px;
-            padding: 0 50px;
+            margin-bottom: 20px;
+            padding: 0 25px;
             text-align: center;
+
+            @include breakpoint("small") {
+                font-size: 54px;
+                margin-bottom: 50px;
+                padding: 0 50px;
+            }
         }
 
         .blog-feed--spotlight-container {
             display: flex;
+            flex-direction: column;
+
+            @include breakpoint("small") {
+                flex-direction: row;
+            }
+
+            & > div:not(:last-child) {
+                margin-bottom: 25px;
+
+                @include breakpoint("small") {
+                    margin-bottom: 0;
+                }
+            }
+        }
+
+        .spotlight-left {
+            width: 100%;
+
+            @include breakpoint("small") {
+                margin-top: 70px;
+                width: 25%;
+            }
+        }
+
+        .spotlight-center {
+            width: 100%;
+
+            @include breakpoint("small") {
+                margin: 0 2%;
+                width: 46%;
+            }
+        }
+
+        .spotlight-right {
+            width: 100%;
+
+            @include breakpoint("small") {
+                margin-top: 70px;
+                width: 25%;
+            }
         }
 
         .blog-feed__post {
@@ -285,10 +332,6 @@
 
         .blog-feed__summary {
             @include truncate(3);
-
-            @include breakpoint("small") {
-                @include truncate(4);
-            }
         }
     }
 

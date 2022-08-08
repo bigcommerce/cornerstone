@@ -83,7 +83,12 @@ const buildFeatured4 = () => {
             `;
         }).join('');
 
-        const latestBlogPosts = postsJson.posts.filter(post => post.tags.some(tag => tag.name !== 'news'));
+        const tagsToExclude = ['news', 'spotlight-left', 'spotlight-center', 'spotlight-right'];
+        const removeNewsAndSpotlights = (post) => {
+            const postType = !post.tags.find(tag => tagsToExclude.includes(tag.name.toLowerCase()));
+            return postType;
+        }
+        const latestBlogPosts = postsJson.posts.filter(removeNewsAndSpotlights);
         const latestPosts = latestBlogPosts.slice(0,4).map((post) => {
             const postImg = imgPaths.find(item => item.alt === post.title);
             return `

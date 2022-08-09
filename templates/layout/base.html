@@ -20,8 +20,8 @@
         <!-- OneTrust Cookies Consent Notice end for geappliancesairandwater.com -->
         {{else if theme_settings.variation '===' 'staging'}}
         <!-- OneTrust Cookies Consent Notice start for airwaterdivision-sandbox.mybigcommerce.com -->
-        <script type="text/javascript" src=https://cdn.cookielaw.org/consent/e9f45ac1-4ad3-4698-89ee-4297992f506d/OtAutoBlock.js ></script>
-        <script src=https://cdn.cookielaw.org/scripttemplates/otSDKStub.js  type="text/javascript" charset="UTF-8" data-domain-script="e9f45ac1-4ad3-4698-89ee-4297992f506d" ></script>
+        <script type="text/javascript" src="https://cdn.cookielaw.org/consent/e9f45ac1-4ad3-4698-89ee-4297992f506d/OtAutoBlock.js" ></script>
+        <script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js"  type="text/javascript" charset="UTF-8" data-domain-script="e9f45ac1-4ad3-4698-89ee-4297992f506d" ></script>
         <script type="text/javascript">
         function OptanonWrapper() { }
         </script>
@@ -117,7 +117,7 @@
         {{~inject 'carouselActiveDotAriaLabel' (lang 'carousel.active_dot_aria_label')}}
         {{~inject 'carouselContentAnnounceMessage' (lang 'carousel.content_announce_message')}}
     </head>
-    <body>
+    <body{{#if theme_settings.variation '===' 'staging'}} class="staging"{{/if}}>
         <!-- Google Tag Manager (noscript) - Install in Body -->
         <noscript><iframe 
         src="https://www.googletagmanager.com/ns.html?id=GTM-K342LPW"

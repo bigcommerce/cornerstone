@@ -1,3 +1,16 @@
+<article class="blog-post">
+    
+    <div class="blog-post__header full-width">
+        {{> components/common/responsive-img image=post.thumbnail }}
+        <h2 class="blog-post__subheading" id="blog-post-title"></h2>
+        <h1 class="blog-post__heading">{{post.title}}</h1>
+    </div>
+
+</article>
+
+
+
+
 <article class="blog">
     <div class="blog-post-figure">
         {{#if post.thumbnail}}
@@ -21,7 +34,7 @@
             <p class="blog-date">{{#if post.author}}{{lang 'blog.posted_by' name=post.author}} on {{/if}}{{post.date_published}}</p>
         </header>
 
-        <div class="blog-post">
+        <div>
             {{#if post.body}}
                 {{{post.body}}}
             {{else}}
@@ -45,7 +58,7 @@
             {{/if}}
         {{/if}}
 
-        {{>components/common/share url=post.url}}
+        1111{{>components/common/share url=post.url}}22222
 
     </div>
 </article>

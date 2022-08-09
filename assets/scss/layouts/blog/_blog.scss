@@ -343,92 +343,53 @@
 // Blog post
 // -----------------------------------------------------------------------------
 
-.blog {
-    margin-bottom: spacing("single");
-
-    @include breakpoint("medium") {
-        margin: auto;
-        width: 100%;
-    }
-
-    + .blog {
-        border-top: container("border");
-        margin-top: spacing("double");
-        padding-top: spacing("double");
-    }
-
-    .tags {
-        margin-top: spacing("double");
-        text-align: center;
-    }
-
-    .socialLinks {
-        text-align: center;
-    }
-
-    .addthis_toolbox {
-        margin-top: spacing("double");
-    }
-}
-
-.blog-title {
-    font-size: fontSize("large");
-    margin: 0 spacing("single") spacing("quarter");
-
-    a {
-        text-decoration: none;
-    }
-}
-
-.blog-date,
-.blog-author {
-    color: stencilColor("color-textSecondary");
-    text-align: center;
-}
-
-.blog-author {
-    margin-bottom: spacing("single") + spacing("base");
-}
-
 .blog-post {
-    font-size: fontSize("smaller");
-    text-align: left;
-}
 
-.blog-thumbnail {
-    margin: 0 auto (spacing("base") * 2);
-    position: relative;
+    &__header {
+        background: linear-gradient(45deg, rgba(52,113,156,1) 0%, rgba(22,47,72,1) 100%);
+        margin-bottom: 25px;
+        padding: 50px 0 40px 0;
 
-    img {
-        width: 100%;
-    }
-}
+        @include breakpoint("small") {
+            margin-bottom: 100px;
+            padding: 80px 0 70px 0;
+        }
 
-.blog-post-figure {
-    display: block;
-    margin: auto;
-    text-align: center;
-
-    @include breakpoint("medium") {
-        width: grid-calc(8, $total-columns);
-    }
-}
-
-.blog-post-body {
-    display: block;
-    margin: 0 auto;
-    text-align: center;
-    width: 100%;
-
-    @include breakpoint("small") {
-        width: grid-calc(10, $total-columns);
+        & > img {
+            height: 100%;
+            left: 0;
+            margin: auto;
+            mix-blend-mode: darken;
+            opacity: .5;
+            position: absolute;
+            right: 0;
+            top: 0;
+            z-index: -1;
+        }
     }
 
-    @include breakpoint("medium") {
-        width: grid-calc(8, $total-columns);
-    }
+    &__subheading {
+        color: #53BCEB;
+        font-size: 18px;
+        line-height: normal;
+        margin-bottom: 10px;
+        min-height: 18px;
+        text-align: center;
+        text-transform: uppercase;
 
-    @include breakpoint("large") {
-        width: grid-calc(6, $total-columns);
+        @include breakpoint("small") {
+            margin-bottom: 25px;
+        }
+    }
+    
+    &__heading {
+        color: #fff;
+        font-size: clamp(40px, 5vw, 60px);
+        font-weight: bold;
+        line-height: normal;
+        margin: 0 auto;
+        max-width: layout("max");
+        text-align: center;
+        text-transform: uppercase;
     }
 }

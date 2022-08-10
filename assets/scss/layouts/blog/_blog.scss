@@ -384,12 +384,84 @@
     
     &__heading {
         color: #fff;
-        font-size: clamp(40px, 5vw, 60px);
+        font-size: 30px;
         font-weight: bold;
         line-height: normal;
         margin: 0 auto;
         max-width: layout("max");
         text-align: center;
         text-transform: uppercase;
+
+        @include breakpoint("small") {
+            font-size: clamp(40px, 5vw, 60px);
+        }
+    }
+
+    &__body-wrapper {
+        display: flex;
+        flex-direction: column;
+
+        @include breakpoint("small") {
+            flex-direction: row;
+        }
+    }
+
+    &__social {
+
+        @include breakpoint("small") {
+            margin-right: 230px;
+        }
+
+        ul {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            margin: 0 0 20px 0;
+
+            @include breakpoint("small") {
+                flex-direction: column;
+                margin: 0;
+            }
+        }
+        
+        li {
+            align-items: center;
+            display: flex;
+            list-style-type: none;
+            margin: 0 10px;
+            justify-content: center;
+            
+            @include breakpoint("small") {
+                margin: 0;
+                
+                &:not(:last-child) {
+                    margin-bottom: 30px;
+                }
+            }
+        }
+
+        a {
+            display: block;
+            text-align: center;
+        }
+
+        &--facebook svg {
+            height: 30px;
+            width: 16px;
+        }
+
+        &--twitter svg {
+            height: 24px;
+            width: 29px;
+        }
+
+        &--linkedin svg {
+            height: 29px;
+            width: 29px;
+        }
+    }
+    
+    &__body {
+        
     }
 }

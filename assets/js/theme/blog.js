@@ -83,7 +83,7 @@ const buildFeatured4 = () => {
             `;
         }).join('');
 
-        const tagsToExclude = ['news', 'spotlight-left', 'spotlight-center', 'spotlight-right'];
+        const tagsToExclude = ['news', 'spotlight-left', 'spotlight-center', 'spotlight-right', 'featured'];
         const removeNewsAndSpotlights = (post) => {
             const postType = !post.tags.find(tag => tagsToExclude.includes(tag.name.toLowerCase()));
             return postType;

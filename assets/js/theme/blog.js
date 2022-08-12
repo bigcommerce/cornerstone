@@ -15,7 +15,7 @@ const options = {
     },
 };
 
-const postTypes = ['industry trend', 'installation', 'news', 'press release', 'service'];
+const postTypes = ['general', 'industry trend', 'installation', 'news', 'press release', 'service'];
 
 const imgPaths = Array.from(document.querySelectorAll('.blog-thumbnail img'));
 
@@ -112,7 +112,7 @@ const buildFeatured4 = () => {
                     ${latestPosts}
                 </div>
                 <div class="blog-feed__secondary-container">
-                    <h2>TRENDING ARTICLES</h2>
+                    <h2>LATEST NEWS</h2>
                     ${latestNews}
                 </div>
             </section>

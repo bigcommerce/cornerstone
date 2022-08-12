@@ -7,7 +7,7 @@ const options = {
     template: 'blog/blog-json'
 };
 
-const postTypes = ['industry trend', 'installation', 'news', 'press release', 'service'];
+const postTypes = ['general', 'industry trend', 'installation', 'news', 'press release', 'service'];
 
 // ----------------------------------------------------------------------------------------------------
 

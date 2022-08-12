@@ -359,7 +359,7 @@
             height: 100%;
             left: 0;
             margin: auto;
-            mix-blend-mode: darken;
+            mix-blend-mode: soft-light;
             object-fit: cover;
             opacity: .5;
             position: absolute;
@@ -480,6 +480,45 @@
 
             @include breakpoint("small") {
                 margin-bottom: 60px;
+            }
+        }
+
+        h2, h3, h4 {
+            color: #0E3D71;
+            text-transform: uppercase;
+
+            span {
+                font-weight: bold !important;
+            }
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-bottom: 30px;
+
+            @include breakpoint("small") {
+                font-size: 32px;
+                margin-bottom: 40px;
+            }
+        }
+
+        h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+
+            @include breakpoint("small") {
+                font-size: 28px;
+                margin-bottom: 20px;
+            }
+        }
+
+        h4 {
+            font-size: 16px;
+            margin-bottom: 5px;
+
+            @include breakpoint("small") {
+                font-size: 24px;
+                margin-bottom: 10px;
             }
         }
     }

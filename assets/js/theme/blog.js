@@ -44,16 +44,18 @@ const buildFeatured3 = () => {
             const container = document.getElementById('featured-3');
             const html = `
                 <section class="blog-feed--featured-3">
-                    <div class="blog-feed__post">
-                        <div class="blog-feed__post-image">
-                            ${postImg.outerHTML}
+                    <a href="${featuredPost.url}" class="blog-feed__wrapper-link">
+                        <div class="blog-feed__post">            
+                            <div class="blog-feed__post-image">
+                                ${postImg.outerHTML}
+                            </div>
+                            <div class="blog-feed__post-text">
+                                <h3 class="blog-feed__tag">${extractTag(featuredPost.tags)}</h3>
+                                <h2 class="blog-feed__title">${featuredPost.title}</h2>
+                                <p class="blog-feed__summary">${extractSummary(featuredPost.summary)}</p>
+                            </div>
                         </div>
-                        <div class="blog-feed__post-text">
-                            <h3 class="blog-feed__tag">${extractTag(featuredPost.tags)}</h3>
-                            <h2 class="blog-feed__title">${featuredPost.title}</h2>
-                            <p class="blog-feed__summary">${extractSummary(featuredPost.summary)}</p>
-                        </div>
-                    </div>
+                    </a>
                 </section>
             `;
             container.innerHTML = html;
@@ -67,22 +69,6 @@ const buildFeatured4 = () => {
         
         const postsJson = JSON.parse(response);
 
-        const latestNewsPosts = postsJson.posts.filter(post => post.tags.some(tag => tag.name === 'news'));
-        const latestNews = latestNewsPosts.slice(0,5).map((post) => {
-            const postImg = imgPaths.find(item => item.alt === post.title);
-            return `
-                <div class="blog-feed__post">
-                    <div class="blog-feed__post-text">
-                        <h3 class="blog-feed__tag">${extractTag(post.tags)}</h3>
-                        <h2 class="blog-feed__title">${post.title}</h2>
-                    </div>
-                    <div class="blog-feed__post-image">
-                        ${postImg && postImg.outerHTML}
-                    </div>
-                </div>
-            `;
-        }).join('');
-
         const tagsToExclude = ['news', 'spotlight-left', 'spotlight-center', 'spotlight-right', 'featured'];
         const removeNewsAndSpotlights = (post) => {
             const postType = !post.tags.find(tag => tagsToExclude.includes(tag.name.toLowerCase()));
@@ -93,15 +79,35 @@ const buildFeatured4 = () => {
             const postImg = imgPaths.find(item => item.alt === post.title);
             return `
                 <div class="blog-feed__post">
-                    <div class="blog-feed__post-image">
-                        ${postImg && postImg.outerHTML}
-                    </div>
-                    <div class="blog-feed__post-text">
-                        <h3 class="blog-feed__tag">${extractTag(post.tags)}</h3>
-                        <h2 class="blog-feed__title"  style="-webkit-box-orient: vertical">${post.title}</h2>
-                        <p class="blog-feed__summary" style="-webkit-box-orient: vertical">${extractSummary(post.summary)}</p>
-                    </div>
+                    <a href="${post.url}" class="blog-feed__wrapper-link">
+                        <div class="blog-feed__post-image">
+                            ${postImg && postImg.outerHTML}
+                        </div>
+                        <div class="blog-feed__post-text">
+                            <h3 class="blog-feed__tag">${extractTag(post.tags)}</h3>
+                            <h2 class="blog-feed__title"  style="-webkit-box-orient: vertical">${post.title}</h2>
+                            <p class="blog-feed__summary" style="-webkit-box-orient: vertical">${extractSummary(post.summary)}</p>
+                        </div>
+                    </a>
                 </div>
+            `;
+        }).join('');
+
+        const latestNewsPosts = postsJson.posts.filter(post => post.tags.some(tag => tag.name === 'news'));
+        const latestNews = latestNewsPosts.slice(0,5).map((post) => {
+            const postImg = imgPaths.find(item => item.alt === post.title);
+            return `
+                <a href="${post.url}" class="blog-feed__wrapper-link">
+                    <div class="blog-feed__post">
+                        <div class="blog-feed__post-text">
+                            <h3 class="blog-feed__tag">${extractTag(post.tags)}</h3>
+                            <h2 class="blog-feed__title">${post.title}</h2>
+                        </div>
+                        <div class="blog-feed__post-image">
+                            ${postImg && postImg.outerHTML}
+                        </div>
+                    </div>
+                </a>
             `;
         }).join('');
 
@@ -134,16 +140,18 @@ const buildSpotlight = () => {
             const spotlightPost = postsJson.posts.find(post => post.tags.some(tag => tag.name.includes(position)));
             const spotlightImg = imgPaths.find(item => item.alt === spotlightPost.title);
             const spotlight = `
-                <div class="blog-feed__post">
-                    <div class="blog-feed__post-image">
-                        ${spotlightImg && spotlightImg.outerHTML}
+                <a href="${spotlightPost.url}" class="blog-feed__wrapper-link">
+                    <div class="blog-feed__post">
+                        <div class="blog-feed__post-image">
+                            ${spotlightImg && spotlightImg.outerHTML}
+                        </div>
+                        <div class="blog-feed__post-text">
+                            <h3 class="blog-feed__tag">${extractTag(spotlightPost.tags)}</h3>
+                            <h2 class="blog-feed__title"  style="-webkit-box-orient: vertical">${spotlightPost.title}</h2>
+                            <p class="blog-feed__summary" style="-webkit-box-orient: vertical">${extractSummary(spotlightPost.summary)}</p>
+                        </div>
                     </div>
-                    <div class="blog-feed__post-text">
-                        <h3 class="blog-feed__tag">${extractTag(spotlightPost.tags)}</h3>
-                        <h2 class="blog-feed__title"  style="-webkit-box-orient: vertical">${spotlightPost.title}</h2>
-                        <p class="blog-feed__summary" style="-webkit-box-orient: vertical">${extractSummary(spotlightPost.summary)}</p>
-                    </div>
-                </div>
+                </a>
             `;
             return spotlight;
         }

@@ -46,6 +46,10 @@
         display: flex;
     }
 
+    &__wrapper-link {
+        display: block;
+    }
+
     &__tag {
         color: #53BCEB;
         font-size: 16px;
@@ -147,7 +151,6 @@
             }
 
             .blog-feed__post {
-                flex-direction: column;
                 margin-bottom: 25px;
                 width: 100%;
 
@@ -222,7 +225,7 @@
                 }
             }
             
-            .blog-feed__post:not(:last-child) {
+            .blog-feed__wrapper-link:not(:last-child) {
                 margin-bottom: 10px;
 
                 @include breakpoint("small") {

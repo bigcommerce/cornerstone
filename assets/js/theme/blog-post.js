@@ -17,7 +17,7 @@ const injectTag = () => {
         
         const postsJson = JSON.parse(response);
         const tag = postsJson.post.tags.find(tag => postTypes.includes(tag.name.toLowerCase()));
-        const tagContainer = document.getElementById('blog-post-title');
+        const tagContainer = document.getElementById('blog-post-tag');
 
         tagContainer.innerText = tag.name;
     });

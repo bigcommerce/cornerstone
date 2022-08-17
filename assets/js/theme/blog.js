@@ -61,6 +61,7 @@ const buildFeatured3 = () => {
             container.innerHTML = html;
         }
     });
+    console.log('buildFeatured3');
 }
 
 const buildFeatured4 = () => {
@@ -125,6 +126,7 @@ const buildFeatured4 = () => {
         `;
         container.innerHTML = html;
     });
+    console.log('buildFeatured4');
 }
 
 const buildSpotlight = () => {
@@ -171,6 +173,7 @@ const buildSpotlight = () => {
             container.innerHTML = html;
         }
     });
+    console.log('buildSpotlight');
 }
 
 // ----------------------------------------------------------------------------------------------------
@@ -180,5 +183,6 @@ export default class Blog extends PageManager {
         buildFeatured3();
         buildFeatured4();
         buildSpotlight();
+        console.log('onReady blog.js');
     }
 }

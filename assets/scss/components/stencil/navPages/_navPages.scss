@@ -121,7 +121,6 @@
         align-items: center;
         display: flex;
         float: none;
-        right: (spacing("half") + spacing("quarter"));
         position: relative;
     }
 
@@ -136,7 +135,7 @@
 
     @include breakpoint("large") {
         .navPages & {
-            margin-right: 60px;
+            margin-right: 5px;
         }
         
         & > a {
@@ -159,10 +158,10 @@
 
         @include breakpoint("large") {
             .navPages & {
-                left: (spacing("half") + spacing("quarter"));
                 margin-left: auto;
                 margin-right: 0;
-                position: relative;
+                position: absolute;
+                right: 0;
             }
             
             a {
@@ -291,7 +290,7 @@
     @include breakpoint("large") {
         color: stencilColor("navPages-color");
         display: inline-block;
-        padding: 20px (spacing("half") + spacing("quarter"));
+        padding: 20px 12px;
 
         &.is-open {
             background-color: $navPage-subMenu-item--is-highlighted-background;

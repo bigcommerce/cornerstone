@@ -70,7 +70,7 @@ const buildFeatured4 = () => {
         
         const postsJson = JSON.parse(response);
 
-        const tagsToExclude = ['news', 'spotlight-left', 'spotlight-center', 'spotlight-right', 'featured'];
+        const tagsToExclude = ['story', 'spotlight-left', 'spotlight-center', 'spotlight-right', 'featured'];
         const removeNewsAndSpotlights = (post) => {
             const postType = !post.tags.find(tag => tagsToExclude.includes(tag.name.toLowerCase()));
             return postType;
@@ -94,8 +94,8 @@ const buildFeatured4 = () => {
             `;
         }).join('');
 
-        const latestNewsPosts = postsJson.posts.filter(post => post.tags.some(tag => tag.name === 'news'));
-        const latestNews = latestNewsPosts.slice(0,5).map((post) => {
+        const latestStoryPosts = postsJson.posts.filter(post => post.tags.some(tag => tag.name === 'story'));
+        const latestStories = latestStoryPosts.slice(0,5).map((post) => {
             const postImg = imgPaths.find(item => item.alt === post.title);
             return `
                 <a href="${post.url}" class="blog-feed__wrapper-link">
@@ -119,8 +119,8 @@ const buildFeatured4 = () => {
                     ${latestPosts}
                 </div>
                 <div class="blog-feed__secondary-container">
-                    <h2>LATEST NEWS</h2>
-                    ${latestNews}
+                    <h2>FEATURED STORIES</h2>
+                    ${latestStories}
                 </div>
             </section>
         `;

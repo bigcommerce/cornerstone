@@ -17,7 +17,7 @@ jobs:
 
     strategy:
       matrix:
-        node: [12.x]
+        node: [14.x]
 
     steps:
     - name: Checkout code
@@ -47,7 +47,7 @@ jobs:
       env:
         URL: ${{ secrets.STENCIL_STORE_URL_PRODUCTION }}
         TOKEN: ${{ secrets.STENCIL_ACCESS_TOKEN_PRODUCTION }}
-      run: stencil init -u $URL -t $TOKEN -p 3000
+      run: stencil init -u $URL -t $TOKEN -p 3000 -h https://api.bigcommerce.com
 
     - name: Check for an updated configuration on the live default storefront (channel ID 1)
       run: stencil pull -c 1

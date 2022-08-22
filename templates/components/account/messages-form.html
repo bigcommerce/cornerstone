@@ -15,20 +15,20 @@
                 {{/each}}
             </select>
         </div>
-        <div class="form-field">
+        <div class="form-field" id="message_subject_field_id">
             <label class="form-label" for="message_subject">
                 {{lang 'forms.inbox.subject' }}
                 <small>{{lang 'common.required' }}</small>
             </label>
-            <input type="text" class="form-input" name="message_subject" id="message_subject">
+            <input aria-labelledby="message_subject_field_id" aria-live="polite" type="text" class="form-input" name="message_subject" id="message_subject">
         </div>
-        <div class="form-field">
+        <div class="form-field" id="message_content_field_id">
             <label class="form-label" for="message_content">
                 {{lang 'forms.inbox.message' }}
                 <small>{{lang 'common.required' }}</small>
             </label>
 
-            <textarea class="form-input" name="message_content" id="message_content" rows="7" ></textarea>
+            <textarea aria-labelledby="message_content_field_id" aria-live="polite" class="form-input" name="message_content" id="message_content" rows="7" ></textarea>
         </div>
         <div class="form-actions">
             <input class="button button--primary" type="submit" value="{{lang 'forms.inbox.submit_value' }}">

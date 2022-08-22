@@ -89,7 +89,7 @@ export default class Auth extends PageManager {
     }
 
     registerNewPasswordValidation() {
-        const { password: enterPassword, password_match: matchPassword, invalid_password: invalidPassword } = this.validationDictionary;
+        const { password: enterPassword, password_match: matchPassword } = this.validationDictionary;
         const newPasswordForm = '.new-password-form';
         const newPasswordValidator = nod({
             submit: $(`${newPasswordForm} input[type="submit"]`),
@@ -97,7 +97,7 @@ export default class Auth extends PageManager {
         });
         const passwordSelector = $(`${newPasswordForm} input[name="password"]`);
         const password2Selector = $(`${newPasswordForm} input[name="password_confirm"]`);
-        const errorTextMessages = createPasswordValidationErrorTextObject(enterPassword, enterPassword, matchPassword, invalidPassword);
+        const errorTextMessages = createPasswordValidationErrorTextObject(enterPassword, enterPassword, matchPassword, this.passwordRequirements.error);
         Validators.setPasswordValidation(
             newPasswordValidator,
             passwordSelector,
@@ -111,7 +111,7 @@ export default class Auth extends PageManager {
         const validationModel = validation($createAccountForm, this.context);
         const createAccountValidator = nod({
             submit: `${this.formCreateSelector} input[type='submit']`,
-            tap: announceInputErrorMessage,
+            delay: 0,
         });
         const $stateElement = $('[data-field-type="State"]');
         const emailSelector = `${this.formCreateSelector} [data-field-type='EmailAddress']`;
@@ -157,7 +157,7 @@ export default class Auth extends PageManager {
         }
 
         if ($passwordElement && $password2Element) {
-            const { password: enterPassword, password_match: matchPassword, invalid_password: invalidPassword } = this.validationDictionary;
+            const { password: enterPassword, password_match: matchPassword } = this.validationDictionary;
 
             createAccountValidator.remove(passwordSelector);
             createAccountValidator.remove(password2Selector);
@@ -166,19 +166,24 @@ export default class Auth extends PageManager {
                 passwordSelector,
                 password2Selector,
                 this.passwordRequirements,
-                createPasswordValidationErrorTextObject(enterPassword, enterPassword, matchPassword, invalidPassword),
+                createPasswordValidationErrorTextObject(enterPassword, enterPassword, matchPassword, this.passwordRequirements.error),
             );
         }
 
-        $createAccountForm.on('submit', event => {
-            createAccountValidator.performCheck();
-
-            if (createAccountValidator.areAll('valid')) {
-                return;
-            }
-
-            event.preventDefault();
+        $createAccountForm.on('submit', (event) => {
+            this.submitAction(event, createAccountValidator);
         });
+    }
+
+    submitAction(event, validator) {
+        validator.performCheck();
+
+        if (validator.areAll('valid')) {
+            return;
+        }
+        event.preventDefault();
+        const earliestError = $('span.form-inlineMessage:first').prev('input');
+        earliestError.focus();
     }
 
     /**

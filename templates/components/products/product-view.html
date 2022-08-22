@@ -132,7 +132,9 @@
                     >
                        {{lang 'products.reviews.new'}}
                     </a>
-                    {{> components/products/modals/writeReview}}
+                    {{#unless is_ajax}}
+                        {{> components/products/modals/writeReview}}
+                    {{/unless}}
                 {{/if}}
             </div>
             {{product.detail_messages}}
@@ -216,10 +218,7 @@
                 {{/if}}
 
                 {{#if theme_settings.show_custom_fields_tabs '!==' true}}
-                    {{#each product.custom_fields}}
-                        <dt class="productView-info-name">{{name}}:</dt>
-                        <dd class="productView-info-value">{{{ sanitize value}}}</dd>
-                    {{/each}}
+                    {{> components/products/custom-fields }}
                 {{/if}}
             </dl>
         </div>
@@ -246,7 +245,7 @@
                         <span data-product-stock>{{product.stock_level}}</span>
                     </label>
                 </div>
-                {{> components/products/add-to-cart}}
+                {{> components/products/add-to-cart with_wallet_buttons=true}}
                 {{#if product.out_of_stock}}
                     {{#if product.out_of_stock_message}}
                         {{> components/common/alert/alert-error product.out_of_stock_message}}

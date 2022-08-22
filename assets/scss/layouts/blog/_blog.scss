@@ -437,20 +437,40 @@
     }
 
     &__social {
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-bottom: 20px;
 
         @include breakpoint("small") {
-            margin-right: 230px;
+            flex-direction: column;
+            justify-content: flex-start;
+            margin: 0 180px 0 0;
+        }
+
+        time {
+            color: #53BCEB;
+            display: block;
+            font-size: 20px;
+            padding-left: 10px;
+            text-align: center;
+
+            @include breakpoint("small") {
+                font-size: 24px;
+                margin-bottom: 40px;
+                padding-left: 0;
+            }
         }
 
         ul {
             display: flex;
             flex-direction: row;
             justify-content: center;
-            margin: 0 0 20px 0;
+            margin: 0;
 
             @include breakpoint("small") {
                 flex-direction: column;
-                margin: 0;
             }
         }
         

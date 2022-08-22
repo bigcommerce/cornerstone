@@ -8,6 +8,7 @@
 
     <div class="blog-post__body-wrapper">
         <div class="blog-post__social">
+            <time>{{ post.date_published }}</time>
             {{assignVar 'encodedUrl' (encodeURI post.url)}}
             {{assignVar 'encodedTitle' (encodeURI head.title)}}
             <ul>

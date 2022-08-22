@@ -38,10 +38,7 @@
     {{#all product.custom_fields theme_settings.show_custom_fields_tabs}}
       <div class="tab-content" id="tab-{{dashcase (lowercase (sanitize theme_settings.pdp-custom-fields-tab-label))}}">
          <dl class="productView-info">
-            {{#each product.custom_fields}}
-               <dt class="productView-info-name">{{name}}:</dt>
-               <dd class="productView-info-value">{{{value}}}</dd>
-            {{/each}}
+            {{> components/products/custom-fields }}
          </dl>
       </div>
     {{/all}}

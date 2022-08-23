@@ -61,7 +61,6 @@ const buildFeatured3 = () => {
             container.innerHTML = html;
         }
     });
-    console.log('buildFeatured3');
 }
 
 const buildFeatured4 = () => {
@@ -70,7 +69,7 @@ const buildFeatured4 = () => {
         
         const postsJson = JSON.parse(response);
 
-        const tagsToExclude = ['story', 'spotlight-left', 'spotlight-center', 'spotlight-right', 'featured'];
+        const tagsToExclude = ['story', 'spotlight-left', 'spotlight-center', 'spotlight-right', 'featured', 'hide'];
         const removeNewsAndSpotlights = (post) => {
             const postType = !post.tags.find(tag => tagsToExclude.includes(tag.name.toLowerCase()));
             return postType;
@@ -126,7 +125,6 @@ const buildFeatured4 = () => {
         `;
         container.innerHTML = html;
     });
-    console.log('buildFeatured4');
 }
 
 const buildSpotlight = () => {
@@ -173,7 +171,6 @@ const buildSpotlight = () => {
             container.innerHTML = html;
         }
     });
-    console.log('buildSpotlight');
 }
 
 // ----------------------------------------------------------------------------------------------------
@@ -183,6 +180,5 @@ export default class Blog extends PageManager {
         buildFeatured3();
         buildFeatured4();
         buildSpotlight();
-        console.log('onReady blog.js');
     }
 }

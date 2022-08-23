@@ -375,6 +375,46 @@
         }
     }
 
+    .all-posts-wrapper {
+        border: 1px solid red;
+        display: flex;
+        margin-top: 100px;
+
+        & > nav {
+            background: lightgray;
+            margin-right: 20px;
+            padding-top: 20px;
+            width: 200px;
+
+            ul {
+                list-style-type: none;
+            }
+        }
+
+        & > div {
+            display: flex;
+            flex-wrap: wrap;
+            width: fit-content;
+        }
+        
+        .all-post {
+            border: 1px solid blue;
+            display: block;
+            height: 150px;
+            overflow: hidden;
+            width: 200px;
+        }
+
+        h2 {
+            font-size: 12px;
+        }
+
+        h3 {
+            font-size: 12px;
+            border-bottom: 1px dashed green;
+        }
+    }
+
     article.blog {
         display: none;
     }

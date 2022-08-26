@@ -1,30 +1,10 @@
 import { extractTag } from './extractTag';
 
-const loadMore = () => {
-
-    /*
-        1. restrict posts to show only 12
-        2. detect if more than 12 posts, if so show LOAD MORE button
-        3. when button clicked, show another 12
-        4. when button clicked, update the button so *next time* it's clicked it shows 36, then 48, and so on
-        5. hide button when all posts are revealed
-    */
-
-}
-
 let numberOfPostsToShow = 12;
 
 const loadMoreButton = (filteredPosts) => {
-    console.log('filteredPosts', filteredPosts);
-
-    /*
-        1. get the number of posts (filtered or unfiltered) in total
-        2. slice 'em so they only show 12
-        3. if total is more than 12
-    */
-    
     let html = '';
-    if (numberOfPostsToShow >= filteredPosts) {
+    if (numberOfPostsToShow >= filteredPosts && filteredPosts !== 0) {
         html = ``;
     } else if (filteredPosts > 12 || filteredPosts === 0) {
         html = `
@@ -51,13 +31,18 @@ const filterPosts = (posts, unfilteredPosts) => {
         }
     });
 
+    if (postFilters.length === 0) {
+        buildAllPosts();
+        return;
+    }
+
     const filterBy = (post) => {
         const postType = post.tags.find(tag => postFilters.includes(tag.name));
         return postType;
     }
     const filteredBlogPosts = posts.filter(filterBy);
 
-    const filteredPosts = filteredBlogPosts.map((post) => {
+    const filteredPosts = filteredBlogPosts.slice(0, numberOfPostsToShow).map((post) => {
         return `
             <a href="${post.url}" class="all-post">
                 <div>
@@ -69,9 +54,15 @@ const filterPosts = (posts, unfilteredPosts) => {
     }).join('');
 
     const container = document.getElementById('filteredPosts');
-    container.innerHTML = postFilters.length > 0 ? filteredPosts : unfilteredPosts;
+    container.innerHTML = filteredPosts;
 
     loadMoreButton(filteredBlogPosts.length);
+
+    const loadMoreButtonBtn = document.getElementById('loadMoreButton');
+    loadMoreButtonBtn && loadMoreButtonBtn.addEventListener('click', () => {
+        numberOfPostsToShow = numberOfPostsToShow += 12;
+        filterPosts(posts, unfilteredPosts);
+    });
 }
 
 const buildAllPosts = (posts) => {
@@ -2971,8 +2962,6 @@ const buildAllPosts = (posts) => {
             "url": "/the-only-air-and-water-dictionary-you-ll-ever-need"
         }
     ]
-
-    console.log('numberOfPostsToShow', numberOfPostsToShow);
     
     const unfilteredPosts = posts.slice(0, numberOfPostsToShow).map((post) => {
         return `
@@ -3013,7 +3002,10 @@ const buildAllPosts = (posts) => {
 
     const filterCheckboxes = document.querySelectorAll('input');
     filterCheckboxes.forEach((input) => {
-        input.addEventListener('click', () => filterPosts(posts, unfilteredPosts));
+        input.addEventListener('click', () => {
+            numberOfPostsToShow = 12;
+            filterPosts(posts, unfilteredPosts);
+        });
     });
 
     const loadMoreButtonBtn = document.getElementById('loadMoreButton');

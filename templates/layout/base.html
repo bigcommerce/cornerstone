@@ -10,6 +10,24 @@
         <link href="{{ head.favicon }}" rel="shortcut icon">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
+        {{#if theme_settings.variation '===' 'production'}}
+        <!-- OneTrust Cookies Consent Notice start for geappliancesairandwater.com -->
+        <script type="text/javascript" src="https://cdn.cookielaw.org/consent/aab23e88-9af6-4baa-a734-07297a26acee/OtAutoBlock.js" ></script>
+        <script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js"  type="text/javascript" charset="UTF-8" data-domain-script="aab23e88-9af6-4baa-a734-07297a26acee" ></script>
+        <script type="text/javascript">
+        function OptanonWrapper() { }
+        </script>
+        <!-- OneTrust Cookies Consent Notice end for geappliancesairandwater.com -->
+        {{else if theme_settings.variation '===' 'staging'}}
+        <!-- OneTrust Cookies Consent Notice start for airwaterdivision-sandbox.mybigcommerce.com -->
+        <script type="text/javascript" src=https://cdn.cookielaw.org/consent/e9f45ac1-4ad3-4698-89ee-4297992f506d/OtAutoBlock.js ></script>
+        <script src=https://cdn.cookielaw.org/scripttemplates/otSDKStub.js  type="text/javascript" charset="UTF-8" data-domain-script="e9f45ac1-4ad3-4698-89ee-4297992f506d" ></script>
+        <script type="text/javascript">
+        function OptanonWrapper() { }
+        </script>
+        <!-- OneTrust Cookies Consent Notice end for airwaterdivision-sandbox.mybigcommerce.com -->
+        {{/if}}
+
         <script>
             // Change document class from no-js to js so we can detect this in css
             document.documentElement.className = document.documentElement.className.replace('no-js', 'js');

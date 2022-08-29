@@ -1,4 +1,5 @@
 import { extractTag } from './extractTag';
+import { extractSummary } from './extractSummary';
 
 let numberOfPostsToShow = 12;
 
@@ -20,7 +21,7 @@ const loadMoreButton = (filteredPosts) => {
     container.innerHTML = html;
 }
 
-const filterPosts = (posts, unfilteredPosts) => {
+const filterPosts = (posts, imgPaths, unfilteredPosts) => {
     const postFilters = [];
 
     const filterOptions = document.getElementById('blogFilters').getElementsByTagName('input');
@@ -32,7 +33,7 @@ const filterPosts = (posts, unfilteredPosts) => {
     });
 
     if (postFilters.length === 0) {
-        buildAllPosts(posts);
+        buildAllPosts(posts, imgPaths);
         return;
     }
 
@@ -43,13 +44,20 @@ const filterPosts = (posts, unfilteredPosts) => {
     const filteredBlogPosts = posts.filter(filterBy);
 
     const filteredPosts = filteredBlogPosts.slice(0, numberOfPostsToShow).map((post) => {
+        const postImg = imgPaths.find(item => item.alt === post.title);
         return `
-            <a href="${post.url}" class="all-post">
-                <div>
-                    <h3>${extractTag(post.tags)}</h3>
-                    <h2>${post.title}</h2>
-                </div>
-            </a>
+            <div class="blog-feed__post">
+                <a href="${post.url}" class="blog-feed__wrapper-link">
+                    <div class="blog-feed__post-image">
+                        ${postImg && postImg.outerHTML}
+                    </div>
+                    <div class="blog-feed__post-text">
+                        <h3 class="blog-feed__tag">${extractTag(post.tags)}</h3>
+                        <h2 class="blog-feed__title"  style="-webkit-box-orient: vertical">${post.title}</h2>
+                        <p class="blog-feed__summary" style="-webkit-box-orient: vertical">${extractSummary(post.summary)}</p>
+                    </div>
+                </a>
+            </div>
         `;
     }).join('');
 
@@ -61,19 +69,26 @@ const filterPosts = (posts, unfilteredPosts) => {
     const loadMoreButtonBtn = document.getElementById('loadMoreButton');
     loadMoreButtonBtn && loadMoreButtonBtn.addEventListener('click', () => {
         numberOfPostsToShow = numberOfPostsToShow += 12;
-        filterPosts(posts, unfilteredPosts);
+        filterPosts(posts, imgPaths, unfilteredPosts);
     });
 }
 
-const buildAllPosts = (posts) => {
+const buildAllPosts = (posts, imgPaths) => {
     const unfilteredPosts = posts.slice(0, numberOfPostsToShow).map((post) => {
+        const postImg = imgPaths.find(item => item.alt === post.title);
         return `
-            <a href="${post.url}" class="all-post">
-                <div>
-                    <h3>${extractTag(post.tags)}</h3>
-                    <h2>${post.title}</h2>
-                </div>
-            </a>
+            <div class="blog-feed__post">
+                <a href="${post.url}" class="blog-feed__wrapper-link">
+                    <div class="blog-feed__post-image">
+                        ${postImg && postImg.outerHTML}
+                    </div>
+                    <div class="blog-feed__post-text">
+                        <h3 class="blog-feed__tag">${extractTag(post.tags)}</h3>
+                        <h2 class="blog-feed__title"  style="-webkit-box-orient: vertical">${post.title}</h2>
+                        <p class="blog-feed__summary" style="-webkit-box-orient: vertical">${extractSummary(post.summary)}</p>
+                    </div>
+                </a>
+            </div>
         `;
     }).join('');
 
@@ -121,14 +136,14 @@ const buildAllPosts = (posts) => {
     filterCheckboxes.forEach((input) => {
         input.addEventListener('click', () => {
             numberOfPostsToShow = 12;
-            filterPosts(posts, unfilteredPosts);
+            filterPosts(posts, imgPaths, unfilteredPosts);
         });
     });
 
     const loadMoreButtonBtn = document.getElementById('loadMoreButton');
     loadMoreButtonBtn && loadMoreButtonBtn.addEventListener('click', () => {
         numberOfPostsToShow = numberOfPostsToShow += 12;
-        buildAllPosts(posts);
+        buildAllPosts(posts, imgPaths);
     });
 }
 

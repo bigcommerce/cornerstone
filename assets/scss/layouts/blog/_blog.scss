@@ -399,74 +399,119 @@
 
         .blog-feed__all-posts-wrapper {
             display: flex;
-        }
+            flex-direction: column;
 
-        .blog-feed__filters {
-            background: lightgray;
-            width: 360px;
-        }
-
-        .blog-feed__all-posts {
-            background: darkgray;
-            flex-grow: 1;
-        }
-    }
-
-    .all-posts-wrapper {
-        border: 1px solid peachpuff;
-        display: flex;
-        margin-top: 100px;
-
-        & > nav {
-            background: lightgray;
-            margin-right: 20px;
-            padding-top: 20px;
-            width: 200px;
-
-            ul {
-                list-style-type: none;
+            @include breakpoint("small") {
+                flex-direction: row;
             }
         }
 
-        .posts-wrapper {
-            width: fit-content;
+        .blog-feed__filters {
+            margin-bottom: 20px;
+            width: auto;
+            
+            @include breakpoint("small") {
+                margin-bottom: 0;
+                padding-right: 30px;
+                width: 285px;
+            }
+
+            @include breakpoint("medium") {
+                width: 360px;
+            }
+
+            h3 {
+                color: #0F4577;
+                font-size: 22px;
+                line-height: normal;
+                margin-bottom: 20px;
+                text-align: center;
+
+                @include breakpoint("small") {
+                    font-size: 26px;
+                    margin-bottom: 30px;
+                    text-align: left;
+                }
+            }
+
+            h4 {
+                border-top: 1px solid #53BCEB;
+                color: #0F4577;
+                font-size: 18px;
+                line-height: normal;
+                margin-bottom: 0;
+                padding-top: 15px;
+                text-align: center;
+
+                @include breakpoint("small") {
+                    font-size: 20px;
+                    padding-top: 25px;
+                    text-align: left;
+                }
+            }
+
+            ul {
+                list-style-type: none;
+                margin: 10px auto;
+                width: fit-content;
+
+                @include breakpoint("small") {
+                    margin: 20px auto;
+                    width: auto;
+                }
+            }
+        }
+
+        .blog-feed__all-posts {
+            flex-grow: 1;
+            width: 100%;
+
+            @include breakpoint("small") {
+                width: min-content;
+            }
         }
 
         #filteredPosts {
-            display: flex;
-            flex-wrap: wrap;
-        }
-        
-        .all-post {
-            border: 1px solid salmon;
-            display: block;
-            height: 150px;
-            overflow: hidden;
-            width: 370px;
-        }
 
-        h2 {
-            font-size: 12px;
-        }
+            @include breakpoint("small") {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+            }
 
-        h3 {
-            font-size: 12px;
-            border-bottom: 1px dashed green;
-        }
+            .blog-feed__post {
+                margin-bottom: 20px;
+                
+                @include breakpoint("small") {
+                    width: 48%;
+                }
 
-        .button-wrapper {
-            margin-top: 30px;
-            width: 100%;
-        }
-        
-        button {
-            background: #53BCEB;
-            color: white;
-            display: block;
-            font-weight: bold;
-            margin: 0 auto;
-            padding: 20px 0;
-            width: 200px;
+                @include breakpoint("medium") {
+                    width: 32%;
+                }
+            }
+
+            .blog-feed__post-image {
+
+                img {
+                    height: 200px;
+                    object-fit: cover;
+                    width: 100%;
+                }
+            }
+
+            .blog-feed__post-text {
+                padding: 20px;
+
+                @include breakpoint("small") {
+                    padding-top: 25px;
+                }
+            }
+
+            .blog-feed__title,
+            .blog-feed__summary {
+                @include truncate(2);
+            }
         }
     }
 

@@ -459,6 +459,53 @@
                     margin: 20px auto;
                     width: auto;
                 }
+
+                li {
+                    color: #5A6671;
+                    font-size: 16px;
+                    line-height: 2;
+
+                    @include breakpoint("small") {
+                        font-size: 18px;
+                    }
+
+                    @include breakpoint("medium") {
+                        font-size: 22px;
+                    }
+
+                    input {
+                        cursor: pointer;
+                        height: 30px;
+                        position: relative;
+                        vertical-align: middle;
+                        visibility: hidden;
+                        width: 30px;
+
+                        &::after {
+                            border: 1px solid #53BCEB;
+                            content: '';
+                            height: 30px;
+                            left: 0;
+                            position: absolute;
+                            top: 0;
+                            visibility: visible;
+                            width: 30px;
+                        }
+
+                        &:checked {
+
+                            &::after {
+                                background: url("../img/checkmark.svg") no-repeat center;
+                            }
+                        }
+                    }
+
+                    label {
+                        @include breakpoint("medium") {
+                            padding-left: 10px;
+                        }
+                    }
+                }
             }
         }
 
@@ -511,6 +558,26 @@
             .blog-feed__title,
             .blog-feed__summary {
                 @include truncate(2);
+            }
+        }
+
+        #loadMorePosts {
+
+            .button-wrapper {
+
+                @include breakpoint("medium") {
+                    margin-top: 20px;
+                }
+            }
+            
+            button {
+                background: #53BCEB;
+                color: #fff;
+                display: block;
+                font-size: 18px;
+                font-weight: bold;
+                margin: 0 auto;
+                padding: 20px 30px;
             }
         }
     }

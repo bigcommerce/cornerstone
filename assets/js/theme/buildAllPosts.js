@@ -115,6 +115,8 @@ const buildAllPosts = (posts, imgPaths) => {
                             <h4>PRODUCT CATEGORY</h4>
                             <ul>
                                 <li><input type="checkbox" id="blogFilterHvac" value="hvac" /> <label for="blogFilterHvac">HVAC</label></li>
+                                <li><input type="checkbox" id="blogFilterWholeHomeSolutions" value="whole home solutions" /> <label for="blogFilterWholeHomeSolutions">Whole home solutions</label></li>
+                                <li><input type="checkbox" id="blogFilterPlumbing" value="plumbing" /> <label for="blogFilterPlumbing">Plumbing</label></li>
                             </ul>
                         </div>
                     </div>

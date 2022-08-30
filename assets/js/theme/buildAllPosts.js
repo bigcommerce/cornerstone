@@ -101,23 +101,27 @@ const buildAllPosts = (posts, imgPaths) => {
                     <h3>FILTER ARTICLES</h3>
                     <div id="blogFilters">
                         <div>
-                            <h4>TOPIC</h4>
-                            <ul>
-                                <li><input type="checkbox" id="blogFilterGeneral" value="general" /> <label for="blogFilterGeneral">General</label></li>
-                                <li><input type="checkbox" id="blogFilterIndustryTrend" value="industry trend" /> <label for="blogFilterIndustryTrend">Industry Trend</label></li>
-                                <li><input type="checkbox" id="blogFilterInstallation" value="installation" /> <label for="blogFilterInstallation">Installation</label></li>
-                                <li><input type="checkbox" id="blogFilterNews" value="news" /> <label for="blogFilterNews">News</label></li>
-                                <li><input type="checkbox" id="blogFilterPressRelease" value="press release" /> <label for="blogFilterPressRelease">Press Release</label></li>
-                                <li><input type="checkbox" id="blogFilterService" value="service" /> <label for="blogFilterService">Service</label></li>
-                            </ul>
+                            <details open>
+                                <summary>TOPIC</summary>
+                                <ul>
+                                    <li><input type="checkbox" id="blogFilterGeneral" value="general" /> <label for="blogFilterGeneral">General</label></li>
+                                    <li><input type="checkbox" id="blogFilterIndustryTrend" value="industry trend" /> <label for="blogFilterIndustryTrend">Industry Trend</label></li>
+                                    <li><input type="checkbox" id="blogFilterInstallation" value="installation" /> <label for="blogFilterInstallation">Installation</label></li>
+                                    <li><input type="checkbox" id="blogFilterNews" value="news" /> <label for="blogFilterNews">News</label></li>
+                                    <li><input type="checkbox" id="blogFilterPressRelease" value="press release" /> <label for="blogFilterPressRelease">Press Release</label></li>
+                                    <li><input type="checkbox" id="blogFilterService" value="service" /> <label for="blogFilterService">Service</label></li>
+                                </ul>
+                            </details>
                         </div>
                         <div>
-                            <h4>PRODUCT CATEGORY</h4>
-                            <ul>
-                                <li><input type="checkbox" id="blogFilterHvac" value="hvac" /> <label for="blogFilterHvac">HVAC</label></li>
-                                <li><input type="checkbox" id="blogFilterWholeHomeSolutions" value="whole home solutions" /> <label for="blogFilterWholeHomeSolutions">Whole home solutions</label></li>
-                                <li><input type="checkbox" id="blogFilterPlumbing" value="plumbing" /> <label for="blogFilterPlumbing">Plumbing</label></li>
-                            </ul>
+                            <details open>
+                                <summary>PRODUCT CATEGORY</summary>
+                                <ul>
+                                    <li><input type="checkbox" id="blogFilterHvac" value="hvac" /> <label for="blogFilterHvac">HVAC</label></li>
+                                    <li><input type="checkbox" id="blogFilterWholeHomeSolutions" value="whole home solutions" /> <label for="blogFilterWholeHomeSolutions">Whole home solutions</label></li>
+                                    <li><input type="checkbox" id="blogFilterPlumbing" value="plumbing" /> <label for="blogFilterPlumbing">Plumbing</label></li>
+                                </ul>
+                            </details>
                         </div>
                     </div>
                 </nav>

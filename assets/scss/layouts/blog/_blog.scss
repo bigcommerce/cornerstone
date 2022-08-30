@@ -434,19 +434,56 @@
                 }
             }
 
-            h4 {
+            details {
+                padding-bottom: 25px;
+            }
+
+            details[open] {
+                padding-bottom: 0;
+
+                summary {
+
+                    &::after {
+                        transform: rotate(180deg);
+                    }
+                }
+            }
+
+            summary {
                 border-top: 1px solid #53BCEB;
                 color: #0F4577;
+                cursor: pointer;
                 font-size: 18px;
+                font-weight: bold;
+                letter-spacing: 0.25px;
                 line-height: normal;
                 margin-bottom: 0;
                 padding-top: 15px;
+                position: relative;
                 text-align: center;
 
                 @include breakpoint("small") {
                     font-size: 20px;
                     padding-top: 25px;
                     text-align: left;
+                }
+
+                &::after {
+                    background: url("../icons/chevron-down-alt.svg") no-repeat center;
+                    background-size: contain;
+                    bottom: 4px;
+                    content: '';
+                    height: 13px;
+                    margin-left: 10px;
+                    position: absolute;
+                    width: 20px;
+
+                    @include breakpoint("small") {
+                        height: 16px;
+                        margin-left: 0;
+                        right: 0;
+                        width: 24px;
+                    }
                 }
             }
 

@@ -463,7 +463,12 @@
 
                 @include breakpoint("small") {
                     font-size: 20px;
+                    letter-spacing: -0.5px;
                     padding-top: 25px;
+                }
+
+                @include breakpoint("medium") {
+                    letter-spacing: 0.25px;
                 }
 
                 &::-webkit-details-marker {
@@ -502,7 +507,7 @@
                 li {
                     color: #5A6671;
                     font-size: 16px;
-                    line-height: 2;
+                    line-height: 2.5;
                     white-space: nowrap;
 
                     @include breakpoint("small") {
@@ -511,36 +516,43 @@
 
                     @include breakpoint("medium") {
                         font-size: 22px;
+                        line-height: 2;
                     }
 
                     input {
                         cursor: pointer;
                         height: 30px;
-                        position: relative;
                         vertical-align: middle;
+                        visibility: hidden;
                         width: 30px;
+                    }
 
-                        &::after {
+                    label {
+                        position: relative;
+
+                        @include breakpoint("medium") {
+                            padding-left: 10px;
+                        }
+
+                        &::before {
                             border: 1px solid #53BCEB;
                             content: '';
                             height: 30px;
-                            left: 0;
+                            left: -37px;
                             position: absolute;
-                            top: 0;
+                            top: -4px;
                             width: 30px;
-                        }
 
-                        &:checked {
-
-                            &::after {
-                                background: #fff url("../img/checkmark.svg") no-repeat center;
+                            @include breakpoint("medium") {
+                                top: 0;
                             }
                         }
                     }
 
-                    label {
-                        @include breakpoint("medium") {
-                            padding-left: 10px;
+                    input:checked + label {
+
+                        &::before {
+                            background: #fff url("../img/checkmark.svg") no-repeat center;
                         }
                     }
                 }

@@ -468,6 +468,10 @@
                     text-align: left;
                 }
 
+                &::-webkit-details-marker {
+                    display: none;
+                }
+
                 &::after {
                     background: url("../icons/chevron-down-alt.svg") no-repeat center;
                     background-size: contain;
@@ -501,6 +505,7 @@
                     color: #5A6671;
                     font-size: 16px;
                     line-height: 2;
+                    white-space: nowrap;
 
                     @include breakpoint("small") {
                         font-size: 18px;
@@ -560,18 +565,31 @@
             @include breakpoint("small") {
                 display: flex;
                 flex-wrap: wrap;
-                justify-content: space-between;
             }
 
             .blog-feed__post {
                 margin-bottom: 20px;
                 
                 @include breakpoint("small") {
+                    margin-right: 18px;
                     width: 48%;
+                    
+                    &:nth-child(2n) {
+                        margin-right: 0;
+                    }
                 }
 
                 @include breakpoint("medium") {
+                    margin-right: 18px;
                     width: 32%;
+                    
+                    &:nth-child(2n) {
+                        margin-right: 18px;
+                    }
+                    
+                    &:nth-child(3n) {
+                        margin-right: 0;
+                    }
                 }
             }
 

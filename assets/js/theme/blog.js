@@ -24,7 +24,7 @@ const imgPaths = Array.from(document.querySelectorAll('.blog-thumbnail img'));
 // ----------------------------------------------------------------------------------------------------
 
 const buildFeed = () => {
-    api.getPage('/blog/', options, (error, response) => {
+    api.getPage('/articles/', options, (error, response) => {
         if (error) return console.error(error);
 
         const postsJson = JSON.parse(response);

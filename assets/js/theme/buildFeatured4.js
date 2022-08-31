@@ -26,7 +26,7 @@ const buildFeatured4 = (posts, imgPaths) => {
         `;
     }).join('');
 
-    const latestStoryPosts = posts.filter(post => post.tags.some(tag => tag.name === 'story'));
+    const latestStoryPosts = posts.filter(post => post.tags.some(tag => tag.name === 'press release'));
     const latestStories = latestStoryPosts.slice(0,5).map((post) => {
         const postImg = imgPaths.find(item => item.alt === post.title);
         return `
@@ -51,7 +51,7 @@ const buildFeatured4 = (posts, imgPaths) => {
                 ${latestPosts}
             </div>
             <div class="blog-feed__secondary-container">
-                <h2>FEATURED STORIES</h2>
+                <h2>PRESS RELEASES</h2>
                 ${latestStories}
             </div>
         </section>

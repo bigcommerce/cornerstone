@@ -2,7 +2,7 @@ import { extractTag } from './extractTag';
 import { extractSummary } from './extractSummary';
 
 const buildFeatured4 = (posts, imgPaths) => {
-    const tagsToExclude = ['story', 'spotlight-left', 'spotlight-center', 'spotlight-right', 'featured', 'hide'];
+    const tagsToExclude = ['press release', 'spotlight-left', 'spotlight-center', 'spotlight-right', 'featured', 'hide'];
     const removeNewsAndSpotlights = (post) => {
         const postType = !post.tags.find(tag => tagsToExclude.includes(tag.name.toLowerCase()));
         return postType;

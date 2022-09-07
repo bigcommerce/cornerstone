@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fixed escaping on created store account confirm message. [#2248]https://github.com/bigcommerce/cornerstone/pull/2248
 - Pass theme settings from blog page to blog post template. [#2253]https://github.com/bigcommerce/cornerstone/pull/2253
 - Bump jQuery to 3.6.1. [#2250](https://github.com/bigcommerce/cornerstone/issues/2250)
+- Reduce lodash usage [#2256]https://github.com/bigcommerce/cornerstone/pull/2256
 
 ## 6.5.0 (06-24-2022)
 - Category icons do not appear in Search Form [#2221]https://github.com/bigcommerce/cornerstone/pull/2221

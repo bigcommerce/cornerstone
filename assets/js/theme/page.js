@@ -22,8 +22,14 @@ export default class Page extends PageManager {
             el.target.style.display = 'none';
         });
     }
+
+    addMarginBottom0() {
+        const mainContainer = document.querySelector('main.body');
+        mainContainer.style.marginBottom = 0;
+    }
     
     onReady() {
-        this.pathname === '/home-test' && this.addVideoClickLayer();
+        this.pathname === '/' && this.addVideoClickLayer();
+        this.pathname === '/gas-water-heaters' && this.addMarginBottom0();
     }
 }

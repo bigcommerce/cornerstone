@@ -14,8 +14,14 @@
             {{#each pages}}
                 <li class="navPages-item navPages-item-page{{#if name '==' 'Contact Us'}} navPages-item-contact{{/if}}">
                     <a class="navPages-action{{#if name '==' ../page.title}} activePage{{/if}}"
-                    href="{{url}}"
-                    aria-label="{{name}}"
+                        {{#if name '==' 'Contact Us'}}
+                        href="/contact-us/"
+                        {{else if name '==' 'Why Work With Us'}}
+                        href="/why-work-with-us/"
+                        {{else}}
+                        href="{{url}}"
+                        {{/if}}
+                        aria-label="{{name}}"
                     >
                         {{#if name '==' 'Contact Us'}}
                             <span class="icon">

@@ -1,7 +1,7 @@
 ---
 blog:
     posts:
-        limit: 20
+        limit: 500
         pages: 3
         summary: 200
 ---
@@ -11,7 +11,7 @@ blog:
     <div class="blog-feed">
 
         <div class="blog-feed__header full-width">
-            <h2 class="blog-feed__subheading">Articles &amp; Inspiration</h2>
+            <h2 class="blog-feed__subheading">Information &amp; Inspiration</h2>
             <h1 class="blog-feed__heading">{{blog.name}}</h1>
         </div>
 
@@ -20,6 +20,8 @@ blog:
         <div id="featured-4"></div>
 
         <div id="spotlight"></div>
+
+        <div id="all-posts"></div>
         
         {{#each blog.posts}}
         
@@ -27,7 +29,7 @@ blog:
 
         {{/each}}
 
-        <div style="display: none;">{{> components/common/paginator pagination.blog}}</div>
+        <div>{{> components/common/paginator pagination.blog}}</div>
 
     </div>
 </section>

@@ -21,7 +21,6 @@ const injectTag = () => {
 
         tagContainer.innerText = tag.name;
     });
-    console.log('injectTag');
 }
 
 // ----------------------------------------------------------------------------------------------------
@@ -29,6 +28,5 @@ const injectTag = () => {
 export default class Blog extends PageManager {
     onReady() {
         injectTag();
-        console.log('onReady blog-post.js');
     }
 }

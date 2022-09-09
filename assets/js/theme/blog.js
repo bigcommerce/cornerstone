@@ -36,10 +36,19 @@ const buildFeed = () => {
     });
 }
 
+const closeModalProperly = () => {
+    // the modal plugin isn't closing the overlay when the footer modal link is used
+    const modalCloseBtn = document.querySelectorAll('button.ot-close-icon');
+    modalCloseBtn[1].addEventListener('click', () => {
+        document.querySelector('.onetrust-pc-dark-filter').style.display = 'none';
+    });
+}
+
 // ----------------------------------------------------------------------------------------------------
 
 export default class Blog extends PageManager {
     onReady() {
         buildFeed();
+        closeModalProperly();
     }
 }

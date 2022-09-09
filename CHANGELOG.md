@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Bump jQuery to 3.6.1. [#2250](https://github.com/bigcommerce/cornerstone/issues/2250)
 - Fix "incorrect value type" for anonymous reviews in Google Search Console [#2255]https://github.com/bigcommerce/cornerstone/pull/2255
 - Reduce lodash usage [#2256]https://github.com/bigcommerce/cornerstone/pull/2256
+- Bump stencil utils to 6.12.1: fix broken add to cart button [#2259]https://github.com/bigcommerce/cornerstone/pull/2259
 
 ## 6.5.0 (06-24-2022)
 - Category icons do not appear in Search Form [#2221]https://github.com/bigcommerce/cornerstone/pull/2221

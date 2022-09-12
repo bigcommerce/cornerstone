@@ -24,7 +24,7 @@ blog:
     {{/unless}}
 
     {{#each blog.posts}}
-        {{> components/blog/post post=this}}
+        {{> components/blog/post post=this theme_settings=../theme_settings}}
     {{/each}}
 
     {{> components/common/paginator pagination.blog}}

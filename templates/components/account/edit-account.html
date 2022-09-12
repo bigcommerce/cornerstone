@@ -5,31 +5,31 @@
     {{inject 'currentPassword' (lang 'forms.validate.account.edit.password')}}
     <fieldset class="form-fieldset">
         <div class="form-row form-row--half">
-            <div class="form-field">
+            <div class="form-field" id="account_firstname_id">
                 <label class="form-label" for="account_firstname">
                     {{lang 'account.settings.first_name' }}
                     <small>{{lang 'common.required' }}</small>
                 </label>
-                <input type="text" class="form-input" name="account_firstname" id="account_firstname" value="{{forms.edit_account.first_name}}">
+                <input aria-labelledby="account_firstname_id" aria-live="polite" type="text" class="form-input" name="account_firstname" id="account_firstname" value="{{forms.edit_account.first_name}}">
             </div>
-            <div class="form-field">
+            <div class="form-field" id="account_lastname_id">
                 <label class="form-label" for="account_lastname">
                     {{lang 'account.settings.last_name' }}
                     <small>{{lang 'common.required' }}</small>
                 </label>
-                <input type="text" class="form-input" name="account_lastname" id="account_lastname" value="{{forms.edit_account.last_name}}">
+                <input aria-labelledby="account_lastname_id" aria-live="polite" type="text" class="form-input" name="account_lastname" id="account_lastname" value="{{forms.edit_account.last_name}}">
             </div>
-            <div class="form-field">
+            <div class="form-field" id="account_companyname_id">
                 <label class="form-label" for="account_companyname">
                     {{lang 'account.settings.company' }}
                 </label>
-                <input type="text" class="form-input" name="account_companyname" id="account_companyname" value="{{forms.edit_account.company_name}}">
+                <input aria-labelledby="account_companyname_id" aria-live="polite" type="text" class="form-input" name="account_companyname" id="account_companyname" value="{{forms.edit_account.company_name}}">
             </div>
-            <div class="form-field">
+            <div class="form-field" id="account_phone_id">
                 <label class="form-label" for="account_phone">
                     {{lang 'account.settings.phone' }}
                 </label>
-                <input type="text" class="form-input" name="account_phone" id="account_phone" value="{{forms.edit_account.phone}}">
+                <input aria-labelledby="account_phone_id" aria-live="polite" type="text" class="form-input" name="account_phone" id="account_phone" value="{{forms.edit_account.phone}}">
             </div>
             {{#each forms.edit_account.fields}}
                 {{{dynamicComponent 'components/common/forms'}}}

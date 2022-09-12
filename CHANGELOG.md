@@ -13,6 +13,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add logic to collect Product Details data and send it to the BC App stencil template through custom event [#2270](https://github.com/bigcommerce/cornerstone/pull/2270)
 - Allow quantity of "0" in cart to remove item [#2266](https://github.com/bigcommerce/cornerstone/pull/2266)
 - Fix the issue with getting product details data if the product details form is valid on page load [#2271](https://github.com/bigcommerce/cornerstone/pull/2271)
+- - Update key render-blocking resources to be preloaded via HTTP headers/Early Hints [#2261](https://github.com/bigcommerce/cornerstone/pull/2261)
+
 
 ## 6.6.1 (09-14-2022)
 

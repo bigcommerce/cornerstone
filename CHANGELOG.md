@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Draft
+
+## 6.6.0 (09-13-2022)
 - Add unionpay img to be display on custumers account. [#2260](https://github.com/bigcommerce/cornerstone/pull/2260)
 - Translations update September 2022. [#2258](https://github.com/bigcommerce/cornerstone/issues/2258)
 - Unable to navigate to home page from search results page after clicking Back button on browser. [#2238](https://github.com/bigcommerce/cornerstone/issues/2238)

@@ -37,7 +37,7 @@
                             <h3 class="card-title">
                                 <a href="{{url}}">{{ name }}</a>
                             </h3>
-                            {{#or ../customer (if ../theme_settings.restrict_to_login '!==' true)}}
+                            {{#or ../customer (unless ../settings.hide_price_from_guests)}}
                                 {{#if price_range}}
                                     {{> components/products/price-range}}
                                 {{else}}
@@ -55,7 +55,7 @@
                 <th class="compareTable-heading"></th>
                 {{#each comparisons}}
                     <td class="compareTable-action">
-                        {{#or ../customer (if ../theme_settings.restrict_to_login '!==' true)}}
+                        {{#or ../customer (unless ../settings.hide_price_from_guests)}}
                             {{#if show_cart_action}}
                                 {{#if has_options}}
                                     <a href="{{url}}" {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}} class="button button--primary" data-product-id="{{id}}">{{lang 'products.choose_options'}}</a>

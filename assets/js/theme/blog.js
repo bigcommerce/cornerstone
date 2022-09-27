@@ -28,6 +28,11 @@ const buildFeed = () => {
         if (error) return console.error(error);
 
         const postsJson = JSON.parse(response);
+
+        postsJson.posts.forEach((post) => {
+            const postUrl = post.url.replace('store-yefuun73xw.mybigcommerce', 'www.geappliancesairandwater');
+            post.url = postUrl;
+        });
         
         buildFeatured3(postsJson.posts, imgPaths);
         buildFeatured4(postsJson.posts, imgPaths);

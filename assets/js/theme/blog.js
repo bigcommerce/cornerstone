@@ -30,7 +30,7 @@ const buildFeed = () => {
         const postsJson = JSON.parse(response);
 
         postsJson.posts.forEach((post) => {
-            const postUrl = post.url.replace('store-yefuun73xw.mybigcommerce', 'www.geappliancesairandwater');
+            const postUrl = post.url.replace('https://store-yefuun73xw.mybigcommerce.com/', '/');
             post.url = postUrl;
         });
         

@@ -187,6 +187,7 @@ export default class ProductDetailsBase {
                 $input: $('[name=qty\\[\\]]', $scope),
             },
             $bulkPricing: $('.productView-info-bulkPricing', $scope),
+            $walletButtons: $('[data-add-to-cart-wallet-buttons]', $scope),
         };
     }
 
@@ -345,9 +346,11 @@ export default class ProductDetailsBase {
         if (!data.purchasable || !data.instock) {
             viewModel.$addToCart.prop('disabled', true);
             viewModel.$increments.prop('disabled', true);
+            viewModel.$walletButtons.hide();
         } else {
             viewModel.$addToCart.prop('disabled', false);
             viewModel.$increments.prop('disabled', false);
+            viewModel.$walletButtons.show();
         }
     }
 

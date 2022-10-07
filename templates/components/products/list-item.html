@@ -1,6 +1,6 @@
 {{#if settings.data_tag_enabled}}
     <article class="listItem" data-event-type="{{event}}" data-entity-id="{{id}}" data-position="{{position}}" data-name="{{name}}" data-product-category="{{#each category}}{{#if @last}}{{this}}{{else}}{{this}}, {{/if}}{{/each}}" data-product-brand="{{brand.name}}" data-product-price="
-    {{#or customer (unless theme_settings.restrict_to_login)}}
+    {{#or customer (unless settings.hide_price_from_guests)}}
         {{#if price.with_tax}}
             {{price.with_tax.value}}
         {{else}}
@@ -91,7 +91,7 @@
                 {{/if}}
             </div>
             <div class="listItem-actions">
-                {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+                {{#or customer (unless settings.hide_price_from_guests)}}
                     {{#if price}}
                         <div class="listItem-price">{{> components/products/price price=price}}</div>
                     {{/if}}

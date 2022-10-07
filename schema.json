@@ -478,12 +478,6 @@
         "content": "i18n.PurchaseOptions"
       },
       {
-        "type": "checkbox",
-        "label": "i18n.HidePurchaseOptionsPriceAnd",
-        "force_reload": true,
-        "id": "restrict_to_login"
-      },
-      {
         "type": "heading",
         "content": "i18n.FormInputFields"
       },
@@ -904,25 +898,6 @@
         "label": "i18n.ShowGooglePay",
         "force_reload": true,
         "id": "show_accept_googlepay"
-      },
-      {
-        "type": "select",
-        "label": "i18n.ApplePayColor",
-        "id": "applePay-button",
-        "options": [
-          {
-            "value": "black",
-            "label": "i18n.BlackWhiteText"
-          },
-          {
-            "value": "white",
-            "label": "i18n.WhiteBlackText"
-          },
-          {
-            "value": "white-border",
-            "label": "i18n.WhiteBlackTextWithBorder"
-          }
-        ]
       },
       {
         "type": "checkbox",
@@ -1494,6 +1469,12 @@
         "type": "color",
         "label": "i18n.WishlistDropdownBackground",
         "id": "dropdown--wishList-backgroundColor"
+      },
+      {
+        "type": "checkbox",
+        "label": "i18n.ShowQuickPaymentButtons",
+        "force_reload": true,
+        "id": "show_quick_payment_buttons"
       },
       {
         "type": "heading",
@@ -2836,12 +2817,146 @@
       },
       {
         "type": "heading",
-        "content": "i18n.SmartPaypalButton"
+        "content": "i18n.QuickPaymentButtons"
+      },
+      {
+        "type": "select",
+        "label": "i18n.NumberOfButtonsAlwaysVisible",
+        "force_reload": true,
+        "id": "paymentbuttons-number-of-buttons",
+        "options": [
+          {
+            "value": 1,
+            "label": "1"
+          },
+          {
+            "value": 2,
+            "label": "2"
+          }
+        ]
+      },
+      {
+        "type": "sort",
+        "label": "i18n.ProviderSortingOrderLabel",
+        "id": "paymentbuttons-provider-sorting",
+        "force_reload": true,
+        "options": [
+          {
+            "value": "paypal",
+            "label": "i18n.PayPalProviderSortingLabel",
+            "enabledBy": "paypal"
+          },
+          {
+            "value": "paypal-credit",
+            "label": "i18n.PayPalCreditProviderSortingLabel",
+            "enabledBy": "paypal-credit"
+          },
+          {
+            "value": "paypal-venmo",
+            "label": "i18n.PayPalVenmoProviderSortingLabel",
+            "enabledBy": "paypal-venmo"
+          },
+          {
+            "value": "sepa",
+            "label": "i18n.PayPalSepaProviderSortingLabel",
+            "enabledBy": "sepa"
+          },
+          {
+            "value": "googlepay",
+            "label": "i18n.GooglepayProviderSortingLabel",
+            "enabledBy": "googlepay"
+          },
+          {
+            "value": "applepay",
+            "label": "i18n.ApplepayProviderSortingLabel",
+            "enabledBy": "applepay"
+          },
+          {
+            "value": "afterpay",
+            "label": "i18n.AfterpayProviderSortingLabel",
+            "enabledBy": "afterpay"
+          },
+          {
+            "value": "amazonpay",
+            "label": "i18n.AmazonProviderSortingLabel",
+            "enabledBy": "amazonpay"
+          },
+          {
+            "value": "masterpass",
+            "label": "i18n.MasterpassProviderSortingLabel",
+            "enabledBy": "masterpass"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "content": "i18n.PaypalAcceleratedCheckoutButton",
+        "enable": "payPalAcceleratedCheckoutEnabled"
+      },
+      {
+        "type": "color",
+        "label": "i18n.ButtonColor",
+        "id": "paymentbuttons-paypal-accelerated-checkout-color",
+        "enable": "payPalAcceleratedCheckoutEnabled"
+      },
+      {
+        "type": "color",
+        "label": "i18n.ContentColor",
+        "id": "paymentbuttons-paypal-accelerated-content-color",
+        "enable": "payPalAcceleratedCheckoutEnabled"
+      },
+      {
+        "type": "select",
+        "label": "i18n.ButtonContent",
+        "id": "paymentbuttons-paypal-accelerated-content-label",
+        "enable": "payPalAcceleratedCheckoutEnabled",
+        "options": [
+          {
+            "value": "buy",
+            "label": "i18n.Buy"
+          },
+          {
+            "value": "checkout",
+            "label": "i18n.Checkout"
+          },
+          {
+            "value": "pay",
+            "label": "i18n.Pay"
+          },
+          {
+            "value": "buynow",
+            "label": "i18n.BuyNow"
+          },
+          {
+            "value": "paynow",
+            "label": "i18n.PayNow"
+          },
+          {
+            "value": "checkoutnow",
+            "label": "i18n.CheckoutNow"
+          },
+          {
+            "value": "proceedtocheckout",
+            "label": "i18n.ProceedToCheckout"
+          }
+        ]
+      },
+      {
+        "type": "color",
+        "label": "i18n.BorderColor",
+        "id": "paymentbuttons-paypal-accelerated-border-color",
+        "enable": "payPalAcceleratedCheckoutEnabled"
+      },
+      {
+        "type": "heading",
+        "content": "i18n.SmartPaypalButton",
+        "enable": "payPalProvidersEnabled"
       },
       {
         "type": "select",
         "label": "i18n.ButtonColor",
         "id": "paymentbuttons-paypal-color",
+        "enable": "payPalProvidersEnabled",
         "force_reload": true,
         "options": [
           {
@@ -2870,6 +2985,7 @@
         "type": "select",
         "label": "i18n.ButtonShape",
         "id": "paymentbuttons-paypal-shape",
+        "enable": "payPalProvidersEnabled",
         "force_reload": true,
         "options": [
           {
@@ -2886,6 +3002,7 @@
         "type": "select",
         "label": "i18n.ButtonContent",
         "id": "paymentbuttons-paypal-label",
+        "enable": "payPalProvidersEnabled",
         "force_reload": true,
         "options": [
           {
@@ -2910,6 +3027,7 @@
         "type": "select",
         "label": "i18n.DisplayStyle",
         "id": "paymentbuttons-paypal-layout",
+        "enable": "payPalProvidersEnabled",
         "force_reload": true,
         "options": [
           {
@@ -2924,12 +3042,14 @@
       },
       {
         "type": "heading",
-        "content": "i18n.CheckoutPayPalButton"
+        "content": "i18n.CheckoutPayPalButton",
+        "enable": "payPalProvidersEnabled"
       },
       {
         "type": "select",
         "label": "i18n.ButtonColor",
         "id": "checkout-paymentbuttons-paypal-color",
+        "enable": "payPalProvidersEnabled",
         "force_reload": true,
         "options": [
           {
@@ -2958,6 +3078,7 @@
         "type": "select",
         "label": "i18n.ButtonShape",
         "id": "checkout-paymentbuttons-paypal-shape",
+        "enable": "payPalProvidersEnabled",
         "force_reload": true,
         "options": [
           {
@@ -2974,6 +3095,7 @@
         "type": "select",
         "label": "i18n.ButtonSize",
         "id": "checkout-paymentbuttons-paypal-size",
+        "enable": "payPalProvidersEnabled",
         "force_reload": true,
         "options": [
           {
@@ -2994,6 +3116,7 @@
         "type": "select",
         "label": "i18n.ButtonContent",
         "id": "checkout-paymentbuttons-paypal-label",
+        "enable": "payPalProvidersEnabled",
         "force_reload": true,
         "options": [
           {
@@ -3011,6 +3134,127 @@
           {
             "value": "paypal",
             "label": "i18n.PayPal"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "content": "i18n.GooglePaySettings",
+        "enable": "googleProvidersEnabled"
+      },
+      {
+        "type": "select",
+        "label": "i18n.ButtonColor",
+        "id": "googlepay-button-color",
+        "enable": "googleProvidersEnabled",
+        "options": [
+          {
+            "value": "black",
+            "label": "i18n.BlackWhiteText"
+          },
+          {
+            "value": "white",
+            "label": "i18n.WhiteBlackText"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "content": "i18n.ApplePaySettings",
+        "enable": "appleProvidersEnabled"
+      },
+      {
+        "type": "select",
+        "label": "i18n.ButtonColor",
+        "id": "applePay-button",
+        "enable": "appleProvidersEnabled",
+        "options": [
+          {
+            "value": "black",
+            "label": "i18n.BlackWhiteText"
+          },
+          {
+            "value": "white",
+            "label": "i18n.WhiteBlackText"
+          },
+          {
+            "value": "white-border",
+            "label": "i18n.WhiteBlackTextWithBorder"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "content": "i18n.AfterPaySettings",
+        "enable": "afterpayProvidersEnabled"
+      },
+      {
+        "type": "select",
+        "label": "i18n.ButtonColor",
+        "id": "afterpay-button-color",
+        "enable": "afterpayProvidersEnabled",
+        "options": [
+          {
+            "value": "black-mint",
+            "label": "i18n.BlackOnMintText"
+          },
+          {
+            "value": "mint-black",
+            "label": "i18n.MintOnBlackText"
+          },
+          {
+            "value": "white",
+            "label": "i18n.BlackWhiteText"
+          },
+          {
+            "value": "black",
+            "label": "i18n.WhiteBlackText"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "content": "i18n.AmazonSettings",
+        "enable": "amazonProvidersEnabled"
+      },
+      {
+        "type": "select",
+        "label": "i18n.ButtonColor",
+        "id": "amazon-button-color",
+        "enable": "amazonProvidersEnabled",
+        "options": [
+          {
+            "value": "Gold",
+            "label": "i18n.Gold"
+          },
+          {
+            "value": "LightGray",
+            "label": "i18n.LightGray"
+          },
+          {
+            "value": "DarkGray",
+            "label": "i18n.DarkGray"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "content": "i18n.MasterpassSettings",
+        "enable": "masterpassProvidersEnabled"
+      },
+      {
+        "type": "select",
+        "label": "i18n.ButtonColor",
+        "id": "masterpass-button-color",
+        "enable": "masterpassProvidersEnabled",
+        "options": [
+          {
+            "value": "black",
+            "label": "i18n.BlackWhiteText"
+          },
+          {
+            "value": "white",
+            "label": "i18n.WhiteBlackText"
           }
         ]
       }

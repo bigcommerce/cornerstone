@@ -85,7 +85,7 @@
                 </td>
                 <td class="cart-item-block cart-item-info">
                     <span class="cart-item-label">{{lang 'cart.checkout.price'}}</span>
-                    {{#or ../customer (if ../theme_settings.restrict_to_login '!==' true)}}
+                    {{#or ../customer (unless ../settings.hide_price_from_guests) (if type '==' 'GiftCertificate')}}
                         <span class="cart-item-value {{#if price_discounted}}price--discounted{{/if}}">{{price.formatted}}</span>
                         {{#if price_discounted}}
                             <span class="cart-item-value">{{price_discounted.formatted}}</span>
@@ -140,13 +140,13 @@
 
                 <td class="cart-item-block cart-item-info">
                     <span class="cart-item-label">{{lang 'cart.checkout.total'}}</span>
-                    {{#or ../customer (if ../theme_settings.restrict_to_login '!==' true)}}
+                    {{#or ../customer (unless ../settings.hide_price_from_guests) (if type '==' 'GiftCertificate')}}
                         <strong class="cart-item-value {{#if total_discounted}}price--discounted{{/if}}">{{total.formatted}}</strong>
                         {{#if total_discounted}}
                             <strong class="cart-item-value">{{total_discounted.formatted}}</strong>
                         {{/if}}
                     {{else}}
-                        {{> components/common/login-for-pricing}}
+                        --
                     {{/or}}
                     {{#or can_modify (if type '==' 'GiftCertificate')}}
                         <button class="cart-remove icon"

@@ -86,7 +86,7 @@ function addOptions(statesArray, $selectElement, options) {
     container.push(`<option value="">${statesArray.prefix}</option>`);
 
     if (!_.isEmpty($selectElement)) {
-        _.each(statesArray.states, (stateObj) => {
+        statesArray.states.forEach((stateObj) => {
             if (options.useIdForStates) {
                 container.push(`<option value="${stateObj.id}">${stateObj.name}</option>`);
             } else {

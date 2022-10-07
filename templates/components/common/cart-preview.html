@@ -33,7 +33,7 @@
                                 {{#if quantity '>' 1}}
                                     {{quantity}} &times;
                                 {{/if}}
-                                {{#or ../customer (if ../theme_settings.restrict_to_login '!==' true)}}
+                                {{#or ../customer (unless ../settings.hide_price_from_guests) (if type '==' 'GiftCertificate')}}
                                     <span{{#if price_discounted}} class="price--discounted"{{/if}}>{{price.formatted}}</span>
                                     {{#if price_discounted}}
                                         {{price_discounted.formatted}}
@@ -47,9 +47,16 @@
                 {{/each}}
             </ul>
             <div class="previewCartAction">
+                {{#if cart.additional_checkout_buttons}}
+                    <div data-cart-accelerated-checkout-buttons class="previewCart-acceleratedCheckoutButtons"></div>
+                {{/if}}
                 {{#if cart.show_primary_checkout_button}}
                     <div class="previewCartAction-checkout">
-                        <a href="{{urls.checkout.single_address}}" class="button button--small button--primary">
+                        <a
+                                href="{{urls.checkout.single_address}}"
+                                class="button button--small button--primary"
+                                data-primary-checkout-now-action
+                        >
                             {{lang 'cart.preview.checkout_now'}}
                         </a>
                     </div>

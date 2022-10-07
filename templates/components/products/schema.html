@@ -28,7 +28,7 @@
                 "@type": "Review",
                 "author": {
                     "@type": "Person",
-                    "name": {{{JSONstringify name}}}
+                    "name": {{#if name}}{{{JSONstringify name}}}{{else}}{{{JSONstringify (lang 'products.reviews.anonymous_poster')}}}{{/if}}
                 },
                 "datePublished": "{{date}}",
                 "reviewBody": {{{JSONstringify text}}},

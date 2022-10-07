@@ -28,24 +28,43 @@ cart: true
 
             {{{region name="cart_below_totals"}}}
 
-            {{#if cart.show_primary_checkout_button}}
-                <div class="cart-actions cart-content-padding-right">
-                    <a class="button button--primary" href="{{urls.checkout.single_address}}" title="{{lang 'cart.checkout.title'}}">{{lang 'cart.checkout.button'}}</a>
-                    {{#if cart.show_multiple_address_shipping}}
-                        <a class="checkoutMultiple" href="{{urls.checkout.multiple_address}}">
-                            {{lang 'cart.preview.checkout_multiple'}}
+            {{#or customer (unless settings.hide_price_from_guests)}}
+                {{#if cart.additional_checkout_buttons}}
+                    <div data-cart-accelerated-checkout-buttons class="cart-acceleratedCheckoutButtons cart-content-padding-right"></div>
+                {{/if}}
+
+                {{#if cart.show_primary_checkout_button}}
+                    <div class="cart-actions cart-content-padding-right">
+                        <a
+                                class="button button--primary"
+                                href="{{urls.checkout.single_address}}"
+                                title="{{lang 'cart.checkout.title'}}"
+                                data-primary-checkout-now-action
+                        >
+                            {{lang 'cart.checkout.button'}}
                         </a>
-                    {{/if}}
-                </div>
+                        {{#if cart.show_multiple_address_shipping}}
+                            <a class="checkoutMultiple" href="{{urls.checkout.multiple_address}}">
+                                {{lang 'cart.preview.checkout_multiple'}}
+                            </a>
+                        {{/if}}
+                    </div>
+                {{else}}
+                    <div class="cart-actions cart-content-padding-right">
+                        <a class="button" href="{{urls.home}}" title="{{lang 'cart.continue_shopping'}}">{{lang 'cart.continue_shopping'}}</a>
+                    </div>
+                {{/if}}
+
+                {{#if cart.additional_checkout_buttons}}
+                    <div data-cart-additional-checkout-buttons class="cart-additionalCheckoutButtons cart-content-padding-right">
+                        {{> components/cart/additional-checkout-buttons}}
+                    </div>
+                {{/if}}
             {{else}}
                 <div class="cart-actions cart-content-padding-right">
-                    <a class="button" href="{{urls.home}}" title="{{lang 'cart.continue_shopping'}}">{{lang 'cart.continue_shopping'}}</a>
+                    <a class="button" href="{{urls.auth.login}}" title="{{lang 'cart.login_to_checkout'}}">{{lang 'cart.login_to_checkout'}}</a>
                 </div>
-            {{/if}}
-
-            <div data-cart-additional-checkout-buttons class="cart-additionalCheckoutButtons cart-content-padding-right">
-                {{> components/cart/additional-checkout-buttons}}
-            </div>
+            {{/or}}
 
         {{else}}
             <h3 tabindex="0">{{lang 'cart.checkout.empty_cart'}}</h3>

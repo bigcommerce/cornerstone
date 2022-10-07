@@ -1,6 +1,5 @@
 import Wishlist from '../wishlist';
 import { initRadioOptions } from './aria';
-import { isObject, isNumber } from 'lodash';
 
 const optionsTypesMap = {
     INPUT_FILE: 'input-file',
@@ -188,6 +187,7 @@ export default class ProductDetailsBase {
                 $input: $('[name=qty\\[\\]]', $scope),
             },
             $bulkPricing: $('.productView-info-bulkPricing', $scope),
+            $walletButtons: $('[data-add-to-cart-wallet-buttons]', $scope),
         };
     }
 
@@ -214,11 +214,11 @@ export default class ProductDetailsBase {
 
         this.showMessageBox(data.stock_message || data.purchasing_message);
 
-        if (isObject(data.price)) {
+        if (data.price instanceof Object) {
             this.updatePriceView(viewModel, data.price);
         }
 
-        if (isObject(data.weight)) {
+        if (data.weight instanceof Object) {
             viewModel.$weight.html(data.weight.formatted);
         }
 
@@ -246,7 +246,7 @@ export default class ProductDetailsBase {
         }
 
         // if stock view is on (CP settings)
-        if (viewModel.stock.$container.length && isNumber(data.stock)) {
+        if (viewModel.stock.$container.length && typeof data.stock === 'number') {
             // if the stock container is hidden, show
             viewModel.stock.$container.removeClass('u-hiddenVisually');
 
@@ -257,6 +257,7 @@ export default class ProductDetailsBase {
         }
 
         this.updateDefaultAttributesForOOS(data);
+        this.updateWalletButtonsView(data);
 
         // If Bulk Pricing rendered HTML is available
         if (data.bulk_discount_rates && content) {
@@ -349,6 +350,20 @@ export default class ProductDetailsBase {
         } else {
             viewModel.$addToCart.prop('disabled', false);
             viewModel.$increments.prop('disabled', false);
+        }
+    }
+
+    updateWalletButtonsView(data) {
+        this.toggleWalletButtonsVisibility(data.purchasable && data.instock);
+    }
+
+    toggleWalletButtonsVisibility(shouldShow) {
+        const viewModel = this.getViewModel(this.$scope);
+
+        if (shouldShow) {
+            viewModel.$walletButtons.show();
+        } else {
+            viewModel.$walletButtons.hide();
         }
     }
 

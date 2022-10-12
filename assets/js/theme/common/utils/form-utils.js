@@ -138,6 +138,8 @@ function announceInputErrorMessage({ element, result }) {
     // which does not add error message class while initialising form.
     // specific class is added since it can be multiple spans
     const errorMessage = $(activeInputContainer).find('span.form-inlineMessage');
+    // switch focus to input element with error
+    element.focus();
 
     if (errorMessage.length) {
         const $errMessage = $(errorMessage[0]);

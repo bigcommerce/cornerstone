@@ -28,7 +28,9 @@ export default class ProductDetails extends ProductDetailsBase {
 
         const $form = $('form[data-cart-item-add]', $scope);
 
-        if (!$form[0].checkValidity()) {
+        if ($form[0].checkValidity()) {
+            this.updateProductDetailsData();
+        } else {
             this.toggleWalletButtonsVisibility(false);
         }
 

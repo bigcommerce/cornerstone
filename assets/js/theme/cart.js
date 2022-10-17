@@ -78,7 +78,7 @@ export default class Cart extends PageManager {
         let invalidEntry;
 
         // Does not quality for min/max quantity
-        if (!newQty) {
+        if (!Number.isInteger(newQty)) {
             invalidEntry = $el.val();
             $el.val(oldQty);
             return showAlertModal(this.context.invalidEntryMessage.replace('[ENTRY]', invalidEntry));

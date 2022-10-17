@@ -8,7 +8,11 @@
     <div class="previewCart">
         <section class="previewCartCheckout">
             {{#if cart.show_primary_checkout_button}}
-                <a href="{{urls.checkout.single_address}}" class="button button--primary">
+                {{#if cart.additional_checkout_buttons}}
+                    <div data-cart-accelerated-checkout-buttons class="previewCartCheckout-acceleratedCheckoutButtons"></div>
+                {{/if}}
+
+                <a href="{{urls.checkout.single_address}}" class="button button--primary" data-primary-checkout-now-action>
                     {{lang 'cart.added_to_cart.proceed_to_checkout'}}
                 </a>
             {{/if}}
@@ -31,7 +35,7 @@
                 {{lang 'cart.added_to_cart.order_subtotal'}}
 
                 <strong class="previewCartCheckout-price">
-                    {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+                    {{#or customer (unless settings.hide_price_from_guests)}}
                         {{cart.sub_total.formatted}}
                     {{else}}
                         {{> components/common/login-for-pricing}}
@@ -75,7 +79,7 @@
                     </div>
 
                     <div class="productView-price">
-                        {{#or ../customer (if ../theme_settings.restrict_to_login '!==' true)}}
+                        {{#or ../customer (unless ../settings.hide_price_from_guests)}}
                             {{quantity}} &times; {{price.formatted}}
                         {{else}}
                             {{> components/common/login-for-pricing}}

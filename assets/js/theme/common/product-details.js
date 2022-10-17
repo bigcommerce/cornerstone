@@ -28,6 +28,12 @@ export default class ProductDetails extends ProductDetailsBase {
 
         const $form = $('form[data-cart-item-add]', $scope);
 
+        if ($form[0].checkValidity()) {
+            this.updateProductDetailsData();
+        } else {
+            this.toggleWalletButtonsVisibility(false);
+        }
+
         this.addToCartValidator = nod({
             submit: $form.find('input#form-action-addToCart'),
             tap: announceInputErrorMessage,
@@ -259,6 +265,7 @@ export default class ProductDetails extends ProductDetailsBase {
             const productAttributesContent = response.content || {};
             this.updateProductAttributes(productAttributesData);
             this.updateView(productAttributesData, productAttributesContent);
+            this.updateProductDetailsData();
             bannerUtils.dispatchProductBannerEvent(productAttributesData);
 
             if (!this.checkIsQuickViewChild($form)) {
@@ -361,6 +368,8 @@ export default class ProductDetails extends ProductDetailsBase {
             viewModel.quantity.$text.text(qty);
             // perform validation after updating product quantity
             this.addToCartValidator.performCheck();
+
+            this.updateProductDetailsData();
         });
 
         // Prevent triggering quantity change when pressing enter
@@ -371,6 +380,10 @@ export default class ProductDetails extends ProductDetailsBase {
                 // Prevent default
                 event.preventDefault();
             }
+        });
+
+        this.$scope.on('keyup', '.form-input--incrementTotal', () => {
+            this.updateProductDetailsData();
         });
     }
 
@@ -534,5 +547,40 @@ export default class ProductDetails extends ProductDetailsBase {
     updateProductAttributes(data) {
         super.updateProductAttributes(data);
         this.showProductImage(data.image);
+    }
+
+    updateProductDetailsData() {
+        const $form = $('form[data-cart-item-add]');
+        const formDataItems = $form.serializeArray();
+
+        const productDetails = {};
+
+        for (const formDataItem of formDataItems) {
+            const { name, value } = formDataItem;
+
+            if (name === 'product_id') {
+                productDetails.productId = Number(value);
+            }
+
+            if (name === 'qty[]') {
+                productDetails.quantity = Number(value);
+            }
+
+            if (name.match(/attribute/)) {
+                const productOption = {
+                    optionId: Number(name.match(/\d+/g)[0]),
+                    optionValue: value,
+                };
+
+                productDetails.optionSelections = productDetails?.optionSelections
+                    ? [...productDetails.optionSelections, productOption]
+                    : [productOption];
+            }
+        }
+
+        document.dispatchEvent(new CustomEvent('onProductUpdate', {
+            bubbles: true,
+            detail: { productDetails },
+        }));
     }
 }

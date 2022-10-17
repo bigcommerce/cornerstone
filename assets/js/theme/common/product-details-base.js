@@ -187,6 +187,7 @@ export default class ProductDetailsBase {
                 $input: $('[name=qty\\[\\]]', $scope),
             },
             $bulkPricing: $('.productView-info-bulkPricing', $scope),
+            $walletButtons: $('[data-add-to-cart-wallet-buttons]', $scope),
         };
     }
 
@@ -256,6 +257,7 @@ export default class ProductDetailsBase {
         }
 
         this.updateDefaultAttributesForOOS(data);
+        this.updateWalletButtonsView(data);
 
         // If Bulk Pricing rendered HTML is available
         if (data.bulk_discount_rates && content) {
@@ -348,6 +350,20 @@ export default class ProductDetailsBase {
         } else {
             viewModel.$addToCart.prop('disabled', false);
             viewModel.$increments.prop('disabled', false);
+        }
+    }
+
+    updateWalletButtonsView(data) {
+        this.toggleWalletButtonsVisibility(data.purchasable && data.instock);
+    }
+
+    toggleWalletButtonsVisibility(shouldShow) {
+        const viewModel = this.getViewModel(this.$scope);
+
+        if (shouldShow) {
+            viewModel.$walletButtons.show();
+        } else {
+            viewModel.$walletButtons.hide();
         }
     }
 

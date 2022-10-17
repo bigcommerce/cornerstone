@@ -27,7 +27,7 @@
         </h3>
 
         <div class="card-text" data-test-info-type="price">
-            {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+            {{#or customer (unless settings.hide_price_from_guests)}}
                 {{> components/products/price price=price customer=customer}}
             {{else}}
                 {{> components/common/login-for-pricing}}

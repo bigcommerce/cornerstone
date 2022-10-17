@@ -9,7 +9,7 @@
     {{/each}}"
     data-product-brand="{{product.brand.name}}"
     data-product-price="
-    {{#or customer (unless theme_settings.restrict_to_login)}}
+    {{#or customer (unless settings.hide_price_from_guests)}}
         {{#if product.price.with_tax}}
             {{product.price.with_tax.value}}
         {{else}}
@@ -106,7 +106,7 @@
                 </p>
             {{/if}}
             <div class="productView-price">
-                {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+                {{#or customer (unless settings.hide_price_from_guests)}}
                     {{> components/products/price price=product.price}}
                 {{else}}
                     {{> components/common/login-for-pricing}}

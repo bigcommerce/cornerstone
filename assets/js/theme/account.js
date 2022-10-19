@@ -318,7 +318,7 @@ export default class Account extends PageManager {
         const formEditSelector = 'form[data-edit-account-form]';
         const editValidator = nod({
             submit: '${formEditSelector} input[type="submit"]',
-            delay: 0,
+            delay: 900,
         });
         const emailSelector = `${formEditSelector} [data-field-type="EmailAddress"]`;
         const $emailElement = $(emailSelector);
@@ -396,15 +396,17 @@ export default class Account extends PageManager {
             }
 
             event.preventDefault();
-            const earliestError = $('span.form-inlineMessage:first').prev('input');
-            earliestError.focus();
+            setTimeout(() => {
+                const earliestError = $('span.form-inlineMessage:first').prev('input');
+                earliestError.focus();
+            }, 900);
         });
     }
 
     registerInboxValidation($inboxForm) {
         const inboxValidator = nod({
             submit: 'form[data-inbox-form] input[type="submit"]',
-            delay: 0,
+            delay: 900,
         });
 
         inboxValidator.add([
@@ -445,8 +447,11 @@ export default class Account extends PageManager {
             }
 
             event.preventDefault();
-            const earliestError = $('span.form-inlineMessage:first').prev('input');
-            earliestError.focus();
+
+            setTimeout(() => {
+                const earliestError = $('span.form-inlineMessage:first').prev('input');
+                earliestError.focus();
+            }, 900);
         });
     }
 }

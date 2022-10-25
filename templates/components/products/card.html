@@ -17,7 +17,7 @@
         {{/each}}"
         data-product-brand="{{brand.name}}"
         data-product-price="
-        {{#or customer (unless theme_settings.restrict_to_login)}}
+        {{#or customer (unless settings.hide_price_from_guests)}}
             {{#if price.with_tax}}
                 {{price.with_tax.value}}
             {{else}}
@@ -92,7 +92,7 @@
                         {{lang 'products.compare'}} <input type="checkbox" name="products[]" value="{{id}}" id="compare-{{id}}" data-compare-id="{{id}}">
                     </label>
                 {{/if}}
-                {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+                {{#or customer (unless settings.hide_price_from_guests)}}
                     {{#if show_cart_action}}
                         {{#if has_options}}
                             <a href="{{url}}" data-event-type="product-click" class="button button--small card-figcaption-button" data-product-id="{{id}}">{{lang 'products.choose_options'}}</a>
@@ -133,7 +133,7 @@
         </h3>
 
         <div class="card-text" data-test-info-type="price">
-            {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+            {{#or customer (unless settings.hide_price_from_guests)}}
                 {{> components/products/price price=price}}
             {{else}}
                 {{> components/common/login-for-pricing}}

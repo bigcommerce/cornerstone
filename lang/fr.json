@@ -1,6 +1,6 @@
 {
     "header": {
-        "welcome_back": "Heureux de vous revoir {name}",
+        "welcome_back": "Ravis de vous revoir, {name}",
         "skip_to_main": "Passer au contenu principal"
     },
     "footer": {
@@ -39,7 +39,8 @@
     "cart": {
         "nav_aria_label": "Panier avec 0 article",
         "continue_shopping": "Cliquez ici pour continuer vos achats",
-        "items": "{NUM, plural, =0{(Aucun article)} one {(# article)} other {(# articles)}}",
+        "login_to_checkout": "Connectez-vous pour procéder au paiement",
+        "items": "{NUM, plural, =0{(aucun article)} one {(# article)} other {(# articles)}}",
         "checkout": {
             "address": {
                 "multiple": "procéder au paiement avec plusieurs adresses",
@@ -73,7 +74,7 @@
         "included_in_total": " Inclus dans le total",
         "remove_file": "Supprimer ce fichier",
         "freeshipping": "Livraison gratuite",
-        "reconfigure_product": "Configurer '{name}'",
+        "reconfigure_product": "Configurer « {name} »",
         "shipping_peritem": "Par article expédié",
         "remove_item": "Supprimer {name} du panier",
         "confirm_delete": "Voulez-vous vraiment supprimer cet article ?",
@@ -100,14 +101,14 @@
             "cancel": "Annuler",
             "select_a_country": "Pays",
             "select_a_state": "État/Province",
-            "estimate_shipping": "Estimer les frais de livraison",
+            "estimate_shipping": "Estimer l'expédition",
             "suburb_city": "Banlieue/ville",
             "zip_postal_code": "Code postal",
             "free_shipping": "Livraison gratuite",
             "hide_ups_rates": "Masquer les tarifs UPS",
             "show_ups_rates": "Afficher les tarifs UPS",
             "empty_country_error": "Le champ « Pays » ne peut pas être vide.",
-            "empty_province_error": "Le champ « État/Province » ne peut pas être vide."
+            "empty_province_error": "Le champ « État/Province » ne peut être vide."
         },
         "gift_wrapping": {
             "title": "Emballage cadeau",
@@ -135,7 +136,7 @@
         }
     },
     "common": {
-        "store_credit": "Votre avoir disponible s'élève à<strong> {store_credit}.</strong> Pour l'utiliser, il vous suffit de passer votre commande en choisissant l'avoir comme mode de paiement au moment de régler la commande.",
+        "store_credit": "Votre avoir disponible s'élève à <strong>{store_credit}</strong>. Pour l'utiliser, il vous suffit de passer votre commande en choisissant l'avoir comme mode de paiement au moment de régler la commande.",
         "store_credit_overview": "{credit} d'avoir",
         "generic_error": "Oups ! Une erreur s'est produite.",
         "currency": "Sélectionnez la devise : {code}",
@@ -153,6 +154,7 @@
         "yes": "Oui",
         "from": "De",
         "to": "à",
+        "ok": "OK",
         "cancel": "Annuler",
         "close": "Fermer",
         "or": "ou",
@@ -330,21 +332,22 @@
             },
             "gift_wrapping": "Emballage cadeau :",
             "refunded": "(Remboursé)",
-            "refunded_quantity": "({qty} remboursé·s)",
+            "refunded_quantity": "({qty} remboursé·s)",
             "return_item": "Retour",
             "return_items": "Retourner des articles ?",
             "order_placed": "Commande passée",
             "last_update": "Dernière mise à jour",
             "list": {
                 "order_number": "Commande n° {number}",
-                "product_details": "{num_products, plural, one {1 produit} other {# produits}}, pour un total de {cost}"
+                "product_details": "{num_products, plural, one {1 produit} other {# produits}} pour un total de {cost}"
             },
             "details": {
                 "heading": "Commande n° {number}",
                 "order_contents": "Contenu de la commande",
                 "ship_to": "Expédier à",
-                "ship_to_multi": "Articles expédiés à l'adresse : {street}, {city}, {state}, {zip}, {country}",
+                "ship_to_multi": "Articles expédiés à {street}, {city}, {state}, {zip}, {country}",
                 "ship_to_multi_text": "La commande sera livrée à plusieurs adresses",
+                "pickup_details": "Détails sur le retrait",
                 "bill_to": "Facturer à",
                 "how_to_pay": "Voici comment procéder au paiement de votre commande :",
                 "order_details": "Détails de la commande",
@@ -354,7 +357,7 @@
                 "payment_method": "Mode de paiement :",
                 "comments": "Commentaires sur la commande",
                 "download_items": "Télécharger des articles",
-                "card_ending": "se terminant par {card}",
+                "card_ending": "se terminant par {card}",
                 "shipments": {
                     "date": "Date d'expédition",
                     "method": "Mode de livraison",
@@ -364,14 +367,20 @@
                 "actions": "Actions",
                 "reorder": "Acheter à nouveau",
                 "return": "Retour",
-                "print_invoice": "Imprimer la facture"
+                "pickup": "Détails sur le retrait",
+                "pickup_method": "Méthode de retrait",
+                "in_store_pickup": "Retrait en magasin",
+                "print_invoice": "Imprimer la facture",
+                "phone": "Numéro de téléphone",
+                "email": "E-mail",
+                "opening_hours": "Horaires d'ouverture"
             },
             "downloads": {
                 "heading": "Commande n° {number} Téléchargements",
                 "download_files_below": "Vous pouvez télécharger ci-dessous les fichiers pour",
                 "expired_content": "Le fichier a expiré",
                 "days_remaining": "{number, plural, one {1 jour} other {# jours}}",
-                "downloads_remaining": "{number, plural, one {1 téléchargement restant} other {# téléchargements restants}}",
+                "downloads_remaining": "{number, plural, one {1 téléchargement} other {# téléchargements}} restant·s",
                 "days_or_downloads": "ou {number} téléchargements",
                 "remaining": "restant·s"
             }
@@ -380,7 +389,7 @@
             "heading": "Modes de paiement",
             "payment_method": "Mode de paiement",
             "billing_address": "Adresse de facturation",
-            "card_ending_in": "se terminant par {last_four}",
+            "card_ending_in": "se terminant par {last_four}",
             "card_expiry": "{month}/{year}",
             "new_payment_method": "Ajouter un nouveau mode de paiement",
             "no_methods": "Aucun mode de paiement n'a été ajouté à votre compte pour l'instant",
@@ -397,6 +406,7 @@
                 "jcb": "JCB",
                 "maestro": "Maestro",
                 "mastercard": "Mastercard",
+                "unionpay": "UnionPay",
                 "visa": "Visa"
             },
             "paypal": "PayPal",
@@ -584,7 +594,7 @@
                 "message": "Message (facultatif)",
                 "amount": "Montant",
                 "theme": "Thème du chèque-cadeau",
-                "custom_range": "(La valeur doit être comprise entre {min} et {max})",
+                "custom_range": "(la valeur doit être comprise entre {min} et {max})",
                 "agree": "Je comprends que les chèques-cadeaux expirent après {days, plural, one {1 jour} other {# jours}}",
                 "agree2": "Je reconnais que les chèques-cadeaux ne sont pas remboursables",
                 "preview": "Aperçu",
@@ -598,7 +608,7 @@
         },
         "inbox": {
             "order": "Commande :",
-            "order_display": "Commande n° {id} - passée le {date} pour {total}",
+            "order_display": "Commande n° {id} - passée le {date} pour un montant de {total}",
             "subject": "Objet",
             "message": "Message",
             "submit_value": "Envoyer le message",
@@ -698,7 +708,7 @@
         "quantity_decrease": "Diminuer la quantité pour {name}",
         "quantity_increase": "Augmenter la quantité pour {name}",
         "quantity_error_message": "La quantité ne doit contenir que des chiffres",
-        "purchase_units": "{quantity, plural, =0{aucune unité} one {# unité} other {# unités}}",
+        "purchase_units": "{quantity, plural, =0{0 aucune unité} one {# unité} other {# unités}}",
         "max_purchase_quantity": "Quantité maximale d'achat :",
         "min_purchase_quantity": "Quantité minimale d'achat :",
         "related_products": "Produits associés",
@@ -712,8 +722,8 @@
             "hide": "Masquer les avis",
             "new": "Rédiger un avis",
             "show": "Afficher les avis",
-            "header": "{total, plural, =0{Aucun avis} one {# } other {# avis}}",
-            "link_to_review": "({total, plural, =0{Pas encore d'avis} one { avis} other {# avis}})",
+            "header": "{total, plural, =0{0 avis} one {# avis} other {# avis}}",
+            "link_to_review": "({total, plural, =0{Aucun avis pour le moment} one {# avis} other {# avis}})",
             "post_on_by": "Publié par { name } le { date }",
             "rating_label": "Note",
             "select_rating": "Sélectionnez une note",
@@ -750,8 +760,8 @@
         "condition": "Condition :",
         "availability": "Disponibilité :",
         "swatch_option_announcement": "Vous avez sélectionné {swatch_name}",
-        "shipping": "Livraison :",
-        "shipping_fixed": "{amount} (Frais de livraison fixes)",
+        "shipping": "Expédition :",
+        "shipping_fixed": "{amount} (frais de livraison fixes)",
         "shipping_free": "Livraison gratuite",
         "shipping_calculated": "Calculés au moment du paiement",
         "sold_out": "Épuisé",
@@ -765,7 +775,7 @@
         "choose_an_option": "Veuillez choisir une option",
         "select_one": "Veuillez faire un choix",
         "description": "Description",
-        "price_with_tax": "( {tax_label} incluse)",
+        "price_with_tax": "({tax_label} incluse)",
         "price_without_tax": "({tax_label} non comprise)",
         "including_tax": "Toutes taxes comprises",
         "excluding_tax": "Hors taxes",
@@ -784,7 +794,7 @@
         "quantity_min": "La quantité minimale pouvant être achetée est de {quantity}",
         "quantity_max": "La quantité maximale pouvant être achetée est de {quantity}",
         "bulk_pricing": {
-            "title": "Prix de gros :",
+            "title": "Prix avec remise sur quantité :",
             "view": "Achetez en grande quantité et économisez",
             "modal_title": "Taux de remise sur quantité",
             "instructions": "Vous trouverez ci-dessous les taux de remise sur quantité disponibles pour chaque article lorsque vous achetez une certaine quantité",
@@ -796,7 +806,7 @@
         "card_default_image_alt": "Image disponible bientôt"
     },
     "invoice": {
-        "for_order": "{name} Facture de la commande n° {id}",
+        "for_order": "Facture {name} de la commande n° {id}",
         "phone": "Numéro de téléphone : {number}",
         "email": "E-mail : {email}",
         "order": "Commande :",
@@ -807,6 +817,10 @@
         "qty": "Qté",
         "code": "Code/SKU",
         "shipping_address": "Adresse de livraison",
+        "fulfillment": "Distribution",
+        "digital": "Numérique",
+        "shipping": "Expédition",
+        "pickup": "Retrait",
         "product_name": "Nom du produit",
         "price": "Prix",
         "total": "Total",
@@ -840,7 +854,7 @@
             "form_label": "Rechercher un mot-clé :",
             "form_button_text": "Rechercher",
             "count": "{ count, plural, one {# résultat} other {# résultats} } pour « { search_query } »",
-            "quick_count": "{ count, plural, one {# produit correspondant} other {# produits correspondants} } pour « { search_query } »",
+            "quick_count": "{ count, plural, one {# produit correspondant} other {# produits correspondants} } à « { search_query } »",
             "quick_count_live": "produits correspondants à",
             "product_count": "Produits ({count})",
             "content_count": "Actualités et informations ({count})"
@@ -907,7 +921,7 @@
         "play_pause_button_pause": "Pause",
         "play_pause_button_aria_play": "Lancer le carrousel",
         "play_pause_button_aria_pause": "Arrêter le carrousel",
-        "slide_number": "Diapositive n°  {slide_number}"
+        "slide_number": "Diapositive n° {slide_number}"
     },
     "validation_messages": {
         "valid_email": "Vous devez saisir une adresse e-mail valide.",
@@ -916,7 +930,7 @@
         "invalid_password": "Votre mot de passe doit comporter au moins 7 caractères et au moins un chiffre et une lettre.",
         "field_not_blank": " le champ ne peut être vide.",
         "certificate_amount": "Veuillez indiquer le montant du chèque cadeau.",
-        "certificate_amount_range": "Vous devez indiquer un montant de chèque-cadeau compris entre [MIN] et [MAX]",
+        "certificate_amount_range": "Vous devez indiquer un montant compris entre [MIN] et [MAX] pour le chèque-cadeau",
         "price_min_evaluation": "Le prix minimum doit être inférieur au prix maximum.",
         "price_max_evaluation": "Le prix minimum doit être inférieur au prix maximum.",
         "price_min_not_entered": "Veuillez saisir un prix minimum.",
@@ -931,7 +945,7 @@
         "invalid_password": "Votre mot de passe doit comporter au moins 7 caractères et au moins un chiffre et une lettre.",
         "field_not_blank": " le champ ne peut être vide.",
         "certificate_amount": "Veuillez indiquer le montant du chèque cadeau.",
-        "certificate_amount_range": "Vous devez indiquer un montant de chèque-cadeau compris entre [MIN] et [MAX]",
+        "certificate_amount_range": "Vous devez indiquer un montant compris entre [MIN] et [MAX] pour le chèque-cadeau",
         "price_min_evaluation": "Le prix minimum doit être inférieur au prix maximum.",
         "price_max_evaluation": "Le prix minimum doit être inférieur au prix maximum.",
         "price_min_not_entered": "Veuillez saisir un prix minimum.",
@@ -946,7 +960,7 @@
         "invalid_password": "Votre mot de passe doit comporter au moins 7 caractères et au moins un chiffre et une lettre.",
         "field_not_blank": "Le champ ne peut être vide.",
         "certificate_amount": "Veuillez indiquer le montant du chèque cadeau.",
-        "certificate_amount_range": "Vous devez indiquer un montant de chèque-cadeau compris entre [MIN] et [MAX]",
+        "certificate_amount_range": "Vous devez indiquer un montant compris entre [MIN] et [MAX] pour le chèque-cadeau",
         "price_min_evaluation": "Le prix minimum doit être inférieur au prix maximum.",
         "price_max_evaluation": "Le prix minimum doit être inférieur au prix maximum.",
         "price_min_not_entered": "Veuillez saisir un prix minimum.",
@@ -969,7 +983,7 @@
         "data_collection_preferences": "Préférences en matière de collecte de données sur le site Web",
         "manage_data_collection_preferences": "Gérer les préférences en matière de collecte de données sur le site Web",
         "use_data_by_cookies": " utilise les données recueillies par les cookies et les bibliothèques JavaScript pour améliorer votre expérience d'achat.",
-        "data_categories_table": "Le tableau ci-dessous précise la manière dont nous utilisons ces données par catégorie. Pour désactiver une catégorie de collecte de données, sélectionnez 'Non' et enregistrez vos préférences.",
+        "data_categories_table": "Le tableau ci-dessous précise la manière dont nous utilisons ces données par catégorie. Pour désactiver une catégorie de collecte de données, sélectionnez « Non » et enregistrez vos préférences.",
         "allow": "Autoriser",
         "accept": "accepter",
         "deny": "Refuser",

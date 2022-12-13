@@ -83,13 +83,24 @@
 }
 
 .previewCartCheckout-additionalCheckoutButtons {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+
     p {
         float: none !important; // 1
         margin: spacing("third") 0;
     }
 
     .CheckoutButton {
-        margin-bottom: spacing("base");
+        display: inline-block;
+        width: 250px;
+
+        > div {
+            > div {
+                margin-bottom: 10px;
+            }
+        }
 
         &:first-child {
             margin-top: spacing("single");

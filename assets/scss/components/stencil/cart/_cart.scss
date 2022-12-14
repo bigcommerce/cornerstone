@@ -25,19 +25,19 @@ $card-preview-zoom-bottom-offset:       6rem;
 // -----------------------------------------------------------------------------
 
 %additionalCheckoutButtons {
+    @include clearfix;
+
     .FloatRight {
+        @include clearfix;
+
         p {
             float: none !important;
             margin: spacing("third") 0;
             text-align: right;
         }
 
-        > div {
-            display: inline-block;
-
-            > div {
-                margin-bottom: 10px;
-            }
+        div {
+            float: right;
         }
     }
 }
@@ -544,15 +544,6 @@ $card-preview-zoom-bottom-offset:       6rem;
 
 .cart-additionalCheckoutButtons {
     @extend %additionalCheckoutButtons;
-    align-items: flex-end;
-    display: flex;
-    flex-direction: column;
-
-    div {
-        align-items: end;
-        display: flex;
-        flex-direction: column;
-    }
 }
 
 // Cart Preview
@@ -698,5 +689,4 @@ $card-preview-zoom-bottom-offset:       6rem;
     @extend %additionalCheckoutButtons;
     padding-bottom: spacing("single");
     padding-right: spacing("single");
-    text-align: right;
 }

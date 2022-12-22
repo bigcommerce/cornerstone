@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added manual captcha to Contact Us form for additional spam protection. [#2290](https://github.com/bigcommerce/cornerstone/pull/2290)
 - Fixed PDP not respecting "quantity box" display settings. [#2291](https://github.com/bigcommerce/cornerstone/pull/2291)
 - Added integrarion of storefront-account-payments lib [#2288][https://github.com/bigcommerce/cornerstone/pull/2288]
+- Bump Stencil utils to 6.13.0 [#2300][https://github.com/bigcommerce/cornerstone/pull/2300]
 
 ## 6.7.0 (11-03-2022)
 - Fixed escaping on created store account confirm message. [#2265]https://github.com/bigcommerce/cornerstone/pull/2265

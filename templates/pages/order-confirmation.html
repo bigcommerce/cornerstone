@@ -4,7 +4,7 @@
 {{ getFontsCollection }}
 
 <script type="text/javascript">
-    window.language = {{{langJson 'optimized_checkout'}}};
+    window.language = {{{langJson 'optimized_checkout' }}};
 </script>
 
 {{{head.scripts}}}
@@ -19,7 +19,7 @@
 <!-- Styles for header -->
 <style>
     .containercheckout-header {
-        display: none;
+        /* display: none; */
         background: #FFFFFF;
         border-bottom: 1px solid rgba(0, 0, 0, 0.1);
         height: 12vh;
@@ -37,7 +37,7 @@
         <div>
             <a href="{{getVar 'Gotohomepage'}}">
                 <img alt="{{settings.store_logo.title}}" class="checkoutHeader-logo" id="logoImage"
-                src="{{ checkout.header_image }}" />
+                    src="{{ checkout.header_image }}" />
             </a>
         </div>
         <div>
@@ -49,7 +49,281 @@
 </header>
 
 
-{{{ checkout.order_confirmation_content }}}
+<!-- Styles for manageyourenrollment section -->
+<style>
+    :root {
+        --blue: #1e90ff;
+        --white: #ffffff;
+        --black: #000;
+        --medium: 16px;
+        --background-color-btn: #A52238;
+        --font-family: roboto;
+        --border-bottom-grey: rgb(138, 138, 138);
+    }
+
+
+    * {
+        font-family: 'Roboto', sans-serif;
+    }
+    
+    #enrollmentsection {
+        padding: 45px 55px 75px 55px;
+        display: none;
+    }
+
+    .maincontainer1 {
+        width: 100%;
+        padding: 0px 30px 30px 30px;
+        margin-bottom: 10px;
+    }
+
+    #supporttext {
+        width: 46%;
+        font-family: 'Roboto';
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 24px;
+        padding-bottom: 10px;
+        color: #000;
+    }
+
+    #gotohomepage {
+        color: var(--black);
+        text-transform: uppercase;
+        font-weight: 600;
+        font-size: 14px;
+        padding-bottom: 10px;
+        line-height: 20px;
+        font-style: normal;
+        font-family: 'Roboto';
+    }
+
+    .spaceingline {
+        padding-bottom: 20px;
+    }
+
+    .article-block-title {
+        font-family: var(--font-family);
+        font-style: normal;
+        font-weight: 400;
+        font-size: 30px;
+        line-height: 40px;
+        margin-bottom: 0% !important;
+        color: var(--black);
+    }
+
+    .underenrollment {
+        border-bottom: 5px solid #d41b2c;
+        width: 5%;
+    }
+
+    .enrollment-box-main {
+        display: flex;
+        gap: 5px;
+        margin: 30px 0px;
+    }
+
+    .subcontainer1 {
+        border: 1px solid #e3e3e3;
+        border-radius: 7px;
+        width: 50%;
+        padding: 30px;
+    }
+
+    .productmainhead {
+        font-family: var(--font-family);
+        font-style: normal;
+        font-weight: 400;
+        font-size: 21px;
+        line-height: 28px;
+        color: var(--black);
+        margin-bottom: 20px;
+    }
+
+    #masterproductname {}
+
+    .labeldate {
+        display: flex;
+        gap: 40px;
+    }
+
+    .label {
+        color: #666666;
+        font-family: var(--font-family);
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 16px;
+    }
+
+
+    .date {
+        color: var(--black);
+        font-family: var(--font-family);
+        font-style: normal;
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 28px;
+    }
+
+
+
+    .learnbutton {
+        background: var(--background-color-btn);
+        padding: 15px 30px;
+        color: #f5f5f5;
+        width: 50%;
+        text-transform: uppercase;
+        text-align: center;
+        letter-spacing: 0.15em;
+    }
+
+    .learnbutton:hover {
+        color: #f5f5f5;
+        background-color: #d41b2c;
+    }
+
+    .subcontainer2 {
+        padding: 30px;
+    }
+
+    .enrollmenthead {
+        font-family: var(--font-family);
+        font-style: normal;
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 28px;
+        color: var(--black);
+        margin-bottom: 15px;
+    }
+
+    .enrollmentsub {
+        font-family: var(--font-family);
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 20px;
+        color: var(--black);
+        width: 75%;
+    }
+
+    .button-label {
+        font-family: var(--font-family);
+        font-style: normal;
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 16px;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--black);
+    }
+
+    .underlinelink {
+        text-decoration: none;
+    }
+
+    .cart-header-link {
+        text-decoration: none;
+    }
+
+    .cart-header-link:hover {
+        text-decoration: underline;
+    }
+
+    .underlinelink:hover {
+        text-decoration: underline;
+    }
+</style>
+
+
+<div id="main-contianer-div">
+    <div id="order_confirmation_content">
+        <div>{{{ checkout.order_confirmation_content }}}</div>
+    </div>
+    <div id="enrollmentsection">
+        <div class="maincontainer1">
+            <p id="supporttext"></p>
+            <p id="gotohomepage"></p>
+            <hr class="spaceingline">
+            <h2 class="article-block-title">Manage your enrollments</h2>
+            <hr class="underenrollment">
+            <div class="enrollment-box-main">
+                <div class="subcontainer1">
+                    <h3 class="productmainhead" id="masterproductname"></h3>
+                    <div class="labeldate">
+                        <div>
+                            <p class="label" id="label1"></p>
+                            <p class="date" id="value1"></p>
+                        </div>
+                        <div>
+                            <p class="label" id="label2"></p>
+                            <p class="date" id="value2"></p>
+                        </div>
+                    </div>
+                    <div class="labeldate">
+                        <div>
+                            <p class="label" id="label3"></p>
+                            <p class="date" id="value3"></p>
+                        </div>
+                        <div>
+                            <p class="label" id="label4"></p>
+                            <p class="date" id="value4"></p>
+                        </div>
+                    </div>
+                    <a href="{{getVar 'startyourlearning' }}">
+                        <button class="learnbutton">Start your learning</button>
+                    </a>
+                </div>
+                <div class="subcontainer2">
+                    <div style="margin-bottom:30px;">
+                        <div style="display: flex;gap: 10px;">
+                            <svg width="27.13" height="22.31" viewBox="0 0 26 26" fill="none">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M2 14C0.895431 14 0 14.8954 0 16V24C0 25.1046 0.895431 26 2 26H10C11.1046 26 12 25.1046 12 24V16C12 14.8954 11.1046 14 10 14H2ZM2 2V10H10V2L2 2ZM2 16V24H10V16H2ZM24 2L16 2V10H24V2ZM16 16V24H24V16H16ZM0 2C0 0.895431 0.895431 0 2 0H10C11.1046 0 12 0.895431 12 2V10C12 11.1046 11.1046 12 10 12H2C0.895431 12 0 11.1046 0 10V2ZM16 0C14.8954 0 14 0.895431 14 2V10C14 11.1046 14.8954 12 16 12H24C25.1046 12 26 11.1046 26 10V2C26 0.895431 25.1046 0 24 0H16ZM14 16C14 14.8954 14.8954 14 16 14H24C25.1046 14 26 14.8954 26 16V24C26 25.1046 25.1046 26 24 26H16C14.8954 26 14 25.1046 14 24V16Z"
+                                    fill="black" />
+                            </svg>
+                            <h2 class="enrollmenthead">Enrollments dashboard</h2>
+                        </div>
+                        <p class="enrollmentsub">Manage all courses you are enrolled on in one place</p>
+                        <div style="display: flex;gap: 2px;">
+                            <a href="{{getVar 'gotodashboard' }}" class="button-label underlinelink">Go to dashboard</a>
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M11.5614 7.37806C11.8916 7.74591 11.8788 8.30973 11.5229 8.66235L6.41346 13.7256C6.04431 14.0915 5.44581 14.0915 5.07666 13.7256C4.70752 13.3598 4.70752 12.7667 5.07666 12.4009L9.51776 8L5.07666 3.59906C4.70752 3.23325 4.70752 2.64016 5.07667 2.27436C5.44581 1.90855 6.04431 1.90855 6.41346 2.27436L11.5229 7.33765C11.5365 7.35104 11.5493 7.36449 11.5614 7.37806Z"
+                                    fill="#A52238" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div>
+                        <div style="display: flex;gap: 5px;">
+                            <svg width="27.13" height="22.31" viewBox="0 0 30 23" fill="none">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M28.3028 5.40952L28.3053 5.4105C29.9878 6.07898 29.987 8.46183 28.3028 9.12863L16.7358 13.7083C16.2629 13.8955 15.7363 13.8955 15.2634 13.7083L6.05885 10.064L3.58634 14.5969L4.94869 18.684C5.05034 18.9889 4.9992 19.3241 4.81125 19.5849C4.6233 19.8457 4.32145 20.0002 4.00001 20.0002H1.00001C0.678564 20.0002 0.376716 19.8457 0.188765 19.5849C0.000813856 19.3241 -0.0503253 18.9889 0.051324 18.684L1.55132 14.184C1.57006 14.1278 1.59375 14.0734 1.62211 14.0214L4.18528 9.3222L3.69638 9.12863C2.01136 8.4615 2.01136 6.07665 3.69638 5.40952L15.264 0.829657C15.7368 0.642638 16.2631 0.642719 16.7358 0.829897L28.3028 5.40952ZM9.34278 9.21312L15.206 7.97875C15.7465 7.86498 16.0923 7.33463 15.9786 6.79419C15.8648 6.25375 15.3344 5.90788 14.794 6.02165L5.9726 7.87879L4.43262 7.26908L15.9996 2.68945L27.5666 7.26908L15.9996 11.8487L9.34278 9.21312ZM7.05031 11.9842L9.04469 12.8791L9.00696 18.8515C9.00568 19.0542 9.0618 19.2176 9.14806 19.3369C9.2065 19.4177 9.27876 19.4783 9.35638 19.5173C10.4958 20.0897 12.8094 20.9997 16.0004 20.9997C19.1914 20.9997 21.505 20.0897 22.6444 19.5173C22.7209 19.4789 22.7936 19.4185 22.8527 19.3369C22.9291 19.2313 22.9827 19.0901 22.9923 18.915C22.9934 18.8943 22.9939 18.8731 22.9938 18.8515L22.956 12.8783L24.9504 11.9834L24.9937 18.8389C24.9999 19.8107 24.5222 20.8121 23.5422 21.3045C22.1975 21.98 19.5759 22.9997 16.0004 22.9997C12.4248 22.9997 9.80326 21.98 8.45854 21.3045L8.44439 21.2973C7.94991 21.0451 7.57952 20.6588 7.33866 20.2068C7.11597 19.7889 7.00399 19.3149 7.007 18.8389L7.05031 11.9842Z"
+                                    fill="black" />
+                            </svg>
+                            <h2 class="enrollmenthead">Online programs</h2>
+                        </div>
+                        <p class="enrollmentsub">Search for more programs among 5000+ courses in 25 areas of study</p>
+                        <div style="display: flex;gap: 2px;">
+                            <a class="button-label underlinelink" href=" {{getVar 'findmoreprograms'}} ">Find more
+                                programs</a>
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M11.5614 7.37806C11.8916 7.74591 11.8788 8.30973 11.5229 8.66235L6.41346 13.7256C6.04431 14.0915 5.44581 14.0915 5.07666 13.7256C4.70752 13.3598 4.70752 12.7667 5.07666 12.4009L9.51776 8L5.07666 3.59906C4.70752 3.23325 4.70752 2.64016 5.07667 2.27436C5.44581 1.90855 6.04431 1.90855 6.41346 2.27436L11.5229 7.33765C11.5365 7.35104 11.5493 7.36449 11.5614 7.37806Z"
+                                    fill="#A52238" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- {{{ checkout.order_confirmation_content }}} -->
 
 {{{ footer.scripts }}}
 

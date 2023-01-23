@@ -1,34 +1,235 @@
 {{#partial "head"}}
+{{{stylesheet '/assets/css/theme.css'}}}
+{{{stylesheet '/assets/scss/checkout.scss'}}}
 
 {{{ checkout.checkout_head }}}
 {{{ stylesheet '/assets/css/optimized-checkout.css' }}}
 {{ getFontsCollection }}
+
+<!-- Calling Roboto Font Family -->
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+</style>
 
 <script type="text/javascript">
     window.language = {{{langJson 'optimized_checkout'}}};
 </script>
 
 {{{head.scripts}}}
+<!-- Calling FontAwesome cdn and Jquery cdn -->
+<script src="https://use.fontawesome.com/685ce2e244.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
 {{/partial}}
 
 {{#partial "page"}}
-<header class="checkoutHeader optimizedCheckout-header">
-    <div class="checkoutHeader-content">
-        <h1 class="is-srOnly">{{lang 'checkout.title'}}</h1>
-        <h2 class="checkoutHeader-heading">
-            <a class="checkoutHeader-link" href="{{urls.home}}">
-                {{#if checkout.header_image}}
-                    <img alt="{{settings.store_logo.title}}" class="checkoutHeader-logo" id="logoImage" src="{{ checkout.header_image }}"/>
-                {{ else }}
-                    <span class="header-logo-text">{{settings.store_logo.title}}</span>
-                {{/if}}
+<!-- *************************************** -->
+<!-- Content Changes Using Mutation Observer -->
+<script>
+
+    // ********************************************************************************
+    // ********************* MUTATION OBSERVER STARTS HERE ****************************
+    // ********************************************************************************
+
+    // Set the config File for the mutation
+    const config = { attributes: false, childList: true, subtree: true };
+    // Mutation 1 ::: Observe the <html> Tag
+    const HtmlObserver = new MutationObserver((mutationList, observer) => {
+        // console.log("HtmlObserver Mutation", HtmlObserveRr)
+        for (const mutation of mutationList) {
+            // console.log("HtmlObserver Mutation", mutation)
+            var node = mutation.target
+            // console.log("Node *****", node)
+            // Check <body> is available in <html>
+            if (node?.tagName === "BODY") {
+                // Time to end HtmlObserver
+                HtmlObserver.disconnect()
+                console.log("HtmlObserver STOPPED.....**")
+                // Start BodyObserver :: it will observe the <body>
+                BodyObserver.observe(node, { attributes: true, childList: true, subtree: true })
+                console.log("BodyObserver STARTED.....**")
+            }
+        }
+    })
+
+    var targetHtml = document.getElementsByTagName('html')
+    // console.log("Html  tag", targetHtml, typeof (targetHtml), typeof (targetHtml[0]), targetHtml[0])
+    // Observe <html>  
+    HtmlObserver.observe(targetHtml[0], config)
+
+
+    // *******************************************************************************
+    // *****************  Mutation 2 ::: Observe <body> Tag **************************
+    // *******************************************************************************
+
+    const BodyObserver = new MutationObserver((mutationList, observer) => {
+        for (const mutation of mutationList) {
+            // console.log("Body Mutation", mutation)
+            // get Checkout app Sections 
+            getCheckoutApp = mutation.target.getAttribute('id')
+            // console.log("getCheckoutApp-----",getCheckoutApp)
+
+            if (getCheckoutApp === "checkout-app") {
+                // console.log("Got ***checkout-step***")
+                // console.log("*********",mutation.target.childNodes[0].childNodes[0].childNodes[0].childNodes[0])
+                // var checkoutApp = mutation.target
+                var checkoutApp = mutation.target.childNodes[0].childNodes[0].childNodes[0].childNodes[0]
+                var layoutCart = mutation.target.childNodes[0].childNodes[0].childNodes[0].childNodes[1]
+                // console.log("****checkoutApp Billing*****",checkoutApp)
+                // console.log("****layout cart*****",layoutCart)
+                // ***** Start Observe the Billling Section
+                BillingObserver.observe(checkoutApp, { attributes: true, childList: true, subtree: true })
+                console.log("BillingObserver STARTED.....**")
+                // Start Observethe Cart Section
+                layoutCartObserver.observe(layoutCart, { attributes: true, childList: true, subtree: true })
+                // Disconnect BodyObserver after getting Billing and Cart
+                BodyObserver.disconnect()
+                console.log("BodyObserver STOPPED.....**")
+            }
+        }
+    })
+
+
+    // *******************************************************************************
+    // *****************  Mutation 3 ::: Observe Billing Section *********************
+    // *******************************************************************************
+
+    const BillingObserver = new MutationObserver((mutationList, observer) => {
+        for (const mutation of mutationList) {
+            // console.log("BillingObserver Mutation",mutation)
+            var checkoutSteps = mutation.target.childNodes
+            var billingSection = checkoutSteps[0]?.childNodes[1]
+            var paymentSection = checkoutSteps[0]?.childNodes[2]
+            var billingClass = billingSection?.classList[2]
+            // console.log("****checkoutSteps****", checkoutSteps[0].childNodes[1])
+            // console.log("****billingSection ****", billingSection)
+            // console.log("****paymentSection ****", paymentSection)
+            // console.log("****billingClass ****", billingClass)
+
+            if (billingClass === "checkout-step--billing") {
+
+                // ****************************************************************************
+                // ***** Change the billing,Payment Heading and Continue Button content *******
+                // ****************************************************************************
+                var textBilling = $('.checkout-step--billing').find('.optimizedCheckout-headingPrimary').text("Billing address");
+                var textPayment = $('.checkout-step--payment').find('.optimizedCheckout-headingPrimary').text("Payment method");
+                $('.checkout-step--billing').find('#checkout-billing-continue').html('Save & continue')
+                // Those Headings are Hidden using css after Changes make it visible
+                textBilling.show()
+                textPayment.show()
+
+
+                var billingHeader = billingSection.childNodes[0]
+                var stepHeaderActions = billingHeader.childNodes[0].childNodes[2]
+                // console.log("*** billingHeader ***",billingHeader)
+                // console.log("***stepHeader***",stepHeaderActions)
+
+                // ****************************************************************************
+                // ********** Change the Address Edit deafault button to Icon *****************
+                // ****************************************************************************
+                var editBtn = billingHeader.getElementsByClassName('button--tertiary')[0]
+                $(editBtn).html('<svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M16.5647 0.739873C16.7113 0.580813 16.8936 0.5 17.1103 0.5C17.3258 0.5 17.5119 0.574399 17.6712 0.723197L20.2782 3.3464C20.4261 3.50546 20.5 3.69531 20.5 3.91209C20.5 4.13016 20.4261 4.31744 20.2782 4.47778L18.5916 6.05556L14.9444 2.38563L16.5647 0.739873ZM17.1667 7.27932L7.27408 17.1667L3.83333 13.7207L13.7091 3.83333L17.1667 7.27932ZM6.05556 18.6432L0.5 20.5L2.33604 14.9444L6.05556 18.6432Z" fill="black"/></svg>');
+                $(editBtn).show() //Show Button after changes
+            }
+
+
+            // ****************************************************************************
+            // *************** Replace the Terms and Condition Section  *******************
+            // ****************************************************************************
+            if (paymentSection) {
+                var formField = paymentSection.querySelector('.checkout-terms')
+                var customText = formField?.getElementsByTagName('span')[0];
+                // console.log("*** Custom Text ***",customText)
+                $(customText).html('By completing your purchase you agree to these <a target="_blank" href="https://www.pearson.com/en-ca/legal-information/terms-of-use.html">Terms of Service.</a>');
+                $(formField).show()
+            }
+        }
+    })
+
+
+    // *******************************************************************************
+    // ********************  Mutation 4 ::: Observe Cart Section *********************
+    // *******************************************************************************
+
+    const layoutCartObserver = new MutationObserver((mutationList, observer) => {
+        for (const mutation of mutationList) {
+            // console.log("layoutCartObserver", mutation)
+
+            // *************************************************************************
+            // ****************Change Promocode and add a close button  ****************
+            // *************************************************************************
+            var redeemableLabel = mutation.target.getElementsByClassName('redeemable-label')
+            // console.log("redeemableLabel",redeemableLabel)
+            $(redeemableLabel).html('Promotion code<i class="fa fa-chevron-down fa-1x rotate"  aria-hidden="true"></i>');
+            // $(redeemableLabel).html('Promotion code<svg width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M5.37806 6.76161C5.74591 7.09181 6.30973 7.07898 6.66235 6.72314L11.7256 1.61365C12.0915 1.24451 12.0915 0.646004 11.7256 0.276858C11.3598 -0.0922867 10.7667 -0.0922869 10.4009 0.276858L6 4.71795L1.59906 0.276859C1.23325 -0.092286 0.640163 -0.0922861 0.274356 0.276859C-0.091452 0.646004 -0.0914519 1.24451 0.274356 1.61365L5.33765 6.72314C5.35104 6.73665 5.36449 6.7495 5.37806 6.76161Z" fill="black"/></svg>');
+            $(redeemableLabel).show()
+
+            var couponSection = mutation.target.querySelectorAll('[data-test="cart-coupon"]')[0];
+            var couponAttribute = couponSection?.getAttribute('data-test');
+            var closeButtton = couponSection?.querySelectorAll('[data-test="cart-price-callback"]')[0];
+            // console.log("couponSection", couponSection)
+            // console.log("couponAttribute", couponAttribute)
+            if (couponAttribute === "cart-coupon") {
+                // console.log("couponAttribute , closeButtton", couponAttribute, closeButtton)
+                $(closeButtton).html('<i class="fa fa-close fa-1x removeCouponBtn" aria-hidden="true"></i>');
+            }
+        }
+    })
+    // ********************************************************************************
+    // ************************* MUTATION OBSERVER END ********************************
+    // ********************************************************************************
+
+</script>
+
+<header class="containercheckout-header ">
+    <div class="containercheckout-head-main">
+        <div>
+            <img alt="{{settings.store_logo.title}}" class="checkoutHeader-logo" id="logoImage"
+                src="{{ checkout.header_image }}" />
+        </div>
+        <div>
+            <a href="" class="href">
+                <h4 id="cancelwindow">Cancel</h4>
             </a>
-        </h2>
+        </div>
     </div>
 </header>
 
+<div class="container checkoutheader">
+    <h2 class="article-block-title">Checkout</h2>
+    <hr class="underenrollment">
+</div>
+<!-- Chnage all the font to Roboto Font Family  -->
+<style>
+    body,
+    a,
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    div,
+    dd,
+    dt,
+    * {
+        font-family: Roboto !important;
+    }
+</style>
 {{{ checkout.checkout_content }}}
+<!-- New Footer Section -->
+<footer class="containercheckout-footer">
+    <div class="containercheckout-footer-main">
+        <div>
+            <img alt="{{settings.store_logo.title}}" style="opacity: .2;width: 200px;" class="checkoutHeader-logo"
+                id="logoImage" src="{{ checkout.header_image }}" />
+        </div>
+        <div>
+            <p class="footer-copy">© {{moment "now" "YYYY"}} Regis College. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
 
 {{{ footer.scripts }}}
 

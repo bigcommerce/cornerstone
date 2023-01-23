@@ -33,7 +33,7 @@
                                 {{#if quantity '>' 1}}
                                     {{quantity}} &times;
                                 {{/if}}
-                                {{#or ../customer (if ../theme_settings.restrict_to_login '!==' true)}}
+                                {{#or ../customer (unless ../settings.hide_price_from_guests) (if type '==' 'GiftCertificate')}}
                                     <span{{#if price_discounted}} class="price--discounted"{{/if}}>{{price.formatted}}</span>
                                     {{#if price_discounted}}
                                         {{price_discounted.formatted}}

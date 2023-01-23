@@ -1,6 +1,6 @@
 {
     "header": {
-        "welcome_back": "Le damos la bienvenida de nuevo, {name}",
+        "welcome_back": "Te damos la bienvenida de nuevo, {name}",
         "skip_to_main": "Ir al contenido principal"
     },
     "footer": {
@@ -9,7 +9,7 @@
         "navigate": "Navegar",
         "info": "Información",
         "categories": "Categorías",
-        "call_us": "Llámenos al {phone_number}",
+        "call_us": "Llámanos al {phone_number}",
         "powered_by": "Con la tecnología de"
     },
     "home": {
@@ -39,6 +39,7 @@
     "cart": {
         "nav_aria_label": "Carrito con 0 artículos",
         "continue_shopping": "Haga clic aquí para seguir comprando",
+        "login_to_checkout": "Inicia sesión para ir al proceso de pago",
         "items": "{NUM, plural, =0{(0 artículos)} one {(# artículo)} other {(# artículos)}}",
         "checkout": {
             "address": {
@@ -116,7 +117,7 @@
             "remove": "Eliminar",
             "choose_how": "Elija cómo desea que se envuelva este regalo.",
             "option_same": "Deseo usar la misma opción de envoltorio para todos estos artículos",
-            "item_single": "Envoltorio de regalo - {name}",
+            "item_single": "Envolver para regalo - {name}",
             "item_multiple": "Artículo {index} - {name}",
             "option_different": "Me gustaría usar un envoltorio diferente para cada artículo",
             "choose_type": "Elija un tipo de envoltorio de regalo",
@@ -126,7 +127,7 @@
         },
         "added_to_cart": {
             "what_next": "De acuerdo, {num_products, plural, one {1 artículo se ha añadido} other {# artículos se han añadido}} a su carrito. ¿Y ahora qué?",
-            "your_cart_contains": "Su carrito contiene {num_products, plural, one {1 artículo} other {# artículos}}",
+            "your_cart_contains": "Su carrito contiene {num_products, plural, one {1 item} other {# items}}",
             "proceed_to_checkout": "Ir al proceso de pago",
             "order_subtotal": "Subtotal del pedido",
             "continue_shopping": "Seguir comprando",
@@ -135,8 +136,8 @@
         }
     },
     "common": {
-        "store_credit": "Tiene <strong>{store_credit}</strong> de crédito en tienda. Para usarlo, solo tiene que realizar un pedido y seleccionar crédito en tienda como método de pago al completar su compra.",
-        "store_credit_overview": "{credit} Crédito en tienda",
+        "store_credit": "Tienes <strong>{store_credit}</strong> de crédito en tienda. Para usarlo, solo tienes que realizar un pedido y seleccionar crédito en tienda como método de pago al completar tu compra.",
+        "store_credit_overview": "{credit} crédito en tienda",
         "generic_error": "¡Vaya! Algo salió mal.",
         "currency": "Seleccionar moneda: {code}",
         "currency_switch_promotion": "Las promociones y cupones de regalo que no se apliquen a la nueva divisa se eliminarán de su carrito. ¿Está seguro de que desea continuar?",
@@ -153,6 +154,7 @@
         "yes": "Sí",
         "from": "de",
         "to": "a",
+        "ok": "Ok",
         "cancel": "Cancelar",
         "close": "Cerrar",
         "or": "o",
@@ -243,7 +245,7 @@
         },
         "redeem": {
             "heading": "Canjear cupón de regalo",
-            "intro": "Para usar un cupón de regalo de {store_name}, siga los pasos a continuación.",
+            "intro": "Para usar un cupón de regalo de {store_name}, sigue los pasos a continuación.",
             "item1": "Necesitará tener su código único del cupón de regalo, que encontrará adjunto al correo electrónico que recibió. Es un código similar a este: Z50-Y6K-COS-402.",
             "item2": "Explore la tienda y añada artículos a su carrito como lo haría normalmente.",
             "item3": "Haz clic en el enlace «<a href=\"{cart_url}\">Ver carrito</a>» para ver el contenido de tu carrito de compras.",
@@ -258,7 +260,7 @@
         "heading": "Cuenta nueva",
         "created": {
             "heading": "Se ha creado su cuenta",
-            "intro": "Gracias por crear su cuenta en {store_name}. Hemos enviado un correo electrónico con los detalles de su cuenta a <strong>{email}</strong>",
+            "intro": "Gracias por crear tu cuenta en {store_name}. Hemos enviado un correo electrónico con los detalles de tu cuenta a {email}.",
             "continue": "Seguir comprando"
         },
         "recaptcha_title": "reCAPTCHA de Google"
@@ -312,7 +314,7 @@
         "messages": {
             "heading": "Mensajes",
             "customer_said": "Usted dijo:",
-            "merchant_said": "{store_name} dijo:"
+            "merchant_said": "{store_name} dice:"
         },
         "orders": {
             "heading": "Pedidos",
@@ -337,7 +339,7 @@
             "last_update": "Última actualización",
             "list": {
                 "order_number": "Pedido n.º {number}",
-                "product_details": "{num_products, plural, one {1 producto} other {# productos}} en total {cost}"
+                "product_details": "{num_products, plural, one {1 product} other {# products}} por un total de {cost}"
             },
             "details": {
                 "heading": "Pedido n.º {number}",
@@ -345,6 +347,7 @@
                 "ship_to": "Enviar a",
                 "ship_to_multi": "Artículos enviados a {street}, {city}, {state}, {zip}, {country}",
                 "ship_to_multi_text": "El pedido se enviará a varias direcciones",
+                "pickup_details": "Detalles de la recogida",
                 "bill_to": "Facturar a",
                 "how_to_pay": "A continuación, le indicamos cómo pagar su pedido:",
                 "order_details": "Detalles del pedido",
@@ -354,7 +357,7 @@
                 "payment_method": "Método de pago:",
                 "comments": "Comentarios sobre el pedido",
                 "download_items": "Descargar artículos",
-                "card_ending": "que acaba en {card}",
+                "card_ending": "que termina en {card}",
                 "shipments": {
                     "date": "Fecha de envío",
                     "method": "Método de envío",
@@ -364,14 +367,20 @@
                 "actions": "Acciones",
                 "reorder": "Pedir de nuevo",
                 "return": "Devolver",
-                "print_invoice": "Imprimir factura"
+                "pickup": "Detalles de la recogida",
+                "pickup_method": "Método de recogida",
+                "in_store_pickup": "Recogida en tienda",
+                "print_invoice": "Imprimir factura",
+                "phone": "Teléfono",
+                "email": "Correo electrónico",
+                "opening_hours": "Horario de apertura"
             },
             "downloads": {
-                "heading": "Descargas del pedido n.º {number}",
+                "heading": "Descargas del pedido #{number}",
                 "download_files_below": "A continuación, puede descargar los archivos de",
                 "expired_content": "El archivo ha caducado",
                 "days_remaining": "{number, plural, one {1 día} other {# días}}",
-                "downloads_remaining": "{number, plural, one {1 descarga} other {# descargas}} restante(s)",
+                "downloads_remaining": "restan {number, plural, one {1 descarga} other {# descargas}}",
                 "days_or_downloads": "o {number} descargas",
                 "remaining": "resta"
             }
@@ -380,7 +389,7 @@
             "heading": "Métodos de pago",
             "payment_method": "Método de pago",
             "billing_address": "Dirección de facturación",
-            "card_ending_in": "que acaba en {last_four}",
+            "card_ending_in": "que termina en {last_four}",
             "card_expiry": "{month}/{year}",
             "new_payment_method": "Añadir nuevo método de pago",
             "no_methods": "No ha añadido métodos de pago en su cuenta",
@@ -397,6 +406,7 @@
                 "jcb": "JCB",
                 "maestro": "Maestro",
                 "mastercard": "Mastercard",
+                "unionpay": "Union Pay",
                 "visa": "Visa"
             },
             "paypal": "PayPal",
@@ -417,7 +427,7 @@
             "error_no_qty": "Seleccione uno o más artículos para devolver.",
             "none": "Aún no ha realizado ninguna devolución con nosotros. Cuando lo haga, aparecerá en esta página.",
             "new_return": "Nueva devolución",
-            "from_order": "Devolver artículos del pedido n.º {id}",
+            "from_order": "Devolver artículos del pedido #{id}",
             "date_requested": "Devolución solicitada",
             "successful_heading": "Solicitud de devolución enviada",
             "successful": "Su devolución se ha enviado correctamente. Nos pondremos en contacto con usted lo antes posible.",
@@ -428,7 +438,7 @@
             "comments": "Sus comentarios",
             "list": {
                 "return_number": "Devolución n.º {id}",
-                "product_details": "Devolución de {num_products}"
+                "product_details": "Devolviendo {num_products}"
             },
             "status": {
                 "pending": "Pendiente",
@@ -443,7 +453,7 @@
         "settings": {
             "heading": "Configuración de la cuenta",
             "first_name": "Nombre",
-            "last_name": "Apellidos",
+            "last_name": "Apellido",
             "email": "Dirección de correo electrónico",
             "company": "Compañía",
             "phone": "Número de teléfono",
@@ -516,12 +526,12 @@
             "search": {
                 "heading": "Búsquedas de productos",
                 "intro1": "Los feed de búsqueda de productos le permiten guardar las búsquedas personalizadas que ha realizado como fuente RSS, que se actualizará automáticamente cuando haya nuevos resultados.",
-                "intro2": "Para crear un feed de búsqueda de productos, solo tiene que realizar una búsqueda en {store} y hacer clic en las opciones de agrupar que aparecen al final de la página."
+                "intro2": "Para crear un feed de búsqueda de productos, solo tienes que realizar una búsqueda en {store} y hacer clic en las opciones de agrupar que aparecen al final de la página."
             }
         }
     },
     "forms": {
-        "range": "Debe introducir solo números entre: {limitTo} y {limitFrom}",
+        "range": "Debes introducir solo números entre: {limitTo} y {limitFrom}",
         "contact_us": {
             "full_name": "Nombre completo",
             "email": "Dirección de correo electrónico",
@@ -531,7 +541,8 @@
             "rma": "Número RMA",
             "question": "Comentarios/Preguntas",
             "submit": "Enviar formulario",
-            "successful": "Hemos recibido sus comentarios y le responderemos a la mayor brevedad posible. <a href=\"{shopPath}\">Continuar</a>."
+            "successful": "Hemos recibido sus comentarios y le responderemos a la mayor brevedad posible. <a href=\"{shopPath}\">Continuar</a>.",
+            "manual_captcha_instruction": "Please answer the question below for additional verification."
         },
         "create_account": {
             "submit_value": "Crear cuenta"
@@ -545,7 +556,7 @@
         "address": {
             "add": {
                 "heading": "Añadir nueva dirección",
-                "description": "Utiliza el siguiente formulario para modificar los detalles de tu dirección de envío. Haza clic en el botón «Guardar dirección» cuando hayas terminado."
+                "description": "Utiliza el siguiente formulario para modificar los detalles de tu dirección de envío. Haz clic en el botón «Guardar dirección» cuando hayas terminado."
             },
             "edit": {
                 "heading": "Actualizar dirección"
@@ -584,8 +595,8 @@
                 "message": "Mensaje opcional",
                 "amount": "Cantidad",
                 "theme": "Tema del cupón de regalo",
-                "custom_range": "(El valor debe ser entre {min} y {max})",
-                "agree": "Entiendo que los cupones de regalo caducan después de {days, plural, one {1 día} other {# días}}",
+                "custom_range": "(El valor debe estar entre {min} y {max})",
+                "agree": "Entiendo que los cupones de regalo caducan después de {days, plural, one {1 day} other {# days}}",
                 "agree2": "Acepto que los cupones de regalo no son reembolsables",
                 "preview": "Vista previa",
                 "preview_error": "Ha habido un problema al intentar cargar la vista previa. Vuelva a intentarlo más tarde.",
@@ -598,7 +609,7 @@
         },
         "inbox": {
             "order": "Pedido:",
-            "order_display": "Pedido n.º{id} - Realizado el {date} por {total}",
+            "order_display": "Pedido n.º {id} - Realizado el {date} por {total}",
             "subject": "Asunto",
             "message": "Mensaje",
             "submit_value": "Enviar mensaje",
@@ -685,16 +696,16 @@
                 "cvv": "Debe introducir un CVV válido."
             },
             "reviews": {
-                "rating": "El campo 'Calificación' no puede quedar en blanco.",
-                "title": "El campo 'Tema del comentario' no puede quedar en blanco.",
-                "comment": "El campo 'Comentarios' no puede quedar en blanco."
+                "rating": "El campo «Calificación» no puede estar en blanco.",
+                "title": "El campo «Tema del comentario» no puede estar en blanco.",
+                "comment": "El campo «Comentarios» no puede estar en blanco."
             }
         }
     },
     "products": {
         "current_stock": "Cantidad actual de existencias:",
         "quantity": "Cantidad:",
-        "change_product_options": "Cambiar las opciones de {name}",
+        "change_product_options": "Cambiar opciones para {name}",
         "quantity_decrease": "Disminuir la cantidad de {name}",
         "quantity_increase": "Aumentar la cantidad de {name}",
         "quantity_error_message": "La cantidad solo debe contener números",
@@ -714,11 +725,11 @@
             "show": "Mostrar reseñas",
             "header": "{total, plural, =0{0 reseñas} one {# reseña} other {# reseñas}}",
             "link_to_review": "({total, plural, =0{Aún no hay reseñas} one {# reseña} other {# reseñas}})",
-            "post_on_by": "Publicado por { name }, el { date }",
+            "post_on_by": "Publicado por { name } el { date }",
             "rating_label": "Calificación",
             "select_rating": "Seleccionar calificación",
             "anonymous_poster": "Desconocido",
-            "rating_aria_label": "La calificación del producto {rating_target} es {current_rating} de {max_rating}",
+            "rating_aria_label": "La calificación de {rating_target} es {current_rating} de {max_rating}",
             "rating": {
                 "1": "1 estrella (valoración más baja)",
                 "2": "2 estrellas",
@@ -751,7 +762,7 @@
         "availability": "Disponibilidad:",
         "swatch_option_announcement": "El {swatch_name} seleccionado es",
         "shipping": "Envío:",
-        "shipping_fixed": "{amount} (Coste de envío fijo)",
+        "shipping_fixed": "{amount} (coste fijo de envío)",
         "shipping_free": "Envío gratis",
         "shipping_calculated": "Se calcula durante el proceso de pago",
         "sold_out": "Agotado",
@@ -781,22 +792,22 @@
         "you_save_closing_bracket": ")",
         "gift_wrapping": "Envolver para regalo:",
         "gift_wrapping_available": "Hay opciones disponibles",
-        "quantity_min": "La cantidad mínima de compra es {quantity}",
-        "quantity_max": "La cantidad máxima de compra es {quantity}",
+        "quantity_min": "La cantidad mínima disponible para tu compra es {quantity}",
+        "quantity_max": "La cantidad máxima disponible para tu compra es {quantity}",
         "bulk_pricing": {
             "title": "Precio al por mayor:",
             "view": "Comprar por volumen y guardar",
             "modal_title": "Tasas de descuento por volumen",
             "instructions": "A continuación se muestran las tarifas de descuento por volumen disponibles para cada artículo individual al comprar una cantidad determinada.",
-            "range": "Comprar {min} {max, plural, =0{o más} other {- #}}",
-            "percent": "y obtenga {discount} de descuento",
-            "price": "y obtenga {discount} de descuento",
-            "fixed": "y pague solo {discount} por cada uno"
+            "range": "Comprar {min} {max, plural, =0{or above} other {- #}}",
+            "percent": "y obtén un {discount} de descuento",
+            "price": "y obtén un {discount} de descuento",
+            "fixed": "y paga solo {discount} por cada uno"
         },
         "card_default_image_alt": "Imagen próximamente"
     },
     "invoice": {
-        "for_order": "{name} Factura del pedido n.º {id}",
+        "for_order": "Factura de {name} para el pedido #{id}",
         "phone": "Teléfono: {number}",
         "email": "Correo electrónico: {email}",
         "order": "Pedido:",
@@ -807,6 +818,10 @@
         "qty": "Cantidad",
         "code": "Código/SKU",
         "shipping_address": "Dirección de envío",
+        "fulfillment": "Logística",
+        "digital": "Digital",
+        "shipping": "Envío",
+        "pickup": "Recogida",
         "product_name": "Nombre del producto",
         "price": "Precio",
         "total": "Total",
@@ -821,7 +836,7 @@
         "subscribed_heading_error": "¡Vaya!",
         "subscribed_message": "Gracias por unirse a nuestra lista de distribución de correo. Se le enviará el próximo número de nuestro boletín en breve.",
         "unsubscribed_heading": "¡Ha cancelado su suscripción!",
-        "unsubscribed_message": "Ya no recibirá correos electrónicos de marketing de <b>{store_name}</b>"
+        "unsubscribed_message": "Dejarás de recibir correos electrónicos de marketing de <b>{store_name}</b>"
     },
     "social": {
         "connect": "Conecte con nosotros"
@@ -839,8 +854,8 @@
         "results": {
             "form_label": "Buscar palabra clave:",
             "form_button_text": "Buscar",
-            "count": "{ count, plural, one {# resultado} other {# resultados} } para '{ search_query }'",
-            "quick_count": "{ count, plural, one {# resultado de producto} other {# resultados de productos} } for '{ search_query }'",
+            "count": "{ count, plural, one {# result} other {# results} } para «{ search_query }»",
+            "quick_count": "{ count, plural, one {# product result} other {# product results} } para «{ search_query }»",
             "quick_count_live": "resultados de productos para",
             "product_count": "Productos ({count})",
             "content_count": "Noticias e información ({count})"
@@ -848,7 +863,7 @@
         "faceted": {
             "selected": {
                 "title": "Restringir por",
-                "rating-label": "Con {rating, plural, one {# estrella} other {# estrellas}} o más",
+                "rating-label": "Calificación de {rating, plural, one {# estrella} other {# estrellas}} o más",
                 "no-filters": "No se han aplicado filtros",
                 "clear-all": "Borrar todo"
             },
@@ -900,9 +915,9 @@
         "down": "Fuera de servicio por mantenimiento"
     },
     "carousel": {
-        "arrow_and_dot_aria_label": "Ir a la diapositiva [SLIDE_NUMBER] de [SLIDES_QUANTITY]",
+        "arrow_and_dot_aria_label": "Ve a la diapositiva [SLIDE_NUMBER] de [SLIDES_QUANTITY]",
         "active_dot_aria_label": "Activo",
-        "content_announce_message": "Actualmente se encuentra en la diapositiva [SLIDE_NUMBER] de [SLIDES_QUANTITY]",
+        "content_announce_message": "Ahora estás en la diapositiva [SLIDE_NUMBER] de [SLIDES_QUANTITY]",
         "play_pause_button_play": "Reproducir",
         "play_pause_button_pause": "Pausar",
         "play_pause_button_aria_play": "Reproducir el carrusel",
@@ -916,7 +931,7 @@
         "invalid_password": "Las contraseñas deben tener al menos 7 caracteres y tanto caracteres alfabéticos como numéricos.",
         "field_not_blank": " el campo no puede dejarse en blanco.",
         "certificate_amount": "Debe introducir un importe para el cupón de regalo.",
-        "certificate_amount_range": "Debe introducir un importe para el cupón entre [MIN] y [MAX]",
+        "certificate_amount_range": "Debe introducir un importe de certificado entre [MIN] y [MAX]",
         "price_min_evaluation": "El precio mínimo debe ser menor que el precio máximo.",
         "price_max_evaluation": "El precio mínimo debe ser menor que el precio máximo.",
         "price_min_not_entered": "El campo de precio mínimo es obligatorio.",
@@ -931,7 +946,7 @@
         "invalid_password": "Las contraseñas deben tener al menos 7 caracteres y tanto caracteres alfabéticos como numéricos.",
         "field_not_blank": " el campo no puede dejarse en blanco.",
         "certificate_amount": "Debe introducir un importe para el cupón de regalo.",
-        "certificate_amount_range": "Debe introducir un importe para el cupón entre [MIN] y [MAX]",
+        "certificate_amount_range": "Debe introducir un importe de certificado entre [MIN] y [MAX]",
         "price_min_evaluation": "El precio mínimo debe ser menor que el precio máximo.",
         "price_max_evaluation": "El precio mínimo debe ser menor que el precio máximo.",
         "price_min_not_entered": "El campo de precio mínimo es obligatorio.",
@@ -946,7 +961,7 @@
         "invalid_password": "Las contraseñas deben tener al menos 7 caracteres y tanto caracteres alfabéticos como numéricos.",
         "field_not_blank": "El campo no puede dejarse en blanco.",
         "certificate_amount": "Debe introducir un importe para el cupón de regalo.",
-        "certificate_amount_range": "Debe introducir un importe para el cupón entre [MIN] y [MAX]",
+        "certificate_amount_range": "Debe introducir un importe de certificado entre [MIN] y [MAX]",
         "price_min_evaluation": "El precio mínimo debe ser menor que el precio máximo.",
         "price_max_evaluation": "El precio mínimo debe ser menor que el precio máximo.",
         "price_min_not_entered": "El campo de precio mínimo es obligatorio.",

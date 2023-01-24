@@ -1,14 +1,14 @@
 // created for orderconfirmation syles
 
-// roboto regular 400 font family 
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+// roboto regular 400 font family
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 
 :root {
   --blue: #1e90ff;
   --white: #ffffff;
   --black: #000;
   --medium: 16px;
-  --background-color-btn:  #A52238;;
+  --background-color-btn: #a52238;
   --font-family: roboto;
   --border-bottom-grey: rgb(138, 138, 138);
 }
@@ -32,7 +32,7 @@
 }
 
 /* order summary box syles */
-.ordernumber{
+.ordernumber {
   font-family: "Roboto";
   font-weight: 400;
   font-size: 16px;
@@ -105,7 +105,7 @@
 
 #supporttext {
   width: 46%;
-  font-family: 'Roboto';
+  font-family: "Roboto";
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
@@ -121,7 +121,7 @@
   padding-bottom: 10px;
   line-height: 20px;
   font-style: normal;
-  font-family: 'Roboto';
+  font-family: "Roboto";
 }
 
 a {
@@ -286,7 +286,6 @@ a:hover {
   display: none;
 }
 
-
 .maincontainer1 {
   width: 100%;
   padding: 0px 30px 30px 30px;
@@ -301,7 +300,7 @@ a:hover {
 }
 
 .subcontainer2 {
-    padding: 30px;
+  padding: 30px;
 }
 
 .learnbutton {
@@ -378,8 +377,8 @@ a:hover {
 }
 
 /* footer css */
-.footer-copy{
-  font-family: 'Roboto';
+.footer-copy {
+  font-family: "Roboto";
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;
@@ -398,12 +397,9 @@ a:hover {
   justify-content: space-between;
 }
 
-
-
 .optimizedCheckout-orderSummary {
   border-color: #ffffff;
   box-shadow: none !important;
-
 }
 
 #main-contianer-div {
@@ -438,7 +434,6 @@ a:hover {
   padding: 0px !important;
 }
 
-
 .underlinelink {
   text-decoration: none;
 }
@@ -453,4 +448,180 @@ a:hover {
 
 .cart-header-link:hover {
   text-decoration: underline;
+}
+
+// media queries
+
+/* For Mobile Phones Portrait or Landscape View */
+@media screen and (max-device-width: 640px) {
+  [data-test="cart-item-digital-product"]{
+    display: none;
+  }
+  [data-test="cart-item"]{
+    display: flex ;
+    flex-direction: row-reverse ;
+    flex-wrap: nowrap;
+  }
+  .cart-modal-header{
+    padding: 1.5rem;
+  }
+  .subcontainer2{
+    padding: 20px;
+  }
+  .layout-main{
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+  }
+  .containercheckout-header{
+    padding: 0px 20px;
+  }
+  .learnbutton{
+    width: 100%;
+  }
+  .enrollmentsub {
+    width: 100%;
+  }
+  .enrollment-box-main {
+    display: flex;
+    flex-direction: column;
+  }
+  .containercheckout-footer {
+    height: 100% !important;
+  }
+
+  .optimizedCheckout-headingPrimary {
+    width: 80%;
+  }
+
+  .labeldate {
+    gap: 40px;
+  }
+
+  .checkoutHeader-logo {
+    height: 20px;
+  }
+
+  .layout {
+    padding: 0 0.5rem 1.5rem;
+  }
+
+  #supporttext {
+    width: 100%;
+    padding-right: 20px;
+  }
+
+  #gotohomepage {
+    padding-bottom: 20px;
+  }
+
+  #enrollmentsection {
+    padding: 0px;
+    margin-left: 0px;
+  }
+
+  .maincontainer1 {
+    display: flex;
+    flex-direction: column;
+    padding: 0px;
+  }
+
+  .subcontainer1 {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .card {
+    width: 100%;
+  }
+
+  .subrelatedcontainer {
+    padding: 0px;
+  }
+
+  .containercheckout-footer-main {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .footer-copy {
+    padding-top: 10px;
+    margin-bottom: 0px !important;
+  }
+
+  .cartDrawer {
+    position: sticky !important;
+  }
+
+  .article-block-title {
+    padding-top: 20px;
+    width: 60%;
+  }
+
+  .underenrollment {
+    width: 15%;
+  }
+
+  .containercheckout-footer {
+    padding: 20px !important;
+  }
+
+  .spaceingline {
+    padding-bottom: 20px;
+    width: 80%;
+    margin: 0px 25px;
+  }
+
+  // mobile ordersummary
+  #checkout-app {
+    padding: 0px;
+  }
+  .cart-modal-close {
+    display: none;
+  }
+  .ReactModalPortal,
+  .cartDrawer.optimizedCheckout-orderSummary {
+    display: none;
+  }
+  .cart-modal-body {
+    padding: 0px 0;
+  }
+  .mobile-product-cart .product {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row-reverse;
+  }
+  .mobile-product-cart {
+    margin-bottom: 20px;
+  }
+}
+
+/* Media Query for Tablets Ipads portrait mode */
+@media (min-width: 700px) and (max-width: 1024px) {
+  .cartDrawer {
+    position: sticky !important;
+  }
+
+  #supporttext {
+    width: 89%;
+    padding-left: 30px;
+  }
+
+  #gotohomepage {
+    padding-left: 30px;
+  }
+}
+
+@media (min-width: 1000px) and (max-width: 1280px) {
+  .cartDrawer {
+    position: sticky !important;
+  }
+
+  #supporttext {
+    width: 89%;
+    padding-left: 30px;
+  }
+
+  #gotohomepage {
+    padding-left: 30px;
+  }
 }

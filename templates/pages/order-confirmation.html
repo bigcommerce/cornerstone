@@ -17,11 +17,6 @@
 
 
 
-
-
-
-
-
 <!--
     <script type="text/javascript">
     window.language = {{langJson 'optimized_checkout' }};
@@ -53,6 +48,8 @@
         </div>
     </div>
 </header>
+
+
 
 
 <div id="main-contianer-div">
@@ -157,9 +154,8 @@
 </footer>
 
 
+
 {{json order}}
-
-
 
 
 
@@ -331,7 +327,56 @@
 
 
 
+<!-- mobile section cart card section append here  -->
+<div class="mobile-product-cart container"></div>
 
+
+
+
+
+
+
+
+
+
+
+
+<script>
+    // ********************************************************************************
+    // ************************* mobile section product cart fetch data start ********************************
+    // ********************************************************************************
+    var width = $(window).width();
+    if (width <= 800) {
+        var getmobileproduct = setInterval(function () {
+            if ($('.optimizedCheckout-orderSummary')[0]) {
+                console.log("set time");
+                $('.optimizedCheckout-orderSummary').click()
+                $('#cart-print-link').click(function(e){
+                    e.preventDefault()
+                    console.log('print button clicked')
+                    window.print()
+                })
+                $('body').removeClass('has-activeModal')
+                $('[data-test="modal-heading"]').text("Order information")
+                var orderIdAppend = "<div class='ordernumberlabel'><p class='ordernumber'>Order Number<p><p class='ordernumber'>{{checkout.order.id}}</p></div>"
+                $('.productList').before(orderIdAppend)
+           
+
+                var mobilecart = $('.ReactModalPortal .cart-modal-body').clone()
+                var bodycart = $('.ReactModalPortal .cart-modal-header.optimizedCheckout-orderSummary').clone()
+                $(mobilecart).removeClass('modal-body cart-modal')
+                console.log("mobilecart", mobilecart)
+                console.log("mobilecart body", mobilecart.find('.cart-modal-body'))
+                $('.optimizedCheckout-headingPrimary').after(mobilecart)
+                $('.cart-modal-body.optimizedCheckout-orderSummary').prepend(bodycart)
+                clearInterval(getmobileproduct);
+            }
+        }, 1000);
+    }
+    // ********************************************************************************
+    // ************************* mobile section product card fetch data end ********************************
+    // ********************************************************************************
+</script>
 
 
 

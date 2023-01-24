@@ -55,6 +55,10 @@
     .checkoutheader {
         margin-top: 30px;
     }
+
+    .underenrollment {
+        width: 10% !important;
+    }
 }
 
 .checkoutheading {
@@ -749,12 +753,19 @@
     }
 }
 
-@media only screen and (max-width: 551px) {
-    .modal {
-        left: 50% !important;
-        visibility: visible;
-    }
+@media only screen and (max-width: 772px) {
+    .product {
+        flex-direction: row;
+        }
 
+    #checkout-app {
+        .layout {
+            padding: 0 1.5rem !important;
+        }
+    }
+}
+
+@media only screen and (max-width: 551px) {
     .product {
         display: flex;
         flex-wrap: nowrap;
@@ -776,5 +787,20 @@
 
     .is-srOnly {
         position: relative !important;
+    }
+
+    .underenrollment {
+        width: 15% !important;
+    }
+    .stepHeader-body{
+        margin-left: 10px !important;
+    }
+}
+
+@media only screen and (min-width: 551px) {
+    .checkout-step--payment {
+        .loading-skeleton {
+            margin-left: 0px !important;
+        }
     }
 }

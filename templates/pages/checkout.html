@@ -141,7 +141,7 @@
                 var customText = formField?.getElementsByTagName('span')[0];
                 // console.log("*** Custom Text ***",customText)
                 $(customText).html('By completing your purchase you agree to these <a target="_blank" href="https://www.pearson.com/en-ca/legal-information/terms-of-use.html">Terms of Service.</a>');
-                $(formField).show()
+                // $(formField).show()
             }
         }
     })
@@ -216,6 +216,85 @@
     * {
         font-family: Roboto !important;
     }
+/* Style for Order Summery in Mobile screen */
+/* **************************************** */
+    @media only screen and (max-width: 772px) {
+
+        .cart-modal-body {
+            padding: 0px 0;
+        }
+
+        .ReactModalPortal .product {
+            display: flex;
+            flex-wrap: nowrap;
+            flex-direction: row-reverse;
+        }
+
+        .redeemable-label {
+            display: block !important;
+        }
+
+        .modalOverlay {
+            bottom: unset !important;
+            left: unset !important;
+            opacity: 1;
+            position: relative !important;
+            right: unset !important;
+            top: unset !important;
+            transition: opacity 200ms ease-out;
+            z-index: 500;
+            margin: 15px;
+        }
+
+        .modal.is-active,
+        .modal.modal--afterOpen {
+            bottom: unset;
+            display: unset;
+            flex-direction: column;
+            justify-content: end;
+            left: unset;
+            max-width: unset;
+            min-height: unset;
+            opacity: 1;
+            right: unset;
+            top: unset !important;
+        }
+
+        .modal {
+            max-height: unset;
+            overflow: auto;
+            position: relative;
+        }
+
+        .modal-header.cart-modal-header,
+        .cartDrawer.optimizedCheckout-orderSummary,
+        #consent-manager-update-banner {
+            display: none !important;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+        }
+
+        .containercheckout-footer {
+            order: 2;
+        }
+
+        .ReactModalPortal {
+            order: 1;
+        }
+
+        #checkout-app .optimizedCheckout-contentPrimary {
+            margin-bottom: 20px;
+        }
+
+        .modal.is-active,
+        .modal.modal--afterOpen {
+            left: unset !important;
+        }
+    }
 </style>
 {{{ checkout.checkout_content }}}
 <!-- New Footer Section -->
@@ -231,6 +310,40 @@
     </div>
 </footer>
 
+<script>
+    // ********************************************************************************
+    // ***************  mobile section product card fetch data start ******************
+    // ********************************************************************************
+    var width = $(window).width();
+    if (width <= 800) {
+        var getmobileproduct = setInterval(function () {
+            if ($('.optimizedCheckout-orderSummary')[0]) {
+                console.log("set time");
+
+                getproductdata()
+            }
+        }, 1000);
+    }
+
+    var getproductdata = () => {
+        $('.optimizedCheckout-orderSummary').click()
+        $('body').removeClass('has-activeModal')
+        var mobilecart = $('.ReactModalPortal .cart-modal-body').clone()
+        $(mobilecart).removeClass('modal-body cart-modal')
+        console.log("mobilecart", mobilecart)
+        console.log("mobilecart body", mobilecart.find('.cart-modal-body'))
+        // $('.ReactModalPortal').remove()
+        // $('.mobile-product-cart').html(mobilecart)
+        // // $('#checkout-app').append(mobilecart)
+        $('.cart-modal-body.optimizedCheckout-orderSummary').prepend(`<div class="headings" style="padding: 15px;"><h2 class="headingmobilecart" style="font-family: 'Roboto';font-style: normal;font-weight: 400;font-size: 21px;line-height: 28px;margin-bottom: 0;">Order summary</h2></div>`)
+        $('.redeemable-label').html('Promotion code<i class="fa fa-chevron-down fa-1x rotate"  aria-hidden="true"></i>').removeAttr('href')
+
+        clearInterval(getmobileproduct);
+    }
+    // ********************************************************************************
+    // *************** mobile section product card fetch data end *********************
+    // ********************************************************************************
+</script>
 {{{ footer.scripts }}}
 
 {{/partial}}

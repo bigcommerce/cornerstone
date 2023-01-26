@@ -21,19 +21,39 @@
            {{/if}}
         >
         {{#if stock_level '===' 0}}
-            {{#if theme_settings.pdp_sold_out_label '===' ''}}
-                {{> components/products/product-badge
-                    badge-type='sold-out'
-                    badge_view=theme_settings.product_sold_out_badges
-                    badge_label=(lang "page_builder.pdp_sold_out_label")
-                }}
-            {{else}}
-                {{> components/products/product-badge
-                    badge-type='sold-out'
-                    badge_view=theme_settings.product_sold_out_badges
-                    badge_label=theme_settings.pdp_sold_out_label
-                }}
+            {{#if show_cart_action}}
+                {{#if theme_settings.pdp_sold_out_label '===' ''}}
+                    {{> components/products/product-badge
+                        badge-type='sold-out'
+                        badge_view=theme_settings.product_sold_out_badges
+                        badge_label=(lang "page_builder.pdp_sold_out_label")
+                    }}
+                {{else}}
+                    {{> components/products/product-badge
+                        badge-type='sold-out'
+                        badge_view=theme_settings.product_sold_out_badges
+                        badge_label=theme_settings.pdp_sold_out_label
+                    }}
+                {{/if}}
             {{/if}}
+        {{else if has_options '===' false}}
+            {{#and (if stock_level '===' null) show_cart_action}}
+                {{#and (unless add_to_cart_url) (unless pre_order)}}
+                    {{#if theme_settings.pdp_sold_out_label '===' ''}}
+                        {{> components/products/product-badge
+                            badge-type='sold-out'
+                            badge_view=theme_settings.product_sold_out_badges
+                            badge_label=(lang "page_builder.pdp_sold_out_label")
+                        }}
+                    {{else}}
+                        {{> components/products/product-badge
+                            badge-type='sold-out'
+                            badge_view=theme_settings.product_sold_out_badges
+                            badge_label=theme_settings.pdp_sold_out_label
+                        }}
+                    {{/if}}
+                {{/and}}
+            {{/and}}
         {{else}}
             {{#or price.sale_price_with_tax.value price.sale_price_without_tax.value}}
                 {{#if theme_settings.pdp_sale_badge_label '===' ''}}

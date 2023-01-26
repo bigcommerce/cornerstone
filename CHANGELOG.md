@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Draft
+
+## 6.8.0 (01-26-2023)
 - Add remote_api_scripts into cart/preview template to let GA3 snippet to fire the Product Added event, when clicking Add to cart button on Product detail page and rendering the response in popup. [#2281](https://github.com/bigcommerce/cornerstone/pull/2281)
 - Stored XSS within Wishlist creation.[#2289](https://github.com/bigcommerce/cornerstone/issues/2289)
 - Set "Show quick payment buttons" setting to true by default [#2283]https://github.com/bigcommerce/cornerstone/pull/2283

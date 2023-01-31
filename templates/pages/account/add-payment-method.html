@@ -23,6 +23,11 @@
     {{inject 'vaultToken' vault.access_token}}
     {{inject 'shopperId' customer.id}}
     {{inject 'countries' countries}}
+    {{inject 'customerEmail' customer.email}}
+    {{inject 'providerId' forms.provider}}
+    {{inject 'currencyCode' currency_selector.active_currency_code}}
+    {{inject 'paymentProviderInitializationData' initialization_data}}
+    {{{inject 'storeLocale' settings.request.locale }}}
 
     {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
 
@@ -40,9 +45,6 @@
             {{{ account_payments }}}
             <script>
                 window.BigCommerce = window.BigCommerce || {};
-                window.BigCommerce.customerEmail = '{{customer.email}}';
-                window.BigCommerce.providerId = '{{forms.provider}}';
-                window.BigCommerce.currencyCode = '{{currency_selector.active_currency_code}}';
             </script>
         {{else}}
             <form data-payment-method-form class="form">

@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Draft
 - Fix sold-out badge appearance [#2315](https://github.com/bigcommerce/cornerstone/pull/2315)
 - Remove xlink attributes on svg [#2322](https://github.com/bigcommerce/cornerstone/pull/2322)
+- Bump Stencil utils to 6.15.0 [#2327][https://github.com/bigcommerce/cornerstone/pull/2327]
 - form.serialize() ignores dropdown option elements that have the disabled attribute [#2326](https://github.com/bigcommerce/cornerstone/pull/2326)
 - Extended BigCommerce.accountPayments app initialization interface [#2317](https://github.com/bigcommerce/cornerstone/pull/2317)
 - Gift certificate CSS properties are applied to page after previewing Gift certificate on storefront [#2330](https://github.com/bigcommerce/cornerstone/pull/2330)

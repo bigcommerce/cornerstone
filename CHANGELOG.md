@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Draft
+- Fix sold-out badge appearance [#2315](https://github.com/bigcommerce/cornerstone/pull/2315)
 - Remove xlink attributes on svg [#2322](https://github.com/bigcommerce/cornerstone/pull/2322)
 
 ## 6.8.0 (01-26-2023)

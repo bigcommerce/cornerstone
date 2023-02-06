@@ -58,7 +58,6 @@ module.exports = {
     },
     plugins: [
         new CleanWebpackPlugin({
-            cleanOnceBeforeBuildPatterns: ['assets/dist'],
             verbose: false,
             watch: false,
         }),

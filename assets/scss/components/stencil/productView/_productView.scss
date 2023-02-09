@@ -367,9 +367,20 @@
     .add-to-cart-wallet-buttons {
         margin-top: spacing("half");
 
-        button {
+        div[data-smart-button-container-id] {
+            line-height: 0;
+            margin-top: 6px;
+
+            button,
+            div {
+                width: 100%;
+            }
+        }
+
+        button.show-more-button {
             color: stencilColor("color-textSecondary");
             display: block;
+            margin-top: spacing("quarter");
             padding: spacing("quarter") 0;
             text-align: center;
             text-decoration: underline;

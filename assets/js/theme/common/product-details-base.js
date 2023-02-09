@@ -90,10 +90,17 @@ export default class ProductDetailsBase {
     updateProductAttributes(data) {
         const behavior = data.out_of_stock_behavior;
         const inStockIds = data.in_stock_attributes;
-        const outOfStockMessage = ` (${data.out_of_stock_message})`;
+        const outOfStockDefaultMessage = this.context.outOfStockDefaultMessage;
+        let outOfStockMessage = data.out_of_stock_message;
 
         if (behavior !== 'hide_option' && behavior !== 'label_option') {
             return;
+        }
+
+        if (outOfStockMessage) {
+            outOfStockMessage = ` (${outOfStockMessage})`;
+        } else {
+            outOfStockMessage = ` (${outOfStockDefaultMessage})`;
         }
 
         $('[data-product-attribute-value]', this.$scope).each((i, attribute) => {
@@ -407,7 +414,6 @@ export default class ProductDetailsBase {
                 $select[0].selectedIndex = 0;
             }
         } else {
-            $attribute.attr('disabled', 'disabled');
             $attribute.html($attribute.html().replace(outOfStockMessage, '') + outOfStockMessage);
         }
     }
@@ -416,7 +422,6 @@ export default class ProductDetailsBase {
         if (behavior === 'hide_option') {
             $attribute.toggleOption(true);
         } else {
-            $attribute.prop('disabled', false);
             $attribute.html($attribute.html().replace(outOfStockMessage, ''));
         }
     }

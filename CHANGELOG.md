@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - form.serialize() ignores dropdown option elements that have the disabled attribute [#2326](https://github.com/bigcommerce/cornerstone/pull/2326)
 - Extended BigCommerce.accountPayments app initialization interface [#2317](https://github.com/bigcommerce/cornerstone/pull/2317)
 - Gift certificate CSS properties are applied to page after previewing Gift certificate on storefront [#2330](https://github.com/bigcommerce/cornerstone/pull/2330)
+- Translation Gap: Submit Return Request button [#2331](https://github.com/bigcommerce/cornerstone/pull/2331)
 
 ## 6.8.0 (01-26-2023)
 - Add remote_api_scripts into cart/preview template to let GA3 snippet to fire the Product Added event, when clicking Add to cart button on Product detail page and rendering the response in popup. [#2281](https://github.com/bigcommerce/cornerstone/pull/2281)

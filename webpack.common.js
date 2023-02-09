@@ -1,5 +1,5 @@
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin,
-    CleanPlugin = require('clean-webpack-plugin'),
+    { CleanWebpackPlugin } = require('clean-webpack-plugin'),
     LodashPlugin = require('lodash-webpack-plugin'),
     path = require('path'),
     webpack = require('webpack');
@@ -38,11 +38,11 @@ module.exports = {
                 },
             },
             {
-                test: require.resolve('jquery'),
-                use: [{
-                    loader: 'expose-loader',
-                    options: '$',
-                }],
+                test: require.resolve("jquery"),
+                loader: "expose-loader",
+                options: {
+                  exposes: ["$"],
+                },
             },
         ],
     },
@@ -57,7 +57,8 @@ module.exports = {
         maxEntrypointSize: 1024 * 300,
     },
     plugins: [
-        new CleanPlugin(['assets/dist'], {
+        new CleanWebpackPlugin({
+            cleanOnceBeforeBuildPatterns: ['assets/dist'],
             verbose: false,
             watch: false,
         }),
@@ -73,6 +74,7 @@ module.exports = {
         }),
     ],
     resolve: {
+        fallback:  { "url": require.resolve("url/") },
         alias: {
             jquery: path.resolve(__dirname, 'node_modules/jquery/dist/jquery.min.js'),
             jstree: path.resolve(__dirname, 'node_modules/jstree/dist/jstree.min.js'),

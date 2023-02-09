@@ -39,6 +39,7 @@
     "cart": {
         "nav_aria_label": "Winkelmandje met 0 items",
         "continue_shopping": "Klik hier om verder te winkelen",
+        "login_to_checkout": "Log in om door te gaan naar de betaalomgeving",
         "items": "{NUM, plural, =0{(0 items)} one {(# item)} other {(# items)}}",
         "checkout": {
             "address": {
@@ -125,8 +126,8 @@
             "preview": "Voorbeeld"
         },
         "added_to_cart": {
-            "what_next": "Oké, {num_products, plural, one {er is 1 item} other {er zijn # items}} toegevoegd aan uw winkelmandje. Wat nu?",
-            "your_cart_contains": "Uw winkemandje bevat {num_products, plural, one {1 item} other {# items}}",
+            "what_next": "Oké, {num_products, plural, one {1er is 1 item} other {#er zijn # items}} toegevoegd aan uw winkelmandje. Wat nu?",
+            "your_cart_contains": "Uw winkelmandje bevat {num_products, plural, one {1 artikel} other {# artikelen}}",
             "proceed_to_checkout": "Doorgaan naar betaalomgeving",
             "order_subtotal": "Subtotaal bestelling",
             "continue_shopping": "Verdergaan met winkelen",
@@ -135,10 +136,10 @@
         }
     },
     "common": {
-        "store_credit": "U hebt <strong>{store_credit}</strong> winkeltegoed. U kunt het gebruiken door een bestelling te plaatsen en bij het betalen uw winkeltegoed te selecteren als betaalmethode.",
-        "store_credit_overview": "{credit} Winkeltegoed",
+        "store_credit": "U hebt <strong>{store_credit}</strong> tegoed. U kunt het gebruiken door een bestelling te plaatsen en bij het betalen uw tegoed te selecteren als betaalmethode.",
+        "store_credit_overview": "{credit} tegoed",
         "generic_error": "Oeps! Er is iets fout gegaan.",
-        "currency": "Valuta selecteren: {code}",
+        "currency": "Selecteer valuta: {code}",
         "currency_switch_promotion": "Promoties en cadeaubonnen die niet op de nieuwe valuta van toepassing zijn, worden uit uw winkelmandje verwijderd. Weet u zeker dat u wilt doorgaan?",
         "newsletter_signup": "Aanmelden voor onze nieuwsbrief",
         "form_submit": "Verzenden",
@@ -153,6 +154,7 @@
         "yes": "Ja",
         "from": "Van",
         "to": "op",
+        "ok": "OK",
         "cancel": "Annuleren",
         "close": "Sluiten",
         "or": "of",
@@ -213,7 +215,7 @@
     },
     "compare": {
         "button": "Producten vergelijken",
-        "header": "{products, plural, one {# product} other {# producten}} vergelijken",
+        "header": "{products, plural, one {# Product} other {# Products}} vergelijken",
         "remove": "Verwijderen",
         "no_remove": "U moet ten minste 2 producten selecteren om een geldige vergelijking te kunnen maken.",
         "add_to_cart": "Toevoegen aan winkelmandje",
@@ -247,7 +249,7 @@
             "item1": "U hebt uw unieke cadeauboncode nodig, die bij de cadeaubon hoort die als bijlage per e-mail aan u gestuurd is. Die code ziet er ongeveer zo uit als Z50-Y6K-COS-402.",
             "item2": "Bekijk de producten in de winkel en voeg items toe aan uw winkelmandje zoals u dat normaal zou doen.",
             "item3": "Klik op de link '<a href=\"{cart_url}\">Winkelmandje bekijken</a>' om de inhoud van uw winkelmandje te bekijken.",
-            "item4": "Voer in het vak 'Cadeaubon inwisselen' uw cadeauboncode in en klik op 'OK'."
+            "item4": "Voer in het vak 'Cadeaubon inwisselen' uw cadeauboncode in en klik op OK."
         },
         "balance": {
             "heading": "Saldo cadeaubon controleren",
@@ -258,7 +260,7 @@
         "heading": "Nieuw account",
         "created": {
             "heading": "Uw account is aangemaakt",
-            "intro": "Bedankt voor het aanmaken van uw account bij {store_name}. Er is een e-mail met uw accountgegevens verstuurd naar {email}",
+            "intro": "Bedankt voor het aanmaken van je account bij {store_name}. Er is een e-mail met je accountgegevens verstuurd naar {email}",
             "continue": "Verdergaan met winkelen"
         },
         "recaptcha_title": "Google-recaptcha"
@@ -343,8 +345,9 @@
                 "heading": "Bestelnummer {number}",
                 "order_contents": "Inhoud bestelling",
                 "ship_to": "Verzenden naar",
-                "ship_to_multi": "Artikelen verzonden naar {street}, {zip}, {city}, {state}, {country}",
+                "ship_to_multi": "Artikelen verzonden naar {street}, {city}, {state}, {zip}, {country}",
                 "ship_to_multi_text": "Bestelling wordt verzonden naar meerdere adressen",
+                "pickup_details": "Afhaalgegevens",
                 "bill_to": "Factureren aan",
                 "how_to_pay": "Zo betaalt u voor uw bestelling:",
                 "order_details": "Bestelgegevens",
@@ -354,7 +357,7 @@
                 "payment_method": "Betaalmethode:",
                 "comments": "Opmerkingen bij bestelling",
                 "download_items": "Artikelen downloaden",
-                "card_ending": "eindigt op {card}",
+                "card_ending": "eindigend op {card}",
                 "shipments": {
                     "date": "Datum verzending",
                     "method": "Verzendmethode",
@@ -364,10 +367,16 @@
                 "actions": "Acties",
                 "reorder": "Opnieuw bestellen",
                 "return": "Retourneren",
-                "print_invoice": "Factuur afdrukken"
+                "pickup": "Afhaalgegevens",
+                "pickup_method": "Afhaalmethode",
+                "in_store_pickup": "Afhalen in de winkel",
+                "print_invoice": "Factuur afdrukken",
+                "phone": "Telefoon",
+                "email": "E-mailadres",
+                "opening_hours": "Openingstijden"
             },
             "downloads": {
-                "heading": "Bestelling #{number} downloads",
+                "heading": "Bestelnummer {number} downloads",
                 "download_files_below": "Hieronder kunt u de bestanden downloaden voor",
                 "expired_content": "Bestand is verlopen",
                 "days_remaining": "{number, plural, one {1 dag} other {# dagen}}",
@@ -380,7 +389,7 @@
             "heading": "Betaalmethoden",
             "payment_method": "Betaalmethode",
             "billing_address": "Factuuradres",
-            "card_ending_in": "eindigt op {last_four}",
+            "card_ending_in": "eindigend op {last_four}",
             "card_expiry": "{month}/{year}",
             "new_payment_method": "Nieuwe betaalmethode toevoegen",
             "no_methods": "U heeft nog geen betaalmethoden toegevoegd aan uw account",
@@ -397,6 +406,7 @@
                 "jcb": "JCB",
                 "maestro": "Maestro",
                 "mastercard": "Mastercard",
+                "unionpay": "Union Pay",
                 "visa": "Visa"
             },
             "paypal": "PayPal",
@@ -427,7 +437,7 @@
             "action": "Retourneringsactie",
             "comments": "Uw opmerkingen",
             "list": {
-                "return_number": "#{id} retourneren",
+                "return_number": "Retournummer {id}",
                 "product_details": "{num_products} retourneren"
             },
             "status": {
@@ -521,7 +531,7 @@
         }
     },
     "forms": {
-        "range": "Voer nummers in tussen: {limitTo} en {limitFrom}",
+        "range": "Voer alleen getallen in tussen {limitTo} en {limitFrom}",
         "contact_us": {
             "full_name": "Volledige naam",
             "email": "E-mailadres",
@@ -531,7 +541,8 @@
             "rma": "RMA-nummer",
             "question": "Opmerkingen/vragen",
             "submit": "Formulier indienen",
-            "successful": "We hebben uw feedback ontvangen en zullen er indien nodig snel op reageren. <a href=\"{shopPath}\">Doorgaan</a>."
+            "successful": "We hebben uw feedback ontvangen en zullen er indien nodig snel op reageren. <a href=\"{shopPath}\">Doorgaan</a>.",
+            "manual_captcha_instruction": "Please answer the question below for additional verification."
         },
         "create_account": {
             "submit_value": "Account aanmaken"
@@ -598,7 +609,7 @@
         },
         "inbox": {
             "order": "Bestelling:",
-            "order_display": "Bestelnr. {id} - geplaatst op {date} voor {total}",
+            "order_display": "Bestelnummer {id} - Geplaatst op {date} voor {total}",
             "subject": "Onderwerp",
             "message": "Bericht",
             "submit_value": "Bericht verzenden",
@@ -686,7 +697,7 @@
             },
             "reviews": {
                 "rating": "Het veld 'Beoordeling' mag niet leeg zijn.",
-                "title": "Het veld 'Onderwerp beoordeling' mag niet leeg zijn.",
+                "title": "Het veld 'Onderwerp van beoordeling' mag niet leeg zijn.",
                 "comment": "Het veld 'Opmerkingen' mag niet leeg zijn."
             }
         }
@@ -749,12 +760,13 @@
         "upc": "UPC:",
         "condition": "Conditie:",
         "availability": "Beschikbaarheid:",
-        "swatch_option_announcement": "Geselecteerd(e) {swatch_name} is",
+        "swatch_option_announcement": "Geselecteerde {swatch_name} is",
         "shipping": "Verzending:",
-        "shipping_fixed": "{amount} (standaard verzendkosten)",
+        "shipping_fixed": "{amount} (vaste verzendkosten)",
         "shipping_free": "Gratis verzending",
         "shipping_calculated": "Berekend tijdens het afrekenen",
         "sold_out": "Uitverkocht",
+        "out_of_stock_default_message": "Uitverkocht",
         "pre_order": "Nu vooruitbestellen",
         "choose_options": "Opties kiezen",
         "quick_view": "Snelle weergave",
@@ -781,14 +793,14 @@
         "you_save_closing_bracket": ")",
         "gift_wrapping": "Cadeauverpakking:",
         "gift_wrapping_available": "Opties beschikbaar",
-        "quantity_min": "De minimale koopbare hoeveelheid is {quantity}",
-        "quantity_max": "De maximale koopbare hoeveelheid is {quantity}",
+        "quantity_min": "De minimale aankoophoeveelheid is {quantity}",
+        "quantity_max": "De maximale aankoophoeveelheid is {quantity}",
         "bulk_pricing": {
             "title": "Bulkprijzen:",
             "view": "Koop in bulk en bespaar geld",
             "modal_title": "Bulkkortingen",
             "instructions": "Hieronder vindt u de beschikbare kwantumkortingstarieven voor elk afzonderlijk artikel bij aankoop van een bepaald aantal",
-            "range": "Koop {min} {max, plural, =0{of meer} other {- #}}",
+            "range": "Koop {min} {max, plural, =0{or above} other {- #}}",
             "percent": "en krijg {discount} korting",
             "price": "en krijg {discount} korting",
             "fixed": "en betaal slechts {discount} voor elk artikel"
@@ -796,7 +808,7 @@
         "card_default_image_alt": "Afbeelding binnenkort beschikbaar"
     },
     "invoice": {
-        "for_order": "{name} Factuur voor bestelnr. {id}",
+        "for_order": "{name} Factuur voor bestelnummer {id}",
         "phone": "Telefoon: {number}",
         "email": "E-mail: {email}",
         "order": "Bestelling:",
@@ -807,6 +819,10 @@
         "qty": "Aantal",
         "code": "Code/SKU",
         "shipping_address": "Verzendadres",
+        "fulfillment": "Uitvoering",
+        "digital": "Digitaal",
+        "shipping": "Verzending",
+        "pickup": "Ophalen",
         "product_name": "Productnaam",
         "price": "Prijs",
         "total": "Totaal",
@@ -821,7 +837,7 @@
         "subscribed_heading_error": "Oeps...",
         "subscribed_message": "Bedankt voor uw aanmelding voor onze mailinglijst. U ontvangt binnenkort de volgende uitgave van onze nieuwsbrief.",
         "unsubscribed_heading": "Afgemeld!",
-        "unsubscribed_message": "U ontvangt geen marketinge-mails meer van <b>{store_name}</b>"
+        "unsubscribed_message": "U ontvangt geen marketingmails meer van <b>{store_name}</b>"
     },
     "social": {
         "connect": "Neem contact met ons op"
@@ -848,7 +864,7 @@
         "faceted": {
             "selected": {
                 "title": "Verfijnen op",
-                "rating-label": "Beoordeeld met {rating, plural, one {# ster} other {# sterren}} of meer",
+                "rating-label": "Beoordeeld met {rating, plural, one {# ster} other {# sterren}} of hoger",
                 "no-filters": "Geen filters toegepast",
                 "clear-all": "Alles wissen"
             },
@@ -902,7 +918,7 @@
     "carousel": {
         "arrow_and_dot_aria_label": "Ga naar dia [SLIDE_NUMBER] van [SLIDES_QUANTITY]",
         "active_dot_aria_label": "actief",
-        "content_announce_message": "U zit momenteel op dia [SLIDE_NUMBER] van [SLIDES_QUANTITY]",
+        "content_announce_message": "U bekijkt momenteel dia [SLIDE_NUMBER] van [SLIDES_QUANTITY]",
         "play_pause_button_play": "Afspelen",
         "play_pause_button_pause": "Pauzeren",
         "play_pause_button_aria_play": "Carrousel afspelen",
@@ -916,7 +932,7 @@
         "invalid_password": "Wachtwoorden moeten minimaal 7 tekens lang zijn en zowel cijfers als letters bevatten.",
         "field_not_blank": " veld mag niet leeg zijn.",
         "certificate_amount": "U moet een bedrag voor de cadeaubon invoeren.",
-        "certificate_amount_range": "U moet een bedrag voor de cadeaubon invoeren tussen [MIN] en [MAX]",
+        "certificate_amount_range": "U moet een bedrag voor de cadeaubon invoeren dat tussen [MIN] en [MAX] ligt",
         "price_min_evaluation": "Minimumprijs moet minder zijn dan maximumprijs.",
         "price_max_evaluation": "Minimumprijs moet minder zijn dan maximumprijs.",
         "price_min_not_entered": "Minimumprijs is vereist.",
@@ -931,7 +947,7 @@
         "invalid_password": "Wachtwoorden moeten minimaal 7 tekens lang zijn en zowel cijfers als letters bevatten.",
         "field_not_blank": " veld mag niet leeg zijn.",
         "certificate_amount": "U moet een bedrag voor de cadeaubon invoeren.",
-        "certificate_amount_range": "U moet een bedrag voor de cadeaubon invoeren tussen [MIN] en [MAX]",
+        "certificate_amount_range": "U moet een bedrag voor de cadeaubon invoeren dat tussen [MIN] en [MAX] ligt",
         "price_min_evaluation": "Minimumprijs moet minder zijn dan maximumprijs.",
         "price_max_evaluation": "Minimumprijs moet minder zijn dan maximumprijs.",
         "price_min_not_entered": "Minimumprijs is vereist.",
@@ -946,7 +962,7 @@
         "invalid_password": "Wachtwoorden moeten minimaal 7 tekens lang zijn en zowel cijfers als letters bevatten.",
         "field_not_blank": "Het veld mag niet leeg zijn.",
         "certificate_amount": "U moet een bedrag voor de cadeaubon invoeren.",
-        "certificate_amount_range": "U moet een bedrag voor de cadeaubon invoeren tussen [MIN] en [MAX]",
+        "certificate_amount_range": "U moet een bedrag voor de cadeaubon invoeren dat tussen [MIN] en [MAX] ligt",
         "price_min_evaluation": "Minimumprijs moet minder zijn dan maximumprijs.",
         "price_max_evaluation": "Minimumprijs moet minder zijn dan maximumprijs.",
         "price_min_not_entered": "Minimumprijs is vereist.",

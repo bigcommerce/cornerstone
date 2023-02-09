@@ -21,19 +21,39 @@
            {{/if}}
         >
         {{#if stock_level '===' 0}}
-            {{#if theme_settings.pdp_sold_out_label '===' ''}}
-                {{> components/products/product-badge
-                    badge-type='sold-out'
-                    badge_view=theme_settings.product_sold_out_badges
-                    badge_label=(lang "page_builder.pdp_sold_out_label")
-                }}
-            {{else}}
-                {{> components/products/product-badge
-                    badge-type='sold-out'
-                    badge_view=theme_settings.product_sold_out_badges
-                    badge_label=theme_settings.pdp_sold_out_label
-                }}
+            {{#if show_cart_action}}
+                {{#if theme_settings.pdp_sold_out_label '===' ''}}
+                    {{> components/products/product-badge
+                        badge-type='sold-out'
+                        badge_view=theme_settings.product_sold_out_badges
+                        badge_label=(lang "page_builder.pdp_sold_out_label")
+                    }}
+                {{else}}
+                    {{> components/products/product-badge
+                        badge-type='sold-out'
+                        badge_view=theme_settings.product_sold_out_badges
+                        badge_label=theme_settings.pdp_sold_out_label
+                    }}
+                {{/if}}
             {{/if}}
+        {{else if has_options '===' false}}
+            {{#and (if stock_level '===' null) show_cart_action}}
+                {{#and (unless add_to_cart_url) (unless pre_order)}}
+                    {{#if theme_settings.pdp_sold_out_label '===' ''}}
+                        {{> components/products/product-badge
+                            badge-type='sold-out'
+                            badge_view=theme_settings.product_sold_out_badges
+                            badge_label=(lang "page_builder.pdp_sold_out_label")
+                        }}
+                    {{else}}
+                        {{> components/products/product-badge
+                            badge-type='sold-out'
+                            badge_view=theme_settings.product_sold_out_badges
+                            badge_label=theme_settings.pdp_sold_out_label
+                        }}
+                    {{/if}}
+                {{/and}}
+            {{/and}}
         {{else}}
             {{#or price.sale_price_with_tax.value price.sale_price_without_tax.value}}
                 {{#if theme_settings.pdp_sale_badge_label '===' ''}}
@@ -95,23 +115,23 @@
                     {{#if price}}
                         <div class="listItem-price">{{> components/products/price price=price}}</div>
                     {{/if}}
-                    {{#if show_cart_action}}
-                        {{#if has_options}}
-                            <a href="{{url}}" {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}} class="button button--small" data-product-id="{{id}}">{{lang 'products.choose_options'}}</a>
-                        {{/if}}
-                        {{#if pre_order}}
-                            <a href="{{pre_order_add_to_cart_url}}" data-event-type="product-click" class="button button--primary">{{lang 'products.pre_order'}}</a>
-                        {{/if}}
-                        {{#if add_to_cart_url }}
-                            <a href="{{add_to_cart_url}}" {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}} class="button button--primary">{{lang 'products.add_to_cart'}}</a>
-                        {{/if}}
-                        {{#if out_of_stock_message }}
-                            <a href="{{url}}" data-event-type="product-click" class="button button--small" data-product-id="{{id}}">{{out_of_stock_message}}</a>
-                        {{/if}}
-                    {{/if}}
                 {{else}}
                     {{> components/common/login-for-pricing}}
                 {{/or}}
+                {{#if show_cart_action}}
+                    {{#if has_options}}
+                        <a href="{{url}}" {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}} class="button button--small" data-product-id="{{id}}">{{lang 'products.choose_options'}}</a>
+                    {{/if}}
+                    {{#if pre_order}}
+                        <a href="{{pre_order_add_to_cart_url}}" data-event-type="product-click" class="button button--primary">{{lang 'products.pre_order'}}</a>
+                    {{/if}}
+                    {{#if add_to_cart_url }}
+                        <a href="{{add_to_cart_url}}" {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}} class="button button--primary">{{lang 'products.add_to_cart'}}</a>
+                    {{/if}}
+                    {{#if out_of_stock_message }}
+                        <a href="{{url}}" data-event-type="product-click" class="button button--small" data-product-id="{{id}}">{{out_of_stock_message}}</a>
+                    {{/if}}
+                {{/if}}
                 {{#if show_compare}}
                     <label class="button button--small" for="compare-{{id}}">
                         {{lang "products.compare"}} <input type="checkbox" name="products[]" value="{{id}}" id="compare-{{id}}" data-compare-id="{{id}}">

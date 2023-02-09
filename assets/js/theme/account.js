@@ -32,6 +32,7 @@ export default class Account extends PageManager {
         const $paymentMethodForm = classifyForm('form[data-payment-method-form]');
         const $reorderForm = classifyForm('[data-account-reorder-form]');
         const $invoiceButton = $('[data-print-invoice]');
+        const $bigCommerce = window.BigCommerce;
 
         compareProducts(this.context);
 
@@ -80,6 +81,57 @@ export default class Account extends PageManager {
 
         if ($reorderForm.length) {
             this.initReorderForm($reorderForm);
+        }
+
+        if ($bigCommerce && $bigCommerce.accountPayments) {
+            const {
+                countries,
+                paymentsUrl,
+                storeHash,
+                storeLocale,
+                vaultToken,
+                shopperId,
+                customerEmail,
+                providerId,
+                currencyCode,
+                paymentMethodsUrl,
+                paymentProviderInitializationData,
+            } = this.context;
+
+            window.BigCommerce.accountPayments({
+                widgetStyles: {
+                    base: {
+                        color: '#666666',
+                        cursor: 'pointer',
+                        display: 'block',
+                        fontSize: '1rem',
+                        lineHeight: '1.5',
+                        marginBottom: '0.5rem',
+                    },
+                    error: {
+                        color: 'red',
+                    },
+                    placeholder: {
+                        color: '#d8d8d8',
+                    },
+                    validated: {
+                        color: 'green',
+                    },
+                },
+                initializeData: {
+                    countries,
+                    paymentsUrl,
+                    storeHash,
+                    storeLocale,
+                    vaultToken,
+                    shopperId,
+                    customerEmail,
+                    providerId,
+                    currencyCode,
+                    paymentMethodsUrl,
+                    paymentProviderInitializationData,
+                },
+            });
         }
 
         this.bindDeleteAddress();

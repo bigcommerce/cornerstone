@@ -83,7 +83,7 @@ export default class Account extends PageManager {
             this.initReorderForm($reorderForm);
         }
 
-        if ($bigCommerce && $bigCommerce.accountPayments) {
+        if ($bigCommerce && $bigCommerce.renderAccountPayments) {
             const {
                 countries,
                 paymentsUrl,
@@ -96,29 +96,70 @@ export default class Account extends PageManager {
                 currencyCode,
                 paymentMethodsUrl,
                 paymentProviderInitializationData,
+                themeSettings,
             } = this.context;
 
-            window.BigCommerce.accountPayments({
-                widgetStyles: {
-                    base: {
-                        color: '#666666',
-                        cursor: 'pointer',
-                        display: 'block',
-                        fontSize: '1rem',
-                        lineHeight: '1.5',
-                        marginBottom: '0.5rem',
+            $bigCommerce.renderAccountPayments({
+                styles: {
+                    inputBase: {
+                        color: themeSettings['input-font-color'],
+                        borderColor: themeSettings['input-border-color'],
                     },
-                    error: {
-                        color: 'red',
+                    inputValidationError: {
+                        color: themeSettings['color-error'],
+                        borderColor: themeSettings['color-error'],
                     },
-                    placeholder: {
-                        color: '#d8d8d8',
+                    inputValidationSuccess: {
+                        color: themeSettings['color-success'],
+                        borderColor: themeSettings['color-success'],
                     },
-                    validated: {
-                        color: 'green',
+                    submitButton: {
+                        color: themeSettings['button--primary-color'],
+                        backgroundColor: themeSettings['button--primary-backgroundColor'],
+                        borderColor: themeSettings['button--primary-backgroundColor'],
+                        '&:hover': {
+                            color: themeSettings['button--primary-colorHover'],
+                            backgroundColor: themeSettings['button--primary-backgroundColorHover'],
+                            borderColor: themeSettings['button--primary-backgroundColorHover'],
+                        },
+                        '&:active': {
+                            color: themeSettings['button--primary-colorActive'],
+                            backgroundColor: themeSettings['button--primary-backgroundColorActive'],
+                            borderColor: themeSettings['button--primary-backgroundColorActive'],
+                        },
+                        '&[disabled]': {
+                            backgroundColor: themeSettings['button--disabled-backgroundColor'],
+                            borderColor: themeSettings['button--disabled-borderColor'],
+                            color: themeSettings['button--disabled-color'],
+                            cursor: 'not-allowed',
+                        },
+                    },
+                    cancelButton: {
+                        color: themeSettings['button--default-color'],
+                        backgroundColor: 'transparent',
+                        borderColor: themeSettings['button--default-borderColor'],
+                        '&:hover': {
+                            color: themeSettings['button--default-colorHover'],
+                            backgroundColor: 'transparent',
+                            borderColor: themeSettings['button--default-borderColorHover'],
+                        },
+                        '&:active': {
+                            color: themeSettings['button--default-colorActive'],
+                            backgroundColor: 'transparent',
+                            borderColor: themeSettings['button--default-borderColorActive'],
+                        },
+                    },
+                    label: {
+                        color: themeSettings['form-label-font-color'],
+                    },
+                    validationError: {
+                        color: themeSettings['color-error'],
+                    },
+                    heading: {
+                        color: themeSettings['color-textHeading'],
                     },
                 },
-                initializeData: {
+                storeContextData: {
                     countries,
                     paymentsUrl,
                     storeHash,

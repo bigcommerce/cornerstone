@@ -172,6 +172,7 @@ export default class Account extends PageManager {
                     paymentMethodsUrl,
                     paymentProviderInitializationData,
                 },
+                errorHandler: showAlertModal,
             });
         }
 

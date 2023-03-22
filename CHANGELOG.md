@@ -5,6 +5,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Draft
+- A bug with the display of the product quantity on the PDP [#2340](https://github.com/bigcommerce/cornerstone/pull/2340)
+- Extended initialization interface of the storefront-account-payments lib, added theme styles [#2335][https://github.com/bigcommerce/cornerstone/pull/2335]
+- Added showAlertModal to the storefront-account-payments app initialization [#2338][https://github.com/bigcommerce/cornerstone/pull/2338]
 
 ## 6.9.0 (03-03-2023)
 - Fix sold-out badge appearance [#2315](https://github.com/bigcommerce/cornerstone/pull/2315)
@@ -14,8 +17,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Extended BigCommerce.accountPayments app initialization interface [#2317](https://github.com/bigcommerce/cornerstone/pull/2317)
 - Gift certificate CSS properties are applied to page after previewing Gift certificate on storefront [#2330](https://github.com/bigcommerce/cornerstone/pull/2330)
 - Translation Gap: Submit Return Request button [#2331](https://github.com/bigcommerce/cornerstone/pull/2331)
-- Extended initialization interface of the storefront-account-payments lib, added theme styles [#2335][https://github.com/bigcommerce/cornerstone/pull/2335]
-- Added showAlertModal to the storefront-account-payments app initialization [#2338][https://github.com/bigcommerce/cornerstone/pull/2338]
 
 ## 6.8.0 (01-26-2023)
 - Add remote_api_scripts into cart/preview template to let GA3 snippet to fire the Product Added event, when clicking Add to cart button on Product detail page and rendering the response in popup. [#2281](https://github.com/bigcommerce/cornerstone/pull/2281)

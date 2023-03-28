@@ -8,10 +8,6 @@
     <div class="previewCart">
         <section class="previewCartCheckout">
             {{#if cart.show_primary_checkout_button}}
-                {{#if cart.additional_checkout_buttons}}
-                    <div data-cart-accelerated-checkout-buttons class="previewCartCheckout-acceleratedCheckoutButtons"></div>
-                {{/if}}
-
                 <a href="{{urls.checkout.single_address}}" class="button button--primary" data-primary-checkout-now-action>
                     {{lang 'cart.added_to_cart.proceed_to_checkout'}}
                 </a>

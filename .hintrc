@@ -1,0 +1,44 @@
+{
+  "extends": [
+    "development"
+  ],
+  "browserslist": [
+    "defaults",
+    "not ie 11",
+    "not ie <= 11",
+    "not ios_saf <= 14.8",
+    "not and_ff <= 110",
+    "not firefox <= 110"
+  ],
+  "hints": {
+    "compat-api/html": [
+      "default",
+      {
+        "ignore": [
+          "meta[name=theme-color]"
+        ]
+      }
+    ],
+    "compat-api/css": [
+      "default",
+      {
+        "ignore": [
+          "backdrop-filter",
+          "background-color: color(\"greys\", \"lightest\")",
+          "color: color(\"link\", \"hover\")",
+          "color: color(\"link\", \"active\")",
+          "color: color(\"greys\", \"light\")",
+          "color: color(\"greys\", \"darker\")",
+          "-webkit-tap-highlight-color",
+          "-webkit-overflow-scrolling",
+          "color: color(\"greys\", \"dark\")",
+          "background-color: color(\"whites\", \"bright\")",
+          "background-color: color(\"greys\", \"lighter\")",
+          "height: fit-content"
+        ]
+      }
+    ],
+    "detect-css-reflows/composite": "off",
+    "detect-css-reflows/layout": "off"
+  }
+}

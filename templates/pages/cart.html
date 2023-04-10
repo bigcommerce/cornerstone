@@ -29,17 +29,13 @@ cart: true
             {{{region name="cart_below_totals"}}}
 
             {{#or customer (unless settings.hide_price_from_guests)}}
-                {{#if cart.additional_checkout_buttons}}
-                    <div data-cart-accelerated-checkout-buttons class="cart-acceleratedCheckoutButtons cart-content-padding-right"></div>
-                {{/if}}
-
                 {{#if cart.show_primary_checkout_button}}
                     <div class="cart-actions cart-content-padding-right">
                         <a
-                                class="button button--primary"
-                                href="{{urls.checkout.single_address}}"
-                                title="{{lang 'cart.checkout.title'}}"
-                                data-primary-checkout-now-action
+                            class="button button--primary"
+                            href="{{urls.checkout.single_address}}"
+                            title="{{lang 'cart.checkout.title'}}"
+                            data-primary-checkout-now-action
                         >
                             {{lang 'cart.checkout.button'}}
                         </a>

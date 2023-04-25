@@ -53,13 +53,15 @@
                             {{/each}}
                         </dl>
 
-                        <a href="#"
-                           data-item-edit="{{id}}"
-                           data-product-id="{{product_id}}"
-                           aria-label="{{lang 'products.change_product_options' name=name}}"
-                        >
-                            {{lang 'common.change'}}
-                        </a>
+                        {{#if can_modify}}
+                            <a href="#"
+                            data-item-edit="{{id}}"
+                            data-product-id="{{product_id}}"
+                            aria-label="{{lang 'products.change_product_options' name=name}}"
+                            >
+                                {{lang 'common.change'}}
+                            </a>
+                        {{/if}}
                     {{/if}}
 
                     {{#if type '==' 'GiftCertificate'}}

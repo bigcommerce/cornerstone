@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Draft
 - If the gift is a variant, the button "Change" shows in cart, and other variant are visible [#2349](https://github.com/bigcommerce/cornerstone/pull/2349)
+- Fixed sales badge appearance and modified logic for sold-out badges [#2352](https://github.com/bigcommerce/cornerstone/pull/2352)
 - Removes the URL encoding from the 'description' in the product rich snippet schema [#2350](https://github.com/bigcommerce/cornerstone/pull/2350)
 - Running Lighthouse npm script fails in terminal [#2345](https://github.com/bigcommerce/cornerstone/pull/2345)
 - Removed accelerated checkout integration [#2341](https://github.com/bigcommerce/cornerstone/pull/2341)

@@ -30,7 +30,7 @@
                     "@type": "Person",
                     "name": {{#if name}}{{{JSONstringify name}}}{{else}}{{{JSONstringify (lang 'products.reviews.anonymous_poster')}}}{{/if}}
                 },
-                "datePublished": "{{date}}",
+                "datePublished": "{{moment date "YYYY-MM-DD"}}",
                 "reviewBody": {{{JSONstringify text}}},
                 "name": {{{JSONstringify title}}},
                 "reviewRating": {

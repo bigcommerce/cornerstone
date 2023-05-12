@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added css classes for ApplePay Button [[#2344]](https://github.com/bigcommerce/cornerstone/pull/2344)
 - Added styling config for the Bolt smart payment button [[#2356]](https://github.com/bigcommerce/cornerstone/pull/2356)
 - Remove default whitespace from multiline input [#2355](https://github.com/bigcommerce/cornerstone/pull/2355)
+- Use ISO 8601 DateTime format for datePublished in schema [#2357](https://github.com/bigcommerce/cornerstone/pull/2357)
 
 ## 6.10.0 (03-23-2023)
 - A bug with the display of the product quantity on the PDP [#2340](https://github.com/bigcommerce/cornerstone/pull/2340)

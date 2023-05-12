@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Running Lighthouse npm script fails in terminal [#2345](https://github.com/bigcommerce/cornerstone/pull/2345)
 - Removed accelerated checkout integration [#2341](https://github.com/bigcommerce/cornerstone/pull/2341)
 - Added css classes for ApplePay Button [[#2344]](https://github.com/bigcommerce/cornerstone/pull/2344)
+- Added styling config for the Bolt smart payment button [[#2356]](https://github.com/bigcommerce/cornerstone/pull/2356)
 - Remove default whitespace from multiline input [#2355](https://github.com/bigcommerce/cornerstone/pull/2355)
 
 ## 6.10.0 (03-23-2023)

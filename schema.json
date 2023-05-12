@@ -2879,6 +2879,11 @@
             "value": "masterpass",
             "label": "i18n.MasterpassProviderSortingLabel",
             "enabledBy": "masterpass"
+          },
+          {
+            "value": "bolt",
+            "label": "i18n.BoltProviderSortingLabel",
+            "enabledBy": "bolt"
           }
         ]
       },
@@ -3173,6 +3178,28 @@
           {
             "value": "white",
             "label": "i18n.WhiteBlackText"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "content": "i18n.SmartBoltButton",
+        "enable": "isBoltProvidersEnabled"
+      },
+      {
+        "type": "select",
+        "label": "i18n.ButtonShape",
+        "id": "paymentbuttons-bolt-shape",
+        "enable": "isBoltProvidersEnabled",
+        "force_reload": true,
+        "options": [
+          {
+            "value": "pill",
+            "label": "i18n.Pill"
+          },
+          {
+            "value": "rect",
+            "label": "i18n.Rectangle"
           }
         ]
       }

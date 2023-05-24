@@ -1,5 +1,26 @@
 // -----------------------------------------------------------------------------
 //
+//                                  HEADER
+//
+// -----------------------------------------------------------------------------
+
+//Overrides default header-logo margin from _header.scss line 76
+.header-logo {
+    @include breakpoint("medium") {
+        margin: spacing("single") auto;
+    }
+}
+
+//Overrides default navPages background color for medium breakpoint from _navPages.scss line 49
+.navPages-container {
+    @include breakpoint("medium") {
+        background-color: $navPages-backgroundColor;
+    }
+}
+
+
+// -----------------------------------------------------------------------------
+//
 //                                  FOOTER
 //
 // -----------------------------------------------------------------------------

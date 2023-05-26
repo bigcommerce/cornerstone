@@ -1,15 +1,182 @@
+// ------------------------------------------------------------------------------------->
+//
+//                                  CUSTOM STYLES START
+//
+// ------------------------------------------------------------------------------------->
+
+// Custom Mixins
+// -----------------------------------------------------------------------------
+//
+// 1. Import custom mixins.
+//
+// -----------------------------------------------------------------------------
+
+@import "custom-mixins"; //1
+
+// -----------------------------------------------------------------------------
+//
+//                                  Banners
+//
+// -----------------------------------------------------------------------------
+
+.banners {
+    //Responsive font size on small screens so that the banner text never wraps
+    font-size: 2.7vw;
+    //Overrides default banner padding in _banners.scss line 16
+    padding: spacing("quarter") 0;
+    //reset banner font size for bigger screens
+    @include breakpoint("small") {
+        font-size: 1rem;
+    }
+}
+
 // -----------------------------------------------------------------------------
 //
 //                                  HEADER
 //
 // -----------------------------------------------------------------------------
 
-//Overrides default header-logo margin from _header.scss line 76
-.header-logo {
+//Overrides header bottom border in _header.scss line 38
+.header {
+    border-bottom: none;
+}
+
+// Begin Header Top-------------------------------------------------------------
+//The upper section of the CravenSpeed version of the header
+.header-top {
+    position: relative;
+    display: flex;
+    align-items: center;
+
     @include breakpoint("medium") {
-        margin: spacing("single") auto;
+        margin: 0;
+    }
+
+    > * {
+        @include breakpoint("small") {
+            flex: 1 0 0;
+        }
     }
 }
+
+.mobileMenu-toggle {
+    
+    position: relative;
+    flex-grow: 0;
+    
+    //Overrides the hamburger menu icon color from _header.scss line 230
+    .mobileMenu-toggleIcon,
+    .mobileMenu-toggleIcon::before,
+    .mobileMenu-toggleIcon::after {
+        background: stencilColor("navUser-color");
+    }
+
+    //Sets the hamburger color to transparent (to hide one of the lines)
+    &.is-open .mobileMenu-toggleIcon {
+        background-color: transparent;
+
+        //Reasigns the correct color to only the lines that form the x
+        &::before,
+        &::after {
+            background-color: stencilColor("navUser-color");
+        }
+    }
+}
+
+// phone number, email address, and hours in the header. 
+.support-info {
+    // Initial styles for when the section is visible in the mobile menu only
+    display: none;
+    position: absolute;
+    top: 100vh;
+    top: 100svh;
+    transform:translateY(-100%);
+    width: 100%;
+    margin: 0;
+    padding: spacing("base") spacing("single");
+    background-color: stencilColor("color-secondary");
+    color: stencilColor("navUser-color");
+    list-style-type: none;
+    font-weight: fontWeight("bold");
+    line-height: 1.8;
+    z-index: zIndex("high");
+    
+    // Styles for desktop
+    @include breakpoint("medium") {
+        position: relative;
+        top: 0;
+        transform: translateY(0);
+        width: auto;
+        display: inline;
+        line-height: 1.2;
+        z-index: auto;
+    }
+
+    // Reveals when the mobile menu is toggled
+    &.is-open {
+        display: block;
+    }
+
+    // Hide .support-info if the screen isn't tall enough to include it in the mobile menu
+    @include short {
+        display: none !important;
+    }
+}
+
+.header-logo {
+    margin: 0;
+    flex: 1;
+    padding-right: spacing("single") + remCalc($nav-icon-size);
+    
+    @include breakpoint("medium") {
+        //Overrides default header-logo margin from _header.scss line 76
+        margin: spacing("single") auto;
+        
+        padding: 0;
+    }
+
+    &__link {
+        width: 90%;
+    }
+}
+ 
+.svg-logo {
+    //Allows svg logo to shrink on mobile layout
+    width: 100%;
+    max-width: 100%;
+}
+
+.navUser {
+    //Overides _navUser.scss setting width to 100% which is only needed for the mobile layout on line 24
+    @include breakpoint("medium") {
+        width: auto;
+    }
+}
+
+//Overides the user navigation icon size
+.navUser-action {
+    .icon {
+        margin: 0;
+        @include square($nav-icon-size);
+    }
+}
+
+//remove stroke from nav icons
+.navUser-action svg {
+    stroke: none;
+}
+
+.navUser-item--cart {
+    // prevents default removal of cart link for small screens when quantity is 0 from _navUser.scss line 155
+    &__hidden-s {
+        @media (max-width: $screen-small) {
+            display: block;
+        }
+    }
+}
+
+
+// End Header Top  -------------------------------------------------------------
 
 //Overrides default navPages background color for two tone header for medium breakpoint from _navPages.scss line 49
 .navPages-container {
@@ -32,6 +199,22 @@
     color: stencilColor("footer-heading-fontColor");
 }
 
+//override
+.socialLinks {
+    .icon {
+        svg {
+            fill: stencilColor("footer-heading-fontColor");
+        }
+    }
+}
+
+//override 
+.footer-copyright {
+    > .powered-by {
+        color: stencilColor("footer-heading-fontColor");
+    }
+}
+
 // -----------------------------------------------------------------------------
 //
 //                                  HOME
@@ -43,3 +226,9 @@
 //                                  PRODUCT
 //
 // -----------------------------------------------------------------------------
+
+// ------------------------------------------------------------------------------------->
+//
+//                                  CUSTOM STYLES END
+//
+// ------------------------------------------------------------------------------------->

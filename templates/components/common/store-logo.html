@@ -1,20 +1,27 @@
 <a href="{{urls.home}}" class="header-logo__link" data-header-logo-link>
-    {{#if settings.store_logo.image}}
-        {{#if theme_settings.logo_size '===' 'original'}}
-        <img class="header-logo-image-unknown-size"
-             src="{{getImage settings.store_logo.image 'logo_size'}}"
-             alt="{{settings.store_logo.title}}"
-             title="{{settings.store_logo.title}}">
-        {{else}}
+    {{!-- Added ability to optionally use an svg logo instead of the user storefront logo --}}
+    {{#if theme_settings.use_svg_logo}}
         <div class="header-logo-image-container">
-            <img class="header-logo-image"
-                 src="{{getImage settings.store_logo.image 'logo_size'}}"
-                 srcset="{{getImageSrcset1x2x settings.store_logo.image theme_settings.logo_size}}"
-                 alt="{{settings.store_logo.title}}"
-                 title="{{settings.store_logo.title}}">
+            <svg data-src="{{cdn 'img/logo.svg'}}" class="svg-logo"></svg>
         </div>
-        {{/if}}
     {{else}}
-    <span class="header-logo-text">{{settings.store_logo.title}}</span>
+        {{#if settings.store_logo.image}}
+            {{#if theme_settings.logo_size '===' 'original'}}
+            <img class="header-logo-image-unknown-size"
+                src="{{getImage settings.store_logo.image 'logo_size'}}"
+                alt="{{settings.store_logo.title}}"
+                title="{{settings.store_logo.title}}">
+            {{else}}
+            <div class="header-logo-image-container">
+                <img class="header-logo-image"
+                    src="{{getImage settings.store_logo.image 'logo_size'}}"
+                    srcset="{{getImageSrcset1x2x settings.store_logo.image theme_settings.logo_size}}"
+                    alt="{{settings.store_logo.title}}"
+                    title="{{settings.store_logo.title}}">
+            </div>
+            {{/if}}
+        {{else}}
+        <span class="header-logo-text">{{settings.store_logo.title}}</span>
+        {{/if}}
     {{/if}}
 </a>

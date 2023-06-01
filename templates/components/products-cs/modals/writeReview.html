@@ -1,0 +1,77 @@
+<div id="modal-review-form" class="modal" data-reveal>
+    {{inject 'reviewRating' (lang 'forms.validate.reviews.rating')}}
+    {{inject 'reviewSubject' (lang 'forms.validate.reviews.title')}}
+    {{inject 'reviewComment' (lang 'forms.validate.reviews.comment')}}
+    {{inject 'reviewEmail' (lang 'forms.validate.common.email_address')}}
+    <div class="modal-header">
+        <h2 class="modal-header-title">{{lang 'products.reviews.write_a_review'}}</h2>
+        {{> components/common/modal/modal-close-btn}}
+    </div>
+    <div class="modal-body">
+        <div class="writeReview-productDetails">
+            <div class="writeReview-productImage-container">
+                {{> components/common/responsive-img
+                    image=product.main_image
+                    fallback_size=theme_settings.product_size
+                    lazyload=theme_settings.lazyload_mode
+                    default_image=theme_settings.default_image_product
+                }}
+            </div>
+            <h6 class="product-brand">{{ product.brand.name }}</h6>
+            <h5 class="product-title">{{ product.title }}</h5>
+        </div>
+        <form class="form writeReview-form" action="{{ urls.product.post_review }}" method="post">
+            <fieldset class="form-fieldset">
+                <div class="form-field">
+                    <label class="form-label" for="rating-rate">{{lang 'products.reviews.rating_label'}}
+                        <small>{{lang 'common.required' }}</small>
+                    </label>
+                    <!-- Stars -->
+                    <!-- TODO: Review Stars need to be componentised, both for display and input -->
+                    <select id="rating-rate" class="form-select" name="revrating" data-input aria-required="true">
+                        <option value="">{{lang 'products.reviews.select_rating'}}</option>
+                        {{#for 1 5}}
+                            {{#if ../product.reviews.selected_rating '===' $index}}
+                                <option selected value="{{$index}}">{{lang (concat 'products.reviews.rating.' $index) }}</option>
+                            {{else}}
+                                <option value="{{$index}}">{{lang (concat 'products.reviews.rating.' $index) }}</option>
+                            {{/if}}
+                        {{/for}}
+                    </select>
+                </div>
+
+                <!-- Name -->
+                {{#if product.reviews.author}}
+                    {{> components/common/forms/text id="revfromname" name="revfromname" required="true" label=(lang 'products.reviews.form_write.name') value=product.reviews.author}}
+                {{else}}
+                    {{> components/common/forms/text id="revfromname" name="revfromname" required="true" label=(lang 'products.reviews.form_write.name') value=customer.name}}
+                {{/if}}
+
+                {{#if product.reviews.show_review_email}}
+                    <!-- Email -->
+                    {{#if product.reviews.email}}
+                        {{> components/common/forms/text id="email" name="email" required="true" label=(lang 'products.reviews.form_write.email') value=product.reviews.email}}
+                    {{else}}
+                        {{> components/common/forms/text id="email" name="email" required="true" label=(lang 'products.reviews.form_write.email') value=customer.email}}
+                    {{/if}}
+                {{/if}}
+
+                <!-- Review Subject -->
+                {{> components/common/forms/text id="revtitle" name="revtitle" required="true" label=(lang 'products.reviews.form_write.subject') value=product.reviews.title}}
+
+                <!-- Comments -->
+                {{> components/common/forms/multiline id="revtext" name="revtext" required="true" label=(lang 'products.reviews.form_write.comments') value=product.reviews.text}}
+
+                {{{product.reviews.recaptcha.markup}}}
+
+                <div class="form-field">
+                    <input type="submit" class="button button--primary"
+                           value="{{lang 'products.reviews.form_write.submit_value' }}">
+                </div>
+                <input type="hidden" name="product_id" value="{{ product.id }}">
+                <input type="hidden" name="action" value="post_review">
+                {{#if product.reviews.throttleToken}}<input type="hidden" name="throttleToken" value="{{product.reviews.throttleToken}}">{{/if}}
+            </fieldset>
+        </form>
+    </div>
+</div>

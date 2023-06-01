@@ -44,7 +44,15 @@
                aria-controls="quickSearch"
                aria-label="{{lang 'common.search'}}"
             >
+                {{!-- swapped the user navigation search text label with a search icon --}}
+                <span class="icon">
+                    <svg>
+                        <use xlink:href="#icon-search"/>
+                    </svg>
+                </span>
+                {{!-- User Navigation Search text label
                 {{lang 'common.search'}}
+                --}}
             </button>
         </li>
         {{#if settings.gift_certificates_enabled}}
@@ -97,8 +105,22 @@
                href="{{urls.cart}}"
                aria-label="{{lang 'cart.nav_aria_label'}}"
             >
+                {{!-- swapped cart text and quantity pill for a dynamic cart icon --}}
+                <span class="icon"> 
+                    {{#if cart.quantity '>' 0}}
+                        <svg>
+                            <use xlink:href="#icon-cart"/>
+                        </svg>
+                    {{else}}
+                        <svg>
+                            <use xlink:href="#icon-cart-empty"/>
+                        </svg>
+                    {{/if}}
+                </span>
+                {{!-- Text cart label and quantity pill
                 <span class="navUser-item-cartLabel">{{lang 'common.cart'}}</span>
                 <span class="countPill cart-quantity"></span>
+                --}}
             </a>
 
             <div class="dropdown-menu" id="cart-preview-dropdown" data-dropdown-content aria-hidden="true"></div>

@@ -1,0 +1,47 @@
+<section class="toggle videoGallery" data-video-gallery>
+    <h4 class="toggle-title">
+        {{lang 'products.videos.header'}}
+        <a href="#videoGallery-content" class="toggleLink is-open" data-collapsible>
+            <span class="toggleLink-text toggleLink-text--on">
+                {{lang 'products.videos.hide'}}
+            </span>
+            <span class="toggleLink-text toggleLink-text--off">
+                {{lang 'products.videos.show'}}
+            </span>
+        </a>
+    </h4>
+
+    <div class="toggle-content is-open" id="videoGallery-content">
+        <div class="videoGallery-main">
+            <iframe
+                id="player"
+                class="lazyload"
+                type="text/html"
+                width="640"
+                height="390"
+                frameborder="0"
+                webkitAllowFullScreen
+                mozallowfullscreen
+                allowFullScreen
+                data-src="//www.youtube.com/embed/{{this.featured.id}}?rel=0"
+                data-video-player>
+            </iframe>
+        </div>
+        <ul class="videoGallery-list">
+        {{#each this.list}}
+            <li class="videoGallery-item">
+                <a href="#" class="video {{#if @first}}is-active{{/if}}" data-video-item data-video-id="{{id}}">
+                    <div class="video-figure">
+                        <img class="lazyload" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="//i.ytimg.com/vi/{{id}}/default.jpg"/>
+                    </div>
+                    <div class="video-body">
+                        <h5 class="video-title">{{title_long}}</h5>
+                        <p class="video-description">{{description_short}}</p>
+                    </div>
+                </a>
+            </li>
+        {{/each}}
+        </ul>
+    </div>
+
+</section>

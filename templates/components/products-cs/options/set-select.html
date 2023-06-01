@@ -1,0 +1,14 @@
+<div class="form-field" data-product-attribute="set-select">
+    <label class="form-label form-label--alternate form-label--inlineSmall" for="attribute_select_{{id}}">
+        {{ this.display_name }}:
+
+        {{> components/common/requireness-msg}}
+    </label>
+
+    <select class="form-select form-select--small" name="attribute[{{this.id}}]" id="attribute_select_{{id}}" {{#if required}}required{{/if}}>
+        <option value="">{{lang 'products.choose_options'}}</option>
+        {{#each this.values}}
+            <option data-product-attribute-value="{{id}}" value="{{id}}" {{#if selected}}selected data-default{{/if}}>{{label}}</option>
+        {{/each}}
+    </select>
+</div>

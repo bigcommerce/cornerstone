@@ -10,6 +10,38 @@
     {{/each}}
 </div>
 {{/if}}
+
+{{!-- CravenSpeed Header --}}
+<header class="header" role="banner">
+    <div class="header-top">
+
+        <a href="#" class="mobileMenu-toggle" data-mobile-menu-toggle="menu">
+            <span class="mobileMenu-toggleIcon">Toggle menu</span>
+        </a>
+        
+        {{>components/common/support-info}}
+
+        {{#if page_type '===' 'default'}}
+        <h1 class="header-logo header-logo--{{theme_settings.logo-position}}">
+            {{> components/common/store-logo}}
+        </h1>
+        {{else}}
+        <div class="header-logo header-logo--{{theme_settings.logo-position}}">
+            {{> components/common/store-logo}}
+        </div>
+        {{/if}}
+
+        {{> components/common/navigation}}
+
+    </div>
+    <div class="navPages-container" id="menu" data-menu>
+        {{> components/common/navigation-menu}}
+    </div>
+    {{{region name="header_navigation_bottom--global"}}}
+</header>
+{{!-- End CravenSpeed Header --}}
+
+{{!-- Stock Cornerstone Header
 <header class="header" role="banner">
     <a href="#" class="mobileMenu-toggle" data-mobile-menu-toggle="menu">
         <span class="mobileMenu-toggleIcon">Toggle menu</span>
@@ -30,5 +62,6 @@
     </div>
     {{{region name="header_navigation_bottom--global"}}}
 </header>
+--}}
 {{{region name="header_bottom--global"}}}
 {{{region name="header_bottom"}}}

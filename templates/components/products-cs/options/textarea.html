@@ -1,0 +1,9 @@
+<div class="form-field" data-product-attribute="textarea">
+    <label class="form-label form-label--alternate form-label--inlineSmall" for="attribute_textarea_{{id}}">
+        {{display_name}}:
+
+        {{> components/common/requireness-msg}}
+    </label>
+
+    <textarea class="form-input" id="attribute_textarea_{{id}}" name="attribute[{{id}}]" {{#if required}}required{{/if}} {{#if max_length}}maxlength={{max_length}}{{/if}}>{{prefill}}</textarea>
+</div>

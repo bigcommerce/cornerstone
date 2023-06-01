@@ -4,7 +4,7 @@
 import PageManager from './page-manager';
 import Review from './product/reviews';
 import collapsibleFactory from './common/collapsible';
-import ProductDetails from './common/product-details';
+//import ProductDetails from './common/product-details'; This file is not needed by CravenSpeed
 import videoGallery from './product/video-gallery';
 import { classifyForm } from './common/utils/form-utils';
 import modalFactory from './global/modal';
@@ -31,8 +31,9 @@ export default class Product extends PageManager {
         // Init collapsible
         collapsibleFactory();
 
-        this.productDetails = new ProductDetails($('.productView'), this.context, window.BCData.product_attributes);
-        this.productDetails.setProductVariant();
+        // CravenSpeed Theme does not use ProductDetails 
+        //this.productDetails = new ProductDetails($('.productView'), this.context, window.BCData.product_attributes); 
+        //this.productDetails.setProductVariant();
 
         videoGallery();
 

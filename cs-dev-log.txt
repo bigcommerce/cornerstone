@@ -18,66 +18,72 @@ Contents:
 
 1. Default Files with changes:
 -------------------------------------------------------------------------------------
-   assets/js/theme/global/mobile-menu-toggle.js
-   assets/scss/theme.scss
-   templates/components/common/body.html
-   templates/components/common/footer.html
-   templates/components/common/header.html
-   templates/components/common/navigation.html
-   templates/components/common/navigation-menu.html
-   templates/layout/base.html
-   config.json
+    assets/js/theme/product.js
+    assets/js/theme/global/mobile-menu-toggle.js
+    assets/scss/theme.scss
+    templates/components/common/body.html
+    templates/components/common/footer.html
+    templates/components/common/header.html
+    templates/components/common/navigation.html
+    templates/components/common/navigation-menu.html
+    templates/layout/base.html
+    config.json
 
 2. Change Documentation
 -------------------------------------------------------------------------------------
-   Changes in mobile-menu-toggle.js:
+
+    Changes in product.js:
    
-   |   Added .support-info class to the mobile menu toggle script;
+    |   Removed import for product-details.js as it is not used by CravenSpeed;
 
-   Changes in theme.scss:
-
-   |   added import for custom styles;
-
-   Changes in body.html:
-
-   |   added logic to use a custom page content container for product pages (.cs-product-container);
-
-
-   Changes in footer.html:
-
-   |   added a theme setting to show or hide the category navigation in the footer;
-   |   hid the heading for address;
-   |   turned on setting to show social links;
-   |   moved social links into .footer-info and changed column type to .footer-info-col--small;
-
-   Changes in header.html:
-
-   |   added a custom header template;
-
-   Changes in store-logo.html:
+    Changes in mobile-menu-toggle.js:
    
-   |   added setting to use svg logo or storefront logo and set to svg;
-   |   changed header logo size;
-   |   The logo size is stored in config.json and refferenced in scss using:
-   |   |
-   |   |   height: get-height(stencilString("logo_size"));
-   |   |   width: get-width(stencilString("logo_size"));
+    |   Added .support-info class to the mobile menu toggle script;
 
-   Changes in navigation.html:
+    Changes in theme.scss:
+
+    |   added import for custom styles;
+
+    Changes in body.html:
+
+    |   added logic to use a custom page content container for product pages (.cs-product-container);
+
+
+    Changes in footer.html:
+
+    |   added a theme setting to show or hide the category navigation in the footer;
+    |   hid the heading for address;
+    |   turned on setting to show social links;
+    |   moved social links into .footer-info and changed column type to .footer-info-col--small;
+
+    Changes in header.html:
+
+    |   added a custom header template;
+
+    Changes in store-logo.html:
    
-   |   changed cart nav item in user navigation to icon instead of text;
-   |   added handlebars logic to change the cart icon based on cart quantity(this requrired turning on the cart resource in config.json);
-   |   changed the search nav item in user navigation to icon instead of text;
-   |   created a new horizontal layout for the header. created .header-upper zone;
-   |   added components/common/support-info.html to the upper header area;
+    |   added setting to use svg logo or storefront logo and set to svg;
+    |   changed header logo size;
+    |   The logo size is stored in config.json and refferenced in scss using:
+    |   |
+    |   |   height: get-height(stencilString("logo_size"));
+    |   |   width: get-width(stencilString("logo_size"));
 
-   Changes in navigation-menu.html:
+    Changes in navigation.html:
+   
+    |   changed cart nav item in user navigation to icon instead of text;
+    |   added handlebars logic to change the cart icon based on cart quantity(this requrired turning on the cart resource in config.json);
+    |   changed the search nav item in user navigation to icon instead of text;
+    |   created a new horizontal layout for the header. created .header-upper zone;
+    |   added components/common/support-info.html to the upper header area;
 
-   |   added a setting to show a link to home page in navigation menu;
+    Changes in navigation-menu.html:
 
-   Changes in base.html:
+    |   added a setting to show a link to home page in navigation menu;
 
-   |   added links to Qty app scripts with conditional logic to only show on product pages.
+    Changes in base.html:
+
+    |   added links to Qty app scripts with conditional logic to only show on product pages.
 
 
 3. Custom Templates

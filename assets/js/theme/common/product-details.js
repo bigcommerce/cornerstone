@@ -26,7 +26,11 @@ export default class ProductDetails extends ProductDetailsBase {
         this.swatchGroupIdList = $('[id^="swatchGroup"]').map((_, group) => $(group).attr('id'));
         this.storeInitMessagesForSwatches();
 
-        const $form = $('form[data-cart-item-add]', $scope);
+        const $form = $('#product-ordering');
+        // const $form = $('form[data-cart-item-add]', $scope);
+        console.log('form',$form[0],$form)
+        console.log('checkValidity',$form[0].checkValidity())
+        console.log($form[0].checkValidity())
 
         if ($form[0].checkValidity()) {
             this.updateProductDetailsData();

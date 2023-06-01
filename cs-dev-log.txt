@@ -1,51 +1,108 @@
-Default Files with changes:
--------------------------------------------------------------------------------------
-|   assets/js/theme/global/mobile-menu-toggle.js
-|   assets/scss/theme.scss
-|   templates/components/common/footer.html
-|   templates/components/common/header.html
-|   templates/components/common/navigation.html
-|   templates/components/common/navigation-menu.html
-|   config.json
+---------------------- CravenSpeed Theme Development Log-----------------------------
 
-Change Documentation
+Contents:
+
+    1. Default Files With Changes
+        -List of changed files
+
+    2. Change Documentation
+        -List of changes made to changed files
+
+    3. Custom Templates
+        -List of custom templates being used
+
+
+    4. Custom Template Concepts
+        -Descriptions of each custom template
+
+
+1. Default Files with changes:
 -------------------------------------------------------------------------------------
-|   Changes in mobile-menu-toggle.js:
-|   
-|   |   Added .support-info class to the mobile menu toggle script;
-|
-|   Changes in theme.scss:
-|
-|   |   added import for custom styles;
-|
-|   Changes in footer.html:
-|
-|   |   added a theme setting to show or hide the category navigation in the footer;
-|   |   hid the heading for address;
-|   |   turned on setting to show social links;
-|   |   moved social links into .footer-info and changed column type to .footer-info-col--small;
-|
-|   Changes in header.html:
-|
-|   |   added a custom header template;
-|
-|   Changes in store-logo.html:
-|   
-|   |   added setting to use svg logo or storefront logo and set to svg;
-|   |   changed header logo size;
-|   |   The logo size is stored in config.json and refferenced in scss using:
-|   |   |
-|   |   |   height: get-height(stencilString("logo_size"));
-|   |   |   width: get-width(stencilString("logo_size"));
-|
-|   Changes in navigation.html:
-|   
-|   |   changed cart nav item in user navigation to icon instead of text;
-|   |   added handlebars logic to change the cart icon based on cart quantity(this requrired turning on the cart resource in config.json);
-|   |   changed the search nav item in user navigation to icon instead of text;
-|   |   created a new horizontal layout for the header. created .header-upper zone;
-|   |   added components/common/support-info.html to the upper header area;
-|
-|   Changes in navigation-menu.html:
-|
-|   |   added a setting to show a link to home page in navigation menu;
+   assets/js/theme/global/mobile-menu-toggle.js
+   assets/scss/theme.scss
+   templates/components/common/body.html
+   templates/components/common/footer.html
+   templates/components/common/header.html
+   templates/components/common/navigation.html
+   templates/components/common/navigation-menu.html
+   config.json
+
+2. Change Documentation
+-------------------------------------------------------------------------------------
+   Changes in mobile-menu-toggle.js:
+   
+   |   Added .support-info class to the mobile menu toggle script;
+
+   Changes in theme.scss:
+
+   |   added import for custom styles;
+
+   Changes in body.html:
+
+   |   added logic to use a custom page content container for product pages (.cs-product-container);
+
+
+   Changes in footer.html:
+
+   |   added a theme setting to show or hide the category navigation in the footer;
+   |   hid the heading for address;
+   |   turned on setting to show social links;
+   |   moved social links into .footer-info and changed column type to .footer-info-col--small;
+
+   Changes in header.html:
+
+   |   added a custom header template;
+
+   Changes in store-logo.html:
+   
+   |   added setting to use svg logo or storefront logo and set to svg;
+   |   changed header logo size;
+   |   The logo size is stored in config.json and refferenced in scss using:
+   |   |
+   |   |   height: get-height(stencilString("logo_size"));
+   |   |   width: get-width(stencilString("logo_size"));
+
+   Changes in navigation.html:
+   
+   |   changed cart nav item in user navigation to icon instead of text;
+   |   added handlebars logic to change the cart icon based on cart quantity(this requrired turning on the cart resource in config.json);
+   |   changed the search nav item in user navigation to icon instead of text;
+   |   created a new horizontal layout for the header. created .header-upper zone;
+   |   added components/common/support-info.html to the upper header area;
+
+   Changes in navigation-menu.html:
+
+   |   added a setting to show a link to home page in navigation menu;
+
+
+3. Custom Templates
+-------------------------------------------------------------------------------------
+
+    Components
+
+    |   products-cs
+
+        |   product-view-cs.html
+
+    Pages
+    
+    |   Custom
+
+        |   cs-product.html
+
+4. Custom Template Concepts
+-------------------------------------------------------------------------------------
+
+    products-cs (folder)
+
+    |   This folder is a duplicate of the defailt components/products folder. It is used when custom templates are required. Modified template names are 
+    |   appended with "-cs".
+
+    product-view-cs.html
+
+    |   product component built for the CravenSpeed Archetype -> Alias concept. All product info is filled in by the CravenSpeed Qty app. Main product
+    |   details load always above the fold. Space optimized for minimal layout shift when product info becomes available or changes.
+    
+    cs-product.html
+
+    |   the base product template used for the CravenSpeed Archetype->Alias concept.

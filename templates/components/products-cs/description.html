@@ -1,0 +1,13 @@
+{{#if product.description}}
+    <p class="productView-title">{{lang 'products.description'}}</p>
+    <div class="productView-description" {{#if settings.data_tag_enabled}} data-event-type="product" {{/if}}>
+        {{{product.description}}}
+    </div>
+{{/if}}
+
+{{#if product.warranty}}
+    <p class="productView-title">{{lang 'products.warranty'}}</p>
+    <div class="productView-description">
+        {{{product.warranty}}}
+    </div>
+{{/if}}

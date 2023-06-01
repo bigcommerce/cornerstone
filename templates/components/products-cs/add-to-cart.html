@@ -1,0 +1,63 @@
+<div id="add-to-cart-wrapper" class="add-to-cart-wrapper" {{#unless product.can_purchase}}style="display: none"{{/unless}}>
+    {{#if product.show_quantity_input}}
+        {{inject 'productQuantityErrorMessage'  (lang 'products.quantity_error_message')}}
+        <div class="form-field form-field--increments">
+            <label class="form-label form-label--alternate"
+                   for="qty[]">{{lang 'products.quantity'}}</label>
+                <div class="form-increment" data-quantity-change>
+                    <button class="button button--icon" data-action="dec">
+                        <span class="is-srOnly">{{lang 'products.quantity_decrease' name=product.title}}</span>
+                        <i class="icon" aria-hidden="true">
+                            <svg>
+                                <use href="#icon-keyboard-arrow-down"/>
+                            </svg>
+                        </i>
+                    </button>
+                    <input class="form-input form-input--incrementTotal"
+                           id="qty[]"
+                           name="qty[]"
+                           type="tel"
+                           value="{{#if product.min_purchase_quantity}}{{product.min_purchase_quantity}}{{else}}1{{/if}}"
+                           data-quantity-min="{{product.min_purchase_quantity}}"
+                           data-quantity-max="{{product.max_purchase_quantity}}"
+                           min="1"
+                           pattern="[0-9]*"
+                           aria-live="polite">
+                    <button class="button button--icon" data-action="inc">
+                        <span class="is-srOnly">{{lang 'products.quantity_increase' name=product.title}}</span>
+                        <i class="icon" aria-hidden="true">
+                            <svg>
+                                <use href="#icon-keyboard-arrow-up"/>
+                            </svg>
+                        </i>
+                    </button>
+                </div>
+        </div>
+    {{/if}}
+
+    <div class="alertBox productAttributes-message" style="display:none">
+        <div class="alertBox-column alertBox-icon">
+            <icon glyph="ic-success" class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path></svg></icon>
+        </div>
+        <p class="alertBox-column alertBox-message"></p>
+    </div>
+    {{#or customer (unless settings.hide_price_from_guests)}}
+        <div class="add-to-cart-buttons">
+            <div class="form-action">
+                <input
+                        id="form-action-addToCart"
+                        data-wait-message="{{lang 'products.adding_to_cart'}}"
+                        class="button button--primary"
+                        type="submit"
+                        value="{{#if product.pre_order}}{{lang 'products.pre_order'}}{{else}}{{lang 'products.add_to_cart'}}{{/if}}"
+                >
+                <span class="product-status-message aria-description--hidden">{{lang 'products.adding_to_cart'}} {{lang 'category.add_cart_announcement'}}</span>
+            </div>
+            {{#if this.with_wallet_buttons}}
+                <div class="add-to-cart-wallet-buttons" data-add-to-cart-wallet-buttons>
+                    {{> components/common/wallet-buttons}}
+                </div>
+            {{/if}}
+        </div>
+    {{/or}}
+</div>

@@ -1,8 +1,17 @@
 <main class="body" id="main-content" role="main" data-currency-code="{{currency_selector.active_currency_code}}">
     {{#block "hero"}} {{/block}}
+
+    {{!-- Use a custom page container if the page is a product. .cs-product-container styles are found in scss/custom/custom.scss --}}
+    {{#if page_type '===' 'product'}}
+    <div id="cs-product-container">
+        {{#block "page"}} {{/block}}
+    </div>
+    {{else}}
     <div class="container">
         {{#block "page"}} {{/block}}
     </div>
+    {{/if}}
+
     {{> components/common/modal/modal}}
     {{> components/common/alert/alert-modal}}
 </main>

@@ -1,0 +1,75 @@
+<div class="form-field" data-product-attribute="product-list" role="radiogroup" aria-labelledby="product-list-label">
+    <label class="form-label form-label--alternate form-label--inlineSmall" id="product-list-label">
+        {{display_name}}:
+        <span data-option-value></span>
+
+        {{> components/common/requireness-msg}}
+    </label>
+
+    {{#if values.0.image}}
+        <ul class="productOptions-list">
+            {{#unless required}}
+                <li class="productOptions-list-item">
+                    <input class="form-radio"
+                           type="radio"
+                           name="attribute[{{id}}]"
+                           value=""
+                           id="attribute_productlist_{{id}}_none"
+                           {{#unless defaultValue}}checked{{/unless}}>
+                    <label class="form-label" for="attribute_productlist_{{id}}_none">{{lang 'products.none'}}</label>
+                </li>
+            {{/unless}}
+            {{#each values}}
+                <li class="productOptions-list-item" data-product-attribute-value="{{id}}">
+                    {{#if image}}
+                        <figure class="productOptions-list-item-figure">
+                            {{> components/common/responsive-img
+                                image=image
+                                class="productOptions-list-item-image"
+                                lazyload='lazyload+lqip'
+                            }}
+                        </figure>
+                    {{/if}}
+                    <div class="productOptions-list-item-content">
+                        <input
+                            class="form-radio"
+                            type="radio"
+                            name="attribute[{{../id}}]"
+                            value="{{id}}"
+                            id="attribute_productlist_{{../id}}_{{id}}"
+                            {{#if selected}}
+                                checked
+                                data-default
+                            {{/if}}
+                            {{#if ../required}}required{{/if}}>
+                        <label data-product-attribute-value="{{id}}" class="form-label" for="attribute_productlist_{{../id}}_{{id}}">{{label}}</label>
+                    </div>
+                </li>
+            {{/each}}
+        </ul>
+    {{else}}
+        {{#unless required}}
+        <input class="form-radio"
+               type="radio"
+               name="attribute[{{id}}]"
+               value="0"
+               id="attribute_productlist_0_{{id}}"
+               {{#unless defaultValue}}checked{{/unless}}>
+        <label class="form-label" for="attribute_productlist_0_{{id}}">{{lang 'products.none'}}</label>
+        {{/unless}}
+        {{#each values}}
+            <input
+                class="form-radio"
+                type="radio"
+                name="attribute[{{../id}}]"
+                value="{{id}}"
+                id="attribute_productlist_{{../id}}_{{id}}"
+                {{#if selected}}
+                    checked
+                    data-default
+                {{/if}}
+                {{#if ../required}}required{{/if}}>
+            <label data-product-attribute-value="{{id}}" class="form-label" for="attribute_productlist_{{../id}}_{{id}}">{{label}}</label>
+        {{/each}}
+    {{/if}}
+</div>

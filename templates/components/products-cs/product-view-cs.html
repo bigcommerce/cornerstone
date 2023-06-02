@@ -1,89 +1,94 @@
 {{inject 'outOfStockDefaultMessage' (lang 'products.out_of_stock_default_message')}}
 
-<div 
-    id="product-above" 
+<div
+    id="product-above"
     {{#if settings.data_tag_enabled}}
     data-event-type="product"
     data-entity-id="{{product.id}}"
     data-name="{{product.title}}"
     data-product-category="
-    {{#each product.category}}
-        {{#if @last}}
-            {{this}}
-        {{else}}
-            {{this}}, 
-        {{/if}}
-    {{/each}}"
+        {{#each product.category}}
+            {{#if @last}}
+                {{this}}
+            {{else}}
+                {{this}}, 
+            {{/if}}
+        {{/each}}"
     data-product-brand="{{product.brand.name}}"
     data-product-price="
-    {{#or customer (unless settings.hide_price_from_guests)}}
-        {{#if product.price.with_tax}}
-            {{product.price.with_tax.value}}
-        {{else}}
-            {{product.price.without_tax.value}}
-        {{/if}}
-    {{else}}
-        {{lang 'common.login_for_pricing'}}
-    {{/or}}"
-    data-product-variant="single-product-option" {{/if}}>
-
-    {{#each product.reviews.messages}}
-        {{#if error}}
-            {{> components/common/alert/alert-error error}}
-        {{/if}}
-        {{#if success}}
-            {{> components/common/alert/alert-success success}}
-        {{/if}}
-    {{/each}}
-
-    <div id="product-above">
-        <div id="product-car-selection">
-            <select name="make" id="make"></select>
-            <select name="model" id="model"></select>
-            <select name="year" id="year"></select>
-        </div>
-        <div id="product-main">
-            <div id="product-images">
-                <div id="main-carousel"></div>
-            </div>
-            <div id="product-info">
-                <div id="product-details">
-                    <div id="product-details-one">
-                        <div id="product-title">
-                            <h1>{{chop product.title}}</h1>
-                        </div>
-                        <div id="product-sku"></div>
-                        <div id="product-shipping"></div>
-                        <div id="product-stock"></div>
-                    </div>
-                    <div id="product-details-two">
-                        <div id="product-price"></div>
-                        <ul id="product-rating"></ul>
-                        <div id="product-brand"></div>
-                    </div>
-                </div>
-                <div id="product-ordering" data-cart-item-add>
-                    <div id="product-options">
-                        <select name="option-one" id="product-options-one"></select>
-                        <select name="option-two" id="product-options-two"></select>
-                    </div>
-                    <div id="product-add">
-                        <button id="product-add-button">{{lang 'products.add_to_cart'}}</buttom>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="product-below">
-        <article id="product-description">
-            {{#if theme_settings.show_product_details_tabs}}
-            {{> components/products/description-tabs}}
+        {{#or customer (unless settings.hide_price_from_guests)}}
+            {{#if product.price.with_tax}}
+                {{product.price.with_tax.value}}
             {{else}}
-            {{> components/products/description}}
+                {{product.price.without_tax.value}}
             {{/if}}
-        </article>
+        {{else}}
+            {{lang 'common.login_for_pricing'}}
+        {{/or}}"
+    data-product-variant="single-product-option"
+    {{/if}}>
+
+        {{#each product.reviews.messages}}
+            {{#if error}}
+                {{> components/common/alert/alert-error error}}
+            {{/if}}
+            {{#if success}}
+                {{> components/common/alert/alert-success success}}
+            {{/if}}
+        {{/each}}
+
+    <div id="product-car-selection">
+        <select name="make" id="make"></select>
+        <select name="model" id="model"></select>
+        <select name="year" id="year"></select>
     </div>
+    <div id="product-main">
+        <div id="product-images">
+            <div id="main-carousel"></div>
+            <div id="lifetime-warranty-badge"></div>
+            <div id="made-in-usa-badge"></div>
+        </div>
+        <div id="product-info">
+            <div id="product-details">
+                <div id="product-details-one">
+                    <div id="product-title">
+                        <h1>{{chop product.title}}</h1>
+                    </div>
+                    <div id="product-sku"></div>
+                    <div id="product-shipping"></div>
+                    <div id="product-stock"></div>
+                </div>
+                <div id="product-details-two">
+                    <div id="product-price"></div>
+                    <ul id="product-rating"></ul>
+                    <div id="product-brand"></div>
+                </div>
+            </div>
+            <div id="product-ordering" data-cart-item-add>
+                <div id="product-options">
+                    <select name="option-one" id="product-options-one"></select>
+                    <select name="option-two" id="product-options-two"></select>
+                </div>
+                <div id="product-add">
+                    <button id="product-add-button">{{lang 'products.add_to_cart'}}</buttom>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{!-------------------------------------- THE FOLD --------------------------------------}} 
+
+<div class="product-below">
+    <section id="product-description">
+        <a href="" id="instructions-link"></a>
+        {{#if theme_settings.show_product_details_tabs}}
+            {{> components/products/description-tabs}}
+        {{else}}
+            {{> components/products/description}}
+        {{/if}}
+    </section>
+    {{> components/products-cs/shipping}}
 </div>
 
 <div id="customer_group_id" style="display: none">

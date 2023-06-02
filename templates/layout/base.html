@@ -69,6 +69,14 @@
         <script type="text/javascript" src="/content/{{dashcase (lookup (split product.url '.com') 1)}}.js"></script>
         <script type="text/javascript" src="/content/global_inventory.js?t={{random '1' '9999999'}}"></script>
         <script type="text/javascript" src="/content/global_product.js"></script>
+        <script>
+            var archetype_description = "{{{product.description}}}";
+            var archetype_images = [
+                {{#each product.images}}
+                    "{{getImage this defaultImage}}",
+                {{/each}}
+            ]
+        </script>
         {{/if}}
 
         {{{footer.scripts}}}

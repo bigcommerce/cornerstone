@@ -38,13 +38,12 @@
         {{/each}}
 
     <div id="product-car-selection">
-        <select name="make" id="make"></select>
-        <select name="model" id="model"></select>
-        <select name="year" id="year"></select>
+        <select name="make" id="make" onchange="load_model_data()"></select>
+        <select name="model" id="model" onchange="load_gen_data()"></select>
+        <select name="year" id="year" onchange="load_option_data()"></select>
     </div>
     <div id="product-main">
         <div id="product-images">
-            <div id="main-carousel"></div>
             <div id="lifetime-warranty-badge"></div>
             <div id="made-in-usa-badge"></div>
         </div>
@@ -66,8 +65,8 @@
             </div>
             <div id="product-ordering" data-cart-item-add>
                 <div id="product-options">
-                    <select name="option-one" id="product-options-one"></select>
-                    <select name="option-two" id="product-options-two"></select>
+                    <select name="option-one" id="product-options-one" onchange="check_options()"></select>
+                    <select name="option-two" id="product-options-two" onchange="update_cart_info()"></select>
                 </div>
                 <div id="product-add">
                     <button id="product-add-button">{{lang 'products.add_to_cart'}}</buttom>

@@ -44,7 +44,7 @@
     </div>
     <div id="product-main">
         <div id="product-images">
-            <div id="product-image-gallery"></div>
+            <div class="product-image-gallery" id="product-image-gallery"></div>
             <div id="lifetime-warranty-badge"></div>
             <div id="made-in-usa-badge"></div>
         </div>
@@ -81,9 +81,9 @@
     <section id="product-description">
         <a href="" id="instructions-link"></a>
         {{#if theme_settings.show_product_details_tabs}}
-            {{> components/products/description-tabs}}
+            {{> components/products-cs/description-tabs-cs}}
         {{else}}
-            {{> components/products/description}}
+            {{> components/products-cs/description-cs}}
         {{/if}}
     </section>
     {{> components/products-cs/shipping}}

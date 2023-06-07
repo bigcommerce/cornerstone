@@ -5,6 +5,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Draft
+- (sanitize product.description) in the theme results to ‘error length of description’ from Google indexing for lengthy product description [#2363](https://github.com/bigcommerce/cornerstone/pull/2363)
+- Added style configs to payment buttons  [#2361](https://github.com/bigcommerce/cornerstone/pull/2361)
+- Bump Stencil utils to 6.15.1 [#2365][https://github.com/bigcommerce/cornerstone/pull/2365]
 - Added ACH payment method section to My Account -> Payment Methods page [#2362](https://github.com/bigcommerce/cornerstone/pull/2362)
 
 ## 6.11.0 (05-24-2023)

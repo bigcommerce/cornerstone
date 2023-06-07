@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Draft
 - (sanitize product.description) in the theme results to ‘error length of description’ from Google indexing for lengthy product description [#2363](https://github.com/bigcommerce/cornerstone/pull/2363)
+- Added style configs to payment buttons  [#2361](https://github.com/bigcommerce/cornerstone/pull/2361)
 
 ## 6.11.0 (05-24-2023)
 - Reverted fix for sold-out badge appearance [#2354](https://github.com/bigcommerce/cornerstone/pull/2354)

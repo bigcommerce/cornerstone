@@ -15,6 +15,16 @@
 
 // -----------------------------------------------------------------------------
 //
+//                                  Base Layout
+//
+// -----------------------------------------------------------------------------
+
+.body {
+    margin-top: $mobile-spacing;
+}
+
+// -----------------------------------------------------------------------------
+//
 //                                  Banners
 //
 // -----------------------------------------------------------------------------
@@ -24,6 +34,7 @@
     font-size: 2.7vw;
     //Overrides default banner padding in _banners.scss line 16
     padding: spacing("quarter") 0;
+
     //reset banner font size for bigger screens
     @include breakpoint("small") {
         font-size: 1rem;
@@ -52,7 +63,7 @@
         margin: 0;
     }
 
-    > * {
+    >* {
         @include breakpoint("small") {
             flex: 1 0 0;
         }
@@ -60,10 +71,10 @@
 }
 
 .mobileMenu-toggle {
-    
+
     position: relative;
     flex-grow: 0;
-    
+
     //Overrides the hamburger menu icon color from _header.scss line 230
     .mobileMenu-toggleIcon,
     .mobileMenu-toggleIcon::before,
@@ -90,7 +101,7 @@
     position: absolute;
     top: 100vh;
     top: 100svh;
-    transform:translateY(-100%);
+    transform: translateY(-100%);
     width: 100%;
     margin: 0;
     padding: spacing("base") spacing("single");
@@ -100,7 +111,7 @@
     font-weight: fontWeight("bold");
     line-height: 1.8;
     z-index: zIndex("high");
-    
+
     // Styles for desktop
     @include breakpoint("medium") {
         position: relative;
@@ -127,11 +138,11 @@
     margin: 0;
     flex: 1;
     padding-right: spacing("single") + remCalc($nav-icon-size);
-    
+
     @include breakpoint("medium") {
         //Overrides default header-logo margin from _header.scss line 76
         margin: spacing("single") auto;
-        
+
         padding: 0;
     }
 
@@ -139,7 +150,11 @@
         width: 90%;
     }
 }
- 
+
+.header-logo-image-container {
+    max-height: get-height(stencilString("logo_size"));
+}
+
 .svg-logo {
     //Allows svg logo to shrink on mobile layout
     width: 100%;
@@ -147,6 +162,7 @@
 }
 
 .navUser {
+
     //Overides _navUser.scss setting width to 100% which is only needed for the mobile layout on line 24
     @include breakpoint("medium") {
         width: auto;
@@ -167,6 +183,7 @@
 }
 
 .navUser-item--cart {
+
     // prevents default removal of cart link for small screens when quantity is 0 from _navUser.scss line 155
     &__hidden-s {
         @media (max-width: $screen-small) {
@@ -195,6 +212,7 @@
 .footer-info-list a {
     color: stencilColor("footer-heading-fontColor");
 }
+
 .footer-info-col {
     color: stencilColor("footer-heading-fontColor");
 }
@@ -210,7 +228,7 @@
 
 //override 
 .footer-copyright {
-    > .powered-by {
+    >.powered-by {
         color: stencilColor("footer-heading-fontColor");
     }
 }
@@ -226,6 +244,385 @@
 //                                  PRODUCT
 //
 // -----------------------------------------------------------------------------
+
+//borders
+// #product-image-gallery {
+//     border: 1px solid hotpink;
+// }
+
+// #slick-slide {
+//     border: 1px solid rgb(0, 153, 255);
+// }
+
+#cs-product-container {
+    box-sizing: border-box;
+    margin: $mobile-spacing;
+    margin-top: 0;
+
+    //Some Slick styles are overnested to ensure they only apply on the CravenSpeed Product template
+
+    .slick-slide {
+        height: $slick-slide-height;
+    }
+    .cs-next,
+    .cs-prev {
+        border: none;
+        position: absolute;
+        top: calc(50% - 2rem);
+        @include square($slick-arrows-size);
+        z-index: zIndex("high");
+        font-size: 0;
+
+        svg {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    .cs-next {
+        right: $slick-arrows-position;
+        }
+
+    .cs-prev {
+        left: $slick-arrows-position;
+        }
+
+    .slick-dots {
+        position: relative;
+        bottom: 0;
+        min-height: $slick-dots-min-height;
+        display: flex !important;
+        gap: 2vw;
+        align-items: center;
+        justify-content: center;
+
+        li {
+            width: auto;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            button {
+                background: stencilColor('product-carousel-dot-color');
+                border: none;
+
+                &::before {
+                    top: 0;
+                    left: 0;
+                }
+            }
+        }
+    }
+
+    .slick-dotted.slick-slider {
+        margin-bottom: 0;
+    }
+
+    @include breakpoint("small") {
+        margin: 1rem;
+        margin-top: 0;
+    }
+}
+
+#product-above {
+    min-height: calc(100svh - #{$header-height} - #{$mobile-spacing});
+    display: flex;
+    flex-direction: column;
+    gap: $mobile-spacing;
+    
+    @include breakpoint("medium") {
+        min-height: calc(100vh - (#{$header-top-height} + #{$navPages-height}) - #{spacing("half")} - 3.5rem);
+    }
+}
+
+.navPages-action--compare {
+    display: none;
+
+    &.show {
+        display: block;
+    }
+}
+
+#product-car-selection {
+    display: flex;
+    align-items: center;
+    gap: calc(#{$mobile-spacing} / 2);
+
+    select {
+        height: $product-button-height;
+        border: 2px solid stencilColor(button--disabled-borderColor);
+        border-radius: 3px;
+        text-align: center;
+        font-size: .875rem;
+        flex: 1;
+
+        @include breakpoint("medium") {
+            font-size: 1.25rem;
+        }
+    }
+
+    @include breakpoint("medium") {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+}
+
+#product-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    margin-bottom: $mobile-spacing;
+    gap: $mobile-spacing;
+
+    @include breakpoint("small") {
+        align-items: center;
+    }
+
+    @include breakpoint("medium") {
+        display: grid;
+        grid: 100% / 50% 50%;
+    }
+}
+
+#product-images {
+
+    @include breakpoint("small") {
+        width: $images-width-medium;
+        max-width: 100%;
+        height: auto;
+    }
+
+    @include breakpoint("medium") {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+#product-image-gallery {
+    height: 100%;
+
+    @include breakpoint("medium") {
+        width: calc(100% - #{spacing("double")});
+        margin: 0 auto;
+    }
+    
+}
+
+#product-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    gap: $mobile-spacing;
+
+    @include breakpoint("small") {
+        width: fit-content;
+        margin: 0 auto;
+        align-self: flex-end;
+        height: 100%;
+        justify-content: center;
+    }
+}
+
+#product-details {
+    flex: 1;
+    display: grid;
+
+    #product-title {
+        grid-column: 1 / span 2;
+        height: 84px;
+        margin: 0;
+        text-align: center;
+
+        @include breakpoint("medium") {
+            height: 51px;
+            text-align: left;
+            font-size: 34px;
+        }
+    }
+
+    #product-details-two {
+        text-align: right;
+
+        @include breakpoint("medium") {
+            text-align: left;
+        }
+    }
+
+    #product-sku,
+    #product-price {
+        font-size: 28px;
+        height: 42px;   
+    }
+
+    #product-shipping, 
+    #product-stock, #product-rating {
+        @include breakpoint("small") {
+            font-size: 17px;
+            height: 26px;
+            vertical-align: middle;
+        }
+    }
+
+    #product-brand {
+        font-weight: bold;
+        font-size: 24px;
+        height: 36px;
+    }
+
+    @include breakpoint("medium") {
+        flex: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+}
+
+#product-ordering {
+    height: auto;
+    display: grid;
+    grid-template-rows: $product-button-height $product-button-height;
+    gap: calc(#{$mobile-spacing} / 2);
+
+    #product-options {
+        display: flex;
+        flex-direction: row;
+        gap: 6px;
+        width: 100%;
+
+        >* {
+            flex: 1;
+        }
+
+        @include breakpoint("medium") {
+            width: $product-button-width;
+        }
+    }
+
+    * select,
+    * button {
+        width: 100%;
+        height: $product-button-height;
+        border: none;
+        border-radius: 3px;
+        text-align: center;
+    }   
+
+    
+    select {
+        border: 2px solid stencilColor(button--disabled-borderColor);
+    }
+    
+    button {
+        background-color: gray;
+        color: lightgray;
+    }
+
+    @include breakpoint("medium") {
+        width: $product-button-width;
+    }
+}
+
+.tabs {
+    border-bottom: 2px solid $tabs-border-color;
+}
+
+.tab {
+    &.is-active {
+        @include breakpoint("medium") {
+            border: 2px solid $tabs-border-color;
+            border-bottom: none;
+        }
+    }
+}
+
+.tabs-contents {
+    max-width: $product-tabs-contents-width;
+    margin: 0 auto;
+}
+
+ul.tabs {
+
+    @include breakpoint("medium") {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+// -------------------------------------- THE FOLD ------------------------------------->
+
+#product-description {
+    width: 100%;
+}
+
+.descriptionContainer {
+    width: 100%;
+    margin: 0 auto;
+
+    @include breakpoint("small") {
+        max-width: $product-description-width-small;
+    }
+
+    @include breakpoint("medium") {
+        width: 100%;
+        max-width: none;
+    }
+}
+
+.pdpRow {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    @include breakpoint("medium") {
+        flex-direction: row;
+
+        & > * {
+            width: 50%;
+            padding: spacing("single");
+        }
+    
+        &:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+    }
+
+}
+
+.productText {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    h3 {
+        margin: 0;
+        border-bottom: 2px solid stencilColor('color-primary');
+    }
+}
+
+.productGraphic {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#instructions-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    a {
+        @include button; 
+
+        border-radius: 3px;
+    }
+}
+
 
 // ------------------------------------------------------------------------------------->
 //

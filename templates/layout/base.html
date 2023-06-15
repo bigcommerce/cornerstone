@@ -9,6 +9,7 @@
 
         <link href="{{ head.favicon }}" rel="shortcut icon">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="google-site-verification" content="eWXRJIWsZnHtS6Mu1ABKTMwQgFeljNJL0OLo8e-SjTY" />
 
         <script>
             {{!-- Change document class from no-js to js so we can detect this in css --}}
@@ -31,7 +32,33 @@
         <script async src="{{cdn 'assets/dist/theme-bundle.font.js' resourceHint='preload' as='script'}}"></script>
 
         {{{stylesheet '/assets/css/theme.css'}}}
+        
+        {{!-- CravenSpeed Qty Script --}}
+        {{#if page_type '===' 'product'}}
+        {{!-- Use full path on sandbox store, relative path on production --}}
+        <script type="text/javascript" src="https://sandbox125.mybigcommerce.com/content/{{dashcase (lookup (split product.url '.com') 1)}}.js"></script>
+        <script type="text/javascript" src="https://sandbox125.mybigcommerce.com/content/global_inventory.js?t={{random '1' '9999999'}}"></script>
+        <script type="text/javascript" src="https://sandbox125.mybigcommerce.com/content/global_product.js"></script>
+        <script type="text/javascript" src="https://sandbox125.mybigcommerce.com/content/cs_search.js"></script>
+        <script>
+            var archetype_description = '{{product.description}}';
 
+            var archetype_main_image = {
+                'url': '{{getImage product.main_image defaultImage}}',
+                'description': '{{product.main_image.alt}}'
+            };
+
+            var archetype_images = [
+                {{#each product.images}}
+                {
+                    'url': '{{getImage this defaultImage}}',
+                    'description': '{{this.alt}}'
+                },
+                {{/each}}
+            ];
+        </script>
+        {{/if}}
+        
         {{{head.scripts}}}
 
         {{~inject 'zoomSize' theme_settings.zoom_size}}
@@ -65,32 +92,11 @@
         <script async defer src="{{cdn 'assets/dist/theme-bundle.main.js' resourceHint='preload' as='script'}}" onload="onThemeBundleMain()"></script>
 
         {{{footer.scripts}}}
-
-        {{!-- CravenSpeed Qty Script --}}
-        {{#if page_type '===' 'product'}}
-        {{!-- Use full path on sandbox store, relative path on production --}}
-        <script type="text/javascript" src="https://sandbox125.mybigcommerce.com/content/{{dashcase (lookup (split product.url '.com') 1)}}.js"></script>
-        <script type="text/javascript" src="https://sandbox125.mybigcommerce.com/content/global_inventory.js?t={{random '1' '9999999'}}"></script>
-        <script type="text/javascript" src="https://sandbox125.mybigcommerce.com/content/global_product.js"></script>
-        <script type="text/javascript" src="https://sandbox125.mybigcommerce.com/content/cs_search.js"></script>
-        <script>
-            var archetype_description = '{{product.description}}';
-
-            var archetype_main_image = {
-                'url': '{{getImage product.main_image defaultImage}}',
-                'description': '{{product.main_image.alt}}'
-            };
-
-            var archetype_images = [
-                {{#each product.images}}
-                {
-                    'url': '{{getImage this defaultImage}}',
-                    'description': '{{this.alt}}'
-                },
-                {{/each}}
-            ];
-        </script>
-        {{/if}}
+        
+        {{!-- Slick import for SandBox Development --}}
+        <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+        <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
     </body>
 </html>

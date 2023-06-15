@@ -1,5 +1,4 @@
 {{inject 'outOfStockDefaultMessage' (lang 'products.out_of_stock_default_message')}}
-
 <div
     id="product-above"
     {{#if settings.data_tag_enabled}}
@@ -50,15 +49,15 @@
         </div>
         <div id="product-info">
             <div id="product-details">
+                <h1 id="product-title">{{chop product.title}}</h1>
                 <div id="product-details-one">
-                    <h1 id="product-title">{{chop product.title}}</h1>
                     <div id="product-sku"></div>
                     <div id="product-shipping"></div>
                     <div id="product-stock"></div>
                 </div>
                 <div id="product-details-two">
                     <div id="product-price"></div>
-                    <ul id="product-rating"></ul>
+                    <div id="product-rating"></div>
                     <div id="product-brand"></div>
                 </div>
             </div>
@@ -78,15 +77,14 @@
 {{!-------------------------------------- THE FOLD --------------------------------------}} 
 
 <div class="product-below">
-    <section id="product-description">
-        <a href="" id="instructions-link"></a>
+    <section id="product-content">
         {{#if theme_settings.show_product_details_tabs}}
             {{> components/products-cs/description-tabs-cs}}
         {{else}}
             {{> components/products-cs/description-cs}}
         {{/if}}
+        <div id="instructions-link"></div>
     </section>
-    {{> components/products-cs/shipping}}
 </div>
 
 <div id="customer_group_id" style="display: none">

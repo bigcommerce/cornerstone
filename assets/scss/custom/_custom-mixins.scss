@@ -6,6 +6,14 @@
 
 // -----------------------------------------------------------------------------
 //
+//                                  GLOBAL
+//
+// -----------------------------------------------------------------------------
+
+$outline-color:  #ff0000;
+
+// -----------------------------------------------------------------------------
+//
 //                                  BANNER
 //
 // -----------------------------------------------------------------------------
@@ -28,3 +36,29 @@ $screen-height-min:                             615px;
         @content;
     }
  }
+
+ //height reference for breakpoint medium + header top height
+ $header-logo-height: get-height(stencilString("logo_size"));
+ $header-top-height: calc(#{$header-logo-height} + #{spacing("double")});
+ 
+
+
+ //height reference for navPages
+ $navPages-height: spacing("half") + spacing("single") + (spacing("half") + spacing("quarter"));
+
+ // -----------------------------------------------------------------------------
+//
+//                                  PRODUCT
+//
+// -----------------------------------------------------------------------------
+
+$mobile-spacing: spacing("single") / 2;
+$product-button-height: spacing("double");
+$product-button-width: 100%;
+$slick-slide-height: 65vmin;
+$slick-arrows-position: spacing("double");
+$slick-arrows-size: 40px;
+$slick-dots-min-height: 2rem;
+$images-width-medium: 550px;
+$product-tabs-contents-width: 1200px;
+$product-description-width-small: 700px;

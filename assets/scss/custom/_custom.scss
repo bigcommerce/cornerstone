@@ -19,10 +19,6 @@
 //
 // -----------------------------------------------------------------------------
 
-.body {
-    margin-top: $mobile-spacing;
-}
-
 // -----------------------------------------------------------------------------
 //
 //                                  Banners
@@ -201,6 +197,106 @@
         background-color: $navPages-backgroundColor;
     }
 }
+
+.navPages {
+
+    @include breakpoint("medium") {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+//Overrides default hiding of quick search in navPages on desktop
+.navPages-quickSearch {
+    font-size: stencilNumber("fontSize-h3");
+    margin: 0;
+    padding-bottom: spacing("single");
+
+    @include breakpoint("medium") {
+        order: 2;
+        display: block;
+        flex: 1;
+        max-width: 25rem;
+        border: none;
+        padding: 0;
+    }
+}
+
+.cs-form-field {
+    position: relative;
+}
+#cs-search-input {
+    border: none;
+    border-radius: 3px;
+    width: 100%;
+}
+
+.autocomplete {
+    position: relative;
+    display: inline-block
+}
+
+.autocomplete-items {
+    position: absolute;
+    z-index: 99;
+    top: 100%;
+    left: 0;
+    right: 0;
+    font-size: 1rem;
+    border-radius: 3px;
+}
+
+.autocomplete-items div {
+    background-color: #fff;
+}
+
+.blocklink div {
+    background-color: #fff;
+    // border-bottom: 1px solid #d4d4d4;
+    // border-right: 1px solid #d4d4d4;
+    // border-top: 1px solid #d4d4d4;
+    border-radius: 3px;
+
+    &:hover{
+        background-color: stencilColor("navPages-subMenu-backgroundColor");
+    }
+}
+
+.blocklink {
+    text-decoration: none;
+}
+
+.blocklink>div {
+    display: -ms-flexbox;
+    display: flex;
+    height: 3rem;
+    white-space: nowrap;
+    -ms-flex-align: center;
+    align-items: center;
+    gap: 1rem;
+    overflow: hidden
+}
+
+.blocklink img {
+    display: block;
+    height: 2.5rem
+}
+
+#autocompleteMessage a {
+    color: #c13119
+}
+
+.overflow a {
+    display: inline-block;
+    padding: 10px 0;
+    width: 100%
+}
+
+.cs-search-message {
+    padding: 10px 0
+}
+
 
 // -----------------------------------------------------------------------------
 //
@@ -572,6 +668,10 @@ ul.tabs {
         width: 100%;
         max-width: none;
     }
+}
+
+.descriptionContainer > p {
+    text-align: center;
 }
 
 .pdpRow {

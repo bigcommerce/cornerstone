@@ -34,12 +34,13 @@
         {{{stylesheet '/assets/css/theme.css'}}}
         
         {{!-- CravenSpeed Qty Script --}}
+        <script type="text/javascript" src="https://sandbox125.mybigcommerce.com/content/cs_search.js"></script>
+        <script type="text/javascript" src="https://sandbox125.mybigcommerce.com/content/cs_search_data.js"></script>
         {{#if page_type '===' 'product'}}
         {{!-- Use full path on sandbox store, relative path on production --}}
         <script type="text/javascript" src="https://sandbox125.mybigcommerce.com/content/{{dashcase (lookup (split product.url '.com') 1)}}.js"></script>
         <script type="text/javascript" src="https://sandbox125.mybigcommerce.com/content/global_inventory.js?t={{random '1' '9999999'}}"></script>
         <script type="text/javascript" src="https://sandbox125.mybigcommerce.com/content/global_product.js"></script>
-        <script type="text/javascript" src="https://sandbox125.mybigcommerce.com/content/cs_search.js"></script>
         <script>
             var archetype_description = '{{product.description}}';
 

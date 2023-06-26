@@ -1,7 +1,6 @@
 {{inject 'outOfStockDefaultMessage' (lang 'products.out_of_stock_default_message')}}
 
 <div class="productView"
-    {{#if settings.data_tag_enabled}}
     data-event-type="product"
     data-entity-id="{{product.id}}"
     data-name="{{product.title}}"
@@ -20,7 +19,7 @@
     {{else}}
         {{lang 'common.login_for_pricing'}}
     {{/or}}"
-    data-product-variant="single-product-option"{{/if}}>
+    data-product-variant="single-product-option">
 
     {{#each product.reviews.messages}}
         {{#if error}}

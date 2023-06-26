@@ -1,5 +1,5 @@
 <h4>{{lang 'products.related_products' }}</h4>
-<ul class="product-list" {{#if settings.data_tag_enabled}} data-list-name="Related Products" {{/if}}>
+<ul class="product-list" data-list-name="Related Products">
     {{#each this}}
     <li class="product-card">
             {{>components/products/card settings=../settings theme_settings=../theme_settings event="list" position=(add @index 1)}}

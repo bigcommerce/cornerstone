@@ -1,5 +1,4 @@
-{{#if settings.data_tag_enabled}}
-    <article class="listItem" data-event-type="{{event}}" data-entity-id="{{id}}" data-position="{{position}}" data-name="{{name}}" data-product-category="{{#each category}}{{#if @last}}{{this}}{{else}}{{this}}, {{/if}}{{/each}}" data-product-brand="{{brand.name}}" data-product-price="
+<article class="listItem" data-event-type="{{event}}" data-entity-id="{{id}}" data-position="{{position}}" data-name="{{name}}" data-product-category="{{#each category}}{{#if @last}}{{this}}{{else}}{{this}}, {{/if}}{{/each}}" data-product-brand="{{brand.name}}" data-product-price="
     {{#or customer (unless settings.hide_price_from_guests)}}
         {{#if price.with_tax}}
             {{price.with_tax.value}}
@@ -9,16 +8,11 @@
     {{else}}
         {{lang 'common.login_for_pricing'}}
     {{/or}}">
-{{else}}
-    <article class="listItem">
-{{/if}}
     <figure class="listItem-figure">
         <a href="{{url}}"
            class="listItem-figure__link"
            aria-label="{{> components/products/product-info}}"
-           {{#if settings.data_tag_enabled}}
            data-event-type="product-click"
-           {{/if}}
         >
         {{#if stock_level '===' 0}}
             {{#if theme_settings.pdp_sold_out_label '===' ''}}
@@ -62,7 +56,7 @@
         {{#unless hide_product_quick_view}}
             {{#if theme_settings.show_product_quick_view}}
                 <div class="listItem-figureBody">
-                    <button type="button" {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}} class="button button--small listItem-button quickview" data-product-id="{{id}}">{{lang 'products.quick_view'}}</button>
+                    <button type="button" data-event-type="product-click" class="button button--small listItem-button quickview" data-product-id="{{id}}">{{lang 'products.quick_view'}}</button>
                 </div>
             {{/if}}
         {{/unless}}
@@ -79,9 +73,7 @@
                 <h4 class="listItem-title">
                     <a href="{{url}}"
                     aria-label="{{> components/products/product-info}}"
-                    {{#if settings.data_tag_enabled}}
                     data-event-type="product-click"
-                    {{/if}}
                     >
                         {{name}}
                     </a>
@@ -100,13 +92,13 @@
                 {{/or}}
                 {{#if show_cart_action}}
                     {{#if has_options}}
-                        <a href="{{url}}" {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}} class="button button--small" data-product-id="{{id}}">{{lang 'products.choose_options'}}</a>
+                        <a href="{{url}}" data-event-type="product-click" class="button button--small" data-product-id="{{id}}">{{lang 'products.choose_options'}}</a>
                     {{/if}}
                     {{#if pre_order}}
                         <a href="{{pre_order_add_to_cart_url}}" data-event-type="product-click" class="button button--primary">{{lang 'products.pre_order'}}</a>
                     {{/if}}
                     {{#if add_to_cart_url }}
-                        <a href="{{add_to_cart_url}}" {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}} class="button button--primary">{{lang 'products.add_to_cart'}}</a>
+                        <a href="{{add_to_cart_url}}" data-event-type="product-click" class="button button--primary">{{lang 'products.add_to_cart'}}</a>
                     {{/if}}
                     {{#if out_of_stock_message }}
                         <a href="{{url}}" data-event-type="product-click" class="button button--small" data-product-id="{{id}}">{{out_of_stock_message}}</a>

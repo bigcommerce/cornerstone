@@ -26,6 +26,12 @@ blog:
     {{/each}}
 
 <div class="main full">
+    {{> components/common/car-selection}}
+    {{!-- CravenSpeed HomePage Content --}}
+    <div id="matching-products-header"></div>
+    <div id="matching-products"></div>
+
+    {{!--
     {{#if products.featured}}
         {{> components/products/featured products=products.featured columns=theme_settings.homepage_featured_products_column_count}}
     {{/if}}
@@ -40,6 +46,7 @@ blog:
         {{> components/products/new products=products.new columns=theme_settings.homepage_new_products_column_count}}
     {{/if}}
     {{{region name="home_below_new_products"}}}
+    --}}
 </div>
 {{/partial}}
 {{> layout/base}}

@@ -337,18 +337,57 @@
 
 // -----------------------------------------------------------------------------
 //
+//                                  CAR SELECTION
+//
+// -----------------------------------------------------------------------------
+
+.cs-car-picker {
+    width: calc(100% - #{$mobile-spacing});
+    margin: 0 auto;
+    margin-bottom: spacing("single");
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: calc(#{$mobile-spacing} / 2);
+    
+    select {
+        height: $product-button-height;
+        border: 2px solid stencilColor(button--disabled-borderColor);
+        border-radius: 3px;
+        text-align: center;
+        font-size: 1rem;
+
+        option {
+            display: block;
+            height: $product-button-height;
+        }
+
+        @include breakpoint("medium") {
+            flex: 1;
+        }
+    }
+    
+    @include breakpoint("medium") {
+        flex-direction: row;
+        width: 100%;
+        max-width: 1200px;
+    }
+}
+
+// -----------------------------------------------------------------------------
+//
 //                                  PRODUCT CARDS
 //
 // -----------------------------------------------------------------------------
 
-#more-products-header {
+#more-products-header, #matching-products-header {
     text-align: center;
     font-weight: bold;
     font-size: $h3-font-size;
     margin-bottom: spacing("single");
 }
 
-#more-products {
+#more-products, #matching-products {
     display: grid;
     grid-template-columns: auto;
     gap: spacing('double');

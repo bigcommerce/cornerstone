@@ -234,6 +234,7 @@
 .cs-form-field {
     position: relative;
 }
+
 #cs-search-input {
     border: none;
     border-radius: 3px;
@@ -264,7 +265,7 @@
     padding: 0 spacing("quarter");
     background-color: stencilColor("color-white");
 
-    &:hover{
+    &:hover {
         background-color: stencilColor("color-greyDarker");
     }
 }
@@ -349,7 +350,7 @@
     flex-direction: column;
     align-items: center;
     gap: calc(#{$mobile-spacing} / 2);
-    
+
     select {
         height: $product-button-height;
         border: 2px solid stencilColor(button--disabled-borderColor);
@@ -366,7 +367,7 @@
             flex: 1;
         }
     }
-    
+
     @include breakpoint("medium") {
         flex-direction: row;
         width: 100%;
@@ -380,19 +381,21 @@
 //
 // -----------------------------------------------------------------------------
 
-#more-products-header, #matching-products-header {
+#more-products-header,
+#matching-products-header {
     text-align: center;
     font-weight: bold;
     font-size: $h3-font-size;
     margin-bottom: spacing("single");
 }
 
-#more-products, #matching-products {
+#more-products,
+#matching-products {
     display: grid;
     grid-template-columns: auto;
     gap: spacing('double');
     justify-content: center;
-    
+
     @include breakpoint('medium') {
         grid-template-columns: 1fr 1fr 1fr;
     }
@@ -454,7 +457,9 @@
 
     .slick-slide {
         height: $slick-slide-height;
+        z-index: zIndex("highest");
     }
+
     .cs-next,
     .cs-prev {
         border: none;
@@ -472,11 +477,11 @@
 
     .cs-next {
         right: $slick-arrows-position;
-        }
+    }
 
     .cs-prev {
         left: $slick-arrows-position;
-        }
+    }
 
     .slick-dots {
         position: relative;
@@ -514,6 +519,7 @@
         margin: 1rem;
         margin-top: 0;
     }
+
 }
 
 #product-above {
@@ -521,7 +527,7 @@
     display: flex;
     flex-direction: column;
     gap: $mobile-spacing;
-    
+
     @include breakpoint("medium") {
         min-height: calc(100vh - (#{$header-top-height} + #{$navPages-height}) - #{spacing("half")} - 3.5rem);
     }
@@ -596,12 +602,13 @@
 
 #product-image-gallery {
     height: 100%;
+    z-index: zIndex("low");
 
     @include breakpoint("medium") {
         width: calc(100% - #{spacing("double")});
         margin: 0 auto;
     }
-    
+
 }
 
 #product-badges-desktop {
@@ -659,6 +666,42 @@
     }
 }
 
+#modal-images {
+    width: 95vw;
+    height: 95vh;
+
+    .modal-slides {
+        max-width: 100%;
+        max-height: 100%;
+
+        .slick-carousel-modal {
+            max-width: 100%;
+            max-height: 100%;
+
+            .modal-slide {
+                width: 95vw;
+                height: 95vh;
+                display: block;
+
+                img {
+                    width: auto;
+                    max-width: 100%;
+                    max-height: 100%;
+                    display: block;
+                    position: relative;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    margin: 0 auto;
+
+                    &:focus {
+                        outline: 0;
+                    }
+                }
+            }
+        }
+    }
+}
+
 #product-info {
     flex: 1;
     display: flex;
@@ -709,11 +752,12 @@
     #product-sku,
     #product-price {
         font-size: 28px;
-        height: 42px;   
+        height: 42px;
     }
 
-    #product-shipping, 
-    #product-stock, #product-rating {
+    #product-shipping,
+    #product-stock,
+    #product-rating {
         @include breakpoint("small") {
             font-size: 17px;
             height: 26px;
@@ -764,13 +808,13 @@
         border: none;
         border-radius: 3px;
         text-align: center;
-    }   
+    }
 
-    
+
     select {
         border: 2px solid stencilColor(button--disabled-borderColor);
     }
-    
+
     button {
         background-color: gray;
         color: lightgray;
@@ -827,7 +871,7 @@ ul.tabs {
     }
 }
 
-.descriptionContainer > p {
+.descriptionContainer>p {
     text-align: center;
 }
 
@@ -839,11 +883,11 @@ ul.tabs {
     @include breakpoint("medium") {
         flex-direction: row;
 
-        & > * {
+        &>* {
             width: 50%;
             padding: spacing("single");
         }
-    
+
         &:nth-child(even) {
             flex-direction: row-reverse;
         }
@@ -874,7 +918,7 @@ ul.tabs {
     align-items: center;
 
     a {
-        @include button; 
+        @include button;
 
         border-radius: 3px;
     }

@@ -45,6 +45,8 @@ $screen-height-min:                             615px;
 
  //height reference for navPages
  $navPages-height: spacing("half") + spacing("single") + (spacing("half") + spacing("quarter"));
+ $cs-search-input-height: 33px;
+ $autocomplete-items-top: calc((#{$navPages-height} / 2) - (#{$cs-search-input-height} / 2) + #{$cs-search-input-height});
 
  // -----------------------------------------------------------------------------
 //
@@ -52,13 +54,14 @@ $screen-height-min:                             615px;
 //
 // -----------------------------------------------------------------------------
 
-$mobile-spacing: spacing("single") / 2;
+$mobile-spacing: spacing("half");
 $product-button-height: spacing("double");
 $product-button-width: 100%;
-$slick-slide-height: 65vmin;
-$slick-arrows-position: spacing("double");
+$slick-slide-height: 70vmin;
+$slick-arrows-position: spacing("half");
 $slick-arrows-size: 40px;
 $slick-dots-min-height: 2rem;
 $images-width-medium: 550px;
+$product-badges-max: 90px;
 $product-tabs-contents-width: 1200px;
 $product-description-width-small: 700px;

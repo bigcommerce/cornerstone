@@ -43,9 +43,8 @@
     </div>
     <div id="product-main">
         <div id="product-images">
-            <div class="product-image-gallery" id="product-image-gallery"></div>
-            <div id="lifetime-warranty-badge"></div>
-            <div id="made-in-usa-badge"></div>
+            <div id="product-image-gallery" class="product-image-gallery"></div>
+            <div id="product-badges-mobile"></div>
         </div>
         <div id="product-info">
             <div id="product-details">
@@ -59,6 +58,7 @@
                     <div id="product-price"></div>
                     <div id="product-rating"></div>
                     <div id="product-brand"></div>
+                    <div id="product-badges-desktop"></div>
                 </div>
             </div>
             <div id="product-ordering" data-cart-item-add>
@@ -90,3 +90,7 @@
 <div id="customer_group_id" style="display: none">
     {{customer.customer_group_id}}
 </div>
+
+{{#unless is_ajax}}
+    {{> components/products-cs/modals/images}}
+{{/unless}}

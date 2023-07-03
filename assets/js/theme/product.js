@@ -38,6 +38,10 @@ export default class Product extends PageManager {
             this.initModalGallery(startIndex);
         });
 
+        $('#modal-images').on('close.fndtn.reveal', () => {
+            $('.slick-carousel-modal').slick('unslick');
+        })
+
         // CravenSpeed Theme does not use ProductDetails 
         //this.productDetails = new ProductDetails($('.productView'), this.context, window.BCData.product_attributes); 
         //this.productDetails.setProductVariant();
@@ -76,23 +80,22 @@ export default class Product extends PageManager {
         $('#modal-images .modal-content').append('<button class="modal-close" type="button" title="Close"> <span class="aria-description--hidden">Close</span> <span aria-hidden="true">&#215;</span> </button>');
         $('#modal-images .modal-content').append('<div class="modal-slides"><div class="slick-carousel-modal"></div></div>');
 
-        $('.slick-carousel-modal').css('height', $(window).height() + 'px');
-
         $('.slick-track .slick-slide').each(function() {
             let background = $(this).css('background');
             let urlRegex = /url\("([^"]+)"/;
             let url = background.match(urlRegex)[1];
-
             let modalSlide = $('<div class="modal-slide"></div>');
             let img = $('<img>').attr('src', url);
             modalSlide.append(img);
             $('.slick-carousel-modal').append(modalSlide);
+            console.log('slide added');
         });
         
         // Initialize the modal carousel
         $('.slick-carousel-modal').slick({
             initialSlide: startIndex,
             arrows: true,
+            infinite: false
         });
 
         $('.slick-carousel-modal').slick('refresh');

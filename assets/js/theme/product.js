@@ -31,14 +31,18 @@ export default class Product extends PageManager {
         // Init collapsible
         collapsibleFactory();
 
+        //Listen for click on image carousel
         $('body').on('click', '[data-reveal-id="modal-images"]', (event) => {
+            //Capture the index of the clicked image
             var startIndex = $(event.target).index();
-            console.log('startIndex: ' + startIndex);
 
+            //Initialize the modal gallery
             this.initModalGallery(startIndex);
         });
 
+        //Listen for closing of the modal gallery
         $('#modal-images').on('close.fndtn.reveal', () => {
+            // destroy the modal carousel
             $('.slick-carousel-modal').slick('unslick');
         })
 
@@ -73,13 +77,13 @@ export default class Product extends PageManager {
         this.productReviewHandler();
     }
     
-
+    // Runs the CravenSpeed product images modal
     initModalGallery(startIndex) {
-        console.log('init modal gallery');
-
+        //Create the modal content
         $('#modal-images .modal-content').append('<button class="modal-close" type="button" title="Close"> <span class="aria-description--hidden">Close</span> <span aria-hidden="true">&#215;</span> </button>');
         $('#modal-images .modal-content').append('<div class="modal-slides"><div class="slick-carousel-modal"></div></div>');
 
+        //Copy the existing slick carousel and add it to the modal
         $('.slick-track .slick-slide').each(function() {
             let background = $(this).css('background');
             let urlRegex = /url\("([^"]+)"/;
@@ -97,7 +101,8 @@ export default class Product extends PageManager {
             arrows: true,
             infinite: false
         });
-
+        
+        //force slick to recalculate it's dimensions
         $('.slick-carousel-modal').slick('refresh');
     }
 

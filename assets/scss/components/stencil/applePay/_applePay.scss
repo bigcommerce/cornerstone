@@ -1,4 +1,6 @@
 .apple-pay-checkout-button {
+    background-color: $applePay-black;
+    background-image: -webkit-named-image(apple-pay-logo-white);
     background-position: 50% 50%;
     background-repeat: no-repeat;
     background-size: 100% 60%;
@@ -10,19 +12,17 @@
     min-width: 90px;
     padding: spacing("single");
     width: 160px;
-    @if stencilString("applePay-button") == "white" {
-        background-color: $applePay-white;
-        background-image: -webkit-named-image(apple-pay-logo-black);
-    }
-    @else if stencilString("applePay-button") == "white-border" {
-        background-color: $applePay-white;
-        background-image: -webkit-named-image(apple-pay-logo-black);
-        border: 0.5px solid $applePay-black;
-    }
-    @else {
-        background-color: $applePay-black;
-        background-image: -webkit-named-image(apple-pay-logo-white);
-    }
+}
+
+.apple-pay-checkout-button--white {
+    background-color: $applePay-white;
+    background-image: -webkit-named-image(apple-pay-logo-black);
+}
+
+.apple-pay-checkout-button--white-border {
+    background-color: $applePay-white;
+    background-image: -webkit-named-image(apple-pay-logo-black);
+    border: 0.5px solid $applePay-black;
 }
 
 .apple-pay-supported {

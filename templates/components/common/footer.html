@@ -1,22 +1,13 @@
 {{#if banners.bottom}}
-    {{#if settings.data_tag_enabled}}
-        <div class="banners" data-banner-location="bottom">
-            {{#each (limit banners.bottom_metadata 1)}}
-                <div class="banner" data-event-type="promotion" data-entity-id="{{this.id}}" data-name="{{this.banner-name}}" data-position="{{this.location}}" data-name="{{this.banner-name}}">
-                    <div data-event-type="promotion-click">
-                        {{{this.content}}}
-                    </div>
+    <div class="banners" data-banner-location="bottom">
+        {{#each (limit banners.bottom_metadata 1)}}
+            <div class="banner" data-event-type="promotion" data-entity-id="{{this.id}}" data-name="{{this.banner-name}}" data-position="{{this.location}}" data-name="{{this.banner-name}}">
+                <div data-event-type="promotion-click">
+                    {{{this.content}}}
                 </div>
-            {{/each}}
-        </div>
-    {{else}}
-        <div class="banners" data-banner-location="bottom">
-            <div class="banner">
-                {{{limit banners.bottom 1}}}
             </div>
-        </div>
-    {{/if}}
-
+        {{/each}}
+    </div>
 {{/if}}
 <footer class="footer" role="contentinfo">
     <h2 class="footer-title-sr-only">{{lang 'footer.title'}}</h2>

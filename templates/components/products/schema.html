@@ -14,7 +14,7 @@
             "name": {{{JSONstringify product.brand.name}}}
         },
         {{/if}}
-        "description": "{{encodeURI (sanitize product.description)}}",
+        "description": {{{json (ellipsis (sanitize product.description) 4000) }}},
         "image": "{{getImage product.main_image 'zoom_size' (cdn theme_settings.default_image_product)}}",
         {{#and settings.show_product_reviews product.reviews.list.length}}
         "aggregateRating": {

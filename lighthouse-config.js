@@ -1,46 +1,11 @@
-const throttling = {
-    disabled: {
-        rttMs: 0,
-        throughputKbps: 0,
-        requestLatencyMs: 0,
-        downloadThroughputKbps: 0,
-        uploadThroughputKbps: 0,
-        cpuSlowdownMultiplier: 0,
-    }
-};
+/**
+ * @license Copyright 2018 The Lighthouse Authors. All Rights Reserved.
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
+ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+ */
 
+/** @type {LH.Config} */
 module.exports = {
-    settings: {
-        output: 'json',
-        maxWaitForLoad: 45 * 1000,
-        throttlingMethod: 'provided',
-        throttling: throttling.disabled,
-        auditMode: false,
-        gatherMode: false,
-        disableStorageReset: false,
-        disableDeviceEmulation: true,
-        emulatedFormFactor: 'none',
-        blockedUrlPatterns: null,
-        additionalTraceCategories: null,
-        extraHeaders: null,
-        onlyAudits: null,
-        onlyCategories: null,
-        skipAudits: null,
-    },
-    passes: [
-        {
-            passName: 'defaultPass',
-            recordTrace: true,
-            useThrottling: false,
-            pauseAfterLoadMs: 1000,
-            networkQuietThresholdMs: 1000,
-            cpuQuietThresholdMs: 1000,
-            gatherers: [],
-        },
-    ],
-    audits: [
-        'time-to-first-byte',
-        'metrics/first-meaningful-paint',
-        'metrics/interactive',
-    ],
+	extends: 'lighthouse:default',
+	settings: {},
 };

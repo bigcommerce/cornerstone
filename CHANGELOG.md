@@ -5,7 +5,22 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Draft
+- (sanitize product.description) in the theme results to ‘error length of description’ from Google indexing for lengthy product description [#2363](https://github.com/bigcommerce/cornerstone/pull/2363)
+- Added style configs to payment buttons  [#2361](https://github.com/bigcommerce/cornerstone/pull/2361)
+- Bump Stencil utils to 6.15.1 [#2365][https://github.com/bigcommerce/cornerstone/pull/2365]
+- Added ACH payment method section to My Account -> Payment Methods page [#2362](https://github.com/bigcommerce/cornerstone/pull/2362)
+- Remove data_tag_enabled check from everywhere [#2369][https://github.com/bigcommerce/cornerstone/pull/2369]
+
+## 6.11.0 (05-24-2023)
+- Reverted fix for sold-out badge appearance [#2354](https://github.com/bigcommerce/cornerstone/pull/2354)
+- If the gift is a variant, the button "Change" shows in cart, and other variant are visible [#2349](https://github.com/bigcommerce/cornerstone/pull/2349)
+- Removes the URL encoding from the 'description' in the product rich snippet schema [#2350](https://github.com/bigcommerce/cornerstone/pull/2350)
+- Running Lighthouse npm script fails in terminal [#2345](https://github.com/bigcommerce/cornerstone/pull/2345)
 - Removed accelerated checkout integration [#2341](https://github.com/bigcommerce/cornerstone/pull/2341)
+- Added css classes for ApplePay Button [[#2344]](https://github.com/bigcommerce/cornerstone/pull/2344)
+- Added styling config for the Bolt smart payment button [[#2356]](https://github.com/bigcommerce/cornerstone/pull/2356)
+- Remove default whitespace from multiline input [#2355](https://github.com/bigcommerce/cornerstone/pull/2355)
+- Refresh page if no more item in the cart [#2360](https://github.com/bigcommerce/cornerstone/pull/2360)
 
 ## 6.10.0 (03-23-2023)
 - A bug with the display of the product quantity on the PDP [#2340](https://github.com/bigcommerce/cornerstone/pull/2340)

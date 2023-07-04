@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Write a Review on product page shows blank pop up on second click. [#2368][https://github.com/bigcommerce/cornerstone/pull/2368]
 - Added ACH payment method section to My Account -> Payment Methods page [#2362](https://github.com/bigcommerce/cornerstone/pull/2362)
 - Remove data_tag_enabled check from everywhere [#2369][https://github.com/bigcommerce/cornerstone/pull/2369]
+- Fix add product to cart on iphone x (iphone version 11) [#2370][https://github.com/bigcommerce/cornerstone/pull/2370]
 
 ## 6.11.0 (05-24-2023)
 - Reverted fix for sold-out badge appearance [#2354](https://github.com/bigcommerce/cornerstone/pull/2354)

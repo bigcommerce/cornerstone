@@ -836,8 +836,13 @@
 
 
   select {
-    width: 50%;
     border: 2px solid stencilColor(button--disabled-borderColor);
+    flex: 1;
+
+    @include breakpoint("medium") {
+      flex-grow: 0;
+      flex-basis: 50%;
+    }
   }
 
   @include breakpoint("medium") {
@@ -854,10 +859,14 @@
 
   button {
     display: block;
-    width: 50%;
-    min-width: 250px;
+    width: 100%;
     background-color: gray;
     color: lightgray;
+
+    @include breakpoint("medium") {
+      width: 50%;
+      min-width: 250px;
+    }
   }
 }
 

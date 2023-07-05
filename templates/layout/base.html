@@ -38,11 +38,10 @@
         <script type="text/javascript" src="https://sandbox125.mybigcommerce.com/content/cs_search_data.js"></script>
         {{#if page_type '===' 'product'}}
         {{!-- Use full path on sandbox store, relative path on production --}}
-        <script type="text/javascript" src="https://sandbox125.mybigcommerce.com/content/global_product.js"></script>
         <script type="text/javascript" src="https://sandbox125.mybigcommerce.com/content/{{dashcase (lookup (split product.url '.com') 1)}}.js"></script>
         <script type="text/javascript" src="https://sandbox125.mybigcommerce.com/content/global_inventory.js?t={{random '1' '9999999'}}"></script>
         <script>
-            var archetype_description = '{{product.description}}';
+            var archetype_description = `{{{product.description}}}`;
 
             var archetype_main_image = {
                 'url': '{{getImage product.main_image defaultImage}}',
@@ -58,7 +57,8 @@
                 {{/each}}
             ];
         </script>
-        {{!-- end of product scripts --}}
+        <script type="text/javascript" src="https://sandbox125.mybigcommerce.com/content/global_product.js"></script>
+        {{!-- End Product Scripts --}}
 
         {{else if page_type '===' 'default'}}
         <script src="https://sandbox125.mybigcommerce.com/content/home.js"></script>

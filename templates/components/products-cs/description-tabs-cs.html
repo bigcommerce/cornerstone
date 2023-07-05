@@ -1,10 +1,8 @@
 <ul class="tabs" data-tab>
 
-    {{#if product.description}}
         <li class="tab is-active">
             <a class="tab-title" href="#tab-description">{{lang 'products.description'}}</a>
         </li>
-    {{/if}}
 
         <li class="tab">
             <a class="tab-title" href="#tab-reviews">{{lang 'products.reviews.header'}}</a>
@@ -13,12 +11,6 @@
         <li class="tab">
             <a class="tab-title" href="#tab-shipping">Shipping</a>
         </li>
-
-    {{#if product.warranty}}
-        <li class="tab {{#unless product.description}}is-active{{/unless}}">
-            <a class="tab-title" href="#tab-warranty">{{lang 'products.warranty'}}</a>
-        </li>
-    {{/if}}
 
         <li class="tab">
             <a class="tab-title" href="#tab-more-products" onclick="show_more_products()">More Products</a>

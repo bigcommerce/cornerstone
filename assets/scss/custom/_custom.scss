@@ -924,6 +924,17 @@ ul.tabs {
   display: flex;
   flex-direction: column;
   width: 100%;
+  gap: spacing("single");
+  margin: spacing("single") auto;
+
+  //esnure elements are in correct order
+  .productText {
+    order: 1;
+  }
+
+  .productGraphic {
+    order: 2;
+  }
 
   @include breakpoint("medium") {
     flex-direction: row;
@@ -933,6 +944,8 @@ ul.tabs {
       padding: spacing("single");
     }
 
+
+    //reverse the order of every other row
     &:nth-child(even) {
       flex-direction: row-reverse;
     }
@@ -956,7 +969,7 @@ ul.tabs {
   justify-content: center;
   align-items: center;
 
-  > * {
+  >* {
     width: 100%;
   }
 }
@@ -972,6 +985,103 @@ ul.tabs {
     border-radius: 3px;
   }
 }
+
+// ------------------------------------------------------------------------------------->
+//
+//                              CUSTOM DESCRIPTION STYLES
+//
+// ------------------------------------------------------------------------------------->
+
+// ------------------------------------------------------------------------------------->
+//                                      The Stubby
+// ------------------------------------------------------------------------------------->
+
+.stubbyGraphic {
+  max-width: 400px;
+  min-width: 245px;
+  margin: 0 auto;
+  display: flex;
+}
+
+.stubbyFeatures {
+  margin-left: 1em;
+  width: 100%;
+  max-width: 282px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  h4 {
+    margin: 0;
+    font-size: 20px;
+    line-height: 1;
+  }
+}
+
+.stubbyReception {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  margin-left: 1em;
+}
+
+.infoRow {
+  display: grid;
+  grid-template-rows: auto;
+}
+
+.silhouetteConatiner {
+  grid-row-start: 1;
+  grid-column-start: 1;
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+  max-width: 100%;
+
+  .csSilhoeutte {
+    width: 12%;
+    max-height: 100%;
+  }
+
+  .stockSilhouette {
+    width: 88%;
+    max-height: 100%;
+  }
+}
+
+.info {
+  grid-row-start: 1;
+  grid-column-start: 1;
+  height: fit-content;
+  background-color: stencilColor("color-primary");
+  color: stencilColor("color-white");
+  padding: spacing("single");
+  padding-left: spacing("double") * 3;
+  padding-right: spacing("single");
+  align-self: center;
+
+  h4 {
+    margin: 0;
+    color: stencilColor("color-white");
+    font-size: stencilNumber("fontSize-h5");
+    font-family: $body-font-family;
+    padding-left: spacing("single");
+  }
+
+  ul {
+    margin: 0;
+  }
+
+  li {
+    list-style-type: none;
+    font-weight: bold;
+    font-size: stencilNumber("fontSize-h3");
+  }
+
+}
+
+
 
 // ------------------------------------------------------------------------------------->
 //

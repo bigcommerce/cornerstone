@@ -1,4 +1,4 @@
-import $ from 'jquery'
+import $ from 'jquery';
 import utils from '@bigcommerce/stencil-utils';
 import Cart from '../../theme/cart.js';
 
@@ -31,7 +31,7 @@ beforeEach(function () {
 		    default:
 		    	return null;
 		    }
-		})
+		});
 	};
 });
 
@@ -90,13 +90,13 @@ var $dom = $('<table class="cart" data-cart-quantity="2">\
                 </td>\
             </tr>\
     </tbody>\
-</table>')
+</table>');
 
 c.onReady();
 
 describe('cartUpdate', () => {
     it('should INCRIMENT qty', () => {
-		dataSpy
+		dataSpy;
 		dataSpy('inc');
 		spyOn(jQuery.fn, 'val').and.returnValue(2);
 		c.cartUpdate($dom);
@@ -105,7 +105,7 @@ describe('cartUpdate', () => {
 	});
 
     it('should DECREMENT qty', () => {
-		dataSpy
+		dataSpy;
 		dataSpy('dec');
 		spyOn(jQuery.fn, 'val').and.returnValue(2);
 		c.cartUpdate($dom);
@@ -116,7 +116,7 @@ describe('cartUpdate', () => {
 
 describe('cartUpdateQtyTextChange', () => {
     it('should CHANGE qty completly based on the cart-item-qty-input', () => {
-		dataSpy
+		dataSpy;
 		dataSpy('manualQtyChange');
 		spyOn(jQuery.fn, 'val').and.returnValue(5, 2);
 		c.cartUpdateQtyTextChange($dom);

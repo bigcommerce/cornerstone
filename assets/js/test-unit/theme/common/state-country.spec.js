@@ -12,7 +12,7 @@ import stateCountry from '../../../theme/common/state-country';
 // jest.mock('api.country');
 
 describe('StateCountry', () => {
-    let $countryElement, 
+    let $countryElement,
 $stateElement;
 
     beforeEach(() => {
@@ -39,7 +39,7 @@ $stateElement;
     });
 
     describe('on error', () => {
-        let $modalElement, 
+        let $modalElement,
 modal;
 
         beforeEach(() => {
@@ -48,12 +48,12 @@ modal;
                     <div class="modal-content"></div>
                     <div class="loadingOverlay"></div>
                 </div>
-            `)
+            `);
             $modalElement.appendTo(document.body);
             modal = alertModal();
 
             api.country.getByName.mockImplementation((countryName, callback) => {
-                callback(new Error(countryName + 'missing'), null);
+                callback(new Error(`${countryName}missing`), null);
             });
             jest.spyOn(modal, 'open');
         });
@@ -77,7 +77,7 @@ modal;
         beforeEach(() => {
             api.country.getByName.mockImplementation((countryName, callback) => {
                 let states = [];
-                switch(countryName) {
+                switch (countryName) {
                     case '1': break;
                     case '3':
                         states = [

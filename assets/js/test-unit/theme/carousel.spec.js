@@ -1,5 +1,5 @@
 import carousel from '../../theme/common/carousel';
-import $ from 'jquery'
+import $ from 'jquery';
 import 'slick-carousel';
 
 describe('carousel', () => {
@@ -24,7 +24,7 @@ describe('carousel', () => {
 		            </div>\
 		        </div>\
 		    </a>\
-		</section>")
+		</section>");
 
 	    spyOn(jQuery.fn, 'find').and.returnValue(multipleSlidesElement);
 	    var slickSpy = spyOn(multipleSlidesElement, 'slick');
@@ -51,7 +51,7 @@ describe('carousel', () => {
 					</div>\
 		        </div>\
 		    </a>\
-		</section>")
+		</section>");
 
 	    spyOn(jQuery.fn, 'find').and.returnValue(multipleSlidesElement);
 	    var slickSpy = spyOn(multipleSlidesElement, 'slick');

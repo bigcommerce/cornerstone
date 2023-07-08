@@ -37,7 +37,7 @@ describe('FacetedSearch', () => {
             },
         };
 
-        html =            '<div id="facetedSearch">'
+        html = '<div id="facetedSearch">'
                 + '<a class="facetedSearch-clearLink">Clear</a>'
                 + '<div id="facetedSearch-navList">'
                     + '<ul class="navList" id="facet-brands" data-count="2" data-has-more-results="true">'

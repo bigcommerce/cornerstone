@@ -62,7 +62,7 @@ describe('StateCountry', () => {
         });
 
         it('should show modal', (done) => {
-            stateCountry($stateElement, {state_error: 'Missing'}, {}, (err) => {
+            stateCountry($stateElement, { state_error: 'Missing' }, {}, (err) => {
                 expect(modal.open).toHaveBeenCalled();
                 done();
             });
@@ -79,14 +79,14 @@ describe('StateCountry', () => {
                     case '1': break;
                     case '3':
                         states = [
-                            {id: '1', name: 'Kepler'},
-                            {id: '2', name: 'Grimaldi'},
-                            {id: '3', name: 'Byrgius'}
+                            { id: '1', name: 'Kepler' },
+                            { id: '2', name: 'Grimaldi' },
+                            { id: '3', name: 'Byrgius' }
                         ];
                     break;
                 }
 
-                callback(null, {data: {states}});
+                callback(null, { data: { states } });
             });
         });
 

@@ -45,7 +45,7 @@ export default class Cart extends PageManager {
         // Does not quality for min/max quantity
         if (newQty < minQty) {
             return showAlertModal(minError);
-        } else if (maxQty > 0 && newQty > maxQty) {
+        } if (maxQty > 0 && newQty > maxQty) {
             return showAlertModal(maxError);
         }
 
@@ -82,10 +82,10 @@ export default class Cart extends PageManager {
             invalidEntry = $el.val();
             $el.val(oldQty);
             return showAlertModal(this.context.invalidEntryMessage.replace('[ENTRY]', invalidEntry));
-        } else if (newQty < minQty) {
+        } if (newQty < minQty) {
             $el.val(oldQty);
             return showAlertModal(minError);
-        } else if (maxQty > 0 && newQty > maxQty) {
+        } if (maxQty > 0 && newQty > maxQty) {
             $el.val(oldQty);
             return showAlertModal(maxError);
         }

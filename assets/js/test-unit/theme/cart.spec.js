@@ -9,11 +9,11 @@ c.context = {
     shippingCountryErrorMessage: `The 'Country' field cannot be blank.`,
     shippingProvinceErrorMessage: `The 'State/Province' field cannot be blank.`,
 };
-beforeEach(function() {
+beforeEach(function () {
 	UpdateSpy = spyOn(utils.api.cart, 'itemUpdate');
 
-	dataSpy = function(requestedAction = null) {
-		spyOn(jQuery.fn, 'data').and.callFake(function() {
+	dataSpy = function (requestedAction = null) {
+		spyOn(jQuery.fn, 'data').and.callFake(function () {
 		    var param = arguments[0];
 		    switch (param) {
 		    case 'action':

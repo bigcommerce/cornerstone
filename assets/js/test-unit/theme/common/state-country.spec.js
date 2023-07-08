@@ -96,7 +96,7 @@ describe('StateCountry', () => {
                 $stateElement = $('[data-field-type="State"]');
                 expect($stateElement.find('option').length).toEqual(4);
 
-                const names = $stateElement.find('option').map(function() {
+                const names = $stateElement.find('option').map(function () {
                     return $(this).text();
                 }).get();
                 expect(names).toEqual(['undefined', 'Kepler', 'Grimaldi', 'Byrgius']);

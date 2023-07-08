@@ -12,7 +12,8 @@ import stateCountry from '../../../theme/common/state-country';
 // jest.mock('api.country');
 
 describe('StateCountry', () => {
-    let $countryElement, $stateElement;
+    let $countryElement, 
+$stateElement;
 
     beforeEach(() => {
         $countryElement = $(`
@@ -38,7 +39,8 @@ describe('StateCountry', () => {
     });
 
     describe('on error', () => {
-        let $modalElement, modal;
+        let $modalElement, 
+modal;
 
         beforeEach(() => {
             $modalElement = $(`

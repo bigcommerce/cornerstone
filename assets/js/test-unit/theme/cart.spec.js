@@ -9,7 +9,7 @@ c.context = {
     shippingCountryErrorMessage: `The 'Country' field cannot be blank.`,
     shippingProvinceErrorMessage: `The 'State/Province' field cannot be blank.`,
 };
-beforeEach(function () {
+beforeEach(() => {
 	UpdateSpy = spyOn(utils.api.cart, 'itemUpdate');
 
 	dataSpy = function (requestedAction = null) {

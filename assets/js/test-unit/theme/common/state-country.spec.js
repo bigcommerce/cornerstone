@@ -12,7 +12,8 @@ import stateCountry from '../../../theme/common/state-country';
 // jest.mock('api.country');
 
 describe('StateCountry', () => {
-    let $countryElement, $stateElement;
+    let $countryElement,
+    $stateElement;
 
     beforeEach(() => {
         $countryElement = $(`
@@ -38,7 +39,8 @@ describe('StateCountry', () => {
     });
 
     describe('on error', () => {
-        let $modalElement, modal;
+        let $modalElement,
+modal;
 
         beforeEach(() => {
             $modalElement = $(`
@@ -46,12 +48,12 @@ describe('StateCountry', () => {
                     <div class="modal-content"></div>
                     <div class="loadingOverlay"></div>
                 </div>
-            `)
+            `);
             $modalElement.appendTo(document.body);
             modal = alertModal();
 
             api.country.getByName.mockImplementation((countryName, callback) => {
-                callback(new Error(countryName + 'missing'), null);
+                callback(new Error(`${countryName}missing`), null);
             });
             jest.spyOn(modal, 'open');
         });
@@ -75,7 +77,7 @@ describe('StateCountry', () => {
         beforeEach(() => {
             api.country.getByName.mockImplementation((countryName, callback) => {
                 let states = [];
-                switch(countryName) {
+                switch (countryName) {
                     case '1': break;
                     case '3':
                         states = [

@@ -30,7 +30,7 @@ describe('StateCountry', () => {
         `);
         $countryElement.appendTo(document.body);
         $stateElement.appendTo(document.body);
-    }); 
+    });
 
     afterEach(() => {
         $countryElement.remove();

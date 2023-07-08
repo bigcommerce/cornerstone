@@ -3,7 +3,7 @@ import $ from 'jquery'
 import 'slick-carousel';
 
 describe('carousel', () => {
-    it('should generate carousel WITH dots if carousel has more than one slide', () => {	
+    it('should generate carousel WITH dots if carousel has more than one slide', () => {
 		var multipleSlidesElement = $("<section class='heroCarousel' data-slick='{}'>\
 			<a href=''>\
 		        <div class='heroCarousel-slide  heroCarousel-slide--first'>\
@@ -37,7 +37,7 @@ describe('carousel', () => {
 		});
     });
 
-    it('should generate carousel WITHOUT dots if carousel has one slide', () => {	
+    it('should generate carousel WITHOUT dots if carousel has one slide', () => {
 		var multipleSlidesElement = $("<section class='heroCarousel' data-slick='{}'>\
 			<a href=''>\
 		        <div class='heroCarousel-slide  heroCarousel-slide--first'>\
@@ -60,7 +60,7 @@ describe('carousel', () => {
             accessibility: false,
             arrows: false,
             customPaging: expect.any(Function),
-            dots: false,			
-		});   
+            dots: false,
+		});
     });
 });

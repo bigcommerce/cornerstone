@@ -13,12 +13,12 @@ describe('Validators', () => {
 
     describe('setMinMaxPriceValidation', () => {
         let selectors;
-        const priceValidationErrorTexts = { 
-            onMinPriceError: jasmine.any(String), 
-            onMaxPriceError: jasmine.any(String), 
-            minPriceNotEntered: jasmine.any(String), 
-            maxPriceNotEntered: jasmine.any(String),  
-            onInvalidPrice: jasmine.any(String), 
+        const priceValidationErrorTexts = {
+            onMinPriceError: jasmine.any(String),
+            onMaxPriceError: jasmine.any(String),
+            minPriceNotEntered: jasmine.any(String),
+            maxPriceNotEntered: jasmine.any(String),
+            onInvalidPrice: jasmine.any(String),
         };
 
         beforeEach(() => {

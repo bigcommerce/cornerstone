@@ -58,7 +58,7 @@ describe('Modal', () => {
 
             modal.$content.html($modalBody);
 
-            //Force heights of each element since jsdom does not provide these
+            // Force heights of each element since jsdom does not provide these
             [
                 $('body')[0]
             ].forEach((elm) => {

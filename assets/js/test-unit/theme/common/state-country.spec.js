@@ -13,7 +13,7 @@ import stateCountry from '../../../theme/common/state-country';
 
 describe('StateCountry', () => {
     let $countryElement,
-$stateElement;
+    $stateElement;
 
     beforeEach(() => {
         $countryElement = $(`

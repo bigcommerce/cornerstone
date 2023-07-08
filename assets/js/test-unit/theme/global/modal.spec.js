@@ -63,7 +63,7 @@ describe('Modal', () => {
                 $('body')[0]
             ].forEach((elm) => {
                 ['scollHeight', 'offsetHeight', 'clientHeight', 'innerHeight'].forEach((property) => {
-                    Object.defineProperty(elm, property, { configurable: true, value: 500});
+                    Object.defineProperty(elm, property, { configurable: true, value: 500 });
                 });
             });
             [
@@ -73,7 +73,7 @@ describe('Modal', () => {
                 modal.$content[0]
             ].forEach((elm) => {
                 ['scollHeight', 'offsetHeight', 'clientHeight', 'innerHeight'].forEach((property) => {
-                    Object.defineProperty(elm, property, { configurable: true, value: 700});
+                    Object.defineProperty(elm, property, { configurable: true, value: 700 });
                 });
             });
         });

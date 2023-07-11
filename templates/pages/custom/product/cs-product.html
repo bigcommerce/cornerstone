@@ -13,13 +13,17 @@ product:
 
 {{#partial "page"}}
 
-    {{#each product.shipping_messages}}
-        {{> components/common/alert/alert-info message}}
-    {{/each}}
-
-    <div>
-        {{> components/products-cs/product-view-cs}}
-    </div>
+<div id="cs-product-container">
     
+        {{#each product.shipping_messages}}
+            {{> components/common/alert/alert-info message}}
+        {{/each}}
+    
+        <div>
+            {{> components/products-cs/product-view-cs}}
+        </div>
+        
+</div>
+
 {{/partial}}
 {{> layout/base}}

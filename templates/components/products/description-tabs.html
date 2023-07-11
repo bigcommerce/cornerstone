@@ -23,6 +23,9 @@
             <a class="tab-title productView-reviewTabLink" href="#tab-reviews">{{lang 'products.reviews.header' total=product.reviews.total}}</a>
         </li>
     {{/all}}
+        <li class="tab">
+            <a href="#tab-reviews" class="tab-title">{{lang 'products.reviews.header'}}</a>
+        </li>
 </ul>
 <div class="tabs-contents">
     {{#if product.description}}
@@ -47,4 +50,7 @@
            {{> components/products/reviews reviews=product.reviews product=product urls=urls}}
        </div>
     {{/all}}
+       <div class="tab-content" id="tab-reviews">
+            {{> components/products-cs/reviews-cs}}
+       </div>
 </div>

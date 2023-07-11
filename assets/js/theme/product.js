@@ -8,6 +8,7 @@ import collapsibleFactory from './common/collapsible';
 import videoGallery from './product/video-gallery';
 import { classifyForm } from './common/utils/form-utils';
 import modalFactory from './global/modal';
+import ImageGallery from './product/image-gallery';
 
 export default class Product extends PageManager {
     constructor(context) {
@@ -16,6 +17,10 @@ export default class Product extends PageManager {
         this.$reviewLink = $('[data-reveal-id="modal-review-form"]');
         this.$bulkPricingLink = $('[data-reveal-id="modal-bulk-pricing"]');
         this.reviewModal = modalFactory('#modal-review-form')[0];
+
+        //setup image gallery on default template pages since ProductDetails isn't imported
+        this.imageGallery = new ImageGallery($('[data-image-gallery]', this.$scope));
+        this.imageGallery.init();
     }
 
     onReady() {

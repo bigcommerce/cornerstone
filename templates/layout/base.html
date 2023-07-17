@@ -36,35 +36,10 @@
         {{!-- CravenSpeed Qty Script --}}
         <script type="text/javascript" src="/content/cs_search.js"></script>
         <script type="text/javascript" src="/content/cs_search_data.js"></script>
-        {{#if page_type '===' 'product'}}
-        {{!-- Use full path on sandbox store, relative path on production --}}
-        <script type="text/javascript" src="/content/{{dashcase (lookup (split product.url '.com') 1)}}.js"></script>
-        <script type="text/javascript" src="/content/global_inventory.js?t={{random '1' '9999999'}}"></script>
-        <script>
-            var archetype_description = `{{{product.description}}}`;
-
-            var archetype_main_image = {
-                'url': '{{getImage product.main_image defaultImage}}',
-                'description': '{{product.main_image.alt}}'
-            };
-
-            var archetype_images = [
-                {{#each product.images}}
-                {
-                    'url': '{{getImage this defaultImage}}',
-                    'description': '{{this.alt}}'
-                },
-                {{/each}}
-            ];
-        </script>
-        <script type="text/javascript" src="/content/global_product.js"></script>
-        {{!-- End Product Scripts --}}
-
-        {{else if page_type '===' 'default'}}
+        {{#if page_type '===' 'default'}}
         <script src="/content/home.js"></script>
         {{/if}}
-        
-        {{!-- End CravenSpeed Scripts --}}
+        {{!-- End CravenSpeed Qty Scripts --}}
         
         {{{head.scripts}}}
 
@@ -86,6 +61,11 @@
         <svg data-src="{{cdn 'img/icon-sprite.svg'}}" class="icons-svg-sprite"></svg>
 
         {{> components/common/header }}
+
+        {{#if (getVar "product_template") "===" "cs-product"}}
+            <p>It's True in BASE!</p>
+        {{/if}}
+        
         {{> components/common/body }}
         {{> components/common/footer }}
 

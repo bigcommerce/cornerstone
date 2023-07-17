@@ -14,7 +14,6 @@ product:
 {{#partial "page"}}
 
 <div id="cs-product-container">
-    
         {{#each product.shipping_messages}}
             {{> components/common/alert/alert-info message}}
         {{/each}}
@@ -24,6 +23,27 @@ product:
         </div>
         
 </div>
+
+<script type="text/javascript" src="/content/{{dashcase (lookup (split product.url '.com') 1)}}.js"></script>
+<script type="text/javascript" src="/content/global_inventory.js?t={{random '1' '9999999'}}"></script>
+<script>
+    var archetype_description = `{{{product.description}}}`;
+
+    var archetype_main_image = {
+        'url': '{{getImage product.main_image defaultImage}}',
+        'description': '{{product.main_image.alt}}'
+        };
+
+    var archetype_images = [
+        {{#each product.images}}
+        {
+            'url': '{{getImage this defaultImage}}',
+            'description': '{{this.alt}}'
+        },
+        {{/each}}
+    ];
+</script>
+<script type="text/javascript" src="/content/global_product.js"></script>
 
 {{/partial}}
 {{> layout/base}}

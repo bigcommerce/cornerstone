@@ -4,7 +4,7 @@
 import PageManager from './page-manager';
 import Review from './product/reviews';
 import collapsibleFactory from './common/collapsible';
-//import ProductDetails from './common/product-details'; This file is not needed by CravenSpeed
+import ProductDetails from './common/product-details'; 
 import videoGallery from './product/video-gallery';
 import { classifyForm } from './common/utils/form-utils';
 import modalFactory from './global/modal';
@@ -49,11 +49,14 @@ export default class Product extends PageManager {
         $('#modal-images').on('close.fndtn.reveal', () => {
             // destroy the modal carousel
             $('.slick-carousel-modal').slick('unslick');
+            $("#modal-images .modal-content").empty();
         })
 
         // CravenSpeed Theme does not use ProductDetails 
-        //this.productDetails = new ProductDetails($('.productView'), this.context, window.BCData.product_attributes); 
-        //this.productDetails.setProductVariant();
+        if ($('#cs-product-container').length === 0) {
+            this.productDetails = new ProductDetails($('.productView'), this.context, window.BCData.product_attributes); 
+            this.productDetails.setProductVariant();
+        }
 
         videoGallery();
 
@@ -97,7 +100,6 @@ export default class Product extends PageManager {
             let img = $('<img>').attr('src', url);
             modalSlide.append(img);
             $('.slick-carousel-modal').append(modalSlide);
-            console.log('slide added');
         });
         
         // Initialize the modal carousel

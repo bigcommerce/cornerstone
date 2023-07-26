@@ -2,6 +2,7 @@
 
 {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
 
+{{!--
 <div class="page">
     <section class="page-content page-content--centered">
         <h1 class="page-heading">{{lang 'page_not_found.page_heading'}}</h1>
@@ -12,6 +13,28 @@
         {{> components/common/search-box}}
     </section>
 </div>
+--}}
+<section>
+    <h1 class="page-heading">{{lang 'page_not_found.cs_page_heading'}}</h1>
+    <p class="u-textAlignCenter">
+        {{lang 'page_not_found.cs_message'}}
+    </p>
+    <div id="not-found-picker" class="cs-car-picker">
+        <select name="make-name" id="Make" class="makemodel-dropdown" onchange="updateModel(this.value)"">
+          <option value="">Select Make</option>
+        </select>
+        <select name=" model-name" id="Model" class="makemodel-dropdown" onchange="updateGen(this.value)"">
+          <option value="">Select Model</option>
+        </select>
+        <select name=" year-name" id="Year" class="makemodel-dropdown" onchange="updateGenFourOFour(this.value)">
+            <option value="">Select Year</option>
+        </select>
+        <button id="locate" class="cs-go-button" onclick="updateProducts()">Go</button>
+    </div>
+    <div id="matching-products-header" class="container"></div>
+    <div id="matching-products" class="container"></div>
+</section>
+
 
 {{/partial}}
 {{> layout/base}}

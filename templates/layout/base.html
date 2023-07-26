@@ -95,6 +95,10 @@
         </script>
         <script async defer src="{{cdn 'assets/dist/theme-bundle.main.js' resourceHint='preload' as='script'}}" onload="onThemeBundleMain()"></script>
 
+        {{#if page_type '===' '404'}}
+        <script src="/content/four-o-four.js"></script>
+        {{/if}}
+
         {{{footer.scripts}}}
         
         {{!-- Slick import for CLI Development --}}

@@ -799,6 +799,14 @@
     }
   }
 
+  #product-stock {
+    &.with-form {
+      @include breakpoint("small") {
+        height: 52px;
+      }
+    }
+  }
+
   #product-brand {
     font-weight: bold;
     font-size: 24px;
@@ -811,6 +819,14 @@
     flex-direction: column;
     justify-content: center;
     width: 100%;
+  }
+}
+
+// -------------------------------------- InStock Notify Modal ------------------------------------->
+
+#stock-notification {
+  #modal-content {
+    padding: spacing('double');
   }
 }
 

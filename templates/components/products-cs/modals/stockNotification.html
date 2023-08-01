@@ -1,0 +1,25 @@
+<div id="stock-notification" class="modal" data-reveal data-prevent-quick-search-close>
+    <div id="modal-content" class="modal-content">
+        <div id="instocknotify-container-custom" style="display: block;">
+            <div id="InStockNotifyForm-custom" style="margin-bottom:8px;">
+                <div style="clear:both"></div>
+                <div id="inStockNotifyOutOfStock-custom" style="display: block;">Enter your email address to be notified
+                    when this item is back in stock.</div>
+                <div id="inStockNotifyInvalidEmail-custom" style="color: rgb(255, 0, 0); display: none;">Please enter a
+                    valid email address</div>
+                <div id="inStockNotifyEmail-custom" style="display: block;"><input class="form-input"
+                        id="inStockNotifyEmailAddress-custom" maxlength="128" name="user" placeholder="Email Address"
+                        style="margin-top: 1rem; width: 90%; background-image: url(&quot;chrome-extension://igkpcodhieompeloncfnbekccinhapdb/images/web_access/vault-input-disabled.svg&quot;) !important; background-repeat: no-repeat !important; background-position: calc(100% - 3px) center !important; background-size: 14px !important;"
+                        type="text" autocomplete="off" autofocus></div>
+                <div id="inStockNotifyButton-custom" style="display: block;"><input class="button button--primary"
+                        id="inStockNotifyClick-custom" name="inStockNotifyClick-custom" onclick="sendInfo(5490);"
+                        style="margin-top: 1rem;" type="button" value="Notify Me"></div>
+                <div id="inStockNotifyComplete-custom" style="display: none;">Thank you! we will email you when this
+                    item is back in stock. </div>
+                <div style="clear:both"></div>
+            </div>
+        </div>
+    </div>
+    <div class="loadingOverlay"></div>
+    {{> components/common/modal/modal-close-btn}}
+</div>

@@ -67,6 +67,11 @@ export default class Product extends PageManager {
             $('#sratch-and-dent').remove();
         })
 
+        //Listen for click on blem decline and close the modal without checking the box
+        $('#blem-decline').on('click', function(event) {
+            $('.modal-close').trigger('click');
+        })
+
         // CravenSpeed Theme does not use ProductDetails 
         if ($('#cs-product-container').length === 0) {
             this.productDetails = new ProductDetails($('.productView'), this.context, window.BCData.product_attributes); 

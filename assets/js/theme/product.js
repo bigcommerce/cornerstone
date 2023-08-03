@@ -52,6 +52,21 @@ export default class Product extends PageManager {
             $("#modal-images .modal-content").empty();
         })
 
+        //Tab select event for clicking the product rating
+        $('#product-rating').on('click', function(event) {
+            event.preventDefault();
+            var targetTabHref = $(this).attr('href');
+            $('a.tab-title[href="' + targetTabHref + '"]').trigger('click');
+        });
+
+        //Listen for click on blem acknowledgement to check the box and close the modal
+        $('#blem-acknowledgement').on('click', function(event) {
+            $('#blem-check').prop( "checked", true );
+            $('.modal-close').trigger('click');
+            $('#blem-check').removeAttr('data-reveal-id');
+            $('#sratch-and-dent').remove();
+        })
+
         // CravenSpeed Theme does not use ProductDetails 
         if ($('#cs-product-container').length === 0) {
             this.productDetails = new ProductDetails($('.productView'), this.context, window.BCData.product_attributes); 

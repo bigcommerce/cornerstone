@@ -57,7 +57,7 @@
                 </div>
                 <div id="product-details-two">
                     <div id="product-price"></div>
-                    <div id="product-rating"></div>
+                    <a id="product-rating" href="#tab-reviews"></a>
                     <div id="product-brand"></div>
                     <div id="product-badges-desktop"></div>
                 </div>
@@ -67,7 +67,8 @@
                     <select name="option-one" id="product-options-one" onchange="check_options()" style="display: none;"></select>
                     <select name="option-two" id="product-options-two" onchange="update_cart_info()" style="display: none;"></select>
                 </div>
-                <span id="blem-check-content">Blem available: <input id="blem-check" type="checkbox" style="display: none;"></span>
+                <span id="blem-check-content" style="display: none;"><input id="blem-check" type="checkbox" data-reveal-id="scratch-and-dent"></span>
+                {{> components/products-cs/modals/scratchAndDent}}
                 <div id="product-add">
                     <button id="product-add-button" type="button" onclick="cs_add_product()">{{lang 'products.add_to_cart'}}</buttom>
                 </div>

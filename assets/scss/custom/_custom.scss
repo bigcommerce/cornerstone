@@ -801,6 +801,7 @@ html {
       font-size: 17px;
       height: 26px;
       vertical-align: middle;
+      display: block;
     }
   }
 
@@ -827,11 +828,31 @@ html {
   }
 }
 
-// -------------------------------------- InStock Notify Modal ------------------------------------->
+// -------------------------------------- Product Info Modals ------------------------------------->
 
-#stock-notification {
-  #modal-content {
-    padding: spacing('double');
+#scratch-and-dent, #stock-notification {
+  .modal-content {
+    padding: spacing("double");
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+// ------------------------------------------------------------------------------------------------->
+#blem-check-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: spacing('half');
+}
+
+#blem-check {
+  @include square(20);
+  background-color: stencilColor('color-white');
+
+  &:checked{
+    background-color: stencilColor('color-primary');
   }
 }
 

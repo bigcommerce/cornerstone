@@ -789,8 +789,14 @@ html {
 
   #product-sku,
   #product-price {
-    font-size: 28px;
-    height: 42px;
+    font-size: 22px;
+    line-height: 1;
+    height: 24px;
+
+    @include breakpoint('medium') {
+      font-size: 28px;
+      height: 40px;
+    }
   }
 
   #product-shipping,
@@ -843,7 +849,7 @@ html {
 }
 
 #scratch-and-dent {
-  overflow: scroll;
+  overflow: auto;
 
   p {
     margin-bottom: 0;
@@ -852,6 +858,7 @@ html {
       margin-bottom: spacing('single');
     }
   }
+
 }
 
 button#blem-acknowledgement {

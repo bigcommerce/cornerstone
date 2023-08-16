@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Draft
 - Display fees on cart page [#2376](https://github.com/bigcommerce/cornerstone/pull/2376)
+- Replace Twitter logo with X logo within social sharing and social link components [#2387](https://github.com/bigcommerce/cornerstone/pull/2387)
 - Added nvm config [#2389](https://github.com/bigcommerce/cornerstone/pull/2389)
 
 ## 6.12.0 (07-06-2023)
@@ -18,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added ACH payment method section to My Account -> Payment Methods page [#2362](https://github.com/bigcommerce/cornerstone/pull/2362)
 - Remove data_tag_enabled check from everywhere [#2369][https://github.com/bigcommerce/cornerstone/pull/2369]
 - Fix add product to cart on iphone x (iphone version 11) [#2370][https://github.com/bigcommerce/cornerstone/pull/2370]
+- Display fees on cart page [#2360](https://github.com/bigcommerce/cornerstone/pull/2376)
 
 ## 6.11.0 (05-24-2023)
 - Reverted fix for sold-out badge appearance [#2354](https://github.com/bigcommerce/cornerstone/pull/2354)

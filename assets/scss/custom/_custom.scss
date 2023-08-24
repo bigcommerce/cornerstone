@@ -1089,7 +1089,25 @@ ul.tabs {
   }
 }
 
+.model-view {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(206, 206, 206);
+}
 
+model-viewer {
+  background-color: unset;
+  overflow-x: hidden;
+  width: 100%;
+  height: 60vh;
+
+  @include breakpoint("small") {
+    width: 50%;
+    height: 80vh;
+  }
+}
 
 #instructions-link {
   display: flex;

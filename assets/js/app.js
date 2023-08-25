@@ -52,6 +52,11 @@ const pageClasses = {
     wishlists: () => import('./theme/wishlist'),
 };
 
+// Custom addon classes to allow custom scripting without modifiying default files.
+const addonClasses = {
+    product: () => import('./theme/_addons/product')
+}
+
 const customClasses = {};
 
 /**
@@ -78,6 +83,12 @@ window.stencilBootstrap = function stencilBootstrap(pageType, contextJSON = null
                 const pageClassImporter = pageClasses[pageType];
                 if (typeof pageClassImporter === 'function') {
                     importPromises.push(pageClassImporter());
+                }
+
+                // Load addon imports
+                const addonClassImporter = addonClasses[pageType];
+                if (typeof addonClassImporter === 'function') {
+                    importPromises.push(addonClassImporter());
                 }
 
                 // See if there is a page class default for a custom template

@@ -4,11 +4,10 @@
 import PageManager from './page-manager';
 import Review from './product/reviews';
 import collapsibleFactory from './common/collapsible';
-import ProductDetails from './common/product-details'; 
+import ProductDetails from './common/product-details';
 import videoGallery from './product/video-gallery';
 import { classifyForm } from './common/utils/form-utils';
 import modalFactory from './global/modal';
-import ImageGallery from './product/image-gallery';
 
 export default class Product extends PageManager {
     constructor(context) {
@@ -17,10 +16,6 @@ export default class Product extends PageManager {
         this.$reviewLink = $('[data-reveal-id="modal-review-form"]');
         this.$bulkPricingLink = $('[data-reveal-id="modal-bulk-pricing"]');
         this.reviewModal = modalFactory('#modal-review-form')[0];
-
-        //setup image gallery on default template pages since ProductDetails isn't imported
-        this.imageGallery = new ImageGallery($('[data-image-gallery]', this.$scope));
-        this.imageGallery.init();
     }
 
     onReady() {
@@ -36,45 +31,9 @@ export default class Product extends PageManager {
         // Init collapsible
         collapsibleFactory();
 
-        //Listen for click on image carousel
-        $('body').on('click', '[data-reveal-id="modal-images"]', (event) => {
-            //Capture the index of the clicked image
-            var startIndex = $(event.target).index();
-
-            //Initialize the modal gallery
-            this.initModalGallery(startIndex);
-        });
-
-        //Listen for closing of the modal gallery
-        $('#modal-images').on('close.fndtn.reveal', () => {
-            // destroy the modal carousel
-            $('.slick-carousel-modal').slick('unslick');
-            $("#modal-images .modal-content").empty();
-        })
-
-        //Tab select event for clicking the product rating
-        $('#product-rating').on('click', function(event) {
-            event.preventDefault();
-            var targetTabHref = $(this).attr('href');
-            $('a.tab-title[href="' + targetTabHref + '"]').trigger('click');
-        });
-
-        //Listen for click on blem acknowledgement to check the box and close the modal
-        $('#blem-acknowledgement').on('click', function(event) {
-            $('#blem-check').prop( "checked", true );
-            $('.modal-close').trigger('click');
-            $('#blem-check').removeAttr('data-reveal-id');
-            $('#sratch-and-dent').remove();
-        })
-
-        //Listen for click on blem decline and close the modal without checking the box
-        $('#blem-decline').on('click', function(event) {
-            $('.modal-close').trigger('click');
-        })
-
-        // CravenSpeed Theme does not use ProductDetails 
-        if ($('#cs-product-container').length === 0) {
-            this.productDetails = new ProductDetails($('.productView'), this.context, window.BCData.product_attributes); 
+        //Only create productDetails if not using CS custom product template
+        if(!document.querySelector("#cs-product-container")) {
+            this.productDetails = new ProductDetails($('.productView'), this.context, window.BCData.product_attributes);
             this.productDetails.setProductVariant();
         }
 
@@ -92,45 +51,17 @@ export default class Product extends PageManager {
             validator = review.registerValidation(this.context);
             this.ariaDescribeReviewInputs($reviewForm);
         });
-        
+
         $reviewForm.on('submit', () => {
             if (validator) {
                 validator.performCheck();
                 return validator.areAll('valid');
             }
-            
+
             return false;
         });
-        
-        this.productReviewHandler();
-    }
-    
-    // Runs the CravenSpeed product images modal
-    initModalGallery(startIndex) {
-        //Create the modal content
-        $('#modal-images .modal-content').append('<button class="modal-close" type="button" title="Close"> <span class="aria-description--hidden">Close</span> <span aria-hidden="true">&#215;</span> </button>');
-        $('#modal-images .modal-content').append('<div class="modal-slides"><div class="slick-carousel-modal"></div></div>');
 
-        //Copy the existing slick carousel and add it to the modal
-        $('.slick-track .slick-slide').each(function() {
-            let background = $(this).css('background');
-            let urlRegex = /url\("([^"]+)"/;
-            let url = background.match(urlRegex)[1];
-            let modalSlide = $('<div class="modal-slide"></div>');
-            let img = $('<img>').attr('src', url);
-            modalSlide.append(img);
-            $('.slick-carousel-modal').append(modalSlide);
-        });
-        
-        // Initialize the modal carousel
-        $('.slick-carousel-modal').slick({
-            initialSlide: startIndex,
-            arrows: true,
-            infinite: false
-        });
-        
-        //force slick to recalculate it's dimensions
-        $('.slick-carousel-modal').slick('refresh');
+        this.productReviewHandler();
     }
 
     ariaDescribeReviewInputs($form) {
@@ -141,7 +72,7 @@ export default class Product extends PageManager {
             $input.siblings('span').attr('id', msgSpanId);
             $input.attr('aria-describedby', msgSpanId);
         });
-    } 
+    }
 
     productReviewHandler() {
         if (this.url.indexOf('#write_review') !== -1) {

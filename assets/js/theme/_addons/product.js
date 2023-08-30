@@ -7,6 +7,9 @@ export default class Product extends PageManager {
     }
 
     onReady() {
+        
+        //remove the container class from the body class to allow full width on cs-product pages
+        $('#body-container').removeClass('container');
 
         //Listen for click on image carousel
         $('body').on('click', '[data-reveal-id="modal-images"]', (event) => {

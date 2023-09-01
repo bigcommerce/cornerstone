@@ -1,0 +1,15 @@
+<article class="card card--circle">
+    <a href="{{url}}" {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}}>
+        <div class="circle-card-img-container">
+            {{> components/common/responsive-img
+                image=image
+                lazyload="lazyload+lqip"
+                fallback_size=theme_settings.productgallery_size
+                default_image=theme_settings.default_image_product
+            }}
+        </div>
+        <div class="category-title">
+            <span>{{name}}</h3>
+        </div>
+    </a>
+</article>

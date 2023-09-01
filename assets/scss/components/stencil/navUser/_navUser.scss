@@ -327,7 +327,7 @@
 .countPill {
     background-color: stencilColor("navUser-indicator-backgroundColor");
     border-radius: 50%;
-    color: color("whites", "bright");
+    color: color("greys", "darker");
     display: none;
     font-size: fontSize("tiny");
     font-weight: fontWeight("bold");
@@ -345,4 +345,15 @@
 .countPill--alt {
     background-color: color("greys", "lighter");
     color: color("greys", "darker");
+}
+
+.navUser-item-cartIcon {	
+    display: none;	
+    position: absolute;	
+    right: 11px;	
+    top: 6px;	
+    z-index: -1;	
+    &.has-items {	
+        display: block;	
+    }	
 }

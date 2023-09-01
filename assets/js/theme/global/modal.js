@@ -77,7 +77,6 @@ function restrainContentHeight($content) {
 
 function createModalContent($modal) {
     let $content = $(`.${modalContentClass}`, $modal);
-
     if ($content.length === 0) {
         const existingContent = $modal.children();
 
@@ -333,4 +332,13 @@ export function showAlertModal(message) {
     const modal = alertModal();
     modal.open();
     modal.updateContent(`<span>${message}</span>`);
+}
+
+export function categoryModal() {
+    return modalFactory('#category-modal')[0];
+}
+
+export function showCategoryModal() {
+    const modal = categoryModal();
+    modal.open({ size: 'large', pending: false, clearContent: false });
 }

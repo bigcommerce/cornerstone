@@ -76,6 +76,14 @@
                 {{#if settings.phone_number}}
                     <strong>{{lang 'footer.call_us' phone_number=settings.phone_number}}</strong>
                 {{/if}}
+                {{#if theme_settings.storeHours}}
+                    <em>Summer Hours</em>
+                    <!--<em>{{theme_settings.hoursHeading}}</em>-->
+                    {{#each theme_settings.storeHours}}
+                        <div><strong>{{day}}</strong><br />
+                            {{time}}</div>
+                    {{/each}}
+                {{/if}}
             </article>
             {{/if}}
 

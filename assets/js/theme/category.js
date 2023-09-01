@@ -2,9 +2,11 @@ import { hooks } from '@bigcommerce/stencil-utils';
 import CatalogPage from './catalog';
 import compareProducts from './global/compare-products';
 import FacetedSearch from './common/faceted-search';
+import { showCategoryModal } from './global/modal';
 
 export default class Category extends CatalogPage {
     onReady() {
+        this.initCategoryButton();
         compareProducts(this.context.urls);
 
         if ($('#facetedSearch').length > 0) {
@@ -12,6 +14,13 @@ export default class Category extends CatalogPage {
         } else {
             this.onSortBySubmit = this.onSortBySubmit.bind(this);
             hooks.on('sortBy-submitted', this.onSortBySubmit);
+        }
+    }
+
+    initCategoryButton() {
+        const button = document.querySelector('.mobileCategory--toggleButton');
+        if (button) {
+            button.addEventListener('click', showCategoryModal);
         }
     }
 

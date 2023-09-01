@@ -2,6 +2,10 @@
 // PRODUCT VIEW (CSS)
 // =============================================================================
 
+// Mobile Body
+.productPage {
+    padding-bottom: 157px;
+}
 
 // Container
 // -----------------------------------------------------------------------------
@@ -47,6 +51,7 @@
 
     img {
         @include lazy-loaded-img;
+        bottom: auto;
         max-height: 100%;
         width: 100%;
         object-fit: contain;
@@ -136,6 +141,16 @@
 
     > :last-child {
         margin-bottom: 0;
+    }
+}
+
+.productView-heading {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    @include breakpoint("medium") {
+        display: block;
     }
 }
 

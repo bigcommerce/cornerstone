@@ -1,0 +1,115 @@
+// =============================================================================
+// MAINTENANCE MODE (CSS)
+// =============================================================================
+
+.maintenanceNotice {
+    background-color: $maintenanceNotice-backgroundColor;
+    box-shadow: $maintenanceNotice-box-shadow;
+    color: $maintenanceNotice-color;
+    left: $maintenanceNotice-left;
+    padding: $maintenanceNotice-padding;
+    position: fixed;
+    top: $maintenanceNotice-top;
+    width: $maintenanceNotice-width;
+    z-index: $maintenanceNotice-z-index;
+
+    > :last-child {
+        margin-bottom: 0;
+    }
+
+    a {
+        color: $maintenanceNotice-color;
+    }
+}
+
+.maintenanceNotice-header {
+    font-family: $maintenanceNotice-header-font-family;
+    margin: $maintenanceNotice-header-margin;
+}
+
+// =============================================================================
+// ADMIN BAR MODE (CSS)
+// =============================================================================
+
+body.hasAdminBar {
+    padding-top: 101px; // 55px (Mobile Header) + 46px (Admin Bar)
+
+    @include breakpoint("medium") {
+        padding-top: 0;
+
+        .banners {
+            margin-top: $adminBar-height;
+        }
+
+        .header {
+            padding-top: 0;
+        }
+    }
+
+    .header {
+        padding-top: $adminBar-height;
+    }
+
+    .navPages-container.is-open {
+        padding-top: 101px;
+    }
+}
+
+.adminBar {
+    background-color: $adminBar-color;
+    box-shadow: 0 remCalc(2) remCalc(7) 0 rgba(0, 0, 0, 0.2);
+    color: $adminBar-text-color;
+    float: left;
+    font-family: "Source Sans Pro", arial, "sans serif", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    height: $adminBar-height;
+    left: 0;
+    position: fixed;
+    text-decoration: none;
+    top: 0;
+    width: 100%;
+    z-index: 10000;
+}
+
+.adminBar-logo {
+    background-color: $adminBar-logo-color;
+    float: left;
+    height: $adminBar-height;
+    width: 45px;
+
+    svg {
+        height: 100%;
+        padding: 7px 10px 11px 7px;
+        width: 100%;
+    }
+}
+
+.adminBar-content {
+    align-items: center;
+    display: flex;
+    height: $adminBar-height;
+    justify-content: space-between;
+    margin-left: 45px;
+    padding: 17px 20.5px 14px 20px;
+
+    a {
+        color: $adminBar-contentLink-color;
+        font-weight: 600;
+        text-decoration: none;
+    }
+}
+
+.adminBar-private {
+    float: right;
+    text-align: right;
+
+    span {
+        white-space: nowrap;
+    }
+}
+
+.preview {
+    font-weight: 400;
+    padding-left: 9px;
+}

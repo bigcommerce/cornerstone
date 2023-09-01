@@ -1,0 +1,21 @@
+.featured-vendor {
+    &--container {
+        margin-bottom: 0;
+    }
+
+    &--detail {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-self: center;
+        flex: 1 0 30%;
+        padding: $container-padding;
+        padding-top: unset;
+    }
+
+    @include breakpoint("medium") {
+        &--container {
+            display: flex;
+        }
+    }
+}

@@ -1,0 +1,27 @@
+<section class="curationModule">
+    {{#each theme_settings.curation_modules}}
+    <a href="{{url}}">
+        <div class="curationModule-item {{#if @first}}item--first{{/if}}">
+            <div class="curationModule-image-wrapper">
+                {{> components/common/responsive-img
+                    image=(cdn image)
+                    class="heroCarousel-image"
+                    fallback_size='420w'
+                    lazyload='lazyload+lqip'
+                }}
+            </div>
+            {{#if heading}}
+                {{> components/carousel-content show_background=true}}
+            {{else}}
+                {{#if text}}
+                    {{> components/carousel-content show_background=true}}
+                {{else}}
+                    {{#if button_text}}
+                        {{> components/carousel-content show_background=false}}
+                    {{/if}}
+                {{/if}}
+            {{/if}}
+        </div>
+    </a>
+    {{/each}}
+</section>

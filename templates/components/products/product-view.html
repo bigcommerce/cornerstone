@@ -234,6 +234,9 @@
                   data-cart-item-add>
                 <input type="hidden" name="action" value="add">
                 <input type="hidden" name="product_id" value="{{product.id}}"/>
+                {{#if product.cart_order_source}}
+                    <input type="hidden" name="cart_order_source" value="{{product.cart_order_source}}"/>
+                {{/if}}
                 <div data-product-option-change style="display:none;">
                     {{inject 'showSwatchNames' theme_settings.show_product_swatch_names}}
                     {{#each product.options}}

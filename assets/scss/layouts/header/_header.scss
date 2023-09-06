@@ -67,7 +67,8 @@
     }
 
     @include breakpoint("medium") {
-        margin: (spacing("double") + spacing("base")) auto (spacing("double") + spacing("single"));
+        // margin: (spacing("double") + spacing("base")) auto (spacing("double") + spacing("single"));
+        margin: 0;
         padding: 0;
 
         .header.fixed & {
@@ -181,6 +182,7 @@
 
 .header-logo-image {
     @include lazy-loaded-img;
+    top: 8px;
     max-height: remCalc($header-height) - $header-logo-marginVertical * 2;
 
     @include breakpoint("medium") {
@@ -219,7 +221,7 @@
     .mobileMenu-toggleIcon,
     .mobileMenu-toggleIcon::before,
     .mobileMenu-toggleIcon::after {
-        background: $header-font-color;
+        background: stencilColor("navUser-color-hover");
         content: "";
         display: block;
         height: 2px;
@@ -249,7 +251,7 @@
         // scss-lint:disable NestingDepth
         &::before,
         &::after {
-            background-color: $header-font-color;
+            background-color: stencilColor("navUser-color-hover");
             bottom: auto;
             top: auto;
             transition: transform 100ms ease-in 150ms, top 100ms ease-in, bottom 100ms ease-in; // Animate lines from hamburger to 'x'

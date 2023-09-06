@@ -17,42 +17,55 @@ category:
 
 {{#partial "page"}}
 
-{{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
-<!-- {{#if category.image}}
-    {{> components/common/responsive-img
-        image=category.image
-        fallback_size=theme_settings.zoom_size
-        lazyload=theme_settings.lazyload_mode
-        class="category-header-image"
-    }}
-{{/if}} -->
-{{#unless theme_settings.hide_category_page_heading }}
-    <h1 class="page-heading">{{category.name}}</h1>
-    {{{region name="category_below_header"}}}
-{{/unless}}
-{{{category.description}}}
-<div class="page">
-    {{#if category.faceted_search_enabled}}
-        <aside class="page-sidebar" id="faceted-search-container">
-            {{> components/category/sidebar}}
-        </aside>
-    {{else if category.subcategories}}
-        <aside class="page-sidebar" id="faceted-search-container">
-            {{> components/category/sidebar}}
-        </aside>
-    {{else if category.shop_by_price}}
-        {{#if theme_settings.shop_by_price_visibility}}
-             <aside class="page-sidebar" id="faceted-search-container">
-                {{> components/category/sidebar}}
-            </aside>
-        {{/if}}
+    {{#if breadcrumbs.length '>' 2}}
+        {{> components/common/breadcrumbs breadcrumbs=(after breadcrumbs 1)}}
     {{/if}}
 
-    <main class="page-content" id="product-listing-container">
-        {{> components/category/product-listing}}
-        {{{region name="category_below_content"}}}
-    </main>
-</div>
+    <!-- {{#if category.image}}
+        {{> components/common/responsive-img
+            image=category.image
+            fallback_size=theme_settings.zoom_size
+            lazyload=theme_settings.lazyload_mode
+            class="category-header-image"
+        }}
+    {{/if}} -->
+
+    {{#unless theme_settings.hide_category_page_heading }}
+        <h1 class="page-heading page-heading--category">{{category.name}}</h1>
+        {{{region name="category_below_header"}}}
+    {{/unless}}
+
+    {{{category.description}}}
+
+    <div class="page">
+        {{#filter categories breadcrumbs.[1].name property='name'}}
+            {{> components/category/dropdown-list category=this categories=../../categories}}
+            {{#if children}}
+                {{> components/category/circle-subcategory category=this subCategory=../../../breadcrumbs.[2].name subcategories=children}}
+            {{/if}}
+        {{/filter}}
+
+        {{#if category.faceted_search_enabled}}
+            <aside class="page-sidebar sidebar--category" id="faceted-search-container">
+                {{> components/category/sidebar}}
+            </aside>
+        {{else if category.subcategories}}
+            <aside class="page-sidebar sidebar--category" id="faceted-search-container">
+                {{> components/category/sidebar}}
+            </aside>
+        {{else if category.shop_by_price}}
+            {{#if theme_settings.shop_by_price_visibility}}
+                <aside class="page-sidebar sidebar--category" id="faceted-search-container">
+                    {{> components/category/sidebar}}
+                </aside>
+            {{/if}}
+        {{/if}}
+
+        <main class="page-content" id="product-listing-container">
+            {{> components/category/product-listing}}
+            {{{region name="category_below_content"}}}
+        </main>
+    </div>
 
 {{/partial}}
 {{> layout/base}}

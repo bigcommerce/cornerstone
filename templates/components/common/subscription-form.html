@@ -1,6 +1,9 @@
 <h5 class="footer-info-heading">{{lang 'newsletter.subscribe'}}</h5>
 <p>{{lang 'newsletter.subscribe_intro'}}</p>
 
+{{#if theme_settings.show_klaviyo_footer_form}}
+<div class="klaviyo-form-Up54XU"></div>
+{{else}}
 <form class="form" action="{{urls.subscribe.action}}" method="post">
     <fieldset class="form-fieldset">
         <input type="hidden" name="action" value="subscribe">
@@ -28,3 +31,4 @@
         </div>
     </fieldset>
 </form>
+{{/if}}

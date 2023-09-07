@@ -74,7 +74,7 @@
 
 .navUser-action {
     color: stencilColor("navUser-color");
-    font-weight: fontWeight("bold");
+    font-weight: fontWeight("normal");
     padding: spacing("base") spacing("half");
     text-decoration: none;
     text-transform: uppercase;
@@ -85,8 +85,8 @@
 
         // scss-lint:disable NestingDepth
         svg {
-            fill: stencilColor("navUser-color-hover");
             stroke: stencilColor("navUser-color-hover");
+            fill: stencilColor("navUser-color-hover");
         }
         // scss-lint:enable NestingDepth
     }
@@ -97,8 +97,8 @@
     }
 
     svg {
-        fill: stencilColor("navUser-color");
         stroke: stencilColor("navUser-color");
+        fill: stencilColor("navUser-color");
         transition: all 0.15s ease;
     }
 }
@@ -161,14 +161,21 @@
 
 .navUser-item--cart {
     display: block;
-
+    
     .navUser-action {
         color: stencilColor("navUser-color");
+        position: relative;
+        padding: 6px 0.78571rem;
+        margin-top: 12px;
 
         // scss-lint:disable NestingDepth
         &:hover,
         &.is-open {
             color: stencilColor("navUser-color-hover");
+        }
+
+        @include breakpoint("medium") {
+            margin-top: 0;
         }
     }
 
@@ -207,7 +214,8 @@
 }
 
 .navUser-item-cartLabel {
-    display: none;
+    font-weight: fontWeight("bold");
+    display: inline;
 
     @include breakpoint("small") {
         display: inline;
@@ -325,21 +333,24 @@
 // -----------------------------------------------------------------------------
 
 .countPill {
-    background-color: stencilColor("navUser-indicator-backgroundColor");
-    border-radius: 50%;
-    color: color("greys", "darker");
+    // background-color: stencilColor("navUser-indicator-backgroundColor");
+    // border-radius: 50%;
+    color: color("whites", "lighter");
     display: none;
-    font-size: fontSize("tiny");
+    font-size: fontSize("smaller");
     font-weight: fontWeight("bold");
     height: 20px; // 1
     line-height: 20px; // 1
-    margin-left: spacing("eighth");
+    // margin-left: spacing("eighth");
     text-align: center;
     width: 20px; // 1
+    position: absolute;
+    top: 14px;
+    left: 16px;
 }
 
 .countPill--positive {
-    display: inline-block;
+    display: block;
 }
 
 .countPill--alt {
@@ -347,13 +358,13 @@
     color: color("greys", "darker");
 }
 
-.navUser-item-cartIcon {	
-    display: none;	
-    position: absolute;	
-    right: 11px;	
-    top: 6px;	
-    z-index: -1;	
-    &.has-items {	
-        display: block;	
-    }	
-}
+// .navUser-item-cartIcon {	
+//     // display: none;	
+//     position: absolute;
+//     right: 11px;	
+//     top: 6px;	
+//     z-index: -1;	
+//     &.has-items {	
+//         display: block;	
+//     }	
+// }

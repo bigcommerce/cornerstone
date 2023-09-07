@@ -19,8 +19,8 @@
       top: 0;
       bottom: 0;
       margin: auto;
-      width: 126px;
-      height: 45px;
+      width: fit-content;
+      height: fit-content;
       font-family: $interstate-condensed;
       font-size: 18px;
       font-weight: 800;
@@ -100,6 +100,7 @@
   &__list {
     display: flex;
     float: left;
+    padding-top: 10px;
     padding-right: 30px;
     gap: 20px;
     list-style: none;
@@ -129,7 +130,7 @@
 
   &__wrap {
     padding-left: 30px;
-    overflow: scroll;
+    overflow: auto;
     
     @include gt(1150px) {
       padding: 0;

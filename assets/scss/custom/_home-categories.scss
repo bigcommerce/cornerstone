@@ -61,22 +61,23 @@
     @include gt($medium) {
       width: 194px;
     }
+
+    &-img {
+      transition: transform .2s;
+    }
     
     &-title {
       font-family: $interstate;
       font-size: 20px;
       line-height: 24px;
       text-align: center;
+      transition: transform .2s;
     }
 
     &:hover,
     &:focus {
       .home-categories__item-img {
         transform: translateY(-5px);
-      }
-
-      .home-categories__item-title {
-        color: #1E81D1;
       }
     }
   }
@@ -100,9 +101,10 @@
   &__wrap {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: center;
     max-height: 405px;
     overflow: hidden;
+    gap: 16px;
 
     &.active {
       max-height: 10000px;

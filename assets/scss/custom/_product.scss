@@ -1,0 +1,339 @@
+//breadcrumbs
+.breadcrumbs a {
+    color: $black;
+}
+
+.productView {
+    letter-spacing: .04em;
+    max-width: 100%;
+    margin: 0;
+}
+
+h1.productView-title {
+    font-family: $poppins;
+    font-size: 32px;
+    line-height: 1.2em;
+    color: $dark_blue;
+    font-weight: 600;
+    margin: 10px 0;
+}
+
+.productView-brand a {
+    font-family: $poppins;
+    color: $orange;
+    font-size: 22px;
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+.productView-sku {
+    margin: 10px 0;
+}
+
+.productView-sku, dt.productView-info {
+    font-size: 14px;
+    font-weight: 600;
+    color: $darkest_grey;
+}
+.productView-info {
+    display: inline-block;
+    margin: 0;
+}
+
+.productView-reviewLink a {
+    color: $orange;
+    text-decoration: underline;
+}
+
+.productView-desc {
+    margin: 15px 0;
+    color: $black;
+    p {margin: 0}
+}
+
+.productView-detail {
+    margin: 0 !important;
+}
+
+.price-section {
+    display: inline-block;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.productView-product {
+    border: none;
+    padding-bottom: 0;
+}
+
+.productView-details {
+    margin-bottom: 0;
+}
+
+.productView-price {
+    margin-bottom: 15px !important;
+}
+
+.productView-quantity {
+    width: fit-content;
+    input {
+        padding: 5px 0;
+        border: 1px solid $dark_grey;
+        border-top: none;
+        border-bottom: none;
+    }
+}
+
+.product-add-to-cart {
+    margin: 0;
+}
+
+.form-wishlist {
+    a {margin: 0;}
+}
+
+.wishlist-button {
+    background: white;
+    border: 2px solid $black;
+    color: $black;
+    padding: 10px 32px;
+}
+
+.productView--has-options {
+    border: 1px solid $dark_grey;
+    padding-top: 20px;
+    margin: 2rem 0;
+}
+
+.productView--has-options .form-label--alternate {
+    font-weight: 600;
+    color: $black;
+}
+
+.productView-options .form-action {
+    margin-bottom: 10px;
+    @include gt(920px) {
+        float: left;
+        margin-bottom: 0;
+    }
+}
+
+.productView-options .form-field {
+    margin-bottom: calc(2rem - 10px);
+}
+
+.form-wishlist {
+    @include gt(920px) {
+        margin-left: 30px;
+    }
+}
+
+.productView-img-container:after {
+    padding-bottom: 100%;
+}
+
+.productView-img-container img {
+    padding: 50px auto;
+}
+
+.product__wrap {
+    width: 95%;
+    margin: 0 auto;
+    max-width: 1440px;
+}
+
+.productSpecifications {
+    background: #f8f9f9;
+    padding: 20px;
+    @include gt(600px) {
+        padding: 20px 80px;
+    }   
+    &--alt {
+        margin-top: 40px;
+    }
+    p {
+        margin: 0;
+    } 
+}
+
+.productSpecifications__title {
+    font-family: $poppins;
+    font-size: 22px;
+    color: $dark_blue;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+
+.productSpecifications__label {
+    text-transform: uppercase;
+    font-weight: 600;
+
+    a {
+        color: $orange;
+        text-decoration: underline;
+    }
+}
+
+.productSpecifications__list {
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-gap: 15px;
+    list-style: none;
+    grid-auto-flow: dense;
+    grid-template-columns: 1fr;
+
+    @include gt( 900px) {
+        grid-template-columns: 1fr 1fr;
+
+    }
+    .productSpecifications--alt & {
+        grid-template-columns: 1fr;
+        @include gt( 1200px) {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+}
+
+.productSpecifications__item {
+    strong {
+        text-transform: uppercase;
+    }
+}
+
+.productSpecifications__shipping {
+    background: $dark_blue;
+    display: flex;
+    justify-content: center;
+    padding: 50px 20px;
+    margin: 40px 0;
+}
+
+.productSpecifications__shipping--title {
+    margin: 0;
+    font-family: $poppins;
+    font-weight: 600;
+    font-size: 20px;
+    color: #ffce62;
+    text-transform: uppercase;
+    display: inline;
+    max-width: calc(50% + 40px);
+    margin-right: 20px;
+    padding-right: 20px;
+    border-right: 2px solid white;
+}
+
+.productSpecifications__message {
+    margin: 0;
+    font-family: $poppins;
+    color: white;
+    font-size: 20px;
+}
+
+.productRelated, .productSimilar, .productReviews {
+    overflow: hidden;
+    font-weight: 600;
+}
+
+.product--subtitle {
+    line-height: 1.5;
+    text-align: center;
+    overflow: hidden;
+  }
+  .product--subtitle span {
+    display: inline-block;
+    position: relative;  
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+  .product--subtitle span:before,
+  .product--subtitle span:after {
+    content: "";
+    position: absolute;
+    height: 20px;
+    border-bottom: 3px solid $orange;
+    top: 0;
+    width: 1400px;
+  }
+  .product--subtitle span:before {
+    right: 100%;
+    margin-right: 15px;
+  }
+  .product--subtitle span:after {
+    left: 100%;
+    margin-left: 15px;
+  }
+
+  .productCarousel {
+    .slick-arrow, .slick-dots {
+        display: none !important;
+    }
+    .card {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+  }
+
+  .productSimilar__wrap {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+  .productSimilar__section {
+      background: #fcf9f2;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+      margin: 20px;
+      width: 100%;
+
+      a {
+          margin: 0;
+      }
+
+      @include gt(900px) {
+          width: 45%;
+      }
+  }
+
+  .productSimilar__title {
+      font-family: $poppins;
+      font-weight: 600;
+      color: $orange;
+      letter-spacing: .04em;
+      text-align: center;
+      margin: 0 0 20px;
+  }
+
+  .productReviews__none {
+      text-align: center;
+      margin: 40px 0;
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: .04em;
+
+      a {
+          color: $orange;
+          text-decoration: underline;
+    }
+  }
+
+  .productCarousel-slide {
+      .card-body {
+          min-height: 200px;
+      }
+  }
+
+  .productView-link {
+      text-decoration: underline;
+  }
+
+  // Yotpo Tweaks
+  .yotpo-stars {
+      padding-right: 10px !important;
+  }

@@ -1,0 +1,208 @@
+<nav class="main-nav__desktop">
+  <ul class="main-nav__desktop--list">
+      {{#forEach categories}}
+          {{#or   (if name '===' 'Cabinet Hardware')
+                  (if name '===' 'Door Hardware') 
+                  (if name '===' 'Bath Accessories')
+                  (if name '===' 'Door Hardware')
+                  (if name '===' 'Switch Plates')
+                  (if name '===' 'Home Accents')
+          }}
+              <li class="main-nav__desktop--item" data-desktop-nav-hover>
+                  
+                  <a href="{{ url }}" class="main-nav__desktop--top">{{name}}</a>
+                  {{#if children}}
+                  <!-- <svg>
+                      <use xlink:href="#icon-arrow" />
+                  </svg> -->
+                  <svg xmlns="http://www.w3.org/2000/svg" width="11.511" height="7.396" viewBox="0 0 11.511 7.396">
+                      <path d="M0,0,2.877,3.7,5.755,7.4,8.633,3.7,11.511,0Z" transform="translate(0 0)" fill="#1e81d1"/>
+                    </svg>
+                    
+                  <div class="main-nav__desktop--dropdown" >
+                      <ul class="main-nav__desktop--dropdown-list {{#or (if name '===' 'Bath Accessories') (if name '===' 'Door Hardware')}}main-nav__desktop--dropdown-list-small{{/or}}">
+                          <li class="main-nav__desktop--shop-all">
+                              <a href="{{url}}">
+                                  {{#if name '===' 'Cabinet Hardware'}}
+                                  <img src="https://cdn11.bigcommerce.com/s-40wxilo4jg/images/stencil/original/image-manager/nav-shopallcabinets.jpg?t=1667929355&_gl=1*19rrbey*_ga*MTIxNTUwNTU0My4xNjQyNjIxNzg0*_ga_WS2VZYPC6G*MTY2NzkyODg1My43OC4xLjE2Njc5MjkzNjQuMzEuMC4w" alt="cabinet hardware">
+                                  {{/if}}
+                                  {{#if name '===' 'Door Hardware'}}
+                                  <img src="https://cdn11.bigcommerce.com/s-40wxilo4jg/images/stencil/original/image-manager/nav-shopallcabinets.jpg?t=1667929355&_gl=1*auks2f*_ga*MTIxNTUwNTU0My4xNjQyNjIxNzg0*_ga_WS2VZYPC6G*MTY2NzkyODg1My43OC4xLjE2Njc5MjkzNjQuMzEuMC4w" alt="door hardware">
+                                  {{/if}}
+                                  {{#if name '===' 'Bath Accessories'}}
+                                  <img src="https://cdn11.bigcommerce.com/s-40wxilo4jg/images/stencil/original/image-manager/nav-shopallbathaccessories.jpg?t=1667929530&_gl=1*1453p7w*_ga*MTIxNTUwNTU0My4xNjQyNjIxNzg0*_ga_WS2VZYPC6G*MTY2NzkyODg1My43OC4xLjE2Njc5Mjk3MTEuNjAuMC4w" alt="bath Accessories">
+                                  {{/if}}
+                                  {{#if name '===' 'Home Accents'}}
+                                  <img src="https://cdn11.bigcommerce.com/s-40wxilo4jg/images/stencil/original/image-manager/nav-homeaccents.jpg?t=1667929829&_gl=1*r6vb82*_ga*MTIxNTUwNTU0My4xNjQyNjIxNzg0*_ga_WS2VZYPC6G*MTY2NzkyODg1My43OC4xLjE2Njc5Mjk3MTEuNjAuMC4w" alt="Home Accents">
+                                  {{/if}}
+                                  Shop ALL {{name}}
+                              </a>
+                          </li>
+                          <li class="main-nav__desktop-links">
+                              <ul class="main-nav__desktop-link-list">
+                                  {{#forEach (limit children 140)}}
+                                  <li class="main-nav__desktop--child">
+                                      <a href="{{url}}">{{name}}</a>
+                                  </li>
+                                  {{/forEach}}
+                              </ul>
+                          </li>
+                          
+
+                          {{# if name '===' 'Cabinet Hardware'}}
+                          <li class="main-nav__desktop-shop-brands-wrap">
+                              SHOP BY TOP BRANDS
+                              <ul class="main-nav__desktop-shop-brands">
+                                  <li>
+                                      <a href="/richelieu-hardware/" aria-label="Richelieu">
+                                          <img src="https://cdn11.bigcommerce.com/s-40wxilo4jg/images/stencil/original/image-manager/richelieu-logo.jpg?t=1670364216&_gl=1*1avbmw*_ga*MTIxNTUwNTU0My4xNjQyNjIxNzg0*_ga_WS2VZYPC6G*MTY3MDM2NDEzNy4xMDQuMS4xNjcwMzY0MjM4LjI4LjAuMA.." alt="Richelieu">
+                                      </a>
+                                  </li>
+                                  <li>
+                                      <a href="/alno-inc/" aria-label="Alno">
+                                          <img src="https://cdn11.bigcommerce.com/s-40wxilo4jg/images/stencil/original/image-manager/alno-logo.jpg?t=1670364285&_gl=1*bro20j*_ga*MTIxNTUwNTU0My4xNjQyNjIxNzg0*_ga_WS2VZYPC6G*MTY3MDM2NDEzNy4xMDQuMS4xNjcwMzY0MjYxLjUuMC4w" alt="Alno">
+                                      </a>
+                                  </li>
+                                  <li>
+                                      <a href="/hickory-hardware/" aria-label="Hickory">
+                                          <img src="https://cdn11.bigcommerce.com/s-40wxilo4jg/images/stencil/original/image-manager/hickoryhardware-logo.jpg?t=1670364355&_gl=1*15fgt6s*_ga*MTIxNTUwNTU0My4xNjQyNjIxNzg0*_ga_WS2VZYPC6G*MTY3MDM2NDEzNy4xMDQuMS4xNjcwMzY0MzMzLjQ2LjAuMA.." alt="Hickory">
+                                      </a>
+                                  </li>
+                                  <li>
+                                      <a href="/top-knobs/" aria-label="Top Knobs">
+                                          <img src="https://cdn11.bigcommerce.com/s-40wxilo4jg/images/stencil/original/image-manager/top-knobs-logo.jpg?t=1670364413&_gl=1*15hjtj5*_ga*MTIxNTUwNTU0My4xNjQyNjIxNzg0*_ga_WS2VZYPC6G*MTY3MDM2NDEzNy4xMDQuMS4xNjcwMzY0MzkxLjUyLjAuMA.." alt="Top Knobs">
+                                      </a>
+                                  </li>
+                                  <li>
+                                      <a href="/hafele/" aria-label="HAFELE">
+                                          <img src="https://cdn11.bigcommerce.com/s-40wxilo4jg/images/stencil/original/image-manager/hafele.jpg?t=1667938127&_gl=1*s1lg9t*_ga*MTIxNTUwNTU0My4xNjQyNjIxNzg0*_ga_WS2VZYPC6G*MTY2NzkzNzA1MC43OS4xLjE2Njc5Mzc3NjcuNTUuMC4w" alt="HAFELE">
+                                      </a>
+                                  </li>
+                                  <li>
+                                      <a href="/sierra-lifestyles/" aria-label="Sierra Lifestyles">
+                                          <img src="https://cdn11.bigcommerce.com/s-40wxilo4jg/images/stencil/original/image-manager/sierra-logo.jpg?t=1670364458&_gl=1*nhsgcu*_ga*MTIxNTUwNTU0My4xNjQyNjIxNzg0*_ga_WS2VZYPC6G*MTY3MDM2NDEzNy4xMDQuMS4xNjcwMzY0NDM1LjguMC4w" alt="Sierra Lifestyles">
+                                      </a>
+                                  </li>
+                              </ul>
+                          </li>
+                          {{/if}}
+
+                          {{# if name '===' 'Home Accents'}}
+                          <li class="main-nav__desktop-shop-brands-wrap">
+                              SHOP BY TOP BRANDS
+                              <ul class="main-nav__desktop-shop-brands">
+                                  <li>
+                                      <a href="/acorn-manfacturing/" aria-label="Acorn">
+                                          <img src="https://cdn11.bigcommerce.com/s-40wxilo4jg/images/stencil/original/image-manager/acorn-logo.jpg?t=1670365204&_gl=1*1r6th5h*_ga*MTIxNTUwNTU0My4xNjQyNjIxNzg0*_ga_WS2VZYPC6G*MTY3MDM2NDEzNy4xMDQuMS4xNjcwMzY1MTE3LjU2LjAuMA.." alt="Acorn">
+                                      </a>
+                                  </li>
+                                  <li>
+                                      <a href="/brass-accents/" aria-label="Brass Accents">
+                                          <img src="https://cdn11.bigcommerce.com/s-40wxilo4jg/images/stencil/original/image-manager/brassaccents-logo.jpg?t=1670365227&_gl=1*1r6th5h*_ga*MTIxNTUwNTU0My4xNjQyNjIxNzg0*_ga_WS2VZYPC6G*MTY3MDM2NDEzNy4xMDQuMS4xNjcwMzY1MTE3LjU2LjAuMA.." alt="Brass Accents">
+                                      </a>
+                                  </li>
+                                  <li>
+                                      <a href="/hardware-resources/" aria-label="Hardware Resources">
+                                          <img src="https://cdn11.bigcommerce.com/s-40wxilo4jg/images/stencil/original/image-manager/hardwareresources-logo.jpg?t=1670365288&_gl=1*12xrmg1*_ga*MTIxNTUwNTU0My4xNjQyNjIxNzg0*_ga_WS2VZYPC6G*MTY3MDM2NDEzNy4xMDQuMS4xNjcwMzY1MjY3LjMyLjAuMA.." alt="Hardware Resources">
+                                      </a>
+                                  </li>
+                                  <li>
+                                      <a href="/sugatsune/" aria-label="Sugatsune">
+                                          <img src="https://cdn11.bigcommerce.com/s-40wxilo4jg/images/stencil/original/image-manager/sugatsune-logo.jpg?t=1670365348&_gl=1*14o1b4*_ga*MTIxNTUwNTU0My4xNjQyNjIxNzg0*_ga_WS2VZYPC6G*MTY3MDM2NDEzNy4xMDQuMS4xNjcwMzY1MzEzLjQ5LjAuMA.." alt="Sugatsune">
+                                      </a>
+                                  </li>
+                                  <li>
+                                      <a href="/idh-brass/" aria-label="IDH by St. Simons">
+                                          <img src="https://cdn11.bigcommerce.com/s-40wxilo4jg/images/stencil/original/image-manager/idh-logo.jpg?t=1670365579&_gl=1*1djuvko*_ga*MTIxNTUwNTU0My4xNjQyNjIxNzg0*_ga_WS2VZYPC6G*MTY3MDM2NDEzNy4xMDQuMS4xNjcwMzY1NTE4LjMwLjAuMA.." alt="IDH by St. Simons">
+                                      </a>
+                                  </li>
+                                  <li>
+                                      <a href="/qualarc/" aria-label="QualArc">
+                                          <img src="https://cdn11.bigcommerce.com/s-40wxilo4jg/images/stencil/original/image-manager/qualarc-logo.jpg?t=1670365707&_gl=1*vlby96*_ga*MTIxNTUwNTU0My4xNjQyNjIxNzg0*_ga_WS2VZYPC6G*MTY3MDM2NDEzNy4xMDQuMS4xNjcwMzY1NjgzLjQzLjAuMA.." alt="QualArc">
+                                      </a>
+                                  </li>
+                              </ul>
+                          </li>
+                          {{/if}}
+                      </ul>
+                  
+                  {{/if}}
+              </div>
+              </li>
+          {{/or}}
+      {{/forEach}}
+      <li class="main-nav__desktop--item" data-desktop-nav-hover>
+          <a href="/brands" class="main-nav__desktop--top">Shop By Brand</a>
+          <svg xmlns="http://www.w3.org/2000/svg" width="11.511" height="7.396" viewBox="0 0 11.511 7.396">
+              <path d="M0,0,2.877,3.7,5.755,7.4,8.633,3.7,11.511,0Z" transform="translate(0 0)" fill="#1e81d1"/>
+            </svg>
+            
+          <div class="main-nav__desktop--dropdown">
+              <ul class="main-nav__desktop-brands-list">
+                  <li class="main-nav__desktop-brands-item">
+                      <a href="/acorn-manfacturing/" aria-label="acorn">
+                          <img src="https://cdn11.bigcommerce.com/s-40wxilo4jg/images/stencil/original/image-manager/acorn-logo.jpg?t=1670365204&_gl=1*1r6th5h*_ga*MTIxNTUwNTU0My4xNjQyNjIxNzg0*_ga_WS2VZYPC6G*MTY3MDM2NDEzNy4xMDQuMS4xNjcwMzY1MTE3LjU2LjAuMA.." alt="acorn" >
+                      </a>
+                  </li>
+                  <li class="main-nav__desktop-brands-item">
+                      <a href="/alno-inc/" aria-label="alno">
+                          <img src="https://cdn11.bigcommerce.com/s-40wxilo4jg/images/stencil/original/image-manager/alno-logo.jpg?t=1670364285&_gl=1*bro20j*_ga*MTIxNTUwNTU0My4xNjQyNjIxNzg0*_ga_WS2VZYPC6G*MTY3MDM2NDEzNy4xMDQuMS4xNjcwMzY0MjYxLjUuMC4w" alt="alno" >
+                      </a>
+                  </li>
+                  <li class="main-nav__desktop-brands-item">
+                      <a href="/anne-at-home/" aria-label="anne at home">
+                          <img src="https://cdn11.bigcommerce.com/s-40wxilo4jg/images/stencil/original/image-manager/anneathome-logo.jpg?t=1670366410&_gl=1*7r7ym4*_ga*MTIxNTUwNTU0My4xNjQyNjIxNzg0*_ga_WS2VZYPC6G*MTY3MDM2NDEzNy4xMDQuMS4xNjcwMzY2Mzc5LjQ2LjAuMA.." alt="anne at home" >
+                      </a>
+                  </li>
+                  <li class="main-nav__desktop-brands-item">
+                      <a href="/atlas-homewares/" aria-label="atlas homewares">
+                          <img src="https://cdn11.bigcommerce.com/s-40wxilo4jg/images/stencil/original/image-manager/atlas.jpg?t=1667938515&_gl=1*1q3yvsm*_ga*MTIxNTUwNTU0My4xNjQyNjIxNzg0*_ga_WS2VZYPC6G*MTY2NzkzNzA1MC43OS4xLjE2Njc5Mzc3NjcuNTUuMC4w" alt="atlas homewares" >
+                      </a>
+                  </li>
+                  
+                  <li class="main-nav__desktop-brands-item">
+                      <a href="/brass-accents/" aria-label="brass: solid brass accents">
+                          <img src="https://cdn11.bigcommerce.com/s-40wxilo4jg/images/stencil/original/image-manager/brassaccents.jpg?t=1667937900&_gl=1*1fj86hm*_ga*MTIxNTUwNTU0My4xNjQyNjIxNzg0*_ga_WS2VZYPC6G*MTY2NzkzNzA1MC43OS4xLjE2Njc5Mzc3NjcuNTUuMC4w" alt="brass: solid brass accents" >
+                      </a>
+                  </li>
+                  <li class="main-nav__desktop-brands-item">
+                      <a href="/cal-crystal/" aria-label="Cal Crystal decorative cabinet hardware bath Accessories">
+                          <img src="https://cdn11.bigcommerce.com/s-40wxilo4jg/images/stencil/original/image-manager/calcrystal.jpg?t=1667937933&_gl=1*1fj86hm*_ga*MTIxNTUwNTU0My4xNjQyNjIxNzg0*_ga_WS2VZYPC6G*MTY2NzkzNzA1MC43OS4xLjE2Njc5Mzc3NjcuNTUuMC4w" alt="Cal Crystal decorative cabinet hardware bath Accessories" >
+                      </a>
+                  </li>
+                  <li class="main-nav__desktop-brands-item">
+                      <a href="/forms-surfaces/" aria-label="forms + Surfaces">
+                          <img src="https://cdn11.bigcommerce.com/s-40wxilo4jg/images/stencil/original/image-manager/forms.jpg?t=1667937977&_gl=1*63ctdg*_ga*MTIxNTUwNTU0My4xNjQyNjIxNzg0*_ga_WS2VZYPC6G*MTY2NzkzNzA1MC43OS4xLjE2Njc5Mzc3NjcuNTUuMC4w" alt="forms + surfaces" >
+                      </a>
+                  </li>
+                  <li class="main-nav__desktop-brands-item">
+                      <a href="/notting-hill-decorative-hardware/" aria-label="Notting Hill">
+                          <img src="https://cdn11.bigcommerce.com/s-40wxilo4jg/images/stencil/original/image-manager/nottinghill-logo.jpg?t=1670366629&_gl=1*uu7mzb*_ga*MTIxNTUwNTU0My4xNjQyNjIxNzg0*_ga_WS2VZYPC6G*MTY3MDM2NDEzNy4xMDQuMS4xNjcwMzY2NTk0LjMwLjAuMA.." alt="Notting Hill" >
+                      </a>
+                  </li>
+                  <li class="main-nav__desktop-brands-item">
+                      <a href="/sugatsune-1/" aria-label="Sugatsune">
+                          <img src="https://cdn11.bigcommerce.com/s-40wxilo4jg/images/stencil/original/image-manager/sugatsune-logo.jpg?t=1670365348&_gl=1*14o1b4*_ga*MTIxNTUwNTU0My4xNjQyNjIxNzg0*_ga_WS2VZYPC6G*MTY3MDM2NDEzNy4xMDQuMS4xNjcwMzY1MzEzLjQ5LjAuMA.." alt="Sugatsune" >
+                      </a>
+                  </li>
+                  <li class="main-nav__desktop-brands-item">
+                      <a href="/hafele/" aria-label="Hafele">
+                          <img src="https://cdn11.bigcommerce.com/s-40wxilo4jg/images/stencil/original/image-manager/hafele.jpg?t=1667938127&_gl=1*s1lg9t*_ga*MTIxNTUwNTU0My4xNjQyNjIxNzg0*_ga_WS2VZYPC6G*MTY2NzkzNzA1MC43OS4xLjE2Njc5Mzc3NjcuNTUuMC4w" alt="Hafele" >
+                      </a>
+                  </li>
+                  <li class="main-nav__desktop-brands-item">
+                      <a href="/stone-mill-hardware/" aria-label="Stone Mill">
+                          <img src="https://cdn11.bigcommerce.com/s-40wxilo4jg/images/stencil/original/image-manager/stone-mill-logo.jpg?t=1670366814&_gl=1*rpa5m9*_ga*MTIxNTUwNTU0My4xNjQyNjIxNzg0*_ga_WS2VZYPC6G*MTY3MDM2NDEzNy4xMDQuMS4xNjcwMzY2NzkwLjI0LjAuMA.." alt="Stone Mill" >
+                      </a>
+                  </li>
+                  <li class="main-nav__desktop-brands-item">
+                      <a href="/nostalgic-warehouse/" aria-label="Nostalgic Warehouse">
+                          <img src="https://cdn11.bigcommerce.com/s-40wxilo4jg/images/stencil/original/image-manager/nostalgic-logo.jpg?t=1670366865&_gl=1*2bkout*_ga*MTIxNTUwNTU0My4xNjQyNjIxNzg0*_ga_WS2VZYPC6G*MTY3MDM2NDEzNy4xMDQuMS4xNjcwMzY2ODQyLjQ3LjAuMA.." alt="Nostalgic Warehouse" >
+                      </a>
+                  </li>
+              </ul>
+          </div>
+      </li>
+     
+  </ul>
+</nav>

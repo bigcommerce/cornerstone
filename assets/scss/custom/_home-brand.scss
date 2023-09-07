@@ -1,0 +1,115 @@
+.home-brand {
+  width: 1083px;
+  max-width: 90%;
+  margin: 0 auto;
+  padding: 20px 0 30px;
+
+  @include gt($large) {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 133px 1fr;
+    padding: 40px 0 50px;
+    gap: 34px;
+  }
+
+  &__btn-mobile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: $interstate-condensed;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 19px;
+    gap: 5px;
+
+    svg {
+      width: 11.5px;
+      height: 7.5px;
+      transform: rotate(-90deg);
+    }
+
+    @include gt($large) {
+      display: none;
+    }
+  }
+
+  &__item {
+    max-width: 130px;
+
+    &-desktop {
+      display: none;
+
+      @include gt($large) {
+        display: block;
+        transition: transform .2s;
+      }
+    }
+    @include gt($medium) {
+      a:hover,
+      a:focus {
+        display: block;
+        transform: translateY(-5px);
+      }
+    }
+    
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 29px;
+    grid-row-gap: 25px;
+    list-style: none;
+    justify-items: center;
+
+    @include gt(600px) {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    @include gt($large) {
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    }
+  }
+
+  &__title {
+    margin: 0 0 20px;
+    font-family: $interstate-condensed;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 36px;
+    text-align: center;
+    color: #135185;
+
+    @include gt($large) {
+      margin: 0 0 10px;
+      font-size: 40px;
+      line-height: 46px;
+      text-align: left;
+    }
+
+    &-btn {
+      display: none;
+      align-items: center;
+      svg {
+        width: 11.5px;
+        height: 7.5px;
+        transform: rotate(-90deg);
+      }
+
+      &:hover,
+      &:focus {
+        color: #1E81D1;
+      }
+
+      @include gt($large) {
+        display: flex;
+        font-family: $interstate-condensed;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 19px;
+        color: #324147;
+        gap: 5px;
+      }
+    }
+  }
+}

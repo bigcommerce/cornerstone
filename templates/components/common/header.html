@@ -1,34 +1,62 @@
-<a href="#main-content" class="skip-to-main-link">{{lang 'header.skip_to_main'}}</a>
-{{#if banners.top}}
-<div class="banners" data-banner-location="top">
-    {{#each (limit banners.top_metadata 1)}}
-    <div class="banner" data-event-type="promotion" data-entity-id="{{this.id}}" data-name="{{this.banner-name}}" data-position="{{this.location}}" data-banner-id="{{this.banner-name}}">
-        <div data-event-type="promotion-click">
-            {{{this.content}}}
+<header class="header" role="banner" data-cart-quantity="{{cart.quantity}}" id="header" data-header>
+    <div class="header__note">
+        <p class="header__note--text accent--alt">FREE SHIPPING ON ORDERS OVER $39.99*</p>
+        <svg class="header__note--flag" data-name="Group 470" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 362.622 23.958"><path data-name="Rectangle 147" fill="#b21616" d="M9.317 0h353.305v23.958H9.317z"/><path data-name="Path 312" d="M0 23.958h10V-.004H0l9.508 11.961Z" fill="#b21616"/></svg>
+    </div>
+    <div class="main-nav">
+        <button data-menu id="main-nav__toggle">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 27 18"><path d="M0 18h27v-3H0Zm0-7.5h27v-3H0ZM0 0v3h27V0Z" /></svg>
+        </button>
+        {{> components/common/store-logo}}
+        <div class="header__scrolled-search-wrap">
+            <form class="search-form"  action="{{urls.search}}">
+                <fieldset class="search-form__fieldset">
+                    <label class="form-label is-srOnly" for="search_query_adv">{{lang 'search.results.form_label'}}</label>
+                    <input class="search-form__input" name="search_query" id="search_query_adv" name="search_query_adv" value="{{forms.search.query}}" placeholder="Search by brand, finish, color, etc.">
+                </fieldset>
+            </form>
+        </div>
+        <div class="main-nav__main-wrap">
+            <div class="header__desktop-note">
+                <p class="header__note--text accent--alt">FREE SHIPPING ON ORDERS OVER $39.99*</p>
+                <svg class="header__desktop-note--flag" data-name="Group 470" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 362.622 23.958"><path data-name="Rectangle 147" fill="#b21616" d="M9.317 0h353.305v23.958H9.317z"/><path data-name="Path 312" d="M0 23.958h10V-.004H0l9.508 11.961Z" fill="#b21616"/></svg>
+            </div>
+            <a href="/contact-us/" class="main-nav__desktop-top-link">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="27.289" height="27.25" viewBox="0 0 27.289 27.25">
+                    <defs>
+                      <clipPath id="clip-path-contact">
+                        <rect data-name="Rectangle 142" width="27.289" height="27.25" fill="none"/>
+                      </clipPath>
+                    </defs>
+                    <g data-name="Group 420" clip-path="url(#clip-path-contact)">
+                      <path data-name="Path 239" d="M26.749,23.908c-.729.773-1.546,1.59-2.465,2.465a3.323,3.323,0,0,1-2.378.875h-.1a12.818,12.818,0,0,1-4.857-1.211,30.684,30.684,0,0,1-10.43-7.6,29.266,29.266,0,0,1-4.872-7.177,18.266,18.266,0,0,1-1.5-4.347,6.13,6.13,0,0,1,0-2.626A2.65,2.65,0,0,1,.9,2.961L3.089.817,3.337.569A1.643,1.643,0,0,1,4.416,0H4.5A1.46,1.46,0,0,1,5.539.467c1.4,1.371,2.669,2.626,3.938,3.938a1.459,1.459,0,0,1,.511,1.138A1.43,1.43,0,0,1,9.4,6.652L7.684,8.373,7.2,8.84a1.369,1.369,0,0,0-.35,1.794,16.371,16.371,0,0,0,2.6,3.924,23.437,23.437,0,0,0,5.368,4.814c.438.277.9.525,1.342.744l.583.306a1.21,1.21,0,0,0,1.546-.292l.525-.54,1.823-1.809a1.523,1.523,0,0,1,1.254-.5,1.439,1.439,0,0,1,.934.438L23,17.9c1.254,1.24,2.567,2.538,3.822,3.822a1.435,1.435,0,0,1,.467,1.109,1.549,1.549,0,0,1-.54,1.079" transform="translate(0)" />
+                    </g>
+                  </svg>
+            </a>
+            <a href="/login.php" class="main-nav__desktop-top-link">
+                <svg id="account-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24.136" height="27" viewBox="0 0 24.136 27">
+                    <defs>
+                      <clipPath id="clip-path-account">
+                        <rect data-name="Rectangle 38" width="24.136" height="27"/>
+                      </clipPath>
+                    </defs>
+                    <g data-name="Group 106" clip-path="url(#clip-path-account)">
+                      <path data-name="Path 81" d="M12.068,7.952A12.068,12.068,0,0,0,0,20.02H24.136A12.068,12.068,0,0,0,12.068,7.952" transform="translate(0 6.98)" />
+                      <path data-name="Path 82" d="M9.672,13.886A6.943,6.943,0,1,0,2.73,6.944a6.942,6.942,0,0,0,6.942,6.942" transform="translate(2.396 0)" />
+                    </g>
+                  </svg>
+                  
+            </a>
+            <div class="main-nav__cart">
+                <a href="{{urls.cart}}" aria-label="cart">
+                    <svg data-name="Component 65 – 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28.642 26.25"><defs><clipPath id="cart-icon-clippath"><path data-name="Rectangle 43"  d="M0 0h28.642v26.25H0z"/></clipPath></defs><g data-name="Group 112" clip-path="url(#cart-icon-clippath)"><path data-name="Path 85" d="M24.864 21.451a2.36 2.36 0 0 0-1.841.916H9.622a2.34 2.34 0 0 0-1.467-1.012l-.245-1.66h17.912L28.64 4.054H5.61L5.061.314.121.001 0 1.917l3.387.215L6.27 21.739a2.352 2.352 0 0 0-1.023 1.912 2.4 2.4 0 0 0 2.4 2.4 2.367 2.367 0 0 0 2.271-1.764h12.634a2.365 2.365 0 0 0 2.311 1.964 2.4 2.4 0 1 0 0-4.8" /></g></svg>
+                </a>
+                <p class="main-nav__cart--pill">{{cart.quantity}}</p>
+            </div>
         </div>
     </div>
-    {{/each}}
-</div>
-{{/if}}
-<header class="header" role="banner">
-    <a href="#" class="mobileMenu-toggle" data-mobile-menu-toggle="menu">
-        <span class="mobileMenu-toggleIcon">Toggle menu</span>
-    </a>
-    {{> components/common/navigation}}
-
-    {{#if page_type '===' 'default'}}
-        <h1 class="header-logo header-logo--{{theme_settings.logo-position}}">
-            {{> components/common/store-logo}}
-        </h1>
-    {{else}}
-        <div class="header-logo header-logo--{{theme_settings.logo-position}}">
-            {{> components/common/store-logo}}
-        </div>
-    {{/if}}
-    <div class="navPages-container" id="menu" data-menu>
-        {{> components/common/navigation-menu}}
-    </div>
-    {{{region name="header_navigation_bottom--global"}}}
+    {{> components/common/main-nav--mobile}}
+    {{> components/common/search-box}}
+    {{> components/common/main-nav--desktop}}
 </header>
-{{{region name="header_bottom--global"}}}
-{{{region name="header_bottom"}}}
+<div class="main-nav__overlay" data-mobile-nav-overlay></div>

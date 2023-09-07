@@ -1,0 +1,61 @@
+/**
+ * Outputs media query using given pixel size
+ *
+ * Accepts:
+ * - $gt__custom: {String} pixel width of dimensions (must include units)
+ *
+ * Usage:
+ * .selector {
+ *   @include gt(400px);
+ * }
+ */
+
+ @mixin gt($gt__custom) {
+    @media only screen and (min-width: $gt__custom) {
+      @content;
+    }
+  }
+
+  @mixin lt($lt__custom) {
+    @media only screen and (max-width: $lt__custom) {
+      @content;
+    }
+  }
+
+/**
+ * Outputs placeholder prefixes
+ *
+ * Accepts:
+ * - @content: {String} normal css insert
+ *
+ * Usage:
+ * .selector {
+ *   @include placeholder {
+      color: red;
+    }
+ * }
+ */
+
+  @mixin optional-at-root($sel) {
+    @at-root #{if(not &, $sel, selector-append(&, $sel))} {
+      @content;
+    }
+  }
+  
+  @mixin placeholder {
+    @include optional-at-root('::-webkit-input-placeholder') {
+      @content;
+    }
+  
+    @include optional-at-root(':-moz-placeholder') {
+      @content;
+    }
+  
+    @include optional-at-root('::-moz-placeholder') {
+      @content;
+    }
+  
+    @include optional-at-root(':-ms-input-placeholder') {
+      @content;
+    }
+  }

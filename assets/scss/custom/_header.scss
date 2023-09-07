@@ -1,0 +1,142 @@
+.header {
+    position: fixed;
+    padding-top: 5px;
+    height: fit-content;
+    border: 0;
+    box-shadow: 0px 3px 6px rgba($black, .2);
+    background: $white;
+
+    @include breakpoint("medium") {
+      display: block;
+    }
+
+    &__note {
+        position: relative;
+        max-width: 97%;
+        padding: 5px 0;
+
+        @include lt($medium) {
+          .scrolled & {
+            display: none;
+          }
+        }
+    }
+
+    &__note--flag {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    &__note--text {
+        position: relative;
+        z-index: 1;
+        margin-bottom: 0;
+        padding: 3px 14px;
+        text-align: center;
+        color: $white;
+        font-size: 14px;
+    }
+
+    &-logo__link {
+      @include gt($medium) {
+        margin: 0;
+      }
+    }
+
+    &__scrolled-search-wrap {
+        display: none;
+        
+        @include gt($large) {
+            .scrolled & {
+                display: block;
+                width: 100%;
+                min-width: 300px;
+                max-width: 490px;
+      
+                .search-form {
+                  display: block;
+                  background: none;
+                }
+      
+                .search-form__input {
+                  border: 2px solid #032414;
+                }
+            }
+        }
+        
+    }
+}
+
+.main-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    max-width: $container;
+    margin: 0 auto;
+    padding: 7px 0;
+
+    svg {
+        display: block;
+        width: 24px;
+        height: 22px;
+    }
+
+    @include gt($large) {
+      .scrolled & {
+        padding: 0;
+      }
+    }
+}
+
+.main-nav__logo {
+    width: 142px;
+}
+
+.main-nav__cart {
+    position: relative;
+}
+
+.main-nav__cart--pill {
+    position: absolute;
+    margin: 0;
+    top: 0;
+    right: -4px;
+    width: 10px;
+    height: 10px;
+    background: $yellow;
+    border-radius: 20px;
+    text-align: center;
+    color: $black;
+    font: normal normal 700 8px/10px $interstate-condensed;
+}
+
+#main-nav__toggle {
+    padding: 0;
+    @include gt($large) {
+        display: none;
+    }
+}
+
+.header-logo-image {
+  max-height: 4rem; // Overwrite cornerstone logo height on mobile
+}
+
+.header-logo-image-container {
+  @include breakpoint("medium") {
+      min-height: unset;
+  }
+}
+
+main {
+  padding-top: 107px; // Clear header
+  margin-top: 0 !important; // overwrite default margins to control by section
+  margin-bottom: 0 !important;
+
+  @include gt($large) {
+    padding-top: 219px;
+  }
+}

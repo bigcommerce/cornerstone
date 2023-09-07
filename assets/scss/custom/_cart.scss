@@ -1,0 +1,108 @@
+h1.cart-title {
+    margin-bottom: 40px;
+}
+
+.cart-item {
+    border-bottom: 2px solid $black;
+    min-height: 150px;
+}
+
+.cart-list {
+    border-top: 2px solid $black;
+}
+
+.cart-total + .cart-total {
+    border-top: 2px solid $black;
+}
+
+.cart-total-label {
+    color: $black;
+    padding-left: 0;
+    min-width: 200px;
+
+    strong {
+        float: left;
+        text-align: left;
+    }
+}
+
+.cart-total-grandTotal {
+    font-weight: 600;
+    font-family: $poppins;
+}
+
+.shipping-estimate-show {
+    color: $orange;
+}
+
+.cart-remove {
+    background-color: lightblue;
+}
+
+.cart-item-name {
+    font-family: $poppins;
+    font-size: 16px;
+    a {color: $orange;}
+}
+
+.form-increment {
+    border: 2px solid $black;
+
+    .button {
+        border: none;
+        padding: 10px;
+        border-radius: 0;
+    }
+
+    .button-dec {
+        border-right: 1px solid lightgray;
+    }
+
+    .button-inc {
+        border-left: 1px solid lightgray;
+    }
+}
+
+.button.button--primary {
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-family: $poppins;
+    font-size: 18px;
+    border-radius: 0;
+    background-color: $dark_blue;
+    border: none;
+
+    &:hover {
+        color: white;
+        background-color: $darkest_blue;
+    }
+}
+
+input.cart-item-qty-input {
+    border: none;
+}
+
+ul.cart-totals {
+    margin-left: 0;
+    @include gt($medium) {
+        margin-left: unset;
+    }
+}
+
+.cart-total-value {
+    float: right;
+}
+
+.cart-total .form-select {
+    height: 3rem;
+}
+
+.cart-actions__note {
+    font-size: 14px !important;
+    text-align: center;
+    a { color: #cea448 }
+    @include gt($medium) {
+        text-align: right;
+    }
+}

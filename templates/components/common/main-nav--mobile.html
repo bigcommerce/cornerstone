@@ -1,0 +1,122 @@
+<nav class="main-nav__mobile" data-main-nav-mobile>
+  <ul class="main-nav__mobile--list">
+      <li class="main-nav__mobile-top">
+          <ul class="main-nav__mobile-top-list">
+              <li class="main-nav__mobile-top-search">
+                  <form class="main-nav__mobile-search-form"  action="{{urls.search}}">
+                      <fieldset class="main-nav__mobile-search-form__fieldset">
+                          <label class="form-label is-srOnly" for="search_query_adv">{{lang 'search.results.form_label'}}</label>
+                          <input class="main-nav__mobile-search-form__input" name="search_query" id="search_query_adv" name="search_query_adv" value="{{forms.search.query}}" placeholder="Search by brand, finish, color, etc.">
+                      </fieldset>
+                  </form>
+              </li>
+              <li>
+                  <a href="/login.php" class="main-nav__mobile-top-link">
+                      <!-- <svg>
+                          <use xlink:href="#icon-account" />
+                      </svg> -->
+                      <svg id="account-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24.136" height="27" viewBox="0 0 24.136 27">
+                          <defs>
+                            <clipPath id="clip-path-account">
+                              <rect data-name="Rectangle 38" width="24.136" height="27" fill="#1e81d1"/>
+                            </clipPath>
+                          </defs>
+                          <g data-name="Group 106" clip-path="url(#clip-path-account)">
+                            <path data-name="Path 81" d="M12.068,7.952A12.068,12.068,0,0,0,0,20.02H24.136A12.068,12.068,0,0,0,12.068,7.952" transform="translate(0 6.98)" fill="#1e81d1"/>
+                            <path data-name="Path 82" d="M9.672,13.886A6.943,6.943,0,1,0,2.73,6.944a6.942,6.942,0,0,0,6.942,6.942" transform="translate(2.396 0)" fill="#1e81d1"/>
+                          </g>
+                        </svg>
+                        
+                  </a>
+              </li>
+              <li>
+                  <a href="/contact-us/" class="main-nav__mobile-top-link">
+      
+                      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="27.289" height="27.25" viewBox="0 0 27.289 27.25">
+                          <defs>
+                            <clipPath id="clip-path-contact">
+                              <rect data-name="Rectangle 142" width="27.289" height="27.25" fill="none"/>
+                            </clipPath>
+                          </defs>
+                          <g data-name="Group 420" clip-path="url(#clip-path-contact)">
+                            <path data-name="Path 239" d="M26.749,23.908c-.729.773-1.546,1.59-2.465,2.465a3.323,3.323,0,0,1-2.378.875h-.1a12.818,12.818,0,0,1-4.857-1.211,30.684,30.684,0,0,1-10.43-7.6,29.266,29.266,0,0,1-4.872-7.177,18.266,18.266,0,0,1-1.5-4.347,6.13,6.13,0,0,1,0-2.626A2.65,2.65,0,0,1,.9,2.961L3.089.817,3.337.569A1.643,1.643,0,0,1,4.416,0H4.5A1.46,1.46,0,0,1,5.539.467c1.4,1.371,2.669,2.626,3.938,3.938a1.459,1.459,0,0,1,.511,1.138A1.43,1.43,0,0,1,9.4,6.652L7.684,8.373,7.2,8.84a1.369,1.369,0,0,0-.35,1.794,16.371,16.371,0,0,0,2.6,3.924,23.437,23.437,0,0,0,5.368,4.814c.438.277.9.525,1.342.744l.583.306a1.21,1.21,0,0,0,1.546-.292l.525-.54,1.823-1.809a1.523,1.523,0,0,1,1.254-.5,1.439,1.439,0,0,1,.934.438L23,17.9c1.254,1.24,2.567,2.538,3.822,3.822a1.435,1.435,0,0,1,.467,1.109,1.549,1.549,0,0,1-.54,1.079" transform="translate(0)" fill="#1e81d1"/>
+                          </g>
+                        </svg>
+                        
+                  </a>
+              </li>
+          </ul>
+      </li>
+      {{# forEach categories}}
+          {{#or   (if name '===' 'Cabinet Hardware')
+                  (if name '===' 'Door Hardware') 
+                  (if name '===' 'Bath Accessories')
+                  (if name '===' 'Door Hardware')
+                  (if name '===' 'Switch Plates')
+                  (if name '===' 'Home Accents')
+          }}
+      <li class="main-nav__mobile--dropdown">
+          <button aria-expanded="false" class="main-nav__mobile--toggle" type="button" data-submenu-toggle>
+              {{name}}
+              <!-- <svg>
+                  <use xlink:href="#icon-arrow" />
+              </svg>             -->
+              <svg xmlns="http://www.w3.org/2000/svg" width="11.511" height="7.396" viewBox="0 0 11.511 7.396">
+                  <path d="M0,0,2.877,3.7,5.755,7.4,8.633,3.7,11.511,0Z" transform="translate(0 0)" fill="#1e81d1"/>
+                </svg>
+                
+          </button>
+          <ul class="main-nav__mobile-sub-menu">
+              {{#forEach (limit children 140)}}
+              <li class="main-nav__mobile-sub-item">
+                  <a class="main-nav__mobile-sub-item-link" href="{{url}}">{{name}}</a>
+              </li>
+              {{/forEach}}
+          </ul>
+      </li>
+      {{/or}}
+      {{/forEach}}
+      <li class="main-nav__mobile--dropdown">
+          <a href="/brands" class="main-nav__mobile--toggle">SHOP BY BRAND</a>
+          <!-- <button aria-expanded="false" class="main-nav__mobile--toggle" type="button" data-submenu-toggle>
+              SHOP BY BRAND               
+              <svg xmlns="http://www.w3.org/2000/svg" width="11.511" height="7.396" viewBox="0 0 11.511 7.396">
+                  <path d="M0,0,2.877,3.7,5.755,7.4,8.633,3.7,11.511,0Z" transform="translate(0 0)" fill="#1e81d1"/>
+                </svg>
+                
+          </button>
+          <ul class="main-nav__mobile-sub-menu main-nav__mobile-brand-menu">
+              <li class="main-nav__mobile-sub-item">
+                  <a href="/atlas-homewares/" aria-label="atlas homewares">
+                      <img src="https://cdn11.bigcommerce.com/s-40wxilo4jg/images/stencil/original/image-manager/atlas.jpg?t=1667938515&_gl=1*1q3yvsm*_ga*MTIxNTUwNTU0My4xNjQyNjIxNzg0*_ga_WS2VZYPC6G*MTY2NzkzNzA1MC43OS4xLjE2Njc5Mzc3NjcuNTUuMC4w" alt="atlas homewares">
+                  </a>
+              </li>
+              <li class="main-nav__mobile-sub-item">
+                  <a href="/belwith-keeler/" aria-label="belwith keeler">
+                      <img src="https://cdn11.bigcommerce.com/s-40wxilo4jg/images/stencil/original/image-manager/belwith.jpg?t=1667938541&_gl=1*1q3yvsm*_ga*MTIxNTUwNTU0My4xNjQyNjIxNzg0*_ga_WS2VZYPC6G*MTY2NzkzNzA1MC43OS4xLjE2Njc5Mzc3NjcuNTUuMC4w" alt="belwith keeler">
+                  </a>
+              </li>
+              <li class="main-nav__mobile-sub-item">
+                  <a href="/berenson-decorative-hardware/" aria-label="Berenson">
+                      <img src="https://cdn11.bigcommerce.com/s-40wxilo4jg/images/stencil/original/image-manager/berenson.jpg?t=1667943362&_gl=1*4lubqt*_ga*MTIxNTUwNTU0My4xNjQyNjIxNzg0*_ga_WS2VZYPC6G*MTY2Nzk0MzM1MS44MC4xLjE2Njc5NDMzNTMuNTguMC4w" alt="Berenson">
+                  </a>
+              </li>
+              <li class="main-nav__mobile-sub-item">
+                  <a href="/century-hardware/" aria-label="Century">
+                      <img src="https://cdn11.bigcommerce.com/s-40wxilo4jg/images/stencil/original/image-manager/century.jpg?t=1667943482&_gl=1*16qdkq*_ga*MTIxNTUwNTU0My4xNjQyNjIxNzg0*_ga_WS2VZYPC6G*MTY2Nzk0MzM1MS44MC4xLjE2Njc5NDMzNTMuNTguMC4w" alt="Century">
+                  </a>
+              </li>
+              <li class="main-nav__mobile-sub-item">
+                  <a href="/edgar-berebi/" aria-label="Edgar Berebi the masterwork atelier">
+                      <img src="https://cdn11.bigcommerce.com/s-40wxilo4jg/images/stencil/original/image-manager/edgarberebi.jpg?t=1667943551&_gl=1*qrt334*_ga*MTIxNTUwNTU0My4xNjQyNjIxNzg0*_ga_WS2VZYPC6G*MTY2Nzk0MzM1MS44MC4xLjE2Njc5NDMzNTMuNTguMC4w" alt="Edgar Berebi the masterwork atelier">
+                  </a>
+              </li>
+              <li class="main-nav__mobile-sub-item">
+                  <a href="/elements/" aria-label="elements">
+                      <img src="https://cdn11.bigcommerce.com/s-40wxilo4jg/images/stencil/original/image-manager/elements.jpg?t=1667943585&_gl=1*qrt334*_ga*MTIxNTUwNTU0My4xNjQyNjIxNzg0*_ga_WS2VZYPC6G*MTY2Nzk0MzM1MS44MC4xLjE2Njc5NDMzNTMuNTguMC4w" alt="elements">
+                  </a>
+              </li>
+          </ul> -->
+      </li>
+  </ul>
+</nav>

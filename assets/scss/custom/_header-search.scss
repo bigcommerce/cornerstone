@@ -1,0 +1,44 @@
+.search-form {
+    display: none;
+    background: #135185;
+
+    @include gt($large) {
+        display: block;
+    }
+}
+
+.scrolled .search-form { display: none;}
+
+.search-form__fieldset {
+    border: none;
+    padding: 20px 0;
+}
+
+.search-form__input {
+    display: block;
+    width: 90%;
+    max-width: $container;
+    margin: 0 auto;
+    font-size: 14px;
+    padding: 8px 16px;
+    color: $darkest_grey;
+    text-align: center;
+    background: url('../icons/magnifying-glass.svg');
+    background-repeat: no-repeat;
+    background-position: center left 10px;
+    background-color: white;
+    background-size: 30px;
+    border: 0;
+
+    .scrolled & {
+        padding: 4px 16px;
+    }
+
+    &::placeholder {
+        display: inline-block;
+        font-size: 14px;
+        color: $dark_grey;
+        font-weight: 300;
+        text-align: center;
+    }
+}

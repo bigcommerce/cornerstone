@@ -1,0 +1,247 @@
+.main-nav__desktop--arrow {
+    padding-bottom: 2px;
+}
+
+.main-nav__desktop--top {
+    text-transform: none;
+    text-decoration: none;
+    &:hover {
+      color: $black;
+    }
+}
+
+.main-nav__desktop--arrow{
+    width: 15px;
+}
+
+.main-nav__desktop--item:hover > .main-nav__desktop--dropdown {
+   display: flex;
+}
+
+.main-nav__desktop--item:hover > .main-nav__desktop--top {
+    color: #1E81D1;
+ }
+
+  .main-nav__main-wrap {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+
+.header {
+    &__desktop-note {
+      display: none;
+  
+      @include gt($large){
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        min-width: max-content;
+      }
+      
+  
+      &--flag {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100% !important;
+        height: 100% !important;
+      }
+    }
+
+    &__note {
+      @include gt($large) {
+        display: none;
+      }
+    }
+}
+
+.main-nav {
+
+  &__cart {
+    svg {
+      fill: #1e81d1;
+    }
+
+    &:hover,
+    &:focus {
+      svg {
+        fill: #135185;
+      }
+    }
+  }
+
+  &__desktop {
+    position: relative;
+    display: none;
+    max-width: 100%;
+    width: 100vw;
+    padding: 0 20px;
+    margin: 0 auto;
+    @include gt($large) {
+        display: block;
+    }
+
+    &--child {
+      padding: 7px 5px;
+      font-family: $interstate;
+      font-size: 16px;
+      font-weight: 500;
+      color: $black;
+      a { text-decoration: none; }
+    }
+
+    &-links {
+      margin-top: -7px;
+    }
+  }
+
+  &__desktop-brands-item {
+    max-width: 163px;
+  }
+
+  &__desktop-brands-list {
+    list-style: none;
+    margin: 0;
+    padding: 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    width: 100vw;
+    grid-column-gap: 10px;
+    grid-row-gap: 54px;
+  }
+
+  &__desktop--dropdown {
+    display: none;
+    align-items: center;
+    position: absolute;
+    top: 65px;
+    left: 0;
+    width: 100vw;
+    background: white;
+    box-shadow: 0 5px 6px rgba(0, 0, 0, .2);
+  }
+    
+  &__desktop--dropdown-list {
+    list-style: none;
+    margin: 0;
+    padding: 40px 0;
+    display: grid;
+    width: 90%;
+    max-width: $container;
+    margin: 0 auto;
+    grid-template-columns: 1fr 2fr;
+
+    &-small {
+      grid-template-columns: 1fr 2fr !important; //overwrite large styles below on large screens
+    }
+
+    @include gt($container) {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+
+  &__desktop-link-list {
+    // display: flex;
+    // flex-wrap: wrap;
+    // justify-content: space-between;
+    list-style: none;
+    // row-gap: 25px;
+    column-count: 2;
+  }
+
+  &__desktop--list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+    margin: 0 auto;
+    list-style: none;
+    max-width: $container;
+  }
+
+  &__desktop--shop-all {
+    a {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      gap: 14px;
+      font-family: $interstate-condensed;
+      font-size: 16px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #135185;
+
+      &:hover,
+      &:focus {
+        color: #1E81D1;
+      }
+    }
+  }
+
+  &__desktop-shop-brands {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 29px;
+    grid-row-gap: 44px;
+    list-style: none;
+
+    &-wrap {
+      display: none;
+      font-family: $interstate-condensed;
+      font-size: 16px;
+      font-weight: 700;
+      color: #135185;
+      text-align: center;
+
+      @include gt($container) {
+        display: block;
+      }
+    }
+  }
+
+  &__desktop-top-link {
+    display: none;
+
+    @include gt($large) {
+      display: block;
+    }
+
+    svg {
+      fill: #1e81d1;
+    }
+
+    &:hover,
+    &:focus {
+      svg {
+        fill: #135185;
+      }
+    }
+  }
+
+  &__desktop--item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 20px 5px 0;
+    font-family: $interstate-condensed;
+    font-weight: 700;
+    font-size: 18px;
+    color: $dark-grey;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    border-bottom: 20px solid white;
+    z-index: 20;
+
+    @include gt($large + 200px) {
+        font-size: 20px;
+    }
+    svg {
+      display: inline;
+      width: 12px;
+      height: 7.5px;
+    }
+  }
+}

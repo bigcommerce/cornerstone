@@ -1,0 +1,59 @@
+.home-shopby {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 40px 0;
+    letter-spacing: .04em;
+
+    a {
+        text-decoration: none;
+    }
+    @include gt($large) {
+        flex-direction: row;
+        align-items: stretch;
+        max-width: $container;
+        margin: 0 auto;
+    }
+}
+
+.home-shopby__item {
+    width: 300px;
+    background: $light_yellow;
+    margin: 10px 0;
+    padding: 10px 20px 30px;
+    @include gt($medium) {
+        width: 690px;
+        padding: 30px 30px 50px;
+    }
+    @include gt($large) {
+        margin: 0 20px;
+    }
+}
+
+.home-shopby__img {
+    display: block;
+    margin: 0 auto;
+}
+
+.home-shopby__title {
+    margin-top: 30px;
+    font-family: $poppins;
+    text-align: center;
+    text-decoration: none;
+    font-size: 18px;
+    color: $orange;
+    font-weight: 600;
+    @include gt($medium) {
+        font-size: 20px;
+    }
+}
+
+.home-shopby__content {
+    text-align: center;
+    font-size: 14px;
+    color: $black;
+    @include gt($medium) {
+        font-size: 16px;
+    }
+}

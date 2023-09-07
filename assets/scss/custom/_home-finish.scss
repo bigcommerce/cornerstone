@@ -1,0 +1,130 @@
+.home-finish {
+  padding: 20px 0 30px;
+  background: #f3f9fd;
+
+  @include gt($large) {
+    padding: 40px 0 50px;
+  }
+
+  &__btn-mobile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: $interstate-condensed;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 19px;
+    gap: 5px;
+
+    svg {
+      width: 11.5px;
+      height: 7.5px;
+      transform: rotate(-90deg);
+    }
+
+    @include gt($large) {
+      display: none;
+    }
+  }
+
+  &__item {
+    &-title {
+      font-family: $interstate;
+      font-size: 20px;
+      line-height: 24px;
+      text-align: center;
+      color: $dark-grey;
+      margin: 0;
+    }
+
+    @include gt($medium) {
+      a:hover,
+      a:focus {
+        img {
+          display: block;
+          transform: translateY(-5px);
+        }
+
+        .home-finish__item-title {
+          color: #1E81D1;
+        }
+      }
+    }
+  }
+
+  &__link {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 10px;
+    grid-row-gap: 20px;
+    justify-items: center;
+    list-style: none;
+    
+    @include gt($large) {
+      display: flex;
+      justify-content: space-around;
+    }
+  }
+
+  &__title {
+    margin: 0 auto 20px;
+    font-family: $interstate-condensed;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 36px;
+    color: #135185;
+    text-align: center;
+
+    @include gt($large) {
+      margin: 0 0 10px;
+      font-size: 40px;
+      line-height: 46px;
+      text-align: left;
+    }
+
+    &-btn {
+      display: none;
+      align-items: center;
+
+      svg {
+        width: 11.5px;
+        height: 7.5px;
+        transform: rotate(-90deg);
+      }
+
+      &:hover,
+      &:focus {
+        color: #1E81D1;
+      }
+
+      @include gt($large) {
+        display: flex;
+        font-family: $interstate-condensed;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 19px;
+        color: #324147;
+        gap: 5px;
+      }
+    }
+  }
+
+  &__wrap {
+    width: 1083px;
+    max-width: 90%;
+    margin: 0 auto;
+
+    @include gt($large) {
+        display: grid;
+        align-items: center;
+        grid-template-columns: 133px 1fr;
+        gap: 34px;
+    }
+  }
+}

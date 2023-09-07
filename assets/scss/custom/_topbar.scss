@@ -1,0 +1,72 @@
+// Custom Top Bar Styles
+
+.topbar {
+    background: $dark_blue;
+    height: 65px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.topbar__list {
+    margin:0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    @include gt($medium) {
+        width: 90%;
+        justify-content: space-between;
+    }
+}
+
+.topbar__item, .topbar__item a, .topbar__blurb {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    @include gt($medium) {
+        font-size: 18px;
+    }
+}
+
+.topbar__item a {
+    &:hover {
+        color: #ffce62;
+    }
+}
+
+a.topbar__account {
+    padding-left: 10px;
+    color: #ffce62;
+    text-decoration: underline;
+    &:hover {
+        color: white;
+    }
+    &:before {
+        content: '|';
+        padding-right: 10px;
+        color: white;
+    }
+    @include gt($large) {
+        &:before {
+            display: none;
+        }
+    }
+}
+
+.topbar__blurb {
+    width: 100%;
+    text-align: center;
+    @include gt($medium) {
+        width: unset;
+        justify-self: flex-end;
+    }
+}
+
+.topbar__item--contact {
+    padding: 0 15px;
+}
+
+.topbar__separator {
+    padding: 0 15px;
+}

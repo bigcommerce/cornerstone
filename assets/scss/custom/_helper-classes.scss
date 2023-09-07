@@ -1,0 +1,88 @@
+// General Helper Classes
+
+// Layout
+.desktop {
+    display: none;
+    @include gt($large) {
+        display: unset;
+    }
+}
+
+.tablet {
+    @include gt($large) {
+        display: none;
+    }
+}
+
+.mobile {
+    @include gt($medium) {
+        display: none;
+    }
+}
+
+.container {
+    max-width: 1440px;
+    width: 90%;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.banners {
+    background: none;
+    color: $dark_grey;
+    padding: 0;
+}
+
+.btn {
+    display: inline-block;
+    background: $dark_blue;
+    font-weight: 500;
+    font-size: 20px;
+    padding: 15px 30px;
+    transition: all .2s;
+    text-decoration: none;
+    text-transform: uppercase;
+
+    &:hover {
+        background: $darkest_blue;
+        cursor: pointer;
+        color: white;
+    }
+}
+
+
+  // typography class for product alerts
+  .alert {
+    background: #f9eded;
+    color: #cb2222;
+    font-size: 13px;
+    line-height: 18px;
+    padding: 15px;
+    text-align: center;
+    a {
+        color: #cb2222;
+        text-decoration: underline;
+        font-weight: 600;
+    }
+
+    .main-nav & {
+        display: none;
+        margin: 0 50px;
+        max-width: 30%;
+        @include gt($large) {
+            display: block;
+        }
+    }
+    &.alert--mobile {
+        width: 100%;
+        @include gt($large) {
+            display: none;
+        }
+    }
+}
+
+.product--notice {
+    color: #332e31;
+    font-size: 16px;
+    font-weight: 600;
+}

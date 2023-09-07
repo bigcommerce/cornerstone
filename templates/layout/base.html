@@ -47,6 +47,15 @@
         {{~inject 'carouselArrowAndDotAriaLabel' (lang 'carousel.arrow_and_dot_aria_label')}}
         {{~inject 'carouselActiveDotAriaLabel' (lang 'carousel.active_dot_aria_label')}}
         {{~inject 'carouselContentAnnounceMessage' (lang 'carousel.content_announce_message')}}
+
+        <style>.kuAddtocart { display: none }</style>
+
+        <!-- Custom Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=BenchNine|Poppins:400,500,600" rel="stylesheet">
+        <link rel="stylesheet" href="https://use.typekit.net/nas1yse.css">
+
+        <!-- Google Site Verification -->
+        <meta name="google-site-verification" content="BYOgv6t4jNOP75-zjDGl1eAkLD4zWDd-zMi7FB5fGE0" />
     </head>
     <body>
         <svg data-src="{{cdn 'img/icon-sprite.svg'}}" class="icons-svg-sprite"></svg>
@@ -80,7 +89,13 @@
             }
         </script>
         <script async defer src="{{cdn 'assets/dist/theme-bundle.main.js' resourceHint='preload' as='script'}}" onload="onThemeBundleMain()"></script>
+        <script type="text/javascript" charset="utf-8" src="https://js.klevu.com/klevu-js-v1/js/klevu-bc-script.js?klevuapi=klevu-159068285395812185&lang=en"></script>
 
         {{{footer.scripts}}}
+
+        <script type="text/javascript">
+            var klevu_addPageNumberToUrl = true, 
+            klevu_addSelectedFiltersToUrl = true;
+        </script>
     </body>
 </html>

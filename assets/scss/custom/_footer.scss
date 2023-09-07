@@ -1,0 +1,195 @@
+.footer {
+  padding: 30px 36px 10px;
+  background-color: #135185;
+
+  @include gt($large) {
+    padding: 40px 36px 10px;
+  }
+
+  &__account {
+    @include gt($large) {
+      order: 4;
+    }
+  }
+  
+
+  &__account-break {
+    margin: 15px 0;
+    max-width: 141px;
+    border: 1px solid #eac772;
+  }
+  
+  &__account-list,
+  &__customer-list,
+  &__shipping-list {
+    margin: 0;
+    list-style: none;
+
+    @include gt($large) {
+      max-width: 164px;
+    }
+  }
+
+  &__bottom-wrap {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 39px;
+    text-align: center;
+    color: #fff;
+
+    @include gt($large) {
+      position: relative;
+      width: 1083px;
+      max-width: 90%;
+      margin: 39px auto 0;
+      flex-direction: row;
+      justify-content: center;
+    }
+  }
+
+  &__copyright {
+    margin: 0;
+    font-family: $interstate-condensed;
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: .72px;
+
+    @include gt($large) {
+      justify-self: center;
+    }
+  }
+
+  &__desktop-block {
+    display: none;
+
+    @include gt($large) {
+      display: block;
+    }
+  }
+
+  &__desktop-text {
+    font-family: $interstate-condensed;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 24px;
+    color: #fff;
+  }
+
+  &__link {
+    a {
+      font-family: $interstate-condensed;
+      font-size: 16px;
+      line-height: 32px;
+      color: #fff;
+      text-decoration: none;
+
+      &:hover,
+      &:focus {
+        outline: none;
+        color: #ffce62;
+      }
+    }
+
+    &-order-expedited {
+      margin-top: -32px;
+      order: 5;
+
+      @include gt(395px) {
+        margin-top: 0;
+      }
+
+      @include gt($large) {
+        order: 3;
+      }
+    }
+
+    &-order-free {
+      order: 3;
+
+      @include gt($large) {
+        order: 2;
+      }
+    }
+
+    &-order-returns {
+      order: 4;
+
+      @include gt($large) {
+        order: 5;
+      }
+    }
+
+    &-order-motor {
+      order: 2;
+
+      @include gt($large) {
+        order: 4;
+      }
+    }
+  }
+
+  &__payment-wrap {
+    @include gt($large) {
+      position: absolute;
+      left: 0;
+    }
+  }
+
+  &__mobile-text {
+    margin: 15px 0 20px;
+    font-family: $interstate-condensed;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 24px;
+
+    @include gt($large) {
+      display: none;
+    }
+  }
+
+  &__shipping {
+    order: 3;
+    grid-column: span 2;
+
+    @include gt($large) {
+      order: 2;
+      grid-column: span 1;
+    }
+  }
+
+  &__shipping-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    @include gt($large) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__title {
+    font-family: $interstate-condensed;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 32px;
+    text-transform: uppercase;
+    color: $yellow;
+
+    @include gt($large) {
+      margin: 0 0 5px;
+    }
+  }
+
+  &__top-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 22px;
+
+    @include gt($large) {
+      width: 1083px;
+      max-width: 90%;
+      margin: 0 auto;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+  }
+}

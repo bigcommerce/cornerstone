@@ -1,0 +1,139 @@
+.home-featured-items {
+  padding: 30px 0 40px;
+
+  @include gt($large) {
+    padding: 40px 0 60px;
+  }
+
+  &__card {
+    display: block;
+    width: 257px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, .2);
+    overflow: hidden;
+
+    &-img-btn {
+      display: none;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      width: 126px;
+      height: 45px;
+      font-family: $interstate-condensed;
+      font-size: 18px;
+      font-weight: 800;
+      padding: 15px 13px;
+      color: #fff;
+    }
+
+    &-img {
+      width: 194px;
+    }
+
+    &-img-wrap {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 203px;
+    }
+
+    &-price {
+      font-family: $interstate;
+      font-size: 16px;
+      line-height: 19px;
+      letter-spacing: 0;
+      color: $dark_blue;
+
+      &-compare {
+        color: $black;
+        text-decoration: line-through;
+      }
+    }
+
+    &-subtitle {
+      margin-bottom: 4px;
+      font-family: $interstate;
+      font-size: 12px;
+      line-height: 15px;
+      text-transform: uppercase;
+      color: #135185;
+    }
+
+    &-title {
+      font-family: $interstate-condensed;
+      font-size: 16px;
+      line-height: 19px;
+      color: $black;
+    }
+
+    &-wrap {
+      display: flex;
+      flex-direction: column;
+      padding: 16px 15px 20px;
+      height: 100%;
+      text-align: center;
+      background: rgba(#1E81D1, .05);
+    }
+  }
+
+  &__item {
+    display: flex;
+    align-items: stretch;
+
+    a:hover,
+    a:focus {
+      .home-featured-items__card-img {
+        transform: scale(.9);
+      }
+
+      .home-featured-items__card-img-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
+
+  &__list {
+    display: flex;
+    float: left;
+    padding-right: 30px;
+    gap: 20px;
+    list-style: none;
+
+    @include gt(1150px) {
+      padding: 0;
+      float: none;
+      justify-content: center;
+    }
+  }
+
+  &__title {
+    margin: 0 auto 20px;
+    font-family: $interstate-condensed;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 36px;
+    color: #135185;
+    text-align: center;
+
+    @include gt($large) {
+      margin: 0 auto 30px;
+      font-size: 40px;
+      line-height: 46px;
+    }
+  }
+
+  &__wrap {
+    padding-left: 30px;
+    overflow: scroll;
+    
+    @include gt(1150px) {
+      padding: 0;
+      overflow: visible;
+    }
+  }
+}

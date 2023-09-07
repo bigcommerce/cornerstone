@@ -1,0 +1,92 @@
+.category-sort {
+    background: #324147;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10%;
+
+    .form-field {
+        border-radius: 0;
+        border: none;
+        margin: 20px 0;
+    }
+
+    &:before, &:after {
+        display: none;
+    }
+}
+
+p.category-sort__counter {
+    margin-bottom: 0;
+    color: white;
+    text-transform: uppercase;
+    span {
+        font-weight: 600;
+    }
+}
+
+.pagination {
+    width: fit-content;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.pagination-list .pagination-item {
+    margin: 0;
+    .pagination-link {
+        padding: 0 1px 1px;
+        margin: 0 2px;
+    }
+    &.pagination-item--title {
+        margin-right: 10px;
+    }
+}
+
+.pagination-item.pagination-item--current {
+    border: none;
+    border-bottom: 2px solid $orange;
+    border-radius: 0;
+}
+
+.kuGridView ul li {
+    border: none !important;
+    .kuName {
+        text-align: center !important;
+    }
+    .kuName a {
+        color: #211e20 !important;
+    font-family: BenchNine,sans-serif !important;
+    font-size: 24px !important;
+    font-weight: 800 !important;
+    text-transform: uppercase !important;
+    line-height: 24px !important;
+        &:hover {
+            text-decoration: none !important;
+            color: #cea448 !important;
+        }
+    }
+    .kuPrice {
+        text-align: center !important;
+    }
+    
+    .kuOrigPrice, .kuSalePrice {
+        font-size: 18px !important;
+        font-weight: 800 !important;
+        font-family: Poppins, sans-serif !important;
+    }
+    
+    .kuOrigPrice {
+        color: #cb2222 !important;
+    }
+    
+    .kuSalePrice {
+        color: #b5b5b5 !important;
+    }
+    
+    .yotpo-bottomline.pull-left.star-clickable {
+        justify-content: center;
+        float: none;
+        
+        a { color: #332e31 !important; }
+    }
+}

@@ -13,7 +13,7 @@
     {{#each carousel.slides}}
     <a href="{{url}}">
         <div class="heroCarousel-slide {{#if ../theme_settings.homepage_stretch_carousel_images}}stretch{{/if}} {{#if @first}}heroCarousel-slide--first{{/if}}">
-            <div class="heroCarousel-image-wrapper" {{#and image_height image_width}}style="height: {{multiply (divide image_height image_width) 100}}vw"{{/and}}>
+            <div class="heroCarousel-image-wrapper">
             {{#if @first}}
                 {{> components/common/responsive-img
                     image=stencil_image

@@ -5,6 +5,7 @@ import ImageGallery from '../product/image-gallery';
 import modalFactory, { showAlertModal } from '../global/modal';
 import _ from 'lodash';
 import Wishlist from '../wishlist';
+import { normalizeFormData } from './utils/api';
 
 export default class ProductDetails {
     constructor($scope, context, productAttributesData = {}) {
@@ -54,25 +55,6 @@ export default class ProductDetails {
         $productOptionsElement.show();
 
         this.previewModal = modalFactory('#previewModal')[0];
-    }
-
-    /**
-     * https://stackoverflow.com/questions/49672992/ajax-request-fails-when-sending-formdata-including-empty-file-input-in-safari
-     * Safari browser with jquery 3.3.1 has an issue uploading empty file parameters. This function removes any empty files from the form params
-     * @param formData: FormData object
-     * @returns FormData object
-     */
-    filterEmptyFilesFromForm(formData) {
-        try {
-            for (const [key, val] of formData) {
-                if (val instanceof File && !val.name && !val.size) {
-                    formData.delete(key);
-                }
-            }
-        } catch (e) {
-            console.error(e); // eslint-disable-line no-console
-        }
-        return formData;
     }
 
     setProductVariant() {
@@ -165,7 +147,7 @@ export default class ProductDetails {
             if (view.attr('data-event-type')) {
                 view.attr('data-product-variant', productVariant);
             } else {
-                const productName = view.find('.productView-title')[0].innerText;
+                const productName = view.find('.productView-title')[0].innerText.replace(/"/g, '\\$&');
                 const card = $(`[data-name="${productName}"]`);
                 card.attr('data-product-variant', productVariant);
             }
@@ -271,7 +253,7 @@ export default class ProductDetails {
         if (_.isPlainObject(image)) {
             const zoomImageUrl = utils.tools.imageSrcset.getSrcset(
                 image.data,
-                { '1x': this.context.themeSettings.zoom_size },
+                { '1x': this.context.zoomSize },
                 /*
                     Should match zoom size used for data-zoom-image in
                     components/products/product-view.html
@@ -284,7 +266,7 @@ export default class ProductDetails {
 
             const mainImageUrl = utils.tools.imageSrcset.getSrcset(
                 image.data,
-                { '1x': this.context.themeSettings.product_size },
+                { '1x': this.context.productSize },
                 /*
                     Should match fallback image size used for the main product image in
                     components/products/product-view.html
@@ -388,7 +370,7 @@ export default class ProductDetails {
         this.$overlay.show();
 
         // Add item to cart
-        utils.api.cart.itemAdd(this.filterEmptyFilesFromForm(new FormData(form)), (err, response) => {
+        utils.api.cart.itemAdd(normalizeFormData(new FormData(form)), (err, response) => {
             const errorMessage = err || response.data.error;
 
             $addToCartBtn

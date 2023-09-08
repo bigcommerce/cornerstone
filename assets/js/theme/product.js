@@ -53,7 +53,7 @@ export default class Product extends PageManager {
         this.productReviewHandler();
         this.bulkPricingHandler();
 
-        if (this.context.themeSettings.floating_cart_button) {
+        if (this.context.floatingCartButton) {
             this.setBodyPadding();
         }
     }

@@ -9,9 +9,16 @@ product:
     similar_by_views:
         limit: {{theme_settings.productpage_similar_by_views_count}}
 ---
+{{inject "productId" product.id}}
+{{inject "zoomSize" theme_settings.zoom_size}}
+{{inject "productSize" theme_settings.product_size}}
+{{inject "floatingCartButton" theme_settings.floating_cart_button}}
+
 {{#if theme_settings.floating_cart_button}}{{#partial "bodyClass"}}productPage{{/partial}}{{/if}}
+
 {{#partial "page"}}
-    {{> components/common/breadcrumbs breadcrumbs=(after breadcrumbs 1)}}
+
+    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
 
     {{#each product.shipping_messages}}
         {{> components/common/alert-info message}}
@@ -26,7 +33,7 @@ product:
             {{> components/products/videos product.videos}}
         {{/if}}
 
-        {{#all settings.show_product_reviews (if theme_settings.show_product_reviews_tabs '!==' true)}}
+        {{#all settings.show_product_reviews theme_settings.show_product_reviews (if theme_settings.show_product_details_tabs '!==' true)}}
             {{> components/products/reviews reviews=product.reviews product=product urls=urls}}
         {{/all}}
 

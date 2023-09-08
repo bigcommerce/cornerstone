@@ -13,6 +13,6 @@
     </ul>
 {{else}}
     <p class="quickSearchMessage">
-        {{lang 'search.results.quick_count' count=pagination.product_results.total search_query=forms.search.query}}
+        {{{lang 'search.results.quick_count' count=pagination.product_results.total search_query=(sanitize forms.search.query) }}}
     </p>
 {{/if}}

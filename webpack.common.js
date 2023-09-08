@@ -1,8 +1,8 @@
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin,
-      CleanPlugin = require('clean-webpack-plugin'),
-      LodashPlugin = require('lodash-webpack-plugin'),
-      path = require('path'),
-      webpack = require('webpack');
+    CleanPlugin = require('clean-webpack-plugin'),
+    LodashPlugin = require('lodash-webpack-plugin'),
+    path = require('path'),
+    webpack = require('webpack');
 
 // Common configuration, with extensions in webpack.dev.js and webpack.prod.js.
 module.exports = {
@@ -11,6 +11,7 @@ module.exports = {
     entry: {
         main: './assets/js/app.js',
         head_async: ['lazysizes'],
+        polyfills: './assets/js/polyfills.js',
     },
     module: {
         rules: [
@@ -28,13 +29,20 @@ module.exports = {
                             ['@babel/preset-env', {
                                 loose: true, // Enable "loose" transformations for any plugins in this preset that allow them
                                 modules: false, // Don't transform modules; needed for tree-shaking
-                                useBuiltIns: 'usage', // Tree-shake babel-polyfill
+                                useBuiltIns: 'entry',
                                 targets: '> 1%, last 2 versions, Firefox ESR',
-                                corejs: '^3.4.1',
+                                corejs: '^3.6.5',
                             }],
                         ],
                     },
                 },
+            },
+            {
+                test: require.resolve('jquery'),
+                use: [{
+                    loader: 'expose-loader',
+                    options: '$',
+                }],
             },
         ],
     },
@@ -53,7 +61,7 @@ module.exports = {
             verbose: false,
             watch: false,
         }),
-        new LodashPlugin, // Complements babel-plugin-lodash by shrinking its cherry-picked builds further.
+        new LodashPlugin(), // Complements babel-plugin-lodash by shrinking its cherry-picked builds further.
         new webpack.ProvidePlugin({ // Provide jquery automatically without explicit import
             $: 'jquery',
             jQuery: 'jquery',

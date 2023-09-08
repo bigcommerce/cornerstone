@@ -11,6 +11,36 @@
 //
 // -----------------------------------------------------------------------------
 
+.card {
+    &:focus-within {
+        .card-figcaption {
+            opacity: 1;
+        }
+    }
+
+    &.focus-within {
+        .card-figcaption {
+            opacity: 1;
+        }
+    }    
+
+    @include breakpoint("medium") {
+        &.card-hover {
+            &:hover .card-link {
+
+                .card-image {
+                    opacity: 0;
+                    visibility: hidden;
+                }
+
+                .card-image-2 {
+                    opacity: 1;
+                    visibility: visible;
+                }
+            }
+        }
+    }
+}
 
 .card-figure {
     margin-top: $card-figure-marginTop;
@@ -20,6 +50,33 @@
         // scss-lint:disable NestingDepth
         .card-figcaption {
             opacity: 1;
+            z-index: 10;
+        }
+    }
+}
+
+.card-link {
+    display: block;
+    position: relative;
+    overflow: hidden;
+
+    .card-image-2 {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        z-index: 3;
+        width: 100%;
+        text-align: center;
+        opacity: 0;
+        visibility: hidden;
+        transform: translate(-50%,-50%);
+        transition: all .3s ease;
+
+        img {
+            display: inline-block;
+            vertical-align: top;
+            max-height: 100%;
+            width: 100%;
         }
     }
 }
@@ -54,6 +111,7 @@
     object-fit: contain;
     /* Object-fit polyfill */
     font-family: 'object-fit: contain;';
+    transition: all .3s ease;
 }
 
 .card-title {
@@ -85,6 +143,7 @@
     border: $card-figcaption-button-border;
     display: $card-figcaption-button-display;
     margin: $card-figcaption-button-margin;
+    border-radius: 12px;
 
     &:active {
         background-color: $card-figcaption-button-backgroundHover;

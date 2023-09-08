@@ -1,0 +1,212 @@
+// =============================================================================
+// MAINTENANCE MODE (CSS)
+// =============================================================================
+
+.maintenanceNotice {
+    background-color: $maintenanceNotice-backgroundColor;
+    box-shadow: $maintenanceNotice-box-shadow;
+    color: $maintenanceNotice-color;
+    left: $maintenanceNotice-left;
+    padding: $maintenanceNotice-padding;
+    position: fixed;
+    top: $maintenanceNotice-top;
+    width: $maintenanceNotice-width;
+    z-index: $maintenanceNotice-z-index;
+
+    > :last-child {
+        margin-bottom: 0;
+    }
+
+    a {
+        color: $maintenanceNotice-color;
+    }
+}
+
+.maintenanceNotice-header {
+    font-family: $maintenanceNotice-header-font-family;
+    margin: $maintenanceNotice-header-margin;
+}
+
+// =============================================================================
+// ADMIN BAR MODE (CSS)
+// =============================================================================
+
+body.hasAdminBar {
+    padding-top: 101px; // 55px (Mobile Header) + 46px (Admin Bar)
+
+    @include breakpoint("medium") {
+        padding-top: 0;
+
+        .banners {
+            margin-top: $adminBar-height;
+        }
+
+        .header {
+            padding-top: 0;
+        }
+    }
+
+    .header {
+        padding-top: $adminBar-height;
+    }
+
+    .navPages-container.is-open {
+        padding-top: 101px;
+    }
+}
+
+.adminBar {
+    // Only show admin bar at desktop width
+    display: none;
+
+    @include breakpoint("medium") {
+        display: block;
+    }
+
+    background-color: $adminBar-color;
+    box-shadow: 0 remCalc(2) remCalc(7) 0 rgba(0, 0, 0, 0.2);
+    color: $adminBar-text-color;
+    font-family: "Source Sans Pro", arial, "sans serif", sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    height: $adminBar-height;
+    left: 0;
+    position: fixed;
+    text-decoration: none;
+    top: 0;
+    width: 100%;
+    z-index: 10000;
+
+    .svg-icon {
+        display: inline-flex;
+        align-self: center;
+    }
+    .svg-icon svg {
+        height:1em;
+        width:1em;
+    }
+    .svg-icon.svg-baseline svg {
+        top: .125em;
+        position: relative;
+    }
+}
+
+.adminBar-logo {
+    float: left;
+    height: $adminBar-height;
+    width: 45px;
+
+    svg {
+        height: 100%;
+        padding: 7px 10px 11px 7px;
+        width: 100%;
+    }
+}
+
+.adminBar-content {
+    align-items: center;
+    display: flex;
+    height: $adminBar-height;
+    justify-content: space-between;
+
+    a {
+        color: $adminBar-contentLink-color;
+        text-decoration: none;
+    }
+
+    a:hover {
+        background-color: $adminBar-contentLink-hover-color;
+        border-radius: 5px;
+    }
+
+}
+
+.adminBar-private {
+    margin-right: auto;
+    text-align: left;
+
+    a {
+        padding: 10px;
+    }
+
+    span {
+        white-space: nowrap;
+    }
+
+    /* Tooltip container */
+    .tooltip {
+        position: relative;
+        display: inline-block;
+    }
+
+    /* Tooltip text */
+    .tooltip .tooltiptext {
+        visibility: hidden;
+        width: auto;
+        background-color: $adminBar-tooltip-bg-backgroundColor;
+        color: #fff;
+        text-align: center;
+        padding: 5px 10px;
+        border-radius: 6px;
+
+        /* Position the tooltip text - see examples below! */
+        position: absolute;
+        z-index: 1;
+    }
+
+    .tooltip-bottom {
+        top: 135%;
+        left: 50%;
+        margin-left: -60px;
+    }
+
+    /* Show the tooltip text when you mouse over the tooltip container */
+    .tooltip:hover .tooltiptext {
+        visibility: visible;
+    }
+}
+
+.adminBar-links {
+
+    margin-left: auto;
+    text-align: right;
+    padding-right: 5px;
+
+    a {
+        padding: 10px;
+    }
+
+    span {
+        white-space: nowrap;
+    }
+}
+
+.adminBar-large {
+    display:none;
+    @include breakpoint("large") {
+        display: initial;
+    }
+}
+
+.adminBar-close {
+    span {
+        padding: 10px;
+        margin-right: 5px;
+        margin-bottom: .25em;
+    }
+
+    span:hover {
+        background-color: $adminBar-contentLink-hover-color;
+        border-radius: 5px;
+    }
+
+    span svg {
+        height: 100%;
+        width: 100%;
+    }
+}
+
+.preview {
+    font-weight: 400;
+    padding-left: 9px;
+}

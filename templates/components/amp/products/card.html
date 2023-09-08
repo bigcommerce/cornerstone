@@ -1,6 +1,6 @@
 <article class="card {{#if alternate}}card--alternate{{/if}}">
     <figure class="card-figure">
-        {{#or price.non_sale_price_with_tax price.non_sale_price_without_tax}}
+        {{#or price.sale_price_with_tax.value price.sale_price_without_tax.value}}
             {{#if theme_settings.product_sale_badges}}
                 <div class="sale-sash">
                     <span class="sale-text">On Sale!</span>

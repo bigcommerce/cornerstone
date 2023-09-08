@@ -53,7 +53,17 @@
                         {{/if}}
                     </span>
                 {{/if}}
-
+                {{#if settings.show_product_reviews}}
+                    <button class="productView-reviewLink productView-reviewLink--new">
+                        <a href="{{product.url}}{{#if is_ajax}}#write_review{{/if}}"
+                           {{#unless is_ajax}}data-reveal-id="modal-review-form"{{/unless}}
+                           role="button"
+                        >
+                           {{lang 'products.reviews.new'}}
+                        </a>
+                    </button>
+                    {{> components/products/modals/writeReview}}
+                {{/if}}
             </div>
             {{product.detail_messages}}
             <dl class="productView-info">
@@ -142,7 +152,7 @@
                 {{#if theme_settings.show_custom_fields_tabs '!==' true}}
                     {{#each product.custom_fields}}
                         <dt class="productView-info-name">{{name}}:</dt>
-                        <dd class="productView-info-value">{{{value}}}</dd>
+                        <dd class="productView-info-value">{{{ sanitize value}}}</dd>
                     {{/each}}
                 {{/if}}
             </dl>
@@ -247,7 +257,7 @@
     </section>
 
     {{#if product.description}}
-        <article class="productView-description"{{#if schema}}{{#unless theme_settings.show_product_details_tabs}} itemprop="description"{{/unless}}{{/if}}>
+        <article class="productView-description"{{#if schema}} itemprop="description"{{/if}}>
             {{#if theme_settings.show_product_details_tabs}}
                 {{> components/products/description-tabs}}
             {{else}}
@@ -255,9 +265,6 @@
             {{/if}}
         </article>
     {{/if}}
-    <section class="productView-details">
-        {{> components/common/share}}
-    </section>
 </div>
 
 <div id="previewModal" class="modal modal--large" data-reveal>

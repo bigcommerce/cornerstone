@@ -17,6 +17,7 @@
     top: 0;
     transform: scaleX(1) scaleY(1) scaleZ(1);
     transform-origin: 50% 50% 0;
+    transition: background-color 800ms ease;
     width: rem-calc(50px);
     z-index: zIndex("lower");
 }
@@ -36,6 +37,23 @@
     width: rem-calc(50px);
 }
 
+.listItem-figure {
+
+    .starwrap {
+        transform: scale(0.7);
+
+        @include breakpoint("small") {
+            top: 0;
+            transform: scale(0.6);
+        }
+
+        @include breakpoint("large") {
+            top: 10px;
+            transform: scale(0.7);
+        }
+    }
+}
+
 .sale-text-burst {
     color: stencilColor("color_text_product_sale_badges");
     font-weight: 600;
@@ -45,6 +63,15 @@
     top: 20%;
     width: rem-calc(50px);
     z-index: zIndex("high");
+}
+
+.product:hover .starwrap {
+    
+    .sale-flag-star,
+    .sale-flag-star:before,
+    .sale-flag-star:after {
+        background: stencilColor("color_hover_product_sale_badges");
+    }    
 }
 
 // -----------------------------------------------------------------------------
@@ -63,13 +90,12 @@
     padding-right: spacing("half");
     padding-top: spacing("eighth") / 2;
     position: absolute;
-    transition: 800ms ease;
+    transition: background-color 800ms ease;
     z-index: zIndex("lower");
 }
 
 .product:hover .sale-flag-side {
     background: stencilColor("color_hover_product_sale_badges");
-    transition: 800ms ease;
 }
 
 // -----------------------------------------------------------------------------
@@ -89,14 +115,30 @@
     text-align: center;
     top: 25px;
     transform: rotate(-45deg);
-    transition: 800ms ease;
+    transition: background-color 800ms ease;
     width: rem-calc(119px);
     z-index: zIndex("lower");
 }
 
+.listItem-figure {
+    
+    .sale-flag-sash {
+        left: -25px;
+
+        @include breakpoint("small") {
+            top: 15px;
+        }
+
+        @include breakpoint("large") {
+            left: -15px;
+            top: 25px;
+        }
+
+    }
+}
+
 .product:hover .sale-flag-sash {
     background: stencilColor("color_hover_product_sale_badges");
-    transition: 800ms ease;
 }
 
 .product {

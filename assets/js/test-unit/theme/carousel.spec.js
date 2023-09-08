@@ -29,7 +29,10 @@ describe('carousel', () => {
 	    spyOn(jQuery.fn, 'find').and.returnValue(multipleSlidesElement);
 	    var slickSpy = spyOn(multipleSlidesElement, 'slick');
 	    carousel();
-	    expect(slickSpy).toHaveBeenCalledWith({ dots: true });   
+	    expect(slickSpy).toHaveBeenCalledWith({
+			dots: true,
+			customPaging: expect.any(Function)
+		});
     });
 
     it('should generate carousel WITHOUT dots if carousel has one slide', () => {	

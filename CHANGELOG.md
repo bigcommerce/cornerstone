@@ -2,9 +2,92 @@
 
 ## Draft
 
-## 4.5.0 (2020-03-16)
+## 4.9.0 (08-05-2020)
 
-## 4.5.0 (2020-03-16)
+## 4.9.0 (07-28-2020)
+- Added correct alt text on image change in product view. [#1747](https://github.com/bigcommerce/cornerstone/pull/1747)
+- Description tab is hidden in case of empty product descrioption. [#1746](https://github.com/bigcommerce/cornerstone/pull/1746)
+- Stencil cli updated to the latest version. [#1744](https://github.com/bigcommerce/cornerstone/pull/1744)
+- Added immediate keyboard focus for quick view modal. [#1743](https://github.com/bigcommerce/cornerstone/pull/1743)
+- Added ability to change sale badge text for merchants. [#1742](https://github.com/bigcommerce/cornerstone/pull/1742)
+- Fixed focusing for quick search aria hidden element. [#1739](https://github.com/bigcommerce/cornerstone/pull/1739)
+- Fixed 'Add To Cart' & 'Quick View' buttons appearing while tabbing. [#1738](https://github.com/bigcommerce/cornerstone/pull/1738)
+- PDP's 'Write a Review' role changed to 'button'. [#1737](https://github.com/bigcommerce/cornerstone/pull/1737)
+- Added ability to skip main content with keyboard. [#1736](https://github.com/bigcommerce/cornerstone/pull/1736)
+- Added labels for PLP pagination. [#1735](https://github.com/bigcommerce/cornerstone/pull/1735)
+- Added ability to open wishlist menu with keyboard. [#1732](https://github.com/bigcommerce/cornerstone/pull/1732)
+- Added aria label for breadcrumbs. [#1734](https://github.com/bigcommerce/cornerstone/pull/1734)
+- Email subscribe messages are readable by screen readers. [#1731](https://github.com/bigcommerce/cornerstone/pull/1731)
+- Optimize themeSettings injection. [#1730](https://github.com/bigcommerce/cornerstone/pull/1730)
+- Added aria labels to menu links. [#1729](https://github.com/bigcommerce/cornerstone/pull/1729)
+- Carousel bullets should be buttons. [#1727](https://github.com/bigcommerce/cornerstone/pull/1727)
+- Fixed causing of white space by long product descripitons. [#1723](https://github.com/bigcommerce/cornerstone/pull/1723)
+- Added 'none' options for non-required fields. [#1714](https://github.com/bigcommerce/cornerstone/pull/1714)
+- Fixed thumbnail videos behaviour on click. [#1706](https://github.com/bigcommerce/cornerstone/pull/1706)
+
+## 4.8.0 (07-20-2020)
+- Fixed Facebook button during modal scrolling behaviour. [#1724](https://github.com/bigcommerce/cornerstone/pull/1724)
+- Fixed Product Image dimensions not constrained proportionally on Cart page which can lead to element overlapping. [#1722](https://github.com/bigcommerce/cornerstone/pull/1722)
+- Added byte type on file upload options when max file size feature is enabled. [#1721](https://github.com/bigcommerce/cornerstone/pull/1721)
+- Fixed empty faceted search display message. [#1720](https://github.com/bigcommerce/cornerstone/pull/1720)
+- Updated CornerStone to Utilize Existence of sale_price property for Determining Product/Variant Sale Status [#1719](https://github.com/bigcommerce/cornerstone/pull/1719)
+- Bump easyzoom, lazysizes, sweetalert2 and whatwg-fetch versions [#1718](https://github.com/bigcommerce/cornerstone/pull/1718)
+- Fixed text logos truncating on mobile devices and smaller browser sizes. [#1717](https://github.com/bigcommerce/cornerstone/pull/1717)
+- Ability to load subcategories and expand them if there are other categories beneath it. [#1715](https://github.com/bigcommerce/cornerstone/pull/1715)
+- Changed the default layout shape for PayPal smart buttons. [#1713](https://github.com/bigcommerce/cornerstone/pull/1713)
+- Fixed Sale badge "Burst" on hover color changing behaviour. [#1712](https://github.com/bigcommerce/cornerstone/pull/1712)
+- Allowing carousel image to stretch distorts image. [#1711](https://github.com/bigcommerce/cornerstone/pull/1711)
+- Fixed cart content make gift certificate alt and title translatable. [#1709](https://github.com/bigcommerce/cornerstone/pull/1709)
+- Added Optional Custom Options (Modifiers). [#1708](https://github.com/bigcommerce/cornerstone/pull/1708)
+- Fixed Product List Options Max Height issue. [#1707](https://github.com/bigcommerce/cornerstone/pull/1707)
+- Suppressing 3rd party Related Videos on YouTube videos. [#1704](https://github.com/bigcommerce/cornerstone/pull/1704)
+- Enabling Facebook Likes causes iframe overlap in WYSIWYG. [#1702](https://github.com/bigcommerce/cornerstone/pull/1702)
+- Fixed misalignment of Product Listings on Category pages when using the list Display Style. [#1701](https://github.com/bigcommerce/cornerstone/pull/1701)
+- Fixed Product Reviews display behaviour. [#1699](https://github.com/bigcommerce/cornerstone/pull/1699)
+- Removed unnecessary horizontal scrolling on some resolutions. [#1698](https://github.com/bigcommerce/cornerstone/pull/1698)
+- Fixes the Sale badge so that it displays in list views. [#1694](https://github.com/bigcommerce/cornerstone/pull/1694)
+- Added modal before switching currencies. [#1668](https://github.com/bigcommerce/cornerstone/pull/1668)
+
+## 4.7.0 (06-26-2020)
+- Document polyfilling strategy in readme. [#1696](https://github.com/bigcommerce/cornerstone/pull/1696)
+- Optimize polyfills to reduce download sizes on newer browsers as a way to improve performance. [#1669](https://github.com/bigcommerce/cornerstone/pull/1669)
+- Fixed the expand/collapse behavior for Custom filters thad do not have an '&' in their name. [#1693](https://github.com/bigcommerce/cornerstone/pull/1693)
+- Line breaks are getting stripped from 'Return Instructions' printed to the storefront. [#1692](https://github.com/bigcommerce/cornerstone/pull/1692)
+- Fixes Acount Orders Ship/Bill page to correctly display '&' instead of the encoded version: '&amp'. [#1691](https://github.com/bigcommerce/cornerstone/pull/1691)
+- Fixed the expanding/collapsing behavior for Product Filters on category, brand, and search result pages. [#1689](https://github.com/bigcommerce/cornerstone/pull/1689)
+- Fix author field on Product Reviews from displaying HTML entities in place of special characters. [#1688](https://github.com/bigcommerce/cornerstone/pull/1688)
+- Display wallet on drop-down section from cart [#1687](https://github.com/bigcommerce/cornerstone/pull/1687)
+
+
+## 4.6.1 (05-28-2020)
+No actual PR updates. Fixes config values.
+
+## 4.6.0 (2020-05-28)
+-Account: Product option special characters are not rendered on invoice, order contents and returns [#1681|https://github.com/bigcommerce/cornerstone/pull/1681]
+-Bump lazysizes to 5.2.1 [#1682|https://github.com/bigcommerce/cornerstone/pull/1682]
+-Add rel="noopener" to social links [#1678|https://github.com/bigcommerce/cornerstone/pull/1678]
+-Display Klarna logo in payment icons [#1680|https://github.com/bigcommerce/cornerstone/pull/1680]
+-Add a better admin bar [#1664|https://github.com/bigcommerce/cornerstone/pull/1664]
+-Update package-lock.json [#1676|https://github.com/bigcommerce/cornerstone/pull/1676]
+
+## 4.5.4 (05-13-2020)
+-Bump jQuery version, expose jquery globally so it doesn't need to be loaded separately [#1671|https://github.com/bigcommerce/cornerstone/pull/1671]
+-Revert Add handlebars class/style variables for account fields [#1674|https://github.com/bigcommerce/cornerstone/pull/1674]
+
+## 4.5.3 (05-12-2020)
+
+## 4.5.2 (2020-05-12)
+
+## 4.5.1 (2020-05-11)
+-Added SchemaTranslations.json for cornerstone [#1644|https://github.com/bigcommerce/cornerstone/pull/1644]
+-Facets with & symbol works now [#1654|https://github.com/bigcommerce/cornerstone/pull/1654]
+-Add handlebars class/style variables for account fields [#1655|https://github.com/bigcommerce/cornerstone/pull/1655]
+-Bump lazysizes to 5.2.0 [#1646|https://github.com/bigcommerce/cornerstone/pull/1646]
+-Fix logo in admin bar [#1657|https://github.com/bigcommerce/cornerstone/pull/1657]
+-Special characters to render properly on the cart modal pop up [#1658|https://github.com/bigcommerce/cornerstone/pull/1658]
+-Reset cart quantity to 0 if we get a 404 for the cart [#1661|https://github.com/bigcommerce/cornerstone/pull/1661]
+-Fixed the special characters display issue in the search results page [#1662|https://github.com/bigcommerce/cornerstone/pull/1662]
+-Special characters are not rendered for product review [#1665|https://github.com/bigcommerce/cornerstone/pull/1665]
 
 ## 4.5.0 (2020-03-16)
 - Fixed the check for max length in create account form fields [#1647](https://github.com/bigcommerce/cornerstone/pull/1647)

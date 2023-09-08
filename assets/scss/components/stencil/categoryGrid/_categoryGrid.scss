@@ -24,9 +24,22 @@
 
         .card-img-container {
             max-width: 100%;
+            overflow: hidden;
 
             &:after {
                 padding-bottom: unset;
+            }
+
+            img.lazyloaded {
+                transition: all .7s ease;
+            }
+
+            @include breakpoint("medium") {
+                &:hover {
+                    img.lazyloaded {
+                        transform: scale(1.2);
+                    }
+                }
             }
         }
 

@@ -20,7 +20,7 @@
     @include nav($style: "navBar", $wrapper: "nav");
     @include verticalPositionMiddle("absolute");
     right: 0;
-    top: 33px; // 2
+    top: 26px; // 2
     width: 100%; // 4
     z-index: zIndex("lowest"); // 5.
 
@@ -31,7 +31,6 @@
         top: auto;
         transform: none;
         z-index: zIndex("high");
-        background-color: stencilColor("color-sitePrimary"); // #f37160
     }
 
     .dropdown-menu {
@@ -75,8 +74,8 @@
 
 .navUser-action {
     color: stencilColor("navUser-color");
-    font-weight: fontWeight("bold");
-    padding: spacing("half") spacing("half");
+    font-weight: fontWeight("normal");
+    padding: spacing("base") spacing("half");
     text-decoration: none;
     text-transform: uppercase;
 
@@ -86,14 +85,10 @@
 
         // scss-lint:disable NestingDepth
         svg {
-            fill: stencilColor("navUser-color-hover");
             stroke: stencilColor("navUser-color-hover");
+            fill: stencilColor("navUser-color-hover");
         }
         // scss-lint:enable NestingDepth
-
-        @include breakpoint("medium") {
-            color: stencilColor("navUser-color-hover");
-        }
     }
 
     .icon {
@@ -102,13 +97,9 @@
     }
 
     svg {
-        fill: stencilColor("navUser-color");
         stroke: stencilColor("navUser-color");
+        fill: stencilColor("navUser-color");
         transition: all 0.15s ease;
-    }
-
-    @include breakpoint("medium") {
-        color: stencilColor("navUser-color-desktop");
     }
 }
 
@@ -170,9 +161,12 @@
 
 .navUser-item--cart {
     display: block;
-
+    
     .navUser-action {
         color: stencilColor("navUser-color");
+        position: relative;
+        padding: 6px 0.78571rem;
+        margin-top: 12px;
 
         // scss-lint:disable NestingDepth
         &:hover,
@@ -181,7 +175,7 @@
         }
 
         @include breakpoint("medium") {
-            color: stencilColor("navUser-color-desktop");
+            margin-top: 0;
         }
     }
 
@@ -220,22 +214,11 @@
 }
 
 .navUser-item-cartLabel {
-    display: none;
+    font-weight: fontWeight("bold");
+    display: inline;
 
     @include breakpoint("small") {
         display: inline;
-    }
-}
-
-.navUser-item-cartIcon {
-    display: none;
-    position: absolute;
-    right: 11px;
-    top: 6px;
-    z-index: -1;
-
-    &.has-items {
-        display: block;
     }
 }
 
@@ -302,12 +285,14 @@
 .dropdown--quickSearch {
     background-color: $dropdown--quickSearch-backgroundColor;
     padding: spacing("single") 0;
+    display: none;
 
     @include breakpoint("small") {
         padding: spacing("double");
     }
 
     &.is-open {
+        display: initial;
         // scss-lint:disable ImportantRule
         left: 0 !important; // 1
         outline: none;
@@ -348,22 +333,38 @@
 // -----------------------------------------------------------------------------
 
 .countPill {
-    color: color("whites", "bright");
+    // background-color: stencilColor("navUser-indicator-backgroundColor");
+    // border-radius: 50%;
+    color: color("whites", "lighter");
     display: none;
-    font-size: fontSize("tiny");
+    font-size: fontSize("smaller");
     font-weight: fontWeight("bold");
     height: 20px; // 1
     line-height: 20px; // 1
-    margin-left: spacing("eighth");
+    // margin-left: spacing("eighth");
     text-align: center;
     width: 20px; // 1
+    position: absolute;
+    top: 14px;
+    left: 16px;
 }
 
 .countPill--positive {
-    display: inline-block;
+    display: block;
 }
 
 .countPill--alt {
     background-color: color("greys", "lighter");
     color: color("greys", "darker");
 }
+
+// .navUser-item-cartIcon {	
+//     // display: none;	
+//     position: absolute;
+//     right: 11px;	
+//     top: 6px;	
+//     z-index: -1;	
+//     &.has-items {	
+//         display: block;	
+//     }	
+// }

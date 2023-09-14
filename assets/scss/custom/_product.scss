@@ -1,12 +1,23 @@
 //breadcrumbs
+.breadcrumbs {
+    display: block !important; //overwrite hiding breadcrumbs on mobile
+    margin-top: 30px;
+    margin-bottom: 0;
+}
+
 .breadcrumbs a {
     color: $black;
+}
+
+.breadcrumb.is-active {
+    display: none; // Hide active breadcrumb on product pages
 }
 
 .productView {
     letter-spacing: .04em;
     max-width: 100%;
     margin: 0;
+    padding-top: 0;
 }
 
 h1.productView-title {
@@ -61,6 +72,14 @@ h1.productView-title {
     font-weight: 600;
 }
 
+.price {
+    color: $dark-blue;
+
+    &.price--rrp {
+        color: $black;
+    }
+}
+
 .productView-product {
     border: none;
     padding-bottom: 0;
@@ -76,6 +95,11 @@ h1.productView-title {
 
 .productView-quantity {
     width: fit-content;
+    margin: 0 auto;
+
+    @include gt(900px) {
+        margin-left: 0;
+    }
     input {
         padding: 5px 0;
         border: 1px solid $dark_grey;
@@ -237,16 +261,18 @@ h1.productView-title {
 }
 
 .product--subtitle {
+    font-family: $interstate-condensed;
     line-height: 1.5;
     text-align: center;
     overflow: hidden;
-  }
-  .product--subtitle span {
+}
+
+.product--subtitle span {
     display: inline-block;
     position: relative;  
     font-weight: 800;
     text-transform: uppercase;
-  }
+}
   .product--subtitle span:before,
   .product--subtitle span:after {
     content: "";
@@ -323,10 +349,24 @@ h1.productView-title {
     }
   }
 
+
+  .productCarousel {
+    margin: 0 30px 0 0;
+  }
+
   .productCarousel-slide {
-      .card-body {
-          min-height: 200px;
+        height: auto;
+        padding: 10px;
+
+      .card {
+        height: 100%;
+        box-shadow: 0 0 6px rgba(0,0,0,.2);
       }
+  }
+
+  .productCarousel .slick-track {
+    display: flex;
+    align-items: stretch; // Make all cards same height
   }
 
   .productView-link {
@@ -336,4 +376,41 @@ h1.productView-title {
   // Yotpo Tweaks
   .yotpo-stars {
       padding-right: 10px !important;
+  }
+
+  // Add to cart modal
+  .previewCart {
+    .productView-image {
+        height: 330px;
+        min-height: 0;
+        margin-bottom: 20px;
+    }
+
+    .productView-brand {
+        display: none;
+    }
+
+    .productView-price {
+        font-family: $interstate-condensed;
+        font-weight: 300;
+        font-size: 16px;
+        line-height: 1.12;
+    }
+
+    .productView-img-container {
+        width: 100%;
+        height: 100%;
+    }
+
+    .productView-details {
+        width: 100%;
+    }
+
+    .productView-title {
+        font-family: $interstate-condensed;
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 1.12;
+        text-transform: uppercase;  
+    }
   }

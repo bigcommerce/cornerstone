@@ -1,0 +1,576 @@
+---
+cart: true
+---
+{{#partial "page"}}
+<div class="page">
+
+  <section class="banner" style="background-image: url({{cdn 'img/brands/brands-banner.jpg'}});">
+    <h1 class="banner__title">Compass 800 Series Door Pull</h1>
+    <p class="banner__subtitle">Fill in the form to get your custom door pull</p>
+  </section>
+</div>
+
+<form onsubmit="handleSubmit(event)" id="compass-configurator">
+  <h2>Grip Selection</h2>
+  <div id="grip-type-container">
+    <label for="grip-type">Grip Type</label>
+    <select name="grip-type" id="grip-type" onchange="handleGripTypeChange(event)">
+      <option value="straight">Straight</option>
+      <option value="round-ends">Round Ends - 14.75″</option>
+      <option value="semi-circle">Semi-circle - 10.875″</option>
+      <option value="arc">Arc - 14.25″</option>
+    </select>
+  </div>
+
+  <div id="grip-length-container">
+    <label for="grip-length">Grip Length (in inches)</label>
+    <input name="grip-length" type="number" id="grip-length" name="grip-length" min="6" max="92">
+  </div>
+
+  <div id="grip-finish-container">
+    <label for="grip-finish">Grip Finish</label>
+    <select name="grip-finish" id="grip-finish">
+      <option value="satin-stainless">Satin Stainless</option>
+      <option value="polished-stainless">Polished Stainless</option>
+      <option value="stippled-stainless">Stippled Stainless Steel</option>
+    </select>
+  </div>
+
+  <div id="grip-cc-container">
+    <label for="grip-cc">Grip Center to Center Measurement</label>
+    <input type="number" name="grip-cc" id="grip-cc" />
+  </div>
+
+  <div id="grip-mount-container">
+    <label for="grip-mount">Grip Mount</label>
+    <select name="grip-mount" id="grip-mount" onchange="handleGripMountChange(event)">
+      <option value="single">Single</option>
+      <option value="back-to-back">Back-on-Back</option>
+    </select>
+  </div>
+
+  <h2>Standoff Selection</h2>
+
+  <div id="standoff-type-container">
+    <label for="standoff-type">Standoff Type</label>
+    <select name="standoff-type" id="standoff-type">
+      <option value="ring">Ring</option>
+      <option value="double-ring">Double Ring</option>
+      <option value="clamshell">Clamshell</option>
+      <option value="bullet">Bullet</option>
+      <option value="cylinder">Cylinder</option>
+    </select>
+  </div>
+  
+
+  <div id="standoff-finish-container">
+    <label for="standoff-finish">Standoff Finish</label>
+    <select name="standoff-finish" id="standoff-finish">
+      <option value="satin-stainless">Satin Stainless</option>
+      <option value="polished-stainless">Polished Stainless</option>
+      <option value="stippled-stainless">Stippled Stainless Steel</option>
+      <option value="satin-bronze">Satin Bronze</option>
+      <option value="polished-bronze">Polished Bronze</option>
+      <option value="oil-bronze">Oil Rubbed Bronze</option>
+      <option value="stippled-bronze">Stippled Bronze</option>
+      <option value="stippled-oil-bronze">Stippled Oil Rubbed Bronze</option>
+    </select>
+  </div>
+
+  <h2>Endcaps</h2>
+  <div id="endcap-finish-container">
+    <label for="endcap-finish">Endcap Finish</label>
+    <select name="endcap-finish" id="endcap-finish">
+      <option value="satin-stainless">Satin Stainless</option>
+      <option value="polished-stainless">Polished Stainless</option>
+      <option value="stippled-stainless">Stippled Stainless Steel</option>
+      <option value="satin-bronze">Satin Bronze</option>
+      <option value="polished-bronze">Polished Bronze</option>
+      <option value="oil-bronze">Oil Rubbed Bronze</option>
+      <option value="stippled-bronze">Stippled Bronze</option>
+      <option value="stippled-oil-bronze">Stippled Oil Rubbed Bronze</option>
+    </select>
+  </div>
+
+  <button type="submit" class="btn">Submit</button>
+</form>
+
+<div id="results">
+  <h2>Results</h2>
+  <p>Grip Type: <span id="results--grip-type"></span></p>
+  <p>Grip Length:<span id="results--grip-length"></span></p>
+  <p>Grip Finish: <span id="results--grip-finish"></span></p>
+  <p>Grip Center to Center: <span id="results--grip-cc"></span></p>
+  <p>Total Standoffs: <span id="results--total-standoffs"></span></p>
+  <p>Standoff Type: <span id="results--standoff-type"></span></p>
+  <p>Standoff Finish: <span id="results--standoff-finish"></span></p>
+  <p>Total Endcaps: <span id="results--total-endcaps"></span></p>
+  <p>Endcap Finish: <span id="results--endcap-finish"></span></p>
+  <h2>Total price: <span id="results--total-price"></span></h2>
+  <h2>List of SKUS to purchase:</h2><ul id="results--total-skus"></ul>
+</div>
+
+<button class="btn" onclick="handleAddToCart()">Add all to cart</button>
+
+{{/partial}}
+
+{{> layout/base}}
+
+<script>
+
+  const gripData = {
+    'small': {
+      'satin-stainless': {
+        'price': 155,
+        'sku': '920001-001'
+      },
+      'polished-stainless': {
+        'price': 155,
+        'sku': '920001-002'
+      },
+      'stippled-stainless': {
+        'price': 155,
+        'sku': '920001-003'
+      }
+    },
+    'medium': {
+      'satin-stainless': {
+        'price': 222,
+        'sku': '920002-001'
+      },
+      'polished-stainless': {
+        'price': 222,
+        'sku': '920002-002'
+      },
+      'stippled-stainless': {
+        'price': 222,
+        'sku': '920002-003'
+      }
+    },
+    'large': {
+      'satin-stainless': {
+        'price': 264,
+        'sku': '920003-001'
+      },
+      'polished-stainless': {
+        'price': 264,
+        'sku': '920003-002'
+      },
+      'stippled-stainless': {
+        'price': 264,
+        'sku': '920003-003'
+      }
+    },
+    'giant': {
+      'satin-stainless': {
+        'price': 298,
+        'sku': '920046-001'
+      },
+      'polished-stainless': {
+        'price': 330,
+        'sku': '920046-002'
+      },
+      'stippled-stainless': {
+        'price': 330,
+        'sku': '920046-003'
+      }
+    },
+    'round-ends': {
+      'satin-stainless': {
+        'price': 155,
+        'sku': '920004-001'
+      },
+      'polished-stainless': {
+        'price': 155,
+        'sku': '920004-002'
+      },
+      'stippled-stainless': {
+        'price': 155,
+        'sku': '920004-003'
+      }
+    },
+    'semi-circle': {
+      'satin-stainless': {
+        'price': 188,
+        'sku': '920005-001'
+      },
+      'polished-stainless': {
+        'price': 188,
+        'sku': '920005-002'
+      },
+      'stippled-stainless': {
+        'price': 188,
+        'sku': '920005-003'
+      }
+    },
+    'arc': {
+      'satin-stainless': {
+        'price': 188,
+        'sku': '920006-001'
+      },
+      'polished-stainless': {
+        'price': 188,
+        'sku': '920006-002'
+      },
+      'stippled-stainless': {
+        'price': 188,
+        'sku': '920006-003'
+      }
+    },
+  };
+
+  const standoffData = {
+    'ring': {
+      'satin-stainless': {
+        'price': 89,
+        'sku': '920010-001'
+      },
+      'polished-stainless': {
+        'price': 89,
+        'sku': '920010-002'
+      },
+      'stippled-stainless': {
+        'price': 89,
+        'sku': '920010-003'
+      },
+      'satin-bronze': {
+        'price': 121,
+        'sku': '920010-004'
+      },
+      'polished-bronze': {
+        'price': 121,
+        'sku': '920010-005'
+      },
+      'oil-bronze': {
+        'price': 121,
+        'sku': '920010-006'
+      },
+      'stippled-bronze': {
+        'price': 121,
+        'sku': '920010-007'
+      },
+      'stippled-oil-bronze': {
+        'price': 121,
+        'sku': '920010-010'
+      },
+    },
+    'double-ring': {
+      'satin-stainless': {
+        'price': 103,
+        'sku': '920011-001'
+      },
+      'polished-stainless': {
+        'price': 103,
+        'sku': '920011-002'
+      },
+      'stippled-stainless': {
+        'price': 103,
+        'sku': '920011-003'
+      },
+      'satin-bronze': {
+        'price': 103,
+        'sku': '920011-004'
+      },
+      'polished-bronze': {
+        'price': 162,
+        'sku': '920011-005'
+      },
+      'oil-bronze': {
+        'price': 162,
+        'sku': '920011-006'
+      },
+      'stippled-bronze': {
+        'price': 162,
+        'sku': '920011-007'
+      },
+      'stippled-oil-bronze': {
+        'price': 162,
+        'sku': '920011-010'
+      },
+    },
+    'clamshell': {
+      'satin-stainless': {
+        'price': 115,
+        'sku': '920012-001'
+      },
+      'polished-stainless': {
+        'price': 115,
+        'sku': '920012-002'
+      },
+      'stippled-stainless': {
+        'price': 115,
+        'sku': '920012-003'
+      },
+      'satin-bronze': {
+        'price': 180,
+        'sku': '920012-004'
+      },
+      'polished-bronze': {
+        'price': 180,
+        'sku': '920012-005'
+      },
+      'oil-bronze': {
+        'price': 180,
+        'sku': '920012-006'
+      },
+      'stippled-bronze': {
+        'price': 180,
+        'sku': '920012-007'
+      },
+      'stippled-oil-bronze': {
+        'price': 180,
+        'sku': '920012-010'
+      },
+    },
+    'bullet': {
+      'satin-stainless': {
+        'price': 93,
+        'sku': '920013-001'
+      },
+      'polished-stainless': {
+        'price': 93,
+        'sku': '920013-002'
+      },
+      'stippled-stainless': {
+        'price': 93,
+        'sku': '920013-003'
+      },
+      'satin-bronze': {
+        'price': 146,
+        'sku': '920013-004'
+      },
+      'polished-bronze': {
+        'price': 146,
+        'sku': '920013-005'
+      },
+      'oil-bronze': {
+        'price': 146,
+        'sku': '920013-006'
+      },
+      'stippled-bronze': {
+        'price': 146,
+        'sku': '920013-007'
+      },
+      'stippled-oil-bronze': {
+        'price': 146,
+        'sku': '920013-010'
+      },
+    },
+    'cylinder': {
+      'satin-stainless': {
+        'price': 103,
+        'sku': '920014-001'
+      },
+      'polished-stainless': {
+        'price': 103,
+        'sku': '920014-002'
+      },
+      'stippled-stainless': {
+        'price': 103,
+        'sku': '920014-003'
+      },
+      'satin-bronze': {
+        'price': 162,
+        'sku': '920014-004'
+      },
+      'polished-bronze': {
+        'price': 162,
+        'sku': '920014-005'
+      },
+      'oil-bronze': {
+        'price': 162,
+        'sku': '920014-006'
+      },
+      'stippled-bronze': {
+        'price': 162,
+        'sku': '920014-007'
+      },
+      'stippled-oil-bronze': {
+        'price': 162,
+        'sku': '920014-010'
+      },
+    }
+  }
+
+  const endcapData = {
+    'satin-stainless': {
+      'price': 60,
+      'sku': 'DT1300-00-32D'
+    },
+    'polished-stainless': {
+      'price': 60,
+      'sku': 'DT1300-00-032'
+    },
+    'stippled-stainless': {
+      'price': 60,
+      'sku': 'DT1300-00-SSS'
+    },
+    'satin-bronze': {
+      'price': 81,
+      'sku': 'DT1300-00-010'
+    },
+    'polished-bronze': {
+      'price': 81,
+      'sku': 'DT1300-00-US9'
+    },
+    'oil-bronze': {
+      'price': 81,
+      'sku': 'DT1300-00-10B'
+    },
+    'stippled-bronze': {
+      'price': 81,
+      'sku': 'DT1300-00-SBR'
+    },
+    'stippled-oil-bronze': {
+      'price': 81,
+      'sku': 'DT1300-00-S10'
+    },
+  }
+
+  function getGripSize (gripType, gripLength) {
+    if (gripType != 'straight') {
+      return gripType;
+    }
+    if (gripLength <= 14.75) {
+      return 'small'
+    } else if (gripLength > 14.75 && gripLength <= 34.75) {
+      return 'medium'
+    } else if (gripLength > 34.75 && gripLength <= 64.75) {
+      return 'large'
+    } else if (gripLength > 64.75) {
+      return 'giant'
+    }
+  }
+
+  function handleGripTypeChange(event) {
+    const gripType = event.target.value;
+    if (gripType === 'straight') {
+      document.querySelector('#grip-length').value = '';
+      document.querySelector('#grip-length').removeAttribute('readonly');
+    } else {
+      document.querySelector('#grip-length').setAttribute('readonly', true);
+      switch(gripType) {
+        case 'round-ends':
+          document.querySelector('#grip-length').value = 14.75;
+          break;
+        case 'semi-circle':
+          document.querySelector('#grip-length').value = 10.875;
+          break;
+        case 'arc':
+          document.querySelector('#grip-length').value = 14.25;
+          break;
+      }
+    }
+  }
+
+  function handleGripMountChange(event) {
+    gripMount = event.target.value;
+    if (gripMount === 'back-to-back') {
+      document.querySelector('#endcap-finish-container').style.display = 'none';
+    } else {
+      document.querySelector('#endcap-finish-container').style.display = 'block';
+    }
+  }
+
+  const skuList = [];
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const data = {};
+	  for (var key of formData.keys()) {
+		  data[key] = formData.get(key);
+	  }
+    [gripType, gripLength, gripFinish, gripCC, gripMount, standoffType, standoffFinish, endcapFinish] = Object.values(data);
+
+    let price = 0;
+
+    // Calculate grips
+    document.querySelector('#results--grip-type').textContent = gripType;
+    document.querySelector('#results--grip-length').textContent = gripLength;
+    document.querySelector('#results--grip-finish').textContent = gripFinish;
+    document.querySelector('#results--grip-cc').textContent = gripCC;
+
+    
+    const gripPrice = gripData[getGripSize(gripType, gripLength)][gripFinish].price;
+    const gripSku = gripData[getGripSize(gripType, gripLength)][gripFinish].sku;
+    skuList.push(gripSku);
+    price += gripPrice;
+    const gripNode = document.createElement('li');
+    gripNode.textContent = `Grip: ${gripSku} - $${gripPrice}`;
+    document.querySelector('#results--total-skus').append(gripNode);
+
+    // Calculate standoffs
+    let totalStandoffs = 2;
+    if (gripCC > 30 && gripCC < 60) {
+      totalStandoffs = 3;
+    } else if (gripCC > 60) {
+      totalStandoffs = 4;
+    }
+    document.querySelector('#results--total-standoffs').textContent = totalStandoffs;
+    document.querySelector('#results--standoff-type').textContent = standoffType;
+    document.querySelector('#results--standoff-finish').textContent = standoffFinish;
+
+    const standoffPrice = standoffData[standoffType][standoffFinish].price;
+    const standoffSku = standoffData[standoffType][standoffFinish].sku;
+    skuList.push(standoffSku);
+    price += (standoffPrice * totalStandoffs);
+    const standoffNode = document.createElement('li');
+    standoffNode.textContent = `Standoff: ${standoffSku} - $${standoffPrice} x ${totalStandoffs}`;
+    document.querySelector('#results--total-skus').append(standoffNode);
+
+    // Calculate endcaps
+    if (gripMount === 'back-to-back') {
+      document.querySelector('#results--endcap-finish').textContent = 'n/a';
+      document.querySelector('#results--total-endcaps').textContent = 'n/a';
+    } else {
+      totalEndcaps = totalStandoffs;
+      document.querySelector('#results--endcap-finish').textContent = endcapFinish;
+      document.querySelector('#results--total-endcaps').textContent = totalEndcaps;
+
+      const endcapPrice = endcapData[endcapFinish].price;
+      const endcapSku = endcapData[endcapFinish].sku;
+      skuList.push(endcapSku);
+      price += (endcapPrice * totalEndcaps);
+      const endcapNode = document.createElement('li');
+      endcapNode.textContent = `Endcap: ${endcapSku} - $${endcapPrice} x ${totalEndcaps}`;
+      document.querySelector('#results--total-skus').append(endcapNode);
+    }
+
+    // Final price
+    document.querySelector('#results--total-price').textContent = `$${price}`;
+  }
+  
+  async function addToCart() {
+    let response = await fetch('/cart.php?action=add&sku=Atlas-EMMTR-BRN');
+    let data = await response.json();
+    console.log(data);
+  }
+
+  function handleAddToCart() {
+    console.log(skuList)
+    
+    const options = {method: 'GET', headers: {'Content-Type': 'application/json'}};
+
+    fetch('/api/storefront/carts', options)
+      .then(response => response.json())
+      .then(response => {
+        const route = `/api/storefront/carts/${response[0].id}/items`;
+
+        fetch(route, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+              "lineItems": [
+                {
+                  "quantity": 1,
+                  "productId": 444271,
+                }
+              ]
+            })
+          }).then(response => response.json())
+          .then(response => console.log(response))
+      })
+      .catch(err => console.error(err));
+  }
+</script>

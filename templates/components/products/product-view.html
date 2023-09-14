@@ -1,278 +1,514 @@
-{{inject 'outOfStockDefaultMessage' (lang 'products.out_of_stock_default_message')}}
-
-<div class="productView"
-    data-event-type="product"
-    data-entity-id="{{product.id}}"
-    data-name="{{product.title}}"
-    data-product-category="
-    {{#each product.category}}
-        {{#if @last}}{{this}}{{else}}{{this}}, {{/if}}
-    {{/each}}"
-    data-product-brand="{{product.brand.name}}"
-    data-product-price="
-    {{#or customer (unless settings.hide_price_from_guests)}}
-        {{#if product.price.with_tax}}
-            {{product.price.with_tax.value}}
-        {{else}}
-            {{product.price.without_tax.value}}
-        {{/if}}
-    {{else}}
-        {{lang 'common.login_for_pricing'}}
-    {{/or}}"
-    data-product-variant="single-product-option">
-
+<div class="productView" {{#if settings.data_tag_enabled}} data-event-type="product" data-entity-id="{{product.id}}" data-name="{{product.title}}" data-product-category="{{#each product.category}}{{#if @last}}{{this}}{{else}}{{this}}, {{/if}}{{/each}}" data-product-brand="{{product.brand.name}}" data-product-price="{{#if product.price.with_tax}}{{product.price.with_tax.value}}{{else}}{{product.price.without_tax.value}}{{/if}}" data-product-variant="single-product-option"{{/if}}>
     {{#each product.reviews.messages}}
-        {{#if error}}
-            {{> components/common/alert/alert-error error}}
-        {{/if}}
-        {{#if success}}
-            {{> components/common/alert/alert-success success}}
-        {{/if}}
-    {{/each}}
-
-    <section class="productView-images" data-image-gallery>
-        {{!--
-            Note that these image sizes are coupled to image sizes used in /assets/js/theme/common/product-details.js
-            for variant/rule image replacement
-        --}}
-        {{#if product.images.length '>' 1 }}
-        {{> components/carousel-content-announcement}}
-        {{/if}}
-        <figure class="productView-image"
-                data-image-gallery-main
-                {{#if product.main_image}}
-                data-zoom-image="{{getImageSrcset product.main_image (cdn theme_settings.default_image_product) 1x=theme_settings.zoom_size }}"
-                {{/if}}
-                >
-            <div class="productView-img-container">
-                {{!-- Remove the surrounding a-element if there is no main image. --}}
-                {{#if product.main_image}}
-                    <a href="{{getImageSrcset product.main_image (cdn theme_settings.default_image_product) 1x=theme_settings.zoom_size}}"
-                        target="_blank">
-                {{/if}}
-                {{> components/common/responsive-img
-                    image=product.main_image
-                    class="productView-image--default"
-                    fallback_size=theme_settings.product_size
-                    lazyload=theme_settings.lazyload_mode
-                    default_image=theme_settings.default_image_product
-                    otherAttributes="data-main-image"
-                }}
-                {{!-- Remove the surrounding a-element if there is no main image. --}}
-                {{#if product.main_image}}
-                    </a>
-                {{/if}}
-            </div>
-        </figure>
-        <ul class="productView-thumbnails"{{#gt product.images.length 5}} data-slick='{
-                "infinite": false,
-                "mobileFirst": true,
-                "dots": false,
-                "accessibility": false,
-                "slidesToShow": 5,
-                "slidesToScroll": 5
-            }'{{/gt}}>
-            {{#each product.images}}
-                <li class="productView-thumbnail">
-                    <a
-                        class="productView-thumbnail-link"
-                        href="{{getImageSrcset this (cdn ../theme_settings.default_image_product) 1x=../theme_settings.zoom_size}}"
-                        data-image-gallery-item
-                        data-image-gallery-new-image-url="{{getImageSrcset this (cdn ../theme_settings.default_image_product) 1x=../theme_settings.product_size}}"
-                        data-image-gallery-new-image-srcset="{{getImageSrcset this use_default_sizes=true}}"
-                        data-image-gallery-zoom-image-url="{{getImageSrcset this (cdn ../theme_settings.default_image_product) 1x=../theme_settings.zoom_size}}"
-                    >
-                    {{> components/common/responsive-img
-                        image=this
-                        fallback_size=../theme_settings.productview_thumb_size
-                        lazyload=../theme_settings.lazyload_mode
-                    }}
-                    </a>
-                </li>
-            {{/each}}
-        </ul>
-    </section>
-
-    <section class="productView-details product-data">
-        <div class="productView-product">
-            <h1 class="productView-title">{{product.title}}</h1>
-            {{#if product.brand}}
-                <h2 class="productView-brand">
-                    <a href="{{product.brand.url}}"><span>{{product.brand.name}}</span></a>
-                </h2>
+            {{#if error}}
+                {{> components/common/alert/alert-error error}}
             {{/if}}
-            {{#if product.call_for_price}}
-                <p class="productView-price">
-                    <span>{{product.call_for_price}}</span>
-                </p>
+            {{#if success}}
+                {{> components/common/alert/alert-success success}}
             {{/if}}
-            <div class="productView-price">
-                {{#or customer (unless settings.hide_price_from_guests)}}
-                    {{> components/products/price price=product.price}}
-                {{else}}
-                    {{> components/common/login-for-pricing}}
-                {{/or}}
-            </div>
-            {{{region name="product_below_price"}}}
-            <div class="productView-rating">
-                {{#if settings.show_product_rating}}
-                    {{> components/products/ratings rating=product.rating}}
-                    {{#if product.num_reviews '>' 0}}
-                        <a href="{{product.url}}{{#if is_ajax}}#product-reviews{{/if}}" id="productReview_link">
-                            {{lang 'products.reviews.link_to_review' total=product.num_reviews}}
-                        </a>
-                    {{else}}
-                        <span>{{lang 'products.reviews.link_to_review' total=product.num_reviews}}</span>
-                    {{/if}}
+        {{/each}}
+    
+        <section class="productView-details">
+            <div class="productView-product">
+                <h1 class="productView-title" {{#if schema}}itemprop="name"{{/if}}>{{product.title}}</h1>
+                {{#if product.brand}}
+                    <h2 class="productView-brand"{{#if schema}} itemprop="brand" itemscope itemtype="http://schema.org/Brand"{{/if}}>
+                        <a href="{{product.brand.url}}"{{#if schema}} itemprop="url"{{/if}}><span{{#if schema}} itemprop="name"{{/if}}>{{product.brand.name}}</span></a>
+                    </h2>
                 {{/if}}
-                {{#if settings.show_product_reviews}}
-                    <a href="{{product.url}}{{#if is_ajax}}#write_review{{/if}}"
-                       class="productView-reviewLink productView-reviewLink--new"
-                       {{#unless is_ajax}}data-reveal-id="modal-review-form"{{/unless}}
-                       role="button"
-                    >
-                       {{lang 'products.reviews.new'}}
-                    </a>
-                    {{#unless is_ajax}}
-                        {{> components/products/modals/writeReview}}
-                    {{/unless}}
+                 {{#if product.brand.name '==' 'Hafele'}}
+                    <p class="alert"><b>NOTE:</b> Hafele was recently the victim of a worldwide ransomware attack that took down their business for almost a month. We are still noticing a slowdown in shipping times as they work to recover. Orders are being shipped but please allow as much as a week to 10 days for processing orders until further notice.</p>
                 {{/if}}
-            </div>
-            {{product.detail_messages}}
-            <dl class="productView-info">
-                <dt class="productView-info-name sku-label"{{#unless product.sku}} style="display: none;"{{/unless}}>{{lang 'products.sku'}}</dt>
-                <dd class="productView-info-value" data-product-sku>{{product.sku}}</dd>
-                <dt class="productView-info-name upc-label"{{#unless product.upc}} style="display: none;"{{/unless}}>{{lang 'products.upc'}}</dt>
-                <dd class="productView-info-value" data-product-upc>{{product.upc}}</dd>
-                {{#if product.condition}}
-                    <dt class="productView-info-name">{{lang 'products.condition'}}</dt>
-                    <dd class="productView-info-value">{{product.condition}}</dd>
+                {{#if product.sku}}
+                    <p class="productView-sku"{{#if schema}} itemprop="sku" itemscope itemtype="http://schema.org/Sku"{{/if}}>
+                        SKU: {{product.sku}}
+                    </p>
                 {{/if}}
-                {{#if product.availability}}
-                    <dt class="productView-info-name">{{lang 'products.availability'}}</dt>
-                    <dd class="productView-info-value">{{product.availability}}</dd>
-                {{/if}}
-                {{#all product.weight theme_settings.show_product_weight}}
-                    <dt class="productView-info-name">{{lang 'products.weight'}}</dt>
-                    <dd class="productView-info-value" data-product-weight>{{product.weight}}</dd>
-                {{/all}}
-                {{#all product.width product.height product.depth theme_settings.show_product_dimensions}}
-                    <dt class="productView-info-name">{{lang 'products.width'}}</dt>
-                    <dd class="productView-info-value" data-product-width>
-                        {{product.width}}
-                        {{#if settings.measurements.length '==' 'Centimeters'}}
-                        ({{lang 'products.measurement.metric'}})
-                        {{else}}
-                        ({{lang 'products.measurement.imperial'}})
-                        {{/if}}
-                    </dd>
-                    <dt class="productView-info-name">{{lang 'products.height'}}</dt>
-                    <dd class="productView-info-value" data-product-height>
-                        {{product.height}}
-                        {{#if settings.measurements.length '==' 'Centimeters'}}
-                        ({{lang 'products.measurement.metric'}})
-                        {{else}}
-                        ({{lang 'products.measurement.imperial'}})
-                        {{/if}}
-                    </dd>
-                    <dt class="productView-info-name">{{lang 'products.depth'}}</dt>
-                    <dd class="productView-info-value" data-product-depth>
-                        {{product.depth}}
-                        {{#if settings.measurements.length '==' 'Centimeters'}}
-                        ({{lang 'products.measurement.metric'}})
-                        {{else}}
-                        ({{lang 'products.measurement.imperial'}})
-                        {{/if}}
-                    </dd>
-                {{/all}}
-                {{#if product.min_purchase_quantity}}
-                    <dt class="productView-info-name">{{lang 'products.min_purchase_quantity'}}</dt>
-                    <dd class="productView-info-value">{{lang 'products.purchase_units' quantity=product.min_purchase_quantity}}</dd>
-                {{/if}}
-                {{#if product.max_purchase_quantity}}
-                    <dt class="productView-info-name">{{lang 'products.max_purchase_quantity'}}</dt>
-                    <dd class="productView-info-value">{{lang 'products.purchase_units' quantity=product.max_purchase_quantity}}</dd>
-                {{/if}}
-                {{#if product.gift_wrapping_available}}
-                    <dt class="productView-info-name">{{lang 'products.gift_wrapping'}}</dt>
-                    <dd class="productView-info-value">{{lang 'products.gift_wrapping_available'}}</dd>
-                {{/if}}
-                {{#if product.shipping}}
-                    {{#if product.shipping.calculated}}
-                        <dt class="productView-info-name">{{lang 'products.shipping'}}</dt>
-                        <dd class="productView-info-value">{{lang 'products.shipping_calculated'}}</dd>
-                    {{else}}
-                        {{#if product.shipping.price.value '===' 0}}
-                            <dt class="productView-info-name">{{lang 'products.shipping'}}</dt>
-                            <dd class="productView-info-value">{{lang 'products.shipping_free'}}</dd>
-                        {{else}}
-                            <dt class="productView-info-name">{{lang 'products.shipping'}}</dt>
-                            <dd class="productView-info-value">{{lang 'products.shipping_fixed' amount=product.shipping.price.formatted}}</dd>
-                        {{/if}}
-                    {{/if}}
-                {{/if}}
-
-                {{#if settings.bulk_discount_enabled}}
-                    <div class="productView-info-bulkPricing">
-                        {{> components/products/bulk-discount-rates bulk_discount_rates=product.bulk_discount_rates}}
-                    </div>
-                {{/if}}
-
-                {{#if theme_settings.show_custom_fields_tabs '!==' true}}
-                    {{> components/products/custom-fields }}
-                {{/if}}
-            </dl>
-        </div>
-    </section>
-
-    <section class="productView-details product-options">
-        <div class="productView-options">
-            {{#if product.release_date }}
-                <p>{{product.release_date}}</p>
-            {{/if}}
-            <form class="form" method="post" action="{{product.cart_url}}" enctype="multipart/form-data"
-                  data-cart-item-add>
-                <input type="hidden" name="action" value="add">
-                <input type="hidden" name="product_id" value="{{product.id}}"/>
-                <div data-product-option-change style="display:none;">
-                    {{inject 'showSwatchNames' theme_settings.show_product_swatch_names}}
-                    {{#each product.options}}
-                        {{{dynamicComponent 'components/products/options'}}}
-                    {{/each}}
+    
+                <div class="yotpo bottomLine"
+                data-product-id="{{ product.id }}">
                 </div>
-                <div class="form-field form-field--stock{{#unless product.stock_level}} u-hiddenVisually{{/unless}}">
+    
+                <div class="productView-rating"{{#if product.num_reviews '>' 0}}{{#if schema}} itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating"{{/if}}{{/if}}>
+                    {{#if settings.show_product_rating}}
+                        {{#if product.num_reviews '>' 0}}
+                            {{#if schema}}
+                                <meta itemprop="ratingValue" content="{{product.rating}}">
+                                <meta itemprop="ratingCount" content="{{product.num_reviews}}">
+                                <meta itemprop="reviewCount" content="{{product.num_reviews}}">
+                            {{/if}}
+                        {{/if}}
+                        {{> components/products/ratings rating=product.rating}}
+                        <span class="productView-reviewLink">
+                            {{#if product.num_reviews '>' 0}}
+                                <a href="{{product.url}}#product-reviews">
+                                    {{lang 'products.reviews.link_to_review' total=product.num_reviews}}
+                                </a>
+                            {{else}}
+                                {{lang 'products.reviews.link_to_review' total=product.num_reviews}}
+                            {{/if}}
+                        </span>
+                    {{/if}}
+                    {{#if settings.show_product_reviews}}
+                        <span class="productView-reviewLink">
+                            <a href="{{product.url}}{{#if is_ajax}}#write_review{{/if}}"
+                               {{#unless is_ajax }}data-reveal-id="modal-review-form"{{/unless}}>
+                               {{lang 'products.reviews.new'}}
+                            </a>
+                        </span>
+                        {{> components/products/modals/writeReview}}
+                    {{/if}}
+                </div>
+                
+    
+                <div class="productView-desc">
+                    {{{product.description}}}
+                    {{{snippet 'product_description'}}}
+                </div>
+    
+                {{#contains product.brand 'Sugatsune'}}
+                {{#contains product.sku 'IF-360'}}
+                <div class="productView-if360">
+                    <a href="https://store-40wxilo4jg.mybigcommerce.com/content/Knob_Deco_Sugatsune_IF_360_1.pdf" target="_blank">How do I choose the right IF-360 series for my project?</a>
+                </div>
+                {{/contains}}
+                {{#contains product.sku 'IF-H360'}}
+                <div class="productView-if360">
+                    <a href="https://store-40wxilo4jg.mybigcommerce.com/content/Knob_Deco_Sugatsune_IF_360_1.pdf" target="_blank">How do I choose the right IF-360 series for my project?</a>
+                </div>
+                {{/contains}}
+                {{/contains}}
+                {{#contains (JSONstringify product.category) 'Switch Plates'}}
+                    <p>Not sure which switchplate type you need? <a class="productView-link" href="https://knobdeco.com/content/KD-Switchplate-Types.pdf">Click here to view our guide.</a></p>
+                {{/contains}}
+                
+                {{#each product.custom_fields}}
+                    {{#if name '===' 'Manual PDF'}}
+                    <a style="font-weight: bold; text-decoration: underline;" href="{{ value }}" target="_blank">Click here to learn more about this system and what products are available.</a>
+                    {{/if}}
+                {{/each}}
+    
+                {{product.detail_messages}}
+                <dl class="productView-info">
+                    <!-- {{#if product.condition}}
+                        <dt class="productView-info-name">{{lang 'products.condition'}}</dt>
+                        <dd class="productView-info-value">{{product.condition}}</dd>
+                    {{/if}}
+                    {{#if product.availability}}
+                        <dt class="productView-info-name">{{lang 'products.availability'}}</dt>
+                        <dd class="productView-info-value">{{product.availability}}</dd>
+                    {{/if}}
+                    {{#all product.weight theme_settings.show_product_weight}}
+                        <dt class="productView-info-name">{{lang 'products.weight'}}</dt>
+                        <dd class="productView-info-value" data-product-weight>{{product.weight}}</dd>
+                    {{/all}}
+                    {{#all product.width product.height product.depth theme_settings.show_product_dimensions}}
+                        <dt class="productView-info-name">{{lang 'products.width'}}</dt>
+                        <dd class="productView-info-value" data-product-width>
+                            {{product.width}}
+                            {{#if settings.measurements.length '==' 'Centimeters'}}
+                            ({{lang 'products.measurement.metric'}})
+                            {{else}}
+                            ({{lang 'products.measurement.imperial'}})
+                            {{/if}}
+                        </dd>
+                        <dt class="productView-info-name">{{lang 'products.height'}}</dt>
+                        <dd class="productView-info-value" data-product-height>
+                            {{product.height}}
+                            {{#if settings.measurements.length '==' 'Centimeters'}}
+                            ({{lang 'products.measurement.metric'}})
+                            {{else}}
+                            ({{lang 'products.measurement.imperial'}})
+                            {{/if}}
+                        </dd>
+                        <dt class="productView-info-name">{{lang 'products.depth'}}</dt>
+                        <dd class="productView-info-value" data-product-depth>
+                            {{product.depth}}
+                            {{#if settings.measurements.length '==' 'Centimeters'}}
+                            ({{lang 'products.measurement.metric'}})
+                            {{else}}
+                            ({{lang 'products.measurement.imperial'}})
+                            {{/if}}
+                        </dd>
+                    {{/all}}
+                    {{#if product.min_purchase_quantity}}
+                        <dt class="productView-info-name">{{lang 'products.min_purchase_quantity'}}</dt>
+                        <dd class="productView-info-value">{{lang 'products.purchase_units' quantity=product.min_purchase_quantity}}</dd>
+                    {{/if}}
+                    {{#if product.max_purchase_quantity}}
+                        <dt class="productView-info-name">{{lang 'products.max_purchase_quantity'}}</dt>
+                        <dd class="productView-info-value">{{lang 'products.purchase_units' quantity=product.max_purchase_quantity}}</dd>
+                    {{/if}}
+                    {{#if product.gift_wrapping_available}}
+                        <dt class="productView-info-name">{{lang 'products.gift_wrapping'}}</dt>
+                        <dd class="productView-info-value">{{lang 'products.gift_wrapping_available'}}</dd>
+                    {{/if}}
+                    {{#if product.shipping}}
+                        {{#if product.shipping.calculated}}
+                            <dt class="productView-info-name">{{lang 'products.shipping'}}</dt>
+                            <dd class="productView-info-value">{{lang 'products.shipping_calculated'}}</dd>
+                        {{else}}
+                            {{#if product.shipping.price.value '===' 0}}
+                                <dt class="productView-info-name">{{lang 'products.shipping'}}</dt>
+                                <dd class="productView-info-value">{{lang 'products.shipping_free'}}</dd>
+                            {{else}}
+                                <dt class="productView-info-name">{{lang 'products.shipping'}}</dt>
+                                <dd class="productView-info-value">{{lang 'products.shipping_fixed' amount=product.shipping.price.formatted}}</dd>
+                            {{/if}}
+                        {{/if}}
+                    {{/if}}
+    
+                    {{#if settings.bulk_discount_enabled}}
+                        <div class="productView-info-bulkPricing">
+                            {{> components/products/bulk-discount-rates bulk_discount_rates=product.bulk_discount_rates}}
+                        </div>
+                    {{/if}} -->
+                    <!-- Hawk Hill Finishes Image -->
+                    {{#contains product.brand 'Hawk Hill Hardware'}}
+                       <img style="margin: 0 0 20px;" src="https://cdn11.bigcommerce.com/s-40wxilo4jg/images/stencil/original/image-manager/hawk-hill-finish-chart-edited.jpg" alt="A composite image displaying all 9 finish types for Hawk Hill" class="productView-finishes">
+                    {{/contains}}
+                    
+                    <!-- Valsan Finishes Image -->
+                    {{#contains product.brand 'Valsan'}}
+                       <img style="margin: 0 0 20px; max-width: 400px" src="https://cdn11.bigcommerce.com/s-40wxilo4jg/images/stencil/original/image-manager/knob-deco-valsan-products-finish-chart.jpg" alt="A composite image displaying all 9 finish types for Valsan" class="productView-finishes">
+                    {{/contains}}
+    
+                    {{#each product.custom_fields}}
+    
+                        {{#if name '===' 'Usually Ships In'}}
+                        <div class="productView-detail">
+                            <dt class="productView-info">SHIPS IN:</dt>
+                            <dd class="productView-info">{{{value}}}</dd>   
+                        </div>
+                        {{/if}}
+                        {{#if name '===' 'Function/Type'}}
+                        <div class="productView-detail">
+                            <dt class="productView-info">FUNCTION/TYPE:</dt>
+                            <dd class="productView-info">{{{value}}}</dd>
+                        </div>
+                        {{/if}}
+                    {{/each}}
+                </dl>
+    
+    
+    
+    
+                {{#if product.call_for_price}}
+                    <p class="productView-price">
+                        <span>{{product.call_for_price}}</span>
+                    </p>
+                {{/if}}
+                
+            </div>
+        </section>
+    
+        <section class="productView-images" data-image-gallery>
+            <figure class="productView-image"
+                    data-image-gallery-main
+                    {{#if product.main_image}}
+                    data-zoom-image="{{getImage product.main_image 'zoom_size' (cdn theme_settings.default_image_product)}}"
+                    {{/if}}
+                    >
+                <div class="productView-img-container">
+                    {{!-- Remove the surrounding a-element if there is no main image. --}}
+                    {{#if product.main_image}}
+                        <a href="{{getImage product.main_image 'zoom_size' (cdn theme_settings.default_image_product)}}">
+                    {{/if}}
+    
+                    <img class="productView-image--default lazyload"
+                         data-sizes="auto"
+                         src="{{cdn 'img/loading.svg'}}"
+                         data-src="{{getImage product.main_image 'product_size' (cdn theme_settings.default_image_product)}}"
+                         alt="{{product.main_image.alt}}" title="{{product.main_image.alt}}" data-main-image>
+    
+                    {{#if product.main_image}}
+                        </a>
+                    {{/if}}
+                </div>
+            </figure>
+            <ul class="productView-thumbnails"{{#gt product.images.length 5}} data-slick='{
+                    "infinite": false,
+                    "mobileFirst": true,
+                    "slidesToShow": 5,
+                    "slidesToScroll": 1
+                }'{{/gt}}>
+                {{#each product.images}}
+                    <li class="productView-thumbnail">
+                        <a
+                            class="productView-thumbnail-link"
+                            href="{{getImage this 'product_size' (cdn ../theme_settings.default_image_product)}}"
+                            data-image-gallery-item
+                            data-image-gallery-new-image-url="{{getImage this 'product_size' (cdn ../theme_settings.default_image_product)}}"
+                            data-image-gallery-zoom-image-url="{{getImage this 'zoom_size' (cdn ../theme_settings.default_image_product)}}">
+                            <img class="lazyload" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{getImage this 'productview_thumb_size' (cdn ../theme_settings.default_image_product)}}" alt="{{this.alt}}" title="{{this.alt}}">
+                        </a>
+                    </li>
+                {{/each}}
+            </ul>
+    
+        {{#if product.videos.list.length}}
+            {{> components/products/videos product.videos}}
+        {{/if}}
+        </section>
+        
+        <section class="productView-details {{#if product.options.length '>' 0}} productView--has-options {{/if}}  {{# filter product.custom_fields 'Custom Letters or Numbers Available' property='name'}} productView-hide-border{{/filter}}">
+            {{#filter product.custom_fields 'order_by_phone_only' property='name' }}
+              <div class="alertBox alertBox--error">
+                <div class="alertBox-column alertBox-icon">
+                    <icon glyph="ic-error" class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path></svg></icon>
+                </div>
+                <p class="alertBox-column alertBox-message">
+                    <span>This item requires special shipping. Please call customer service for a quote: <br /><strong><a href="tel:1-888-566-2748" title="Call Us">1-888-566-2748</a></strong></span>
+                </p>
+                </div>
+            {{else}}
+            
+            {{# filter product.custom_fields 'Custom Letters or Numbers Available' property='name'}} 
+        
+            <form class="form" method="post" action="{{product.cart_url}}" enctype="multipart/form-data"
+            data-cart-item-add>
+                <div class="productView-details--dark">
+                    <div class="productView-options productView-options--dark">
+                        <h2 class="productView-options--dark__title">WANT TO PERSONALIZE YOUR KICKPLATE?</h2>
+                        <div class="productView-options--dark__options-wrap">
+                            <div><input type="radio" name="customize" value="yes" id="customyes"><label for="customyes">Yes</label></div>
+                            <div><input type="radio" name="customize" value="no" id="customno" checked><label for="customno">No Thanks</label></div>
+                        </div>
+                        <div id="options-form" style="display: none">
+                            <input type="hidden" name="action" value="add">
+                            <input type="hidden" name="product_id" value="{{../product.id}}"/>
+                            <div data-product-option-change class="productView-options--dark__wrap" style="display:none;">
+                            {{#each ../product.options}}
+                                {{# if @index '==' 0}}
+                                <div class="productView-options--dark__font-wrap">
+                                    <p>To get started, choose from 2 standard fonts:</p>
+                                    <svg data-name="Group 19" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="367.831" height="37" viewBox="0 0 367.831 37">
+                                        <defs>
+                                          <clipPath id="clip-path-font-options">
+                                            <rect data-name="Rectangle 13" width="367.831" height="37" fill="none"/>
+                                          </clipPath>
+                                        </defs>
+                                        <rect data-name="Rectangle 11" width="178.663" height="36.93" transform="translate(0 0.035)" fill="#f5ca66"/>
+                                        <g data-name="Group 12">
+                                          <g data-name="Group 11" clip-path="url(#clip-path-font-options)">
+                                            <path ata-name="Path 2" d="M40.679,10.483a8.183,8.183,0,0,0-4.334,1.1A6.957,6.957,0,0,0,33.6,14.722a11.392,11.392,0,0,0-.931,4.783,12.828,12.828,0,0,0,.792,4.859,5.668,5.668,0,0,0,2.458,2.871,8.626,8.626,0,0,0,4.3.95,18.379,18.379,0,0,0,2.4-.152q1.152-.153,2.547-.482V23.712H43.429a6.686,6.686,0,0,1-.6,1.749,2.292,2.292,0,0,1-.932.93,3.183,3.183,0,0,1-1.507.311,2.963,2.963,0,0,1-2.75-1.806,11.864,11.864,0,0,1-.938-5.315,12.408,12.408,0,0,1,1.027-5.695,3.262,3.262,0,0,1,3.028-1.92,2.293,2.293,0,0,1,1.723.678,4.246,4.246,0,0,1,.963,2.109h1.724V11.079A15.719,15.719,0,0,0,43,10.622a17.716,17.716,0,0,0-2.319-.139" fill="#192022"/>
+                                            <path ata-name="Path 3" d="M52.057,21.14l2.058-5.792V10.6h-.081L48.75,24.675a8.314,8.314,0,0,1-.621,1.382,2.823,2.823,0,0,1-.646.76,1.584,1.584,0,0,1-.824.329v.837H52.07v-.837a1.221,1.221,0,0,1-1.318-1.33,4.3,4.3,0,0,1,.114-1.007,10.211,10.211,0,0,1,.291-.983l.418-1.2h2.54V21.14Z" fill="#192022"/>
+                                            <path ata-name="Path 4" d="M62.068,26.138a10.015,10.015,0,0,1-.469-1.349L57.418,10.6h-2.3v5.252l1.5,5.291h-1.5v1.482h1.871l.342,1.242q.2.735.291,1.216a4.885,4.885,0,0,1,.089.875,1.062,1.062,0,0,1-.317.823,1.707,1.707,0,0,1-.975.368v.836h6.994v-.836a1.987,1.987,0,0,1-.849-.361,1.827,1.827,0,0,1-.494-.647" fill="#192022"/>
+                                            <path ata-name="Path 5" d="M75.182,21.089l-3.51-10.4h-6.3v.836a2.455,2.455,0,0,1,.951.431,1.137,1.137,0,0,1,.323.583,6.9,6.9,0,0,1,.082,1.318v10.96c0,.406-.011.739-.031,1a1.585,1.585,0,0,1-.172.647,1.034,1.034,0,0,1-.411.405,3.348,3.348,0,0,1-.742.279v.836h4.79v-.836a2.215,2.215,0,0,1-.925-.406,1.168,1.168,0,0,1-.355-.608,6.451,6.451,0,0,1-.088-1.305V19q0-2.851-.127-4.942H68.9q.24.862.558,1.736l3.573,10.277h2.23l3.4-9.149q.468-1.254.64-1.742t.323-1h.266q-.038.583-.076,1.977t-.038,2.42v6.209a9.292,9.292,0,0,1-.057,1.236,1.438,1.438,0,0,1-.177.557.9.9,0,0,1-.336.3,4.231,4.231,0,0,1-.773.266v.836h6.5v-.836a2.225,2.225,0,0,1-.956-.425,1.226,1.226,0,0,1-.311-.684,7.666,7.666,0,0,1-.076-1.223V13.854a6.235,6.235,0,0,1,.1-1.325,1.191,1.191,0,0,1,.336-.6,2.364,2.364,0,0,1,.912-.412v-.836H78.983Z" fill="#192022"/>
+                                            <path ata-name="Path 6" d="M87.891,10.686v.836a3.117,3.117,0,0,1,.754.286,1.018,1.018,0,0,1,.405.411,1.7,1.7,0,0,1,.165.659q.032.4.032,1V24.8c0,.405-.013.742-.038,1.007a1.851,1.851,0,0,1-.171.659.934.934,0,0,1-.406.4,3.6,3.6,0,0,1-.741.273v.836h4.777v-17.3Z" fill="#192022"/>
+                                            <path ata-name="Path 7" d="M98.8,18.922v-.114q3.447-1.431,3.447-4.3a3.63,3.63,0,0,0-.444-1.837,3.03,3.03,0,0,0-1.229-1.191,6.527,6.527,0,0,0-2.065-.659,15.677,15.677,0,0,0-2.319-.139H93.668v1.527c.4-.021.808-.045,1.23-.045a5.627,5.627,0,0,1,1.863.266,2.238,2.238,0,0,1,1.153.88,3,3,0,0,1,.4,1.667,3.906,3.906,0,0,1-.373,1.87,2.53,2.53,0,0,1-1.1,1.045,4.463,4.463,0,0,1-1.99.367H93.668v1.483h1.268a5.8,5.8,0,0,1,1.584.183,2.841,2.841,0,0,1,1.09.583,2.435,2.435,0,0,1,.684,1.052,4.764,4.764,0,0,1,.228,1.565,4.059,4.059,0,0,1-.431,2.034,2.332,2.332,0,0,1-1.21,1.039,5.629,5.629,0,0,1-1.983.3c-.451,0-.852-.008-1.23-.02v1.5H95.7a13.221,13.221,0,0,0,2.984-.279,5.958,5.958,0,0,0,2.04-.881,3.707,3.707,0,0,0,1.292-1.539,5.305,5.305,0,0,0,.425-2.205,3.717,3.717,0,0,0-.932-2.541,5.832,5.832,0,0,0-2.7-1.615" fill="#192022"/>
+                                            <path ata-name="Path 8" d="M110.6,19.239V12.194h.013V10.686h-5.3v.836a3.076,3.076,0,0,1,.754.286,1.012,1.012,0,0,1,.4.411,1.7,1.7,0,0,1,.165.659q.031.4.032,1V24.8c0,.405-.013.742-.038,1.007a1.81,1.81,0,0,1-.171.659.94.94,0,0,1-.406.4,3.64,3.64,0,0,1-.741.273v.836h6.653v-.836a2.326,2.326,0,0,1-.938-.406,1.138,1.138,0,0,1-.342-.608,6.735,6.735,0,0,1-.089-1.33v-4.08h.013V19.239Z" fill="#192022"/>
+                                            <path ata-name="Path 9" d="M119,24.713l-.8-1.723a7.075,7.075,0,0,0-1.109-1.718,4.445,4.445,0,0,0-1.552-1.083v-.126a8.441,8.441,0,0,0,1.983-1.109,4.265,4.265,0,0,0,1.178-1.476,4.771,4.771,0,0,0,.437-2.129,5.1,5.1,0,0,0-.247-1.666,3.747,3.747,0,0,0-1.818-2.148,6.367,6.367,0,0,0-1.831-.64,13.139,13.139,0,0,0-2.541-.209h-1.089V12.17l.418,0a3.152,3.152,0,0,1,2.407.862,3.646,3.646,0,0,1,.811,2.585,6.7,6.7,0,0,1-.145,1.444,2.777,2.777,0,0,1-.533,1.147,2.529,2.529,0,0,1-1.045.76,4.4,4.4,0,0,1-1.673.273h-.24v1.5a2.3,2.3,0,0,1,.754.135,1.811,1.811,0,0,1,.652.557,7.382,7.382,0,0,1,.76,1.369l.989,2.166a18.678,18.678,0,0,0,1.66,3.016h4.878v-.836a2.165,2.165,0,0,1-1.248-.7A6.9,6.9,0,0,1,119,24.713" fill="#192022"/>
+                                            <path data-name="Path 10" d="M123,11.522a3.324,3.324,0,0,1,.754.279.966.966,0,0,1,.4.412,1.724,1.724,0,0,1,.165.652q.032.393.032,1V24.8c0,.405-.013.741-.038,1.006a1.819,1.819,0,0,1-.171.659.931.931,0,0,1-.406.406,3.628,3.628,0,0,1-.74.273v.836h6.651v-.836a3.278,3.278,0,0,1-.619-.209,1.231,1.231,0,0,1-.4-.285,1.118,1.118,0,0,1-.221-.406,2.7,2.7,0,0,1-.1-.621c-.017-.253-.025-.528-.025-.823V13.879a8.441,8.441,0,0,1,.051-1.077,1.71,1.71,0,0,1,.177-.6,1.094,1.094,0,0,1,.374-.387,2.9,2.9,0,0,1,.766-.3v-.836H123Z" fill="#192022"/>
+                                            <path data-name="Path 11" d="M147.179,26.785a1.836,1.836,0,0,1-.494-.647,10.066,10.066,0,0,1-.469-1.349L142.034,10.6h-2.3v5.252l1.5,5.29h-1.5v1.483H141.6l.342,1.242q.2.735.291,1.216a4.876,4.876,0,0,1,.089.875,1.063,1.063,0,0,1-.317.823,1.711,1.711,0,0,1-.976.368v.836h6.995v-.836a1.987,1.987,0,0,1-.849-.361" fill="#192022"/>
+                                            <path data-name="Path 12" d="M136.674,21.14l2.058-5.792V10.6h-.081l-5.284,14.078a8.314,8.314,0,0,1-.621,1.382,2.823,2.823,0,0,1-.646.76,1.584,1.584,0,0,1-.824.329v.837h5.411v-.837a1.221,1.221,0,0,1-1.318-1.33,4.3,4.3,0,0,1,.114-1.007,10.213,10.213,0,0,1,.291-.983l.418-1.2h2.54V21.14Z" fill="#192022"/>
+                                            <rect data-name="Rectangle 12" width="179" height="37" transform="translate(188.831)" fill="#f5ca66"/>
+                                            <path data-name="Path 13" d="M220,12.812h5.435V27.7h4.619V12.812h5.436V9.3H220Z" fill="#192022"/>
+                                            <path data-name="Path 14" d="M243.221,20.606l1.438-4.646V9.3H242.64L236.428,27.7h4.632l1.148-3.755h2.451V20.606Z" fill="#192022"/>
+                                            <path data-name="Path 15" d="M245.662,9.3v7.057l1.314,4.245h-1.314v3.335h2.327l1.15,3.756h4.755L247.681,9.3Z" fill="#192022"/>
+                                            <path data-name="Path 16" d="M267.641,16.036h-6.287V9.3h-4.62V27.7h4.62V19.544h6.287V27.7h4.62V9.3h-4.62Z" fill="#192022"/>
+                                            <path data-name="Path 17" d="M285.416,8.941v3.5a3.833,3.833,0,0,1,1.055.276,3.525,3.525,0,0,1,1.341,1.081,5.771,5.771,0,0,1,.907,1.9,10,10,0,0,1,.339,2.8,9.992,9.992,0,0,1-.321,2.8,6.011,6.011,0,0,1-.914,1.871,3.429,3.429,0,0,1-1.321,1.093,3.755,3.755,0,0,1-1.086.3v3.5a8.318,8.318,0,0,0,6.027-2.537,9.885,9.885,0,0,0,2.384-7.016,9.908,9.908,0,0,0-2.384-7.022,8.315,8.315,0,0,0-6.027-2.543" fill="#192022"/>
+                                            <path data-name="Path 18" d="M283.364,24.281a3.442,3.442,0,0,1-1.346-1.093,5.7,5.7,0,0,1-.914-1.872,9.973,9.973,0,0,1-.334-2.81,10.03,10.03,0,0,1,.352-2.828,5.636,5.636,0,0,1,.92-1.9,3.7,3.7,0,0,1,1.335-1.081,3.651,3.651,0,0,1,1.036-.255V8.94a8.273,8.273,0,0,0-6.039,2.556A9.945,9.945,0,0,0,276,18.506a9.934,9.934,0,0,0,2.372,6.985,8.251,8.251,0,0,0,6.039,2.568v-3.5a3.918,3.918,0,0,1-1.049-.275" fill="#192022"/>
+                                            <path data-name="Path 19" d="M306.969,18.383,302.892,9.3h-5.324V27.7h4.348V15.5l3.348,7.868h3.15L311.76,15.5V27.7h4.6V9.3h-5.324Z" fill="#192022"/>
+                                            <path data-name="Path 20" d="M325.99,20.606l1.438-4.646V9.3h-2.019L319.2,27.7h4.632l1.148-3.755h2.451V20.606Z" fill="#192022"/>
+                                            <path data-name="Path 21" d="M330.45,9.3h-2.019v7.057l1.314,4.245h-1.314v3.335h2.327l1.149,3.756h4.756Z" fill="#192022"/>
+                                          </g>
+                                        </g>
+                                      </svg>
+                                </div>
+                                    
+                                {{/if}}
+                                {{# if @index '==' 1}}
+                                    <div class="productView-options--dark__message-wrap">
+                                        <p>Then, add up to 9 characters:</p>
+                                        <img class="lazyload productView-options--dark__gif" data-sizes="auto" src="{{cdn 'img/kickplate-GIF-1.gif'}}" alt="welcome kickplate">
+                                    </div>
+                                {{/if}}
+                                {{{dynamicComponent 'components/products/options'}}}
+    
+                                {{# if @index '==' 0}}
+                                <div class="seperator-line"></div>
+                                {{/if}}
+                                {{# if @index '==' 1}}
+                                  <p class="productView-options--dark__footer">We can use your custom design or logos! Call us at <a href="tel:18885662748">1-888-566-2748</a> for a quote</p>
+                                {{/if}}
+                            {{/each}}
+                            </div>
+                        </div>
+                        <p class="productView-options--dark__disclaimer">*Personalization is optional for this product and will add an additional $100 to the total cost.</p>
+                    </div> 
+                </div>
+                <div class="form-field form-field--stock{{#unless ../product.stock_level}} u-hiddenVisually{{/unless}}">
+                           
                     <label class="form-label form-label--alternate">
                         {{lang 'products.current_stock'}}
-                        <span data-product-stock>{{product.stock_level}}</span>
+                        <span data-product-stock>{{../product.stock_level}}</span>
                     </label>
                 </div>
-                {{> components/products/add-to-cart with_wallet_buttons=true}}
-                {{#if product.out_of_stock}}
-                    {{#if product.out_of_stock_message}}
+                <div class="productView-flex">    
+                <div class="productView-price">
+                    {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+                        {{> components/products/price price=../../product.price schema_org=schema}}
+                    {{else}}
+                    hit2
+                        {{> components/common/login-for-pricing}}
+                    {{/or}}
+                </div>
+                {{{region name="product_below_price"}}}
+                <div class="productView-cart-wrap">
+                {{#if ../product.can_purchase}}
+                    {{> components/products/add-to-cart}}
+                {{else}}
+                    {{> components/common/alert/alert-error 'This item is currently out of stock. Please contact Customer Service for availability.'}}
+                {{/if}}
+                {{#if ../product.out_of_stock}}
+                    {{#if ../product.out_of_stock_message}}
                         {{> components/common/alert/alert-error product.out_of_stock_message}}
                     {{else}}
                         {{> components/common/alert/alert-error (lang 'products.sold_out')}}
                     {{/if}}
                 {{/if}}
+                </div>
+                </div>
             </form>
-            {{#if settings.show_wishlist}}
-                {{> components/common/wishlist-dropdown}}
+        
+    
+            
+              
+            {{else }}
+                
+              <div class="productView-options">
+                {{#if product.release_date }}
+                    <p>{{product.release_date}}</p>
+                {{/if}}
+    
+    
+    
+                {{#if product.sku '==' 'suga-LIN-X60-1740' }}
+                purchase:
+                {{/if}}
+                <form class="form" method="post" action="{{product.cart_url}}" enctype="multipart/form-data"
+                      data-cart-item-add>
+                    <input type="hidden" name="action" value="add">
+                    <input type="hidden" name="product_id" value="{{product.id}}"/>
+                    <div data-product-option-change style="display:none;">
+                        {{#each product.options}}
+                            {{{dynamicComponent 'components/products/options'}}}
+                        {{/each}}
+                    </div>
+                    <div class="form-field form-field--stock{{#unless product.stock_level}} u-hiddenVisually{{/unless}}">
+                        <label class="form-label form-label--alternate">
+                            {{lang 'products.current_stock'}}
+                            <span data-product-stock>{{product.stock_level}}</span>
+                        </label>
+                    </div>
+                    <div class="productView-price">
+                        {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+                            {{> components/products/price price=product.price schema_org=schema}}
+                        {{else}}
+                            {{> components/common/login-for-pricing}}
+                        {{/or}}
+                    </div>
+                    {{{region name="product_below_price"}}}
+                    {{#if product.can_purchase}}
+                        {{> components/products/add-to-cart}}
+                    {{else}}
+                        {{> components/common/alert/alert-error 'This item is currently out of stock. Please contact Customer Service for availability.'}}
+                    {{/if}}
+                    {{#if product.out_of_stock}}
+                        {{#if product.out_of_stock_message}}
+                            {{> components/common/alert/alert-error product.out_of_stock_message}}
+                        {{else}}
+                            {{> components/common/alert/alert-error (lang 'products.sold_out')}}
+                        {{/if}}
+                    {{/if}}
+                </form>
+    
+            </div>
+            {{/filter}}
+    
+            {{#if product.brand.name '==' 'Sugatsune'}}
+            <p class="product--notice">*Please note: Sugatsune charges a $5 handling fee on orders under $50.</p>
             {{/if}}
-        </div>
-        {{> components/common/share url=product.url}}
+            {{/filter}}
+            
+            
+            
+            {{{snippet 'product_details'}}}
+        </section>
+    </div>
+    
+    <section class="productSpecifications">
+        <h2 class="productSpecifications__title">Product Specifications</h2>
+        <ul class="productSpecifications__list">
+            <li class="productSpecifications__item">
+                {{#if product.brand}}
+                    <p><span class="productSpecifications__label">Manufacturer: </span><a href="{{product.brand.url}}"{{#if schema}} itemprop="url"{{/if}}><span{{#if schema}} itemprop="name"{{/if}}>{{product.brand.name}}</span></a></p>
+                {{/if}}
+            </li>
+            {{#if product.upc}}
+            <li class="productSpecifications__item">
+                <p><span class="productSpecifications__label">UPC: </span><span>{{product.upc}}</span></p>
+            </li>
+            {{/if}}
+            {{> components/products/product-dimension-builder }}
+            {{#each product.custom_fields}}
+                {{#unless name '===' 'Usually Ships In'}}
+                {{#unless name '===' 'ASIN'}}
+                {{#unless name '===' 'Customizable_Kickplate'}}
+                {{#unless name '===' ''}}
+                    <li class="productSpecifications__item">
+                        <p><strong>{{name}}:</strong> {{value}}</p>
+                    </li>
+                {{/unless}}
+                {{/unless}}
+                {{/unless}}
+                {{/unless}}
+            {{/each}}
+        </ul>
     </section>
-
-    <article class="productView-description">
-        {{#if theme_settings.show_product_details_tabs}}
-            {{> components/products/description-tabs}}
-        {{else}}
-            {{> components/products/description}}
-        {{/if}}
-    </article>
-</div>
-
-<div id="previewModal" class="modal modal--large" data-reveal>
-    {{> components/common/modal/modal-close-btn }}
-    <div class="modal-content"></div>
-    <div class="loadingOverlay"></div>
-</div>
+    
+    <!-- <div class="productSpecifications__shipping">
+        <h2 class="productSpecifications__shipping--title">FREE SHIPPING in the 48 Contiguous United States</h2>
+    </div> -->
+    <div class="productSpecifications__shipping">
+        <h2 class="productSpecifications__shipping--title">Free Shipping on Purchases Over $39.99</h2>
+        <p class="productSpecifications__message">
+            {{#if cart.sub_total.value '>=' 50}}
+                Your cart currently qualifies for free shipping!
+            {{else}}
+                Spend only ${{toFixed (subtract 39.99 cart.sub_total.value) 2 }} more to qualify!
+            {{/if}}
+        </p>
+    </div>
+    
+    <div id="previewModal" class="modal modal--large" data-reveal>
+        <a href="#" class="modal-close" aria-label="{{lang 'common.close'}}" role="button">
+            <span aria-hidden="true">&#215;</span>
+        </a>
+        <div class="modal-content"></div>
+        <div class="loadingOverlay"></div>
+    </div>
+    <script>
+        // console.log('anything');
+        // var yesInput = document.getElementById('customyes');
+        // console.log(yesInput);
+        // console.log(document.getElementById('customyes'));
+        // var yesInputTwo = document.querySelector("#customyes");
+        // console.log(yesInputTwo);
+        // console.log(document.querySelector("#customyes"));
+        document.getElementById('customyes').addEventListener('change', () => {
+            if(document.getElementById('customyes').checked) {
+                document.getElementById('options-form').style.display = 'block';
+            }
+        });
+        document.getElementById('customno').addEventListener('change', () => {
+            if(document.getElementById('customno').checked) {
+                document.getElementById('options-form').style.display = 'none';
+            }
+        })
+    
+        // if(document.getElementById('customno').checked){console.log('no hitting on load')}
+        
+    </script>
+    

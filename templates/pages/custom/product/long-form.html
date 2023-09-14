@@ -1,0 +1,64 @@
+---
+product:
+    videos:
+        limit: {{theme_settings.productpage_videos_count}}
+    reviews:
+        limit: {{theme_settings.productpage_reviews_count}}
+    related_products:
+        limit: {{theme_settings.productpage_related_products_count}}
+    similar_by_views:
+        limit: {{theme_settings.productpage_similar_by_views_count}}
+
+cart: true
+---
+{{#partial "page"}}
+    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+
+    {{#each product.shipping_messages}}
+        {{> components/common/alert-info message}}
+    {{/each}}
+
+    <div itemscope itemtype="http://schema.org/Product" class="product__wrap">
+        {{> components/products/product-view--alt schema=true  }}
+
+        {{#if product.videos.list.length}}
+            {{> components/products/videos product.videos}}
+        {{/if}}
+
+        {{#if product.related_products}}
+            <section class="productRelated">
+                <h2 class="product--subtitle"><span>Related Products</span></h2>
+                {{#if settings.data_tag_enabled}}
+                    {{> components/products/carousel products=product.related_products columns=6 list="Related Products"}}
+                {{else}}
+                    {{> components/products/carousel products=product.related_products columns=6}}
+                {{/if}}
+            </section>
+        {{/if}}
+
+        <section class="productSimilar">
+            <h2 class="product--subtitle"><span>Find Similar Products</span></h2>
+            <div class="productSimilar__wrap">
+                <div class="productSimilar__section">
+                    <h3 class="productSimilar__title">Search by Collection</h3>
+                    <a href="/search.php?search_query_adv={{product.title}}" title="Shop by Collection" class="button button-black">SEARCH</a>
+                </div>
+                <div class="productSimilar__section">
+                    <h3 class="productSimilar__title">Search by Finish/Color</h3>
+                    <a href="/search.php?search_query_adv={{product.title}}" title="Shop by Collection" class="button button-black">SEARCH</a>
+                </div>
+            </div>
+        </section>
+
+        {{> components/products/reviews reviews=product.reviews product=product urls=urls}}
+
+        {{#if product.similar_by_views}}
+        <section class="productRecent">            
+            <h2 class="product--subtitle"><span>Recently Viewed Products</span></h2>
+            {{> components/products/carousel products=product.similar_by_views columns=6 list="Customers Also Viewed"}}
+        </section>
+        {{/if}}
+
+    </div>
+{{/partial}}
+{{> layout/base}}

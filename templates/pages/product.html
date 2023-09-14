@@ -8,33 +8,57 @@ product:
         limit: {{theme_settings.productpage_related_products_count}}
     similar_by_views:
         limit: {{theme_settings.productpage_similar_by_views_count}}
+
+cart: true
 ---
-{{inject 'productId' product.id}}
-
 {{#partial "page"}}
-
+{{inject 'customFields' product.custom_fields}}
+{{inject 'categories' product.category}}
     {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
 
     {{#each product.shipping_messages}}
-        {{> components/common/alert/alert-info message}}
+        {{> components/common/alert-info message}}
     {{/each}}
 
-    <div>
-        {{> components/products/product-view}}
+    <div itemscope itemtype="http://schema.org/Product" class="product__wrap">
+        {{> components/products/product-view schema=true  }}
 
-        {{{region name="product_below_content"}}}
 
-        {{#if product.videos.list.length}}
-            {{> components/products/videos product.videos}}
+
+        {{#if product.related_products}}
+            <section class="productRelated">
+                <h2 class="product--subtitle"><span>Related Products</span></h2>
+                {{#if settings.data_tag_enabled}}
+                    {{> components/products/carousel products=product.related_products columns=5 list="Related Products"}}
+                {{else}}
+                    {{> components/products/carousel products=product.related_products columns=5}}
+                {{/if}}
+            </section>
         {{/if}}
 
-        {{#all settings.show_product_reviews theme_settings.show_product_reviews (if theme_settings.show_product_details_tabs '!==' true)}}
-            {{> components/products/reviews reviews=product.reviews product=product urls=urls}}
-        {{/all}}
+        <section class="productSimilar">
+            <h2 class="product--subtitle"><span>Find Similar Products</span></h2>
+            <div class="productSimilar__wrap">
+                <div class="productSimilar__section">
+                    <h3 class="productSimilar__title">Search by Collection</h3>
+                    <a href="/search.php?search_query_adv={{product.title}}" title="Shop by Collection" class="button button-black">SEARCH</a>
+                </div>
+                <div class="productSimilar__section">
+                    <h3 class="productSimilar__title">Search by Finish/Color</h3>
+                    <a href="/search.php?search_query_adv={{product.title}}" title="Shop by Collection" class="button button-black">SEARCH</a>
+                </div>
+            </div>
+        </section>
 
-        {{> components/products/tabs}}
+        {{> components/products/reviews reviews=product.reviews product=product urls=urls}}
+
+        {{#if product.similar_by_views}}
+        <section class="productRecent">            
+            <h2 class="product--subtitle"><span>Recently Viewed Products</span></h2>
+            {{> components/products/carousel products=product.similar_by_views columns=5 list="Customers Also Viewed"}}
+        </section>
+        {{/if}}
+
     </div>
-
-    {{> components/products/schema}}
 {{/partial}}
 {{> layout/base}}

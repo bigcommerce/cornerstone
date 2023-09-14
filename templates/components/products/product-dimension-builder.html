@@ -1,0 +1,26 @@
+<!-- This file builds the product dimensions using both conversions and category/based terminology -->
+
+
+
+{{#if product.width}}
+    <p data-x-item>
+        <span class="productSpecifications__label" data-x-label>Width:</span> 
+        {{toFixed product.width 2}}" / {{toFixed (multiply product.width 25.4) 2}}mm
+    </p>
+{{/if}}
+
+
+{{#if product.height}}
+    <p data-y-item>
+        <span class="productSpecifications__label" data-y-label>Height:</span> 
+        {{toFixed product.height 2}}" / {{toFixed (multiply product.height 25.4) 2}}mm
+    </p>
+{{/if}}
+
+
+{{#if product.depth}}
+    <p data-z-item>
+        <span class="productSpecifications__label" data-z-label>Depth:</span> 
+        {{toFixed product.depth 2}}" / {{toFixed (multiply product.depth 25.4) 2}}mm
+    </p>
+{{/if}}

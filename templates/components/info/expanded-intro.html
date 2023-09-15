@@ -5,13 +5,70 @@
     <div class="info--container">
         <div class="infoBox">
             <h3>{{theme_settings.hoursHeading}}</h3>
-            <div>
-                <p>Our shop hours are listed here. In-store pickup and free local delivery is available, please enter your shipping address at checkout to be presented with those options.</p>
+            <div class="infoBox--inner">
+                <p>In-store pickup and free local delivery is available, please enter your shipping address at checkout to be presented with those options.</p>
                     {{#if theme_settings.features_dynamic_locations}}
                         {{#if locations}}
                             {{#each locations}}
+                                {{#with node}}
                                 <h3>{{label}}</h3>
-                                {{operatingHours.monday.open}}
+                                <p>
+                                    <strong>Monday</strong>
+                                    {{#if operatingHours.monday.open}}
+                                        {{moment operatingHours.monday.opening "h:mma"}} - {{moment operatingHours.monday.closing "h:mma"}}
+                                    {{else}}
+                                        Closed
+                                    {{/if}}
+                                </p>
+                                <p>
+                                    <strong>Tuesday</strong>
+                                    {{#if operatingHours.tuesday.open}}
+                                        {{moment operatingHours.tuesday.opening "h:mma"}} - {{moment operatingHours.tuesday.closing "h:mma"}}
+                                    {{else}}
+                                        Closed
+                                    {{/if}}
+                                </p>
+                                <p>
+                                    <strong>Wednesday</strong>
+                                    {{#if operatingHours.wednesday.open}}
+                                        {{moment operatingHours.wednesday.opening "h:mma"}} - {{moment operatingHours.wednesday.closing "h:mma"}}
+                                    {{else}}
+                                        Closed
+                                    {{/if}}
+                                </p>
+                                <p>
+                                    <strong>Thursday</strong>
+                                    {{#if operatingHours.thursday.open}}
+                                        {{moment operatingHours.thursday.opening "h:mma"}} - {{moment operatingHours.thursday.closing "h:mma"}}
+                                    {{else}}
+                                        Closed
+                                    {{/if}}
+                                </p>
+                                <p>
+                                    <strong>Friday</strong>
+                                    {{#if operatingHours.friday.open}}
+                                        {{moment operatingHours.friday.opening "h:mma"}} - {{moment operatingHours.friday.closing "h:mma"}}
+                                    {{else}}
+                                        Closed
+                                    {{/if}}
+                                </p>
+                                <p>
+                                    <strong>Saturday</strong>
+                                    {{#if operatingHours.saturday.open}}
+                                        {{moment operatingHours.saturday.opening "h:mma"}} - {{moment operatingHours.saturday.closing "h:mma"}}
+                                    {{else}}
+                                        Closed
+                                    {{/if}}
+                                </p>
+                                <p>
+                                    <strong>Sunday</strong>
+                                    {{#if operatingHours.sunday.open}}
+                                        {{moment operatingHours.sunday.opening "h:mma"}} - {{moment operatingHours.sunday.closing "h:mma"}}
+                                    {{else}}
+                                        Closed
+                                    {{/if}}
+                                </p>
+                                {{/with}}
                             {{/each}}
                         {{/if}}
                     {{else}}

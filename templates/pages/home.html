@@ -15,6 +15,59 @@ curation: {{theme_settings.homepage_show_curation_module}}
 blog:
     recent_posts:
         limit: {{theme_settings.homepage_blog_posts_count}}
+gql: "query getLocations {
+    inventory {
+        locations {
+            edges {
+                node {
+                    label
+                    operatingHours {
+                        monday {
+                          opening
+                          closing
+                          open
+                        }
+                        tuesday {
+                          opening
+                          closing
+                          open
+                        }
+                        wednesday {
+                          opening
+                          closing
+                          open
+                        }
+                        thursday {
+                          opening
+                          closing
+                          open
+                        }
+                        friday {
+                          opening
+                          closing
+                          open
+                        }
+                        saturday {
+                          opening
+                          closing
+                          open
+                        }
+                        sunday {
+                          opening
+                          closing
+                          open
+                        }
+                      }
+                    address {
+                        label
+                        city
+                        postalCode
+                    }
+                }
+            }
+        }
+    }
+}"
 ---
 
 {{inject "categoryBlockCarouselLimit" theme_settings.mwn_home_category_block_limit}}
@@ -57,7 +110,7 @@ blog:
     {{/if}}
 
     <!-- TWO COL ABOUT SECTION GOES HERE-->
-    {{> components/info/expanded-intro}}
+    {{> components/info/expanded-intro locations=gql.data.inventory.locations.edges}}
 {{/partial}}
 
 {{#partial "page"}}

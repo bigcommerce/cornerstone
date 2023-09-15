@@ -5,9 +5,9 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master, main ]
   pull_request:
-    branches: [ master ]
+    branches: [ master, main ]
 
 jobs:
   build:
@@ -16,20 +16,14 @@ jobs:
 
     strategy:
       matrix:
-        node: [10.x]
+        node: [18.x]
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
-
-    - name: Setup Ruby 2.7
-      uses: ruby/setup-ruby@v1.40.0
-      with:
-        ruby-version: 2.7
-    - run: bundle install
+      uses: actions/checkout@v3
 
     - name: Use Node.js ${{ matrix.node }}
-      uses: actions/setup-node@v2-beta
+      uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node }}
 
@@ -43,4 +37,4 @@ jobs:
       run: npx grunt check
 
     - name: Validate theme bundle
-      run: npx stencil bundle
+      run: stencil bundle

@@ -26,7 +26,7 @@
 
     @include breakpoint("medium") {
         &.card-hover {
-            &:hover .card-link {
+            &:hover .card-figure__link {
 
                 .card-image {
                     opacity: 0;
@@ -45,6 +45,9 @@
 .card-figure {
     margin-top: $card-figure-marginTop;
     position: relative;
+    padding: 3px;
+    overflow: hidden;
+
     &:hover {
 
         // scss-lint:disable NestingDepth
@@ -55,7 +58,7 @@
     }
 }
 
-.card-link {
+.card-figure__link {
     display: block;
     position: relative;
     overflow: hidden;
@@ -78,6 +81,11 @@
             max-height: 100%;
             width: 100%;
         }
+    }
+
+    &__link {
+        display: block;
+        position: relative;
     }
 }
 
@@ -121,6 +129,7 @@
     > a {
         color: $card-title-color;
         text-decoration: $card-title-textDecoration;
+        display: block;
 
         // scss-lint:disable NestingDepth
         &:hover {
@@ -148,6 +157,13 @@
     &:active {
         background-color: $card-figcaption-button-backgroundHover;
         border: $card-figcaption-button-border;
+    }
+
+    .card-figcaption-body & {
+        &:focus {
+            background-color: $card-figcaption-button-backgroundHover;
+            outline: revert;
+        }
     }
 
     + .card-figcaption-button {

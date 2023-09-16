@@ -3,11 +3,13 @@ import stateCountry from './common/state-country';
 import nod from './common/nod';
 import validation from './common/form-validation';
 import forms from './common/models/forms';
-import { classifyForm, Validators } from './common/form-utils';
+import { classifyForm, Validators, createPasswordValidationErrorTextObject } from './common/utils/form-utils';
+import { createTranslationDictionary } from './common/utils/translations-utils';
 
 export default class Auth extends PageManager {
     constructor(context) {
         super(context);
+        this.validationDictionary = createTranslationDictionary(context);
         this.formCreateSelector = 'form[data-create-account-form]';
     }
 
@@ -79,23 +81,25 @@ export default class Auth extends PageManager {
     }
 
     registerNewPasswordValidation() {
+        const { password: enterPassword, password_match: matchPassword, invalid_password: invalidPassword } = this.validationDictionary;
         const newPasswordForm = '.new-password-form';
         const newPasswordValidator = nod({
             submit: $(`${newPasswordForm} input[type="submit"]`),
         });
         const passwordSelector = $(`${newPasswordForm} input[name="password"]`);
         const password2Selector = $(`${newPasswordForm} input[name="password_confirm"]`);
-
+        const errorTextMessages = createPasswordValidationErrorTextObject(enterPassword, enterPassword, matchPassword, invalidPassword);
         Validators.setPasswordValidation(
             newPasswordValidator,
             passwordSelector,
             password2Selector,
             this.passwordRequirements,
+            errorTextMessages,
         );
     }
 
     registerCreateAccountValidator($createAccountForm) {
-        const validationModel = validation($createAccountForm);
+        const validationModel = validation($createAccountForm, this.context);
         const createAccountValidator = nod({
             submit: `${this.formCreateSelector} input[type='submit']`,
         });
@@ -130,7 +134,7 @@ export default class Auth extends PageManager {
 
                 if ($field.is('select')) {
                     $last = field;
-                    Validators.setStateCountryValidation(createAccountValidator, field);
+                    Validators.setStateCountryValidation(createAccountValidator, field, this.validationDictionary.field_not_blank);
                 } else {
                     Validators.cleanUpStateValidation(field);
                 }
@@ -139,10 +143,12 @@ export default class Auth extends PageManager {
 
         if ($emailElement) {
             createAccountValidator.remove(emailSelector);
-            Validators.setEmailValidation(createAccountValidator, emailSelector);
+            Validators.setEmailValidation(createAccountValidator, emailSelector, this.validationDictionary.valid_email);
         }
 
         if ($passwordElement && $password2Element) {
+            const { password: enterPassword, password_match: matchPassword, invalid_password: invalidPassword } = this.validationDictionary;
+
             createAccountValidator.remove(passwordSelector);
             createAccountValidator.remove(password2Selector);
             Validators.setPasswordValidation(
@@ -150,6 +156,7 @@ export default class Auth extends PageManager {
                 passwordSelector,
                 password2Selector,
                 this.passwordRequirements,
+                createPasswordValidationErrorTextObject(enterPassword, enterPassword, matchPassword, invalidPassword),
             );
         }
 

@@ -1,3 +1,7 @@
 <h1 class="page-heading">
-    {{{lang 'search.results.count' count=result_count search_query=(sanitize forms.search.query) }}}
+    {{#if forms.search.search_error}}
+        {{lang 'search.errorMessage' }}
+    {{else}}
+        {{{lang 'search.results.count' count=result_count search_query=(sanitize forms.search.query) }}}
+    {{/if}}
 </h1>

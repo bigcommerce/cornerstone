@@ -7,7 +7,7 @@
             <p>{{lang 'account.wishlists.tag_line'}}</p>
         {{/if}}
         {{#if forms.wishlist.errors}}
-            {{> components/common/alert-error forms.wishlist.errors}}
+            {{> components/common/alert/alert-error forms.wishlist.errors}}
         {{/if}}
     </header>
     <form action="{{#if forms.wishlist.id}}{{urls.account.wishlists.edit}}{{else}}{{urls.account.wishlists.add}}&product_id={{forms.wishlist.product_id}}{{/if}}" class="form wishlist-form" method="post">

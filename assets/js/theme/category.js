@@ -3,10 +3,22 @@ import CatalogPage from './catalog';
 import compareProducts from './global/compare-products';
 import FacetedSearch from './common/faceted-search';
 import { showCategoryModal } from './global/modal';
+import { createTranslationDictionary } from '../theme/common/utils/translations-utils';
 
 export default class Category extends CatalogPage {
+    constructor(context) {
+        super(context);
+        this.validationDictionary = createTranslationDictionary(context);
+    }
+
     onReady() {
-        this.initCategoryButton();
+        $('[data-button-type="add-cart"]').on('click', (e) => {
+            $(e.currentTarget).next().attr({
+                role: 'status',
+                'aria-live': 'polite',
+            });
+        });
+
         compareProducts(this.context.urls);
 
         if ($('#facetedSearch').length > 0) {
@@ -15,6 +27,15 @@ export default class Category extends CatalogPage {
             this.onSortBySubmit = this.onSortBySubmit.bind(this);
             hooks.on('sortBy-submitted', this.onSortBySubmit);
         }
+
+        $('a.reset-btn').on('click', () => {
+            $('span.reset-message').attr({
+                role: 'status',
+                'aria-live': 'polite',
+            });
+        });
+
+        this.initCategoryButton();
     }
 
     initCategoryButton() {
@@ -25,6 +46,13 @@ export default class Category extends CatalogPage {
     }
 
     initFacetedSearch() {
+        const {
+            price_min_evaluation: onMinPriceError,
+            price_max_evaluation: onMaxPriceError,
+            price_min_not_entered: minPriceNotEntered,
+            price_max_not_entered: maxPriceNotEntered,
+            price_invalid_value: onInvalidPrice,
+        } = this.validationDictionary;
         const $productListingContainer = $('#product-listing-container');
         const $facetedSearchContainer = $('#faceted-search-container');
         const productsPerPage = this.context.categoryProductsPerPage;
@@ -53,6 +81,14 @@ export default class Category extends CatalogPage {
             $('html, body').animate({
                 scrollTop: 0,
             }, 100);
+        }, {
+            validationErrorMessages: {
+                onMinPriceError,
+                onMaxPriceError,
+                minPriceNotEntered,
+                maxPriceNotEntered,
+                onInvalidPrice,
+            },
         });
     }
 }

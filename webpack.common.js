@@ -30,7 +30,6 @@ module.exports = {
                                 loose: true, // Enable "loose" transformations for any plugins in this preset that allow them
                                 modules: false, // Don't transform modules; needed for tree-shaking
                                 useBuiltIns: 'entry',
-                                targets: '> 1%, last 2 versions, Firefox ESR',
                                 corejs: '^3.6.5',
                             }],
                         ],

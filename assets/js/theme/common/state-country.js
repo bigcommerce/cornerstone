@@ -1,6 +1,6 @@
 import utils from '@bigcommerce/stencil-utils';
 import _ from 'lodash';
-import { insertStateHiddenField } from './form-utils';
+import { insertStateHiddenField } from './utils/form-utils';
 import { showAlertModal } from '../global/modal';
 
 /**

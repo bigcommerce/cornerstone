@@ -41,8 +41,8 @@ export default function loadProductByCategory(productBlockCols, productBlockLimi
                                     mobileFirst: true,
                                     slidesToShow: 2,
                                     slidesToScroll: 1,
-                                    nextArrow: "<svg class='slick-next slick-arrow slick-arrow-large' aria-label='Next Slide'><use xlink:href=#slick-arrow-next></use></svg>",
-                                    prevArrow: "<svg class='slick-prev slick-arrow slick-arrow-large' aria-label='Previous Slide'><use xlink:href=#slick-arrow-prev></use></svg>",
+                                    nextArrow: "<button class='js-product-next-arrow slick-next slick-arrow'></button>",
+                                    prevArrow: "<button class='js-product-prev-arrow slick-prev slick-arrow'></button>",
                                     responsive: [{
                                         breakpoint: 1024,
                                         settings: {

@@ -1,11 +1,11 @@
 import PageManager from './page-manager';
-import urlUtils from './common/url-utils';
+import urlUtils from './common/utils/url-utils';
 import Url from 'url';
 
 export default class CatalogPage extends PageManager {
-    onSortBySubmit(event) {
+    onSortBySubmit(event, currentTarget) {
         const url = Url.parse(window.location.href, true);
-        const queryParams = $(event.currentTarget).serialize().split('=');
+        const queryParams = $(currentTarget).serialize().split('=');
 
         url.query[queryParams[0]] = queryParams[1];
         delete url.query.page;

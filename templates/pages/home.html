@@ -72,11 +72,6 @@ gql: "query getLocations {
 
 {{inject "categoryBlockCarouselLimit" theme_settings.mwn_home_category_block_limit}}
 {{inject "categoryBlockCarouselCol" theme_settings.mwn_home_category_block_col}}
-{{#filter categories theme_settings.mwn_home_category_block_id property="id"}}
-    {{assignVar "categoryBlockUrl" url}}
-    {{assignVar "categoryBlockId" id}}
-    {{assignVar "categoryBlockName" name}}
-{{/filter}}
 
 {{#partial "hero"}}
     {{{region name="home_below_menu"}}}
@@ -116,7 +111,7 @@ gql: "query getLocations {
 {{#partial "page"}}
 
     {{#each shipping_messages}}
-        {{> components/common/alert-info message}}
+        {{> components/common/alert/alert-info message}}
     {{/each}}
 
 <div class="main full">
@@ -129,24 +124,27 @@ gql: "query getLocations {
         {{> components/products/new products=products.new columns=theme_settings.homepage_new_products_column_count}}
     {{/if}}
     {{{region name="home_below_new_products"}}}
+
     {{#if theme_settings.mwn_home_category_block}}
-    <div class="mwn-block mwn-block-product padding-vertical" data-category-id="{{getVar "categoryBlockId"}}" data-category-url="{{getVar "categoryBlockUrl"}}" id="category-product-{{getVar "categoryBlockId"}}">
-        <div class="loadingOverlay"></div>
-        <div class="container">
-            <div class="mwn-block-header">
-                <h2 class="page-heading">
-                    {{#if theme_settings.mwn_home_category_block_heading}}
-                        {{theme_settings.mwn_home_category_block_heading}}
-                    {{else}}
-                        {{getVar "categoryBlockName"}}
-                    {{/if}}
-                </h2>
-            </div>
-            <div class="productCarousel-wrapper">
-                <div class="productCarousel"></div>
+        {{#filter categories theme_settings.mwn_home_category_block_id property="id"}}
+        <div class="mwn-block mwn-block-product padding-vertical" data-category-id="{{id}}" data-category-url="{{url}}" id="category-product-{{id}}">
+            <div class="loadingOverlay"></div>
+            <div class="container">
+                <div class="mwn-block-header">
+                    <h2 class="page-heading">
+                        {{#if ../theme_settings.mwn_home_category_block_heading}}
+                            {{../theme_settings.mwn_home_category_block_heading}}
+                        {{else}}
+                            {{name}}
+                        {{/if}}
+                    </h2>
+                </div>
+                <div class="productCarousel-wrapper">
+                    <div class="productCarousel"></div>
+                </div>
             </div>
         </div>
-    </div>
+        {{/filter}}
     {{/if}}
 </div>
 {{/partial}}

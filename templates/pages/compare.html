@@ -13,15 +13,17 @@
                 <th class="compareTable-product">
                     <article class="card">
                         <figure class="card-figure">
-                            <div class="card-img-container">
-                                {{> components/common/responsive-img
-                                    image=image
-                                    class="card-image"
-                                    fallback_size=../theme_settings.product_size
-                                    lazyload=../theme_settings.lazyload_mode
-                                    default_image=../theme_settings.default_image_product
-                                }}
-                            </div>
+                            <a class="card-figure__link" aria-label="{{name}}" href="{{url}}" {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}}>
+                                <div class="card-img-container">
+                                    {{> components/common/responsive-img
+                                        image=image
+                                        class="card-image"
+                                        fallback_size=../theme_settings.product_size
+                                        lazyload=../theme_settings.lazyload_mode
+                                        default_image=../theme_settings.default_image_product
+                                    }}
+                                </div>
+                            </a>
                             <a class="compareTable-removeProduct" data-comparison-remove href="{{#if remove_url}}{{remove_url}}{{else}}#{{/if}}">
                                 <svg class="icon">
                                     <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use>
@@ -32,9 +34,9 @@
                             {{#if brand.name}}
                                 <p class="card-text"><a href="{{brand.url}}">{{ brand.name }}</a></p>
                             {{/if}}
-                            <h4 class="card-title">
+                            <h3 class="card-title">
                                 <a href="{{url}}">{{ name }}</a>
-                            </h4>
+                            </h3>
                             {{#or ../customer (if ../theme_settings.restrict_to_login '!==' true)}}
                                 {{#if price_range}}
                                     {{> components/products/price-range}}

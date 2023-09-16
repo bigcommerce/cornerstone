@@ -40,7 +40,7 @@
     <p class="alertBox-column alertBox-message"></p>
 </div>
 {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
-    <div class="form-action">
+    <div class="form-action" role="status" aria-live="polite">
         <input id="form-action-addToCart" data-wait-message="{{lang 'products.adding_to_cart'}}" class="button button--primary" type="submit"
             value="{{#if product.pre_order}}{{lang 'products.pre_order'}}{{else}}{{lang 'products.add_to_cart'}}{{/if}}">
     </div>

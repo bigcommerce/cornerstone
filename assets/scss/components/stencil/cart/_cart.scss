@@ -10,6 +10,7 @@
 // -----------------------------------------------------------------------------
 
 $cart-item-spacing:                     spacing("single");
+$cart-content-padding-right:            4px;
 
 $cart-thumbnail-maxWidth:               remCalc(100px);
 $cart-thumbnail-height:                 remCalc(100px);
@@ -17,6 +18,7 @@ $cart-thumbnail-maxHeight:              14rem;
 $cart-thumbnail-paddingVertical:        0.5rem;
 
 $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-spacing;
+$card-preview-zoom-bottom-offset:       6rem;
 
 //
 // Shared styles for additional checkout buttons
@@ -217,6 +219,9 @@ $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-sp
 
 // Cart content
 // -----------------------------------------------------------------------------
+.cart-content-padding-right {
+    padding-right: $cart-content-padding-right;
+}
 
 .cart-header-quantity,
 .cart-item-quantity {
@@ -275,6 +280,11 @@ $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-sp
 .cart-item-name {
     font-size: fontSize("smaller");
     margin: 0;
+    display: inline-block;
+
+    &__label {
+        display: inline-block;
+    }
 
     + .definitionList {
         margin-top: spacing("quarter");
@@ -426,7 +436,6 @@ $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-sp
 .coupon-code-add,
 .coupon-code-cancel,
 .shipping-estimate-show,
-.shipping-estimate-hide,
 .gift-certificate-add,
 .gift-certificate-cancel {
     color: stencilColor("color-textSecondary");
@@ -440,7 +449,7 @@ $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-sp
 }
 
 .coupon-code-cancel,
-.shipping-estimate-hide {
+.shipping-estimate-show[aria-expanded="true"] {
     font-style: italic;
 }
 
@@ -557,6 +566,11 @@ $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-sp
 // 1. Need to vertically align a block of text
 //
 // -----------------------------------------------------------------------------
+
+.previewCartWrapper {
+    max-height: calc(100vh - #{$card-preview-zoom-bottom-offset});
+    overflow: auto;
+}
 
 .previewCartList {
     @include u-listReset;

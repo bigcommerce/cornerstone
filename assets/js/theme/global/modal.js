@@ -7,7 +7,6 @@ const modalBodyClass = 'modal-body';
 const modalContentClass = 'modal-content';
 
 const allTabbableElementsSelector = ':tabbable';
-const inactiveTabbableElementsSelector = '[tabindex="-1"], [type="hidden"]';
 const tabKeyCode = 9;
 const firstTabbableClass = 'first-tabbable';
 const lastTabbableClass = 'last-tabbable';
@@ -20,14 +19,27 @@ const SizeClasses = {
 
 export const modalTypes = {
     QUICK_VIEW: 'forQuickView',
+    PRODUCT_DETAILS: 'forProductDetails',
+    CART_CHANGE_PRODUCT: 'forCartChangeProduct',
+    WRITE_REVIEW: 'forWriteReview',
 };
 
 const focusableElements = {
-    [modalTypes.QUICK_VIEW]: () => $('#modal')
-        .find(allTabbableElementsSelector)
-        .not('#modal-review-form *')
-        .not('#previewModal *')
-        .not(inactiveTabbableElementsSelector),
+    [modalTypes.QUICK_VIEW]: () => (
+        $('#modal')
+            .find(allTabbableElementsSelector)
+            .not('#modal-review-form *')
+            .not('#previewModal *')
+    ),
+    [modalTypes.PRODUCT_DETAILS]: () => (
+        $('#previewModal').find(allTabbableElementsSelector)
+    ),
+    [modalTypes.CART_CHANGE_PRODUCT]: () => (
+        $('#modal').find(allTabbableElementsSelector)
+    ),
+    [modalTypes.WRITE_REVIEW]: () => (
+        $('#modal-review-form').find(allTabbableElementsSelector)
+    ),
 };
 
 export const ModalEvents = {
@@ -217,11 +229,12 @@ export class Modal {
 
     setupFocusableElements(modalType) {
         this.$preModalFocusedEl = $(document.activeElement);
+        const $modalTabbableCollection = focusableElements[modalType]();
 
-        const $collection = focusableElements[modalType]();
-        $collection.get(0).focus();
+        const elementToFocus = $modalTabbableCollection.get(0);
+        if (elementToFocus) elementToFocus.focus();
 
-        $('#modal').on('keydown', event => this.onTabbing(event, modalType));
+        this.$modal.on('keydown', event => this.onTabbing(event, modalType));
     }
 
     onTabbing(event, modalType) {
@@ -229,13 +242,23 @@ export class Modal {
 
         if (!isTab) return;
 
-        const $tabbableCollection = focusableElements[modalType]();
-        const lastCollectionIdx = $tabbableCollection.length - 1;
-        const $firstTabbable = $tabbableCollection.get(0);
-        const $lastTabbable = $tabbableCollection.get(lastCollectionIdx);
+        const $modalTabbableCollection = focusableElements[modalType]();
+        const modalTabbableCollectionLength = $modalTabbableCollection.length;
 
-        $tabbableCollection.each((index, element) => {
+        if (modalTabbableCollectionLength < 1) return;
+
+        const lastCollectionIdx = modalTabbableCollectionLength - 1;
+        const $firstTabbable = $modalTabbableCollection.get(0);
+        const $lastTabbable = $modalTabbableCollection.get(lastCollectionIdx);
+
+        $modalTabbableCollection.each((index, element) => {
             const $element = $(element);
+
+            if (modalTabbableCollectionLength === 1) {
+                $element.addClass(`${firstTabbableClass} ${lastTabbableClass}`);
+                return false;
+            }
+
             if ($element.is($firstTabbable)) {
                 $element.addClass(firstTabbableClass).removeClass(lastTabbableClass);
             } else if ($element.is($lastTabbable)) {
@@ -252,13 +275,13 @@ export class Modal {
         if (direction === 'forwards') {
             const isLastActive = $activeElement.hasClass(lastTabbableClass);
             if (isLastActive) {
-                $tabbableCollection.get(0).focus();
+                $modalTabbableCollection.get(0).focus();
                 event.preventDefault();
             }
         } else if (direction === 'backwards') {
             const isFirstActive = $activeElement.hasClass(firstTabbableClass);
             if (isFirstActive) {
-                $tabbableCollection.get(lastCollectionIdx).focus();
+                $modalTabbableCollection.get(lastCollectionIdx).focus();
                 event.preventDefault();
             }
         }
@@ -271,7 +294,7 @@ export class Modal {
     onModalClosed() {
         this.size = this.defaultSize;
         if (this.$preModalFocusedEl) this.$preModalFocusedEl.focus();
-        $('#modal').off(ModalEvents.keyDown);
+        this.$modal.off('keydown');
         this.unbindEvents();
     }
 

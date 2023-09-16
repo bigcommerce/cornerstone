@@ -2,8 +2,8 @@ import { hooks } from '@bigcommerce/stencil-utils';
 import CatalogPage from './catalog';
 import compareProducts from './global/compare-products';
 import FacetedSearch from './common/faceted-search';
-import { showCategoryModal } from './global/modal';
 import { createTranslationDictionary } from '../theme/common/utils/translations-utils';
+import { showCategoryModal } from './global/modal';
 
 export default class Category extends CatalogPage {
     constructor(context) {

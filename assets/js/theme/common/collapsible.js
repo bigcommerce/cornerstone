@@ -41,10 +41,10 @@ export class Collapsible {
      * @param {jQuery} $target - Content to collapse / expand
      * @param {Object} [options] - Configurable options
      * @param {Object} [options.$context]
-     * @param {Object} [options.disabledBreakpoint]
+     * @param {String} [options.disabledBreakpoint]
      * @param {Object} [options.disabledState]
      * @param {Object} [options.enabledState]
-     * @param {Object} [options.openClassName]
+     * @param {String} [options.openClassName]
      * @example
      *
      * <button id="#more">Collapse</button>
@@ -91,7 +91,7 @@ export class Collapsible {
     }
 
     get isCollapsed() {
-        return !this.$target.hasClass(this.openClassName) || this.$target.is(':hidden');
+        return this.$target.is(':hidden') && !this.$target.hasClass(this.openClassName);
     }
 
     get isOpen() {
@@ -211,10 +211,10 @@ export class Collapsible {
  * @param {string} [selector]
  * @param {Object} [overrideOptions]
  * @param {Object} [overrideOptions.$context]
- * @param {Object} [overrideOptions.disabledBreakpoint]
+ * @param {String} [overrideOptions.disabledBreakpoint]
  * @param {Object} [overrideOptions.disabledState]
  * @param {Object} [overrideOptions.enabledState]
- * @param {Object} [overrideOptions.openClassName]
+ * @param {String} [overrideOptions.openClassName]
  * @return {Array} array of Collapsible instances
  *
  * @example

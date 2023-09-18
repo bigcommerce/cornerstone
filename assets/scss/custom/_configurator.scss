@@ -1,0 +1,107 @@
+.configurator {
+  max-width: 90%;
+  width: 716px;
+  margin: 60px auto 100px;
+
+  &__banner {
+    text-align: center;
+  }
+
+  &__content {
+    display: grid;
+    gap: 20px;
+
+    @include gt($medium) {
+      grid-template-columns: 2.5fr 2fr;
+    }
+  }
+
+  &__field-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 10px;
+
+    select,
+    input {
+      min-width: 100px;
+      padding: 10px 20px;
+      font: normal normal 500 12px/15px $interstate;
+      border: 2px solid $black;
+
+      &:focus {
+        outline: none;
+        border-color: $dark_blue;
+      }
+
+      &::placeholder {
+        color: $dark_grey;
+      }
+    }
+  }
+
+  &__label {
+    display: inline-block;
+    margin-bottom: 10px;
+    font: normal normal 500 15px/18px $interstate;
+    letter-spacing: 0;
+    text-transform: uppercase;
+  }
+
+  &__placeholder {
+    width: 100%;
+    text-align: center;
+
+    p {
+      margin: 10px auto;
+    }
+  }
+
+  &__results {
+    display: flex;
+    align-items: center;
+    height: fit-content;
+    background-color: #F4F5F5;
+
+    @include gt($medium) {
+      min-height: 540px;
+    }
+  }
+
+  &__subtitle {
+    font-weight: 500;
+  }
+
+  &__title {
+    margin: 0 0 10px;
+    color: $navy;
+  }
+
+  &__results {
+    padding: 20px;
+
+    p, li {
+      font: normal normal 500 12px/26px $interstate;
+      margin-bottom: 2px;
+    }
+
+    ul {
+      margin-bottom: 10px;
+    }
+  }
+
+  &__results--region:not(:last-of-type) {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid $black;
+  }
+
+  &__section-header {
+    margin-top: 0;
+    color: $navy;
+
+    &.total {
+      color: $black;
+    }
+  }
+}

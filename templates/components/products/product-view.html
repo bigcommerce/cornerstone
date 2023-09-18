@@ -16,9 +16,7 @@
                         <a href="{{product.brand.url}}"{{#if schema}} itemprop="url"{{/if}}><span{{#if schema}} itemprop="name"{{/if}}>{{product.brand.name}}</span></a>
                     </h2>
                 {{/if}}
-                 {{#if product.brand.name '==' 'Hafele'}}
-                    <p class="alert"><b>NOTE:</b> Hafele was recently the victim of a worldwide ransomware attack that took down their business for almost a month. We are still noticing a slowdown in shipping times as they work to recover. Orders are being shipped but please allow as much as a week to 10 days for processing orders until further notice.</p>
-                {{/if}}
+                 
                 {{#if product.sku}}
                     <p class="productView-sku"{{#if schema}} itemprop="sku" itemscope itemtype="http://schema.org/Sku"{{/if}}>
                         SKU: {{product.sku}}
@@ -321,7 +319,7 @@
                                 {{# if @index '==' 1}}
                                     <div class="productView-options--dark__message-wrap">
                                         <p>Then, add up to 9 characters:</p>
-                                        <img class="lazyload productView-options--dark__gif" data-sizes="auto" src="{{cdn 'img/kickplate-GIF-1.gif'}}" alt="welcome kickplate">
+                                        <!-- <img class="lazyload productView-options--dark__gif" data-sizes="auto" src="{{cdn 'img/KO-Kickplate-1.jpg'}}" alt="welcome kickplate"> -->
                                     </div>
                                 {{/if}}
                                 {{{dynamicComponent 'components/products/options'}}}

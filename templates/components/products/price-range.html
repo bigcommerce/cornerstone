@@ -31,8 +31,9 @@
         {{#if schema_org}}
             <meta itemprop="availability" itemtype="http://schema.org/ItemAvailability"
                     content="http://schema.org/{{#if product.pre_order}}PreOrder{{else if product.out_of_stock}}OutOfStock{{else if product.can_purchase '===' false}}OutOfStock{{else}}InStock{{/if}}">
-            <meta itemprop="itemCondition" itemtype="http://schema.org/OfferItemCondition" content="http://schema.org/{{product.condition}}Condition">
+            <meta itemprop="itemCondition" itemtype="http://schema.org/OfferItemCondition" content="http://schema.org/NewCondition">
             <meta itemprop="priceCurrency" content="{{currency_selector.active_currency_code}}">
+            <meta itemprop="price" content="{{price.without_tax.value}}">
             <meta itemprop="url" content="{{product.url}}">
             <div itemprop="priceSpecification" itemscope itemtype="http://schema.org/PriceSpecification">
                 <meta itemprop="minPrice" content="{{price_range.min.with_tax.value}}"  />
@@ -77,7 +78,7 @@
         {{#if schema_org}}
             <meta itemprop="availability" itemtype="http://schema.org/ItemAvailability"
                     content="http://schema.org/{{#if product.pre_order}}PreOrder{{else if product.out_of_stock}}OutOfStock{{else if product.can_purchase '===' false}}OutOfStock{{else}}InStock{{/if}}">
-            <meta itemprop="itemCondition" itemtype="http://schema.org/OfferItemCondition" content="http://schema.org/{{product.condition}}Condition">
+            <meta itemprop="itemCondition" itemtype="http://schema.org/OfferItemCondition" content="http://schema.org/NewCondition">
             <meta itemprop="priceCurrency" content="{{currency_selector.active_currency_code}}">
             <meta itemprop="url" content="{{product.url}}">
             <div itemprop="priceSpecification" itemscope itemtype="http://schema.org/PriceSpecification">

@@ -2,6 +2,32 @@
 
 ## Draft
 
+## 5.1.0 (01-26-2021)
+- Updated Cornerstone theme and respected variants to meet the verticals/industries documented in BCTHEME-387
+- Fixed selecting certain option types which pushes window view to the bottom of the page. [#1959](https://github.com/bigcommerce/cornerstone/pull/1959)
+- Fixed case when default option is out of stock add to cart button does not populate for in stock options. [#1955](https://github.com/bigcommerce/cornerstone/pull/1955)
+- Dots on carousel should have similar colours as other slider controls. [#1958](https://github.com/bigcommerce/cornerstone/pull/1958)
+- PDP - Fixed Empty "Description" Hiding All Tabs When in Tab View. [#1947](https://github.com/bigcommerce/cornerstone/pull/1947)
+- Added custom event for product price change on PDP page. [#1948](https://github.com/bigcommerce/cornerstone/pull/1948)
+- Fixed announcement of subscription message. [#1952](https://github.com/bigcommerce/cornerstone/pull/1952)
+- Error message on PLPs not announced by screen reader. [#1956](https://github.com/bigcommerce/cornerstone/pull/1956)
+- Add Play/Pause button to carousel. [#1944](https://github.com/bigcommerce/cornerstone/pull/1944)
+- Alt text not provided for ratings. [#1949](https://github.com/bigcommerce/cornerstone/pull/1949)
+- Fixed announcement for product on adding to cart. [#1950](https://github.com/bigcommerce/cornerstone/pull/1950)
+- Fixed non-text contrast on add to cart modal according to WCAG AA standard.  [#1946](https://github.com/bigcommerce/cornerstone/pull/1946)
+- Fixed announcement of reCAPTCHA hidden content by screen reader. [#1943](https://github.com/bigcommerce/cornerstone/pull/1943)
+- Carousel buttons do not receive focus. [#1937](https://github.com/bigcommerce/cornerstone/pull/1937)
+- Empty cart message not read by screen reader. [#1935](https://github.com/bigcommerce/cornerstone/pull/1935)
+- No tooltips provided for carousel buttons. [#1934](https://github.com/bigcommerce/cornerstone/pull/1934)
+- Added announcement on shipping estimator errors. [#1932](https://github.com/bigcommerce/cornerstone/pull/1932)
+- Add main tag on pages like Homepage, Category, Product etc to define the dominant content. [#1929](https://github.com/bigcommerce/cornerstone/pull/1929)
+- Fixed unable to change product quantity several times on cart page using keyboard. [#1927](https://github.com/bigcommerce/cornerstone/pull/1927)
+- Cornerstone - loading of thumbnail image delayed on cart page . [#1925](https://github.com/bigcommerce/cornerstone/pull/1925)
+- Added narrow down pricing during option selections [#1924](https://github.com/bigcommerce/cornerstone/pull/1924)
+- Cornerstone - Image Zoom Does Not Work on Internet Explorer. [#1923](https://github.com/bigcommerce/cornerstone/pull/1923)
+- Fixed input placeholder color contrast according to AA standard. [#1933](https://github.com/bigcommerce/cornerstone/pull/1933)
+- Bump stencil utils to 6.8.0. [#1945](https://github.com/bigcommerce/cornerstone/pull/1945)
+
 ## 5.0.0 (12-14-2020)
 - Parse HTML entities in jsContext. [#1917](https://github.com/bigcommerce/cornerstone/pull/1917)
 - Product images squashed in Category view in AMP. [#1921](https://github.com/bigcommerce/cornerstone/pull/1921)
@@ -27,6 +53,7 @@
 - Added styling config for the PayPal SPB on checkout page [#1866](https://github.com/bigcommerce/cornerstone/pull/1866)
 - Moved zoomSize and productSize to the upper level, cause product.js is not availabe on the Quick View [#1884](https://github.com/bigcommerce/cornerstone/pull/1884)
 - Added new region on the cart page [#1901](https://github.com/bigcommerce/cornerstone/pull/1901)
+- Add pagination for Wishlists.[#1906](https://github.com/bigcommerce/cornerstone/pull/1906)
 
 ## 4.12.1 (11-10-2020)
 - Write a Review modal cause TypeError. [#1899](https://github.com/bigcommerce/cornerstone/pull/1899)

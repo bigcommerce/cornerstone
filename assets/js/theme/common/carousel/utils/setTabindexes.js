@@ -4,7 +4,7 @@ export default ($slides, $prevArrow, $nextArrow, actualSlide, actualSlideCount) 
     $slides.each((index, element) => {
         const $element = $(element);
         const tabIndex = $element.hasClass('slick-active') ? 0 : -1;
-        if (!$element.hasClass('js-product-slide')) {
+        if ($element.attr('href') !== undefined) {
             $element.attr('tabindex', tabIndex);
         }
 

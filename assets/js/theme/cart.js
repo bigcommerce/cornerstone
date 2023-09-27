@@ -15,12 +15,17 @@ export default class Cart extends PageManager {
         this.$cartTotals = $('[data-cart-totals]');
         this.$overlay = $('[data-cart] .loadingOverlay')
             .hide(); // TODO: temporary until roper pulls in his cart components
+        this.$activeCartItemId = null;
+        this.$activeCartItemBtnAction = null;
 
         this.bindEvents();
     }
 
     cartUpdate($target) {
         const itemId = $target.data('cartItemid');
+        this.$activeCartItemId = itemId;
+        this.$activeCartItemBtnAction = $target.data('action');
+
         const $el = $(`#qty-${itemId}`);
         const oldQty = parseInt($el.val(), 10);
         const maxQty = parseInt($el.data('quantityMax'), 10);
@@ -220,6 +225,10 @@ export default class Cart extends PageManager {
             const quantity = $('[data-cart-quantity]', this.$cartContent).data('cartQuantity') || 0;
 
             $('body').trigger('cart-quantity-update', quantity);
+
+            $(`[data-cart-itemid='${this.$activeCartItemId}']`, this.$cartContent)
+                .filter(`[data-action='${this.$activeCartItemBtnAction}']`)
+                .trigger('focus');
         });
     }
 

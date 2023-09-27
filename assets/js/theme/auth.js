@@ -11,6 +11,7 @@ export default class Auth extends PageManager {
         super(context);
         this.validationDictionary = createTranslationDictionary(context);
         this.formCreateSelector = 'form[data-create-account-form]';
+        this.recaptcha = $('.g-recaptcha iframe[src]');
     }
 
     registerLoginValidation($loginForm) {
@@ -175,6 +176,10 @@ export default class Auth extends PageManager {
      * Request is made in this function to the remote endpoint and pulls back the states for country.
      */
     onReady() {
+        if (!this.recaptcha.attr('title')) {
+            this.recaptcha.attr('title', this.context.recaptchaTitle);
+        }
+
         const $createAccountForm = classifyForm(this.formCreateSelector);
         const $loginForm = classifyForm('.login-form');
         const $forgotPasswordForm = classifyForm('.forgot-password-form');

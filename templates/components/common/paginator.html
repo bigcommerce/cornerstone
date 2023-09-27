@@ -21,7 +21,10 @@
                 <a class="pagination-link"
                    href="{{this.url}}"
                    {{#unless reload}}data-faceted-search-facet{{/unless}}
-                   {{#if this.number '==' ../current}}aria-current="page"{{/if}}
+                   {{#if this.number '==' ../current}}
+                   aria-current="page"
+                   data-pagination-current-page-link
+                   {{/if}}
                    aria-label="{{lang 'common.paginator.page_of' current=this.number total=../links.length}}"
                 >
                     {{this.number}}

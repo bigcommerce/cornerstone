@@ -17,12 +17,22 @@ export default class ShippingEstimator {
     }
 
     initFormValidation() {
+        const shippingEstimatorAlert = $('.shipping-quotes');
+
         this.shippingEstimator = 'form[data-shipping-estimator]';
         this.shippingValidator = nod({
             submit: `${this.shippingEstimator} .shipping-estimate-submit`,
         });
 
         $('.shipping-estimate-submit', this.$element).on('click', event => {
+            // estimator error messages are being injected in html as a result
+            // of user submit; clearing and adding role on submit provides
+            // regular announcement of these error messages
+            if (shippingEstimatorAlert.attr('role')) {
+                shippingEstimatorAlert.removeAttr('role');
+            }
+
+            shippingEstimatorAlert.attr('role', 'alert');
             // When switching between countries, the state/region is dynamic
             // Only perform a check for all fields when country has a value
             // Otherwise areAll('valid') will check country for validity

@@ -2,6 +2,7 @@ import 'slick-carousel';
 
 import {
     dotsSetup,
+    tooltipSetup,
     setTabindexes,
     arrowAriaLabling,
     heroCarouselSetup,
@@ -33,6 +34,7 @@ const onCarouselChange = (event, carousel) => {
     dotsSetup($dots, actualSlide, actualSlideCount, $slider.data('dots-labels'));
     setTabindexes($slider.find('.slick-slide'), $prevArrow, $nextArrow, actualSlide, actualSlideCount);
     arrowAriaLabling($prevArrow, $nextArrow, actualSlide, actualSlideCount);
+    tooltipSetup($prevArrow, $nextArrow, $dots);
 };
 
 export default function () {

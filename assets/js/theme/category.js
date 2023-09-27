@@ -35,6 +35,7 @@ export default class Category extends CatalogPage {
             });
         });
 
+        this.ariaNotifyNoProducts();
         this.initCategoryButton();
     }
 
@@ -42,6 +43,13 @@ export default class Category extends CatalogPage {
         const button = document.querySelector('.mobileCategory--toggleButton');
         if (button) {
             button.addEventListener('click', showCategoryModal);
+        }
+    }
+
+    ariaNotifyNoProducts() {
+        const $noProductsMessage = $('[data-no-products-notification]');
+        if ($noProductsMessage.length) {
+            $noProductsMessage.focus();
         }
     }
 

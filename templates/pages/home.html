@@ -90,6 +90,15 @@ gql: "query getLocations {
         </div>
     {{/if}}
     {{{region name="home_below_featured_products"}}}
+
+    {{#if theme_settings.mwn_home_category_block}}
+        {{#if theme_settings.mwn_home_category_block_region '===' 'home_below_featured_products'}}
+            {{#filter categories theme_settings.mwn_home_category_block_id property="id"}}
+                {{> components/category/featured-category-block category=this heading=../theme_settings.mwn_home_category_block_heading description=../theme_settings.mwn_home_category_block_description }}
+            {{/filter}}
+        {{/if}}
+    {{/if}}
+
     <!-- QUICK INTRO GOES HERE -->
     {{> components/info/quick-intro}}
     {{#if categories}}
@@ -126,25 +135,11 @@ gql: "query getLocations {
     {{{region name="home_below_new_products"}}}
 
     {{#if theme_settings.mwn_home_category_block}}
-        {{#filter categories theme_settings.mwn_home_category_block_id property="id"}}
-        <div class="mwn-block mwn-block-product padding-vertical" data-category-id="{{id}}" data-category-url="{{url}}" id="category-product-{{id}}">
-            <div class="loadingOverlay"></div>
-            <div class="container">
-                <div class="mwn-block-header">
-                    <h2 class="page-heading">
-                        {{#if ../theme_settings.mwn_home_category_block_heading}}
-                            {{../theme_settings.mwn_home_category_block_heading}}
-                        {{else}}
-                            {{name}}
-                        {{/if}}
-                    </h2>
-                </div>
-                <div class="productCarousel-wrapper">
-                    <div class="productCarousel"></div>
-                </div>
-            </div>
-        </div>
-        {{/filter}}
+        {{#if theme_settings.mwn_home_category_block_region '===' 'home_below_new_products'}}
+            {{#filter categories theme_settings.mwn_home_category_block_id property="id"}}
+                {{> components/category/featured-category-block category=this heading=../theme_settings.mwn_home_category_block_heading description=../theme_settings.mwn_home_category_block_description }}
+            {{/filter}}
+        {{/if}}
     {{/if}}
 </div>
 {{/partial}}

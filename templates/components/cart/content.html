@@ -18,7 +18,7 @@
                             alt="{{lang 'cart.gift_certificates.gift_certificate'}}"
                             title="{{lang 'cart.gift_certificates.gift_certificate'}}"
                         >
-                    {{else}}
+                    {{else if image}}
                         {{> components/common/responsive-img
                             image=image
                             class="cart-item-image"
@@ -26,6 +26,8 @@
                             lazyload="lazyload"
                             default_image=../theme_settings.default_image_product
                         }}
+                    {{else}}
+                        <img loading="lazy" alt="" src="https://cdn11.bigcommerce.com/s-40wxilo4jg/images/stencil/250x100/kd-logotagline_2_1694033400__59013.original.png">
                     {{/if}}
                 </td>
                 <td class="cart-item-block cart-item-title">

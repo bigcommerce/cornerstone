@@ -3,7 +3,7 @@ import ProductDetailsBase, { optionChangeDecorator } from './product-details-bas
 import 'foundation-sites/js/foundation/foundation';
 import 'foundation-sites/js/foundation/foundation.reveal';
 import ImageGallery from '../product/image-gallery';
-import modalFactory, { showAlertModal, modalTypes } from '../global/modal';
+import modalFactory, { showAlertModal } from '../global/modal';
 import { isEmpty, isPlainObject } from 'lodash';
 import { normalizeFormData } from './utils/api';
 import { isBrowserIE, convertIntoArray } from './utils/ie-helpers';
@@ -34,12 +34,6 @@ export default class ProductDetails extends ProductDetailsBase {
                 if ($(element).is(':checked')) this.showSwatchNameOnOption($(element));
             });
         }
-
-        $('[data-product-attribute]').each((__, value) => {
-            const type = value.getAttribute('data-product-attribute');
-
-            this._makeProductVariantAccessible(value, type);
-        });
 
         $productOptionsElement.on('change', event => {
             this.productOptionsChanged(event);
@@ -367,7 +361,8 @@ export default class ProductDetails extends ProductDetailsBase {
             if (this.previewModal) {
                 this.previewModal.open();
 
-                this.updateCartContent(this.previewModal, response.data.cart_item.id, () => this.previewModal.setupFocusableElements(modalTypes.PRODUCT_DETAILS));
+                if ($addToCartBtn.parents('.quickView').length === 0) this.previewModal.$preModalFocusedEl = $addToCartBtn;
+                this.updateCartContent(this.previewModal, response.data.cart_item.id, () => this.previewModal.setupFocusTrap());
             } else {
                 this.$overlay.show();
                 // if no modal, redirect to the cart page

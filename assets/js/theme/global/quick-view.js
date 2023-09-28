@@ -2,9 +2,9 @@ import 'foundation-sites/js/foundation/foundation';
 import 'foundation-sites/js/foundation/foundation.dropdown';
 import utils from '@bigcommerce/stencil-utils';
 import ProductDetails from '../common/product-details';
-import { defaultModal, modalTypes } from './modal';
+import { defaultModal } from './modal';
 import 'slick-carousel';
-import { onCarouselChange } from '../common/carousel';
+import { onSlickCarouselChange, onUserCarouselChange } from '../common/carousel';
 
 export default function (context) {
     const modal = defaultModal();
@@ -24,13 +24,14 @@ export default function (context) {
             const $carousel = modal.$content.find('[data-slick]');
 
             if ($carousel.length) {
-                $carousel.on('init', onCarouselChange);
-                $carousel.on('afterChange', onCarouselChange);
+                $carousel.on('init afterChange', (e, carousel) => onSlickCarouselChange(e, carousel, context));
+                $carousel.on('click', '.slick-arrow, .slick-dots', $carousel, e => onUserCarouselChange(e, context));
+                $carousel.on('swipe', (e, carouselObj) => onUserCarouselChange(e, context, carouselObj.$slider));
 
                 $carousel.slick();
             }
 
-            modal.setupFocusableElements(modalTypes.QUICK_VIEW);
+            modal.setupFocusTrap();
 
             return new ProductDetails(modal.$content.find('.quickView'), context);
         });

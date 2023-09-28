@@ -11,22 +11,21 @@
            data-event-type="product-click"
            {{/if}}
         >
-        {{#or price.sale_price_with_tax.value price.sale_price_without_tax.value}}
-            {{#if theme_settings.product_sale_badges '===' 'sash'}}
-                <div class="sale-flag-sash">
-                    <span class="sale-text">On Sale!</span>
-                </div>
-            {{else if theme_settings.product_sale_badges '===' 'topleft'}}
-                <div class="sale-flag-side">
-                    <span class="sale-text">On Sale!</span>
-                </div>
-            {{else if theme_settings.product_sale_badges '===' 'burst'}}
-                <div class="starwrap">
-                    <div class="sale-text-burst">On Sale!</div>
-                    <div class="sale-flag-star"></div>
-                </div>
-            {{/if}}
-        {{/or}}
+        {{#if stock_level '===' 0}}
+            {{> components/products/product-badge
+                badge-type='sold-out'
+                badge_view=theme_settings.product_sold_out_badges
+                badge_label=theme_settings.pdp_sold_out_label
+            }}
+        {{else}}
+            {{#or price.sale_price_with_tax.value price.sale_price_without_tax.value}}
+                {{> components/products/product-badge
+                    badge-type='sale'
+                    badge_view=theme_settings.product_sale_badges
+                    badge_label=theme_settings.pdp_sale_badge_label
+                }}
+            {{/or}}
+        {{/if}}
         {{> components/common/responsive-img
             image=image
             class="listItem-image"
@@ -47,13 +46,13 @@
         <div class="listItem-content">
             <div class="listItem-details">
                 {{#if show_rating}}
-                    <p class="listItem-rating">{{> components/products/ratings rating=rating}}</p>
+                    <p class="listItem-rating">{{> components/products/ratings rating_target=name rating=rating}}</p>
                 {{/if}}
                 {{#if brand.name}}
                 <p class="listItem-brand">{{brand.name}}</p>
                 {{/if}}
                 <h4 class="listItem-title">
-                    <a href="{{url}}" 
+                    <a href="{{url}}"
                     aria-label="{{name}},{{> components/products/product-aria-label}}"
                     {{#if settings.data_tag_enabled}}
                     data-event-type="product-click"

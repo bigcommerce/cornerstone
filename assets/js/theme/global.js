@@ -26,7 +26,7 @@ export default class Global extends PageManager {
         currencySelector(cartId);
         foundation($(document));
         quickView(this.context);
-        carousel();
+        carousel(this.context);
         menu();
         mobileMenuToggle();
         privacyCookieNotification();

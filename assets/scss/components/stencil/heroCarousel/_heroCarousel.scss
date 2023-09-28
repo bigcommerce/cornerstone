@@ -19,11 +19,6 @@
     // margin-bottom: (spacing("double") + spacing("single"));
     margin-bottom: 0;
     margin-top: -(spacing("single")); // 3
-    opacity: 0;
-
-    &.is-visible {
-        opacity: 1;
-    }
 
     @include breakpoint("medium") {
         margin-top: -(spacing("single") + spacing("base")); // 3
@@ -75,14 +70,33 @@
         padding-right: 15px;
     }
 
-    // .slick-list .slick-track .slick-slide:nth-child(odd) {
-        
-    //     @include breakpoint("large") {
-    //         .heroCarousel-content {
-    //             transform: translate(25%, -50%);
-    //         }
-    //     }
-    // }
+    .slick-slide {
+        &.is-square-image-type {
+            .heroCarousel-image-wrapper {
+                height: 100vw;
+            }
+        }
+    
+        &.is-vertical-image-type {
+            .heroCarousel-image-wrapper {
+                height: 110vw;
+            }
+        }
+    
+        &.is-square-image-type,
+        &.is-vertical-image-type {
+            .heroCarousel-image-wrapper {    
+                @include breakpoint("small") {
+                    height: 56.25vw;
+                }
+            }
+        }
+    
+        &.is-image-error {
+            background: url("../img/hero-carousel-image-load-error.svg") center center no-repeat;
+            background-size: contain;
+        }    
+    }
 }
 
 .heroCarousel-slide {
@@ -130,6 +144,7 @@
         align-items: flex-start;
         height: 56.25vw;
         max-height: 100vh;
+        transition: height .3s ease;
 
         @include breakpoint("small") {
             max-height: remCalc(400px);
@@ -137,34 +152,6 @@
 
         @include breakpoint("medium") {
             max-height: remCalc(600px);
-        }
-    }
-
-    &.is-square-image-type {
-        .heroCarousel-image-wrapper {
-            height: 100vw;
-        }
-    }
-
-    &.is-vertical-image-type {
-        .heroCarousel-image-wrapper {
-            height: 110vw;
-        }
-    }
-
-    &.is-square-image-type,
-    &.is-vertical-image-type {
-        .heroCarousel-image-wrapper {
-            max-height: 100vh;
-
-            @include breakpoint("small") {
-                height: 56.25vw;
-                max-height: remCalc(400px);
-            }
-
-            @include breakpoint("medium") {
-                max-height: remCalc(600px);
-            }
         }
     }
 }

@@ -7,9 +7,7 @@ import collapsibleFactory from './common/collapsible';
 import ProductDetails from './common/product-details';
 import videoGallery from './product/video-gallery';
 import { classifyForm } from './common/utils/form-utils';
-import modalFactory, { modalTypes } from './global/modal';
-
-const { WRITE_REVIEW } = modalTypes;
+import modalFactory, { ModalEvents } from './global/modal';
 
 export default class Product extends PageManager {
     constructor(context) {
@@ -46,7 +44,7 @@ export default class Product extends PageManager {
 
         const review = new Review($reviewForm);
 
-        $(document).on('opened.fndtn.reveal', '#modal-review-form', () => this.reviewModal.setupFocusableElements(WRITE_REVIEW));
+        $(document).on(ModalEvents.opened, '#modal-review-form', () => this.reviewModal.setupFocusTrap());
 
         $('body').on('click', '[data-reveal-id="modal-review-form"]', () => {
             validator = review.registerValidation(this.context);

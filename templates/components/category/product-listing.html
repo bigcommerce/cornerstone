@@ -19,11 +19,15 @@
 
     {{> components/common/paginator pagination.category}}
 {{else}}
-    <p data-no-products-notification
-       role="alert"
-       aria-live="assertive"
-       tabindex="-1"
-    >
-        {{lang 'categories.no_products'}}
-    </p>
+    {{#if category.search_error}}
+        <p>{{lang 'search.errorMessage'}}</p>
+    {{else}}
+        <p data-no-products-notification
+           role="alert"
+           aria-live="assertive"
+           tabindex="-1"
+        >
+            {{lang 'categories.no_products'}}
+        </p>
+    {{/if}}
 {{/if}}

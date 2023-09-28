@@ -2,7 +2,7 @@
     {{#if theme_settings.show_product_quantity_box}}
         <div class="form-field form-field--increments">
             <label class="form-label form-label--alternate"
-                for="qty[]">{{lang 'products.quantity'}}</label>
+                   for="qty[]">{{lang 'products.quantity'}}</label>
                 <div class="form-increment" data-quantity-change>
                     <button class="button button--icon" data-action="dec">
                         <span class="is-srOnly">{{lang 'products.quantity_decrease'}}</span>
@@ -13,15 +13,15 @@
                         </i>
                     </button>
                     <input class="form-input form-input--incrementTotal"
-                        id="qty[]"
-                        name="qty[]"
-                        type="tel"
-                        value="{{#if product.min_purchase_quantity}}{{product.min_purchase_quantity}}{{else}}1{{/if}}"
-                        data-quantity-min="{{product.min_purchase_quantity}}"
-                        data-quantity-max="{{product.max_purchase_quantity}}"
-                        min="1"
-                        pattern="[0-9]*"
-                        aria-live="polite">
+                           id="qty[]"
+                           name="qty[]"
+                           type="tel"
+                           value="{{#if product.min_purchase_quantity}}{{product.min_purchase_quantity}}{{else}}1{{/if}}"
+                           data-quantity-min="{{product.min_purchase_quantity}}"
+                           data-quantity-max="{{product.max_purchase_quantity}}"
+                           min="1"
+                           pattern="[0-9]*"
+                           aria-live="polite">
                     <button class="button button--icon" data-action="inc">
                         <span class="is-srOnly">{{lang 'products.quantity_increase'}}</span>
                         <i class="icon" aria-hidden="true">
@@ -41,9 +41,15 @@
         <p class="alertBox-column alertBox-message"></p>
     </div>
     {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
-        <div class="form-action" role="status" aria-live="polite">
-            <input id="form-action-addToCart" data-wait-message="{{lang 'products.adding_to_cart'}}" class="button button--primary" type="submit"
-                value="{{#if product.pre_order}}{{lang 'products.pre_order'}}{{else}}{{lang 'products.add_to_cart'}}{{/if}}">
+        <div class="form-action">
+            <input
+                    id="form-action-addToCart"
+                    data-wait-message="{{lang 'products.adding_to_cart'}}"
+                    class="button button--primary"
+                    type="submit"
+                    value="{{#if product.pre_order}}{{lang 'products.pre_order'}}{{else}}{{lang 'products.add_to_cart'}}{{/if}}"
+            >
+            <span class="product-status-message aria-description--hidden">{{lang 'products.adding_to_cart'}} {{lang 'category.add_cart_announcement'}}</span>
         </div>
     {{/or}}
 </div>

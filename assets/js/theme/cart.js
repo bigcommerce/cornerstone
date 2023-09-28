@@ -157,7 +157,7 @@ export default class Cart extends PageManager {
 
             this.bindGiftWrappingForm();
 
-            modal.setupFocusableElements(modalTypes.CART_CHANGE_PRODUCT);
+            modal.setupFocusTrap();
         });
 
         utils.hooks.on('product-option-change', (event, currentTarget) => {

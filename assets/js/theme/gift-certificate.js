@@ -3,6 +3,7 @@ import nod from './common/nod';
 import giftCertChecker from './common/gift-certificate-validator';
 import formModel from './common/models/forms';
 import { createTranslationDictionary } from './common/utils/translations-utils';
+import { announceInputErrorMessage } from './common/utils/form-utils';
 import { api } from '@bigcommerce/stencil-utils';
 import { defaultModal } from './global/modal';
 
@@ -48,6 +49,7 @@ export default class GiftCertificate extends PageManager {
         const purchaseValidator = nod({
             submit: '#gift-certificate-form input[type="submit"]',
             delay: 300,
+            tap: announceInputErrorMessage,
         });
 
         if ($customAmounts.length) {
@@ -196,6 +198,7 @@ export default class GiftCertificate extends PageManager {
     checkCertBalanceValidator($balanceForm) {
         const balanceValidator = nod({
             submit: $balanceForm.find('input[type="submit"]'),
+            tap: announceInputErrorMessage,
         });
 
         balanceValidator.add({

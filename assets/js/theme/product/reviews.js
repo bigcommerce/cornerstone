@@ -2,11 +2,13 @@ import nod from '../common/nod';
 import { CollapsibleEvents } from '../common/collapsible';
 import forms from '../common/models/forms';
 import { safeString } from '../common/utils/safe-string';
+import { announceInputErrorMessage } from '../common/utils/form-utils';
 
 export default class {
     constructor($reviewForm) {
         this.validator = nod({
             submit: $reviewForm.find('input[type="submit"]'),
+            tap: announceInputErrorMessage,
         });
 
         this.$reviewsContent = $('#product-reviews');

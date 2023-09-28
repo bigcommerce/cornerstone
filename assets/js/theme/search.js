@@ -1,6 +1,7 @@
 import { hooks } from '@bigcommerce/stencil-utils';
 import CatalogPage from './catalog';
 import FacetedSearch from './common/faceted-search';
+import { announceInputErrorMessage } from './common/utils/form-utils';
 import compareProducts from './global/compare-products';
 import urlUtils from './common/utils/url-utils';
 import Url from 'url';
@@ -132,37 +133,9 @@ export default class Search extends CatalogPage {
         $($tabsCollection.get(nextTabIdx)).focus().trigger('click');
     }
 
-    getUrlParameter(queryParam) {
-        const regex = new RegExp(`[\\?&]${queryParam}=([^&#]*)`);
-        const results = regex.exec(window.location.search);
-        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
-    }
-
-    setupSortByQuerySearchParam() {
-        const searchQuery = this.getUrlParameter('search_query');
-
-        if (searchQuery.length === 0) return;
-
-        const $baseInput = $('<input/>').attr('type', 'hidden');
-
-        $('[data-sort-by]').each((idx, form) => {
-            const $form = $(form);
-            $form.append(
-                $baseInput.clone().attr({
-                    name: 'search_query',
-                    value: searchQuery,
-                }),
-                $baseInput.clone().attr({
-                    name: 'section',
-                    value: $form.data('sort-by'),
-                }),
-            );
-        });
-    }
-
     onReady() {
         compareProducts(this.context.urls);
-        this.setupSortByQuerySearchParam();
+        this.arrangeFocusOnSortBy();
 
         const $searchForm = $('[data-advanced-search-form]');
         const $categoryTreeContainer = $searchForm.find('[data-search-category-tree]');
@@ -346,6 +319,7 @@ export default class Search extends CatalogPage {
         this.$form = $form;
         this.validator = nod({
             submit: $form,
+            tap: announceInputErrorMessage,
         });
 
         return this;

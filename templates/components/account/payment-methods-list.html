@@ -8,6 +8,9 @@
         <h4 class="paymentMethodsTitle">
             {{display_name}}
         </h4>
+        {{#if description}}
+            <p>{{description}}</p>
+        {{/if}}
         <div class="paymentMethodsGrid">
             {{#each stored_instruments}}
                 <div class="paymentMethodsGrid-item">

@@ -15,6 +15,7 @@ export default class Cart extends PageManager {
         this.$cartContent = $('[data-cart-content]');
         this.$cartMessages = $('[data-cart-status]');
         this.$cartTotals = $('[data-cart-totals]');
+        this.$cartAdditionalCheckoutBtns = $('[data-cart-additional-checkout-buttons]');
         this.$overlay = $('[data-cart] .loadingOverlay')
             .hide(); // TODO: temporary until roper pulls in his cart components
         this.$activeCartItemId = null;
@@ -223,6 +224,7 @@ export default class Cart extends PageManager {
                 totals: 'cart/totals',
                 pageTitle: 'cart/page-title',
                 statusMessages: 'cart/status-messages',
+                additionalCheckoutButtons: 'cart/additional-checkout-buttons',
             },
         };
 
@@ -237,6 +239,7 @@ export default class Cart extends PageManager {
             this.$cartContent.html(response.content);
             this.$cartTotals.html(response.totals);
             this.$cartMessages.html(response.statusMessages);
+            this.$cartAdditionalCheckoutBtns.html(response.additionalCheckoutButtons);
 
             $cartPageTitle.replaceWith(response.pageTitle);
             this.bindEvents();

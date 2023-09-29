@@ -41,6 +41,7 @@ export default function loadProductByCategory(productBlockCols, productBlockLimi
                                     mobileFirst: true,
                                     slidesToShow: 2,
                                     slidesToScroll: 1,
+                                    slide: '[data-product-slide]',
                                     nextArrow: "<button class='js-product-next-arrow slick-next slick-arrow'></button>",
                                     prevArrow: "<button class='js-product-prev-arrow slick-prev slick-arrow'></button>",
                                     responsive: [{

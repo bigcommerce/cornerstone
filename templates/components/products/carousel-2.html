@@ -1,6 +1,6 @@
 {{#each category.products}}
-<div class="productCarousel-slide">
-    {{> components/products/card }}
+<div data-product-slide class="productCarousel-slide">
+    {{> components/products/card settings=../settings theme_settings=../theme_settings customer=../customer event="list" position=(add @index 1)}}
 </div>
 {{/each}}
 {{!-- <div class="productCarousel-slide">

@@ -9,6 +9,7 @@
 // 1. To enable the grid's display: inline-block; to work properly, we need to
 //    remove the white-space that it creates between columns with font-size: 0;
 // 2. Re-set the font-size that was reduced to 0 in point 1 for children.
+// 3. Fix for text flickers on windows devices
 //
 // -----------------------------------------------------------------------------
 
@@ -17,6 +18,7 @@
     border-top: container("border");
     padding: spacing("double") 0;
     position: relative;
+    transform: translateZ(0); // 3
 }
 
 .footer-title-sr-only {
@@ -164,18 +166,6 @@
 
     svg {
         fill: stencilColor("icon-color");
-    }
-}
-
-.footer-geotrust-ssl-seal {
-    @include breakpoint("small") {
-        bottom: 0;
-        position: absolute;
-        right: 16px;
-    }
-
-    table {
-        margin: auto;
     }
 }
 

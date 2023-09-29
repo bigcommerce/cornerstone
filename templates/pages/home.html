@@ -83,7 +83,9 @@ gql: "query getLocations {
     {{#and carousel carousel.slides.length}}
         {{> components/carousel arrows=theme_settings.homepage_show_carousel_arrows play_pause_button=theme_settings.homepage_show_carousel_play_pause_button}}
     {{/and}}
-    {{{region name="home_below_carousel"}}}
+    <div class="container">
+        {{{region name="home_below_carousel"}}}
+    </div>
     {{#if products.featured}}
         <div class="container">
             <div class="mwn-block padding-vertical">

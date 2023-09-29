@@ -2,7 +2,28 @@
 
 ## Draft
 
-## 5.3.0 (03-24-2021)
+## 5.5.0 (05-20-2021)
+- Scale focus trap for all modals. [#2049](https://github.com/bigcommerce/cornerstone/pull/2049)
+- Fixed displaying swatch name for multiple swatch options on page. [#2040](https://github.com/bigcommerce/cornerstone/pull/2040)
+- Added settings for payment banners. [#2021](https://github.com/bigcommerce/cornerstone/pull/2021)
+- Use https:// for schema markup. [#2039](https://github.com/bigcommerce/cornerstone/pull/2039)
+- Update focus tooltip styles contrast to achieve accessibility AA Complaince. [#2047](https://github.com/bigcommerce/cornerstone/pull/2047)
+- Apple pay button displaying needs to be fixed. [#2043](https://github.com/bigcommerce/cornerstone/pull/2043)
+
+## 5.4.0 (04-26-2021)
+- Incorrect focus order for product carousels. [#2034](https://github.com/bigcommerce/cornerstone/pull/2034)
+- Removed duplicates of main tag.[#2032](https://github.com/bigcommerce/cornerstone/pull/2032)
+- Hamburger Menu Icon missing on Google AMP Pages. [#2022](https://github.com/bigcommerce/cornerstone/pull/2022)
+- Wish List drop down is truncated on product page. [#2001](https://github.com/bigcommerce/cornerstone/pull/2001)
+- Improve performance of analyzing homepage carousel images. [#2027](https://github.com/bigcommerce/cornerstone/pull/2027)
+- Added keyboard support on radio buttons. [#2028](https://github.com/bigcommerce/cornerstone/pull/2028)
+- Replace SSL settings in Page builder with global region for SSL certificate. [#2026](https://github.com/bigcommerce/cornerstone/pull/2026)
+- fixed email address validation in forms. [#2029](https://github.com/bigcommerce/cornerstone/pull/2029)
+- Fixed unnecessary horizontal scroll on swatch options on PDP. [#2023](https://github.com/bigcommerce/cornerstone/pull/2023)
+- Always showing product counts for Category facet in the faceted search results page. [#2035](https://github.com/bigcommerce/cornerstone/pull/2035)
+
+## 5.3.0 (03-25-2021)
+- Remove AddThis for social sharing, replace with provider sharing links. [#1997](https://github.com/bigcommerce/cornerstone/pull/1997)
 - IE11 - Clicking on Search Does Not Display Search Bar. [#2017](https://github.com/bigcommerce/cornerstone/pull/2017)
 - Alt text should include product name for ratings. [#2015](https://github.com/bigcommerce/cornerstone/pull/2015)
 - Changed insufficient "Change" link text on cart page. [#2014](https://github.com/bigcommerce/cornerstone/pull/2014)

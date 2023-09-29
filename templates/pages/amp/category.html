@@ -28,13 +28,13 @@ category:
             {{category.name}}
         </h1>
     </div>
-    <main class="page-content" id="product-listing-container">
+    <div class="page-content" id="product-listing-container">
         {{#if category.products}}
             {{> components/amp/category/product-listing}}
         {{else}}
             <p>{{lang 'categories.no_products'}}</p>
         {{/if}}
-    </main>
+    </div>
     {{> components/amp/category/subcategories}}
     {{> components/amp/common/footer}}
     {{#if settings.amp_analytics_id}}

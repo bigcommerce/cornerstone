@@ -185,26 +185,24 @@
     }
 }
 
-// .header-logo-image-container {
-//     position: relative;
-// }
+.header-logo-image-container {
+    position: relative;
+    width: 100%;
 
-// .header-logo-image-container:after {
-//     content: '';
-//     display: block;
-//     padding-bottom: remCalc($header-height) - $header-logo-marginVertical * 2;
+    @include breakpoint("medium") {
+        min-height: get-height(stencilString('logo_size'));
+    }
+}
 
-//     @include breakpoint("medium") {
-//         padding-bottom: get-height(stencilString('logo_size'));
-//     }
-// }
+.header-logo-image-container:after {
+    content: '';
+    display: block;
+}
 
 .header-logo-image {
-    @include lazy-loaded-img;
+    max-height: remCalc($header-height) - $header-logo-marginVertical * 2;
+    display: block;
     margin: 0 auto;
-    top: 10px;
-    max-height: remCalc($header-height) - $header-logo-marginVertical * 1;
-    z-index: 50;
 
     @include breakpoint("medium") {
         max-height: none;

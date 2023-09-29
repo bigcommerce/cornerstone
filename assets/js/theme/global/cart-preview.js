@@ -15,6 +15,10 @@ export default function (secureBaseUrl, cartId) {
 
     const $body = $('body');
 
+    if (window.ApplePaySession) {
+        $cartDropdown.addClass('apple-pay-supported');
+    }
+
     $body.on('cart-quantity-update', (event, quantity) => {
         $cart.attr('aria-label', (_, prevValue) => prevValue.replace(/\d+/, quantity));
 

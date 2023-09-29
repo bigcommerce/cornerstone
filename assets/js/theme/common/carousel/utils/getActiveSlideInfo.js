@@ -5,16 +5,12 @@ export default ({ $slider }, isAnalyzedDataAttr) => {
     if (isAnalyzedSlide) return { isAnalyzedSlide };
 
     const $activeSlideImg = $activeSlide.find('.heroCarousel-image');
-
-    const attrsObj = {
-        src: $activeSlideImg.attr('src'),
-        srcset: $activeSlideImg.attr('srcset'),
-        sizes: $activeSlideImg.attr('sizes'),
-    };
+    const activeSlideImgNode = $activeSlideImg[0];
 
     return {
-        attrsObj,
         $slider,
         $activeSlide,
+        $activeSlideImg,
+        activeSlideImgNode,
     };
 };

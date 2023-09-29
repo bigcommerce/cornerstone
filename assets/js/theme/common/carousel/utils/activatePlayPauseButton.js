@@ -2,18 +2,7 @@ import { throttle } from 'lodash';
 
 const PLAY_ACTION = 'slickPlay';
 const PAUSE_ACTION = 'slickPause';
-const IS_ACTIVATED_DATA_ATTR = 'is-activated';
-
-export default (carousel, slidesQuantity, context) => {
-    const { $slider, $dots, speed } = carousel;
-    const $playPauseButton = $slider.find('[data-play-pause-button]');
-
-    if ($playPauseButton.length === 0) return;
-
-    $playPauseButton.css('display', slidesQuantity < 2 ? 'none' : 'block');
-
-    if ($playPauseButton.data(IS_ACTIVATED_DATA_ATTR)) return;
-
+const updateButtonLabels = (context) => {
     const {
         carouselPlayPauseButtonPlay,
         carouselPlayPauseButtonPause,
@@ -21,30 +10,43 @@ export default (carousel, slidesQuantity, context) => {
         carouselPlayPauseButtonAriaPause,
     } = context;
 
-    const updateLabels = action => {
-        $playPauseButton
+    return ($button, action) => {
+        $button
             .text(action === PLAY_ACTION
                 ? carouselPlayPauseButtonPause : carouselPlayPauseButtonPlay)
             .attr('aria-label', action === PLAY_ACTION
                 ? carouselPlayPauseButtonAriaPause : carouselPlayPauseButtonAriaPlay);
     };
+};
+let updateButtonLabelsWithContext;
 
-    const onPlayPauseClick = () => {
-        const action = carousel.paused ? PLAY_ACTION : PAUSE_ACTION;
+export default (e, carouselObj, context) => {
+    const { $slider, $dots, options: { speed } } = carouselObj;
+    const $playPauseButton = $slider.find('[data-play-pause-button]');
 
-        $slider.slick(action);
-        updateLabels(action);
-    };
+    if ($playPauseButton.length === 0) return;
 
     // for correct carousel controls focus order
     if ($dots) {
         $playPauseButton.insertBefore($dots);
     } else $slider.append($playPauseButton);
 
-    $playPauseButton.on('click', throttle(onPlayPauseClick, speed, { trailing: false }));
-    $playPauseButton.data(IS_ACTIVATED_DATA_ATTR, true);
+    const { slidesQuantity } = $slider.data('state');
+    $playPauseButton.css('display', slidesQuantity > 1 ? 'block' : 'none');
 
-    if (carousel.breakpoints.length) {
-        $slider.on('breakpoint', () => updateLabels(PLAY_ACTION));
+    if (e.type === 'init') updateButtonLabelsWithContext = updateButtonLabels(context);
+
+    if (e.type === 'breakpoint') {
+        updateButtonLabelsWithContext($playPauseButton, PLAY_ACTION);
+        return;
     }
+
+    const onPlayPauseClick = () => {
+        const action = carouselObj.paused ? PLAY_ACTION : PAUSE_ACTION;
+
+        $slider.slick(action);
+        updateButtonLabelsWithContext($playPauseButton, action);
+    };
+
+    $playPauseButton.on('click', throttle(onPlayPauseClick, speed, { trailing: false }));
 };

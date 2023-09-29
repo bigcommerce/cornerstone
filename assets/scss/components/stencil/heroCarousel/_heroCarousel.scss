@@ -34,6 +34,15 @@
         }
     }
 
+    // for IE
+    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+        opacity: 0;
+
+        &.slick-initialized {
+            opacity: 1;
+        }
+    }
+
     &:not(.slick-initialized) :not(.heroCarousel-slide--first).heroCarousel-slide {
         display: none;
     }
@@ -68,6 +77,34 @@
         bottom: spacing("base");
         text-align: right;
         padding-right: 15px;
+    }
+
+    .slick-slide {
+        &.is-square-image-type {
+            .heroCarousel-image-wrapper {
+                height: 100vw;
+            }
+        }
+    
+        &.is-vertical-image-type {
+            .heroCarousel-image-wrapper {
+                height: 110vw;
+            }
+        }
+    
+        &.is-square-image-type,
+        &.is-vertical-image-type {
+            .heroCarousel-image-wrapper {    
+                @include breakpoint("small") {
+                    height: 56.25vw;
+                }
+            }
+        }
+    
+        &.is-image-error {
+            background: url("../img/hero-carousel-image-load-error.svg") center center no-repeat;
+            background-size: contain;
+        }    
     }
 
     .slick-slide {

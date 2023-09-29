@@ -2,7 +2,7 @@ import { hooks, api } from '@bigcommerce/stencil-utils';
 import _ from 'lodash';
 import Url from 'url';
 import urlUtils from './utils/url-utils';
-import modalFactory, { ModalEvents } from '../global/modal';
+import modalFactory from '../global/modal';
 import collapsibleFactory from './collapsible';
 import { Validators } from './utils/form-utils';
 import nod from './nod';

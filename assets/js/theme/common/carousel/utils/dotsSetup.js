@@ -1,4 +1,5 @@
 import updateTextWithLiveData from './updateTextWithLiveData';
+import tooltipSetup from './tooltipSetup';
 
 export default ($dots, activeSlideIdx, slidesQuantity, { carouselArrowAndDotAriaLabel, carouselActiveDotAriaLabel }) => {
     if (!$dots) return;
@@ -14,7 +15,8 @@ export default ($dots, activeSlideIdx, slidesQuantity, { carouselArrowAndDotAria
         const dotLabelText = updateTextWithLiveData(carouselArrowAndDotAriaLabel, idx + 1, slidesQuantity);
         const dotSlideStatusText = idx === activeSlideIdx ? `, ${carouselActiveDotAriaLabel}` : '';
         const dotAriaLabel = `${dotLabelText}${dotSlideStatusText}`;
+        const $dotButton = $(dot).find('[data-carousel-dot]');
 
-        $(dot).find('[data-carousel-dot]').attr('aria-label', dotAriaLabel);
+        tooltipSetup($dotButton.attr('aria-label', dotAriaLabel));
     });
 };

@@ -47,7 +47,7 @@
                 {{!-- Remove the surrounding a-element if there is no main image. --}}
                 {{#if product.main_image}}
                     <a href="{{getImageSrcset product.main_image (cdn theme_settings.default_image_product) 1x=theme_settings.zoom_size}}"
-                        target="_blank"{{#if schema}} itemprop="image"{{/if}}>
+                        target="_blank">
                 {{/if}}
                 {{> components/common/responsive-img
                     image=product.main_image
@@ -94,10 +94,10 @@
 
     <section class="productView-details product-data">
         <div class="productView-product">
-            <h1 class="productView-title" {{#if schema}}itemprop="name"{{/if}}>{{product.title}}</h1>
+            <h1 class="productView-title">{{product.title}}</h1>
             {{#if product.brand}}
-                <h2 class="productView-brand"{{#if schema}} itemprop="brand" itemscope itemtype="https://schema.org/Brand"{{/if}}>
-                    <a href="{{product.brand.url}}"{{#if schema}} itemprop="url"{{/if}}><span{{#if schema}} itemprop="name"{{/if}}>{{product.brand.name}}</span></a>
+                <h2 class="productView-brand">
+                    <a href="{{product.brand.url}}"><span>{{product.brand.name}}</span></a>
                 </h2>
             {{/if}}
             {{#if product.call_for_price}}
@@ -105,17 +105,17 @@
                     <span>{{product.call_for_price}}</span>
                 </p>
             {{/if}}
+            <div class="productView-price">
+                {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+                    {{> components/products/price price=product.price}}
+                {{else}}
+                    {{> components/common/login-for-pricing}}
+                {{/or}}
+            </div>
             {{{region name="product_below_price"}}}
-            <div class="productView-rating"{{#if product.num_reviews '>' 0}}{{#if schema}} itemprop="aggregateRating" itemscope itemtype="https://schema.org/AggregateRating"{{/if}}{{/if}}>
+            <div class="productView-rating">
                 {{#if settings.show_product_rating}}
-                    {{#if product.num_reviews '>' 0}}
-                        {{#if schema}}
-                            <meta itemprop="ratingValue" content="{{product.rating}}">
-                            <meta itemprop="ratingCount" content="{{product.num_reviews}}">
-                            <meta itemprop="reviewCount" content="{{product.num_reviews}}">
-                        {{/if}}
-                    {{/if}}
-                        {{> components/products/ratings rating=product.rating}}
+                    {{> components/products/ratings rating=product.rating}}
                     {{#if product.num_reviews '>' 0}}
                         <a href="{{product.url}}{{#if is_ajax}}#product-reviews{{/if}}" id="productReview_link">
                             {{lang 'products.reviews.link_to_review' total=product.num_reviews}}
@@ -138,13 +138,9 @@
             {{product.detail_messages}}
             <dl class="productView-info">
                 <dt class="productView-info-name sku-label"{{#unless product.sku}} style="display: none;"{{/unless}}>{{lang 'products.sku'}}</dt>
-                <dd class="productView-info-value" data-product-sku{{#if schema}} itemprop="sku"{{/if}}>{{product.sku}}</dd>
+                <dd class="productView-info-value" data-product-sku>{{product.sku}}</dd>
                 <dt class="productView-info-name upc-label"{{#unless product.upc}} style="display: none;"{{/unless}}>{{lang 'products.upc'}}</dt>
                 <dd class="productView-info-value" data-product-upc>{{product.upc}}</dd>
-                {{#if schema}}
-                    {{#if product.mpn}}<meta itemprop="mpn" content="{{product.mpn}}" />{{/if}}
-                    {{#if product.gtin}}<meta itemprop="gtin" content="{{product.gtin}}" />{{/if}}
-                {{/if}}
                 {{#if product.condition}}
                     <dt class="productView-info-name">{{lang 'products.condition'}}</dt>
                     <dd class="productView-info-value">{{product.condition}}</dd>
@@ -266,7 +262,7 @@
         {{> components/common/share url=product.url}}
     </section>
 
-    <article class="productView-description"{{#if schema}} itemprop="description"{{/if}}>
+    <article class="productView-description">
         {{#if theme_settings.show_product_details_tabs}}
             {{> components/products/description-tabs}}
         {{else}}

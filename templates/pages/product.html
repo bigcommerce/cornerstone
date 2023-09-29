@@ -20,8 +20,8 @@ product:
         {{> components/common/alert/alert-info message}}
     {{/each}}
 
-    <div itemscope itemtype="https://schema.org/Product">
-        {{> components/products/product-view schema=true  }}
+    <div>
+        {{> components/products/product-view}}
 
         {{{region name="product_below_content"}}}
 
@@ -35,5 +35,7 @@ product:
 
         {{> components/products/tabs}}
     </div>
+
+    {{> components/products/schema}}
 {{/partial}}
 {{> layout/base}}

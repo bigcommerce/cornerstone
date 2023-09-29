@@ -1,0 +1,61 @@
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org/",
+        "@type": "Product",
+        "name": {{{JSONstringify product.title}}},
+        {{#if product.sku}}"sku": "{{product.sku}}",{{/if}}
+        {{#if product.mpn}}"mpn": "{{product.mpn}}",{{/if}}
+        {{#if product.gtin}}"gtin{{length product.gtin}}": "{{product.gtin}}",{{/if}}
+        "url" : "{{product.url}}",
+        {{#if product.brand}}
+        "brand": {
+            "@type": "Brand",
+            "url": "{{product.brand.url}}",
+            "name": {{{JSONstringify product.brand.name}}}
+        },
+        {{/if}}
+        "description": "{{encodeURI (sanitize product.description)}}",
+        "image": "{{getImage product.main_image 'zoom_size' (cdn theme_settings.default_image_product)}}",
+        {{#and settings.show_product_reviews product.reviews.list.length}}
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "{{product.rating}}",
+            "reviewCount": "{{product.num_reviews}}"
+        },
+        "review": [
+        {{#each product.reviews.list}}
+            {
+                "@type": "Review",
+                "author": {
+                    "@type": "Person",
+                    "name": {{{JSONstringify name}}}
+                },
+                "datePublished": "{{date}}",
+                "reviewBody": {{{JSONstringify text}}},
+                "name": {{{JSONstringify title}}},
+                "reviewRating": {
+                    "@type": "Rating",
+                    "bestRating": "5",
+                    "ratingValue": "{{rating}}",
+                    "worstRating": "1"
+                }
+            }{{#unless @last}},{{/unless}}
+        {{/each}}
+        ],
+        {{/and}}
+        "offers": {
+            "@type": "Offer",
+            "priceCurrency": "{{currency_selector.active_currency_code}}",
+            {{#if product.price.price_range}}
+            "minPrice": "{{#if product.price.price_range.min.with_tax}}{{product.price.price_range.min.with_tax.value}}{{else}}{{product.price.price_range.min.without_tax.value}}{{/if}}",
+            "maxPrice": "{{#if product.price.price_range.max.with_tax}}{{product.price.price_range.max.with_tax.value}}{{else}}{{product.price.price_range.max.without_tax.value}}{{/if}}",
+            {{else}}
+            "price": "{{#if product.price.with_tax}}{{product.price.with_tax.value}}{{else}}{{product.price.without_tax.value}}{{/if}}",
+            {{/if}}
+            "itemCondition" : "https://schema.org/{{#if product.condition}}{{product.condition}}{{else}}New{{/if}}Condition",
+            "availability" : "https://schema.org/{{#if product.pre_order}}PreOrder{{else if product.out_of_stock}}OutOfStock{{else if product.can_purchase '===' false}}OutOfStock{{else}}InStock{{/if}}",
+            "url" : "{{product.url}}",
+            "priceValidUntil": "{{moment (moment add='31536000000') 'YYYY-MM-DD' }}"
+        }
+    }
+</script>

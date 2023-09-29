@@ -1,9 +1,10 @@
 import PageManager from './page-manager';
 import { bind, debounce } from 'lodash';
-import giftCertCheck from './common/gift-certificate-validator';
+import checkIsGiftCertValid from './common/gift-certificate-validator';
+import { createTranslationDictionary } from './common/utils/translations-utils';
 import utils from '@bigcommerce/stencil-utils';
 import ShippingEstimator from './cart/shipping-estimator';
-import { defaultModal, modalTypes } from './global/modal';
+import { defaultModal, ModalEvents } from './global/modal';
 import swal from './global/sweet-alert';
 import CartItemDetails from './common/cart-item-details';
 
@@ -90,7 +91,7 @@ export default class Cart extends PageManager {
             invalidEntry = $el.val();
             $el.val(oldQty);
             return swal.fire({
-                text: `${invalidEntry} is not a valid entry`,
+                text: this.context.invalidEntryMessage.replace('[ENTRY]', invalidEntry),
                 icon: 'error',
             });
         } else if (newQty < minQty) {
@@ -157,9 +158,20 @@ export default class Cart extends PageManager {
 
         utils.api.productAttributes.configureInCart(itemId, options, (err, response) => {
             modal.updateContent(response.content);
-            const $productOptionsContainer = $('[data-product-attributes-wrapper]', this.$modal);
-            const modalBodyReservedHeight = $productOptionsContainer.outerHeight();
-            $productOptionsContainer.css('height', modalBodyReservedHeight);
+            const optionChangeHandler = () => {
+                const $productOptionsContainer = $('[data-product-attributes-wrapper]', this.$modal);
+                const modalBodyReservedHeight = $productOptionsContainer.outerHeight();
+
+                if ($productOptionsContainer.length && modalBodyReservedHeight) {
+                    $productOptionsContainer.css('height', modalBodyReservedHeight);
+                }
+            };
+
+            if (this.$modal.hasClass('open')) {
+                optionChangeHandler();
+            } else {
+                this.$modal.one(ModalEvents.opened, optionChangeHandler);
+            }
 
             this.productDetails = new CartItemDetails(this.$modal, context);
 
@@ -275,6 +287,7 @@ export default class Cart extends PageManager {
                 text: string,
                 icon: 'warning',
                 showCancelButton: true,
+                cancelButtonText: this.context.cancelButtonText,
             }).then((result) => {
                 if (result.value) {
                     // remove item from cart
@@ -365,9 +378,10 @@ export default class Cart extends PageManager {
 
             event.preventDefault();
 
-            if (!giftCertCheck(code)) {
+            if (!checkIsGiftCertValid(code)) {
+                const validationDictionary = createTranslationDictionary(this.context);
                 return swal.fire({
-                    text: $certInput.data('error'),
+                    text: validationDictionary.invalid_gift_certificate,
                     icon: 'error',
                 });
             }
@@ -456,6 +470,10 @@ export default class Cart extends PageManager {
         this.bindGiftCertificateEvents();
 
         // initiate shipping estimator module
-        this.shippingEstimator = new ShippingEstimator($('[data-shipping-estimator]'));
+        const shippingErrorMessages = {
+            country: this.context.shippingCountryErrorMessage,
+            province: this.context.shippingProvinceErrorMessage,
+        };
+        this.shippingEstimator = new ShippingEstimator($('[data-shipping-estimator]'), shippingErrorMessages);
     }
 }

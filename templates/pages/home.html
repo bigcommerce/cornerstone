@@ -86,7 +86,9 @@ gql: "query getLocations {
     {{{region name="home_below_carousel"}}}
     {{#if products.featured}}
         <div class="container">
-            {{> components/products/featured products=products.featured columns=theme_settings.homepage_featured_products_column_count}}
+            <div class="mwn-block padding-vertical">
+                {{> components/products/featured products=products.featured columns=theme_settings.homepage_featured_products_column_count}}
+            </div>
         </div>
     {{/if}}
     {{{region name="home_below_featured_products"}}}
@@ -126,7 +128,9 @@ gql: "query getLocations {
 <div class="main full">
     {{#if theme_settings.homepage_show_top_products}}
         {{#if products.top_sellers}}
-            {{> components/products/top products=products.top_sellers columns=theme_settings.homepage_top_products_column_count}}	
+            <div class="mwn-block padding-vertical">
+                {{> components/products/top products=products.top_sellers columns=theme_settings.homepage_top_products_column_count}}	
+            </div>
         {{/if}}
     {{/if}}
     {{#if products.new}}

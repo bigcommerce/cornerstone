@@ -1,6 +1,7 @@
 import 'foundation-sites/js/foundation/foundation';
 import 'foundation-sites/js/foundation/foundation.dropdown';
 import utils from '@bigcommerce/stencil-utils';
+import Review from '../product/reviews';
 import ProductDetails from '../common/product-details';
 import { defaultModal, ModalEvents } from './modal';
 import 'slick-carousel';
@@ -13,6 +14,14 @@ export default function (context) {
         event.preventDefault();
 
         const productId = $(event.currentTarget).data('productId');
+        const handleDropdownExpand = ({ currentTarget }) => {
+            const $dropdownMenu = $(currentTarget);
+            const dropdownBtnHeight = $dropdownMenu.prev().outerHeight();
+
+            $dropdownMenu.css('top', dropdownBtnHeight);
+
+            return modal.$modal.one(ModalEvents.close, () => $dropdownMenu.off('opened.fndtn.dropdown', handleDropdownExpand));
+        };
 
         modal.open({ size: 'large' });
 
@@ -21,6 +30,7 @@ export default function (context) {
 
             modal.updateContent(response);
 
+            $('#modal .dropdown-menu').on('opened.fndtn.dropdown', handleDropdownExpand);
             modal.$content.find('.productView').addClass('productView--quickView');
 
             const $carousel = modal.$content.find('[data-slick]');
@@ -40,6 +50,9 @@ export default function (context) {
                     });
                 }
             }
+
+            /* eslint-disable no-new */
+            new Review({ $context: modal.$content });
 
             return new ProductDetails(modal.$content.find('.quickView'), context);
         });

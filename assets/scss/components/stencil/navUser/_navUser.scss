@@ -39,9 +39,8 @@
         box-shadow: container("dropShadow");
         position: absolute;
 
-        // scss-lint:disable NestingDepth
         &.is-open {
-            &:before {
+            &::before {
                 @include css-triangle(
                     $triangle-direction: "bottom",
                     $triangle-size: 10px,
@@ -52,7 +51,7 @@
                 position: absolute;
             }
 
-            &:after {
+            &::after {
                 @include css-triangle(
                     $triangle-direction: "bottom",
                     $triangle-size: 8px,
@@ -91,12 +90,10 @@
     &.is-open {
         color: stencilColor("navUser-color-hover");
 
-        // scss-lint:disable NestingDepth
         svg {
             stroke: stencilColor("navUser-color-hover");
             fill: stencilColor("navUser-color-hover");
         }
-        // scss-lint:enable NestingDepth
     }
 
     .icon {
@@ -112,14 +109,12 @@
 }
 
 .navUser-action--currencySelector + .dropdown-menu {
-    &:before {
-        // scss-lint:disable ImportantRule
+    &::before {
         left: auto !important; // 6
         right: spacing("half"); // 6
     }
 
-    &:after {
-        // scss-lint:disable ImportantRule
+    &::after {
         left: auto !important; // 6
         right: spacing("half") + remCalc(2px); // 6
     }
@@ -129,13 +124,11 @@
     max-width: remCalc(300px);
     padding: spacing("single");
 
-    &:before {
-        // scss-lint:disable ImportantRule
+    &::before {
         left: remCalc(140px) !important; // 3
     }
 
-    &:after {
-        // scss-lint:disable ImportantRule
+    &::after {
         left: remCalc(142px) !important; // 3
     }
 }
@@ -183,7 +176,6 @@
         padding: 6px 0.78571rem;
         margin-top: 12px;
 
-        // scss-lint:disable NestingDepth
         &:hover,
         &.is-open {
             color: stencilColor("navUser-color-hover");
@@ -197,28 +189,27 @@
     .dropdown-menu {
         max-width: remCalc(320px);
 
-        // scss-lint:disable NestingDepth
         &.is-open {
-            top: auto !important; // 7
             left: auto !important; // 7
             right: remCalc(5px); // 7
+            top: auto !important; // 7
             @include breakpoint("medium") {
                 right: 0; // 7
             }
 
-            &:before,
-            &:after {
+            &::before,
+            &::after {
                 left: auto;
             }
 
-            &:before {
+            &::before {
                 right: spacing("half") - remCalc(5px); // 8
                 @include breakpoint("medium") {
                     right: spacing("half"); // 8
                 }
             }
 
-            &:after {
+            &::after {
                 right: spacing("half") - remCalc(3px); // 8
                 @include breakpoint("medium") {
                     right: spacing("half") + remCalc(2px); // 8
@@ -246,10 +237,7 @@
 }
 
 .navUser-item--account {
-
     .navUser-or {
-
-        // scss-lint:disable NestingDepth
         + .navUser-action {
             margin-right: -0.5rem; // 1
         }
@@ -278,12 +266,10 @@
 // -----------------------------------------------------------------------------
 
 .navUser-action--quickSearch {
-
     &.is-open {
         position: relative;
 
-        // scss-lint:disable NestingDepth
-        &:before {
+        &::before {
             @include css-triangle(
                 $triangle-direction: "bottom",
                 $triangle-size: 10px,
@@ -299,8 +285,8 @@
 
 .dropdown--quickSearch {
     background-color: $dropdown--quickSearch-backgroundColor;
-    padding: spacing("single") 0;
     display: none;
+    padding: spacing("single") 0;
 
     @include breakpoint("small") {
         padding: spacing("double");
@@ -308,7 +294,6 @@
 
     &.is-open {
         display: block;
-        // scss-lint:disable ImportantRule
         left: 0 !important; // 1
         outline: none;
         right: 0 !important; // 1

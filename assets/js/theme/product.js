@@ -42,7 +42,7 @@ export default class Product extends PageManager {
 
         if ($reviewForm.length === 0) return;
 
-        const review = new Review($reviewForm);
+        const review = new Review({ $reviewForm });
 
         $(document).on(ModalEvents.opened, '#modal-review-form', () => this.reviewModal.setupFocusTrap());
 

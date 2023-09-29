@@ -13,15 +13,27 @@
 {{else}}
     {{#if price.with_tax}}
         {{#if price.non_sale_price_with_tax}}
-{{#if theme_settings.pdp-non-sale-price-label '===' 'Was:'}}{{lang "page_builder.pdp-non-sale-price-label"}}{{else}}{{theme_settings.pdp-non-sale-price-label}}{{/if}}{{price.non_sale_price_with_tax.formatted}},
-{{#if theme_settings.pdp-sale-price-label '===' 'Now:'}}{{lang "page_builder.pdp-sale-price-label"}}{{else}}{{theme_settings.pdp-sale-price-label}}{{/if}}{{price.with_tax.formatted}}
+{{> components/products/price-label
+    label_value=theme_settings.pdp-non-sale-price-label
+    fallback=(lang "page_builder.pdp-non-sale-price-label")
+}}{{price.non_sale_price_with_tax.formatted}},
+{{> components/products/price-label
+    label_value=theme_settings.pdp-sale-price-label
+    fallback=(lang "page_builder.pdp-sale-price-label")
+}}{{price.with_tax.formatted}}
         {{else}}
 {{price.with_tax.formatted}}
         {{/if}}
     {{else}}
         {{#if price.non_sale_price_without_tax}}
-{{#if theme_settings.pdp-non-sale-price-label '===' 'Was:'}}{{lang "page_builder.pdp-non-sale-price-label"}}{{else}}{{theme_settings.pdp-non-sale-price-label}}{{/if}}{{price.non_sale_price_without_tax.formatted}},
-{{#if theme_settings.pdp-sale-price-label '===' 'Now:'}}{{lang "page_builder.pdp-sale-price-label"}}{{else}}{{theme_settings.pdp-sale-price-label}}{{/if}}{{price.without_tax.formatted}}
+{{> components/products/price-label
+    label_value=theme_settings.pdp-non-sale-price-label
+    fallback=(lang "page_builder.pdp-non-sale-price-label")
+}}{{price.non_sale_price_without_tax.formatted}},
+{{> components/products/price-label
+    label_value=theme_settings.pdp-sale-price-label
+    fallback=(lang "page_builder.pdp-sale-price-label")
+}}{{price.without_tax.formatted}}
         {{else}}
 {{price.without_tax.formatted}}
         {{/if}}

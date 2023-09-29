@@ -44,22 +44,21 @@
 }
 
 .productView-img-container {
-    position: relative;
+
+    @include lazy-loaded-padding("product_size");
     margin: auto;
-    max-width: get-width(stencilString('product_size'));
+    max-width: get-width(stencilString("product_size"));
+    position: relative;
     width: 100%;
 
     img {
         @include lazy-loaded-img;
-        bottom: auto;
-        max-height: 100%;
-        width: 100%;
-        object-fit: contain;
         /* Object-fit polyfill */
-        font-family: 'object-fit: contain;';
+        font-family: "object-fit: contain;";
+        max-height: 100%;
+        object-fit: contain;
+        width: 100%;
     }
-
-    @include lazy-loaded-padding('product_size');
 }
 
 .productView-thumbnails {
@@ -92,12 +91,12 @@
 
     img {
         @include lazy-loaded-img;
-        margin: 0;
-        width: get-width(stencilString('productview_thumb_size'));
-        object-fit: contain;
         /* Object-fit polyfill */
-        font-family: 'object-fit: contain;';
+        font-family: "object-fit: contain;";
+        margin: 0;
+        object-fit: contain;
         position: relative;
+        width: get-width(stencilString("productview_thumb_size"));
     }
 }
 
@@ -114,14 +113,14 @@
 
 .productView-thumbnail-link {
     border: container("border");
+    box-sizing: content-box;
     display: inline-flex;
     height: 67px;
+    justify-content: center;
     max-width: 75px;
     padding: 2px;
     position: relative;
     width: 100%;
-    box-sizing: content-box;
-    justify-content: center;
 
     &:hover,
     &.is-active {
@@ -218,7 +217,6 @@
     a {
         color: $productView-brand-link-color;
 
-        // scss-lint:disable NestingDepth
         &:hover {
             color: $productView-brand-link-color--hover;
         }
@@ -258,12 +256,17 @@
 }
 
 .productView-reviewLink {
+    color: stencilColor("color-textSecondary");
     display: inline-block;
     margin-left: spacing("quarter");
     vertical-align: middle;
     color: stencilColor("color-textSecondary");
 
     // scss-lint:disable NestingDepth
+    &:hover {
+        color: stencilColor("color-textSecondary--hover");
+    }
+
     &:hover {
         color: stencilColor("color-textSecondary--hover");
     }
@@ -374,9 +377,7 @@
             font-size: 1rem;
         }
 
-        // scss-lint:disable SelectorDepth, NestingDepth
-        > .form-checkbox + .form-label
-        {
+        > .form-checkbox + .form-label {
             display: inline-block;
             margin-left: spacing("single");
             width: auto;
@@ -388,8 +389,8 @@
         }
 
         > .form-radio + .form-label {
-            text-align: justify;
             display: inline-block;
+            text-align: justify;
         }
 
         > .form-label:nth-of-type(2) {
@@ -415,7 +416,6 @@
             margin-top: 1rem;
         }
 
-        // scss-lint:disable SelectorDepth, NestingDepth
         .button {
             width: 100%;
             height: 46px;
@@ -430,9 +430,17 @@
                 width: auto;
             }
 
+            @include breakpoint("medium") {
+                width: auto;
+            }
+
             @include breakpoint("large") {
                 margin-right: spacing("half");
             }
+        }
+
+        .button--primary {
+            margin-right: spacing("half");
         }
 
         .button--primary {
@@ -497,12 +505,12 @@
 // -----------------------------------------------------------------------------
 
 .productView-image .easyzoom-flyout {
+    height: 100%;
+    left: 0;
     overflow: hidden;
     position: absolute;
     top: 0;
-    left: 0;
     width: 100%;
-    height: 100%;
 
     img {
         max-width: none;

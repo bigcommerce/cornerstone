@@ -12,6 +12,7 @@ export default class Configurator extends PageManager {
     this.skuList = [];
 
     // Manual binding for event listeners that need to modify class variables
+    this.boundTotalQuantityChange = this.handleTotalSetQuantityChange.bind(this);
     this.boundHandleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -28,6 +29,12 @@ export default class Configurator extends PageManager {
 
   }
 
+  // Helper to set any price to exactly two decimal places
+  setPriceToTwoDecimalPlaces(price) {
+    return (Math.round(price * 100) / 100).toFixed(2);
+  }
+
+  // Recursively search productSchema for product IDs and return an array of them
   unNestIds(obj) {
     for (let key in obj) {
       if (typeof obj[key] == 'object') {
@@ -230,6 +237,10 @@ export default class Configurator extends PageManager {
   handleSubmit(event, productSchema, getGripSize) {
     event.preventDefault();
 
+    // Clear any previous results
+    this.skuList = [];
+    document.querySelector('#results--total-skus').textContent = '';
+
     // Serialize form data
     const formData = new FormData(event.target);
     const data = {};
@@ -291,21 +302,24 @@ export default class Configurator extends PageManager {
     // Final price
     let price = 0;
     this.skuList.forEach(sku => { price += sku.product.price * sku.quantity });
-    document.querySelector('#results--total-price').textContent = `$${price}`;
+    document.querySelector('#results--subtotal-price').textContent = `$${this.setPriceToTwoDecimalPlaces(price)}`;
+    // Set initial total to subtotal, as default quantity of sets to be purchased is 1
+    document.querySelector('#results--total-price').textContent = `$${this.setPriceToTwoDecimalPlaces(price)}`;
+    
     // Grip
     const gripNode = document.createElement('li');
-    gripNode.textContent = `Grip: ${selectedGrip.sku} - $${selectedGrip.price} x${totalGrips}`;
+    gripNode.textContent = `Grip: ${selectedGrip.sku.replace('Forms-Surfaces-','')} - $${selectedGrip.price} x${totalGrips}`;
     document.querySelector('#results--total-skus').append(gripNode);
 
     // Standoff
     const standoffNode = document.createElement('li');
-    standoffNode.textContent = `Standoff: ${selectedStandoff.sku} - $${selectedStandoff.price} x${totalStandoffs}`;
+    standoffNode.textContent = `Standoff: ${selectedStandoff.sku.replace('Forms-Surfaces-','')} - $${selectedStandoff.price} x${totalStandoffs}`;
     document.querySelector('#results--total-skus').append(standoffNode);
 
     // Endcaps
     if (selectedEndcap != null) {
       const endcapNode = document.createElement('li');
-      endcapNode.textContent = `Endcap: ${selectedEndcap.sku} - $${selectedEndcap.price} x ${totalEndcaps}`;
+      endcapNode.textContent = `Endcap: ${selectedEndcap.sku.replace('Forms-Surfaces-','')} - $${selectedEndcap.price} x ${totalEndcaps}`;
       document.querySelector('#results--total-skus').append(endcapNode);
     }
 
@@ -332,13 +346,22 @@ export default class Configurator extends PageManager {
     }
   }
 
+  // Handle total set quantity change
+  handleTotalSetQuantityChange(event) {
+    const totalSetsToOrder = event.target.value;
+    const price = document.querySelector('#results--subtotal-price').textContent.replace('$','');
+    const totalPrice = price * totalSetsToOrder;
+    document.querySelector('#results--total-price').textContent = `$${this.setPriceToTwoDecimalPlaces(totalPrice)}`;
+  }
+
 
   async handleAddToCartButton() {
     // Build Lineitem Array
     const lineItems = [];
+    const totalSetsToOrder = document.getElementById('set-qty').value;
     this.skuList.forEach(sku => {
       const lineItem = {
-        quantity: sku.quantity,
+        quantity: sku.quantity * totalSetsToOrder,
         productEntityId: sku.product.id,
         variantEntityId: sku.product.variantId
       }
@@ -468,6 +491,7 @@ export default class Configurator extends PageManager {
     // Bind input listeners
     document.getElementById('grip-type-selector').addEventListener('change', this.handleGripTypeChange);
     document.getElementById('grip-mount-selector').addEventListener('change', this.handleGripMountChange);
+    document.getElementById('set-qty').addEventListener('change', this.boundTotalQuantityChange);
 
     // Bind form submission listener
     document.getElementById('configurator-form').addEventListener('submit', this.boundHandleSubmit);

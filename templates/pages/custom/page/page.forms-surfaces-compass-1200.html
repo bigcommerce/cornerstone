@@ -11,10 +11,10 @@ cart: true
 <div class="configurator">
 
   <section class="configurator__banner">
-    <h1 class="title configurator__title">COMPASS 800 SERIES DOOR PULL CONFIGURATOR</h1>
+    <h1 class="title configurator__title">COMPASS 1200 SERIES DOOR PULL CONFIGURATOR</h1>
     <p class="configurator__subtitle title--section">Fill in the form to see what you'll need to build your custom door pull system</p>
   </section>
-<!-- <button id="test-fill-all">Testing - Fill all values</button> -->
+<button id="test-fill-all">Testing - Fill all values</button>
 <section class="configurator__content">
   <form id="configurator-form">
     <div class="configurator__region">
@@ -41,9 +41,16 @@ cart: true
         <select name="grip-type" id="grip-type-selector" required>
           <option disabled selected value> -- SELECT AN OPTION -- </option>
           <option value="straight">Straight</option>
-          <option value="round-ends">Round Ends - 14.75″</option>
-          <option value="semi-circle">Semi-circle - 10.875″</option>
-          <option value="arc">Arc - 14.25″</option>
+          <option value="arc">Arc - 24″</option>
+        </select>
+      </div>
+
+      <div class="configurator__field-wrap" id="grip-type-container">
+        <label class="configurator__label" for="grip-end-type-selector">Grip End Type*</label>
+        <select name="grip-end-type" id="grip-end-type-selector" required>
+          <option disabled selected value> -- SELECT AN OPTION -- </option>
+          <option value="flat">Flat</option>
+          <option value="round">Round</option>
         </select>
       </div>
 
@@ -59,6 +66,12 @@ cart: true
           <option value="satin-stainless">Satin Stainless</option>
           <option value="polished-stainless">Polished Stainless</option>
           <option value="stippled-stainless">Stippled Stainless Steel</option>
+          <option value="satin-bronze">Satin Bronze</option>
+          <option value="polished-bronze">Polished Bronze</option>
+          <option value="oil-rubbed-bronze">Oil Rubbed Bronze</option>
+          <option value="stippled-bronze">Stippled Bronze</option>
+          <option value="stippled-oil-bronze">Stippled Oil Rubbed Bronze</option>
+          <option value="black">Black Santoprene</option>
         </select>
       </div>
 
@@ -143,6 +156,7 @@ cart: true
         <p>Door Type: <span id="results--door-material"></span></p>
         <p>Door Thickness: <span id="results--door-thickness"></span></p>
         <p>Grip Type: <span id="results--grip-type"></span></p>
+        <p>Grip End Type: <span id="results--grip-end-type"></span></p>
         <p>Grip Length: <span id="results--grip-length"></span></p>
         <p>Grip Finish: <span id="results--grip-finish"></span></p>
         <p>Grip Center to Center: <span id="results--grip-cc"></span></p>

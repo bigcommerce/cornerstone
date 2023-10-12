@@ -54,6 +54,7 @@ const pageClasses = {
 
 const customClasses = {
     'pages/custom/page/page.forms-surfaces-compass-800': () => import('./theme/configurator'),
+    'pages/custom/page/page.forms-surfaces-compass-1200': () => import('./theme/configurator-1200'),
 };
 
 /**

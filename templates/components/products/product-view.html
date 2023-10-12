@@ -375,7 +375,7 @@
               
             {{else }}
                 
-              <div class="productView-options">
+              <div class="productView-options {{# filter product.custom_fields 'hide_add_to_cart' property='name'}}hide{{/filter}}">
                 {{#if product.release_date }}
                     <p>{{product.release_date}}</p>
                 {{/if}}
@@ -430,8 +430,13 @@
             {{/if}}
             {{/filter}}
             
-            
-            
+            {{#filter product.custom_fields 'configurator_link' property='name'}}
+            <div class="productView-configurator">
+                <p style="margin-bottom: 5px;"><strong>This product is part of a set! Use the configurator below ensure you have all you need:</strong></p>
+                <a href="{{value}}" class="button button--primary button--large button--fullWidth">Configure My Set</a>
+                <p>Don't want to use the configurator? Call <a style="text-decoration: underline;" href="tel:8885662748">customer service</a> to make your custom order.</p>
+            </div>
+            {{/filter}}
             {{{snippet 'product_details'}}}
         </section>
     </div>

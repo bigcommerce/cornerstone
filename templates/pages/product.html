@@ -13,9 +13,23 @@ product:
 
 {{#partial "page"}}
     <div class="container">
+        {{!--
+
+            {{#each product.shipping_messages}}
+                    {{> components/common/alert/alert-info message}}
+            {{/each}}
+
+            <div>
+                {{> components/products-cs/alias-view-cs}}
+            </div>
+
+            {{> components/products/schema}}
+
         
             {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
-        
+            
+            --}}
+
             {{#each product.shipping_messages}}
                 {{> components/common/alert/alert-info message}}
             {{/each}}
@@ -37,6 +51,15 @@ product:
             </div>
         
             {{> components/products/schema}}
+
+
     </div>
+    {{!--
+        <script>
+            const gen = "{{#filter product.custom_fields 'Make' property='name'}}{{value}}{{/filter}}{{#filter product.custom_fields 'Model' property='name'}}{{value}}{{/filter}}{{#filter product.custom_fields 'Generation' property='name'}}{{value}}{{/filter}}";
+            </script>
+    <script type="text/javascript" src="/content/{{#filter product.custom_fields 'archetype_url' property='name'}}{{chop value}}{{/filter}}.js"></script>
+    <script type="text/javascript" src="/content/single-product.js"></script>
+    --}}
 {{/partial}}
 {{> layout/base}}

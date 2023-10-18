@@ -31,6 +31,12 @@ html {
   margin-top: -$mobile-spacing;
 }
 
+.cs-center-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 // -----------------------------------------------------------------------------
 //
 //                                  Banners
@@ -1120,6 +1126,52 @@ model-viewer {
     @include button;
 
     border-radius: 3px;
+  }
+}
+
+// ------------------------------------------------------------------------------------->
+//                                      Alias Product
+// ------------------------------------------------------------------------------------->
+
+.cs-link-button {
+  @include button;
+  border-radius: 5px;
+}
+
+#product-options-alias {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+
+  @include breakpoint("medium") {
+    width: $product-button-width;
+  }
+}
+
+#product-add-alias {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+
+  a {
+    display: block;
+    width: 100%;
+    background-color: gray;
+    color: lightgray;
+    text-decoration: none;
+    line-height: $product-button-height;
+    border: none;
+    border-radius: 3px;
+    text-align: center;
+
+    @include breakpoint("medium") {
+      width: 50%;
+      min-width: 250px;
+    }
   }
 }
 

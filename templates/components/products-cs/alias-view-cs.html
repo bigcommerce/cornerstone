@@ -21,9 +21,8 @@
     {{/or}}"
     data-product-variant="single-product-option">
 
-    {{!-- temporary addition to include link back to archetype --}}
     <div class="cs-center-wrapper">
-        <a class="button" type="button" href="{{#filter product.custom_fields 'archetype_url' property='name'}}{{value}}{{else}}/{{/filter}}">Not your car?</a>
+        <a class="button" type="button" href="{{#filter product.custom_fields 'archetype_url' property='name'}}{{value}}{{/filter}}">Not your car?</a>
     </div>
 
     {{#each product.reviews.messages}}
@@ -252,7 +251,16 @@
                         <span data-product-stock>{{product.stock_level}}</span>
                     </label>
                 </div>--}}
-                {{> components/products/add-to-cart with_wallet_buttons=true}}
+                {{!-- {{> components/products/add-to-cart with_wallet_buttons=true}} --}}
+
+                <div id="product-options-alias">
+                    <select name="option-one" id="product-options-one" onchange="" style="display: none;"></select>
+                    <select name="option-two" id="product-options-two" onchange="" style="display: none;"></select>
+                </div>
+                <div id="product-add-alias">
+                    <a id="product-add-button" type="button">{{lang 'products.add_to_cart'}}</a>
+                </div>
+
                 {{#if product.out_of_stock}}
                     {{#if product.out_of_stock_message}}
                         {{> components/common/alert/alert-error product.out_of_stock_message}}
@@ -282,3 +290,5 @@
     <div class="modal-content"></div>
     <div class="loadingOverlay"></div>
 </div>
+
+FordF-15014thgen

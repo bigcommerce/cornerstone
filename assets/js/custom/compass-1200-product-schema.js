@@ -3,7 +3,7 @@
 
 const ProductSchema = {
   grips : {
-    'extra-small': {
+    'extraSmall': {
       'flat': {
         'satin-stainless': {
           'id': 387395
@@ -20,7 +20,7 @@ const ProductSchema = {
         'polished-bronze': {
           'id': 444278
         },
-        'oil-rubbed--bronze': {
+        'oil-rubbed-bronze': {
           'id': 444279
         },
         'stippled-bronze': {
@@ -29,7 +29,7 @@ const ProductSchema = {
         'stippled-oil-bronze': {
           'id': 444282
         },
-        'black-santoprene': {
+        'black': {
           'id': 444281
         }
       },
@@ -49,7 +49,7 @@ const ProductSchema = {
         'polished-bronze': {
           'id': 444286
         },
-        'oil-rubbed--bronze': {
+        'oil-rubbed-bronze': {
           'id': 444287
         },
         'stippled-bronze': {
@@ -77,7 +77,7 @@ const ProductSchema = {
         'polished-bronze': {
           'id': 444293
         },
-        'oil-rubbed--bronze': {
+        'oil-rubbed-bronze': {
           'id': 444294
         },
         'stippled-bronze': {
@@ -86,7 +86,7 @@ const ProductSchema = {
         'stippled-oil-bronze': {
           'id': 444297
         },
-        'black-santoprene': {
+        'black': {
           'id': 444296
         }
       },
@@ -106,7 +106,7 @@ const ProductSchema = {
         'polished-bronze': {
           'id': 444301
         },
-        'oil-rubbed--bronze': {
+        'oil-rubbed-bronze': {
           'id': 444302
         },
         'stippled-bronze': {
@@ -134,7 +134,7 @@ const ProductSchema = {
         'polished-bronze': {
           'id': 444308
         },
-        'oil-rubbed--bronze': {
+        'oil-rubbed-bronze': {
           'id': 444309
         },
         'stippled-bronze': {
@@ -143,7 +143,7 @@ const ProductSchema = {
         'stippled-oil-bronze': {
           'id': 444312
         },
-        'black-santoprene': {
+        'black': {
           'id': 444311
         }
       },
@@ -163,7 +163,7 @@ const ProductSchema = {
         'polished-bronze': {
           'id': 444316
         },
-        'oil-rubbed--bronze': {
+        'oil-rubbed-bronze': {
           'id': 444317
         },
         'stippled-bronze': {
@@ -191,7 +191,7 @@ const ProductSchema = {
         'polished-bronze': {
           'id': 444323
         },
-        'oil-rubbed--bronze': {
+        'oil-rubbed-bronze': {
           'id': 444324
         },
         'stippled-bronze': {
@@ -200,7 +200,7 @@ const ProductSchema = {
         'stippled-oil-bronze': {
           'id': 444327
         },
-        'black-santoprene': {
+        'black': {
           'id': 444326
         }
       },
@@ -220,7 +220,7 @@ const ProductSchema = {
         'polished-bronze': {
           'id': 444331
         },
-        'oil-rubbed--bronze': {
+        'oil-rubbed-bronze': {
           'id': 444332
         },
         'stippled-bronze': {
@@ -248,7 +248,7 @@ const ProductSchema = {
         'polished-bronze': {
           'id': 444338
         },
-        'oil-rubbed--bronze': {
+        'oil-rubbed-bronze': {
           'id': 444339
         },
         'stippled-bronze': {
@@ -257,7 +257,7 @@ const ProductSchema = {
         'stippled-oil-bronze': {
           'id': 444342
         },
-        'black-santoprene': {
+        'black': {
           'id': 444341
         }
       },
@@ -277,7 +277,7 @@ const ProductSchema = {
         'polished-bronze': {
           'id': 444346
         },
-        'oil-rubbed--bronze': {
+        'oil-rubbed-bronze': {
           'id': 444347
         },
         'stippled-bronze': {
@@ -288,7 +288,7 @@ const ProductSchema = {
         }
       }
     },
-    'extra-large': {
+    'extraLarge': {
       'flat': {
         'satin-stainless': {
           'id': 388005
@@ -305,7 +305,7 @@ const ProductSchema = {
         'polished-bronze': {
           'id': 444353
         },
-        'oil-rubbed--bronze': {
+        'oil-rubbed-bronze': {
           'id': 444354
         },
         'stippled-bronze': {
@@ -314,7 +314,7 @@ const ProductSchema = {
         'stippled-oil-bronze': {
           'id': 444357
         },
-        'black-santoprene': {
+        'black': {
           'id': 444356
         }
       },
@@ -334,7 +334,7 @@ const ProductSchema = {
         'polished-bronze': {
           'id': 444361
         },
-        'oil-rubbed--bronze': {
+        'oil-rubbed-bronze': {
           'id': 444362
         },
         'stippled-bronze': {
@@ -362,7 +362,7 @@ const ProductSchema = {
         'polished-bronze': {
           'id': 444368
         },
-        'oil-rubbed--bronze': {
+        'oil-rubbed-bronze': {
           'id': 444369
         },
         'stippled-bronze': {
@@ -371,7 +371,7 @@ const ProductSchema = {
         'stippled-oil-bronze': {
           'id': 444372
         },
-        'black-santoprene': {
+        'black': {
           'id': 444371
         }
       },
@@ -391,7 +391,7 @@ const ProductSchema = {
         'polished-bronze': {
           'id': 444376
         },
-        'oil-rubbed--bronze': {
+        'oil-rubbed-bronze': {
           'id': 444377
         },
         'stippled-bronze': {

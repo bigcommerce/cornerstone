@@ -14,7 +14,7 @@ cart: true
     <h1 class="title configurator__title">COMPASS 1200 SERIES DOOR PULL CONFIGURATOR</h1>
     <p class="configurator__subtitle title--section">Fill in the form to see what you'll need to build your custom door pull system</p>
   </section>
-<button id="test-fill-all">Testing - Fill all values</button>
+<!-- <button id="test-fill-all">Testing - Fill all values</button> -->
 <section class="configurator__content">
   <form id="configurator-form">
     <div class="configurator__region">
@@ -29,7 +29,7 @@ cart: true
         </select>
       </div>
       <div class="configurator__field-wrap">
-        <label class="configurator__label" for="door-thickness-inout">Door Thickness* (inches)</label>
+        <label class="configurator__label" for="door-thickness-inout">Door Thickness* (in decimal inches)</label>
         <input type="number" name="door-thickness" id="door-thickness-input" min="0.10" max="24" step=".01" required />
       </div>
     </div>
@@ -55,8 +55,8 @@ cart: true
       </div>
 
       <div class="configurator__field-wrap" id="grip-length-container">
-        <label class="configurator__label" for="grip-length-input">Overall Length* (inches)</label>
-        <input name="grip-length" type="number" id="grip-length-input" name="grip-length" min="6" max="92" step=".001" required>
+        <label class="configurator__label" for="grip-length-input">Overall Length* (in decimal inches)</label>
+        <input name="grip-length" type="number" id="grip-length-input" name="grip-length" min="6" max="100" step=".001" required>
       </div>
 
       <div class="configurator__field-wrap" id="grip-finish-container">
@@ -71,14 +71,13 @@ cart: true
           <option value="oil-rubbed-bronze">Oil Rubbed Bronze</option>
           <option value="stippled-bronze">Stippled Bronze</option>
           <option value="stippled-oil-bronze">Stippled Oil Rubbed Bronze</option>
-          <option value="black">Black Santoprene</option>
+          <option id="grip-finish-black" value="black">Black Santoprene</option>
         </select>
       </div>
 
       <div class="configurator__field-wrap" id="grip-cc-container">
-        <label class="configurator__label" for="grip-cc-input">Grip Center to Center Measurement* (inches)</label>
+        <label class="configurator__label" for="grip-cc-input">Grip Center to Center Measurement* (in decimal inches)</label>
         <input type="number" name="grip-cc" id="grip-cc-input" required />
-        <p><strong>Note:</strong> We recommend your center to center measurement allow for at most 3 inches of grip on either side.</p>
       </div>
 
       <div class="configurator__field-wrap" id="grip-mount-container">
@@ -91,6 +90,11 @@ cart: true
           <option value="b4">B4 - Concealed Single Mount - Solid wood core door with threaded insert and rota-lok (not recommended)</option>
           <option value="b5">B5 - Back-to-Back - Solid wood core or hollow metal door with rota-lok</option>
           <option value="b6">B6 - Back-to-Back - Tempered glass door with rota-lok</option>
+          <option value="c1">C1 - Single mount on wood core or hollow metal doors with through bolt.</option>
+          <option value="c2">C2 - Concealed single mount on hollow metal door with shoulder bolt and customer's reinforcement</option>
+          <option value="c3">C3 - Concealed single mount on solid core door with shoulder bolt and threaded insert.</option>
+          <option value="c4">C4 - Back-to-back mount on solid wood core or hollow metal door with shoulder bolt.</option>
+          <option value="c5">C5 - Back-to-back mount on tempered glass door with shoulder bolt.</option>
         </select>
       </div>
     </div>

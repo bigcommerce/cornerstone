@@ -188,7 +188,7 @@ export default class Configurator extends PageManager {
       return gripType;
     }
     if (gripLength <= 18.24) {
-      return 'extra-small'
+      return 'extraSmall'
     } else if (gripLength > 18.24 && gripLength <= 24.24) {
       return 'small'
     } else if (gripLength > 24.24 && gripLength <= 48.24) {
@@ -198,7 +198,7 @@ export default class Configurator extends PageManager {
     } else if (gripLength > 72.24 && gripLength <= 92.24) {
       return 'giant'
     } else if (gripLength > 92.24) {
-      return 'extra-large'
+      return 'extraLarge'
     }
   }
 
@@ -221,21 +221,17 @@ export default class Configurator extends PageManager {
   handleGripEndTypeChange(event) {
     // If end type is round, remove black santoprene option
     const gripEndType = event.target.value;
-    const gripFinishSelector = document.getElementById('grip-finish-selector');
 
     if (gripEndType === 'round') {
-      gripFinishSelector.querySelector('option[value="black"]').remove();
+      document.getElementById('grip-finish-black').style.display = 'none';
     } else {
-      const blackOption = document.createElement('option');
-      blackOption.value = 'black';
-      blackOption.textContent = 'Black Santoprene';
-      gripFinishSelector.appendChild(blackOption);
+      document.getElementById('grip-finish-black').style.display = 'block';
     }
   }
 
   handleGripMountChange(event) {
     const gripMount = event.target.value;
-    if (gripMount === 'b5' || gripMount === 'b6') {
+    if (gripMount === 'b5' || gripMount === 'b6' || gripMount == 'c4' || gripMount == 'c5') {
       document.querySelector('#endcap-finish-container select').required = false;
       document.querySelector('#endcap-finish-container').style.display = 'none';
     } else {
@@ -260,7 +256,7 @@ export default class Configurator extends PageManager {
 	  }
 
     let [doorMaterial, doorThickness, gripType, gripEndType, gripLength, gripFinish, gripCC, gripMount, standoffType, standoffFinish, endcapFinish] = Object.values(data);
-    let isDoubleMounted = gripMount == 'b5' || gripMount == 'b6';
+    let isDoubleMounted = gripMount == 'b5' || gripMount == 'b6' || gripMount == 'c4' || gripMount == 'c5';
   
     // Populate Door Specifications
     document.getElementById('results--door-material').textContent = doorMaterial;
@@ -275,8 +271,6 @@ export default class Configurator extends PageManager {
 
     // Get Grip Product
     let totalGrips = isDoubleMounted ? 2 : 1;
-    console.log(this.productSchema.grips);
-    console.log(gripType, gripLength);
     const selectedGrip = this.productSchema.grips[this.getGripSize(gripType, gripLength)][gripEndType][gripFinish];
     this.skuList.push({product: selectedGrip, quantity: totalGrips});
     console.log(this.skuList);
@@ -501,7 +495,7 @@ export default class Configurator extends PageManager {
 
   bindListeners() {
     // Bind testing button
-    document.getElementById('test-fill-all').addEventListener('click', this.handleTestButton);
+    // document.getElementById('test-fill-all').addEventListener('click', this.handleTestButton);
 
     // Bind input listeners
     document.getElementById('grip-type-selector').addEventListener('change', this.handleGripTypeChange);

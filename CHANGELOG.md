@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Replace Twitter logo with X logo within social sharing and social link components [#2387](https://github.com/bigcommerce/cornerstone/pull/2387)
 - Added nvm config [#2389](https://github.com/bigcommerce/cornerstone/pull/2389)
 - Displaying the Hidden cart_order_source Input Field on PDP page [#2392](https://github.com/bigcommerce/cornerstone/pull/2392) 
-- Use triple sash on customer's company name to prevent escaping ampersands
+- Use triple sash on customer's company name to prevent escaping ampersands [#2399] (https://github.com/bigcommerce/cornerstone/pull/2399)
 
 ## 6.12.0 (07-06-2023)
 - sync package lock file [#2373](https://github.com/bigcommerce/cornerstone/pull/2373)

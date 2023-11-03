@@ -1270,7 +1270,81 @@ model-viewer {
 
 }
 
+// ------------------------------------------------------------------------------------->
+//                                      Shiftpower 4
+// ------------------------------------------------------------------------------------->
 
+.shiftpower {
+
+  h3 {
+    text-align: center;
+  }
+
+  li {
+    list-style-type: none;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .productText h3 {
+    text-align: start;
+    margin-bottom: 1rem;
+  }
+
+  .iframe-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; //16:9
+  }
+
+  .iframe-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .pdp-three-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+
+    .column {
+      width: 100%;
+    }
+
+    @include breakpoint("medium") {
+      flex-direction: row;
+      justify-content: space-around;
+
+      .column {
+        flex: 1;
+      }
+    }
+  }
+
+  .full-width {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+    }
+  }
+
+  .productGraphic > img {
+    width: auto;
+  }
+}
 
 // ------------------------------------------------------------------------------------->
 //

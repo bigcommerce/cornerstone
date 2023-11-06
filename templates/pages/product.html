@@ -1,70 +1,58 @@
 ---
 product:
-    videos:
-        limit: {{theme_settings.productpage_videos_count}}
-    reviews:
-        limit: {{theme_settings.productpage_reviews_count}}
-    related_products:
-        limit: {{theme_settings.productpage_related_products_count}}
-    similar_by_views:
-        limit: {{theme_settings.productpage_similar_by_views_count}}
+  videos:
+    limit: { { theme_settings.productpage_videos_count } }
+  reviews:
+    limit: { { theme_settings.productpage_reviews_count } }
+  related_products:
+    limit: { { theme_settings.productpage_related_products_count } }
+  similar_by_views:
+    limit: { { theme_settings.productpage_similar_by_views_count } }
 ---
-{{inject 'productId' product.id}}
 
-{{#partial "page"}}
-    <div class="container">
-        
-        {{!--
+{{inject 'productId' product.id}} {{#partial "page"}}
+<div class="container">
+  {{#each product.shipping_messages}} {{> components/common/alert/alert-info
+  message}} {{/each}}
 
-        {{#each product.shipping_messages}}
-        {{> components/common/alert/alert-info message}}
-            {{/each}}
-            
-            <div>
-                {{> components/products-cs/alias-view-cs}}
-            </div>
+  <div>{{> components/products-cs/alias-view-cs}}</div>
 
-            {{> components/products/schema}}
-            
-            
-            {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
-            
-            --}}
-            
-            {{#each product.shipping_messages}}
-                {{> components/common/alert/alert-info message}}
-                {{/each}}
-                
-                <div>
-                    {{> components/products/product-view}}
-                    
-                    {{{region name="product_below_content"}}}
-                    
-                    {{#if product.videos.list.length}}
-                    {{> components/products/videos product.videos}}
-                    {{/if}}
-                    
-                    {{#all settings.show_product_reviews theme_settings.show_product_reviews (if theme_settings.show_product_details_tabs '!==' true)}}
-                    {{> components/products/reviews reviews=product.reviews product=product urls=urls}}
-                    {{/all}}
-                    
-                    {{> components/products/tabs}}
-                </div>
-                
+  {{> components/products/schema}} 
+  
+  {{!-- 
+    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+    {{#each product.shipping_messages}}
+        {{>components/common/alert/alert-info message}}
+    {{/each}}
 
-            {{> components/products/schema}}
+  <div>
+    {{> components/products/product-view}}
+    {{{region name="product_below_content"}}}
+    {{#if product.videos.list.length}}
+        {{> components/products/videos product.videos}}
+    {{/if}}
+    {{#all settings.show_product_reviews theme_settings.show_product_reviews (if theme_settings.show_product_details_tabs '!==' true)}}
+        {{> components/products/reviews reviews=product.reviews product=product urls=urls}}
+    {{/all}}
+    
+    {{> components/products/tabs}}
 
-    </div>
-    {{!--
-        <script>
-            const gen = "{{#filter product.custom_fields 'Make' property='name'}}{{value}}{{/filter}}{{#filter product.custom_fields 'Model' property='name'}}{{value}}{{/filter}}{{#filter product.custom_fields 'Generation' property='name'}}{{value}}{{/filter}}";
-            const product_id = ({{product.id}}).toString();
-            console.log('product_id', product_id);
-            </script>
-    <script type="text/javascript" src="/content/{{#filter product.custom_fields 'archetype_url' property='name'}}{{chop value}}{{/filter}}.js"></script>
-    <script type="text/javascript" src="/content/global_inventory.js"></script>
-    <script type="text/javascript" src="/content/single-product.js"></script>
-    --}}
+  </div>
+
+  {{> components/products/schema}}
+  
+  --}}
+
+</div>
+<script>
+  const gen = "{{#filter product.custom_fields 'Make' property='name'}}{{value}}{{/filter}}{{#filter product.custom_fields 'Model' property='name'}}{{value}}{{/filter}}{{#filter product.custom_fields 'Generation' property='name'}}{{value}}{{/filter}}";
+  const product_id = ({{product.id}}).toString();
+  console.log('product_id', product_id);
+</script>
+<script type="text/javascript" src="/content/{{#filter product.custom_fields 'archetype_url' property='name'}}{{chop value}}{{/filter}}.js"></script>
+<script type="text/javascript" src="/content/global_inventory.js"></script>
+<script type="text/javascript" src="/content/single-product.js"></script>
 
 {{/partial}}
+
 {{> layout/base}}

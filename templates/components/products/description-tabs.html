@@ -4,7 +4,7 @@
             <a class="tab-title" href="#tab-description">{{lang 'products.description'}}</a>
         </li>
     {{/if}}
-    {{#if product.warranty}}
+    {{!--{{#if product.warranty}}
         <li class="tab {{#unless product.description}}is-active{{/unless}}">
             <a class="tab-title" href="#tab-warranty">{{lang 'products.warranty'}}</a>
         </li>
@@ -17,14 +17,17 @@
                 {{sanitize theme_settings.pdp-custom-fields-tab-label}}
             </a>
         </li>
-    {{/all}}
+    {{/all}} 
     {{#all settings.show_product_reviews theme_settings.show_product_reviews product.reviews.total}}
         <li class="tab">
             <a class="tab-title productView-reviewTabLink" href="#tab-reviews">{{lang 'products.reviews.header' total=product.reviews.total}}</a>
         </li>
-    {{/all}}
+    {{/all}}--}}
         <li class="tab">
             <a href="#tab-reviews" class="tab-title">{{lang 'products.reviews.header'}}</a>
+        </li>
+        <li class="tab">
+            <a class="tab-title" href="#tab-shipping">Shipping</a>
         </li>
 </ul>
 <div class="tabs-contents">
@@ -46,11 +49,14 @@
       </div>
     {{/all}}
     {{#all settings.show_product_reviews theme_settings.show_product_reviews}}
-       <div class="tab-content" id="tab-reviews">
+        <div class="tab-content" id="tab-reviews">
            {{> components/products/reviews reviews=product.reviews product=product urls=urls}}
        </div>
     {{/all}}
-       <div class="tab-content" id="tab-reviews">
+        <div class="tab-content" id="tab-reviews">
             {{> components/products-cs/reviews-cs}}
-       </div>
+        </div>
+        <div class="tab-content " id="tab-shipping">
+        {{> components/common/shipping-info}}
+        </div>
 </div>

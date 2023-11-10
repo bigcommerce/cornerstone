@@ -49,7 +49,7 @@
                 {{/if}}
                 >
             <div class="productView-img-container">
-                {{!-- Remove the surrounding a-element if there is no main image. --}}
+                
                 {{#if product.main_image}}
                     <a href="{{getImageSrcset product.main_image (cdn theme_settings.default_image_product) 1x=theme_settings.zoom_size}}"
                         target="_blank">
@@ -62,7 +62,6 @@
                     default_image=theme_settings.default_image_product
                     otherAttributes="data-main-image"
                 }}
-                {{!-- Remove the surrounding a-element if there is no main image. --}}
                 {{#if product.main_image}}
                     </a>
                 {{/if}}
@@ -95,7 +94,6 @@
                 </li>
             {{/each}}
         </ul>
-        <div class="option-images"></div>
     </section>
 
     <section class="productView-details product-data">
@@ -119,7 +117,8 @@
                 {{/or}}
             </div>
             {{{region name="product_below_price"}}}
-            <div class="productView-rating">
+            <a id="product-rating" href="#tab-reviews"></a>
+            {{!-- <div class="productView-rating">
                 <div id="product-rating"></div>
                 {{#if settings.show_product_rating}}
                     {{> components/products/ratings rating=product.rating}}
@@ -143,7 +142,7 @@
                         {{> components/products/modals/writeReview}}
                     {{/unless}}
                 {{/if}}
-            </div>
+            </div> --}}
             {{product.detail_messages}}
             <dl class="productView-info">
                 <dt class="productView-info-name sku-label"{{#unless product.sku}} style="display: none;"{{/unless}}>{{lang 'products.sku'}}</dt>

@@ -1140,13 +1140,29 @@ model-viewer {
 
 #product-options-alias {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
-  gap: 6px;
+  gap: $mobile-spacing;
   width: 100%;
+  margin-bottom: $mobile-spacing;
+  
+  select {
+    height: 3rem;
+    line-height: $product-button-height;
+    border: 2px solid stencilColor(button--disabled-borderColor);
+    border-radius: 3px;
+    text-align: center;
+    vertical-align: middle;
+  }
 
   @include breakpoint("medium") {
     width: $product-button-width;
+    flex-direction: row;
+
+    select {
+      // flex: 1;
+      width: 50%;
+    }
   }
 }
 

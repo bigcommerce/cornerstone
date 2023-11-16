@@ -33,10 +33,13 @@
 
                                 {{#if type '===' 'stored_bank_account'}}
                                     {{!-- If bank_account STARTS --}}
-                                    <img class="methodHeader-icon" src="{{cdn 'img/payment-methods/card.svg'}}"
-                                         alt="{{lang 'account.payment_methods.card_types.credit_card'}}"
-                                         title="{{lang 'account.payment_methods.card_types.credit_card'}}">
-                                    <span class="methodHeader-brand">{{ lang 'account.payment_methods.payment_method'}}</span>
+                                    {{#if ../methodId '===' 'ach'}}
+                                        <img class="methodHeader-icon" src="{{cdn 'img/payment-methods/ach.svg'}}" alt="{{lang 'account.payment_methods.ach'}}" title="{{lang 'account.payment_methods.ach'}}">
+                                        <span class="methodHeader-brand">{{lang 'account.payment_methods.bank_account'}} {{lang 'account.payment_methods.card_ending_in' last_four=masked_account_number}}</span>
+                                    {{else}}
+                                        <img class="methodHeader-icon" src="{{cdn 'img/payment-methods/card.svg'}}" alt="{{lang 'account.payment_methods.card_types.credit_card'}}" title="{{lang 'account.payment_methods.card_types.credit_card'}}">
+                                        <span class="methodHeader-brand">{{lang 'account.payment_methods.payment_method'}}</span>
+                                    {{/if}}
                                     {{!-- If bank_account ENDS --}}
                                 {{/if}}
 

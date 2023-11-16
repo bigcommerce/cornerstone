@@ -315,6 +315,10 @@ $card-preview-zoom-bottom-offset:       6rem;
         display: inline-block;
     }
 
+    &__label {
+        display: inline-block;
+    }
+
     + .definitionList {
         margin-top: spacing("quarter");
     }
@@ -580,11 +584,8 @@ $card-preview-zoom-bottom-offset:       6rem;
     }
 }
 
-.cart-acceleratedCheckoutButtons {
-    align-items: end;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+.cart-additionalCheckoutButtons {
+    @extend %additionalCheckoutButtons;
 }
 
 // Cart Preview

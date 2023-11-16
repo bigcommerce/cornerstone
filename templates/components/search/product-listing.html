@@ -3,19 +3,11 @@
 {{#if product_results.products.length}}
     {{> components/products/filter sort=pagination.product_results.sort}}
 {{/if}}
-<div {{#if settings.data_tag_enabled}} data-list-name="Search Results" {{/if}}>
+<div data-list-name="Search Results">
     {{#if theme_settings.product_list_display_mode '===' 'grid'}}
-        {{#if settings.data_tag_enabled}}
-            {{> components/products/grid products=product_results.products show_compare=product_results.show_compare event="list" theme_settings=theme_settings}}
-        {{else}}
-            {{> components/products/grid products=product_results.products show_compare=product_results.show_compare theme_settings=theme_settings}}
-        {{/if}}
+        {{> components/products/grid products=product_results.products show_compare=product_results.show_compare event="list" theme_settings=theme_settings}}
     {{else}}
-        {{#if settings.data_tag_enabled}}
-            {{> components/products/list products=product_results.products show_compare=product_results.show_compare event="list" theme_settings=theme_settings}}
-         {{else}}
-            {{> components/products/list products=product_results.products show_compare=product_results.show_compare theme_settings=theme_settings}}
-        {{/if}}
+        {{> components/products/list products=product_results.products show_compare=product_results.show_compare event="list" theme_settings=theme_settings}}
     {{/if}}
 </div>
 

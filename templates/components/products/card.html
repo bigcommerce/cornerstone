@@ -3,31 +3,30 @@
     {{#if images.length '>' 1}} card-hover{{/if}}
     {{#if alternate}} card--alternate{{/if}}"
     data-test="card-{{id}}"
-    {{#if settings.data_tag_enabled}}
-        data-event-type="{{event}}"
-        data-entity-id="{{id}}"
-        data-position="{{position}}"
-        data-name="{{name}}"
-        data-product-category="
-        {{#each category}}
-            {{#if @last}}
-                {{this}}
-            {{else}}
-                {{this}},
-            {{/if}}
-        {{/each}}"
-        data-product-brand="{{brand.name}}"
-        data-product-price="
-        {{#or customer (unless settings.hide_price_from_guests)}}
-            {{#if price.with_tax}}
-                {{price.with_tax.value}}
-            {{else}}
-                {{price.without_tax.value}}
-            {{/if}}
+    data-event-type="{{event}}"
+    data-entity-id="{{id}}"
+    data-position="{{position}}"
+    data-name="{{name}}"
+    data-product-category="
+    {{#each category}}
+        {{#if @last}}
+            {{this}}
         {{else}}
-            {{lang 'common.login_for_pricing'}}
-        {{/or}}"
-    {{/if}}>
+            {{this}},
+        {{/if}}
+    {{/each}}"
+    data-product-brand="{{brand.name}}"
+    data-product-price="
+    {{#or customer (unless settings.hide_price_from_guests)}}
+        {{#if price.with_tax}}
+            {{price.with_tax.value}}
+        {{else}}
+            {{price.without_tax.value}}
+        {{/if}}
+    {{else}}
+        {{lang 'common.login_for_pricing'}}
+    {{/or}}"
+>
     <figure class="card-figure">
         {{#if stock_level '===' 0}}
             {{#if theme_settings.pdp_sold_out_label '===' ''}}
@@ -64,7 +63,7 @@
         <a href="{{url}}"
            class="card-figure__link"
            aria-label="{{> components/products/product-info}}"
-           {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}}
+           data-event-type="product-click"
         >
             <div class="card-img-container">
                 {{> components/common/responsive-img
@@ -91,11 +90,7 @@
             <div class="card-figcaption-body">
                 {{#unless hide_product_quick_view}}
                     {{#if theme_settings.show_product_quick_view}}
-                        {{#if settings.data_tag_enabled}}
-                            <button type="button" class="button button--small card-figcaption-button quickview" data-event-type="product-click" data-product-id="{{id}}">{{lang 'products.quick_view'}}</button>
-                        {{else}}
-                            <button type="button" class="button button--small card-figcaption-button quickview" data-product-id="{{id}}">{{lang 'products.quick_view'}}</button>
-                        {{/if}}
+                        <button type="button" class="button button--small card-figcaption-button quickview" data-event-type="product-click" data-product-id="{{id}}">{{lang 'products.quick_view'}}</button>
                     {{/if}}
                 {{/unless}}
                 {{#if show_compare}}
@@ -135,7 +130,7 @@
         <h3 class="card-title">
             <a aria-label="{{> components/products/product-info}}"
                href="{{url}}"
-               {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}}
+               data-event-type="product-click"
             >
                 {{name}}
             </a>

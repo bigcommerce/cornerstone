@@ -11,6 +11,7 @@ import forms from '../common/models/forms';
 import { normalizeFormData } from './utils/api';
 import { isBrowserIE, convertIntoArray } from './utils/ie-helpers';
 import bannerUtils from './utils/banner-utils';
+import currencySelector from '../global/currency-selector';
 
 export default class ProductDetails extends ProductDetailsBase {
     constructor($scope, context, productAttributesData = {}) {
@@ -399,6 +400,7 @@ export default class ProductDetails extends ProductDetailsBase {
 
         // Add item to cart
         utils.api.cart.itemAdd(normalizeFormData(new FormData(form)), (err, response) => {
+            currencySelector(response.data.cart_id);
             const errorMessage = err || response.data.error;
 
             $addToCartBtn

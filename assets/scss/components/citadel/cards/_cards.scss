@@ -11,23 +11,11 @@
 //
 // -----------------------------------------------------------------------------
 
-.card {
-    &:focus-within {
-        .card-figcaption {
-            opacity: 1;
-        }
-    }
-
-    &.focus-within {
-        .card-figcaption {
-            opacity: 1;
-        }
-    }    
+.card {    
 
     @include breakpoint("medium") {
         &.card-hover {
             &:hover .card-figure__link {
-
                 .card-image {
                     opacity: 0;
                     visibility: hidden;
@@ -38,6 +26,18 @@
                     visibility: visible;
                 }
             }
+        }
+    }
+
+    &:focus-within {
+        .card-figcaption {
+            opacity: 1;
+        }
+    }
+
+    &.focus-within {
+        .card-figcaption {
+            opacity: 1;
         }
     }
 
@@ -86,25 +86,25 @@
 
 .card-figure__link {
     display: block;
-    position: relative;
     overflow: hidden;
+    position: relative;
 
     .card-image-2 {
-        position: absolute;
-        top: 50%;
         left: 50%;
-        z-index: 3;
-        width: 100%;
-        text-align: center;
         opacity: 0;
+        position: absolute;
+        text-align: center;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        transition: all 0.3s ease;
         visibility: hidden;
-        transform: translate(-50%,-50%);
-        transition: all .3s ease;
+        width: 100%;
+        z-index: 3;
 
         img {
             display: inline-block;
-            vertical-align: top;
             max-height: 100%;
+            vertical-align: top;
             width: 100%;
         }
     }
@@ -144,8 +144,8 @@
     font-family: "object-fit: contain;";
     max-height: 100%;
     object-fit: contain;
+    transition: all 0.3s ease;
     width: 100%;
-    transition: all .3s ease
 }
 
 .card-title {
@@ -155,8 +155,8 @@
     > a {
         color: $card-title-color;
         display: block;
-        text-decoration: $card-title-textDecoration;
         display: block;
+        text-decoration: $card-title-textDecoration;
 
         &:hover {
             color: $card-title-color-hover;
@@ -176,9 +176,9 @@
 
 .card-figcaption-button {
     border: $card-figcaption-button-border;
+    border-radius: 12px;
     display: $card-figcaption-button-display;
     margin: $card-figcaption-button-margin;
-    border-radius: 12px;
 
     &:active {
         background-color: $card-figcaption-button-backgroundHover;

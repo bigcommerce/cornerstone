@@ -72,10 +72,11 @@
             left: 25px;
         }
     }
+
     .slick-dots {
         bottom: spacing("base");
-        text-align: right;
         padding-right: 15px;
+        text-align: right;
     }
 
     .slick-slide {
@@ -639,15 +640,15 @@
         transform: translate(-25%, -50%);
     }
 
-    &:after {
-        content: '';
+    &::after {
+        border: 1px solid #fff;
+        content: "";
         display: block;
+        height: calc(100% - 14px);
+        left: 7px;
         position: absolute;
         top: 7px;
-        left: 7px;
         width: calc(100% - 14px);
-        height: calc(100% - 14px);
-        border: 1px solid #ffffff;
     }
 }
 

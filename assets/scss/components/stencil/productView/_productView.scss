@@ -139,19 +139,19 @@
     padding-bottom: spacing("single") + spacing("third");
 
     &.productView-details--cartAction {
-        position: fixed;
-        border-top: container("border");;
+        background: #fff;
+        border-top: container("border");
         bottom: 0;
         margin-bottom: 0;
-        z-index: 5;
-        background: #ffffff;
         padding-top: 1rem;
+        position: fixed;
+        z-index: 5;
 
         @include breakpoint("medium") {
-            border-top: none;
+            border-top: 0;
+            margin-bottom: spacing("single") + spacing("third");
             padding-top: 0;
             position: relative;
-            margin-bottom: spacing("single") + spacing("third");
         }
     }
 }
@@ -247,10 +247,10 @@
 
 .productView-reviewLink {
     color: stencilColor("color-textSecondary");
+    color: stencilColor("color-textSecondary");
     display: inline-block;
     margin-left: spacing("quarter");
     vertical-align: middle;
-    color: stencilColor("color-textSecondary");
 
     // scss-lint:disable NestingDepth
     &:hover {

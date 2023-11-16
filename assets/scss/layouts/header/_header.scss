@@ -62,8 +62,8 @@
 
 @include breakpoint("medium") {
     .header-container {
-        display: flex;
         align-items: center;
+        display: flex;
         justify-content: space-between;
         padding: remCalc(10px) remCalc(16px);
         width: 100%;
@@ -87,7 +87,6 @@
         // margin: (spacing("double") + spacing("base")) auto (spacing("double") + spacing("single"));
         margin: 0;
         padding: 0;
-        height: auto;
 
         .header.fixed & {
             background-color: color("greys", "lightest");
@@ -177,8 +176,8 @@
         max-width: none;
         overflow: auto;
         padding: 0 10px;
-        white-space: normal;
         padding: 0 10px;
+        white-space: normal;
 
         .header.fixed & {
             font-size: fontSize("larger");
@@ -206,9 +205,9 @@
     max-height: remCalc($header-height) - $header-logo-marginVertical * 1;
 
     @include breakpoint("medium") {
+        left: 20px;
         max-height: none;
         top: 0;
-        left: 20px;
     }
 }
 
@@ -293,19 +292,19 @@
 
 @include breakpoint("medium") {
     .header-container {
-        display: flex;
         align-items: center;
+        display: flex;
         justify-content: space-between;
-        padding: remCalc(10px) remCalc(16px);
-        max-width: 91.71429rem;
         margin-left: auto;
         margin-right: auto;
+        max-width: 91.71429rem;
+        padding: remCalc(10px) remCalc(16px);
         position: relative;
     }
 
     .header-logo--center {
-        text-align: left;
         margin-left: remCalc(40px);
+        text-align: left;
     }
 
     .header-logo-image {

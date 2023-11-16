@@ -13,53 +13,14 @@
 .categoryGrid {
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-around;
     font-size: 0; // 1
+    justify-content: space-around;
     margin-bottom: spacing("single");
 
     .card {
         flex: 0 1 auto;
         margin-bottom: spacing("half");
         padding: 0 spacing("quarter");
-
-        .card-img-container {
-            max-width: 100%;
-            overflow: hidden;
-
-            &:after {
-                padding-bottom: unset;
-            }
-
-            img.lazyloaded {
-                transition: all .7s ease;
-            }
-
-            @include breakpoint("medium") {
-                &:hover {
-                    img.lazyloaded {
-                        transform: scale(1.2);
-                    }
-                }
-            }
-        }
-
-        .card-figcaption {
-            display: block;
-            opacity: 1;
-            overflow: hidden;
-
-            .card-figcaption-body {
-                background-color: rgba(53, 60, 70, .8);
-                display: block;
-                padding: 8px;
-                transform: translateY(100%);
-                transition: ease transform 250ms 250ms;
-
-                h3 {
-                    color: #ffffff;
-                }
-            }
-        }
 
         @include breakpoint("small") {
             flex-basis: 50%;
@@ -74,6 +35,45 @@
                 }
             }
         }
+
+        .card-img-container {
+            max-width: 100%;
+            overflow: hidden;
+
+            @include breakpoint("medium") {
+                &:hover {
+                    img.lazyloaded {
+                        transform: scale(1.2);
+                    }
+                }
+            }
+
+            &::after {
+                padding-bottom: unset;
+            }
+
+            img.lazyloaded {
+                transition: all 0.7s ease;
+            }
+        }
+
+        .card-figcaption {
+            display: block;
+            opacity: 1;
+            overflow: hidden;
+
+            .card-figcaption-body {
+                background-color: rgba(53, 60, 70, 0.8);
+                display: block;
+                padding: 8px;
+                transform: translateY(100%);
+                transition: ease transform 250ms 250ms;
+
+                h3 {
+                    color: #fff;
+                }
+            }
+        }
     }
 
     .card-title {
@@ -81,7 +81,7 @@
     }
 
     .card-description {
-        color: #ffffff;
+        color: #fff;
         font-size: 14px;
     }
 }
@@ -94,16 +94,21 @@
 }
 
 .mobileCategoryGrid {
+
+    @include breakpoint("medium") {
+        display: none;
+    }
+
     .scrollable-area-container {
-        margin-top: -10px;
         margin-bottom: 30px;
+        margin-top: -10px;
     }
 
     .scrollable-area--horizontal {
-        overflow-x: auto;
-        white-space: nowrap;
         -webkit-overflow-scrolling: touch;
+        overflow-x: auto;
         overflow-y: hidden;
+        white-space: nowrap;
 
         &::-webkit-scrollbar {
             display: none;
@@ -123,10 +128,10 @@
 
     .card--circle {
         display: flex;
-        text-align: center;
+        margin: 8px 10px;
         max-width: 315px;
         min-width: 72px;
-        margin: 8px 10px;
+        text-align: center;
 
         a {
             text-decoration: none;
@@ -141,19 +146,15 @@
 
         .circle-card-img-container {
             img {
-                display: flex;
                 border-radius: 50%;
-                width: 72px;
+                display: flex;
                 height: 72px;
                 margin-left: auto;
                 margin-right: auto;
                 object-fit: cover;
                 object-position: top;
+                width: 72px;
             }
         }
-    }
-
-    @include breakpoint("medium") {
-        display: none;
     }
 }

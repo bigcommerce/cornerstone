@@ -28,8 +28,8 @@
 .actionBar.categoryFilter {
     display: flex;
     justify-content: flex-end;
-    margin-top: 0;
     margin-bottom: 14px;
+    margin-top: 0;
     
     .form-field {
         margin-bottom: 0;
@@ -41,78 +41,80 @@
 }
 
 #category-modal {
-    padding-top: 63px;
     overflow-y: scroll;
+    padding-top: 63px;
 
     .modal-header {
+        border-bottom: 1px solid #e5e5e5;
+        height: 63px;
         position: absolute;
+        text-align: center;
         top: 0;
         width: 100%;
-        height: 63px;
-        border-bottom: 1px solid #e5e5e5;
-        text-align: center;
 
         &--title {
-            margin-top: 6px;
             display: block;
+            margin-top: 6px;
         }
     }
+
     .category-modal-link {
-        padding: 20px 0 20px 20px;
         border-bottom: 1px solid #e5e5e5;
+        color: #232323;
         cursor: pointer;
-        text-decoration: none;
+        display: block;
+        font-size: 16px;
         font-style: normal;
         font-weight: 400;
         line-height: 30px;
-        font-size: 16px;
-        color: #232323;
-        display: block;
+        padding: 20px 0 20px 20px;
+        text-decoration: none;
     }
 }
 
 .mobileCategory-dropdown {
+    align-items: center;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    align-items: center;
     justify-content: space-between;
     margin-bottom: 16px;
 
+    @include breakpoint("medium") {
+        display: none;
+    }
+
     &--current {
-        padding: 0 8px 0 0;
         display: flex;
         flex: 1;
         flex-direction: row;
+        padding: 0 8px 0 0;
     }
 
     .mobileCategory--toggleButton {
+        background-color: #fff;
+        border: 1px solid #e5e5e5;
+        border-radius: 0;
+        display: flex;
         font-family: fontFamily("headingSans");
+        font-size: 18px;
         font-style: normal;
         font-weight: 400;
-        font-size: 18px;
-        padding: 12px 0 10px 10px;
-        border: 1px solid #e5e5e5;
-        display: flex;
-        justify-content: space-between;
-        border-radius: 0;
         height: 50px;
+        justify-content: space-between;
+        padding: 12px 0 10px 10px;
         width: 100%;
-        background-color: #fff;
 
         .toggleButton-moreIcon {
             display: inline-block;
             padding-right: 16px;
             padding-top: 4px;
+
             > svg {
-                width: 16px;
                 height: 16px;
+                width: 16px;
             }
         }
-    }
-
-    @include breakpoint("medium") {
-        display: none;
     }
 }
 
@@ -126,10 +128,10 @@
     }
 
     .scrollable-area--horizontal {
-        overflow-x: auto;
-        white-space: nowrap;
         -webkit-overflow-scrolling: touch;
+        overflow-x: auto;
         overflow-y: hidden;
+        white-space: nowrap;
 
         &::-webkit-scrollbar {
             display: none;
@@ -138,21 +140,21 @@
 
     .scrollable-area-component {
         display: inline-block;
+        margin-right: 4px;
         vertical-align: top;
         white-space: normal;
-        margin-right: 4px;
 
         .pill-item {
             display: block;
-            text-align: center;
-            -webkit-tap-highlight-color: transparent;
             padding: 8px 0;
+            -webkit-tap-highlight-color: transparent;
+            text-align: center;
 
             &--link {
-                display: inline-block;
-                cursor: pointer;
-                text-decoration: none;
                 color: #232323;
+                cursor: pointer;
+                display: inline-block;
+                text-decoration: none;
 
                 &.active {
                     .item-link {
@@ -164,21 +166,21 @@
             }
 
             .item-link {
+                align-items: center;
+                border: 1px solid #e5e5e5;
+                border-radius: 42px;
+                display: flex;
+                font-size: 16px;
+                font-size: 12px;
                 font-style: normal;
                 font-weight: 400;
-                font-size: 16px;
-                line-height: 1.5;
-                width: 100%;
-                border-radius: 42px;
-                padding: 0 16px;
-                height: 32px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                font-size: 12px;
                 font-weight: 600;
+                height: 32px;
+                justify-content: center;
+                line-height: 1.5;
+                padding: 0 16px;
                 white-space: nowrap;
-                border: 1px solid #e5e5e5;
+                width: 100%;
             }
         }
     }

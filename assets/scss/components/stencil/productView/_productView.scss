@@ -290,6 +290,10 @@
         color: stencilColor("color-textSecondary--hover");
     }
 
+    &:hover {
+        color: stencilColor("color-textSecondary--hover");
+    }
+
     &--new {
         padding: 0;
     }
@@ -457,6 +461,20 @@
             text-decoration: underline;
             vertical-align: middle;
             width: 100%;
+        }
+    }
+
+    .add-to-cart-wallet-buttons {
+        margin-top: spacing("half");
+
+        button {
+            color: stencilColor("color-textSecondary");
+            display: block;
+            padding: spacing("quarter") 0;
+            text-align: center;
+            text-decoration: underline;
+            vertical-align: middle;
+            width: 100%;
             height: 46px;
             font-size: 1.3rem;
             border-radius: 12px;
@@ -473,8 +491,8 @@
                 color: stencilColor("color-textSecondary--hover");
             }
 
-            @include breakpoint("large") {
-                margin-right: spacing("half");
+            &:hover {
+                color: stencilColor("color-textSecondary--hover");
             }
         }
 

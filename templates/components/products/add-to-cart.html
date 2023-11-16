@@ -41,7 +41,7 @@
         </div>
         <p class="alertBox-column alertBox-message"></p>
     </div>
-    {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+    {{#or customer (unless settings.hide_price_from_guests)}}
         <div class="add-to-cart-buttons">
             <div class="form-action">
                 <input
@@ -54,7 +54,7 @@
                 <span class="product-status-message aria-description--hidden">{{lang 'products.adding_to_cart'}} {{lang 'category.add_cart_announcement'}}</span>
             </div>
             {{#if this.with_wallet_buttons}}
-                <div class="add-to-cart-wallet-buttons">
+                <div class="add-to-cart-wallet-buttons" data-add-to-cart-wallet-buttons>
                     {{> components/common/wallet-buttons}}
                 </div>
             {{/if}}

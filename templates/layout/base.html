@@ -26,12 +26,11 @@
             window.lazySizesConfig = window.lazySizesConfig || {};
             window.lazySizesConfig.loadMode = 1;
         </script>
-        <script async src="{{cdn 'assets/dist/theme-bundle.head_async.js'}}"></script>
+        <script async src="{{cdn 'assets/dist/theme-bundle.head_async.js' resourceHint='preload' as='script'}}"></script>
         
         {{getFontsCollection font-display='block'}}
         
-        <link rel="preload" href="{{cdn 'assets/dist/theme-bundle.font.js'}}" as="script">
-        <script async src="{{cdn 'assets/dist/theme-bundle.font.js'}}"></script>
+        <script async src="{{cdn 'assets/dist/theme-bundle.font.js' resourceHint='preload' as='script'}}"></script>
 
         {{{stylesheet '/assets/css/theme.css'}}}
 
@@ -50,9 +49,6 @@
         {{~inject 'carouselArrowAndDotAriaLabel' (lang 'carousel.arrow_and_dot_aria_label')}}
         {{~inject 'carouselActiveDotAriaLabel' (lang 'carousel.active_dot_aria_label')}}
         {{~inject 'carouselContentAnnounceMessage' (lang 'carousel.content_announce_message')}}
-
-        {{!-- Get this loading ASAP --}}
-        <link rel="preload" href="{{cdn 'assets/dist/theme-bundle.main.js'}}" as="script">
     </head>
     <body class="{{#block 'bodyClass'}}{{/block}}">
         <svg data-src="{{cdn 'img/icon-sprite.svg'}}" class="icons-svg-sprite"></svg>
@@ -68,9 +64,8 @@
                 window.stencilBootstrap("{{page_type}}", {{jsContext}}).load();
             }
         </script>
-        <script async defer src="{{cdn 'assets/dist/theme-bundle.main.js'}}" onload="onThemeBundleMain()"></script>
+        <script async defer src="{{cdn 'assets/dist/theme-bundle.main.js' resourceHint='preload' as='script'}}" onload="onThemeBundleMain()"></script>
 
-        {{> components/active-campaign-site-tracking}}
         {{{footer.scripts}}}
     </body>
 </html>

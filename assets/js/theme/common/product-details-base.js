@@ -1,6 +1,5 @@
 import Wishlist from '../wishlist';
 import { initRadioOptions } from './aria';
-import { isObject, isNumber } from 'lodash';
 
 const optionsTypesMap = {
     INPUT_FILE: 'input-file',
@@ -214,11 +213,11 @@ export default class ProductDetailsBase {
 
         this.showMessageBox(data.stock_message || data.purchasing_message);
 
-        if (isObject(data.price)) {
+        if (data.price instanceof Object) {
             this.updatePriceView(viewModel, data.price);
         }
 
-        if (isObject(data.weight)) {
+        if (data.weight instanceof Object) {
             viewModel.$weight.html(data.weight.formatted);
         }
 
@@ -246,7 +245,7 @@ export default class ProductDetailsBase {
         }
 
         // if stock view is on (CP settings)
-        if (viewModel.stock.$container.length && isNumber(data.stock)) {
+        if (viewModel.stock.$container.length && typeof data.stock === 'number') {
             // if the stock container is hidden, show
             viewModel.stock.$container.removeClass('u-hiddenVisually');
 

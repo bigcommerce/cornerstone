@@ -291,6 +291,10 @@ $card-preview-zoom-bottom-offset:       6rem;
         display: inline-block;
     }
 
+    &__label {
+        display: inline-block;
+    }
+
     + .definitionList {
         margin-top: spacing("quarter");
     }
@@ -556,14 +560,15 @@ $card-preview-zoom-bottom-offset:       6rem;
     }
 }
 
-.cart-additionalCheckoutButtons {
-    @extend %additionalCheckoutButtons;
+.cart-acceleratedCheckoutButtons {
+    align-items: end;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
 
-.previewCart-additionalCheckoutButtons {
+.cart-additionalCheckoutButtons {
     @extend %additionalCheckoutButtons;
-    padding-bottom: spacing("single");
-    padding-right: spacing("single");
 }
 
 // Cart Preview
@@ -699,4 +704,14 @@ $card-preview-zoom-bottom-offset:       6rem;
 .previewCart-emptyBody {
     padding: spacing("double");
     text-align: center;
+}
+
+.previewCart-acceleratedCheckoutButtons {
+    width: 100%;
+}
+
+.previewCart-additionalCheckoutButtons {
+    @extend %additionalCheckoutButtons;
+    padding-bottom: spacing("single");
+    padding-right: spacing("single");
 }

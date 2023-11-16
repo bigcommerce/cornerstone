@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Draft
 
+## 6.10.0 (03-23-2023)
+- A bug with the display of the product quantity on the PDP [#2340](https://github.com/bigcommerce/cornerstone/pull/2340)
+- Extended initialization interface of the storefront-account-payments lib, added theme styles [#2335][https://github.com/bigcommerce/cornerstone/pull/2335]
+- Added showAlertModal to the storefront-account-payments app initialization [#2338][https://github.com/bigcommerce/cornerstone/pull/2338]
+
 ## 6.9.0 (03-03-2023)
 - Fix sold-out badge appearance [#2315](https://github.com/bigcommerce/cornerstone/pull/2315)
 - Remove xlink attributes on svg [#2322](https://github.com/bigcommerce/cornerstone/pull/2322)

@@ -1,5 +1,5 @@
 <div id="add-to-cart-wrapper" class="add-to-cart-wrapper" {{#unless product.can_purchase}}style="display: none"{{/unless}}>
-    {{#if theme_settings.show_product_quantity_box}}
+    {{#if product.show_quantity_input}}
         {{inject 'productQuantityErrorMessage'  (lang 'products.quantity_error_message')}}
         <div class="form-field form-field--increments">
             <label class="form-label form-label--alternate"

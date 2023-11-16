@@ -1,7 +1,7 @@
 {
   "name": "bigcommerce-cornerstone",
   "description": "The BigCommerce reference theme for the Stencil platform",
-  "version": "6.10.0",
+  "version": "6.11.0",
   "private": true,
   "author": "BigCommerce",
   "license": "MIT",
@@ -67,7 +67,7 @@
   "scripts": {
     "build": "npx webpack --config webpack.prod.js",
     "buildDev": "npx webpack --config webpack.dev.js",
-    "lighthouse": "npx lighthouse --config-path=lighthouse-config.js --quiet --output json --chrome-flags=\"--headless\" $URL | jq '.audits | map_values(.rawValue)'",
+    "lighthouse": "npx lighthouse --config-path=lighthouse-config.js --quiet --output html --chrome-flags=\"--headless\" $URL",
     "test": "npx jest",
     "stylelint": "npx stylelint **/*.scss",
     "stylelint:fix": "npx stylelint --fix **/*.scss"

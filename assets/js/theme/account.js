@@ -32,6 +32,9 @@ export default class Account extends PageManager {
         const $paymentMethodForm = classifyForm('form[data-payment-method-form]');
         const $reorderForm = classifyForm('[data-account-reorder-form]');
         const $invoiceButton = $('[data-print-invoice]');
+        const $bigCommerce = window.BigCommerce;
+
+        compareProducts(this.context);
 
         compareProducts(this.context);
 
@@ -80,6 +83,31 @@ export default class Account extends PageManager {
 
         if ($reorderForm.length) {
             this.initReorderForm($reorderForm);
+        }
+
+        if ($bigCommerce && $bigCommerce.accountPayments) {
+            window.BigCommerce.accountPayments({
+                widgetStyles: {
+                    base: {
+                        color: '#666666',
+                        cursor: 'pointer',
+                        display: 'block',
+                        fontSize: '1rem',
+                        lineHeight: '1.5',
+                        marginBottom: '0.5rem',
+                    },
+                    error: {
+                        color: 'red',
+                    },
+                    placeholder: {
+                        color: '#d8d8d8',
+                    },
+                    validated: {
+                        color: 'green',
+                    },
+                },
+                countries: this.context.countries,
+            });
         }
 
         this.bindDeleteAddress();

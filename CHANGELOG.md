@@ -6,6 +6,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Draft
 
+## 6.8.0 (01-26-2023)
+- Add remote_api_scripts into cart/preview template to let GA3 snippet to fire the Product Added event, when clicking Add to cart button on Product detail page and rendering the response in popup. [#2281](https://github.com/bigcommerce/cornerstone/pull/2281)
+- Stored XSS within Wishlist creation.[#2289](https://github.com/bigcommerce/cornerstone/issues/2289)
+- Set "Show quick payment buttons" setting to true by default [#2283]https://github.com/bigcommerce/cornerstone/pull/2283
+- Fixed en-CA translation warning in terminal. [#2278][https://github.com/bigcommerce/cornerstone/pull/2278]
+- Added manual captcha to Contact Us form for additional spam protection. [#2290](https://github.com/bigcommerce/cornerstone/pull/2290)
+- Fixed PDP not respecting "quantity box" display settings. [#2291](https://github.com/bigcommerce/cornerstone/pull/2291)
+- Fixed product panels with scrolling/arrows prevent contextual menu on mobile devices [#2310](https://github.com/bigcommerce/cornerstone/pull/2310)
+- Added integrarion of storefront-account-payments lib [#2288][https://github.com/bigcommerce/cornerstone/pull/2288]
+- Bump Stencil utils to 6.13.0 [#2300][https://github.com/bigcommerce/cornerstone/pull/2300]
+- Removed non-working functionality from schema.json [#2301][https://github.com/bigcommerce/cornerstone/pull/2301]
+- Refactored `hide_price_from_guests` logic around `show_cart_action` use [#2304](https://github.com/bigcommerce/cornerstone/pull/2304)
+- Removed all Google AMP template files [#2308](https://github.com/bigcommerce/cornerstone/pull/2308)
+- Webpack 5, Node 18 Support [#2311][https://github.com/bigcommerce/cornerstone/pull/2311]
+- Customer order summary with both physical and digital items shows shipping as null [#2309](https://github.com/bigcommerce/cornerstone/pull/2309)
+
 ## 6.7.0 (11-03-2022)
 - Fixed escaping on created store account confirm message. [#2265]https://github.com/bigcommerce/cornerstone/pull/2265
 - Migrate Cornerstone to new "Hide Price From Guests" functionality [#2262](https://github.com/bigcommerce/cornerstone/pull/2262)
@@ -17,6 +33,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fix the issue with getting product details data if the product details form is valid on page load [#2271](https://github.com/bigcommerce/cornerstone/pull/2271)
 - Delay validation on account signup, message form, and account edit page [#2274](https://github.com/bigcommerce/cornerstone/pull/2274)
 - Update key render-blocking resources to be preloaded via HTTP headers/Early Hints [#2261](https://github.com/bigcommerce/cornerstone/pull/2261)
+- Fix styles for wallet buttons on PDP [#2285](https://github.com/bigcommerce/cornerstone/pull/2285)
 
 ## 6.6.1 (09-14-2022)
 

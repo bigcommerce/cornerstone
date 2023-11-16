@@ -294,6 +294,10 @@
         color: stencilColor("color-textSecondary--hover");
     }
 
+    &:hover {
+        color: stencilColor("color-textSecondary--hover");
+    }
+
     &--new {
         padding: 0;
     }
@@ -453,34 +457,29 @@
     .add-to-cart-wallet-buttons {
         margin-top: spacing("half");
 
-        button {
+        div[data-smart-button-container-id] {
+            line-height: 0;
+            margin-top: 6px;
+
+            button,
+            div {
+                width: 100%;
+            }
+        }
+
+        button.show-more-button {
             color: stencilColor("color-textSecondary");
             display: block;
+            margin-top: spacing("quarter");
             padding: spacing("quarter") 0;
             text-align: center;
             text-decoration: underline;
             vertical-align: middle;
             width: 100%;
         }
-    }
 
-    .add-to-cart-wallet-buttons {
-        margin-top: spacing("half");
-
-        button {
-            color: stencilColor("color-textSecondary");
-            display: block;
-            padding: spacing("quarter") 0;
-            text-align: center;
-            text-decoration: underline;
-            vertical-align: middle;
-            width: 100%;
-            height: 46px;
-            font-size: 1.3rem;
-            border-radius: 12px;
-
-            @include breakpoint("medium") {
-                width: auto;
+            &:hover {
+                color: stencilColor("color-textSecondary--hover");
             }
 
             @include breakpoint("medium") {
@@ -494,7 +493,6 @@
             &:hover {
                 color: stencilColor("color-textSecondary--hover");
             }
-        }
 
         .button--primary {
             margin-right: spacing("half");

@@ -55,9 +55,19 @@
         </label>
         <textarea name="contact_question" id="contact_question" rows="5" cols="50" class="form-input"></textarea>
     </div>
-
+    {{#if forms.contact.manualcaptcha}}
+        <div class="form-field">
+            <label class="form-label" for="{{forms.contact.manualcaptcha.name}}">
+                {{lang 'forms.contact_us.manual_captcha_instruction'}}
+                <small>{{lang 'common.required' }}</small>
+            </label>
+            <div class="manual-captcha-input-container">
+                <span class="question">{{forms.contact.manualcaptcha.question}}</span>
+                <input class="form-input" type="text" id="{{forms.contact.manualcaptcha.name}}" name="{{forms.contact.manualcaptcha.name}}" value="" aria-disabled="true" autocomplete="off" required>
+            </div>
+        </div>
+    {{/if}}
     {{{forms.contact.recaptcha.markup}}}
-
     <div class="form-actions">
         <input class="button button--primary" type="submit" value="{{lang 'forms.contact_us.submit' }}">
     </div>

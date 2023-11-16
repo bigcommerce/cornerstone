@@ -154,15 +154,6 @@
             margin-bottom: spacing("single") + spacing("third");
         }
     }
-
-    &.productView-options {
-        margin-bottom: 0;
-        padding-bottom: spacing("single") + spacing("third");
-    }
-
-    &.product-options {
-        overflow: hidden; // 1
-    }
 }
 
 
@@ -298,6 +289,10 @@
         color: stencilColor("color-textSecondary--hover");
     }
 
+    &:hover {
+        color: stencilColor("color-textSecondary--hover");
+    }
+
     &--new {
         padding: 0;
     }
@@ -368,14 +363,11 @@
 
 .productView-options {
     @include clearfix;
+    margin-bottom: spacing("single");
     text-align: center;
 
     @include breakpoint("small") {
         text-align: left;
-    }
-
-    @include breakpoint("medium") {
-        margin-bottom: spacing("single");
     }
 
     .form-input[type="number"] {
@@ -476,34 +468,10 @@
             text-decoration: underline;
             vertical-align: middle;
             width: 100%;
-        }
 
             &:hover {
                 color: stencilColor("color-textSecondary--hover");
             }
-
-            @include breakpoint("medium") {
-                width: auto;
-            }
-
-            &:hover {
-                color: stencilColor("color-textSecondary--hover");
-            }
-
-            &:hover {
-                color: stencilColor("color-textSecondary--hover");
-            }
-
-        .button--primary {
-            margin-right: spacing("half");
-        }
-
-        .button--primary {
-            margin-right: spacing("half");
-        }
-
-        .button--primary {
-            margin-right: spacing("half");
         }
     }
 }

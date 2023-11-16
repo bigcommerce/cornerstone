@@ -42,7 +42,7 @@ categories:
         {{#filter categories breadcrumbs.[1].name property='name'}}
             {{> components/category/dropdown-list category=this categories=../categories}}
             {{#if children}}
-                {{> components/category/circle-subcategory category=this subCategory=../../../breadcrumbs.[2].name subcategories=children}}
+                {{> components/category/circle-subcategory category=this subCategory=../breadcrumbs.[2].name subcategories=children}}
             {{/if}}
         {{/filter}}
 

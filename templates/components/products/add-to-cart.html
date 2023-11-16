@@ -1,5 +1,5 @@
 <div id="add-to-cart-wrapper" class="add-to-cart-wrapper" {{#unless product.can_purchase}}style="display: none"{{/unless}}>
-    {{#if product.show_quantity_input}}
+    {{#if theme_settings.show_product_quantity_box}}
         {{inject 'productQuantityErrorMessage'  (lang 'products.quantity_error_message')}}
         <div class="form-field form-field--increments">
             <label class="form-label form-label--alternate"
@@ -9,7 +9,7 @@
                         <span class="is-srOnly">{{lang 'products.quantity_decrease' name=product.title}}</span>
                         <i class="icon" aria-hidden="true">
                             <svg>
-                                <use xlink:href="#icon-keyboard-arrow-down"/>
+                                <use href="#icon-keyboard-arrow-down"/>
                             </svg>
                         </i>
                     </button>
@@ -27,7 +27,7 @@
                         <span class="is-srOnly">{{lang 'products.quantity_increase' name=product.title}}</span>
                         <i class="icon" aria-hidden="true">
                             <svg>
-                                <use xlink:href="#icon-keyboard-arrow-up"/>
+                                <use href="#icon-keyboard-arrow-up"/>
                             </svg>
                         </i>
                     </button>

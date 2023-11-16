@@ -36,8 +36,6 @@ export default class Account extends PageManager {
 
         compareProducts(this.context);
 
-        compareProducts(this.context);
-
         // Injected via template
         this.passwordRequirements = this.context.passwordRequirements;
 
@@ -86,6 +84,20 @@ export default class Account extends PageManager {
         }
 
         if ($bigCommerce && $bigCommerce.accountPayments) {
+            const {
+                countries,
+                paymentsUrl,
+                storeHash,
+                storeLocale,
+                vaultToken,
+                shopperId,
+                customerEmail,
+                providerId,
+                currencyCode,
+                paymentMethodsUrl,
+                paymentProviderInitializationData,
+            } = this.context;
+
             window.BigCommerce.accountPayments({
                 widgetStyles: {
                     base: {
@@ -106,7 +118,19 @@ export default class Account extends PageManager {
                         color: 'green',
                     },
                 },
-                countries: this.context.countries,
+                initializeData: {
+                    countries,
+                    paymentsUrl,
+                    storeHash,
+                    storeLocale,
+                    vaultToken,
+                    shopperId,
+                    customerEmail,
+                    providerId,
+                    currencyCode,
+                    paymentMethodsUrl,
+                    paymentProviderInitializationData,
+                },
             });
         }
 

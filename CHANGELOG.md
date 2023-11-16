@@ -6,6 +6,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Draft
 
+## 6.3.0 (03-11-2022)
+- Update blog component to use H1 tags on posts [#2179](https://github.com/bigcommerce/cornerstone/issues/2179)
+- Remove Compare Form. [#2162](https://github.com/bigcommerce/cornerstone/pull/2162)
+- Fixed password complexity error not displaying the complexity rules set in the store settings [#2117](https://github.com/bigcommerce/cornerstone/pull/2117)
+- Translation updates February 2022. [#2177](https://github.com/bigcommerce/cornerstone/pull/2177)
+- Cornerstone performance optimizations: blocking scripts delaying DomContentLoaded. [#2158](https://github.com/bigcommerce/cornerstone/pull/2158)
+- Cornerstone performance optimizations: remove unused fonts. [#2176](https://github.com/bigcommerce/cornerstone/pull/2176)
+- Update stencil-utils package. [#2157](https://github.com/bigcommerce/cornerstone/pull/2157)
+- Add google recaptcha to password reset request page [#2164](https://github.com/bigcommerce/cornerstone/pull/2164)
+
 ## 6.2.0 (12-13-2021)
 - Fix tooltip on close button of modal is shifted. [#2148](https://github.com/bigcommerce/cornerstone/pull/2148)
 - Optimized usage of jsTree library. [#2145](https://github.com/bigcommerce/cornerstone/pull/2145)

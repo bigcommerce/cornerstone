@@ -27,19 +27,12 @@
             window.lazySizesConfig.loadMode = 1;
         </script>
         <script async src="{{cdn 'assets/dist/theme-bundle.head_async.js'}}"></script>
+        
+        {{getFontsCollection font-display='block'}}
+        
+        <link rel="preload" href="{{cdn 'assets/dist/theme-bundle.font.js'}}" as="script">
+        <script async src="{{cdn 'assets/dist/theme-bundle.font.js'}}"></script>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
-
-        <script>
-            WebFont.load({
-                custom: {
-                    families: ['Karla', 'Roboto', 'Source Sans Pro']
-                },
-                classes: false
-            });
-        </script>
-
-        {{ getFontsCollection }}
         {{{stylesheet '/assets/css/theme.css'}}}
 
         {{{head.scripts}}}
@@ -60,6 +53,9 @@
         {{~inject 'carouselArrowAndDotAriaLabel' (lang 'carousel.arrow_and_dot_aria_label')}}
         {{~inject 'carouselActiveDotAriaLabel' (lang 'carousel.active_dot_aria_label')}}
         {{~inject 'carouselContentAnnounceMessage' (lang 'carousel.content_announce_message')}}
+
+        {{!-- Get this loading ASAP --}}
+        <link rel="preload" href="{{cdn 'assets/dist/theme-bundle.main.js'}}" as="script">
     </head>
     <body class="{{#block 'bodyClass'}}{{/block}}">
         <svg data-src="{{cdn 'img/icon-sprite.svg'}}" class="icons-svg-sprite"></svg>
@@ -69,11 +65,13 @@
         {{> components/common/footer }}
 
         <script>window.__webpack_public_path__ = "{{cdn 'assets/dist/'}}";</script>
-        <script src="{{cdn 'assets/dist/theme-bundle.main.js'}}"></script>
         <script>
             {{!-- Exported in app.js --}}
-            window.stencilBootstrap("{{page_type}}", {{jsContext}}).load();
+            function onThemeBundleMain() {
+                window.stencilBootstrap("{{page_type}}", {{jsContext}}).load();
+            }
         </script>
+        <script async defer src="{{cdn 'assets/dist/theme-bundle.main.js'}}" onload="onThemeBundleMain()"></script>
 
         {{> components/active-campaign-site-tracking}}
         {{{footer.scripts}}}

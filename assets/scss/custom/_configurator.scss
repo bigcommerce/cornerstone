@@ -3,6 +3,17 @@
   width: 716px;
   margin: 60px auto 100px;
 
+  // Hide spinners
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type=number] {
+    -moz-appearance:textfield;
+  }
+
   &__banner {
     text-align: center;
   }
@@ -94,10 +105,43 @@
     }
   }
 
+  &__results--region {
+    text-transform: capitalize;
+  }
+
   &__results--region:not(:last-of-type) {
     margin-bottom: 20px;
     padding-bottom: 20px;
     border-bottom: 1px solid $black;
+  }
+
+  &__results--table-row h3 {
+    margin: 0;
+    font: normal normal 600 12px/26px "Interstate", sans-serif;
+    text-transform: uppercase;
+    color: #135185;
+  }
+
+  &__results--table-row__item {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+
+    .right {
+      text-align: right;
+      font-weight: bolder;
+    }
+
+    &--title {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+  }
+
+  &__results--table--total-wrap {
+    border-bottom: 1px solid $dark-blue;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
   }
 
   &__section-header {
@@ -105,7 +149,26 @@
     color: $navy;
 
     &.total {
+      display: flex;
+      justify-content: space-between;
       color: $black;
     }
+  }
+
+  &__subtotal strong {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+  }
+
+  &__total-sets-input {
+    width: 50px;
+    padding: 8px 4px;
+    margin-top: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    border: 2px solid #231F20;
+    border-radius: 0;
   }
 }

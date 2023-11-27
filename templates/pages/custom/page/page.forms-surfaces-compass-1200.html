@@ -23,7 +23,7 @@ cart: true
         <label class="configurator__label" for="door-material-selector">Door Material*</label>
         <select name="door-material" id="door-material-selector" required>
           <option disabled selected value> -- SELECT AN OPTION -- </option>
-          <option value="glass">Glass</option>
+          <option value="glass">Tempered Glass</option>
           <option value="metal">Metal</option>
           <option value="wood">Wood</option>
         </select>
@@ -40,8 +40,8 @@ cart: true
         <label class="configurator__label" for="grip-type">Grip Type*</label>
         <select name="grip-type" id="grip-type-selector" required>
           <option disabled selected value> -- SELECT AN OPTION -- </option>
-          <option value="straight">Straight</option>
-          <option value="arc">Arc - 24″</option>
+          <option value="straight">Straight, 6″ - 100″ </option>
+          <option value="arc">Arc, 24″</option>
         </select>
       </div>
 
@@ -63,8 +63,8 @@ cart: true
         <label class="configurator__label" for="grip-finish-selector">Grip Finish*</label>
         <select name="grip-finish" id="grip-finish-selector" required>
           <option disabled selected value> -- SELECT AN OPTION -- </option>
-          <option value="satin-stainless">Satin Stainless</option>
-          <option value="polished-stainless">Polished Stainless</option>
+          <option value="satin-stainless">Satin Stainless Steel</option>
+          <option value="polished-stainless">Polished Stainless Steel</option>
           <option value="stippled-stainless">Stippled Stainless Steel</option>
           <option value="satin-bronze">Satin Bronze</option>
           <option value="polished-bronze">Polished Bronze</option>
@@ -81,7 +81,7 @@ cart: true
       </div>
 
       <div class="configurator__field-wrap" id="grip-mount-container">
-        <label class="configurator__label" for="grip-mount-selector">Mount Option*</label>
+        <label class="configurator__label" for="grip-mount-selector">Mounting Option*</label>
         <select name="grip-mount" id="grip-mount-selector" required>
           <option disabled selected value> -- SELECT AN OPTION -- </option>
           <option value="b1">B1 - Single Mount - Solid wood core or hollow metal door with through mount</option>
@@ -117,8 +117,8 @@ cart: true
       <label class="configurator__label" for="standoff-finish-selector">Standoff Finish*</label>
       <select name="standoff-finish" id="standoff-finish-selector" required>
         <option disabled selected value> -- SELECT AN OPTION -- </option>
-        <option value="satin-stainless">Satin Stainless</option>
-        <option value="polished-stainless">Polished Stainless</option>
+        <option value="satin-stainless">Satin Stainless Steel</option>
+        <option value="polished-stainless">Polished Stainless Steel</option>
         <option value="stippled-stainless">Stippled Stainless Steel</option>
         <option value="satin-bronze">Satin Bronze</option>
         <option value="polished-bronze">Polished Bronze</option>
@@ -131,12 +131,13 @@ cart: true
     <br />
     <div id="endcap-finish-container">
       <h2 class="configurator__section-header title--sub">Endcaps</h2>
+      <p>Note: Only required if using mounting type <strong>B2</strong> on <strong>tempered glass</strong>.</p>
       <div class="configurator__field-wrap">
-        <label class="configurator__label" for="endcap-finish-selector">Endcap Finish*</label>
-        <select name="endcap-finish" id="endcap-finish-selector" required>
+        <label class="configurator__label" for="endcap-finish-selector">Endcap Finish</label>
+        <select name="endcap-finish" id="endcap-finish-selector">
           <option disabled selected value> -- SELECT AN OPTION -- </option>
-          <option value="satin-stainless">Satin Stainless</option>
-          <option value="polished-stainless">Polished Stainless</option>
+          <option value="satin-stainless">Satin Stainless Steel</option>
+          <option value="polished-stainless">Polished Stainless Steel</option>
           <option value="stippled-stainless">Stippled Stainless Steel</option>
           <option value="satin-bronze">Satin Bronze</option>
           <option value="polished-bronze">Polished Bronze</option>
@@ -161,7 +162,7 @@ cart: true
         <p>Door Thickness: <span id="results--door-thickness"></span></p>
         <p>Grip Type: <span id="results--grip-type"></span></p>
         <p>Grip End Type: <span id="results--grip-end-type"></span></p>
-        <p>Grip Length: <span id="results--grip-length"></span></p>
+        <p>Overall Grip Length: <span id="results--grip-length"></span></p>
         <p>Grip Finish: <span id="results--grip-finish"></span></p>
         <p>Grip Center to Center: <span id="results--grip-cc"></span></p>
         <p>Total Standoffs: <span id="results--total-standoffs"></span></p>

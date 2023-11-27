@@ -1,17 +1,20 @@
 import PageManager from './page-manager';
 import ProductSchema from '../custom/compass-1200-product-schema';
 import 'regenerator-runtime/runtime';
+import MountingSchema from '../custom/compass-mounting-schema';
 
 export default class Configurator extends PageManager {
 
   constructor() {
     super();
     this.productSchema = ProductSchema;
+    this.mountingSchema = MountingSchema;
     this.token = jsContext.storefrontToken;
     this.productIds = []
     this.skuList = [];
 
     // Manual binding for event listeners that need to modify class variables
+    this.boundHandleDoorMaterialChange = this.handleDoorMaterialChange.bind(this);
     this.boundTotalQuantityChange = this.handleTotalSetQuantityChange.bind(this);
     this.boundHandleSubmit = this.handleSubmit.bind(this);
   }
@@ -202,6 +205,35 @@ export default class Configurator extends PageManager {
     }
   }
 
+  formatSpecificationText(text) {
+    // Add extra text not part of value
+    if (text.includes('glass')) {
+      text = 'tempered glass';
+    }
+    if (text.includes('stainless')) {
+      text = text + ' steel';
+    }
+
+    return text.replace('-', ' ');
+  }
+
+  handleDoorMaterialChange(event) {
+    // Hide mounting options that do not contain the selected door material
+    const doorMaterial = event.target.value;
+    const mountingOptions = document.querySelectorAll('#grip-mount-selector option');
+    mountingOptions.forEach(option => {
+      if (!option.value) { return; }
+      if (this.mountingSchema[option.value].includes(doorMaterial)) {
+        option.removeAttribute('hidden');
+      } else {
+        option.setAttribute('hidden', true);
+      }
+    });
+
+    // Remove any option that might be selected
+    document.querySelector('#grip-mount-selector').value = '';
+  }
+
   handleGripTypeChange(event) {
     const gripType = event.target.value;
     const gripLengthInputNode = document.getElementById('grip-length-input');
@@ -230,12 +262,11 @@ export default class Configurator extends PageManager {
   }
 
   handleGripMountChange(event) {
+    // Hide endcap finish selector if grip mount is double mounted on glass
     const gripMount = event.target.value;
-    if (gripMount === 'b5' || gripMount === 'b6' || gripMount == 'c4' || gripMount == 'c5') {
-      document.querySelector('#endcap-finish-container select').required = false;
+    if (gripMount != 'b2') {
       document.querySelector('#endcap-finish-container').style.display = 'none';
     } else {
-      document.querySelector('#endcap-finish-container select').required = true;
       document.querySelector('#endcap-finish-container').style.display = 'block';
     }
   }
@@ -259,21 +290,20 @@ export default class Configurator extends PageManager {
     let isDoubleMounted = gripMount == 'b5' || gripMount == 'b6' || gripMount == 'c4' || gripMount == 'c5';
   
     // Populate Door Specifications
-    document.getElementById('results--door-material').textContent = doorMaterial;
+    document.getElementById('results--door-material').textContent = this.formatSpecificationText(doorMaterial);
     document.getElementById('results--door-thickness').textContent = doorThickness;
 
     // Populate Grip Specifications
-    document.getElementById('results--grip-type').textContent = gripType;
-    document.getElementById('results--grip-end-type').textContent = gripEndType;
+    document.getElementById('results--grip-type').textContent = this.formatSpecificationText(gripType);
+    document.getElementById('results--grip-end-type').textContent = this.formatSpecificationText(gripEndType);
     document.getElementById('results--grip-length').textContent = gripLength;
-    document.getElementById('results--grip-finish').textContent = gripFinish;
+    document.getElementById('results--grip-finish').textContent = this.formatSpecificationText(gripFinish);
     document.getElementById('results--grip-cc').textContent = gripCC;
 
     // Get Grip Product
     let totalGrips = isDoubleMounted ? 2 : 1;
     const selectedGrip = this.productSchema.grips[this.getGripSize(gripType, gripLength)][gripEndType][gripFinish];
     this.skuList.push({product: selectedGrip, quantity: totalGrips});
-    console.log(this.skuList);
 
     // Calculate standoffs
     let totalStandoffs = Math.floor(gripCC / 30) + 2;
@@ -283,8 +313,8 @@ export default class Configurator extends PageManager {
 
     // Populate standoff information
     document.querySelector('#results--total-standoffs').textContent = totalStandoffs;
-    document.querySelector('#results--standoff-type').textContent = standoffType;
-    document.querySelector('#results--standoff-finish').textContent = standoffFinish;
+    document.querySelector('#results--standoff-type').textContent = this.formatSpecificationText(standoffType);
+    document.querySelector('#results--standoff-finish').textContent = this.formatSpecificationText(standoffFinish);
 
     // Get Standoff Product
     const selectedStandoff = this.productSchema.standoffs[standoffType][standoffFinish];
@@ -294,17 +324,17 @@ export default class Configurator extends PageManager {
     let totalEndcaps = 0;
     let selectedEndcap = null;
 
-    if (isDoubleMounted) {
-      document.querySelector('#results--endcap-finish').textContent = 'n/a';
-      document.querySelector('#results--total-endcaps').textContent = 'n/a';
-    } else {
+    if (gripMount == 'b2' && endcapFinish) {
       totalEndcaps = totalStandoffs;
-      document.querySelector('#results--endcap-finish').textContent = endcapFinish;
+      document.querySelector('#results--endcap-finish').textContent = this.formatSpecificationText(endcapFinish);
       document.querySelector('#results--total-endcaps').textContent = totalEndcaps;
 
       // Get Endcap Product
       selectedEndcap = this.productSchema.endcaps[endcapFinish];
       this.skuList.push({ product: selectedEndcap, quantity: totalEndcaps });
+    } else {
+      document.querySelector('#results--endcap-finish').textContent = 'n/a';
+      document.querySelector('#results--total-endcaps').textContent = 'n/a';
     }
 
     // Add Results to DOM
@@ -498,6 +528,7 @@ export default class Configurator extends PageManager {
     // document.getElementById('test-fill-all').addEventListener('click', this.handleTestButton);
 
     // Bind input listeners
+    document.getElementById('door-material-selector').addEventListener('change', this.boundHandleDoorMaterialChange);
     document.getElementById('grip-type-selector').addEventListener('change', this.handleGripTypeChange);
     document.getElementById('grip-mount-selector').addEventListener('change', this.handleGripMountChange);
     document.getElementById('grip-end-type-selector').addEventListener('change', this.handleGripEndTypeChange);

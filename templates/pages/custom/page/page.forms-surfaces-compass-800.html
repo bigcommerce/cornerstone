@@ -13,6 +13,7 @@ cart: true
   <section class="configurator__banner">
     <h1 class="title configurator__title">COMPASS 800 SERIES DOOR PULL CONFIGURATOR</h1>
     <p class="configurator__subtitle title--section">Fill in the form to see what you'll need to build your custom door pull system</p>
+    <p style="text-align: left;margin-bottom: 0;">* indicates required field</p>
   </section>
 <!-- <button id="test-fill-all">Testing - Fill all values</button> -->
 <section class="configurator__content">
@@ -23,7 +24,7 @@ cart: true
         <label class="configurator__label" for="door-material-selector">Door Material*</label>
         <select name="door-material" id="door-material-selector" required>
           <option disabled selected value> -- SELECT AN OPTION -- </option>
-          <option value="glass">Glass</option>
+          <option value="glass">Tempered Glass</option>
           <option value="metal">Metal</option>
           <option value="wood">Wood</option>
         </select>
@@ -40,10 +41,10 @@ cart: true
         <label class="configurator__label" for="grip-type">Grip Type*</label>
         <select name="grip-type" id="grip-type-selector" required>
           <option disabled selected value> -- SELECT AN OPTION -- </option>
-          <option value="straight">Straight</option>
-          <option value="round-ends">Round Ends - 14.75″</option>
-          <option value="semi-circle">Semi-circle - 10.875″</option>
-          <option value="arc">Arc - 14.25″</option>
+          <option value="straight">Straight, Flat Ends: 6″ to 100″</option>
+          <option value="round-ends">Straight, Round Ends - 14.75″</option>
+          <option value="semi-circle">Semi-circle, Round Ends - 10.875″</option>
+          <option value="arc">Arc, Round Ends - 14.25″</option>
         </select>
       </div>
 
@@ -56,8 +57,8 @@ cart: true
         <label class="configurator__label" for="grip-finish-selector">Grip Finish*</label>
         <select name="grip-finish" id="grip-finish-selector" required>
           <option disabled selected value> -- SELECT AN OPTION -- </option>
-          <option value="satin-stainless">Satin Stainless</option>
-          <option value="polished-stainless">Polished Stainless</option>
+          <option value="satin-stainless">Satin Stainless Steel</option>
+          <option value="polished-stainless">Polished Stainless Steel</option>
           <option value="stippled-stainless">Stippled Stainless Steel</option>
         </select>
       </div>
@@ -68,15 +69,14 @@ cart: true
       </div>
 
       <div class="configurator__field-wrap" id="grip-mount-container">
-        <label class="configurator__label" for="grip-mount-selector">Mount Option*</label>
+        <label class="configurator__label" for="grip-mount-selector">Mounting Option*</label>
         <select name="grip-mount" id="grip-mount-selector" required>
           <option disabled selected value> -- SELECT AN OPTION -- </option>
-          <option value="b1">B1 - Single Mount - Solid wood core or hollow metal door with through mount</option>
-          <option value="b2">B2 - Single Mount - Tempered glass, solid wood core or hollow metal door with end cap purchased separately</option>
-          <option value="b3">B3 - Concealed Single Mount - Hollow metal door with roto-lok and customer's reinforcement</option>
-          <option value="b4">B4 - Concealed Single Mount - Solid wood core door with threaded insert and rota-lok (not recommended)</option>
-          <option value="b5">B5 - Back-to-Back - Solid wood core or hollow metal door with rota-lok</option>
-          <option value="b6">B6 - Back-to-Back - Tempered glass door with rota-lok</option>
+          <option value="c1">C1: Single mount on solid wood core or hollow metal door with through bolt</option>
+          <option value="c2">C2: Concealed single mount on hollow metal door with shoulder bolt and customer's reinforcement</option>
+          <option value="c3">C3: (Not Recommended) Concealed single mount on solid wood core door with shoulder bolt and threaded insert</option>
+          <option value="c4">C4: Back-to-back mount on solid wood core or hollow metal door with shoulder bolt</option>
+          <option value="c5">C5: Back-to-back mount on tempered glass door with shoulder bolt</option>
         </select>
       </div>
     </div>
@@ -99,8 +99,8 @@ cart: true
       <label class="configurator__label" for="standoff-finish-selector">Standoff Finish*</label>
       <select name="standoff-finish" id="standoff-finish-selector" required>
         <option disabled selected value> -- SELECT AN OPTION -- </option>
-        <option value="satin-stainless">Satin Stainless</option>
-        <option value="polished-stainless">Polished Stainless</option>
+        <option value="satin-stainless">Satin Stainless Steel</option>
+        <option value="polished-stainless">Polished Stainless Steel</option>
         <option value="stippled-stainless">Stippled Stainless Steel</option>
         <option value="satin-bronze">Satin Bronze</option>
         <option value="polished-bronze">Polished Bronze</option>
@@ -108,25 +108,6 @@ cart: true
         <option value="stippled-bronze">Stippled Bronze</option>
         <option value="stippled-oil-bronze">Stippled Oil Rubbed Bronze</option>
       </select>
-    </div>
-
-    <br />
-    <div id="endcap-finish-container">
-      <h2 class="configurator__section-header title--sub">Endcaps</h2>
-      <div class="configurator__field-wrap">
-        <label class="configurator__label" for="endcap-finish-selector">Endcap Finish*</label>
-        <select name="endcap-finish" id="endcap-finish-selector" required>
-          <option disabled selected value> -- SELECT AN OPTION -- </option>
-          <option value="satin-stainless">Satin Stainless</option>
-          <option value="polished-stainless">Polished Stainless</option>
-          <option value="stippled-stainless">Stippled Stainless Steel</option>
-          <option value="satin-bronze">Satin Bronze</option>
-          <option value="polished-bronze">Polished Bronze</option>
-          <option value="oil-bronze">Oil Rubbed Bronze</option>
-          <option value="stippled-bronze">Stippled Bronze</option>
-          <option value="stippled-oil-bronze">Stippled Oil Rubbed Bronze</option>
-        </select>
-      </div>
     </div>
 
     <button type="submit" class="btn">Calculate</button>
@@ -139,28 +120,27 @@ cart: true
     <div style="display: none;" id="results--populated">
       <div class="configurator__results--region">
         <h2 class="configurator__section-header title--sub">Specifications Summary</h2>
-        <p>Door Type: <span id="results--door-material"></span></p>
+        <p>Door Material: <span id="results--door-material"></span></p>
         <p>Door Thickness: <span id="results--door-thickness"></span></p>
         <p>Grip Type: <span id="results--grip-type"></span></p>
-        <p>Grip Length: <span id="results--grip-length"></span></p>
+        <p>Overall Grip Length: <span id="results--grip-length"></span></p>
         <p>Grip Finish: <span id="results--grip-finish"></span></p>
         <p>Grip Center to Center: <span id="results--grip-cc"></span></p>
+        <p>Mounting Option: <span id="results--mounting-code"></span></p>
         <p>Total Standoffs: <span id="results--total-standoffs"></span></p>
         <p>Standoff Type: <span id="results--standoff-type"></span></p>
         <p>Standoff Finish: <span id="results--standoff-finish"></span></p>
-        <p>Total Endcaps: <span id="results--total-endcaps"></span></p>
-        <p>Endcap Finish: <span id="results--endcap-finish"></span></p>
       </div>
       <div class="configurator__results--region">
         <h2 class="configurator__section-header title--sub">List of SKUS to purchase:</h2>
-        <ul id="results--total-skus"></ul>
-        <p class="configurator__section-header title--sub"><strong>Subtotal for Set: <span id="results--subtotal-price"></span></strong></p>
+        <div id="results--total-skus"></div>
+        <p class="configurator__section-header title--sub configurator__subtotal"><strong>Set Subtotal: <span id="results--subtotal-price"></span></strong></p>
         <div style="margin: 20px 0;">
           <label class="configurator__section-header title--sub" for="set-qty">Quantity of Sets to Add to your Cart:</label>
-          <div><input id="set-qty" type="number" min="1" value="1" /></div>
+          <div><input class="configurator__total-sets-input" id="set-qty" type="number" min="1" value="1" /></div>
         </div>
-        <h2 class="configurator__section-header total title--sub">Total price: <span id="results--total-price"></span></h2>
-        <button id="add-to-cart-button" class="btn">Add all to cart</button>
+        <h2 class="configurator__section-header total title--sub">Total price: <span style="text-decoration: line-through;font-weight: 400; font-size: 14px; margin-right: -14px;" id="results--total-price"></span><span style="color:#B21615" id="results--discount-price"></span></h2>
+        <button id="add-to-cart-button" class="btn" style="width: 100%">Add all to cart</button>
       </div>
     </div>
   </div>

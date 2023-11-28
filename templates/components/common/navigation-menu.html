@@ -1,7 +1,10 @@
 <nav class="navPages">
+<!--
     <div class="navPages-quickSearch">
         {{> components/common/quick-search name='nav-menu-quick-search'}}
     </div>
+-->
+<!--
     <ul class="navPages-list{{#if theme_settings.navigation_design '!==' 'simple'}} navPages-list-depth-max{{/if}}">
         {{#each categories}}
             <li class="navPages-item">
@@ -26,6 +29,7 @@
              {{/each}}
         {{/unless}}
     </ul>
+    -->
     <ul class="navPages-list navPages-list--user">
         {{#if currency_selector.currencies.length '>' 1}}
             <li class="navPages-item">
@@ -191,9 +195,10 @@
                 </a>
             </li>
         {{else}}
+        <!--
             <li class="navPages-item">
-                <a class="navPages-action"
-                   href="{{urls.auth.login}}"
+                <a class="navUser-action"
+                   href="https://fuzzypixel.xecurify.com/moas/broker/login/jwt/304622?client_id=2h34e108qpl17qf1f5rjrev3tupc1qd&redirect_uri=https://fuzzypixel.gg/login/token/"
                    aria-label="{{lang 'common.login'}}"
                 >
                     {{lang 'common.login'}}
@@ -208,8 +213,14 @@
                     </a>
                 {{/if}}
             </li>
+            -->
+         <li class="navPages-item">
+            More coming soon!
+            </li>
         {{/if}}
+
         {{#if theme_settings.social_icon_placement_top}}
+            
             <li class="navPages-item">
                 {{> components/common/social-links}}
             </li>

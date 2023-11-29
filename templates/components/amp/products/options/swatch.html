@@ -1,0 +1,35 @@
+<div class="form-field" data-product-attribute="swatch">
+    <label class="form-label form-label--alternate form-label--inlineSmall">
+        {{this.display_name}}:
+        <span data-option-value></span>
+
+        {{#if required}}
+            <small>{{lang 'common.required'}}</small>
+        {{/if}}
+    </label>
+
+    {{#each this.values}}
+    <div class="form-option-wrapper">
+        <input class="form-radio" type="radio" name="attribute[{{../id}}]" value="{{id}}" id="attribute_{{id}}" {{#if selected}}checked{{/if}} {{#if ../required}}required{{/if}}>
+        <label class="form-option" for="attribute_{{id}}" data-product-attribute-value="{{id}}">
+            {{#if image}}
+                <span class='form-option-variant form-option-variant--pattern' title="{{this.label}}" style="background-image: url('{{getImage image "thumb_size"}}');"></span>
+            {{/if}}
+            {{#if data.[2]}}
+                <span class='form-option-variant form-option-variant--color amp-option-variant-color-{{data.[0]}}' title="{{this.label}}"></span>
+                <span class='form-option-variant form-option-variant--color amp-option-variant-color-{{data.[1]}}' title="{{this.label}}"></span>
+                <span class='form-option-variant form-option-variant--color amp-option-variant-color-{{data.[2]}}' title="{{this.label}}"></span>
+            {{else}}
+                {{#if data.[1]}}
+                    <span class='form-option-variant form-option-variant--color amp-option-variant-color-{{data.[0]}}' title="{{this.label}}"></span>
+                    <span class='form-option-variant form-option-variant--color amp-option-variant-color-{{data.[1]}}' title="{{this.label}}"></span>
+                {{else}}
+                    {{#if data.[0]}}
+                        <span class='form-option-variant form-option-variant--color amp-option-variant-color-{{data.[0]}}' title="{{this.label}}"></span>
+                    {{/if}}
+                {{/if}}
+            {{/if}}
+        </label>
+    </div>
+    {{/each}}
+</div>

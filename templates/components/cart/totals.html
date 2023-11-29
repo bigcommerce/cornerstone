@@ -1,17 +1,26 @@
-<ul class="cart-totals">
+<style>
+.cart-actions
+    {
+        display: grid;
+    }
+</style>
+<ul class="cart-totals" style="width:100%; background-color: #f0f4f5 !important;padding: 15px;">
+    <li><h3 style="text-align: initial;margin-bottom: 0px;">CART TOTALS</h3></li>
+<!--
     <li class="cart-total">
         <div class="cart-total-label">
             <strong>{{lang 'cart.checkout.subtotal'}}:</strong>
         </div>
         <div class="cart-total-value">
-            {{#or customer (unless settings.hide_price_from_guests)}}
+            {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
                 <span>{{cart.sub_total.formatted}}</span>
             {{else}}
                 {{> components/common/login-for-pricing}}
             {{/or}}
         </div>
     </li>
-    {{#if cart.gift_wrapping_cost.value}}
+-->
+    {{#if cart.gift_wrapping_cost.amount}}
         <li class="cart-total">
             <div class="cart-total-label">
                 <strong>{{lang 'cart.checkout.gift_wrapping'}}:</strong>
@@ -20,18 +29,6 @@
                 <span>{{cart.gift_wrapping_cost.formatted}}</span>
             </div>
         </li>
-    {{/if}}
-    {{#if cart.fees}}
-        {{#each cart.fees}}
-            <li class="cart-total">
-                <div class="cart-total-label">
-                    <strong>{{display_name}}:</strong>
-                </div>
-                <div class="cart-total-value">
-                    <span>{{cost.formatted}}</span>
-                </div>
-            </li>
-        {{/each}}
     {{/if}}
     {{#if cart.shipping_handling.show_estimator}}
         <li class="cart-total">
@@ -63,6 +60,7 @@
             </div>
         </li>
     {{/if}}
+<!--
     {{#if cart.coupons}}
         {{#each cart.coupons}}
             <li class="cart-total">
@@ -85,6 +83,8 @@
             {{> components/cart/coupon-input}}
         </li>
     {{/if}}
+-->
+<!--
     {{#if settings.gift_certificates_enabled}}
         {{#each cart.gift_certificates}}
             <li class="cart-total">
@@ -106,17 +106,20 @@
             {{> components/cart/gift-certificate-input}}
         </li>
     {{/if}}
+-->
     <li class="cart-total">
         <div class="cart-total-label">
             <strong>{{lang 'cart.checkout.grand_total'}}:</strong>
         </div>
         <div class="cart-total-value cart-total-grandTotal">
-            {{#or customer (unless settings.hide_price_from_guests)}}
+            {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
                 <span>{{cart.grand_total.formatted}}</span>
             {{else}}
                 {{> components/common/login-for-pricing}}
             {{/or}}
         </div>
+        <br>
+        <p>(taxes & duties included)</p>
     </li>
     {{#each cart.taxes}}
         {{#if included}}
@@ -131,3 +134,18 @@
         {{/if}}
     {{/each}}
 </ul>
+
+            <div class="row">
+                 <div class="small-12 columns" style="padding-right: 4px;padding-left: 4px;">
+             {{{region name="Need_Assistance_Call_Us"}}}
+                </div>
+            </div>
+
+            <div class="row">
+                 <div class="small-12 columns" style="background-color: #f0f4f5 !important;padding: 15px;">
+                <p class="is-size-6" >Accepted Payment Methods:</p>  
+                <div class="content">
+                    {{{region name="Accepted_Payment_Methods"}}}
+                </div>
+                </div>
+                </div>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html class="no-js" lang="{{ locale_name }}">
+    <head>
+        <title>{{ head.title }}</title>
+        {{{ head.meta_tags }}}
+        {{{ head.config }}}
+        {{#block "head"}} {{/block}}
+        <link href="{{ head.favicon }}" rel="shortcut icon">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {{{stylesheet '/assets/css/theme.css'}}}
+        {{ getFontsCollection }}
+
+        <script>
+            // Change document class from no-js to js so we can detect this in css
+            document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+        </script>
+
+        {{{ head.scripts }}}
+
+        {{ inject 'themeSettings' theme_settings }}
+        {{inject 'urls' urls}}
+        <style>
+            {{> components/amp/css/product-options}}
+        </style>
+    </head>
+    <body>
+        <div class="icons-svg-sprite">{{> components/amp/common/icon-defs }}</div>
+
+        {{#block "page"}} {{/block}}
+
+        <script>window.__webpack_public_path__ = "{{cdn 'assets/dist/'}}";</script>
+        <script src="{{cdn 'assets/dist/theme-bundle.main.js'}}"></script>
+
+        <script>
+            // Exported in app.js
+            window.stencilBootstrap("{{page_type}}", {{jsContext}}, false).load();
+        </script>
+        <script type="text/javascript" charset="utf-8">
+            function postHeight() {
+                window.parent.postMessage({
+                    sentinel: 'amp',
+                    type: 'embed-size',
+                    height: window.document.querySelector('body').offsetHeight
+                }, '*');
+            }
+
+            window.addEventListener("DOMContentLoaded", function () {
+                window.addEventListener('resize', postHeight);
+                postHeight();
+            }, false);
+        </script>
+
+    </body>
+</html>

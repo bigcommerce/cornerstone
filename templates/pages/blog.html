@@ -5,15 +5,6 @@ blog:
         pages: 3
         summary: 200
 ---
-{{#partial "head"}}
-    {{#if pagination.blog.previous}}
-        <link rel="prev" href="{{pagination.blog.previous}}">
-    {{/if}}
-    {{#if pagination.blog.next}}
-        <link rel="next" href="{{pagination.blog.next}}">
-    {{/if}}
-{{/partial}}
-
 {{#partial "page"}}
 
 {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
@@ -24,7 +15,7 @@ blog:
     {{/unless}}
 
     {{#each blog.posts}}
-        {{> components/blog/post post=this theme_settings=../theme_settings}}
+        {{> components/blog/post post=this}}
     {{/each}}
 
     {{> components/common/paginator pagination.blog}}

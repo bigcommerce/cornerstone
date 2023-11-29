@@ -4,10 +4,51 @@ cart: true
 {{inject 'cancelButtonText' (lang 'common.cancel')}}
 {{#partial "page"}}
 {{inject 'invalidEntryMessage' (lang 'cart.invalid_entry_message')}}
+<style>
+.roww::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+[class*="coll-"] {
+  float: left;
+  padding: 15px;
+}
+
+.coll-1 {width: 8.33%;}
+.coll-2 {width: 16.66%;}
+.coll-3 {width: 25%;}
+.coll-4 {width: 33.33%;}
+.coll-5 {width: 41.66%;}
+.coll-6 {width: 50%;}
+.coll-7 {width: 58.33%;}
+.coll-8 {width: 66.66%;}
+.coll-9 {width: 75%;}
+.coll-10 {width: 83.33%;}
+.coll-11 {width: 91.66%;}
+.coll-12 {width: 100%;}
+    
+@media only screen and (max-width: 992px) and (min-width: 40px) {
+  .coll-1 {width: 100%;}
+.coll-2 {width: 100%;}
+.coll-3 {width: 100%;}
+.coll-4 {width: 100%;}
+.coll-5 {width: 100%;}
+.coll-6 {width: 100%;}
+.coll-7 {width: 100%;}
+.coll-8 {width: 100%;}
+.coll-9 {width: 100%;}
+.coll-10 {width: 100%;}
+.coll-11 {width: 100%;}
+.coll-12 {width: 100%;}  
+    
+    }
+</style>
 <div class="page">
 
     <div class="page-content" data-cart>
-        {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+<!--        {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}-->
 
         {{> components/cart/page-title}}
 
@@ -18,50 +59,43 @@ cart: true
         {{#if cart.items.length}}
             <div class="loadingOverlay"></div>
 
-            <div data-cart-content class="cart-content-padding-right">
+
+        <div class="roww">
+                <div class="coll-8">
+            <div data-cart-content>
                 {{> components/cart/content}}
             </div>
-
-            <div data-cart-totals class="cart-content-padding-right">
+                </div>
+            <div class="coll-4">
+            <div data-cart-totals style="width:100%">
                 {{> components/cart/totals}}
+
             </div>
 
             {{{region name="cart_below_totals"}}}
 
-            {{#or customer (unless settings.hide_price_from_guests)}}
-                {{#if cart.show_primary_checkout_button}}
-                    <div class="cart-actions cart-content-padding-right">
-                        <a
-                            class="button button--primary"
-                            href="{{urls.checkout.single_address}}"
-                            title="{{lang 'cart.checkout.title'}}"
-                            data-primary-checkout-now-action
-                        >
-                            {{lang 'cart.checkout.button'}}
+            {{#if cart.show_primary_checkout_button}}
+                <div class="cart-actions cart-content-padding-right">
+                    <a class="button button--primary" href="{{urls.checkout.single_address}}" title="{{lang 'cart.checkout.title'}}">{{lang 'cart.checkout.button'}}</a>
+                    {{#if cart.show_multiple_address_shipping}}
+                        <a class="checkoutMultiple" href="{{urls.checkout.multiple_address}}">
+                            {{lang 'cart.preview.checkout_multiple'}}
                         </a>
-                        {{#if cart.show_multiple_address_shipping}}
-                            <a class="checkoutMultiple" href="{{urls.checkout.multiple_address}}">
-                                {{lang 'cart.preview.checkout_multiple'}}
-                            </a>
-                        {{/if}}
-                    </div>
-                {{else}}
-                    <div class="cart-actions cart-content-padding-right">
-                        <a class="button" href="{{urls.home}}" title="{{lang 'cart.continue_shopping'}}">{{lang 'cart.continue_shopping'}}</a>
-                    </div>
-                {{/if}}
-
-                {{#if cart.additional_checkout_buttons}}
-                    <div data-cart-additional-checkout-buttons class="cart-additionalCheckoutButtons cart-content-padding-right">
-                        {{> components/cart/additional-checkout-buttons}}
-                    </div>
-                {{/if}}
+                    {{/if}}
+                </div>
             {{else}}
                 <div class="cart-actions cart-content-padding-right">
-                    <a class="button" href="{{urls.auth.login}}" title="{{lang 'cart.login_to_checkout'}}">{{lang 'cart.login_to_checkout'}}</a>
+                    <a class="button" href="{{urls.home}}" title="{{lang 'cart.continue_shopping'}}">{{lang 'cart.continue_shopping'}}</a>
                 </div>
-            {{/or}}
+            {{/if}}
 
+            {{#if cart.additional_checkout_buttons}}
+                <div class="cart-additionalCheckoutButtons cart-content-padding-right">
+                    {{#each cart.additional_checkout_buttons}}
+                        {{{this}}}
+                    {{/each}}
+                </div>
+            {{/if}}
         {{else}}
             <h3 tabindex="0">{{lang 'cart.checkout.empty_cart'}}</h3>
         {{/if}}
@@ -70,3 +104,89 @@ cart: true
 </div>
 {{/partial}}
 {{> layout/base}}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.matchHeight/0.7.2/jquery.matchHeight-min.js"></script>
+<script>
+    if (window.location.href.indexOf("cart.php") > -1) {
+    var arr=[];
+$('.cart-item').each(function(i,item){
+    console.log($(item).data('product-id'));
+       querys($(item).data('product-id'),$(item).data('rowcount'));
+})
+function querys(pid,rowcount)
+    {
+fetch('https://w84tgs6j9e.execute-api.ap-south-1.amazonaws.com/default/Getproducts?product_id='+ pid +'')
+      .then(res => res.json())
+        .then(data => {
+        
+          data.data.related_products.forEach( edges => {
+            if(edges && edges !== '-1' )
+                {
+                    related_products(edges,pid,rowcount);
+                }
+              //console.log(edges);
+          })
+      })
+    }
+    var i = 1;
+    function related_products(rpid,pids,rowcount)
+    {
+       
+        fetch('https://w84tgs6j9e.execute-api.ap-south-1.amazonaws.com/default/Getproducts?product_id='+ rpid +'')
+      .then(res => res.json())
+        .then(data1 => {
+            console.log(data1);
+            if(data1 !== 'undefined')
+                {
+                   //$(".pr" + pids + ' .t1').append("<ul class='small-block-grid-2 medium-block-grid-3 large-block-grid-4 '></ul>");
+                    
+                    var  name = data1.data.name;
+                    var  price = new Intl.NumberFormat('ja-JP', { style: 'currency', currency: '{{ currency_selector.active_currency_code }}' }).format(data1.data.price) ;
+                    var  id1 = data1.data.id;
+                    var  img = data1['0'].url_thumbnail;
+                    var  imgurl = encodeURI(data1['0'].url_standard);
+                    var  url = `cart.php?action=add&product_id=${id1}`;
+                    $(`.pr${pids}${rowcount} .t1 .headcustom`).show();
+                    $(`.pr${pids}${rowcount} .t1 .fullview ul`).append(`<li class="pr${pids}a${i}" style="    padding-bottom: 1px;margin-bottom: 1px;" onClick="productshow('.pr${pids}a${i}','.pr${pids}${rowcount}','${name}','${price}','${imgurl}','${url}');">
+                    <div>
+                        <div class='small-4 large-4 columns' style='background-color: rgb(243, 241, 241);    padding: 10px 0px;'><img src='${img}' style='width: 75px;height: 75px;object-fit: contain;'></div>
+                        <div class='small-8 large-8 columns' style='background-color: rgb(243, 241, 241);padding: 10px 5px;'>
+                            <p style='margin-bottom: 1px;font-size: 11px;line-height: 15px;'>${name}</p>
+                            <p style='margin-bottom: 1px;font-size: 10px;font-weight: 800;'>${price}</p>
+                        </div>
+                    </div>
+                </li>`);
+                }
+             i = i+1;
+      })
+       
+    }
+        //sdsad
+	function MatchHeight() {
+        $('.headcustom ul li')
+            .matchHeight({});
+    }
+
+    //Functions that run when all HTML is loaded
+    $(document).ready(function() {
+        MatchHeight();
+    });
+    }
+function productshow(clss,maincls,name,price,img,url) {
+    //$(this).find(".sampleimg").remove();
+    
+    $(`${maincls} .mainimgss .sampleimg`).replaceWith(`<div class="sampleimg text-center"><img style='width: 250px;height: 250px;object-fit: cover;' src="${img}"><h6 style="margin-top:15px;    margin-bottom: 5px;">${name}</h6><a href='${url}' style='font-size: 10px;padding: 2px 10px;' class='button button--primary'  target="_blank">Add</a></div>`);
+}
+function showMessage(msg) {
+     $(`.${msg}`).toggle('slow');
+    
+    $(".customizearrow svg").toggleClass("show");
+    if ($(".customizearrow .show")[0]){
+    $(".customizearrow svg use").attr("xlink:href", "#icon-keyboard-arrow-up");
+    } else {
+     $(".customizearrow svg use").attr("xlink:href", "#icon-keyboard-arrow-down");
+    }
+};
+    
+
+</script>

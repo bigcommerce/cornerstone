@@ -1,0 +1,54 @@
+<li>
+<div class="home-blog-item p-l-15 p-r-15 width-33">
+  <div class="home-blog-item-inner">
+    {{#if thumbnail}}
+      <div class="home-blog-img banner-hover" style="    position: relative;">
+          
+          {{#if thumbnail}}
+            <a href="{{url}}">
+              <span>
+                <img class="lazyload" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{getImage thumbnail 'gallery'}}&imbypass=on" alt="{{thumbnail.alt}}">
+              </span>
+            </a>
+            {{else}}
+            <a href="{{url}}">
+              <img src="{{cdn ../../theme_settings.default_image_blog}}" alt="No Image" title="No Image">
+            </a>
+          {{/if}}
+          {{#if tags.0.name}}
+                        <span class="blog-image-tag is-size-8 is-uppercase is-spaced">{{ tags.0.name}}</span>
+                        {{/if}}
+      </div>
+      {{/if}}
+      <div class="home-blog-detail">
+        <div class="home-blog-detail-inner">
+          <h5 class="text-center">
+            <a href="{{url}}" class="home-blog-title" style="text-decoration: none;font-size: 17px;">{{title}}</a>
+          </h5>
+<!--
+          <p>
+              {{#if body}}
+                  {{{body}}}
+              {{else}}
+                  {{summary}}
+              {{/if}}
+          </p>
+-->
+          <div class="blog-date display-flex justify-content-start align-item-center">
+<!--
+            {{#if author}}
+              <div class="author">
+                  <svg><use xlink:href="#icon-author"></use></svg>
+                  <span>{{lang 'blog.posted_by' name=author}}</span>
+              </div>
+            {{/if}}
+-->
+            <div class="date">
+              <span>{{moment date_published "DD.MM.YYYY" }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+    </div>
+    </li>

@@ -1,11 +1,39 @@
-<div class="form-field" data-product-attribute="swatch" role="radiogroup" aria-labelledby="swatchGroup_{{id}}">
+    <style>
+    .form-option-variant--color, .form-option-variant--pattern {
+/*
+    height: 70px;
+    width: 70px;
+*/
+    border-radius: 50%;
+    box-shadow: 3px 2px 10px 4px #b1b1b199;
+    border: 3px solid #fff;
+        }
+    [data-product-attribute] .form-option.form-option-swatch {
+    border-radius: 50%;
+    border: 3px solid #fff;
+        }
+        .productView-options .form-radio:checked+.form-option-swatch {
+    box-shadow: 2px 3px 12px 5px #b1b1b1c2;
+    border: 3px solid #6a6a6a;
+    }
+    @media screen and (max-width: 900px) and (min-width: 60px) {
+        .form-option-variant--color, .form-option-variant--pattern {
+            height: 50px;
+            width: 50px;
+        }
+        }
+    </style>
+<div class="form-field text-left" data-product-attribute="swatch" role="radiogroup" aria-labelledby="swatchGroup_{{id}}">
+    <div class="row">
+        <div class="small-12  large-4 columns">
     <label class="form-label form-label--alternate form-label--inlineSmall" id="swatchGroup_{{id}}">
         {{this.display_name}}:
-        <span data-option-value></span>
+<!--        <span data-option-value></span>-->
 
-        {{> components/common/requireness-msg}}
+<!--        {{> components/common/requireness-msg}}-->
     </label>
-    <span
+
+    <span 
         class="swatch-option-message aria-description--hidden u-hidden">
         {{ lang 'products.swatch_option_announcement' swatch_name=this.display_name}}
     </span>
@@ -14,17 +42,18 @@
         <input
             class="form-radio"
             type="radio"
-            name="attribute[{{id}}]"
+            name="attribute[{{../id}}]"
             value=""
-            id="attribute_swatch_{{id}}_none"
+            id="attribute_swatch_{{../id}}_none"
             checked="{{#if defaultValue '==' ''}}checked{{/if}}"
             aria-label="{{lang 'products.none'}}"
         >
-        <label class="form-option form-option-swatch" for="attribute_swatch_{{id}}_none">
+        <label class="form-option form-option-swatch" for="attribute_swatch_{{../id}}_none">
             <span class='form-option-variant form-option-variant--none' title="{{lang 'products.none'}}">{{lang 'products.none'}}</span>
         </label>
     {{/unless}}
-
+        </div>
+    <div class="small-12 large-8 columns text-left">
     {{#each this.values}}
     <div class="form-option-wrapper">
         <input class="form-radio"
@@ -36,9 +65,10 @@
                {{#if ../required}}required{{/if}}
                aria-label="{{this.label}}"
         >
-        <label class="form-option form-option-swatch" for="attribute_swatch_{{../id}}_{{id}}" data-product-attribute-value="{{id}}">
+        <label class="form-option form-option-swatch" for="attribute_swatch_{{../id}}_{{id}}" data-product-attribute-value="{{id}}" style="    margin-left: 4px;
+    margin-right: 2px;">
             {{#if image}}
-                <span class='form-option-variant form-option-variant--pattern' title="{{this.label}}" style="background-image: url('{{getImage image "swatch_option_size"}}');"></span>
+                <span class='form-option-variant form-option-variant--pattern' title="{{this.label}}" style="background-image: url('{{getImage image "core-swatch"}}');background-size: cover;background-position: center;background-repeat: no-repeat;"></span>
             {{/if}}
             {{#if data.[2]}}
                 <span class='form-option-variant form-option-variant--color' title="{{this.label}}" style="background-color: #{{data.[0]}}"></span>
@@ -55,11 +85,15 @@
                 {{/if}}
             {{/if}}
             {{#if pattern}}
+<!--
                 <span class="form-option-expanded">
-                    <span class="form-option-image" style="background-image: url('{{getImage image 'core-swatch'}}');"></span>
+                    <span class="form-option-image" style="background-image: url('{{getImage image 'core-swatch'}}');background-size: cover;background-position: center;background-repeat: no-repeat;"></span>
                 </span>
+-->
             {{/if}}
         </label>
     </div>
     {{/each}}
+</div>
+</div>
 </div>

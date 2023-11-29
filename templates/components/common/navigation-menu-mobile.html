@@ -1,0 +1,262 @@
+<style>
+     @media screen and (max-width: 799px) and (min-width: 8px) {
+    .navPage-subMenu
+    {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    left: 0;
+    height: 100%;
+    overflow: auto;
+    }
+.listnavigations {
+    text-align: initial;
+}
+    .navPages
+    {
+       padding: 56px 45px;
+    }
+    .navPage-subMenu.is-open
+    {
+            z-index: 999;
+    }
+    }
+</style>
+<a href="#" class="closemenumobile" >
+        
+<div class="row closemoilebutton" style="padding: 10px;background-color: #e8e8e8; z-index: 99999999999; position: absolute;top: 0;">
+<span class="small-11 columns" style="padding-left: 0px;padding-right: 0px;text-transform: uppercase;line-height: 1; font-size: 16px;"><span style="font-size: 26px;" aria-hidden="true">×</span>&nbsp;&nbsp;&nbsp; close</span>
+</div>
+</a>
+<nav class="navPages">
+    
+    <ul class="navPages-list{{#if theme_settings.navigation_design '!==' 'simple'}} navPages-list-depth-max{{/if}}">
+        {{#each categories}}
+            <li class="navPages-item">
+            {{#if ../theme_settings.navigation_design '===' 'simple'}}
+                {{> components/common/navigation-list-mobile}}
+            {{/if}}
+            
+            </li>
+        {{/each}}
+        
+        <a class="navPages-action has-subMenu{{#if is_active}} activePage{{/if}} listnavigations "
+           href="#" 
+           data-collapsible="navPages-blog"
+        >
+            Formex World
+            <i class="icon navPages-action-moreIcon" aria-hidden="true" style="float: right;">
+                <svg><use xlink:href="#icon-chevron-down" /></svg>
+            </i>
+        </a>
+       
+        <li class="navPages-item" style="margin-bottom: 20px;">
+                <a href="/contact-us/" class="navPages-action navPages-action--storeCredit">
+                    Contact Us
+                </a>
+            </li>
+      
+    </ul>
+    
+    <div class="navPage-subMenu " id="navPages-blog" data-navid="navPages-blog" data-url="{{url}}" data-name="{{name}}" aria-hidden="true" tabindex="-1" style="top: 6px;">
+        <div  data-target="menu-0" class="backmobnav has-text-secondary has-double-padding-top has-double-padding-left is-uppercase is-size-8 is-spaced" style="padding-left: 24px!important;padding-top: 40px!important;"><i class="fa fa-angle-left" aria-hidden="true"></i> Back</div>
+    <br>
+        <ul class="navPages-list ">
+            <li class="navPages-item" style=" padding: 4px 45px;">
+                <a href="/contact-us/" class="navPages-action navPages-action--storeCredit">
+                    Formex World
+                </a>
+            </li>
+            <li class="navPages-item" style=" padding: 4px 45px;">
+                <a href="/contact-us/" class="navPages-action navPages-action--storeCredit">
+                    Our Story
+                </a>
+            </li>
+            <li class="navPages-item" style=" padding: 4px 45px;">
+                <a href="/contact-us/" class="navPages-action navPages-action--storeCredit">
+                    News &amp; Stories
+                </a>
+            </li>
+            </ul>
+                       
+
+                        </div>
+
+    <div class="navPages-quickSearch" style="padding: 0px 19px 0px 0px;">
+        {{> components/common/quick-search-mobile name='nav-menu-quick-search'}}
+    </div>
+</nav>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    if ($(window).width() < 800) {
+    $(".closemenumobile").on('click', function(event){
+        $('.hide-for-large-up').removeClass('is-open');
+$('.navPages-container').removeClass('is-open');
+$('.mobileMenu-toggle').removeClass('is-open');
+$('body').removeClass('has-activeNavPages');
+$(".productsubmenulist .row").removeClass("prlistnav");
+});
+    function  prpopupdata(navid1,url1,name1) {
+        if($(`#${navid1} .prlistnav`)[0])
+            {
+                //alert('yes');
+            }
+        else
+        {
+            submenunavigations(navid1,url1,name1);
+            //alert('no');
+        }
+        //$(".productsubmenulist").show();
+   
+};
+    
+//$('.productsubmenulist').each(function(i,item){
+//       submenunavigations($(item).data('navid'),$(item).data('url'),$(item).data('name'));
+//})
+function submenunavigations(navid,url,name)
+    {
+var data1 = fetch('/graphql', {
+        method: 'POST',
+        mode: 'cors',
+        headers: { 'Content-Type': 'application/json',
+                 'Authorization': `Bearer {{ settings.storefront_api.token }}`},
+        body: JSON.stringify({
+            query: `
+            query CategoryByUrl {
+  site {
+    route(path: "${url}") {
+      node {
+        id
+        ... on Category {
+          name
+          entityId
+          description
+          products {
+            edges {
+              node {
+                name
+                entityId
+                defaultImage {
+                  url(width: 1200)
+                }
+                prices {
+                  price {
+                    ...PriceFields
+                  }
+                  priceRange {
+                    min {
+                      ...PriceFields
+                    }
+                    max {
+                      ...PriceFields
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+fragment PriceFields on Money {
+  value
+  currencyCode
+}
+`
+
+            }),
+      })
+      .then(res => res.json())
+      .then(data1 => {
+          //console.log(data1);
+          var i = 0;
+                  
+                 for(var key in data1)
+                {
+                    var cate_name = data1[key].site.route.node.name;
+                    $(`
+                    <a class=" has-subMenu listnavigations" style="padding-left: 24px!important;padding-top: 40px!important;"
+                       href="javascript:void(0);" onclick="dropproducthide();"
+                       data-collapsible="${navid}"
+                    >
+                       <i class="fa fa-angle-left" aria-hidden="true"></i> Back  
+                       
+                    </a>
+                    
+                      
+                    ` ).prependTo(`#${navid}`);
+                    var i = 1;
+                    data1.data.site.route.node.products.edges.forEach( main => {
+                    if(i <= 4)
+                        {
+                            var prurls = main.node.entityId;
+                            if(data1.data.site.route.node.products.edges.length === 1)
+                                {
+                                    var clssubcls = 'style="width:70%;"';
+                                }
+                            else{
+                                var clssubcls = '';
+                            }
+                            var formatedpr = new Intl.NumberFormat('ja-JP', { style: 'currency', currency: '{{ currency_selector.active_currency_code }}' }).format(main.node.prices.price.value);
+                        $(`#${navid} .row`).append(`
+                    <div class="small-6 columns prlistnav">
+                    
+                    <a href="/products.php?productId=${prurls}" class="subcategories-image"><img src="${main.node.defaultImage.url}"  alt="{{name}}" ${clssubcls}></a>
+                    <a href="/products.php?productId=${prurls}" >
+                    <p class="text-uppercase" style="margin-bottom: 3px;">${cate_name}</p>
+                    <p class="text-uppercase" style="margin-bottom: 3px;">${main.node.name}</p>
+                    <p style="margin-bottom: 3px;">${formatedpr}</p>
+                    <span class="button is-primary is-size-7 viewproduct commenbtn">View Product</span>
+                    </a>
+                    </div>
+                      
+                    `);
+                        }
+                    i = i + 1;
+                    })
+                     //console.log(data1[key].site.route.node.name);
+                    $(`#${navid} .row`).append(`
+                     <div class="column is-full">
+              <a href="${url}" class="button padded is-primary is-size-6 is-full has-text-white full-width-button text-uppercase" style="padding-left: 5px;padding-right: 5px;font-size: 12px;">
+                Discover All ${cate_name} Watches
+              </a>
+            </div>
+                    `);
+                      
+                }  
+          
+          
+          
+
+         
+      })
+}
+function dropproducthide()
+    {
+         $('.productsubmenulist').removeClass("is-open");
+         $('.navPage-subMenu:first').addClass("is-open");
+    }
+    
+// for hover navigation dropdown
+     $(".megamenu-sub .submenusa").mouseover(function(){
+         $(`.navPage-subMenu`).removeClass("is-open");
+ var datas = $(this).attr("data-collapsible");
+    $("#"+datas).addClass("is-open");
+    return false;
+});
+$(".navPage-subMenu").mouseleave(function(){
+    $(`.navPage-subMenu`).removeClass("is-open");
+
+    
+    });
+
+    }
+</script>
+<script>
+$(".backmobnav").on('click', function(event){
+$(this).parent('.navPage-subMenu').removeClass('is-open');
+});
+</script>

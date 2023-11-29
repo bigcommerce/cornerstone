@@ -8,9 +8,6 @@
         <h4 class="paymentMethodsTitle">
             {{display_name}}
         </h4>
-        {{#if description}}
-            <p>{{description}}</p>
-        {{/if}}
         <div class="paymentMethodsGrid">
             {{#each stored_instruments}}
                 <div class="paymentMethodsGrid-item">
@@ -30,19 +27,6 @@
                                     {{/if}}
                                     {{!-- If credit card ENDS --}}
                                 {{/if}}
-
-                                {{#if type '===' 'stored_bank_account'}}
-                                    {{!-- If bank_account STARTS --}}
-                                    {{#if ../methodId '===' 'ach'}}
-                                        <img class="methodHeader-icon" src="{{cdn 'img/payment-methods/ach.svg'}}" alt="{{lang 'account.payment_methods.ach'}}" title="{{lang 'account.payment_methods.ach'}}">
-                                        <span class="methodHeader-brand">{{lang 'account.payment_methods.bank_account'}} {{lang 'account.payment_methods.card_ending_in' last_four=masked_account_number}}</span>
-                                    {{else}}
-                                        <img class="methodHeader-icon" src="{{cdn 'img/payment-methods/card.svg'}}" alt="{{lang 'account.payment_methods.card_types.credit_card'}}" title="{{lang 'account.payment_methods.card_types.credit_card'}}">
-                                        <span class="methodHeader-brand">{{lang 'account.payment_methods.payment_method'}}</span>
-                                    {{/if}}
-                                    {{!-- If bank_account ENDS --}}
-                                {{/if}}
-
                                 {{#if type '===' 'stored_paypal_account'}}
                                     {{!-- If paypal STARTS --}}
                                     <img class="methodHeader-icon" src="{{cdn 'img/payment-methods/paypal.svg'}}" alt="{{lang 'account.payment_methods.paypal'}}" title="{{lang 'account.payment_methods.paypal'}}">
@@ -57,7 +41,7 @@
                                     {{/if}}
                                     {{#if is_default}}
                                         <svg class="methodHeader-default">
-                                            <use href="#icon-star" />
+                                            <use xlink:href="#icon-star" />
                                         </svg>
                                     {{/if}}
                                 </div>

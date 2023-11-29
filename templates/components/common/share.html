@@ -15,7 +15,7 @@
                     >
                         <span class="aria-description--hidden">{{{capitalize service}}}</span>
                         <svg>
-                            <use href="#icon-facebook"/>
+                            <use xlink:href="#icon-facebook"/>
                         </svg>
                     </a>
                     {{else if service '===' 'email'}}
@@ -28,7 +28,7 @@
                     >
                         <span class="aria-description--hidden">{{{capitalize service}}}</span>
                         <svg>
-                            <use href="#icon-envelope"/>
+                            <use xlink:href="#icon-envelope"/>
                         </svg>
                     </a>
                     {{else if service '===' 'print'}}
@@ -39,20 +39,20 @@
                     >
                         <span class="aria-description--hidden">{{{capitalize service}}}</span>
                         <svg>
-                            <use href="#icon-print"/>
+                            <use xlink:href="#icon-print"/>
                         </svg>
                     </a>
                     {{else if service '===' 'twitter'}}
-                    <a class="socialLinks__link icon icon--x"
-                       href="https://x.com/intent/tweet/?text={{getVar 'encodedTitle'}}&amp;url={{getVar 'encodedUrl'}}"
+                    <a class="socialLinks__link icon icon--{{service}}"
+                       href="https://twitter.com/intent/tweet/?text={{getVar 'encodedTitle'}}&amp;url={{getVar 'encodedUrl'}}"
                        target="_blank"
                        rel="noopener"
-                       title="X"
+                       title="{{{capitalize service}}}"
                        {{{annotation}}}
                     >
-                        <span class="aria-description--hidden">X</span>
+                        <span class="aria-description--hidden">{{{capitalize service}}}</span>
                         <svg>
-                            <use href="#icon-x"/>
+                            <use xlink:href="#icon-twitter"/>
                         </svg>
                     </a>
                     {{else if service '===' 'linkedin'}}
@@ -65,20 +65,20 @@
                     >
                         <span class="aria-description--hidden">{{{capitalize service}}}</span>
                         <svg>
-                            <use href="#icon-linkedin"/>
+                            <use xlink:href="#icon-linkedin"/>
                         </svg>
                     </a>
                     {{else if service '===' 'pinterest'}}
                     <a class="socialLinks__link icon icon--{{service}}"
                        title="{{{capitalize service}}}"
-                       href="https://pinterest.com/pin/create/button/?url={{getVar 'encodedUrl'}}&amp;media={{getImageSrcset ../product.main_image (cdn ../theme_settings.default_image_product) 1x=../theme_settings.zoom_size}}&amp;description={{getVar 'encodedTitle'}}"
+                       href="https://pinterest.com/pin/create/button/?url={{getVar 'encodedUrl'}}&amp;description={{getVar 'encodedTitle'}}"
                        target="_blank"
                        rel="noopener"
                        {{{annotation}}}
                     >
                         <span class="aria-description--hidden">{{{capitalize service}}}</span>
                         <svg>
-                            <use href="#icon-pinterest"/>
+                            <use xlink:href="#icon-pinterest"/>
                         </svg>
                     </a>
                     {{/if}}

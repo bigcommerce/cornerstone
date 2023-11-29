@@ -1,0 +1,19 @@
+<span role="img"
+    {{#if rating_target}}
+      aria-label="{{lang 'products.reviews.rating_aria_label' rating_target=rating_target current_rating=rating max_rating=5}}"
+    {{else}}
+      aria-label="{{lang 'products.reviews.rating_aria_label' rating_target='Product' current_rating=rating max_rating=5}}"
+    {{/if}}
+>
+    {{#for 1 5}}
+        {{#if ../this.rating '>=' $index}}
+            <span class="icon icon--ratingFull">
+                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="28" viewBox="0 0 26 28"><path d="M0 10.11q0-.58.875-.72L8.72 8.25l3.515-7.11Q12.532.5 13 .5t.767.64l3.516 7.11 7.844 1.14q.875.14.875.72 0 .343-.406.75l-5.672 5.53 1.344 7.812q.016.11.016.313 0 .328-.164.555t-.477.227q-.297 0-.625-.187l-7.016-3.687-7.016 3.687q-.344.187-.625.187-.327 0-.49-.227t-.165-.555q0-.094.03-.313L6.08 16.39.392 10.86q-.39-.423-.39-.75z"/></svg>
+            </span>
+        {{else}}
+            <span class="icon icon--ratingEmpty">
+                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="28" viewBox="0 0 26 28"><path d="M0 10.11q0-.58.875-.72L8.72 8.25l3.515-7.11Q12.532.5 13 .5t.767.64l3.516 7.11 7.844 1.14q.875.14.875.72 0 .343-.406.75l-5.672 5.53 1.344 7.812q.016.11.016.313 0 .328-.164.555t-.477.227q-.297 0-.625-.187l-7.016-3.687-7.016 3.687q-.344.187-.625.187-.327 0-.49-.227t-.165-.555q0-.094.03-.313L6.08 16.39.392 10.86q-.39-.423-.39-.75z"/></svg>
+            </span>
+        {{/if}}
+    {{/for}}
+</span>

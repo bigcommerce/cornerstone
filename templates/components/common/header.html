@@ -1,4 +1,16 @@
+<div class="topregion">
+{{{region name="header_top--global"}}}
+</div>
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
+  <script>
+   WebFont.load({
+      google: {
+        families: ['Muli', 'Ubuntu:300,400']
+      }
+    });
+  </script>
 <a href="#main-content" class="skip-to-main-link">{{lang 'header.skip_to_main'}}</a>
+<link href="{{cdn 'icons/icon/flaticon.css'}}" rel="stylesheet">
 {{#if banners.top}}
 <div class="banners" data-banner-location="top">
     {{#each (limit banners.top_metadata 1)}}
@@ -10,25 +22,275 @@
     {{/each}}
 </div>
 {{/if}}
-<header class="header" role="banner">
+<style>
+    @media screen and (max-width: 799px) and (min-width: 8px) {
+    .navPages-container.is-open {
+    padding-top: 0px;
+    z-index: 99;
+    top: 0;
+    position: absolute;
+    }
+        .navPages {
+    background-color: #ffffff;
+    height: 100%;
+    overflow-y: auto;
+    padding: 1.5rem;
+    position: fixed;
+    width: 100%;
+        }
+        .header-logo-image-container-custom
+        {
+            display: contents !important;
+        }
+    }
+    .no-gutter
+    {
+        padding-left: 2px;
+    padding-right: 2px;
+    }
+</style>
+<header class="header show-for-large-up headdesktop" sticky="{{theme_settings.sticky-header}}" role="banner" style="background-color : transparent;">
+  <div class="header-main">
+  <div class="container">
+    <div class="header-inner">
+      <div class="header-left">
+        <div class="desktop_mobile_menu">
+          <a class="control-otherlinks" href="javascript:void(0);" onclick="">
+            <span class="otherlinks-line-1"></span>
+            <span class="otherlinks-line-2"></span>
+            <span class="otherlinks-line-3"></span>
+            <span class="otherlinks-line-4"></span>
+          </a>
+        </div>
+
+        <div class="logo-block">
+          {{#if page_type '===' 'default'}}
+              <h1 class="header-logo header-logo--{{theme_settings.logo-position}}" style="width: 65%;">
+                  {{> components/common/store-logo}}
+              </h1>
+          {{else}}
+              <div class="header-logo header-logo--{{theme_settings.logo-position}}" style="width: 65%;">
+                  {{> components/common/store-logo}}
+              </div>
+          {{/if}}
+        </div>
+      </div>
+
+      <div class="header-center">
+        <div class="navigation-menu" data-menu>
+            {{> components/common/navigation-menu}}
+        </div>
+      </div>
+
+      <div class="header-right">
+          {{> components/common/navigation}}
+      </div>
+    </div>
+  </div>
+  {{#if currency_selector.currencies.length '>' 1}}
+    <div class="header-currancy">
+        <div class="navUser-item currency-item">
+          <div class="currency">
+            {{> components/common/currency-selector}}
+          </div>
+        </div>
+    </div>
+  {{/if}}
+</div>
+  <div class="mobile-search">
+    <div class="container">
+      
+    </div>
+  </div>
+</header>
+
+<header class="header hide-for-large-up" role="banner">
     <a href="#" class="mobileMenu-toggle" data-mobile-menu-toggle="menu">
         <span class="mobileMenu-toggleIcon">Toggle menu</span>
     </a>
-    {{> components/common/navigation}}
-
     {{#if page_type '===' 'default'}}
-        <h1 class="header-logo header-logo--{{theme_settings.logo-position}}">
+        <h1 class="header-logo header-logo--{{theme_settings.logo-position}}" style="margin-right: 0px;">
             {{> components/common/store-logo}}
+            <ul style="float: right;margin-top: 10px; margin-bottom: -4px;">
+            {{#if customer}}
+                    <li class="navUser-item " style="display: inline-flex">
+
+                        <a class="navUser-action mricontop no-gutter" href="{{urls.account.index}}" aria-label="{{lang 'common.account'}}">
+                            <span><i class="flaticon-user fafaiconnav"></i></span>
+                        </a>
+
+                    </li>
+                {{else}}
+                    <li class="navUser-item " style="display: inline-flex">
+
+                        <a class="navUser-action mricontop no-gutter" href="{{urls.auth.login}}" aria-label="{{lang 'common.login'}}">
+                            <span><i class="flaticon-user fafaiconnav"></i></span>
+                        </a>
+
+                    </li>
+                {{/if}}
+
+                <li class="navUser-item " style="display: inline-flex">
+
+                    <a class="navUser-action mricontop no-gutter" data-cart-preview data-dropdown="cart-preview-dropdown" data-options="align:right" href="{{urls.cart}}" aria-label="{{lang 'cart.nav_aria_label'}}">
+                        <span><i class="flaticon-shopping-bag fafaiconnav"></i></span>
+                        <span style="margin-top: -31px;display: block;margin-left: 5px;"><span class="countPill cart-quantity"></span></span>
+
+                    </a>
+
+                    <div class="dropdown-menu" id="cart-preview-dropdown" data-dropdown-content aria-hidden="true" ></div>
+                </li>
+            </ul>
         </h1>
     {{else}}
         <div class="header-logo header-logo--{{theme_settings.logo-position}}">
             {{> components/common/store-logo}}
+            <ul style="float: right; ">
+            {{#if customer}}
+                    <li class="navUser-item " style="display: inline-flex">
+
+                        <a class="navUser-action mricontop no-gutter" href="{{urls.account.index}}" aria-label="{{lang 'common.account'}}">
+                            <span><i class="flaticon-user fafaiconnav"></i></span>
+                        </a>
+
+                    </li>
+                {{else}}
+                    <li class="navUser-item " style="display: inline-flex">
+
+                        <a class="navUser-action mricontop no-gutter" href="{{urls.auth.login}}" aria-label="{{lang 'common.login'}}">
+                            <span><i class="flaticon-user fafaiconnav"></i></span>
+                        </a>
+
+                    </li>
+                {{/if}}
+
+                <li class="navUser-item " style="display: inline-flex">
+
+                    <a class="navUser-action mricontop no-gutter" data-cart-preview data-dropdown="cart-preview-dropdown" data-options="align:right" href="{{urls.cart}}" aria-label="{{lang 'cart.nav_aria_label'}}">
+                        <span><i class="flaticon-shopping-bag fafaiconnav"></i></span>
+                        <span style="margin-top: -31px;display: block;margin-left: 5px;"><span class="countPill cart-quantity"></span></span>
+
+                    </a>
+
+                    <div class="dropdown-menu" id="cart-preview-dropdown" data-dropdown-content aria-hidden="true" ></div>
+                </li>
+            </ul>
         </div>
     {{/if}}
+    
+
+    
     <div class="navPages-container" id="menu" data-menu>
-        {{> components/common/navigation-menu}}
+        {{> components/common/navigation-menu-mobile}}
     </div>
-    {{{region name="header_navigation_bottom--global"}}}
 </header>
 {{{region name="header_bottom--global"}}}
 {{{region name="header_bottom"}}}
+<script>
+    if ($(window).width() < 799) { 
+        $('.headdesktop').remove();
+        $(".mobileMenu-toggle").click(function(){
+    $(".topregion").hide();
+})
+        $(".closemoilebutton").click(function(){
+    $(".topregion").show();
+})
+    }
+</script>
+{{#if page_type '==' 'default'}}
+<style>
+@media screen and (max-width: 5000px) and (min-width: 800px) { 
+    .heroCarousel {
+       margin-top: -8.02rem;
+    }
+    .navPages-list .navPages-item .listnavigations
+    {
+        color: #fff;
+    }
+    .header-logo-image-container-custom
+    {
+    -webkit-filter: invert(100%) ;
+    filter: invert(100%) ;
+    }
+    .navUser-item  i
+    {
+        color: #fff;
+    }
+    .navPages-action svg
+    {
+        fill: #fff;
+        stroke: #fff;
+    }
+        .header:hover { background-color: #fff !important; }
+
+    }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    if ($(window).width() > 800) {
+    $(window).scroll(function(){
+        if($(window).scrollTop() > 50){
+            $(".header").css({"background-color":"white"});
+            $(".navPages-list .navPages-item .listnavigations").css({"color":"#242424",});
+            $(".navPages-action svg").css({"fill":"#242424","stroke":"#242424"});
+            $(".header-logo-image-container-custom").css({"-webkit-filter":"inherit","filter":"inherit"});
+            $(".navUser-item  i").css({"color":"#242424"});
+            $(".search-box-btn  i").css({"color":"#fff"});
+        }
+        else if($(window).scrollTop() < 50)
+            {
+                $(".header").css({"background-color":"transparent"});
+                $(".navPages-list .navPages-item .listnavigations").css({"color":"#fff",});
+                $(".navPages-action svg").css({"fill":"#fff","stroke":"#fff"});
+                $(".header-logo-image-container-custom").css({"-webkit-filter":"invert(100%) ","filter":"invert(100%)"});
+                $(".navUser-item  i").css({"color":"#fff"});
+                
+            }
+        else{
+            $(".header").css({"background-color":""});
+        }
+
+    })
+    
+    $('.header').hover(
+  
+    function(){
+      $(".header").css({"background-color":"white !important"});
+            $(".navPages-list .navPages-item .listnavigations").css({"color":"#242424",});
+            $(".navPages-action svg").css({"fill":"#242424","stroke":"#242424"});
+            $(".header-logo-image-container-custom").css({"-webkit-filter":"inherit","filter":"inherit"});
+            $(".navUser-item  i").css({"color":"#242424"});
+            $(".search-box-btn  i").css({"color":"#fff"});
+    },
+    function(){
+      $(".header").css({"background-color":"transparent"});
+                $(".navPages-list .navPages-item .listnavigations").css({"color":"#fff",});
+                $(".navPages-action svg").css({"fill":"#fff","stroke":"#fff"});
+                $(".header-logo-image-container-custom").css({"-webkit-filter":"invert(100%) ","filter":"invert(100%)"});
+                $(".navUser-item  i").css({"color":"#fff"});
+        $(`.navPage-subMenu`).removeClass("is-open");
+           if($(window).scrollTop() > 50){
+            $(".header").css({"background-color":"white"});
+            $(".navPages-list .navPages-item .listnavigations").css({"color":"#242424",});
+            $(".navPages-action svg").css({"fill":"#242424","stroke":"#242424"});
+            $(".header-logo-image-container-custom").css({"-webkit-filter":"inherit","filter":"inherit"});
+            $(".navUser-item  i").css({"color":"#242424"});
+            $(".search-box-btn  i").css({"color":"#fff"});
+        }
+    }
+        
+  );
+    }
+})
+</script>
+{{else}}
+<style>
+@media screen and (max-width: 5000px) and (min-width: 800px) { 
+    .header {
+       background-color:white !important;
+    }
+   
+    }
+</style>
+{{/if}}

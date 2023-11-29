@@ -1,0 +1,523 @@
+<style>
+.feature-content{
+font-family: 'Montserrat';
+    margin-top: -5px!important;
+}
+.accordion {
+  color: #444;
+  cursor: pointer;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  transition: 0.4s;
+}
+
+
+.panel {
+border-style: unset;
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+}
+
+
+hr {
+    margin-left: 90px;}
+
+/*collapse section */
+.collapsible {
+  cursor: pointer;
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 15px;
+}
+
+.content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+}
+
+
+
+.product-tabview{
+color:#222;
+border-bottom: 1px solid #222;
+    font-size: 16px;
+}
+.productView-info-name {
+    font-weight: 500;
+	    font-size: 14px;
+		line-height: 0px;
+		font-family: Ubuntu,sans-serif;
+	}
+	
+	input:focus, button:focus, textarea:focus, select:focus, details:focus, [href]:focus, [tabindex]:not([tabindex="-1"]):focus, [contenteditable="true"]:focus {
+    outline:unset !important;
+  
+}
+	
+	.tabs{
+    height:auto;
+    margin:0 auto;
+	border-bottom: unset;
+}
+
+/* tab list item */
+.tabs .tabs-list{
+    list-style:none;
+    margin:0px;
+    padding:0px;
+}
+.tabs .tabs-list li{
+    float:left;
+    margin:0px;
+    padding:10px 70px;
+    text-align: center;
+    border-radius:3px;
+}
+.tabs .tabs-list li:hover{
+    cursor:pointer;
+}
+.tabs .tabs-list li a{
+    text-decoration: none;
+    color:#5f5f5f;
+	letter-spacing: 1px;
+}
+
+/* Tab content section */
+.tabs .tab{
+    display:none;
+    min-height:250px;
+    height:auto;
+    border-radius:3px;
+    padding:20px 15px;
+    background-color:lavender;
+    color:darkslategray;
+    clear:both;
+}
+
+.tabs .tab p{
+    line-height:20px;
+    letter-spacing: 1px;
+}
+
+/* When active state */
+.active{
+    display:block !important;
+}
+.tabs .tabs-list li.active{
+    color:black !important;
+	border-bottom: 1px solid #222222;
+	font-weight: 500;
+}
+.active a{
+    color:black !important;
+}
+
+.tabs .tab {
+    background-color: unset !important;
+	}
+
+/* media query */
+@media screen and (max-width:360px){
+    .tabs{
+        margin:0;
+        width:96%;
+    }
+    .tabs .tabs-list li{
+        width:80px;
+    }
+}
+ @media only screen and (max-width: 600px) {
+    .accordion-about {
+      color: #444;
+      cursor: pointer;
+      width: 100%;
+      border: none;
+      text-align: left;
+      outline: none;
+      font-size: 15px;
+      transition: 0.4s;
+    }
+    .icon-about{
+    background-image: url(https://cdn11.bigcommerce.com/s-tjv9cj11yk/product_images/uploaded_images/down-arrow.png?t=1623239103&_ga=2.164462013.383662574.1623041692-506025529.1616843345);
+    background-repeat: no-repeat;
+    background-position: right;
+	background-position-x: 14rem;
+    }
+    .icon-about.active{
+    background-image: url(https://cdn11.bigcommerce.com/s-tjv9cj11yk/product_images/uploaded_images/up-arrow-1-.png?t=1623241341&_ga=2.164581693.383662574.1623041692-506025529.1616843345);
+    background-repeat: no-repeat;
+    background-position: right;
+	background-position-x: 14rem;
+    }
+    
+    .panel-about{
+   display:none;
+    }
+    .panel {
+    border-style: unset;
+      padding: 0 18px;
+      display: none;
+      overflow: hidden;
+    }
+    }
+</style>
+
+<div class="tabs">
+  <div class="tabs hide-for-small-only">
+  <ul class="tabs-list">
+    <div class="row" style="display: flex; justify-content: center;"> 
+  <li class=" active tab-listview tabclass"><a href="#tab1">DESCRIPTON</a></li>
+  <div class="customeTECHNICAL SPECIFICATION"><li class="tab-listview tabclass "><a href="#tab2">TECHNICAL SPECIFICATION</a></li></div>
+ <div class="customeSUSPENSION"><li class="tab-listview tabclass "><a href="#tab3">SUSPENSION</a></li></div>
+ <div class="customeCLASP"><li class="tab-listview tabclass "><a href="#tab4">CLASP<a/></li></div>
+    </div>
+  </ul>
+    <div id="tab1" class="tab active">
+     
+     <p>
+<div>
+
+<ul class="large-block-grid-2" style="list-style-type: none;">
+
+<li>
+
+<ul class="tabs" data-tab>
+    {{#if product.description}}
+        <li class="tab is-active">
+            <a class="tab-title" href="#tab-description">{{lang 'products.description'}}</a>
+        </li>
+    {{/if}}
+    {{#if product.warranty}}
+        <li class="tab {{#unless product.description}}is-active{{/unless}}">
+            <a class="tab-title" href="#tab-warranty">{{lang 'products.warranty'}}</a>
+        </li>
+    {{/if}}
+    {{#all product.custom_fields theme_settings.show_custom_fields_tabs}}
+        <li class="tab">
+            <a class="tab-title" href="#tab-{{dashcase (lowercase (sanitize theme_settings.pdp-custom-fields-tab-label))}}">{{sanitize theme_settings.pdp-custom-fields-tab-label}}</a>
+        </li>
+    {{/all}}
+    {{#all settings.show_product_reviews theme_settings.show_product_reviews product.reviews.total}}
+        <li class="tab">
+            <a class="tab-title productView-reviewTabLink" href="#tab-reviews">{{lang 'products.reviews.header' total=product.reviews.total}}</a>
+        </li>
+    {{/all}}
+</ul>
+<h2 class="is-uppercase title is-size-5 " style=" margin-top: 8px;">About this watch</h2>
+<div class="tabs-contents">
+    {{#if product.description}}
+        <div class="tab-content is-active" id="tab-description">
+            {{{product.description}}}
+        </div>
+    {{/if}}
+    {{#if product.warranty}}
+        <div class="tab-content {{#unless product.description}}is-active{{/unless}}" id="tab-warranty">
+            {{{product.warranty}}}
+        </div>
+    {{/if}}
+    {{#all product.custom_fields theme_settings.show_custom_fields_tabs}}
+      <div class="tab-content" id="tab-{{dashcase (lowercase (sanitize theme_settings.pdp-custom-fields-tab-label))}}">
+         <dl class="productView-info">
+            {{#each product.custom_fields}}
+               <dt class="productView-info-name">{{name}}:</dt>
+               <dd class="productView-info-value content">{{{value}}}</dd>
+            {{/each}}
+         </dl>
+      </div>
+    {{/all}}
+    {{#all settings.show_product_reviews theme_settings.show_product_reviews}}
+       <div class="tab-content" id="tab-reviews">
+           {{> components/products/reviews reviews=product.reviews product=product urls=urls}}
+       </div>
+    {{/all}}
+</div>
+</li>
+<li>
+<!--product feature section--->
+
+
+                {{#if theme_settings.show_custom_fields_tabs '!==' true}}
+				<hr>
+				<h3 class="is-uppercase title is-size-6 has-double-margin-bottom" style="margin-left: 90px; margin-top: -18px;">Feature</h3>
+                    {{#each product.custom_fields}}
+					<div class="custome{{name}}">
+					<div style="margin-left: 90px;">
+                        <dt class="productView-info-name collapsible">{{name}}:</dt>
+                        <dd class="{{lowercase (camelcase name)}} productView-info-value testing-none content contentp" style="display: none;">{{{ sanitize value}}}</dd>
+                    </div>
+					</div>
+					{{/each}}
+					<br>
+					<hr>
+						  <div style="margin-left: 90px; display: inline-block; margin-top: 15px;">
+
+<div class="accordion">
+<p class ="contentp is-size-7"><img src="https://cdn11.bigcommerce.com/s-tjv9cj11yk/product_images/uploaded_images/3year.png?t=1622526076&_ga=2.176788261.1837679701.1622439680-506025529.1616843345">&nbsp;&nbsp;&nbsp;&nbsp; 3-Year Guarantee</p>
+</div>
+
+<div class="panel">
+  <p class="is-size-8 is-usp-text column is-12 is-paddingless-top">We back our watches with a 3-Year international warranty. In the rare case of a malfunction or a movement defect, you can contact us and send your watch back free of charge and we’ll repair it for you within 2 weeks.</p>
+</div>						  
+						  
+						  <div class="accordion">
+<p class ="contentp is-size-7"><img src="https://cdn11.bigcommerce.com/s-tjv9cj11yk/product_images/uploaded_images/payment.png?t=1622526075&_ga=2.172605347.1837679701.1622439680-506025529.1616843345">&nbsp;&nbsp;&nbsp;&nbsp; Secure Payment</p>
+</div>
+
+<div class="panel">
+  <p class="is-size-8 is-usp-text column is-12 is-paddingless-top;">Formex is dedicated to online payment security. We do not store any of your payment information. The following methods of payment are available: VISA, Mastercard, AMEX, ApplePay, PayPal & Bank Transfer.</p>
+</div>
+
+<div class="accordion">
+<p class ="contentp is-size-7"><img src="https://cdn11.bigcommerce.com/s-tjv9cj11yk/product_images/uploaded_images/delivery.png?t=1622526073&_ga=2.64010031.1837679701.1622439680-506025529.1616843345">&nbsp;&nbsp;&nbsp;&nbsp; Free Express Delivery</p>
+</div>
+
+<div class="panel">
+  <p class="is-size-8 is-usp-text column is-12 is-paddingless-top">All watch prices already include free shipping worldwide. As soon as we have processed your order, you will receive a tracking number to follow your package. Expect your watch within 2 business days within Europe, or within 3 business days for overseas orders. If for any reason you think it’s not the right fit, you can return your watch free of charge. If you contact us before returning or exchanging your watch, we’ll even have your shipping expenses covered.</p>
+</div>
+
+<div class="accordion">
+<p class="contentp is-size-7"><img src="https://cdn11.bigcommerce.com/s-tjv9cj11yk/product_images/uploaded_images/swiss-made-40x.png?t=1622525992&_ga=2.172687139.1837679701.1622439680-506025529.1616843345">&nbsp;&nbsp;&nbsp;&nbsp; Swiss Made</p>
+
+</div>
+<div class="panel">
+  <p class="is-size-8 is-usp-text column is-12 is-paddingless-top"> All our watches are designed, developed and assembled in-house at our headquarters in Biel-Bienne, Switzerland and meet the current, more strict Swiss Made requirement, which entered into force on January 2017. Every single piece undergoes a variety of quality and functionality controls, before making it to your wrist.</p>
+</div>
+</div>
+                {{/if}}
+            </dl>
+			</li>
+</ul>
+</div>     </p>
+  </div>
+ 
+   <div id="tab2" class="tab">
+    <p>
+    <div class="tab-specification"></div>
+    
+    </p>
+    
+  </div>
+   <div id="tab3" class="tab">
+    <p>
+      <div class="tab-suspension"></div>  
+   </p>
+  </div>
+  
+  <div id="tab4" class="tab">
+    <p>
+      <div class="tab-clasp">
+      
+    </p>
+  </div>
+
+</div>
+
+</div>
+
+<!---discription for mobile screen --->
+<div class="hide-for-medium-up">
+<ul class="tabs" data-tab>
+    {{#if product.description}}
+        <li class="tab is-active">
+            <a class="tab-title" href="#tab-description">{{lang 'products.description'}}</a>
+        </li>
+    {{/if}}
+    {{#if product.warranty}}
+        <li class="tab {{#unless product.description}}is-active{{/unless}}">
+            <a class="tab-title" href="#tab-warranty">{{lang 'products.warranty'}}</a>
+        </li>
+    {{/if}}
+    {{#all product.custom_fields theme_settings.show_custom_fields_tabs}}
+        <li class="tab">
+            <a class="tab-title" href="#tab-{{dashcase (lowercase (sanitize theme_settings.pdp-custom-fields-tab-label))}}">{{sanitize theme_settings.pdp-custom-fields-tab-label}}</a>
+        </li>
+    {{/all}}
+    {{#all settings.show_product_reviews theme_settings.show_product_reviews product.reviews.total}}
+        <li class="tab">
+            <a class="tab-title productView-reviewTabLink" href="#tab-reviews">{{lang 'products.reviews.header' total=product.reviews.total}}</a>
+        </li>
+    {{/all}}
+</ul>
+<h2 class=" is-uppercase title is-size-5 accordion-about icon-about" style="margin-top: -18px;">About this watch</h2>
+<div class="tabs-contents panel-about" >
+    {{#if product.description}}
+        <div class="tab-content is-active" id="tab-description">
+           {{{product.description}}} 
+        </div>
+    {{/if}}
+    {{#if product.warranty}}
+        <div class="tab-content {{#unless product.description}}is-active{{/unless}}" id="tab-warranty">
+            {{{product.warranty}}}
+        </div>
+    {{/if}}
+    {{#all product.custom_fields theme_settings.show_custom_fields_tabs}}
+      <div class="tab-content" id="tab-{{dashcase (lowercase (sanitize theme_settings.pdp-custom-fields-tab-label))}}">
+         <dl class="productView-info">
+            {{#each product.custom_fields}}
+               <dt class="productView-info-name">{{name}}:</dt>
+               <dd class="productView-info-value">{{{value}}}</dd>
+            {{/each}}
+         </dl>
+      </div>
+    {{/all}}
+    {{#all settings.show_product_reviews theme_settings.show_product_reviews}}
+       <div class="tab-content" id="tab-reviews">
+           {{> components/products/reviews reviews=product.reviews product=product urls=urls}}
+       </div>
+    {{/all}}
+</div>
+</div>
+<!---end discription for mobile screen --->
+
+<br>
+<br>
+<div style="width: 100vw; margin-left: calc(-50vw + 50%);">
+{{{region name="product_below_content"}}}
+</div>
+
+<div class="technical-specification">
+{{{region name="technical_specification"}}}
+</div>
+
+<div class="suspension">
+{{{region name="suspension"}}}
+</div>
+
+<div class="Clasp-Upgrade">
+{{{region name="Clasp"}}}
+</div>
+
+{{{region name="Above_Footer_PDP"}}}
+
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous"></script>
+
+<script>
+//product feature collapse section
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+  $(".testing-none").css("display","none");
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "inline-block") {
+      content.style.display = "inline-block";
+    } else {
+	
+      content.style.display = "inline-block";
+    }
+  });
+}
+</script>
+<script type="text/javascript">
+$(document).ready(function(){
+
+  $(".tabs-list li a").click(function(e){
+     e.preventDefault();
+  });
+
+  $(".tabs-list li").click(function(){
+     var tabid = $(this).find("a").attr("href");
+     $(".tabs-list li,.tabs div.tab").removeClass("active");   // removing active class from tab
+
+     $(".tab").hide();   // hiding open tab
+     $(tabid).show();    // show tab
+     $(this).addClass("active"); //  adding active class to clicked tab
+
+  });
+
+});
+</script>
+
+<script>
+
+//tab on click load html content
+
+
+    $(document).ready(function(){
+        var tabcontent = $('.technical-specification').html();
+  $(".tab-listview").click(function(){
+    $(".tab-specification").html(tabcontent);
+  });
+});
+
+$(document).ready(function(){
+        var tabcontent = $('.suspension').html();
+  $(".tab-listview").click(function(){
+    $(".tab-suspension").html(tabcontent);
+  });
+});
+
+$(document).ready(function(){
+        var tabcontent = $('.Clasp-Upgrade').html();
+  $(".tab-listview").click(function(){
+    $(".tab-clasp").html(tabcontent);
+  });
+});
+</script>
+
+<script>
+$(document).ready(function(){
+if 
+($("ul li").find(`[data-content-region='technical_specification']`) || $("ul li").find(`[data-content-region='suspension']`) || $("ul li").find(`[data-content-region='Clasp_Upgrade']`)){
+if 
+($("ul").find(`[data-placement-status='ACTIVE']`) > 0 ){
+$(this).find('.tab-listview').css('display','block'); 
+
+}
+
+else{
+    
+$(this).find('.tab-listview').css('display','');
+}
+}
+});
+</script>
+
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.display === "block") {
+      panel.style.display = "none";
+    } else {
+      panel.style.display = "block";
+    }
+  });
+}
+</script>
+ <script>
+    if ($(window).width() < 800) {
+    var acc = document.getElementsByClassName("accordion-about");
+    var i;
+    
+    for (i = 0; i < acc.length; i++) {
+      acc[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var panel = this.nextElementSibling;
+        if (panel.style.display === "block") {
+          panel.style.display = "none";
+        } else {
+          panel.style.display = "block";
+        }
+      });
+    }
+    $(".icon-about").click(function() {
+        $(this).toggleClass('active active');
+     
+    });
+    }
+    </script>
+

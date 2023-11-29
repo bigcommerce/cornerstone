@@ -1,0 +1,78 @@
+---
+category:
+    shop_by_price: true
+    products:
+        limit: {{theme_settings.categorypage_products_per_page}}
+---
+{{inject "categoryProductsPerPage" theme_settings.categorypage_products_per_page}}
+{{#partial "head"}}
+    {{#if pagination.category.previous}}
+        <link rel="prev" href="{{pagination.category.previous}}">
+    {{/if}}
+    {{#if pagination.category.next}}
+        <link rel="next" href="{{pagination.category.next}}">
+    {{/if}}
+{{/partial}}
+{{#partial "amp-style"}}
+    {{> components/amp/category/styles }}
+{{/partial}}
+{{#partial "page"}}
+    {{> components/amp/common/header }}
+    {{#if category.image}}
+        <div class="categoryView-img">
+            <amp-img src="{{getImage category.image 'zoom_size'}}" width="300" height="150" layout="responsive" alt="{{category.name}}"></amp-img>
+        </div>
+    {{/if}}
+    <div class="container">
+        <h1 class="categoryView-title">
+            {{category.name}}
+        </h1>
+    </div>
+    <div class="page-content" id="product-listing-container">
+        {{#if category.products}}
+            {{> components/amp/category/product-listing}}
+        {{else}}
+            <p>{{lang 'categories.no_products'}}</p>
+        {{/if}}
+    </div>
+    {{> components/amp/category/subcategories}}
+    {{> components/amp/common/footer}}
+    {{#if settings.amp_analytics_id}}
+        <amp-analytics type="googleanalytics">
+            <script type="application/json">
+            {
+                "vars": {
+                    "account": "{{settings.amp_analytics_id}}"
+                },
+                "extraUrlParams": {
+                    "cd1": "{{page_type}}",
+                    "cd2": "{{category.id}}",
+                    "cd3": "{{category.url}}",
+                    "cd4": "{{category.name}}"
+                },
+                "triggers": {
+                    "trackPageview": {
+                        "on": "visible",
+                        "request": "pageview"
+                    },
+                    "trackClickOnProductCard" : {
+                        "on": "click",
+                        "selector": ".card-figure a, .card-title a",
+                        "request": "event",
+                        "vars": {
+                            "eventCategory": "Category",
+                            "eventAction": "Product Card"
+                        },
+                        "extraUrlParams": {
+                            "cd6": "${productLink}",
+                            "cd7": "${productId}",
+                            "cd8": "${productName}"
+                        }
+                    }
+                }
+            }
+            </script>
+        </amp-analytics>
+    {{/if}}
+{{/partial}}
+{{> layout/amp}}

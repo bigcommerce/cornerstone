@@ -9,12 +9,14 @@ products:
 carousel: {{theme_settings.homepage_show_carousel}}
 blog:
     recent_posts:
-        limit: {{theme_settings.homepage_blog_posts_count}}
+        limit: 6
 ---
 {{#partial "hero"}}
     {{{region name="home_below_menu"}}}
     {{#and carousel carousel.slides.length}}
+        <div class="sectionforhomeslider">
         {{> components/carousel arrows=theme_settings.homepage_show_carousel_arrows play_pause_button=theme_settings.homepage_show_carousel_play_pause_button}}
+        </div>
     {{/and}}
     {{{region name="home_below_carousel"}}}
 {{/partial}}
@@ -25,7 +27,94 @@ blog:
         {{> components/common/alert/alert-info message}}
     {{/each}}
 
-<div class="main full">
+<div class="main full home-pages">
+    <div class="container categorysliderhome">
+    <section class="slick-featured">
+      <style>
+          .slick-featured 
+          {
+                height: 75%;
+            }
+          .categoryprslider small
+          {
+              font-size: 12px;
+          }
+          .commenbtn1
+{
+    background-color: #242424;
+    border-color: transparent;
+    color: #fff;
+    position: relative;
+    bottom: 7px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    font-size: 13px;
+    padding: 6px 10px;
+    white-space: nowrap;
+    border-radius: 1px;
+    
+}
+.commenbtn1:hover
+{
+    background-color: #524949;
+    color: #fff;
+}
+          .viewmepopup:hover .viewproduct{
+        display: inline-block;
+}
+      .categorysliderhome  .slick-prev {
+    left: 0;
+}
+       .categorysliderhome   .slick-next {
+    right: 0;
+}
+@media (min-width: 801px)
+{
+.body {
+    margin-top: 0px;
+}
+}
+      </style>
+      <h1 class="text-center" > Discover Our Watches </h1>
+      <div class="featured-categories categoryprslider" 
+      
+    data-slick='{
+        "dots": false,
+        "infinite": true,
+        "arrows": true,
+        "mobileFirst": true,
+        "slidesToShow": 2,
+        "slidesToScroll": 2,
+        "responsive": [
+            {
+                "breakpoint": 768,
+                "settings": {
+                    "slidesToScroll": 5,
+                    "slidesToShow": 5
+                }
+            }
+        ]
+    }'>
+          
+        {{#each categories}}
+    {{#if id '===' '24'}}
+        {{#each children}}
+          <div class="viewmepopup">
+        <a href="{{url}}" class="{{lowercase (dashcase name)}} sadasdas" style="    text-decoration: none;">
+            <img src="{{getImage image}}">
+            <h5 class="text-center">{{name}}</h5>
+            <p class="price-list-category text-center text-uppercase"></p>
+            <span class="button is-primary is-size-7 viewproduct commenbtn1 text-uppercase">View Collection</span>
+        </a>
+        </div>
+           
+        {{/each}}
+    {{/if}}
+{{/each}}  
+</div>
+          </section>
+    </div>
     {{#if products.featured}}
         {{> components/products/featured products=products.featured columns=theme_settings.homepage_featured_products_column_count}}
     {{/if}}
@@ -36,10 +125,15 @@ blog:
     {{/if}}
     {{{region name="home_below_top_products"}}}
 
-    {{#if products.new}}
-        {{> components/products/new products=products.new columns=theme_settings.homepage_new_products_column_count}}
-    {{/if}}
+    <!--{{#if products.new}}-->
+    <!--    {{> components/products/new products=products.new columns=theme_settings.homepage_new_products_column_count}}-->
+    <!--{{/if}}-->
+    <div style="width: 100vw;margin-left: calc(-50vw + 50%);">
     {{{region name="home_below_new_products"}}}
+    </div>
+    
+<!--    home blog sectoion-->
+    {{> components/common/home-blog-section }}
 </div>
 {{/partial}}
 {{> layout/base}}

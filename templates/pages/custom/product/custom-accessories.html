@@ -1,0 +1,63 @@
+---
+product:
+    videos:
+        limit: {{theme_settings.productpage_videos_count}}
+    reviews:
+        limit: {{theme_settings.productpage_reviews_count}}
+    related_products:
+        limit: {{theme_settings.productpage_related_products_count}}
+    similar_by_views:
+        limit: {{theme_settings.productpage_similar_by_views_count}}
+---
+{{inject 'productId' product.id}}
+
+{{#each product.custom_fields}}
+    	{{#if name '===' 'HIDE_FIELDS'}}
+    	{{inject "hiddenelement" value}}
+    	{{/if}}
+    	{{/each}}
+
+{{#partial "page"}}
+
+    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+
+    {{#each product.shipping_messages}}
+        {{> components/common/alert/alert-info message}}
+    {{/each}}
+
+    <div itemscope itemtype="https://schema.org/Product">
+        {{> components/products/custom-accessories-product-view schema=true  }}
+
+
+        {{#if product.videos.list.length}}
+            {{> components/products/videos product.videos}}
+        {{/if}}
+
+        {{#all settings.show_product_reviews theme_settings.show_product_reviews (if theme_settings.show_product_details_tabs '!==' true)}}
+            {{> components/products/reviews reviews=product.reviews product=product urls=urls}}
+        {{/all}}
+
+        {{> components/products/tabs}}
+    </div>
+{{/partial}}
+{{> layout/base}}
+
+<script>
+(function(){
+    try {
+   	 var jsContext = JSON.parse({{jsContext}});
+   	 var customerGroupIdsArray = jsContext['hiddenelement'].split(',');
+//    	console.log(customerGroupIdsArray);
+    	customerGroupIdsArray.forEach(function(item) {
+    //	document.getElementsByClassName(`custome${item}`)[0].style.display = 'none';
+    $(`.custome${item}:visible`).hide();
+	$(`.custome${item}:not(:first)`).hide();
+});
+   	 
+    } catch(e) {
+   	 console.log("Exception when dealing with call-us button:", e);
+    }
+
+ 
+}());
+</script>

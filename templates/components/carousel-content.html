@@ -1,11 +1,243 @@
-<div class="heroCarousel-content{{#and (if heading '==' false) (if text '==' false)}} heroCarousel-content--empty{{/and}}">
-    {{#if heading}}
-        <p class="heroCarousel-title">{{{heading}}}</p>
-    {{/if}}
-    {{#if text}}
-        <p class="heroCarousel-description">{{{text}}}</p>
-    {{/if}}
+<style>
+
+  .homesliders .heroCarousel-action {
+      padding: 1px 24px;
+      line-height: 24px;
+      font-size: 18px;
+      text-transform: capitalize;
+      font-weight: 400;
+      border-radius: 0px;
+      margin-top: 14px;
+      background-color: transparent;
+      }
+ .homesliders .heroCarousel{
+    margin-bottom: 40px;
+    margin-top: 0px;
+    @media only screen and (max-width: 1023px) {
+      margin-bottom: 20px;
+    }
+  }
+  
+  .heroCarousel-content{
+    background-color: transparent;
+  width: 84rem;
+  top: 64%;
+  transform: translateY(-70%);
+  text-align: left;
+  float: left;
+  margin: 0;
+  padding: 75px;
+    @media only screen and (max-width: 1919px) {
+      width: 85rem;
+      background-color: transparent;
+width: 79rem;
+top: 64%;
+transform: translateY(-73%);
+text-align: left;
+float: left;
+margin: 0;
+padding: 30px;
+    }
+    @media only screen and (max-width: 1279px) {
+      width: 68rem;
+      background-color: transparent;
+width: 79rem;
+top: 64%;
+transform: translateY(-73%);
+text-align: left;
+float: left;
+margin: 0;
+padding: 30px;
+    }
+    @media only screen and (max-width: 1023px) {
+      width: 100%;
+      position: absolute;
+      transform: translateY(-50%);
+    }
+  }
+  
+  
+  .heroCarousel-title{
+      text-align: left;
+    float: left;
+    font-size: 23px;
+    position: relative;
+    padding: 0;
+    margin: 0;
+    letter-spacing: 9px;
+    line-height: 50px;
+    font-family: "bankgothic_lt_btlight",sans-serif !important;
+    font-weight: 500 !important;
+    margin-left: -3px;
+    font-style: italic;
+    color: #fff;
+    @media only screen and (max-width: 1919px) {
+      font-size: 30px;
+      line-height: 56px;
+
+    }
+    @media only screen and (max-width: 1279px) {
+      font-size: 52px;
+      line-height: 46px;
+      letter-spacing: 14.6px;
+      margin-bottom: 15px;
+    }
+    @media only screen and (max-width: 1023px) {
+      font-size: 30px;
+      line-height: 22px;
+    }
+    @media only screen and (max-width: 767px) {
+      font-size: 26px;
+      line-height: 18px;
+    }
+    @media only screen and (max-width: 666px) {
+      letter-spacing: 4px;
+  
+    }
+    @media only screen and (max-width: 479px) {
+      font-size: 16px;
+      line-height: 14.6px;
+      margin-bottom: 5px;
+    }
+  }
+.heroCarousel .slick-dots li {
+    background-color: rgb(255 255 255 / 0%);
+}
+    .slick-dots li button {
+
+    background: #4e4e4e !important;
+}
+  .heroCarousel-description{
+    text-align: left;
+    float: left;
+    font-size:15px;
+    color: #fff;
+    padding-right: 700px;
+    font-family: "Ubuntu",sans-serif;
+    text-transform: unset;
+    letter-spacing: 1px;
+    font-weight: 400;
+    line-height: 1.5;
+    
+    @media only screen and (max-width: 1279px) {
+      font-size: 18px;
+      line-height: 56px;
+    }
+    @media only screen and (max-width: 1023px) {
+      font-size: 26px;
+      line-height: 32px;
+    }
+    @media only screen and (max-width: 767px) {
+      font-size: 20px;
+      line-height: 26px;
+    }
+    @media only screen and (max-width: 666px) {
+      letter-spacing: 2px;
+    }
+    @media only screen and (max-width: 479px) {
+      font-size: 11px;
+      line-height: 14.6px;
+      margin-bottom: 5px;
+    }
+  }
+
+.slick-next, .slick-prev {
+    background-color: white;
+    background-color: rgba(255, 255, 255, 0.9);
+    z-index: 1;
+    border: 1px solid white;
+    height: 4.35714rem;
+    margin-top: -1.07143rem;
+    padding: 0.71429rem;
+    width: 2.85714rem;
+}
+.slick-prev, .slick-next {
+    position: absolute;
+    display: none;
+    height: 20px;
+    width: 20px;
+    line-height: 0px;
+    font-size: 0px;
+    cursor: pointer;
+    background: transparent;
+        background-color: transparent;
+    color: transparent;
+    top: 50%;
+    transform: translate(0, -50%);
+    padding: 0;
+    border: none;
+    outline: none;
+}
+
+.btnss {
+    font-size: 15px;
+    color: white;
+    margin-top: 10px;
+    border-color: white;
+}
+.btnss:hover {
+    background-color: #282828;
+    border-color: white;
+    color: white;
+}
+
+      </style>
+      <div class="show-for-xlarge-up">
+      <style>
+.show-for-xlarge-up .heroCarousel .slick-dots {
+    bottom: 2.5rem;
+}
+.slick-dots li button {
+    border: 1px solid #333;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    text-align: center;
+    background: 0 0;
+    display: block;
+    height: 0px;
+    width: 0px;
+    outline: 0;
+    line-height: 0;
+    font-size: 0px;
+    color: transparent;
+    padding: 3px;
+    cursor: pointer;
+}
+      </style>
+      <ul class="small-block-grid-12 medium-block-grid-4 large-block-grid-4">
+   
+    <li>
+<div data-animation-in="fadeIn" class="animated fadeIn heroCarousel-content{{#unless show_background}} heroCarousel-content--empty{{/unless}} homesliders">
+    <h6 data-animation-in="slideInUp" class="animated slideInUp heroCarousel-title">{{{heading}}}</h6>
+    <p data-animation-in="slideInUp" class="animated slideInUp  heroCarousel-description">{{{text}}}</p>
     {{#if button_text}}
-        <a href="{{url}}" aria-label="{{#if this.alt_text.length '!=' 0}}{{this.alt_text}}{{else}}{{lang 'carousel.slide_number' slide_number=(add @index 1)}}{{/if}}, {{button_text}}" class="heroCarousel-action button button--primary button--large">{{{button_text}}}</a>
+        <span data-animation-in="slideInUp" class="animated slideInUp heroCarousel-action button button--primary button--large">
+          <span class="heroCarousel-action-inn">
+          <h5 class="btnss ubuntu-font">discover our collection</h5>
+        </span>
     {{/if}}
+</div>
+</li>
+<li></li>
+</ul>
+</div>
+<div class="show-for-medium-up">
+  <ul class="small-block-grid-12 medium-block-grid-4 large-block-grid-4">
+   
+   <li>
+<div data-animation-in="fadeIn" class="animated fadeIn heroCarousel-content{{#unless show_background}} heroCarousel-content--empty{{/unless}} homesliders">
+   <h6 data-animation-in="slideInUp" class="animated slideInUp heroCarousel-title">{{{heading}}}</h6>
+   <p data-animation-in="slideInUp" class="animated slideInUp  heroCarousel-description">{{{text}}}</p>
+   {{#if button_text}}
+       <span data-animation-in="slideInUp" class="animated slideInUp heroCarousel-action button button--primary button--large" style="border: 1px solid #fff">
+         <span class="heroCarousel-action-inn">
+         <h5 class="btnss ubuntu-font">discover our collection</h5>
+       </span>
+   {{/if}}
+</div>
+</li>
+<li></li>
+</ul>
 </div>

@@ -11,11 +11,7 @@
     {{/if}}
     {{#all product.custom_fields theme_settings.show_custom_fields_tabs}}
         <li class="tab">
-            <a class="tab-title"
-               href="#tab-{{dashcase (lowercase (sanitize theme_settings.pdp-custom-fields-tab-label))}}"
-            >
-                {{sanitize theme_settings.pdp-custom-fields-tab-label}}
-            </a>
+            <a class="tab-title" href="#tab-{{dashcase (lowercase (sanitize theme_settings.pdp-custom-fields-tab-label))}}">{{sanitize theme_settings.pdp-custom-fields-tab-label}}</a>
         </li>
     {{/all}}
     {{#all settings.show_product_reviews theme_settings.show_product_reviews product.reviews.total}}
@@ -38,7 +34,10 @@
     {{#all product.custom_fields theme_settings.show_custom_fields_tabs}}
       <div class="tab-content" id="tab-{{dashcase (lowercase (sanitize theme_settings.pdp-custom-fields-tab-label))}}">
          <dl class="productView-info">
-            {{> components/products/custom-fields }}
+            {{#each product.custom_fields}}
+               <dt class="productView-info-name">{{name}}:</dt>
+               <dd class="productView-info-value">{{{value}}}</dd>
+            {{/each}}
          </dl>
       </div>
     {{/all}}

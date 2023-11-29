@@ -1,14 +1,148 @@
+<!--{{json children }}-->
 {{#if children}}
-<a class="navPages-action has-subMenu{{#if is_active}} activePage{{/if}}"
-   href="{{url}}"
+<a class="navPages-action has-subMenu{{#if is_active}} activePage{{/if}} listnavigations submenusa"
+   href="{{url}}" onclick="location.href='{{url}}';"
    data-collapsible="navPages-{{id}}"
 >
     {{name}}
     <i class="icon navPages-action-moreIcon" aria-hidden="true">
-        <svg><use href="#icon-chevron-down" /></svg>
+        <svg><use xlink:href="#icon-chevron-down" /></svg>
     </i>
 </a>
+
 <div class="navPage-subMenu" id="navPages-{{id}}" aria-hidden="true" tabindex="-1">
+<!--    design change to row by abc-->
+    <div class="flex-row">
+        {{assignVar "categorynames" name}}
+        {{#each children}}
+        <div class="columns navsubmenuborder" >
+            {{#if image}}
+            {{#if (getVar "categorynames")'===''Accessories' }}
+            <a class="navPage-subMenu-action navPages-action{{#if is_active}} activePage{{/if}}"
+                       href="{{url}}"
+                       aria-label="{{name}}"
+                    >
+                       <img src="{{getImage image 'category_card_size'}}" style="width: 150px;object-fit: contain;" alt="{{name}}">
+                    </a>
+            <br>
+            {{else}}
+             <a class="navPages-action has-subMenu{{#if is_active}} activePage{{/if}} listnavigations"
+                       onclick="prpopupdata('navPages-{{id}}','{{url}}','{{name}}');"
+                       href="{{url}}"
+                       data-collapsible="navPages-{{id}}"
+                    ><img src="{{getImage image 'category_card_size'}}" style="width: 150px;object-fit: contain;" alt="{{name}}"></a>
+            {{/if}}
+                           
+                        {{/if}}
+            
+           {{#if children}}
+                    <a class="navPage-subMenu-action navPages-action has-subMenu{{#if is_active}} activePage{{/if}}"
+                       href="{{url}}"
+                       aria-label="{{name}}"
+                    >
+                        {{name}}
+                        <span class="collapsible-icon-wrapper"
+                            data-collapsible="navPages-{{id}}"
+                            data-collapsible-disabled-breakpoint="medium"
+                            data-collapsible-disabled-state="open"
+                            data-collapsible-enabled-state="closed"
+                        >
+                            <i class="icon navPages-action-moreIcon" aria-hidden="true">
+                                <svg><use xlink:href="#icon-chevron-down" /></svg>
+                            </i>
+                        </span>
+                    </a>
+                    <ul class="navPage-childList" id="navPages-{{id}}">
+                        {{#each children}}
+                        <li class="navPage-childList-item">
+                            <a class="navPage-childList-action navPages-action{{#if is_active}} activePage{{/if}}"
+                               href="{{url}}"
+                               aria-label="{{name}}"
+                            >
+                                {{name}}
+                            </a>
+                        </li>
+                        {{/each}}
+                    </ul>
+                {{else}}
+                
+                {{#if (getVar "categorynames")'===''Accessories' }}
+            <a class="navPage-subMenu-action navPages-action{{#if is_active}} activePage{{/if}}"
+                       href="{{url}}"
+                       aria-label="{{name}}"
+                    >
+                        {{name}}
+                    </a>
+            {{else}}
+              <a class="navPages-action has-subMenu{{#if is_active}} activePage{{/if}} listnavigations"
+                       onclick="prpopupdata('navPages-{{id}}','{{url}}','{{name}}');"
+                       href="{{url}}"
+                       data-collapsible="navPages-{{id}}"
+                    >
+                        {{name}}
+                        <i class="icon navPages-action-moreIcon" aria-hidden="true">
+                            <svg><use xlink:href="#icon-chevron-down" /></svg>
+                        </i>
+                    </a>
+            {{/if}}
+                   
+<!--
+                    <div class="navPage-subMenu" id="navPages-{{id}}" aria-hidden="true" tabindex="-1" style="margin: -68px 0px;">
+                            <div class="flex-row">
+
+                                <div class="columns navsubmenuborder">
+                                   sdasdasd
+                                </div>
+
+                            </div>
+
+                        </div>
+-->
+<!--
+                    <a class="navPage-subMenu-action navPages-action{{#if is_active}} activePage{{/if}}"
+                       href="{{url}}"
+                       aria-label="{{name}}"
+                    >
+                        {{name}}
+                    </a>
+-->
+                {{/if}}
+        </div>
+        {{/each}}
+        {{#if (getVar "categorynames")'===''Accessories' }}
+            
+            {{else}}
+             <div class="column is-full">
+              <a href="/collections/watches" class="button padded is-primary is-size-6 is-full has-text-white full-width-button">
+                Discover All Watches
+              </a>
+            </div>
+            {{/if}}
+        
+   <!--  end   design change to row by abc-->
+    </div>
+<!--   product section category abc-->
+    {{#each children}}
+           
+           {{#if children}}
+                  
+                {{else}}
+                  
+                    <div class="navPage-subMenu productsubmenulist" id="navPages-{{id}}" data-navid="navPages-{{id}}" data-url="{{url}}" data-name="{{name}}" aria-hidden="true" tabindex="-1" style="top: 6px;">
+                            <!--    design change to row by abc-->
+                            <div class="flex-row">
+
+                                
+
+                                <!--  end   design change to row by abc-->
+                            </div>
+
+                        </div>
+
+                {{/if}}
+        {{/each}}
+    <!--   end of product section category abc-->
+<!--
     <ul class="navPage-subMenu-list">
         <li class="navPage-subMenu-item">
             <a class="navPage-subMenu-action navPages-action"
@@ -33,7 +167,7 @@
                             data-collapsible-enabled-state="closed"
                         >
                             <i class="icon navPages-action-moreIcon" aria-hidden="true">
-                                <svg><use href="#icon-chevron-down" /></svg>
+                                <svg><use xlink:href="#icon-chevron-down" /></svg>
                             </i>
                         </span>
                     </a>
@@ -60,6 +194,7 @@
             </li>
         {{/each}}
     </ul>
+-->
 </div>
 {{else}}
 <a class="navPages-action{{#if is_active}} activePage{{/if}}"

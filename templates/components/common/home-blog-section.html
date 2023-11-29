@@ -1,0 +1,116 @@
+<style>
+.accesseryess
+    {
+    background-color: #fff;
+    color: #363636;
+    border: 1px solid #e4e4e4;
+    cursor: pointer;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    text-align: center;
+    white-space: nowrap;
+    padding: 5px 14px;
+    margin: 5px;
+    padding: 3px 14px;
+    margin: 5px;
+    font-size: 11px;
+    text-transform: uppercase;
+    list-style-type: none;
+    display: inline-block;
+    }
+    .selectedcategory
+    {
+    background-color: #6a6a6a;
+    color: #fff;
+    border: 1px solid #e4e4e4;
+    }
+    .selectedcategory:hover
+    {
+    color: #fff !important;
+    }
+    .accesseryess:hover
+    {
+     border-color: #b5b5b5;
+    color: #363636;
+    }
+    .inlinelists
+    {
+        display: inline-flex;
+        flex-direction: row;
+    }
+    .home-blog-post
+    {
+/*        background-color: #f0f4f5!important;*/
+    }
+    .blog-image-tag {
+    padding: 12px;
+    background: #fff;
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: #242424;
+    font-size: 11px;
+    text-transform: uppercase;
+}
+    .home-blog-img img
+    {
+            height: 300px;
+    object-fit: cover;
+    width: 100%;
+    }
+</style>
+<div class="home-blog-post m-b-50" >
+    <div class="section-title">
+        <h2 class="page-heading"></h2>
+        {{#if theme_settings.BlogSubTitle}}
+          <p class="page-sub-heading">{{theme_settings.BlogSubTitle}}</p>
+        {{/if}}
+<!--        blog filtrtion abcd-->
+        <div class="searchwatchsection_acce" style="width: 100vw; margin-left: calc(-50vw + 50%); ">
+            <section class="container" style="padding: 25px 0px">
+                <div class="listitemsss text-center">
+                    <div>
+                        <h6 style="margin-bottom: 3px;">FILTER BY</h6>
+                        <ul class="inline-list main_list1 blogsectionhome">
+                            <a class="checkchecked" onclick="showMessage('ambassador');" href="blog/tag/ambassador">
+                                <li class="accesseryess "><span class="">ambassador</span></li>
+                            </a>
+                            <a class="checkchecked" onclick="showMessage('events');" href="blog/tag/events">
+                                <li class="accesseryess "><span class="">events</span></li>
+                            </a>
+                            <a class="checkchecked" onclick="showMessage('media');" href="blog/tag/media">
+                                <li class="accesseryess "><span class="">media</span></li>
+                            </a>
+                            <a class="checkchecked" onclick="showMessage('news');" href="blog/tag/news">
+                                <li class="accesseryess "><span class="">news</span></li>
+                            </a>
+                            <a class="checkchecked" onclick="showMessage('review');" href="blog/tag/review">
+                                <li class="accesseryess "><span class="">review</span></li>
+                            </a>
+                            <a class="checkchecked" onclick="showMessage('story');" href="blog/tag/story">
+                                <li class="accesseryess "><span class="">story</span></li>
+                            </a>
+                        </ul>
+                    </div>
+                </div>
+
+            </section>
+        </div>
+<!--        blog filtration abcd-->
+    </div>
+    <div class="home-blog-list-wrap m-t-30 clearfix">
+        <div class="home-blog-list">
+            <ul class="small-block-grid-1 medium-block-grid-3 large-block-grid-3">
+            {{#each blog.recent_posts}}
+            {{#if @index '<' 6}}
+              {{> components/blog/home-page-post blog=blog.recent_posts columns=6 settings=../settings}}
+              {{/if}}
+            {{/each}}
+            </ul>
+            <div class="text-center">
+              <a href="/blog/" class="button is-uppercase is-spaced padded trans_button is-size-7" style="border-radius: 1px;border-color: #dbdbdb;">View All</a>
+            </div>
+        </div>
+    </div>
+  </div>

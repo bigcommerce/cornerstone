@@ -1,4 +1,23 @@
+<style>
+.previewCartAction-viewCart
+    {
+        display: contents;
+        
+    }
+.previewCartAction-viewCart a
+    {
+    background-color: #242424;
+    border-color: transparent;
+    color: #fff;
+    padding-top: 5px;
+    padding-bottom: 5px;
+        font-size: 11px;
+    border-radius: 1px;
+        
+    }
+</style>
 <div class="previewCartWrapper">
+    <span style="right: -8px;float: right;font-size: 20px;position: absolute;top: -12px;cursor: pointer;"><i class="fa fa-times-circle" aria-hidden="true"></i></span>
   <div class="previewCart">
     {{#if cart.items.length}}
         <ul class="previewCartList">
@@ -33,7 +52,7 @@
                                 {{#if quantity '>' 1}}
                                     {{quantity}} &times;
                                 {{/if}}
-                                {{#or ../customer (unless ../settings.hide_price_from_guests) (if type '==' 'GiftCertificate')}}
+                                {{#or ../customer (if ../theme_settings.restrict_to_login '!==' true)}}
                                     <span{{#if price_discounted}} class="price--discounted"{{/if}}>{{price.formatted}}</span>
                                     {{#if price_discounted}}
                                         {{price_discounted.formatted}}
@@ -46,14 +65,13 @@
                     </li>
                 {{/each}}
             </ul>
+            
             <div class="previewCartAction">
+                <span class="ubuntu-font" style="display: grid;margin-top: -10px;text-align: center;margin-bottom: 5px;font-weight: 500;">{{ cart.sub_total.formatted }}</span>
+                
                 {{#if cart.show_primary_checkout_button}}
                     <div class="previewCartAction-checkout">
-                        <a
-                                href="{{urls.checkout.single_address}}"
-                                class="button button--small button--primary"
-                                data-primary-checkout-now-action
-                        >
+                        <a href="{{urls.checkout.single_address}}" class="button button--small button--primary">
                             {{lang 'cart.preview.checkout_now'}}
                         </a>
                     </div>

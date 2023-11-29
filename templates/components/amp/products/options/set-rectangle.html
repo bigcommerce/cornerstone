@@ -1,0 +1,24 @@
+<div class="form-field" data-product-attribute="set-rectangle">
+    <label class="form-label form-label--alternate form-label--inlineSmall">
+        {{this.display_name}}:
+        <span data-option-value></span>
+        {{#if required}}
+            <small>{{lang 'common.required'}}</small>
+        {{/if}}
+    </label>
+    {{#each this.values}}
+    <div class="form-option-wrapper">
+        <input
+            class="form-radio"
+            type="radio"
+            id="attribute_{{id}}"
+            name="attribute[{{../id}}]"
+            value="{{id}}"
+            {{#if selected}}checked{{/if}}
+            {{#if ../required}}required{{/if}}>
+        <label class="form-option" for="attribute_{{id}}" data-product-attribute-value="{{id}}">
+            <span class="form-option-variant">{{this.label}}</span>
+        </label>
+    </div>
+    {{/each}}
+</div>

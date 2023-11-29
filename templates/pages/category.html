@@ -5,6 +5,7 @@ category:
         limit: {{theme_settings.categorypage_products_per_page}}
 ---
 {{inject "categoryProductsPerPage" theme_settings.categorypage_products_per_page}}
+{{inject "categoryId" category.id}}
 {{#partial "head"}}
     {{#if pagination.category.previous}}
         <link rel="prev" href="{{pagination.category.previous}}">
@@ -14,9 +15,140 @@ category:
     {{/if}}
 {{/partial}}
 
+
 {{#partial "page"}}
+{{#if category.faceted_search_enabled}}
+<style>
+.selectsearchmain
+    {
+    border-radius: 30px;
+    height: 40px;
+    }
+/*
+#faceted-search-container
+    {
+        display: none;
+    }
+#product-listing-container
+    {
+        width: 100% !important;
+    }
+*/
+  @media (min-width: 801px)
+    {
+.productGrid .product {
+    width: 24%;
+}
+    }
+</style>
+<!--  watches filter  -->
+{{#any category.facets visible=true}}
+<div class="searchwatchsection" style="width: 100vw;margin-left: calc(-50vw + 50%);background: #f8f8f8;display: none;">
+<section class="container" style="padding: 25px 0px">
+    <h3 class="text-center">FIND YOUR PERFECT WATCH</h3>
+<ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-4">
+    {{#each category.facets}}
+        {{#if visible}}
+        <li class="{{ title }}" style="display: none">
+            {{assignVar "title_all" title}}
+        <h6 style="margin-bottom: 5px;text-align: center;">{{ title }}</h6>
+        <select name="type" class="selectsearchmain">
+        <option value="" selected >-- SELECT {{ title }} -- </option>
+        
+        {{#each items}}
+            <option value="&{{getVar "title_all"}}={{ title }}" {{#if selected }} selected {{else}} s{{/if}}>{{ title }}</option>
+        {{/each}}
+        </select>
+        </li>
+        {{/if}}
+    {{/each}}
+</ul>
+    <div class="container text-center" >
+        <span data-animation-in="slideInUp" class="animated slideInUp heroCarousel-action button button--primary button--large filterwatch">
+          <span class="heroCarousel-action-inn">
+            SEARCH
+          </span>
+        </span>
+    </div>
+</section>
+</div>
+{{/any}}
+
+<!--  accessories filter section-->
+<div class="searchwatchsection_acce" style="width: 100vw;margin-left: calc(-50vw + 50%);background: #f8f8f8;display: none;">
+<section class="container" style="padding: 25px 0px">
+    <h3 class="text-center" style="21px">ACCESSORIES</h3>
+    <span class="catsubdescription"></span>
+    <div class="listitemsss text-center">
+    </div>
+    
+</section>
+</div>
+    {{/if}}
+{{#each breadcrumbs}}
+{{#if name '==''Accessories'}}
+    {{assignVar "catchek" 'Accessories'}}
+{{else if name '==''Watches'}}
+{{assignVar "catchek" 'Watches'}}
+{{/if}}
+{{/each}}
 
 {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+
+<style>
+.accesseryess
+    {
+    background-color: #fff;
+    color: #363636;
+    border: 1px solid #e4e4e4;
+    cursor: pointer;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    text-align: center;
+    white-space: nowrap;
+    padding: 5px 14px;
+    margin: 5px;
+    padding: 3px 14px;
+    margin: 5px;
+    font-size: 11px;
+    list-style-type:none;
+    display: inline-block;
+    }
+    .selectedcategory
+    {
+    background-color: #6a6a6a;
+    color: #fff;
+    border: 1px solid #e4e4e4;
+    }
+    .selectedcategory:hover
+    {
+    color: #fff !important;
+    }
+    .accesseryess:hover
+    {
+     border-color: #b5b5b5;
+    color: #363636;
+    }
+    .inline-list
+    {
+        list-style-type:none;
+    }
+    .filterwatch
+    {
+    background-color: #242424;
+    border-color: transparent;
+    color: #fff;
+    border-radius: 1px;
+    font-size: 10px;
+    }
+    .inlinelists a
+    {
+        text-decoration: none;
+    }
+</style>
+
+<!--
 {{#if category.image}}
     {{> components/common/responsive-img
         image=category.image
@@ -25,12 +157,14 @@ category:
         class="category-header-image"
     }}
 {{/if}}
+-->
 {{#unless theme_settings.hide_category_page_heading }}
     <h1 class="page-heading">{{category.name}}</h1>
     {{{region name="category_below_header"}}}
 {{/unless}}
 {{{category.description}}}
 <div class="page">
+<!--
     {{#if category.faceted_search_enabled}}
         <aside class="page-sidebar" id="faceted-search-container">
             {{> components/category/sidebar}}
@@ -46,6 +180,7 @@ category:
             </aside>
         {{/if}}
     {{/if}}
+-->
 
     <div class="page-content" id="product-listing-container">
         {{> components/category/product-listing}}
@@ -55,3 +190,182 @@ category:
 
 {{/partial}}
 {{> layout/base}}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+var base_url = window.location.origin;
+var data1 = fetch('/graphql', {
+        method: 'POST',
+        mode: 'cors',
+        headers: { 'Content-Type': 'application/json',
+                 'Authorization': `Bearer {{ settings.storefront_api.token }}`},
+        body: JSON.stringify({
+            query: `
+            query CategoryTree3LevelsDeep {
+          site {
+            categoryTree {
+              ...CategoryFields
+              children {
+                ...CategoryFields
+                children {
+                  ...CategoryFields
+                }
+              }
+            }
+          }
+        }
+
+        fragment CategoryFields on CategoryTreeItem {
+          name
+          path
+          entityId
+        }
+`
+
+            }),
+      })
+      .then(res => res.json())
+      .then(data => {
+          var i = 0;
+       data.data.site.categoryTree.forEach( edges => {
+           if(edges  )
+               {
+                   var headingname = 'FILTER';
+                   var linkss = base_url+'/collections/accessories';
+                   var index = 1 ;
+                   var indexid = 'first' ;
+                   if(edges.name === 'Watches')
+                       {
+                           linkss += '?_bc_fsnf=1&COLLECTION=';
+                           headingname = 'COLLECTION';
+                           index = 2 ;
+                           indexid = 'second' ;
+                       }
+                   else
+                       {
+                         linkss = base_url+'/collections/';  
+                       }
+                   
+                   $(".listitemsss").append(`<div class="changeorders score " id="${indexid}" data-index="${index}"><h6 style="margin-bottom: 3px;margin-top: 5px;">${headingname}</h6><ul class="inline-list main_list${i}" style="margin-bottom: 2px;"><ul></div>`);
+                   edges.children.forEach( child => {
+                       var selectdor = '';
+//                       if(localStorage.getItem("cataccesfilter") === child.name)
+//                           {
+//                               selectdor = 'selectedcategory';
+//                           }
+                       
+                       let namesofchild =  child.name.split(' ').join('-');
+                       $(`.main_list${i}`).append(`<a class="checkchecked" onclick="showMessage('${child.name}');" href="${linkss}${namesofchild}"><li class="accesseryess ${selectdor} ${namesofchild}" ><span class="">${child.name}</span></li></a>`);
+                   })
+                   
+               }
+           i = i+1;
+          })
+         
+      })
+
+
+//localStorage.setItem("someVarKey", someVarName);
+function showMessage(msg) {
+   localStorage.setItem("cataccesfilter", msg);
+};
+   //active class add 
+   var collectionsss = getUrlParameter('COLLECTION');
+    let url = $(location).attr('href');
+    var segments = url.split( '/' );
+    var action = segments[4];
+    if(collectionsss.length > 0)
+        {
+             setTimeout(function () {
+            $(`ul .${collectionsss}`).addClass("selectedcategory");
+                 }, 2500);
+         
+        }
+    else if(action.length > 0)
+        {
+            if(action == 'Clasps')
+                {
+                   $(`.catsubdescription`).append(`<div class="row">
+              <div class="large-8 small-12 large-centered columns"><p style="text-align: center;">Care for more comfort and durability? Formex engineered a range of clasps that will change the way you wear your wristwatch. The high-tech micro carbon fiber composite folding clasps with our patented Fine-Adjustment System allow for a gradual length adjustment and notably provide more comfort in all conditions. Select the collection below and discover all available clasps for your watch:</p></div>
+            </div>`); 
+                }
+            else if(action == 'Straps')
+                {
+                   $(`.catsubdescription`).append(`<div class="row">
+              <div class="large-8 small-12 large-centered columns"><p style="text-align: center;">Every Formex watch comes with a strap or bracelet that best fits the style of the timepiece. But your style is your own, and sometimes you may want to switch it up - or simply find a replacement for your strap. Select the collection below and discover all available straps and bracelets for your watch:</p></div>
+            </div>`); 
+                }
+            
+             setTimeout(function () {
+            $(`ul .${action}`).addClass("selectedcategory");
+                 }, 2500);
+        }
+
+    
+    
+function getUrlParameter(sParam) {
+    var sPageURL = window.location.search.substring(1),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return typeof sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+        }
+    }
+    return false;
+};    
+</script>
+<script>
+    if('{{getVar "catchek"}}' === 'Watches')
+        {
+          $(".searchwatchsection").show("slow");
+            if ($(".MOVEMENT")[0] || $(".BRACELET")[0] || $(".CASE")[0] || $(".DIAL")[0]){
+                $(".MOVEMENT, .BRACELET, .CASE, .DIAL").show("slow");
+                
+                $(".small-block-grid-1 li").each(function() {
+                    if( $(this).css('display') == 'none' ) {
+                console.log('It equal block');
+                   $(this).remove();
+                    }
+                    
+                });
+               
+            }
+        }
+    else if('{{getVar "catchek"}}' === 'Accessories')
+        {
+            $(".searchwatchsection_acce").show("slow");
+        }
+    
+    $('.filterwatch').on('click', function() {
+    var url = '?_bc_fsnf=1';
+//    if(window.location.href.indexOf('?_bc_fsnf=1') > 0)
+//        {
+//          url = '';
+//        }
+    $(".selectsearchmain :selected").each(function() {
+        if(this.value != "")
+            {
+              url +=  this.value;
+            }
+        });
+  
+        if(url != '')
+            {
+              if (url) { // require a URL
+                  window.location = url; // redirect
+              }
+              return false;
+            }
+        else
+            {
+                return false;
+            }
+    });
+
+</script>
+

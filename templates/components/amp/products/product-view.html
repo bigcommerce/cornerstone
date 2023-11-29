@@ -1,0 +1,72 @@
+<div class="productView">
+    {{#each product.reviews.messages}}
+        {{#if error}}
+            {{>components/amp/common/alert-error error}}
+        {{/if}}
+        {{#if success}}
+            {{>components/amp/common/alert-success success}}
+        {{/if}}
+    {{/each}}
+
+    {{> components/amp/products/product-view-details}}
+    <section class="productView-images" data-image-gallery>
+        <amp-carousel width="250"
+            height="250"
+            layout="responsive"
+            autoplay
+            delay="5000"
+            type="slides">
+            {{#each product.images}}
+                <amp-img src="{{getImage this 'product_size' (cdn ../theme_settings.default_image_product)}}"
+                    width="250"
+                    height="250"
+                    layout="responsive"
+                    alt="{{this.alt}}">
+                </amp-img>
+            {{/each}}
+        </amp-carousel>
+    </section>
+    <div class="productView-action">
+        {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+            <amp-iframe height="400" width="250"
+                layout="responsive"
+                sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals"
+                resizable
+                src="{{product.amp_options_url}}">
+                <div class="button button--primary button--wide" overflow tabindex="0" role="button">Choose Options</div>
+            </amp-iframe>
+        {{/or}}
+        {{#if product.out_of_stock}}
+            {{#if product.out_of_stock_message}}
+                {{>components/amp/common/alert-error product.out_of_stock_message}}
+            {{else}}
+                {{>components/amp/common/alert-error (lang 'products.sold_out')}}
+            {{/if}}
+        {{/if}}
+    </div>
+
+    <amp-accordion class="productAccordion-wrapper">
+        {{#if product.description}}
+            <section expanded class="productAccordion">
+                <h4 class="productAccordion-title">Description</h4>
+                <div class="productAccordion-content">
+                    {{{product.description}}}
+                </div>
+            </section>
+        {{/if}}
+        {{#if product.videos.list.length}}
+            {{> components/amp/products/videos product.videos}}
+        {{/if}}
+        {{#if settings.show_product_reviews}}
+            {{> components/amp/products/reviews reviews=product.reviews product=product urls=urls}}
+        {{/if}}
+        {{#if settings.add_this.buttons}}
+            <section expanded class="productAccordion">
+                <h4 class="productAccordion-title">Share</h4>
+                <div class="productAccordion-content social-share">
+                    {{> components/amp/common/share }}
+                </div>
+            </section>
+        {{/if}}
+    </amp-accordion>
+</div>

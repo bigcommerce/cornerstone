@@ -1,0 +1,39 @@
+<article class="listItem">
+    <figure class="listItem-figure">
+        <amp-img src="{{getImage image 'productgallery_size' (cdn theme_settings.default_image_product)}}" width="{{first (split theme_settings.productgallery_size 'x')}}" height="{{last (split theme_settings.productgallery_size 'x')}}" layout="responsive" alt="{{image.alt}}"></amp-img>
+    </figure>
+    <div class="listItem-body">
+        <div class="listItem-content">
+            <div class="listItem-details">
+                {{#if show_rating}}
+                    <p class="listItem-rating">{{> components/amp/products/ratings rating_target=name rating=rating}}</p>
+                {{/if}}
+                {{#if brand.name}}
+                <p class="listItem-brand">{{brand.name}}</p>
+                {{/if}}
+                <h4 class="listItem-title">
+                    <a href="{{url}}">{{name}}</a>
+                </h4>
+                {{#if summary}}
+                    <p class="listItem-summary">{{summary}}</p>
+                {{/if}}
+            </div>
+            <div class="listItem-actions">
+                {{#if price}}
+                    <div class="listItem-price">{{> components/products/price price=price}}</div>
+                {{/if}}
+                {{#unless hide_add_to_cart}}
+                    {{#if has_options}}
+                        <a href="{{url}}" class="button button--primary" data-product-id="{{id}}">{{lang "products.choose_options"}}</a>
+                    {{else}}
+                        {{#if out_of_stock_message }}
+                        <span href="{{url}}" class="button button--primary">{{out_of_stock_message}}</span>
+                        {{else}}
+                        <a href="{{add_to_cart_url}}" {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}} class="button button--primary">{{lang "products.add_to_cart"}}</a>
+                        {{/if}}
+                    {{/if}}
+                {{/unless}}
+            </div>
+        </div>
+    </div>
+</article>

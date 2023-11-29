@@ -15,9 +15,9 @@
 
     <div class="blog-post-body">
         <header class="blog-header">
-            <h{{#if is_blog_post}}1{{else}}2{{/if}} class="blog-title">
+            <h2 class="blog-title">
                 <a href="{{post.url}}">{{post.title}}</a>
-            </h{{#if is_blog_post}}1{{else}}2{{/if}}>
+            </h2>
             <p class="blog-date">{{#if post.author}}{{lang 'blog.posted_by' name=post.author}} on {{/if}}{{post.date_published}}</p>
         </header>
 
@@ -45,7 +45,7 @@
             {{/if}}
         {{/if}}
 
-        {{>components/common/share url=post.url}}
+        {{>components/common/share}}
 
     </div>
 </article>

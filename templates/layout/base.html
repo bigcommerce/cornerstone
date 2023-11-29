@@ -16,7 +16,6 @@
         </script>
 
         {{> components/common/polyfill-script }}
-        <script>window.consentManagerTranslations = `{{{langJson 'consent_manager'}}}`;</script>
 
         {{!-- Load Lazysizes script ASAP so images will appear --}}
         <script>
@@ -24,29 +23,43 @@
             window.lazySizesConfig = window.lazySizesConfig || {};
             window.lazySizesConfig.loadMode = 1;
         </script>
-        <script async src="{{cdn 'assets/dist/theme-bundle.head_async.js' resourceHint='preload' as='script'}}"></script>
-        
-        {{getFontsCollection font-display='block'}}
-        
-        <script async src="{{cdn 'assets/dist/theme-bundle.font.js' resourceHint='preload' as='script'}}"></script>
+        <script async src="{{cdn 'assets/dist/theme-bundle.head_async.js'}}"></script>
 
+        <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+
+        <script>
+            WebFont.load({
+                custom: {
+                    families: ['Karla', 'Roboto', 'Source Sans Pro']
+                },
+                classes: false
+            });
+        </script>
+
+        {{ getFontsCollection }}
         {{{stylesheet '/assets/css/theme.css'}}}
 
         {{{head.scripts}}}
 
+
         {{~inject 'zoomSize' theme_settings.zoom_size}}
         {{~inject 'productSize' theme_settings.product_size}}
+        {{~inject 'showAdminBar' theme_settings.show-admin-bar}}
         {{~inject 'genericError' (lang 'common.generic_error')}}
+        {{~inject 'maintenanceModeSettings' settings.maintenance}}
+        {{~inject 'adminBarLanguage' (langJson 'admin')}}
         {{~inject 'urls' urls}}
         {{~inject 'secureBaseUrl' settings.secure_base_url}}
         {{~inject 'cartId' cart_id}}
+        {{~inject 'channelId' settings.channel_id}}
         {{~inject 'template' template}}
         {{~inject 'validationDictionaryJSON' (langJson 'validation_messages')}}
         {{~inject 'validationFallbackDictionaryJSON' (langJson 'validation_fallback_messages')}}
-        {{~inject 'validationDefaultDictionaryJSON' (langJson 'validation_default_messages')}}
+        {{~inject 'validationDefaultDictionaryJSON' (langJson 'default_messages')}} 
         {{~inject 'carouselArrowAndDotAriaLabel' (lang 'carousel.arrow_and_dot_aria_label')}}
         {{~inject 'carouselActiveDotAriaLabel' (lang 'carousel.active_dot_aria_label')}}
         {{~inject 'carouselContentAnnounceMessage' (lang 'carousel.content_announce_message')}}
+        <link href="{{cdn 'scss/custome.css'}}" rel="stylesheet">
     </head>
     <body>
         <svg data-src="{{cdn 'img/icon-sprite.svg'}}" class="icons-svg-sprite"></svg>
@@ -56,30 +69,11 @@
         {{> components/common/footer }}
 
         <script>window.__webpack_public_path__ = "{{cdn 'assets/dist/'}}";</script>
+        <script src="{{cdn 'assets/dist/theme-bundle.main.js'}}"></script>
         <script>
             {{!-- Exported in app.js --}}
-            function onThemeBundleMain() {
-                window.stencilBootstrap("{{page_type}}", {{jsContext}}).load();
-
-                function browserSupportsFormData() {
-                    return typeof FormData !== 'undefined' 
-                        && !!FormData.prototype.keys;
-                }
-                function loadFormDataPolyfillScript(src) {
-                    var formDataPolyfillScript = document.createElement('script');
-                    formDataPolyfillScript.src = src;
-                    formDataPolyfillScript.onerror = function () {
-                        console.error('Failed to load formData polyfill script ' + src);
-                    };
-                    document.body.appendChild(formDataPolyfillScript);
-                }
-
-                if (!browserSupportsFormData()) {
-                    loadFormDataPolyfillScript('{{cdn 'assets/dist/theme-bundle.polyfill_form_data.js'}}');
-                }
-            }
+            window.stencilBootstrap("{{page_type}}", {{jsContext}}).load();
         </script>
-        <script async defer src="{{cdn 'assets/dist/theme-bundle.main.js' resourceHint='preload' as='script'}}" onload="onThemeBundleMain()"></script>
 
         {{{footer.scripts}}}
     </body>

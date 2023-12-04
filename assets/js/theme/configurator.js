@@ -277,6 +277,12 @@ export default class Configurator extends PageManager {
     document.querySelector('#results--total-skus').append(wrap);
   }
 
+  getMountingCode(code) {
+    let options = document.getElementById('grip-mount-selector').options;
+    options = Array.from(options);
+    return options.filter(option => option.value == code)[0].textContent;
+  }
+
   handleDoorMaterialChange(event) {
     // Hide mounting options that do not contain the selected door material
     const doorMaterial = event.target.value;
@@ -343,7 +349,7 @@ export default class Configurator extends PageManager {
     document.getElementById('results--grip-length').textContent = gripLength;
     document.getElementById('results--grip-finish').textContent = this.formatSpecificationText(gripFinish);
     document.getElementById('results--grip-cc').textContent = gripCC;
-    document.getElementById('results--mounting-code').textContent = this.formatSpecificationText(gripMount);
+    document.getElementById('results--mounting-code').textContent = this.getMountingCode(gripMount);
 
     // Get Grip Product
     let totalGrips = isDoubleMounted ? 2 : 1;

@@ -10,6 +10,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added nvm config [#2389](https://github.com/bigcommerce/cornerstone/pull/2389)
 - Displaying the Hidden cart_order_source Input Field on PDP page [#2392](https://github.com/bigcommerce/cornerstone/pull/2392)
 - Top Global Region Image Widget overlaps the mobile menu [#2402](https://github.com/bigcommerce/cornerstone/pull/2402)
+- Changed default PayPal checkout button color [#2405](https://github.com/bigcommerce/cornerstone/pull/2405)
+- Changed default PayPal checkout button size [#2406](https://github.com/bigcommerce/cornerstone/pull/2406)
 
 ## 6.12.0 (07-06-2023)
 - sync package lock file [#2373](https://github.com/bigcommerce/cornerstone/pull/2373)

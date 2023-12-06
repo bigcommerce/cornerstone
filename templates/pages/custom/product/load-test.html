@@ -82,8 +82,8 @@
   const sku = document.querySelector("#sku");
   const aliasSku = document.querySelector("#alias-sku");
   const price = document.querySelector("#price");
-  const rating = document.querySelector('#rating');
-  const reviews = document.querySelector('#reviews');
+  const rating = document.querySelector("#rating");
+  const reviews = document.querySelector("#reviews");
   const weight = document.querySelector("#weight");
   const brand = document.querySelector("#brand");
   const photoElement = document.querySelector("#photos");
@@ -118,7 +118,7 @@
   }
 
   function add_selected_vehicle(object, select) {
-    let option = document.createElement('option');
+    let option = document.createElement("option");
     option.value = object.index;
     option.textContent = object.name;
 
@@ -145,8 +145,8 @@
     sku.innerHTML = data.base_sku;
     aliasSku.innerHTML = data.alias_sku;
     price.innerHTML = data.price;
-    rating.innerHTML = data.archetype_average_review + ' avg out of ';
-    reviews.innerHTML = data.archetype_review_count + ' reviews';
+    rating.innerHTML = data.archetype_average_review + " avg out of ";
+    reviews.innerHTML = data.archetype_review_count + " reviews";
     weight.innerHTML = data.weight_pounds;
     brand.innerHTML = data.brand_name;
     description.innerHTML = data.description;
@@ -157,66 +157,6 @@
     add_selected_vehicle(data.model, modelSelect);
     add_selected_vehicle(data.year, yearSelect);
   }
-
-  // function create_vehicle_menu(item, select) {
-  //   let option = document.createElement("option");
-  //   option.setAttribute("value", item.index);
-  //   option.innerHTML = item.name;
-  //   select.appendChild(option);
-  // }
-
-  // async function load_vehicle_json(make, model, year) {
-  //   const makesURL = `/content/json/${archetypeDirectory}/product_data.json`;
-  //   const modelsURL = `/content/json/${archetypeDirectory}/${make}.json`;
-  //   const yearsURL = `/content/json/${archetypeDirectory}/${model}.json`;
-
-  //   try {
-  //     const makeResponse = await fetch(makesURL);
-  //     const makeData = await makeResponse.json();
-
-  //     const modelResponse = await fetch(modelsURL);
-  //     const modelData = await modelResponse.json();
-
-  //     const yearResponse = await fetch(yearsURL);
-  //     const yearData = await yearResponse.json();
-
-  //     return { make: makeData, model: modelData, year: yearData };
-  //   } catch (error) {
-  //     console.error("Error loading JSON:", error);
-  //     return null;
-  //   }
-  // }
-
-  // async function initializePage() {
-
-  //   try {
-  //     const vehicleData = await load_vehicle_json(make, model, year);
-  //     const makes = [];
-  //     const models = [];
-  //     const years = [];
-
-  //     console.log("Vehicle Data: ", vehicleData);
-
-  //     for (item of vehicleData.make.make_data) {
-  //       create_vehicle_menu(item, makeSelect);
-  //     }
-
-  //     for (item of vehicleData.model.model_data) {
-  //       create_vehicle_menu(item, modelSelect)
-  //     }
-
-  //     for (item of vehicleData.year.gen_data) {
-  //       create_vehicle_menu(item, yearSelect)
-  //     }
-
-  //     makeSelect.value = make;
-  //     modelSelect.value = model;
-  //     yearSelect.value = year;
-
-  //   } catch (error) {
-  //     console.error("Error initializing page:", error);
-  //   }
-  // }
 
   if (urlParams) {
     make = urlParams.get("make");
@@ -243,7 +183,5 @@
     });
   }
 
-  if (make) {
-  }
   // initializePage();
 </script>

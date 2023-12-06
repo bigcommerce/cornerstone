@@ -1,0 +1,116 @@
+{{#partial "page"}}
+<div id="title"></div>
+<div id="sku"></div>
+<div id="alias-sku"></div>
+<div id="price"></div>
+<div id="weight"></div>
+<div id="brand"></div>
+<div id="photos"></div>
+<div id="description"></div>
+<div id="made-in-usa"></div>
+<a href="" id="instructions">instructions</a>
+<div id="meta-description"></div>
+
+{{/partial}} {{> layout/base}}
+
+<script>
+  const title = document.querySelector("#title");
+  const sku = document.querySelector("#sku");
+  const price = document.querySelector("#alias-sku");
+  const weight = document.querySelector("#price");
+  const brand = document.querySelector("#brand");
+  const photoElement = document.querySelector('#photos');
+  const description = document.querySelector("#description");
+  const madeInUsa = document.querySelector("#made-in-usa");
+  const instructions = document.querySelector("#instructions");
+  const metaDescription = document.querySelector("#meta-description");
+
+  // Check for and record the parameters
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  const currentURL = window.location.href;
+  const pathname = new URL(currentURL).pathname;
+  const archetypeDirectory = pathname.replace(/^\/|\/$/g, "");
+  let make = null;
+  let model = null;
+  let year = null;
+  let opt1 = null;
+  let opt2 = null;
+
+  function load_json(target, archetype) {
+  return fetch(`/content/json/${archetype}/${target}.json`)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
+    })
+    .catch((error) => {
+      console.error("There was a problem fetching the file:", error);
+    });
+}
+
+  function add_content(data) {
+    const photos = [];
+    const mainImage = data.image_array.url;
+    const secondaryImages = data.image_array.secondary_images_list;
+
+    photos.push(mainImage);
+    for (item in secondaryImages) {
+        photos.push(item.url);
+    }
+
+    for (item of photos) {
+        let photo = document.createElement('img');
+        photo.setAttribute('src',item);
+        photoElement.appendChild(photo);
+    }
+
+    title.innerHTML = data.name;
+    sku.innerHTML = data.base_sku;
+    price.innerHTML = data.price;
+    weight.innerHTML = data.weight;
+    brand.innerHTML = data.brand;
+    description.innerHTML = data.description;
+    madeInUsa.innerHTML = data.made_in_usa;
+    instructions.setAttribute('href',data.instructions_url);
+    metaDescription.innerHTML = data.short_nohtml_description;
+  }
+
+  if (urlParams) {
+    make = urlParams.get("make");
+    model = urlParams.get("model");
+    year = urlParams.get("year");
+    opt1 = urlParams.get("opt1");
+    opt2 = urlParams.get("opt2");
+  }
+
+  // load the alias json if it exists, or load the default
+  if (opt2) {
+  //load opt2 json
+  console.log("load opt2 json");
+  console.log("loading json for ", opt2);
+  load_json(opt2, archetypeDirectory)
+    .then((data) => {
+      add_content(data);
+    });
+} else if (opt1) {
+  //load opt1 json
+  console.log("load opt1 json");
+  console.log("loading json for ", opt1);
+  load_json(opt1, archetypeDirectory)
+    .then((data) => {
+      add_content(data);
+    });
+} else {
+  // load the default json
+  console.log("loading default json");
+  load_json("default", archetypeDirectory)
+    .then((data) => {
+      add_content(data);
+    });
+}
+  // load make json
+  // load model json
+  // load gen json
+</script>

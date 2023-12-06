@@ -1,0 +1,249 @@
+<style>
+  #photos {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  #photos img {
+    max-width: 400px;
+  }
+  dt,
+  dd {
+    display: inline;
+    margin: 0;
+  }
+</style>
+
+{{#partial "page"}}
+<div class="container">
+  <div id="car-picker">
+    <select name="Make" id="make"></select>
+    <select name="Model" id="model"></select>
+    <select name="Year" id="year"></select>
+  </div>
+  <dl>
+    <div>
+      <dt>Title:</dt>
+      <dd id="title"></dd>
+    </div>
+    <div>
+      <dt>SKU:</dt>
+      <dd id="sku"></dd>
+    </div>
+    <div>
+      <dt>Alias SKU:</dt>
+      <dd id="alias-sku"></dd>
+    </div>
+    <div>
+      <dt>Price:</dt>
+      <dd id="price"></dd>
+    </div>
+    <div>
+      <dt>weight:</dt>
+      <dd id="weight"></dd>
+    </div>
+    <div>
+      <dt>Brand:</dt>
+      <dd id="brand"></dd>
+    </div>
+    <div>
+      <dt>Reviews:</dt>
+      <dd>
+        <span id="rating"></span>
+        <span id="reviews"></span>
+      </dd>
+    </div>
+    <div>
+      <dt>Made In USA:</dt>
+      <dd id="made-in-usa"></dd>
+    </div>
+    <div>
+      <dt>Instructions:</dt>
+      <dd>
+        <a href="" id="instructions">instructions</a>
+      </dd>
+    </div>
+    <div>
+      <dt>Meta Description:</dt>
+      <dd id="meta-description"></dd>
+    </div>
+  </dl>
+</div>
+<div id="photos"></div>
+<div id="description"></div>
+
+{{/partial}} {{> layout/base}}
+
+<script>
+  const makeSelect = document.querySelector("#make");
+  const modelSelect = document.querySelector("#model");
+  const yearSelect = document.querySelector("#year");
+  const title = document.querySelector("#title");
+  const sku = document.querySelector("#sku");
+  const aliasSku = document.querySelector("#alias-sku");
+  const price = document.querySelector("#price");
+  const rating = document.querySelector('#rating');
+  const reviews = document.querySelector('#reviews');
+  const weight = document.querySelector("#weight");
+  const brand = document.querySelector("#brand");
+  const photoElement = document.querySelector("#photos");
+  const description = document.querySelector("#description");
+  const madeInUsa = document.querySelector("#made-in-usa");
+  const instructions = document.querySelector("#instructions");
+  const metaDescription = document.querySelector("#meta-description");
+
+  // Check for and record the parameters
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  const currentURL = window.location.href;
+  const pathname = new URL(currentURL).pathname;
+  const archetypeDirectory = pathname.replace(/^\/|\/$/g, "");
+  let make = null;
+  let model = null;
+  let year = null;
+  let opt1 = null;
+  let opt2 = null;
+
+  function load_json(target) {
+    return fetch(`/content/json/${archetypeDirectory}/${target}.json`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .catch((error) => {
+        console.error("There was a problem fetching the file:", error);
+      });
+  }
+
+  function add_selected_vehicle(object, select) {
+    let option = document.createElement('option');
+    option.value = object.index;
+    option.textContent = object.name;
+
+    select.appendChild(option);
+  }
+
+  function add_content(data) {
+    const photos = [];
+    const mainImage = data.image_array.url;
+    const secondaryImages = data.image_array.secondary_images_list;
+
+    photos.push(mainImage);
+    for (item of secondaryImages) {
+      photos.push(item.url_standard);
+    }
+
+    for (item of photos) {
+      let photo = document.createElement("img");
+      photo.setAttribute("src", item);
+      photoElement.appendChild(photo);
+    }
+
+    title.innerHTML = data.name;
+    sku.innerHTML = data.base_sku;
+    aliasSku.innerHTML = data.alias_sku;
+    price.innerHTML = data.price;
+    rating.innerHTML = data.archetype_average_review + ' avg out of ';
+    reviews.innerHTML = data.archetype_review_count + ' reviews';
+    weight.innerHTML = data.weight_pounds;
+    brand.innerHTML = data.brand_name;
+    description.innerHTML = data.description;
+    madeInUsa.innerHTML = data.made_in_usa;
+    instructions.setAttribute("href", data.instructions_url);
+    metaDescription.innerHTML = data.short_nohtml_description;
+    add_selected_vehicle(data.make, makeSelect);
+    add_selected_vehicle(data.model, modelSelect);
+    add_selected_vehicle(data.year, yearSelect);
+  }
+
+  // function create_vehicle_menu(item, select) {
+  //   let option = document.createElement("option");
+  //   option.setAttribute("value", item.index);
+  //   option.innerHTML = item.name;
+  //   select.appendChild(option);
+  // }
+
+  // async function load_vehicle_json(make, model, year) {
+  //   const makesURL = `/content/json/${archetypeDirectory}/product_data.json`;
+  //   const modelsURL = `/content/json/${archetypeDirectory}/${make}.json`;
+  //   const yearsURL = `/content/json/${archetypeDirectory}/${model}.json`;
+
+  //   try {
+  //     const makeResponse = await fetch(makesURL);
+  //     const makeData = await makeResponse.json();
+
+  //     const modelResponse = await fetch(modelsURL);
+  //     const modelData = await modelResponse.json();
+
+  //     const yearResponse = await fetch(yearsURL);
+  //     const yearData = await yearResponse.json();
+
+  //     return { make: makeData, model: modelData, year: yearData };
+  //   } catch (error) {
+  //     console.error("Error loading JSON:", error);
+  //     return null;
+  //   }
+  // }
+
+  // async function initializePage() {
+
+  //   try {
+  //     const vehicleData = await load_vehicle_json(make, model, year);
+  //     const makes = [];
+  //     const models = [];
+  //     const years = [];
+
+  //     console.log("Vehicle Data: ", vehicleData);
+
+  //     for (item of vehicleData.make.make_data) {
+  //       create_vehicle_menu(item, makeSelect);
+  //     }
+
+  //     for (item of vehicleData.model.model_data) {
+  //       create_vehicle_menu(item, modelSelect)
+  //     }
+
+  //     for (item of vehicleData.year.gen_data) {
+  //       create_vehicle_menu(item, yearSelect)
+  //     }
+
+  //     makeSelect.value = make;
+  //     modelSelect.value = model;
+  //     yearSelect.value = year;
+
+  //   } catch (error) {
+  //     console.error("Error initializing page:", error);
+  //   }
+  // }
+
+  if (urlParams) {
+    make = urlParams.get("make");
+    model = urlParams.get("model");
+    year = urlParams.get("year");
+    opt1 = urlParams.get("opt1");
+    opt2 = urlParams.get("opt2");
+  }
+
+  if (opt2) {
+    // load opt2 json
+    load_json(opt2).then((data) => {
+      add_content(data);
+    });
+  } else if (opt1) {
+    // load opt1 json
+    load_json(opt1).then((data) => {
+      add_content(data);
+    });
+  } else {
+    // load the default json
+    load_json("default").then((data) => {
+      add_content(data);
+    });
+  }
+
+  if (make) {
+  }
+  // initializePage();
+</script>

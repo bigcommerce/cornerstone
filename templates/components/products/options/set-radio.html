@@ -1,6 +1,10 @@
 <div class="form-field" data-product-attribute="set-radio" role="radiogroup" aria-labelledby="radio-group-label-{{id}}">
     <label class="form-label form-label--alternate form-label--inlineSmall" id="radio-group-label-{{id}}">
-        {{ this.display_name }}:
+        {{#if this.display_name '===' 'Default'}}
+            Options:
+        {{else}}
+            {{this.display_name}}:
+        {{/if}}
 
         {{> components/common/requireness-msg}}
     </label>

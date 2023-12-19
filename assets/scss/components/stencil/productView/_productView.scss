@@ -552,3 +552,25 @@
         width: auto;
     }
 }
+
+.celebration-emoji {
+    animation: floatUpAndFade 3s ease-out;
+    font-size: 28px;
+    position: absolute;
+}
+
+@keyframes floatUpAndFade {
+    0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+    50% {
+        transform: translateY(-50px) scale(2);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-100px) scale(0.5);
+    }
+}

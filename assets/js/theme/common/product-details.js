@@ -409,6 +409,10 @@ export default class ProductDetails extends ProductDetailsBase {
             .val(waitMessage)
             .prop('disabled', true);
 
+        if (this.context.addToCartEmoji) {
+            this.addToCartCelebration($addToCartBtn[0], form);
+        }
+
         this.$overlay.show();
 
         // Add item to cart
@@ -582,5 +586,24 @@ export default class ProductDetails extends ProductDetailsBase {
             bubbles: true,
             detail: { productDetails },
         }));
+    }
+
+    addToCartCelebration(el, container) {
+        try {
+            // Display celebration emoji
+            const celebrationEmoji = document.createElement('div');
+            celebrationEmoji.innerText = '🎉';
+            celebrationEmoji.className = 'celebration-emoji';
+            celebrationEmoji.style.top = `${el.offsetTop}px`;
+            celebrationEmoji.style.left = `${el.offsetLeft + (el.offsetWidth / 2)}px`;
+            container.appendChild(celebrationEmoji);
+
+            // Remove celebration emoji after a short delay (e.g., 2 seconds)
+            setTimeout(() => {
+                celebrationEmoji.remove();
+            }, 3500);
+        } catch (e) {
+            console.log(e); // eslint-disable-next-line no-console
+        }
     }
 }

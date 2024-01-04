@@ -20,6 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Corrected typo with the word default previously deafault in config.json [#2410](https://github.com/bigcommerce/cornerstone/pull/2410)
 - Adding autocomplete to common input fields [2397](https://github.com/bigcommerce/cornerstone/pull/2397)
 - Use triple sash on customer's company name to prevent escaping ampersands [#2399](https://github.com/bigcommerce/cornerstone/pull/2399)
+- Adding aria attributes to cart page coupon code and gift cert buttons [#2391](https://github.com/bigcommerce/cornerstone/pull/2391)
 
 ## 6.12.0 (07-06-2023)
 - sync package lock file [#2373](https://github.com/bigcommerce/cornerstone/pull/2373)

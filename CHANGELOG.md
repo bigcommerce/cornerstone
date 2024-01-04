@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Replace Twitter logo with X logo within social sharing and social link components [#2387](https://github.com/bigcommerce/cornerstone/pull/2387)
 - Added nvm config [#2389](https://github.com/bigcommerce/cornerstone/pull/2389)
 - Displaying the Hidden cart_order_source Input Field on PDP page [#2392](https://github.com/bigcommerce/cornerstone/pull/2392)
+- Videos added through the Product Editor have their thumbnails cropped compared to videos added through the page builder [#2413](https://github.com/bigcommerce/cornerstone/pull/2413)
 - Update Shop By Price Widget [#2408](https://github.com/bigcommerce/cornerstone/pull/2408)
 - 'Please Select a file' popup forces shopper to re-upload file if the option type is 'File Upload' and is set to required [#2409](https://github.com/bigcommerce/cornerstone/pull/2409)
 - Top Global Region Image Widget overlaps the mobile menu [#2402](https://github.com/bigcommerce/cornerstone/pull/2402)

@@ -1,10 +1,17 @@
 // =============================================================================
 // VIDEO GALLERY
 // =============================================================================
+//
+// 1. Set padding-top to zero to overwrite the padding-top contained in the
+// flex-video-container mixin, which affects the height of the video container
+// and distorts the video scale.
+//
+// -----------------------------------------------------------------------------
 
 .videoGallery-main {
     @include flex-video-container();
     margin-bottom: $videoGallery-spacing;
+    padding-top: 0; // 1
 }
 
 .videoGallery-list {

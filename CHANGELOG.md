@@ -5,10 +5,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Draft
+- Dispatch an event on productOptionsChanged [#2400](https://github.com/bigcommerce/cornerstone/pull/2400)
+- Check lang helpers usage and existence of key in translation file [#2403](https://github.com/bigcommerce/cornerstone/pull/2403)
 - Display fees on cart page [#2376](https://github.com/bigcommerce/cornerstone/pull/2376)
 - Replace Twitter logo with X logo within social sharing and social link components [#2387](https://github.com/bigcommerce/cornerstone/pull/2387)
 - Added nvm config [#2389](https://github.com/bigcommerce/cornerstone/pull/2389)
-- Displaying the Hidden cart_order_source Input Field on PDP page [#2392](https://github.com/bigcommerce/cornerstone/pull/2392) 
+- Displaying the Hidden cart_order_source Input Field on PDP page [#2392](https://github.com/bigcommerce/cornerstone/pull/2392)
+- Update Shop By Price Widget [#2408](https://github.com/bigcommerce/cornerstone/pull/2408)
+- 'Please Select a file' popup forces shopper to re-upload file if the option type is 'File Upload' and is set to required [#2409](https://github.com/bigcommerce/cornerstone/pull/2409)
+- Top Global Region Image Widget overlaps the mobile menu [#2402](https://github.com/bigcommerce/cornerstone/pull/2402)
+- Changed default PayPal checkout button color [#2405](https://github.com/bigcommerce/cornerstone/pull/2405)
+- Changed default PayPal checkout button size [#2406](https://github.com/bigcommerce/cornerstone/pull/2406)
+- Change case of Page builder menu item text [#2407](https://github.com/bigcommerce/cornerstone/pull/2407)
+- Corrected typo with the word default previously deafault in config.json [#2410](https://github.com/bigcommerce/cornerstone/pull/2410)
+- Adding autocomplete to common input fields [2397](https://github.com/bigcommerce/cornerstone/pull/2397)
+- Use triple sash on customer's company name to prevent escaping ampersands [#2399](https://github.com/bigcommerce/cornerstone/pull/2399)
 - Adding aria attributes to cart page coupon code and gift cert buttons [#2391](https://github.com/bigcommerce/cornerstone/pull/2391)
 
 ## 6.12.0 (07-06-2023)

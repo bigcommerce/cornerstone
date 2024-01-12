@@ -34,8 +34,8 @@
         {{{stylesheet '/assets/css/theme.css'}}}
         
         {{!-- CravenSpeed Qty Script --}}
-        <script type="text/javascript" src="/content/cs_search.js"></script>
-        <script type="text/javascript" src="/content/cs_search_data.js"></script>
+        <script type="text/javascript" src="/content/cs_search.js" defer></script>
+        <script type="text/javascript" src="/content/cs_search_data.js" defer></script>
         {{#if page_type '===' 'default'}}
         <script src="/content/home.js"></script>
         {{/if}}
@@ -61,8 +61,13 @@
         <svg data-src="{{cdn 'img/icon-sprite.svg'}}" class="icons-svg-sprite"></svg>
 
         {{> components/common/header }}
-        
-        {{> components/common/body }}
+    
+
+        {{#if page_type '===' 'product'}}
+            {{> components/common/cs-product-body }}
+        {{else}}
+            {{> components/common/body }}
+        {{/if}}
 
         {{> components/common/footer }}
 

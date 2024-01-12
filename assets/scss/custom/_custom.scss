@@ -77,7 +77,7 @@ html {
     margin: 0;
   }
 
-  >* {
+  > * {
     @include breakpoint("small") {
       flex: 1 0 0;
     }
@@ -85,7 +85,6 @@ html {
 }
 
 .mobileMenu-toggle {
-
   position: relative;
   flex-grow: 0;
 
@@ -108,7 +107,7 @@ html {
   }
 }
 
-// phone number, email address, and hours in the header. 
+// phone number, email address, and hours in the header.
 .support-info {
   // Initial styles for when the section is visible in the mobile menu only
   display: none;
@@ -176,7 +175,6 @@ html {
 }
 
 .navUser {
-
   //Overides _navUser.scss setting width to 100% which is only needed for the mobile layout on line 24
   @include breakpoint("medium") {
     width: auto;
@@ -197,7 +195,6 @@ html {
 }
 
 .navUser-item--cart {
-
   // prevents default removal of cart link for small screens when quantity is 0 from _navUser.scss line 155
   &__hidden-s {
     @media (max-width: $screen-small) {
@@ -205,7 +202,6 @@ html {
     }
   }
 }
-
 
 // End Header Top  -------------------------------------------------------------
 
@@ -217,7 +213,6 @@ html {
 }
 
 .navPages {
-
   @include breakpoint("medium") {
     display: flex;
     align-items: center;
@@ -253,7 +248,7 @@ html {
 
 .autocomplete {
   position: relative;
-  display: inline-block
+  display: inline-block;
 }
 
 .autocomplete-items {
@@ -284,7 +279,7 @@ html {
   text-decoration: none;
 }
 
-.blocklink>div {
+.blocklink > div {
   display: -ms-flexbox;
   display: flex;
   height: 3rem;
@@ -292,28 +287,27 @@ html {
   -ms-flex-align: center;
   align-items: center;
   gap: 1rem;
-  overflow: hidden
+  overflow: hidden;
 }
 
 .blocklink img {
   display: block;
-  height: 2.5rem
+  height: 2.5rem;
 }
 
 #autocompleteMessage a {
-  color: #c13119
+  color: #c13119;
 }
 
 .overflow a {
   display: inline-block;
   padding: 10px 0;
-  width: 100%
+  width: 100%;
 }
 
 .cs-search-message {
-  padding: 10px 0
+  padding: 10px 0;
 }
-
 
 // -----------------------------------------------------------------------------
 //
@@ -339,9 +333,9 @@ html {
   }
 }
 
-//override 
+//override
 .footer-copyright {
-  >.powered-by {
+  > .powered-by {
     color: stencilColor("footer-heading-fontColor");
   }
 }
@@ -403,10 +397,10 @@ html {
 #matching-products {
   display: grid;
   grid-template-columns: auto;
-  gap: spacing('double');
+  gap: spacing("double");
   justify-content: center;
 
-  @include breakpoint('medium') {
+  @include breakpoint("medium") {
     grid-template-columns: 1fr 1fr 1fr;
   }
 }
@@ -434,14 +428,183 @@ html {
   text-decoration: none;
 }
 
-
-
-
 // -----------------------------------------------------------------------------
 //
 //                                  HOME
 //
 // -----------------------------------------------------------------------------
+
+// -----------------------------------------------------------------------------
+//
+//                                  Web Vitals Optimized Product
+//
+// -----------------------------------------------------------------------------
+
+#optimized-product {
+  h2 {
+    font-size: 1rem;
+    font-weight: normal;
+    margin: 0;
+  }
+  
+  position: relative;
+  width: 100%;
+  
+  #product-above {
+    min-height: (100svh - #{$header-height} - #{$mobile-spacing});
+    display: flex;
+    gap: 0;
+    
+    @include breakpoint("medium") {
+      flex-direction: row;
+      min-height: calc(100svh - (#{$header-top-height} + #{$navPages-height}) - #{spacing("half")} - 3.5rem);
+          
+      > * {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
+  
+  #product-above-photo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      max-width: 100%;
+    }
+  }
+
+  #gallery-container {
+    width: 100%;
+    max-width: 90vh;
+    overflow-x: hidden;
+  }
+
+  #gallery {
+    position: relative;
+    display: flex;
+    width: 100%;
+    transition: transform 0.4s ease;
+  }
+
+  .slide {
+    flex: 0 0 auto;
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+  }
+
+  .slide img {
+    width: 100%;
+    display: block;
+  }
+
+  .gallery-controls {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+  }
+
+  #position-indicator {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around ;
+    align-items: center;
+    gap: spacing("half");
+  }
+
+  .dot {
+    @include square(18);
+  }
+
+  .dot use {
+    transition: fill 0.4s ease;
+    fill: #c13119;
+  }
+
+  .active-dot use {
+    fill: black;
+  }
+
+  #product-above-info {
+    margin: spacing("single");
+  }
+
+  .single-row {
+    height: spacing("single");
+  }
+
+  .double-row {
+    height: spacing("double");
+  }
+
+  #product-title {
+    h1 {
+      margin: 0;
+    }
+  }
+
+  #product-price {
+    font-size: 2rem;
+  }
+
+  #product-rating {
+    text-decoration: none;
+  }
+
+  #review-count {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  #product-selection {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 0 auto;
+    gap: spacing("half");
+
+    @include breakpoint("medium") {
+      max-width: 400px;
+    }
+
+    select {
+      height: 3rem;
+      border-radius: 3px;
+    }
+
+    a {
+      background-color: #383838;
+      line-height: 3rem;
+      border-radius: 3px;
+      color: gray;
+      text-decoration: none;
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    a.enabled {
+      @extend .next-step;
+    }
+  }
+
+  #product-selection option {
+    text-align: center;
+  }
+
+  .next-step {
+    color: white;
+    background-color: #c13119;
+  }
+
+
+
+}
 
 // -----------------------------------------------------------------------------
 //
@@ -462,7 +625,6 @@ html {
 .productView-img-container {
   max-height: 500px;
 }
-
 
 #cs-product-container {
   box-sizing: border-box;
@@ -528,7 +690,7 @@ html {
       align-items: center;
 
       button {
-        background: stencilColor('product-carousel-dot-color');
+        background: stencilColor("product-carousel-dot-color");
         border: none;
 
         &::before {
@@ -547,7 +709,6 @@ html {
     margin: 1rem;
     margin-top: 0;
   }
-
 }
 
 #product-above {
@@ -557,7 +718,10 @@ html {
   gap: $mobile-spacing;
 
   @include breakpoint("medium") {
-    min-height: calc(100vh - (#{$header-top-height} + #{$navPages-height}) - #{spacing("half")} - 3.5rem);
+    min-height: calc(
+      100vh - (#{$header-top-height} + #{$navPages-height}) - #{spacing("half")} -
+        3.5rem
+    );
   }
 }
 
@@ -579,7 +743,7 @@ html {
     border: 2px solid stencilColor(button--disabled-borderColor);
     border-radius: 3px;
     text-align: center;
-    font-size: .875rem;
+    font-size: 0.875rem;
     flex: 1;
 
     @include breakpoint("medium") {
@@ -592,7 +756,6 @@ html {
     max-width: 1200px;
     margin: 0 auto;
   }
-
 }
 
 #product-main {
@@ -639,7 +802,6 @@ html {
     width: calc(100% - #{spacing("double")});
     margin: 0 auto;
   }
-
 }
 
 #product-badges-desktop {
@@ -689,7 +851,6 @@ html {
 }
 
 .warranty-badge {
-
   svg {
     display: block;
     @include square($product-badges-max);
@@ -697,7 +858,6 @@ html {
 }
 
 #modal-images {
-
   &.modal {
     width: 100vw;
     height: 100vh;
@@ -801,7 +961,7 @@ html {
     line-height: 1;
     height: 24px;
 
-    @include breakpoint('medium') {
+    @include breakpoint("medium") {
       font-size: 28px;
       height: 40px;
     }
@@ -852,7 +1012,7 @@ html {
     align-items: center;
 
     @include breakpoint(medium) {
-      padding: spacing('double');
+      padding: spacing("double");
     }
   }
 }
@@ -863,20 +1023,19 @@ html {
   p {
     margin-bottom: 0;
 
-    @include breakpoint('medium') {
-      margin-bottom: spacing('single');
+    @include breakpoint("medium") {
+      margin-bottom: spacing("single");
     }
   }
-
 }
 
 button#blem-acknowledgement {
   border: none;
-  background-color: stencilColor('button--default-color');
-  color: stencilColor('color-white');
+  background-color: stencilColor("button--default-color");
+  color: stencilColor("color-white");
 
   &:hover {
-    background-color: stencilColor('button--default-colorHover');
+    background-color: stencilColor("button--default-colorHover");
   }
 }
 
@@ -885,16 +1044,16 @@ button#blem-acknowledgement {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: spacing('half');
+  gap: spacing("half");
   min-height: 21px;
 }
 
 #blem-check {
   @include square(20);
-  background-color: stencilColor('color-white');
+  background-color: stencilColor("color-white");
 
   &:checked {
-    background-color: stencilColor('color-primary');
+    background-color: stencilColor("color-primary");
   }
 }
 
@@ -926,7 +1085,6 @@ button#blem-acknowledgement {
     vertical-align: middle;
   }
 
-
   select {
     border: 2px solid stencilColor(button--disabled-borderColor);
     flex: 1;
@@ -947,7 +1105,6 @@ button#blem-acknowledgement {
   display: flex;
   justify-content: center;
   align-items: center;
-
 
   a {
     display: block;
@@ -982,7 +1139,6 @@ button#blem-acknowledgement {
 }
 
 ul.tabs {
-
   @include breakpoint("medium") {
     display: flex;
     justify-content: center;
@@ -1009,7 +1165,7 @@ ul.tabs {
   }
 }
 
-.descriptionContainer>p {
+.descriptionContainer > p {
   text-align: center;
 }
 
@@ -1032,18 +1188,16 @@ ul.tabs {
   @include breakpoint("medium") {
     flex-direction: row;
 
-    &>* {
+    & > * {
       width: 50%;
       padding: spacing("single");
     }
-
 
     //reverse the order of every other row
     &:nth-child(even) {
       flex-direction: row-reverse;
     }
   }
-
 }
 
 .productText {
@@ -1053,7 +1207,7 @@ ul.tabs {
 
   h3 {
     margin: 0;
-    border-bottom: 2px solid stencilColor('color-primary');
+    border-bottom: 2px solid stencilColor("color-primary");
   }
 }
 
@@ -1062,7 +1216,7 @@ ul.tabs {
   justify-content: center;
   align-items: center;
 
-  >* {
+  > * {
     width: 100%;
   }
 }
@@ -1070,7 +1224,7 @@ ul.tabs {
 .embed-container {
   position: relative;
   /* falls back to 16/9, but otherwise uses ratio from HTML */
-  padding-bottom: calc(var(--aspect-ratio, .5625) * 100%);
+  padding-bottom: calc(var(--aspect-ratio, 0.5625) * 100%);
   height: 0;
 }
 
@@ -1085,7 +1239,7 @@ ul.tabs {
 .cs-single-column {
   flex-direction: column !important;
 
-  >* {
+  > * {
     width: 100%;
   }
 
@@ -1145,7 +1299,7 @@ model-viewer {
   gap: $mobile-spacing;
   width: 100%;
   margin-bottom: $mobile-spacing;
-  
+
   select {
     height: 3rem;
     line-height: $product-button-height;
@@ -1171,7 +1325,6 @@ model-viewer {
   display: flex;
   justify-content: center;
   align-items: center;
-
 
   a {
     display: block;
@@ -1283,7 +1436,6 @@ model-viewer {
     font-weight: bold;
     font-size: stencilNumber("fontSize-h3");
   }
-
 }
 
 // ------------------------------------------------------------------------------------->
@@ -1291,7 +1443,6 @@ model-viewer {
 // ------------------------------------------------------------------------------------->
 
 .shiftpower {
-
   h3 {
     text-align: center;
   }
@@ -1407,7 +1558,7 @@ model-viewer {
   h2 {
     margin: 0;
     text-transform: uppercase;
-    color: stencilColor('color-primary');
+    color: stencilColor("color-primary");
   }
 
   ul {
@@ -1420,11 +1571,9 @@ model-viewer {
   }
 
   a {
-    color: stencilColor('color-textBase');
+    color: stencilColor("color-textBase");
     text-decoration: none;
   }
-
-  ;
 
   @include breakpoint("medium") {
     text-align: right;
@@ -1438,12 +1587,12 @@ model-viewer {
   h1 {
     text-align: center;
     text-transform: uppercase;
-    color: stencilColor('color-primary');
+    color: stencilColor("color-primary");
   }
 
   @include breakpoint("medium") {
     order: initial;
-    flex: .7;
+    flex: 0.7;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -1482,7 +1631,7 @@ model-viewer {
   h2 {
     text-align: center;
     text-transform: uppercase;
-    color: stencilColor('color-primary');
+    color: stencilColor("color-primary");
   }
 }
 
@@ -1501,7 +1650,6 @@ model-viewer {
 }
 
 .cs-profile-info {
-
   h3,
   h4 {
     margin: 0;
@@ -1578,7 +1726,7 @@ model-viewer {
   margin-bottom: 1em;
 }
 
-@include breakpoint('medium') {
+@include breakpoint("medium") {
   .cs-page-description {
     margin-bottom: 5em;
     padding: 0 1em;
@@ -1592,7 +1740,6 @@ model-viewer {
 /* Support Navigation */
 
 .csPageNav {
-
   margin: 0 spacing("single");
 
   ul {
@@ -1624,10 +1771,6 @@ model-viewer {
     color: stencilColor("color-textBase");
   }
 }
-
-
-
-
 
 /*End Support Navigation */
 
@@ -1748,7 +1891,7 @@ ul.policyInfo {
   text-decoration: underline;
 }
 
-.instructionsList a:hover>ul {
+.instructionsList a:hover > ul {
   color: stencilColor("color-white");
 }
 
@@ -1866,7 +2009,7 @@ ul.policyInfo {
 //                                    Instructions Page
 // ------------------------------------------------------------------------------------->
 
-.cs-element-spacer>* {
+.cs-element-spacer > * {
   margin-top: 2em;
 }
 
@@ -1995,7 +2138,6 @@ ul.policyInfo {
 li.mobile-number {
   display: none;
 }
-
 
 // ------------------------------------------------------------------------------------->
 //

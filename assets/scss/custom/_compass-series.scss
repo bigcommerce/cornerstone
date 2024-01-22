@@ -1,0 +1,236 @@
+.compass-custom {
+  max-width: 1090px;
+
+  &__footer {
+    margin: 60px 0 !important;
+    font-family: $interstate !important;
+    font-weight: 700 !important;
+    font-size: 20px !important;
+    text-align: center;
+  }
+
+  &__series {
+    &-box {
+        padding: 30px 40px 40px;
+        text-align: center;
+        background: #f4f5f5;
+    }
+
+    &-btn {
+      margin: 20px auto 0 !important;
+      font: normal normal bold 18px/21px $interstate-condensed !important;
+      font-family: $interstate-condensed;
+      color: #fff !important;
+      text-decoration: none !important;
+      padding: 15px 10px !important;
+      text-align: center !important;
+    }
+
+    &-item {
+      font: normal normal 500 20px/24px $interstate !important;
+      font-family: $interstate !important;
+      margin-bottom: 15px;
+    }
+
+    &-list {
+      text-align: left;
+    }
+
+    &-title {
+      margin-bottom: 20px !important;
+      font-family: $interstate-condensed !important;
+      font-size: 40px !important;
+      color: #135185 !important;
+      letter-spacing: 0 !important;
+      text-align: center;
+    }
+
+    &-wrap {
+      display: grid;
+      grid-template-columns: 1fr;
+      margin-bottom: 40px;
+      gap: 40px;
+
+      @include gt($large) {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  }
+
+  &__slider {
+    margin-left: -10px;  //fixes break when creating space between slides
+    margin-right: -10px; 
+  }
+
+  &__slider-wrap {
+    position: relative;
+    padding-bottom: 10px;
+  }
+
+  &__slide {
+    width: 258px;
+    height: 290px;
+
+    margin: 0 10px;
+
+    &-content {
+      padding: 10px 16px 13px;
+      text-align: center;
+      background: #F4F5F5;
+    }
+
+    &-model {
+      margin-bottom: 0px !important;
+      font-family: $interstate !important;
+      font-weight: 500 !important;
+      font-size: 12px !important;
+      color: #135185 !important;
+    }
+
+    &-title {
+      margin: 0 !important;
+      font: normal normal 500 16px/19px $interstate-condensed !important;
+      font-family: $interstate-condensed !important;
+      font-size: 16px !important;
+      font-weight: 500 !important;
+    }
+
+    &-title-2 {
+      margin: 0 !important;
+      font-family: $interstate-condensed !important;
+      font-size: 12px !important;
+      font-weight: 500 !important;
+      line-height: 15px !important;
+    }
+  }
+
+  &__standard {
+    &-item {
+      margin-bottom: 15px;
+      font: normal normal 500 20px/24px $interstate !important;
+      font-family: $interstate !important;
+
+
+      &::before {
+        content: "\2022";
+        color: #135185;
+        margin-right: 5px;
+        width: 1em;
+        margin-left: -1em;
+      }
+    }
+
+    &-list {
+      list-style: none;
+    }
+    
+    &-title {
+      margin-bottom: 20px !important;
+      font-family: $interstate-condensed !important;
+      font-size: 40px !important;
+      color: #135185 !important;
+      letter-spacing: 0 !important;
+      text-align: center;
+    }
+
+    &-wrap {
+      padding: 30px 50px 30px;
+      margin-bottom: 40px;
+      background: #F3F9FD;
+    }
+  }
+  
+  &__subtitle {
+    margin-bottom: 40px !important;
+    font: normal normal normal 20px/24px $interstate !important;
+    font-family: $interstate !important;
+    font-weight: 500 !important;
+    font-size: 20px !important;
+    text-align: center;
+  }
+
+  &__title {
+    width: 780px;
+    max-width: 90%;
+    margin: 30px auto !important;
+    font-family: $interstate-condensed !important;
+    font-size: 30px !important;
+    text-align: center;
+    color: $black !important;
+    letter-spacing: 0 !important;
+
+    @include gt($medium) {
+        font-size: 50px !important;
+    }
+  }
+  
+}
+
+.kd-slick-next,
+.kd-slick-prev,
+.kd-slick-next-2,
+.kd-slick-prev-2 {
+    svg {
+      width: 20px; 
+    }
+
+    @include gt(768px){
+      svg {
+        width: 33px; 
+      }
+    }
+}
+
+.kd-slick-prev,
+.kd-slick-prev-2 {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -27px;
+    height: fit-content;
+    margin: auto 0;
+    transform: rotate(90deg);
+
+    @include gt(768px) {
+      left: -45px;
+    }
+
+    @include gt(1265px) {
+      left: -65px;
+    }
+}
+
+.kd-slick-next,
+.kd-slick-next-2 {
+    position: absolute;
+    top: 0;
+    right: -27px;
+    bottom: 0;
+    height: fit-content;
+    margin: auto 0;
+    transform: rotate(-90deg);
+
+    @include gt(768px) {
+      right: -45px;
+    }
+
+    @include gt(1265px) {
+      right: -65px;
+    }
+}
+
+
+.slick-track {
+  display: flex !important;
+}
+
+.slick-slide {
+  height: inherit !important;
+}
+
+.slick-slide > div { height: 100%; }
+
+.compass-custom-banner-img {
+  width: 100vw;
+  object-fit: cover;
+}

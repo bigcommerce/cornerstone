@@ -1,5 +1,6 @@
 import PageManager from './page-manager';
 import ProductSchema from '../custom/compass-800-product-schema';
+import MountingSchema from '../custom/compass-mounting-schema';
 import 'regenerator-runtime/runtime';
 
 export default class Configurator extends PageManager {
@@ -7,11 +8,13 @@ export default class Configurator extends PageManager {
   constructor() {
     super();
     this.productSchema = ProductSchema;
+    this.mountingSchema = MountingSchema;
     this.token = jsContext.storefrontToken;
     this.productIds = []
     this.skuList = [];
 
     // Manual binding for event listeners that need to modify class variables
+    this.boundHandleDoorMaterialChange = this.handleDoorMaterialChange.bind(this);
     this.boundTotalQuantityChange = this.handleTotalSetQuantityChange.bind(this);
     this.boundHandleSubmit = this.handleSubmit.bind(this);
   }
@@ -25,8 +28,6 @@ export default class Configurator extends PageManager {
 
     // Bind selection event listeners
     this.bindListeners();
-
-
   }
 
   // Helper to set any price to exactly two decimal places
@@ -81,7 +82,12 @@ export default class Configurator extends PageManager {
                   node {
                     entityId
                     sku
+                    name
+                    path
                   prices {
+                    retailPrice {
+                      ...MoneyFields
+                    }
                     price {
                       ...MoneyFields
                     }
@@ -148,9 +154,12 @@ export default class Configurator extends PageManager {
     // First, find the product in the product schema
     const productId = product.node.entityId;
     const productFromSchema = this.recursiveGetProductById(this.productSchema, productId);
+    productFromSchema.name = product.node.name;
     productFromSchema.sku = product.node.sku;
     productFromSchema.price = product.node.prices.price.value;
+    productFromSchema.retailPrice = product.node.prices.retailPrice.value;
     productFromSchema.variantId = product.node.variants.edges[0].node.entityId;
+    productFromSchema.url = product.node.path;
     // Add option ids if they exist on the product
     if (product.node.productOptions.edges.length > 0) {
       productFromSchema.optionIds = [];
@@ -200,6 +209,97 @@ export default class Configurator extends PageManager {
     }
   }
 
+  formatSpecificationText(text) {
+    // Special early return for hyphenated phrase
+    if (text == 'semi-circle') {
+      return 'semi-circle';
+    }
+
+    // Add extra text not part of value
+    if (text.includes('glass')) {
+      text = 'tempered glass';
+    }
+    if (text.includes('stainless')) {
+      text = text + ' steel';
+    }
+
+    return text.replace('-', ' ');
+  }
+
+  buildAndInsertResultTableRow(product, quantity) {
+
+    // Create wrappers
+    const wrap = document.createElement('div');
+    const titleWrap = document.createElement('div');
+    const itemTitle = document.createElement('h3');
+    const itemValue = document.createElement('p');
+    const qtyWrap = document.createElement('div');
+    const qtyTitle = document.createElement('h3');
+    const qtyValue = document.createElement('p');
+    const priceWrap = document.createElement('div');
+    const priceTitle = document.createElement('h3'); 
+    const priceValue = document.createElement('p');
+    const totalWrap = document.createElement('div');
+    const totalTitle = document.createElement('h3');
+    const totalValue = document.createElement('p');
+
+    // Add classes
+    wrap.classList.add('configurator__results--table-row');
+    titleWrap.classList.add('configurator__results--table-row__item', 'configurator__results--table-row__item--title');
+    qtyWrap.classList.add('configurator__results--table-row__item');
+    priceWrap.classList.add('configurator__results--table-row__item');
+    totalWrap.classList.add('configurator__results--table-row__item', 'configurator__results--table--total-wrap');
+    totalValue.classList.add('right', 'configurator__results--table--total-value');
+
+    // Add content
+    itemTitle.textContent = 'Item';
+    itemValue.textContent = product.name;
+    qtyTitle.textContent = 'Quantity';
+    qtyValue.textContent = quantity;
+    priceTitle.textContent = 'Unit Price';
+    priceValue.textContent = `$${this.setPriceToTwoDecimalPlaces(product.retailPrice)}`;
+    totalTitle.textContent = 'Extended Price';
+    totalValue.textContent = `$${this.setPriceToTwoDecimalPlaces(product.retailPrice * quantity)}`;
+
+    // Append nodes
+    titleWrap.append(itemTitle);
+    titleWrap.append(itemValue);
+    qtyWrap.append(qtyTitle);
+    qtyWrap.append(qtyValue);
+    priceWrap.append(priceTitle);
+    priceWrap.append(priceValue);
+    totalWrap.append(totalTitle);
+    totalWrap.append(totalValue);
+    wrap.append(titleWrap);
+    wrap.append(qtyWrap);
+    wrap.append(priceWrap);
+    wrap.append(totalWrap);
+    document.querySelector('#results--total-skus').append(wrap);
+  }
+
+  getMountingCode(code) {
+    let options = document.getElementById('grip-mount-selector').options;
+    options = Array.from(options);
+    return options.filter(option => option.value == code)[0].textContent;
+  }
+
+  handleDoorMaterialChange(event) {
+    // Hide mounting options that do not contain the selected door material
+    const doorMaterial = event.target.value;
+    const mountingOptions = document.querySelectorAll('#grip-mount-selector option');
+    mountingOptions.forEach(option => {
+      if (!option.value) { return; }
+      if (this.mountingSchema[option.value].includes(doorMaterial)) {
+        option.removeAttribute('hidden');
+      } else {
+        option.setAttribute('hidden', true);
+      }
+    });
+
+    // Remove any option that might be selected
+    document.querySelector('#grip-mount-selector').value = '';
+  }
+
   handleGripTypeChange(event) {
     const gripType = event.target.value;
     const gripLengthInputNode = document.getElementById('grip-length-input');
@@ -222,17 +322,6 @@ export default class Configurator extends PageManager {
     }
   }
 
-  handleGripMountChange(event) {
-    const gripMount = event.target.value;
-    if (gripMount === 'b5' || gripMount === 'b6') {
-      document.querySelector('#endcap-finish-container select').required = false;
-      document.querySelector('#endcap-finish-container').style.display = 'none';
-    } else {
-      document.querySelector('#endcap-finish-container select').required = true;
-      document.querySelector('#endcap-finish-container').style.display = 'block';
-    }
-  }
-
   // Handle Configurator Form Submission
   handleSubmit(event, productSchema, getGripSize) {
     event.preventDefault();
@@ -248,18 +337,19 @@ export default class Configurator extends PageManager {
 		  data[key] = formData.get(key);
 	  }
 
-    let [doorMaterial, doorThickness, gripType, gripLength, gripFinish, gripCC, gripMount, standoffType, standoffFinish, endcapFinish] = Object.values(data);
-    let isDoubleMounted = gripMount == 'b5' || gripMount == 'b6';
+    let [doorMaterial, doorThickness, gripType, gripLength, gripFinish, gripCC, gripMount, standoffType, standoffFinish] = Object.values(data);
+    let isDoubleMounted = gripMount == 'c4' || gripMount == 'c5';
   
     // Populate Door Specifications
-    document.getElementById('results--door-material').textContent = doorMaterial;
+    document.getElementById('results--door-material').textContent = this.formatSpecificationText(doorMaterial);
     document.getElementById('results--door-thickness').textContent = doorThickness;
 
     // Populate Grip Specifications
-    document.getElementById('results--grip-type').textContent = gripType;
+    document.getElementById('results--grip-type').textContent = this.formatSpecificationText(gripType);
     document.getElementById('results--grip-length').textContent = gripLength;
-    document.getElementById('results--grip-finish').textContent = gripFinish;
+    document.getElementById('results--grip-finish').textContent = this.formatSpecificationText(gripFinish);
     document.getElementById('results--grip-cc').textContent = gripCC;
+    document.getElementById('results--mounting-code').textContent = this.getMountingCode(gripMount);
 
     // Get Grip Product
     let totalGrips = isDoubleMounted ? 2 : 1;
@@ -274,54 +364,30 @@ export default class Configurator extends PageManager {
 
     // Populate standoff information
     document.querySelector('#results--total-standoffs').textContent = totalStandoffs;
-    document.querySelector('#results--standoff-type').textContent = standoffType;
-    document.querySelector('#results--standoff-finish').textContent = standoffFinish;
+    document.querySelector('#results--standoff-type').textContent = this.formatSpecificationText(standoffType);
+    document.querySelector('#results--standoff-finish').textContent = this.formatSpecificationText(standoffFinish);
 
     // Get Standoff Product
     const selectedStandoff = this.productSchema.standoffs[standoffType][standoffFinish];
     this.skuList.push({product: selectedStandoff, quantity: totalStandoffs});
 
-    // Calculate endcaps
-    let totalEndcaps = 0;
-    let selectedEndcap = null;
-
-    if (isDoubleMounted) {
-      document.querySelector('#results--endcap-finish').textContent = 'n/a';
-      document.querySelector('#results--total-endcaps').textContent = 'n/a';
-    } else {
-      totalEndcaps = totalStandoffs;
-      document.querySelector('#results--endcap-finish').textContent = endcapFinish;
-      document.querySelector('#results--total-endcaps').textContent = totalEndcaps;
-
-      // Get Endcap Product
-      selectedEndcap = this.productSchema.endcaps[endcapFinish];
-      this.skuList.push({ product: selectedEndcap, quantity: totalEndcaps });
-    }
-
     // Add Results to DOM
     // Final price
     let price = 0;
-    this.skuList.forEach(sku => { price += sku.product.price * sku.quantity });
+    let discountPrice = 0;
+    this.skuList.forEach(sku => { 
+      discountPrice += sku.product.price * sku.quantity ;
+      price += sku.product.retailPrice * sku.quantity;
+    });
     document.querySelector('#results--subtotal-price').textContent = `$${this.setPriceToTwoDecimalPlaces(price)}`;
     // Set initial total to subtotal, as default quantity of sets to be purchased is 1
     document.querySelector('#results--total-price').textContent = `$${this.setPriceToTwoDecimalPlaces(price)}`;
+    document.querySelector('#results--discount-price').textContent = `$${this.setPriceToTwoDecimalPlaces(discountPrice)}`;
+
     
-    // Grip
-    const gripNode = document.createElement('li');
-    gripNode.textContent = `Grip: ${selectedGrip.sku.replace('Forms-Surfaces-','')} - $${selectedGrip.price} x${totalGrips}`;
-    document.querySelector('#results--total-skus').append(gripNode);
-
-    // Standoff
-    const standoffNode = document.createElement('li');
-    standoffNode.textContent = `Standoff: ${selectedStandoff.sku.replace('Forms-Surfaces-','')} - $${selectedStandoff.price} x${totalStandoffs}`;
-    document.querySelector('#results--total-skus').append(standoffNode);
-
-    // Endcaps
-    if (selectedEndcap != null) {
-      const endcapNode = document.createElement('li');
-      endcapNode.textContent = `Endcap: ${selectedEndcap.sku.replace('Forms-Surfaces-','')} - $${selectedEndcap.price} x ${totalEndcaps}`;
-      document.querySelector('#results--total-skus').append(endcapNode);
-    }
+    // Add Item level results to HTML
+    this.buildAndInsertResultTableRow(selectedGrip, totalGrips);
+    this.buildAndInsertResultTableRow(selectedStandoff, totalStandoffs);
 
     // Show Results panel and hide placeholder text
     document.querySelector('#results--placeholder').style.display = 'none';
@@ -350,10 +416,12 @@ export default class Configurator extends PageManager {
   handleTotalSetQuantityChange(event) {
     const totalSetsToOrder = event.target.value;
     const price = document.querySelector('#results--subtotal-price').textContent.replace('$','');
+    const discountPrice = document.querySelector('#results--discount-price').textContent.replace('$','');
     const totalPrice = price * totalSetsToOrder;
+    const totalDiscountPrice = discountPrice * totalSetsToOrder;
     document.querySelector('#results--total-price').textContent = `$${this.setPriceToTwoDecimalPlaces(totalPrice)}`;
+    document.querySelector('#results--discount-price').textContent = `$${this.setPriceToTwoDecimalPlaces(totalDiscountPrice)}`;
   }
-
 
   async handleAddToCartButton() {
     // Build Lineitem Array
@@ -478,19 +546,18 @@ export default class Configurator extends PageManager {
     document.getElementById('grip-length-input').value = 14.25;
     document.getElementById('grip-finish-selector').value = 'satin-stainless';
     document.getElementById('grip-cc-input').value = 30;
-    document.getElementById('grip-mount-selector').value = 'b1';
+    document.getElementById('grip-mount-selector').value = 'c1';
     document.getElementById('standoff-type-selector').value = 'ring';
     document.getElementById('standoff-finish-selector').value = 'satin-stainless';
-    document.getElementById('endcap-finish-selector').value = 'satin-stainless';
   }
 
   bindListeners() {
     // Bind testing button
-    document.getElementById('test-fill-all').addEventListener('click', this.handleTestButton);
+    // document.getElementById('test-fill-all').addEventListener('click', this.handleTestButton);
 
     // Bind input listeners
     document.getElementById('grip-type-selector').addEventListener('change', this.handleGripTypeChange);
-    document.getElementById('grip-mount-selector').addEventListener('change', this.handleGripMountChange);
+    document.getElementById('door-material-selector').addEventListener('change', this.boundHandleDoorMaterialChange);
     document.getElementById('set-qty').addEventListener('change', this.boundTotalQuantityChange);
 
     // Bind form submission listener

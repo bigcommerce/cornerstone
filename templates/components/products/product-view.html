@@ -67,17 +67,17 @@
                 {{#contains product.brand 'Sugatsune'}}
                 {{#contains product.sku 'IF-360'}}
                 <div class="productView-if360">
-                    <a href="https://store-40wxilo4jg.mybigcommerce.com/content/Knob_Deco_Sugatsune_IF_360_1.pdf" target="_blank">How do I choose the right IF-360 series for my project?</a>
+                    <a style="display: block; text-decoration: underline; margin-bottom: 10px; font-weight: bold;" href="https://store-40wxilo4jg.mybigcommerce.com/content/Knob_Deco_Sugatsune_IF_360_1.pdf" target="_blank">How do I choose the right IF-360 series for my project?</a>
                 </div>
                 {{/contains}}
                 {{#contains product.sku 'IF-H360'}}
                 <div class="productView-if360">
-                    <a href="https://store-40wxilo4jg.mybigcommerce.com/content/Knob_Deco_Sugatsune_IF_360_1.pdf" target="_blank">How do I choose the right IF-360 series for my project?</a>
+                    <a style="display: block; text-decoration: underline; margin-bottom: 10px; font-weight: bold;" href="https://store-40wxilo4jg.mybigcommerce.com/content/Knob_Deco_Sugatsune_IF_360_1.pdf" target="_blank">How do I choose the right IF-360 series for my project?</a>
                 </div>
                 {{/contains}}
                 {{/contains}}
                 {{#contains (JSONstringify product.category) 'Switch Plates'}}
-                    <p>Not sure which switchplate type you need? <a class="productView-link" href="https://knobdeco.com/content/KD-Switchplate-Types.pdf">Click here to view our guide.</a></p>
+                    <p>Not sure which switchplate type you need? <a class="productView-link" style="text-decoration: underline; margin-bottom: 10px; font-weight: bold;" href="https://knobdeco.com/content/KD-Switchplate-Types.pdf">Click here to view our guide.</a></p>
                 {{/contains}}
                 
                 {{#each product.custom_fields}}
@@ -460,9 +460,11 @@
                 {{#unless name '===' 'ASIN'}}
                 {{#unless name '===' 'Customizable_Kickplate'}}
                 {{#unless name '===' ''}}
+                {{#unless name '===' 'includes_amazon'}}
                     <li class="productSpecifications__item">
                         <p><strong>{{name}}:</strong> {{value}}</p>
                     </li>
+                {{/unless}}
                 {{/unless}}
                 {{/unless}}
                 {{/unless}}

@@ -460,9 +460,11 @@
                 {{#unless name '===' 'ASIN'}}
                 {{#unless name '===' 'Customizable_Kickplate'}}
                 {{#unless name '===' ''}}
+                {{#unless name '===' 'includes_amazon'}}
                     <li class="productSpecifications__item">
                         <p><strong>{{name}}:</strong> {{value}}</p>
                     </li>
+                {{/unless}}
                 {{/unless}}
                 {{/unless}}
                 {{/unless}}

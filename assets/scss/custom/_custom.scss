@@ -453,6 +453,7 @@ html {
   #product-above {
     min-height: (100svh - #{$header-height} - #{$mobile-spacing});
     display: flex;
+    align-items: center;
     gap: 0;
     
     @include breakpoint("medium") {
@@ -468,9 +469,11 @@ html {
   }
   
   #product-above-photo {
+    max-width: 750px;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 
     img {
       max-width: 100%;
@@ -478,31 +481,47 @@ html {
   }
 
   #gallery-container {
+    position: relative;
     width: 100%;
-    max-width: 90vh;
+    padding-bottom: 75%;
     overflow-x: hidden;
   }
-
+  
   #gallery {
-    position: relative;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
     display: flex;
     width: 100%;
     transition: transform 0.4s ease;
   }
-
+  
   .slide {
     flex: 0 0 auto;
     width: 100%;
     padding: 5px;
     box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
-
+  
   .slide img {
-    width: 100%;
+    border-radius: 5px;
+    max-width: 100%;
+    max-height: 100%;
     display: block;
   }
+  
+  #gallery-controls {
+    width: 100%;
+    max-width: 90vh;
+  }
 
-  .gallery-controls {
+
+
+  #gallery-controls {
     margin-top: 1rem;
     display: flex;
     flex-direction: row;
@@ -519,15 +538,15 @@ html {
   }
 
   .dot {
-    @include square(18);
+    @include square(20);
   }
 
-  .dot use {
+  .dot use, .dot circle {
     transition: fill 0.4s ease;
     fill: #c13119;
   }
 
-  .active-dot use {
+  .active-dot use, .active-dot circle {
     fill: black;
   }
 
@@ -576,6 +595,7 @@ html {
     select {
       height: 3rem;
       border-radius: 3px;
+      text-align: center;
     }
 
     a {
@@ -590,6 +610,7 @@ html {
 
     a.enabled {
       @extend .next-step;
+      pointer-events: none;
     }
   }
 
@@ -600,6 +621,34 @@ html {
   .next-step {
     color: white;
     background-color: #c13119;
+  }
+
+  .product-card {
+    padding: spacing('half');
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    align-items: center;
+
+    &:hover {
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+  }
+
+  .card-link {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+  }
+
+  .product-card-title {
+    margin: 0;
+  }
+
+  .product-card-price {
+    font-size: 1.25rem;
   }
 
 

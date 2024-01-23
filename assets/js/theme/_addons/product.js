@@ -472,9 +472,27 @@ export default class Product extends PageManager {
       if (this.selectChange) {
         console.log("trigger updateContent source:initCartAdd");
         this.updateContent();
-      }
-      if (this.inventory.av <= 0 && this.inventory.a2b > 0) {
-        this.madeToOrder = true;
+      } else {
+        let shipDay = this.getShipDay();
+        this.contentElements.shippingTime.innerHTML = "Ships free " + shipDay;
+        if (this.inventory.av > 10) {
+          this.contentElements.stock.innerHTML = "Plenty in stock";
+        } else if (this.inventory.av > 0) {
+          this.contentElements.stock.innerHTML =
+            "Only " + this.inventory.av + " left. Order soon!";
+        } else if (this.madeToOrder) {
+          this.contentElements.stock.innerHTML = "In Stock";
+        } else {
+          this.contentElements.stock.innerHTML = "Out of Stock";
+        }
+        if (this.inventory.av <= 0 && this.inventory.a2b > 0) {
+          this.madeToOrder = true;
+        }
+        let priceFormatted = this.endPointData.price.toLocaleString("en-us", {
+          style: "currency",
+          currency: "USD",
+        });
+        this.contentElements.price.innerHTML = priceFormatted;
       }
       if (this.inventory.av > 0 || this.madeToOrder) {
         let addUrl =
@@ -593,11 +611,11 @@ export default class Product extends PageManager {
     aliasVehicle = null;
     if (this.selectionSteps.make.default !== selected) {
       this.make = selected;
-      // setCookie('make', this.make);
+      setCookie('make', this.make);
       this.clearOptions("make");
       if (model_data[this.make].length === 1) {
         this.model = model_data[this.make][0];
-        // setCookie('model', this.model);
+        setCookie('model', this.model);
         this.createOptions(
           model_data[this.make],
           "model",
@@ -605,7 +623,7 @@ export default class Product extends PageManager {
         );
         if (gen_data[this.model].length === 1) {
           this.gen = gen_data[this.model][0].index;
-          // setCookie('year', this.gen);
+          setCookie('year', this.gen);
           this.getVehicleProducts();
           this.createOptions(
             gen_data[this.model],
@@ -635,9 +653,10 @@ export default class Product extends PageManager {
     this.clearOptions("model");
     if (selected !== this.selectionSteps["model"].default) {
       this.model = selected;
-      // setCookie('model', selected);
+      setCookie('model', selected);
       if (gen_data[this.model].length === 1) {
         this.gen = gen_data[this.model][0].index;
+        setCookie('year', this.gen);
         this.getVehicleProducts();
         this.createOptions(
           gen_data[this.model],
@@ -663,6 +682,7 @@ export default class Product extends PageManager {
     this.clearOptions("gen");
     if (selected !== this.selectionSteps["gen"].default) {
       this.gen = selected;
+      setCookie('year', this.gen);
       this.opt1Index = "";
       this.loadOpt1();
       this.getVehicleProducts();
@@ -892,9 +912,12 @@ export default class Product extends PageManager {
 
   getShipDay() {
     let nowMilliseconds = Date.now();
+    console.log('now Milliseconds: ', nowMilliseconds);
     let timezoneOffset = new Date().getTimezoneOffset();
+    console.log('timezoneOffset: ', timezoneOffset);
     let offsetMilliseconds = (timezoneOffset / 60) * 3600 * 1000;
     let utcDate = new Date(nowMilliseconds + offsetMilliseconds);
+    console.log('utcDate: ', utcDate);
     let hour = utcDate.getHours();
     let minutes = utcDate.getMinutes();
     let month = utcDate.getMonth();
@@ -902,19 +925,23 @@ export default class Product extends PageManager {
     let year = utcDate.getFullYear();
     let priceValidUntil = year + "-" + day + "-" + (month + 1);
     let shipDay = day;
-    let whenShips = "Today";
+    let whenShips = "today";
+    console.log('hour: ', hour);
+    console.log('this.madeToOrder: ', this.madeToOrder);
+    console.log('shipDay: ', shipDay);
 
-    if (hour >= 21 || hour < 8) {
-      whenShips = "Tomorrow";
+    if (hour >= 22 || hour < 9) {
+      whenShips = "tomorrow";
     }
 
-    if (this.madeToOrder && whenShips === "Today") {
-      whenShips = "Tomorrow";
+    if (this.madeToOrder && whenShips === "today") {
+      whenShips = "tomorrow";
     }
 
-    if (whenShips === "Tomorrow" && shipDay >= 5) {
+    if (whenShips === "tomorrow" && shipDay >= 5) {
       whenShips = "Monday";
     }
+
     return whenShips;
   }
 

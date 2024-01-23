@@ -6,876 +6,985 @@ onFID(console.log);
 onLCP(console.log);
 
 export default class Product extends PageManager {
-    constructor(context) {
-        super(context);
-        this.gallery = document.querySelector('#gallery');
-        this.make;
-        this.model;
-        this.gen;
-        this.opt1Index;
-        this.endPointIndex;
-        this.endPointData;
-        this.name;
-        this.baseId;
-        this.baseSku;
-        this.aliasSku;
-        this.inventory;
-        this.madeToOrder = false;
-        this.aliasProduct = false;
-        this.selectChange = false;
-        this.galleryInitialized = false;
-        this.imageArray = [];
-        this.stockMessage;
-        this.vehicleProducts = [];
+  constructor(context) {
+    super(context);
+    this.make;
+    this.model;
+    this.gen;
+    this.opt1Index;
+    this.endPointIndex;
+    this.endPointData;
+    this.name;
+    this.baseId;
+    this.baseSku;
+    this.aliasSku;
+    this.inventory;
+    this.madeToOrder = false;
+    this.aliasProduct = false;
+    this.selectChange = false;
+    this.galleryInitialized = false;
+    this.imageArray = [];
+    this.vehicleProducts = [];
 
-        // element properties
-        this.addToCartButton = document.querySelector('#product-add-button');
+    // element properties
+    this.addToCartButton = document.querySelector("#product-add-button");
 
-        // an object containing the selection steps and their properties (the element, default, etc...)
-        this.selectionSteps = {
-            make: {
-                element: document.querySelector('#make'),
-                default: 'Choose your Make',
-                hasIndex: false,
-                step: 0
-            },
-            model: {
-                element: document.querySelector('#model'),
-                default: 'Choose your Model',
-                hasIndex: false,
-                step: 1
-            },
-            gen: {
-                element: document.querySelector('#year'),
-                default: 'Choose your Year',
-                hasIndex: true,
-                step: 2
-            },
-            opt1: {
-                element: document.querySelector('#option-one'),
-                default: 'Choose an Option',
-                hasIndex: true,
-                step: 3
-            },
-            opt2: {
-                element: document.querySelector('#option-two'),
-                default: 'Choose an Option',
-                hasIndex: true,
-                step: 4
-            }
-        }
+    // an object containing the selection steps and their properties (the element, default, etc...)
+    this.selectionSteps = {
+      make: {
+        element: document.querySelector("#make"),
+        default: "Choose your Make",
+        hasIndex: false,
+        step: 0,
+      },
+      model: {
+        element: document.querySelector("#model"),
+        default: "Choose your Model",
+        hasIndex: false,
+        step: 1,
+      },
+      gen: {
+        element: document.querySelector("#year"),
+        default: "Choose your Year",
+        hasIndex: true,
+        step: 2,
+      },
+      opt1: {
+        element: document.querySelector("#option-one"),
+        default: "Choose an Option",
+        hasIndex: true,
+        step: 3,
+      },
+      opt2: {
+        element: document.querySelector("#option-two"),
+        default: "Choose an Option",
+        hasIndex: true,
+        step: 4,
+      },
+    };
 
-        // content elements (just the elements)
-        this.contentElements = {
-            gallery: document.querySelector('#gallery'),
-            galleryControls: document.querySelector('#gallery-controls'),
-            dots: document.querySelector('#position-indicator'),
-            sku: document.querySelector('#product-sku'),
-            shippingTime: document.querySelector('#product-shipping'),
-            stock: document.querySelector('#product-stock'),
-            price: document.querySelector('#product-price'),
-            brand: document.querySelector('#product-brand'),
-            description: document.querySelector('#product-description'),
-            moreProducts: document.querySelector('#more-products'),
-            moreProductsHeader: document.querySelector('#more-products-header')
-        }
-    }
+    // content elements
+    this.contentElements = {
+      gallery: document.querySelector("#gallery-container"),
+      galleryControls: document.querySelector("#gallery-controls"),
+      dots: document.querySelector("#position-indicator"),
+      sku: document.querySelector("#product-sku"),
+      shippingTime: document.querySelector("#product-shipping"),
+      stock: document.querySelector("#product-stock"),
+      price: document.querySelector("#product-price"),
+      brand: document.querySelector("#product-brand"),
+      description: document.querySelector("#product-description"),
+      moreProducts: document.querySelector("#more-products"),
+      moreProductsHeader: document.querySelector("#more-products-header"),
+    };
+  }
 
+  onReady() {
+    console.log("Ready");
 
-    onReady() {
-        console.log('Ready');
+    // initialize the gallery
+    this.initGallery();
 
-        // initialize the gallery
-        this.initGallery();
+    // initialize the product rating
+    this.addRating();
 
-        // initialize the product rating
-        this.addRating();
+    // initialize the select elements
+    this.initSelections();
 
-        // initialize the select elements
-        this.initSelections();
+    // initialize event listeners
+    this.bindEvents();
+  }
 
-        // initialize event listeners
-        this.bindEvents();
-    }
+  bindEvents() {
+    // event listeners
 
-    bindEvents() {
-        // event listeners
+    // create a change listener for each of the selection elements (except for add) that triggers a corresponding function (ie: makeChange)
+    for (const key in this.selectionSteps) {
+      if (this.selectionSteps[key] !== "add") {
+        const select = this.selectionSteps[key].element;
 
-        // create a change listener for each of the selection elements (except for add) that triggers a corresponding function (ie: makeChange)
-        for (const key in this.selectionSteps) {
-            if (this.selectionSteps[key] !== 'add') {
-                const select = this.selectionSteps[key].element;
-
-                select.addEventListener('change', (event) => {
-                    const selectedOption = event.target.value;
-                    const functionName = key + 'Change';
-                    this[functionName](selectedOption);
-                });
-            }
-        }
-    }
-
-    // initialize the image gallery
-    initGallery() {
-        console.log('Init Gallery');
-        const images = document.querySelectorAll(".slide");
-        const dots = document.querySelectorAll(".dot");
-        const next = document.querySelector("#next");
-        const prev = document.querySelector("#prev");
-        const bump = 15;
-
-        let currentSlide = 0;
-        let totalSlides = images.length;
-        console.log('total slides: ', totalSlides);
-        let positions = [];
-
-        dots[0].classList.add("active-dot");
-
-        // Calculate positions for each image
-        for (const image of images) {
-            let distance = 100 * positions.length;
-            positions.push(distance);
-        }
-
-
-        // Show specific image by index
-        function showImg(slide) {
-            console.log('show image ', slide);
-            const distance = positions[slide];
-            gallery.style.transform = `translateX(-${distance}%)`;
-
-            // Update active dot
-            dots.forEach((dot) => {
-                dot.classList.remove("active-dot");
-            });
-            dots[slide].classList.add("active-dot");
-            currentSlide = slide;
-        }
-
-        // End Bump Logic
-        function handleEndBump(direction) {
-            gallery.style.transition = "transform .1s ease";
-            const sign = direction === "next" ? "-" : "+";
-            gallery.style.transform = `translateX(calc(-${positions[currentSlide]}% ${sign} ${bump}px))`;
-            setTimeout(() => {
-                gallery.style.transform = `translateX(-${positions[currentSlide]}%)`;
-            }, 100);
-            gallery.style.transition = "transform .4s ease";
-        }
-
-        // Next and Previous image functions
-        function nextImg() {
-            totalSlides = images.length
-            console.log('next image slides count: ', totalSlides);
-            if (currentSlide < totalSlides - 1) {
-                currentSlide++;
-                showImg(currentSlide);
-            } else {
-                handleEndBump("next");
-            }
-        }
-
-        function prevImg() {
-            console.log('previous image');
-            if (currentSlide > 0) {
-                currentSlide--;
-                showImg(currentSlide);
-            } else {
-                handleEndBump("prev");
-            }
-        }
-
-        // gallery listeners
-        // Event listeners for dot clicks
-        dots.forEach((dot, index) => {
-            dot.addEventListener("click", () => {
-                showImg(index);
-            });
+        select.addEventListener("change", (event) => {
+          const selectedOption = event.target.value;
+          const functionName = key + "Change";
+          this[functionName](selectedOption);
         });
+      }
+    }
+  }
 
-        next.addEventListener('click', () => nextImg());
-        prev.addEventListener('click', () => prevImg());
+  // initialize the image gallery
+  initGallery() {
+    console.log("Init Gallery");
+    const images = document.querySelectorAll(".slide");
+    const dots = document.querySelectorAll(".dot");
+    const next = document.querySelector("#next");
+    const prev = document.querySelector("#prev");
+    const bump = 15;
 
-        this.galleryInitialized = true;
-        showImg(0);
-        console.log('gallery initialized? ', this.galleryInitialized);
+    let currentSlide = 0;
+    let totalSlides = images.length;
+    console.log("total slides: ", totalSlides);
+    let positions = [];
+
+    dots[0].classList.add("active-dot");
+
+    // Calculate positions for each image
+    for (const image of images) {
+      let distance = 100 * positions.length;
+      positions.push(distance);
     }
 
-    // display the rating value and review count
-    addRating() {
-        console.log('Add Rating');
-        const stars = document.querySelector('#star-rating').children;
-        const ratingInfo = document.querySelector('#rating-info');
-        const starValue = Math.ceil(archetype_average_review);
+    // Show specific image by index
+    function showImg(slide) {
+      console.log("show image ", slide);
+      const distance = positions[slide];
+      gallery.style.transform = `translateX(-${distance}%)`;
 
-        let i = 0;
-        while (i < starValue) {
-            stars[i].classList.remove("icon--ratingEmpty");
-            stars[i].classList.add("icon--ratingFull");
-            i++;
+      // Update active dot
+      dots.forEach((dot) => {
+        dot.classList.remove("active-dot");
+      });
+      dots[slide].classList.add("active-dot");
+      currentSlide = slide;
+    }
+
+    // End Bump Logic
+    function handleEndBump(direction) {
+      gallery.style.transition = "transform .1s ease";
+      const sign = direction === "next" ? "-" : "+";
+      gallery.style.transform = `translateX(calc(-${positions[currentSlide]}% ${sign} ${bump}px))`;
+      setTimeout(() => {
+        gallery.style.transform = `translateX(-${positions[currentSlide]}%)`;
+      }, 100);
+      gallery.style.transition = "transform .4s ease";
+    }
+
+    // Next and Previous image functions
+    function nextImg() {
+      totalSlides = images.length;
+      console.log("next image slides count: ", totalSlides);
+      if (currentSlide < totalSlides - 1) {
+        currentSlide++;
+        showImg(currentSlide);
+      } else {
+        handleEndBump("next");
+      }
+    }
+
+    function prevImg() {
+      console.log("previous image");
+      if (currentSlide > 0) {
+        currentSlide--;
+        showImg(currentSlide);
+      } else {
+        handleEndBump("prev");
+      }
+    }
+
+    // Add touch event handling
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    gallery.addEventListener("touchstart", (e) => {
+      touchStartX = e.touches[0].clientX;
+    });
+
+    gallery.addEventListener("touchmove", (e) => {
+      touchEndX = e.touches[0].clientX;
+    });
+
+    gallery.addEventListener("touchend", () => {
+      const touchDiff = touchEndX - touchStartX;
+
+      // Set a threshold to determine a valid swipe
+      if (Math.abs(touchDiff) > 50) {
+        // Swipe left
+        if (touchDiff < 0) {
+          nextImg();
         }
+        // Swipe right
+        else {
+          prevImg();
+        }
+      }
+    });
 
-        ratingInfo.innerHTML = ' ' + archetype_average_review + ' out of ' + archetype_review_count + ' reviews';
+    // gallery listeners
+    // Event listeners for dot clicks
+    dots.forEach((dot, index) => {
+      dot.addEventListener("click", () => {
+        showImg(index);
+      });
+    });
+
+    next.addEventListener("click", () => nextImg());
+    prev.addEventListener("click", () => prevImg());
+
+    this.galleryInitialized = true;
+    showImg(0);
+    console.log("gallery initialized? ", this.galleryInitialized);
+  }
+
+  // display the rating value and review count
+  addRating() {
+    console.log("Add Rating");
+    const stars = document.querySelector("#star-rating").children;
+    const ratingInfo = document.querySelector("#rating-info");
+    const starValue = Math.ceil(archetype_average_review);
+
+    let i = 0;
+    while (i < starValue) {
+      stars[i].classList.remove("icon--ratingEmpty");
+      stars[i].classList.add("icon--ratingFull");
+      i++;
     }
 
-    // initialize the dropdowns, pre-select and set cookie when possible.
-    initSelections() {
-        console.log('Init Selections');
-        // if the full vehicle cookie exists set up the first 3 dropdowns and load option 1
-        if (this.initVehicle()) {
-            this.createOptions(make_data, 'make', this.make);
-            this.createOptions(model_data[this.make], 'model', this.model);
-            this.createOptions(gen_data[this.model], 'gen', this.gen);
+    ratingInfo.innerHTML =
+      " " +
+      archetype_average_review +
+      " out of " +
+      archetype_review_count +
+      " reviews";
+  }
+
+  // initialize the dropdowns, pre-select and set cookie when possible.
+  initSelections() {
+    console.log("Init Selections");
+    // if the full vehicle cookie exists set up the first 3 dropdowns and load option 1
+    if (this.initVehicle()) {
+      this.createOptions(make_data, "make", this.make);
+      this.createOptions(model_data[this.make], "model", this.model);
+      this.createOptions(gen_data[this.model], "gen", this.gen);
+      this.loadOpt1();
+    } else {
+      // if nothing is selected create the make dropdown and highlight it
+      if (!this.make) {
+        this.createOptions(make_data, "make", null);
+        this.highlightActiveStep(0);
+        // check if model is selected
+      } else if (!this.model) {
+        this.createOptions(make_data, "make", this.make);
+        // if there is only one model, pre-select it and check the generations
+        if (model_data[this.make].length === 1) {
+          this.model = model_data[this.make][0];
+          setCookie("model", this.model);
+          this.createOptions(model_data[this.make], "model", this.model);
+          // if there is only one generation, pre-select it and load option 1
+          if (gen_data[this.model].length === 1) {
+            this.gen = gen_data[this.model][0].index;
+            setCookie("year", this.gen);
+            this.createOptions(gen_data[this.model], "gen", this.gen);
             this.loadOpt1();
+            return;
+          } else {
+            // there are multiple generations so create the options but don't select one
+            this.createOptions(gen_data[this.model], "gen", null);
+          }
+          this.highlightActiveStep(2);
         } else {
-            // if nothing is selected create the make dropdown and highlight it
-            if (!this.make) {
-                this.createOptions(make_data, 'make', null);
-                this.highlightActiveStep(0);
-                // check if model is selected
-            } else if (!this.model) {
-                this.createOptions(make_data, 'make', this.make);
-                // if there is only one model, pre-select it and check the generations
-                if (model_data[this.make].length === 1) {
-                    this.model = model_data[this.make][0];
-                    setCookie('model', this.model);
-                    this.createOptions(model_data[this.make], 'model', this.model);
-                    // if there is only one generation, pre-select it and load option 1
-                    if (gen_data[this.model].length === 1) {
-                        this.gen = gen_data[this.model][0].index;
-                        setCookie('year', this.gen);
-                        this.createOptions(gen_data[this.model], 'gen', this.gen);
-                        this.loadOpt1();
-                        return;
-                    } else {
-                        // there are multiple generations so create the options but don't select one
-                        this.createOptions(gen_data[this.model], 'gen', null);
-                    }
-                    this.highlightActiveStep(2);
-                } else {
-                    // there are multiple models so create the options but don't select one
-                    this.createOptions(model_data[this.make], 'model', null);
-                    this.highlightActiveStep(1);
-                }
-                // if make and model are selected check if gen can be pre-selected and load the generation dropdown
-            } else {
-                this.createOptions(make_data, 'make', this.make);
-                this.createOptions(model_data[this.make], 'model', this.model);
-                // if only one generation exists, select it and load option 1
-                if (gen_data[this.model].length === 1) {
-                    this.gen = gen_data[this.model][0].index;
-                    setCookie('year', this.gen);
-                    this.createOptions(gen_data[this.model], 'gen', this.gen);
-                    this.loadOpt1();
-                } else {
-                    // there are multiple generations so create the options but don't select one
-                    this.createOptions(gen_data[this.model], 'gen', null);
-                    this.highlightActiveStep(2);
-                }
-            }
+          // there are multiple models so create the options but don't select one
+          this.createOptions(model_data[this.make], "model", null);
+          this.highlightActiveStep(1);
         }
+        // if make and model are selected check if gen can be pre-selected and load the generation dropdown
+      } else {
+        this.createOptions(make_data, "make", this.make);
+        this.createOptions(model_data[this.make], "model", this.model);
+        // if only one generation exists, select it and load option 1
+        if (gen_data[this.model].length === 1) {
+          this.gen = gen_data[this.model][0].index;
+          setCookie("year", this.gen);
+          this.createOptions(gen_data[this.model], "gen", this.gen);
+          this.loadOpt1();
+        } else {
+          // there are multiple generations so create the options but don't select one
+          this.createOptions(gen_data[this.model], "gen", null);
+          this.highlightActiveStep(2);
+        }
+      }
+    }
+  }
+
+  checkCookieVehicle() {
+    console.log("Check Cookie Vehicle");
+    this.make = getCookie("make");
+    this.model = getCookie("model");
+    this.gen = getCookie("year");
+
+    if (this.make || this.model || this.gen) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  checkParamsVehicle() {
+    console.log("Check Params Vehicle");
+    const params = getUrlParams();
+
+    if (params.url_override) {
+      this.make = params.make;
+      this.model = params.model;
+      this.gen = params.year;
     }
 
-    // load the make, model, and year from the cookie or the url parameters if url_override is true. return true if make model and gen are selected.
-    initVehicle() {
-        console.log('Init Vehicle');
-        const params = getUrlParams();
-        // start by checking the cookie for a vehicle
-        this.make = getCookie('make');
-        this.model = getCookie('model');
-        this.gen = getCookie('year');
+    if (this.make || this.model || this.gen) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
-        // then check the url params
-        if (params.url_override) {
-            console.log('params vehicle');
-            this.make = params.make;
-            this.model = params.model;
-            this.gen = params.year;
-        }
-
-        // then check the page is an alias product page and use that vehicle
+  // load the make, model, and year from the cookie or the url parameters if url_override is true. return true if make model and gen are selected.
+  initVehicle() {
+    console.log("Init Vehicle");
+    if (this.checkCookieVehicle()) {
+    } else {
+      if (this.checkParamsVehicle()) {
+      } else {
         if (aliasVehicle) {
-            console.log('alias vehicle');
-            this.aliasProduct = true;
-            this.make = aliasVehicle.make;
-            this.model = aliasVehicle.model;
-            this.gen = aliasVehicle.gen;
-            this.aliasSku = aliasVehicle.sku;
-            this.getAliasOptions();
+          console.log("alias vehicle");
+          this.aliasProduct = true;
+          this.make = aliasVehicle.make;
+          this.model = aliasVehicle.model;
+          this.gen = aliasVehicle.gen;
+          this.aliasSku = aliasVehicle.sku;
+          this.getAliasOptions();
+        } else {
+          console.log('no vehicle found');
         }
-
-        // confirm to the method that called initVehicle that a vehicle was selected
-        if (this.make && this.model && this.gen) {
-            console.log('Vehicle Initialized:', this.make, this.model, this.gen);
-            this.getVehicleProducts();
-            return true;
-        }
+      }
     }
 
-    // provide an array, a target select, and a selected value to create a list of options to add to the select. 'target' is the key value from this.selectionSteps. Includes default. 'selected' can be null if no option is selected yet.
-    createOptions(array, target, selected) {
-        console.log('create options target: ', array, target, selected);
-        let defaultOption = new Option(this.selectionSteps[target].default, this.selectionSteps[target].default);
+    // then check the page is an alias product page and use that vehicle
 
-        // for each item in the given array create an option for it and select it if matches the selected value
-        const options = array.map((item) => {
-            const option = new Option();
-            // check if the array consists of single strings or is an object with properties
-            if (this.selectionSteps[target].hasIndex) {
-                option.value = item.index;
-                option.text = item.name;
-                if (selected) {
-                    if (item.index === selected) {
-                        option.selected = true;
-                    }
-                }
-            } else {
-                option.value = item;
-                option.text = item;
-                if (selected) {
-                    if (item === selected) {
-                        option.selected = true;
-                    }
-                }
-            }
-            return option;
-        })
-        // enable the target select element and add the options that have been created
-        this.selectionSteps[target].element.disabled = false;
-        this.selectionSteps[target].element.append(defaultOption, ...options);
+    // confirm to the method that called initVehicle that a vehicle was selected
+    if (this.make && this.model && this.gen) {
+      console.log("Vehicle Initialized:", this.make, this.model, this.gen);
+      this.getVehicleProducts();
+      return true;
+    } else {
+      return false;
     }
+  }
 
-    // toggle the add to cart button. true = enabled.
-    cartButton(isEnabled) {
-        // check for the cart button
-        if (this.addToCartButton) {
-            // set the disabled property to the opposite of the boolean that was passed to the function
-            this.addToCartButton.disabled = !isEnabled;
-            if (isEnabled) {
-                // if true was passed enable the button
-                console.log('cart button enabled');
-                this.addToCartButton.classList.add("enabled");
-                this.addToCartButton.style.pointerEvents = 'all';
-            } else {
-                // if false was passed disable the button
-                console.log('cart button disabled');
-                this.addToCartButton.classList.remove("enabled");
-                this.addToCartButton.href = '';
-                this.addToCartButton.style.pointerEvents = 'none';
-            }
+  // provide an array, a target select, and a selected value to create a list of options to add to the select. 'target' is the key value from this.selectionSteps. Includes default. 'selected' can be null if no option is selected yet.
+  createOptions(array, target, selected) {
+    console.log("create options target: ", array, target, selected);
+    let defaultOption = new Option(
+      this.selectionSteps[target].default,
+      this.selectionSteps[target].default
+    );
+
+    // for each item in the given array create an option for it and select it if matches the selected value
+    const options = array.map((item) => {
+      const option = new Option();
+      // check if the array consists of single strings or is an object with properties
+      if (this.selectionSteps[target].hasIndex) {
+        option.value = item.index;
+        option.text = item.name;
+        if (selected) {
+          if (item.index === selected) {
+            option.selected = true;
+          }
         }
+      } else {
+        option.value = item;
+        option.text = item;
+        if (selected) {
+          if (item === selected) {
+            option.selected = true;
+          }
+        }
+      }
+      return option;
+    });
+    // enable the target select element and add the options that have been created
+    this.selectionSteps[target].element.disabled = false;
+    this.selectionSteps[target].element.append(defaultOption, ...options);
+  }
+
+  // toggle the add to cart button. true = enabled.
+  cartButton(isEnabled) {
+    // check for the cart button
+    if (this.addToCartButton) {
+      // set the disabled property to the opposite of the boolean that was passed to the function
+      this.addToCartButton.disabled = !isEnabled;
+      if (isEnabled) {
+        // if true was passed enable the button
+        console.log("cart button enabled");
+        this.addToCartButton.classList.add("enabled");
+        this.addToCartButton.style.pointerEvents = "all";
+      } else {
+        // if false was passed disable the button
+        console.log("cart button disabled");
+        this.addToCartButton.classList.remove("enabled");
+        this.addToCartButton.href = "";
+        this.addToCartButton.style.pointerEvents = "none";
+      }
     }
+  }
 
+  // highlights the next select that requires user input. provide the select step value from this.selectionSteps.
+  highlightActiveStep(step) {
+    console.log("Highlight Active Step: ", step);
+    // evaluate each step to determine and set it's active status
+    for (const select in this.selectionSteps) {
+      // if the select has the next-step class, remove the class
+      if (this.selectionSteps[select].element.classList.contains("next-step")) {
+        this.selectionSteps[select].element.classList.remove("next-step");
+      }
+      // if the select is the step passed to this function add the next-step class
+      if (this.selectionSteps[select].step === step) {
+        this.selectionSteps[select].element.classList.add("next-step");
+      }
+      // if the passed step is opt1 or opt1 make it visible
+      if (
+        step > 2 &&
+        this.selectionSteps[select].step >= 3 &&
+        this.selectionSteps[select].step <= step
+      ) {
+        this.selectionSteps[select].element.style.visibility = "visible";
+      }
 
-    // highlights the next select that requires user input. provide the select step value from this.selectionSteps.
-    highlightActiveStep(step) {
-        console.log('Highlight Active Step: ', step);
-        // evaluate each step to determine and set it's active status
+      // if the passed step is opt1 make sure opt2 is hidden
+      if (step <= 2 && this.selectionSteps[select].step >= 3) {
+        this.selectionSteps[select].element.style.visibility = "hidden";
+      }
+    }
+  }
+
+  // provide the endPointIndex that is to be added to the cart and check if it is valid to add (has inventory).
+  initCartAdd(index, select) {
+    console.log("Init Cart Add with: ", index, select);
+    // make sure that the endpoint index is set to whatever was passed to the function
+    this.endPointIndex = index;
+    // make sure that the index isn't from the default option
+    if (index !== this.selectionSteps[select].default) {
+      this.endPointData = key_dict[index];
+      console.log("this endPointData: ", this.endPointData);
+      this.baseId = this.endPointData.base_id;
+      this.aliasSku = this.endPointData.alias_sku;
+      this.inventory = global_inv[this.baseId];
+      console.log("this.baseId: ", this.baseId);
+      console.log("inventory: ", this.inventory);
+      this.name = this.endPointData.name;
+      if (this.selectChange) {
+        console.log("trigger updateContent source:initCartAdd");
+        this.updateContent();
+      }
+      if (this.inventory.av <= 0 && this.inventory.a2b > 0) {
+        this.madeToOrder = true;
+      }
+      if (this.inventory.av > 0 || this.madeToOrder) {
+        let addUrl =
+          "/cart.php?action=add&sku=" +
+          encodeURIComponent(this.aliasSku) +
+          "&source=" +
+          encodeURIComponent(this.name);
+        this.addToCartButton.href = addUrl;
         for (const select in this.selectionSteps) {
-            // if the select has the next-step class, remove the class
-            if (this.selectionSteps[select].element.classList.contains('next-step')) {
-                this.selectionSteps[select].element.classList.remove('next-step');
-            }
-            // if the select is the step passed to this function add the next-step class
-            if (this.selectionSteps[select].step === step) {
-                this.selectionSteps[select].element.classList.add('next-step');
-            }
-            // if the passed step is opt1 or opt1 make it visible
-            if (step > 2 && this.selectionSteps[select].step >= 3 && this.selectionSteps[select].step <= step) {
-                this.selectionSteps[select].element.style.visibility = 'visible';
-            }
-
-            // if the passed step is opt1 make sure opt2 is hidden
-            if (step <= 2 && this.selectionSteps[select].step >= 3) {
-                this.selectionSteps[select].element.style.visibility = 'hidden';
-            }
+          this.selectionSteps[select].element.classList.remove("next-step");
         }
+        this.cartButton(true);
+      }
+    } else {
+      this.highlightActiveStep(this.selectionSteps[select].step);
+      this.cartButton(false);
     }
+  }
 
-    // provide the endPointIndex that is to be added to the cart and check if it is valid to add (has inventory).
-    initCartAdd(index, select) {
-        console.log('Init Cart Add with: ', index, select);
-        // make sure that the endpoint index is set to whatever was passed to the function
-        this.endPointIndex = index;
-        // make sure that the index isn't from the default option
-        if (index !== this.selectionSteps[select].default) {
-            this.endPointData = key_dict[index];
-            console.log('this endPointData: ', this.endPointData);
-            this.baseId = this.endPointData.base_id;
-            this.aliasSku = this.endPointData.alias_sku;
-            this.inventory = global_inv[this.baseId];
-            console.log('this.baseId: ', this.baseId);
-            console.log('inventory: ', this.inventory);
-            this.name = this.endPointData.name;
-            if (this.selectChange) {
-                console.log('trigger updateContent source:initCartAdd');
-                this.updateContent();
-            }
-            if (this.inventory.av <= 0 && this.inventory.a2b > 0) {
-                this.madeToOrder = true;
-            }
-            if (this.inventory.av > 0 || this.madeToOrder) {
-                let addUrl = '/cart.php?action=add&sku=' + encodeURIComponent(this.aliasSku) + '&source=' + encodeURIComponent(this.name);
-                this.addToCartButton.href = addUrl;
-                for (const select in this.selectionSteps) {
-                    this.selectionSteps[select].element.classList.remove('next-step');
-                }
-                this.cartButton(true);
-            }
+  // loads option one when appropriate
+  loadOpt1() {
+    console.log("Load Option One: ", this.gen);
+    let opt1Data = option_data[this.gen];
+    if (!this.aliasProduct) {
+      // not an alias product
+      if (opt1Data) {
+        if (opt1Data.length === 1 && opt1Data[0].name.trim() === "") {
+          this.endPointIndex = opt1Data[0].index;
+          this.initCartAdd(this.endPointIndex, "opt1");
+        } else if (opt1Data.length === 1) {
+          this.opt1Index = opt1Data[0].index;
+          this.createOptions(opt1Data, "opt1", this.opt1Index);
+          if (!this.loadOpt2()) {
+            this.endPointIndex = this.opt1Index;
+            this.initCartAdd(this.endPointIndex, "opt1");
+            this.clearOptions("opt1");
+            this.selectionSteps.opt1.element.style.visibility = "visible";
+          }
         } else {
-            this.highlightActiveStep(this.selectionSteps[select].step);
-            this.cartButton(false);
+          this.createOptions(option_data[this.gen], "opt1", null);
+          this.highlightActiveStep(3);
         }
-    }
+      } else {
+        this.endPointIndex = this.gen;
+        this.initCartAdd(this.endPointIndex, "gen");
+      }
+    } else {
+      // alias product
+      let opt1Data = option_data[this.gen];
 
-    // loads option one when appropriate
-    loadOpt1() {
-        console.log('Load Option One: ', this.gen);
-        let opt1Data = option_data[this.gen];
-        if (!this.aliasProduct) {
-            // not an alias product
-            if (opt1Data) {
-                if (opt1Data.length === 1 && opt1Data[0].name.trim() === '') {
-                    this.endPointIndex = opt1Data[0].index;
-                    this.initCartAdd(this.endPointIndex, 'opt1');
-                } else if (opt1Data.length === 1) {
-                    this.opt1Index = opt1Data[0].index;
-                    this.createOptions(opt1Data, 'opt1', this.opt1Index);
-                    if (!this.loadOpt2()) {
-                        this.endPointIndex = this.opt1Index;
-                        this.initCartAdd(this.endPointIndex, 'opt1');
-                        this.clearOptions('opt1');
-                        this.selectionSteps.opt1.element.style.visibility = 'visible';
-                    }
-                } else {
-                    this.createOptions(option_data[this.gen], 'opt1', null);
-                    this.highlightActiveStep(3);
-                }
-            } else {
-                this.endPointIndex = this.gen;
-                this.initCartAdd(this.endPointIndex, 'gen');
-            }
-        } else {
-            // alias product
-            let opt1Data = option_data[this.gen];
-
-            if (opt1Data.length === 1 && opt1Data[0].name.trim() === '') {
-                // opt1 is an empty default option
-                this.endPointIndex = opt1Data[0].index;
-                this.initCartAdd(this.endPointIndex, 'gen');
-            } else if (opt1Data.length === 1) {
-                // opt1 is valid but there is only one
-                this.opt1Index = opt1Data[0].index;
-                this.createOptions(opt1Data, 'opt1', this.opt1Index);
-                if (!this.loadOpt2()) {
-                    this.endPointIndex = this.opt1Index;
-                    this.initCartAdd(this.endPointIndex, 'opt1');
-                    this.clearOptions('opt1');
-                    this.selectionSteps.opt1.element.style.visibility = 'visible';
-                }
-            } else {
-                // there are multiple options for opt1
-                this.createOptions(opt1Data, 'opt1', this.opt1Index);
-                this.selectionSteps['opt1'].element.style.visibility = 'visible';
-                if (!this.loadOpt2()) {
-                    if (this.opt1Index) {
-                        this.endPointIndex = this.opt1Index;
-                        this.initCartAdd(this.endPointIndex, 'opt1');
-                    } else {
-                        this.highlightActiveStep(3);
-                    }
-                }
-            }
+      if (opt1Data.length === 1 && opt1Data[0].name.trim() === "") {
+        // opt1 is an empty default option
+        this.endPointIndex = opt1Data[0].index;
+        this.initCartAdd(this.endPointIndex, "gen");
+      } else if (opt1Data.length === 1) {
+        // opt1 is valid but there is only one
+        this.opt1Index = opt1Data[0].index;
+        this.createOptions(opt1Data, "opt1", this.opt1Index);
+        if (!this.loadOpt2()) {
+          this.endPointIndex = this.opt1Index;
+          this.initCartAdd(this.endPointIndex, "opt1");
+          this.clearOptions("opt1");
+          this.selectionSteps.opt1.element.style.visibility = "visible";
         }
-    }
-
-    loadOpt2() {
-        this.clearOptions('opt1');
-        let opt2Data = sub_option_data[this.opt1Index];
-        if (opt2Data) {
-            if (!this.aliasProduct) {
-                if (opt2Data.length === 1) {
-                    this.opt2Index = opt2Data[0].index;
-                    this.createOptions(opt2Data, 'opt2', this.opt2index);
-                    this.endPointIndex = this.opt2Index;
-                    this.initCartAdd(this.endPointIndex, 'opt2');
-                } else {
-                    this.createOptions(opt2Data, 'opt2', null);
-                    this.highlightActiveStep(4);
-                }
-            } else {
-                if (this.endPointIndex) {
-                    this.createOptions(opt2Data, 'opt2', this.endPointIndex);
-                    this.selectionSteps['opt2'].element.style.visibility = 'visible';
-                    this.initCartAdd(this.endPointIndex, 'opt2');
-                } else {
-                    this.createOptions(opt2Data, 'opt2', null);
-                    this.highlightActiveStep(4);
-                    this.selectionSteps['opt2'].element.style.visibility = 'visible';
-                }
-            }
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    makeChange(selected) {
-        console.log('Make Change, selected: ', selected);
-        this.cartButton(false);
-        this.selectChange = true;
-        aliasVehicle = null;
-        if (this.selectionSteps.make.default !== selected) {
-            this.make = selected;
-            // setCookie('make', this.make);
-            this.clearOptions('make');
-            if (model_data[this.make].length === 1) {
-                this.model = model_data[this.make][0];
-                // setCookie('model', this.model);
-                this.createOptions(model_data[this.make], 'model', model_data[this.make][0]);
-                if (gen_data[this.model].length === 1) {
-                    this.gen = gen_data[this.model][0].index;
-                    // setCookie('year', this.gen);
-                    this.getVehicleProducts();
-                    this.createOptions(gen_data[this.model], 'gen', gen_data[this.model][0].index);
-                    this.loadOpt1();
-                } else {
-                    this.createOptions(gen_data[this.model], 'gen', null);
-                    this.highlightActiveStep(2);
-                }
-            } else {
-                this.createOptions(model_data[this.make], 'model', null);
-                this.highlightActiveStep(1);
-            }
-        } else {
-            this.clearOptions('make');
-            this.highlightActiveStep(0);
-        }
-    }
-
-    modelChange(selected) {
-        console.log('Model Change, selected: ', selected);
-        this.cartButton(false);
-        this.selectChange = true;
-        aliasVehicle = null;
-        this.clearOptions('model');
-        if (selected !== this.selectionSteps['model'].default) {
-            this.model = selected;
-            // setCookie('model', selected);
-            if (gen_data[this.model].length === 1) {
-                this.gen = gen_data[this.model][0].index;
-                this.getVehicleProducts();
-                this.createOptions(gen_data[this.model], 'gen', gen_data[this.model][0].index);
-                this.opt1Index = '';
-                this.loadOpt1();
-            } else {
-                this.createOptions(gen_data[this.model], 'gen', null);
-                this.highlightActiveStep(2);
-            }
-        } else {
-            this.highlightActiveStep(1);
-        }
-    }
-
-    genChange(selected) {
-        console.log('Gen Change, selected: ', selected);
-        this.cartButton(false);
-        this.selectChange = true;
-        aliasVehicle = null;
-        this.clearOptions('gen');
-        if (selected !== this.selectionSteps['gen'].default) {
-            this.gen = selected;
-            this.opt1Index = '';
-            this.loadOpt1();
-            this.getVehicleProducts();
-        } else {
-            this.highlightActiveStep(2);
-        }
-    }
-
-    opt1Change(selected) {
-        console.log('Option One Change, selected: ', selected);
-        this.cartButton(false);
-        this.selectChange = true;
-        aliasVehicle = null;
-        this.clearOptions('opt1');
-        if (selected !== this.selectionSteps['opt1'].default) {
-            this.opt1Index = selected;
-            this.endPointIndex = '';
-            if (!this.loadOpt2()) {
-                this.endPointIndex = this.opt1Index;
-                this.initCartAdd(this.endPointIndex, 'opt1');
-            }
-        } else {
+      } else {
+        // there are multiple options for opt1
+        this.createOptions(opt1Data, "opt1", this.opt1Index);
+        this.selectionSteps["opt1"].element.style.visibility = "visible";
+        if (!this.loadOpt2()) {
+          if (this.opt1Index) {
+            this.endPointIndex = this.opt1Index;
+            this.initCartAdd(this.endPointIndex, "opt1");
+          } else {
             this.highlightActiveStep(3);
+          }
         }
+      }
     }
+  }
 
-    opt2Change(selected) {
-        console.log('Option Two Change, selected: ', selected);
-        this.cartButton(false);
-        this.selectChange = true;
-        aliasVehicle = null;
-        if (selected !== this.selectionSteps.opt2.default) {
-            this.endPointIndex = selected;
-            this.clearOptions('opt2');
-            this.initCartAdd(this.endPointIndex, 'opt2');
+  loadOpt2() {
+    this.clearOptions("opt1");
+    let opt2Data = sub_option_data[this.opt1Index];
+    if (opt2Data) {
+      if (!this.aliasProduct) {
+        if (opt2Data.length === 1) {
+          this.opt2Index = opt2Data[0].index;
+          this.createOptions(opt2Data, "opt2", this.opt2index);
+          this.endPointIndex = this.opt2Index;
+          this.initCartAdd(this.endPointIndex, "opt2");
         } else {
-            this.clearOptions('opt2');
-            this.highlightActiveStep(4);
+          this.createOptions(opt2Data, "opt2", null);
+          this.highlightActiveStep(4);
         }
-    }
-
-    clearOptions(source) {
-        console.log('Clear Options From: ', source);
-        let position = this.selectionSteps[source].step;
-        for (const select in this.selectionSteps) {
-            if (this.selectionSteps[select].step > position) {
-                this.selectionSteps[select].element.innerHTML = '';
-                this.selectionSteps[select].element.disabled = true;
-                if (this.selectionSteps[select].element.classList.contains('next-step')) {
-                    this.selectionSteps[select].element.classList.remove('next-step');
-                }
-            }
-        }
-        if (position < 3) {
-            this.selectionSteps['opt1'].element.style.visibility = 'hidden';
-            this.selectionSteps['opt2'].element.style.visibility = 'hidden';
-        }
-    }
-
-    getAliasOptions() {
-        console.log('get alias options');
-        for (const item in key_dict) {
-            if (key_dict[item].alias_sku === aliasVehicle.sku) {
-                this.endPointIndex = item;
-                let optionData = option_data[this.gen];
-                for (const option of optionData) {
-                    if (option.index !== this.endPointIndex) {
-                        for (const subOptionSet in sub_option_data) {
-                            for (const subOption of sub_option_data[subOptionSet]) {
-                                if (subOption.index === this.endPointIndex) {
-                                    this.opt1Index = subOptionSet;
-                                    return;
-                                }
-                            }
-                        }
-                    } else {
-                        this.opt1Index = this.endPointIndex;
-                    }
-                }
-            }
-        }
-    }
-
-    // clear all of the content elements in this.contentElements
-    clearContent() {
-        console.log('clear content');
-        for (const element in this.contentElements) {
-            if (element !== 'moreProducts' && element !== 'moreProductsHeader')
-            this.contentElements[element].innerHTML = '';
-        }
-    }
-
-    // load the images for the endpoint product
-    updateGallery() {
-        console.log('update gallery');
-        // get the images for the selected product
-        let imageData = this.endPointData.image_array;
-
-        // pull the main image off of the imageData so it can be added to the end of the final array
-        let mainImage = {
-            url: imageData.url,
-            description: imageData.description,
-            url_tiny: imageData.url_tiny,
-            url_standard: imageData.url_standard,
-            sort_order: imageData.image_count
-        }
-
-        // reset the image array
-        this.imageArray.length = 0;
-
-        // push the secondary images and the main image to the new image array
-        this.imageArray.push(...imageData.secondary_images_list, mainImage);
-
-        // establish an array to contain the slide elements
-        let slides = [];
-
-        // Create new buttons and a new position indicator element
-        let prevButton = document.createElement('button');
-        Object.assign(prevButton, { id: 'prev', textContent: 'Previous' });
-        let positionIndicator = document.createElement('div');
-        positionIndicator.id = 'position-indicator';
-        let nextButton = document.createElement('button');
-        Object.assign(nextButton, { id: 'next', textContent: 'Next' });
-        let dots = [];
-        let dot = this.createDot();
-
-        // index track which image the loop is on
-        let i = 0;
-
-        // create a slide and a dot for each image and add them to their arrays
-        for (const image of this.imageArray) {
-            let slide = document.createElement('div');
-            slide.classList.add('slide')
-            let img = document.createElement('img');
-            img.src = image.url;
-            img.alt = image.description;
-            slide.appendChild(img);
-            slides.push(slide);
-            // create a new dot by cloning dot
-            const newDot = dot.cloneNode(true);
-            // set the first dot to active
-            if (i === 0) {
-                newDot.classList.add('active-dot');
-                i++;
-            }
-            dots.push(newDot);
-        }
-
-        // apend the slides and controls to their parent elements
-        this.contentElements.gallery.append(...slides);
-        this.contentElements.galleryControls.append(prevButton, positionIndicator, nextButton);
-
-        // since postion-indicator was removed, re-assign it to the appropriate selectElement 
-        this.contentElements.dots = document.querySelector('#position-indicator');
-
-        // append the dots to the position indicator
-        this.contentElements.dots.append(...dots);
-
-        // re-initialize the gallery
-        this.initGallery();
-    }
-
-    // when an endpoint is selected by the user, reload the page content to match the endpoint product
-    updateContent() {
-        console.log('update content');
-        this.clearContent();
-        this.updateGallery();
-        this.baseSku = this.endPointData.base_sku;
-        this.contentElements.sku.innerHTML = this.baseSku;
-        let shipDay = this.getShipDay();
-        this.contentElements.shippingTime.innerHTML = 'Ships free, ' + shipDay;
-        if (this.inventory.av > 10) {
-            this.contentElements.stock.innerHTML = 'Plenty in stock';
-        } else if (this.inventory.av > 0) {
-            this.contentElements.stock.innerHTML = 'Only ' + this.inventory.av + ' left. Order soon!';
-        } else if (this.madeToOrder) {
-            this.contentElements.stock.innerHTML = 'In Stock';
+      } else {
+        if (this.endPointIndex) {
+          this.createOptions(opt2Data, "opt2", this.endPointIndex);
+          this.selectionSteps["opt2"].element.style.visibility = "visible";
+          this.initCartAdd(this.endPointIndex, "opt2");
         } else {
-            this.contentElements.stock.innerHTML = 'Out of Stock';
+          this.createOptions(opt2Data, "opt2", null);
+          this.highlightActiveStep(4);
+          this.selectionSteps["opt2"].element.style.visibility = "visible";
         }
-        let priceFormatted = this.endPointData.price.toLocaleString('en-us', {style: 'currency', currency: 'USD'});
-        this.contentElements.price.innerHTML = priceFormatted;
-        this.contentElements.brand.innerHTML = this.endPointData.brand_name;
-        this.contentElements.description.innerHTML = this.endPointData.description;
+      }
+      return true;
+    } else {
+      return false;
     }
+  }
 
-    createDot() {
-        // Create an SVG element
-        const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-
-        // Set the width and height of the SVG and add the dot class
-        svg.setAttribute("width", "18");
-        svg.setAttribute("height", "18");
-        svg.classList.add('dot');
-
-        // Create a circle element
-        const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-
-        // Set the attributes for the circle (centered in the SVG)
-        circle.setAttribute("cx", "9");
-        circle.setAttribute("cy", "9");
-        circle.setAttribute("r", "9"); // Radius of the circle
-
-        // Append the circle to the SVG
-        svg.appendChild(circle);
-
-        // return the svg
-        return svg;
+  makeChange(selected) {
+    console.log("Make Change, selected: ", selected);
+    this.cartButton(false);
+    this.selectChange = true;
+    aliasVehicle = null;
+    if (this.selectionSteps.make.default !== selected) {
+      this.make = selected;
+      // setCookie('make', this.make);
+      this.clearOptions("make");
+      if (model_data[this.make].length === 1) {
+        this.model = model_data[this.make][0];
+        // setCookie('model', this.model);
+        this.createOptions(
+          model_data[this.make],
+          "model",
+          model_data[this.make][0]
+        );
+        if (gen_data[this.model].length === 1) {
+          this.gen = gen_data[this.model][0].index;
+          // setCookie('year', this.gen);
+          this.getVehicleProducts();
+          this.createOptions(
+            gen_data[this.model],
+            "gen",
+            gen_data[this.model][0].index
+          );
+          this.loadOpt1();
+        } else {
+          this.createOptions(gen_data[this.model], "gen", null);
+          this.highlightActiveStep(2);
+        }
+      } else {
+        this.createOptions(model_data[this.make], "model", null);
+        this.highlightActiveStep(1);
+      }
+    } else {
+      this.clearOptions("make");
+      this.highlightActiveStep(0);
     }
+  }
 
-    getShipDay() {
-        let nowMilliseconds = Date.now();
-        let timezoneOffset = new Date().getTimezoneOffset();
-        let offsetMilliseconds = (timezoneOffset / 60) * 3600 * 1000;
-        let utcDate = new Date(nowMilliseconds + offsetMilliseconds);
-        let hour = utcDate.getHours();
-        let minutes = utcDate.getMinutes();
-        let month = utcDate.getMonth();
-        let day = utcDate.getDay();
-        let year = utcDate.getFullYear();
-        let priceValidUntil = year + '-' + day + '-' + (month + 1);
-        let shipDay = day;
-        let whenShips = 'Today';
-
-        if (hour >= 21 || hour < 8) {
-            whenShips = 'Tomorrow';
-        }
-
-        if(this.madeToOrder && whenShips === 'Today') {
-            whenShips = 'Tomorrow';
-        }
-
-        if (whenShips === 'Tomorrow' && shipDay >= 5) {
-            whenShips = 'Monday';
-        }
-        return whenShips;
+  modelChange(selected) {
+    console.log("Model Change, selected: ", selected);
+    this.cartButton(false);
+    this.selectChange = true;
+    aliasVehicle = null;
+    this.clearOptions("model");
+    if (selected !== this.selectionSteps["model"].default) {
+      this.model = selected;
+      // setCookie('model', selected);
+      if (gen_data[this.model].length === 1) {
+        this.gen = gen_data[this.model][0].index;
+        this.getVehicleProducts();
+        this.createOptions(
+          gen_data[this.model],
+          "gen",
+          gen_data[this.model][0].index
+        );
+        this.opt1Index = "";
+        this.loadOpt1();
+      } else {
+        this.createOptions(gen_data[this.model], "gen", null);
+        this.highlightActiveStep(2);
+      }
+    } else {
+      this.highlightActiveStep(1);
     }
+  }
 
-    getVehicleProducts() {
-        console.log('vehicle products gen value: ', this.gen);
-        this.vehicleProducts.length = 0;
-        this.contentElements.moreProductsHeader.innerHTML = '';
-        this.contentElements.moreProducts.innerHTML = '';
-        let searchYear = this.gen.replace(this.model,'');
-        searchYear = searchYear.replace(this.make,'');
-        for (const item of search_string) {
-            let keywords = item.keywords;
-            if (keywords.includes(this.make) && keywords.includes(this.model) && keywords.includes(searchYear)) {
-                const product = {
-                    url: item.url,
-                    title: item.title,
-                    imageUrl: item.search_image_url,
-                    archId: item.arch_id,
-                    archPrice: item.arch_price,
+  genChange(selected) {
+    console.log("Gen Change, selected: ", selected);
+    this.cartButton(false);
+    this.selectChange = true;
+    aliasVehicle = null;
+    this.clearOptions("gen");
+    if (selected !== this.selectionSteps["gen"].default) {
+      this.gen = selected;
+      this.opt1Index = "";
+      this.loadOpt1();
+      this.getVehicleProducts();
+    } else {
+      this.highlightActiveStep(2);
+    }
+  }
+
+  opt1Change(selected) {
+    console.log("Option One Change, selected: ", selected);
+    this.cartButton(false);
+    this.selectChange = true;
+    aliasVehicle = null;
+    this.clearOptions("opt1");
+    if (selected !== this.selectionSteps["opt1"].default) {
+      this.opt1Index = selected;
+      this.endPointIndex = "";
+      if (!this.loadOpt2()) {
+        this.endPointIndex = this.opt1Index;
+        this.initCartAdd(this.endPointIndex, "opt1");
+      }
+    } else {
+      this.highlightActiveStep(3);
+    }
+  }
+
+  opt2Change(selected) {
+    console.log("Option Two Change, selected: ", selected);
+    this.cartButton(false);
+    this.selectChange = true;
+    aliasVehicle = null;
+    if (selected !== this.selectionSteps.opt2.default) {
+      this.endPointIndex = selected;
+      this.clearOptions("opt2");
+      this.initCartAdd(this.endPointIndex, "opt2");
+    } else {
+      this.clearOptions("opt2");
+      this.highlightActiveStep(4);
+    }
+  }
+
+  clearOptions(source) {
+    console.log("Clear Options From: ", source);
+    let position = this.selectionSteps[source].step;
+    for (const select in this.selectionSteps) {
+      if (this.selectionSteps[select].step > position) {
+        this.selectionSteps[select].element.innerHTML = "";
+        this.selectionSteps[select].element.disabled = true;
+        if (
+          this.selectionSteps[select].element.classList.contains("next-step")
+        ) {
+          this.selectionSteps[select].element.classList.remove("next-step");
+        }
+      }
+    }
+    if (position < 3) {
+      this.selectionSteps["opt1"].element.style.visibility = "hidden";
+      this.selectionSteps["opt2"].element.style.visibility = "hidden";
+    }
+  }
+
+  getAliasOptions() {
+    console.log("get alias options");
+    for (const item in key_dict) {
+      if (key_dict[item].alias_sku === aliasVehicle.sku) {
+        this.endPointIndex = item;
+        let optionData = option_data[this.gen];
+        for (const option of optionData) {
+          if (option.index !== this.endPointIndex) {
+            for (const subOptionSet in sub_option_data) {
+              for (const subOption of sub_option_data[subOptionSet]) {
+                if (subOption.index === this.endPointIndex) {
+                  this.opt1Index = subOptionSet;
+                  return;
                 }
-                this.vehicleProducts.push(product);
+              }
             }
+          } else {
+            this.opt1Index = this.endPointIndex;
+          }
         }
-
-        const productCards = [];
-        for (const product of this.vehicleProducts) {
-            const card = document.createElement('div');
-            const link = document.createElement('a');
-            const img = document.createElement('img');
-            const title = document.createElement('h3');
-            const price = document.createElement('div');
-            
-            card.classList.add('product-card');
-            link.classList.add('card-link');
-            img.classList.add('product-card-image');
-            title.classList.add('product-card-title');
-            price.classList.add('product-card-price');
-            
-            link.href = product.url;
-            img.src = product.imageUrl;
-            img.alt = product.title;
-            title.textContent = product.title;
-            price.textContent = product.archPrice.toLocaleString('en-us', {style: 'currency', currency: 'USD'});
-
-            card.append(link, img, title, price);
-            productCards.push(card);
-        }
-        let genName = '';
-        for (const item of gen_data[this.model]) {
-            if (item.index === this.gen) {
-                genName = item.name;
-            }
-        }
-        this.contentElements.moreProductsHeader.innerHTML = productCards.length + " matching products for " + this.make + " " + this.model + " " + genName;
-        console.log('gen_data:', gen_data);
-        this.contentElements.moreProducts.append(...productCards);
-        console.log('product cards: ', productCards);
+      }
     }
+  }
+
+  // clear all of the content elements in this.contentElements
+  clearContent() {
+    console.log("clear content");
+    for (const element in this.contentElements) {
+      if (element !== "moreProducts" && element !== "moreProductsHeader")
+        this.contentElements[element].innerHTML = "";
+    }
+  }
+
+  // load the images for the endpoint product
+  updateGallery() {
+    console.log("update gallery");
+    // get the images for the selected product
+    let imageData = this.endPointData.image_array;
+
+    // pull the main image off of the imageData so it can be added to the end of the final array
+    let mainImage = {
+      url: imageData.url,
+      description: imageData.description,
+      url_tiny: imageData.url_tiny,
+      url_standard: imageData.url_standard,
+      sort_order: imageData.image_count,
+    };
+
+    // reset the image array
+    this.imageArray.length = 0;
+
+    // push the secondary images and the main image to the new image array
+    this.imageArray.push(...imageData.secondary_images_list, mainImage);
+
+    const gallery = document.createElement("div");
+    gallery.id = "gallery";
+
+    // establish an array to contain the slide elements
+    let slides = [];
+
+    // Create new buttons and a new position indicator element
+    let prevButton = document.createElement("button");
+    Object.assign(prevButton, { id: "prev", textContent: "Previous" });
+    let positionIndicator = document.createElement("div");
+    positionIndicator.id = "position-indicator";
+    let nextButton = document.createElement("button");
+    Object.assign(nextButton, { id: "next", textContent: "Next" });
+    let dots = [];
+    let dot = this.createDot();
+
+    // index track which image the loop is on
+    let i = 0;
+
+    // create a slide and a dot for each image and add them to their arrays
+    for (const image of this.imageArray) {
+      let slide = document.createElement("div");
+      slide.classList.add("slide");
+      let img = document.createElement("img");
+      img.src = image.url;
+      img.alt = image.description;
+      slide.appendChild(img);
+      slides.push(slide);
+      // create a new dot by cloning dot
+      const newDot = dot.cloneNode(true);
+      // set the first dot to active
+      if (i === 0) {
+        newDot.classList.add("active-dot");
+        i++;
+      }
+      dots.push(newDot);
+    }
+
+    // apend the slides and controls to their parent elements
+    gallery.append(...slides);
+    this.contentElements.gallery.append(gallery);
+    this.contentElements.galleryControls.append(
+      prevButton,
+      positionIndicator,
+      nextButton
+    );
+
+    // since postion-indicator was removed, re-assign it to the appropriate selectElement
+    this.contentElements.dots = document.querySelector("#position-indicator");
+
+    // append the dots to the position indicator
+    this.contentElements.dots.append(...dots);
+
+    // re-initialize the gallery
+    this.initGallery();
+  }
+
+  // when an endpoint is selected by the user, reload the page content to match the endpoint product
+  updateContent() {
+    console.log("update content");
+    this.clearContent();
+    this.updateGallery();
+    this.baseSku = this.endPointData.base_sku;
+    this.contentElements.sku.innerHTML = this.baseSku;
+    let shipDay = this.getShipDay();
+    this.contentElements.shippingTime.innerHTML = "Ships free, " + shipDay;
+    if (this.inventory.av > 10) {
+      this.contentElements.stock.innerHTML = "Plenty in stock";
+    } else if (this.inventory.av > 0) {
+      this.contentElements.stock.innerHTML =
+        "Only " + this.inventory.av + " left. Order soon!";
+    } else if (this.madeToOrder) {
+      this.contentElements.stock.innerHTML = "In Stock";
+    } else {
+      this.contentElements.stock.innerHTML = "Out of Stock";
+    }
+    let priceFormatted = this.endPointData.price.toLocaleString("en-us", {
+      style: "currency",
+      currency: "USD",
+    });
+    this.contentElements.price.innerHTML = priceFormatted;
+    this.contentElements.brand.innerHTML = this.endPointData.brand_name;
+    this.contentElements.description.innerHTML = this.endPointData.description;
+  }
+
+  createDot() {
+    // Create an SVG element
+    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+
+    // Set the width and height of the SVG and add the dot class
+    svg.setAttribute("width", "18");
+    svg.setAttribute("height", "18");
+    svg.classList.add("dot");
+
+    // Create a circle element
+    const circle = document.createElementNS(
+      "http://www.w3.org/2000/svg",
+      "circle"
+    );
+
+    // Set the attributes for the circle (centered in the SVG)
+    circle.setAttribute("cx", "9");
+    circle.setAttribute("cy", "9");
+    circle.setAttribute("r", "9"); // Radius of the circle
+
+    // Append the circle to the SVG
+    svg.appendChild(circle);
+
+    // return the svg
+    return svg;
+  }
+
+  getShipDay() {
+    let nowMilliseconds = Date.now();
+    let timezoneOffset = new Date().getTimezoneOffset();
+    let offsetMilliseconds = (timezoneOffset / 60) * 3600 * 1000;
+    let utcDate = new Date(nowMilliseconds + offsetMilliseconds);
+    let hour = utcDate.getHours();
+    let minutes = utcDate.getMinutes();
+    let month = utcDate.getMonth();
+    let day = utcDate.getDay();
+    let year = utcDate.getFullYear();
+    let priceValidUntil = year + "-" + day + "-" + (month + 1);
+    let shipDay = day;
+    let whenShips = "Today";
+
+    if (hour >= 21 || hour < 8) {
+      whenShips = "Tomorrow";
+    }
+
+    if (this.madeToOrder && whenShips === "Today") {
+      whenShips = "Tomorrow";
+    }
+
+    if (whenShips === "Tomorrow" && shipDay >= 5) {
+      whenShips = "Monday";
+    }
+    return whenShips;
+  }
+
+  getVehicleProducts() {
+    console.log("vehicle products gen value: ", this.gen);
+    this.vehicleProducts.length = 0;
+    this.contentElements.moreProductsHeader.innerHTML = "";
+    this.contentElements.moreProducts.innerHTML = "";
+    let searchYear = this.gen.replace(this.model, "");
+    searchYear = searchYear.replace(this.make, "");
+    for (const item of search_string) {
+      let keywords = item.keywords;
+      if (
+        keywords.includes(this.make) &&
+        keywords.includes(this.model) &&
+        keywords.includes(searchYear)
+      ) {
+        const product = {
+          url: item.url,
+          title: item.title,
+          imageUrl: item.search_image_url,
+          archId: item.arch_id,
+          archPrice: item.arch_price,
+        };
+        this.vehicleProducts.push(product);
+      }
+    }
+
+    const productCards = [];
+    for (const product of this.vehicleProducts) {
+      const card = document.createElement("div");
+      const link = document.createElement("a");
+      const img = document.createElement("img");
+      const title = document.createElement("h3");
+      const price = document.createElement("div");
+
+      card.classList.add("product-card");
+      link.classList.add("card-link");
+      img.classList.add("product-card-image");
+      title.classList.add("product-card-title");
+      price.classList.add("product-card-price");
+
+      link.href = product.url;
+      img.src = product.imageUrl;
+      img.alt = product.title;
+      title.textContent = product.title;
+      price.textContent = product.archPrice.toLocaleString("en-us", {
+        style: "currency",
+        currency: "USD",
+      });
+
+      card.append(link, img, title, price);
+      productCards.push(card);
+    }
+    let genName = "";
+    for (const item of gen_data[this.model]) {
+      if (item.index === this.gen) {
+        genName = item.name;
+      }
+    }
+    this.contentElements.moreProductsHeader.innerHTML =
+      productCards.length +
+      " matching products for " +
+      this.make +
+      " " +
+      this.model +
+      " " +
+      genName;
+    console.log("gen_data:", gen_data);
+    this.contentElements.moreProducts.append(...productCards);
+    console.log("product cards: ", productCards);
+  }
 }

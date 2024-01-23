@@ -34,8 +34,11 @@
         {{{stylesheet '/assets/css/theme.css'}}}
         
         {{!-- CravenSpeed Qty Script --}}
-        <script type="text/javascript" src="/content/cs_search.js"></script>
-        <script type="text/javascript" src="/content/cs_search_data.js"></script>
+        <script type="text/javascript" src="/content/cs_search.js" defer></script>
+        <script type="text/javascript" src="/content/cs_search_data.js" defer></script>
+        {{#if page_type '===' 'product'}}
+        <script type="text/javascript" src="/content/global_inventory.js"></script>
+        {{/if}}
         {{#if page_type '===' 'default'}}
         <script src="/content/home.js"></script>
         {{/if}}
@@ -61,12 +64,14 @@
         <svg data-src="{{cdn 'img/icon-sprite.svg'}}" class="icons-svg-sprite"></svg>
 
         {{> components/common/header }}
+    
 
-        {{#if (getVar "product_template") "===" "cs-product"}}
-            <p>It's True in BASE!</p>
+        {{#if page_type '===' 'product'}}
+            {{> components/common/cs-product-body }}
+        {{else}}
+            {{> components/common/body }}
         {{/if}}
-        
-        {{> components/common/body }}
+
         {{> components/common/footer }}
 
         <script>window.__webpack_public_path__ = "{{cdn 'assets/dist/'}}";</script>
@@ -100,10 +105,6 @@
         {{/if}}
 
         {{{footer.scripts}}}
-        
-        {{!-- Slick import for CLI Development --}}
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-        <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
     </body>
 </html>

@@ -42,7 +42,7 @@ const pageClasses = {
     giftcertificates_redeem: () => import('./theme/gift-certificate'),
     default: noop,
     page: noop,
-    product: () => import('./theme/product'),
+    // product: () => import('./theme/product'),
     amp_product_options: () => import('./theme/product'),
     search: () => import('./theme/search'),
     rss: noop,

@@ -11,7 +11,6 @@ export default class ImageGallery {
     init() {
         this.bindEvents();
         this.setImageZoom();
-        console.log('init image gallery')
     }
 
     setMainImage(imgObj) {

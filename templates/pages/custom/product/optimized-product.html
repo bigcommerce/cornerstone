@@ -1,0 +1,81 @@
+{{#partial "page"}}
+{{#each product.shipping_messages}}
+{{>components/common/alert/alert-info message}}
+{{/each}}
+
+<div id="optimized-product">
+  <div id="product-above">
+    <div id="product-above-photo">{{> components/products-cs/gallery}}</div>
+    <div id="product-above-info">
+      <div id="product-title">
+        <h1>
+          {{#contains (JSONstringify product.custom_fields) 'archetype_id'}}
+          {{product.title}}
+          {{else}}
+          {{#filter product.custom_fields 'Product Type' property='name'}}
+          {{value}}
+          {{/filter}}
+          {{/contains}}
+        </h1>
+      </div>
+      <h2 class="single-row" id="product-sku">{{product.sku}}</h2>
+      <h2 class="single-row" id="product-shipping">
+        <strong>Ships Free Today</strong>, via USPS Priority Mail
+      </h2>
+      <h2 class="single-row" id="product-stock">Plenty in Stock</h2>
+      <h2 class="double-row" id="product-price">$100.00</h2>
+      <a href="#reviews" class="single-row" id="product-rating">
+        {{> components/products-cs/rating-cs}}
+      </a>
+      <h2 class="single-row" id="product-brand">{{product.brand.name}}</h2>
+      <div id="product-selection">
+        <select name="make" id="make">
+        </select>
+        <select name="model" id="model">
+        </select>
+        <select name="year" id="year">
+        </select>
+        <select style="visibility: hidden;" name="Option One" id="option-one"></select>
+        <select style="visibility: hidden;" name="Option Two" id="option-two"></select>
+        <a id="product-add-button" type="button">{{lang 'products.add_to_cart'}}</a>
+      </div>
+    </div>
+  </div>
+  
+  <div id="product-below">
+    
+    {{>components/products-cs/description-tabs-cs}}
+    
+  </div>
+  
+</div>
+{{> components/products/schema}}
+
+<script>
+  let aliasVehicle ='';
+</script>
+
+{{#contains (JSONstringify product.custom_fields) 'archetype_id'}}
+
+<script type="text/javascript" src="/content/{{dashcase (lookup (split product.url '.com') 1)}}.js"></script>
+
+{{else}}
+
+{{#filter product.custom_fields 'archetype_url' property='name' }}
+<script type="text/javascript" src="/content/{{chop value}}.js"></script>
+{{/filter}}
+
+<script>
+  aliasVehicle = {
+    make: '{{#filter product.custom_fields "Make" property="name"}}{{value}}{{/filter}}',
+    model: '{{#filter product.custom_fields "Model" property="name"}}{{value}}{{/filter}}',
+    gen: '{{#filter product.custom_fields "Make" property="name"}}{{value}}{{/filter}}{{#filter product.custom_fields "Model" property="name"}}{{value}}{{/filter}}{{#filter product.custom_fields "Generation" property="name"}}{{value}}{{/filter}}',
+    sku: '{{product.sku}}'
+  }
+</script>
+
+{{/contains}}
+
+{{/partial}}
+
+{{> layout/base}}

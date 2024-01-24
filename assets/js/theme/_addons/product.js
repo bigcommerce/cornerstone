@@ -338,8 +338,16 @@ export default class Product extends PageManager {
 
   checkFitment() {
     console.log('check fitment');
-    if (this.make === '' || make_data.includes(this.make)) {
-      return true;
+    if (this.gen === '' || this.gen in option_data) {
+      if (this.model === '' || model_data[this.make].includes(this.model)) {
+        if (this.make === '' || make_data.includes(this.make)) {
+          return true;
+        } else {
+          return false;
+        }
+      } else {
+        return false;
+      }
     } else {
       return false;
     }
@@ -475,6 +483,7 @@ export default class Product extends PageManager {
     // make sure that the index isn't from the default option
     if (index !== this.selectionSteps[select].default) {
       this.endPointData = key_dict[index];
+      console.log('index', index);
       console.log("this endPointData: ", this.endPointData);
       this.baseId = this.endPointData.base_id;
       this.aliasSku = this.endPointData.alias_sku;

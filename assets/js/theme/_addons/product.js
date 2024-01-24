@@ -383,7 +383,7 @@ export default class Product extends PageManager {
         return false;
       }
     } else {
-      this.contentElements.productMessages.innerHTML = '<a href="/">This product does not fit your vehicle. Find matching products here.</a>';
+      this.contentElements.productMessages.innerHTML = '<a href="/">This product does not fit your ' + this.make + ' ' + this.model + '. Find matching products here.</a>';
       this.contentElements.productMessages.classList.add('error');
     }
   }

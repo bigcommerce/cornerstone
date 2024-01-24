@@ -449,6 +449,24 @@ html {
   
   position: relative;
   width: 100%;
+
+  #product-messages {
+    text-align: center;
+    height: $product-messages-height;
+    vertical-align: middle;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &.error {
+      background-color: #ff3a3a;
+      color: #242424;
+
+      a {
+        color: stencilColor('color-white');
+      }
+    }
+  }
   
   #product-above {
     min-height: (100svh - #{$header-height} - #{$mobile-spacing});
@@ -461,7 +479,7 @@ html {
       max-width: $product-above-max-width;
       align-items: center;
       justify-content: space-around;
-      min-height: calc(100svh - (#{$header-top-height} + #{$navPages-height}) - #{spacing("half")} - 3.5rem);
+      min-height: calc(100svh - (#{$header-top-height} + #{$navPages-height} + #{$product-messages-height}) - #{spacing("half")} - 3.5rem);
           
       > * {
         flex: 1;

@@ -52,10 +52,9 @@ const pageClasses = {
     wishlists: () => import('./theme/wishlist'),
 };
 
-// Custom addon classes to allow custom scripting without modifiying default files.
 const addonClasses = {
-    product: () => import('./theme/_addons/product')
-}
+    product: () => import(CSoptimized ? './theme/_addons/product' : './theme/_addons/product-old')
+};
 
 const customClasses = {};
 

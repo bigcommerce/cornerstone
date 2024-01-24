@@ -1,4 +1,3 @@
-import product from "@bigcommerce/stencil-utils/src/hooks/product";
 import PageManager from "../page-manager";
 
 export default class Product extends PageManager {

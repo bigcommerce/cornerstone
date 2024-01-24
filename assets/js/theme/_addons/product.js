@@ -1,9 +1,4 @@
 import PageManager from "../page-manager";
-import { onLCP, onFID, onCLS } from "web-vitals";
-
-onCLS(console.log);
-onFID(console.log);
-onLCP(console.log);
 
 export default class Product extends PageManager {
   constructor(context) {
@@ -80,7 +75,7 @@ export default class Product extends PageManager {
   }
 
   onReady() {
-    console.log("Ready");
+    // console.log("Ready");
 
     // initialize the gallery
     this.initGallery();
@@ -114,7 +109,7 @@ export default class Product extends PageManager {
 
   // initialize the image gallery
   initGallery() {
-    console.log("Init Gallery");
+    // console.log("Init Gallery");
     const images = document.querySelectorAll(".slide");
     const dots = document.querySelectorAll(".dot");
     const next = document.querySelector("#next");
@@ -123,7 +118,7 @@ export default class Product extends PageManager {
 
     let currentSlide = 0;
     let totalSlides = images.length;
-    console.log("total slides: ", totalSlides);
+    // console.log("total slides: ", totalSlides);
     let positions = [];
 
     dots[0].classList.add("active-dot");
@@ -136,7 +131,7 @@ export default class Product extends PageManager {
 
     // Show specific image by index
     function showImg(slide) {
-      console.log("show image ", slide);
+      // console.log("show image ", slide);
       const distance = positions[slide];
       gallery.style.transform = `translateX(-${distance}%)`;
 
@@ -162,7 +157,7 @@ export default class Product extends PageManager {
     // Next and Previous image functions
     function nextImg() {
       totalSlides = images.length;
-      console.log("next image slides count: ", totalSlides);
+      // console.log("next image slides count: ", totalSlides);
       if (currentSlide < totalSlides - 1) {
         currentSlide++;
         showImg(currentSlide);
@@ -172,7 +167,7 @@ export default class Product extends PageManager {
     }
 
     function prevImg() {
-      console.log("previous image");
+      // console.log("previous image");
       if (currentSlide > 0) {
         currentSlide--;
         showImg(currentSlide);
@@ -222,12 +217,12 @@ export default class Product extends PageManager {
 
     this.galleryInitialized = true;
     showImg(0);
-    console.log("gallery initialized? ", this.galleryInitialized);
+    // console.log("gallery initialized? ", this.galleryInitialized);
   }
 
   // display the rating value and review count
   addRating() {
-    console.log("Add Rating");
+    // console.log("Add Rating");
     const stars = document.querySelector("#star-rating").children;
     const ratingInfo = document.querySelector("#rating-info");
     const starValue = Math.ceil(archetype_average_review);
@@ -249,7 +244,7 @@ export default class Product extends PageManager {
 
   // initialize the dropdowns, pre-select and set cookie when possible.
   initSelections() {
-    console.log("Init Selections");
+    // console.log("Init Selections");
     // if the full vehicle cookie exists set up the first 3 dropdowns and load option 1
     if (this.initVehicle()) {
       this.createOptions(make_data, "make", this.make);
@@ -306,7 +301,7 @@ export default class Product extends PageManager {
   }
 
   checkCookieVehicle() {
-    console.log("Check Cookie Vehicle");
+    // console.log("Check Cookie Vehicle");
     this.make = getCookie("make");
     this.model = getCookie("model");
     this.gen = getCookie("year");
@@ -319,7 +314,7 @@ export default class Product extends PageManager {
   }
 
   checkParamsVehicle() {
-    console.log("Check Params Vehicle");
+    // console.log("Check Params Vehicle");
     const params = getUrlParams();
 
     if (params.url_override) {
@@ -337,13 +332,13 @@ export default class Product extends PageManager {
 
   // load the make, model, and year from the cookie or the url parameters if url_override is true. return true if make model and gen are selected.
   initVehicle() {
-    console.log("Init Vehicle");
+    // console.log("Init Vehicle");
     if (this.checkCookieVehicle()) {
     } else {
       if (this.checkParamsVehicle()) {
       } else {
         if (aliasVehicle) {
-          console.log("alias vehicle");
+          // console.log("alias vehicle");
           this.aliasProduct = true;
           this.make = aliasVehicle.make;
           this.model = aliasVehicle.model;
@@ -351,7 +346,7 @@ export default class Product extends PageManager {
           this.aliasSku = aliasVehicle.sku;
           this.getAliasOptions();
         } else {
-          console.log('no vehicle found');
+          // console.log('no vehicle found');
         }
       }
     }
@@ -360,7 +355,7 @@ export default class Product extends PageManager {
 
     // confirm to the method that called initVehicle that a vehicle was selected
     if (this.make && this.model && this.gen) {
-      console.log("Vehicle Initialized:", this.make, this.model, this.gen);
+      // console.log("Vehicle Initialized:", this.make, this.model, this.gen);
       this.getVehicleProducts();
       return true;
     } else {
@@ -370,7 +365,7 @@ export default class Product extends PageManager {
 
   // provide an array, a target select, and a selected value to create a list of options to add to the select. 'target' is the key value from this.selectionSteps. Includes default. 'selected' can be null if no option is selected yet.
   createOptions(array, target, selected) {
-    console.log("create options target: ", array, target, selected);
+    // console.log("create options target: ", array, target, selected);
     let defaultOption = new Option(
       this.selectionSteps[target].default,
       this.selectionSteps[target].default
@@ -412,12 +407,12 @@ export default class Product extends PageManager {
       this.addToCartButton.disabled = !isEnabled;
       if (isEnabled) {
         // if true was passed enable the button
-        console.log("cart button enabled");
+        // console.log("cart button enabled");
         this.addToCartButton.classList.add("enabled");
         this.addToCartButton.style.pointerEvents = "all";
       } else {
         // if false was passed disable the button
-        console.log("cart button disabled");
+        // console.log("cart button disabled");
         this.addToCartButton.classList.remove("enabled");
         this.addToCartButton.href = "";
         this.addToCartButton.style.pointerEvents = "none";
@@ -427,7 +422,7 @@ export default class Product extends PageManager {
 
   // highlights the next select that requires user input. provide the select step value from this.selectionSteps.
   highlightActiveStep(step) {
-    console.log("Highlight Active Step: ", step);
+    // console.log("Highlight Active Step: ", step);
     // evaluate each step to determine and set it's active status
     for (const select in this.selectionSteps) {
       // if the select has the next-step class, remove the class
@@ -456,21 +451,21 @@ export default class Product extends PageManager {
 
   // provide the endPointIndex that is to be added to the cart and check if it is valid to add (has inventory).
   initCartAdd(index, select) {
-    console.log("Init Cart Add with: ", index, select);
+    // console.log("Init Cart Add with: ", index, select);
     // make sure that the endpoint index is set to whatever was passed to the function
     this.endPointIndex = index;
     // make sure that the index isn't from the default option
     if (index !== this.selectionSteps[select].default) {
       this.endPointData = key_dict[index];
-      console.log("this endPointData: ", this.endPointData);
+      // console.log("this endPointData: ", this.endPointData);
       this.baseId = this.endPointData.base_id;
       this.aliasSku = this.endPointData.alias_sku;
       this.inventory = global_inv[this.baseId];
-      console.log("this.baseId: ", this.baseId);
-      console.log("inventory: ", this.inventory);
+      // console.log("this.baseId: ", this.baseId);
+      // console.log("inventory: ", this.inventory);
       this.name = this.endPointData.name;
       if (this.selectChange) {
-        console.log("trigger updateContent source:initCartAdd");
+        // console.log("trigger updateContent source:initCartAdd");
         this.updateContent();
       } else {
         let shipDay = this.getShipDay();
@@ -514,7 +509,7 @@ export default class Product extends PageManager {
 
   // loads option one when appropriate
   loadOpt1() {
-    console.log("Load Option One: ", this.gen);
+    // console.log("Load Option One: ", this.gen);
     let opt1Data = option_data[this.gen];
     if (!this.aliasProduct) {
       // not an alias product
@@ -605,7 +600,7 @@ export default class Product extends PageManager {
   }
 
   makeChange(selected) {
-    console.log("Make Change, selected: ", selected);
+    // console.log("Make Change, selected: ", selected);
     this.cartButton(false);
     this.selectChange = true;
     aliasVehicle = null;
@@ -646,7 +641,7 @@ export default class Product extends PageManager {
   }
 
   modelChange(selected) {
-    console.log("Model Change, selected: ", selected);
+    // console.log("Model Change, selected: ", selected);
     this.cartButton(false);
     this.selectChange = true;
     aliasVehicle = null;
@@ -675,7 +670,7 @@ export default class Product extends PageManager {
   }
 
   genChange(selected) {
-    console.log("Gen Change, selected: ", selected);
+    // console.log("Gen Change, selected: ", selected);
     this.cartButton(false);
     this.selectChange = true;
     aliasVehicle = null;
@@ -692,7 +687,7 @@ export default class Product extends PageManager {
   }
 
   opt1Change(selected) {
-    console.log("Option One Change, selected: ", selected);
+    // console.log("Option One Change, selected: ", selected);
     this.cartButton(false);
     this.selectChange = true;
     aliasVehicle = null;
@@ -710,7 +705,7 @@ export default class Product extends PageManager {
   }
 
   opt2Change(selected) {
-    console.log("Option Two Change, selected: ", selected);
+    // console.log("Option Two Change, selected: ", selected);
     this.cartButton(false);
     this.selectChange = true;
     aliasVehicle = null;
@@ -725,7 +720,7 @@ export default class Product extends PageManager {
   }
 
   clearOptions(source) {
-    console.log("Clear Options From: ", source);
+    // console.log("Clear Options From: ", source);
     let position = this.selectionSteps[source].step;
     for (const select in this.selectionSteps) {
       if (this.selectionSteps[select].step > position) {
@@ -745,7 +740,7 @@ export default class Product extends PageManager {
   }
 
   getAliasOptions() {
-    console.log("get alias options");
+    // console.log("get alias options");
     for (const item in key_dict) {
       if (key_dict[item].alias_sku === aliasVehicle.sku) {
         this.endPointIndex = item;
@@ -770,7 +765,7 @@ export default class Product extends PageManager {
 
   // clear all of the content elements in this.contentElements
   clearContent() {
-    console.log("clear content");
+    // console.log("clear content");
     for (const element in this.contentElements) {
       if (element !== "moreProducts" && element !== "moreProductsHeader")
         this.contentElements[element].innerHTML = "";
@@ -779,7 +774,7 @@ export default class Product extends PageManager {
 
   // load the images for the endpoint product
   updateGallery() {
-    console.log("update gallery");
+    // console.log("update gallery");
     // get the images for the selected product
     let imageData = this.endPointData.image_array;
 
@@ -857,7 +852,7 @@ export default class Product extends PageManager {
 
   // when an endpoint is selected by the user, reload the page content to match the endpoint product
   updateContent() {
-    console.log("update content");
+    // console.log("update content");
     this.clearContent();
     this.updateGallery();
     this.baseSku = this.endPointData.base_sku;
@@ -912,12 +907,12 @@ export default class Product extends PageManager {
 
   getShipDay() {
     let nowMilliseconds = Date.now();
-    console.log('now Milliseconds: ', nowMilliseconds);
+    // console.log('now Milliseconds: ', nowMilliseconds);
     let timezoneOffset = new Date().getTimezoneOffset();
-    console.log('timezoneOffset: ', timezoneOffset);
+    // console.log('timezoneOffset: ', timezoneOffset);
     let offsetMilliseconds = (timezoneOffset / 60) * 3600 * 1000;
     let utcDate = new Date(nowMilliseconds + offsetMilliseconds);
-    console.log('utcDate: ', utcDate);
+    // console.log('utcDate: ', utcDate);
     let hour = utcDate.getHours();
     let minutes = utcDate.getMinutes();
     let month = utcDate.getMonth();
@@ -926,9 +921,9 @@ export default class Product extends PageManager {
     let priceValidUntil = year + "-" + day + "-" + (month + 1);
     let shipDay = day;
     let whenShips = "today";
-    console.log('hour: ', hour);
-    console.log('this.madeToOrder: ', this.madeToOrder);
-    console.log('shipDay: ', shipDay);
+    // console.log('hour: ', hour);
+    // console.log('this.madeToOrder: ', this.madeToOrder);
+    // console.log('shipDay: ', shipDay);
 
     if (hour >= 22 || hour < 9) {
       whenShips = "tomorrow";
@@ -946,7 +941,7 @@ export default class Product extends PageManager {
   }
 
   getVehicleProducts() {
-    console.log("vehicle products gen value: ", this.gen);
+    // console.log("vehicle products gen value: ", this.gen);
     this.vehicleProducts.length = 0;
     this.contentElements.moreProductsHeader.innerHTML = "";
     this.contentElements.moreProducts.innerHTML = "";
@@ -1010,8 +1005,8 @@ export default class Product extends PageManager {
       this.model +
       " " +
       genName;
-    console.log("gen_data:", gen_data);
+    // console.log("gen_data:", gen_data);
     this.contentElements.moreProducts.append(...productCards);
-    console.log("product cards: ", productCards);
+    // console.log("product cards: ", productCards);
   }
 }

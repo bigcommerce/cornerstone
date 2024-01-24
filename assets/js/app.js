@@ -52,9 +52,24 @@ const pageClasses = {
     wishlists: () => import('./theme/wishlist'),
 };
 
-const addonClasses = {
-    product: () => import(CSoptimized ? './theme/_addons/product' : './theme/_addons/product-old')
-};
+// // Custom addon classes to allow custom scripting without modifiying default files.
+// const addonClasses = {
+//     product: () => import('./theme/_addons/product')
+// }
+
+let addonClasses = {};
+
+if (CSoptimized) {
+    addonClasses = {
+        product: () => import('./theme/_addons/product')
+    }
+} else {
+    addonClasses = {
+        product: () => import('./theme/_addons/product-old')
+    }
+}
+
+console.log('CSoptimized: ', CSoptimized);
 
 const customClasses = {};
 

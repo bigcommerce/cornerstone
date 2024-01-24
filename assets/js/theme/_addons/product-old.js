@@ -7,6 +7,7 @@ export default class Product extends PageManager {
     }
 
     onReady() {
+        console.log('product OLD');
         
         //remove the container class from the body class to allow full width on cs-product pages
         $('#body-container').removeClass('container');

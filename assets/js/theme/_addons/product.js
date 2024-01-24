@@ -893,6 +893,9 @@ export default class Product extends PageManager {
     this.contentElements.sku.innerHTML = this.baseSku;
     let shipDay = this.getShipDay();
     this.contentElements.shippingTime.innerHTML = "Ships free, " + shipDay;
+    if (this.inventory.av <= 0 && this.inventory.a2b > 0) {
+      this.madeToOrder = true;
+    }
     if (this.inventory.av > 10) {
       this.contentElements.stock.innerHTML = "Plenty in stock";
     } else if (this.inventory.av > 0) {

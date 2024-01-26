@@ -61,15 +61,15 @@ let addonClasses = {};
 
 if (CSoptimized) {
     addonClasses = {
-        product: () => import('./theme/_addons/product')
+        product: () => import('./theme/_addons/product'),
+        page: () => import('./theme/_addons/page')
     }
 } else {
     addonClasses = {
-        product: () => import('./theme/_addons/product-old')
+        product: () => import('./theme/_addons/product-old'),
+        page: () => import('./theme/_addons/page')
     }
 }
-
-console.log('CSoptimized: ', CSoptimized);
 
 const customClasses = {};
 

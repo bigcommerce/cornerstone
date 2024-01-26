@@ -20,9 +20,13 @@ export default class Product extends PageManager {
     this.galleryInitialized = false;
     this.imageArray = [];
     this.vehicleProducts = [];
+    this.loadedDefaultIntructions = false;
+    
+    this.instructionsTabHandler = this.instructionsTabHandler.bind(this);
 
     // element properties
-    this.addToCartButton = document.querySelector("#product-add-button");
+    this.addToCartButton = document.querySelector('#product-add-button');
+    this.instructionsTab = document.querySelector('#instructions-tab');
 
     // an object containing the selection steps and their properties (the element, default, etc...)
     this.selectionSteps = {
@@ -60,7 +64,7 @@ export default class Product extends PageManager {
 
     // content elements
     this.contentElements = {
-      productMessages: document.querySelector('#product-messages'),
+      productMessages: document.querySelector("#product-messages"),
       gallery: document.querySelector("#gallery-container"),
       galleryControls: document.querySelector("#gallery-controls"),
       dots: document.querySelector("#position-indicator"),
@@ -70,6 +74,7 @@ export default class Product extends PageManager {
       price: document.querySelector("#product-price"),
       brand: document.querySelector("#product-brand"),
       description: document.querySelector("#product-description"),
+      instructions: document.querySelector('#instructions-content'),
       moreProducts: document.querySelector("#more-products"),
       moreProductsHeader: document.querySelector("#more-products-header"),
     };
@@ -106,6 +111,8 @@ export default class Product extends PageManager {
         });
       }
     }
+
+    this.instructionsTab.addEventListener('click', this.instructionsTabHandler);
   }
 
   // initialize the image gallery
@@ -246,61 +253,69 @@ export default class Product extends PageManager {
   // initialize the dropdowns, pre-select and set cookie when possible.
   initSelections() {
     console.log("Init Selections");
-    // if the full vehicle cookie exists set up the first 3 dropdowns and load option 1
-    if (this.initVehicle()) {
-      this.createOptions(make_data, "make", this.make);
-      this.createOptions(model_data[this.make], "model", this.model);
-      this.createOptions(gen_data[this.model], "gen", this.gen);
-      this.loadOpt1();
+    if (universal_product === true) {
+      console.log("universal product");
+      if (this.initVehicle()) {
+        this.endPointIndex = option_data["All Vehicles"][0].index;
+        this.initCartAdd(this.endPointIndex, "make");
+      }
     } else {
-      // if nothing is selected create the make dropdown and highlight it
-      if (this.checkFitment()) {
-        if (!this.make) {
-          this.createOptions(make_data, "make", null);
-          this.highlightActiveStep(0);
-          // check if model is selected
-        } else if (!this.model) {
-          this.createOptions(make_data, "make", this.make);
-          // if there is only one model, pre-select it and check the generations
-          if (model_data[this.make].length === 1) {
-            this.model = model_data[this.make][0];
-            setCookie("model", this.model);
+      // if the full vehicle cookie exists set up the first 3 dropdowns and load option 1
+      if (this.initVehicle()) {
+        this.createOptions(make_data, "make", this.make);
+        this.createOptions(model_data[this.make], "model", this.model);
+        this.createOptions(gen_data[this.model], "gen", this.gen);
+        this.loadOpt1();
+      } else {
+        // if nothing is selected create the make dropdown and highlight it
+        if (this.checkFitment()) {
+          if (!this.make) {
+            this.createOptions(make_data, "make", null);
+            this.highlightActiveStep(0);
+            // check if model is selected
+          } else if (!this.model) {
+            this.createOptions(make_data, "make", this.make);
+            // if there is only one model, pre-select it and check the generations
+            if (model_data[this.make].length === 1) {
+              this.model = model_data[this.make][0];
+              setCookie("model", this.model);
+              this.createOptions(model_data[this.make], "model", this.model);
+              // if there is only one generation, pre-select it and load option 1
+              if (gen_data[this.model].length === 1) {
+                this.gen = gen_data[this.model][0].index;
+                setCookie("year", this.gen);
+                this.createOptions(gen_data[this.model], "gen", this.gen);
+                this.loadOpt1();
+                return;
+              } else {
+                // there are multiple generations so create the options but don't select one
+                this.createOptions(gen_data[this.model], "gen", null);
+              }
+              this.highlightActiveStep(2);
+            } else {
+              // there are multiple models so create the options but don't select one
+              this.createOptions(model_data[this.make], "model", null);
+              this.highlightActiveStep(1);
+            }
+            // if make and model are selected check if gen can be pre-selected and load the generation dropdown
+          } else {
+            this.createOptions(make_data, "make", this.make);
             this.createOptions(model_data[this.make], "model", this.model);
-            // if there is only one generation, pre-select it and load option 1
+            // if only one generation exists, select it and load option 1
             if (gen_data[this.model].length === 1) {
               this.gen = gen_data[this.model][0].index;
               setCookie("year", this.gen);
               this.createOptions(gen_data[this.model], "gen", this.gen);
               this.loadOpt1();
-              return;
             } else {
               // there are multiple generations so create the options but don't select one
               this.createOptions(gen_data[this.model], "gen", null);
+              this.highlightActiveStep(2);
             }
-            this.highlightActiveStep(2);
-          } else {
-            // there are multiple models so create the options but don't select one
-            this.createOptions(model_data[this.make], "model", null);
-            this.highlightActiveStep(1);
           }
-          // if make and model are selected check if gen can be pre-selected and load the generation dropdown
         } else {
-          this.createOptions(make_data, "make", this.make);
-          this.createOptions(model_data[this.make], "model", this.model);
-          // if only one generation exists, select it and load option 1
-          if (gen_data[this.model].length === 1) {
-            this.gen = gen_data[this.model][0].index;
-            setCookie("year", this.gen);
-            this.createOptions(gen_data[this.model], "gen", this.gen);
-            this.loadOpt1();
-          } else {
-            // there are multiple generations so create the options but don't select one
-            this.createOptions(gen_data[this.model], "gen", null);
-            this.highlightActiveStep(2);
-          }
+          this.createOptions(make_data, "make", null);
         }
-      } else {
-        this.createOptions(make_data, 'make', null);
       }
     }
   }
@@ -336,10 +351,12 @@ export default class Product extends PageManager {
   }
 
   checkFitment() {
-    console.log('check fitment');
-    if (this.gen === '' || this.gen in option_data) {
-      if (this.model === '' || model_data[this.make].includes(this.model)) {
-        if (this.make === '' || make_data.includes(this.make)) {
+    console.log("check fitment");
+    if (universal_product) {
+      return true;
+    } else if (this.gen === "" || this.gen in option_data) {
+      if (this.model === "" || model_data[this.make].includes(this.model)) {
+        if (this.make === "" || make_data.includes(this.make)) {
           return true;
         } else {
           return false;
@@ -368,12 +385,12 @@ export default class Product extends PageManager {
           this.aliasSku = aliasVehicle.sku;
           this.getAliasOptions();
         } else {
-          console.log('no vehicle found');
+          console.log("no vehicle found");
         }
       }
     }
 
-    if(this.checkFitment()) {
+    if (this.checkFitment()) {
       // confirm to the method that called initVehicle that a vehicle was selected
       if (this.make && this.model && this.gen) {
         console.log("Vehicle Initialized:", this.make, this.model, this.gen);
@@ -383,8 +400,13 @@ export default class Product extends PageManager {
         return false;
       }
     } else {
-      this.contentElements.productMessages.innerHTML = '<a href="/">This product does not fit your ' + this.make + ' ' + this.model + '. Find matching products here.</a>';
-      this.contentElements.productMessages.classList.add('error');
+      this.contentElements.productMessages.innerHTML =
+        '<a href="/">This product does not fit your ' +
+        this.make +
+        " " +
+        this.model +
+        ". Find matching products here.</a>";
+      this.contentElements.productMessages.classList.add("error");
     }
   }
 
@@ -420,6 +442,7 @@ export default class Product extends PageManager {
       return option;
     });
     // enable the target select element and add the options that have been created
+    this.selectionSteps[target].element.style.visibility = "visible";
     this.selectionSteps[target].element.disabled = false;
     this.selectionSteps[target].element.append(defaultOption, ...options);
   }
@@ -482,7 +505,7 @@ export default class Product extends PageManager {
     // make sure that the index isn't from the default option
     if (index !== this.selectionSteps[select].default) {
       this.endPointData = key_dict[index];
-      console.log('index', index);
+      console.log("index", index);
       console.log("this endPointData: ", this.endPointData);
       this.baseId = this.endPointData.base_id;
       this.aliasSku = this.endPointData.alias_sku;
@@ -508,8 +531,9 @@ export default class Product extends PageManager {
           this.contentElements.stock.innerHTML = "In Stock";
         } else {
           this.contentElements.stock.innerHTML = "Out of Stock";
-          this.contentElements.productMessages.innerHTML = 'Sorry, this product is out of stock.'
-          this.contentElements.productMessages.classList.add('error');
+          this.contentElements.productMessages.innerHTML =
+            "Sorry, this product is out of stock.";
+          this.contentElements.productMessages.classList.add("error");
         }
         let priceFormatted = this.endPointData.price.toLocaleString("en-us", {
           style: "currency",
@@ -635,11 +659,11 @@ export default class Product extends PageManager {
     aliasVehicle = null;
     if (this.selectionSteps.make.default !== selected) {
       this.make = selected;
-      setCookie('make', this.make);
+      setCookie("make", this.make);
       this.clearOptions("make");
       if (model_data[this.make].length === 1) {
         this.model = model_data[this.make][0];
-        setCookie('model', this.model);
+        setCookie("model", this.model);
         this.createOptions(
           model_data[this.make],
           "model",
@@ -647,7 +671,7 @@ export default class Product extends PageManager {
         );
         if (gen_data[this.model].length === 1) {
           this.gen = gen_data[this.model][0].index;
-          setCookie('year', this.gen);
+          setCookie("year", this.gen);
           this.getVehicleProducts();
           this.createOptions(
             gen_data[this.model],
@@ -678,10 +702,10 @@ export default class Product extends PageManager {
     this.clearOptions("model");
     if (selected !== this.selectionSteps["model"].default) {
       this.model = selected;
-      setCookie('model', selected);
+      setCookie("model", selected);
       if (gen_data[this.model].length === 1) {
         this.gen = gen_data[this.model][0].index;
-        setCookie('year', this.gen);
+        setCookie("year", this.gen);
         this.getVehicleProducts();
         this.createOptions(
           gen_data[this.model],
@@ -708,7 +732,7 @@ export default class Product extends PageManager {
     this.clearOptions("gen");
     if (selected !== this.selectionSteps["gen"].default) {
       this.gen = selected;
-      setCookie('year', this.gen);
+      setCookie("year", this.gen);
       this.opt1Index = "";
       this.loadOpt1();
       this.getVehicleProducts();
@@ -884,6 +908,10 @@ export default class Product extends PageManager {
     this.initGallery();
   }
 
+  showInstructions() {
+    this.contentElements.instructions.style.display = 'block';
+  }
+
   // when an endpoint is selected by the user, reload the page content to match the endpoint product
   updateContent() {
     console.log("update content");
@@ -905,8 +933,9 @@ export default class Product extends PageManager {
       this.contentElements.stock.innerHTML = "In Stock";
     } else {
       this.contentElements.stock.innerHTML = "Out of Stock";
-      this.contentElements.productMessages.innerHTML = 'Sorry, this product is out of stock.';
-      this.contentElements.productMessages.classList.add('error');
+      this.contentElements.productMessages.innerHTML =
+        "Sorry, this product is out of stock.";
+      this.contentElements.productMessages.classList.add("error");
     }
     let priceFormatted = this.endPointData.price.toLocaleString("en-us", {
       style: "currency",
@@ -915,6 +944,10 @@ export default class Product extends PageManager {
     this.contentElements.price.innerHTML = priceFormatted;
     this.contentElements.brand.innerHTML = this.endPointData.brand_name;
     this.contentElements.description.innerHTML = this.endPointData.description;
+    const instructionsTabParent = this.instructionsTab.parentNode;
+    if (instructionsTabParent.classList.contains('is-active')) {
+      this.updateInstructions();
+    }
   }
 
   createDot() {
@@ -946,12 +979,12 @@ export default class Product extends PageManager {
 
   getShipDay() {
     let nowMilliseconds = Date.now();
-    console.log('now Milliseconds: ', nowMilliseconds);
+    console.log("now Milliseconds: ", nowMilliseconds);
     let timezoneOffset = new Date().getTimezoneOffset();
-    console.log('timezoneOffset: ', timezoneOffset);
+    console.log("timezoneOffset: ", timezoneOffset);
     let offsetMilliseconds = (timezoneOffset / 60) * 3600 * 1000;
     let utcDate = new Date(nowMilliseconds + offsetMilliseconds);
-    console.log('utcDate: ', utcDate);
+    console.log("utcDate: ", utcDate);
     let hour = utcDate.getHours();
     let minutes = utcDate.getMinutes();
     let month = utcDate.getMonth();
@@ -960,9 +993,9 @@ export default class Product extends PageManager {
     let priceValidUntil = year + "-" + day + "-" + (month + 1);
     let shipDay = day;
     let whenShips = "today";
-    console.log('hour: ', hour);
-    console.log('this.madeToOrder: ', this.madeToOrder);
-    console.log('shipDay: ', shipDay);
+    console.log("hour: ", hour);
+    console.log("this.madeToOrder: ", this.madeToOrder);
+    console.log("shipDay: ", shipDay);
 
     if (hour >= 22 || hour < 9) {
       whenShips = "tomorrow";
@@ -1030,30 +1063,91 @@ export default class Product extends PageManager {
       card.append(link, img, title, price);
       productCards.push(card);
     }
-    let genName = "";
-    console.log('gen_data:', gen_data);
-    console.log('this.model: ', this.model);
-    console.log('gen_data[this.model]: ', gen_data[this.model]);
-    for (const item of gen_data[this.model]) {
-      if (item.index === this.gen) {
-        genName = item.name;
-      }
-    }
     this.contentElements.moreProductsHeader.innerHTML =
       productCards.length +
       " matching products for " +
       this.make +
       " " +
-      this.model +
-      " " +
-      genName;
+      this.model;
     console.log("gen_data:", gen_data);
     this.contentElements.moreProducts.append(...productCards);
     console.log("product cards: ", productCards);
   }
 
   clearMessages() {
-    this.contentElements.productMessages.innerHTML = '';
+    this.contentElements.productMessages.innerHTML = "";
     this.contentElements.productMessages.classList = [];
+  }
+
+  updateInstructions() {
+    console.log('update instructions line: ', );
+    console.log('this.endPointData;', this.endPointData);
+    const iframe = this.contentElements.instructions.querySelector('iframe');
+    let currentSrc = '';
+    let currentUrl = '';
+    if (iframe) {
+      console.log('iframe.src: ', iframe.src);
+      currentSrc = iframe.src;
+      currentUrl = new URL(currentSrc).pathname + '?asDoc=true';
+    }
+    if(this.endPointData) {
+      console.log('load enpoint instructions');
+      console.log('endpoint instructions url: ', this.endPointData.instructions_url);
+      const url = new URL('https://www.cravenspeed.com' + this.endPointData.instructions_url);
+      const domain = url.hostname;
+      if (domain === 'www.cravenspeed.com') {
+        const instructions = document.createElement('iframe');
+        const newUrl = url.pathname + '?asDoc=true';
+        console.log('newURL: ', newUrl);
+        console.log('currentUrl: ', currentUrl);
+        if (newUrl !== currentUrl) {
+          console.log('url is new');
+          this.showLoadingIcon();
+          instructions.src = newUrl;
+          instructions.onload = () => this.hideLoadingIcon();
+          this.contentElements.instructions.appendChild(instructions);
+        }
+      } else {
+        const instructionsLink = document.createElement('a');
+        instructionsLink.src = url;
+        this.contentElements.instructions.appendChild(instructionsLink);
+      }
+    } else {
+      if(!this.loadedDefaultIntructions) {
+        console.log('load default instructions');
+        const url = new URL(default_instructions_url);
+        console.log('url: ', url);
+        const domain = url.hostname;
+        console.log('domain: ', domain);
+        if (domain === 'www.cravenspeed.com') {
+          console.log('domain match');
+          this.showLoadingIcon();
+          const instructions = document.createElement('iframe');
+          instructions.src = url.pathname + '?asDoc=true';
+          instructions.onload = () => this.hideLoadingIcon();
+          this.contentElements.instructions.appendChild(instructions);
+        } else {
+          const instructionsLink = document.createElement('a');
+          instructionsLink.src = url;
+          this.contentElements.instructions.appendChild(instructionsLink);
+        }
+        this.loadedDefaultIntructions = true;
+      }
+    }
+    this.contentElements.instructions.style.display = 'block';
+  }
+
+  showLoadingIcon() {
+    const loadingIcon = document.querySelector('#doc-loading');
+    loadingIcon.style.display = 'block';
+  }
+
+  hideLoadingIcon() {
+    const loadingIcon = document.querySelector('#doc-loading');
+    loadingIcon.style.display = 'none';
+  }
+
+  instructionsTabHandler() {
+    this.updateInstructions();
   }
 }

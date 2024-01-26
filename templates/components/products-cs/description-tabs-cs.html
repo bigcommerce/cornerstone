@@ -13,7 +13,10 @@
         </li>
 
         <li class="tab">
-            <!-- <a class="tab-title" href="#tab-more-products" onclick="show_more_products()">More Products</a> -->
+            <a id="instructions-tab" class="tab-title" href="#tab-instructions">Instructions</a>
+        </li>
+
+        <li class="tab">
             <a class="tab-title" href="#tab-more-products">More Products</a>
         </li>
 
@@ -24,7 +27,7 @@
             {{> components/products-cs/description-cs}}
         </div>
 
-        <div class="tab-content " id="tab-reviews">
+        <div class="tab-content" id="tab-reviews">
             {{> components/products-cs/reviews-cs}}
         </div>
 
@@ -34,8 +37,12 @@
         </div>
         {{/if}}
 
-        <div class="tab-content " id="tab-shipping">
+        <div class="tab-content" id="tab-shipping">
             {{> components/common/shipping-info}}
+        </div>
+
+        <div class="tab-content" id="tab-instructions">
+            {{> components/common/instructions-cs}}
         </div>
 
         {{#if product.warranty}}

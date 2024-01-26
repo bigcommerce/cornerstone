@@ -22,7 +22,7 @@
         </h1>
       </div>
       <h2 class="single-row" id="product-sku">{{product.sku}}</h2>
-      <h2 class="single-row" id="product-shipping">Free Domestic Shipping</h2>
+      <h2 class="single-row" id="product-shipping"></h2>
       <h2 class="single-row" id="product-stock"></h2>
       <h2 class="double-row" id="product-price"></h2>
       <a href="#reviews" class="single-row" id="product-rating">
@@ -30,14 +30,14 @@
       </a>
       <h2 class="single-row" id="product-brand">{{product.brand.name}}</h2>
       <div id="product-selection">
-        <select name="make" id="make">
+        <select style="visibility: hidden;" disabled="true" name="make" id="make">
         </select>
-        <select name="model" id="model">
+        <select style="visibility: hidden;" disabled="true" name="model" id="model">
         </select>
-        <select name="year" id="year">
+        <select style="visibility: hidden;" disabled="true" name="year" id="year">
         </select>
-        <select style="visibility: hidden;" name="Option One" id="option-one"></select>
-        <select style="visibility: hidden;" name="Option Two" id="option-two"></select>
+        <select style="visibility: hidden;" disabled="true" name="Option One" id="option-one"></select>
+        <select style="visibility: hidden;" disabled="true" name="Option Two" id="option-two"></select>
         <a id="product-add-button" type="button">{{lang 'products.add_to_cart'}}</a>
       </div>
     </div>

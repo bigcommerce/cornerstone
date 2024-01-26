@@ -1182,7 +1182,7 @@ export default class Product extends PageManager {
   }
 
   ratingHandler() {
-    console.log("rating click");
+    // console.log("rating click");
     // Remove the class "is-active" from tabTitles
     const tabTitles = document.querySelectorAll(".tab");
     tabTitles.forEach((tabTitle) => {

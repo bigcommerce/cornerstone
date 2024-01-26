@@ -23,10 +23,13 @@ export default class Product extends PageManager {
     this.loadedDefaultIntructions = false;
 
     this.instructionsTabHandler = this.instructionsTabHandler.bind(this);
+    this.ratingHandler = this.ratingHandler.bind(this);
 
     // element properties
     this.addToCartButton = document.querySelector("#product-add-button");
     this.instructionsTab = document.querySelector("#instructions-tab");
+    this.rating = document.querySelector("#product-rating");
+    this.reviewsTab = document.querySelector("#tab-reviews");
 
     // an object containing the selection steps and their properties (the element, default, etc...)
     this.selectionSteps = {
@@ -113,6 +116,7 @@ export default class Product extends PageManager {
     }
 
     this.instructionsTab.addEventListener("click", this.instructionsTabHandler);
+    this.rating.addEventListener("click", this.ratingHandler);
   }
 
   // initialize the image gallery
@@ -510,20 +514,13 @@ export default class Product extends PageManager {
 
   // provide the endPointIndex that is to be added to the cart and check if it is valid to add (has inventory).
   initCartAdd(index, select) {
-    console.log("Init Cart Add with: ", index, select);
-    // make sure that the endpoint index is set to whatever was passed to the function
+    console.log("init card add");
     this.endPointIndex = index;
-    // make sure that the index isn't from the default option
     if (index !== this.selectionSteps[select].default) {
-      console.log("not default option");
       this.endPointData = key_dict[index];
-      // console.log("index", index);
-      // console.log("this endPointData: ", this.endPointData);
       this.baseId = this.endPointData.base_id;
       this.aliasSku = this.endPointData.alias_sku;
       this.inventory = global_inv[this.baseId];
-      // console.log("this.baseId: ", this.baseId);
-      // console.log("inventory: ", this.inventory);
       this.name = this.endPointData.name;
       this.updateContent();
       if (this.inventory.av > 0 || this.madeToOrder) {
@@ -687,10 +684,13 @@ export default class Product extends PageManager {
     if (this.selectionSteps.make.default !== selected) {
       this.make = selected;
       setCookie("make", this.make);
+      setCookie("model", "");
+      setCookie("year", "");
       this.clearOptions("make");
       if (model_data[this.make].length === 1) {
         this.model = model_data[this.make][0];
         setCookie("model", this.model);
+        setCookie("year", "");
         this.createOptions(
           model_data[this.make],
           "model",
@@ -730,6 +730,7 @@ export default class Product extends PageManager {
     if (selected !== this.selectionSteps["model"].default) {
       this.model = selected;
       setCookie("model", selected);
+      setCookie("year", "");
       if (gen_data[this.model].length === 1) {
         this.gen = gen_data[this.model][0].index;
         setCookie("year", this.gen);
@@ -1178,5 +1179,31 @@ export default class Product extends PageManager {
 
   instructionsTabHandler() {
     this.updateInstructions();
+  }
+
+  ratingHandler() {
+    console.log("rating click");
+    // Remove the class "is-active" from tabTitles
+    const tabTitles = document.querySelectorAll(".tab");
+    tabTitles.forEach((tabTitle) => {
+      tabTitle.classList.remove("is-active");
+    });
+
+    // Remove the class "is-active" from tabs
+    const tabs = document.querySelectorAll(".tab-content");
+    tabs.forEach((tab) => {
+      tab.classList.remove("is-active");
+    });
+
+    const reviewsTitle = document.querySelector('.tab a[href="#tab-reviews"]').parentNode;
+    reviewsTitle.classList.add('is-active');
+
+    const reviewsTab = document.querySelector("#tab-reviews");
+    reviewsTab.classList.add('is-active');
+
+    reviewsTitle.focus();
+    reviewsTab.scrollIntoView({
+      behavior: 'smooth',
+    });
   }
 }

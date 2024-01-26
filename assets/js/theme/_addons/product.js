@@ -261,16 +261,18 @@ export default class Product extends PageManager {
           this.endPointIndex = option_data["All Vehicles"][0].index;
           this.initCartAdd(this.endPointIndex, "make");
         } else {
-          this.createOptions(option_data['All Vehicles'], "opt1", null);
+          this.createOptions(option_data["All Vehicles"], "opt1", null);
           this.highlightActiveStep(3);
         }
       } else {
-        this.createOptions(option_data['All Vehicles'], "opt1", null);
+        this.createOptions(option_data["All Vehicles"], "opt1", null);
         this.highlightActiveStep(3);
       }
     } else {
       // if the full vehicle cookie exists set up the first 3 dropdowns and load option 1
+      console.log("not universal");
       if (this.initVehicle()) {
+        console.log("passed vehicle check");
         this.createOptions(make_data, "make", this.make);
         this.createOptions(model_data[this.make], "model", this.model);
         this.createOptions(gen_data[this.model], "gen", this.gen);
@@ -508,11 +510,12 @@ export default class Product extends PageManager {
 
   // provide the endPointIndex that is to be added to the cart and check if it is valid to add (has inventory).
   initCartAdd(index, select) {
-    // console.log("Init Cart Add with: ", index, select);
+    console.log("Init Cart Add with: ", index, select);
     // make sure that the endpoint index is set to whatever was passed to the function
     this.endPointIndex = index;
     // make sure that the index isn't from the default option
     if (index !== this.selectionSteps[select].default) {
+      console.log("not default option");
       this.endPointData = key_dict[index];
       // console.log("index", index);
       // console.log("this endPointData: ", this.endPointData);
@@ -522,34 +525,7 @@ export default class Product extends PageManager {
       // console.log("this.baseId: ", this.baseId);
       // console.log("inventory: ", this.inventory);
       this.name = this.endPointData.name;
-      if (this.selectChange) {
-        // console.log("trigger updateContent source:initCartAdd");
-        this.updateContent();
-      } else {
-        let shipDay = this.getShipDay();
-        this.contentElements.shippingTime.innerHTML = "Ships free " + shipDay;
-        if (this.inventory.av <= 0 && this.inventory.a2b > 0) {
-          this.madeToOrder = true;
-        }
-        if (this.inventory.av > 10) {
-          this.contentElements.stock.innerHTML = "Plenty in stock";
-        } else if (this.inventory.av > 0) {
-          this.contentElements.stock.innerHTML =
-            "Only " + this.inventory.av + " left. Order soon!";
-        } else if (this.madeToOrder) {
-          this.contentElements.stock.innerHTML = "In Stock";
-        } else {
-          this.contentElements.stock.innerHTML = "Out of Stock";
-          this.contentElements.productMessages.innerHTML =
-            "Sorry, this product is out of stock.";
-          this.contentElements.productMessages.classList.add("error");
-        }
-        let priceFormatted = this.endPointData.price.toLocaleString("en-us", {
-          style: "currency",
-          currency: "USD",
-        });
-        this.contentElements.price.innerHTML = priceFormatted;
-      }
+      this.updateContent();
       if (this.inventory.av > 0 || this.madeToOrder) {
         let addUrl =
           "/cart.php?action=add&sku=" +
@@ -562,6 +538,46 @@ export default class Product extends PageManager {
         }
         this.cartButton(true);
       }
+      // if (this.selectChange) {
+      //   // console.log("trigger updateContent source:initCartAdd");
+      //   this.updateContent();
+      // } else {
+      //   let shipDay = this.getShipDay();
+      //   this.contentElements.shippingTime.innerHTML = "Ships free " + shipDay;
+      //   if (this.inventory.av <= 0 && this.inventory.a2b > 0) {
+      //     this.madeToOrder = true;
+      //   }
+      //   if (this.inventory.av > 10) {
+      //     this.contentElements.stock.innerHTML = "Plenty in stock";
+      //   } else if (this.inventory.av > 0) {
+      //     this.contentElements.stock.innerHTML =
+      //       "Only " + this.inventory.av + " left. Order soon!";
+      //   } else if (this.madeToOrder) {
+      //     this.contentElements.stock.innerHTML = "In Stock";
+      //   } else {
+      //     this.contentElements.stock.innerHTML = "Out of Stock";
+      //     this.contentElements.productMessages.innerHTML =
+      //       "Sorry, this product is out of stock.";
+      //     this.contentElements.productMessages.classList.add("error");
+      //   }
+      //   let priceFormatted = this.endPointData.price.toLocaleString("en-us", {
+      //     style: "currency",
+      //     currency: "USD",
+      //   });
+      //   this.contentElements.price.innerHTML = priceFormatted;
+      // }
+      // if (this.inventory.av > 0 || this.madeToOrder) {
+      //   let addUrl =
+      //     "/cart.php?action=add&sku=" +
+      //     encodeURIComponent(this.aliasSku) +
+      //     "&source=" +
+      //     encodeURIComponent(this.name);
+      //   this.addToCartButton.href = addUrl;
+      //   for (const select in this.selectionSteps) {
+      //     this.selectionSteps[select].element.classList.remove("next-step");
+      //   }
+      //   this.cartButton(true);
+      // }
     } else {
       this.highlightActiveStep(this.selectionSteps[select].step);
       this.cartButton(false);
@@ -570,12 +586,14 @@ export default class Product extends PageManager {
 
   // loads option one when appropriate
   loadOpt1() {
-    // console.log("Load Option One: ", this.gen);
+    console.log("Load Option One: ", this.gen);
     let opt1Data = option_data[this.gen];
     if (!this.aliasProduct) {
       // not an alias product
+      console.log("Not an alias product");
       if (opt1Data) {
         if (opt1Data.length === 1 && opt1Data[0].name.trim() === "") {
+          console.log("no options");
           this.endPointIndex = opt1Data[0].index;
           this.initCartAdd(this.endPointIndex, "opt1");
         } else if (opt1Data.length === 1) {

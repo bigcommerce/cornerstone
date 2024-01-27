@@ -98,7 +98,12 @@ gql: "query getLocations {
     {{#if theme_settings.mwn_home_category_block}}
         {{#if theme_settings.mwn_home_category_block_region '===' 'home_below_featured_products'}}
             {{#filter categories theme_settings.mwn_home_category_block_id property="id"}}
-                {{> components/category/featured-category-block category=this heading=../theme_settings.mwn_home_category_block_heading description=../theme_settings.mwn_home_category_block_description }}
+                {{> components/category/featured-category-block
+                    category=this
+                    heading=../theme_settings.mwn_home_category_block_heading
+                    description=../theme_settings.mwn_home_category_block_description
+                    theme=../theme_settings.mwn_home_category_block_theme
+                }}
             {{/filter}}
         {{/if}}
     {{/if}}

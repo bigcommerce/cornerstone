@@ -387,9 +387,9 @@ export default class Product extends PageManager {
   // load the make, model, and year from the cookie or the url parameters if url_override is true. return true if make model and gen are selected.
   initVehicle() {
     // console.log("Init Vehicle");
-    if (this.checkCookieVehicle()) {
+    if (this.checkParamsVehicle()) {
     } else {
-      if (this.checkParamsVehicle()) {
+      if (this.checkCookieVehicle()) {
       } else {
         if (aliasVehicle) {
           // console.log("alias vehicle");
@@ -1202,7 +1202,7 @@ export default class Product extends PageManager {
     reviewsTab.classList.add('is-active');
 
     reviewsTitle.focus();
-    reviewsTab.scrollIntoView({
+    reviewsTitle.scrollIntoView({
       behavior: 'smooth',
     });
   }

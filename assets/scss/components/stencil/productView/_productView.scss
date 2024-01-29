@@ -358,6 +358,24 @@
             width: 50%;
         }
 
+        &.pre-order-buttons {
+            @include breakpoint("small") {
+                min-width: 50%;
+                width: auto;
+            }
+
+            @include breakpoint("medium") {
+                margin-right: remCalc(11px);
+                min-width: auto;
+                padding: 0;
+                width: auto;
+            }
+
+            .button {
+                padding: remCalc(13px) remCalc(24px);
+            }
+        }
+
         .button {
             margin: 0;
             width: 100%;

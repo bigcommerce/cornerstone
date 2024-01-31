@@ -34,8 +34,10 @@
         {{{stylesheet '/assets/css/theme.css'}}}
         
         {{!-- CravenSpeed Qty Script --}}
+        {{#if page_type '!==' '404'}}
         <script type="text/javascript" src="/content/cs_search.js" defer></script>
         <script type="text/javascript" src="/content/cs_search_data.js" defer></script>
+        {{/if}}
         {{#if page_type '===' 'product'}}
         <script type="text/javascript" src="/content/global_inventory.js"></script>
         {{/if}}
@@ -104,6 +106,8 @@
         <script async defer src="{{cdn 'assets/dist/theme-bundle.main.js' resourceHint='preload' as='script'}}" onload="onThemeBundleMain()"></script>
 
         {{#if page_type '===' '404'}}
+        <script type="text/javascript" src="/content/cs_search.js"></script>
+        <script type="text/javascript" src="/content/cs_search_data.js"></script>
         <script src="/content/four-o-four.js"></script>
         {{/if}}
 

@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Draft
+- With Product Filtering enabled widgets on category page disappear after navigating using pagination [#2425](https://github.com/bigcommerce/cornerstone/pull/2425)
 - Anchor links on category pages are not working when product filtering is enabled [#2415](https://github.com/bigcommerce/cornerstone/pull/2415)
 - Dispatch an event on productOptionsChanged [#2400](https://github.com/bigcommerce/cornerstone/pull/2400)
 - Check lang helpers usage and existence of key in translation file [#2403](https://github.com/bigcommerce/cornerstone/pull/2403)

@@ -256,11 +256,9 @@ export default class Product extends PageManager {
 
   // initialize the dropdowns, pre-select and set cookie when possible.
   initSelections() {
-    console.log("Init Selections");
+    // console.log("Init Selections");
     if (universal_product === true) {
-      console.log("universal product");
-      if (this.initVehicle(262)) {
-        console.log("vehicle");
+      if (this.initVehicle()) {
         if (option_data["All Vehicles"][0].name === "") {
           this.endPointIndex = option_data["All Vehicles"][0].index;
           this.initCartAdd(this.endPointIndex, "make");
@@ -274,16 +272,14 @@ export default class Product extends PageManager {
       }
     } else {
       // if the full vehicle cookie exists set up the first 3 dropdowns and load option 1
-      console.log("not universal");
-      if (this.initVehicle(278)) {
-        console.log("passed vehicle check");
+      if (this.initVehicle()) {
         this.createOptions(make_data, "make", this.make);
         this.createOptions(model_data[this.make], "model", this.model);
         this.createOptions(gen_data[this.model], "gen", this.gen);
         this.loadOpt1();
       } else {
         // if nothing is selected create the make dropdown and highlight it
-        if (this.checkFitment(286)) {
+        if (this.checkFitment()) {
           if (!this.make) {
             this.createOptions(make_data, "make", null);
             this.highlightActiveStep(0);
@@ -365,36 +361,28 @@ export default class Product extends PageManager {
     }
   }
 
-  checkFitment(line) {
-    console.log("check fitment line: ", line);
-    console.log('make: ', this.make);
-    console.log('model: ', this.model);
-    console.log('year: ', this.gen);
+  checkFitment() {
+    // console.log("check fitment");
     if (universal_product) {
       return true;
     } else if (this.gen === "" || this.gen in option_data || !this.gen) {
-      console.log('check fitment Gen blank or in option data');
       if (this.model === "" || model_data[this.make].includes(this.model) || !this.model) {
-        console.log('check fitment Model blank or in option data');
         if (this.make === "" || make_data.includes(this.make) || !this.make) {
-          console.log('fitment true');
           return true;
         } else {
-          console.log('fitment false');
           return false;
         }
       } else {
         return false;
       }
     } else {
-      console.log('check fitment gen not blank or in option data');
       return false;
     }
   }
 
   // load the make, model, and year from the cookie or the url parameters if url_override is true. return true if make model and gen are selected.
-  initVehicle(line) {
-    console.log("Init Vehicle: ", line);
+  initVehicle() {
+    // console.log("Init Vehicle");
     if (this.checkParamsVehicle()) {
     } else {
       if (this.checkCookieVehicle()) {
@@ -413,7 +401,7 @@ export default class Product extends PageManager {
       }
     }
 
-    if (this.checkFitment(411)) {
+    if (this.checkFitment()) {
       // confirm to the method that called initVehicle that a vehicle was selected
       if (this.make && this.model && this.gen) {
         // console.log("Vehicle Initialized:", this.make, this.model, this.gen);
@@ -522,7 +510,7 @@ export default class Product extends PageManager {
 
   // provide the endPointIndex that is to be added to the cart and check if it is valid to add (has inventory).
   initCartAdd(index, select) {
-    console.log("init card add");
+    // console.log("init card add");
     this.endPointIndex = index;
     if (index !== this.selectionSteps[select].default) {
       this.endPointData = key_dict[index];
@@ -595,10 +583,8 @@ export default class Product extends PageManager {
     let opt1Data = option_data[this.gen];
     if (!this.aliasProduct) {
       // not an alias product
-      console.log("Not an alias product");
       if (opt1Data) {
         if (opt1Data.length === 1 && opt1Data[0].name.trim() === "") {
-          console.log("no options");
           this.endPointIndex = opt1Data[0].index;
           this.initCartAdd(this.endPointIndex, "opt1");
         } else if (opt1Data.length === 1) {

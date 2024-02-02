@@ -259,7 +259,7 @@ export default class Product extends PageManager {
     console.log("Init Selections");
     if (universal_product === true) {
       console.log("universal product");
-      if (this.initVehicle()) {
+      if (this.initVehicle(262)) {
         console.log("vehicle");
         if (option_data["All Vehicles"][0].name === "") {
           this.endPointIndex = option_data["All Vehicles"][0].index;
@@ -275,7 +275,7 @@ export default class Product extends PageManager {
     } else {
       // if the full vehicle cookie exists set up the first 3 dropdowns and load option 1
       console.log("not universal");
-      if (this.initVehicle()) {
+      if (this.initVehicle(278)) {
         console.log("passed vehicle check");
         this.createOptions(make_data, "make", this.make);
         this.createOptions(model_data[this.make], "model", this.model);
@@ -283,7 +283,7 @@ export default class Product extends PageManager {
         this.loadOpt1();
       } else {
         // if nothing is selected create the make dropdown and highlight it
-        if (this.checkFitment()) {
+        if (this.checkFitment(286)) {
           if (!this.make) {
             this.createOptions(make_data, "make", null);
             this.highlightActiveStep(0);
@@ -365,28 +365,36 @@ export default class Product extends PageManager {
     }
   }
 
-  checkFitment() {
-    // console.log("check fitment");
+  checkFitment(line) {
+    console.log("check fitment line: ", line);
+    console.log('make: ', this.make);
+    console.log('model: ', this.model);
+    console.log('year: ', this.gen);
     if (universal_product) {
       return true;
-    } else if (this.gen === "" || this.gen in option_data) {
-      if (this.model === "" || model_data[this.make].includes(this.model)) {
-        if (this.make === "" || make_data.includes(this.make)) {
+    } else if (this.gen === "" || this.gen in option_data || !this.gen) {
+      console.log('check fitment Gen blank or in option data');
+      if (this.model === "" || model_data[this.make].includes(this.model) || !this.model) {
+        console.log('check fitment Model blank or in option data');
+        if (this.make === "" || make_data.includes(this.make) || !this.make) {
+          console.log('fitment true');
           return true;
         } else {
+          console.log('fitment false');
           return false;
         }
       } else {
         return false;
       }
     } else {
+      console.log('check fitment gen not blank or in option data');
       return false;
     }
   }
 
   // load the make, model, and year from the cookie or the url parameters if url_override is true. return true if make model and gen are selected.
-  initVehicle() {
-    // console.log("Init Vehicle");
+  initVehicle(line) {
+    console.log("Init Vehicle: ", line);
     if (this.checkParamsVehicle()) {
     } else {
       if (this.checkCookieVehicle()) {
@@ -405,7 +413,7 @@ export default class Product extends PageManager {
       }
     }
 
-    if (this.checkFitment()) {
+    if (this.checkFitment(411)) {
       // confirm to the method that called initVehicle that a vehicle was selected
       if (this.make && this.model && this.gen) {
         // console.log("Vehicle Initialized:", this.make, this.model, this.gen);

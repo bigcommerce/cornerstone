@@ -11,11 +11,11 @@ cart: true
 <div class="configurator">
   <!-- <copyright>This configurator is the property of Quiver Enterprises, LLC. This code may not be shared, reverse-engineered, modified, redistributed, or sold.</copyright> -->
   <section class="configurator__banner">
-    <h1 class="title configurator__title">COMPASS 1200 SERIES DOOR PULL CONFIGURATOR</h1>
+    <h1 class="title configurator__title">SEXTANT 1200 SERIES DOOR PULL CONFIGURATOR</h1>
     <p class="configurator__subtitle title--section">Fill in the form to see what you'll need to build your custom door pull system</p>
     <p style="text-align: left;margin-bottom: 0;">* indicates required field</p>
   </section>
-<!-- <button id="test-fill-all">Testing - Fill all values</button> -->
+<button style="display: none;" id="test-fill-all">Testing - Fill all values</button>
 <section class="configurator__content">
   <form id="configurator-form">
     <div class="configurator__region">
@@ -46,15 +46,6 @@ cart: true
         </select>
       </div>
 
-      <div class="configurator__field-wrap" id="grip-type-container">
-        <label class="configurator__label" for="grip-end-type-selector">Grip End Type*</label>
-        <select name="grip-end-type" id="grip-end-type-selector" required>
-          <option disabled selected value> -- SELECT AN OPTION -- </option>
-          <option value="flat">Flat</option>
-          <option value="round">Round</option>
-        </select>
-      </div>
-
       <div class="configurator__field-wrap" id="grip-length-container">
         <label class="configurator__label" for="grip-length-input">Overall Length* (in decimal inches)</label>
         <input name="grip-length" type="number" id="grip-length-input" name="grip-length" min="6" max="100" step=".001" required>
@@ -69,16 +60,9 @@ cart: true
           <option value="stippled-stainless">Stippled Stainless Steel</option>
           <option value="satin-bronze">Satin Bronze</option>
           <option value="polished-bronze">Polished Bronze</option>
-          <option value="oil-rubbed-bronze">Oil Rubbed Bronze</option>
           <option value="stippled-bronze">Stippled Bronze</option>
-          <option value="stippled-oil-bronze">Stippled Oil Rubbed Bronze</option>
           <option id="grip-finish-black" value="black">Black Santoprene</option>
         </select>
-      </div>
-
-      <div class="configurator__field-wrap" id="grip-cc-container">
-        <label class="configurator__label" for="grip-cc-input">Grip Center to Center Measurement* (in decimal inches)</label>
-        <input type="number" name="grip-cc" id="grip-cc-input" required />
       </div>
 
       <div class="configurator__field-wrap" id="grip-mount-container">
@@ -91,48 +75,70 @@ cart: true
           <option value="b4">B4 - Concealed Single Mount - Solid wood core door with threaded insert and Rota-Lok (not recommended)</option>
           <option value="b5">B5 - Back-to-Back - Solid wood core or hollow metal door with Rota-Lok</option>
           <option value="b6">B6 - Back-to-Back - Tempered glass door with Rota-Lok</option>
-          <option value="c1">C1 - Single mount on wood core or hollow metal doors with through bolt.</option>
-          <option value="c2">C2 - Concealed single mount on hollow metal door with shoulder bolt and customer's reinforcement</option>
-          <option value="c3">C3 - Concealed single mount on solid core door with shoulder bolt and threaded insert.</option>
-          <option value="c4">C4 - Back-to-back mount on solid wood core or hollow metal door with shoulder bolt.</option>
-          <option value="c5">C5 - Back-to-back mount on tempered glass door with shoulder bolt.</option>
         </select>
       </div>
     </div>
 
     <br />
-    <h2 class="configurator__section-header title--sub">Standoff Selection</h2>
-    <div class="configurator__field-wrap" id="standoff-type-container">
-      <label class="configurator__label" for="standoff-type-selector">Standoff Type*</label>
-      <select name="standoff-type" id="standoff-type-selector" required>
+    <h2 class="configurator__section-header title--sub">Finial Selection*</h2>
+    <div class="configurator__field-wrap" id="finial-type-container">
+      <label class="configurator__label" for="finial-type-selector">finial Type*</label>
+      <select name="finial-type" id="finial-type-selector" required>
         <option disabled selected value> -- SELECT AN OPTION -- </option>
-        <option value="ring">Ring</option>
-        <option value="double-ring">Double Ring</option>
-        <option value="clamshell">Clamshell</option>
         <option value="bullet">Bullet</option>
+        <option value="column">Column</option>
         <option value="cylinder">Cylinder</option>
+        <option value="tapered">Tapered</option>
       </select>
     </div>
     
-    <div class="configurator__field-wrap" id="standoff-finish-container">
-      <label class="configurator__label" for="standoff-finish-selector">Standoff Finish*</label>
-      <select name="standoff-finish" id="standoff-finish-selector" required>
+    <div class="configurator__field-wrap" id="finial-finish-container">
+      <label class="configurator__label" for="finial-finish-selector">Finial Finish*</label>
+      <select name="finial-finish" id="finial-finish-selector">
         <option disabled selected value> -- SELECT AN OPTION -- </option>
         <option value="satin-stainless">Satin Stainless Steel</option>
         <option value="polished-stainless">Polished Stainless Steel</option>
         <option value="stippled-stainless">Stippled Stainless Steel</option>
         <option value="satin-bronze">Satin Bronze</option>
         <option value="polished-bronze">Polished Bronze</option>
-        <option value="oil-bronze">Oil Rubbed Bronze</option>
+        <option value="oil-rubbed-bronze">Oil Rubbed Bronze</option>
         <option value="stippled-bronze">Stippled Bronze</option>
-        <option value="stippled-oil-bronze">Stippled Oil Rubbed Bronze</option>
       </select>
+    </div>
+
+    <br />
+    <div id="tenon-tee-finish-container">
+      <h2 class="configurator__section-header title--sub">Additional Support</h2>
+      <p>Note: Required for <strong>oversized pulls</strong>. Choose either an internal tenon or intermediate tee standofff to minimize flexing.</p>
+
+      <div class="configurator__field-wrap">
+        <label class="configurator__label" for="tenon-tee">Tenon or Intermediate Tee*</label>
+        <select name="tenon-tee" id="tenon-tee-selector">
+          <option disabled selected value> -- SELECT AN OPTION -- </option>
+          <option value="tenon">Tenon</option>
+          <option value="tee">Intermediate Tee</option>
+        </select>
+      </div>
+
+      <div class="configurator__field-wrap">
+        <label class="configurator__label" for="support-finish-selector">Tenon or Intermeidate Tee Finish</label>
+        <select name="support-finish" id="support-finish-selector">
+          <option disabled selected value> -- SELECT AN OPTION -- </option>
+          <option value="satin-stainless">Satin Stainless Steel</option>
+          <option value="polished-stainless">Polished Stainless Steel</option>
+          <option value="stippled-stainless">Stippled Stainless Steel</option>
+          <option value="satin-bronze">Satin Bronze</option>
+          <option value="polished-bronze">Polished Bronze</option>
+          <option value="oil-rubbed-bronze">Oil Rubbed Bronze</option>
+          <option value="stippled-bronze">Stippled Bronze</option>
+        </select>
+      </div>
     </div>
 
     <br />
     <div id="endcap-finish-container">
       <h2 class="configurator__section-header title--sub">Endcaps</h2>
-      <p>Note: Only required if using mounting type <strong>B2</strong> on <strong>tempered glass</strong>.</p>
+      <p>Note: Required when using mounting type <strong>B2</strong> on <strong>tempered glass</strong>.</p>
       <div class="configurator__field-wrap">
         <label class="configurator__label" for="endcap-finish-selector">Endcap Finish</label>
         <select name="endcap-finish" id="endcap-finish-selector">
@@ -162,16 +168,14 @@ cart: true
         <p><strong>Door Material</strong>: <span id="results--door-material"></span></p>
         <p><strong>Door Thickness</strong>: <span id="results--door-thickness"></span>″</p>
         <p><strong>Grip Type</strong>: <span id="results--grip-type"></span></p>
-        <p><strong>Grip End Type</strong>: <span id="results--grip-end-type"></span></p>
         <p><strong>Overall Grip Length</strong>: <span id="results--grip-length"></span>″</p>
         <p><strong>Grip Finish</strong>: <span id="results--grip-finish"></span></p>
-        <p><strong>Grip Center to Center</strong>: <span id="results--grip-cc"></span>″</p>
         <p><strong>Mounting Option</strong>: <span id="results--mounting-code"></span></p>
-        <p><strong>Total Standoffs</strong>: <span id="results--total-standoffs"></span></p>
-        <p><strong>Standoff Type</strong>: <span id="results--standoff-type"></span></p>
-        <p><strong>Standoff Finish</strong>: <span id="results--standoff-finish"></span></p>
-        <p><strong>Total Endcaps</strong>: <span id="results--total-endcaps"></span></p>
-        <p><strong>Endcap Finish</strong>: <span id="results--endcap-finish"></span></p>
+        <p><strong>Finial Type</strong>: <span id="results--finial-type"></span></p>
+        <p><strong>Finial Finish</strong>: <span id="results--finial-finish"></span></p>
+        <p id="results--support-type-wrap"><strong>Support Type</strong>: <span id="results--support-type"></span></p>
+        <p id="results--support-finish-wrap"><strong>Support Finish</strong>: <span id="results--support-finish"></span></p>
+        <p id="results--endcap-finish-wrap"><strong>Endcap Finish</strong>: <span id="results--endcap-finish"></span></p>
       </div>
       <div class="configurator__results--region">
         <h2 class="configurator__section-header title--sub">List of SKUS to purchase:</h2>

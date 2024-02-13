@@ -961,9 +961,20 @@ export default class Product extends PageManager {
     }
     let priceFormatted = this.endPointData.price.toLocaleString("en-us", {
       style: "currency",
-      currency: "USD",
+      currency: "USD"
     });
+    console.log('sale price type:', typeof(this.endPointData.sale_price));
     this.contentElements.price.innerHTML = priceFormatted;
+
+    if (this.endPointData.sale_price !== 0) {
+      let salePriceFormatted = this.endPointData.sale_price.toLocaleString("en-us", {
+        style: "currency",
+        currency: "USD"
+      });
+      console.log('sale price valid: ', this.endPointData.sale_price);
+      this.contentElements.price.innerHTML = '<span class="original-price">' + priceFormatted + '</span><span>' + salePriceFormatted + '</span>';
+      this.contentElements.price.classList.add('sale-price');
+    }
     this.contentElements.brand.innerHTML = this.endPointData.brand_name;
     this.contentElements.description.innerHTML = this.endPointData.description;
     const instructionsTabParent = this.instructionsTab.parentNode;

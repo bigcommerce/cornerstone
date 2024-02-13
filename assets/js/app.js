@@ -43,6 +43,7 @@ const pageClasses = {
     default: noop,
     page: noop,
     // product: () => import('./theme/product'),
+    ...(typeof last_update === 'undefined' ? { product: () => import('./theme/product') } : {}),
     amp_product_options: () => import('./theme/product'),
     search: () => import('./theme/search'),
     rss: noop,
@@ -59,17 +60,25 @@ const pageClasses = {
 
 let addonClasses = {};
 
-if (CSoptimized) {
-    addonClasses = {
-        product: () => import('./theme/_addons/product'),
-        page: () => import('./theme/_addons/page')
+if (typeof last_update !== 'undefined') {
+    console.log('last_update:', last_update);
+    if (CSoptimized) {
+        console.log('CS Optimized');
+        addonClasses = {
+            product: () => import('./theme/_addons/product'),
+            page: () => import('./theme/_addons/page')
+        }
+    } else {
+        console.log('Old Product Class');
+        addonClasses = {
+            product: () => import('./theme/_addons/product-old'),
+            page: () => import('./theme/_addons/page')
+        }
     }
 } else {
-    addonClasses = {
-        product: () => import('./theme/_addons/product-old'),
-        page: () => import('./theme/_addons/page')
-    }
+    document.querySelector('#body-container').classList.add('container');
 }
+
 
 const customClasses = {};
 

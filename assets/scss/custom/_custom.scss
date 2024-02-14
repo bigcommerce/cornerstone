@@ -449,6 +449,7 @@ html {
 
   position: relative;
   width: 100%;
+  padding: $mobile-spacing;
 
   #product-messages {
     text-align: center;
@@ -592,9 +593,9 @@ html {
     fill: black;
   }
 
-  #product-above-info {
-    // margin: spacing("single");
-  }
+  // #product-above-info {
+  //   margin: spacing("single");
+  // }
 
   .single-row {
     height: spacing("single");
@@ -677,6 +678,15 @@ html {
   .next-step {
     color: stencilColor("color-white");
     background-color: stencilColor("color-primary");
+  }
+
+  #product-blem-form {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: spacing('half');
+    margin: 0 auto;
   }
 
   #product-below {
@@ -1167,7 +1177,7 @@ html {
   }
 }
 
-button#blem-acknowledgement {
+button#blem-accept {
   border: none;
   background-color: stencilColor("button--default-color");
   color: stencilColor("color-white");

@@ -21,15 +21,25 @@ export default class Product extends PageManager {
     this.imageArray = [];
     this.vehicleProducts = [];
     this.loadedDefaultIntructions = false;
+    this.blemData = {};
+    this.blemAcknowledged = false;
+    this.addUrl = '';
+    this.blemAddUrl = '';
 
     this.instructionsTabHandler = this.instructionsTabHandler.bind(this);
     this.ratingHandler = this.ratingHandler.bind(this);
+    this.blemAcceptHandler = this.blemAcceptHandler.bind(this);
+    this.blemDeclineHandler = this.blemDeclineHandler.bind(this);
+    this.toggleBlem = this.toggleBlem.bind(this);
+
 
     // element properties
     this.addToCartButton = document.querySelector("#product-add-button");
     this.instructionsTab = document.querySelector("#instructions-tab");
     this.rating = document.querySelector("#product-rating");
     this.reviewsTab = document.querySelector("#tab-reviews");
+    this.blemAcceptButton = document.querySelector('#blem-accept');
+    this.blemDeclineLink = document.querySelector('#blem-decline');
 
     // an object containing the selection steps and their properties (the element, default, etc...)
     this.selectionSteps = {
@@ -80,6 +90,7 @@ export default class Product extends PageManager {
       instructions: document.querySelector("#instructions-content"),
       moreProducts: document.querySelector("#more-products"),
       moreProductsHeader: document.querySelector("#more-products-header"),
+      blemForm: document.querySelector("#product-blem-form"),
     };
   }
 
@@ -117,6 +128,9 @@ export default class Product extends PageManager {
 
     this.instructionsTab.addEventListener("click", this.instructionsTabHandler);
     this.rating.addEventListener("click", this.ratingHandler);
+    this.blemAcceptButton.addEventListener('click', this.blemAcceptHandler);
+    this.blemDeclineLink.addEventListener('click', this.blemDeclineHandler);
+    
   }
 
   // initialize the image gallery
@@ -366,7 +380,11 @@ export default class Product extends PageManager {
     if (universal_product) {
       return true;
     } else if (this.gen === "" || this.gen in option_data || !this.gen) {
-      if (this.model === "" || model_data[this.make].includes(this.model) || !this.model) {
+      if (
+        this.model === "" ||
+        model_data[this.make].includes(this.model) ||
+        !this.model
+      ) {
         if (this.make === "" || make_data.includes(this.make) || !this.make) {
           return true;
         } else {
@@ -519,13 +537,14 @@ export default class Product extends PageManager {
       this.inventory = global_inv[this.baseId];
       this.name = this.endPointData.name;
       this.updateContent();
+      this.checkBlem();
       if (this.inventory.av > 0 || this.madeToOrder) {
-        let addUrl =
+        this.addUrl =
           "/cart.php?action=add&sku=" +
           encodeURIComponent(this.aliasSku) +
           "&source=" +
           encodeURIComponent(this.name);
-        this.addToCartButton.href = addUrl;
+        this.addToCartButton.href = this.addUrl;
         for (const select in this.selectionSteps) {
           this.selectionSteps[select].element.classList.remove("next-step");
         }
@@ -672,6 +691,7 @@ export default class Product extends PageManager {
   makeChange(selected) {
     // console.log("Make Change, selected: ", selected);
     this.clearMessages();
+    this.clearBlem();
     this.cartButton(false);
     this.selectChange = true;
     aliasVehicle = null;
@@ -717,6 +737,7 @@ export default class Product extends PageManager {
   modelChange(selected) {
     // console.log("Model Change, selected: ", selected);
     this.clearMessages();
+    this.clearBlem();
     this.cartButton(false);
     this.selectChange = true;
     aliasVehicle = null;
@@ -748,6 +769,7 @@ export default class Product extends PageManager {
   genChange(selected) {
     // console.log("Gen Change, selected: ", selected);
     this.clearMessages();
+    this.clearBlem();
     this.cartButton(false);
     this.selectChange = true;
     aliasVehicle = null;
@@ -766,6 +788,7 @@ export default class Product extends PageManager {
   opt1Change(selected) {
     // console.log("Option One Change, selected: ", selected);
     this.clearMessages();
+    this.clearBlem();
     this.cartButton(false);
     this.selectChange = true;
     aliasVehicle = null;
@@ -785,6 +808,7 @@ export default class Product extends PageManager {
   opt2Change(selected) {
     // console.log("Option Two Change, selected: ", selected);
     this.clearMessages();
+    this.clearBlem();
     this.cartButton(false);
     this.selectChange = true;
     aliasVehicle = null;
@@ -961,19 +985,27 @@ export default class Product extends PageManager {
     }
     let priceFormatted = this.endPointData.price.toLocaleString("en-us", {
       style: "currency",
-      currency: "USD"
+      currency: "USD",
     });
-    console.log('sale price type:', typeof(this.endPointData.sale_price));
+    console.log("sale price type:", typeof this.endPointData.sale_price);
     this.contentElements.price.innerHTML = priceFormatted;
 
     if (this.endPointData.sale_price !== 0) {
-      let salePriceFormatted = this.endPointData.sale_price.toLocaleString("en-us", {
-        style: "currency",
-        currency: "USD"
-      });
-      console.log('sale price valid: ', this.endPointData.sale_price);
-      this.contentElements.price.innerHTML = '<span class="original-price">' + priceFormatted + '</span><span>' + salePriceFormatted + '</span>';
-      this.contentElements.price.classList.add('sale-price');
+      let salePriceFormatted = this.endPointData.sale_price.toLocaleString(
+        "en-us",
+        {
+          style: "currency",
+          currency: "USD",
+        }
+      );
+      console.log("sale price valid: ", this.endPointData.sale_price);
+      this.contentElements.price.innerHTML =
+        '<span class="original-price">' +
+        priceFormatted +
+        "</span><span>" +
+        salePriceFormatted +
+        "</span>";
+      this.contentElements.price.classList.add("sale-price");
     }
     this.contentElements.brand.innerHTML = this.endPointData.brand_name;
     this.contentElements.description.innerHTML = this.endPointData.description;
@@ -1200,15 +1232,115 @@ export default class Product extends PageManager {
       tab.classList.remove("is-active");
     });
 
-    const reviewsTitle = document.querySelector('.tab a[href="#tab-reviews"]').parentNode;
-    reviewsTitle.classList.add('is-active');
+    const reviewsTitle = document.querySelector(
+      '.tab a[href="#tab-reviews"]'
+    ).parentNode;
+    reviewsTitle.classList.add("is-active");
 
     const reviewsTab = document.querySelector("#tab-reviews");
-    reviewsTab.classList.add('is-active');
+    reviewsTab.classList.add("is-active");
 
     reviewsTitle.focus();
     reviewsTitle.scrollIntoView({
-      behavior: 'smooth',
+      behavior: "smooth",
     });
+  }
+
+  clearBlem() {
+    this.contentElements.blemForm.innerHTML = '';
+  }
+
+  checkBlem() {
+    // console.log("check blem");
+    this.blemData = blem_dict[this.endPointData.base_sku];
+    if (this.blemData) {
+      let blemInventory = global_inv[this.blemData.index];
+      if (blemInventory.av > 0 || blemInventory.a2b > 0) {
+        let blemPrice = this.blemData.price;
+        let savings = this.endPointData.price - blemPrice;
+        let savingsFormatted = savings.toLocaleString("us-en", {
+          style: "currency",
+          currency: "USD",
+        });
+        let blemCheckbox = document.createElement("input");
+        let blemLabel = document.createElement("label");
+        blemCheckbox.type = "checkbox";
+        blemCheckbox.id = "blem-opt-in";
+        blemCheckbox.name = "blem-opt-in";
+        blemCheckbox.setAttribute("data-reveal-id", "scratch-and-dent");
+        blemLabel.setAttribute("for", "blem-opt-in");
+        let blemMessage = "Interested in saving " + savingsFormatted + "?";
+        blemLabel.innerHTML = blemMessage;
+        this.contentElements.blemForm.append(blemCheckbox, blemLabel);
+        this.contentElements.blemForm.style.visibility = "visible";
+        this.blemAddUrl = `/cart.php?action=add&product_id=${encodeURIComponent(this.blemData.blem_id)}&source=${encodeURIComponent(this.name)}`;
+      }
+    }
+  }
+
+  generateStockMessage(index) {
+    const inventory = global_inv[index];
+    if (inventory.av === 0 && inventory.a2b > 0) {
+        return 'In stock';
+    } else if (inventory.av > 10) {
+        return 'Plenty in stock';
+    } else if (inventory.av > 0) {
+        return `Only ${inventory.av} left. Order soon!`;
+    } else {
+        return 'Out of stock';
+    }
+  }
+
+
+
+  toggleBlem() {
+    // console.log('toggle blem');
+    let blemCheckbox = document.querySelector('#blem-opt-in');
+    if (blemCheckbox.checked === true) {
+      this.contentElements.sku.textContent = this.endPointData.base_sku + '-BLEM';
+      this.contentElements.stock.innerHTML = this.generateStockMessage(this.blemData.index);
+      this.contentElements.shippingTime.innerHTML = `Ships free, ${this.getShipDay()}`;
+      let blemPriceFormatted = this.blemData.price.toLocaleString('us-en', {
+        style: 'currency',
+        currency: 'USD'
+      });
+      let newPrice = this.contentElements.price.textContent;
+      this.contentElements.price.innerHTML =
+        '<span class="original-price">' +
+        newPrice +
+        "</span><span>" +
+        blemPriceFormatted +
+        "</span>";
+      this.contentElements.price.classList.add('sale-price');
+      this.addToCartButton.href = this.blemAddUrl;
+    } else {
+      this.contentElements.sku.textContent = this.endPointData.base_sku;
+      this.contentElements.stock.textContent = this.generateStockMessage(this.endPointData.base_id);
+      this.contentElements.shippingTime.innerHTML = `Ships free, ${this.getShipDay()}`;
+      this.contentElements.price.innerHTML = this.endPointData.price.toLocaleString('en-us', {
+        style: 'currency',
+        currency: 'USD'
+      });
+      this.contentElements.price.classList.remove('sale-price');
+      this.addToCartButton.href = this.addUrl;
+    }
+  }
+
+  blemAcceptHandler() {
+    // console.log('blem accept');
+    let blemCheckbox = document.querySelector("#blem-opt-in");
+    this.blemAcknowledged = true;
+    blemCheckbox.removeAttribute('data-reveal-id');
+    blemCheckbox.addEventListener('click', this.toggleBlem);
+    blemCheckbox.checked = true;
+    this.toggleBlem();
+  }
+  
+  blemDeclineHandler() {
+    // console.log('blem decline');
+    let blemCheckbox = document.querySelector("#blem-opt-in");
+    this.blemAcknowledged = false;
+    blemCheckbox.setAttribute('data-reveal-id', 'scratch-and-dent');
+    blemCheckbox.checked = false;
   }
 }

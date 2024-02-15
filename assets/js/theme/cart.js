@@ -9,19 +9,21 @@ import CartItemDetails from './common/cart-item-details';
 
 export default class Cart extends PageManager {
     onReady() {
-        this.$modal = null;
-        this.$cartPageContent = $('[data-cart]');
-        this.$cartContent = $('[data-cart-content]');
-        this.$cartMessages = $('[data-cart-status]');
-        this.$cartTotals = $('[data-cart-totals]');
-        this.$cartAdditionalCheckoutBtns = $('[data-cart-additional-checkout-buttons]');
-        this.$overlay = $('[data-cart] .loadingOverlay')
-            .hide(); // TODO: temporary until roper pulls in his cart components
-        this.$activeCartItemId = null;
-        this.$activeCartItemBtnAction = null;
+        console.log('intentioanlly break');
 
-        this.setApplePaySupport();
-        this.bindEvents();
+        // this.$modal = null;
+        // this.$cartPageContent = $('[data-cart]');
+        // this.$cartContent = $('[data-cart-content]');
+        // this.$cartMessages = $('[data-cart-status]');
+        // this.$cartTotals = $('[data-cart-totals]');
+        // this.$cartAdditionalCheckoutBtns = $('[data-cart-additional-checkout-buttons]');
+        // this.$overlay = $('[data-cart] .loadingOverlay')
+        //     .hide(); // TODO: temporary until roper pulls in his cart components
+        // this.$activeCartItemId = null;
+        // this.$activeCartItemBtnAction = null;
+
+        // this.setApplePaySupport();
+        // this.bindEvents();
     }
 
     setApplePaySupport() {

@@ -56,6 +56,7 @@ const customClasses = {
     'pages/custom/page/page.forms-surfaces-compass-800': () => import('./theme/configurator'),
     'pages/custom/page/page.forms-surfaces-compass-1200': () => import('./theme/configurator-1200'),
     'pages/custom/page/page.forms-surfaces-sextant-1200': () => import('./theme/configurator-sextant-1200'),
+    'pages/custom/page/page.forms-surfaces-sextant-1500': () => import('./theme/configurator-sextant-1500'),
 };
 
 /**

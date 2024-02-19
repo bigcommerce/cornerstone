@@ -1,5 +1,5 @@
 import PageManager from './page-manager';
-import ProductSchema from '../custom/sextant-1200-product-schema';
+import ProductSchema from '../custom/sextant-1500-product-schema';
 import MountingSchema from '../custom/compass-mounting-schema';
 import 'regenerator-runtime/runtime';
 
@@ -323,7 +323,7 @@ export default class Configurator extends PageManager {
       gripLengthInputNode.removeAttribute('readonly');
     } else {
       gripLengthInputNode.setAttribute('readonly', true);
-      gripLengthInputNode.value = 24;
+      gripLengthInputNode.value = 25;
     }
   }
 
@@ -332,7 +332,7 @@ export default class Configurator extends PageManager {
     if (!length || !finish) return;
 
     // Determine if grip is oversized
-    if ((length > 93 && finish.includes('stainless')) || (length > 93 && finish.includes('black')) || (length > 81 && finish.includes('bronze'))) {
+    if ((length > 100 && finish.includes('stainless')) || (length > 94 && finish.includes('bronze'))) {
       // Show tenon/tee options
       document.querySelectorAll('#tenon-tee-finish-container').forEach(container => {
         container.removeAttribute('hidden');
@@ -459,6 +459,7 @@ export default class Configurator extends PageManager {
     document.querySelector('#results--total-price').textContent = `$${this.setPriceToTwoDecimalPlaces(price)}`;
     document.querySelector('#results--discount-price').textContent = `$${this.setPriceToTwoDecimalPlaces(discountPrice)}`;
 
+    
     // Add Item level results to HTML
     this.buildAndInsertResultTableRow(selectedGrip, totalGrips);
     this.buildAndInsertResultTableRow(selectedFinial, totalFinials);
@@ -645,5 +646,4 @@ export default class Configurator extends PageManager {
     // Bind add-to-cart button listener
     document.getElementById('add-to-cart-button').addEventListener('click', () => this.handleAddToCartButton());
   }
-
 }

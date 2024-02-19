@@ -5,308 +5,302 @@ const ProductSchema = {
   grips : {
     'extraSmall': {
       'satin-stainless': {
-        'id': 446412
+        'id': 446511
       },
       'polished-stainless': {
-        'id': 446413
+        'id': 446512
       },
       'stippled-stainless': {
-        'id': 446414
+        'id': 446513
       },
       'satin-bronze': {
-        'id': 446415
+        'id': 446514
       },
       'polished-bronze': {
-        'id': 446416
+        'id': 446515
       },
       'oil-rubbed-bronze': {
-        'id': 446417
+        'id': 446516
       },
       'stippled-bronze': {
-        'id': 446418
+        'id': 446517
       },
       'black': {
-        'id': 446419
-      },
-      'stippled-oil-rubbed-bronze': {
-        'id': 446420
+        'id': 446518
       },
     },
     'small': {
       'satin-stainless': {
-        'id': 446421
+        'id': 446519
       },
       'polished-stainless': {
-        'id': 446422
+        'id': 446520
       },
       'stippled-stainless': {
-        'id': 446423
+        'id': 446521
       },
       'satin-bronze': {
-        'id': 446424
+        'id': 446522
       },
       'polished-bronze': {
-        'id': 446425
+        'id': 446523
       },
       'oil-rubbed-bronze': {
-        'id': 446426
+        'id': 446524
       },
       'stippled-bronze': {
-        'id': 446427
+        'id': 446525
       },
       'black': {
-        'id': 446428
+        'id': 446526
       },
     },
     'medium': {
       'satin-stainless': {
-        'id': 446429
+        'id': 446527
       },
       'polished-stainless': {
-        'id': 446430
+        'id': 446528
       },
       'stippled-stainless': {
-        'id': 446431
+        'id': 446529
       },
       'satin-bronze': {
-        'id': 446432
+        'id': 446530
       },
       'polished-bronze': {
-        'id': 446433
+        'id': 446531
       },
       'oil-rubbed-bronze': {
-        'id': 446434
+        'id': 446532
       },
       'stippled-bronze': {
-        'id': 446435
+        'id': 446533
       },
       'black': {
-        'id': 446436
-      },
-      'stippled-oil-rubbed-bronze': {
-        'id': 446437
-      },
+        'id': 446534
+      }
     },
     'large': {
       'satin-stainless': {
-        'id': 446438
+        'id': 446535
       },
       'polished-stainless': {
-        'id': 446439
+        'id': 446536
       },
       'stippled-stainless': {
-        'id': 446440
+        'id': 446537
       },
       'satin-bronze': {
-        'id': 446441
+        'id': 446538
       },
       'polished-bronze': {
-        'id': 446442
+        'id': 446539
       },
       'oil-rubbed-bronze': {
-        'id': 446443
+        'id': 446540
       },
       'stippled-bronze': {
-        'id': 446444
+        'id': 446541
       },
       'black': {
-        'id': 446445
+        'id': 446542
       },
     },
     'giant': {
       'satin-stainless': {
-        'id': 446446
+        'id': 446543
       },
       'polished-stainless': {
-        'id': 446447
+        'id': 446544
       },
       'stippled-stainless': {
-        'id': 446448
+        'id': 446545
       },
       'satin-bronze': {
-        'id': 446449
+        'id': 446546
       },
       'polished-bronze': {
-        'id': 446450
+        'id': 446547
       },
       'oil-rubbed-bronze': {
-        'id': 446451
+        'id': 446548
       },
       'stippled-bronze': {
-        'id': 446452
+        'id': 446549
       },
       'black': {
-        'id': 446453
+        'id': 446550
       },
     },
     'extraLarge': {
       'satin-stainless': {
-        'id': 446454
+        'id': 446551
       },
       'polished-stainless': {
-        'id': 446455
+        'id': 446552
       },
       'stippled-stainless': {
-        'id': 446456
+        'id': 446553
       },
       'satin-bronze': {
-        'id': 446457
+        'id': 446554
       },
       'polished-bronze': {
-        'id': 446458
+        'id': 446555
       },
       'oil-rubbed-bronze': {
-        'id': 446459
+        'id': 446556
       },
       'stippled-bronze': {
-        'id': 446460
+        'id': 446557
       },
       'black': {
-        'id': 446461
+        'id': 446558
       }
     },
     'arc': {
       'satin-stainless': {
-        'id': 446462
+        'id': 446559
       },
       'polished-stainless': {
-        'id': 446463
+        'id': 446560
       },
       'stippled-stainless': {
-        'id': 446464
+        'id': 446561
       },
       'satin-bronze': {
-        'id': 446465
+        'id': 446562
       },
       'polished-bronze': {
-        'id': 446466
+        'id': 446563
       },
       'stippled-bronze': {
-        'id': 446467
+        'id': 446564
       },
       'black': {
-        'id': 446468
+        'id': 446565
       }
     },
   },
   finials: {
     'bullet': {
       'satin-stainless': {
-        'id': 446469
+        'id': 446566
       },
       'polished-stainless': {
-        'id': 446470
+        'id': 446567
       },
       'stippled-stainless': {
-        'id': 446471
+        'id': 446568
       },
       'satin-bronze': {
-        'id': 446472
+        'id': 446569
       },
       'polished-bronze': {
-        'id': 446473
+        'id': 446570
       },
       'oil-rubbed-bronze': {
-        'id': 446474
+        'id': 446571
       },
       'stippled-bronze': {
-        'id': 446475
+        'id': 446572
       }
     },
     'column': {
       'satin-stainless': {
-        'id': 446476
+        'id': 446573
       },
       'polished-stainless': {
-        'id': 446477
+        'id': 446574
       },
       'stippled-stainless': {
-        'id': 446478
+        'id': 446575
       },
       'satin-bronze': {
-        'id': 446479
+        'id': 446576
       },
       'polished-bronze': {
-        'id': 446480
+        'id': 446577
       },
       'oil-rubbed-bronze': {
-        'id': 446481
+        'id': 446578
       },
       'stippled-bronze': {
-        'id': 446482
+        'id': 446579
       }
     },
     'cylinder': {
       'satin-stainless': {
-        'id': 446483
+        'id': 446580
       },
       'polished-stainless': {
-        'id': 446484
+        'id': 446581
       },
       'stippled-stainless': {
-        'id': 446485
+        'id': 446582
       },
       'satin-bronze': {
-        'id': 446486
+        'id': 446583
       },
       'polished-bronze': {
-        'id': 446487
+        'id': 446584
       },
       'oil-rubbed-bronze': {
-        'id': 446488
+        'id': 446585
       },
       'stippled-bronze': {
-        'id': 446489
+        'id': 446586
       }
     },
     'tapered': {
       'satin-stainless': {
-        'id': 446490
+        'id': 446587
       },
       'polished-stainless': {
-        'id': 446491
+        'id': 446588
       },
       'stippled-stainless': {
-        'id': 446492
+        'id': 446589
       },
       'satin-bronze': {
-        'id': 446493
+        'id': 446590
       },
       'polished-bronze': {
-        'id': 446494
+        'id': 446591
       },
       'oil-rubbed-bronze': {
-        'id': 446495
+        'id': 446592
       },
       'stippled-bronze': {
-        'id': 446496
+        'id': 446593
       }
     }
   },
   tenon: {
-    'id': 446510
+    'id': 446606
   },
   tee: {
     'satin-stainless': {
-      'id': 446497
+      'id': 446594
     },
     'polished-stainless': {
-      'id': 446498
+      'id': 446595
     },
     'stippled-stainless': {
-      'id': 446499
+      'id': 446596
     },
     'satin-bronze': {
-      'id': 446500
+      'id': 446597
     },
     'polished-bronze': {
-      'id': 446501
+      'id': 446598
     },
     'oil-rubbed-bronze': {
-      'id': 446502
+      'id': 446599
     },
     'stippled-bronze': {
-      'id': 446503
+      'id': 446600
     }
   },
   endcaps: {

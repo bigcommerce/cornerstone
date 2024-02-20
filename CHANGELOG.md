@@ -26,6 +26,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Change case of Page builder menu item text [#2407](https://github.com/bigcommerce/cornerstone/pull/2407)
 - Corrected typo with the word default previously deafault in config.json [#2410](https://github.com/bigcommerce/cornerstone/pull/2410)
 - Adding autocomplete to common input fields [2397](https://github.com/bigcommerce/cornerstone/pull/2397)
+- ADA Compliance - Expandable items should be read by screen reader [2422](https://github.com/bigcommerce/cornerstone/pull/2422)
 - Pre-Orded text in Polish looks cropped in the button on Product page [2414](https://github.com/bigcommerce/cornerstone/pull/2414)
 - Use triple sash on customer's company name to prevent escaping ampersands [#2399](https://github.com/bigcommerce/cornerstone/pull/2399)
 - Adding aria attributes to cart page coupon code and gift cert buttons [#2391](https://github.com/bigcommerce/cornerstone/pull/2391)

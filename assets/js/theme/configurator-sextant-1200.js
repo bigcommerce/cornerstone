@@ -435,6 +435,7 @@ export default class Configurator extends PageManager {
 
     if (gripMount == 'b2' && endcapFinish) {
       totalEndcaps = totalGrips * 2;
+      totalEndcaps = supportType && supportType == 'tee' ? totalEndcaps += totalGrips : totalEndcaps; // If Tee support selected, add an adiditonal endcap for every grip
       document.querySelector('#results--endcap-finish').textContent = this.formatSpecificationText(endcapFinish);
       document.querySelector('#results--total-endcaps').textContent = totalEndcaps;
 

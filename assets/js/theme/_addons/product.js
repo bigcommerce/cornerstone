@@ -207,12 +207,14 @@ export default class Product extends PageManager {
     let touchEndX = 0;
 
     gallery.addEventListener("touchstart", (e) => {
+      e.preventDefault();
       touchStartX = e.touches[0].clientX;
-    });
+    }, {passive: false});
 
     gallery.addEventListener("touchmove", (e) => {
+      e.preventDefault();
       touchEndX = e.touches[0].clientX;
-    });
+    }, {passive: false});
 
     gallery.addEventListener("touchend", () => {
       const touchDiff = touchEndX - touchStartX;

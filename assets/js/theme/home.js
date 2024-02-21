@@ -1,5 +1,6 @@
 import PageManager from './page-manager';
 import loadProductByCategory from './common/product-by-category';
+import loadProductById from './common/featured-product';
 
 export default class Home extends PageManager {
     onReady() {
@@ -9,5 +10,6 @@ export default class Home extends PageManager {
         } = this.context;
 
         loadProductByCategory(categoryBlockCarouselCol, categoryBlockCarouselLimit);
+        loadProductById(this.context);
     }
 }

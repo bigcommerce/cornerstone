@@ -1,4 +1,5 @@
 import PageManager from "../page-manager";
+import inStockNotifyForm from "./product/inStockNotify";
 
 export default class Product extends PageManager {
   constructor(context) {
@@ -23,23 +24,23 @@ export default class Product extends PageManager {
     this.loadedDefaultIntructions = false;
     this.blemData = {};
     this.blemAcknowledged = false;
-    this.addUrl = '';
-    this.blemAddUrl = '';
+    this.addUrl = "";
+    this.blemAddUrl = "";
 
     this.instructionsTabHandler = this.instructionsTabHandler.bind(this);
     this.ratingHandler = this.ratingHandler.bind(this);
     this.blemAcceptHandler = this.blemAcceptHandler.bind(this);
     this.blemDeclineHandler = this.blemDeclineHandler.bind(this);
     this.toggleBlem = this.toggleBlem.bind(this);
-
+    this.stockNotificationHandler = this.stockNotificationHandler.bind(this);
 
     // element properties
     this.addToCartButton = document.querySelector("#product-add-button");
     this.instructionsTab = document.querySelector("#instructions-tab");
     this.rating = document.querySelector("#product-rating");
     this.reviewsTab = document.querySelector("#tab-reviews");
-    this.blemAcceptButton = document.querySelector('#blem-accept');
-    this.blemDeclineLink = document.querySelector('#blem-decline');
+    this.blemAcceptButton = document.querySelector("#blem-accept");
+    this.blemDeclineLink = document.querySelector("#blem-decline");
 
     // an object containing the selection steps and their properties (the element, default, etc...)
     this.selectionSteps = {
@@ -128,9 +129,33 @@ export default class Product extends PageManager {
 
     this.instructionsTab.addEventListener("click", this.instructionsTabHandler);
     this.rating.addEventListener("click", this.ratingHandler);
-    this.blemAcceptButton.addEventListener('click', this.blemAcceptHandler);
-    this.blemDeclineLink.addEventListener('click', this.blemDeclineHandler);
-    
+    this.blemAcceptButton.addEventListener("click", this.blemAcceptHandler);
+    this.blemDeclineLink.addEventListener("click", this.blemDeclineHandler);
+    this.contentElements.productMessages.addEventListener('click', this.stockNotificationHandler);
+  }
+
+  // handle messages
+  sendMessage(message) {
+    if (message === "outOfStock") {
+      this.contentElements.productMessages.innerHTML =
+        "Out of stock.&nbsp;<span>Sign up for stock updates</span>.";
+      this.contentElements.productMessages.setAttribute(
+        "data-reveal-id",
+        "stock-notification"
+      );
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+      this.contentElements.productMessages.classList.add("error");
+      this.contentElements.productMessages.style.visibility = "visible";
+    }
+  }
+
+  stockNotificationHandler() {
+    const modal = document.querySelector('#stock-notification');
+    const product_id = this.endPointData.bc_id;
+    const instance = new inStockNotifyForm(modal, product_id);
   }
 
   // initialize the image gallery
@@ -206,31 +231,44 @@ export default class Product extends PageManager {
     let touchStartX = 0;
     let touchEndX = 0;
 
-    gallery.addEventListener("touchstart", (e) => {
-      e.preventDefault();
-      touchStartX = e.touches[0].clientX;
-    }, {passive: false});
+    gallery.addEventListener(
+      "touchstart",
+      (e) => {
+        e.preventDefault();
+        touchStartX = e.touches[0].clientX;
+      },
+      { passive: false }
+    );
 
-    gallery.addEventListener("touchmove", (e) => {
-      e.preventDefault();
-      touchEndX = e.touches[0].clientX;
-    }, {passive: false});
+    gallery.addEventListener(
+      "touchmove",
+      (e) => {
+        e.preventDefault();
+        touchEndX = e.touches[0].clientX;
+      },
+      { passive: false }
+    );
 
-    gallery.addEventListener("touchend", () => {
-      const touchDiff = touchEndX - touchStartX;
+    gallery.addEventListener(
+      "touchend",
+      () => {
+        e.preventDefault();
+        const touchDiff = touchEndX - touchStartX;
 
-      // Set a threshold to determine a valid swipe
-      if (Math.abs(touchDiff) > 50) {
-        // Swipe left
-        if (touchDiff < 0) {
-          nextImg();
+        // Set a threshold to determine a valid swipe
+        if (Math.abs(touchDiff) > 50) {
+          // Swipe left
+          if (touchDiff < 0) {
+            nextImg();
+          }
+          // Swipe right
+          else {
+            prevImg();
+          }
         }
-        // Swipe right
-        else {
-          prevImg();
-        }
-      }
-    });
+      },
+      { passive: false }
+    );
 
     // gallery listeners
     // Event listeners for dot clicks
@@ -378,7 +416,10 @@ export default class Product extends PageManager {
   }
 
   checkFitment() {
-    // console.log("check fitment");
+    console.log("check fitment");
+    console.log('this.make: ', this.make);
+    console.log('this.model: ', this.model);
+    console.log('this.gen: ', this.gen);
     if (universal_product) {
       return true;
     } else if (this.gen === "" || this.gen in option_data || !this.gen) {
@@ -501,7 +542,7 @@ export default class Product extends PageManager {
 
   // highlights the next select that requires user input. provide the select step value from this.selectionSteps.
   highlightActiveStep(step) {
-    // console.log("Highlight Active Step: ", step);
+    console.log("Highlight Active Step: ", step);
     // evaluate each step to determine and set it's active status
     for (const select in this.selectionSteps) {
       // if the select has the next-step class, remove the class
@@ -606,8 +647,10 @@ export default class Product extends PageManager {
       // not an alias product
       if (opt1Data) {
         if (opt1Data.length === 1 && opt1Data[0].name.trim() === "") {
+          console.log("am i here");
           this.endPointIndex = opt1Data[0].index;
           this.initCartAdd(this.endPointIndex, "opt1");
+          this.highlightActiveStep(null);
         } else if (opt1Data.length === 1) {
           this.opt1Index = opt1Data[0].index;
           this.createOptions(opt1Data, "opt1", this.opt1Index);
@@ -981,9 +1024,7 @@ export default class Product extends PageManager {
       this.contentElements.stock.innerHTML = "In Stock";
     } else {
       this.contentElements.stock.innerHTML = "Out of Stock";
-      this.contentElements.productMessages.innerHTML =
-        "Sorry, this product is out of stock.";
-      this.contentElements.productMessages.classList.add("error");
+      this.sendMessage("outOfStock");
     }
     let priceFormatted = this.endPointData.price.toLocaleString("en-us", {
       style: "currency",
@@ -1144,6 +1185,7 @@ export default class Product extends PageManager {
   clearMessages() {
     this.contentElements.productMessages.innerHTML = "";
     this.contentElements.productMessages.classList = [];
+    this.contentElements.productMessages.style.visibility = "hidden";
   }
 
   updateInstructions() {
@@ -1249,7 +1291,7 @@ export default class Product extends PageManager {
   }
 
   clearBlem() {
-    this.contentElements.blemForm.innerHTML = '';
+    this.contentElements.blemForm.innerHTML = "";
   }
 
   checkBlem() {
@@ -1275,7 +1317,9 @@ export default class Product extends PageManager {
         blemLabel.innerHTML = blemMessage;
         this.contentElements.blemForm.append(blemCheckbox, blemLabel);
         this.contentElements.blemForm.style.visibility = "visible";
-        this.blemAddUrl = `/cart.php?action=add&product_id=${encodeURIComponent(this.blemData.blem_id)}&source=${encodeURIComponent(this.name)}`;
+        this.blemAddUrl = `/cart.php?action=add&product_id=${encodeURIComponent(
+          this.blemData.blem_id
+        )}&source=${encodeURIComponent(this.name)}`;
       }
     }
   }
@@ -1283,47 +1327,46 @@ export default class Product extends PageManager {
   generateStockMessage(index) {
     const inventory = global_inv[index];
     if (inventory.av === 0 && inventory.a2b > 0) {
-        return 'In stock';
+      return "In stock";
     } else if (inventory.av > 10) {
-        return 'Plenty in stock';
+      return "Plenty in stock";
     } else if (inventory.av > 0) {
-        return `Only ${inventory.av} left. Order soon!`;
+      return `Only ${inventory.av} left. Order soon!`;
     } else {
-        return 'Out of stock';
+      return "Out of stock";
     }
   }
 
-
-
   toggleBlem() {
     // console.log('toggle blem');
-    let blemCheckbox = document.querySelector('#blem-opt-in');
+    let blemCheckbox = document.querySelector("#blem-opt-in");
     if (blemCheckbox.checked === true) {
-      this.contentElements.sku.textContent = this.endPointData.base_sku + '-BLEM';
-      this.contentElements.stock.innerHTML = this.generateStockMessage(this.blemData.index);
+      this.contentElements.sku.textContent =
+        this.endPointData.base_sku + "-BLEM";
+      this.contentElements.stock.innerHTML = this.generateStockMessage(
+        this.blemData.index
+      );
       this.contentElements.shippingTime.innerHTML = `Ships free, ${this.getShipDay()}`;
-      let blemPriceFormatted = this.blemData.price.toLocaleString('us-en', {
-        style: 'currency',
-        currency: 'USD'
+      let blemPriceFormatted = this.blemData.price.toLocaleString("us-en", {
+        style: "currency",
+        currency: "USD",
       });
       let newPrice = this.contentElements.price.textContent;
-      this.contentElements.price.innerHTML =
-        '<span class="original-price">' +
-        newPrice +
-        "</span><span>" +
-        blemPriceFormatted +
-        "</span>";
-      this.contentElements.price.classList.add('sale-price');
+      this.contentElements.price.innerHTML = `<span class="original-price">${newPrice}</span><span>${blemPriceFormatted}</span>`;
+      this.contentElements.price.classList.add("sale-price");
       this.addToCartButton.href = this.blemAddUrl;
     } else {
       this.contentElements.sku.textContent = this.endPointData.base_sku;
-      this.contentElements.stock.textContent = this.generateStockMessage(this.endPointData.base_id);
+      this.contentElements.stock.textContent = this.generateStockMessage(
+        this.endPointData.base_id
+      );
       this.contentElements.shippingTime.innerHTML = `Ships free, ${this.getShipDay()}`;
-      this.contentElements.price.innerHTML = this.endPointData.price.toLocaleString('en-us', {
-        style: 'currency',
-        currency: 'USD'
-      });
-      this.contentElements.price.classList.remove('sale-price');
+      this.contentElements.price.innerHTML =
+        this.endPointData.price.toLocaleString("en-us", {
+          style: "currency",
+          currency: "USD",
+        });
+      this.contentElements.price.classList.remove("sale-price");
       this.addToCartButton.href = this.addUrl;
     }
   }
@@ -1332,17 +1375,19 @@ export default class Product extends PageManager {
     // console.log('blem accept');
     let blemCheckbox = document.querySelector("#blem-opt-in");
     this.blemAcknowledged = true;
-    blemCheckbox.removeAttribute('data-reveal-id');
-    blemCheckbox.addEventListener('click', this.toggleBlem);
+    blemCheckbox.removeAttribute("data-reveal-id");
+    blemCheckbox.addEventListener("click", this.toggleBlem);
     blemCheckbox.checked = true;
     this.toggleBlem();
   }
-  
+
   blemDeclineHandler() {
     // console.log('blem decline');
     let blemCheckbox = document.querySelector("#blem-opt-in");
     this.blemAcknowledged = false;
-    blemCheckbox.setAttribute('data-reveal-id', 'scratch-and-dent');
+    blemCheckbox.setAttribute("data-reveal-id", "scratch-and-dent");
     blemCheckbox.checked = false;
   }
+
+
 }

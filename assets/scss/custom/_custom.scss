@@ -459,12 +459,19 @@ html {
     justify-content: center;
     align-items: center;
 
-    &.error {
-      background-color: #ff3a3a;
-      color: #242424;
+    @keyframes errorBlink {
+      0% { background-color: #ff3a3a; }
+      50% { background-color: #9e0000; }
+      100% { background-color: #ff3a3a;}
+    }
 
-      a {
-        color: stencilColor("color-white");
+    &.error {
+      color: stencilColor("color-white");
+      background-color: #ff3a3a;
+      animation: errorBlink 1s ease-in-out 2;
+
+      span {
+        text-decoration: underline;
       }
     }
   }
@@ -1162,6 +1169,14 @@ html {
     @include breakpoint(medium) {
       padding: spacing("double");
     }
+  }
+}
+
+#stock-notification {
+  align-items: flex-start;
+
+  #modal-content {
+    margin-top: spacing("double");
   }
 }
 

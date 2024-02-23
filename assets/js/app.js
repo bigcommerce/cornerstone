@@ -61,9 +61,7 @@ const pageClasses = {
 let addonClasses = {};
 
 if (typeof last_update !== 'undefined') {
-    console.log('last_update:', last_update);
     if (CSoptimized) {
-        console.log('CS Optimized');
         addonClasses = {
             product: () => import('./theme/_addons/product'),
             page: () => import('./theme/_addons/page')

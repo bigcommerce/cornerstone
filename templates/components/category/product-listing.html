@@ -3,7 +3,7 @@
 {{#if category.products}}
     {{> components/products/filter sort=pagination.category.sort}}
 
-    <div data-list-name="Category: {{category.name}}">
+    <div data-list-name="Category: {{category.name}}" role="region" aria-label="{{lang 'category.product_label'}}">
         {{#if theme_settings.product_list_display_mode '===' 'grid'}}
             {{> components/products/grid products=category.products show_compare=category.show_compare theme_settings=theme_settings event="list" }}
         {{else}}

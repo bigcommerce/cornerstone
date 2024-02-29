@@ -36,6 +36,12 @@
                                     {{#if ../methodId '===' 'ach'}}
                                         <img class="methodHeader-icon" src="{{cdn 'img/payment-methods/ach.svg'}}" alt="{{lang 'account.payment_methods.ach'}}" title="{{lang 'account.payment_methods.ach'}}">
                                         <span class="methodHeader-brand">{{lang 'account.payment_methods.bank_account'}} {{lang 'account.payment_methods.card_ending_in' last_four=masked_account_number}}</span>
+                                    {{else if ../methodId '===' 'ecp'}}
+                                        <img class="methodHeader-icon" src="{{cdn 'img/payment-methods/ach.svg'}}" alt="{{lang 'account.payment_methods.ach'}}" title="{{lang 'account.payment_methods.ach'}}">
+                                        <span class="methodHeader-brand">{{lang 'account.payment_methods.bank_account'}} {{lang 'account.payment_methods.card_ending_in' last_four=masked_account_number}}</span>
+                                    {{else if ../methodId '===' 'sepa_direct_debit'}}
+                                        <img class="methodHeader-icon" src="{{cdn 'img/payment-methods/sepa.svg'}}" alt="{{lang 'account.payment_methods.sepa_direct_debit'}}" title="{{lang 'account.payment_methods.sepa_direct_debit'}}">
+                                        <span class="methodHeader-brand">{{lang 'account.payment_methods.bank_account'}} {{masked_account_number}}</span>
                                     {{else}}
                                         <img class="methodHeader-icon" src="{{cdn 'img/payment-methods/card.svg'}}" alt="{{lang 'account.payment_methods.card_types.credit_card'}}" title="{{lang 'account.payment_methods.card_types.credit_card'}}">
                                         <span class="methodHeader-brand">{{lang 'account.payment_methods.payment_method'}}</span>

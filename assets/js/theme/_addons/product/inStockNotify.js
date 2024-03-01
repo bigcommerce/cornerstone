@@ -1,26 +1,37 @@
 export default class inStockNotifyForm {
-  constructor(modal, product_id) {
+  constructor(modal) {
     console.log('construct inStockNotify');
+    this.productSku = '';
     this.element = modal;
-    this.product_id = product_id;
     this.emailField = modal.querySelector("#inStockNotifyEmailAddress-custom");
-    this.submitButton = modal.querySelector("#inStockNotifyClick-custom");
+    this.submitButtonContainer = modal.querySelector("#inStockNotifyButton-custom");
     this.modalCloseButton = modal.querySelector(".modal-close");
     this.emailErrorMessage = modal.querySelector("#inStockNotifyInvalidEmail-custom");
     this.formErrorMessage = modal.querySelector("#inStockNotifyError-custom");
     this.successMessage = modal.querySelector("#inStockNotifyComplete-custom");
     this.submitHandler = this.submitHandler.bind(this);
+    this.loadForm = this.loadForm.bind(this);
     this.clearForm = this.clearForm.bind(this);
 
+    this.yearSelect = document.querySelector('#year');
+    this.opt1Select = document.querySelector('#option-one');
+    this.opt2Select = document.querySelector('#option-two');
     
-    if (!this.initialized) {
-      console.log('adding submit listener');
-      this.submitButton.addEventListener("click", this.submitHandler);
-      $("#stock-notification").on("close.fndtn.reveal", () => this.clearForm());
-      this.initialized = true;
-      console.log('this.initialized: ', this.initialized);
-    }
+    this.vehicleIndex = '';
+    this.endIndex = '';
+    this.registrationId = '';
 
+    this.submitButton = document.createElement('input');
+    this.submitButton.classList.add('button', 'button--primary');
+    this.submitButton.id = 'inStockNotifyClick-custom';
+    this.submitButton.name = 'inStockNotifyClick-custom';
+    this.submitButton.style.marginTop = '1rem';
+    this.submitButton.type = 'button';
+    this.submitButton.value = 'Notify Me';
+
+
+    $("#stock-notification").on("open.fndtn.reveal", () => this.loadForm());
+    $("#stock-notification").on("close.fndtn.reveal", () => this.clearForm());
   }
 
   validateEmail(email) {
@@ -30,7 +41,9 @@ export default class inStockNotifyForm {
   }
 
   sendForm(product_id) {
-    console.log('send form');
+    console.log('send form for: ', product_id);
+    document.querySelector("#inStockNotifyError-custom").style.display = "none";
+    document.querySelector("#inStockNotifyInvalidEmail-custom").style.display = "none";
     const email = this.emailField.value;
     if (this.validateEmail(email)) {
       console.log("send form for the product: ", product_id);
@@ -60,6 +73,7 @@ export default class inStockNotifyForm {
             document.querySelector(
               "#inStockNotifyComplete-custom"
             ).style.display = "";
+            this.submitButton.disabled = true;
           } else {
             document.querySelector("#inStockNotifyError-custom").style.display =
               "";
@@ -75,11 +89,32 @@ export default class inStockNotifyForm {
   }
 
   submitHandler() {
-    this.sendForm(product_id);
+    this.sendForm(this.registrationId);
+  }
+
+  loadForm() {
+    console.log('load form');
+    this.submitButtonContainer.appendChild(this.submitButton);
+
+    if (this.opt2Select.options.length > 0) {
+      this.endIndex = this.opt2Select.options.selected.value;
+      console.log('opt 2 is end: ', this.endIndex);
+    } else if (this.opt1Select.options.length > 0) {
+      this.endIndex = this.opt1Select.options.selected.value;
+      console.log('opt 1 is end: ', this.endIndex);
+    } else {
+      this.endIndex = option_data[this.yearSelect.value][0].index;
+      console.log('year is end: ', this.endIndex);
+    }
+
+    this.registrationId = key_dict[this.endIndex].bc_id;
+    this.vehicleIndex = document.querySelector('#year').value;
+    document.querySelector(`#${this.submitButton.id}`).addEventListener('click', this.submitHandler);
   }
 
   clearForm() {
     console.log("clear");
+    this.submitButtonContainer.innerHTML = '';
     this.emailErrorMessage.style.display = "none";
     this.emailField.value = "";
     this.successMessage.style.display = "none";

@@ -32,7 +32,8 @@ export default class Product extends PageManager {
     this.blemAcceptHandler = this.blemAcceptHandler.bind(this);
     this.blemDeclineHandler = this.blemDeclineHandler.bind(this);
     this.toggleBlem = this.toggleBlem.bind(this);
-    this.stockNotificationHandler = this.stockNotificationHandler.bind(this);
+
+    this.stockNotificationSignup = new inStockNotifyForm(document.querySelector('#stock-notification'));
 
     // element properties
     this.addToCartButton = document.querySelector("#product-add-button");
@@ -97,6 +98,10 @@ export default class Product extends PageManager {
 
   onReady() {
     // console.log("Ready");
+    console.log('last update: ', last_update);
+    // fix to wake touch event handling in safari
+    document.addEventListener('touchstart', function (e) {
+    });
 
     // initialize the gallery
     this.initGallery();
@@ -131,7 +136,6 @@ export default class Product extends PageManager {
     this.rating.addEventListener("click", this.ratingHandler);
     this.blemAcceptButton.addEventListener("click", this.blemAcceptHandler);
     this.blemDeclineLink.addEventListener("click", this.blemDeclineHandler);
-    this.contentElements.productMessages.addEventListener('click', this.stockNotificationHandler);
   }
 
   // handle messages
@@ -150,12 +154,6 @@ export default class Product extends PageManager {
       this.contentElements.productMessages.classList.add("error");
       this.contentElements.productMessages.style.visibility = "visible";
     }
-  }
-
-  stockNotificationHandler() {
-    const modal = document.querySelector('#stock-notification');
-    const product_id = this.endPointData.bc_id;
-    const instance = new inStockNotifyForm(modal, product_id);
   }
 
   // initialize the image gallery
@@ -182,7 +180,7 @@ export default class Product extends PageManager {
 
     // Show specific image by index
     function showImg(slide) {
-      // console.log("show image ", slide);
+      console.log("show image ", slide);
       const distance = positions[slide];
       gallery.style.transform = `translateX(-${distance}%)`;
 
@@ -208,7 +206,7 @@ export default class Product extends PageManager {
     // Next and Previous image functions
     function nextImg() {
       totalSlides = images.length;
-      // console.log("next image slides count: ", totalSlides);
+      console.log("next image slides count: ", totalSlides);
       if (currentSlide < totalSlides - 1) {
         currentSlide++;
         showImg(currentSlide);
@@ -251,7 +249,8 @@ export default class Product extends PageManager {
 
     gallery.addEventListener(
       "touchend",
-      () => {
+      (e) => { // Include the event object here
+        console.log('touch end');
         e.preventDefault();
         const touchDiff = touchEndX - touchStartX;
 
@@ -269,6 +268,7 @@ export default class Product extends PageManager {
       },
       { passive: false }
     );
+
 
     // gallery listeners
     // Event listeners for dot clicks

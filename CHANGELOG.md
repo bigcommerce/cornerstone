@@ -5,6 +5,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Draft
+- ADA Compliance - All form fields must be properly labeled [#2433](https://github.com/bigcommerce/cornerstone/pull/2433)
+- ADA Compliance - Errors are not identified to screen reader users within the Refine By accordions [#2424](https://github.com/bigcommerce/cornerstone/pull/2424)
+- ADA Compliance - Expandable items should be read by screen reader [2422](https://github.com/bigcommerce/cornerstone/pull/2422)
 - Remove shop_by_price: true from category.html [#2431](https://github.com/bigcommerce/cornerstone/pull/2431)
 - Added SEPA and ECP stored bank accounts typesto the Payment methods page [#2434](https://github.com/bigcommerce/cornerstone/pull/2434)
 
@@ -28,11 +31,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Change case of Page builder menu item text [#2407](https://github.com/bigcommerce/cornerstone/pull/2407)
 - Corrected typo with the word default previously deafault in config.json [#2410](https://github.com/bigcommerce/cornerstone/pull/2410)
 - Adding autocomplete to common input fields [2397](https://github.com/bigcommerce/cornerstone/pull/2397)
-- ADA Compliance - Expandable items should be read by screen reader [2422](https://github.com/bigcommerce/cornerstone/pull/2422)
 - Pre-Orded text in Polish looks cropped in the button on Product page [2414](https://github.com/bigcommerce/cornerstone/pull/2414)
 - Use triple sash on customer's company name to prevent escaping ampersands [#2399](https://github.com/bigcommerce/cornerstone/pull/2399)
 - Adding aria attributes to cart page coupon code and gift cert buttons [#2391](https://github.com/bigcommerce/cornerstone/pull/2391)
-- ADA Compliance - Errors are not identified to screen reader users within the Refine By accordions [#2424](https://github.com/bigcommerce/cornerstone/pull/2424)
 
 ## 6.12.0 (07-06-2023)
 - sync package lock file [#2373](https://github.com/bigcommerce/cornerstone/pull/2373)

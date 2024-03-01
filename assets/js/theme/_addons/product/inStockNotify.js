@@ -97,10 +97,11 @@ export default class inStockNotifyForm {
     this.submitButtonContainer.appendChild(this.submitButton);
 
     if (this.opt2Select.options.length > 0) {
-      this.endIndex = this.opt2Select.options.selected.value;
+      this.endIndex = this.opt2Select.value;
       console.log('opt 2 is end: ', this.endIndex);
     } else if (this.opt1Select.options.length > 0) {
-      this.endIndex = this.opt1Select.options.selected.value;
+      this.endIndex = this.opt1Select.value;
+      console.log('selected: ', this.opt1Select.value);
       console.log('opt 1 is end: ', this.endIndex);
     } else {
       this.endIndex = option_data[this.yearSelect.value][0].index;

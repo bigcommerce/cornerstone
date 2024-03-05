@@ -1,11 +1,25 @@
 <div class="cart-total-value">
+    <button
+        class="gift-certificate-add"
+        aria-label="Add Certificate"
+        aria-controls="add-certificate"
+        aria-expanded="false"
+    >
+        {{lang 'cart.gift_certificates.gift_certificate'}}
+    </button>
 
-    <button class="gift-certificate-add">{{lang 'cart.gift_certificates.gift_certificate'}}</button>
-
-    <button class="gift-certificate-cancel" style="display: none;">{{lang 'cart.coupons.cancel'}}</button>
+    <button
+        class="gift-certificate-cancel"
+        style="display: none;"
+        aria-label="Add Certificate"
+        aria-controls="add-certificate"
+        aria-expanded="true"
+    >
+        {{lang 'cart.coupons.cancel'}}
+    </button>
 </div>
 
-<div class="cart-form gift-certificate-code" aria-hidden="true" style="display: none;">
+<div id="add-certificate" class="cart-form gift-certificate-code" aria-hidden="true" style="display: none;">
     <form class="form form--hiddenLabels cart-gift-certificate-form" method="post" action="{{urls.cart}}">
         <label class="form-label" for="certcode">{{lang 'cart.gift_certificates.cert_code'}}</label>
         <input class="form-input" id="certcode" type="text" name="certcode" value="" placeholder="{{lang 'cart.gift_certificates.add_cert_code'}}">

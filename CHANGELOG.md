@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Draft
 - Decorative SVG elements should be hidden from screen reader users [#2432](https://github.com/bigcommerce/cornerstone/pull/2432)
+- Content that functions as a list should be indicated as such to screen reader users [#2429](https://github.com/bigcommerce/cornerstone/pull/2429)
+- ADA Compliance - All form fields must be properly labeled [#2433](https://github.com/bigcommerce/cornerstone/pull/2433)
+- ADA Compliance - Errors are not identified to screen reader users within the Refine By accordions [#2424](https://github.com/bigcommerce/cornerstone/pull/2424)
+- ADA Compliance - Expandable items should be read by screen reader [2422](https://github.com/bigcommerce/cornerstone/pull/2422)
+- Remove shop_by_price: true from category.html [#2431](https://github.com/bigcommerce/cornerstone/pull/2431)
+- Added SEPA and ECP stored bank accounts typesto the Payment methods page [#2434](https://github.com/bigcommerce/cornerstone/pull/2434)
 
 ## 6.13.0 (02-12-2024)
 - Fix HTML markup for product listing and below content region [#2426](https://github.com/bigcommerce/cornerstone/pull/2426)

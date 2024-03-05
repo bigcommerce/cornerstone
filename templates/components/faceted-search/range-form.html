@@ -14,7 +14,10 @@
                     required
                     type="number"
                     value="{{min_price}}"
+                    aria-label="{{lang 'search.faceted.range.min-placeholder'}}"
+                    aria-describedby="min_price_description"
                 />
+                <span id="min_price_description" class="aria-description--hidden">{{lang 'search.faceted.range.min-description'}}</span>
             </div>
 
             <div class="form-field">
@@ -26,7 +29,10 @@
                     required
                     type="number"
                     value="{{max_price}}"
+                    aria-label="{{lang 'search.faceted.range.max-placeholder'}}"
+                    aria-describedby="max_price_description"
                 />
+                <span id="max_price_description" class="aria-description--hidden">{{lang 'search.faceted.range.max-description'}}</span>
             </div>
 
             <div class="form-field">
@@ -36,6 +42,6 @@
             </div>
         </div>
 
-        <div class="form-inlineMessage"></div>
+        <div class="form-inlineMessage" aria-live="polite" role="alert"></div>
     </fieldset>
 </form>

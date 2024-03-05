@@ -1,15 +1,29 @@
 <div class="cart-total-value">
+    <button
+        class="coupon-code-add"
+        aria-label="Add Coupon"
+        aria-controls="add-coupon"
+        aria-expanded="false"
+    >
+        {{lang 'cart.coupons.add_coupon'}}
+    </button>
 
-    <button class="coupon-code-add">{{lang 'cart.coupons.add_coupon'}}</button>
-
-    <button class="coupon-code-cancel" style="display: none;">{{lang 'cart.coupons.cancel'}}</button>
+    <button
+        class="coupon-code-cancel"
+        style="display: none;"
+        aria-label="Add Coupon"
+        aria-controls="add-coupon"
+        aria-expanded="true"
+    >
+        {{lang 'cart.coupons.cancel'}}
+    </button>
 </div>
 
-<div class="cart-form coupon-code" aria-hidden="true" style="display: none;">
+<div id="add-coupon" class="cart-form coupon-code" aria-hidden="true" style="display: none;">
     <form class="form form--hiddenLabels coupon-form" method="post" action="{{urls.cart}}">
         <label class="form-label" for="couponcode">{{lang 'cart.coupons.coupon_code'}}</label>
         <input class="form-input" data-error="{{lang 'cart.coupons.empty_error'}}"  id="couponcode" type="text" name="couponcode" value="" placeholder="{{lang 'cart.coupons.coupon_code'}}">
-        <input class="button button--primary button--small" type="submit" aria-label="{{land 'cart.coupons.apply_coupon'}}" value="{{lang 'cart.coupons.button'}}">
+        <input class="button button--primary button--small" type="submit" aria-label="{{lang 'cart.coupons.apply_coupon'}}" value="{{lang 'cart.coupons.button'}}">
         <input type="hidden" name="action" value="applycoupon">
     </form>
 </div>

@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Draft
+- ADA Compliance - Accordion buttons are not read by screen reader correctly [#2441](https://github.com/bigcommerce/cornerstone/pull/2441)
 - Check lang helpers usage and existence of key in translation file [#2403](https://github.com/bigcommerce/cornerstone/pull/2403)
 - Display fees on cart page [#2376](https://github.com/bigcommerce/cornerstone/pull/2376)
 - Replace Twitter logo with X logo within social sharing and social link components [#2387](https://github.com/bigcommerce/cornerstone/pull/2387)

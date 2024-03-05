@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Draft
+- ADA Compliance - Add translations to accessibility attributes for Coupon Code and Gift Certificates [#2440](https://github.com/bigcommerce/cornerstone/pull/2440)
 - ADA Compliance - The Add to Cart modal dialog container is not labeled [#2427](https://github.com/bigcommerce/cornerstone/pull/2427)
 - ADA Compliance - Decorative SVG elements should be hidden from screen reader users [#2432](https://github.com/bigcommerce/cornerstone/pull/2432)
 - ADA Compliance - Content that functions as a list should be indicated as such to screen reader users [#2429](https://github.com/bigcommerce/cornerstone/pull/2429)

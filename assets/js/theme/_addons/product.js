@@ -317,11 +317,11 @@ export default class Product extends PageManager {
           this.endPointIndex = option_data["All Vehicles"][0].index;
           this.initCartAdd(this.endPointIndex, "make");
         } else {
-          this.createOptions(option_data["All Vehicles"], "opt1", null);
+          this.createOptions(option_data["All Vehicles"], "opt1", null, 320);
           this.highlightActiveStep(3);
         }
       } else {
-        this.createOptions(option_data["All Vehicles"], "opt1", null);
+        this.createOptions(option_data["All Vehicles"], "opt1", null, 324);
         this.highlightActiveStep(3);
       }
     } else {
@@ -444,13 +444,12 @@ export default class Product extends PageManager {
 
   // load the make, model, and year from the cookie or the url parameters if url_override is true. return true if make model and gen are selected.
   initVehicle() {
-    // console.log("Init Vehicle");
+    console.log("Init Vehicle");
     if (this.checkParamsVehicle()) {
     } else {
       if (this.checkCookieVehicle()) {
       } else {
         if (aliasVehicle) {
-          // console.log("alias vehicle");
           this.aliasProduct = true;
           this.make = aliasVehicle.make;
           this.model = aliasVehicle.model;
@@ -458,19 +457,20 @@ export default class Product extends PageManager {
           this.aliasSku = aliasVehicle.sku;
           this.getAliasOptions();
         } else {
-          // console.log("no vehicle found");
         }
       }
     }
 
     if (this.checkFitment()) {
-      // confirm to the method that called initVehicle that a vehicle was selected
       if (this.make && this.model && this.gen) {
-        // console.log("Vehicle Initialized:", this.make, this.model, this.gen);
         this.getVehicleProducts();
         return true;
       } else {
-        return false;
+        if (universal_product) {
+          return true;
+        } else {
+          return false;
+        }
       }
     } else {
       this.contentElements.productMessages.innerHTML =
@@ -484,8 +484,8 @@ export default class Product extends PageManager {
   }
 
   // provide an array, a target select, and a selected value to create a list of options to add to the select. 'target' is the key value from this.selectionSteps. Includes default. 'selected' can be null if no option is selected yet.
-  createOptions(array, target, selected) {
-    // console.log("create options target: ", array, target, selected);
+  createOptions(array, target, selected, line) {
+    console.log("create options target: ", array, target, selected, line);
     let defaultOption = new Option(
       this.selectionSteps[target].default,
       this.selectionSteps[target].default
@@ -613,7 +613,7 @@ export default class Product extends PageManager {
           this.highlightActiveStep(null);
         } else if (opt1Data.length === 1) {
           this.opt1Index = opt1Data[0].index;
-          this.createOptions(opt1Data, "opt1", this.opt1Index);
+          this.createOptions(opt1Data, "opt1", this.opt1Index, 616);
           if (!this.loadOpt2()) {
             this.endPointIndex = this.opt1Index;
             this.initCartAdd(this.endPointIndex, "opt1");
@@ -621,7 +621,7 @@ export default class Product extends PageManager {
             this.selectionSteps.opt1.element.style.visibility = "visible";
           }
         } else {
-          this.createOptions(option_data[this.gen], "opt1", null);
+          this.createOptions(option_data[this.gen], "opt1", null, 624);
           this.highlightActiveStep(3);
         }
       } else {
@@ -639,7 +639,7 @@ export default class Product extends PageManager {
       } else if (opt1Data.length === 1) {
         // opt1 is valid but there is only one
         this.opt1Index = opt1Data[0].index;
-        this.createOptions(opt1Data, "opt1", this.opt1Index);
+        this.createOptions(opt1Data, "opt1", this.opt1Index, 642);
         if (!this.loadOpt2()) {
           this.endPointIndex = this.opt1Index;
           this.initCartAdd(this.endPointIndex, "opt1");
@@ -648,7 +648,7 @@ export default class Product extends PageManager {
         }
       } else {
         // there are multiple options for opt1
-        this.createOptions(opt1Data, "opt1", this.opt1Index);
+        this.createOptions(opt1Data, "opt1", this.opt1Index, 651);
         this.selectionSteps["opt1"].element.style.visibility = "visible";
         if (!this.loadOpt2()) {
           if (this.opt1Index) {
@@ -1170,16 +1170,18 @@ export default class Product extends PageManager {
       url.searchParams.append('asDoc', 'true');
       console.log('url: ', url);
       const domain = url.hostname;
-      if (domain === "www.cravenspeed.com") {
+      console.log('domain:', domain);
+      if (domain === "cravenspeed.com") {
         const instructions = document.createElement("iframe");
         const newUrl = url.pathname + "?asDoc=true";
         console.log('newURL: ', newUrl);
         // console.log('currentUrl: ', currentUrl);
         if (newUrl !== currentUrl) {
-          // console.log('url is new');
+          console.log('url is new', newUrl);
           this.showLoadingIcon();
           instructions.src = newUrl;
           instructions.onload = () => this.hideLoadingIcon();
+          console.log('instructions:', instructions);
           this.contentElements.instructions.appendChild(instructions);
         }
       } else {

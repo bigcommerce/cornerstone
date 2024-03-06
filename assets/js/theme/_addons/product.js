@@ -98,7 +98,7 @@ export default class Product extends PageManager {
 
   onReady() {
     // console.log("Ready");
-    console.log('last update: ', last_update);
+    // console.log('last update: ', last_update);
     // fix to wake touch event handling in safari
     document.addEventListener('touchstart', function (e) {
     });
@@ -180,7 +180,7 @@ export default class Product extends PageManager {
 
     // Show specific image by index
     function showImg(slide) {
-      console.log("show image ", slide);
+      // console.log("show image ", slide);
       const distance = positions[slide];
       gallery.style.transform = `translateX(-${distance}%)`;
 
@@ -416,10 +416,11 @@ export default class Product extends PageManager {
   }
 
   checkFitment() {
-    console.log("check fitment");
-    console.log('this.make: ', this.make);
-    console.log('this.model: ', this.model);
-    console.log('this.gen: ', this.gen);
+    // console.log("check fitment");
+    // console.log('this.make: ', this.make);
+    // console.log('this.model: ', this.model);
+    // console.log('this.gen: ', this.gen);
+    // console.log('universal: ', universal_product);
     if (universal_product) {
       return true;
     } else if (this.gen === "" || this.gen in option_data || !this.gen) {
@@ -542,7 +543,7 @@ export default class Product extends PageManager {
 
   // highlights the next select that requires user input. provide the select step value from this.selectionSteps.
   highlightActiveStep(step) {
-    console.log("Highlight Active Step: ", step);
+    // console.log("Highlight Active Step: ", step);
     // evaluate each step to determine and set it's active status
     for (const select in this.selectionSteps) {
       // if the select has the next-step class, remove the class
@@ -593,46 +594,6 @@ export default class Product extends PageManager {
         }
         this.cartButton(true);
       }
-      // if (this.selectChange) {
-      //   // console.log("trigger updateContent source:initCartAdd");
-      //   this.updateContent();
-      // } else {
-      //   let shipDay = this.getShipDay();
-      //   this.contentElements.shippingTime.innerHTML = "Ships free " + shipDay;
-      //   if (this.inventory.av <= 0 && this.inventory.a2b > 0) {
-      //     this.madeToOrder = true;
-      //   }
-      //   if (this.inventory.av > 10) {
-      //     this.contentElements.stock.innerHTML = "Plenty in stock";
-      //   } else if (this.inventory.av > 0) {
-      //     this.contentElements.stock.innerHTML =
-      //       "Only " + this.inventory.av + " left. Order soon!";
-      //   } else if (this.madeToOrder) {
-      //     this.contentElements.stock.innerHTML = "In Stock";
-      //   } else {
-      //     this.contentElements.stock.innerHTML = "Out of Stock";
-      //     this.contentElements.productMessages.innerHTML =
-      //       "Sorry, this product is out of stock.";
-      //     this.contentElements.productMessages.classList.add("error");
-      //   }
-      //   let priceFormatted = this.endPointData.price.toLocaleString("en-us", {
-      //     style: "currency",
-      //     currency: "USD",
-      //   });
-      //   this.contentElements.price.innerHTML = priceFormatted;
-      // }
-      // if (this.inventory.av > 0 || this.madeToOrder) {
-      //   let addUrl =
-      //     "/cart.php?action=add&sku=" +
-      //     encodeURIComponent(this.aliasSku) +
-      //     "&source=" +
-      //     encodeURIComponent(this.name);
-      //   this.addToCartButton.href = addUrl;
-      //   for (const select in this.selectionSteps) {
-      //     this.selectionSteps[select].element.classList.remove("next-step");
-      //   }
-      //   this.cartButton(true);
-      // }
     } else {
       this.highlightActiveStep(this.selectionSteps[select].step);
       this.cartButton(false);
@@ -641,13 +602,12 @@ export default class Product extends PageManager {
 
   // loads option one when appropriate
   loadOpt1() {
-    console.log("Load Option One: ", this.gen);
+    // console.log("Load Option One: ", this.gen);
     let opt1Data = option_data[this.gen];
     if (!this.aliasProduct) {
       // not an alias product
       if (opt1Data) {
         if (opt1Data.length === 1 && opt1Data[0].name.trim() === "") {
-          console.log("am i here");
           this.endPointIndex = opt1Data[0].index;
           this.initCartAdd(this.endPointIndex, "opt1");
           this.highlightActiveStep(null);
@@ -1030,7 +990,6 @@ export default class Product extends PageManager {
       style: "currency",
       currency: "USD",
     });
-    console.log("sale price type:", typeof this.endPointData.sale_price);
     this.contentElements.price.innerHTML = priceFormatted;
 
     if (this.endPointData.sale_price !== 0) {
@@ -1189,8 +1148,8 @@ export default class Product extends PageManager {
   }
 
   updateInstructions() {
-    // console.log('update instructions line: ', );
-    // console.log('this.endPointData;', this.endPointData);
+    console.log('update instructions');
+    console.log('this.endPointData;', this.endPointData);
     const iframe = this.contentElements.instructions.querySelector("iframe");
     let currentSrc = "";
     let currentUrl = "";
@@ -1200,16 +1159,21 @@ export default class Product extends PageManager {
       currentUrl = new URL(currentSrc).pathname + "?asDoc=true";
     }
     if (this.endPointData) {
-      // console.log('load enpoint instructions');
+      console.log('load enpoint instructions');
       // console.log('endpoint instructions url: ', this.endPointData.instructions_url);
-      const url = new URL(
-        "https://www.cravenspeed.com" + this.endPointData.instructions_url
-      );
+      // const url = new URL(
+      //   "https://www.cravenspeed.com" + this.endPointData.instructions_url
+      // );
+      const urlString = this.endPointData.instructions_url;
+      const urlBase = 'https://cravenspeed.com';
+      const url = new URL(urlString, urlBase);
+      url.searchParams.append('asDoc', 'true');
+      console.log('url: ', url);
       const domain = url.hostname;
       if (domain === "www.cravenspeed.com") {
         const instructions = document.createElement("iframe");
         const newUrl = url.pathname + "?asDoc=true";
-        // console.log('newURL: ', newUrl);
+        console.log('newURL: ', newUrl);
         // console.log('currentUrl: ', currentUrl);
         if (newUrl !== currentUrl) {
           // console.log('url is new');

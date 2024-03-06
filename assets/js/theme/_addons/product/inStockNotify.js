@@ -1,6 +1,5 @@
 export default class inStockNotifyForm {
   constructor(modal) {
-    console.log('construct inStockNotify');
     this.productSku = '';
     this.element = modal;
     this.emailField = modal.querySelector("#inStockNotifyEmailAddress-custom");

@@ -74,6 +74,9 @@ if (typeof last_update !== 'undefined') {
         }
     }
 } else {
+    addonClasses = {
+        page: () => import('./theme/_addons/page')
+    }
     document.querySelector('#body-container').classList.add('container');
 }
 

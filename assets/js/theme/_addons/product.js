@@ -1171,7 +1171,7 @@ export default class Product extends PageManager {
       console.log('url: ', url);
       const domain = url.hostname;
       console.log('domain:', domain);
-      if (domain === "cravenspeed.com") {
+      if (domain === "cravenspeed.com" || domain === "www.cravenspeed.com") {
         const instructions = document.createElement("iframe");
         const newUrl = url.pathname + "?asDoc=true";
         console.log('newURL: ', newUrl);
@@ -1196,7 +1196,7 @@ export default class Product extends PageManager {
         // console.log('url: ', url);
         const domain = url.hostname;
         // console.log('domain: ', domain);
-        if (domain === "www.cravenspeed.com") {
+        if (domain === "cravenspeed.com" || domain === "www.cravenspeed.com") {
           // console.log('domain match');
           this.showLoadingIcon();
           const instructions = document.createElement("iframe");

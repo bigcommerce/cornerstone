@@ -1,6 +1,5 @@
 ---
 category:
-    shop_by_price: true
     products:
         limit: {{theme_settings.categorypage_products_per_page}}
 ---
@@ -39,12 +38,10 @@ category:
         <aside class="page-sidebar" id="faceted-search-container">
             {{> components/category/sidebar}}
         </aside>
-    {{else if category.shop_by_price}}
-        {{#if theme_settings.shop_by_price_visibility}}
-             <aside class="page-sidebar" id="faceted-search-container">
-                {{> components/category/sidebar}}
-            </aside>
-        {{/if}}
+    {{else if theme_settings.shop_by_price_visibility}}
+        <aside class="page-sidebar" id="faceted-search-container">
+            {{> components/category/sidebar}}
+        </aside>
     {{/if}}
 
     <main class="page-content" id="product-listing-container">

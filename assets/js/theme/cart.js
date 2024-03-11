@@ -293,6 +293,7 @@ export default class Cart extends PageManager {
 
             $(event.currentTarget).hide();
             $couponContainer.show();
+            $couponContainer.attr('aria-hidden', false);
             $('.coupon-code-cancel').show();
             $codeInput.trigger('focus');
         });
@@ -301,6 +302,7 @@ export default class Cart extends PageManager {
             event.preventDefault();
 
             $couponContainer.hide();
+            $couponContainer.attr('aria-hidden', true);
             $('.coupon-code-cancel').hide();
             $('.coupon-code-add').show();
         });
@@ -334,12 +336,14 @@ export default class Cart extends PageManager {
             event.preventDefault();
             $(event.currentTarget).toggle();
             $certContainer.toggle();
+            $certContainer.attr('aria-hidden', false);
             $('.gift-certificate-cancel').toggle();
         });
 
         $('.gift-certificate-cancel').on('click', event => {
             event.preventDefault();
             $certContainer.toggle();
+            $certContainer.attr('aria-hidden', true);
             $('.gift-certificate-add').toggle();
             $('.gift-certificate-cancel').toggle();
         });

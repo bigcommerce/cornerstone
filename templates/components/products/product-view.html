@@ -82,7 +82,10 @@
                 
                 {{#each product.custom_fields}}
                     {{#if name '===' 'Manual PDF'}}
-                    <a style="font-weight: bold; text-decoration: underline;" href="{{ value }}" target="_blank">Click here to learn more about this system and what products are available.</a>
+                    <div class="productView__manual-pdf">
+                        This item is one component of the a larger hardware system. Before placing your order, view the link below to make sure you have all the products and tools needed for your project.
+                        <a class="btn" href="{{ value }}" target="_blank">Download Help PDF</a>
+                    </div>
                     {{/if}}
                 {{/each}}
     
@@ -444,11 +447,13 @@
     <section class="productSpecifications">
         <h2 class="productSpecifications__title">Product Specifications</h2>
         <ul class="productSpecifications__list">
+            {{#if product.brand}}
             <li class="productSpecifications__item">
-                {{#if product.brand}}
+                
                     <p><span class="productSpecifications__label">Manufacturer: </span><a href="{{product.brand.url}}"{{#if schema}} itemprop="url"{{/if}}><span{{#if schema}} itemprop="name"{{/if}}>{{product.brand.name}}</span></a></p>
-                {{/if}}
+                
             </li>
+            {{/if}}
             {{#if product.upc}}
             <li class="productSpecifications__item">
                 <p><span class="productSpecifications__label">UPC: </span><span>{{product.upc}}</span></p>
@@ -461,9 +466,11 @@
                 {{#unless name '===' 'Customizable_Kickplate'}}
                 {{#unless name '===' ''}}
                 {{#unless name '===' 'includes_amazon'}}
+                {{#unless name '===' 'order_by_phone_only'}}
                     <li class="productSpecifications__item">
                         <p><strong>{{name}}:</strong> {{value}}</p>
                     </li>
+                {{/unless}}
                 {{/unless}}
                 {{/unless}}
                 {{/unless}}

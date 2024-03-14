@@ -1,0 +1,189 @@
+---
+product:
+    videos:
+        limit: {{theme_settings.productpage_videos_count}}
+    reviews:
+        limit: {{theme_settings.productpage_reviews_count}}
+    related_products:
+        limit: 9
+    similar_by_views:
+        limit: {{theme_settings.productpage_similar_by_views_count}}
+---
+{{inject 'productId' product.id}}
+
+{{#partial "page"}}
+
+
+    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+
+    {{#each product.shipping_messages}}
+        {{> components/common/alert/alert-info message}}
+    {{/each}}
+
+    <div>
+      
+        {{> components/products/product-view}}
+
+        {{{region name="product_below_content"}}}
+
+        {{#if product.videos.list.length}}
+            {{> components/products/videos product.videos}}
+        {{/if}}
+
+        {{#all settings.show_product_reviews theme_settings.show_product_reviews (if theme_settings.show_product_details_tabs '!==' true)}}
+            {{> components/products/reviews reviews=product.reviews product=product urls=urls}}
+        {{/all}}
+
+        {{> components/products/tabs}}
+
+    </div>
+
+
+<style>
+.row111{
+    text-align: center;background-color: rgb(247, 219, 219);
+    border-radius: 10px;margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+    .col124{
+        border-left: solid black 0.5px;
+        border-right: solid black 0.5px;
+        font-weight: 500;
+    }
+    .price01{
+    margin-top: 20px;
+ }
+ .row111{
+        display: flex;
+        align-items: center;
+ }
+ .img56{
+    width:150px;
+ }
+
+/* for the cards */
+#id {
+      display: inline-block;
+      padding: 10px 20px;
+      color: #fff;
+      font-weight: bold;
+      margin: 10px;
+      font-size: 16px;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      border: 2px solid #3498db;
+      color: #ffffff;
+      border-radius: 5px;
+      background: linear-gradient(270deg, #990AE2 1.67%, #1485EF 96.39%);
+
+
+    }
+
+    .another{
+       text-align: center;
+       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    }
+    .another:hover{
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    }
+    span{
+      text-align: center;
+    }
+    .add{
+          color: #fff;
+          font-weight: bold;
+          margin: 10px;
+          font-size: 16px;
+          text-align: center;
+          text-decoration: none;
+          cursor: pointer;
+          border-radius: 35px;
+          background: linear-gradient(270deg, #990AE2 1.67%, #1485EF 96.39%);
+          width: 100px;
+    }
+    .middle-para{
+        text-align: center;
+        margin-bottom: 50px;
+    }
+    #middle{
+         background:linear-gradient(#420ede, #af4cb3);
+        background-clip: text;
+         -webkit-text-fill-color: transparent;font-size: x-large;font-weight: bolder
+    }
+    h4{
+        font-weight: 300;
+    }
+
+    
+
+</style>
+
+<div class="row row111">
+    <div class="small-1 columns col123"><img class="img56" src="https://cdn11.bigcommerce.com/s-8mw570y811/images/stencil/900w/products/116/452/best__16337__02178.1684413436.png" alt="">
+   </div>
+ <div class="small-2 columns"><h4 class="h41">522GW</h4></div>
+    <div class="small-4 columns col124">Choose add-ons and services to create your bundle, or say “None.”</div>
+    <div class="small-2 columns"><h4 class="price01">$238.00</h4>
+        </div>
+    <div class="small-3 columns"><button class="btn">Add to Cart</button></div>
+</div>
+
+<div class="middle-para">
+    <h1 id="middle">Add a rear facing camera module for much for protection</h1>
+    <h4>Only one camera used at a time</h4>
+</div>
+
+<!-- card section -->
+<div class="row sq1 col">
+    {{#each product.related_products}}
+    <div class="small-4 large-3 columns another">
+        <div id="cartContent"></div>
+        <img src="{{getImageSrcset image (cdn theme_settings.default_image_product) 1x='128x128' }} " class="img4" >
+        <h1>{{ name }}</h1>
+        <p>{{ id }}</p>
+        <p>{{ price.without_tax.formatted }}</p>
+        <a href="http://localhost:3000/cart.php?action=add&product_id={{id}}" id="btn">Add to Cart</a>
+       
+    </div>        
+      {{/each}}
+  </div>
+
+
+
+
+
+{{/partial}}
+{{> layout/base}}
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function() {
+    const addToCartButtons = document.getElementById('.btn');
+    const cartContent = document.getElementById('cartContent');
+
+    addToCartButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const itemImage = product.related_products.image.data;
+            // dummy
+            let consider=product.related_products.image.data;
+            const newItem = document.createElement('div');
+            newItem.classList.add('cartItem');
+            newItem.innerHTML = `
+                <img src="${itemImage}" alt="Item Image" style="width: 50px;"> <!-- Display the image -->
+                <hr>
+            `;
+
+            cartContent.appendChild(newItem);
+        });
+    });
+});
+;
+
+</script>
+
+{{inject "myProductName" product.title}}
+ 
+
+

@@ -1,0 +1,171 @@
+---
+product:
+    videos:
+        limit: {{theme_settings.productpage_videos_count}}
+    reviews:
+        limit: {{theme_settings.productpage_reviews_count}}
+    related_products:
+        limit: 10
+    similar_by_views:
+        limit: {{theme_settings.productpage_similar_by_views_count}}
+---
+{{inject 'productId' product.id}}
+
+{{#partial "page"}}
+
+
+
+
+
+
+
+    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+
+    {{#each product.shipping_messages}}
+        {{> components/common/alert/alert-info message}}
+    {{/each}}
+
+    <div>
+        {{> components/products/product-view}}
+
+        {{{region name="product_below_content"}}}
+
+        {{#if product.videos.list.length}}
+            {{> components/products/videos product.videos}}
+        {{/if}}
+
+        {{#all settings.show_product_reviews theme_settings.show_product_reviews (if theme_settings.show_product_details_tabs '!==' true)}}
+            {{> components/products/reviews reviews=product.reviews product=product urls=urls}}
+        {{/all}}
+
+        {{> components/products/tabs}}
+    </div>
+
+    {{> components/products/schema}}
+
+    
+
+
+        <div class="row row111">
+            <div class="small-1 columns col123"><img class="img56" src="https://cdn11.bigcommerce.com/s-gqqaadnuuu/images/stencil/128x128/products/145/441/pngwing.com_2__75184.1710397220.png?c=1" alt="">
+           </div>
+         <div class="small-2 columns"><h4 class="h41">522GW</h4></div>
+            <div class="small-4 columns col124">Choose add-ons and services to create your bundle, or say “None.”</div>
+            <div class="small-2 columns"><h4 class="price01">$238.00</h4>
+                </div>
+            <div class="small-3 columns"><button class="btn011">Add to Cart</button></div>
+        </div>
+
+    
+    <h1 class="text1">Add a rear-facing camera module for much more protection.</h1>
+    <p class="text2">Only one camera can be used at a time.</p>
+    
+<div class="row">
+    {{#each product.related_products}}
+    <div class="small-3 large-3 columns">   
+    <div class="card">
+        <div class="card-sction">
+        <h4 class="tr32">{{name}}</h4>
+        <p>{{price.without_tax.formatted}}</p>
+        <a href="{{url}}"><img class="img00001" src="{{getImageSrcset image (cdn theme_settings.default_image_product) 1x='128x128' }}" alt=""></a>
+        <a class="btn001" href="http://localhost:3000/cart.php?action=add&product_id{{id}}">add to cart </a>
+    </div>
+    </div> 
+    </div>
+    {{/each}} 
+    </div>
+
+<style>
+.btn001{
+background: linear-gradient(270deg, #990AE2 1.67%, #1485EF 96.39%);
+  border: none;
+  color: rgb(255, 255, 255);
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 20px;
+  
+    }
+    .h41{
+        text-align: center;margin-bottom: 25px;
+    }
+    .row111{
+        display: flex;
+        align-items: center;
+    }
+
+.card{
+    background-color:linear-gradient(#420ede, #af4cb3);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: box-shadow 0.3s ease;
+    border: solid 0.2px ;  
+    height: 321.31px;
+}
+
+.card{
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);text-align: center;
+}
+
+.card-section{
+    padding: 20px;
+}
+
+
+
+.img56{
+width: auto;
+margin-top:7px ;
+}
+
+.row111{
+    text-align: center;background-color: rgb(236, 236, 236);
+    border-radius: 10px;margin-top: 30px;}
+
+    .col124{
+        border-left: solid black 0.5px;
+        border-right: solid black 0.5px;
+    }
+    .text1{
+        text-align: center;  background:linear-gradient(to right,#420ede, #af4cb3);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;font-size: x-large;font-weight: bolder;
+    }
+    .text2{
+        text-align: center;font-weight: bold;margin-bottom: 50px;
+    }
+ .price01{
+    margin-top: 20px;
+ }
+
+ .btn011{
+background: linear-gradient(270deg, #990AE2 1.67%, #1485EF 96.39%);
+  border: none;
+  color: rgb(255, 255, 255);
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 5px;
+
+  
+    }
+    .tr32{
+        font-weight: bold;
+    }
+
+</style>
+
+
+
+
+{{/partial}}
+{{> layout/base}}
+
+
+
+{{inject "myProductName" product.title}}

@@ -1,0 +1,183 @@
+---
+product:
+    videos:
+        limit: {{theme_settings.productpage_videos_count}}
+    reviews:
+        limit: {{theme_settings.productpage_reviews_count}}
+    related_products:
+        limit: 10
+    similar_by_views:
+        limit: {{theme_settings.productpage_similar_by_views_count}}
+---
+{{inject 'productId' product.id}}
+
+{{#partial "page"}}
+
+
+
+
+
+
+
+    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+
+    {{#each product.shipping_messages}}
+        {{> components/common/alert/alert-info message}}
+    {{/each}}
+
+    <div>
+        {{> components/products/product-view}}
+
+        {{{region name="product_below_content"}}}
+
+        {{#if product.videos.list.length}}
+            {{> components/products/videos product.videos}}
+        {{/if}}
+
+        {{#all settings.show_product_reviews theme_settings.show_product_reviews (if theme_settings.show_product_details_tabs '!==' true)}}
+            {{> components/products/reviews reviews=product.reviews product=product urls=urls}}
+        {{/all}}
+
+        {{> components/products/tabs}}
+      
+<style>
+        .btn {
+          display: inline-block;
+          color: #fff;
+          font-weight: bold;
+          margin: 10px;
+          font-size: 16px;
+          text-align: center;
+          text-decoration: none;
+          cursor: pointer;
+          border-radius: 10px;
+          background: linear-gradient(270deg, #990AE2 1.67%, #1485EF 96.39%);
+          width: 120px;
+          padding: 12px;
+        
+        }
+    
+        
+        .another{
+            
+          padding: 1px;
+           text-align: center;
+           box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        }
+        .another:hover{
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+        }
+        .row-item {
+            background-color: #d4d5d6;
+            padding: 7px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            display: flex;
+        }
+        .text-new {
+            font-size: 25px;
+            font-weight: bold;
+        }
+        .bar_pdname {
+            font-size: 30px;
+            font-weight: bold;
+        }
+        .textundersticky{
+            font-size: 30px;
+            font-weight: bold;
+        }
+        .go {
+            font-weight: bold;
+        }
+        .text{
+            text-align: center;  background:linear-gradient(#420ede, #af4cb3);
+            background-clip: text;
+            -webkit-text-fill-color: transparent;font-size: x-large;font-weight: bolder;
+        }
+        .text1{
+            text-align: center;
+            color: rgb(24, 24, 24);
+            margin-bottom: 50px;
+        }
+        .another {
+            margin-bottom: 20px;
+        }
+    </style>
+    
+    
+    
+       
+    
+
+
+<div class="container row-item" style="display: flex; align-items: center;margin-left: 5px;margin-right: 0px;">
+                <div id="order1" class="  small-3 medium-12 large-3 columns  mainprice pdonload" data-mainprice="169">
+
+
+                <li id="prc" class=" product_list" style="display: flex; justify-content: space-evenly;align-items: center;padding-bottom: 0px;" sku="NBDVR522GW" data-price="169" data-mainprice="169">
+        <div><img class="mainimagebundle show-for-medium-up" loading="lazy" src="https://cdn11.bigcommerce.com/s-8mw570y811/images/stencil/900w/products/116/452/best__16337__02178.1684413436.png" alt=""></div>
+        <div class="bar_pdname">522GW </div></li></div>
+                <div id="order3" class="content-one small-5 large-5 columns " style="border-left:1px solid green; border-right:1px solid green;
+            height: auto;">
+                    <div class="addonstext text-new" style="text-align: center;"> <span style="font-size: 15px; font-family:Roobert-SemiBold;"> create
+                       <div id="test"> <script>
+                            let res = document.getElementById('test');
+                     
+                            function GFG_Fun() {
+                                let img = new Image();
+                                img.src =
+                                "{{getImageSrcset image.data (cdn theme_settings.default_image_product) 1x='25x25' }}";
+                                document.getElementById('test').appendChild(img);
+                                res.innerHTML = "Image Element Added.";
+                            }
+                        </script></div>
+                        
+                        your bundle, or say “None.”</span></div>
+                    <ul class=" small-block-grid-3 medium-block-grid-2 large-block-grid-5 append-under" style="padding-top: 3px; ">
+
+
+                    </ul>
+
+                </div>
+
+                <div id="order2" class="small-4 large-4 columns btnmb txtpad " style="display: flex;
+            justify-content: space-evenly;
+            align-items: center;">
+                    <div class="pricechange"><div class="textundersticky bnk-font pricechange">£<span class="symbol"></span>169.00</div>
+  </div>
+                    <div style="margin-bottom: -9px" ;="">
+                        <button class="button  round go" style="background: linear-gradient(270deg, #990AE2 1.67%, #1485EF 96.39%);color:#fff;">
+                        Add to cart
+                    </button>
+                    
+                    <div class="threepay">*discount will be applied at cart</div>
+                    </div>
+                </div>
+            </div>
+
+    <div><h1 class="text">Add a rear-facing camera module for much more protection.</h1>
+    <h4 class="text1">Only one camera can be used at a time.</h4></div>
+     
+
+      <div class="row sq1">
+        {{#each product.related_products}}
+        <div class="small-12 medium-6 large-3 columns another">
+            <a href="{{url}}"><img src="{{getImageSrcset image (cdn theme_settings.default_image_product) 1x='128x128' }}" class="img-c"></a>
+            <h1>{{ name }}</h1>
+            <p>{{ id }}</p>
+            <p>{{ price.without_tax.formatted }}</p>
+           <button onclick=GFG_Fun()><a href="http://localhost:3000/cart.php?action=add&product_id{{id}}" class="btn">ADD TO CART</a></button>
+       
+        </div>        
+          {{/each}}
+      </div>
+    
+
+        
+
+
+
+
+
+{{/partial}}
+{{> layout/base}}

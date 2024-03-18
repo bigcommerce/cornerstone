@@ -35,7 +35,7 @@ product:
         {{/if}}
 
         {{#all settings.show_product_reviews theme_settings.show_product_reviews (if theme_settings.show_product_details_tabs '!==' true)}}
-            {{> components/products/reviews reviews=product.reviews product=product urls=urls}}
+            {{> components/products/reviews reviews=Aproduct.reviews product=product urls=urls}}
         {{/all}}
 
         {{> components/products/tabs}}
@@ -43,123 +43,236 @@ product:
 
     {{> components/products/schema}}
 
-    
+    <style>
+
+        /* BANNER SECTION */
+        
+        .button-banner{
+            background: linear-gradient(270deg, #990AE2 1.67%, #1485EF 96.39%);
+            border: none;
+            color: rgb(255, 255, 255);
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        
+        
+        
+        .h-banner
+        {
+            text-align: center;margin-bottom: 25px;
+        }
+        
+        
+        .row-banner
+        {
+            display: flex;
+            align-items: center;
+            text-align: center;background-color: rgb(236, 236, 236);
+            border-radius: 10px;margin-top: 30px;
+        }
+        
+        
+        .img-banner
+        {
+            width: auto;
+            margin-top:7px ;
+        }
+        
+        
+        .col-banner
+        {
+            border-left: solid black 0.5px;
+            border-right: solid black 0.5px;
+        }
+        
+        
+        .price-banner
+        {
+            margin-top: 20px;
+        }
+        
+        /* END BANNER SECTION */
+        
+        
+        /* PRODUCT SECTION */
+        .button-product
+        {
+            background: linear-gradient(270deg, #990AE2 1.67%, #1485EF 96.39%);
+            border: none;
+            color: rgb(255, 255, 255);
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+        
+            
+        }
+        
+        
+        .card-product
+        {
+            border: 2px solid transparent;
+            background-color:linear-gradient(#420ede, #af4cb3);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: box-shadow 0.3s ease;  
+            height: 360.31px;
+        }
+        
+        
+        .card-product
+        {
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);text-align: center;
+        }
+        
+        
+        .product-name
+        {
+            font-weight: bold;text-align: left;
+        }
+        
+        .product-price
+        {
+            text-align: left;
+        }
+
+        .product-image-none{
+
+            margin-top: 100px;
+        }
+
+        .product-none
+        {
+            border: solid 2px purple;
+        }
+     
+        .card-product.bundled 
+        {
+            border-color: rgb(141, 15, 128); /* Change border color when bundled */
+        }
+
+        .button-product.remove {
+            background-color: #881ca9; /* Change button color when in bundled state */
+        }
+        
+        /* END PRODUCT SECTION */
+        
+        
+        
+        
+        /* TEXT SECTION */
+        
+        .text-main
+        {
+            text-align: center;  background:linear-gradient(to right,#420ede, #af4cb3);
+            background-clip: text;
+            -webkit-text-fill-color: transparent;font-size: x-large;font-weight: bolder;
+        }
+        
+        .text-local
+        {
+            text-align: center;font-weight: bold;margin-bottom: 50px;
+        }
+        
+        /* END TEXT SECTION */
 
 
-        <div class="row row111">
-            <div class="small-1 columns col123"><img class="img56" src="https://cdn11.bigcommerce.com/s-gqqaadnuuu/images/stencil/128x128/products/145/441/pngwing.com_2__75184.1710397220.png?c=1" alt="">
+        
+        </style>  
+
+
+<!-- BANNER SECTION START -->
+
+        <div class="row row-banner">
+            <div class="small-1 columns col123"><img class="img-banner" src="https://cdn11.bigcommerce.com/s-8mw570y811/images/stencil/900w/products/116/452/best__16337__02178.1684413436.png" alt="">
            </div>
-         <div class="small-2 columns"><h4 class="h41">522GW</h4></div>
-            <div class="small-4 columns col124">Choose add-ons and services to create your bundle, or say “None.”</div>
-            <div class="small-2 columns"><h4 class="price01">$238.00</h4>
+         <div class="small-2 columns"><h4 class="h-banner">522GW</h4></div>
+            <div class="small-4 columns col-banner" id="reactContainer">Choose add-ons and services to create your bundle, or say “None.”</div>
+            <div class="small-2 columns"><h4 class="price-banner">00.00</h4>
                 </div>
-            <div class="small-3 columns"><button class="btn011">Add to Cart</button></div>
+            <div class="small-3 columns"><a href="http://localhost:3000/cart.php?action=add&product_id={{id}}"><button class="button-banner">Add to Cart</button></a></div>
         </div>
+<!-- BANNER SECTION END -->
 
     
-    <h1 class="text1">Add a rear-facing camera module for much more protection.</h1>
-    <p class="text2">Only one camera can be used at a time.</p>
+    <h1 class="text-main">Add a rear-facing camera module for much more protection.</h1>
+    <p class="text-local">Only one camera can be used at a time.</p>
     
+<!-- CARD SECTION     -->
 <div class="row">
     {{#each product.related_products}}
-    <div class="small-3 large-3 columns">   
-    <div class="card">
+    <div class="small-12 medium-6 large-3 columns">   
+    <div class="card card-product">
         <div class="card-sction">
-        <h4 class="tr32">{{name}}</h4>
-        <p>{{price.without_tax.formatted}}</p>
-        <a href="{{url}}"><img class="img00001" src="{{getImageSrcset image (cdn theme_settings.default_image_product) 1x='128x128' }}" alt=""></a>
-        <a class="btn001" href="http://localhost:3000/cart.php?action=add&product_id{{id}}">add to cart </a>
+        <h4 class="product-name">{{name}}</h4>
+        <p class="product-price">{{price.without_tax.formatted}}</p>
+        <a href="{{url}}"><img class="product-image" src="{{getImageSrcset image (cdn theme_settings.default_image_product) 1x='128x128' }}" alt=""></a>
+       <button class="button-product" data-image="{{getImageSrcset image (cdn theme_settings.default_image_product) 1x='128x128' }}" data-price="{{price.without_tax.formatted}}" onclick="toggleBundle(this) ">Add To Bundle</button></a>
     </div>
     </div> 
     </div>
     {{/each}} 
+
+
+
+    <div class="small-12 medium-6 large-3 columns">   
+        <div class="card card-product product-none " id="bundleCard">
+            <div class="card-sction">
+                <a href=""><img class="product-image-none" src="https://cdn11.bigcommerce.com/s-o257sk57z9/images/stencil/original/image-manager/nothanks.png?t=1662972940&_gl=1*183hi9z*_ga*MTc3Njg0NTM2NC4xNjQzMDkyMzIw*_ga_WS2VZYPC6G*MTY2Mjk3MjM4Mi40MDUuMS4xNjYyOTcyOTU0LjU4LjAuMA.." alt=""></a>
+                <h4>None</h4>
+
+        </div>
+        </div> 
+        </div>
     </div>
+<!-----END OF CARD SECTION ---->
 
-<style>
-.btn001{
-background: linear-gradient(270deg, #990AE2 1.67%, #1485EF 96.39%);
-  border: none;
-  color: rgb(255, 255, 255);
-  padding: 10px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  cursor: pointer;
-  border-radius: 5px;
-  margin-top: 20px;
-  
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+    function toggleBundle(button) {
+    var card = button.closest('.card-product');
+
+    if (card.classList.contains('bundled')) {
+        
+
+        console.log("pice",price);
+
+        card.classList.remove('bundled');
+        button.textContent = 'Add To Bundle'; 
+        button.classList.remove('remove');
+    } else {
+        var sku = $(button).data("sku");
+        var price = $(button).data("price")
+        var imageUrl = $(button).data("image");
+
+        card.classList.add('bundled');
+        button.textContent = 'Remove';
+        button.classList.add('remove');
+        $('.col-banner').html(`<div >${sku}</div>`)
+        $('.price-banner').html(`<div >${price}</div>`)
+        $('.col-banner').html('<img src="' + imageUrl + '">');
+
     }
-    .h41{
-        text-align: center;margin-bottom: 25px;
-    }
-    .row111{
-        display: flex;
-        align-items: center;
-    }
-
-.card{
-    background-color:linear-gradient(#420ede, #af4cb3);
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    transition: box-shadow 0.3s ease;
-    border: solid 0.2px ;  
-    height: 321.31px;
-}
-
-.card{
-    box-shadow: 0 8px 16px rgba(0,0,0,0.2);text-align: center;
-}
-
-.card-section{
-    padding: 20px;
 }
 
 
 
-.img56{
-width: auto;
-margin-top:7px ;
-}
 
-.row111{
-    text-align: center;background-color: rgb(236, 236, 236);
-    border-radius: 10px;margin-top: 30px;}
-
-    .col124{
-        border-left: solid black 0.5px;
-        border-right: solid black 0.5px;
-    }
-    .text1{
-        text-align: center;  background:linear-gradient(to right,#420ede, #af4cb3);
-  background-clip: text;
-  -webkit-text-fill-color: transparent;font-size: x-large;font-weight: bolder;
-    }
-    .text2{
-        text-align: center;font-weight: bold;margin-bottom: 50px;
-    }
- .price01{
-    margin-top: 20px;
- }
-
- .btn011{
-background: linear-gradient(270deg, #990AE2 1.67%, #1485EF 96.39%);
-  border: none;
-  color: rgb(255, 255, 255);
-  padding: 10px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  cursor: pointer;
-  border-radius: 5px;
-
-  
-    }
-    .tr32{
-        font-weight: bold;
-    }
-
-</style>
-
+document.getElementById('bundleCard').addEventListener('click', function() {
+        var bundleItems = document.querySelectorAll('col-banner');
+        bundleItems.forEach(function(item) {
+            item.remove();
+        });
+    });
+</script>
 
 
 

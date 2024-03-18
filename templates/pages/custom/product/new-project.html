@@ -39,145 +39,224 @@ product:
         {{/all}}
 
         {{> components/products/tabs}}
-      
-<style>
-        .btn {
-          display: inline-block;
-          color: #fff;
-          font-weight: bold;
-          margin: 10px;
-          font-size: 16px;
-          text-align: center;
-          text-decoration: none;
-          cursor: pointer;
-          border-radius: 10px;
-          background: linear-gradient(270deg, #990AE2 1.67%, #1485EF 96.39%);
-          width: 120px;
-          padding: 12px;
+    </div>
+
+    {{> components/products/schema}}
+
+    <style>
+
+        /* BANNER SECTION */
         
+        .button-banner{
+            background: linear-gradient(270deg, #990AE2 1.67%, #1485EF 96.39%);
+            border: none;
+            color: rgb(255, 255, 255);
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
         }
-    
         
-        .another{
-            
-          padding: 1px;
-           text-align: center;
-           box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        
+        
+        .h-banner
+        {
+            text-align: center;margin-bottom: 25px;
         }
-        .another:hover{
-            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-        }
-        .row-item {
-            background-color: #d4d5d6;
-            padding: 7px;
-            margin-bottom: 20px;
-            border-radius: 8px;
+        
+        
+        .row-banner
+        {
             display: flex;
+            align-items: center;
+            text-align: center;background-color: rgb(236, 236, 236);
+            border-radius: 10px;margin-top: 30px;
         }
-        .text-new {
-            font-size: 25px;
-            font-weight: bold;
+        
+        
+        .img-banner
+        {
+            width: auto;
+            margin-top:7px ;
         }
-        .bar_pdname {
-            font-size: 30px;
-            font-weight: bold;
+        
+        
+        .col-banner
+        {
+            border-left: solid black 0.5px;
+            border-right: solid black 0.5px;
         }
-        .textundersticky{
-            font-size: 30px;
-            font-weight: bold;
+        
+        
+        .price-banner
+        {
+            margin-top: 20px;
         }
-        .go {
-            font-weight: bold;
+        
+        /* END BANNER SECTION */
+        
+        
+        /* PRODUCT SECTION */
+        .button-product
+        {
+            background: linear-gradient(270deg, #990AE2 1.67%, #1485EF 96.39%);
+            border: none;
+            color: rgb(255, 255, 255);
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+        
+            
         }
-        .text{
-            text-align: center;  background:linear-gradient(#420ede, #af4cb3);
+        
+        
+        .card-product
+        {
+            border: 5px solid transparent;
+            background-color:linear-gradient(#420ede, #af4cb3);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: box-shadow 0.3s ease;  
+            height: 360.31px;
+        }
+        
+        
+        .card-product
+        {
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);text-align: center;
+        }
+        
+        
+        .product-name
+        {
+            font-weight: bold;text-align: left;
+        }
+        
+        .product-price
+        {
+            text-align: left;
+        }
+
+        .product-image-none{
+
+            margin-top: 80px;
+        }
+
+        .product-none
+        {
+            border: solid 2px purple;
+        }
+     
+        .card-product.bundled 
+        {
+            border-color: rgb(141, 15, 128); /* Change border color when bundled */
+        }
+
+        .button-product.remove {
+            background-color: #881ca9; /* Change button color when in bundled state */
+        }
+        
+        /* END PRODUCT SECTION */
+        
+        
+        
+        
+        /* TEXT SECTION */
+        
+        .text-main
+        {
+            text-align: center;  background:linear-gradient(to right,#420ede, #af4cb3);
             background-clip: text;
             -webkit-text-fill-color: transparent;font-size: x-large;font-weight: bolder;
         }
-        .text1{
-            text-align: center;
-            color: rgb(24, 24, 24);
-            margin-bottom: 50px;
+        
+        .text-local
+        {
+            text-align: center;font-weight: bold;margin-bottom: 50px;
         }
-        .another {
-            margin-bottom: 20px;
-        }
-    </style>
-    
-    
-    
-       
-    
+        
+        /* END TEXT SECTION */
 
-
-<div class="container row-item" style="display: flex; align-items: center;margin-left: 5px;margin-right: 0px;">
-                <div id="order1" class="  small-3 medium-12 large-3 columns  mainprice pdonload" data-mainprice="169">
-
-
-                <li id="prc" class=" product_list" style="display: flex; justify-content: space-evenly;align-items: center;padding-bottom: 0px;" sku="NBDVR522GW" data-price="169" data-mainprice="169">
-        <div><img class="mainimagebundle show-for-medium-up" loading="lazy" src="https://cdn11.bigcommerce.com/s-8mw570y811/images/stencil/900w/products/116/452/best__16337__02178.1684413436.png" alt=""></div>
-        <div class="bar_pdname">522GW </div></li></div>
-                <div id="order3" class="content-one small-5 large-5 columns " style="border-left:1px solid green; border-right:1px solid green;
-            height: auto;">
-                    <div class="addonstext text-new" style="text-align: center;"> <span style="font-size: 15px; font-family:Roobert-SemiBold;"> create
-                       <div id="test"> <script>
-                            let res = document.getElementById('test');
-                     
-                            function GFG_Fun() {
-                                let img = new Image();
-                                img.src =
-                                "{{getImageSrcset image.data (cdn theme_settings.default_image_product) 1x='25x25' }}";
-                                document.getElementById('test').appendChild(img);
-                                res.innerHTML = "Image Element Added.";
-                            }
-                        </script></div>
-                        
-                        your bundle, or say “None.”</span></div>
-                    <ul class=" small-block-grid-3 medium-block-grid-2 large-block-grid-5 append-under" style="padding-top: 3px; ">
-
-
-                    </ul>
-
-                </div>
-
-                <div id="order2" class="small-4 large-4 columns btnmb txtpad " style="display: flex;
-            justify-content: space-evenly;
-            align-items: center;">
-                    <div class="pricechange"><div class="textundersticky bnk-font pricechange">£<span class="symbol"></span>169.00</div>
-  </div>
-                    <div style="margin-bottom: -9px" ;="">
-                        <button class="button  round go" style="background: linear-gradient(270deg, #990AE2 1.67%, #1485EF 96.39%);color:#fff;">
-                        Add to cart
-                    </button>
-                    
-                    <div class="threepay">*discount will be applied at cart</div>
-                    </div>
-                </div>
-            </div>
-
-    <div><h1 class="text">Add a rear-facing camera module for much more protection.</h1>
-    <h4 class="text1">Only one camera can be used at a time.</h4></div>
-     
-
-      <div class="row sq1">
-        {{#each product.related_products}}
-        <div class="small-12 medium-6 large-3 columns another">
-            <a href="{{url}}"><img src="{{getImageSrcset image (cdn theme_settings.default_image_product) 1x='128x128' }}" class="img-c"></a>
-            <h1>{{ name }}</h1>
-            <p>{{ id }}</p>
-            <p>{{ price.without_tax.formatted }}</p>
-           <button onclick=GFG_Fun()><a href="http://localhost:3000/cart.php?action=add&product_id{{id}}" class="btn">ADD TO CART</a></button>
-       
-        </div>        
-          {{/each}}
-      </div>
-    
 
         
+        </style>  
 
 
+
+
+        <div class="row row-banner">
+            <div class="small-1 columns col123"><img class="img-banner" src="https://cdn11.bigcommerce.com/s-8mw570y811/images/stencil/900w/products/116/452/best__16337__02178.1684413436.png" alt="">
+           </div>
+         <div class="small-2 columns"><h4 class="h-banner">522GW</h4></div>
+            <div class="small-4 columns col-banner"><div id="some_id"></div>Choose add-ons and services to create your bundle, or say “None.”</div>
+            <div class="small-2 columns"><h4 class="price-banner">£169.00</h4>
+                </div>
+            <div class="small-3 columns"><a href="http://localhost:3000/cart.php?action=add&product_id={{id}}"><button class="button-banner">Add to Cart</button></a></div>
+        </div>
+
+    
+    <h1 class="text-main">Add a rear-facing camera module for much more protection.</h1>
+    <p class="text-local">Only one camera can be used at a time.</p>
+    
+<div class="row">
+    {{#each product.related_products}}
+    <div class="small-12 medium-6 large-3 columns">   
+    <div class="card card-product">
+        <div class="card-sction">
+        <h4 class="product-name">{{name}}</h4>
+        <p class="product-price">{{price.without_tax.formatted}}</p>
+        <a href="{{url}}"><img class="product-image" src="{{getImageSrcset image (cdn theme_settings.default_image_product) 1x='128x128' }}" alt=""></a>
+        <button class="button-product" data-sku={{sku}}  data-image="{{getImageSrcset image (cdn theme_settings.default_image_product) 1x='128x128' }}" data-price="{{price.without_tax.formatted}}" data-img={{image.data}} onclick="toggleBundle(this)">Add To Bundle</button>
+    </div>
+    </div> 
+    </div>
+    {{/each}} 
+
+
+
+    <div class="small-12 medium-6 large-3 columns">   
+        <div class="card card-product product-none">
+            <div class="card-sction">
+                <img class="product-image-none" src="https://cdn11.bigcommerce.com/s-o257sk57z9/images/stencil/original/image-manager/nothanks.png?t=1662972940&_gl=1*183hi9z*_ga*MTc3Njg0NTM2NC4xNjQzMDkyMzIw*_ga_WS2VZYPC6G*MTY2Mjk3MjM4Mi40MDUuMS4xNjYyOTcyOTU0LjU4LjAuMA.." alt="">
+                <h4>None</h4>
+
+        </div>
+        </div> 
+        </div>
+    </div>
+<!---------------------Next Section ------------------------->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+  function toggleBundle(button) {
+    var card = button.closest('.card-product');
+    if (card.classList.contains('bundled')) {
+        card.classList.remove('bundled');
+        button.textContent = 'Add To Bundle'; 
+        button.classList.remove('remove');
+        $('.col-banner').html('<div>Choose add-ons and services to create your bundle, or say “None.”</div>');
+    } else {
+        var imageUrl = $(button).data("image");
+        card.classList.add('bundled');
+        button.textContent = 'Remove';
+        button.classList.add('remove');
+        $('.col-banner').html('<img src="' + imageUrl + '">');
+    }
+}  
+</script>
 
 
 
 {{/partial}}
 {{> layout/base}}
+
+
+
+{{inject "myProductName" product.title}}

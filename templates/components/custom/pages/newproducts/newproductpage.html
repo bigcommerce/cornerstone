@@ -1,0 +1,40 @@
+<script>
+  fetch('/graphql', {
+    method: 'POST',
+    credentials: 'same-origin',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer {{ settings.storefront_api.token }}' // use auto-generated token
+    },
+    body: JSON.stringify({
+      query: `qquery newProducts{
+  site{
+    newestProducts{
+      edges{
+        node{
+          images{
+            edges{
+              node{
+                urlOriginal
+              }
+            }
+          }
+          name
+          prices{
+            basePrice{
+              currencyCode
+              value
+            }
+          }
+        }
+      }
+    }
+  }
+}`
+    })
+  })
+  .then(res => res.json())
+  .then(data => console.log(data)) // will log JSON result to browser console
+  .catch(error => console.error(error));
+  console.log("hyy")
+  </script>

@@ -12,6 +12,7 @@ product:
 {{inject 'productId' product.id}}
 
 {{#partial "page"}}
+<h1>djaskjksajdksajdkjsk</h1>
 
     {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
 
@@ -36,5 +37,109 @@ product:
     </div>
 
     {{> components/products/schema}}
+
+
+
+<!----------------Product card------------------>
+
+<style>
+
+    .product-card {
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin: 20px;
+        width: 200px;
+        height: 350px;
+        display: inline-block;
+        background-color: #fff;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: 0.5px solid purple;
+        margin-top: 40px;
+        background-color: rgb(231, 233, 232);
+    }
+
+    .product-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .product-card h4 {
+        font-size: 18px;
+        margin-top: 0;
+        margin-bottom: 10px;
+        font-weight: bold;
+    }
+
+    .product-card p {
+        margin: 0;
+        font-size: 14px;
+    }
+
+    .product-card p.price {
+        font-weight: bold;
+    }
+</style>
+
+
+<div id="productCards">
+   
+</div>
+    
+<script>
+ fetch('/graphql', {
+  method: 'POST',
+  credentials: 'same-origin',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer {{ settings.storefront_api.token }}' // use auto-generated token
+  },
+  body: JSON.stringify({
+    query: `query MyQuery {
+      site {
+        featuredProducts {
+          edges {
+            node {
+              name
+              sku
+              prices {
+                basePrice {
+                  currencyCode
+                  value
+                }
+              }
+            }
+          }
+        }
+      }
+    }`
+  })
+})
+.then(res => res.json())
+.then(data => {
+  
+  const featuredProducts = data.data.site.featuredProducts.edges;
+
+
+  const productCardsHTML = featuredProducts.map(product => `
+    <div class="product-card ">
+      <h4>${product.node.name}</h4>
+      <h5>${product.node.sku}</h5>
+      <p>${product.node.prices.basePrice.currencyCode} ${product.node.prices.basePrice.value}</p>
+    </div>
+  `).join('');
+
+
+
+  document.getElementById('productCards').innerHTML = productCardsHTML;
+})
+.catch(error => console.error(error));
+
+
+</script>
+
+
+
+
 {{/partial}}
 {{> layout/base}}

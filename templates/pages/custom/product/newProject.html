@@ -252,6 +252,175 @@ product:
 }  
 </script>
 
+<style>
+
+    .product-card {
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin: 20px;
+        width: 200px;
+        height: 350px;
+        display: inline-block;
+        background-color: #fff;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: 0.5px solid purple;
+        margin-top: 40px;
+    }
+
+    .product-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .product-card h4 {
+        font-size: 18px;
+        margin-top: 0;
+        margin-bottom: 10px;
+        font-weight: bold;
+    }
+
+    .product-card p {
+        margin: 0;
+        font-size: 14px;
+    }
+
+    .product-card p.price {
+        font-weight: bold;
+    }
+</style>
+
+
+<!---------------------NEWEST PRODUCT-------------------------->
+
+
+<style>
+
+    .product-card {
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 10px;
+        margin: 10px;
+        width: 250px;
+        height: 400px;
+        display: inline-block;
+        background-color: #fff;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: 2px solid rgb(235, 159, 44);
+        margin-top: 40px;
+        align-items: center;
+    }
+    
+    .row .columns .imgc{
+        min-width:100px;
+    }
+    .product-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .product-card h4 {
+        font-size: 18px;
+        margin-top: 0;
+        margin-bottom: 10px;
+        font-weight: bold;
+    }
+
+    .product-card p {
+        margin: 0;
+        font-size: 14px;
+    }
+
+    .product-card p.price {
+        font-weight: bold;
+    }
+    .btn-new{
+        background: linear-gradient(270deg, #f8280d 1.67%, #f5a732 96.39%);
+            border: none;
+            color: rgb(255, 255, 255);
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+            width: 200px;
+            align-self: flex-end;
+    }
+</style>
+
+
+
+<script>
+    fetch('/graphql', {
+      method: 'POST',
+      credentials: 'same-origin',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer {{ settings.storefront_api.token }}' // use auto-generated token
+      },
+      body: JSON.stringify({
+        query: `query newProducts{
+    site{
+      newestProducts{
+        edges{
+          node{
+            images{
+            edges{
+              node{
+                urlOriginal
+              }
+            }
+          }
+            sku
+            name
+            prices{
+              basePrice{
+                currencyCode
+                value
+              }
+            }
+          }
+        }
+      }
+    }
+  }`
+      })
+    })
+    .then(res => res.json())
+.then(data => {
+  
+  const newestProducts = data.data.site.newestProducts.edges;
+
+  const productCardsHTML = newestProducts.map(product => `
+    <div class="row product-card">
+    <div class="small-12 medium-6 large-3 columns">
+      <h4>${product.node.name}</h4>
+      <img src="${product.node.images.edges[0].node.urlOriginal}" class="imgc"></img>
+      <p>${product.node.sku}</p>
+      <p>${product.node.prices.basePrice.currencyCode} ${product.node.prices.basePrice.value}</p>
+      <a href="/cart.php?action=add&product_id=157}"><button class="btn-new">ADD TO CART</button></a>
+    </div>
+    </div>
+  `).join('');
+
+  document.getElementById('productCards').innerHTML = productCardsHTML;
+})
+.catch(error => console.error(error));
+
+    // const jsContext = JSON.parse({{jsContext}}) 
+    // console.log("hiAmal",jsContext);
+
+    </script>
+
+<section>
+
+    <div id="productCards">
+        
+    </div>
+    </section>
+
 
 
 {{/partial}}

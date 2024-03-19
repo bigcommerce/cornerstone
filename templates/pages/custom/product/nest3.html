@@ -35,7 +35,7 @@ product:
         {{/if}}
 
         {{#all settings.show_product_reviews theme_settings.show_product_reviews (if theme_settings.show_product_details_tabs '!==' true)}}
-            {{> components/products/reviews reviews=product.reviews product=product urls=urls}}
+            {{> components/products/reviews reviews=Aproduct.reviews product=product urls=urls}}
         {{/all}}
 
         {{> components/products/tabs}}
@@ -119,7 +119,7 @@ product:
         
         .card-product
         {
-            border: 5px solid transparent;
+            border: 2px solid transparent;
             background-color:linear-gradient(#420ede, #af4cb3);
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
@@ -146,7 +146,7 @@ product:
 
         .product-image-none{
 
-            margin-top: 80px;
+            margin-top: 100px;
         }
 
         .product-none
@@ -183,28 +183,75 @@ product:
         }
         
         /* END TEXT SECTION */
+        .product-card {
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin: 20px;
+        width: 230px;
+        height: 400px;
+        display: inline-block;
+        background-color: #fff;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: 0.5px solid purple;
+        margin-top: 40px;
+    }
+    .product-card button{
+        background-color: #881ca9;
+        color: #fff;
+        border-radius: 12px;
+        width: 150px;
+        height: 50px;
+    }
+
+    .product-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .product-card h4 {
+        font-size: 18px;
+        margin-top: 0;
+        margin-bottom: 10px;
+        font-weight: bold;
+    }
+    .product-card img{
+        min-width:100px;
+    }
+
+    .product-card p {
+        margin: 0;
+        font-size: 14px;
+    }
+
+    .product-card p.price {
+        font-weight: bold;
+    }
+   
 
 
         
         </style>  
 
 
-
+<!-- BANNER SECTION START -->
 
         <div class="row row-banner">
             <div class="small-1 columns col123"><img class="img-banner" src="https://cdn11.bigcommerce.com/s-8mw570y811/images/stencil/900w/products/116/452/best__16337__02178.1684413436.png" alt="">
            </div>
          <div class="small-2 columns"><h4 class="h-banner">522GW</h4></div>
-            <div class="small-4 columns col-banner">Choose add-ons and services to create your bundle, or say “None.”</div>
-            <div class="small-2 columns"><h4 class="price-banner">£169.00</h4>
+            <div class="small-4 columns col-banner" id="reactContainer">Choose add-ons and services to create your bundle, or say “None.”</div>
+            <div class="small-2 columns"><h4 class="price-banner">00.00</h4>
                 </div>
             <div class="small-3 columns"><a href="http://localhost:3000/cart.php?action=add&product_id={{id}}"><button class="button-banner">Add to Cart</button></a></div>
         </div>
+<!-- BANNER SECTION END -->
 
     
     <h1 class="text-main">Add a rear-facing camera module for much more protection.</h1>
     <p class="text-local">Only one camera can be used at a time.</p>
     
+<!-- CARD SECTION     -->
 <div class="row">
     {{#each product.related_products}}
     <div class="small-12 medium-6 large-3 columns">   
@@ -213,7 +260,7 @@ product:
         <h4 class="product-name">{{name}}</h4>
         <p class="product-price">{{price.without_tax.formatted}}</p>
         <a href="{{url}}"><img class="product-image" src="{{getImageSrcset image (cdn theme_settings.default_image_product) 1x='128x128' }}" alt=""></a>
-        <button class="button-product" onclick="toggleBundle(this)">Add To Bundle</button>
+       <button class="button-product" data-image="{{getImageSrcset image (cdn theme_settings.default_image_product) 1x='128x128' }}" data-price="{{price.without_tax.formatted}}" onclick="toggleBundle(this) ">Add To Bundle</button></a>
     </div>
     </div> 
     </div>
@@ -222,63 +269,61 @@ product:
 
 
     <div class="small-12 medium-6 large-3 columns">   
-        <div class="card card-product product-none">
+        <div class="card card-product product-none " id="bundleCard">
             <div class="card-sction">
-                <img class="product-image-none" src="https://cdn11.bigcommerce.com/s-o257sk57z9/images/stencil/original/image-manager/nothanks.png?t=1662972940&_gl=1*183hi9z*_ga*MTc3Njg0NTM2NC4xNjQzMDkyMzIw*_ga_WS2VZYPC6G*MTY2Mjk3MjM4Mi40MDUuMS4xNjYyOTcyOTU0LjU4LjAuMA.." alt="">
+                <a href=""><img class="product-image-none" src="https://cdn11.bigcommerce.com/s-o257sk57z9/images/stencil/original/image-manager/nothanks.png?t=1662972940&_gl=1*183hi9z*_ga*MTc3Njg0NTM2NC4xNjQzMDkyMzIw*_ga_WS2VZYPC6G*MTY2Mjk3MjM4Mi40MDUuMS4xNjYyOTcyOTU0LjU4LjAuMA.." alt=""></a>
                 <h4>None</h4>
 
         </div>
         </div> 
         </div>
     </div>
-<!---------------------Next Section ------------------------->
+    <div id="productCards"></div>
+   
 
 
+
+<!-----END OF CARD SECTION ---->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script>
     function toggleBundle(button) {
     var card = button.closest('.card-product');
+
     if (card.classList.contains('bundled')) {
+        
+
+        console.log("pice",price);
+
         card.classList.remove('bundled');
         button.textContent = 'Add To Bundle'; 
         button.classList.remove('remove');
     } else {
+        var sku = $(button).data("sku");
+        var price = $(button).data("price")
+        var imageUrl = $(button).data("image");
+
         card.classList.add('bundled');
         button.textContent = 'Remove';
         button.classList.add('remove');
+        $('.col-banner').html(`<div >${sku}</div>`)
+        $('.price-banner').html(`<div >${price}</div>`)
+        $('.col-banner').html('<img src="' + imageUrl + '">');
+
     }
 }
 
 
-document.addEventListener("DOMContentLoaded", function() {
-    const addToCartButtons = document.getElementById('.btn');
-    const cartContent = document.getElementById('cartContent');
 
-    addToCartButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const itemImage = product.related_products.image.data;
-            // dummy
-            let consider=product.related_products.image.data;
-            const newItem = document.createElement('div');
-            newItem.classList.add('cartItem');
-            newItem.innerHTML = `
-                <img src="${itemImage}" alt="Item Image" style="width: 50px;"> <!-- Display the image -->
-                <hr>
-            `;
 
-            cartContent.appendChild(newItem);
+document.getElementById('bundleCard').addEventListener('click', function() {
+        var bundleItems = document.querySelectorAll('col-banner');
+        bundleItems.forEach(function(item) {
+            item.remove();
         });
     });
-});
-;
-
-
-
-
-
-
 
 // new section
-
 
 fetch('/graphql', {
   method: 'POST',
@@ -293,8 +338,16 @@ fetch('/graphql', {
         featuredProducts {
           edges {
             node {
+                images {
+            edges {
+              node {
+                urlOriginal
+              }
+            }
+          }
               name
               sku
+              addToCartUrl
               prices {
                 basePrice {
                   currencyCode
@@ -309,20 +362,32 @@ fetch('/graphql', {
   })
 })
 .then(res => res.json())
-.then(data => 
-    console.log(data))
+.then(data => {
+  const featuredProducts = data.data.site.featuredProducts.edges;
+  console.log('findthisbuddy',featuredProducts)
+  const productCardsHTML = featuredProducts.map(product => `
+<div class="row product-card">
+      <div class="small-12 medium-6 large-3 columns">   
+      <img src="${product.node.images.edges[0].node.urlOriginal}">
+      <h4>${product.node.name}</h4>
+      <h5>${product.node.sku}</h5>
+      <p>${product.node.prices.basePrice.currencyCode} ${product.node.prices.basePrice.value}</p>
 
-//   const featuredProducts = data.data.site.featuredProducts.edges;
-//   const productCards = featuredProducts.map(product => `
-//     <div>
-//       <h4>${product.node.name}</h4>
-//       <h5>${product.node.sku}</h5>
-//       <p>${product.node.prices.basePrice.currencyCode} ${product.node.prices.basePrice.value}</p>
-//     </div>
-//   `);
+      
+      <a href"/cart.php?action=add&product_id="><button class="btn-1">Add to cart</button>
+    </div>
+</div>
+  `).join('');
 
-//   document.getElementById('card').innerHTML = productCards.join('');
-// })
+
+
+  document.getElementById('productCards').innerHTML = productCardsHTML;
+})
+.catch(error => console.error(error));
+
+
+const jsContext =JSON.parse({{jsContext}});
+console.log('jsondata',jsContext);
 
 
 </script>

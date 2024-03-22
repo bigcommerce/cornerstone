@@ -95,6 +95,13 @@ product:
         {
             margin-top: 20px;
         }
+
+        .btn-more{
+            background: linear-gradient(270deg, #f2ea10 1.67%, #148cef 96.39%);
+            color: rgb(255, 255, 255);
+            border-radius: 5px;
+            
+        }
         
         /* END BANNER SECTION */
         
@@ -105,7 +112,6 @@ product:
             background: linear-gradient(270deg, #990AE2 1.67%, #1485EF 96.39%);
             border: none;
             color: rgb(255, 255, 255);
-            padding: 10px 20px;
             text-align: center;
             text-decoration: none;
             display: inline-block;
@@ -115,7 +121,6 @@ product:
         
             
         }
-        
         
         .card-product
         {
@@ -156,11 +161,11 @@ product:
      
         .card-product.bundled 
         {
-            border-color: rgb(141, 15, 128); /* Change border color when bundled */
+            border-color: rgb(141, 15, 128);
         }
 
         .button-product.remove {
-            background-color: #881ca9; /* Change button color when in bundled state */
+            background-color: #881ca9; 
         }
         
         /* END PRODUCT SECTION */
@@ -215,7 +220,8 @@ product:
         <h4 class="product-name">{{name}}</h4>
         <p class="product-price">{{price.without_tax.formatted}}</p>
         <a href="{{url}}"><img class="product-image" src="{{getImageSrcset image (cdn theme_settings.default_image_product) 1x='128x128' }}" alt=""></a>
-       <button class="button-product" data-image="{{getImageSrcset image (cdn theme_settings.default_image_product) 1x='128x128' }}" data-price="{{price.without_tax.formatted}}" onclick="toggleBundle(this) ">Add To Bundle</button></a>
+        <button class="btn-more" id="moreButton" onclick="showPopup()">More</button>
+       <button class="button-product" data-image="{{getImageSrcset image (cdn theme_settings.default_image_product) 1x='128x128' }}" data-price="{{price.without_tax.formatted}}" onclick="toggleBundle(this) ">Add</button></a>
     </div>
     </div> 
     </div>
@@ -235,6 +241,12 @@ product:
     </div>
 
 
+    <!-- Popup
+<div id="popup" class="popup">
+    <h2>More Products</h2>
+    <div id="moreProducts"></div>
+</div> -->
+
 
 <!-----END OF CARD SECTION ---->
 
@@ -251,6 +263,10 @@ product:
         card.classList.remove('bundled');
         button.textContent = 'Add To Bundle'; 
         button.classList.remove('remove');
+
+        //  remove from bundle
+        // resetBanner();
+
     } else {
         var sku = $(button).data("sku");
         var price = $(button).data("price")
@@ -259,14 +275,26 @@ product:
         card.classList.add('bundled');
         button.textContent = 'Remove';
         button.classList.add('remove');
-        $('.col-banner').html(`<div >${sku}</div>`)
-        $('.price-banner').html(`<div >${price}</div>`)
-        $('.col-banner').html('<img src="' + imageUrl + '">');
+
+        
+        updateBanner(sku, price, imageUrl);
+
+
 
     }
 }
 
+function updateBanner(sku, price, imageUrl) {
+        $('.col-banner').append('<img src="' + imageUrl + '">');
+        $('.price-banner').append(price);
+        $('.col-banner').data("sku", sku);
+    }
 
+function resetBanner() {
+        $('.col-banner').html('Choose add-ons and services to create your bundle, or say “None.”');
+        $('.price-banner').html('00.00');
+        $('.col-banner').data("sku", "");
+    }
 
 
 document.getElementById('bundleCard').addEventListener('click', function() {
@@ -275,6 +303,33 @@ document.getElementById('bundleCard').addEventListener('click', function() {
             item.remove();
         });
     });
+
+    document.getElementById('bundleCard').addEventListener('click', function() {
+        resetBanner();
+    });
+
+
+
+
+    // function showPopup() {
+    // var moreProducts = getMoreProducts(); 
+    // populateMoreProducts(moreProducts);
+    // document.getElementById("popup")
+
+    // }
+    
+    // function getMoreProducts(){
+    //     var customFieldData = `{{custom_field "More Products"}}`;
+    //     var productSKU=customFieldData.split(',');
+    //     var moreProducts = [];
+
+    //     var productsData = [
+    //     { name: "${product.node.name}", image: "${product.node.images.edges[0].node.urlOriginal}", price: "${product.node.prices.basePrice.value}",sku: "product.node.sku"},
+        
+    // ];
+    // }
+
+    
 </script>
 
 
@@ -300,7 +355,9 @@ document.getElementById('bundleCard').addEventListener('click', function() {
     }
     
     .imgc{
-        min-width:100px;
+        display: flex;
+        min-width:100px;align-items: center;
+        justify-content: center;
     }
     .product-card:hover {
         transform: translateY(-5px);
@@ -316,14 +373,14 @@ document.getElementById('bundleCard').addEventListener('click', function() {
 
     .product-card p {
         margin: 0;
-        font-size: 14px;
+        font-size: 16px;
     }
 
     .product-card p.price {
-        font-weight: bold;
+        font-weight: bolder;
     }
     .btn-q1{
-        background: linear-gradient(270deg, #076ff7 1.67%, #c42dba 96.39%);
+        background: linear-gradient(270deg, #9600FF 1.67%, #AEBAF8 96.39%);
             border: none;
             color: rgb(255, 255, 255);
             padding: 10px 20px;
@@ -337,6 +394,11 @@ document.getElementById('bundleCard').addEventListener('click', function() {
             justify-content: end;
 
     }
+
+
+
+
+    
 </style>
 
 
@@ -386,17 +448,15 @@ document.getElementById('bundleCard').addEventListener('click', function() {
  
   
   const productCardsHTML = newestProducts.map(product => `
-  
   <div class="row product-card">
     <div class="small-12 medium-6 large-3 column">
       <h4>${product.node.name}</h4>
       <img class="imgc" src="${product.node.images.edges[0].node.urlOriginal}"></img>
-      <p>${product.node.sku}</p>
+      
       <p>${product.node.prices.basePrice.currencyCode} ${product.node.prices.basePrice.value}</p>
       <a href="/cart.php?action=add&product_id=${product.node.entityId}"><button class="btn-q1">ADD</button></a> 
     </div>
     </div>
-
   `).join('');
 
   document.getElementById('productCards').innerHTML = productCardsHTML;
@@ -415,6 +475,9 @@ document.getElementById('bundleCard').addEventListener('click', function() {
         
     </div>
     </section>
+
+
+
 
 
 

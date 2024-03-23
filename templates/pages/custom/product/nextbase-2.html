@@ -16,6 +16,8 @@ product:
 
 
 
+ {{inject 'productId' product.id}} 
+
 
 
 
@@ -158,6 +160,28 @@ product:
         {
             text-align: center;font-weight: bold;margin-bottom: 50px;
         }
+
+        .pp{
+            background: linear-gradient(270deg, #1cb824 1.67%, #3b33d7 96.39%);;
+        }
+        
+
+        #popup-window {
+            position: fixed;
+            width: 300px;
+            height: 200px;
+            background: white;
+            border: 1px solid black;
+            padding: 10px;
+            margin: auto;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 10;
+            display: none;
+        }  
+        
         
         /* END TEXT SECTION */
 
@@ -166,56 +190,14 @@ product:
         </style>  
 
 
-<!---------------- graphql css  ---------------->
-<style>
-
-    .product-card {
-        border-radius: 8px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        padding: 20px;
-        margin: 20px;
-        width: 200px;
-        height: 350px;
-        display: inline-block;
-        background-color: #fff;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        border: 0.5px solid purple;
-        margin-top: 40px;
-        background-color: rgb(231, 233, 232);
-    }
-
-    .product-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
-    }
-
-    .product-card h4 {
-        font-size: 18px;
-        margin-top: 0;
-        margin-bottom: 10px;
-        font-weight: bold;
-    }
-
-    .product-card p {
-        margin: 0;
-        font-size: 14px;
-    }
-
-    .product-card p.price {
-        font-weight: bold;
-    }
-</style>
-
-
-
 
         <div class="row row-banner">
             <div class="small-1 columns col123"><img class="img-banner" src="https://cdn11.bigcommerce.com/s-8mw570y811/images/stencil/900w/products/116/452/best__16337__02178.1684413436.png" alt="">
-           </div>
+            </div>
          <div class="small-2 columns"><h4 class="h-banner">522GW</h4></div>
             <div class="small-4 columns col-banner">Choose add-ons and services to create your bundle, or say “None.”</div>
             <div class="small-2 columns"><h4 class="price-banner">£169.00</h4>
-                </div>
+            </div>
             <div class="small-3 columns"><a href="http://localhost:3000/cart.php?action=add&product_id={{id}}"><button class="button-banner">Add to Cart</button></a></div>
         </div>
 
@@ -232,8 +214,9 @@ product:
         <p class="product-price">{{price.without_tax.formatted}}</p>
         <a href="{{url}}"><img class="product-image" src="{{getImageSrcset image (cdn theme_settings.default_image_product) 1x='128x128' }}" alt=""></a>
         <button class="button-product"  data-sku={{sku}} data-price={{price.without_tax.formatted}} data-image="{{getImageSrcset image (cdn theme_settings.default_image_product) 1x='128x128' }}" onclick="toggleBundle(this)">Add To Bundle</button>
+        <button class="button-product pp left"  id="popup-link">More</button>
+        </div>
     </div>
-    </div> 
     </div>
     {{/each}} 
 
@@ -245,23 +228,17 @@ product:
                 <img class="product-image-none" src="https://cdn11.bigcommerce.com/s-o257sk57z9/images/stencil/original/image-manager/nothanks.png?t=1662972940&_gl=1*183hi9z*_ga*MTc3Njg0NTM2NC4xNjQzMDkyMzIw*_ga_WS2VZYPC6G*MTY2Mjk3MjM4Mi40MDUuMS4xNjYyOTcyOTU0LjU4LjAuMA.." alt="">
                 <h4>None</h4>
 
-        </div>
+            </div>
         </div> 
-        </div>
     </div>
-<!---------------------Next Section ------------------------->
-
-
-
-<!------------------- card graphql --------------------------->
-<div id="productCards">
-   
 </div>
-<!------------------- card graphql stop --------------------------->
 
 
-
-
+<div id="popup-window">
+    <h1>Pop-up Window</h1>
+    <p>This is a pop-up window.</p>
+    <button id="close-button">Close</button>
+</div> 
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -280,16 +257,40 @@ product:
           card.classList.add('bundled');
           button.textContent = 'Remove';
           button.classList.add('remove');
-          $('.col-banner').html('<img src="' + imageUrl + '">');
+          $('.col-banner').append('<img src="' + imageUrl + '">');
           $('.price-banner').html(`<div>${price}</div>`)
+        
       }
   }
+
+    function removeBundledProduct(){
+        $('.card-product.bundle').each(function(){
+            $(this).removeClass('bundle');
+            $(this).find('.button-product').text('Add To Bundle').removeClass('remove');
+
+        });
+
+        $('.col-banner').html('<div>Choose add-ons and services to create your bundle, or say “None.”</div>');
+    }
+    $('.product-none').click(function(){
+        removeBundledProduct();
+    })
   </script>
 
+
+<!-- ---------------------------------------END OF  ----------------------------------------------------->
+
+
+
+
+
+<!-------------------------------------------- graphqlscript ----------------------------------------------------->
   <script>
-    console.log('script is working....')
-    
-    
+
+//    const jsContext = JSON.parse({{ jsContext }});
+//    console.log('what is inside jsContext',jsContext)
+
+ 
     fetch('/graphql', {
       method: 'POST',
       credentials: 'same-origin',
@@ -298,53 +299,172 @@ product:
         'Authorization': 'Bearer {{ settings.storefront_api.token }}' // use auto-generated token
       },
       body: JSON.stringify({
-        query: `query{
-  site {
-    brands {
-      edges {
-        node {
-          entityId
-          name
-          path
-          products {
-            edges {
-              node {
-                sku
-                name
-                path
-              }
+        query: `query brand {
+            site {
+                brand(entityId: 39) {
+                    entityId
+              
+                    name
+                    products {
+                        edges {
+                            node {
+                                name
+                                entityId
+                                sku
+                                images{
+                                    edges{
+                                        node{
+                                            urlOriginal
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
-          }
-        }
-      }
-    }
-  }
-}
         }`
       })
     })
     .then(res => res.json())
     .then(data => {
+    // console.log('what is my data',data.data.site.brand)
+    console.log('what is my data',data.data.site.brand.products)   
+    //  console.log(typeof(product1))
+
+ 
+
+     
+        // console.log(element.node)
+        // console.log(element.node.name)
+        // console.log(element.addToCartUr)
+        var product = data.data.site.brand.products.edges;
+        // var product_name = node.name;
+        // console.log('productname',product_name)
+        // var addToCartUrl = element.node.addToCartUrl;
+        // console.log('addToCartUrl',addToCartUrl)
+        const productCardsHTML = product.map(edge=> `
+        
+        <div class="row product-card">
+            <div class="small-12 medium-6 large-4 columns">
+                <h4>${edge.node.name}</h4>
+                <img src="${edge.node.images.edges[0].node.urlOriginal}"></img>
+                <p>${edge.node.sku}</p>
+                <a href="/cart.php?action=add&product_id=${edge.node.entityId}"><button>Add to Cart</button></a>
+            </div>
+            
+        </div>
+        
+        
+        `).join('');
+
+          
+        document.getElementById('productCards').innerHTML = productCardsHTML;
+    })
+
   
-  const featuredProducts = data.data.site.featuredProducts.edges;
+//      const brands = data.data.site.brand.products.edges;
+
+//       console.log('brands',brands)
+
+  
+//    brands.forEach(element => {
+//       console.log(element)
+//       console.log(element.node.name)
+
+//    });
 
 
-  const productCardsHTML = featuredProducts.map(product => `
-    <div class="product-card ">
-      <h4>${product.node.name}</h4>
-      <h5>${product.node.sku}</h5>
-      <p>${product.node.prices.basePrice.currencyCode} ${product.node.prices.basePrice.value}</p>
-    </div>
-  `).join('');
-
-
-
-  document.getElementById('productCards').innerHTML = productCardsHTML;
-})
 .catch(error => console.error(error));
 
 
 </script>
+
+
+<!-------------------------------------------- graphqlhtml ----------------------------------------------------->
+
+
+<div id="productCards">
+
+</div>
+
+
+<!-------------------------------------------- graphqlcss ----------------------------------------------------->
+
+
+<style>
+.product-card {
+        border-radius: 6px;
+        box-shadow: rgb(29, 28, 28);
+        margin: 10px;
+        width: 250px;
+        height: 400px;
+        display: inline-block;
+        background-color: rgb(240, 230, 230);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: 2px solid rgb(14, 14, 15);
+        padding: 5px;
+        
+}
+
+.product-card h4 {
+    margin-top: 10px;
+    font-weight: bold;
+    margin-left: 50px;
+
+}
+
+.product-card img {
+    max-width: 200%;
+    margin-left: 50px;
+    height: 100px;
+    margin-bottom: 10px;
+}
+
+.product-card p {
+    margin-top: 5px;
+    margin-left: 50px;
+}
+
+.product-card button {
+    background: linear-gradient(270deg, #62cd5b 1.67%, #e85cdf 96.39%);
+    border: none;
+    color: rgb(255, 255, 255);
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+    width: 200px;
+    justify-content: end;
+}
+
+.product-card button:hover {
+    background-color: #0056b3;
+}
+
+</style>
+
+
+
+
+
+<script>
+
+    var popupLink = document.getElementById("popup-link");
+    var popupWindow = document.getElementById("popup-window");
+    var closeButton = document.getElementById("close-button");
+
+    popupLink.addEventListener("click", function(event) {
+      event.preventDefault();
+      popupWindow.style.display = "block";
+    });
+    closeButton.addEventListener("click", function() {
+      popupWindow.style.display = "none";
+    });
+</script>  
 
 
 {{/partial}}

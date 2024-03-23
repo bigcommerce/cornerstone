@@ -105,17 +105,27 @@ product:
             background: linear-gradient(270deg, #990AE2 1.67%, #1485EF 96.39%);
             border: none;
             color: rgb(255, 255, 255);
-            padding: 10px 20px;
             text-align: center;
             text-decoration: none;
             display: inline-block;
             cursor: pointer;
             border-radius: 5px;
             margin-top: 10px;
-        
+            height: 50px;
+            padding: 5px;
+           
             
         }
-        
+        .btn-more {
+            border: .2px solid rgb(182, 181, 181);
+            padding: 0;
+            border-radius: 5px;
+            height: 50px;
+            margin-top: 10px;
+            background-color: #e4e2e2;
+            margin-right: 5px;
+            font-weight: bold;
+        }
         
         .card-product
         {
@@ -162,6 +172,27 @@ product:
         .button-product.remove {
             background-color: #881ca9; /* Change button color when in bundled state */
         }
+        .button-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            padding: 9px;
+        }
+
+          #popup-window {
+            position: fixed;
+            width: 300px;
+            height: 200px;
+            background: white;
+            border: 1px solid black;
+            padding: 10px;
+            margin: auto;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 10;
+            display: none;
+            } 
         
         /* END PRODUCT SECTION */
         
@@ -190,7 +221,6 @@ product:
 
 
 
-
         <div class="row row-banner">
             <div class="small-1 columns col123"><img class="img-banner" src="https://cdn11.bigcommerce.com/s-8mw570y811/images/stencil/900w/products/116/452/best__16337__02178.1684413436.png" alt="">
            </div>
@@ -213,16 +243,38 @@ product:
         <h4 class="product-name">{{name}}</h4>
         <p class="product-price">{{price.without_tax.formatted}}</p>
         <a href="{{url}}"><img class="product-image" src="{{getImageSrcset image (cdn theme_settings.default_image_product) 1x='128x128' }}" alt=""></a>
-        <button class="button-product" data-sku={{sku}}  data-image="{{getImageSrcset image (cdn theme_settings.default_image_product) 1x='128x128' }}" data-price="{{price.without_tax.formatted}}" data-img={{image.data}} onclick="toggleBundle(this)">Add To Bundle</button>
+        <div class="button-container">
+            <button id="popup-link" class="btn-more">Learn more</button><button class="button-product" data-sku={{sku}}  data-image="{{getImageSrcset image (cdn theme_settings.default_image_product) 1x='128x128' }}" data-price="{{price.without_tax.formatted}}" data-img={{image.data}} onclick="toggleBundle(this)">Add To Bundle</button>
+        </div>
+       
     </div>
     </div> 
-    </div>
+    </div> 
+
     {{/each}} 
-
-
+    <div id="popup-window">
+        <h1>Pop-up Window</h1>
+        <p>This is a pop-up window.</p>
+        <button id="close-button">Close</button>
+      </div>
+    <script>
+        // Get the elements by their ID
+        var popupLink = document.getElementById("popup-link");
+        var popupWindow = document.getElementById("popup-window");
+        var closeButton = document.getElementById("close-button");
+        // Show the pop-up window when the link is clicked
+        popupLink.addEventListener("click", function(event) {
+          event.preventDefault();
+          popupWindow.style.display = "block";
+        });
+        // Hide the pop-up window when the close button is clicked
+        closeButton.addEventListener("click", function() {
+          popupWindow.style.display = "none";
+        });
+      </script>  
 
     <div class="small-12 medium-6 large-3 columns">   
-        <div class="card card-product product-none">
+        <div class="card card-product product-none" id="none-card">
             <div class="card-sction">
                 <img class="product-image-none" src="https://cdn11.bigcommerce.com/s-o257sk57z9/images/stencil/original/image-manager/nothanks.png?t=1662972940&_gl=1*183hi9z*_ga*MTc3Njg0NTM2NC4xNjQzMDkyMzIw*_ga_WS2VZYPC6G*MTY2Mjk3MjM4Mi40MDUuMS4xNjYyOTcyOTU0LjU4LjAuMA.." alt="">
                 <h4>None</h4>
@@ -247,9 +299,13 @@ product:
         card.classList.add('bundled');
         button.textContent = 'Remove';
         button.classList.add('remove');
-        $('.col-banner').html('<img src="' + imageUrl + '">');
+        $('#some_id').append('<img src="' + imageUrl + '">');
     }
 }  
+const removeButton = document.getElementById("none-card");
+            removeButton.addEventListener("click", function() {
+                $("#some_id").remove();
+            })
 </script>
 
 <style>
@@ -262,7 +318,7 @@ product:
         width: 200px;
         height: 350px;
         display: inline-block;
-        background-color: #fff;
+        background-color: #e4e2e2;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
         border: 0.5px solid purple;
         margin-top: 40px;
@@ -289,6 +345,9 @@ product:
         font-weight: bold;
     }
 </style>
+<div class="newProducts-Container">
+    <h1 class="newPro">Newest Products</h1>
+</div>
 
 
 <!---------------------NEWEST PRODUCT-------------------------->
@@ -348,6 +407,13 @@ product:
             width: 200px;
             align-self: flex-end;
     }
+    .newPro{
+        text-align: center;
+        font-weight: bold;
+    }
+    .paragraph{
+        font-weight: bold;
+    }
 </style>
 
 
@@ -366,6 +432,7 @@ product:
       newestProducts{
         edges{
           node{
+            addToCartUrl
             images{
             edges{
               node{
@@ -375,6 +442,7 @@ product:
           }
             sku
             name
+            entityId
             prices{
               basePrice{
                 currencyCode
@@ -392,6 +460,7 @@ product:
 .then(data => {
   
   const newestProducts = data.data.site.newestProducts.edges;
+    console.log("haiiii",newestProducts.addToCartUrl);
 
   const productCardsHTML = newestProducts.map(product => `
     <div class="row product-card">
@@ -399,8 +468,8 @@ product:
       <h4>${product.node.name}</h4>
       <img src="${product.node.images.edges[0].node.urlOriginal}" class="imgc"></img>
       <p>${product.node.sku}</p>
-      <p>${product.node.prices.basePrice.currencyCode} ${product.node.prices.basePrice.value}</p>
-      <a href="/cart.php?action=add&product_id=157}"><button class="btn-new">ADD TO CART</button></a>
+      <p class="paragraph">${product.node.prices.basePrice.currencyCode} ${product.node.prices.basePrice.value}</p>
+      <a href="/cart.php?action=add&product_id=${product.node.entityId}"><button class="btn-new">ADD TO CART</button></a>
     </div>
     </div>
   `).join('');
@@ -409,8 +478,8 @@ product:
 })
 .catch(error => console.error(error));
 
-    // const jsContext = JSON.parse({{jsContext}}) 
-    // console.log("hiAmal",jsContext);
+    const jsContext = JSON.parse({{jsContext}}) 
+    console.log("hiAmal",jsContext);
 
     </script>
 
@@ -420,7 +489,6 @@ product:
         
     </div>
     </section>
-
 
 
 {{/partial}}

@@ -113,6 +113,7 @@ product:
             border: none;
             color: rgb(255, 255, 255);
             text-align: center;
+            padding: 10px 20px;
             text-decoration: none;
             display: inline-block;
             cursor: pointer;
@@ -220,8 +221,8 @@ product:
         <h4 class="product-name">{{name}}</h4>
         <p class="product-price">{{price.without_tax.formatted}}</p>
         <a href="{{url}}"><img class="product-image" src="{{getImageSrcset image (cdn theme_settings.default_image_product) 1x='128x128' }}" alt=""></a>
-        <button class="btn-more" id="moreButton" onclick="showPopup()">More</button>
-       <button class="button-product" data-image="{{getImageSrcset image (cdn theme_settings.default_image_product) 1x='128x128' }}" data-price="{{price.without_tax.formatted}}" onclick="toggleBundle(this) ">Add</button></a>
+        <!-- <button class="btn-more" id="moreButton" onclick="showPopup()">More</button> -->
+       <button class="button-product" data-image="{{getImageSrcset image (cdn theme_settings.default_image_product) 1x='128x128' }}" data-price="{{price.without_tax.formatted}}" onclick="toggleBundle(this) ">Add to Bundle</button></a>
     </div>
     </div> 
     </div>

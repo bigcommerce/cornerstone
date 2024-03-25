@@ -42,6 +42,8 @@ product:
     </div>
 
     {{> components/products/schema}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <style>
 
@@ -284,7 +286,7 @@ product:
         <p class="product-price">{{price.without_tax.formatted}}</p>
         <a href="{{url}}"><img class="product-image" src="{{getImageSrcset image (cdn theme_settings.default_image_product) 1x='128x128' }}" alt=""></a>
        <button class="button-product" data-image="{{getImageSrcset image (cdn theme_settings.default_image_product) 1x='128x128' }}" data-price="{{price.without_tax.formatted}}" onclick="toggleBundle(this) ">Add To Bundle</button></a>
-       <button class="button-product left" data-image="{{getImageSrcset image (cdn theme_settings.default_image_product) 1x='128x128' }}" data-price="{{price.without_tax.formatted}}" onclick="popupcard() " >More</button></a>
+       <button class="button-product left datasource" data-image="{{getImageSrcset image (cdn theme_settings.default_image_product) 1x='128x128' }}" data-price="{{price.without_tax.formatted}}"  >More</button></a>
     </div>
     </div> 
     </div>
@@ -292,7 +294,7 @@ product:
 
 
 
-    <div class="small-12 medium-6 large-3 columns">   
+<div class="small-12 medium-6 large-3 columns">   
         <div class="card card-product product-none " id="bundleCard">
             <div class="card-sction">
                 <a href=""><img class="product-image-none" src="https://cdn11.bigcommerce.com/s-o257sk57z9/images/stencil/original/image-manager/nothanks.png?t=1662972940&_gl=1*183hi9z*_ga*MTc3Njg0NTM2NC4xNjQzMDkyMzIw*_ga_WS2VZYPC6G*MTY2Mjk3MjM4Mi40MDUuMS4xNjYyOTcyOTU0LjU4LjAuMA.." alt=""></a>
@@ -434,9 +436,36 @@ console.log('jsondata',jsContext);
 
 
 
+$(document).on("click",'.datasource',function(e){
+    var data_image = $(this).attr('data-image')
+    console.log(data_image);
+    var data_price=$(this).attr('data-price')
+    console.log(data_price)
+    itempopup(data_image,data_price);
+    
+})
 
 
-// another headache
+function itempopup(data_image,data_price){
+     console.log("popup",data_image);
+    Swal.fire({
+  title: "<strong>Product</strong>",
+  html: `
+     
+     <img src="${data_image}"/>
+     <p> "${data_price}"</p>
+   
+  `,
+  
+  cancelButtonText: `
+    <i class="fa fa-thumbs-down"></i>
+  `,
+  cancelButtonAriaLabel: "Thumbs down"
+});
+
+}
+
+
 
 
 

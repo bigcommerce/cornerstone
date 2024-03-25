@@ -79,6 +79,7 @@ export default class Category extends CatalogPage {
         const requestOptions = {
             config: {
                 category: {
+                    shop_by_price: true,
                     products: {
                         limit: productsPerPage,
                     },

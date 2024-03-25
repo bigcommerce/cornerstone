@@ -41,6 +41,7 @@
     display: inline-block;
     float: none;
     font-size: fontSize("base"); // 2
+    margin-bottom: spacing("double");
     overflow-wrap: break-word;
     text-align: center;
     vertical-align: top;
@@ -143,23 +144,15 @@
 }
 
 .footer-payment-icons {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    list-style-type: none;
-    margin-left: 0;
+    height: remCalc(40);
     margin-top: spacing("single");
-
-    @include breakpoint("small") {
-        justify-content: normal;
-    }
 
     @include breakpoint("medium") {
         margin-top: spacing("double");
     }
 
     .footer-payment-icon {
-        height: remCalc(40);
+        height: 100%;
         margin: spacing("quarter");
         vertical-align: middle;
         width: remCalc(50);

@@ -1,70 +1,30 @@
 {{#with theme_settings}}
     {{#or show_accept_amex show_accept_discover show_accept_mastercard show_accept_paypal show_accept_visa show_accept_amazonpay show_accept_googlepay show_accept_klarna}}
-    <ul class="footer-payment-icons" aria-label="{{lang 'account.payment_methods.payment_icons_label'}}">
+    <div class="footer-payment-icons">
         {{#if show_accept_amex}}
-        <li>
-            <svg class="footer-payment-icon" role="img">
-                <title>American Express</title>
-                <use href="#icon-logo-american-express"></use>
-            </svg>
-        </li>
+        <svg class="footer-payment-icon"><use href="#icon-logo-american-express"></use></svg>
         {{/if}}
         {{#if show_accept_discover}}
-        <li>
-            <svg class="footer-payment-icon" role="img">
-                <title>Discover</title>
-                <use href="#icon-logo-discover"></use>
-            </svg>
-        </li>
+        <svg class="footer-payment-icon"><use href="#icon-logo-discover"></use></svg>
         {{/if}}
         {{#if show_accept_mastercard}}
-        <li>
-            <svg class="footer-payment-icon" role="img">
-                <title>Mastercard</title>
-                <use href="#icon-logo-mastercard"></use>
-            </svg>
-        </li>
+        <svg class="footer-payment-icon"><use href="#icon-logo-mastercard"></use></svg>
         {{/if}}
         {{#if show_accept_paypal}}
-        <li>
-            <svg class="footer-payment-icon" role="img">
-                <title>PayPal</title>
-                <use href="#icon-logo-paypal"></use>
-            </svg>
-        </li>
+        <svg class="footer-payment-icon"><use href="#icon-logo-paypal"></use></svg>
         {{/if}}
         {{#if show_accept_visa}}
-        <li>
-            <svg class="footer-payment-icon" role="img">
-                <title>Visa</title>
-                <use href="#icon-logo-visa"></use>
-            </svg>
-        </li>
+        <svg class="footer-payment-icon"><use href="#icon-logo-visa"></use></svg>
         {{/if}}
         {{#if show_accept_amazonpay}}
-        <li>
-            <svg class="footer-payment-icon" role="img">
-                <title>Amazon Pay</title>
-                <use href="#icon-logo-amazonpay"></use>
-            </svg>
-        </li>
+        <svg class="footer-payment-icon"><use href="#icon-logo-amazonpay"></use></svg>
         {{/if}}
         {{#if show_accept_googlepay}}
-        <li>
-            <svg class="footer-payment-icon" role="img">
-                <title>Google Pay</title>
-                <use href="#icon-logo-googlepay"></use>
-            </svg>
-        </li>
+        <svg class="footer-payment-icon"><use href="#icon-logo-googlepay"></use></svg>
         {{/if}}
         {{#if show_accept_klarna}}
-        <li>
-            <svg class="footer-payment-icon" role="img">
-                <title>Klarna</title>
-                <use href="#icon-logo-klarna"></use>
-            </svg>
-        </li>
+        <svg class="footer-payment-icon"><use href="#icon-logo-klarna"></use></svg>
         {{/if}}
-    </ul>
+    </div>
     {{/or}}
 {{/with}}

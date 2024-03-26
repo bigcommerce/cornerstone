@@ -286,7 +286,7 @@ product:
         <p class="product-price">{{price.without_tax.formatted}}</p>
         <a href="{{url}}"><img class="product-image" src="{{getImageSrcset image (cdn theme_settings.default_image_product) 1x='128x128' }}" alt=""></a>
        <button class="button-product" data-image="{{getImageSrcset image (cdn theme_settings.default_image_product) 1x='128x128' }}" data-price="{{price.without_tax.formatted}}" onclick="toggleBundle(this) ">Add To Bundle</button></a>
-       <button class="button-product left datasource" data-image="{{getImageSrcset image (cdn theme_settings.default_image_product) 1x='128x128' }}" data-price="{{price.without_tax.formatted}}"  >More</button></a>
+       <button class="button-product left datasource " data-image="{{getImageSrcset image (cdn theme_settings.default_image_product) 1x='128x128' }}" data-price="{{price.without_tax.formatted}}" onclick="customdata()" >More</button></a>
     </div>
     </div> 
     </div>
@@ -321,6 +321,10 @@ product:
     
     <div id="popupCards">
     </div>
+
+look here
+
+
     
    
    
@@ -436,40 +440,89 @@ console.log('jsondata',jsContext);
 
 
 
-$(document).on("click",'.datasource',function(e){
-    var data_image = $(this).attr('data-image')
-    console.log(data_image);
-    var data_price=$(this).attr('data-price')
-    console.log(data_price)
-    itempopup(data_image,data_price);
+// $(document).on("click",'.datasource',function(e){
+//     var data_image = $(this).attr('data-image')
+//     console.log(data_image);
+//     var data_price=$(this).attr('data-price')
+//     console.log(data_price)
+//     itempopup(data_image,data_price);
     
-})
+// })
 
 
-function itempopup(data_image,data_price){
-     console.log("popup",data_image);
-    Swal.fire({
-  title: "<strong>Product</strong>",
-  html: `
+// function itempopup(data_image,data_price){
+//      console.log("popup",data_image);
+//     Swal.fire({
+//   title: "<strong>Product</strong>",
+//   html: `
      
-     <img src="${data_image}"/>
-     <p> "${data_price}"</p>
+//      <img src="${data_image}"/>
+//      <p> "${data_price}"</p>
    
-  `,
+//   `,
   
-  cancelButtonText: `
-    <i class="fa fa-thumbs-down"></i>
-  `,
-  cancelButtonAriaLabel: "Thumbs down"
+//   cancelButtonText: `
+//     <i class="fa fa-thumbs-down"></i>
+//   `,
+//   cancelButtonAriaLabel: "Thumbs down"
+// });
+
+// }
+
+
+
+
+// graphql for the custom data
+
+function customdata(customdatas) {
+    Swal.fire({
+        title: "<strong>Product</strong>",
+        html: `<p>${customdatas.value}</p>`,
+        cancelButtonText: `<i class="fa fa-thumbs-down"></i>`,
+        cancelButtonAriaLabel: "Thumbs down"
+    });
+}
+
+function customquery(){
+    fetch('/graphql', {
+    method: 'POST',
+    credentials: 'same-origin',
+    headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${settings.storefront_api.token}` // use auto-generated token
+    },
+    body: JSON.stringify({
+        query: `query MyQuery {
+            site {
+                products {
+                    edges {
+                        node {
+                            customFields {
+                                edges {
+                                    node {
+                                        value
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }`
+    })
+})
+.then(res => res.json())
+.then(data => {
+    const customdatas = data.data.site.products.edges.map(edge => edge.node.customFields.edges.map(edge => edge.node.value));
+    console.log('Custom Data:', customdatas);
+    customdatas.forEach(value => {
+        customdata(value);
+    });
 });
+
 
 }
 
-
-
-
-
- 
 
 
 </script>

@@ -3,6 +3,10 @@
         {{> components/common/currency-selector}}
     {{/or}}
 
+    {{#unless theme_settings.hide_channels}}
+        {{> components/common/channel-selector}}
+    {{/unless}}
+
     <ul class="navUser-section navUser-section--alt">
         {{#if customer.store_credit.value '>' 0}}
             <li class="navUser-item">

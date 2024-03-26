@@ -253,7 +253,13 @@ product:
         right: 10px;
         cursor: pointer;
     }
-
+    .para{
+        font-weight: bold;
+        font-size: x-large;
+    }
+    .sku{
+        font-weight: 50;
+    }
 
         
         </style>  
@@ -421,8 +427,8 @@ fetch('/graphql', {
         <div class="small-12 medium-6 large-3 columns">   
         <img src="${product.node.images.edges[0].node.urlOriginal}">
         <h4>${product.node.name}</h4>
-        <h5>${product.node.sku}</h5>
-        <p>${product.node.prices.basePrice.currencyCode} ${product.node.prices.basePrice.value}</p>
+        <h5><b>sku:</b> ${product.node.sku}</h5>
+        <p class="para ">${product.node.prices.basePrice.currencyCode} ${product.node.prices.basePrice.value}</p>
         <a href="/cart.php?action=add&product_id=${product.node.entityId}"><button class="btn-1">Add to cart</button></a>
         </div>
     </div>

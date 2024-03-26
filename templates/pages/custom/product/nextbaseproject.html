@@ -43,9 +43,12 @@ product:
 
     {{> components/products/schema}}
 
-    <style>
 
-        /* BANNER SECTION */
+<!-------------------- css section ------------------------->
+    
+
+    <style>
+    /*------------ BANNER SECTION ---------------*/
         
         .button-banner{
             background: linear-gradient(270deg, #990AE2 1.67%, #1485EF 96.39%);
@@ -103,10 +106,12 @@ product:
             
         }
         
-        /* END BANNER SECTION */
+        /* ---------------END BANNER SECTION---------------- */
         
         
-        /* PRODUCT SECTION */
+
+
+        /* ------------------PRODUCT SECTION----------------- */
         .button-product
         {
             background: linear-gradient(270deg, #990AE2 1.67%, #1485EF 96.39%);
@@ -169,12 +174,13 @@ product:
             background-color: #881ca9; 
         }
         
-        /* END PRODUCT SECTION */
+        /*-------------- END PRODUCT SECTION------------------ */
         
         
         
+
         
-        /* TEXT SECTION */
+        /*------------- TEXT SECTION------------------- */
         
         .text-main
         {
@@ -188,31 +194,59 @@ product:
             text-align: center;font-weight: bold;margin-bottom: 50px;
         }
         
-        /* END TEXT SECTION */
+        /*--------------- END TEXT SECTION-------------- */
 
 
-        
+
+
+        #popup-window {
+            position: fixed;
+            width: 300px;
+            height: 200px;
+            background: white;
+            border: 1px solid black;
+            padding: 10px;
+            margin: auto;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 10;
+            display: none;
+            }
         </style>  
+<!------------------- end of html section ------------------------->
 
 
-<!-- BANNER SECTION START -->
+
+
+
+<!---------------------- html section ------------------>
+
+    <!------------------------ BANNER SECTION START ---------------------------->
 
         <div class="row row-banner">
             <div class="small-1 columns col123"><img class="img-banner" src="https://cdn11.bigcommerce.com/s-8mw570y811/images/stencil/900w/products/116/452/best__16337__02178.1684413436.png" alt="">
            </div>
          <div class="small-2 columns"><h4 class="h-banner">522GW</h4></div>
             <div class="small-4 columns col-banner" id="reactContainer">Choose add-ons and services to create your bundle, or say “None.”</div>
-            <div class="small-2 columns"><h4 class="price-banner"></h4>
+            <div class="small-2 columns"><h4 class="price-banner">EUR 169</h4>
                 </div>
             <div class="small-3 columns"><a href="/cart.php?action=add&product_id={{id}}"><button class="button-banner">Add to Cart</button></a></div>
         </div>
-<!-- BANNER SECTION END -->
+    <!--------------------------- BANNER SECTION END ------------------------->
 
-    
+
+
+    <!-- text section -->
     <h1 class="text-main">Add a rear-facing camera module for much more protection.</h1>
     <p class="text-local">Only one camera can be used at a time.</p>
-    
-<!-- CARD SECTION     -->
+    <!-- end of txt section -->
+
+
+
+
+    <!------------------------------ CARD SECTION     -------------------------->
 <div class="row">
     {{#each product.related_products}}
     <div class="small-12 medium-6 large-3 columns">   
@@ -221,7 +255,9 @@ product:
         <h4 class="product-name">{{name}}</h4>
         <p class="product-price">{{price.without_tax.formatted}}</p>
         <a href="{{url}}"><img class="product-image" src="{{getImageSrcset image (cdn theme_settings.default_image_product) 1x='128x128' }}" alt=""></a>
-        <!-- <button class="btn-more" id="moreButton" onclick="showPopup()">More</button> -->
+        <!-- popup -->
+        <button class="popup-link">More</button>
+        <!-- popup end  -->
        <button class="button-product" data-image="{{getImageSrcset image (cdn theme_settings.default_image_product) 1x='128x128' }}" data-price="{{price.without_tax.formatted}}" onclick="toggleBundle(this) ">Add to Bundle</button></a>
     </div>
     </div> 
@@ -229,27 +265,35 @@ product:
     {{/each}} 
 
 
+    <!----------------------- NONE CARD -------------------->
 
     <div class="small-12 medium-6 large-3 columns">   
         <div class="card card-product product-none " id="bundleCard">
             <div class="card-sction">
                 <a href=""><img class="product-image-none" src="https://cdn11.bigcommerce.com/s-o257sk57z9/images/stencil/original/image-manager/nothanks.png?t=1662972940&_gl=1*183hi9z*_ga*MTc3Njg0NTM2NC4xNjQzMDkyMzIw*_ga_WS2VZYPC6G*MTY2Mjk3MjM4Mi40MDUuMS4xNjYyOTcyOTU0LjU4LjAuMA.." alt=""></a>
                 <h4>None</h4>
-
         </div>
         </div> 
         </div>
     </div>
+    <!--------------------------END OF CARD SECTION ----------------------->
+
+
+<div id="popup-window">
+
+    <h4 class="product-name">HI</h4>
+    <h3></h3>
+    <p class="product-price">{{name}}</p>
+    <button id="close-button">Close</button>
+       
+</div> 
+
+
+<!-------------- end of html section ------------------->
 
 
 
-<!-- <div id="popup" class="popup">
-    <h2>More Products</h2>
-    <div id="moreProducts"></div>
-</div> -->
 
-
-<!-----END OF CARD SECTION ---->
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script>
@@ -288,13 +332,13 @@ product:
 function updateBanner(sku, price, imageUrl) {
         $('.col-banner').append('<img src="' + imageUrl + '">');
         $('.price-banner').append(price);
-        $('.col-banner').data("sku", sku);
+        $('.col-banner').data("sku",sku);
     }
 
 function resetBanner() {
         $('.col-banner').html('Choose add-ons and services to create your bundle, or say “None.”');
-        $('.price-banner').html('');
-        $('.col-banner').data("sku", "");
+        $('.price-banner').html('EUR 169');
+ 
     }
 
 
@@ -311,39 +355,28 @@ document.getElementById('bundleCard').addEventListener('click', function() {
 
 
 
+        var popupLink = document.querySelectorAll('.popup-link');
+        var popupWindow = document.getElementById("popup-window");
+        var closeButton = document.getElementById("close-button");
 
-    // function showPopup() {
-    // var moreProducts = getMoreProducts(); 
-    // populateMoreProducts(moreProducts);
-    // document.getElementById("popup")
-
-    // }
-    
-    // function getMoreProducts(){
-    //     var customFieldData = `{{custom_field "More Products"}}`;
-    //     var productSKU=customFieldData.split(',');
-    //     var moreProducts = [];
-
-    //     var productsData = [
-    //     { name: "${product.node.name}", image: "${product.node.images.edges[0].node.urlOriginal}", price: "${product.node.prices.basePrice.value}",sku: "product.node.sku"},
-        
-    // ];
+        var myFuntion = function(){
+            event.preventDefault();
+          popupWindow.style.display = "block";   
+        }
+        for (var i = 0 ; i < popupLink.length; i++) {
+        popupLink[i].addEventListener('click' , myFuntion , false ) ; 
+}
 
 
-
-    // }
-
-
-
-    
+        closeButton.addEventListener("click", function() {
+          popupWindow.style.display = "none";
+        });
+      
 </script>
 
 
 
-<!-- GRAOHQL -->
-
-
-
+<!-------------- qraphql starting ------------->
 <style>
 
     .product-card {
@@ -402,9 +435,23 @@ document.getElementById('bundleCard').addEventListener('click', function() {
     }
 
 
-
-
+    .popup-content{
     
+            position: fixed;
+            width: 300px;
+            height: 200px;
+            background: white;
+            border: 1px solid black;
+            padding: 10px;
+            margin: auto;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 10;
+            display: none;           
+    }
+
 </style>
 
 
@@ -414,7 +461,7 @@ document.getElementById('bundleCard').addEventListener('click', function() {
       credentials: 'same-origin',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer {{ settings.storefront_api.token }}' // use auto-generated token
+        'Authorization': 'Bearer {{ settings.storefront_api.token }}' 
       },
       body: JSON.stringify({
         query: `query newProducts{
@@ -432,6 +479,15 @@ document.getElementById('bundleCard').addEventListener('click', function() {
           }
             sku
             name
+            customFields{
+              edges{
+                node{
+                  value
+                  name
+                }
+                
+              }
+            }
             entityId
             prices{
               basePrice{
@@ -447,45 +503,34 @@ document.getElementById('bundleCard').addEventListener('click', function() {
       })
     })
     .then(res => res.json())
-.then(data => {
+    .then(data => {
 
-  const newestProducts = data.data.site.newestProducts.edges;
-  console.log("hiii",newestProducts);
+    const newestProducts = data.data.site.newestProducts.edges;
+    console.log("hiii",newestProducts);
  
   
-  const productCardsHTML = newestProducts.map(product => `
-  <div class="row product-card">
+    const productCardsHTML = newestProducts.map(product => `
+    <div class="row product-card">
     <div class="small-12 medium-6 large-3 column">
-      <h4>${product.node.name}</h4>
-      <img class="imgc" src="${product.node.images.edges[0].node.urlOriginal}"></img>
-      
-      <p>${product.node.prices.basePrice.currencyCode} ${product.node.prices.basePrice.value}</p>
-      <a href="/cart.php?action=add&product_id=${product.node.entityId}"><button class="btn-q1">ADD</button></a> 
+    <h4>${product.node.name}</h4>
+    <img class="imgc" src="${product.node.images.edges[0].node.urlOriginal}"></img>
+    <p>${product.node.prices.basePrice.currencyCode} ${product.node.prices.basePrice.value}</p>
+    <a href="/cart.php?action=add&product_id=${product.node.entityId}"><button class="btn-q1">ADD</button></a> 
+ 
+
     </div>
     </div>
-  `).join('');
+    `).join('');
 
-  document.getElementById('productCards').innerHTML = productCardsHTML;
-})
-.catch(error => console.error(error));
-
-
+    document.getElementById('productCards').innerHTML = productCardsHTML;
+    })
+    .catch(error => console.error(error));
 // const jsContext = JSON.parse({{ jsContext }});
 // console.log("hyyyyyyy",jsContext);
-
-    </script>
-
-<section>
-
-    <div id="productCards">
-        
+</script>
+<!--------------- end of graphql section -------------->
+    <div id="productCards">   
     </div>
-    </section>
-
-
-
-
-
 
 {{/partial}}
 {{> layout/base}}

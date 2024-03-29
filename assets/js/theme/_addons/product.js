@@ -1148,8 +1148,7 @@ export default class Product extends PageManager {
   }
 
   updateInstructions() {
-    console.log('update instructions');
-    console.log('this.endPointData;', this.endPointData);
+    // console.log('update instructions');
     const iframe = this.contentElements.instructions.querySelector("iframe");
     let currentSrc = "";
     let currentUrl = "";
@@ -1159,29 +1158,19 @@ export default class Product extends PageManager {
       currentUrl = new URL(currentSrc).pathname + "?asDoc=true";
     }
     if (this.endPointData) {
-      console.log('load enpoint instructions');
-      // console.log('endpoint instructions url: ', this.endPointData.instructions_url);
-      // const url = new URL(
-      //   "https://www.cravenspeed.com" + this.endPointData.instructions_url
-      // );
       const urlString = this.endPointData.instructions_url;
       const urlBase = 'https://cravenspeed.com';
       const url = new URL(urlString, urlBase);
       url.searchParams.append('asDoc', 'true');
-      console.log('url: ', url);
       const domain = url.hostname;
-      console.log('domain:', domain);
       if (domain === "cravenspeed.com" || domain === "www.cravenspeed.com") {
         const instructions = document.createElement("iframe");
         const newUrl = url.pathname + "?asDoc=true";
-        console.log('newURL: ', newUrl);
         // console.log('currentUrl: ', currentUrl);
         if (newUrl !== currentUrl) {
-          console.log('url is new', newUrl);
           this.showLoadingIcon();
           instructions.src = newUrl;
           instructions.onload = () => this.hideLoadingIcon();
-          console.log('instructions:', instructions);
           this.contentElements.instructions.appendChild(instructions);
         }
       } else {
@@ -1191,13 +1180,9 @@ export default class Product extends PageManager {
       }
     } else {
       if (!this.loadedDefaultIntructions) {
-        // console.log('load default instructions');
         const url = new URL(default_instructions_url);
-        // console.log('url: ', url);
         const domain = url.hostname;
-        // console.log('domain: ', domain);
         if (domain === "cravenspeed.com" || domain === "www.cravenspeed.com") {
-          // console.log('domain match');
           this.showLoadingIcon();
           const instructions = document.createElement("iframe");
           instructions.src = url.pathname + "?asDoc=true";

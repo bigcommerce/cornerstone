@@ -1250,27 +1250,29 @@ export default class Product extends PageManager {
     this.blemData = blem_dict[this.endPointData.base_sku];
     if (this.blemData) {
       let blemInventory = global_inv[this.blemData.index];
-      if (blemInventory.av > 0 || blemInventory.a2b > 0) {
-        let blemPrice = this.blemData.price;
-        let savings = this.endPointData.price - blemPrice;
-        let savingsFormatted = savings.toLocaleString("us-en", {
-          style: "currency",
-          currency: "USD",
-        });
-        let blemCheckbox = document.createElement("input");
-        let blemLabel = document.createElement("label");
-        blemCheckbox.type = "checkbox";
-        blemCheckbox.id = "blem-opt-in";
-        blemCheckbox.name = "blem-opt-in";
-        blemCheckbox.setAttribute("data-reveal-id", "scratch-and-dent");
-        blemLabel.setAttribute("for", "blem-opt-in");
-        let blemMessage = "Interested in saving " + savingsFormatted + "?";
-        blemLabel.innerHTML = blemMessage;
-        this.contentElements.blemForm.append(blemCheckbox, blemLabel);
-        this.contentElements.blemForm.style.visibility = "visible";
-        this.blemAddUrl = `/cart.php?action=add&product_id=${encodeURIComponent(
-          this.blemData.blem_id
-        )}&source=${encodeURIComponent(this.name)}`;
+      if (blemInventory) {
+        if (blemInventory.av > 0 || blemInventory.a2b > 0) {
+          let blemPrice = this.blemData.price;
+          let savings = this.endPointData.price - blemPrice;
+          let savingsFormatted = savings.toLocaleString("us-en", {
+            style: "currency",
+            currency: "USD",
+          });
+          let blemCheckbox = document.createElement("input");
+          let blemLabel = document.createElement("label");
+          blemCheckbox.type = "checkbox";
+          blemCheckbox.id = "blem-opt-in";
+          blemCheckbox.name = "blem-opt-in";
+          blemCheckbox.setAttribute("data-reveal-id", "scratch-and-dent");
+          blemLabel.setAttribute("for", "blem-opt-in");
+          let blemMessage = "Interested in saving " + savingsFormatted + "?";
+          blemLabel.innerHTML = blemMessage;
+          this.contentElements.blemForm.append(blemCheckbox, blemLabel);
+          this.contentElements.blemForm.style.visibility = "visible";
+          this.blemAddUrl = `/cart.php?action=add&product_id=${encodeURIComponent(
+            this.blemData.blem_id
+          )}&source=${encodeURIComponent(this.name)}`;
+        }
       }
     }
   }

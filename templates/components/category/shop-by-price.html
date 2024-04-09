@@ -1,33 +1,12 @@
-{{#and theme_settings.shop_by_price_visibility shop_by_price}}
+{{#if theme_settings.shop_by_price_visibility}}
     <div class="sidebarBlock">
-        <h2 class="sidebarBlock-heading" data-shop-by-price>{{lang 'category.shop_by_price'}}</h2>
-        <ul class="navList">
-            {{#each shop_by_price}}
-            <li class="navList-item">
-                <a 
-                    {{#if selected }} 
-                        class="navList-action is-active"
-                        role="status"
-                        aria-live="assertive"
-                   {{else}}
-                        class="navList-action"
-                   {{/if}}
-                   href="{{url}}"
-                >
-                   {{lang 'category.filter_price_range'}} {{low.formatted}} - {{high.formatted}}
-                </a>
-                <span class="price-filter-message aria-description--hidden">{{lang 'category.filter_select_announcement'}}</span>
-            </li>
-            {{/each}}
+        <h2 class="sidebarBlock-heading heading-price" data-shop-by-price>{{lang 'category.shop_by_price'}}</h2>
 
-            {{#any shop_by_price selected=true}}
-                <li class="navList-item">
-                    <a href="{{category_url}}" class="navList-action reset-btn">
-                        {{lang 'category.reset'}}
-                    </a>
-                    <span class="reset-message aria-description--hidden">{{lang 'category.filter_reset_announcement'}}</span>
-                </li>
-            {{/any}}
-        </ul>
+        {{> components/faceted-search/range-form shop_by_price=theme_settings.shop_by_price_visibility}}
+
+        <div class="reset-filters">
+            <a href="{{category.url}}" class="navList-action reset-btn">{{lang 'category.reset'}}</a>
+            <span class="reset-message aria-description--hidden">{{lang 'category.filter_reset_announcement'}}</span>
+        </div>
     </div>
-{{/and}}
+{{/if}}

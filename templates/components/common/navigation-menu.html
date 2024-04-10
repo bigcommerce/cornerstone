@@ -68,6 +68,11 @@
                 </div>
             </li>
         {{/if}}
+        {{#if theme_settings.show_channels}}
+            <li class="navPages-item">
+                {{> components/common/channel-selector-mobile}}
+            </li>
+        {{/if}}
         {{#if settings.gift_certificates_enabled}}
             <li class="navPages-item">
                 <a class="navPages-action"

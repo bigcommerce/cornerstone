@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Draft
+- Screen Reader only text must be provided [#2454](https://github.com/bigcommerce/cornerstone/pull/2454)
 - Storefront nav for switching between country-specific websites (step 1) [#2453](https://github.com/bigcommerce/cornerstone/pull/2453)
 - ADA Compliance - Accordion buttons are not read by screen reader correctly [#2441](https://github.com/bigcommerce/cornerstone/pull/2441)
 - ADA Compliance - Region requires additional ARIA markup to assist screen reader users [#2435](https://github.com/bigcommerce/cornerstone/pull/2435)

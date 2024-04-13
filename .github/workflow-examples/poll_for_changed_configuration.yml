@@ -17,7 +17,7 @@ jobs:
 
     strategy:
       matrix:
-        node: [16.x]
+        node: [18.x]
 
     steps:
     - name: Checkout code
@@ -37,7 +37,7 @@ jobs:
           ${{ runner.os }}-node-
 
     - name: Install Stencil CLI Dependency
-      run: npm install -g @bigcommerce/stencil-cli
+      run: npm install -g @bigcommerce/stencil-cli@7.4.1
 
 #
 # You must configure store credentials as secrets on your GitHub repo for this job to work

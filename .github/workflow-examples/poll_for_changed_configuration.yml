@@ -37,7 +37,9 @@ jobs:
           ${{ runner.os }}-node-
 
     - name: Install Stencil CLI Dependency
-      run: npm install -g @bigcommerce/stencil-cli@7.4.1
+      run: npm install -g @bigcommerce/stencil-cli@7.2.0
+    - name: Check Stencil CLI node-version
+      run: npx stencil-cli --version
 
 #
 # You must configure store credentials as secrets on your GitHub repo for this job to work

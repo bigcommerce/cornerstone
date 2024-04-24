@@ -143,7 +143,7 @@ export default class Product extends PageManager {
   sendMessage(message) {
     if (message === 'outOfStock') {
       this.contentElements.productMessages.innerHTML =
-        'Out of stock.&nbsp;<span>Sign up for stock updates</span>.';
+        'Out of stock.&nbsp;<span class="message-link">Sign up for stock updates</span>.';
       this.contentElements.productMessages.setAttribute(
         'data-reveal-id',
         'stock-notification'

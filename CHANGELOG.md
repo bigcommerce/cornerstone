@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Draft
 - Screen Reader only text must be provided [#2454](https://github.com/bigcommerce/cornerstone/pull/2454)
+- Remove "cookie notification" JS and CSS [#2447](https://github.com/bigcommerce/cornerstone/pull/2447)
 - Storefront nav for switching between country-specific websites (step 1) [#2453](https://github.com/bigcommerce/cornerstone/pull/2453)
 - ADA Compliance - Accordion buttons are not read by screen reader correctly [#2441](https://github.com/bigcommerce/cornerstone/pull/2441)
 - ADA Compliance - Region requires additional ARIA markup to assist screen reader users [#2435](https://github.com/bigcommerce/cornerstone/pull/2435)
@@ -19,7 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Page Suggested Items still listed on Cornerstone [#2438](https://github.com/bigcommerce/cornerstone/pull/2438)
 - Remove shop_by_price: true from category.html [#2431](https://github.com/bigcommerce/cornerstone/pull/2431)
 - Added SEPA and ECP stored bank accounts typesto the Payment methods page [#2434](https://github.com/bigcommerce/cornerstone/pull/2434)
-
+- Added min-height for vaulted payment methods [#2455](https://github.com/bigcommerce/cornerstone/pull/2455)
 
 ## 6.13.0 (02-12-2024)
 - Fix HTML markup for product listing and below content region [#2426](https://github.com/bigcommerce/cornerstone/pull/2426)

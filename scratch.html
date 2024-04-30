@@ -1,0 +1,1219 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width">
+
+  <style type="text/css">
+    @media only screen {
+      html {
+        background: #fff;
+        min-height: 100%;
+      }
+    }
+
+    body, table, tr, td, th, div, h1, p, img {
+      Margin: 0;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      -moz-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      min-width: 100%;
+      -ms-text-size-adjust: 100%;
+      -webkit-text-size-adjust: 100%;
+      width: 100%;
+    }
+
+    table {
+      border-collapse: collapse;
+      border-spacing: 0;
+      width: 100%;
+    }
+
+    td, th {
+      border-collapse: collapse;
+    }
+
+    h1, p, a, span, img {
+      color: #333;
+      font-family: Montserrat, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+      font-size: 14px;
+      font-weight: 400;
+      -moz-hyphens: auto;
+      -webkit-hyphens: auto;
+      hyphens: auto;
+      line-height: 1.57143;
+      word-wrap: break-word;
+    }
+
+    h1 {
+      font-size: 28px;
+      font-weight: 500;
+      line-height: 1.21429;
+    }
+
+    h1:not(:last-child),
+    p:not(:last-child) {
+      Margin: 0 0 32px;
+      margin: 0 0 32px;
+    }
+
+    a {
+      color: #2199e8;
+      display: inline-block;
+      text-decoration: none;
+    }
+
+    strong {
+      font-weight: 600;
+    }
+
+    img {
+      border: none;
+      display: block;
+      outline: 0;
+      text-align: center;
+      max-width: 100%;
+      max-height: 100%;
+    }
+
+    hr {
+      border: none;
+      border-bottom: 1px solid #d0d0d0;
+    }
+
+    .preheader {
+      display: none;
+      font-size: 1px;
+      line-height: 1px;
+      max-height: 0;
+      max-width: 0;
+      mso-hide: all;
+      opacity: 0;
+      overflow: hidden;
+      visibility: hidden;
+    }
+
+    .body {
+      background: #fff;
+      height: 100%;
+    }
+
+    .body > tr > td {
+      text-align: center;
+    }
+
+    .container,
+    .column {
+      Margin: 0 auto;
+      margin: 0 auto;
+      width: 544px;
+    }
+
+    .column td,
+    .column th {
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .column--md-9 {
+      width: 75%;
+    }
+
+    .column--md-3 {
+      width: 25%;
+    }
+
+    .expander {
+      padding: 0 !important;
+      visibility: hidden;
+      width: 0;
+    }
+
+    .spacer--16 td {
+      font-size: 16px;
+      height: 16px;
+      line-height: 16px;
+    }
+
+    .spacer--24 td {
+      font-size: 24px;
+      height: 24px;
+      line-height: 24px;
+    }
+
+    .spacer--32 td {
+      font-size: 32px;
+      height: 32px;
+      line-height: 32px;
+    }
+
+    .spacer--40 td {
+      font-size: 40px;
+      height: 40px;
+      line-height: 40px;
+    }
+
+    .delimiter th {
+      vertical-align: middle;
+    }
+
+    .delimiter__image,
+    .delimiter__image-block {
+      width: 48px;
+    }
+
+    .logo td {
+      padding: 24px 0;
+    }
+
+    .logo a {
+      color: #333;
+      display: block;
+      text-align: center;
+    }
+
+    .logo img {
+      color: #333;
+      text-decoration: none;
+      margin: 0 auto;
+    }
+
+    .logo span {
+      color: #333;
+      font-size: 36px;
+      font-weight: 600;
+    }
+
+    h2 {
+      Margin: 0 0 4px;
+      color: #333;
+      font-family: Montserrat, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+      font-size: 21px;
+      font-weight: 500;
+      -moz-hyphens: auto;
+      -webkit-hyphens: auto;
+      hyphens: auto;
+      line-height: 1.57143;
+      margin: 0 0 4px;
+      word-wrap: break-word;
+    }
+
+    .testMessage div {
+      background: #fff9e5;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .payment-message div {
+      background: #fff9e5;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .payment-message .payment-offline {
+      text-align: left;
+    }
+
+    .products {
+      border-top: 1px solid #e5e5e5;
+    }
+
+    .products__item {
+      border-bottom: 1px solid #e5e5e5;
+    }
+
+    .products__item th {
+      padding-bottom: 16px;
+      padding-top: 16px;
+    }
+
+    .products__image-container {
+      height: 80px;
+      width: 80px;
+    }
+
+    .products__image {
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      height: 78px;
+      width: 78px;
+    }
+
+    .products__item .products__content,
+    .products__item .products__quantity,
+    .products__item .products__total {
+      vertical-align: middle;
+    }
+
+    .products__content:not(:first-child) {
+      padding-left: 24px;
+    }
+
+    .products__content {
+      padding-right: 24px;
+    }
+
+    .products__content p:not(:last-child) {
+      Margin: 0 0 4px;
+      margin: 0 0 4px;
+    }
+
+    .products__content .products__download {
+      Margin-top: 12px;
+      margin-top: 12px;
+    }
+
+    .products__sku,
+    .products__brand,
+    .products__options,
+    .products__attributes,
+    .products__preorder,
+    .products__configurable-fields p,
+    .products__event,
+    .products__price {
+      font-size: 12px;
+      line-height: 1.666667;
+    }
+
+    .products__quantity {
+      width: 65px;
+    }
+
+    .products__total {
+      width: 100px;
+    }
+
+    .products__total p {
+      text-align: right;
+    }
+
+    .total > tr > th {
+      text-align: right;
+    }
+
+    .total__content {
+      width: auto;
+      margin: 0 0 0 auto;
+    }
+
+    .total__name,
+    .total__value {
+      padding-bottom: 4px;
+    }
+
+    .total__item .total__name p {
+      text-align: right;
+    }
+
+    .total__value {
+      padding-left: 15px;
+    }
+
+    .total__value p {
+      text-align: right;
+    }
+
+    .payment-message p:not(:last-child) {
+      Margin: 0 0 8px;
+      margin: 0 0 8px;
+    }
+
+    .addresses__content,
+    .addresses__content dt,
+    .addresses__content dd {
+      Margin: 0;
+      color: #333;
+      font-family: Montserrat, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+      font-size: 14px;
+      font-weight: 400;
+      -moz-hyphens: auto;
+      -webkit-hyphens: auto;
+      hyphens: auto;
+      line-height: 1.57143;
+      text-transform: uppercase;
+      margin: 0;
+      word-wrap: break-word;
+    }
+
+    .addresses__content {
+      border-top: 1px solid #e5e5e5;
+      padding-top: 12px;
+    }
+
+    .addresses__content dd {
+      Margin: 0 0 0 25px;
+      display: list-item;
+      margin: 0 0 0 25px;
+    }
+
+    .addresses__name {
+      text-transform: none;
+    }
+
+    .customer-message {
+      border-top: 1px solid #e5e5e5;
+      padding-top: 12px;
+    }
+
+    .check {
+      border: 1px solid #999;
+      border-radius: 4px;
+      -moz-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      color: #777;
+      display: inline-block;
+      font-weight: 600;
+      padding: 4px 15px;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+
+    .store p {
+      Margin: 0;
+      margin: 0;
+    }
+
+    .store a {
+      color: #777;
+      font-size: 12px;
+    }
+
+    .store-button a {
+      border: 1px solid #999;
+      border-radius: 4px;
+      -moz-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      color: #777;
+      padding: 3px 15px;
+      text-align: center;
+      white-space: nowrap;
+      width: 100%;
+    }
+
+    @media only screen and (max-width: 599px) {
+      img {
+        height: auto !important;
+        width: auto !important;
+      }
+
+      .container {
+        width: 100% !important;
+      }
+
+      .column {
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        height: auto !important;
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+      }
+
+      .column--xs-12 {
+        display: inline-block !important;
+        width: 100% !important;
+      }
+
+      .delimiter__image {
+        width: 48px !important;
+      }
+
+      .products__image {
+        width: 78px !important;
+        height: 78px !important;
+      }
+
+      .products__content,
+      .products__quantity,
+      .products__total {
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        display: inline-block !important;
+      }
+
+      .products__content {
+        padding-bottom: 0 !important;
+        padding-right: 0 !important;
+        width: 100% !important;
+      }
+
+      .products__quantity,
+      .products__total {
+        padding-top: 4px !important;
+        width: 50% !important;
+      }
+
+      .products__quantity {
+        padding-left: 24px !important;
+      }
+
+      .products__total p {
+        text-align: right;
+      }
+
+      .store th {
+        padding-bottom: 16px !important;
+      }
+
+      .store p {
+        text-align: center !important;
+      }
+
+      .store-button a {
+        margin-left: auto !important;
+        margin-right: auto !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <span class="preheader"></span>
+
+  <table class="body">
+    <tr>
+      <td>
+        <table class="spacer spacer--16">
+          <tr>
+            <td>&nbsp;</td>
+          </tr>
+        </table>
+
+        <table class="container">
+          <tr>
+            <td>
+              <table class="row">
+                <tr>
+                  <th class="column">
+                    <table class="logo">
+                      <tr>
+                        <th>
+                          <a href="{{store.path}}" target="_blank">
+                            {{#if store.logo.url}}
+                              <img src="{{store.logo.url}}" alt="{{store.logo.title}}">
+                            {{else}}
+                              <span>{{store.logo.title}}</span>
+                            {{/if}}
+                          </a>
+                        </th>
+
+                        <th class="expander"></th>
+                      </tr>
+                    </table>
+                  </th>
+                </tr>
+              </table>
+
+              <table class="row">
+                <tr>
+                  <th class="column">
+                    <table>
+                      <tr>
+                        <th>
+                          <table class="delimiter">
+                            <tr>
+                              <th>
+                                <hr>
+                              </th>
+
+                              <th class="delimiter__image-block">
+                                <img src="{{store.cdn_path}}/img/emails/cart.png" alt="Cart image" class="delimiter__image">
+                              </th>
+
+                              <th>
+                                <hr>
+                              </th>
+                            </tr>
+                          </table>
+                        </th>
+
+                        <th class="expander"></th>
+                      </tr>
+                    </table>
+                  </th>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+
+        <table class="spacer spacer--40">
+          <tr>
+            <td>&nbsp;</td>
+          </tr>
+        </table>
+
+        <table class="container">
+          <tr>
+            <td>
+              {{#if order.payment.is_test}}
+                <table class="row">
+                  <tr>
+                    <th class="column">
+                      <table class="testMessage">
+                        <tr>
+                          <th>
+                            <div>
+                              <p>{{{lang 'no_payment_taken_in_test_mode'}}}</p>
+                            </div>
+                          </th>
+
+                          <th class="expander"></th>
+                        </tr>
+                      </table>
+                    </th>
+                  </tr>
+                </table>
+
+                <table class="spacer spacer--16">
+                  <tr>
+                    <td>&nbsp;</td>
+                  </tr>
+                </table>
+              {{/if}}
+
+              <table class="row">
+                <tr>
+                  <th class="column">
+                    <table>
+                      <tr>
+                        <th>
+                          <h1>{{lang 'title'}}</h1>
+                        </th>
+
+                        <th class="expander"></th>
+                      </tr>
+                    </table>
+                  </th>
+                </tr>
+              </table>
+
+              <table class="spacer spacer--32">
+                <tr>
+                  <td>&nbsp;</td>
+                </tr>
+              </table>
+
+              <table class="row">
+                <tr>
+                  <th class="column">
+                    <table>
+                      <tr>
+                        <th>
+                          <h2>{{lang 'product_title' id=order.id}}</h2>
+
+                          <table class="products">
+                            {{#each order.products}}
+                              {{#if address_lines}}
+                                <tr class="products__item">
+                                  <th colspan="4">
+                                    <p>
+                                      <strong>{{lang 'shipped_title'}}</strong>
+
+                                      <br />
+
+                                      {{join address_lines ', '}}
+                                    </p>
+                                  </th>
+                                </tr>
+                              {{/if}}
+
+                              {{#if pickup}}
+                                <tr class="products__item">
+                                  <th colspan="4">
+                                    <p>
+                                      <strong>{{pickup.name}}</strong>
+
+                                      <br />
+
+                                      {{join pickup.location.address_lines ', '}},
+                                      {{pickup.location.city}},
+                                      {{pickup.location.state}},
+                                      {{pickup.location.zip}},
+                                      {{pickup.location.country}}
+                                    </p>
+                                  </th>
+                                </tr>
+                              {{/if}}
+
+                              {{#if type '===' 'digital'}}
+                                <tr class="products__item">
+                                  <th colspan="4">
+                                    <p>
+                                      <strong>{{lang 'download_title'}}</strong>
+
+                                      <br />
+
+                                      {{lang 'download_available_after_payment'}}
+                                    </p>
+                                  </th>
+                                </tr>
+                              {{/if}}
+
+                              <tr class="products__item">
+                                {{#if thumbnail}}
+                                  <th class="products__image-container">
+                                    <img src="{{thumbnail}}" class="products__image" alt="{{name}}">
+                                  </th>
+                                {{/if}}
+
+                                <th class="products__content">
+                                  <p>
+                                    <strong>{{name}}</strong>
+                                  </p>
+
+                                  {{#if sku}}
+                                    <p class="products__sku">{{sku}}</p>
+                                  {{/if}}
+
+                                  {{#if brand}}
+                                    <p class="products__brand">
+                                      {{lang 'brand'}}
+                                      {{brand}}
+                                    </p>
+                                  {{/if}}
+
+                                  {{#if options.length}}
+                                    <p class="products__options">
+                                      {{#eachIndex options}}
+                                        {{index}}:
+                                        {{item}}
+                                      {{/eachIndex}}
+                                    </p>
+                                  {{/if}}
+
+                                  {{#if attribute_lines}}
+                                    <p class="products__attributes">{{join attribute_lines ', '}}</p>
+                                  {{/if}}
+
+                                  {{#if preorder.is_preorder}}
+                                    <p class="products__preorder">
+                                      {{#if preorder.date.value}}
+                                        {{#replace '%%DATE%%' preorder.message}}
+                                          {{preorder.date.formatted}}
+                                        {{else}}
+                                          {{preorder.message}}
+                                        {{/replace}}
+                                      {{else}}
+                                        {{lang 'preorder' }}
+                                      {{/if}}
+                                    </p>
+                                  {{/if}}
+
+                                  <table class="products__configurable-fields">
+                                    {{#each configurable_fields}}
+                                      <tr>
+                                        <th>
+                                          <p>{{name}}:</p>
+                                        </th>
+
+                                        <th>
+                                          <p>{{value}}</p>
+                                        </th>
+                                      </tr>
+                                    {{/each}}
+                                  </table>
+
+                                  {{#if event.date.value}}
+                                    <p class="products__event">
+                                      {{event.name}}:
+                                      {{event.date.formatted}}
+                                    </p>
+                                  {{/if}}
+
+                                  <p class="products__price">{{price.formatted}}</p>
+
+                                  {{#if download_url}}
+                                    <p class="products__download">
+                                      <a href="{{download_url}}">{{lang 'download_files'}}</a>
+                                    </p>
+                                  {{/if}}
+                                </th>
+
+                                <th class="products__quantity">
+                                  <p>
+                                    {{lang 'quantity'}}
+                                    {{quantity}}
+                                  </p>
+                                </th>
+
+                                <th class="products__total">
+                                  <p>
+                                    <strong>{{total.formatted}}</strong>
+                                  </p>
+                                </th>
+                              </tr>
+                            {{/each}}
+                          </table>
+                        </th>
+
+                        <th class="expander"></th>
+                      </tr>
+                    </table>
+                  </th>
+                </tr>
+              </table>
+
+              <table class="spacer spacer--16">
+                <tr>
+                  <td>&nbsp;</td>
+                </tr>
+              </table>
+
+              <table class="row">
+                <tr>
+                  <th class="column">
+                    <table>
+                      <tr>
+                        <th>
+                          <table class="total">
+                            <tr>
+                              <th>
+                                <table class="total__content">
+                                  {{#each order.total_rows}}
+                                    <tr class="total__item">
+                                      <th class="total__name">
+                                        <p>{{label}}:</p>
+                                      </th>
+
+                                      <th class="total__value">
+                                        <p>
+                                          <strong>{{price.formatted}}</strong>
+                                        </p>
+                                      </th>
+                                    </tr>
+
+                                    {{#each shipping_discounts}}
+                                      <tr class="total__item">
+                                        <th class="total__name" colspan="2">
+                                          <p>{{lang 'shipping_discount' price=price.formatted code=code}}</p>
+                                        </th>
+                                      </tr>
+                                    {{/each}}
+                                  {{/each}}
+
+                                  {{#if order.payment.provider_name }}
+                                    <tr class="total__item">
+                                      <th class="total__name">
+                                        <p>{{lang 'payment_method'}}</p>
+                                      </th>
+
+                                      <th class="total__value">
+                                        <p>
+                                          <strong>{{order.payment.provider_name}}</strong>
+                                        </p>
+                                      </th>
+                                    </tr>
+                                  {{/if}}
+
+                                  {{#if order.shipping.methods.length '>' 0}}
+                                    <tr class="total__item">
+                                      <th class="total__name">
+                                        <p>{{lang 'shipping_method'}}</p>
+                                      </th>
+
+                                      <th class="total__value">
+                                        <p>
+                                          <strong>{{join order.shipping.methods ', '}}</strong>
+                                        </p>
+                                      </th>
+                                    </tr>
+                                  {{/if}}
+
+                                  {{#if order.pickup_methods}}
+                                    <tr class="total__item">
+                                      <th class="total__name">
+                                        <p>{{lang 'pickup_method'}}</p>
+                                      </th>
+
+                                      <th class="total__value">
+                                        <p>
+                                          <strong>{{order.pickup_methods}}</strong>
+                                        </p>
+                                      </th>
+                                    </tr>
+                                  {{/if}}
+                                </table>
+                              </th>
+                            </tr>
+                          </table>
+                        </th>
+
+                        <th class="expander"></th>
+                      </tr>
+                    </table>
+                  </th>
+                </tr>
+              </table>
+
+              {{#or (if order.payment.gateway_amount.value '>' 0) (if order.meta.mandate_url) (if order.meta.mandate_id)}}
+                <table class="spacer spacer--16">
+                  <tr>
+                    <td>&nbsp;</td>
+                  </tr>
+                </table>
+
+                <table class="row">
+                  <tr>
+                    <th class="column">
+                      <table class="payment-message">
+                        <tr>
+                          <th>
+                            <div>
+                              {{#if order.payment.gateway_amount.value '>' 0}}
+                                <p>
+                                  {{lang 'payment_message'}}
+
+                                  <br />
+
+                                  {{lang 'order_total' amount=order.payment.gateway_amount.formatted}}
+
+                                  <br />
+                                </p>
+
+                                <p class="payment-offline">{{{order.payment.offline_payment_message}}}</p>
+                              {{/if}}
+
+                              {{#if order.meta.mandate_url}}
+                                <p>
+                                  <a href="{{order.meta.mandate_url}}" target="_blank">
+                                    {{lang order.meta.mandate_tag}}
+                                  </a>
+                                </p>
+                              {{/if}}
+
+                              {{#unless order.meta.mandate_url}}
+                                {{#if order.meta.mandate_id}}
+                                  <p>
+                                    {{lang order.meta.mandate_tag}}
+                                    {{order.meta.mandate_id}}
+                                  </p>
+                                {{/if}}
+                              {{/unless}}
+                            </div>
+                          </th>
+
+                          <th class="expander"></th>
+                        </tr>
+                      </table>
+                    </th>
+                  </tr>
+                </table>
+              {{/or}}
+
+              <table class="spacer spacer--32">
+                <tr>
+                  <td>&nbsp;</td>
+                </tr>
+              </table>
+
+              <table class="row">
+                <tr>
+                  <th class="column">
+                    <table>
+                      <tr>
+                        <th>
+                          <table class="addresses">
+                            <tr>
+                              <th>
+                                <h2>{{lang 'billing_address_label'}}</h2>
+
+                                <div class="addresses__content">
+                                  {{#if order.billing.is_managed_by_amazon}}
+                                    {{lang 'billing_address_managed_by_amazon'}}
+                                  {{else}}
+                                    <strong class="addresses__name">
+                                      {{order.billing.address.first_name}}
+                                      {{order.billing.address.last_name}}
+                                    </strong>
+
+                                    {{#if order.billing.address.company '!=' ''}}
+                                      <br />
+
+                                      {{order.billing.address.company}}
+                                    {{/if}}
+
+                                    <br />
+
+                                    {{{join order.billing.address.address_lines '<br>'}}}
+
+                                    <br />
+
+                                    {{order.billing.address.city}},
+                                    {{order.billing.address.state}}
+                                    {{order.billing.address.zip}}
+
+                                    <br />
+
+                                    {{order.billing.address.country}}
+
+                                    <br />
+
+                                    {{order.billing.address.phone}}
+
+                                    {{#if order.billing.address.custom_fields}}
+                                      <dl>
+                                        {{#each order.billing.address.custom_fields}}
+                                          <dt>{{label}}</dt>
+
+                                          {{#compare value 'array' operator='typeof'}}
+                                            {{#each value}}
+                                              <dd>{{this}}</dd>
+                                            {{/each}}
+                                          {{else}}
+                                            <dd>{{value}}</dd>
+                                          {{/compare}}
+                                        {{/each}}
+                                      </dl>
+                                    {{/if}}
+                                  {{/if}}
+                                </div>
+                              </th>
+                            </tr>
+                          </table>
+                        </th>
+
+                        <th class="expander"></th>
+                      </tr>
+                    </table>
+
+                    <table class="spacer spacer--32">
+                      <tr>
+                        <td>&nbsp;</td>
+                      </tr>
+                    </table>
+
+                    <table>
+                      <tr>
+                        <th>
+                          <table class="addresses">
+                            <tr>
+                              <th>
+                                <h2>{{lang 'shipping_address_label'}}</h2>
+
+                                <div class="addresses__content">
+                                  {{#if order.shipping.is_managed_by_amazon}}
+                                    {{lang 'shipping_address_managed_by_amazon'}}
+                                  {{else}}
+                                    <strong class="addresses__name">
+                                      {{order.shipping.address.first_name}}
+                                      {{order.shipping.address.last_name}}
+                                    </strong>
+
+                                    {{#if order.shipping.address.company '!=' ''}}
+                                      <br />
+
+                                      {{order.shipping.address.company}}
+                                    {{/if}}
+
+                                    <br />
+
+                                    {{{join order.shipping.address.address_lines '<br>'}}}
+
+                                    <br />
+
+                                    {{order.shipping.address.city}},
+                                    {{order.shipping.address.state}}
+                                    {{order.shipping.address.zip}}
+
+                                    <br />
+
+                                    {{order.shipping.address.country}}
+
+                                    <br />
+
+                                    {{order.shipping.address.phone}}
+
+                                    {{#if order.shipping.address.custom_fields}}
+                                      <dl>
+                                        {{#each order.shipping.address.custom_fields}}
+                                          <dt>{{label}}</dt>
+
+                                          {{#compare value 'array' operator='typeof'}}
+                                            {{#each value}}
+                                              <dd>{{this}}</dd>
+                                            {{/each}}
+                                          {{else}}
+                                            <dd>{{value}}</dd>
+                                          {{/compare}}
+                                        {{/each}}
+                                      </dl>
+                                    {{/if}}
+                                  {{/if}}
+                                </div>
+                              </th>
+                            </tr>
+                          </table>
+                        </th>
+
+                        <th class="expander"></th>
+                      </tr>
+                    </table>
+                  </th>
+                </tr>
+              </table>
+
+              {{#if order.customer_message}}
+                <table class="spacer spacer--32">
+                  <tr>
+                    <td>&nbsp;</td>
+                  </tr>
+                </table>
+
+                <table class="row">
+                  <tr>
+                    <th class="column">
+                      <table>
+                        <tr>
+                          <th>
+                            <h2>{{lang 'comment_label'}}</h2>
+                            <p class="customer-message">{{order.customer_message}}</p>
+                          </th>
+
+                          <th class="expander"></th>
+                        </tr>
+                      </table>
+                    </th>
+                  </tr>
+                </table>
+              {{/if}}
+
+              {{#if order.customer_id}}
+                <table class="spacer spacer--16">
+                  <tr>
+                    <td>&nbsp;</td>
+                  </tr>
+                </table>
+
+                <table class="row">
+                  <tr>
+                    <th class="column">
+                      <table>
+                        <tr>
+                          <th>
+                            <a href="{{order.account_order_status_url}}" class="check">{{lang 'check_label'}}</a>
+                          </th>
+
+                          <th class="expander"></th>
+                        </tr>
+                      </table>
+                    </th>
+                  </tr>
+                </table>
+              {{/if}}
+            </td>
+          </tr>
+        </table>
+
+        <table class="spacer spacer--40">
+          <tr>
+            <td>&nbsp;</td>
+          </tr>
+        </table>
+
+        <table class="container">
+          <tr>
+            <td>
+              <table class="row">
+                <tr>
+                  <th class="column">
+                    <table>
+                      <tr>
+                        <th>
+                          <table class="delimiter">
+                            <tr>
+                              <th>
+                                <hr>
+                              </th>
+
+                              <th class="delimiter__image-block">
+                                <img src="{{store.cdn_path}}/img/emails/shop.png" alt="Shop image" class="delimiter__image">
+                              </th>
+
+                              <th>
+                                <hr>
+                              </th>
+                            </tr>
+                          </table>
+                        </th>
+
+                        <th class="expander"></th>
+                      </tr>
+                    </table>
+                  </th>
+                </tr>
+              </table>
+
+              <table class="spacer spacer--24">
+                <tr>
+                  <td>&nbsp;</td>
+                </tr>
+              </table>
+
+              <table class="row">
+                <tr>
+                  <th class="column column--md-9 column--xs-12">
+                    <table class="store">
+                      <tr>
+                        <th>
+                          <p>
+                            <strong>{{{store.name}}}</strong>
+                          </p>
+
+                          <p>
+                            {{lang 'customer_service_label'}}
+                          </p>
+                        </th>
+
+                        <th class="expander"></th>
+                      </tr>
+                    </table>
+                  </th>
+
+                  <th class="column column--md-3 column--xs-12">
+                    <table class="store-button">
+                      <tr>
+                        <th>
+                          <a href="{{store.path}}">
+                            <strong>{{store.domain_name}}</strong>
+                          </a>
+                        </th>
+
+                        <th class="expander"></th>
+                      </tr>
+                    </table>
+                  </th>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+
+        <table class="spacer spacer--16">
+          <tr>
+            <td>&nbsp;</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+
+  <!-- prevent Gmail on iOS font size manipulation -->
+  <div style="display:none;white-space:nowrap;font:15px courier;line-height:0">
+    {{#for 1 30}}
+      &nbsp;
+    {{/for}}
+  </div>
+</body>
+
+</html>

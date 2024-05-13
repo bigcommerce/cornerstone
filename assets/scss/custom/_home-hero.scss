@@ -10,6 +10,7 @@
     align-items: center;
     background-repeat: no-repeat;
     background-size: cover;
+    background-position: center;
     &.mobile {
         height: 390px;
         @include gt($medium) {
@@ -62,4 +63,25 @@
         font-size: 50px;
         line-height: 60px;
     }
+}
+
+.dark-text .hero__wrap {
+    max-width: 80%;
+    flex-direction: column;
+    text-shadow: 0px 3px 6px #00000029;
+}
+
+.dark-text .hero__title {
+    color: #231F20;
+    font: normal normal bold 36px/1.1 $interstate-condensed;
+
+    @include gt($large) {
+        font-size: 40px;
+    }
+}
+    
+
+.dark-text .hero__subtitle {
+    font: normal normal 600 20px/2 $interstate;
+    margin-bottom: 0;
 }

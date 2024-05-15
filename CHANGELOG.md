@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Draft
+
+## 6.14.0 (05-15-2024)
 - Account.php <a href> is inside of a list item [#2457](https://github.com/bigcommerce/cornerstone/pull/2457)
 - Screen Reader only text must be provided [#2454](https://github.com/bigcommerce/cornerstone/pull/2454)
 - Remove "cookie notification" JS and CSS [#2447](https://github.com/bigcommerce/cornerstone/pull/2447)

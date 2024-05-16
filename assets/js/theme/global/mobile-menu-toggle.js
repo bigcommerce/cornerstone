@@ -37,6 +37,9 @@ export class MobileMenuToggle {
         this.$subMenus = this.$navList.find('.navPages-action');
         this.$toggle = $toggle;
         this.mediumMediaQueryList = mediaQueryListFactory('medium');
+        this.$outsideEls = $('.body, .footer');
+        this.$preModalFocusedEl = null;
+        this.focusTrap = null;
 
         // Auto-bind
         this.onToggleClick = this.onToggleClick.bind(this);
@@ -77,6 +80,32 @@ export class MobileMenuToggle {
         }
     }
 
+    setupFocusTrap() {
+        if (!this.$preModalFocusedEl) this.$preModalFocusedEl = $(document.activeElement);
+
+        if (!this.focusTrap) {
+            this.focusTrap = focusTrap.createFocusTrap(this.$header[0], {
+                escapeDeactivates: false,
+                returnFocusOnDeactivate: false,
+                allowOutsideClick: true,
+                fallbackFocus: () => {
+                    const fallbackNode = this.$preModalFocusedEl && this.$preModalFocusedEl.length
+                        ? this.$preModalFocusedEl[0]
+                        : $('[data-mobile-menu-toggle="menu"]')[0];
+
+                    return fallbackNode;
+                },
+            });
+        }
+
+        this.focusTrap.deactivate();
+        this.focusTrap.activate();
+
+        $('.header-logo__link').attr('tabindex', 0);
+        $('.mobileMenu-toggle').attr('tabindex', 1);
+        $('.navPages-action, .button', this.$menu).attr('tabindex', 2);
+    }
+
     toggle() {
         if (this.isOpen) {
             this.hide();
@@ -98,6 +127,9 @@ export class MobileMenuToggle {
         this.$scrollView.scrollTop(0);
 
         this.resetSubMenus();
+
+        this.setupFocusTrap();
+        this.$outsideEls.attr({ tabindex: '-1', 'aria-hidden': true });
     }
 
     hide() {
@@ -112,6 +144,16 @@ export class MobileMenuToggle {
         this.$header.removeClass('is-open');
 
         this.resetSubMenus();
+
+        if (this.focusTrap) this.focusTrap.deactivate();
+
+        this.$outsideEls.removeAttr('tabindex').removeAttr('aria-hidden');
+        $('.header-logo__link, .mobileMenu-toggle').removeAttr('tabindex');
+        $('.navPages-action, .button', this.$menu).removeAttr('tabindex');
+
+        if (this.$preModalFocusedEl) this.$preModalFocusedEl.focus();
+
+        this.$preModalFocusedEl = null;
     }
 
     // Private

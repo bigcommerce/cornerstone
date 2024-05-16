@@ -101,10 +101,6 @@ export class MobileMenuToggle {
 
         this.focusTrap.deactivate();
         this.focusTrap.activate();
-
-        $('.header-logo__link').attr('tabindex', 0);
-        $('.mobileMenu-toggle').attr('tabindex', 1);
-        $('.navPages-action, .button', this.$menu).attr('tabindex', 2);
     }
 
     toggle() {
@@ -130,6 +126,7 @@ export class MobileMenuToggle {
         this.resetSubMenus();
 
         this.setupFocusTrap();
+        
         this.$outsideEls.attr({ tabindex: '-1', 'aria-hidden': true });
     }
 
@@ -149,8 +146,6 @@ export class MobileMenuToggle {
         if (this.focusTrap) this.focusTrap.deactivate();
 
         this.$outsideEls.removeAttr('tabindex').removeAttr('aria-hidden');
-        $('.header-logo__link, .mobileMenu-toggle').removeAttr('tabindex');
-        $('.navPages-action, .button', this.$menu).removeAttr('tabindex');
 
         if (this.$preModalFocusedEl) this.$preModalFocusedEl.focus();
 

@@ -250,14 +250,17 @@ export default class Cart extends PageManager {
         });
 
         // cart qty manually updates
-        $('.cart-item-qty-input', this.$cartContent).on('focus', function onQtyFocus() {
-            preVal = this.value;
-        }).change(event => {
-            const $target = $(event.currentTarget);
-            event.preventDefault();
+        $('.cart-item-qty-input', this.$cartContent).on({
+            focus: function onQtyFocus() {
+                preVal = this.value;
+            },
+            change: event => {
+                const $target = $(event.currentTarget);
+                event.preventDefault();
 
-            // update cart quantity
-            cartUpdateQtyTextChange($target, preVal);
+                // update cart quantity
+                cartUpdateQtyTextChange($target, preVal);
+            },
         });
 
         $('.cart-remove', this.$cartContent).on('click', event => {

@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Draft
 - Prevent flow outside page container on account pages [#2462](https://github.com/bigcommerce/cornerstone/pull/2462)
+- Account.js - Fixed jquery selector to be template literal [#2464](https://github.com/bigcommerce/cornerstone/pull/2464)
 
 ## 6.14.0 (05-15-2024)
 - Account.php <a href> is inside of a list item [#2457](https://github.com/bigcommerce/cornerstone/pull/2457)

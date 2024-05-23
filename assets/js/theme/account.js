@@ -411,7 +411,7 @@ export default class Account extends PageManager {
         const validationModel = validation($editAccountForm, this.context);
         const formEditSelector = 'form[data-edit-account-form]';
         const editValidator = nod({
-            submit: '${formEditSelector} input[type="submit"]',
+            submit: `${formEditSelector} input[type="submit"]`,
             delay: 900,
         });
         const emailSelector = `${formEditSelector} [data-field-type="EmailAddress"]`;

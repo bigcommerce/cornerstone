@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Draft
+- Remove remote_api_scripts to avoid double firing Meta Pixel analytics [#2467](https://github.com/bigcommerce/cornerstone/pull/2467)
 - Prevent flow outside page container on account pages [#2462](https://github.com/bigcommerce/cornerstone/pull/2462)
 - Account.js - Fixed jquery selector to be template literal [#2464](https://github.com/bigcommerce/cornerstone/pull/2464)
 

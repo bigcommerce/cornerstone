@@ -13,9 +13,18 @@ cart: true
 
 
 {{#partial "page"}}
-<div class="interior-banner category-header">
-    <h1 class="page-heading">{{category.name}}</h1>
-    {{{category.description}}}
+<div class="interior-banner__wrap {{#if category.image}}has-image{{/if}}">
+  {{#if category.image}}
+  <div class="interior-banner__image-wrap">
+    <img src="{{getImage category.image 'zoom_size' (cdn theme_settings.default_image_product)}}" alt="{{category.name}}" class="interior-banner__image" width="683" height="330">
+  </div>
+  {{/if}}
+  <div class="interior-banner category-header">
+      <h1 class="page-heading">{{category.name}}</h1>
+      <div class="interior-banner__content">
+        {{{category.description}}}
+      </div>
+  </div>
 </div>
 
 <section class="page">

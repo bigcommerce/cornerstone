@@ -20,13 +20,59 @@ categories: true
     {{/each}}
 
 <div class="main full">
-    {{#if banners.top}}
-        <div class="banners" data-banner-location="top">
-            <div class="banner">
-                {{{limit banners.top 1}}}
+    {{#or (if (moment "today" "dddd") "==" "Monday") (if (moment "today" "dddd") "==" "Wednesday") (if (moment "today" "dddd") "==" "Friday")}}
+    <div class="banners dark-text" data-banner-location="top">
+        <div class="banner">
+            <div class="hero desktop" style="background-image: url('https://cdn11.bigcommerce.com/s-40wxilo4jg/images/stencil/original/image-manager/kd-homepagebanner-garrisoncollection.jpg'); background-position: center;">
+                <div class="hero__wrap">
+                    <p class="hero__subtitle">Elegance reimagined:</p>
+                    <h2 class="hero__title">EXPLORE THE NEW GARRISON <br>COLLECTION FROM TOP KNOBS</h2>
+                    <a class="btn" href="">Shop Now</a>
+                </div>
+            </div>
+            <div class="hero tablet" style="background-image: url('https://cdn11.bigcommerce.com/s-40wxilo4jg/images/stencil/original/image-manager/kd-homepagebanner-garrisoncollection.jpg');">
+                <div class="hero__wrap">
+                    <p class="hero__subtitle">Elegance reimagined:</p>
+                    <h2 class="hero__title">EXPLORE THE NEW GARRISON <br>COLLECTION FROM TOP KNOBS</h2>
+                    <a class="btn" href="">Shop Now</a>
+                </div>
+            </div>
+            <div class="hero mobile" style="background-image: url('https://cdn11.bigcommerce.com/s-40wxilo4jg/images/stencil/original/image-manager/kd-homepagebanner-garrisoncollection-mobile.jpg');">
+                <div class="hero__wrap">
+                    <p class="hero__subtitle">Elegance reimagined:</p>
+                    <h2 class="hero__title">EXPLORE THE NEW GARRISON COLLECTION FROM TOP KNOBS</h2>
+                    <a class="btn" href="">Shop Now</a>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    {{else}}
+    <div class="banners" data-banner-location="top">
+        <div class="banner">
+            <div class="hero desktop" style="background-image: url('https://cdn11.bigcommerce.com/s-40wxilo4jg/images/stencil/original/image-manager/kd-homepagebanner-configurator-1-.jpg'); background-position: center;">
+                <div class="hero__wrap">
+                    <h2 class="hero__title">INTRODUCING OUR NEW CONFIGURATOR FOR FORM+SURFACES COMPASS DOOR PULLS</h2>
+                    <a class="btn" href="https://knobdeco.com/compass-series-custom-grips">Learn More</a>
+                </div>
+            </div>
+            <div class="hero tablet" style="background-image: url('https://cdn11.bigcommerce.com/s-40wxilo4jg/images/stencil/original/image-manager/kd-homepagebanner-configurator-1-.jpg');">
+                <div class="hero__wrap">
+                    <h2 class="hero__title">INTRODUCING OUR NEW CONFIGURATOR FOR FORM+SURFACES COMPASS DOOR PULLS</h2>
+                    <a class="btn" href="https://knobdeco.com/compass-series-custom-grips">Learn More</a>
+                </div>
+            </div>
+            <div class="hero mobile" style="background-image: url('https://cdn11.bigcommerce.com/s-40wxilo4jg/images/stencil/original/image-manager/kd-homepagebanner-configurator-mobile-1-.jpg');">
+                <div class="hero__wrap">
+                    <h2 class="hero__title">INTRODUCING OUR NEW CONFIGURATOR FOR FORM+SURFACES COMPASS DOOR PULLS</h2>
+                    <a class="btn" href="https://knobdeco.com/compass-series-custom-grips">Learn More</a>
+                </div>
             </div>
         </div>
-    {{/if}}
+    </div>
+    {{/or}}
+        
 </div>
 {{> components/common/home-categories}}
 {{> components/common/home-styles}}

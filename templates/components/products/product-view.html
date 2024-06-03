@@ -57,6 +57,19 @@
                         {{> components/products/modals/writeReview}}
                     {{/if}}
                 </div>
+
+                {{#contains product.brand 'Sugatsune'}}
+                {{#contains product.sku 'IF-360'}}
+                <div class="productView-if360">
+                    <a style="display: block; text-decoration: underline; margin-bottom: 10px; font-weight: bold; font-size: 18px; background: rgba(30, 129, 209, .2); padding: 10px; border: 2px solid black" href="https://store-40wxilo4jg.mybigcommerce.com/content/Knob_Deco_Sugatsune_IF_360_1.pdf" target="_blank">Attention Please: Click here for an Application Guide to make sure you are getting the correct IF-360 series system for your project before placing your order.</a>
+                </div>
+                {{/contains}}
+                {{#contains product.sku 'IF-H360'}}
+                <div class="productView-if360">
+                    <a style="display: block; text-decoration: underline; margin-bottom: 10px; font-weight: bold; font-size: 18px; background: rgba(30, 129, 209, .2); padding: 10px; border: 2px solid black" href="https://store-40wxilo4jg.mybigcommerce.com/content/Knob_Deco_Sugatsune_IF_360_1.pdf" target="_blank">Attention Please: Click here for an Application Guide to make sure you are getting the correct IF-360 series system for your project before placing your order.</a>
+                </div>
+                {{/contains}}
+                {{/contains}}
                 
     
                 <div class="productView-desc">
@@ -64,25 +77,17 @@
                     {{{snippet 'product_description'}}}
                 </div>
     
-                {{#contains product.brand 'Sugatsune'}}
-                {{#contains product.sku 'IF-360'}}
-                <div class="productView-if360">
-                    <a style="display: block; text-decoration: underline; margin-bottom: 10px; font-weight: bold;" href="https://store-40wxilo4jg.mybigcommerce.com/content/Knob_Deco_Sugatsune_IF_360_1.pdf" target="_blank">How do I choose the right IF-360 series for my project?</a>
-                </div>
-                {{/contains}}
-                {{#contains product.sku 'IF-H360'}}
-                <div class="productView-if360">
-                    <a style="display: block; text-decoration: underline; margin-bottom: 10px; font-weight: bold;" href="https://store-40wxilo4jg.mybigcommerce.com/content/Knob_Deco_Sugatsune_IF_360_1.pdf" target="_blank">How do I choose the right IF-360 series for my project?</a>
-                </div>
-                {{/contains}}
-                {{/contains}}
+
                 {{#contains (JSONstringify product.category) 'Switch Plates'}}
                     <p>Not sure which switchplate type you need? <a class="productView-link" style="text-decoration: underline; margin-bottom: 10px; font-weight: bold;" href="https://knobdeco.com/content/KD-Switchplate-Types.pdf">Click here to view our guide.</a></p>
                 {{/contains}}
                 
                 {{#each product.custom_fields}}
                     {{#if name '===' 'Manual PDF'}}
-                    <a style="font-weight: bold; text-decoration: underline;" href="{{ value }}" target="_blank">Click here to learn more about this system and what products are available.</a>
+                    <div class="productView__manual-pdf">
+                        This item is one component of the a larger hardware system. Before placing your order, view the link below to make sure you have all the products and tools needed for your project.
+                        <a class="btn" href="{{ value }}" target="_blank">Download Help PDF</a>
+                    </div>
                     {{/if}}
                 {{/each}}
     
@@ -249,7 +254,10 @@
         {{/if}}
         </section>
         
+
+
         <section class="productView-details {{#if product.options.length '>' 0}} productView--has-options {{/if}}  {{# filter product.custom_fields 'Custom Letters or Numbers Available' property='name'}} productView-hide-border{{/filter}}">
+
             {{#filter product.custom_fields 'order_by_phone_only' property='name' }}
               <div class="alertBox alertBox--error">
                 <div class="alertBox-column alertBox-icon">
@@ -260,10 +268,9 @@
                 </p>
                 </div>
             {{else}}
-            
+
             {{# filter product.custom_fields 'Custom Letters or Numbers Available' property='name'}} 
-        
-            <form class="form" method="post" action="{{product.cart_url}}" enctype="multipart/form-data"
+            <form class="form" method="post" action="{{../product.cart_url}}" enctype="multipart/form-data"
             data-cart-item-add>
                 <div class="productView-details--dark">
                     <div class="productView-options productView-options--dark">
@@ -346,7 +353,7 @@
                 <div class="productView-flex">    
                 <div class="productView-price">
                     {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
-                        {{> components/products/price price=../../product.price schema_org=schema}}
+                        {{> components/products/price price=../product.price schema_org=schema}}
                     {{else}}
                     hit2
                         {{> components/common/login-for-pricing}}
@@ -444,11 +451,13 @@
     <section class="productSpecifications">
         <h2 class="productSpecifications__title">Product Specifications</h2>
         <ul class="productSpecifications__list">
+            {{#if product.brand}}
             <li class="productSpecifications__item">
-                {{#if product.brand}}
+                
                     <p><span class="productSpecifications__label">Manufacturer: </span><a href="{{product.brand.url}}"{{#if schema}} itemprop="url"{{/if}}><span{{#if schema}} itemprop="name"{{/if}}>{{product.brand.name}}</span></a></p>
-                {{/if}}
+                
             </li>
+            {{/if}}
             {{#if product.upc}}
             <li class="productSpecifications__item">
                 <p><span class="productSpecifications__label">UPC: </span><span>{{product.upc}}</span></p>
@@ -461,9 +470,11 @@
                 {{#unless name '===' 'Customizable_Kickplate'}}
                 {{#unless name '===' ''}}
                 {{#unless name '===' 'includes_amazon'}}
+                {{#unless name '===' 'order_by_phone_only'}}
                     <li class="productSpecifications__item">
                         <p><strong>{{name}}:</strong> {{value}}</p>
                     </li>
+                {{/unless}}
                 {{/unless}}
                 {{/unless}}
                 {{/unless}}
@@ -495,25 +506,25 @@
         <div class="loadingOverlay"></div>
     </div>
     <script>
-        // console.log('anything');
-        // var yesInput = document.getElementById('customyes');
-        // console.log(yesInput);
-        // console.log(document.getElementById('customyes'));
-        // var yesInputTwo = document.querySelector("#customyes");
-        // console.log(yesInputTwo);
-        // console.log(document.querySelector("#customyes"));
+        // Change display for customizable kick plates
+        const salePriceEl = document.querySelector('[data-product-rrp-price-without-tax]');
+        const salePrice = Number(salePriceEl.textContent.replace(/[^0-9.-]+/g,""));
+        const priceEl = document.querySelector('[data-product-price-without-tax]');
+        const price = Number(priceEl.textContent.replace(/[^0-9.-]+/g,""));
         document.getElementById('customyes').addEventListener('change', () => {
             if(document.getElementById('customyes').checked) {
                 document.getElementById('options-form').style.display = 'block';
+                salePriceEl.textContent = `$${(salePrice + 100).toFixed(2)}`;
+                priceEl.textContent = `$${(price + 100).toFixed(2)}`;
             }
         });
         document.getElementById('customno').addEventListener('change', () => {
             if(document.getElementById('customno').checked) {
                 document.getElementById('options-form').style.display = 'none';
+                salePriceEl.textContent = `$${salePrice.toFixed(2)}`;
+                priceEl.textContent = `$${price.toFixed(2)}`;
             }
         })
-    
-        // if(document.getElementById('customno').checked){console.log('no hitting on load')}
-        
     </script>
     
+</div>

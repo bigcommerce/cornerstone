@@ -38,7 +38,6 @@ export class MobileMenuToggle {
         this.$subMenus = this.$navList.find('.navPages-action');
         this.$toggle = $toggle;
         this.mediumMediaQueryList = mediaQueryListFactory('medium');
-        this.$outsideEls = $('.body, .footer');
         this.$preModalFocusedEl = null;
         this.focusTrap = null;
 
@@ -126,8 +125,6 @@ export class MobileMenuToggle {
         this.resetSubMenus();
 
         this.setupFocusTrap();
-        
-        this.$outsideEls.attr({ tabindex: '-1', 'aria-hidden': true });
     }
 
     hide() {
@@ -144,8 +141,6 @@ export class MobileMenuToggle {
         this.resetSubMenus();
 
         if (this.focusTrap) this.focusTrap.deactivate();
-
-        this.$outsideEls.removeAttr('tabindex').removeAttr('aria-hidden');
 
         if (this.$preModalFocusedEl) this.$preModalFocusedEl.focus();
 

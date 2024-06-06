@@ -50,6 +50,9 @@ describe('Modal', () => {
         let $modalBody;
 
         beforeEach(() => {
+            spyOn($.fn, 'width').and.returnValue(700);
+            spyOn($.fn, 'height').and.returnValue(700);
+
             $modalBody = $(`
                 <div class="modal-body">
                     <div style="height: 700px;"></div>
@@ -58,22 +61,16 @@ describe('Modal', () => {
 
             modal.$content.html($modalBody);
 
-            //Force heights of each element since jsdom does not provide these
+            // Force heights of each element since jsdom does not provide these
             [
-                $('body')[0]
-            ].forEach((elm) => {
-                ['scollHeight', 'offsetHeight', 'clientHeight', 'innerHeight'].forEach((property) => {
-                    Object.defineProperty(elm, property, { configurable: true, value: 500});    
-                });
-            });
-            [
+                $('body')[0],
                 window.document.documentElement,
                 $modalBody[0],
                 $modalBody.find('div')[0],
                 modal.$content[0]
             ].forEach((elm) => {
-                ['scollHeight', 'offsetHeight', 'clientHeight', 'innerHeight'].forEach((property) => {
-                    Object.defineProperty(elm, property, { configurable: true, value: 700});    
+                ['scrollHeight', 'offsetHeight', 'clientHeight', 'innerHeight'].forEach((property) => {
+                    Object.defineProperty(elm, property, { configurable: true, value: 700 });    
                 });
             });
         });

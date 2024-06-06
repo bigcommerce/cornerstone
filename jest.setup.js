@@ -19,5 +19,10 @@ window.Element.prototype.getClientRects = function () {
         node = node.parentNode;
     }
     var self = $(this);
-    return [{ width: self.width(), height: self.height() }];
+    // Mock width and height to prevent maximum call stack size exceeded error
+    return [{ width: self.width() || 700, height: self.height() || 700 }];
 };
+
+// Mock window and document properties for jsdom
+Object.defineProperty(window, 'innerHeight', { writable: true, configurable: true, value: 500 });
+Object.defineProperty(document.documentElement, 'clientHeight', { writable: true, configurable: true, value: 500 });

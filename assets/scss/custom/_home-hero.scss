@@ -3,6 +3,7 @@
       font-family: $interstate-condensed;
       font-size: 18px;
       font-weight: 700;
+      margin-top: 20px;
     }
 
     display: flex;
@@ -46,7 +47,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        max-width: 818px;
+        max-width: 640px;
     }
 }
 
@@ -58,10 +59,26 @@
     line-height: 45px;
     text-transform: uppercase;
     margin: 0;
-    padding-bottom: 20px;
     @include gt($medium) {
         font-size: 50px;
         line-height: 60px;
+    }
+
+    .drop-shadow & {
+        text-shadow: 0px 3px 6px #00000029;
+    }
+}
+
+.hero__text {
+    color: white;
+    font-family: $interstate;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1;
+    margin: 0;
+
+    .drop-shadow & {
+        text-shadow: 0px 3px 6px #00000029;
     }
 }
 

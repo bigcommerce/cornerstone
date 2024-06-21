@@ -1,3 +1,4 @@
+import * as focusTrap from 'focus-trap';
 import _ from 'lodash';
 import mediaQueryListFactory from '../common/media-query-list';
 import { CartPreviewEvents } from './cart-preview';
@@ -37,6 +38,8 @@ export class MobileMenuToggle {
         this.$subMenus = this.$navList.find('.navPages-action');
         this.$toggle = $toggle;
         this.mediumMediaQueryList = mediaQueryListFactory('medium');
+        this.$preModalFocusedEl = null;
+        this.focusTrap = null;
 
         // Auto-bind
         this.onToggleClick = this.onToggleClick.bind(this);
@@ -77,6 +80,28 @@ export class MobileMenuToggle {
         }
     }
 
+    setupFocusTrap() {
+        if (!this.$preModalFocusedEl) this.$preModalFocusedEl = $(document.activeElement);
+
+        if (!this.focusTrap) {
+            this.focusTrap = focusTrap.createFocusTrap(this.$header[0], {
+                escapeDeactivates: false,
+                returnFocusOnDeactivate: false,
+                allowOutsideClick: true,
+                fallbackFocus: () => {
+                    const fallbackNode = this.$preModalFocusedEl && this.$preModalFocusedEl.length
+                        ? this.$preModalFocusedEl[0]
+                        : $('[data-mobile-menu-toggle="menu"]')[0];
+
+                    return fallbackNode;
+                },
+            });
+        }
+
+        this.focusTrap.deactivate();
+        this.focusTrap.activate();
+    }
+
     toggle() {
         if (this.isOpen) {
             this.hide();
@@ -98,6 +123,8 @@ export class MobileMenuToggle {
         this.$scrollView.scrollTop(0);
 
         this.resetSubMenus();
+
+        this.setupFocusTrap();
     }
 
     hide() {
@@ -112,6 +139,12 @@ export class MobileMenuToggle {
         this.$header.removeClass('is-open');
 
         this.resetSubMenus();
+
+        if (this.focusTrap) this.focusTrap.deactivate();
+
+        if (this.$preModalFocusedEl) this.$preModalFocusedEl.focus();
+
+        this.$preModalFocusedEl = null;
     }
 
     // Private

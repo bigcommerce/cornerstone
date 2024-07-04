@@ -42,7 +42,7 @@
         <p class="alertBox-column alertBox-message"></p>
     </div>
     {{#or customer (unless settings.hide_price_from_guests)}}
-        <div class="add-to-cart-buttons">
+        <div class="add-to-cart-buttons {{#if product.pre_order}}pre-order-buttons{{/if}}">
             <div class="form-action">
                 <input
                         id="form-action-addToCart"

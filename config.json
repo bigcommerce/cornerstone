@@ -1,6 +1,6 @@
 {
   "name": "Cornerstone",
-  "version": "6.12.0",
+  "version": "6.14.0",
   "template_engine": "handlebars_v4",
   "meta": {
     "price": 0,
@@ -20,7 +20,6 @@
       "product_comparison_table",
       "complex_search_filtering",
       "customizable_product_selector",
-      "cart_suggested_products",
       "free_customer_support",
       "free_theme_upgrades",
       "high_res_product_images",
@@ -44,6 +43,30 @@
     "Firefox ESR"
   ],
   "settings": {
+    "channels": [
+      {
+        "id": 1,
+        "name": "Light",
+        "code": "Light",
+        "is_active": true,
+        "switch_url": "https://cornerstone-light-demo.mybigcommerce.com"
+      },
+      {
+        "id": 2,
+        "name": "Bold",
+        "code": "Bold",
+        "is_active": false,
+        "switch_url": "https://cornerstone-bold-demo.mybigcommerce.com"
+      },
+      {
+        "id": 3,
+        "name": "Warm",
+        "code": "Warm",
+        "is_active": false,
+        "switch_url": "https://cornerstone-warm-demo.mybigcommerce.com"
+      }
+    ],
+    "show_channels": false,
     "hide_breadcrumbs": false,
     "hide_page_heading": false,
     "hide_category_page_heading": false,
@@ -149,7 +172,7 @@
     "color-greyLight": "#999999",
     "color-greyLighter": "#cccccc",
     "color-greyLightest": "#e5e5e5",
-    "banner--deafault-backgroundColor": "#707070",
+    "banner--default-backgroundColor": "#707070",
     "button--default-color": "#666666",
     "button--default-colorHover": "#333333",
     "button--default-colorActive": "#000000",
@@ -331,14 +354,14 @@
     "paymentbuttons-paypal-checkout-on-top-color": "gold",
     "paymentbuttons-paylater-checkout-on-top-color": "gold",
     "paymentbuttons-venmo-checkout-on-top-color": "blue",
-    "paymentbuttons-paypal-checkout-payment-color": "gold",
+    "paymentbuttons-paypal-checkout-payment-color": "black",
     "paymentbuttons-paylater-checkout-payment-color": "gold",
     "paymentbuttons-venmo-checkout-payment-color": "blue",
     "paymentbuttons-paypal-checkout-payment-label": "checkout",
     "paymentbuttons-paypal-checkout-on-top-payment-label": "checkout",
     "paymentbuttons-paypal-cart-page-add-cart-label": "checkout",
     "paymentbuttons-paypal-product-details-page-label": "checkout",
-    "paymentbuttons-paypal-checkout-payment-size": "medium",
+    "paymentbuttons-paypal-checkout-payment-size": "large",
     "paymentbuttons-paypal-color": "gold",
     "paymentbuttons-paypal-shape": "rect",
     "paymentbuttons-paypal-label": "checkout",
@@ -474,7 +497,7 @@
         "color-greyLight": "#757575",
         "color-greyLighter": "#666666",
         "color-greyLightest": "#444444",
-        "banner--deafault-backgroundColor": "#b7b4b4",
+        "banner--default-backgroundColor": "#b7b4b4",
         "button--default-color": "#cccccc",
         "button--default-colorHover": "#ffffff",
         "button--default-colorActive": "#ffffff",
@@ -684,7 +707,7 @@
         "color-greyLight": "#a5a5a5",
         "color-greyLighter": "#dfdfdf",
         "color-greyLightest": "#e8e8e8",
-        "banner--deafault-backgroundColor": "#7D644A",
+        "banner--default-backgroundColor": "#7D644A",
         "button--default-color": "#74685c",
         "button--default-colorHover": "#4f3f2f",
         "button--default-colorActive": "#917052",

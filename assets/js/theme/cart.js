@@ -250,14 +250,17 @@ export default class Cart extends PageManager {
         });
 
         // cart qty manually updates
-        $('.cart-item-qty-input', this.$cartContent).on('focus', function onQtyFocus() {
-            preVal = this.value;
-        }).change(event => {
-            const $target = $(event.currentTarget);
-            event.preventDefault();
+        $('.cart-item-qty-input', this.$cartContent).on({
+            focus: function onQtyFocus() {
+                preVal = this.value;
+            },
+            change: event => {
+                const $target = $(event.currentTarget);
+                event.preventDefault();
 
-            // update cart quantity
-            cartUpdateQtyTextChange($target, preVal);
+                // update cart quantity
+                cartUpdateQtyTextChange($target, preVal);
+            },
         });
 
         $('.cart-remove', this.$cartContent).on('click', event => {
@@ -293,6 +296,7 @@ export default class Cart extends PageManager {
 
             $(event.currentTarget).hide();
             $couponContainer.show();
+            $couponContainer.attr('aria-hidden', false);
             $('.coupon-code-cancel').show();
             $codeInput.trigger('focus');
         });
@@ -301,6 +305,7 @@ export default class Cart extends PageManager {
             event.preventDefault();
 
             $couponContainer.hide();
+            $couponContainer.attr('aria-hidden', true);
             $('.coupon-code-cancel').hide();
             $('.coupon-code-add').show();
         });
@@ -334,12 +339,14 @@ export default class Cart extends PageManager {
             event.preventDefault();
             $(event.currentTarget).toggle();
             $certContainer.toggle();
+            $certContainer.attr('aria-hidden', false);
             $('.gift-certificate-cancel').toggle();
         });
 
         $('.gift-certificate-cancel').on('click', event => {
             event.preventDefault();
             $certContainer.toggle();
+            $certContainer.attr('aria-hidden', true);
             $('.gift-certificate-add').toggle();
             $('.gift-certificate-cancel').toggle();
         });

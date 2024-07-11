@@ -1,0 +1,46 @@
+.brand-hero {
+  @include gt($large) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  &__content {
+    padding: 30px 21px;
+    background: $black;
+
+    @include gt($large) {
+      padding: 50px 61px;
+    }
+  }
+
+  &__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: left;
+  }
+
+  &__text {
+    font-family: $interstate;
+    font-size: 20px;
+    color: $white;
+    text-align: center;
+
+    @include gt($large) {
+      text-align: left;
+    }
+  }
+
+  &__title {
+    margin: 0 auto 10px;
+    font-family: $interstate-condensed;
+    font-size: 40px;
+    font-weight: 700;
+    color: $white;
+    text-align: center;
+
+    @include gt($large) {
+      text-align: left;
+    }
+  }
+}

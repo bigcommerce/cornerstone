@@ -1,0 +1,56 @@
+.contact-hero {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 830px;
+  max-width: 90%;
+  padding: 48px 0 42px;
+  margin: 0 auto;
+  gap: 40px;
+
+  @include gt($large) {
+    flex-direction: row;
+  }
+
+  &__link-wrap {
+    font-family: $interstate-condensed;
+    font-size: 16px;
+    font-weight:700;
+
+    a {
+      color: $navy;
+    }
+  }
+
+  &__seperator {
+    margin: 0 10px;
+  }
+
+  &__svg {
+    width: 180px;
+  }
+
+  &__text {
+    margin: 0 0 10px;
+    font-family: $interstate-condensed;
+    font-size: 16px;
+  }
+
+  &__title {
+    margin: 0 0 10px !important;
+    font-family: $interstate-condensed;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 45px;
+    color: $navy;
+  }
+
+  &__wrap {
+    text-align: center;
+
+    @include gt($large) {
+      text-align: left;
+    }
+  }
+  
+}

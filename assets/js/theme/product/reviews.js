@@ -86,13 +86,13 @@ export default class {
             validate: 'presence',
             errorMessage: safeString(this.context.reviewRating),
         }, {
-            selector: '[name="revfromname"]',
-            validate: 'presence',
-            errorMessage: safeString(this.context.reviewName),
-        }, {
             selector: '[name="revtitle"]',
             validate: 'presence',
             errorMessage: safeString(this.context.reviewSubject),
+        }, {
+            selector: '[name="revfromname"]',
+            validate: 'presence',
+            errorMessage: safeString(this.context.reviewName),
         }, {
             selector: '[name="revtext"]',
             validate: 'presence',

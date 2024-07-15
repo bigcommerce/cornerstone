@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Draft
+- Adding missing product reviews form validation [#2475](https://github.com/bigcommerce/cornerstone/pull/2475)
 - Adding mobile nav dropdown focusTrap [#2465](https://github.com/bigcommerce/cornerstone/pull/2465)
 - Remove remote_api_scripts to avoid double firing Meta Pixel analytics [#2467](https://github.com/bigcommerce/cornerstone/pull/2467)
 - Prevent flow outside page container on account pages [#2462](https://github.com/bigcommerce/cornerstone/pull/2462)

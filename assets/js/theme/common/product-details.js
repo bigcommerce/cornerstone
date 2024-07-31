@@ -25,6 +25,7 @@ export default class ProductDetails extends ProductDetailsBase {
         this.swatchInitMessageStorage = {};
         this.swatchGroupIdList = $('[id^="swatchGroup"]').map((_, group) => $(group).attr('id'));
         this.storeInitMessagesForSwatches();
+        this.updateDateSelector();
 
         const $form = $('form[data-cart-item-add]', $scope);
 
@@ -590,5 +591,42 @@ export default class ProductDetails extends ProductDetailsBase {
             bubbles: true,
             detail: { productDetails },
         }));
+    }
+
+    updateDateSelector() {
+        $(document).ready(() => {
+            const monthSelector = $('#month-selector');
+            const daySelector = $('#day-selector');
+            const yearSelector = $('#year-selector');
+
+            const updateDays = () => {
+                const month = parseInt(monthSelector.val(), 10);
+                const year = parseInt(yearSelector.val(), 10);
+                let daysInMonth;
+
+                if (!Number.isNaN(month) && !Number.isNaN(year)) {
+                    switch (month) {
+                    case 2:
+                        daysInMonth = (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0) ? 29 : 28;
+                        break;
+                    case 4: case 6: case 9: case 11:
+                        daysInMonth = 30;
+                        break;
+                    default:
+                        daysInMonth = 31;
+                    }
+
+                    daySelector.empty();
+
+                    for (let i = 1; i <= daysInMonth; i++) {
+                        daySelector.append($('<option></option>').val(i).text(i));
+                    }
+                }
+            };
+
+            monthSelector.on('change', updateDays);
+            yearSelector.on('change', updateDays);
+            updateDays();
+        });
     }
 }

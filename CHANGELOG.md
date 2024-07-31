@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Draft
+- High severity security issue [#2477](https://github.com/bigcommerce/cornerstone/pull/2477)
 - Date Field Modifier - February showing 30th and 31st [#2473](https://github.com/bigcommerce/cornerstone/pull/2473)
 - Adding mobile nav dropdown focusTrap [#2465](https://github.com/bigcommerce/cornerstone/pull/2465)
 - Remove remote_api_scripts to avoid double firing Meta Pixel analytics [#2467](https://github.com/bigcommerce/cornerstone/pull/2467)

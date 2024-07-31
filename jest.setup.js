@@ -18,6 +18,5 @@ window.Element.prototype.getClientRects = function () {
         }
         node = node.parentNode;
     }
-    var self = $(this);
-    return [{ width: self.width(), height: self.height() }];
+    return [{ width: this.offsetWidth, height: this.offsetHeight }];
 };

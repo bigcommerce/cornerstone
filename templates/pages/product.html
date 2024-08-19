@@ -10,6 +10,29 @@ product:
         limit: {{theme_settings.productpage_similar_by_views_count}}
 
 cart: true
+gql: "query GenerateProductQuery($productId: Int!) {
+    site {
+        product(entityId: $productId) {
+            entityId
+            variants(first:2) {
+                edges {
+                    node {
+                        sku
+                        entityId
+                        isPurchasable
+                    }
+                }
+            }
+            productOptions(first: 1) {
+                edges {
+                    node {
+                        entityId
+                    }
+                }
+            }
+        }
+    }
+}"
 ---
 {{#partial "page"}}
 {{inject 'customFields' product.custom_fields}}
@@ -25,16 +48,10 @@ cart: true
 
 
 
-        {{#if product.related_products}}
-            <section class="productRelated">
-                <h2 class="product--subtitle"><span>Related Products</span></h2>
-                {{#if settings.data_tag_enabled}}
-                    {{> components/products/carousel products=product.related_products columns=5 list="Related Products"}}
-                {{else}}
-                    {{> components/products/carousel products=product.related_products columns=5}}
-                {{/if}}
-            </section>
-        {{/if}}
+       
+
+        <div class="klevu-recs" id="k-ea3653d8-08b2-4f92-888b-cbc7b0776280"></div>
+
 
         <section class="productSimilar">
             <h2 class="product--subtitle"><span>Find Similar Products</span></h2>
@@ -49,7 +66,6 @@ cart: true
                 </div>
             </div>
         </section>
-
         {{> components/products/reviews reviews=product.reviews product=product urls=urls}}
 
         {{#if product.similar_by_views}}

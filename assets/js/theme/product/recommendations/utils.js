@@ -1,13 +1,3 @@
-export function addQueryParams(url, params = {}) {
-    const keys = Object.keys(params);
-    if (!keys.length) return url;
-    const newParams = keys
-        .reduce((acc, key) =>
-            acc.concat([`${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`]), [])
-        .join('&');
-    return (url || '').indexOf('?') === -1 ? `${url}?${newParams}` : `${url}&${newParams}`;
-}
-
 export function getSizeFromThemeSettings(setting) {
     const size = (setting || '').split('x');
     return {

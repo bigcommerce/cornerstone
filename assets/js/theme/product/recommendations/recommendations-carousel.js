@@ -1,6 +1,5 @@
 /* eslint-disable indent */
-import { addQueryParams } from './utils';
-import { RECOM_TOKEN_PARAM, NUM_OF_PRODUCTS } from './constants';
+import { NUM_OF_PRODUCTS } from './constants';
 
 function renderPrice(node, themeSettings) {
     const { price, retailPrice } = node.prices || { price: {} };
@@ -25,10 +24,10 @@ function renderRestrictToLogin() {
 }
 
 function renderCard(node, options) {
-    const { themeSettings, attributionToken } = options;
+    const { themeSettings } = options;
     const categories = node.categories.edges.map(({ node: cNode }) => cNode.name).join(',');
-    const productUrl = addQueryParams(node.path, { [RECOM_TOKEN_PARAM]: attributionToken });
-    const addToCartUrl = addQueryParams(node.addToCartUrl, { [RECOM_TOKEN_PARAM]: attributionToken });
+    const productUrl = node.path;
+    const addToCartUrl = node.addToCartUrl;
 
     return `<div class="productCarousel-slide">
                 <article

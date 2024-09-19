@@ -98,13 +98,12 @@ export default function applyRecommendations(el, options) {
         NUM_OF_PRODUCTS,
     )
         .then((response) => {
-            const { attributionToken, results: products } = response.data.site.apiExtensions.googleRetailApiPrediction;
+            const { results: products } = response.data.site.apiExtensions.googleRetailApiPrediction;
 
             injectRecommendations(products, el, {
                 products,
                 themeSettings,
                 productId,
-                attributionToken,
             });
         })
         .catch(err => {

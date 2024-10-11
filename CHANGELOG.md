@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Draft
+- Add missing icon for JCB card provider in the saved payment methods [#2489](https://github.com/bigcommerce/cornerstone/pull/2489)
 - Cornerstone changes to support inc/ex tax price lists on PDP [#2486](https://github.com/bigcommerce/cornerstone/pull/2486)
 - Viewing Orders after logging into customer account displays incorrect quantity of products ordered compared to Order details page. [#2482](https://github.com/bigcommerce/cornerstone/pull/2482)
 - High severity security issue [#2477](https://github.com/bigcommerce/cornerstone/pull/2477)

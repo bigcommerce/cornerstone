@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Address deprecated jQuery methods [#2466](https://github.com/bigcommerce/cornerstone/pull/2466)
 - Load other font weights and styles for the body-font [#2396](https://github.com/bigcommerce/cornerstone/pull/2396)
 - Stored XSS within company address field [#2485](https://github.com/bigcommerce/cornerstone/pull/2485)
+- Display shipping discount on the cart page [#2490](https://github.com/bigcommerce/cornerstone/pull/2490)
 
 ## 6.14.0 (05-15-2024)
 - Account.php <a href> is inside of a list item [#2457](https://github.com/bigcommerce/cornerstone/pull/2457)

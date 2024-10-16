@@ -208,7 +208,6 @@ export default class Product extends PageManager {
     // Next and Previous image functions
     function nextImg() {
       totalSlides = images.length;
-      console.log('next image slides count: ', totalSlides);
       if (currentSlide < totalSlides - 1) {
         currentSlide++;
         showImg(currentSlide);
@@ -253,7 +252,6 @@ export default class Product extends PageManager {
       'touchend',
       (e) => {
         // Include the event object here
-        console.log('touch end');
         e.preventDefault();
         const touchDiff = touchEndX - touchStartX;
 
@@ -309,8 +307,6 @@ export default class Product extends PageManager {
       const warrantyBadge = document.createElement('div');
       warrantyBadge.classList.add('warranty-badge');
       warrantyBadge.innerHTML = '<p>LIFETIME&nbsp;<br>WARRANTY</p>';
-      console.log("warranty badge created")
-      console.log(typeof(warrantyBadge));
       warrantyBadge.setAttribute('data-reveal-id', 'warranty-message');
       badges.push(warrantyBadge);
     }
@@ -460,35 +456,6 @@ export default class Product extends PageManager {
     }
   }
 
-  // checkFitment() {
-  //   // console.log("check fitment");
-  //   // console.log('this.make: ', this.make);
-  //   // console.log('this.model: ', this.model);
-  //   // console.log('this.gen: ', this.gen);
-  //   // console.log('universal: ', universal_product);
-  //   if (universal_product) {
-  //     return true;
-  //   } else if (this.gen === "" || this.gen in option_data || !this.gen) {
-  //     console.log('model_data:', this.model_data);
-  //     console.log('this.model', this.model);
-  //     if (
-  //       this.model === "" ||
-  //       model_data[this.make].includes(this.model) ||
-  //       !this.model
-  //     ) {
-  //       if (this.make === "" || make_data.includes(this.make) || !this.make) {
-  //         return true;
-  //       } else {
-  //         return false;
-  //       }
-  //     } else {
-  //       return false;
-  //     }
-  //   } else {
-  //     return false;
-  //   }
-  // }
-
   checkFitment() {
     if (universal_product) {
       return true;
@@ -507,7 +474,6 @@ export default class Product extends PageManager {
 
   // load the make, model, and year from the cookie or the url parameters if url_override is true. return true if make model and gen are selected.
   initVehicle() {
-    console.log('Init Vehicle');
     if (this.checkParamsVehicle()) {
     } else {
       if (this.checkCookieVehicle()) {
@@ -548,7 +514,7 @@ export default class Product extends PageManager {
 
   // provide an array, a target select, and a selected value to create a list of options to add to the select. 'target' is the key value from this.selectionSteps. Includes default. 'selected' can be null if no option is selected yet.
   createOptions(array, target, selected, line) {
-    console.log('create options target: ', array, target, selected, line);
+    // console.log('create options target: ', array, target, selected, line);
     let defaultOption = new Option(
       this.selectionSteps[target].default,
       this.selectionSteps[target].default
@@ -1064,7 +1030,6 @@ export default class Product extends PageManager {
           currency: 'USD',
         }
       );
-      console.log('sale price valid: ', this.endPointData.sale_price);
       this.contentElements.price.innerHTML =
         '<span class="original-price">' +
         priceFormatted +
@@ -1110,12 +1075,9 @@ export default class Product extends PageManager {
 
   getShipDay() {
     let nowMilliseconds = Date.now();
-    // console.log("now Milliseconds: ", nowMilliseconds);
     let timezoneOffset = new Date().getTimezoneOffset();
-    // console.log("timezoneOffset: ", timezoneOffset);
     let offsetMilliseconds = timezoneOffset * 60 * 1000;
     let utcDate = new Date(nowMilliseconds + offsetMilliseconds);
-    // console.log("utcDate: ", utcDate);
     let hour = utcDate.getHours();
     let minutes = utcDate.getMinutes();
     let month = utcDate.getMonth();
@@ -1124,9 +1086,6 @@ export default class Product extends PageManager {
     let priceValidUntil = year + '-' + day + '-' + (month + 1);
     let shipDay = day;
     let whenShips = 'today';
-    // console.log("hour: ", hour);
-    // console.log("this.madeToOrder: ", this.madeToOrder);
-    // console.log("shipDay: ", shipDay);
 
     // Daylight Savings Time >= 21, Standard Time >= 22
     if (hour >= 21 || hour < 9) {
@@ -1201,9 +1160,7 @@ export default class Product extends PageManager {
       this.make +
       ' ' +
       this.model;
-    // console.log("gen_data:", gen_data);
     this.contentElements.moreProducts.append(...productCards);
-    // console.log("product cards: ", productCards);
   }
 
   clearMessages() {
@@ -1218,7 +1175,6 @@ export default class Product extends PageManager {
     let currentSrc = '';
     let currentUrl = '';
     if (iframe) {
-      // console.log('iframe.src: ', iframe.src);
       currentSrc = iframe.src;
       currentUrl = new URL(currentSrc).pathname + '?asDoc=true';
     }
@@ -1231,7 +1187,6 @@ export default class Product extends PageManager {
       if (domain === 'cravenspeed.com' || domain === 'www.cravenspeed.com') {
         const instructions = document.createElement('iframe');
         const newUrl = url.pathname + '?asDoc=true';
-        // console.log('currentUrl: ', currentUrl);
         if (newUrl !== currentUrl) {
           this.showLoadingIcon();
           instructions.src = newUrl;

@@ -45,7 +45,7 @@ export default class Product extends PageManager {
     this.blemAcceptButton = document.querySelector('#blem-accept');
     this.blemDeclineLink = document.querySelector('#blem-decline');
 
-    // an object containing the selection steps and their properties (the element, default, etc...)
+    // an object defining the selection steps and their properties (the element, default, etc...)
     this.selectionSteps = {
       make: {
         element: document.querySelector('#make'),
@@ -95,6 +95,7 @@ export default class Product extends PageManager {
       moreProducts: document.querySelector('#more-products'),
       moreProductsHeader: document.querySelector('#more-products-header'),
       blemForm: document.querySelector('#product-blem-form'),
+      badges: document.querySelector('#product-badges')
     };
   }
 
@@ -285,6 +286,49 @@ export default class Product extends PageManager {
     this.galleryInitialized = true;
     showImg(0);
     // console.log("gallery initialized? ", this.galleryInitialized);
+  }
+
+  // determine which badges apply, create them, and append them to the document
+  initBadges() {
+
+    // create the array of badges that will be appended to the document
+    const badges = []
+
+    const warrantyMessage = document.querySelector("#warranty-message");
+
+    // check the endpoint data to determine if the product is made in the US, if so create the badge and add it to the array of badges
+    if(this.endPointData.made_in_usa) {
+      const usaBadge = document.createElement('div');
+      usaBadge.classList.add('made-in-usa-badge');
+      usaBadge.innerHTML = '<img src="/product_images/uploaded_images/flag.png"><h4>MADE IN USA</h4>';
+      badges.push(usaBadge)
+    }
+
+    // check the endpoint data to determine if the product has a lifetime warranty (1st party products), if so create the badge and add it to the array of badges
+    if(this.endPointData.brand_name === "CravenSpeed") {
+      const warrantyBadge = document.createElement('div');
+      warrantyBadge.classList.add('warranty-badge');
+      warrantyBadge.innerHTML = '<p>LIFETIME&nbsp;<br>WARRANTY</p>';
+      console.log("warranty badge created")
+      console.log(typeof(warrantyBadge));
+      warrantyBadge.setAttribute('data-reveal-id', 'warranty-message');
+      badges.push(warrantyBadge);
+    }
+
+    // create the free shipping badge and add it to the array of badges. The free shipping badge points out that it applies to US only, and will always be displayed
+    const freeShippingBadge = document.createElement("div");
+    freeShippingBadge.classList.add("free-shipping-badge");
+    freeShippingBadge.innerHTML = "<p>FREE US&nbsp<br>SHIPPING</p>";
+    freeShippingBadge.setAttribute('data-reveal-id', 'shipping-message');
+    badges.push(freeShippingBadge)
+
+    // create a copy of the array to be used in the mobile template
+    // const badges_two = badges.map(badge => badge.cloneNode(true));
+
+    this.contentElements.badges.innerHTML = "";
+    for (const badge of badges) {
+      this.contentElements.badges.appendChild(badge);
+    }
   }
 
   // display the rating value and review count
@@ -591,7 +635,6 @@ export default class Product extends PageManager {
 
   // provide the endPointIndex that is to be added to the cart and check if it is valid to add (has inventory).
   initCartAdd(index, select) {
-    // console.log("init card add");
     this.endPointIndex = index;
     if (index !== this.selectionSteps[select].default) {
       this.endPointData = key_dict[index];
@@ -600,6 +643,7 @@ export default class Product extends PageManager {
       this.inventory = global_inv[this.baseId];
       this.name = this.endPointData.name;
       this.updateContent();
+      this.initBadges();
       this.checkBlem();
       if (this.inventory.av > 0 || this.madeToOrder) {
         this.addUrl =
@@ -1069,7 +1113,7 @@ export default class Product extends PageManager {
     // console.log("now Milliseconds: ", nowMilliseconds);
     let timezoneOffset = new Date().getTimezoneOffset();
     // console.log("timezoneOffset: ", timezoneOffset);
-    let offsetMilliseconds = (timezoneOffset / 60) * 3600 * 1000;
+    let offsetMilliseconds = timezoneOffset * 60 * 1000;
     let utcDate = new Date(nowMilliseconds + offsetMilliseconds);
     // console.log("utcDate: ", utcDate);
     let hour = utcDate.getHours();

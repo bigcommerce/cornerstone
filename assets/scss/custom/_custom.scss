@@ -482,10 +482,11 @@ html {
   }
 
   #product-above {
-    min-height: (100svh - #{$header-height} - #{$mobile-spacing});
+    // min-height: (100svh - #{$header-height} - #{$mobile-spacing});
     display: flex;
     gap: $mobile-spacing;
     margin: 0 auto;
+    margin-bottom: spacing("double");
 
     @include breakpoint("medium") {
       flex-direction: row;
@@ -872,17 +873,17 @@ html {
 }
 
 #product-above {
-  min-height: calc(100svh - #{$header-height} - #{$mobile-spacing});
+  // min-height: calc(100svh - #{$header-height} - #{$mobile-spacing});
   display: flex;
   flex-direction: column;
   gap: $mobile-spacing;
 
-  @include breakpoint("medium") {
-    min-height: calc(
-      100vh - (#{$header-top-height} + #{$navPages-height}) - #{spacing("half")} -
-        3.5rem
-    );
-  }
+  // @include breakpoint("medium") {
+  //   min-height: calc(
+  //     100vh - (#{$header-top-height} + #{$navPages-height}) - #{spacing("half")} -
+  //       3.5rem
+  //   );
+  // }
 }
 
 .navPages-action--compare {
@@ -964,28 +965,19 @@ html {
   }
 }
 
-#product-badges-desktop {
-  display: none;
+#product-badges {
   height: $product-badges-max;
-
-  @include breakpoint("medium") {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-  }
-}
-
-#product-badges-mobile {
   display: flex;
-  position: absolute;
-  bottom: spacing("single");
-  width: 100%;
-  height: 100px;
-  justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
+  justify-content: space-around;
+
+  > * {
+    border: 3px solid black;
+  }
 
   @include breakpoint("medium") {
-    display: none;
+    justify-content: center;
+    gap: spacing("single");
   }
 }
 
@@ -993,7 +985,6 @@ html {
   position: relative;
   display: flex;
   flex-direction: column;
-  border: 3px solid stencilColor("color-black");
   border-radius: 5px;
   background-color: stencilColor("color-white");
   width: $product-badges-max;
@@ -1011,9 +1002,41 @@ html {
 }
 
 .warranty-badge {
-  svg {
-    display: block;
-    @include square($product-badges-max);
+  font-weight: bold;
+  padding: spacing("eighth");
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+  
+  p {
+    background-color: stencilColor("color-primary");
+    color: stencilColor("color-white");
+    padding: spacing("quarter");
+    margin: 0;
+  }
+}
+
+.free-shipping-badge {
+  color: stencilColor("color-white");
+  font-weight: bold;
+  padding: spacing("eighth");
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+  
+  p {
+    background-color: stencilColor("color-secondary");
+    color: stencilColor("color-white");
+    padding: spacing("quarter");
+    margin: 0;
+  }
+}
+
+#warranty-message, #shipping-message {
+  padding: spacing("single");
+
+  h3 {
+    border-bottom: 2px solid stencilColor("color-primary");
   }
 }
 

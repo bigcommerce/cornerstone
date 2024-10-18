@@ -83,7 +83,10 @@ export default function applyRecommendations(el, options) {
     const consentManager = window.consentManager;
 
     // Do not load recommendations if user has opted out of advertising consent category
-    if (consentManager && !consentManager.preferences.loadPreferences().customPreferences.advertising) return;
+    if (consentManager) {
+        const customerPreferences = consentManager.preferences.loadPreferences().customPreferences;
+        if (customerPreferences && !customerPreferences.advertising) return;
+    }
 
     const { productId, themeSettings, storefrontAPIToken } = options;
     const imageSize = getSizeFromThemeSettings(themeSettings.productgallery_size);

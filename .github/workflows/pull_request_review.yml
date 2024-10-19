@@ -22,10 +22,10 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
 
     - name: Use Node.js ${{ matrix.node }}
-      uses: actions/setup-node@v2-beta
+      uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node }}
 
@@ -38,7 +38,7 @@ jobs:
       run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
 
     - name: npm cache
-      uses: actions/cache@v2
+      uses: actions/cache@v4
       with:
         path: ~/.npm
         key: ${{ matrix.os }}-node-${{ hashFiles('**/package-lock.json') }}

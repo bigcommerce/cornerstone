@@ -44,6 +44,23 @@ cart: true
                                 {{lang 'cart.preview.checkout_multiple'}}
                             </a>
                         {{/if}}
+
+                        <!-- Add speculation rules for prerendering -->
+                        <script type="speculationrules">
+                        {
+                            "prerender": [
+                                {
+                                    "source": "list",
+                                    "urls": [
+                                        "{{urls.checkout.single_address}}"
+                                        {{#if cart.show_multiple_address_shipping}}
+                                        , "{{urls.checkout.multiple_address}}"
+                                        {{/if}}
+                                    ]
+                                }
+                            ]
+                        }
+                        </script>
                     </div>
                 {{else}}
                     <div class="cart-actions cart-content-padding-right">

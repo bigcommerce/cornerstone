@@ -229,7 +229,39 @@ export default class Cart extends PageManager {
             $(`[data-cart-itemid='${this.$activeCartItemId}']`, this.$cartContent)
                 .filter(`[data-action='${this.$activeCartItemBtnAction}']`)
                 .trigger('focus');
+
+            console.log('Calling refreshCheckoutPrerendering from refreshContent');
+            this.refreshCheckoutPrerendering();
         });
+    }
+
+    // Add this new method
+    refreshCheckoutPrerendering() {
+        console.log('Starting refreshCheckoutPrerendering...');
+
+        const speculationRules = {
+            prerender: [
+                {
+                    source: 'list',
+                    urls: ['/checkout']
+                }
+            ]
+        };
+
+        const existingScripts = document.querySelectorAll('script[type="speculationrules"]');
+
+        existingScripts.forEach((script) => {
+            script.remove();
+        });
+
+        console.log('Waiting 1 seconds before adding new speculation rule...');
+        setTimeout(() => {
+            const script = document.createElement('script');
+            script.type = 'speculationrules';
+            script.text = JSON.stringify(speculationRules);
+            document.body.appendChild(script);
+            console.log('New speculation rule script added');
+        }, 1000);
     }
 
     bindCartEvents() {
@@ -284,6 +316,16 @@ export default class Cart extends PageManager {
             // edit item in cart
             this.cartEditOptions(itemId, productId);
         });
+
+        // Add prerendering after each cart update
+        const addPrerendering = () => {
+            console.log('Calling refreshCheckoutPrerendering from cart event');
+            this.refreshCheckoutPrerendering();
+        };
+
+        $('[data-cart-update]', this.$cartContent).on('click', addPrerendering);
+        $('.cart-item-qty-input', this.$cartContent).on('change', addPrerendering);
+        $('.cart-remove', this.$cartContent).on('click', addPrerendering);
     }
 
     bindPromoCodeEvents() {
@@ -323,6 +365,8 @@ export default class Cart extends PageManager {
             utils.api.cart.applyCode(code, (err, response) => {
                 if (response.data.status === 'success') {
                     this.refreshContent();
+                    console.log('Calling refreshCheckoutPrerendering after applying promo code');
+                    this.refreshCheckoutPrerendering();
                 } else {
                     showAlertModal(response.data.errors.join('\n'));
                 }
@@ -364,6 +408,8 @@ export default class Cart extends PageManager {
             utils.api.cart.applyGiftCertificate(code, (err, resp) => {
                 if (resp.data.status === 'success') {
                     this.refreshContent();
+                    console.log('Calling refreshCheckoutPrerendering after applying gift certificate');
+                    this.refreshCheckoutPrerendering();
                 } else {
                     showAlertModal(resp.data.errors.join('\n'));
                 }

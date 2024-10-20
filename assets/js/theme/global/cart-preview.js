@@ -63,6 +63,21 @@ export default function (secureBaseUrl, cartId) {
                 .html(response);
             $cartLoading
                 .hide();
+
+            // Add speculative loading after cart template is loaded
+            const speculationRules = {
+                prerender: [
+                    {
+                        source: 'list',
+                        urls: ['/cart.php', '/checkout']
+                    }
+                ]
+            };
+
+            const script = document.createElement('script');
+            script.type = 'speculationrules';
+            script.text = JSON.stringify(speculationRules);
+            document.body.appendChild(script);
         });
     });
 

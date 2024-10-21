@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Draft
+- Adding missing product reviews form validation [#2475](https://github.com/bigcommerce/cornerstone/pull/2475)
 - Fix GH build action & added package version and short commit hash to artifact names in GitHub Actions workflow for improved traceability and uniqueness. ([#2494](https://github.com/bigcommerce/cornerstone/pull/2494))
 - Bump stencil-utils to 6.18.0 ([#2493](https://github.com/bigcommerce/cornerstone/pull/2493))
 - Bump other GH actions to fix warnings related to old versions. ([#2495](https://github.com/bigcommerce/cornerstone/pull/2495))

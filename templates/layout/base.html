@@ -82,5 +82,36 @@
         <script async defer src="{{cdn 'assets/dist/theme-bundle.main.js' resourceHint='preload' as='script'}}" onload="onThemeBundleMain()"></script>
 
         {{{footer.scripts}}}
+        <script type="speculationrules">
+        {
+          "prerender": [{
+            "where": {
+              "and": [
+                { "href_matches": "/*" },
+                { "not": { "href_matches": "/logout*" } },
+                { "not": { "href_matches": "/cart*" } },
+                { "not": { "href_matches": "/account.php*" } },
+                { "not": { "href_matches": "/checkout.php*" } },
+                { "not": { "href_matches": "/finishorder.php*" } },
+                { "not": { "href_matches": "/login.php*" } },
+                { "not": { "href_matches": "/orderstatus.php*" } },
+                { "not": { "href_matches": "/postreview.php*" } },
+                { "not": { "href_matches": "/productimage.php*" } },
+                { "not": { "href_matches": "/productupdates.php*" } },
+                { "not": { "href_matches": "/remote.php*" } },
+                { "not": { "href_matches": "/search.php*" } },
+                { "not": { "href_matches": "/viewfile.php*" } },
+                { "not": { "href_matches": "/wishlist.php*" } },
+                { "not": { "href_matches": "/admin/*" } },
+                { "not": { "href_matches": "/__socialshop/*" } },
+                { "not": { "selector_matches": ".no-prerender" } },
+                { "not": { "selector_matches": "[rel~=nofollow]" } }
+              ]
+            },
+            "eagerness": "moderate"
+          }
+          ]
+        }
+        </script>
     </body>
 </html>

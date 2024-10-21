@@ -4,7 +4,12 @@
 {{#if shipping_cost}}
     <div class="cart-total-value">
         <div class="subtotal shipping-estimate-show">
-            <a href="#" class="shipping-estimate-value">{{shipping_cost.formatted}}</a>
+            <a href="#" class="shipping-estimate-value">
+                <span class="{{#if shipping_cost_discounted}}price--discounted{{/if}}">{{shipping_cost.formatted}}</span>
+                {{#if shipping_cost_discounted}}
+                    <span id="shipping-cost-discounted">{{shipping_cost_discounted.formatted}}</span>
+                {{/if}}
+            </a>
         </div>
     </div>
 {{else}}

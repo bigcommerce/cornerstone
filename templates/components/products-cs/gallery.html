@@ -1,47 +1,57 @@
-<div id="gallery-container">
-  <div id="gallery">
-    {{#if product.images.length '>' '1'}}
-      <div class="slide">
-        <img
-          src="{{getImage product.images.[1] standard}}"
-          alt="{{product.main_image.data}}"
-        />
-      </div>
-      
-      {{#each (after product.images 2)}}
-      <div class="slide">
-        <img loading="lazy" src="{{getImage this standard}}" alt="{{this.alt}}" />
-      </div>
-      {{/each}}
-
-      <div class="slide">
-        <img
-          loading="lazy"
-          src="{{getImage product.main_image standard}}"
-          alt="{{product.main_image.data}}"
-        />
-      </div>
-
-      {{else}}
-
-      <div class="slide">
-        <img
-          loading="lazy"
-          src="{{getImage product.main_image standard}}"
-          alt="{{product.main_image.data}}"
-        />
-      </div>
-      
-    {{/if}}
-
-  </div>
+<div class="product-image-gallery">
+    <div class="slides-wrapper">
+        <div class="slides" data-gallery-item="slide">
+            {{#if product.images.length '>' '1'}}
+              <div class="slide">
+                <img
+                  src="{{getImage product.images.[1] standard}}"
+                  alt="{{product.main_image.data}}"
+                />
+              </div>
+              
+              {{#each (after product.images 2)}}
+              <div class="slide">
+                <img loading="lazy" src="{{getImage this standard}}" alt="{{this.alt}}" />
+              </div>
+              {{/each}}
+            
+              <div class="slide">
+                <img
+                  loading="lazy"
+                  src="{{getImage product.main_image standard}}"
+                  alt="{{product.main_image.data}}"
+                />
+              </div>
+            
+              {{else}}
+            
+              <div class="slide">
+                <img
+                  loading="lazy"
+                  src="{{getImage product.main_image standard}}"
+                  alt="{{product.main_image.data}}"
+                />
+              </div>
+              
+            {{/if}}
+        </div>
+    </div>
+    <div class="gallery-nav">
+        <button data-gallery-item="previous" class="gallery-previous">
+          <svg class="gallery-arrow"><use xlink:href="#icon-prev" /></svg>
+        </button>
+        <div class="gallery-map"></div>
+        <button data-gallery-item="next" class="gallery-next">
+          <svg class="gallery-arrow"><use xlink:href="#icon-next" /></svg>
+        </button>
+    </div>
+    <dialog class="gallery-modal" data-gallery-item="close" aria-modal="true" role="dialog">
+        <div class="modal-content-wrapper">
+          <div class="modal-content"></div>
+          <button class="gallery-modal-close">
+            <svg class="gallery-arrow"><use xlink:href="#icon-close" /></svg>
+          </button>
+        </div>
+    </dialog>
 </div>
-<div id="gallery-controls">
-  <button id="prev">Prev</button>
-  <div id="position-indicator">
-    {{#each product.images}}
-    <svg class="dot"><use xlink:href="#icon-dot" /></svg>
-    {{/each}}
-  </div>
-  <button id="next">Next</button>
-</div>
+  

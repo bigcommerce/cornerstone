@@ -1,5 +1,6 @@
 import PageManager from '../page-manager';
 import inStockNotifyForm from './product/inStockNotify';
+import CsGallery from './product/csGallery';
 
 export default class Product extends PageManager {
   constructor(context) {
@@ -18,6 +19,7 @@ export default class Product extends PageManager {
     this.madeToOrder = false;
     this.aliasProduct = false;
     this.selectChange = false;
+    this.gallery;
     this.galleryInitialized = false;
     this.imageArray = [];
     this.vehicleProducts = [];
@@ -82,9 +84,7 @@ export default class Product extends PageManager {
     // content elements
     this.contentElements = {
       productMessages: document.querySelector('#product-messages'),
-      gallery: document.querySelector('#gallery-container'),
-      galleryControls: document.querySelector('#gallery-controls'),
-      dots: document.querySelector('#position-indicator'),
+      gallerySlides: document.querySelector('.slides'),
       sku: document.querySelector('#product-sku'),
       shippingTime: document.querySelector('#product-shipping'),
       stock: document.querySelector('#product-stock'),
@@ -100,13 +100,10 @@ export default class Product extends PageManager {
   }
 
   onReady() {
-    // console.log("Ready");
-    // console.log('last update: ', last_update);
-    // fix to wake touch event handling in safari
-    document.addEventListener('touchstart', function (e) {});
 
-    // initialize the gallery
-    this.initGallery();
+    this.gallery = new CsGallery({
+        containerClass: 'product-image-gallery'
+    });
 
     // initialize the product rating
     this.addRating();
@@ -156,134 +153,6 @@ export default class Product extends PageManager {
       this.contentElements.productMessages.classList.add('error');
       this.contentElements.productMessages.style.visibility = 'visible';
     }
-  }
-
-  // initialize the image gallery
-  initGallery() {
-    // console.log("Init Gallery");
-    const images = document.querySelectorAll('.slide');
-    const dots = document.querySelectorAll('.dot');
-    const next = document.querySelector('#next');
-    const prev = document.querySelector('#prev');
-    const bump = 15;
-
-    let currentSlide = 0;
-    let totalSlides = images.length;
-    // console.log("total slides: ", totalSlides);
-    let positions = [];
-
-    dots[0].classList.add('active-dot');
-
-    // Calculate positions for each image
-    for (const image of images) {
-      let distance = 100 * positions.length;
-      positions.push(distance);
-    }
-
-    // Show specific image by index
-    function showImg(slide) {
-      // console.log("show image ", slide);
-      const distance = positions[slide];
-      gallery.style.transform = `translateX(-${distance}%)`;
-
-      // Update active dot
-      dots.forEach((dot) => {
-        dot.classList.remove('active-dot');
-      });
-      dots[slide].classList.add('active-dot');
-      currentSlide = slide;
-    }
-
-    // End Bump Logic
-    function handleEndBump(direction) {
-      gallery.style.transition = 'transform .1s ease';
-      const sign = direction === 'next' ? '-' : '+';
-      gallery.style.transform = `translateX(calc(-${positions[currentSlide]}% ${sign} ${bump}px))`;
-      setTimeout(() => {
-        gallery.style.transform = `translateX(-${positions[currentSlide]}%)`;
-      }, 100);
-      gallery.style.transition = 'transform .4s ease';
-    }
-
-    // Next and Previous image functions
-    function nextImg() {
-      totalSlides = images.length;
-      if (currentSlide < totalSlides - 1) {
-        currentSlide++;
-        showImg(currentSlide);
-      } else {
-        handleEndBump('next');
-      }
-    }
-
-    function prevImg() {
-      // console.log("previous image");
-      if (currentSlide > 0) {
-        currentSlide--;
-        showImg(currentSlide);
-      } else {
-        handleEndBump('prev');
-      }
-    }
-
-    // Add touch event handling
-    let touchStartX = 0;
-    let touchEndX = 0;
-
-    gallery.addEventListener(
-      'touchstart',
-      (e) => {
-        e.preventDefault();
-        touchStartX = e.touches[0].clientX;
-      },
-      { passive: false }
-    );
-
-    gallery.addEventListener(
-      'touchmove',
-      (e) => {
-        e.preventDefault();
-        touchEndX = e.touches[0].clientX;
-      },
-      { passive: false }
-    );
-
-    gallery.addEventListener(
-      'touchend',
-      (e) => {
-        // Include the event object here
-        e.preventDefault();
-        const touchDiff = touchEndX - touchStartX;
-
-        // Set a threshold to determine a valid swipe
-        if (Math.abs(touchDiff) > 50) {
-          // Swipe left
-          if (touchDiff < 0) {
-            nextImg();
-          }
-          // Swipe right
-          else {
-            prevImg();
-          }
-        }
-      },
-      { passive: false }
-    );
-
-    // gallery listeners
-    // Event listeners for dot clicks
-    dots.forEach((dot, index) => {
-      dot.addEventListener('click', () => {
-        showImg(index);
-      });
-    });
-
-    next.addEventListener('click', () => nextImg());
-    prev.addEventListener('click', () => prevImg());
-
-    this.galleryInitialized = true;
-    showImg(0);
-    // console.log("gallery initialized? ", this.galleryInitialized);
   }
 
   // determine which badges apply, create them, and append them to the document
@@ -909,6 +778,8 @@ export default class Product extends PageManager {
         this.contentElements[element].innerHTML = '';
     }
     this.clearMessages();
+    this.gallery.destroy();
+    this.gallery = null;
   }
 
   // load the images for the endpoint product
@@ -916,7 +787,7 @@ export default class Product extends PageManager {
     // console.log("update gallery");
     // get the images for the selected product
     let imageData = this.endPointData.image_array;
-
+    
     // pull the main image off of the imageData so it can be added to the end of the final array
     let mainImage = {
       url: imageData.url,
@@ -925,68 +796,35 @@ export default class Product extends PageManager {
       url_standard: imageData.url_standard,
       sort_order: imageData.image_count,
     };
-
+    
     // reset the image array
     this.imageArray.length = 0;
-
+    
     // push the secondary images and the main image to the new image array
     this.imageArray.push(...imageData.secondary_images_list, mainImage);
-
-    const gallery = document.createElement('div');
-    gallery.id = 'gallery';
-
+    
+    // const gallery = document.createElement('div');
+    // gallery.id = 'gallery';
+    
     // establish an array to contain the slide elements
     let slides = [];
-
-    // Create new buttons and a new position indicator element
-    let prevButton = document.createElement('button');
-    Object.assign(prevButton, { id: 'prev', textContent: 'Previous' });
-    let positionIndicator = document.createElement('div');
-    positionIndicator.id = 'position-indicator';
-    let nextButton = document.createElement('button');
-    Object.assign(nextButton, { id: 'next', textContent: 'Next' });
-    let dots = [];
-    let dot = this.createDot();
-
-    // index track which image the loop is on
-    let i = 0;
-
-    // create a slide and a dot for each image and add them to their arrays
+    
     for (const image of this.imageArray) {
       let slide = document.createElement('div');
       slide.classList.add('slide');
-      let img = document.createElement('img');
-      img.src = image.url;
-      img.alt = image.description;
-      slide.appendChild(img);
+
+      let imgElement = document.createElement('img');
+      imgElement.src = image.url;
+      imgElement.alt = image.description;
+      slide.append(imgElement);
       slides.push(slide);
-      // create a new dot by cloning dot
-      const newDot = dot.cloneNode(true);
-      // set the first dot to active
-      if (i === 0) {
-        newDot.classList.add('active-dot');
-        i++;
-      }
-      dots.push(newDot);
     }
-
-    // apend the slides and controls to their parent elements
-    gallery.append(...slides);
-    this.contentElements.gallery.append(gallery);
-    this.contentElements.galleryControls.append(
-      prevButton,
-      positionIndicator,
-      nextButton
-    );
-
-    // since postion-indicator was removed, re-assign it to the appropriate selectElement
-    this.contentElements.dots = document.querySelector('#position-indicator');
-
-    // append the dots to the position indicator
-    this.contentElements.dots.append(...dots);
-
-    // re-initialize the gallery
-    this.initGallery();
+    
+    this.contentElements.gallerySlides.append(...slides);
+    
+    this.gallery = new CsGallery ({
+      containerClass: "product-image-gallery"
+    });
   }
 
   showInstructions() {
@@ -1044,33 +882,6 @@ export default class Product extends PageManager {
     if (instructionsTabParent.classList.contains('is-active')) {
       this.updateInstructions();
     }
-  }
-
-  createDot() {
-    // Create an SVG element
-    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-
-    // Set the width and height of the SVG and add the dot class
-    svg.setAttribute('width', '18');
-    svg.setAttribute('height', '18');
-    svg.classList.add('dot');
-
-    // Create a circle element
-    const circle = document.createElementNS(
-      'http://www.w3.org/2000/svg',
-      'circle'
-    );
-
-    // Set the attributes for the circle (centered in the SVG)
-    circle.setAttribute('cx', '9');
-    circle.setAttribute('cy', '9');
-    circle.setAttribute('r', '9'); // Radius of the circle
-
-    // Append the circle to the SVG
-    svg.appendChild(circle);
-
-    // return the svg
-    return svg;
   }
 
   getShipDay() {

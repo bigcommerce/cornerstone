@@ -13,6 +13,15 @@
 
 @import "custom-mixins"; //1
 
+// Gallery Module CSS
+// -----------------------------------------------------------------------------
+//
+// 1. Import custom css.
+//
+// -----------------------------------------------------------------------------
+
+@import "csGallery"; //1
+
 // -----------------------------------------------------------------------------
 //
 //                                  Base Layout
@@ -481,7 +490,7 @@ html {
     }
   }
 
-  #product-above {
+  #product-above, #product-above-new {
     // min-height: (100svh - #{$header-height} - #{$mobile-spacing});
     display: flex;
     gap: $mobile-spacing;
@@ -509,106 +518,34 @@ html {
     }
   }
 
-  #product-above-photo {
-    max-width: $product-above-photo-max-width;
-    display: flex;
-    // justify-content: center;
-    align-items: center;
-    flex-direction: column;
+  //Custom CsGallery Styles
 
-    img {
-      max-width: 100%;
-    }
+  .slides-wrapper {
+    border-radius: spacing("single");
   }
 
-  #gallery-container {
-    position: relative;
-    width: 100%;
-    padding-bottom: 75%;
-    overflow-x: hidden;
-  }
-
-  #gallery {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    display: flex;
-    width: 100%;
-    transition: transform 0.4s ease;
-  }
-
-  .slide {
-    flex: 0 0 auto;
-    width: 100%;
-    padding: $gallery-img-corner-radius;
-    box-sizing: border-box;
+  .gallery-nav button {
+    align-self: center;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 0;
+    margin: 0 spacing("single");
   }
 
-  .slide img {
-    border-radius: $gallery-img-corner-radius;
-    max-width: 100%;
-    max-height: 100%;
-    display: block;
+  .gallery-arrow {
+    fill: stencilColor("color-primary");
+    @include square($slick-arrows-size);
   }
 
-  #gallery-controls {
-    width: 95%;
-    margin-top: spacing("single");
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: center;
-
-    @include breakpoint("small") {
-      justify-content: space-between;
-    }
-  }
-
-  #gallery-controls button {
-    background-color: #c9c9c9;
-    border-radius: $button-border-radius;
-    padding: spacing("half");
+  .gallery-modal-close {
+    align-self: flex-start;
     display: none;
 
-    @include breakpoint("small") {
+    @include breakpoint("medium") {
       display: inline;
-      &:hover {
-        background-color: #838383;
-      }
     }
   }
-
-  #position-indicator {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    gap: spacing("half");
-  }
-
-  .dot {
-    @include square(20);
-  }
-
-  .dot use,
-  .dot circle {
-    transition: fill 0.4s ease;
-    fill: #c13119;
-  }
-
-  .active-dot use,
-  .active-dot circle {
-    fill: black;
-  }
-
-  // #product-above-info {
-  //   margin: spacing("single");
-  // }
 
   .single-row {
     height: spacing("single");

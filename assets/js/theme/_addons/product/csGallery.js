@@ -230,13 +230,16 @@ export default class CsGallery {
     }
 
     // Clear any DOM elements and references
-    // this.container.innerHTML = '';
     this.mapElement.innerHTML = '';
 
+    // reset the position of the slides container
+    this.imageContainer.style.transform = `translateX(0)`;
+    
     // Nullify properties for garbage collection
     this.slides = null;
     this.imageContainer = null;
     this.container = null;
     this.mapElement = null;
+
   }
 }

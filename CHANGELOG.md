@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fix GH build action & added package version and short commit hash to artifact names in GitHub Actions workflow for improved traceability and uniqueness. ([#2494](https://github.com/bigcommerce/cornerstone/pull/2494))
 - Bump stencil-utils to 6.18.0 ([#2493](https://github.com/bigcommerce/cornerstone/pull/2493))
 - Bump other GH actions to fix warnings related to old versions. ([#2495](https://github.com/bigcommerce/cornerstone/pull/2495))
+- Support Stencil CLI's ESM migration. ([#2500](https://github.com/bigcommerce/cornerstone/pull/2500))
+
 
 ## 6.15.0 (10-18-2024)
 - Cornerstone changes to support inc/ex tax price lists on PDP [#2486](https://github.com/bigcommerce/cornerstone/pull/2486)

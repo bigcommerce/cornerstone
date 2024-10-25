@@ -13,28 +13,37 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
-
     strategy:
       matrix:
-        node: [16.x]
+        os: [ubuntu-latest]
+        node: [18.x, 20.x]
+
+    runs-on: ${{ matrix.os }}
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
 
     - name: Use Node.js ${{ matrix.node }}
-      uses: actions/setup-node@v2-beta
+      uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node }}
 
+    - name: Read package.json
+      uses: zvonimirsun/read-package-version-actions@v2
+      id: package-version
+
+    - name: Get short SHA
+      id: vars
+      run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+
     - name: npm cache
-      uses: actions/cache@v2
+      uses: actions/cache@v4
       with:
         path: ~/.npm
-        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        key: ${{ matrix.os }}-node-${{ hashFiles('**/package-lock.json') }}
         restore-keys: |
-          ${{ runner.os }}-node-
+          ${{ matrix.os }}-node-${{ matrix.node }}
 
     - name: Install Stencil CLI Dependency
       run: npm install -g @bigcommerce/stencil-cli
@@ -46,17 +55,19 @@ jobs:
       run: npx grunt check
 
     - name: Validate theme successfully bundles
-      run: npx stencil bundle --name bundle
+      run: npx stencil bundle --name ${{ matrix.os }}-node-${{ matrix.node }}-v${{ steps.package-version.outputs.version }}-${{ steps.vars.outputs.sha_short }}-bundle
 
     - name: Upload bundled theme
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
-        name: Bundled Theme
-        path: bundle.zip
+        name: Bundled-Theme-${{ matrix.os }}-node-${{ matrix.node }}-v${{ steps.package-version.outputs.version }}-${{ steps.vars.outputs.sha_short }}
+        path: ${{ matrix.os }}-node-${{ matrix.node }}-v${{ steps.package-version.outputs.version }}-${{ steps.vars.outputs.sha_short }}-bundle.zip
+
+    - name: Rename bundle analysis report
+      run: mv assets/dist/report.html assets/dist/${{ matrix.os }}-node-${{ matrix.node }}-v${{ steps.package-version.outputs.version }}-${{ steps.vars.outputs.sha_short }}-report.html
 
     - name: Upload bundle analysis
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
-        name: Webpack Analysis
-        path: assets/dist/report.html
-
+        name: Webpack-Analysis-${{ matrix.os }}-node-${{ matrix.node }}-v${{ steps.package-version.outputs.version }}-${{ steps.vars.outputs.sha_short }}
+        path: assets/dist/${{ matrix.os }}-node-${{ matrix.node }}-v${{ steps.package-version.outputs.version }}-${{ steps.vars.outputs.sha_short }}-report.html

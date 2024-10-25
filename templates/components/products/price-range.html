@@ -36,7 +36,7 @@
             {{price.non_sale_price_with_tax.formatted}}
         </span>
     </div>
-    <div class="price-section price-section--withTax">
+    <div class="price-section price-section--withTax price--withTax">
         <span class="price-label">{{theme_settings.pdp-price-label}}</span>
         <span class="price-now-label" style="display: none;">
             {{> components/products/price-label
@@ -44,7 +44,7 @@
                 fallback=(lang "page_builder.pdp-sale-price-label")
             }}
         </span>
-        <span data-product-price-with-tax class="price price--withTax">{{price.price_range.min.with_tax.formatted}} - {{price.price_range.max.with_tax.formatted}}</span>
+        <span data-product-price-with-tax class="price">{{price.price_range.min.with_tax.formatted}} - {{price.price_range.max.with_tax.formatted}}</span>
         {{#and price.price_range.min.without_tax price.price_range.max.without_tax}}
             <abbr title="{{lang 'products.including_tax'}}">{{lang 'products.price_with_tax' tax_label=price.price_range.min.tax_label}}</abbr>
         {{/and}}
@@ -88,7 +88,7 @@
             {{price.non_sale_price_without_tax.formatted}}
         </span>
     </div>
-    <div class="price-section price-section--withoutTax{{#and price_range.min.with_tax price_range.max.with_tax}} price-section--minor{{/and}}">
+    <div class="price-section price-section--withoutTax price--withoutTax{{#and price_range.min.with_tax price_range.max.with_tax}} price-section--minor{{/and}}">
         <span class="price-label">{{theme_settings.pdp-price-label}}</span>
         <span class="price-now-label" style="display: none;">
             {{> components/products/price-label
@@ -96,7 +96,7 @@
                 fallback=(lang "page_builder.pdp-sale-price-label")
             }}
         </span>
-        <span data-product-price-without-tax class="price price--withoutTax">{{price.price_range.min.without_tax.formatted}} - {{price.price_range.max.without_tax.formatted}}</span>
+        <span data-product-price-without-tax class="price">{{price.price_range.min.without_tax.formatted}} - {{price.price_range.max.without_tax.formatted}}</span>
         {{#and price.price_range.min.with_tax price.price_range.max.with_tax}}
             <abbr title="{{lang 'products.excluding_tax'}}">{{lang 'products.price_without_tax' tax_label=price.price_range.min.tax_label}}</abbr>
         {{/and}}

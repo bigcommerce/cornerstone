@@ -382,7 +382,7 @@ export default class Product extends PageManager {
   }
 
   // provide an array, a target select, and a selected value to create a list of options to add to the select. 'target' is the key value from this.selectionSteps. Includes default. 'selected' can be null if no option is selected yet.
-  createOptions(array, target, selected, line) {
+  createOptions(array, target, selected, endpoint, line) {
     // console.log('create options target: ', array, target, selected, line);
     let defaultOption = new Option(
       this.selectionSteps[target].default,
@@ -396,6 +396,16 @@ export default class Product extends PageManager {
       if (this.selectionSteps[target].hasIndex) {
         option.value = item.index;
         option.text = item.name;
+
+        // if the option is an endpoint, show the price of it
+        if (key_dict[item.index]) {
+          const { price, sale_price } = key_dict[item.index];
+          const formattedPrice = price.toLocaleString('en-us', { style: 'currency', currency: 'USD' });
+          const formattedSalePrice = sale_price.toLocaleString('en-us', { style: 'currency', currency: 'USD' });
+          
+          option.text += ` (${sale_price !== 0 ? formattedSalePrice : formattedPrice})`;
+        }
+        
         if (selected) {
           if (item.index === selected) {
             option.selected = true;

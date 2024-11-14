@@ -16,7 +16,7 @@ ol.breadcrumbs {
     display: none; // 1
     font-size: 0; // 2
     overflow: visible;
-    text-align: center;
+    margin: 0;
     @include breakpoint("small") {
         display: block; // 1
     }
@@ -26,11 +26,13 @@ ol.breadcrumbs {
     display: inline-block;
     float: none;
     margin-right: 0.25rem;
-
+    
     &.is-active {
         > .breadcrumb-label {
             cursor: pointer;
+            color: #222222;
             font-weight: 700;
+            padding: 0 10px;
         }
     }
 
@@ -42,5 +44,23 @@ ol.breadcrumbs {
         height: 0.8em;
         margin: 0 0.25rem;
         transform: rotate(15deg);
+    }
+}
+
+.breadNav {
+    display: flex;
+    justify-content: space-between;
+    background: #0000001A;
+    padding: 0 40px;
+    align-items: center;
+    height: 48px;
+    font-size: 15px;
+    .pd-price {
+        display: flex;
+    }
+    .add-to-cart{
+        height: auto;
+        background: #FFBA00;
+        
     }
 }

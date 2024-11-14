@@ -1,4 +1,4 @@
-<nav aria-label="Breadcrumb">
+<nav aria-label="Breadcrumb" class="breadNav">
     <ol class="breadcrumbs">
         {{#unless theme_settings.hide_breadcrumbs }}
             {{#each breadcrumbs}}
@@ -13,6 +13,20 @@
             {{/each}}
         {{/unless}}
     </ol>
+    {{#if product.price}}
+        <div class="pd-price">
+            <section>
+                {{#or customer (unless settings.hide_price_from_guests)}}
+                    {{> components/products/price price=product.price}}
+                {{else}}
+                    {{> components/common/login-for-pricing}}
+                {{/or}}
+            </section>
+            <button class="add-to-cart">
+                Add to cart
+            </button>
+        </div>
+    {{/if}}
 </nav>
 
 <script type="application/ld+json">

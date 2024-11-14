@@ -1,0 +1,34 @@
+<div class="accordions">
+    {{#if product.description}}
+    <div class="accordion">
+        <input type="checkbox" id="pd-Desc" />
+        <label for="pd-Desc" class="accordion__header" id="pd-Desc">{{lang 'products.description'}}</label>
+        <div class="accordion__content">
+            {{{product.description}}}
+            {{#if product.warranty}}
+            <div>
+                <label>{{lang 'products.warranty'}}</label>
+                <section>{{product.warranty}}</section>
+            </div>
+            {{/if}}
+        </div>
+    </div>
+    {{/if}}
+
+    <div class="accordion">
+        <input type="checkbox" id="pd-CusAttr" />
+        <label for="pd-CusAttr" class="accordion__header" id="pd-CusAttr">{{lang 'products.data'}}</label>
+        <div class="accordion__content">
+            <table class="productSpec">
+                <tbody>
+                    {{#each product.custom_fields}}
+                    <tr>
+                        <td>{{name}}</td>
+                        <td>{{{value}}}</td>
+                    </tr>       
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

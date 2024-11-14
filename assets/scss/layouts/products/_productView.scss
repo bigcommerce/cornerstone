@@ -33,11 +33,11 @@
 
 .productView-images {
     @include grid-column(12);
-    padding-left: spacing("base");
-    padding-right: spacing("base");
+    // padding-left: spacing("base");
+    // padding-right: spacing("base");
 
     @include breakpoint("medium") {
-        width: grid-calc(6, $total-columns);
+        width: grid-calc(4, $total-columns);
     }
 }
 
@@ -47,9 +47,9 @@
     padding-right: spacing("base");
 
     @include breakpoint("medium") {
-        clear: right;
-        float: right;
-        width: grid-calc(6, $total-columns);
+        // clear: right;
+        // float: right;
+        width: grid-calc(4, $total-columns);
     }
 
     .productView--quickView & {
@@ -77,9 +77,10 @@
 
     .productView-description {
         @include breakpoint("medium") {
-            clear: both;
-            float: none;
-            width: 100%;
+            width: grid-calc(4, $total-columns);
+            // clear: right;
+            // float: right;
+            // width: 100%;
         }
     }
 }

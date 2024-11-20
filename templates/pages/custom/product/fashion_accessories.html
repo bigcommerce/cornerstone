@@ -1,84 +1,100 @@
+---
+product:
+    videos:
+        limit: {{theme_settings.productpage_videos_count}}
+    reviews:
+        limit: {{theme_settings.productpage_reviews_count}}
+    related_products:
+        limit: {{theme_settings.productpage_related_products_count}}
+    similar_by_views:
+        limit: {{theme_settings.productpage_similar_by_views_count}}
+---
+{{inject 'productId' product.id}}
+{{inject 'relatedproducts' product.related_products}}
+
 {{#partial "page"}}
-<div class="page-wraper">
-    <div class="row">
-        <div class="columns large-12 ">
-            <div class="columns large-3">
-                <div class="columns large-6">
-                    <img class="bundle_left_image" src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcTI1DcKqzeGvqn5xYQQUpYm3szvAZh90X0LVWAGSb8yTiWDoCBbHrOvcxzeigN7yIKfIeUe4XSm_tmqq1Geu8hLNl63wISc5bvar3asAqb7KLbvkjdGXgUo">
-                </div>
+
+    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+
+    {{#each product.shipping_messages}}
+        {{> components/common/alert/alert-info message}}
+    {{/each}}
+
+    <div>
+        {{> components/products/product-view}}
+
+        {{{region name="product_below_content"}}}
+
+        {{#if product.videos.list.length}}
+            {{> components/products/videos product.videos}}
+        {{/if}}
+
+        {{#all settings.show_product_reviews theme_settings.show_product_reviews (if theme_settings.show_product_details_tabs '!==' true)}}
+            {{> components/products/reviews reviews=product.reviews product=product urls=urls}}
+        {{/all}}
+
+        {{> components/products/tabs}}
+    </div>
+
+    {{> components/products/schema}}
+
+
+    <div class="page-wraper">
+        <div class="row" id="navbar">
+            <div class="columns large-12">
+                <div class="columns large-3 ">
                     <div class="columns large-6">
-                    <h2 class="left_bundle_title">Calvin Klein Handbags</h2>
-                </div>
-            </div>
-            <div class="columns large-6 ">
-                <div class="bundle">
-                    <div class="columns large-2">
-                        <img class="center_bundle_img" src="https://m.media-amazon.com/images/I/410kaYn-4BL.jpg">
-                        <p class="center_bundle_title">Calvin Klein</p>
+                        <img class="bundle_left_image" src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcTI1DcKqzeGvqn5xYQQUpYm3szvAZh90X0LVWAGSb8yTiWDoCBbHrOvcxzeigN7yIKfIeUe4XSm_tmqq1Geu8hLNl63wISc5bvar3asAqb7KLbvkjdGXgUo">
                     </div>
-                    <div class="columns large-2">
-                        <img class="center_bundle_img" src="https://m.media-amazon.com/images/I/410kaYn-4BL.jpg">
-                        <p class="center_bundle_title">Calvin Klein</p>
-                    </div>
-                    <div class="columns large-2">
-                        <img class="center_bundle_img" src="https://m.media-amazon.com/images/I/410kaYn-4BL.jpg">
-                        <p class="center_bundle_title">Calvin Klein</p>
-                    </div>
-                    <div class="columns large-2">
-                        <img class="center_bundle_img" src="https://m.media-amazon.com/images/I/410kaYn-4BL.jpg">
-                        <br>
-                        <p class="center_bundle_title">Calvin Klein</p>
-                    </div>
-                    <div class="columns large-2">
-                        <img class="center_bundle_img" src="https://m.media-amazon.com/images/I/410kaYn-4BL.jpg">
-                        <br>
-                        <p class="center_bundle_title">Calvin Klein </p>
-                    </div>
-                    <div class="columns large-2">
-                        <img class="center_bundle_img" src="https://m.media-amazon.com/images/I/410kaYn-4BL.jpg">
-                        <br>
-                        <p class="center_bundle_title">Calvin Klein</p>
+                        <div class="columns large-6">
+                        <h2 class="left_bundle_title">Calvin Klein Handbags</h2>
                     </div>
                 </div>
-            </div>
-            <div class="columns large-3">
-                <div class="columns large-6 bundle3">
-                    <div class="textunder_price">
-                        <span style="color:black;font-weight:bold">£</span>183.50
-                    </div>
+                <div class="columns large-6">
+                    <p class="bundle"></p>
                 </div>
-                <div class="columns large-6 bundle3">
-                    <div class="cart_button">
-                        <button class="cart-btn-text">Add to Cart</button>
+                
+                <!-- <div class="columns large-6">
+                    <p class="total-price">$0.00</p>
+                </div> -->
+                <div class="columns large-3">
+                    <div class="columns large-6 bundle3">
+                        <div class="textunder_price">
+                            <span style="color:black;font-weight:bold">£</span>183.50
+                        </div>
+                    </div>
+                    <div class="columns large-6 bundle3">
+                        <div class="cart_button">
+                            <button class="cart-btn-text">Add to Cart</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <br>
-    <div class="accessories-row">
-        <div>
-            <div class="columns large-3 accessories-list">
-                <div> 
-                    <div class="accessories-name">128GB U3 Industrial Grade microSD Card</div>
-                    <div class="accessories-price">£45.00</div> 
-                    <img class="product-image" src="{{getImage image}}">
-                    <div class="row3">
-                        <div class="columns large-6">
+        <br>
+        <div class="accessories-row">
+            {{#each product.related_products}}
+            <div>
+                <div class="columns large-3 accessories-list">
+                    <div> 
+                        <div class="accessories-name">{{name}}</div>
+                        <div class="accessories-price">{{price.without_tax.formatted}}</div> 
+                        <img class="product-image" src="{{getImage image}}">
+                        <div class="accessories-button">
                             <div class="accessories-list-button">
                                 <button class="button-learn">View Details</button>
                             </div>
-                        </div> 
-                        <div class="columns large-6">
                             <div class="accessories-list-button">
-                                <button class="button-bundle"  type="button" onclick="alert('Loading Next Page')">Add to bundle</button>
+                                <button class="button-bundle" onclick="addToCart('{{name}}', '{{getImage image}}',' {{price.without_tax.formatted}}')">Add to bundle</button>
                             </div>
-                        </div>
-                    </div> 
+                        </div> 
+                    </div>
                 </div>
-            </div>
+            </div>  
+            {{/each}}
         </div>
     </div>
-</div>
+<script src="/assets/js/custom/product/fashion_accessories.js">
+</script>
 {{/partial}}
 {{> layout/base}}

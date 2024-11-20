@@ -11,16 +11,27 @@ body {
     text-align: center;
     background: whitesmoke;
     border-radius: 25px !important; 
+    max-width: 81.42857rem;
+}
+#navbar {
+    position: sticky;
+    top: 0;
+    overflow: hidden;
+    background: whitesmoke;
+    z-index: 100;
+    border: 1px solid #dddd;
+    
 }
 .bundle{
     min-height: 100px;
     max-width: 100%;
     padding-top: 10px;
-    margin-top: 0px;
+    margin-top: 20px;
     margin-bottom: 0px;
     display: flex; 
     align-items: center;
-    // margin-bottom: -4.21429rem ;
+    border-left: 1px solid rgb(0, 0, 0);
+    border-right: 1px solid rgb(0, 0, 0);
 }
 .bundle_left_image{
     margin-top: 10px;
@@ -44,10 +55,10 @@ body {
 .textunder_price {
     font-size: 23px;
     font-family: "Poppins", serif;
-    padding-left: 10px;
     text-align: center;
     margin-top: 40px;
     margin-right: 40px;
+    padding-left: 0px;
 }
 .cart_button{
     color: #ffffff !important;
@@ -60,35 +71,46 @@ body {
     font-family: 'Roobert-Regular' !important;
     width: 7rem !important;
     height: 45px !important;
-    padding: 0px !important;
+    padding: 5px;
+    
 }
 .cart-btn-text{
-    font-size: 10px !important;
+    font-size: 15px !important;
     text-align: center;
+    padding: 8px;
+    white-space: nowrap;
 }
 .accessories-row{
     display: flex;
     flex-direction: row;
     flex-wrap:wrap;
     background-color:white !important;
+
 }
 .accessories-list{
     display: flex;
-    background-color: #EFEFEF !important;
-    border-radius: 15px !important;
-    min-height: 300.4px;
-    min-width: 11px;
-    margin: 31px;
-    width: 230px;
-    height: 400px;
-    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 250px;
+    min-height: 350px;
+    max-height: 350px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.2s ease;
+    margin: 20px;
 }
+.accessories-list:hover {
+    transform: translateY(-5px);
+  }
 .accessories-name{
     display: flex;
     text-align:left;
     font-size: 19px;
     font-weight: 800;
     margin-bottom: 10px;
+    min-height: 50px;
+    max-height: 50px;
 }
 .accessories-price{
     display: flex;
@@ -103,9 +125,10 @@ body {
     width: 100%;
     text-align: center;
 }
-.row3{
+.accessories-button{
     display: flex;
-    text-align: left;
+    gap: 30px;
+    margin-left: 10px;
 }
 .accessories-list-button{
     border-radius: 5px !important;
@@ -116,18 +139,22 @@ body {
     font-family: 'Roobert-Regular' !important;
     width: 6rem !important;
     height: 35px !important;
-    margin-right: 230px;
-    height: 400px;
 }
 .button-learn{
     background:#bac0c5;
     background-color:none;
     text-align:center;
     padding-left: 0px;
+    white-space: nowrap;
+    padding: 5px;
 }
 .button-bundle{
     background: linear-gradient(270deg, #990AE2 1.67%, #1485EF 96.39%);
     text-align: center;
+    white-space: nowrap;
+    padding: 5px;
+    color: white;
+    font-size: 12px;
 }
 .accessories-list-button {
     display: flex;

@@ -179,7 +179,7 @@ export class MobileMenuToggle {
             this.$navList.removeClass('subMenu-is-open');
         }
 
-        if ($(event.target).hasClass('is-open')) {
+        if ($closestAction.hasClass('is-open')) {
             $parentSiblings.addClass('is-hidden');
             $parentAction.addClass('is-hidden');
         } else {

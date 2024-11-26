@@ -11,7 +11,7 @@
 //
 // -----------------------------------------------------------------------------
 
-@import "custom-mixins"; //1
+@import 'custom-mixins'; //1
 
 // Gallery Module CSS
 // -----------------------------------------------------------------------------
@@ -20,7 +20,7 @@
 //
 // -----------------------------------------------------------------------------
 
-@import "csGallery"; //1
+@import 'csGallery'; //1
 
 // -----------------------------------------------------------------------------
 //
@@ -56,10 +56,10 @@ html {
   //Responsive font size on small screens so that the banner text never wraps
   font-size: 2.7vw;
   //Overrides default banner padding in _banners.scss line 16
-  padding: spacing("quarter") 0;
+  padding: spacing('quarter') 0;
 
   //reset banner font size for bigger screens
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     font-size: 1rem;
   }
 }
@@ -82,12 +82,12 @@ html {
   display: flex;
   align-items: center;
 
-  @include breakpoint("medium") {
+  @include breakpoint('medium') {
     margin: 0;
   }
 
   > * {
-    @include breakpoint("small") {
+    @include breakpoint('small') {
       flex: 1 0 0;
     }
   }
@@ -101,7 +101,7 @@ html {
   .mobileMenu-toggleIcon,
   .mobileMenu-toggleIcon::before,
   .mobileMenu-toggleIcon::after {
-    background: stencilColor("navUser-color");
+    background: stencilColor('navUser-color');
   }
 
   //Sets the hamburger color to transparent (to hide one of the lines)
@@ -111,7 +111,7 @@ html {
     //Reasigns the correct color to only the lines that form the x
     &::before,
     &::after {
-      background-color: stencilColor("navUser-color");
+      background-color: stencilColor('navUser-color');
     }
   }
 }
@@ -126,16 +126,16 @@ html {
   transform: translateY(-100%);
   width: 100%;
   margin: 0;
-  padding: spacing("base") spacing("single");
-  background-color: stencilColor("color-secondary");
-  color: stencilColor("navUser-color");
+  padding: spacing('base') spacing('single');
+  background-color: stencilColor('color-secondary');
+  color: stencilColor('navUser-color');
   list-style-type: none;
-  font-weight: fontWeight("bold");
+  font-weight: fontWeight('bold');
   line-height: 1.8;
-  z-index: zIndex("high");
+  z-index: zIndex('high');
 
   // Styles for desktop
-  @include breakpoint("medium") {
+  @include breakpoint('medium') {
     position: relative;
     top: 0;
     transform: translateY(0);
@@ -159,11 +159,11 @@ html {
 .header-logo {
   margin: 0;
   flex: 1;
-  padding-right: spacing("single") + remCalc($nav-icon-size);
+  padding-right: spacing('single') + remCalc($nav-icon-size);
 
-  @include breakpoint("medium") {
+  @include breakpoint('medium') {
     //Overrides default header-logo margin from _header.scss line 76
-    margin: spacing("single") auto;
+    margin: spacing('single') auto;
 
     padding: 0;
   }
@@ -174,7 +174,7 @@ html {
 }
 
 .header-logo-image-container {
-  max-height: get-height(stencilString("logo_size"));
+  max-height: get-height(stencilString('logo_size'));
 }
 
 .svg-logo {
@@ -185,7 +185,7 @@ html {
 
 .navUser {
   //Overides _navUser.scss setting width to 100% which is only needed for the mobile layout on line 24
-  @include breakpoint("medium") {
+  @include breakpoint('medium') {
     width: auto;
   }
 }
@@ -216,13 +216,13 @@ html {
 
 //Overrides default navPages background color for two tone header for medium breakpoint from _navPages.scss line 49
 .navPages-container {
-  @include breakpoint("medium") {
+  @include breakpoint('medium') {
     background-color: $navPages-backgroundColor;
   }
 }
 
 .navPages {
-  @include breakpoint("medium") {
+  @include breakpoint('medium') {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -231,11 +231,11 @@ html {
 
 //Overrides default hiding of quick search in navPages on desktop
 .navPages-quickSearch {
-  font-size: stencilNumber("fontSize-h3");
+  font-size: stencilNumber('fontSize-h3');
   margin: 0;
-  padding-bottom: spacing("single");
+  padding-bottom: spacing('single');
 
-  @include breakpoint("medium") {
+  @include breakpoint('medium') {
     order: 2;
     display: block;
     flex: 1;
@@ -271,16 +271,16 @@ html {
   border-top: none;
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
-  background-color: stencilColor("navPages-subMenu-backgroundColor");
+  background-color: stencilColor('navPages-subMenu-backgroundColor');
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 
 .blocklink div {
-  padding: 0 spacing("quarter");
-  background-color: stencilColor("color-white");
+  padding: 0 spacing('quarter');
+  background-color: stencilColor('color-white');
 
   &:hover {
-    background-color: stencilColor("color-greyDarker");
+    background-color: stencilColor('color-greyDarker');
   }
 }
 
@@ -326,18 +326,18 @@ html {
 
 //Overrides default color assignment in _footer.scss line 114
 .footer-info-list a {
-  color: stencilColor("footer-heading-fontColor");
+  color: stencilColor('footer-heading-fontColor');
 }
 
 .footer-info-col {
-  color: stencilColor("footer-heading-fontColor");
+  color: stencilColor('footer-heading-fontColor');
 }
 
 //override
 .socialLinks {
   .icon {
     svg {
-      fill: stencilColor("footer-heading-fontColor");
+      fill: stencilColor('footer-heading-fontColor');
     }
   }
 }
@@ -345,7 +345,7 @@ html {
 //override
 .footer-copyright {
   > .powered-by {
-    color: stencilColor("footer-heading-fontColor");
+    color: stencilColor('footer-heading-fontColor');
   }
 }
 
@@ -358,7 +358,7 @@ html {
 .cs-car-picker {
   width: calc(100% - #{$mobile-spacing});
   margin: 0 auto;
-  margin-bottom: spacing("single");
+  margin-bottom: spacing('single');
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -376,12 +376,12 @@ html {
       height: $product-button-height;
     }
 
-    @include breakpoint("medium") {
+    @include breakpoint('medium') {
       flex: 1;
     }
   }
 
-  @include breakpoint("medium") {
+  @include breakpoint('medium') {
     flex-direction: row;
     width: 100%;
     max-width: 1200px;
@@ -399,17 +399,17 @@ html {
   text-align: center;
   font-weight: bold;
   font-size: $h3-font-size;
-  margin-bottom: spacing("single");
+  margin-bottom: spacing('single');
 }
 
 #more-products,
 #matching-products {
   display: grid;
   grid-template-columns: auto;
-  gap: spacing("double");
+  gap: spacing('double');
   justify-content: center;
 
-  @include breakpoint("medium") {
+  @include breakpoint('medium') {
     grid-template-columns: 1fr 1fr 1fr;
   }
 }
@@ -425,7 +425,7 @@ html {
   border: 2px solid rgba(255, 255, 255, 0);
 
   &:hover {
-    border: 2px solid stencilColor("color-primary");
+    border: 2px solid stencilColor('color-primary');
   }
 }
 
@@ -469,13 +469,19 @@ html {
     align-items: center;
 
     @keyframes errorBlink {
-      0% { background-color: #ff3a3a; }
-      50% { background-color: #9e0000; }
-      100% { background-color: #ff3a3a;}
+      0% {
+        background-color: #ff3a3a;
+      }
+      50% {
+        background-color: #9e0000;
+      }
+      100% {
+        background-color: #ff3a3a;
+      }
     }
 
     &.error {
-      color: stencilColor("color-white");
+      color: stencilColor('color-white');
       background-color: #ff3a3a;
       animation: errorBlink 1s ease-in-out 2;
 
@@ -490,17 +496,18 @@ html {
     }
   }
 
-  #product-above, #product-above-new {
+  #product-above,
+  #product-above-new {
     // min-height: (100svh - #{$header-height} - #{$mobile-spacing});
     display: flex;
     gap: $mobile-spacing;
     margin: 0 auto;
-    margin-bottom: spacing("double");
+    margin-bottom: spacing('double');
 
-    @include breakpoint("medium") {
+    @include breakpoint('medium') {
       flex-direction: row;
       max-width: $product-above-max-width;
-      gap: spacing("single");
+      gap: spacing('single');
       // align-items: center;
       justify-content: space-around;
       // min-height: calc(
@@ -521,7 +528,7 @@ html {
   //Custom CsGallery Styles
 
   .slides-wrapper {
-    border-radius: spacing("single");
+    border-radius: spacing('single');
   }
 
   .gallery-nav button {
@@ -530,11 +537,11 @@ html {
     justify-content: center;
     align-items: center;
     padding: 0;
-    margin: 0 spacing("single");
+    margin: 0 spacing('single');
   }
 
   .gallery-arrow {
-    fill: stencilColor("color-primary");
+    fill: stencilColor('color-primary');
     @include square($slick-arrows-size);
   }
 
@@ -542,17 +549,17 @@ html {
     align-self: flex-start;
     display: none;
 
-    @include breakpoint("medium") {
+    @include breakpoint('medium') {
       display: inline;
     }
   }
 
   .single-row {
-    height: spacing("single");
+    height: spacing('single');
   }
 
   .double-row {
-    height: spacing("double");
+    height: spacing('double');
   }
 
   #product-title {
@@ -566,7 +573,7 @@ html {
   }
 
   .sale-price {
-    color: stencilColor("color-primary");
+    color: stencilColor('color-primary');
   }
 
   .original-price {
@@ -592,10 +599,10 @@ html {
     flex-direction: column;
     width: 100%;
     margin: 0 auto;
-    margin-top: spacing("single");
-    gap: spacing("half");
+    margin-top: spacing('single');
+    gap: spacing('half');
 
-    @include breakpoint("medium") {
+    @include breakpoint('medium') {
       max-width: $product-selection-max-width;
     }
 
@@ -606,10 +613,10 @@ html {
     }
 
     a {
-      background-color: stencilColor("color-secondaryDark");
+      background-color: stencilColor('color-secondaryDark');
       line-height: $product-select-height;
       border-radius: $button-border-radius;
-      color: stencilColor("color-infoLight");
+      color: stencilColor('color-infoLight');
       text-decoration: none;
       text-align: center;
       vertical-align: middle;
@@ -626,8 +633,8 @@ html {
   }
 
   .next-step {
-    color: stencilColor("color-white");
-    background-color: stencilColor("color-primary");
+    color: stencilColor('color-white');
+    background-color: stencilColor('color-primary');
   }
 
   #product-blem-form {
@@ -664,7 +671,7 @@ html {
   #instructions-content {
     width: 100%;
     height: 95svh;
-    margin: 0 spacing("single");
+    margin: 0 spacing('single');
     overflow: hidden;
 
     iframe {
@@ -676,7 +683,7 @@ html {
   }
 
   .product-card {
-    padding: spacing("half");
+    padding: spacing('half');
     display: flex;
     flex-direction: column;
     position: relative;
@@ -736,7 +743,7 @@ html {
     width: auto;
     display: block;
     height: $slick-slide-height;
-    z-index: zIndex("highest");
+    z-index: zIndex('highest');
     cursor: url(../img/cursor/full-screen.png), ne-resize;
   }
 
@@ -746,7 +753,7 @@ html {
     position: absolute;
     top: calc(50% - 2rem);
     @include square($slick-arrows-size);
-    z-index: zIndex("high");
+    z-index: zIndex('high');
     font-size: 0;
 
     svg {
@@ -758,7 +765,7 @@ html {
   .cs-next {
     right: $slick-arrows-position;
 
-    @include breakpoint("large") {
+    @include breakpoint('large') {
       right: $slick-arrows-position-desktop;
     }
   }
@@ -766,7 +773,7 @@ html {
   .cs-prev {
     left: $slick-arrows-position;
 
-    @include breakpoint("large") {
+    @include breakpoint('large') {
       left: $slick-arrows-position-desktop;
     }
   }
@@ -788,7 +795,7 @@ html {
       align-items: center;
 
       button {
-        background: stencilColor("product-carousel-dot-color");
+        background: stencilColor('product-carousel-dot-color');
         border: none;
 
         &::before {
@@ -803,7 +810,7 @@ html {
     margin-bottom: 0;
   }
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     margin: 1rem;
     margin-top: 0;
   }
@@ -844,12 +851,12 @@ html {
     font-size: 0.875rem;
     flex: 1;
 
-    @include breakpoint("medium") {
+    @include breakpoint('medium') {
       font-size: 1.25rem;
     }
   }
 
-  @include breakpoint("medium") {
+  @include breakpoint('medium') {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
@@ -864,11 +871,11 @@ html {
   margin-bottom: $mobile-spacing;
   gap: $mobile-spacing;
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     align-items: center;
   }
 
-  @include breakpoint("medium") {
+  @include breakpoint('medium') {
     display: grid;
     grid: 100% / 50% 50%;
   }
@@ -877,13 +884,13 @@ html {
 #product-images {
   position: relative;
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     width: $images-width-medium;
     max-width: 100%;
     height: auto;
   }
 
-  @include breakpoint("medium") {
+  @include breakpoint('medium') {
     width: 100%;
     height: 100%;
   }
@@ -891,13 +898,13 @@ html {
 
 #product-image-gallery {
   height: 100%;
-  z-index: zIndex("low");
+  z-index: zIndex('low');
   display: flex;
   align-items: center;
   justify-content: center;
 
-  @include breakpoint("medium") {
-    width: calc(100% - #{spacing("double")});
+  @include breakpoint('medium') {
+    width: calc(100% - #{spacing('double')});
     margin: 0 auto;
   }
 }
@@ -912,9 +919,9 @@ html {
     border: 3px solid black;
   }
 
-  @include breakpoint("medium") {
+  @include breakpoint('medium') {
     justify-content: center;
-    gap: spacing("single");
+    gap: spacing('single');
   }
 }
 
@@ -923,11 +930,11 @@ html {
   display: flex;
   flex-direction: column;
   border-radius: 5px;
-  background-color: stencilColor("color-white");
+  background-color: stencilColor('color-white');
   width: $product-badges-max;
   height: fit-content;
-  padding: spacing("eighth");
-  gap: spacing("eighth");
+  padding: spacing('eighth');
+  gap: spacing('eighth');
 
   h4 {
     margin: 0;
@@ -940,40 +947,41 @@ html {
 
 .warranty-badge {
   font-weight: bold;
-  padding: spacing("eighth");
+  padding: spacing('eighth');
   border-radius: 5px;
   text-align: center;
   cursor: pointer;
-  
+
   p {
-    background-color: stencilColor("color-primary");
-    color: stencilColor("color-white");
-    padding: spacing("quarter");
+    background-color: stencilColor('color-primary');
+    color: stencilColor('color-white');
+    padding: spacing('quarter');
     margin: 0;
   }
 }
 
 .free-shipping-badge {
-  color: stencilColor("color-white");
+  color: stencilColor('color-white');
   font-weight: bold;
-  padding: spacing("eighth");
+  padding: spacing('eighth');
   border-radius: 5px;
   text-align: center;
   cursor: pointer;
-  
+
   p {
-    background-color: stencilColor("color-secondary");
-    color: stencilColor("color-white");
-    padding: spacing("quarter");
+    background-color: stencilColor('color-secondary');
+    color: stencilColor('color-white');
+    padding: spacing('quarter');
     margin: 0;
   }
 }
 
-#warranty-message, #shipping-message {
-  padding: spacing("single");
+#warranty-message,
+#shipping-message {
+  padding: spacing('single');
 
   h3 {
-    border-bottom: 2px solid stencilColor("color-primary");
+    border-bottom: 2px solid stencilColor('color-primary');
   }
 }
 
@@ -993,7 +1001,7 @@ html {
       max-width: 100%;
       max-height: 100%;
 
-      @include breakpoint("large") {
+      @include breakpoint('large') {
         .slick-next {
           right: 0;
         }
@@ -1035,7 +1043,7 @@ html {
   align-items: center;
   gap: $mobile-spacing;
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     width: 100%;
     margin: 0 auto;
     align-self: flex-end;
@@ -1043,7 +1051,7 @@ html {
     justify-content: flex-start;
   }
 
-  @include breakpoint("medium") {
+  @include breakpoint('medium') {
     width: 100%;
     max-width: 500px;
   }
@@ -1052,7 +1060,7 @@ html {
 #product-details {
   flex: 1;
   display: grid;
-  column-gap: spacing("half");
+  column-gap: spacing('half');
 
   #product-title {
     grid-column: 1 / span 2;
@@ -1060,7 +1068,7 @@ html {
     margin: 0;
     text-align: center;
 
-    @include breakpoint("medium") {
+    @include breakpoint('medium') {
       height: 102px;
       text-align: left;
       font-size: 34px;
@@ -1070,7 +1078,7 @@ html {
   #product-details-two {
     text-align: right;
 
-    @include breakpoint("medium") {
+    @include breakpoint('medium') {
       text-align: left;
     }
   }
@@ -1081,7 +1089,7 @@ html {
     line-height: 1;
     height: 24px;
 
-    @include breakpoint("medium") {
+    @include breakpoint('medium') {
       font-size: 28px;
       height: 40px;
     }
@@ -1090,7 +1098,7 @@ html {
   #product-shipping,
   #product-stock,
   #product-rating {
-    @include breakpoint("small") {
+    @include breakpoint('small') {
       font-size: 17px;
       height: 26px;
       vertical-align: middle;
@@ -1100,7 +1108,7 @@ html {
 
   #product-stock {
     &.with-form {
-      @include breakpoint("small") {
+      @include breakpoint('small') {
         height: 52px;
       }
     }
@@ -1112,7 +1120,7 @@ html {
     height: 36px;
   }
 
-  @include breakpoint("medium") {
+  @include breakpoint('medium') {
     flex: 0;
     display: flex;
     flex-direction: column;
@@ -1126,13 +1134,13 @@ html {
 #scratch-and-dent,
 #stock-notification {
   .modal-content {
-    padding: spacing("half");
+    padding: spacing('half');
     display: flex;
     flex-direction: column;
     align-items: center;
 
     @include breakpoint(medium) {
-      padding: spacing("double");
+      padding: spacing('double');
     }
   }
 }
@@ -1141,7 +1149,7 @@ html {
   align-items: flex-start;
 
   #modal-content {
-    margin-top: spacing("double");
+    margin-top: spacing('double');
   }
 
   #inStockNotifyEmailAddress-custom {
@@ -1155,19 +1163,19 @@ html {
   p {
     margin-bottom: 0;
 
-    @include breakpoint("medium") {
-      margin-bottom: spacing("single");
+    @include breakpoint('medium') {
+      margin-bottom: spacing('single');
     }
   }
 }
 
 button#blem-accept {
   border: none;
-  background-color: stencilColor("button--default-color");
-  color: stencilColor("color-white");
+  background-color: stencilColor('button--default-color');
+  color: stencilColor('color-white');
 
   &:hover {
-    background-color: stencilColor("button--default-colorHover");
+    background-color: stencilColor('button--default-colorHover');
   }
 }
 
@@ -1176,16 +1184,16 @@ button#blem-accept {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: spacing("half");
+  gap: spacing('half');
   min-height: 21px;
 }
 
 #blem-check {
   @include square(20);
-  background-color: stencilColor("color-white");
+  background-color: stencilColor('color-white');
 
   &:checked {
-    background-color: stencilColor("color-primary");
+    background-color: stencilColor('color-primary');
   }
 }
 
@@ -1194,7 +1202,7 @@ button#blem-accept {
   height: auto;
   display: grid;
   grid-template-rows: $product-button-height auto $product-button-height;
-  gap: spacing("half");
+  gap: spacing('half');
 
   #product-options {
     display: flex;
@@ -1203,7 +1211,7 @@ button#blem-accept {
     gap: 6px;
     width: 100%;
 
-    @include breakpoint("medium") {
+    @include breakpoint('medium') {
       width: $product-button-width;
     }
   }
@@ -1221,13 +1229,13 @@ button#blem-accept {
     border: 2px solid stencilColor(button--disabled-borderColor);
     flex: 1;
 
-    @include breakpoint("medium") {
+    @include breakpoint('medium') {
       flex-grow: 0;
       flex-basis: 50%;
     }
   }
 
-  @include breakpoint("medium") {
+  @include breakpoint('medium') {
     width: $product-button-width;
   }
 }
@@ -1245,7 +1253,7 @@ button#blem-accept {
     color: lightgray;
     text-decoration: none;
 
-    @include breakpoint("medium") {
+    @include breakpoint('medium') {
       width: 50%;
       min-width: 250px;
     }
@@ -1258,7 +1266,7 @@ button#blem-accept {
 
 .tab {
   &.is-active {
-    @include breakpoint("medium") {
+    @include breakpoint('medium') {
       border: 2px solid $tabs-border-color;
       border-bottom: none;
     }
@@ -1271,7 +1279,7 @@ button#blem-accept {
 }
 
 ul.tabs {
-  @include breakpoint("medium") {
+  @include breakpoint('medium') {
     display: flex;
     justify-content: center;
   }
@@ -1287,11 +1295,16 @@ ul.tabs {
   width: 100%;
   margin: 0 auto;
 
-  @include breakpoint("small") {
+  h3 {
+    margin: 0;
+    border-bottom: 2px solid stencilColor('color-primary');
+  }
+
+  @include breakpoint('small') {
     max-width: $product-description-width-small;
   }
 
-  @include breakpoint("medium") {
+  @include breakpoint('medium') {
     width: 100%;
     max-width: none;
   }
@@ -1305,8 +1318,8 @@ ul.tabs {
   display: flex;
   flex-direction: column;
   width: 100%;
-  gap: spacing("single");
-  margin: spacing("single") auto;
+  gap: spacing('single');
+  margin: spacing('single') auto;
 
   //esnure elements are in correct order
   .productText {
@@ -1317,12 +1330,12 @@ ul.tabs {
     order: 2;
   }
 
-  @include breakpoint("medium") {
+  @include breakpoint('medium') {
     flex-direction: row;
 
     & > * {
       width: 50%;
-      padding: spacing("single");
+      padding: spacing('single');
     }
 
     //reverse the order of every other row
@@ -1330,28 +1343,55 @@ ul.tabs {
       flex-direction: row-reverse;
     }
   }
-  h3 {
-    margin: 0;
-    border-bottom: 2px solid stencilColor("color-primary");
-}
 
-.productText {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-
+  .productText {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
-}
 
-.productGraphic {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  text-align: center;
+  .productGraphic {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
 
-  > * {
+    > * {
+      width: 100%;
+    }
+  }
+
+  .model-view {
     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(206, 206, 206);
+  }
+
+  model-viewer {
+    background-color: unset;
+    overflow-x: hidden;
+    width: 100%;
+    height: 60vh;
+
+    @include breakpoint('small') {
+      width: 50%;
+      height: 80vh;
+    }
+  }
+
+  #instructions-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    a {
+      @include button;
+
+      border-radius: 3px;
+    }
   }
 }
 
@@ -1376,45 +1416,13 @@ ul.tabs {
   > * {
     width: 100%;
   }
-
-  .cs-triple-column {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-  }
 }
 
-.model-view {
-  width: 100%;
+.cs-triple-column {
   display: flex;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
-  background-color: rgb(206, 206, 206);
-}
-
-model-viewer {
-  background-color: unset;
-  overflow-x: hidden;
-  width: 100%;
-  height: 60vh;
-
-  @include breakpoint("small") {
-    width: 50%;
-    height: 80vh;
-  }
-}
-
-#instructions-link {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  a {
-    @include button;
-
-    border-radius: 3px;
-  }
 }
 
 // ------------------------------------------------------------------------------------->
@@ -1443,7 +1451,7 @@ model-viewer {
     vertical-align: middle;
   }
 
-  @include breakpoint("medium") {
+  @include breakpoint('medium') {
     width: $product-button-width;
     flex-direction: row;
 
@@ -1471,7 +1479,7 @@ model-viewer {
     border-radius: 3px;
     text-align: center;
 
-    @include breakpoint("medium") {
+    @include breakpoint('medium') {
       width: 50%;
       min-width: 250px;
     }
@@ -1489,12 +1497,12 @@ model-viewer {
 // ------------------------------------------------------------------------------------->
 
 #cinchContainer {
-  font-family: "Lato", sans-serif;
+  font-family: 'Lato', sans-serif;
   margin: 0 5%;
 }
 
 #cinchContainer h2 {
-  font-family: "Oswald", sans-serif;
+  font-family: 'Oswald', sans-serif;
   border-bottom: 2px solid #ea5624;
 }
 
@@ -1535,6 +1543,7 @@ model-viewer {
   display: flex;
   flex: 1;
   margin: 2em 2em;
+  gap: 1rem;
   justify-content: center;
   align-items: center;
   flex-direction: row-reverse;
@@ -1573,7 +1582,7 @@ model-viewer {
   width: 100%;
 }
 
-@media screen and (max-width: 1500px) {
+@media screen and (max-width: 1000px) {
   #cinchContainer {
     margin: 0;
   }
@@ -1640,7 +1649,7 @@ model-viewer {
     margin: 0 auto;
     display: flex;
   }
-  
+
   .stubbyFeatures {
     margin-left: 1em;
     width: 100%;
@@ -1648,14 +1657,14 @@ model-viewer {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-  
+
     h4 {
       margin: 0;
       font-size: 20px;
       line-height: 1;
     }
   }
-  
+
   .stubbyReception {
     display: flex;
     flex-direction: column;
@@ -1663,12 +1672,12 @@ model-viewer {
     align-items: flex-start;
     margin-left: 1em;
   }
-  
+
   .infoRow {
     display: grid;
     grid-template-rows: auto;
   }
-  
+
   .silhouetteConatiner {
     grid-row-start: 1;
     grid-column-start: 1;
@@ -1676,50 +1685,48 @@ model-viewer {
     justify-content: center;
     flex-wrap: nowrap;
     max-width: 100%;
-  
+
     .csSilhoeutte {
       width: 12%;
       max-height: 100%;
     }
-  
+
     .stockSilhouette {
       width: 88%;
       max-height: 100%;
     }
   }
-  
+
   .info {
     grid-row-start: 1;
     grid-column-start: 1;
     height: fit-content;
-    background-color: stencilColor("color-primary");
-    color: stencilColor("color-white");
-    padding: spacing("single");
-    padding-left: spacing("double") * 3;
-    padding-right: spacing("single");
+    background-color: stencilColor('color-primary');
+    color: stencilColor('color-white');
+    padding: spacing('single');
+    padding-left: spacing('double') * 3;
+    padding-right: spacing('single');
     align-self: center;
-  
+
     h4 {
       margin: 0;
-      color: stencilColor("color-white");
-      font-size: stencilNumber("fontSize-h5");
+      color: stencilColor('color-white');
+      font-size: stencilNumber('fontSize-h5');
       font-family: $body-font-family;
-      padding-left: spacing("single");
+      padding-left: spacing('single');
     }
-  
+
     ul {
       margin: 0;
     }
-  
+
     li {
       list-style-type: none;
       font-weight: bold;
-      font-size: stencilNumber("fontSize-h3");
+      font-size: stencilNumber('fontSize-h3');
     }
-  
   }
 }
-
 
 .alternate-description {
   margin: 2rem;
@@ -1781,7 +1788,7 @@ model-viewer {
     border: 10px solid black;
     border-radius: 15px;
     padding: 0.5rem;
-    font-family: "Roboto", sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-weight: bold;
     font-size: 46px;
     line-height: 1;
@@ -1798,7 +1805,7 @@ model-viewer {
     }
   }
 
-  @include breakpoint("medium") {
+  @include breakpoint('medium') {
     .alternate-description {
       max-width: 1200px;
       margin: 0 auto;
@@ -1881,7 +1888,7 @@ model-viewer {
       width: 100%;
     }
 
-    @include breakpoint("medium") {
+    @include breakpoint('medium') {
       flex-direction: row;
       justify-content: space-around;
 
@@ -1944,7 +1951,7 @@ model-viewer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: spacing("single");
+  gap: spacing('single');
 }
 
 // ------------------------------------------------------------------------------------->
@@ -1956,7 +1963,7 @@ model-viewer {
   flex-direction: column;
   align-items: center;
 
-  @include breakpoint("medium") {
+  @include breakpoint('medium') {
     flex-direction: row;
     align-items: stretch;
   }
@@ -1967,9 +1974,9 @@ model-viewer {
   display: flex;
   justify-content: flex-start;
   background-color: $navPages-backgroundColor;
-  padding: spacing("double");
+  padding: spacing('double');
 
-  @include breakpoint("medium") {
+  @include breakpoint('medium') {
     flex: 0.3;
     flex-direction: column;
     justify-content: center;
@@ -1982,7 +1989,7 @@ model-viewer {
   h2 {
     margin: 0;
     text-transform: uppercase;
-    color: stencilColor("color-primary");
+    color: stencilColor('color-primary');
   }
 
   ul {
@@ -1995,26 +2002,26 @@ model-viewer {
   }
 
   a {
-    color: stencilColor("color-textBase");
+    color: stencilColor('color-textBase');
     text-decoration: none;
   }
 
-  @include breakpoint("medium") {
+  @include breakpoint('medium') {
     text-align: right;
   }
 }
 
 #cs-about-us {
-  margin: 0 spacing("single");
+  margin: 0 spacing('single');
   order: 3;
 
   h1 {
     text-align: center;
     text-transform: uppercase;
-    color: stencilColor("color-primary");
+    color: stencilColor('color-primary');
   }
 
-  @include breakpoint("medium") {
+  @include breakpoint('medium') {
     order: initial;
     flex: 0.7;
     display: flex;
@@ -2022,7 +2029,7 @@ model-viewer {
     justify-content: center;
 
     p {
-      padding: 0 spacing("single");
+      padding: 0 spacing('single');
     }
   }
 }
@@ -2030,7 +2037,7 @@ model-viewer {
 #cs-map {
   width: 100%;
 
-  @include breakpoint("medium") {
+  @include breakpoint('medium') {
     flex: 1;
   }
 }
@@ -2045,22 +2052,22 @@ model-viewer {
 }
 
 #cs-team {
-  margin: 0 spacing("single");
+  margin: 0 spacing('single');
 
   #cs-team-info {
     max-width: 600px;
-    margin: spacing("double") auto;
+    margin: spacing('double') auto;
   }
 
   h2 {
     text-align: center;
     text-transform: uppercase;
-    color: stencilColor("color-primary");
+    color: stencilColor('color-primary');
   }
 }
 
 .cs-profiles {
-  @include breakpoint("medium") {
+  @include breakpoint('medium') {
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
@@ -2070,7 +2077,7 @@ model-viewer {
 
 .cs-profile-grid-item {
   flex-basis: 400px;
-  margin-bottom: spacing("single");
+  margin-bottom: spacing('single');
 }
 
 .cs-profile-info {
@@ -2081,8 +2088,8 @@ model-viewer {
 
   h3 {
     text-transform: uppercase;
-    color: stencilColor("color-primary");
-    font-size: stencilNumber("fontSize-h1");
+    color: stencilColor('color-primary');
+    font-size: stencilNumber('fontSize-h1');
   }
 }
 
@@ -2099,7 +2106,7 @@ model-viewer {
 }
 
 .cs-page-description h3 {
-  color: stencilColor("color-primary");
+  color: stencilColor('color-primary');
 }
 
 .cs-page-block-array {
@@ -2133,8 +2140,8 @@ model-viewer {
   display: block;
   width: 100%;
   text-align: center;
-  color: stencilColor("color-primary");
-  background-color: stencilColor("color-white");
+  color: stencilColor('color-primary');
+  background-color: stencilColor('color-white');
 }
 
 .cs-page-block ul {
@@ -2150,7 +2157,7 @@ model-viewer {
   margin-bottom: 1em;
 }
 
-@include breakpoint("medium") {
+@include breakpoint('medium') {
   .cs-page-description {
     margin-bottom: 5em;
     padding: 0 1em;
@@ -2164,7 +2171,7 @@ model-viewer {
 /* Support Navigation */
 
 .csPageNav {
-  margin: 0 spacing("single");
+  margin: 0 spacing('single');
 
   ul {
     margin: 0;
@@ -2175,31 +2182,31 @@ model-viewer {
 
     a {
       text-decoration: none;
-      font-size: stencilNumber("fontSize-h2");
+      font-size: stencilNumber('fontSize-h2');
       font-weight: bold;
       display: block;
       width: 100%;
       text-align: center;
-      padding: spacing("half");
+      padding: spacing('half');
     }
   }
 }
 
 .csPageSubmenu {
   display: none;
-  background-color: stencilColor("color-white");
-  border: 2px solid stencilColor("color-secondary");
+  background-color: stencilColor('color-white');
+  border: 2px solid stencilColor('color-secondary');
   border-top: none;
 
   a {
-    color: stencilColor("color-textBase");
+    color: stencilColor('color-textBase');
   }
 }
 
 /*End Support Navigation */
 
 .containerDark {
-  background-color: stencilColor("color-white");
+  background-color: stencilColor('color-white');
 }
 
 .easy {
@@ -2216,8 +2223,8 @@ model-viewer {
 }
 
 .policyStep {
-  color: stencilColor("color-secondary");
-  background-color: stencilColor("color-white");
+  color: stencilColor('color-secondary');
+  background-color: stencilColor('color-white');
   padding: 25px 2.5%;
   font-size: 1.5em;
   margin: 0;
@@ -2240,7 +2247,7 @@ ul.policyInfo {
   line-height: 2;
 }
 
-@include breakpoint("large") {
+@include breakpoint('large') {
   .easy {
     width: 90%;
   }
@@ -2261,17 +2268,17 @@ ul.policyInfo {
 }
 
 .instructionsNav a {
-  color: stencilColor("color-white");
+  color: stencilColor('color-white');
   font-size: 1.3em;
   margin: 0;
 }
 
 .instructionsNav a:hover {
-  color: stencilColor("color-primary");
+  color: stencilColor('color-primary');
 }
 
 .instructionsList h2 {
-  font-family: "Oswald", sans-serif;
+  font-family: 'Oswald', sans-serif;
   margin: 0;
   margin-top: 1em;
   color: #383838;
@@ -2288,7 +2295,7 @@ ul.policyInfo {
 .instructionsList a {
   color: #383838;
   text-decoration: none;
-  font-family: "Lato", sans-serif;
+  font-family: 'Lato', sans-serif;
   font-size: 1em;
   display: block;
   margin-bottom: 1em;
@@ -2311,12 +2318,12 @@ ul.policyInfo {
 }
 
 .instructionsList a:hover {
-  color: stencilColor("color-primary") !important;
+  color: stencilColor('color-primary') !important;
   text-decoration: underline;
 }
 
 .instructionsList a:hover > ul {
-  color: stencilColor("color-white");
+  color: stencilColor('color-white');
 }
 
 .supportButtons {
@@ -2327,7 +2334,7 @@ ul.policyInfo {
 }
 
 .linkButton {
-  color: stencilColor("color-secondary") !important;
+  color: stencilColor('color-secondary') !important;
   font-weight: bold;
   font-size: 1.3em;
   flex: 1 0 250px;
@@ -2358,7 +2365,7 @@ ul.policyInfo {
   text-align: left;
   padding: 1em;
   padding-right: 0;
-  border-left: 2px solid stencilColor("color-secondary");
+  border-left: 2px solid stencilColor('color-secondary');
 }
 
 .supportItemRight p {
@@ -2379,7 +2386,7 @@ ul.policyInfo {
 }
 
 .supportItemTop {
-  border-bottom: 2px solid stencilColor("color-secondary");
+  border-bottom: 2px solid stencilColor('color-secondary');
   padding: 1em;
 }
 
@@ -2405,26 +2412,26 @@ ul.policyInfo {
 // ------------------------------------------------------------------------------------->
 
 #instructions-list {
-  width: calc(100% - #{spacing("single")});
+  width: calc(100% - #{spacing('single')});
   max-width: 1200px;
   margin: 0 auto;
 
   li {
     list-style-type: none;
-    margin: spacing("single") 0;
-    font-size: stencilNumber("fontSize-h4");
+    margin: spacing('single') 0;
+    font-size: stencilNumber('fontSize-h4');
   }
 
   h2 {
-    color: stencilColor("color-primary");
+    color: stencilColor('color-primary');
   }
 
   a {
-    color: stencilColor("color-textBase");
+    color: stencilColor('color-textBase');
     text-decoration: none;
 
     &:hover {
-      color: stencilColor("color-textBase--hover");
+      color: stencilColor('color-textBase--hover');
     }
   }
 }
@@ -2438,14 +2445,14 @@ ul.policyInfo {
 }
 
 .instructions-page-header {
-  background-color: stencilColor("color-primary");
+  background-color: stencilColor('color-primary');
 }
 
 .cs-instructions-title {
   margin: 0;
   padding: 1.2em 0;
   text-align: center;
-  color: stencilColor("color-white");
+  color: stencilColor('color-white');
 }
 
 .instructions-section p {
@@ -2463,7 +2470,7 @@ ul.policyInfo {
 }
 
 .red-text {
-  color: stencilColor("color-primary");
+  color: stencilColor('color-primary');
 }
 
 .instructions-materials {
@@ -2484,8 +2491,8 @@ ul.policyInfo {
 }
 
 .instructions-materials li::before {
-  content: "> ";
-  color: stencilColor("color-primary");
+  content: '> ';
+  color: stencilColor('color-primary');
   font-weight: bold;
 }
 
@@ -2500,7 +2507,7 @@ ul.policyInfo {
 
 .instructions-note {
   width: 100%;
-  background-color: stencilColor("navPages-subMenu-backgroundColor");
+  background-color: stencilColor('navPages-subMenu-backgroundColor');
   padding: 2em 0;
 }
 
@@ -2519,7 +2526,7 @@ ul.policyInfo {
 
 .arrow-body {
   flex-grow: 1;
-  background-color: stencilColor("color-primary");
+  background-color: stencilColor('color-primary');
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -2528,7 +2535,7 @@ ul.policyInfo {
 }
 
 .arrow-body h2 {
-  color: stencilColor("color-white");
+  color: stencilColor('color-white');
   position: relative;
   right: 10%;
   margin: 0;
@@ -2562,9 +2569,3 @@ ul.policyInfo {
 li.mobile-number {
   display: none;
 }
-
-// ------------------------------------------------------------------------------------->
-//
-//                                  CUSTOM STYLES END
-//
-// ------------------------------------------------------------------------------------->

@@ -210,12 +210,7 @@ export default class Product extends PageManager {
       i++;
     }
 
-    ratingInfo.innerHTML =
-      ' ' +
-      archetype_average_review +
-      ' out of ' +
-      archetype_review_count +
-      ' reviews';
+    ratingInfo.innerHTML = ` ${archetype_average_review}/5 with ${archetype_review_count} reviews`;
   }
 
   // initialize the dropdowns, pre-select and set cookie when possible.

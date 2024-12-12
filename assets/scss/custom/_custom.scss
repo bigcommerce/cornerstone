@@ -985,6 +985,14 @@ html {
   }
 }
 
+.gemini-message {
+
+  @include breakpoint("medium") {
+    max-width: $product-selection-max-width;
+    margin: 0 auto;
+  }
+}
+
 #modal-images {
   &.modal {
     width: 100vw;
@@ -1132,7 +1140,9 @@ html {
 // -------------------------------------- Product Info Modals ------------------------------------->
 
 #scratch-and-dent,
-#stock-notification {
+#stock-notification,
+#shipping-message,
+#warranty-message {
   .modal-content {
     padding: spacing('half');
     display: flex;
@@ -1145,7 +1155,7 @@ html {
   }
 }
 
-#stock-notification {
+#stock-notification {  
   align-items: flex-start;
 
   #modal-content {

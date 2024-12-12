@@ -1,121 +1,146 @@
 <!DOCTYPE html>
 <html class="no-js" lang="{{ locale_name }}">
-    <head>
-        <title>{{ head.title }}</title>
-        {{{ resourceHints }}}
-        {{{ head.meta_tags }}}
-        {{{ head.config }}}
-        {{#block "head"}} {{/block}}
 
-        <link href="{{ head.favicon }}" rel="shortcut icon">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="google-site-verification" content="eWXRJIWsZnHtS6Mu1ABKTMwQgFeljNJL0OLo8e-SjTY" />
+<head>
+    <title>{{ head.title }}</title>
+    {{{ resourceHints }}}
+    {{{ head.meta_tags }}}
+    {{{ head.config }}}
+    {{#block "head"}} {{/block}}
 
-        <script>
-            {{!-- Change document class from no-js to js so we can detect this in css --}}
-            document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
-        </script>
+    <link href="{{ head.favicon }}" rel="shortcut icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="google-site-verification" content="eWXRJIWsZnHtS6Mu1ABKTMwQgFeljNJL0OLo8e-SjTY" />
 
-        {{> components/common/polyfill-script }}
-        <script>window.consentManagerTranslations = `{{{langJson 'consent_manager'}}}`;</script>
+    <script>
+        { { !--Change document class from no - js to js so we can detect this in css-- } }
+        document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+    </script>
 
-        {{!-- Load Lazysizes script ASAP so images will appear --}}
-        <script>
-            {{!-- Only load visible elements until the onload event fires, after which preload nearby elements. --}}
-            window.lazySizesConfig = window.lazySizesConfig || {};
-            window.lazySizesConfig.loadMode = 1;
-        </script>
-        <script async src="{{cdn 'assets/dist/theme-bundle.head_async.js' resourceHint='preload' as='script'}}"></script>
-        
-        {{getFontsCollection font-display='block'}}
-        
-        <script async src="{{cdn 'assets/dist/theme-bundle.font.js' resourceHint='preload' as='script'}}"></script>
+    {{> components/common/polyfill-script }}
+    <script>window.consentManagerTranslations = `{{{langJson 'consent_manager'}}}`;</script>
 
-        {{{stylesheet '/assets/css/theme.css'}}}
-        
-        {{!-- CravenSpeed Qty Script --}}
-        {{#if page_type '!==' '404'}}
-        <script type="text/javascript" src="/content/cs_search.js" defer></script>
-        <script type="text/javascript" src="/content/cs_search_data.js" defer></script>
-        {{/if}}
-        {{#if page_type '===' 'product'}}
-        <script type="text/javascript" src="/content/global_inventory.js"></script>
-        {{/if}}
-        {{#if page_type '===' 'default'}}
-        <script src="/content/home.js"></script>
-        {{/if}}
-        <script>
-            let CSoptimized = false;
-        </script>
-        {{!-- End CravenSpeed Qty Scripts --}}
-        
-        {{{head.scripts}}}
+    {{!-- Load Lazysizes script ASAP so images will appear --}}
+    <script>
+        { { !--Only load visible elements until the onload event fires, after which preload nearby elements. -- } }
+        window.lazySizesConfig = window.lazySizesConfig || {};
+        window.lazySizesConfig.loadMode = 1;
+    </script>
+    <script async src="{{cdn 'assets/dist/theme-bundle.head_async.js' resourceHint='preload' as='script'}}"></script>
 
-        {{~inject 'zoomSize' theme_settings.zoom_size}}
-        {{~inject 'productSize' theme_settings.product_size}}
-        {{~inject 'genericError' (lang 'common.generic_error')}}
-        {{~inject 'urls' urls}}
-        {{~inject 'secureBaseUrl' settings.secure_base_url}}
-        {{~inject 'cartId' cart_id}}
-        {{~inject 'template' template}}
-        {{~inject 'validationDictionaryJSON' (langJson 'validation_messages')}}
-        {{~inject 'validationFallbackDictionaryJSON' (langJson 'validation_fallback_messages')}}
-        {{~inject 'validationDefaultDictionaryJSON' (langJson 'validation_default_messages')}}
-        {{~inject 'carouselArrowAndDotAriaLabel' (lang 'carousel.arrow_and_dot_aria_label')}}
-        {{~inject 'carouselActiveDotAriaLabel' (lang 'carousel.active_dot_aria_label')}}
-        {{~inject 'carouselContentAnnounceMessage' (lang 'carousel.content_announce_message')}}
-    </head>
-    <body>
-        <svg data-src="{{cdn 'img/icon-sprite.svg'}}" class="icons-svg-sprite"></svg>
+    {{getFontsCollection font-display='block'}}
 
-        {{> components/common/header }}
-    
+    <script async src="{{cdn 'assets/dist/theme-bundle.font.js' resourceHint='preload' as='script'}}"></script>
 
-        {{#if page_type '===' 'product'}}
-            {{> components/common/cs-product-body }}
-        {{else}}
-            {{> components/common/body }}
-        {{/if}}
+    {{{stylesheet '/assets/css/theme.css'}}}
 
-        {{> components/common/footer }}
+    {{!-- CravenSpeed Qty Script --}}
+    {{#if page_type '!==' '404'}}
+    <script type="text/javascript" src="/content/cs_search.js" defer></script>
+    <script type="text/javascript" src="/content/cs_search_data.js" defer></script>
+    {{/if}}
+    {{#if page_type '===' 'product'}}
+    <script type="text/javascript" src="/content/global_inventory.js"></script>
+    {{/if}}
+    {{#if page_type '===' 'default'}}
+    <script src="/content/home.js"></script>
+    {{/if}}
+    <script>
+        let CSoptimized = false;
+    </script>
+    {{!-- End CravenSpeed Qty Scripts --}}
 
-        <script>window.__webpack_public_path__ = "{{cdn 'assets/dist/'}}";</script>
-        <script>
-            {{!-- Exported in app.js --}}
-            function onThemeBundleMain() {
-                window.stencilBootstrap("{{page_type}}", {{jsContext}}).load();
+    {{{head.scripts}}}
 
-                function browserSupportsFormData() {
-                    return typeof FormData !== 'undefined' 
-                        && !!FormData.prototype.keys;
-                }
-                function loadFormDataPolyfillScript(src) {
-                    var formDataPolyfillScript = document.createElement('script');
-                    formDataPolyfillScript.src = src;
-                    formDataPolyfillScript.onerror = function () {
-                        console.error('Failed to load formData polyfill script ' + src);
-                    };
-                    document.body.appendChild(formDataPolyfillScript);
-                }
+    {{~inject 'zoomSize' theme_settings.zoom_size}}
+    {{~inject 'productSize' theme_settings.product_size}}
+    {{~inject 'genericError' (lang 'common.generic_error')}}
+    {{~inject 'urls' urls}}
+    {{~inject 'secureBaseUrl' settings.secure_base_url}}
+    {{~inject 'cartId' cart_id}}
+    {{~inject 'template' template}}
+    {{~inject 'validationDictionaryJSON' (langJson 'validation_messages')}}
+    {{~inject 'validationFallbackDictionaryJSON' (langJson 'validation_fallback_messages')}}
+    {{~inject 'validationDefaultDictionaryJSON' (langJson 'validation_default_messages')}}
+    {{~inject 'carouselArrowAndDotAriaLabel' (lang 'carousel.arrow_and_dot_aria_label')}}
+    {{~inject 'carouselActiveDotAriaLabel' (lang 'carousel.active_dot_aria_label')}}
+    {{~inject 'carouselContentAnnounceMessage' (lang 'carousel.content_announce_message')}}
+</head>
 
-                if (!browserSupportsFormData()) {
-                    loadFormDataPolyfillScript('{{cdn 'assets/dist/theme-bundle.polyfill_form_data.js'}}');
-                }
+<body>
+    <svg data-src="{{cdn 'img/icon-sprite.svg'}}" class="icons-svg-sprite"></svg>
+
+    {{> components/common/header }}
+
+
+    {{#if page_type '===' 'product'}}
+    {{> components/common/cs-product-body }}
+    {{else}}
+    {{> components/common/body }}
+    {{/if}}
+
+    {{> components/common/footer }}
+
+    <script>window.__webpack_public_path__ = "{{cdn 'assets/dist/'}}";</script>
+    <script>
+        { { !--Exported in app.js-- } }
+        function onThemeBundleMain() {
+            window.stencilBootstrap("{{page_type}}", {{ jsContext }}).load();
+
+        function browserSupportsFormData() {
+            return typeof FormData !== 'undefined'
+                && !!FormData.prototype.keys;
+        }
+        function loadFormDataPolyfillScript(src) {
+            var formDataPolyfillScript = document.createElement('script');
+            formDataPolyfillScript.src = src;
+            formDataPolyfillScript.onerror = function () {
+                console.error('Failed to load formData polyfill script ' + src);
+            };
+            document.body.appendChild(formDataPolyfillScript);
+        }
+
+        if (!browserSupportsFormData()) {
+            loadFormDataPolyfillScript('{{cdn 'assets / dist / theme - bundle.polyfill_form_data.js'}}');
+        }
             }
-        </script>
-        <script async defer src="{{cdn 'assets/dist/theme-bundle.main.js' resourceHint='preload' as='script'}}" onload="onThemeBundleMain()"></script>
+    </script>
+    <script async defer src="{{cdn 'assets/dist/theme-bundle.main.js' resourceHint='preload' as='script'}}"
+        onload="onThemeBundleMain()"></script>
 
-        {{#if page_type '===' '404'}}
-        <script type="text/javascript" src="/content/cs_search.js"></script>
-        <script type="text/javascript" src="/content/cs_search_data.js"></script>
-        <script src="/content/four-o-four.js"></script>
-        {{/if}}
+    {{#if page_type '===' '404'}}
+    <script type="text/javascript" src="/content/cs_search.js"></script>
+    <script type="text/javascript" src="/content/cs_search_data.js"></script>
+    <script src="/content/four-o-four.js"></script>
+    {{/if}}
 
-        {{{footer.scripts}}}
+    {{{footer.scripts}}}
 
-        {{!-- Slick import for CLI Development --}}
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-        <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    {{!-- Slick import for CLI Development
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    --}}
 
-    </body>
+    <script type='text/javascript'>
+        { { #if page_type '===' 'product' } }
+        try {
+            window.stamped_bigcommerce_product = {
+                id: '{{product.id}}',
+                title: '{{product.title}}',
+                url: '{{product.url}}',
+                imageUrl: '{{getImage product.main_image 'product'}}',
+                brand: '{{ product.brand.name }}',
+                brandUrl: '{{ product.brand.url }}',
+                priceWithoutTax: '{{ product.price.without_tax.value }}',
+                priceWithTax: '{{ product.price.with_tax.value }}',
+                currency: '{{currency_selector.active_currency_code}}',
+                sku: '{{product.sku}}',
+                barcode: ''
+            }
+        } catch (e) { }
+        { {/if } }
+    </script>
+
+</body>
+
 </html>

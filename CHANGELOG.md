@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Draft
+- Add Karla 700 font weight to schema.json and remove italic versions [#2522](https://github.com/bigcommerce/cornerstone/pull/2522)
 - Fix product filter display name in Show More modal window [#2510](https://github.com/bigcommerce/cornerstone/pull/2510)
 - Fix colour value for carousel play-pause button [#2509](https://github.com/bigcommerce/cornerstone/pull/2509)
 - Bulk pricing modal on PLP only displays information for the first product [#2501](https://github.com/bigcommerce/cornerstone/pull/2501)

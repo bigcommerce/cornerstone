@@ -151,6 +151,18 @@ export default class Cart extends PageManager {
                 this.$modal.one(ModalEvents.opened, optionChangeHandler);
             }
 
+            const modalForm = this.$modal.find('form');
+            const refreshContent = () => this.refreshContent();
+            async function onSubmit(event) {
+                event.preventDefault();
+                utils.api.cart.postFormData(new FormData(this), () => {
+                    modal.close();
+                    refreshContent();
+                });
+            }
+
+            modalForm.on('submit', onSubmit);
+
             this.productDetails = new CartItemDetails(this.$modal, context);
 
             this.bindGiftWrappingForm();

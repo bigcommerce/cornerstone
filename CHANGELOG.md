@@ -17,7 +17,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add a section to display the payment promotion widget in the drop-down of the cart preview [#2523](https://github.com/bigcommerce/cornerstone/pull/2523)
 - Add support Node 20 [#2519](https://github.com/bigcommerce/cornerstone/pull/2519)
 - Use fetch when updating variants in cart [#2521](https://github.com/bigcommerce/cornerstone/pull/2521)
-- Add a region to display the payment promotion widget on the category pages. [#2530](https://github.com/bigcommerce/cornerstone/pull/2530)
+- Add a region to display the payment promotion widget on the category pages [#2530](https://github.com/bigcommerce/cornerstone/pull/2530)
+- Rename the region to display the payment promotion widget on the category pages [#2531](https://github.com/bigcommerce/cornerstone/pull/2531)
 
 ## 6.15.0 (10-18-2024)
 - Cornerstone changes to support inc/ex tax price lists on PDP [#2486](https://github.com/bigcommerce/cornerstone/pull/2486)

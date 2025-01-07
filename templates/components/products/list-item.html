@@ -86,6 +86,7 @@
                 {{#or customer (unless settings.hide_price_from_guests)}}
                     {{#if price}}
                         <div class="listItem-price">{{> components/products/price price=price}}</div>
+                        {{{region name="product_item_below_price"}}}
                     {{/if}}
                 {{else}}
                     {{> components/common/login-for-pricing}}

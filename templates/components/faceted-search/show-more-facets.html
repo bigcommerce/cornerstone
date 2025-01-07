@@ -1,6 +1,10 @@
 <div class="modal-body">
     <h1 class="facet-quick-heading">
-        {{all_facets}}
+        {{#if facet_title}}
+            {{facet_title}}
+        {{else}}
+            {{all_facets}}
+        {{/if}}
     </h1>
     <div class="form-field" id="facetedSearch-filterItems">
         <input class="form-input" type="search" placeholder="{{lang 'forms.search.search'}}">

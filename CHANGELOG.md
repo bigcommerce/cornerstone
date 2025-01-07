@@ -5,12 +5,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Draft
+- Remove escaping of "=" symbol for <head> [#2526](https://github.com/bigcommerce/cornerstone/pull/2526)
+- Add Karla 700 font weight to schema.json and remove italic versions [#2522](https://github.com/bigcommerce/cornerstone/pull/2522)
+- Fix product filter display name in Show More modal window [#2510](https://github.com/bigcommerce/cornerstone/pull/2510)
+- Fix colour value for carousel play-pause button [#2509](https://github.com/bigcommerce/cornerstone/pull/2509)
+- Bulk pricing modal on PLP only displays information for the first product [#2501](https://github.com/bigcommerce/cornerstone/pull/2501)
 - Adding missing product reviews form validation [#2475](https://github.com/bigcommerce/cornerstone/pull/2475)
-- Fix GH build action & added package version and short commit hash to artifact names in GitHub Actions workflow for improved traceability and uniqueness. ([#2494](https://github.com/bigcommerce/cornerstone/pull/2494))
-- Bump stencil-utils to 6.18.0 ([#2493](https://github.com/bigcommerce/cornerstone/pull/2493))
-- Bump other GH actions to fix warnings related to old versions. ([#2495](https://github.com/bigcommerce/cornerstone/pull/2495))
-- Support Stencil CLI's ESM migration. ([#2500](https://github.com/bigcommerce/cornerstone/pull/2500))
-
+- Support Stencil CLI's ESM migration. [#2500](https://github.com/bigcommerce/cornerstone/pull/2500)
+- Fix GH build action & added package version and short commit hash to artifact names in GitHub Actions workflow for improved traceability and uniqueness [#2494](https://github.com/bigcommerce/cornerstone/pull/2494)
+- Bump stencil-utils to 6.18.0 [#2493](https://github.com/bigcommerce/cornerstone/pull/2493)
+- Bump other GH actions to fix warnings related to old versions [#2495](https://github.com/bigcommerce/cornerstone/pull/2495)
+- Add a section to display the payment promotion widget in the drop-down of the cart preview [#2523](https://github.com/bigcommerce/cornerstone/pull/2523)
+- Add support Node 20 [#2519](https://github.com/bigcommerce/cornerstone/pull/2519)
+- Use fetch when updating variants in cart [#2521](https://github.com/bigcommerce/cornerstone/pull/2521)
+- Add a region to display the payment promotion widget on the category pages [#2530](https://github.com/bigcommerce/cornerstone/pull/2530)
+- Rename the region to display the payment promotion widget on the category pages [#2531](https://github.com/bigcommerce/cornerstone/pull/2531)
 
 ## 6.15.0 (10-18-2024)
 - Cornerstone changes to support inc/ex tax price lists on PDP [#2486](https://github.com/bigcommerce/cornerstone/pull/2486)
@@ -24,6 +33,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Address deprecated jQuery methods [#2466](https://github.com/bigcommerce/cornerstone/pull/2466)
 - Load other font weights and styles for the body-font [#2396](https://github.com/bigcommerce/cornerstone/pull/2396)
 - Stored XSS within company address field [#2485](https://github.com/bigcommerce/cornerstone/pull/2485)
+- Display shipping discount on the cart page [#2490](https://github.com/bigcommerce/cornerstone/pull/2490)
 
 ## 6.14.0 (05-15-2024)
 - Account.php <a href> is inside of a list item [#2457](https://github.com/bigcommerce/cornerstone/pull/2457)

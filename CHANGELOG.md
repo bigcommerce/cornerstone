@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Draft
+- Add nonce to scripts in checkout and account pages [#2525](https://github.com/bigcommerce/cornerstone/pull/2525)
 - Remove escaping of "=" symbol for <head> [#2526](https://github.com/bigcommerce/cornerstone/pull/2526)
 - Add Karla 700 font weight to schema.json and remove italic versions [#2522](https://github.com/bigcommerce/cornerstone/pull/2522)
 - Fix product filter display name in Show More modal window [#2510](https://github.com/bigcommerce/cornerstone/pull/2510)

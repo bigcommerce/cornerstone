@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Support Stencil CLI's ESM migration. [#2500](https://github.com/bigcommerce/cornerstone/pull/2500)
 - Add missing icon for JCB card provider in the saved payment methods [#2489](https://github.com/bigcommerce/cornerstone/pull/2489)
 - Remove supporting Apple Pay button stylization [#2491](https://github.com/bigcommerce/cornerstone/pull/2491)
+- Updated check for showing/hiding available wallet buttons on PDP [#2532](https://github.com/bigcommerce/cornerstone/pull/2532)
 - Fix GH build action & added package version and short commit hash to artifact names in GitHub Actions workflow for improved traceability and uniqueness [#2494](https://github.com/bigcommerce/cornerstone/pull/2494)
 - Bump stencil-utils to 6.18.0 [#2493](https://github.com/bigcommerce/cornerstone/pull/2493)
 - Bump other GH actions to fix warnings related to old versions [#2495](https://github.com/bigcommerce/cornerstone/pull/2495)

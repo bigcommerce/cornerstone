@@ -22,7 +22,7 @@ export function optionChangeDecorator(areDefaultOptionsSet) {
 
         this.updateProductAttributes(attributesData);
         if (areDefaultOptionsSet) {
-            this.updateView(attributesData, attributesContent);
+            this.updateView(attributesData, attributesContent, true);
         } else {
             this.updateDefaultAttributesForOOS(attributesData);
         }
@@ -223,11 +223,16 @@ export default class ProductDetailsBase {
     /**
      * Update the view of price, messages, SKU and stock options when a product option changes
      * @param  {Object} data Product attribute data
+     * @param  {Object} content Product attribute content
+     * @param  {Boolean} shouldMessageAppear indicates if product attributes form has no validity problems
+     * and message can be shown to User
      */
-    updateView(data, content = null) {
+    updateView(data, content, shouldMessageAppear) {
         const viewModel = this.getViewModel(this.$scope);
 
-        this.showMessageBox(data.stock_message || data.purchasing_message);
+        if (shouldMessageAppear) {
+            this.showMessageBox(data.stock_message || data.purchasing_message);
+        }
 
         if (data.price instanceof Object) {
             this.updatePriceView(viewModel, data.price);

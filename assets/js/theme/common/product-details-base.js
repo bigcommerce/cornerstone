@@ -19,12 +19,13 @@ export function optionChangeDecorator(areDefaultOptionsSet) {
     return (err, response) => {
         const attributesData = response.data || {};
         const attributesContent = response.content || {};
+        const shouldAttributesBeUpdated = true;
 
         this.updateProductAttributes(attributesData);
         if (areDefaultOptionsSet) {
-            this.updateView(attributesData, attributesContent, true);
+            this.updateView(attributesData, attributesContent, shouldAttributesBeUpdated);
         } else {
-            this.updateDefaultAttributesForOOS(attributesData);
+            this.updateDefaultAttributesForOOS(attributesData, shouldAttributesBeUpdated);
         }
     };
 }
@@ -278,7 +279,7 @@ export default class ProductDetailsBase {
             viewModel.stock.$input.text(data.stock);
         }
 
-        this.updateDefaultAttributesForOOS(data);
+        this.updateDefaultAttributesForOOS(data, shouldMessageAppear);
         this.updateWalletButtonsView(data);
 
         // If Bulk Pricing rendered HTML is available
@@ -366,9 +367,9 @@ export default class ProductDetailsBase {
         }
     }
 
-    updateDefaultAttributesForOOS(data) {
+    updateDefaultAttributesForOOS(data, shouldUpdateAttributes) {
         const viewModel = this.getViewModel(this.$scope);
-        if (!data.purchasable || !data.instock) {
+        if (shouldUpdateAttributes && (!data.purchasable || !data.instock)) {
             viewModel.$addToCart.prop('disabled', true);
             viewModel.$increments.prop('disabled', true);
         } else {

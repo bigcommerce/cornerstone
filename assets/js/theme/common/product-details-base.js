@@ -182,6 +182,7 @@ export default class ProductDetailsBase {
             $weight: $('.productView-info [data-product-weight]', $scope),
             $increments: $('.form-field--increments :input', $scope),
             $addToCart: $('#form-action-addToCart', $scope),
+            $addToCartForm: $('form[data-cart-item-add]', $scope),
             $wishlistVariation: $('[data-wishlist-add] [name="variation_id"]', $scope),
             stock: {
                 $container: $('.form-field--stock', $scope),
@@ -373,7 +374,10 @@ export default class ProductDetailsBase {
     }
 
     updateWalletButtonsView(data) {
-        this.toggleWalletButtonsVisibility(data.purchasable && data.instock);
+        const viewModel = this.getViewModel(this.$scope);
+        const isValidForm = viewModel.$addToCartForm[0].checkValidity();
+
+        this.toggleWalletButtonsVisibility(isValidForm && data.purchasable && data.instock);
     }
 
     toggleWalletButtonsVisibility(shouldShow) {

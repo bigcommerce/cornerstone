@@ -7,7 +7,7 @@
             <dd class="cart-item-option-description">
                 {{gift_wrapping.name}}: {{gift_wrapping.price.formatted}}
                 <span class="cart-item-option-actions">
-                    (<a href="" data-item-giftwrap="{{id}}">{{lang 'cart.gift_wrapping.change'}}</a> or <a href="{{gift_wrapping.remove_url}}" onclick="return confirm('{{lang 'cart.gift_wrapping.remove_confirm'}}')">{{lang 'cart.gift_wrapping.remove'}}</a>)
+                    (<a href="" data-item-giftwrap="{{id}}">{{lang 'cart.gift_wrapping.change'}}</a> or <a class="cart-item-option-remove" href="{{gift_wrapping.remove_url}}">{{lang 'cart.gift_wrapping.remove'}}</a>)
                 </span>
             </dd>
             {{#if gift_wrapping.message}}

@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Draft
+- Refactor cart, payment account page inline event handlers to event listeners [#2536](https://github.com/bigcommerce/cornerstone/pull/2536)
 
 ## 6.16.0 (01-15-2025)
 - Remove escaping of "=" symbol for <head> for blog and brand [#2528](https://github.com/bigcommerce/cornerstone/pull/2528)
@@ -28,7 +29,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add a region to display the payment promotion widget on the category pages [#2530](https://github.com/bigcommerce/cornerstone/pull/2530)
 - Rename the region to display the payment promotion widget on the category pages [#2531](https://github.com/bigcommerce/cornerstone/pull/2531)
 - Cornerstone update to support multiple date fields and remove blank space [#2533](https://github.com/bigcommerce/cornerstone/pull/2533)
-- Refactor cart, payment account page inline event handlers to event listeners [#2536](https://github.com/bigcommerce/cornerstone/pull/2536)
 
 ## 6.15.0 (10-18-2024)
 - Cornerstone changes to support inc/ex tax price lists on PDP [#2486](https://github.com/bigcommerce/cornerstone/pull/2486)

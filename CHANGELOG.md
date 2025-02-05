@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Draft
+- Refactor cart, payment account page inline event handlers to event listeners [#2536](https://github.com/bigcommerce/cornerstone/pull/2536)
 
 ## 6.16.0 (01-15-2025)
 - Remove escaping of "=" symbol for <head> for blog and brand [#2528](https://github.com/bigcommerce/cornerstone/pull/2528)

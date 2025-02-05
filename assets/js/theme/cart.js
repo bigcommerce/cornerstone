@@ -402,6 +402,10 @@ export default class Cart extends PageManager {
                 this.bindGiftWrappingForm();
             });
         });
+
+        $('.cart-item-option-remove').on('click', () => {
+            window.confirm(this.context.giftWrappingRemoveMessage);
+        });
     }
 
     bindGiftWrappingForm() {

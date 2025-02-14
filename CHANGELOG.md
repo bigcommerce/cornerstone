@@ -6,11 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Draft
 - Refactor cart, payment account page inline event handlers to event listeners [#2536](https://github.com/bigcommerce/cornerstone/pull/2536)
+- Cornerstone update to support multiple date fields and remove blank space [#2533](https://github.com/bigcommerce/cornerstone/pull/2533)
+- Updated check for showing/hiding available wallet buttons on PDP [#2532](https://github.com/bigcommerce/cornerstone/pull/2532)
 
 ## 6.16.0 (01-15-2025)
-- Remove escaping of "=" symbol for <head> for blog and brand [#2528](https://github.com/bigcommerce/cornerstone/pull/2528)
+- Remove escaping of "=" symbol for \<head\> for blog and brand [#2528](https://github.com/bigcommerce/cornerstone/pull/2528)
 - Add nonce to scripts in checkout and account pages [#2525](https://github.com/bigcommerce/cornerstone/pull/2525)
-- Remove escaping of "=" symbol for <head> [#2526](https://github.com/bigcommerce/cornerstone/pull/2526)
+- Remove escaping of "=" symbol for \<head\> [#2526](https://github.com/bigcommerce/cornerstone/pull/2526)
 - Add Karla 700 font weight to schema.json and remove italic versions [#2522](https://github.com/bigcommerce/cornerstone/pull/2522)
 - Fix product filter display name in Show More modal window [#2510](https://github.com/bigcommerce/cornerstone/pull/2510)
 - Fix colour value for carousel play-pause button [#2509](https://github.com/bigcommerce/cornerstone/pull/2509)
@@ -19,7 +21,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Support Stencil CLI's ESM migration. [#2500](https://github.com/bigcommerce/cornerstone/pull/2500)
 - Add missing icon for JCB card provider in the saved payment methods [#2489](https://github.com/bigcommerce/cornerstone/pull/2489)
 - Remove supporting Apple Pay button stylization [#2491](https://github.com/bigcommerce/cornerstone/pull/2491)
-- Updated check for showing/hiding available wallet buttons on PDP [#2532](https://github.com/bigcommerce/cornerstone/pull/2532)
 - Fix GH build action & added package version and short commit hash to artifact names in GitHub Actions workflow for improved traceability and uniqueness [#2494](https://github.com/bigcommerce/cornerstone/pull/2494)
 - Bump stencil-utils to 6.18.0 [#2493](https://github.com/bigcommerce/cornerstone/pull/2493)
 - Bump other GH actions to fix warnings related to old versions [#2495](https://github.com/bigcommerce/cornerstone/pull/2495)
@@ -28,7 +29,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Use fetch when updating variants in cart [#2521](https://github.com/bigcommerce/cornerstone/pull/2521)
 - Add a region to display the payment promotion widget on the category pages [#2530](https://github.com/bigcommerce/cornerstone/pull/2530)
 - Rename the region to display the payment promotion widget on the category pages [#2531](https://github.com/bigcommerce/cornerstone/pull/2531)
-- Cornerstone update to support multiple date fields and remove blank space [#2533](https://github.com/bigcommerce/cornerstone/pull/2533)
 
 ## 6.15.0 (10-18-2024)
 - Cornerstone changes to support inc/ex tax price lists on PDP [#2486](https://github.com/bigcommerce/cornerstone/pull/2486)

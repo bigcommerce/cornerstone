@@ -86,7 +86,7 @@ html {
     margin: 0;
   }
 
-  > * {
+  >* {
     @include breakpoint('small') {
       flex: 1 0 0;
     }
@@ -184,6 +184,7 @@ html {
 }
 
 .navUser {
+
   //Overides _navUser.scss setting width to 100% which is only needed for the mobile layout on line 24
   @include breakpoint('medium') {
     width: auto;
@@ -204,6 +205,7 @@ html {
 }
 
 .navUser-item--cart {
+
   // prevents default removal of cart link for small screens when quantity is 0 from _navUser.scss line 155
   &__hidden-s {
     @media (max-width: $screen-small) {
@@ -288,7 +290,7 @@ html {
   text-decoration: none;
 }
 
-.blocklink > div {
+.blocklink>div {
   display: -ms-flexbox;
   display: flex;
   height: 3rem;
@@ -344,7 +346,7 @@ html {
 
 //override
 .footer-copyright {
-  > .powered-by {
+  >.powered-by {
     color: stencilColor('footer-heading-fontColor');
   }
 }
@@ -472,9 +474,11 @@ html {
       0% {
         background-color: #ff3a3a;
       }
+
       50% {
         background-color: #9e0000;
       }
+
       100% {
         background-color: #ff3a3a;
       }
@@ -517,7 +521,7 @@ html {
       //     ) - #{spacing("half")} - 3.5rem
       // );
 
-      > * {
+      >* {
         flex: 1;
         display: flex;
         flex-direction: column;
@@ -915,7 +919,7 @@ html {
   align-items: center;
   justify-content: space-around;
 
-  > * {
+  >* {
     border: 3px solid black;
   }
 
@@ -1155,7 +1159,7 @@ html {
   }
 }
 
-#stock-notification {  
+#stock-notification {
   align-items: flex-start;
 
   #modal-content {
@@ -1320,7 +1324,7 @@ ul.tabs {
   }
 }
 
-.descriptionContainer > p {
+.descriptionContainer>p {
   text-align: center;
 }
 
@@ -1343,7 +1347,7 @@ ul.tabs {
   @include breakpoint('medium') {
     flex-direction: row;
 
-    & > * {
+    &>* {
       width: 50%;
       padding: spacing('single');
     }
@@ -1367,7 +1371,7 @@ ul.tabs {
     flex-direction: column;
     text-align: center;
 
-    > * {
+    >* {
       width: 100%;
     }
   }
@@ -1423,7 +1427,7 @@ ul.tabs {
 .cs-single-column {
   flex-direction: column !important;
 
-  > * {
+  >* {
     width: 100%;
   }
 }
@@ -1921,7 +1925,7 @@ ul.tabs {
     }
   }
 
-  .productGraphic > img {
+  .productGraphic>img {
     width: auto;
   }
 }
@@ -2091,6 +2095,7 @@ ul.tabs {
 }
 
 .cs-profile-info {
+
   h3,
   h4 {
     margin: 0;
@@ -2100,6 +2105,149 @@ ul.tabs {
     text-transform: uppercase;
     color: stencilColor('color-primary');
     font-size: stencilNumber('fontSize-h1');
+  }
+}
+
+// ------------------------------------------------------------------------------------->
+//                                  GENERIC MODEL CODES
+// ------------------------------------------------------------------------------------->
+
+.make-info h2,
+h3,
+h4 {
+  margin: 0;
+}
+
+.make-info {
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+
+  header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  main {
+    width: 100%;
+  }
+
+  .header-info {
+    display: inline;
+  }
+
+  .icon {
+    @include square(30px);
+  }
+
+  .contents {
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    width: 100%;
+  }
+
+  .contents h3 {
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .contents h3:hover,
+  .contents h3:hover svg {
+    color: stencilColor('color-primary');
+    fill: stencilColor('color-primary');
+  }
+
+  .make-model-list {
+    height: 0;
+    margin: 0;
+    overflow: hidden;
+    display: grid;
+    /* Use grid for column layout */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    /* Responsive column creation */
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .make-model-list.open {
+    height: auto;
+  }
+
+  svg.open {
+    transform: rotate(90deg);
+  }
+
+  .make-model-list li{
+    border: 2px solid #222222;
+    border-radius: 10px;
+    text-align: center;
+    min-width: 0;
+    list-style-type: none;
+    overflow: hidden;
+  }
+  
+  .make-model-list li a{
+    padding: .5rem 0;
+    display: block;
+    font-size: 1.5rem;
+    text-decoration: none;
+  }
+
+  .make-model-list li a:hover {
+    background-color: #939393;
+    color: white;
+  }
+
+  .model-info h3{
+    text-align: center;
+  }
+
+  .model-generations {
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .model-generation {
+    list-style-type: none;
+    align-self: center;
+    justify-self: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    box-sizing: border-box;
+    max-width: 350px;
+  }
+  
+  .gen-img img {
+    width: 100%;
+  }
+  
+  .gen-title {
+    border-bottom: 3px solid stencilColor('color-primary');
+    width: 100%;
+  }
+
+  .gen-info {
+    list-style-type: disc;
+  }
+
+  .gen-link {
+    text-decoration: none;
+    color: white;
+    background-color: stencilColor('color-primary');
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: bold;
   }
 }
 
@@ -2332,7 +2480,7 @@ ul.policyInfo {
   text-decoration: underline;
 }
 
-.instructionsList a:hover > ul {
+.instructionsList a:hover>ul {
   color: stencilColor('color-white');
 }
 
@@ -2450,7 +2598,7 @@ ul.policyInfo {
 //                                    Instructions Page
 // ------------------------------------------------------------------------------------->
 
-.cs-element-spacer > * {
+.cs-element-spacer>* {
   margin-top: 2em;
 }
 

@@ -2134,6 +2134,10 @@ h4 {
 
   main {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
   }
 
   .header-info {
@@ -2184,7 +2188,7 @@ h4 {
     transform: rotate(90deg);
   }
 
-  .make-model-list li{
+  .make-model-list li {
     border: 2px solid #222222;
     border-radius: 10px;
     text-align: center;
@@ -2192,8 +2196,8 @@ h4 {
     list-style-type: none;
     overflow: hidden;
   }
-  
-  .make-model-list li a{
+
+  .make-model-list li a {
     padding: .5rem 0;
     display: block;
     font-size: 1.5rem;
@@ -2205,16 +2209,31 @@ h4 {
     color: white;
   }
 
-  .model-info h3{
-    text-align: center;
+  .model-info {
+    width: 100%;
+  }
+
+  .model-info h3 {
+    text-align: start;
+    font-size: 3rem;
   }
 
   .model-generations {
     margin: 0;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1rem;
+    // grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
     width: 100%;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    @media (max-width: 900px) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    @media (max-width: 600px) {
+      grid-template-columns: 1fr;
+    }
+
   }
 
   .model-generation {
@@ -2228,11 +2247,11 @@ h4 {
     box-sizing: border-box;
     max-width: 350px;
   }
-  
+
   .gen-img img {
     width: 100%;
   }
-  
+
   .gen-title {
     border-bottom: 3px solid stencilColor('color-primary');
     width: 100%;

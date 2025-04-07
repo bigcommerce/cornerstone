@@ -61,37 +61,3 @@
         </div>
     {{/or}}
 </div>
-
-<script text="text/javascript">
-    var _learnq = _learnq || [];
-    
-    var item = {
-      Name: "{{product.title}}",
-      ProductID: "{{product.id}}",
-      ImageURL: "{{getImage product.main_image 'product_size' (cdn theme_settings.default_image_product)}}",
-      Categories: "{{product.category}}",
-      URL: "{{product.url}}",
-      Brand: "{{product.brand.name}}",
-      Price: "{{product.price.without_tax.value}}",
-      CompareAtPrice: "{{product.price.rrp_without_tax.value}}"
-    };
-    
-    _learnq.push(['track', 'Viewed Product', item]);
-    
-    _learnq.push(['trackViewedItem', {
-        Title: item.Name,
-        ItemId: item.ProductID,
-        ImageUrl: item.ImageURL,
-        Url: item.URL,
-        Categories: item.category,
-        Metadata: {
-            Brand: item.Brand,
-            Price: item.Price,
-            CompareAtPrice: item.CompareAtPrice
-        }
-    }]);
-
-    document.getElementById("form-action-addToCart").addEventListener('click',function (){
-     _learnq.push(['track', 'Added to Cart', item]);
-    });
-</script>

@@ -40,3 +40,47 @@ product:
     {{> components/products/schema}}
 {{/partial}}
 {{> layout/base}}
+<script text="text/javascript">
+
+    var _learnq = _learnq || [];
+    var product_categories = [];
+    {{#each product.category}}
+      product_categories.push('{{this}}');
+    {{/each}}
+  
+    var item = {
+      Name: "{{product.title}}",
+      ProductID: "{{product.id}}",
+      ImageURL: "{{getImage product.main_image 'product_size' (cdn theme_settings.default_image_product)}}",
+      URL: "{{product.url}}",
+      Brand: "{{product.brand.name}}",
+      BrandURL: "{{product.brand.url}}",
+      Categories: product_categories,
+      Price: "{{product.price.without_tax.value}}",
+      CompareAtPrice: "{{product.price.rrp_without_tax.value}}"
+    };
+  
+    _learnq.push(['track', 'Viewed Product', item]);
+    _learnq.push(['trackViewedItem', {
+      Title: item.Name,
+      ItemId: item.ProductID,
+      Categories: item.Categories,
+      ImageUrl: item.ImageURL,
+      Url: item.URL,
+      Metadata: {
+        Brand: item.Brand,
+        Price: item.Price,
+        CompareAtPrice: item.CompareAtPrice
+      }
+    }]);
+</script>
+<script text="text/javascript"> 
+//Initialize Klaviyo object immediately on page load
+!function(){if(!window.klaviyo){window._klOnsite=window._klOnsite||[];try{window.klaviyo=new Proxy({},{get:function(n,i){return"push"===i?function(){var n;(n=window._klOnsite).push.apply(n,arguments)}:function(){for(var n=arguments.length,o=new Array(n),w=0;w<n;w++)o[w]=arguments[w];var t="function"==typeof o[o.length-1]?o.pop():void 0,e=new Promise((function(n){window._klOnsite.push([i].concat(o,[function(i){t&&t(i),n(i)}]))}));return e}}})}catch(n){window.klaviyo=window.klaviyo||[],window.klaviyo.push=function(){var n;(n=window._klOnsite).push.apply(n,arguments)}}}}(); </script>
+<script text="text/javascript">
+//Added to Cart
+var klaviyo = window.klaviyo || [];
+document.getElementById("form-action-addToCart").addEventListener('click',function (){
+   klaviyo.track("Added to Cart", item);
+});
+</script>

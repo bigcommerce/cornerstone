@@ -1144,6 +1144,7 @@ export default class Product extends PageManager {
       this.contentElements.price.innerHTML = `<span class="original-price">${newPrice}</span><span>${blemPriceFormatted}</span>`;
       this.contentElements.price.classList.add('sale-price');
       this.addToCartButton.href = this.blemAddUrl;
+      this.cartButton(true);
     } else {
       this.contentElements.sku.textContent = this.endPointData.base_sku;
       this.contentElements.stock.textContent = this.generateStockMessage(
@@ -1157,6 +1158,9 @@ export default class Product extends PageManager {
         });
       this.contentElements.price.classList.remove('sale-price');
       this.addToCartButton.href = this.addUrl;
+      if(this.inventory.av === 0 || this.inventory.a2b === 0) {
+        this.cartButton(false);
+      }
     }
   }
 

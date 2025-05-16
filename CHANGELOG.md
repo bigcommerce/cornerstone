@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Draft
 
+## 6.16.2 (05-27-2025)
+- Patch security vulnerabilities [#2548](https://github.com/bigcommerce/cornerstone/pull/2548)
+- Update code standards based on updated linter expectancies [#2548](https://github.com/bigcommerce/cornerstone/pull/2548)
+
 ## 6.16.1 (02-14-2025)
 - Refactor cart, payment account page inline event handlers to event listeners [#2536](https://github.com/bigcommerce/cornerstone/pull/2536)
 - Cornerstone update to support multiple date fields and remove blank space [#2533](https://github.com/bigcommerce/cornerstone/pull/2533)

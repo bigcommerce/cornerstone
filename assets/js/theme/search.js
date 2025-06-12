@@ -8,11 +8,17 @@ import Url from 'url';
 import collapsibleFactory from './common/collapsible';
 import 'jstree';
 import nod from './common/nod';
+import { createTranslationDictionary } from './common/utils/translations-utils';
 
 const leftArrowKey = 37;
 const rightArrowKey = 39;
 
 export default class Search extends CatalogPage {
+    constructor(context) {
+        super(context);
+        this.validationDictionary = createTranslationDictionary(context);
+    }
+
     formatCategoryTreeForJSTree(node) {
         const nodeData = {
             text: node.data,
@@ -264,8 +270,13 @@ export default class Search extends CatalogPage {
     }
 
     initFacetedSearch() {
-        // eslint-disable-next-line object-curly-newline
-        const { onMinPriceError, onMaxPriceError, minPriceNotEntered, maxPriceNotEntered, onInvalidPrice } = this.context;
+        const {
+            price_min_evaluation: onMinPriceError,
+            price_max_evaluation: onMaxPriceError,
+            price_min_not_entered: minPriceNotEntered,
+            price_max_not_entered: maxPriceNotEntered,
+            price_invalid_value: onInvalidPrice,
+        } = this.validationDictionary;
         const $productListingContainer = $('#product-listing-container');
         const $contentListingContainer = $('#search-results-content');
         const $facetedSearchContainer = $('#faceted-search-container');

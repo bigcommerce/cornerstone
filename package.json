@@ -56,6 +56,7 @@
     "lighthouse": "^12.1.0",
     "load-grunt-config": "^3.0.1",
     "lodash-webpack-plugin": "^0.11.6",
+    "prettier": "^3.5.3",
     "stylelint": "^16.19.1",
     "stylelint-config-sass-guidelines": "^12.1.0",
     "stylelint-scss": "^6.12.0",
@@ -72,6 +73,8 @@
     "lighthouse": "npx lighthouse --config-path=lighthouse-config.js --quiet --output html --chrome-flags=\"--headless\" $URL",
     "test": "npx jest",
     "stylelint": "npx stylelint **/*.scss",
-    "stylelint:fix": "npx stylelint --fix **/*.scss"
+    "stylelint:fix": "npx stylelint --fix **/*.scss",
+    "prettier:check:styles": "npx prettier 'assets/scss/**/*.scss' --check",
+    "prettier:fix:styles": "npx prettier 'assets/scss/**/*.scss' --write"
   }
 }

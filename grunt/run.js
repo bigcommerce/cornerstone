@@ -5,4 +5,12 @@ module.exports = {
             'jest',
         ],
     },
+    prettier: {
+        cmd: 'npx',
+        args: [
+            'prettier',
+            '--check',
+            'assets/scss/**/*.scss',
+        ],
+    },
 };

@@ -17,9 +17,9 @@
 // -----------------------------------------------------------------------------
 
 %navPage-childList {
-  border-left: 1px solid $navPage-childList-borderColor;
-  margin: spacing('quarter') spacing('half');
-  padding-left: spacing('half');
+    border-left: 1px solid $navPage-childList-borderColor;
+    margin: spacing("quarter") spacing("half");
+    padding-left: spacing("half");
 }
 
 //
@@ -27,8 +27,8 @@
 // -----------------------------------------------------------------------------
 
 .has-activeNavPages {
-  overflow: hidden; // 2
-  -webkit-overflow-scrolling: auto; // 3
+    overflow: hidden; // 2
+    -webkit-overflow-scrolling: auto; // 3
 }
 
 //
@@ -36,27 +36,27 @@
 // -----------------------------------------------------------------------------
 
 .navPages-container {
-  bottom: 0;
-  display: none;
-  height: 100%;
-  left: 0;
-  -webkit-overflow-scrolling: touch;
-  position: absolute;
-  right: 0;
-  z-index: zIndex('lower');
+    bottom: 0;
+    display: none;
+    height: 100%;
+    left: 0;
+    -webkit-overflow-scrolling: touch;
+    position: absolute;
+    right: 0;
+    z-index: zIndex("lower");
 
-  @include breakpoint('medium') {
-    background: transparent;
-    display: block;
-    height: auto;
-    padding: 0;
-    position: relative;
-  }
+    @include breakpoint("medium") {
+        background: transparent;
+        display: block;
+        height: auto;
+        padding: 0;
+        position: relative;
+    }
 
-  &.is-open {
-    display: block;
-    padding-top: $header-height;
-  }
+    &.is-open {
+        display: block;
+        padding-top: $header-height;
+    }
 }
 
 //
@@ -64,210 +64,210 @@
 // -----------------------------------------------------------------------------
 
 .navPages {
-  background-color: $navPages-backgroundColor;
-  height: 100%;
-  overflow-y: auto;
-  padding: spacing('single');
+    background-color: $navPages-backgroundColor;
+    height: 100%;
+    overflow-y: auto;
+    padding: spacing("single");
 
-  @include breakpoint('medium') {
-    @include grid-row(); // 1
-    @include nav($style: 'navBar', $wrapper: 'nav');
-    background: none;
-    font-size: 0; // 1
-    overflow-y: visible;
-    padding: 0;
-    text-align: center;
-  }
-
-  ul {
-    list-style: none;
-  }
-
-  .navPage-subMenu-list {
-    @extend %navPage-childList;
-
-    border-left: 0;
-    list-style: none;
-    margin-left: 0;
-    padding-left: 0;
-
-    @include breakpoint('medium') {
-      @include grid-row();
-      border-left: 0;
-      margin: auto;
-      padding-left: 0;
+    @include breakpoint("medium") {
+        @include grid-row(); // 1
+        @include nav($style: "navBar", $wrapper: "nav");
+        background: none;
+        font-size: 0; // 1
+        overflow-y: visible;
+        padding: 0;
+        text-align: center;
     }
-  }
+
+    ul {
+        list-style: none;
+    }
+
+    .navPage-subMenu-list {
+        @extend %navPage-childList;
+
+        border-left: 0;
+        list-style: none;
+        margin-left: 0;
+        padding-left: 0;
+
+        @include breakpoint("medium") {
+            @include grid-row();
+            border-left: 0;
+            margin: auto;
+            padding-left: 0;
+        }
+    }
 }
 
 .navPages-list {
-  margin: 0;
+    margin: 0;
 
-  @include breakpoint('medium') {
-    display: inline-block;
-    float: none;
-  }
+    @include breakpoint("medium") {
+        display: inline-block;
+        float: none;
+    }
 
-  + .navPages-list {
-    border-top: 1px solid $navPages-list--user-borderColor;
-    margin-top: spacing('half');
-    padding-top: spacing('half');
-  }
+    + .navPages-list {
+        border-top: 1px solid $navPages-list--user-borderColor;
+        margin-top: spacing("half");
+        padding-top: spacing("half");
+    }
 }
 
 .navPages-list-depth-max.subMenu-is-open {
-  .is-hidden {
-    display: none;
+    .is-hidden {
+        display: none;
 
-    @include breakpoint('medium') {
-      display: inline-block;
+        @include breakpoint("medium") {
+            display: inline-block;
+        }
     }
-  }
 
-  .navPages-item-page {
-    display: none;
+    .navPages-item-page {
+        display: none;
 
-    @include breakpoint('medium') {
-      display: inline-block;
+        @include breakpoint("medium") {
+            display: inline-block;
+        }
     }
-  }
 }
 
 .navPages-action-depth-max.has-subMenu.is-root.is-open {
-  .navPages-action-moreIcon {
-    @include breakpoint('medium') {
-      transform: rotate(0);
+    .navPages-action-moreIcon {
+        @include breakpoint("medium") {
+            transform: rotate(0);
+        }
     }
-  }
 }
 
 .navPages-action-depth-max.has-subMenu.is-open {
-  border-bottom: 1px solid $navPages-list--user-borderColor;
-  text-align: center;
+    border-bottom: 1px solid $navPages-list--user-borderColor;
+    text-align: center;
 
-  @include breakpoint('medium') {
-    border-bottom: 0;
-    text-align: left;
-  }
-
-  .navPages-action-moreIcon {
-    border: solid 1px $navPages-action-moreIcon-borderColor;
-    border-radius: 4px;
-    float: left;
-    height: 35px;
-    margin-top: -10px;
-    padding: 11.7px; // (33 - 9.6) / 2
-    transform: rotate(90deg);
-    width: 35px;
-
-    @include breakpoint('medium') {
-      @include square(8px);
-      border: 0;
-      border-radius: 0;
-      float: none;
-      margin-top: 0;
-      padding: 0;
-      transform: rotate(-90deg);
+    @include breakpoint("medium") {
+        border-bottom: 0;
+        text-align: left;
     }
-  }
 
-  svg {
-    height: 9.6px;
-    width: 9.6px;
+    .navPages-action-moreIcon {
+        border: solid 1px $navPages-action-moreIcon-borderColor;
+        border-radius: 4px;
+        float: left;
+        height: 35px;
+        margin-top: -10px;
+        padding: 11.7px; // (33 - 9.6) / 2
+        transform: rotate(90deg);
+        width: 35px;
 
-    @include breakpoint('medium') {
-      height: 100%;
-      width: 100%;
+        @include breakpoint("medium") {
+            @include square(8px);
+            border: 0;
+            border-radius: 0;
+            float: none;
+            margin-top: 0;
+            padding: 0;
+            transform: rotate(-90deg);
+        }
     }
-  }
+
+    svg {
+        height: 9.6px;
+        width: 9.6px;
+
+        @include breakpoint("medium") {
+            height: 100%;
+            width: 100%;
+        }
+    }
 }
 
 .navPages-action {
-  color: stencilColor('navPages-color');
-  display: block;
-  font-size: fontSize('smaller');
-  font-weight: fontWeight('bold');
-  padding: spacing('half') 0;
-  text-decoration: none;
-  text-transform: uppercase;
+    color: stencilColor("navPages-color");
+    display: block;
+    font-size: fontSize("smaller");
+    font-weight: fontWeight("bold");
+    padding: spacing("half") 0;
+    text-decoration: none;
+    text-transform: uppercase;
 
-  @include breakpoint('medium') {
-    display: inline-block;
-    padding: spacing('half') (spacing('half') + spacing('quarter')) (spacing('half') + spacing('quarter'));
+    @include breakpoint("medium") {
+        display: inline-block;
+        padding: spacing("half") (spacing("half") + spacing("quarter")) (spacing("half") + spacing("quarter"));
 
-    &.is-open {
-      background-color: $navPage-subMenu-item--is-highlighted-background;
+        &.is-open {
+            background-color: $navPage-subMenu-item--is-highlighted-background;
+        }
     }
-  }
 
-  &.has-subMenu {
-    .navPages-list:not(.navPages-list-depth-max) & {
-      align-items: center;
-      display: flex;
-      justify-content: space-between;
+    &.has-subMenu {
+        .navPages-list:not(.navPages-list-depth-max) & {
+            align-items: center;
+            display: flex;
+            justify-content: space-between;
+        }
     }
-  }
 
-  &.is-open,
-  .collapsible-icon-wrapper.is-open {
+    &.is-open,
+    .collapsible-icon-wrapper.is-open {
+        svg {
+            fill: $navPage-subMenu-item--is-highlighted-color;
+            stroke: $navPage-subMenu-item--is-highlighted-color;
+        }
+    }
+
+    &:hover,
+    &.activePage {
+        color: $navPage-subMenu-item--is-highlighted-color;
+
+        svg {
+            fill: $navPage-subMenu-item--is-highlighted-color;
+            stroke: $navPage-subMenu-item--is-highlighted-color;
+        }
+    }
+
     svg {
-      fill: $navPage-subMenu-item--is-highlighted-color;
-      stroke: $navPage-subMenu-item--is-highlighted-color;
+        fill: stencilColor("navPages-color");
+        stroke: stencilColor("navPages-color");
+        transition: all 0.15s ease;
     }
-  }
-
-  &:hover,
-  &.activePage {
-    color: $navPage-subMenu-item--is-highlighted-color;
-
-    svg {
-      fill: $navPage-subMenu-item--is-highlighted-color;
-      stroke: $navPage-subMenu-item--is-highlighted-color;
-    }
-  }
-
-  svg {
-    fill: stencilColor('navPages-color');
-    stroke: stencilColor('navPages-color');
-    transition: all 0.15s ease;
-  }
 }
 
 .navPages-action--storeCredit {
-  color: stencilColor('color-textSecondary');
+    color: stencilColor("color-textSecondary");
 }
 
 .navPages-action--compare {
-  display: none;
+    display: none;
 
-  &.show {
-    display: block;
-  }
+    &.show {
+        display: block;
+    }
 }
 
 .navPages-action-moreIcon {
-  @include square(8px);
-  margin-left: spacing('half');
-  transform: rotate(-90deg);
+    @include square(8px);
+    margin-left: spacing("half");
+    transform: rotate(-90deg);
 
-  @include breakpoint('medium') {
-    transform: none;
-  }
-
-  .has-subMenu.is-open &,
-  .collapsible-icon-wrapper.is-open & {
-    transform: rotate(0);
-  }
-
-  .navPages-list:not(.navPages-list-depth-max) & {
-    @include square(11px);
-    margin: 0 spacing('single');
-
-    @include breakpoint('medium') {
-      @include square(8px);
-      margin: 0 0 0 spacing('half');
+    @include breakpoint("medium") {
+        transform: none;
     }
-  }
+
+    .has-subMenu.is-open &,
+    .collapsible-icon-wrapper.is-open & {
+        transform: rotate(0);
+    }
+
+    .navPages-list:not(.navPages-list-depth-max) & {
+        @include square(11px);
+        margin: 0 spacing("single");
+
+        @include breakpoint("medium") {
+            @include square(8px);
+            margin: 0 0 0 spacing("half");
+        }
+    }
 }
 
 
@@ -275,25 +275,25 @@
 // -----------------------------------------------------------------------------
 
 .navPage-childList {
-  @extend %navPage-childList;
-  display: none;
+    @extend %navPage-childList;
+    display: none;
 
-  @include breakpoint('medium') {
-    border: 0;
-    display: block;
-  }
-
-  &.is-open {
-    display: block;
-  }
-
-  .navPage-subMenu-action:not(.navPages-action-depth-max) + & {
-    margin-left: spacing('double'); //
-
-    @include breakpoint('medium') {
-      margin-left: 0;
+    @include breakpoint("medium") {
+        border: 0;
+        display: block;
     }
-  }
+
+    &.is-open {
+        display: block;
+    }
+
+    .navPage-subMenu-action:not(.navPages-action-depth-max) + & {
+        margin-left: spacing("double"); //
+
+        @include breakpoint("medium") {
+            margin-left: 0;
+        }
+    }
 }
 
 
@@ -305,131 +305,131 @@
 // -----------------------------------------------------------------------------
 
 .navPage-subMenu {
-  display: none;
-  outline: 0;
+    display: none;
+    outline: 0;
 
-  @include breakpoint('medium') {
-    background-color: stencilColor('navPages-subMenu-backgroundColor');
-    padding: spacing('single') spacing('single') (spacing('single') + spacing('half')) !important;
-    position: absolute;
-    text-align: left;
+    @include breakpoint("medium") {
+        background-color: stencilColor("navPages-subMenu-backgroundColor");
+        padding: spacing("single") spacing("single") (spacing("single") + spacing("half")) !important;
+        position: absolute;
+        text-align: left;
+
+        &.is-open {
+            display: block;
+            left: 0;
+            width: 100%;
+        }
+
+        .navPages-action-moreIcon {
+            display: none;
+        }
+    }
 
     &.is-open {
-      display: block;
-      left: 0;
-      width: 100%;
+        display: block;
     }
 
-    .navPages-action-moreIcon {
-      display: none;
+    .navPages-list:not(.navPages-list-depth-max) .navPages-action.has-subMenu + & {
+        .navPage-subMenu-list {
+            margin-right: 0;
+
+            @include breakpoint("medium") {
+                margin-right: auto;
+            }
+        }
     }
-  }
-
-  &.is-open {
-    display: block;
-  }
-
-  .navPages-list:not(.navPages-list-depth-max) .navPages-action.has-subMenu + & {
-    .navPage-subMenu-list {
-      margin-right: 0;
-
-      @include breakpoint('medium') {
-        margin-right: auto;
-      }
-    }
-  }
 }
 
 .has-subMenu.is-root + .navPage-subMenu-horizontal {
-  @include breakpoint('medium') {
-    border-left: 0;
-    height: $navPage-subMenu-horizontal-height;
-    left: inherit;
-    margin: auto;
-    top: inherit;
-    width: $navPage-subMenu-horizontal-width;
-  }
+    @include breakpoint("medium") {
+        border-left: 0;
+        height: $navPage-subMenu-horizontal-height;
+        left: inherit;
+        margin: auto;
+        top: inherit;
+        width: $navPage-subMenu-horizontal-width;
+    }
 }
 
 .navPage-subMenu-horizontal {
-  &.is-open {
-    @include breakpoint('medium') {
-      border-left: 1px solid stencilColor('navPages-subMenu-separatorColor');
-      display: inherit;
-      height: $navPage-subMenu-horizontal-height;
-      margin-left: $navPage-subMenu-horizontal-width;
-      padding: 0 !important;
-      top: 0;
-      width: $navPage-subMenu-horizontal-width + 1;
+    &.is-open {
+        @include breakpoint("medium") {
+            border-left: 1px solid stencilColor("navPages-subMenu-separatorColor");
+            display: inherit;
+            height: $navPage-subMenu-horizontal-height;
+            margin-left: $navPage-subMenu-horizontal-width;
+            padding: 0 !important;
+            top: 0;
+            width: $navPage-subMenu-horizontal-width + 1;
+        }
     }
-  }
 
-  .navPages-action-moreIcon {
-    @include breakpoint('medium') {
-      display: inline-block;
-      transform: rotate(-90deg);
+    .navPages-action-moreIcon {
+        @include breakpoint("medium") {
+            display: inline-block;
+            transform: rotate(-90deg);
+        }
     }
-  }
 }
 
 .navPage-subMenu-item {
-  padding: spacing('half') 0;
+    padding: spacing("half") 0;
 
-  @include breakpoint('medium') {
-    @include grid-column(3);
-    padding: 0 0.75rem !important; // 1
+    @include breakpoint("medium") {
+        @include grid-column(3);
+        padding: 0 0.75rem !important; // 1
 
-    .navPages-action {
-      text-transform: none;
-      width: 100%;
+        .navPages-action {
+            text-transform: none;
+            width: 100%;
+        }
+
+        > .navPage-subMenu-action {
+            border-bottom: 1px solid stencilColor("navPages-subMenu-separatorColor");
+            margin-bottom: spacing("half") + spacing("quarter");
+        }
     }
-
-    > .navPage-subMenu-action {
-      border-bottom: 1px solid stencilColor('navPages-subMenu-separatorColor');
-      margin-bottom: spacing('half') + spacing('quarter');
-    }
-  }
 }
 
 .navPage-subMenu-item-child,
 .navPage-subMenu-item-parent {
-  width: 100%;
+    width: 100%;
 
-  @include breakpoint('medium') {
-    .navPage-subMenu-action {
-      padding-left: spacing('single');
-      padding-right: spacing('single');
-      width: 100%;
+    @include breakpoint("medium") {
+        .navPage-subMenu-action {
+            padding-left: spacing("single");
+            padding-right: spacing("single");
+            width: 100%;
+        }
     }
-  }
 }
 
 .navPage-subMenu-action {
-  padding: spacing('half') 0;
+    padding: spacing("half") 0;
 
-  @include breakpoint('medium') {
-    padding: spacing('half') 0 (spacing('half') + spacing('quarter'));
-  }
-
-  .navPages-list:not(.navPages-list-depth-max) & {
-    padding: 0 0 0 spacing('single');
-
-    @include breakpoint('medium') {
-      padding: spacing('half') 0 (spacing('half') + spacing('quarter'));
+    @include breakpoint("medium") {
+        padding: spacing("half") 0 (spacing("half") + spacing("quarter"));
     }
-  }
 
-  .collapsible-icon-wrapper {
-    box-sizing: content-box;
-    display: inline-block;
-    height: 100%;
-    text-align: right;
-    width: 100%;
+    .navPages-list:not(.navPages-list-depth-max) & {
+        padding: 0 0 0 spacing("single");
 
-    @include breakpoint('medium') {
-      display: none;
+        @include breakpoint("medium") {
+            padding: spacing("half") 0 (spacing("half") + spacing("quarter"));
+        }
     }
-  }
+
+    .collapsible-icon-wrapper {
+        box-sizing: content-box;
+        display: inline-block;
+        height: 100%;
+        text-align: right;
+        width: 100%;
+
+        @include breakpoint("medium") {
+            display: none;
+        }
+    }
 }
 
 
@@ -437,8 +437,8 @@
 // Child pages of sub pages navigation lists
 // -----------------------------------------------------------------------------
 .navPage-childList-action {
-  font-weight: fontWeight('normal');
-  padding: 0 0 spacing('quarter');
+    font-weight: fontWeight("normal");
+    padding: 0 0 spacing("quarter");
 }
 
 
@@ -447,24 +447,24 @@
 // -----------------------------------------------------------------------------
 
 .navPages-quickSearch {
-  border-bottom: container('border');
-  margin-bottom: spacing('half');
+    border-bottom: container("border");
+    margin-bottom: spacing("half");
 
-  @include breakpoint('medium') {
-    display: none;
-  }
+    @include breakpoint("medium") {
+        display: none;
+    }
 
-  > .container {
-    padding: 0;
-  }
+    > .container {
+        padding: 0;
+    }
 
-  .form {
-    margin: 0;
-  }
+    .form {
+        margin: 0;
+    }
 
-  .form-field {
-    margin-bottom: 0;
-  }
+    .form-field {
+        margin-bottom: 0;
+    }
 }
 
 
@@ -473,24 +473,24 @@
 // -----------------------------------------------------------------------------
 
 .navPages-list--user {
-  @include breakpoint('medium') {
-    display: none;
-  }
-
-  #currencySelection2 {
-    background-color: color('whites', 'bright');
-    border: container('border');
-
-    .dropdown-menu-item {
-      padding: 0;
-
-      &:not(:last-child) {
-        border-bottom: container('border');
-      }
+    @include breakpoint("medium") {
+        display: none;
     }
 
-    a {
-      padding: spacing('half') spacing('single');
+    #currencySelection2 {
+        background-color: color("whites", "bright");
+        border: container("border");
+
+        .dropdown-menu-item {
+            padding: 0;
+
+            &:not(:last-child) {
+                border-bottom: container("border");
+            }
+        }
+
+        a {
+            padding: spacing("half") spacing("single");
+        }
     }
-  }
 }

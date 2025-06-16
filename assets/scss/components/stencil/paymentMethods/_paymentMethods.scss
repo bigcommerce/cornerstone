@@ -3,239 +3,239 @@
 // =============================================================================
 
 .paymentMethodsTitle {
-  margin: 0 0 spacing('half');
-  padding: 0;
-  text-transform: none;
-  width: 100%;
+    margin: 0 0 spacing("half");
+    padding: 0;
+    text-transform: none;
+    width: 100%;
 }
 
 .paymentMethodsGrid {
-  display: flex;
-  flex-wrap: wrap;
-  margin: -(spacing('half'));
-  margin-bottom: spacing('single');
+    display: flex;
+    flex-wrap: wrap;
+    margin: -(spacing("half"));
+    margin-bottom: spacing("single");
 
-  &-item {
-    min-height: remCalc(250px);
-    padding: spacing('half');
-    width: 100%;
+    &-item {
+        min-height: remCalc(250px);
+        padding: spacing("half");
+        width: 100%;
 
-    @include breakpoint('small') {
-      width: grid-calc(6, $total-columns);
+        @include breakpoint("small") {
+            width: grid-calc(6, $total-columns);
+        }
     }
-  }
 }
 
 .paymentMethod {
-  background-color: #e5e5e5;
-  border: container('border');
-  border-radius: remCalc(3px);
-  display: flex;
-  flex-flow: column nowrap;
-  height: 100%;
+    background-color: #e5e5e5;
+    border: container("border");
+    border-radius: remCalc(3px);
+    display: flex;
+    flex-flow: column nowrap;
+    height: 100%;
 
-  &-row {
-    padding: 1.5rem;
+    &-row {
+        padding: 1.5rem;
 
-    &:first-child {
-      background-color: #fff;
+        &:first-child {
+            background-color: #fff;
+        }
+
+        &:last-child {
+            margin-top: auto;
+        }
+
+        &:only-child {
+            height: 100%;
+        }
     }
 
-    &:last-child {
-      margin-top: auto;
+    // fix
+    .button {
+        margin-bottom: 0;
     }
-
-    &:only-child {
-      height: 100%;
-    }
-  }
-
-  // fix
-  .button {
-    margin-bottom: 0;
-  }
 }
 
 .methodHeader {
-  align-items: center;
-  display: flex;
-  flex-flow: row;
-  justify-content: space-between;
-
-  &-icon {
-    margin-right: spacing('half');
-    width: remCalc(28px);
-
-    @include breakpoint('large') {
-      width: remCalc(42px);
-    }
-  }
-
-  &-title {
-    font-size: fontSize('smallest');
-    font-weight: fontWeight('semibold');
-
-    @include breakpoint('large') {
-      font-size: fontSize('base');
-    }
-  }
-
-  &-brand {
-    color: color('greys', 'dark');
-    font-size: fontSize('smallest');
-    font-weight: fontWeight('semibold');
-
-    @include breakpoint('large') {
-      font-size: fontSize('base');
-    }
-  }
-
-  &-meta {
+    align-items: center;
     display: flex;
-    flex-wrap: nowrap;
-    margin-left: auto;
-    padding-left: spacing('half');
-  }
+    flex-flow: row;
+    justify-content: space-between;
 
-  &-default {
-    fill: color('greys', 'dark');
-    height: remCalc(18px);
-    margin-left: spacing('half');
-    width: remCalc(18px);
+    &-icon {
+        margin-right: spacing("half");
+        width: remCalc(28px);
 
-    @include breakpoint('large') {
-      height: remCalc(20px);
-      width: remCalc(20px);
+        @include breakpoint("large") {
+            width: remCalc(42px);
+        }
     }
-  }
 
-  &-expiry {
-    font-size: fontSize('smaller');
-    text-transform: capitalize;
-  }
+    &-title {
+        font-size: fontSize("smallest");
+        font-weight: fontWeight("semibold");
+
+        @include breakpoint("large") {
+            font-size: fontSize("base");
+        }
+    }
+
+    &-brand {
+        color: color("greys", "dark");
+        font-size: fontSize("smallest");
+        font-weight: fontWeight("semibold");
+
+        @include breakpoint("large") {
+            font-size: fontSize("base");
+        }
+    }
+
+    &-meta {
+        display: flex;
+        flex-wrap: nowrap;
+        margin-left: auto;
+        padding-left: spacing("half");
+    }
+
+    &-default {
+        fill: color("greys", "dark");
+        height: remCalc(18px);
+        margin-left: spacing("half");
+        width: remCalc(18px);
+
+        @include breakpoint("large") {
+            height: remCalc(20px);
+            width: remCalc(20px);
+        }
+    }
+
+    &-expiry {
+        font-size: fontSize("smaller");
+        text-transform: capitalize;
+    }
 }
 
 .methodDetails {
-  display: flex;
-  margin: 0;
+    display: flex;
+    margin: 0;
 
-  &-label {
-    flex: 1;
-    font-weight: fontWeight('semibold');
-  }
+    &-label {
+        flex: 1;
+        font-weight: fontWeight("semibold");
+    }
 
-  &-description {
-    flex: 2;
-    font-size: fontSize('smallest');
-  }
+    &-description {
+        flex: 2;
+        font-size: fontSize("smallest");
+    }
 }
 
 .newPaymentMethod {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  justify-items: center;
-  min-height: remCalc(186px);
-  text-decoration: none;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-items: center;
+    min-height: remCalc(186px);
+    text-decoration: none;
 
-  &-icon {
-    font-size: 50px;
-    line-height: 1;
-    margin: auto 0 spacing('half');
-  }
+    &-icon {
+        font-size: 50px;
+        line-height: 1;
+        margin: auto 0 spacing("half");
+    }
 
-  &-title {
-    margin: 0 auto auto;
-    text-align: center;
-  }
+    &-title {
+        margin: 0 auto auto;
+        text-align: center;
+    }
 }
 
 // Payment Method Form - Add
 // -----------------------------------------------------------------------------
 
 .paymentMethodForm {
-  @include breakpoint('small') {
-    max-width: 60%;
-  }
-
-  &-column {
-    @include breakpoint('small') {
-      display: flex;
-
-      &:first-child .form-field {
-        margin-bottom: spacing('half');
-      }
+    @include breakpoint("small") {
+        max-width: 60%;
     }
-  }
 
-  &-heading {
-    color: color('greys', 'darker');
-    font-family: fontFamily('sans');
-    margin-top: spacing('single');
-    text-transform: capitalize;
-  }
+    &-column {
+        @include breakpoint("small") {
+            display: flex;
 
-  &-subheading {
-    display: flex;
-    font-weight: fontWeight('semibold');
-  }
-
-  &-cards {
-    @include breakpoint('small') {
-      margin-left: auto;
+            &:first-child .form-field {
+                margin-bottom: spacing("half");
+            }
+        }
     }
-  }
 
-  &-cards-icon {
-    margin-right: spacing('eighth');
-    width: remCalc(34px);
-  }
-
-  &-inputs {
-    position: relative;
-
-    @include breakpoint('small') {
-      &:last-child {
-        padding-left: spacing('single');
-        width: 30%;
-      }
-
-      &:first-child {
-        width: 70%;
-      }
+    &-heading {
+        color: color("greys", "darker");
+        font-family: fontFamily("sans");
+        margin-top: spacing("single");
+        text-transform: capitalize;
     }
-  }
 
-  &-inputs-icon {
-    position: absolute;
-    right: remCalc(9px);
-    top: remCalc(39px);
-
-    &.icon {
-      fill: color('greys', 'light');
-      height: remCalc(21px);
-      width: remCalc(21px);
+    &-subheading {
+        display: flex;
+        font-weight: fontWeight("semibold");
     }
-  }
 
-  &-details {
-    margin-bottom: 0;
-
-    @include breakpoint('small') {
-      display: inline-block;
-      margin: 0 spacing('double') 0 0;
+    &-cards {
+        @include breakpoint("small") {
+            margin-left: auto;
+        }
     }
-  }
 
-  &-details-term {
-    font-weight: fontWeight('normal');
-    margin-bottom: spacing('half');
-  }
+    &-cards-icon {
+        margin-right: spacing("eighth");
+        width: remCalc(34px);
+    }
 
-  &-details-description {
-    font-size: fontSize('smaller');
-    font-weight: fontWeight('semibold');
-    letter-spacing: letterSpacing('large');
-  }
+    &-inputs {
+        position: relative;
+
+        @include breakpoint("small") {
+            &:last-child {
+                padding-left: spacing("single");
+                width: 30%;
+            }
+
+            &:first-child {
+                width: 70%;
+            }
+        }
+    }
+
+    &-inputs-icon {
+        position: absolute;
+        right: remCalc(9px);
+        top: remCalc(39px);
+
+        &.icon {
+            fill: color("greys", "light");
+            height: remCalc(21px);
+            width: remCalc(21px);
+        }
+    }
+
+    &-details {
+        margin-bottom: 0;
+
+        @include breakpoint("small") {
+            display: inline-block;
+            margin: 0 spacing("double") 0 0;
+        }
+    }
+
+    &-details-term {
+        font-weight: fontWeight("normal");
+        margin-bottom: spacing("half");
+    }
+
+    &-details-description {
+        font-size: fontSize("smaller");
+        font-weight: fontWeight("semibold");
+        letter-spacing: letterSpacing("large");
+    }
 }

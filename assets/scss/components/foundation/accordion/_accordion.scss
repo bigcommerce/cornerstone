@@ -4,38 +4,38 @@
 
 
 .accordion {
-  border-radius: $accordion-borderRadius;
-  box-shadow: none;
+    border-radius: $accordion-borderRadius;
+    box-shadow: none;
 
-  .navList {
-    margin-bottom: 0;
-  }
+    .navList {
+        margin-bottom: 0;
+    }
 }
 
 .accordion-content {
-  border: 0;
+    border: 0;
 
-  .form:only-child {
-    margin-bottom: 0;
-  }
+    .form:only-child {
+        margin-bottom: 0;
+    }
 }
 
 .accordion-title {
-  color: stencilColor('color-textHeading');
-  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
-  font-size: remCalc(15px);
-  margin: 0;
+    color: stencilColor("color-textHeading");
+    font-family: "Montserrat", Arial, Helvetica, sans-serif;
+    font-size: remCalc(15px);
+    margin: 0;
 }
 
 .accordion-navigation {
-  align-items: center;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding-right: 1rem;
-  position: relative;
-  text-decoration: none;
-  width: 100%;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-right: 1rem;
+    position: relative;
+    text-decoration: none;
+    width: 100%;
 }
 
 
@@ -46,59 +46,59 @@
 //
 // -----------------------------------------------------------------------------
 .accordion--navList {
-  @include breakpoint('medium') {
-    border: 0;
-  }
-
-  .sidebarBlock + & {
-    @include breakpoint('medium') {
-      margin-top: $accordion-navList-spacing;
+    @include breakpoint("medium") {
+        border: 0;
     }
-  }
 
-  .accordion-block {
-    @include breakpoint('medium') {
-      margin-top: $accordion-navList-spacing;
+    .sidebarBlock + & {
+        @include breakpoint("medium") {
+            margin-top: $accordion-navList-spacing;
+        }
     }
-  }
 
-  .accordion-heading {
-    font-size: fontSize('base');
-    line-height: lineHeight('smaller');
-    margin: 0;
-  }
-
-  .accordion-content {
-    padding: $accordion-navList-padding;
-
-    @include breakpoint('medium') {
-      padding: 0;
+    .accordion-block {
+        @include breakpoint("medium") {
+            margin-top: $accordion-navList-spacing;
+        }
     }
-  }
 
-  .accordion-navigation {
-    @include breakpoint('medium') {
-      background-position: right 0 top 50%;
-      border: 0;
-      margin-bottom: spacing('half') !important;
-      padding: 0;
+    .accordion-heading {
+        font-size: fontSize("base");
+        line-height: lineHeight("smaller");
+        margin: 0;
     }
-  }
 
-  .accordion-title {
-    font-weight: normal;
-    padding: $accordion-navList-padding;
-    text-decoration: none;
-    text-transform: inherit;
+    .accordion-content {
+        padding: $accordion-navList-padding;
 
-    @include breakpoint('medium') {
-      padding: 0;
+        @include breakpoint("medium") {
+            padding: 0;
+        }
     }
-  }
 
-  .accordion-indicator {
-    fill: color('greys', 'light');
-  }
+    .accordion-navigation {
+        @include breakpoint("medium") {
+            background-position: right 0 top 50%;
+            border: 0;
+            margin-bottom: spacing("half") !important;
+            padding: 0;
+        }
+    }
+
+    .accordion-title {
+        font-weight: normal;
+        padding: $accordion-navList-padding;
+        text-decoration: none;
+        text-transform: inherit;
+
+        @include breakpoint("medium") {
+            padding: 0;
+        }
+    }
+
+    .accordion-indicator {
+        fill: color("greys", "light");
+    }
 }
 
 
@@ -109,46 +109,46 @@
 //
 // -----------------------------------------------------------------------------
 .accordion-block:first-child {
-  margin-top: 0;
+    margin-top: 0;
 
-  .accordion-navigation {
-    border-radius: $accordion-borderRadius $accordion-borderRadius 0 0;
-  }
+    .accordion-navigation {
+        border-radius: $accordion-borderRadius $accordion-borderRadius 0 0;
+    }
 }
 
 .accordion-block:last-child {
-  .accordion-navigation,
-  .accordion-content {
-    border-radius: 0 0 $accordion-borderRadius $accordion-borderRadius;
-  }
-
-  .accordion-navigation {
-    border-bottom-width: 0;
-
-    &.is-open {
-      border-bottom-width: 1px;
-      border-radius: 0;
+    .accordion-navigation,
+    .accordion-content {
+        border-radius: 0 0 $accordion-borderRadius $accordion-borderRadius;
     }
-  }
+
+    .accordion-navigation {
+        border-bottom-width: 0;
+
+        &.is-open {
+            border-bottom-width: 1px;
+            border-radius: 0;
+        }
+    }
 }
 
 .accordion-nav-clear-holder {
-  position: relative;
+    position: relative;
 }
 
 .facetedSearch-clearLink {
-  color: stencilColor('color-textSecondary');
-  position: absolute;
-  right: 40px;
-  top: 50%;
-  transform: translateY(-50%);
-  @include breakpoint('medium') {
-    right: 20px;
-    top: 3px;
-    transform: none;
-  }
+    color: stencilColor("color-textSecondary");
+    position: absolute;
+    right: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    @include breakpoint("medium") {
+        right: 20px;
+        top: 3px;
+        transform: none;
+    }
 
-  &:hover {
-    color: stencilColor('color-textSecondary--hover');
-  }
+    &:hover {
+        color: stencilColor("color-textSecondary--hover");
+    }
 }

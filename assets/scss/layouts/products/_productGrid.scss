@@ -12,25 +12,25 @@
 
 .productGrid {
 
-  @include u-listBullets('none');
-  @include grid-row($behavior: 'nest');
-  font-size: 0; // 1
-  margin-bottom: spacing('single');
+    @include u-listBullets("none");
+    @include grid-row($behavior: "nest");
+    font-size: 0; // 1
+    margin-bottom: spacing("single");
 
-  .product {
-    @include grid-column(6, $float: none);
-    display: inline-block;
-    font-size: fontSize('base'); // 1
-    vertical-align: top;
+    .product {
+        @include grid-column(6, $float: none);
+        display: inline-block;
+        font-size: fontSize("base"); // 1
+        vertical-align: top;
 
-    @include breakpoint('small') {
-      width: grid-calc(4, $total-columns);
+        @include breakpoint("small") {
+            width: grid-calc(4, $total-columns);
+        }
+
+        @include breakpoint("medium") {
+            width: grid-calc(3, $total-columns);
+        }
     }
-
-    @include breakpoint('medium') {
-      width: grid-calc(3, $total-columns);
-    }
-  }
 }
 
 
@@ -42,13 +42,13 @@
 // -----------------------------------------------------------------------------
 
 .page-sidebar + .page-content {
-  .productGrid {
-    .product { // 1
-      @include breakpoint('small') {
-        width: grid-calc(4, $total-columns);
-      }
+    .productGrid {
+        .product { // 1
+            @include breakpoint("small") {
+                width: grid-calc(4, $total-columns);
+            }
+        }
     }
-  }
 
 }
 
@@ -62,32 +62,32 @@
 // -----------------------------------------------------------------------------
 
 .productMasonry {
-  column-count: 2;
-  column-fill: auto;
-  column-gap: remCalc(20px);
-  margin: 0 0 spacing('single');
-  overflow: hidden;
+    column-count: 2;
+    column-fill: auto;
+    column-gap: remCalc(20px);
+    margin: 0 0 spacing("single");
+    overflow: hidden;
 
-  @include breakpoint('small') {
-    column-count: 3;
-  }
+    @include breakpoint("small") {
+        column-count: 3;
+    }
 
-  @include breakpoint('medium') {
-    column-count: 4;
-  }
+    @include breakpoint("medium") {
+        column-count: 4;
+    }
 
-  .product {
-    break-inside: avoid;
-    display: block;
-    margin-bottom: spacing('double');
-    padding: 0;
-    page-break-inside: avoid; // for firefox
-    width: 100%;
-  }
+    .product {
+        break-inside: avoid;
+        display: block;
+        margin-bottom: spacing("double");
+        padding: 0;
+        page-break-inside: avoid; // for firefox
+        width: 100%;
+    }
 
-  .card {
-    margin: 0;
-  }
+    .card {
+        margin: 0;
+    }
 }
 
 
@@ -95,39 +95,39 @@
 // -----------------------------------------------------------------------------
 
 .productGrid--maxCol6 {
-  .no-csscolumns & {
-    .product {
-      @include breakpoint('medium') {
-        width: grid-calc(2, $total-columns);
-      }
+    .no-csscolumns & {
+        .product {
+            @include breakpoint("medium") {
+                width: grid-calc(2, $total-columns);
+            }
+        }
     }
-  }
 
-  .csscolumns & {
-    @include breakpoint('medium') {
-      column-count: 6;
+    .csscolumns & {
+        @include breakpoint("medium") {
+            column-count: 6;
+        }
     }
-  }
 }
 
 .productGrid--maxCol3 {
-  .no-csscolumns & {
-    .product {
-      @include breakpoint('medium') {
-        width: grid-calc(4, $total-columns);
-      }
+    .no-csscolumns & {
+        .product {
+            @include breakpoint("medium") {
+                width: grid-calc(4, $total-columns);
+            }
+        }
     }
-  }
 
-  .csscolumns & {
-    @include breakpoint('medium') {
-      @include grid-column(12);
+    .csscolumns & {
+        @include breakpoint("medium") {
+            @include grid-column(12);
 
-      float: none;
+            float: none;
 
-      .product {
-        @include grid-column(4, $float: none);
-      }
+            .product {
+                @include grid-column(4, $float: none);
+            }
+        }
     }
-  }
 }

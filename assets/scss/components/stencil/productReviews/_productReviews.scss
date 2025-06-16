@@ -9,9 +9,9 @@
 // -----------------------------------------------------------------------------
 
 .productReviews-list {
-  @include u-listBullets('none');
-  @include grid-row($behavior: 'nest');
-  font-size: 0; // 1
+    @include u-listBullets("none");
+    @include grid-row($behavior: "nest");
+    font-size: 0; // 1
 }
 
 
@@ -19,36 +19,36 @@
 // -----------------------------------------------------------------------------
 
 .productReview {
-  @include grid-column(12);
-  display: inline-block;
-  float: none;
-  font-size: fontSize('base');
-  vertical-align: top;
+    @include grid-column(12);
+    display: inline-block;
+    float: none;
+    font-size: fontSize("base");
+    vertical-align: top;
 
-  @include breakpoint('medium') {
-    width: grid-calc(6, $total-columns);
-  }
+    @include breakpoint("medium") {
+        width: grid-calc(6, $total-columns);
+    }
 
-  @include breakpoint('large') {
-    width: grid-calc(4, $total-columns);
-  }
+    @include breakpoint("large") {
+        width: grid-calc(4, $total-columns);
+    }
 }
 
 .productReview-title {
-  margin: 0;
-  text-transform: none;
+    margin: 0;
+    text-transform: none;
 }
 
 .productReview-author {
-  color: stencilColor('color-textSecondary');
-  margin-bottom: spacing('base');
+    color: stencilColor("color-textSecondary");
+    margin-bottom: spacing("base");
 }
 
 .productReview-rating {
-  display: inline-block;
-  margin-bottom: spacing('quarter');
+    display: inline-block;
+    margin-bottom: spacing("quarter");
 }
 
 .productReview-ratingNumber {
-  @include u-hidden('visually');
+    @include u-hidden("visually");
 }

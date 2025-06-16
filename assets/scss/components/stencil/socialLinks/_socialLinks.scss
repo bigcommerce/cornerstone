@@ -7,61 +7,61 @@
 //
 // -----------------------------------------------------------------------------
 .socialLinks {
-  @include clearfix;
-  @include u-listReset; // 2
-  line-height: lineHeight('largest');
+    @include clearfix;
+    @include u-listReset; // 2
+    line-height: lineHeight("largest");
 
-  .icon { // 1
-    @include square($socialLinks-iconSize);
-    margin: 0;
-    text-decoration: none;
+    .icon { // 1
+        @include square($socialLinks-iconSize);
+        margin: 0;
+        text-decoration: none;
 
-    &:hover {
-      svg {
-        fill: stencilColor('icon-color-hover');
-      }
+        &:hover {
+            svg {
+                fill: stencilColor("icon-color-hover");
+            }
+        }
+
+        svg {
+            fill: stencilColor("icon-color");
+            transition: all 0.15s ease;
+        }
     }
-
-    svg {
-      fill: stencilColor('icon-color');
-      transition: all 0.15s ease;
-    }
-  }
 }
 
 .socialLinks-item--pinterest {
-  width: 25px;
+    width: 25px;
 }
 
 .pin_it_iframe_widget {
-  display: none;
+    display: none;
 }
 
 .socialLinks-item {
-  display: inline-block;
-  font-size: 0; // 1
+    display: inline-block;
+    font-size: 0; // 1
 
-  .socialLinks & { // 2
-    margin-bottom: spacing('quarter');
-    margin-right: spacing('half');
+    .socialLinks & { // 2
+        margin-bottom: spacing("quarter");
+        margin-right: spacing("half");
 
-    &:last-child {
-      margin-right: 0;
+        &:last-child {
+            margin-right: 0;
+        }
     }
-  }
 
-  .socialLinks__link {
-    @include addFocusTooltip;
-    height: 2rem;
-    position: relative;
+    .socialLinks__link {
+        @include addFocusTooltip;
+        height: 2rem;
+        position: relative;
 
-    // moving tooltip on the left side for avoiding by parent's cut with overflow: hidden
-    &:focus::after {
-      left: 0;
-      right: auto;
-      z-index: zIndex('low');
+        // moving tooltip on the left side for avoiding by parent's cut with overflow: hidden
+        &:focus::after {
+            left: 0;
+            right: auto;
+            z-index: zIndex("low");
+        }
     }
-  }
 }
 
 
@@ -70,11 +70,11 @@
 // -----------------------------------------------------------------------------
 
 .socialLinks--alt {
-  .icon {
-    @include square($socialLinks-alt-iconSize);
-  }
+    .icon {
+        @include square($socialLinks-alt-iconSize);
+    }
 
-  svg {
-    fill: $socialLinks-alt-iconColor;
-  }
+    svg {
+        fill: $socialLinks-alt-iconColor;
+    }
 }

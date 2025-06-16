@@ -10,42 +10,42 @@
 //
 // -----------------------------------------------------------------------------
 .facetedSearch-toggle {
-  @include grid-row;
-  border: $facetedSearch-toggle-border;
-  border-radius: $facetedSearch-toggle-borderRadius;
-  border-width: $facetedSearch-toggle-borderWidth;
-  display: block;
-  margin-bottom: $facetedSearch-toggle-verticalSpacing;
-  padding: $facetedSearch-toggle-padding;
+    @include grid-row;
+    border: $facetedSearch-toggle-border;
+    border-radius: $facetedSearch-toggle-borderRadius;
+    border-width: $facetedSearch-toggle-borderWidth;
+    display: block;
+    margin-bottom: $facetedSearch-toggle-verticalSpacing;
+    padding: $facetedSearch-toggle-padding;
 
-  @include breakpoint('medium') {
-    display: none !important; // 1
-  }
+    @include breakpoint("medium") {
+        display: none !important; // 1
+    }
 
-  &.is-open {
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-    margin-bottom: 0;
-  }
+    &.is-open {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        margin-bottom: 0;
+    }
 }
 
 .facetedSearch-toggle-text,
 .facetedSearch-toggle-indicator {
-  display: block;
-  font-weight: normal;
+    display: block;
+    font-weight: normal;
 }
 
 .facetedSearch-toggle-text {
-  @include grid-column(7);
-  padding: 0;
-  text-align: left;
+    @include grid-column(7);
+    padding: 0;
+    text-align: left;
 }
 
 .facetedSearch-toggle-indicator {
-  @include grid-column(5);
-  font-weight: bold;
-  padding: 0;
-  text-align: right;
+    @include grid-column(5);
+    font-weight: bold;
+    padding: 0;
+    text-align: right;
 }
 
 
@@ -56,49 +56,49 @@
 //
 // -----------------------------------------------------------------------------
 .facetedSearch-navList {
-  display: none;
+    display: none;
 
-  @include breakpoint('medium') {
-    display: block !important; // 1
-  }
-
-  &.is-open {
-    display: block;
-
-    .accordion--navList,
-    .accordion-block:first-child .accordion-navigation {
-      border-top-left-radius: 0;
-      border-top-right-radius: 0;
+    @include breakpoint("medium") {
+        display: block !important; // 1
     }
-  }
 
-  .facetedSearch-toggle + &,
-  .sidebarBlock + & {
-    margin-top: $facetedSearch-toggle-verticalSpacing;
-  }
+    &.is-open {
+        display: block;
 
-
-  .facetedSearch-toggle + &.is-open,
-  .sidebarBlock + &.is-open {
-    margin-top: -1px;
-
-    @include breakpoint('medium') {
-      margin-top: $facetedSearch-toggle-verticalSpacing;
+        .accordion--navList,
+        .accordion-block:first-child .accordion-navigation {
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+        }
     }
-  }
 
-  .navList--inner {
-    margin-left: spacing('single');
-  }
+    .facetedSearch-toggle + &,
+    .sidebarBlock + & {
+        margin-top: $facetedSearch-toggle-verticalSpacing;
+    }
+
+
+    .facetedSearch-toggle + &.is-open,
+    .sidebarBlock + &.is-open {
+        margin-top: -1px;
+
+        @include breakpoint("medium") {
+            margin-top: $facetedSearch-toggle-verticalSpacing;
+        }
+    }
+
+    .navList--inner {
+        margin-left: spacing("single");
+    }
 }
 
 .facet-quick-heading {
-  text-transform: capitalize;
+    text-transform: capitalize;
 }
 
 .facetedSearch-optionColumns {
-  column-count: 3;
-  column-gap: 20px;
+    column-count: 3;
+    column-gap: 20px;
 }
 
 
@@ -109,20 +109,20 @@
 //
 // -----------------------------------------------------------------------------
 .facetedSearch-refineFilters {
-  display: none;
+    display: none;
 
-  @include breakpoint('medium') {
-    display: block; // 1
-  }
+    @include breakpoint("medium") {
+        display: block; // 1
+    }
 }
 
 // Facted search ratings
 .facetedSearch-content--rating {
-  .is-selected {
-    font-weight: bold;
-  }
+    .is-selected {
+        font-weight: bold;
+    }
 }
 
 .reset-filters {
-  display: none;
+    display: none;
 }

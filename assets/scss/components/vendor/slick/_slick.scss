@@ -18,71 +18,71 @@
 
 .slick-next,
 .slick-prev {
-  @include carouselOpaqueBackgrounds($slick-arrow-bgColor);
-  border: 1px solid $slick-arrow-borderColor;
-  height: remCalc(61px);
-  margin-top: -(remCalc(15px));
-  padding: remCalc(10px);
-  width: remCalc(40px);
-  z-index: 1;
+    @include carouselOpaqueBackgrounds($slick-arrow-bgColor);
+    border: 1px solid $slick-arrow-borderColor;
+    height: remCalc(61px);
+    margin-top: -(remCalc(15px));
+    padding: remCalc(10px);
+    width: remCalc(40px);
+    z-index: 1;
 
-  &::before {
-    background-position: 50%;
-    background-repeat: no-repeat;
-    background-size: 100%;
-    display: block;
-    height: remCalc(41px);
-    width: remCalc(20px);
-  }
+    &::before {
+        background-position: 50%;
+        background-repeat: no-repeat;
+        background-size: 100%;
+        display: block;
+        height: remCalc(41px);
+        width: remCalc(20px);
+    }
 
-  &:hover,
-  &:focus {
-    @include carouselOpaqueBackgrounds($slick-arrow-bgColor); // 1
-    background-position: 50%;
-    background-repeat: no-repeat;
-    background-size: 100%;
-  }
+    &:hover,
+    &:focus {
+        @include carouselOpaqueBackgrounds($slick-arrow-bgColor); // 1
+        background-position: 50%;
+        background-repeat: no-repeat;
+        background-size: 100%;
+    }
 }
 
 .slick-next {
-  right: $slick-arrows-offset;
+    right: $slick-arrows-offset;
 
-  @include breakpoint('large') {
-    right: -(spacing('double') + spacing('quarter'));
-  }
-
-  &::before {
-    @include carousel-arrow-color( $slick-arrow-color, 'next');
-  }
-
-  &:hover {
-    &::before {
-      @include carousel-arrow-color( $slick-arrow-color-hover, 'next');
+    @include breakpoint("large") {
+        right: -(spacing("double") + spacing("quarter"));
     }
-  }
+
+    &::before {
+        @include carousel-arrow-color( $slick-arrow-color, "next");
+    }
+
+    &:hover {
+        &::before {
+            @include carousel-arrow-color( $slick-arrow-color-hover, "next");
+        }
+    }
 }
 
 .slick-prev {
-  left: $slick-arrows-offset;
+    left: $slick-arrows-offset;
 
-  @include breakpoint('large') {
-    left: -(spacing('double') + spacing('quarter'));
-  }
-
-  &::before {
-    @include carousel-arrow-color( $slick-arrow-color, 'prev');
-  }
-
-  &:hover {
-    &::before {
-      @include carousel-arrow-color( $slick-arrow-color-hover, 'prev');
+    @include breakpoint("large") {
+        left: -(spacing("double") + spacing("quarter"));
     }
-  }
+
+    &::before {
+        @include carousel-arrow-color( $slick-arrow-color, "prev");
+    }
+
+    &:hover {
+        &::before {
+            @include carousel-arrow-color( $slick-arrow-color-hover, "prev");
+        }
+    }
 }
 
 .slick-slide img {
-  display: block;
-  width: 100%;
+    display: block;
+    width: 100%;
 }
 
 
@@ -95,48 +95,48 @@
 // -----------------------------------------------------------------------------
 
 .slick-dots {  // 2
-  margin: 0;
-
-  li {
-    @include square(32px);
     margin: 0;
-    padding: remCalc(5px);
 
-    button,
-    button::before {
-      @include square(15px);
-      border-radius: 50%;
-    }
+    li {
+        @include square(32px);
+        margin: 0;
+        padding: remCalc(5px);
 
-    button {
-      border: 1px solid $slick-dot-color;
-      display: inline-block;
-      margin: 0;
-      padding: 0;
-      position: relative;
-      text-align: center;
-      vertical-align: middle;
-
-      &:hover {
-        &::before {
-          background: $slick-dot-color;
+        button,
+        button::before {
+            @include square(15px);
+            border-radius: 50%;
         }
-      }
-    }
 
-    button::before {
-      display: block;
-      left: -1px;
-      top: -1px;
-      transition: background 100ms ease-out;
-    }
+        button {
+            border: 1px solid $slick-dot-color;
+            display: inline-block;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            text-align: center;
+            vertical-align: middle;
 
-    &.slick-active {
-      button::before {
-        background: $slick-dot-color-active;
-      }
+            &:hover {
+                &::before {
+                    background: $slick-dot-color;
+                }
+            }
+        }
+
+        button::before {
+            display: block;
+            left: -1px;
+            top: -1px;
+            transition: background 100ms ease-out;
+        }
+
+        &.slick-active {
+            button::before {
+                background: $slick-dot-color-active;
+            }
+        }
     }
-  }
 
 }
 
@@ -144,7 +144,7 @@
 // Stencil override for product detail page thumbnail dots.
 // -----------------------------------------------------------------------------
 .productView .slick-dots {
-  position: relative;
+    position: relative;
 }
 
 
@@ -152,8 +152,8 @@
 // disabled carousel elements
 // -----------------------------------------------------------------------------
 .slick-disabled {
-  cursor: $cursor-default-value;
-  opacity: 0.1;
+    cursor: $cursor-default-value;
+    opacity: 0.1;
 }
 
 
@@ -161,17 +161,17 @@
 // Slick track
 // -----------------------------------------------------------------------------
 .slick-track {
-  backface-visibility: hidden; // 2
-  perspective: 1000px; // 2
+    backface-visibility: hidden; // 2
+    perspective: 1000px; // 2
 }
 
 //
 // iOS Safari fix https://github.com/kenwheeler/slick/issues/2834#issuecomment-389590661
 // -----------------------------------------------------------------------------
 div.slick-slider {
-  min-width: 100%;
-  width: 1px;
-  *width: 100%;
+    min-width: 100%;
+    width: 1px;
+    *width: 100%;
 }
 
 //
@@ -179,7 +179,7 @@ div.slick-slider {
 // -----------------------------------------------------------------------------
 .slick-slide .card-image,
 .slick-slide .heroCarousel-image {
-  -webkit-touch-callout: default;
+    -webkit-touch-callout: default;
 }
 
 //
@@ -187,67 +187,67 @@ div.slick-slider {
 // -----------------------------------------------------------------------------
 
 .carousel-tooltip {
-  @include addFocusTooltip($attr: aria-label);
-  display: none;
-  height: 1px;
-  margin-top: 10px;
-  position: relative;
+    @include addFocusTooltip($attr: aria-label);
+    display: none;
+    height: 1px;
+    margin-top: 10px;
+    position: relative;
 
-  @include breakpoint('small') {
-    display: block;
-  }
-
-  &::after {
-    padding: 15px 10px;
-    top: 10px;
-  }
-
-  .slick-prev:focus &,
-  .slick-next:focus &,
-  .slick-dots button:focus & {
-    &::before,
-    &::after {
-      display: block;
-    }
-  }
-
-  .slick-prev &,
-  .slick-next & {
-    &::before {
-      top: -7px;
-    }
-  }
-
-  .slick-prev & {
-    &::before {
-      right: -2px;
+    @include breakpoint("small") {
+        display: block;
     }
 
     &::after {
-      left: -5px;
-      right: auto;
-    }
-  }
-
-  .slick-next & {
-    &::after {
-      right: -5px;
-    }
-  }
-
-  .slick-dots button & {
-    margin-top: 25px;
-
-    &::before,
-    &::after {
-      right: 50%;
-      transform: translateX(50%);
+        padding: 15px 10px;
+        top: 10px;
     }
 
-    &::before {
-      top: -7px;
+    .slick-prev:focus &,
+    .slick-next:focus &,
+    .slick-dots button:focus & {
+        &::before,
+        &::after {
+            display: block;
+        }
     }
-  }
+
+    .slick-prev &,
+    .slick-next & {
+        &::before {
+            top: -7px;
+        }
+    }
+
+    .slick-prev & {
+        &::before {
+            right: -2px;
+        }
+
+        &::after {
+            left: -5px;
+            right: auto;
+        }
+    }
+
+    .slick-next & {
+        &::after {
+            right: -5px;
+        }
+    }
+
+    .slick-dots button & {
+        margin-top: 25px;
+
+        &::before,
+        &::after {
+            right: 50%;
+            transform: translateX(50%);
+        }
+
+        &::before {
+            top: -7px;
+        }
+    }
 }
 
 //
@@ -255,41 +255,41 @@ div.slick-slider {
 // -----------------------------------------------------------------------------
 
 .carousel-play-pause-button {
-  @include carouselOpaqueBackgrounds($slick-play-pause-button-bgColor);
-  border: 1px solid $slick-play-pause-button-borderColor;
-  bottom: spacing('third');
-  color: $slick-play-pause-button-color;
-  display: none;
-  font-size: 14px;
-  font-weight: 700;
-  height: 32px;
-  left: 15px;
-  line-height: 1.25;
-  max-width: 60px;
-  min-width: 60px;
-  overflow: hidden;
-  position: absolute;
-  text-overflow: ellipsis;
-  transition: color 100ms ease-out;
-  white-space: nowrap;
-  z-index: zIndex('lowest');
+    @include carouselOpaqueBackgrounds($slick-play-pause-button-bgColor);
+    border: 1px solid $slick-play-pause-button-borderColor;
+    bottom: spacing("third");
+    color: $slick-play-pause-button-color;
+    display: none;
+    font-size: 14px;
+    font-weight: 700;
+    height: 32px;
+    left: 15px;
+    line-height: 1.25;
+    max-width: 60px;
+    min-width: 60px;
+    overflow: hidden;
+    position: absolute;
+    text-overflow: ellipsis;
+    transition: color 100ms ease-out;
+    white-space: nowrap;
+    z-index: zIndex("lowest");
 
-  @include breakpoint('small') {
-    font-size: 18px;
-    max-width: 150px;
-  }
+    @include breakpoint("small") {
+        font-size: 18px;
+        max-width: 150px;
+    }
 
-  @include breakpoint('medium') {
-    bottom: spacing('single');
-    left: 25px;
-  }
+    @include breakpoint("medium") {
+        bottom: spacing("single");
+        left: 25px;
+    }
 
-  &:hover {
-    color: $slick-play-pause-button-color-hover;
-  }
+    &:hover {
+        color: $slick-play-pause-button-color-hover;
+    }
 
-  @media (min-width: 375px) {
-    max-width: 90px;
-    min-width: 80px;
-  }
+    @media (min-width: 375px) {
+        max-width: 90px;
+        min-width: 80px;
+    }
 }

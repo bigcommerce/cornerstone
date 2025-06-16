@@ -12,122 +12,122 @@
 // -----------------------------------------------------------------------------
 
 .card {
-  &:focus-within {
-    .card-figcaption {
-      opacity: 1;
+    &:focus-within {
+        .card-figcaption {
+            opacity: 1;
+        }
     }
-  }
 
-  &.focus-within {
-    .card-figcaption {
-      opacity: 1;
+    &.focus-within {
+        .card-figcaption {
+            opacity: 1;
+        }
     }
-  }
 }
 
 .card-figure {
-  margin-top: $card-figure-marginTop;
-  overflow: hidden;
-  padding: 3px;
-  position: relative;
-
-  &:hover {
-    .card-figcaption {
-      opacity: 1;
-    }
-  }
-
-  &__link {
-    display: block;
+    margin-top: $card-figure-marginTop;
+    overflow: hidden;
+    padding: 3px;
     position: relative;
-  }
+
+    &:hover {
+        .card-figcaption {
+            opacity: 1;
+        }
+    }
+
+    &__link {
+        display: block;
+        position: relative;
+    }
 }
 
 .card-img-container {
 
-  @include lazy-loaded-padding('productgallery_size');
-  max-width: get-width(stencilString('productgallery_size'));
+    @include lazy-loaded-padding("productgallery_size");
+    max-width: get-width(stencilString("productgallery_size"));
 }
 
 .card-figcaption {
-  display: none;
-  margin: $card-figcaption-margin;
-  pointer-events: none; // 1
+    display: none;
+    margin: $card-figcaption-margin;
+    pointer-events: none; // 1
 
-  @include breakpoint('medium') {
-    display: block;
-  }
+    @include breakpoint("medium") {
+        display: block;
+    }
 }
 
 .card-figcaption-body {
-  display: $card-figcaption-body-display;
-  pointer-events: all; // 1
-  transform: translate3d(0, -50%, 0); // 2
+    display: $card-figcaption-body-display;
+    pointer-events: all; // 1
+    transform: translate3d(0, -50%, 0); // 2
 }
 
 .card-image {
-  @include lazy-loaded-img;
-  border: 0;
-  /* Object-fit polyfill */
-  font-family: 'object-fit: contain;';
-  max-height: 100%;
-  object-fit: contain;
-  width: 100%;
+    @include lazy-loaded-img;
+    border: 0;
+    /* Object-fit polyfill */
+    font-family: "object-fit: contain;";
+    max-height: 100%;
+    object-fit: contain;
+    width: 100%;
 }
 
 .card-title {
-  font-size: $card-title-fontSize;
-  margin: $card-title-margin;
+    font-size: $card-title-fontSize;
+    margin: $card-title-margin;
 
-  > a {
-    color: $card-title-color;
-    display: block;
-    text-decoration: $card-title-textDecoration;
+    > a {
+        color: $card-title-color;
+        display: block;
+        text-decoration: $card-title-textDecoration;
 
-    &:hover {
-      color: $card-title-color-hover;
+        &:hover {
+            color: $card-title-color-hover;
+        }
     }
-  }
 }
 
 .card-text {
-  margin-bottom: $card-text-marginBottom;
+    margin-bottom: $card-text-marginBottom;
 
-  abbr {
-    border: 0;
-    color: inherit;
-    font-size: inherit;
-  }
+    abbr {
+        border: 0;
+        color: inherit;
+        font-size: inherit;
+    }
 }
 
 .card-figcaption-button {
-  border: $card-figcaption-button-border;
-  display: $card-figcaption-button-display;
-  margin: $card-figcaption-button-margin;
-
-  &:active {
-    background-color: $card-figcaption-button-backgroundHover;
     border: $card-figcaption-button-border;
-  }
-
-  .card-figcaption-body & {
-    &:focus {
-      background-color: $card-figcaption-button-backgroundHover;
-      outline: revert;
-    }
-  }
-
-  + .card-figcaption-button {
+    display: $card-figcaption-button-display;
     margin: $card-figcaption-button-margin;
-  }
+
+    &:active {
+        background-color: $card-figcaption-button-backgroundHover;
+        border: $card-figcaption-button-border;
+    }
+
+    .card-figcaption-body & {
+        &:focus {
+            background-color: $card-figcaption-button-backgroundHover;
+            outline: revert;
+        }
+    }
+
+    + .card-figcaption-button {
+        margin: $card-figcaption-button-margin;
+    }
 }
 
 .card-body {
-  text-align: center;
+    text-align: center;
 
-  @include breakpoint('small') {
-    text-align: left;
-  }
+    @include breakpoint("small") {
+        text-align: left;
+    }
 }
 
 
@@ -138,32 +138,32 @@
 // -----------------------------------------------------------------------------
 
 .card--alternate {
-  border: 3px solid stencilColor('card--alternate-borderColor');
-  transition: all 0.15s ease;
-
-  .card-body {
-    background-color: stencilColor('card--alternate-backgroundColor');
-    padding: spacing('half');
+    border: 3px solid stencilColor("card--alternate-borderColor");
     transition: all 0.15s ease;
 
-    @include breakpoint('small') {
-      padding: spacing('single');
-    }
-  }
-
-  &:hover {
-    border-color: stencilColor('color-primary');
-
     .card-body {
-      background-color: stencilColor('color-primary');
+        background-color: stencilColor("card--alternate-backgroundColor");
+        padding: spacing("half");
+        transition: all 0.15s ease;
 
-      .card-text {
-        color: stencilColor('card--alternate-color--hover');
-      }
+        @include breakpoint("small") {
+            padding: spacing("single");
+        }
     }
 
-    .card-title > a {
-      color: stencilColor('card--alternate-color--hover');
+    &:hover {
+        border-color: stencilColor("color-primary");
+
+        .card-body {
+            background-color: stencilColor("color-primary");
+
+            .card-text {
+                color: stencilColor("card--alternate-color--hover");
+            }
+        }
+
+        .card-title > a {
+            color: stencilColor("card--alternate-color--hover");
+        }
     }
-  }
 }

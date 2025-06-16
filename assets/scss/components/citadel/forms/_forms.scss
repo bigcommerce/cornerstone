@@ -7,9 +7,9 @@
 // -----------------------------------------------------------------------------
 
 .form--hiddenLabels {
-  .form-label {
-    @include u-hidden('visually');
-  }
+    .form-label {
+        @include u-hidden("visually");
+    }
 }
 
 
@@ -17,7 +17,7 @@
 // -----------------------------------------------------------------------------
 
 .form-inlineMessage {
-  display: block;
+    display: block;
 }
 
 
@@ -25,43 +25,43 @@
 // -----------------------------------------------------------------------------
 
 .form-field--error {
-  .form-input {
-    float: none;
-  }
-
-  .form-inlineMessage {
-    &::before {
-      background: $form-error-icon no-repeat;
-      background-size: $form-inlineMessage-backgroundSize;
-      content: '';
-      display: inline-block;
-      height: $form-error-icon-height;
-      left: $form-error-icon-left;
-      margin-right: $form-error-icon-marginRight;
-      position: relative;
-      top: $form-error-icon-top;
-      width: $form-error-icon-width;
+    .form-input {
+        float: none;
     }
-  }
+
+    .form-inlineMessage {
+        &::before {
+            background: $form-error-icon no-repeat;
+            background-size: $form-inlineMessage-backgroundSize;
+            content: "";
+            display: inline-block;
+            height: $form-error-icon-height;
+            left: $form-error-icon-left;
+            margin-right: $form-error-icon-marginRight;
+            position: relative;
+            top: $form-error-icon-top;
+            width: $form-error-icon-width;
+        }
+    }
 }
 
 .form-field--success {
-  .form-input[type='text'] {
-    padding-right: $form-success-input-paddingRight;
-    background: {
-      image: $form-success-icon;
-      position: right $form-success-icon-right center;
-      repeat: no-repeat;
+    .form-input[type="text"] {
+        padding-right: $form-success-input-paddingRight;
+        background: {
+            image: $form-success-icon;
+            position: right $form-success-icon-right center;
+            repeat: no-repeat;
+        }
     }
-  }
 
-  .form-input[name='credit_card_number'] {
-    background-position: right $form-success-icon-check-right center;
-  }
+    .form-input[name="credit_card_number"] {
+        background-position: right $form-success-icon-check-right center;
+    }
 
-  .form-input[name='cvv'] {
-    background-position: right $form-success-icon-check-right center;
-  }
+    .form-input[name="cvv"] {
+        background-position: right $form-success-icon-check-right center;
+    }
 }
 
 
@@ -70,66 +70,66 @@
 
 .form-checkbox,
 .form-radio {
-  + .form-label {
-    &:last-child {
-      display: block;
-      margin-bottom: $form-checkRadio-label-last-marginBottom;
-    }
+    + .form-label {
+        &:last-child {
+            display: block;
+            margin-bottom: $form-checkRadio-label-last-marginBottom;
+        }
 
-    &::after {
-      top: $form-checkRadio-labelAfter-top;
-    }
+        &::after {
+            top: $form-checkRadio-labelAfter-top;
+        }
 
-    &::before {
-      top: $form-checkRadio-labelBefore-top;
+        &::before {
+            top: $form-checkRadio-labelBefore-top;
+        }
     }
-  }
 }
 
 .form-option-wrapper {
-  display: inline-block;
-  position: relative;
+    display: inline-block;
+    position: relative;
 
-  .form-radio,
-  .form-checkbox {
-    bottom: 0.5rem;
-    left: 0.5rem;
-  }
+    .form-radio,
+    .form-checkbox {
+        bottom: 0.5rem;
+        left: 0.5rem;
+    }
 }
 
 // Citadel form-actions
 // -----------------------------------------------------------------------------
 
 .form-actions {
-  @include grid-row();
-  display: block;
-  text-align: center;
+    @include grid-row();
+    display: block;
+    text-align: center;
 
-  @include breakpoint('small') {
-    margin-top: spacing('single');
-  }
-
-  .button,
-  input,
-  a {
-    vertical-align: top;
-    width: 100%;
-
-    @include breakpoint('small') {
-      margin-bottom: 0;
-      width: auto;
+    @include breakpoint("small") {
+        margin-top: spacing("single");
     }
 
-    + .button,
-    + input,
-    + a {
-      margin-top: spacing('half');
+    .button,
+    input,
+    a {
+        vertical-align: top;
+        width: 100%;
 
-      @include breakpoint('small') {
-        margin: 0 0 0 spacing('half');
-      }
+        @include breakpoint("small") {
+            margin-bottom: 0;
+            width: auto;
+        }
+
+        + .button,
+        + input,
+        + a {
+            margin-top: spacing("half");
+
+            @include breakpoint("small") {
+                margin: 0 0 0 spacing("half");
+            }
+        }
     }
-  }
 }
 
 // Stencil form additions
@@ -140,127 +140,127 @@
 //
 // -----------------------------------------------------------------------------
 @mixin placeholder {
-  &::-webkit-input-placeholder {@content; }
-  &::-moz-placeholder {@content; }
-  &:-ms-input-placeholder {@content; }
+    &::-webkit-input-placeholder {@content; }
+    &::-moz-placeholder {@content; }
+    &:-ms-input-placeholder {@content; }
 }
 
 .form-label--alternate {
-  font-family: fontFamily('headingSans');
-  font-size: fontSize('smallest');
-  margin-bottom: spacing('half');
+    font-family: fontFamily("headingSans");
+    font-size: fontSize("smallest");
+    margin-bottom: spacing("half");
 }
 
 .form-select--date {
-  width: initial;
+    width: initial;
 
-  + .form-select--date {
-    margin-left: spacing('quarter');
-  }
+    + .form-select--date {
+        margin-left: spacing("quarter");
+    }
 }
 
 .form-select--small,
 .form-select--date {
-  background-position: right spacing('third') top spacing('third');
-  background-size: remCalc(18px);
-  font-size: $input-small-fontSize;
-  height: $input-small-height;
-  line-height: 1rem;
-  max-width: 20rem;
-  padding: $input-small-padding;
-  padding-right: $select-small-paddingRight;
+    background-position: right spacing("third") top spacing("third");
+    background-size: remCalc(18px);
+    font-size: $input-small-fontSize;
+    height: $input-small-height;
+    line-height: 1rem;
+    max-width: 20rem;
+    padding: $input-small-padding;
+    padding-right: $select-small-paddingRight;
 }
 
 .form-select--short {
-  max-width: 6rem;
-  width: 4.5rem;
+    max-width: 6rem;
+    width: 4.5rem;
 }
 
 .form-file {
-  margin-bottom: spacing('third');
+    margin-bottom: spacing("third");
 }
 
 .form-fileDescription {
-  color: color('greys', 'light');
-  font-size: fontSize('smallest');
+    color: color("greys", "light");
+    font-size: fontSize("smallest");
 }
 
 .form-field-group {
-  border: $input-border-width $input-border-style $input-border-color;
-  border-radius: $input-border-radius;
-  padding: spacing('single');
+    border: $input-border-width $input-border-style $input-border-color;
+    border-radius: $input-border-radius;
+    padding: spacing("single");
 }
 
 // This component should live inside a .form-row
 .form-column {
-  @include grid-column(12);
+    @include grid-column(12);
 
-  @include breakpoint('small') {
-    @include grid-column(6);
-  }
+    @include breakpoint("small") {
+        @include grid-column(6);
+    }
 }
 
 .form-prefixPostfix {
-  &.wrap {
-    flex-wrap: wrap;
-  }
-
-  .form-input,
-  .button {
-    display: block;
-    width: 100%;
-  }
-
-  .form-input {
-    @include breakpoint('large') {
-      width: auto;
+    &.wrap {
+        flex-wrap: wrap;
     }
 
-    @include placeholder {
-      color: $formInput-placeholder-color;
+    .form-input,
+    .button {
+        display: block;
+        width: 100%;
     }
-  }
 
-  .button {
-    @include breakpoint('large') {
-      width: auto;
+    .form-input {
+        @include breakpoint("large") {
+            width: auto;
+        }
+
+        @include placeholder {
+            color: $formInput-placeholder-color;
+        }
     }
-  }
 
-  .form-inlineMessage {
-    margin-bottom: spacing('quarter');
-
-    @include breakpoint('large') {
-      margin-bottom: 0;
+    .button {
+        @include breakpoint("large") {
+            width: auto;
+        }
     }
-  }
+
+    .form-inlineMessage {
+        margin-bottom: spacing("quarter");
+
+        @include breakpoint("large") {
+            margin-bottom: 0;
+        }
+    }
 }
 
 .form-prefixPostfix--centeredColumn {
-  &.wrap {
-    flex-direction: column;
-  }
-
-  .g-recaptcha {
-    margin: 2em auto 0;
-  }
-
-  .form-prefixPostfix-button--postfix {
-    @include breakpoint('large') {
-      margin: 1em 0 spacing('half');
+    &.wrap {
+        flex-direction: column;
     }
-  }
+
+    .g-recaptcha {
+        margin: 2em auto 0;
+    }
+
+    .form-prefixPostfix-button--postfix {
+        @include breakpoint("large") {
+            margin: 1em 0 spacing("half");
+        }
+    }
 
 }
 
 .form-prefixPostfix-button--postfix {
-  margin: spacing('half') 0 0;
-  order: 1; // 1
+    margin: spacing("half") 0 0;
+    order: 1; // 1
 
-  @include breakpoint('large') {
-    margin: 0 0 0 spacing('half');
-    order: 0; // 1
-  }
+    @include breakpoint("large") {
+        margin: 0 0 0 spacing("half");
+        order: 0; // 1
+    }
 }
 
 
@@ -268,26 +268,26 @@
 // -----------------------------------------------------------------------------
 
 .form-increment {
-  .button {
-    margin: 0;
-    padding: remCalc(3px) remCalc(5px);
-  }
+    .button {
+        margin: 0;
+        padding: remCalc(3px) remCalc(5px);
+    }
 }
 
 .form-input--incrementTotal {
-  border: 0;
-  display: inline-block;
-  font-size: fontSize('smaller');
-  font-weight: fontWeight('bold');
-  height: auto;
-  padding: 0;
-  text-align: center;
-  vertical-align: middle;
-  width: remCalc(35px);
+    border: 0;
+    display: inline-block;
+    font-size: fontSize("smaller");
+    font-weight: fontWeight("bold");
+    height: auto;
+    padding: 0;
+    text-align: center;
+    vertical-align: middle;
+    width: remCalc(35px);
 
-  .form-field--success & {
-    float: none;
-  }
+    .form-field--success & {
+        float: none;
+    }
 }
 
 
@@ -301,82 +301,82 @@
 //
 
 .form-option {
-  border: 1px solid stencilColor('input-border-color');
-  color: stencilColor('form-label-font-color');
-  cursor: pointer;
-  display: inline-block;
-  font-size: 0; // 2
-  margin-bottom: spacing('third');
-  margin-right: spacing('third');
-  padding: 1px;
-  transition: all 0.15s ease;
+    border: 1px solid stencilColor("input-border-color");
+    color: stencilColor("form-label-font-color");
+    cursor: pointer;
+    display: inline-block;
+    font-size: 0; // 2
+    margin-bottom: spacing("third");
+    margin-right: spacing("third");
+    padding: 1px;
+    transition: all 0.15s ease;
 
-  &:hover {
-    border-color: stencilColor('input-border-color-active');
-  }
+    &:hover {
+        border-color: stencilColor("input-border-color-active");
+    }
 
-  .form-radio:checked + & {
-    border-color: stencilColor('checkRadio-color');
-    box-shadow: 0 0 0 1px stencilColor('checkRadio-color');
-  }
+    .form-radio:checked + & {
+        border-color: stencilColor("checkRadio-color");
+        box-shadow: 0 0 0 1px stencilColor("checkRadio-color");
+    }
 }
 
 .form-option-variant {
-  display: inline-block;
-  font-size: $body-fontSize; // 2
-  min-width: remCalc(38px);
-  padding: 1px spacing('quarter');
-  pointer-events: none; // 1
-  text-align: center;
+    display: inline-block;
+    font-size: $body-fontSize; // 2
+    min-width: remCalc(38px);
+    padding: 1px spacing("quarter");
+    pointer-events: none; // 1
+    text-align: center;
 }
 
 .form-option-variant--color,
 .form-option-variant--pattern {
-  @include square(22);
-  min-width: initial;
-  padding: 0;
+    @include square(22);
+    min-width: initial;
+    padding: 0;
 
-  @include breakpoint('small') { // 4
-    pointer-events: inherit; // 3
-  }
+    @include breakpoint("small") { // 4
+        pointer-events: inherit; // 3
+    }
 }
 
 .form-option-variant--pattern {
-  background-position: center;
-  background-repeat: no-repeat;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 
 // Form input (small)
 // -----------------------------------------------------------------------------
 .form-input--small {
-  font-size: $input-small-fontSize;
-  height: $input-small-height;
-  line-height: 1rem;
-  padding: $input-small-padding;
+    font-size: $input-small-fontSize;
+    height: $input-small-height;
+    line-height: 1rem;
+    padding: $input-small-padding;
 }
 
 
 // Form min/max input row
 // -----------------------------------------------------------------------------
 .form-minMaxRow {
-  @include clearfix();
-  margin-left: -$form-minMaxRow-column-gutter;
-  margin-right: -$form-minMaxRow-column-gutter;
+    @include clearfix();
+    margin-left: -$form-minMaxRow-column-gutter;
+    margin-right: -$form-minMaxRow-column-gutter;
 
-  .form-field {
-    @include grid-column(4);
-    margin-bottom: 0;
-    padding-left: $form-minMaxRow-column-gutter;
-    padding-right: $form-minMaxRow-column-gutter;
-  }
+    .form-field {
+        @include grid-column(4);
+        margin-bottom: 0;
+        padding-left: $form-minMaxRow-column-gutter;
+        padding-right: $form-minMaxRow-column-gutter;
+    }
 
-  .button {
-    margin-bottom: 0;
-    padding-left: 0;
-    padding-right: 0;
-    width: 100%;
-  }
+    .button {
+        margin-bottom: 0;
+        padding-left: 0;
+        padding-right: 0;
+        width: 100%;
+    }
 }
 
 
@@ -389,39 +389,39 @@
 // -----------------------------------------------------------------------------
 
 .form-row--half > .form-field:nth-child(odd) {
-  @include breakpoint('small') {
-    clear: left;
-  }
+    @include breakpoint("small") {
+        clear: left;
+    }
 }
 
 // Out of stock product attributes
 [data-product-attribute] {
-  .form-option {
-    overflow: hidden;
-    position: relative;
+    .form-option {
+        overflow: hidden;
+        position: relative;
 
-    &.unavailable {
-      background-color: $productOptions-disable-background-color;
-      opacity: $productOptions-disable-opacity;
+        &.unavailable {
+            background-color: $productOptions-disable-background-color;
+            opacity: $productOptions-disable-opacity;
 
-      &::before {
-        background-color: $productOptions-strikethrough-color;
-        content: '';
-        height: 2px;
-        left: -5px;
-        position: absolute;
-        top: 11px;
-        transform: rotate(-45deg);
-        width: 141%;
-      }
+            &::before {
+                background-color: $productOptions-strikethrough-color;
+                content: "";
+                height: 2px;
+                left: -5px;
+                position: absolute;
+                top: 11px;
+                transform: rotate(-45deg);
+                width: 141%;
+            }
+        }
     }
-  }
 }
 
-[data-product-attribute='set-radio'],
-[data-product-attribute='product-list'] {
-  .unavailable {
-    opacity: $productOptions-disable-opacity * 2;
-    text-decoration: line-through;
-  }
+[data-product-attribute="set-radio"],
+[data-product-attribute="product-list"] {
+    .unavailable {
+        opacity: $productOptions-disable-opacity * 2;
+        text-decoration: line-through;
+    }
 }

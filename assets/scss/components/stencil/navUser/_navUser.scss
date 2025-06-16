@@ -17,230 +17,230 @@
 // -----------------------------------------------------------------------------
 
 .navUser {
-  @include nav($style: 'navBar', $wrapper: 'nav');
-  @include verticalPositionMiddle('absolute');
-  right: 0;
-  top: 26px; // 2
-  width: 100%; // 4
-  z-index: zIndex('lowest'); // 5.
+    @include nav($style: "navBar", $wrapper: "nav");
+    @include verticalPositionMiddle("absolute");
+    right: 0;
+    top: 26px; // 2
+    width: 100%; // 4
+    z-index: zIndex("lowest"); // 5.
 
-  @include breakpoint('medium') {
-    padding: 0 spacing('single');
-    position: relative;
-    right: auto;
-    top: auto;
-    transform: none;
-    z-index: zIndex('high');
-  }
-
-  .dropdown-menu {
-    background-color: stencilColor('navUser-dropdown-backgroundColor');
-    border: 1px solid stencilColor('navUser-dropdown-borderColor');
-    box-shadow: container('dropShadow');
-    position: absolute;
-
-    &.is-open {
-      &::before {
-        @include css-triangle(
-          $triangle-direction: 'bottom',
-          $triangle-size: 10px,
-          $triangle-color: stencilColor('navUser-dropdown-borderColor')
-        );
-        bottom: 100%;
-        left: spacing('half');
-        position: absolute;
-      }
-
-      &::after {
-        @include css-triangle(
-          $triangle-direction: 'bottom',
-          $triangle-size: 8px,
-          $triangle-color: stencilColor('navUser-dropdown-backgroundColor')
-        );
-        bottom: 100%;
-        left: spacing('half') + remCalc(2px);
-        position: absolute;
-      }
+    @include breakpoint("medium") {
+        padding: 0 spacing("single");
+        position: relative;
+        right: auto;
+        top: auto;
+        transform: none;
+        z-index: zIndex("high");
     }
-  }
+
+    .dropdown-menu {
+        background-color: stencilColor("navUser-dropdown-backgroundColor");
+        border: 1px solid stencilColor("navUser-dropdown-borderColor");
+        box-shadow: container("dropShadow");
+        position: absolute;
+
+        &.is-open {
+            &::before {
+                @include css-triangle(
+                    $triangle-direction: "bottom",
+                    $triangle-size: 10px,
+                    $triangle-color: stencilColor("navUser-dropdown-borderColor")
+                );
+                bottom: 100%;
+                left: spacing("half");
+                position: absolute;
+            }
+
+            &::after {
+                @include css-triangle(
+                    $triangle-direction: "bottom",
+                    $triangle-size: 8px,
+                    $triangle-color: stencilColor("navUser-dropdown-backgroundColor")
+                );
+                bottom: 100%;
+                left: spacing("half") + remCalc(2px);
+                position: absolute;
+            }
+        }
+    }
 }
 
 .navUser-section {
-  @include breakpoint('medium') {
-    position: relative; // 7
-  }
+    @include breakpoint("medium") {
+        position: relative; // 7
+    }
 }
 
 .navUser-action {
-  color: stencilColor('navUser-color');
-  font-weight: fontWeight('bold');
-  padding: spacing('base') spacing('half');
-  text-decoration: none;
-  text-transform: uppercase;
+    color: stencilColor("navUser-color");
+    font-weight: fontWeight("bold");
+    padding: spacing("base") spacing("half");
+    text-decoration: none;
+    text-transform: uppercase;
 
-  &:hover,
-  &.is-open {
-    color: stencilColor('navUser-color-hover');
+    &:hover,
+    &.is-open {
+        color: stencilColor("navUser-color-hover");
+
+        svg {
+            fill: stencilColor("navUser-color-hover");
+            stroke: stencilColor("navUser-color-hover");
+        }
+    }
+
+    .icon {
+        @include square(8px);
+        margin: -1px 0 0 spacing("eighth");
+    }
 
     svg {
-      fill: stencilColor('navUser-color-hover');
-      stroke: stencilColor('navUser-color-hover');
+        fill: stencilColor("navUser-color");
+        stroke: stencilColor("navUser-color");
+        transition: all 0.15s ease;
     }
-  }
-
-  .icon {
-    @include square(8px);
-    margin: -1px 0 0 spacing('eighth');
-  }
-
-  svg {
-    fill: stencilColor('navUser-color');
-    stroke: stencilColor('navUser-color');
-    transition: all 0.15s ease;
-  }
 }
 
 .navUser-action--currencySelector + .dropdown-menu,
 .navUser-action--channelSelector + .dropdown-menu {
-  &::before {
-    left: auto !important; // 6
-    right: spacing('half'); // 6
-  }
+    &::before {
+        left: auto !important; // 6
+        right: spacing("half"); // 6
+    }
 
-  &::after {
-    left: auto !important; // 6
-    right: spacing('half') + remCalc(2px); // 6
-  }
+    &::after {
+        left: auto !important; // 6
+        right: spacing("half") + remCalc(2px); // 6
+    }
 }
 
 .navUser-action--storeCredit + .dropdown-menu {
-  max-width: remCalc(300px);
-  padding: spacing('single');
+    max-width: remCalc(300px);
+    padding: spacing("single");
 
-  &::before {
-    left: remCalc(140px) !important; // 3
-  }
+    &::before {
+        left: remCalc(140px) !important; // 3
+    }
 
-  &::after {
-    left: remCalc(142px) !important; // 3
-  }
+    &::after {
+        left: remCalc(142px) !important; // 3
+    }
 }
 
 .navUser-action-divider {
-  border-right: container('border');
-  color: stencilColor('color-textSecondary');
-  display: inline-block;
-  padding: 0 remCalc(20) 0 0;
-  text-decoration: none;
+    border-right: container("border");
+    color: stencilColor("color-textSecondary");
+    display: inline-block;
+    padding: 0 remCalc(20) 0 0;
+    text-decoration: none;
 }
 
 .navUser-item {
-  display: none;
+    display: none;
 
-  @include breakpoint('medium') {
-    display: block;
+    @include breakpoint("medium") {
+        display: block;
 
-    &.navUser-item--social {
-      margin-top: rem-calc(5px);
-      padding-right: rem-calc(5px);
+        &.navUser-item--social {
+            margin-top: rem-calc(5px);
+            padding-right: rem-calc(5px);
+        }
+
+        &.navUser-item--divider {
+            font-size: rem-calc(25px);
+            margin-top: rem-calc(8px);
+            padding-left: rem-calc(2px);
+        }
     }
-
-    &.navUser-item--divider {
-      font-size: rem-calc(25px);
-      margin-top: rem-calc(8px);
-      padding-left: rem-calc(2px);
-    }
-  }
 }
 
 .navUser-item--cart {
-  display: block;
+    display: block;
 
-  // removing cart link for small screens when quantity is 0
-  &__hidden-s {
-    @media (max-width: $screen-small) {
-      display: none;
-    }
-  }
-
-  .navUser-action {
-    color: stencilColor('navUser-color');
-
-    &:hover,
-    &.is-open {
-      color: stencilColor('navUser-color-hover');
-    }
-  }
-
-  .dropdown-menu {
-    max-width: remCalc(320px);
-
-    &.is-open {
-      left: auto !important; // 7
-      right: remCalc(5px); // 7
-      top: auto !important; // 7
-      @include breakpoint('medium') {
-        right: 0; // 7
-      }
-
-      &::before,
-      &::after {
-        left: auto;
-      }
-
-      &::before {
-        right: spacing('half') - remCalc(5px); // 8
-        @include breakpoint('medium') {
-          right: spacing('half'); // 8
+    // removing cart link for small screens when quantity is 0
+    &__hidden-s {
+        @media (max-width: $screen-small) {
+            display: none;
         }
-      }
-
-      &::after {
-        right: spacing('half') - remCalc(3px); // 8
-        @include breakpoint('medium') {
-          right: spacing('half') + remCalc(2px); // 8
-        }
-      }
     }
-  }
+
+    .navUser-action {
+        color: stencilColor("navUser-color");
+
+        &:hover,
+        &.is-open {
+            color: stencilColor("navUser-color-hover");
+        }
+    }
+
+    .dropdown-menu {
+        max-width: remCalc(320px);
+
+        &.is-open {
+            left: auto !important; // 7
+            right: remCalc(5px); // 7
+            top: auto !important; // 7
+            @include breakpoint("medium") {
+                right: 0; // 7
+            }
+
+            &::before,
+            &::after {
+                left: auto;
+            }
+
+            &::before {
+                right: spacing("half") - remCalc(5px); // 8
+                @include breakpoint("medium") {
+                    right: spacing("half"); // 8
+                }
+            }
+
+            &::after {
+                right: spacing("half") - remCalc(3px); // 8
+                @include breakpoint("medium") {
+                    right: spacing("half") + remCalc(2px); // 8
+                }
+            }
+        }
+    }
 }
 
 .navUser-item-cartLabel {
-  display: none;
+    display: none;
 
-  @include breakpoint('small') {
-    display: inline;
-  }
+    @include breakpoint("small") {
+        display: inline;
+    }
 }
 
 .navUser-item--compare {
-  display: none;
+    display: none;
 
-  &.show {
-    display: block;
-  }
+    &.show {
+        display: block;
+    }
 }
 
 .navUser-item--account {
-  .navUser-or {
-    + .navUser-action {
-      margin-right: -0.5rem; // 1
+    .navUser-or {
+        + .navUser-action {
+            margin-right: -0.5rem; // 1
+        }
     }
-  }
 
-  .navUser-action {
-    display: inline-block;
-  }
+    .navUser-action {
+        display: inline-block;
+    }
 }
 
 .navUser-or {
-  color: stencilColor('navUser-color');
-  cursor: default;
-  display: inline-block;
-  margin: 0 remCalc(-12px);
-  padding: 0 2px;
-  position: relative;
-  z-index: 1;
+    color: stencilColor("navUser-color");
+    cursor: default;
+    display: inline-block;
+    margin: 0 remCalc(-12px);
+    padding: 0 2px;
+    position: relative;
+    z-index: 1;
 }
 
 // Quick search
@@ -251,63 +251,63 @@
 // -----------------------------------------------------------------------------
 
 .navUser-action--quickSearch {
-  &.is-open {
-    position: relative;
+    &.is-open {
+        position: relative;
 
-    &::before {
-      @include css-triangle(
-        $triangle-direction: 'bottom',
-        $triangle-size: 10px,
-        $triangle-color: color('greys', 'lightest')
-      );
-      bottom: 0;
-      left: 50%;
-      position: absolute;
-      transform: translateX(-50%);
+        &::before {
+            @include css-triangle(
+                $triangle-direction: "bottom",
+                $triangle-size: 10px,
+                $triangle-color: color("greys", "lightest")
+            );
+            bottom: 0;
+            left: 50%;
+            position: absolute;
+            transform: translateX(-50%);
+        }
     }
-  }
 }
 
 .dropdown--quickSearch {
-  background-color: $dropdown--quickSearch-backgroundColor;
-  display: none;
-  padding: spacing('single') 0;
+    background-color: $dropdown--quickSearch-backgroundColor;
+    display: none;
+    padding: spacing("single") 0;
 
-  @include breakpoint('small') {
-    padding: spacing('double');
-  }
-
-  &.is-open {
-    display: block;
-    left: 0 !important; // 1
-    outline: none;
-    right: 0 !important; // 1
-    width: 100% !important;
-    z-index: zIndex('high');
-  }
-
-  .form {
-    margin: auto;
-    max-width: 30rem;
-  }
-
-  .form,
-  .form-field {
-    margin-bottom: 0;
-  }
-
-  .form-input {
-    font-size: fontSize('small');
-    height: unset;
-  }
-
-  .productGrid {
-    padding: spacing('single') 0 0;
-
-    @include breakpoint('small') {
-      padding: spacing('double') 0 0;
+    @include breakpoint("small") {
+        padding: spacing("double");
     }
-  }
+
+    &.is-open {
+        display: block;
+        left: 0 !important; // 1
+        outline: none;
+        right: 0 !important; // 1
+        width: 100% !important;
+        z-index: zIndex("high");
+    }
+
+    .form {
+        margin: auto;
+        max-width: 30rem;
+    }
+
+    .form,
+    .form-field {
+        margin-bottom: 0;
+    }
+
+    .form-input {
+        font-size: fontSize("small");
+        height: unset;
+    }
+
+    .productGrid {
+        padding: spacing("single") 0 0;
+
+        @include breakpoint("small") {
+            padding: spacing("double") 0 0;
+        }
+    }
 }
 
 // Counter Pill
@@ -318,24 +318,24 @@
 // -----------------------------------------------------------------------------
 
 .countPill {
-  background-color: stencilColor('navUser-indicator-backgroundColor');
-  border-radius: 50%;
-  color: color('whites', 'bright');
-  display: none;
-  font-size: fontSize('tiny');
-  font-weight: fontWeight('bold');
-  height: 20px; // 1
-  line-height: 20px; // 1
-  margin-left: spacing('eighth');
-  text-align: center;
-  width: 20px; // 1
+    background-color: stencilColor("navUser-indicator-backgroundColor");
+    border-radius: 50%;
+    color: color("whites", "bright");
+    display: none;
+    font-size: fontSize("tiny");
+    font-weight: fontWeight("bold");
+    height: 20px; // 1
+    line-height: 20px; // 1
+    margin-left: spacing("eighth");
+    text-align: center;
+    width: 20px; // 1
 }
 
 .countPill--positive {
-  display: inline-block;
+    display: inline-block;
 }
 
 .countPill--alt {
-  background-color: color('greys', 'lighter');
-  color: color('greys', 'darker');
+    background-color: color("greys", "lighter");
+    color: color("greys", "darker");
 }

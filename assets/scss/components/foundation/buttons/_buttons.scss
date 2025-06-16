@@ -3,24 +3,24 @@
 // =============================================================================
 
 .button {
-  line-height: 1rem;
-  transition: all 0.15s ease;
+    line-height: 1rem;
+    transition: all 0.15s ease;
 
-  + .button {
-    margin-left: 0;
+    + .button {
+        margin-left: 0;
 
-    @include breakpoint('medium') {
-      margin-left: spacing('half');
+        @include breakpoint("medium") {
+            margin-left: spacing("half");
+        }
     }
-  }
 }
 
 .button[disabled] {
-  cursor: not-allowed;
+    cursor: not-allowed;
 }
 
 .button--icon {
-  svg {
-    fill: stencilColor('button--icon-svg-color');
-  }
+    svg {
+        fill: stencilColor("button--icon-svg-color");
+    }
 }

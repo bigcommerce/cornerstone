@@ -4,119 +4,119 @@
 
 
 .account--addReturn {
-  .table {
-    display: block;
-    margin-bottom: spacing('double');
+    .table {
+        display: block;
+        margin-bottom: spacing("double");
 
-    @include breakpoint('small') {
-      display: table;
-      margin-bottom: spacing('double') * 2;
-    }
-
-    tr {
-      display: block;
-      padding: spacing('single') 0;
-
-      @include breakpoint('small') {
-        display: table-row;
-        padding: 0;
-      }
-    }
-
-    th,
-    td {
-      display: block;
-      padding: 0;
-
-      @include breakpoint('small') {
-        display: table-cell;
-        padding-bottom: spacing('half');
-        padding-top: spacing('half');
-      }
-
-      + th,
-      + td {
-        padding-left: 0;
-
-        @include breakpoint('small') {
-          padding-left: spacing('single');
+        @include breakpoint("small") {
+            display: table;
+            margin-bottom: spacing("double") * 2;
         }
-      }
+
+        tr {
+            display: block;
+            padding: spacing("single") 0;
+
+            @include breakpoint("small") {
+                display: table-row;
+                padding: 0;
+            }
+        }
+
+        th,
+        td {
+            display: block;
+            padding: 0;
+
+            @include breakpoint("small") {
+                display: table-cell;
+                padding-bottom: spacing("half");
+                padding-top: spacing("half");
+            }
+
+            + th,
+            + td {
+                padding-left: 0;
+
+                @include breakpoint("small") {
+                    padding-left: spacing("single");
+                }
+            }
+        }
+
+        .return-itemTitle + .definitionList {
+            margin-top: spacing("eighth");
+        }
+
+        .return-itemPrice {
+            @include breakpoint("small") {
+                text-align: center;
+            }
+        }
+
+        .return-itemQuantity {
+            @include breakpoint("small") {
+                text-align: right;
+            }
+        }
     }
 
-    .return-itemTitle + .definitionList {
-      margin-top: spacing('eighth');
+    .table-thead {
+        display: none;
+
+        @include breakpoint("small") {
+            display: table-header-group;
+        }
+
+        th {
+            font-size: fontSize("smaller");
+        }
+
+        th:first-child {
+            width: 60%;
+        }
     }
 
-    .return-itemPrice {
-      @include breakpoint('small') {
-        text-align: center;
-      }
+    .table-tbody {
+        display: block;
+
+        @include breakpoint("small") {
+            display: table-row-group;
+        }
     }
-
-    .return-itemQuantity {
-      @include breakpoint('small') {
-        text-align: right;
-      }
-    }
-  }
-
-  .table-thead {
-    display: none;
-
-    @include breakpoint('small') {
-      display: table-header-group;
-    }
-
-    th {
-      font-size: fontSize('smaller');
-    }
-
-    th:first-child {
-      width: 60%;
-    }
-  }
-
-  .table-tbody {
-    display: block;
-
-    @include breakpoint('small') {
-      display: table-row-group;
-    }
-  }
 }
 
 
 .return-itemName {
-  font-size: fontSize('smaller');
-  font-weight: fontWeight('bold');
+    font-size: fontSize("smaller");
+    font-weight: fontWeight("bold");
 
-  @include breakpoint('small') {
-    font-size: fontSize('base');
-    font-weight: fontWeight('normal');
-  }
+    @include breakpoint("small") {
+        font-size: fontSize("base");
+        font-weight: fontWeight("normal");
+    }
 }
 
 .return-itemPrice {
-  color: color('greys', 'light');
-  margin-bottom: spacing('quarter');
+    color: color("greys", "light");
+    margin-bottom: spacing("quarter");
 
-  @include breakpoint('small') {
-    color: inherit;
-    margin-bottom: 0;
-    text-align: center;
-  }
+    @include breakpoint("small") {
+        color: inherit;
+        margin-bottom: 0;
+        text-align: center;
+    }
 }
 
 .return-itemQuantity {
-  .form-label {
-    display: inline;
-    margin-right: spacing('quarter');
+    .form-label {
+        display: inline;
+        margin-right: spacing("quarter");
 
-    @include breakpoint('small') {
-      @include u-hidden('visually');
+        @include breakpoint("small") {
+            @include u-hidden("visually");
+        }
     }
-  }
 }
 
 
@@ -125,15 +125,15 @@
 
 
 .account--addReturn-row {
-  @include grid-row($behavior: 'nest');
-  margin: 0 (-(spacing('base')));
+    @include grid-row($behavior: "nest");
+    margin: 0 (-(spacing("base")));
 }
 
 .account--addReturn-column {
-  @include grid-column(12);
-  padding: 0 spacing('base');
+    @include grid-column(12);
+    padding: 0 spacing("base");
 
-  @include breakpoint('small') {
-    width: grid-calc(6, $total-columns);
-  }
+    @include breakpoint("small") {
+        width: grid-calc(6, $total-columns);
+    }
 }

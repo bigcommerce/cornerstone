@@ -4,38 +4,38 @@
 
 .writeReview-productDetails {
 
-  @include breakpoint('medium') {
-    @include grid-column(6);
-  }
+    @include breakpoint("medium") {
+        @include grid-column(6);
+    }
 
-  .product-brand {
-    color: color('greys', 'light');
-    margin: 0;
-  }
+    .product-brand {
+        color: color("greys", "light");
+        margin: 0;
+    }
 
-  .product-title {
-    margin-top: 0;
-  }
+    .product-title {
+        margin-top: 0;
+    }
 }
 
 
 .writeReview-form {
 
-  @include breakpoint('medium') {
-    @include grid-column(6);
-  }
+    @include breakpoint("medium") {
+        @include grid-column(6);
+    }
 }
 
 .writeReview-productImage-container {
 
-  @include lazy-loaded-padding('product_size');
-  position: relative;
+    @include lazy-loaded-padding("product_size");
+    position: relative;
 
-  img {
-    @include lazy-loaded-img;
-    /* Object-fit polyfill */
-    font-family: 'object-fit: contain;';
-    height: 100%;
-    object-fit: contain;
-  }
+    img {
+        @include lazy-loaded-img;
+        /* Object-fit polyfill */
+        font-family: "object-fit: contain;";
+        height: 100%;
+        object-fit: contain;
+    }
 }

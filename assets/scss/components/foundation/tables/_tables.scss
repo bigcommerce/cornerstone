@@ -7,48 +7,48 @@
 // -----------------------------------------------------------------------------
 
 .table {
-  margin-top: $table-marginTop;
+    margin-top: $table-marginTop;
 
-  td + td {
-    border-left: $table-td-borderLeft;
-  }
+    td + td {
+        border-left: $table-td-borderLeft;
+    }
 
-  .table-alignCenter {
-    text-align: center;
-  }
+    .table-alignCenter {
+        text-align: center;
+    }
 
-  .table-alignRight {
-    text-align: right;
-  }
+    .table-alignRight {
+        text-align: right;
+    }
 }
 
 .table-actions {
-  margin: spacing('single');
-  text-align: center;
+    margin: spacing("single");
+    text-align: center;
 
-  .form {
-    margin-bottom: 0;
-  }
-
-  .button {
-    display: block;
-    margin-left: 0;
-    margin-right: 0;
-    width: 100%;
-
-    @include breakpoint('small') {
-      display: inline-block;
-      margin-bottom: 0;
-      width: auto;
+    .form {
+        margin-bottom: 0;
     }
 
-    + .button {
+    .button {
+        display: block;
+        margin-left: 0;
+        margin-right: 0;
+        width: 100%;
 
-      @include breakpoint('small') {
-        margin-left: spacing('quarter');
-      }
+        @include breakpoint("small") {
+            display: inline-block;
+            margin-bottom: 0;
+            width: auto;
+        }
+
+        + .button {
+
+            @include breakpoint("small") {
+                margin-left: spacing("quarter");
+            }
+        }
     }
-  }
 }
 
 
@@ -56,65 +56,65 @@
 // -----------------------------------------------------------------------------
 
 .table--line {
-  border-color: container('borderColor');
-  border-width: 0 0 1px;
-
-  .table-thead {
-    background-color: stencilColor('body-bg');
-    border-color: container('borderColor');
+    border-color: container("borderColor");
     border-width: 0 0 1px;
 
+    .table-thead {
+        background-color: stencilColor("body-bg");
+        border-color: container("borderColor");
+        border-width: 0 0 1px;
+
+        tr {
+            th {
+                padding-left: 0;
+                padding-right: 0;
+
+                @include breakpoint("small") {
+                    text-align: center;
+
+                    &:first-child {
+                        text-align: left;
+                    }
+
+                    &:last-child {
+                        text-align: right;
+                    }
+                }
+
+                + th {
+                    padding-left: spacing("single");
+                }
+            }
+        }
+    }
+
     tr {
-      th {
-        padding-left: 0;
-        padding-right: 0;
+        border-color: container("border");
 
-        @include breakpoint('small') {
-          text-align: center;
+        td {
+            display: block;
+            padding-left: 0;
+            padding-right: 0;
 
-          &:first-child {
-            text-align: left;
-          }
+            @include breakpoint("small") {
+                text-align: center;
 
-          &:last-child {
-            text-align: right;
-          }
+                &:first-child {
+                    text-align: left;
+                }
+
+                &:last-child {
+                    text-align: right;
+                }
+            }
+
+            + td {
+                padding-left: spacing("single");
+            }
         }
-
-        + th {
-          padding-left: spacing('single');
-        }
-      }
     }
-  }
 
-  tr {
-    border-color: container('border');
-
-    td {
-      display: block;
-      padding-left: 0;
-      padding-right: 0;
-
-      @include breakpoint('small') {
-        text-align: center;
-
-        &:first-child {
-          text-align: left;
-        }
-
-        &:last-child {
-          text-align: right;
-        }
-      }
-
-      + td {
-        padding-left: spacing('single');
-      }
+    td + td {
+        border-left: 0;
     }
-  }
-
-  td + td {
-    border-left: 0;
-  }
 }

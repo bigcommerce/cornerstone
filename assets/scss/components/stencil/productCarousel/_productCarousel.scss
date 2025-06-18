@@ -9,34 +9,34 @@
 // -----------------------------------------------------------------------------
 
 .productCarousel {
-  @include grid-row(
-    $behavior: nest
-  ); // 1
-  min-width: 100%;
-  position: relative;
-  width: 1px;
+    @include grid-row(
+        $behavior: nest
+    ); // 1
+    min-width: 100%;
+    position: relative;
+    width: 1px;
 }
 
 .productCarousel-slide { // 1
-  @include grid-column(6);
+    @include grid-column(6);
 
-  @include breakpoint('small') {
-    width: grid-calc(4, $total-columns);
-  }
-
-  @include breakpoint('medium') {
-    width: grid-calc(3, $total-columns);
-  }
-
-  @include breakpoint('large') {
-    width: grid-calc(2, $total-columns);
-  }
-
-  .card {
-    margin-bottom: 0;
-
-    .card-title {
-      overflow-wrap: break-word;
+    @include breakpoint("small") {
+        width: grid-calc(4, $total-columns);
     }
-  }
+
+    @include breakpoint("medium") {
+        width: grid-calc(3, $total-columns);
+    }
+
+    @include breakpoint("large") {
+        width: grid-calc(2, $total-columns);
+    }
+
+    .card {
+        margin-bottom: 0;
+
+        .card-title {
+            overflow-wrap: break-word;
+        }
+    }
 }

@@ -9,30 +9,30 @@
 
 @if $exportCSS--global { // 1
 
-  html,
-  body {
-    height: auto;
-  }
-
-  body {
-    padding-top: $header-height; // 2
-    @include breakpoint('medium') {
-      padding-top: 0;
+    html,
+    body {
+        height: auto;
     }
-  }
 
-  figure {
-    margin-bottom: $figure-marginBottom;
-    margin-top: $figure-marginTop;
-
-    > figcaption {
-      margin-bottom: $figure-figcaption-marginBottom;
+    body {
+        padding-top: $header-height; // 2
+        @include breakpoint("medium") {
+            padding-top: 0;
+        }
     }
-  }
 
-  figcaption {
-    color: $figcaption-color;
-    font-size: $figcaption-fontSize;
-    margin-top: $figcaption-marginTop;
-  }
+    figure {
+        margin-bottom: $figure-marginBottom;
+        margin-top: $figure-marginTop;
+
+        > figcaption {
+            margin-bottom: $figure-figcaption-marginBottom;
+        }
+    }
+
+    figcaption {
+        color: $figcaption-color;
+        font-size: $figcaption-fontSize;
+        margin-top: $figcaption-marginTop;
+    }
 }

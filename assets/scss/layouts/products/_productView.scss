@@ -7,79 +7,79 @@
 // -----------------------------------------------------------------------------
 
 .productView {
-  @include grid-row($behavior: 'nest');
+    @include grid-row($behavior: "nest");
 
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  margin-left: -(spacing('base'));
-  margin-right: -(spacing('base'));
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-left: -(spacing("base"));
+    margin-right: -(spacing("base"));
 
-  @include breakpoint('medium') {
-    display: block;
-  }
+    @include breakpoint("medium") {
+        display: block;
+    }
 
-  .modal & {
-    padding-bottom: 0;
-    padding-top: 0;
-  }
+    .modal & {
+        padding-bottom: 0;
+        padding-top: 0;
+    }
 }
 
 .productView--quickView {
-  .socialLinks-item--print {
-    display: none;
-  }
+    .socialLinks-item--print {
+        display: none;
+    }
 }
 
 .productView-images {
-  @include grid-column(12);
-  padding-left: spacing('base');
-  padding-right: spacing('base');
+    @include grid-column(12);
+    padding-left: spacing("base");
+    padding-right: spacing("base");
 
-  @include breakpoint('medium') {
-    width: grid-calc(6, $total-columns);
-  }
+    @include breakpoint("medium") {
+        width: grid-calc(6, $total-columns);
+    }
 }
 
 .productView-details {
-  @include grid-column(12);
-  padding-left: spacing('base');
-  padding-right: spacing('base');
+    @include grid-column(12);
+    padding-left: spacing("base");
+    padding-right: spacing("base");
 
-  @include breakpoint('medium') {
-    clear: right;
-    float: right;
-    width: grid-calc(6, $total-columns);
-  }
+    @include breakpoint("medium") {
+        clear: right;
+        float: right;
+        width: grid-calc(6, $total-columns);
+    }
 
-  .productView--quickView & {
-    position: relative;
-  }
+    .productView--quickView & {
+        position: relative;
+    }
 
-  &.product-data {
-    order: -1;
-  }
+    &.product-data {
+        order: -1;
+    }
 }
 
 .productView-description {
-  @include grid-column(12);
-  padding-left: spacing('base');
-  padding-right: spacing('base');
-  position: relative;
-  z-index: 1;
+    @include grid-column(12);
+    padding-left: spacing("base");
+    padding-right: spacing("base");
+    position: relative;
+    z-index: 1;
 
-  .productView-title {
-    border-bottom: container('border');
-    margin-bottom: spacing('base');
-    padding-left: spacing('base');
-    padding-right: spacing('base');
-  }
-
-  .productView-description {
-    @include breakpoint('medium') {
-      clear: both;
-      float: none;
-      width: 100%;
+    .productView-title {
+        border-bottom: container("border");
+        margin-bottom: spacing("base");
+        padding-left: spacing("base");
+        padding-right: spacing("base");
     }
-  }
+
+    .productView-description {
+        @include breakpoint("medium") {
+            clear: both;
+            float: none;
+            width: 100%;
+        }
+    }
 }

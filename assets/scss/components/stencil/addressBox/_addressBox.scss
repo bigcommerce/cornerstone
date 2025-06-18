@@ -11,25 +11,25 @@
 // -----------------------------------------------------------------------------
 
 .addressList {
-  font-size: 0; // 1
-  list-style: none;
-  margin-left: -(spacing('half'));
-  margin-right: -(spacing('half'));
+    font-size: 0; // 1
+    list-style: none;
+    margin-left: -(spacing("half"));
+    margin-right: -(spacing("half"));
 }
 
 .address {
-  display: inline-block;
-  padding: 0 spacing('half');
-  vertical-align: top;
-  width: 100%;
+    display: inline-block;
+    padding: 0 spacing("half");
+    vertical-align: top;
+    width: 100%;
 
-  @include breakpoint('small') {
-    width: grid-calc(6, $total-columns);
-  }
+    @include breakpoint("small") {
+        width: grid-calc(6, $total-columns);
+    }
 
-  @include breakpoint('large') {
-    width: grid-calc(4, $total-columns);
-  }
+    @include breakpoint("large") {
+        width: grid-calc(4, $total-columns);
+    }
 }
 
 
@@ -45,101 +45,101 @@
 // -----------------------------------------------------------------------------
 
 .panel--address {
-  font-size: fontSize('base'); // 1
-  position: relative;
+    font-size: fontSize("base"); // 1
+    position: relative;
 
-  .panel-body {
-    min-height: remCalc(250px); // 2
-    padding: spacing('single');
+    .panel-body {
+        min-height: remCalc(250px); // 2
+        padding: spacing("single");
 
-    @include breakpoint('small') {
-      padding: spacing('single') spacing('single') (spacing('single') + spacing('double')); // 3
-    }
-  }
-
-  .form-actions {
-    margin-bottom: -(spacing('half'));
-    margin-top: spacing('single');
-    text-align: left;
-
-    @include breakpoint('small') { // 3
-      bottom: spacing('single');
-      position: absolute;
-      width: auto;
-    }
-
-    .button {
-      margin-bottom: spacing('half');
-
-      + .button {
-        margin-left: 0;
-        margin-top: 0;
-
-        @include breakpoint('small') {
-          margin-left: spacing('quarter');
+        @include breakpoint("small") {
+            padding: spacing("single") spacing("single") (spacing("single") + spacing("double")); // 3
         }
-      }
     }
-  }
+
+    .form-actions {
+        margin-bottom: -(spacing("half"));
+        margin-top: spacing("single");
+        text-align: left;
+
+        @include breakpoint("small") { // 3
+            bottom: spacing("single");
+            position: absolute;
+            width: auto;
+        }
+
+        .button {
+            margin-bottom: spacing("half");
+
+            + .button {
+                margin-left: 0;
+                margin-top: 0;
+
+                @include breakpoint("small") {
+                    margin-left: spacing("quarter");
+                }
+            }
+        }
+    }
 }
 
 .address-title {
-  margin: 0 0 spacing('half');
-  text-transform: none;
+    margin: 0 0 spacing("half");
+    text-transform: none;
 }
 
 .address-details {
-  list-style: none;
-  margin: 0 0 spacing('half');
+    list-style: none;
+    margin: 0 0 spacing("half");
 }
 
 .address-details--postal {
-  font-size: fontSize('smaller');
+    font-size: fontSize("smaller");
 }
 
 .address-label,
 .address-description {
-  display: inline-block;
-  font-size: fontSize('base');
-  margin: 0;
+    display: inline-block;
+    font-size: fontSize("base");
+    margin: 0;
 }
 
 .address-label {
-  color: stencilColor('color-textSecondary');
-  font-weight: fontWeight('normal');
+    color: stencilColor("color-textSecondary");
+    font-weight: fontWeight("normal");
 }
 
 .panel--newAddress {
-  display: block;
-  text-align: center;
-  text-decoration: none;
-
-  &:hover {
-    .address-title {
-      color: stencilColor('color-textLink--hover');
-    }
-  }
-
-  .panel-body {
-    background-color: transparent;
-    border: container('border');
     display: block;
-  }
+    text-align: center;
+    text-decoration: none;
 
-  .address-title {
-    margin-bottom: 0;
-    transition: all 0.15s ease;
-  }
+    &:hover {
+        .address-title {
+            color: stencilColor("color-textLink--hover");
+        }
+    }
+
+    .panel-body {
+        background-color: transparent;
+        border: container("border");
+        display: block;
+    }
+
+    .address-title {
+        margin-bottom: 0;
+        transition: all 0.15s ease;
+    }
 }
 
 .address-addNew {
-  left: 50%;
-  position: absolute;
-  top: 50%;
-  transform: translateX(-50%) translateY(-55%);
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translateX(-50%) translateY(-55%);
 }
 
 .address-symbol {
-  font-size: fontSize('hero');
-  line-height: 1;
+    font-size: fontSize("hero");
+    line-height: 1;
 }

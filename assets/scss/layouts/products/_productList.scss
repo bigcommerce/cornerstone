@@ -7,14 +7,14 @@
 // -----------------------------------------------------------------------------
 
 .productList {
-  @include u-listBullets('none');
-  margin: spacing('half');
+    @include u-listBullets("none");
+    margin: spacing("half");
 
-  .product {
-    + .product {
-      margin-top: spacing('base') * 4;
+    .product {
+        + .product {
+            margin-top: spacing("base") * 4;
+        }
     }
-  }
 }
 
 
@@ -23,56 +23,56 @@
 
 .listItem {
 
-  @include breakpoint('small') {
-    @include grid-row($behavior: 'nest');
-    display: table;
-    width: 100%;
-  }
-
-  &:focus-within {
-    .listItem-figureBody {
-      @include breakpoint('large') {
-        opacity: 1;
-      }
+    @include breakpoint("small") {
+        @include grid-row($behavior: "nest");
+        display: table;
+        width: 100%;
     }
-  }
 
-  &.focus-within {
-    .listItem-figureBody {
-      @include breakpoint('large') {
-        opacity: 1;
-      }
+    &:focus-within {
+        .listItem-figureBody {
+            @include breakpoint("large") {
+                opacity: 1;
+            }
+        }
     }
-  }
+
+    &.focus-within {
+        .listItem-figureBody {
+            @include breakpoint("large") {
+                opacity: 1;
+            }
+        }
+    }
 }
 
 .listItem-figure,
 .listItem-body {
 
-  @include breakpoint('small') {
-    display: table-cell;
-    vertical-align: top;
-  }
+    @include breakpoint("small") {
+        display: table-cell;
+        vertical-align: top;
+    }
 
-  @include breakpoint('large') {
-    vertical-align: middle;
-  }
+    @include breakpoint("large") {
+        vertical-align: middle;
+    }
 }
 
 // QuickView button
 // -----------------------------------------------------------------------------
 
 .listItem-button {
-  background-color: $card-figcaption-button-background;
-  border-color: $card-figcaption-button-borderColor;
-  color: $card-figcaption-button-color;
-
-  &:hover,
-  &:focus {
-    background-color: $card-figcaption-button-backgroundHover;
+    background-color: $card-figcaption-button-background;
     border-color: $card-figcaption-button-borderColor;
     color: $card-figcaption-button-color;
-  }
+
+    &:hover,
+    &:focus {
+        background-color: $card-figcaption-button-backgroundHover;
+        border-color: $card-figcaption-button-borderColor;
+        color: $card-figcaption-button-color;
+    }
 }
 
 
@@ -80,60 +80,60 @@
 // -----------------------------------------------------------------------------
 
 .listItem-figure {
-  margin: 0 0 spacing('single');
-  position: relative;
+    margin: 0 0 spacing("single");
+    position: relative;
 
-  @include breakpoint('small') {
-    margin-bottom: 0;
-    padding-left: spacing('half');
-    padding-right: spacing('half');
-    width: grid-calc(3, $total-columns);
-  }
-
-  &__link {
-    display: block;
-    margin: 3px;
-  }
-
-  .listItem-button {
-    margin: spacing('single') 0;
-
-    @include breakpoint('large') {
-      display: inline-block;
-      margin: 0;
-      pointer-events: all;
+    @include breakpoint("small") {
+        margin-bottom: 0;
+        padding-left: spacing("half");
+        padding-right: spacing("half");
+        width: grid-calc(3, $total-columns);
     }
-  }
+
+    &__link {
+        display: block;
+        margin: 3px;
+    }
+
+    .listItem-button {
+        margin: spacing("single") 0;
+
+        @include breakpoint("large") {
+            display: inline-block;
+            margin: 0;
+            pointer-events: all;
+        }
+    }
 }
 
 .listItem-figureBody {
-  opacity: 1;
-  text-align: center;
+    opacity: 1;
+    text-align: center;
 
-  @include breakpoint('large') {
-    left: 50%;
-    opacity: 0;
-    position: absolute;
-    top: 50%;
-    transform: translateX(-50%) translateY(-50%);
+    @include breakpoint("large") {
+        left: 50%;
+        opacity: 0;
+        position: absolute;
+        top: 50%;
+        transform: translateX(-50%) translateY(-50%);
 
-    .listItem:hover & {
-      opacity: 1;
+        .listItem:hover & {
+            opacity: 1;
+        }
     }
-  }
 }
 
 .listItem-image {
-  width: 100%;
+    width: 100%;
 }
 
 .listItem-body {
 
-  @include breakpoint('small') {
-    padding-left: spacing('base') + spacing('sixth');
-    padding-right: spacing('half');
-    width: grid-calc(9, $total-columns);
-  }
+    @include breakpoint("small") {
+        padding-left: spacing("base") + spacing("sixth");
+        padding-right: spacing("half");
+        width: grid-calc(9, $total-columns);
+    }
 }
 
 
@@ -142,18 +142,18 @@
 
 .listItem-content {
 
-  @include breakpoint('large') {
-    display: table;
-  }
+    @include breakpoint("large") {
+        display: table;
+    }
 }
 
 .listItem-details,
 .listItem-actions {
 
-  @include breakpoint('large') {
-    display: table-cell;
-    vertical-align: top;
-  }
+    @include breakpoint("large") {
+        display: table-cell;
+        vertical-align: top;
+    }
 }
 
 
@@ -162,49 +162,49 @@
 
 .listItem-details {
 
-  @include breakpoint('large') {
-    padding-right: spacing('double') * 2;
+    @include breakpoint("large") {
+        padding-right: spacing("double") * 2;
 
-    > :last-child {
-      margin-bottom: 0;
+        > :last-child {
+            margin-bottom: 0;
+        }
     }
-  }
 }
 
 .listItem-rating {
-  margin-bottom: spacing('quarter');
+    margin-bottom: spacing("quarter");
 }
 
 .listItem-brand {
-  color: color('greys', 'light');
-  font-size: fontSize('base');
-  margin: 0 0 spacing('eighth');
+    color: color("greys", "light");
+    font-size: fontSize("base");
+    margin: 0 0 spacing("eighth");
 
-  @include breakpoint('medium') {
-    font-size: fontSize('smaller');
-    margin-bottom: 0;
-  }
+    @include breakpoint("medium") {
+        font-size: fontSize("smaller");
+        margin-bottom: 0;
+    }
 }
 
 .listItem-title {
-  font-size: fontSize('smaller');
-  margin: 0 0 spacing('eighth');
+    font-size: fontSize("smaller");
+    margin: 0 0 spacing("eighth");
 
-  @include breakpoint('medium') {
-    font-size: fontSize('small');
-  }
+    @include breakpoint("medium") {
+        font-size: fontSize("small");
+    }
 
-  > a {
-    text-decoration: none;
-  }
+    > a {
+        text-decoration: none;
+    }
 }
 
 .listItem-price {
-  margin-bottom: spacing('base');
+    margin-bottom: spacing("base");
 
-  @include breakpoint('medium') {
-    font-size: fontSize('small');
-  }
+    @include breakpoint("medium") {
+        font-size: fontSize("small");
+    }
 }
 
 
@@ -217,26 +217,26 @@
 
 .listItem-actions {
 
-  @include breakpoint('large') {
-    vertical-align: middle;
-    width: 22%; // 1
+    @include breakpoint("large") {
+        vertical-align: middle;
+        width: 22%; // 1
 
-    .button--compare {
-      @include buttonSize('small');
+        .button--compare {
+            @include buttonSize("small");
+        }
     }
-  }
 
-  .button {
-    margin-bottom: 0;
+    .button {
+        margin-bottom: 0;
 
-    @include breakpoint('large') {
-      width: 100%;
+        @include breakpoint("large") {
+            width: 100%;
 
-      + .button {
-        margin: spacing('half') 0 0;
-      }
+            + .button {
+                margin: spacing("half") 0 0;
+            }
+        }
     }
-  }
 }
 
 
@@ -244,19 +244,19 @@
 // -----------------------------------------------------------------------------
 
 .page-sidebar + .page-content {
-  .productList {
-    .listItem-details {
+    .productList {
+        .listItem-details {
 
-      @include breakpoint('large') {
-        padding-right: spacing('double');
-      }
+            @include breakpoint("large") {
+                padding-right: spacing("double");
+            }
+        }
+
+        .listItem-actions {
+
+            @include breakpoint("large") {
+                width: 30%;
+            }
+        }
     }
-
-    .listItem-actions {
-
-      @include breakpoint('large') {
-        width: 30%;
-      }
-    }
-  }
 }

@@ -6,215 +6,215 @@
 // =============================================================================
 
 .modal {
-  left: 50%;
-  margin: 0;
-  max-height: 90%;
-  max-width: 95%;
-  min-height: 240px;
-  outline: none;
-  overflow: hidden;
-  padding: 0;
-  top: 50% !important;
-  transform: translate(-50%, -50%);
+    left: 50%;
+    margin: 0;
+    max-height: 90%;
+    max-width: 95%;
+    min-height: 240px;
+    outline: none;
+    overflow: hidden;
+    padding: 0;
+    top: 50% !important;
+    transform: translate(-50%, -50%);
 
-  .form-field {
-    position: relative; // 1
-  }
+    .form-field {
+        position: relative; // 1
+    }
 }
 
 .modal--large {
-  @include breakpoint('large') {
-    width: $modal-width--large;
-  }
+    @include breakpoint("large") {
+        width: $modal-width--large;
+    }
 }
 
 .modal-header {
-  padding-left: $reveal-modal-paddingHorizontal;
-  padding-right: remCalc($reveal-close-height) + $reveal-close-side;
+    padding-left: $reveal-modal-paddingHorizontal;
+    padding-right: remCalc($reveal-close-height) + $reveal-close-side;
 }
 
 .modal-header-title {
-  font-size: fontSize('large');
-  text-align: center;
+    font-size: fontSize("large");
+    text-align: center;
 
-  @include breakpoint('medium') {
-    font-size: fontSize('larger');
-  }
+    @include breakpoint("medium") {
+        font-size: fontSize("larger");
+    }
 }
 
 .modal-close {
-  @include square($reveal-close-height);
+    @include square($reveal-close-height);
 
-  @include addFocusTooltip;
-  color: stencilColor('icon-color');
-  font-size: 26px;
-  line-height: remCalc($reveal-close-height);
-  padding: 0;
-  position: absolute;
-  text-align: center;
-  text-decoration: none;
-  z-index: zIndex('high');
+    @include addFocusTooltip;
+    color: stencilColor("icon-color");
+    font-size: 26px;
+    line-height: remCalc($reveal-close-height);
+    padding: 0;
+    position: absolute;
+    text-align: center;
+    text-decoration: none;
+    z-index: zIndex("high");
 
-  @include breakpoint('medium') {
-    font-size: 32px;
-  }
+    @include breakpoint("medium") {
+        font-size: 32px;
+    }
 
-  &:hover {
-    color: stencilColor('icon-color-hover');
-  }
+    &:hover {
+        color: stencilColor("icon-color-hover");
+    }
 
-  &::before {
-    right: 50%;
-    transform: translateX(50%);
-  }
+    &::before {
+        right: 50%;
+        transform: translateX(50%);
+    }
 
-  &::after {
-    right: 50%;
-    transform: translateX(remCalc(10px));
-  }
+    &::after {
+        right: 50%;
+        transform: translateX(remCalc(10px));
+    }
 }
 
 .modal-body {
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
-  padding: $reveal-modal-padding;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: $reveal-modal-padding;
 }
 
 .modal--alert {
-  background-color: $alert-modal-bgColor;
-  border-radius: $alert-modal-borderRadius;
-  font-family: $alert-font-body;
-  padding: 40px 20px 20px;
-  text-align: center;
+    background-color: $alert-modal-bgColor;
+    border-radius: $alert-modal-borderRadius;
+    font-family: $alert-font-body;
+    padding: 40px 20px 20px;
+    text-align: center;
 
-  .alert-icon { // 2
-    border: 0.25em solid transparent;
-    border-radius: 50%;
-    box-sizing: content-box;
-    cursor: default;
-    display: flex;
-    font-family: inherit;
-    height: 5em;
-    justify-content: center;
-    line-height: 5em;
-    margin: 1.25em auto 1.875em;
-    position: relative;
-    user-select: none;
-    width: 5em;
-  }
+    .alert-icon { // 2
+        border: 0.25em solid transparent;
+        border-radius: 50%;
+        box-sizing: content-box;
+        cursor: default;
+        display: flex;
+        font-family: inherit;
+        height: 5em;
+        justify-content: center;
+        line-height: 5em;
+        margin: 1.25em auto 1.875em;
+        position: relative;
+        user-select: none;
+        width: 5em;
+    }
 
-  .error-icon {
-    animation: animate-icon 0.5s;
-    border-color: #f27474;
-    color: #f27474;
+    .error-icon {
+        animation: animate-icon 0.5s;
+        border-color: #f27474;
+        color: #f27474;
 
-    .icon-content {
-      animation: animate-icon-content 0.5s;
-      flex-grow: 1;
-      position: relative;
+        .icon-content {
+            animation: animate-icon-content 0.5s;
+            flex-grow: 1;
+            position: relative;
 
-      .line {
-        background-color: #f27474;
-        border-radius: 0.125em;
-        display: block;
-        height: 0.3125em;
-        position: absolute;
-        top: 2.3125em;
-        width: 2.9375em;
+            .line {
+                background-color: #f27474;
+                border-radius: 0.125em;
+                display: block;
+                height: 0.3125em;
+                position: absolute;
+                top: 2.3125em;
+                width: 2.9375em;
 
-        &-left {
-          left: 1.0625em;
-          transform: rotate(45deg);
+                &-left {
+                    left: 1.0625em;
+                    transform: rotate(45deg);
+                }
+
+                &-right {
+                    right: 1em;
+                    transform: rotate(-45deg);
+                }
+            }
+        }
+    }
+
+    .warning-icon { 
+        animation: animate-icon 0.5s;
+        border-color: #facea8;
+        color: #f8bb86;
+
+        .icon-content {
+            align-items: center;
+            animation: animate-icon-content 0.5s;
+            display: flex;
+            font-size: 3.75em;
+        }
+    }
+
+    .modal-content {
+        color: $alert-font-bodyColor;
+        font-size: $alert-font-bodySize;
+    }
+
+    .button-container {
+        margin: $alert-button-wrapperMargin;
+
+        .confirm {
+            background-color: $alert-button-bgColor;
+            border-color: $alert-button-borderColor;
+            color: $alert-button-color;
         }
 
-        &-right {
-          right: 1em;
-          transform: rotate(-45deg);
+        .confirm:focus,
+        .confirm:hover {
+            background-color: $alert-button-bgColorHover;
+            border-color: $alert-button-borderColorHover;
+            color: $alert-button-colorHover;
         }
-      }
+
+        .confirm:active {
+            background-color: $alert-button-bgColorActive;
+            border-color: $alert-button-borderColorActive;
+            color: $alert-button-colorActive;
+        }
     }
-  }
-
-  .warning-icon { 
-    animation: animate-icon 0.5s;
-    border-color: #facea8;
-    color: #f8bb86;
-
-    .icon-content {
-      align-items: center;
-      animation: animate-icon-content 0.5s;
-      display: flex;
-      font-size: 3.75em;
-    }
-  }
-
-  .modal-content {
-    color: $alert-font-bodyColor;
-    font-size: $alert-font-bodySize;
-  }
-
-  .button-container {
-    margin: $alert-button-wrapperMargin;
-
-    .confirm {
-      background-color: $alert-button-bgColor;
-      border-color: $alert-button-borderColor;
-      color: $alert-button-color;
-    }
-
-    .confirm:focus,
-    .confirm:hover {
-      background-color: $alert-button-bgColorHover;
-      border-color: $alert-button-borderColorHover;
-      color: $alert-button-colorHover;
-    }
-
-    .confirm:active {
-      background-color: $alert-button-bgColorActive;
-      border-color: $alert-button-borderColorActive;
-      color: $alert-button-colorActive;
-    }
-  }
 }
 
 .hide-content {
-  opacity: 0;
+    opacity: 0;
 }
 
 //Icon animations
 @keyframes animate-icon { // 2
-  0% {
-    opacity: 0;
-    transform: rotateX(100deg);
-  }
+    0% {
+        opacity: 0;
+        transform: rotateX(100deg);
+    }
 
-  100% {
-    opacity: 1;
-    transform: rotateX(0deg);
-  }
+    100% {
+        opacity: 1;
+        transform: rotateX(0deg);
+    }
 }
 
 @keyframes animate-icon-content {
-  0% {
-    margin-top: 1.625em;
-    opacity: 0;
-    transform: scale(0.4);
-  }
+    0% {
+        margin-top: 1.625em;
+        opacity: 0;
+        transform: scale(0.4);
+    }
 
-  50% {
-    margin-top: 1.625em;
-    opacity: 0;
-    transform: scale(0.4);
-  }
+    50% {
+        margin-top: 1.625em;
+        opacity: 0;
+        transform: scale(0.4);
+    }
 
-  80% {
-    margin-top: -0.375em;
-    transform: scale(1.15);
-  }
+    80% {
+        margin-top: -0.375em;
+        transform: scale(1.15);
+    }
 
-  100% {
-    margin-top: 0;
-    opacity: 1;
-    transform: scale(1);
-  }
+    100% {
+        margin-top: 0;
+        opacity: 1;
+        transform: scale(1);
+    }
 }

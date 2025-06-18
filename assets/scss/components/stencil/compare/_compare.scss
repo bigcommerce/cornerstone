@@ -11,24 +11,24 @@
 // -----------------------------------------------------------------------------
 
 .compareTable {
-  border-top: container('border');
-  table-layout: fixed;
-  width: 100%;
+    border-top: container("border");
+    table-layout: fixed;
+    width: 100%;
 }
 
 .compareTable-row {
-  vertical-align: top;
+    vertical-align: top;
 
-  + .compareTable-row {
-    .compareTable-heading,
-    .compareTable-item {
-      border-top: container('border');
-    }
+    + .compareTable-row {
+        .compareTable-heading,
+        .compareTable-item {
+            border-top: container("border");
+        }
 
-    .compareTable-heading:empty {
-      border-top: 0;
+        .compareTable-heading:empty {
+            border-top: 0;
+        }
     }
-  }
 }
 
 
@@ -36,28 +36,28 @@
 // -----------------------------------------------------------------------------
 
 .compareTable-heading {
-  font-family: fontFamily('headingSans');
-  font-size: fontSize('smaller');
-  font-weight: fontWeight('normal');
-  padding: (spacing('base') + spacing('sixth')) spacing('base');
-  position: relative;
-  text-align: right;
-  width: 0;
+    font-family: fontFamily("headingSans");
+    font-size: fontSize("smaller");
+    font-weight: fontWeight("normal");
+    padding: (spacing("base") + spacing("sixth")) spacing("base");
+    position: relative;
+    text-align: right;
+    width: 0;
 
-  @include breakpoint('medium') {
-    width: grid-calc(3, $total-columns);
-  }
+    @include breakpoint("medium") {
+        width: grid-calc(3, $total-columns);
+    }
 }
 
 .compareTable-headingText {
-  position: absolute;
-  top: spacing('base') + spacing('sixth');
-  white-space: nowrap;
+    position: absolute;
+    top: spacing("base") + spacing("sixth");
+    white-space: nowrap;
 
-  @include breakpoint('medium') {
-    position: inherit;
-    top: inherit;
-  }
+    @include breakpoint("medium") {
+        position: inherit;
+        top: inherit;
+    }
 }
 
 
@@ -65,11 +65,11 @@
 // -----------------------------------------------------------------------------
 
 .compareTable-item {
-  padding: (spacing('double') + spacing('sixth')) spacing('base') (spacing('base') + spacing('sixth'));
+    padding: (spacing("double") + spacing("sixth")) spacing("base") (spacing("base") + spacing("sixth"));
 
-  @include breakpoint('medium') {
-    padding-top: spacing('base') + spacing('sixth');
-  }
+    @include breakpoint("medium") {
+        padding-top: spacing("base") + spacing("sixth");
+    }
 }
 
 
@@ -77,21 +77,21 @@
 // -----------------------------------------------------------------------------
 
 .compareTable-removeProduct {
-  background-color: container('fill', 'dark');
-  border-radius: 50%;
-  height: spacing('single') + spacing('base');
-  position: absolute;
-  right: -(spacing('base'));
-  top: -(spacing('base'));
-  transition: background-color 0.15s ease;
-  width: spacing('single') + spacing('base');
+    background-color: container("fill", "dark");
+    border-radius: 50%;
+    height: spacing("single") + spacing("base");
+    position: absolute;
+    right: -(spacing("base"));
+    top: -(spacing("base"));
+    transition: background-color 0.15s ease;
+    width: spacing("single") + spacing("base");
 
-  .icon {
-    fill: stencilColor('icon-color');
-    height: spacing('single');
-    margin-top: spacing('third');
-    width: spacing('single');
-  }
+    .icon {
+        fill: stencilColor("icon-color");
+        height: spacing("single");
+        margin-top: spacing("third");
+        width: spacing("single");
+    }
 }
 
 
@@ -99,21 +99,21 @@
 // -----------------------------------------------------------------------------
 
 .compareTable-product {
-  font-weight: fontWeight('normal');
-  padding: (spacing('single') + spacing('third')) spacing('base') (spacing('base') + spacing('sixth'));
+    font-weight: fontWeight("normal");
+    padding: (spacing("single") + spacing("third")) spacing("base") (spacing("base") + spacing("sixth"));
 
-  .card {
-    margin-bottom: 0;
-  }
+    .card {
+        margin-bottom: 0;
+    }
 
-  .card-body {
-    min-height: spacing('single') * 4;
-    padding-top: spacing('base');
-  }
+    .card-body {
+        min-height: spacing("single") * 4;
+        padding-top: spacing("base");
+    }
 
-  .card-figure {
-    overflow: visible;
-  }
+    .card-figure {
+        overflow: visible;
+    }
 }
 
 
@@ -121,12 +121,12 @@
 // -----------------------------------------------------------------------------
 
 .compareTable-action {
-  padding: 0 spacing('base') spacing('base');
+    padding: 0 spacing("base") spacing("base");
 
-  .button {
-    display: block;
-    padding-left: spacing('half');
-    padding-right: spacing('half');
-    width: 100%;
-  }
+    .button {
+        display: block;
+        padding-left: spacing("half");
+        padding-right: spacing("half");
+        width: 100%;
+    }
 }

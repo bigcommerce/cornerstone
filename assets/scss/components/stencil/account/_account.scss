@@ -7,11 +7,11 @@
 // -----------------------------------------------------------------------------
 
 .navBar--account {
-  display: none;
+    display: none;
 
-  @include breakpoint('medium') {
-    display: block;
-  }
+    @include breakpoint("medium") {
+        display: block;
+    }
 }
 
 
@@ -19,9 +19,9 @@
 // -----------------------------------------------------------------------------
 
 .account-heading {
-  border-bottom: container('border');
-  margin: 0;
-  padding-bottom: spacing('base');
+    border-bottom: container("border");
+    margin: 0;
+    padding-bottom: spacing("base");
 }
 
 
@@ -29,173 +29,173 @@
 // -----------------------------------------------------------------------------
 
 .account-list {
-  list-style: none;
-  margin-left: 0;
+    list-style: none;
+    margin-left: 0;
 }
 
 .account-listItem {
-  border-bottom: container('border');
-  padding: spacing('single') 0;
-  position: relative;
-
-  img {
-    width: 100%;
-  }
-
-  .account-product-image {
-    @include lazy-loaded-img;
-
+    border-bottom: container("border");
+    padding: spacing("single") 0;
     position: relative;
-  }
+
+    img {
+        width: 100%;
+    }
+
+    .account-product-image {
+        @include lazy-loaded-img;
+
+        position: relative;
+    }
 }
 
 .account-listShipping {
-  border-bottom: container('border');
-  font-weight: fontWeight('bold');
-  padding: (spacing('single') + spacing('third')) 0;
+    border-bottom: container("border");
+    font-weight: fontWeight("bold");
+    padding: (spacing("single") + spacing("third")) 0;
 
-  .account-listShipping-title {
-    margin: 0;
-    text-transform: inherit;
-  }
+    .account-listShipping-title {
+        margin: 0;
+        text-transform: inherit;
+    }
 }
 
 // Account product
 // -----------------------------------------------------------------------------
 
 .account-product {
-  @include media;
+    @include media;
 }
 
 .account-product-figure {
 
-  @include lazy-loaded-padding('productthumb_size');
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  margin: 0 spacing('single') + spacing('third') 0 0;
-  position: relative;
-  width: 70px;
+    @include lazy-loaded-padding("productthumb_size");
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin: 0 spacing("single") + spacing("third") 0 0;
+    position: relative;
+    width: 70px;
 }
 
 .account-product-download {
-  border-radius: 50%;
-  height: remCalc(33px);
-  padding: 0;
-  position: absolute;
-  right: -(spacing('half'));
-  top: -(spacing('half'));
-  width: remCalc(33px);
-  z-index: 1;
+    border-radius: 50%;
+    height: remCalc(33px);
+    padding: 0;
+    position: absolute;
+    right: -(spacing("half"));
+    top: -(spacing("half"));
+    width: remCalc(33px);
+    z-index: 1;
 
-  .icon {
-    height: spacing('single');
-    margin-top: spacing('quarter');
-    width: spacing('single');
-  }
+    .icon {
+        height: spacing("single");
+        margin-top: spacing("quarter");
+        width: spacing("single");
+    }
 
-  svg {
-    fill: color('whites', 'bright');
-  }
+    svg {
+        fill: color("whites", "bright");
+    }
 }
 
 .account-product-body {
-  overflow: hidden;
-  padding-bottom: spacing('double') + spacing('third');
-  position: relative;
+    overflow: hidden;
+    padding-bottom: spacing("double") + spacing("third");
+    position: relative;
 
-  @include breakpoint('small') {
-    padding-bottom: 0;
-  }
+    @include breakpoint("small") {
+        padding-bottom: 0;
+    }
 
-  .definitionList {
-    font-size: fontSize('smaller');
-    margin-bottom: 0;
-  }
+    .definitionList {
+        font-size: fontSize("smaller");
+        margin-bottom: 0;
+    }
 }
 
 .account-product-title {
-  margin: 0 0 spacing('eighth');
-  text-transform: inherit;
+    margin: 0 0 spacing("eighth");
+    text-transform: inherit;
 
-  > a {
-    text-decoration: none;
-  }
+    > a {
+        text-decoration: none;
+    }
 
-  + .definitionList {
-    margin-top: spacing('half');
-  }
+    + .definitionList {
+        margin-top: spacing("half");
+    }
 }
 
 .account-product-subtitle {
-  color: color('greys', 'light');
-  font-family: fontFamily('sans');
-  font-size: fontSize('smaller');
-  margin: -(spacing('eighth')) 0 spacing('base');
-  text-transform: inherit;
+    color: color("greys", "light");
+    font-family: fontFamily("sans");
+    font-size: fontSize("smaller");
+    margin: -(spacing("eighth")) 0 spacing("base");
+    text-transform: inherit;
 }
 
 .account-product-price {
-  float: right;
-  font-size: fontSize('smaller');
+    float: right;
+    font-size: fontSize("smaller");
 }
 
 .account-product-description + .definitionList {
-  margin: -(spacing('base') + spacing('quarter')) 0 spacing('single');
+    margin: -(spacing("base") + spacing("quarter")) 0 spacing("single");
 }
 
 .account-product-refundQty {
-  color: color('greys', 'light');
-  margin-bottom: 0;
+    color: color("greys", "light");
+    margin-bottom: 0;
 }
 
 .account-product-details {
-  @include grid-row($behavior: 'nest');
+    @include grid-row($behavior: "nest");
 }
 
 .account-product-detail {
-  @include grid-column(12);
+    @include grid-column(12);
 
-  @include breakpoint('small') {
-    width: grid-calc(4, $total-columns);
-  }
-
-  @include breakpoint('large') {
-    width: grid-calc(3, $total-columns);
-  }
-
-  + .account-product-detail {
-    margin-top: spacing('base');
-
-    @include breakpoint('small') {
-      margin-top: 0;
+    @include breakpoint("small") {
+        width: grid-calc(4, $total-columns);
     }
-  }
 
-  + .account-product-detail--full {
-
-    @include breakpoint('small') {
-      margin-top: spacing('single');
+    @include breakpoint("large") {
+        width: grid-calc(3, $total-columns);
     }
-  }
+
+    + .account-product-detail {
+        margin-top: spacing("base");
+
+        @include breakpoint("small") {
+            margin-top: 0;
+        }
+    }
+
+    + .account-product-detail--full {
+
+        @include breakpoint("small") {
+            margin-top: spacing("single");
+        }
+    }
 }
 
 .account-product-detail--large {
 
-  @include breakpoint('large') {
-    width: grid-calc(6, $total-columns);
-  }
+    @include breakpoint("large") {
+        width: grid-calc(6, $total-columns);
+    }
 }
 
 .account-product-detail--full {
-  width: 100%;
+    width: 100%;
 }
 
 .account-product-detail-heading {
-  color: stencilColor('color-textSecondary');
-  font-family: fontFamily('sans');
-  font-size: fontSize('tiny');
-  margin: 0 0 spacing('quarter');
+    color: stencilColor("color-textSecondary");
+    font-family: fontFamily("sans");
+    font-size: fontSize("tiny");
+    margin: 0 0 spacing("quarter");
 }
 
 
@@ -203,49 +203,49 @@
 // -----------------------------------------------------------------------------
 
 .account-product--alignMiddle {
-  display: table;
-  width: 100%;
+    display: table;
+    width: 100%;
 
-  .account-product-checkItem {
-    display: table-cell;
-    position: relative;
-    vertical-align: middle;
-    width: 2rem;
+    .account-product-checkItem {
+        display: table-cell;
+        position: relative;
+        vertical-align: middle;
+        width: 2rem;
 
-    @include breakpoint('large') {
-      left: -2.5rem;
+        @include breakpoint("large") {
+            left: -2.5rem;
+        }
+
+        .form-label {
+            height: spacing("single");
+            margin: 0;
+            padding: 0;
+            width: spacing("single");
+        }
     }
 
-    .form-label {
-      height: spacing('single');
-      margin: 0;
-      padding: 0;
-      width: spacing('single');
+    .account-product-figure,
+    .account-product-body {
+        display: table-cell;
     }
-  }
 
-  .account-product-figure,
-  .account-product-body {
-    display: table-cell;
-  }
+    .account-product-figure {
+        float: none;
+        margin-right: 0;
 
-  .account-product-figure {
-    float: none;
-    margin-right: 0;
-
-    @include breakpoint('large') {
-      left: -2rem;
+        @include breakpoint("large") {
+            left: -2rem;
+        }
     }
-  }
 
-  .account-product-body {
-    padding-left: 2rem;
-    vertical-align: middle;
+    .account-product-body {
+        padding-left: 2rem;
+        vertical-align: middle;
 
-    @include breakpoint('large') {
-      padding-left: 0;
+        @include breakpoint("large") {
+            padding-left: 0;
+        }
     }
-  }
 }
 
 
@@ -253,37 +253,37 @@
 // -----------------------------------------------------------------------------
 
 .account-orderTotal {
-  float: right;
-  font-size: fontSize('smaller');
-  margin-top: -(spacing('single'));
-  width: grid-calc(8, $total-columns);
+    float: right;
+    font-size: fontSize("smaller");
+    margin-top: -(spacing("single"));
+    width: grid-calc(8, $total-columns);
 }
 
 .account-orderTotal-key,
 .account-orderTotal-value {
-  margin: 0;
-  padding: spacing('single') 0;
+    margin: 0;
+    padding: spacing("single") 0;
 }
 
 .account-orderTotal-key {
-  color: stencilColor('color-textSecondary');
-  float: left;
-  font-weight: fontWeight('normal');
+    color: stencilColor("color-textSecondary");
+    float: left;
+    font-weight: fontWeight("normal");
 
-  &:last-of-type {
-    position: relative;
-    top: spacing('fifth');
-  }
+    &:last-of-type {
+        position: relative;
+        top: spacing("fifth");
+    }
 }
 
 .account-orderTotal-value {
-  border-bottom: container('border');
-  text-align: right;
+    border-bottom: container("border");
+    text-align: right;
 
-  &:last-child {
-    border-bottom: 0;
-    font-size: fontSize('small');
-  }
+    &:last-child {
+        border-bottom: 0;
+        font-size: fontSize("small");
+    }
 }
 
 
@@ -291,46 +291,46 @@
 // -----------------------------------------------------------------------------
 
 .account-orderStatus {
-  bottom: 0;
-  left: 0;
-  position: absolute;
+    bottom: 0;
+    left: 0;
+    position: absolute;
 
-  @include breakpoint('small') {
-    float: right;
-    position: inherit;
-    text-align: right;
-  }
+    @include breakpoint("small") {
+        float: right;
+        position: inherit;
+        text-align: right;
+    }
 }
 
 .account-orderStatus-label {
-  background-color: stencilColor('label-backgroundColor');
-  color: stencilColor('label-color');
-  display: inline-block;
-  font-size: fontSize('tiny');
-  line-height: lineHeight('smallest');
-  margin: 0 0 spacing('quarter');
-  padding: spacing('eighth') spacing('third');
+    background-color: stencilColor("label-backgroundColor");
+    color: stencilColor("label-color");
+    display: inline-block;
+    font-size: fontSize("tiny");
+    line-height: lineHeight("smallest");
+    margin: 0 0 spacing("quarter");
+    padding: spacing("eighth") spacing("third");
 }
 
 .account-orderStatus-action {
-  color: stencilColor('color-textSecondary');
-  display: inline-block;
-  font-size: fontSize('tiny');
-  font-style: italic;
-  letter-spacing: letterSpacing('large');
-  margin-left: spacing('half');
-  text-align: right;
-  text-decoration: underline;
-  vertical-align: top;
+    color: stencilColor("color-textSecondary");
+    display: inline-block;
+    font-size: fontSize("tiny");
+    font-style: italic;
+    letter-spacing: letterSpacing("large");
+    margin-left: spacing("half");
+    text-align: right;
+    text-decoration: underline;
+    vertical-align: top;
 
-  @include breakpoint('small') {
-    display: block;
-    margin-left: 0;
-  }
+    @include breakpoint("small") {
+        display: block;
+        margin-left: 0;
+    }
 
-  &:hover {
-    color: stencilColor('color-textSecondary--hover');
-  }
+    &:hover {
+        color: stencilColor("color-textSecondary--hover");
+    }
 }
 
 
@@ -338,11 +338,11 @@
 // -----------------------------------------------------------------------------
 
 .account {
-  .pagination {
-    color: color('greys', 'light');
-    margin-top: spacing('double');
-    text-align: center;
-  }
+    .pagination {
+        color: color("greys", "light");
+        margin-top: spacing("double");
+        text-align: center;
+    }
 }
 
 
@@ -350,9 +350,9 @@
 // -----------------------------------------------------------------------------
 
 .account-message {
-  .is-read {
-    color: color('greys', 'light');
-  }
+    .is-read {
+        color: color("greys", "light");
+    }
 }
 
 
@@ -360,29 +360,29 @@
 // -----------------------------------------------------------------------------
 
 .account-sidebar-block {
-  font-size: fontSize('smaller');
+    font-size: fontSize("smaller");
 
-  + .account-sidebar-block {
-    margin-top: spacing('double');
-  }
+    + .account-sidebar-block {
+        margin-top: spacing("double");
+    }
 
-  .account-heading {
-    margin-bottom: spacing('single');
-  }
+    .account-heading {
+        margin-bottom: spacing("single");
+    }
 }
 
 .account-order-address {
-  @include u-listBullets('none');
+    @include u-listBullets("none");
 }
 
 .account-reorder-form {
-  display: inline-block;
+    display: inline-block;
 }
 
 .order-payments-description {
-  color: stencilColor('color-primary');
-  font-weight: fontWeight('normal');
-  margin-top: spacing('single');
+    color: stencilColor("color-primary");
+    font-weight: fontWeight("normal");
+    margin-top: spacing("single");
 }
 
 
@@ -390,38 +390,38 @@
 // -----------------------------------------------------------------------------
 
 .account-downloads-summary {
-  border-bottom: container('border');
-  font-size: fontSize('smaller');
-  padding-bottom: spacing('single');
+    border-bottom: container("border");
+    font-size: fontSize("smaller");
+    padding-bottom: spacing("single");
 }
 
 .account-downloadsList {
-  @include u-listBullets('none');
+    @include u-listBullets("none");
 }
 
 .account-downloadsItem {
-  margin-bottom: spacing('single');
+    margin-bottom: spacing("single");
 
-  > :first-child {
-    margin-top: 0;
-  }
+    > :first-child {
+        margin-top: 0;
+    }
 
-  > :last-child {
-    margin-bottom: 0;
-  }
+    > :last-child {
+        margin-bottom: 0;
+    }
 }
 
 .account-downloadsItem-title {
-  color: stencilColor('color-textSecondary');
-  font-size: fontSize('smaller');
-  margin-bottom: spacing('eighth');
-  text-transform: inherit;
+    color: stencilColor("color-textSecondary");
+    font-size: fontSize("smaller");
+    margin-bottom: spacing("eighth");
+    text-transform: inherit;
 }
 
 .account-downloadsItem-description {
-  margin-bottom: 0;
+    margin-bottom: 0;
 }
 
 .account-downloadsItem-availability {
-  color: stencilColor('color-textSecondary');
+    color: stencilColor("color-textSecondary");
 }

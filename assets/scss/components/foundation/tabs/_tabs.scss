@@ -9,91 +9,91 @@
 // -----------------------------------------------------------------------------
 
 .tab {
-  border-top: $tab-active-border;
-  float: none;
+    border-top: $tab-active-border;
+    float: none;
 
-  @include breakpoint('medium') {
-    border-top-color: $tab-title-border-color;
-    float: left;
-  }
-
-  &.is-active {
-    border-left-color: $tab-title-border-color;
-    border-right-color: $tab-title-border-color;
-
-    @include breakpoint('small') {
-      margin-bottom: $tab-title-border-bottom-offset;
+    @include breakpoint("medium") {
+        border-top-color: $tab-title-border-color;
+        float: left;
     }
 
-    @include breakpoint('medium') {
-      border: $tab-active-border;
-      border-bottom: $tab-title-border;
+    &.is-active {
+        border-left-color: $tab-title-border-color;
+        border-right-color: $tab-title-border-color;
+
+        @include breakpoint("small") {
+            margin-bottom: $tab-title-border-bottom-offset;
+        }
+
+        @include breakpoint("medium") {
+            border: $tab-active-border;
+            border-bottom: $tab-title-border;
+        }
     }
-  }
 }
 
 .tab-title {
-  padding: spacing('half') + spacing('quarter') 0;
-  text-align: center;
-  text-decoration: $tab-title-text-decoration;
+    padding: spacing("half") + spacing("quarter") 0;
+    text-align: center;
+    text-decoration: $tab-title-text-decoration;
 
-  @include breakpoint('small') {
-    text-align: left;
-  }
+    @include breakpoint("small") {
+        text-align: left;
+    }
 
-  @include breakpoint('medium') {
-    padding: spacing('half') spacing('single');
-  }
+    @include breakpoint("medium") {
+        padding: spacing("half") spacing("single");
+    }
 
-  @include breakpoint('large') {
-    padding: remCalc(11px) remCalc(18px);
-  }
+    @include breakpoint("large") {
+        padding: remCalc(11px) remCalc(18px);
+    }
 }
 
 .tab-content {
-  //
-  // State for when tab-content has js generated of calculated content, like carousel
-  //
-  // Purpose: The content being display: none, means any js calculated dimensions
-  // are incorrect as the elements inside the tab-content have no dimensions to grab.
-  // Carousel is a prime example. It needs widths to calculate the layout and slides
-  // -----------------------------------------------------------------------------
-  &.has-jsContent {
-    display: block;
-    height: 0;
-    overflow: hidden;
-    padding: 0;
-    visibility: hidden;
+    //
+    // State for when tab-content has js generated of calculated content, like carousel
+    //
+    // Purpose: The content being display: none, means any js calculated dimensions
+    // are incorrect as the elements inside the tab-content have no dimensions to grab.
+    // Carousel is a prime example. It needs widths to calculate the layout and slides
+    // -----------------------------------------------------------------------------
+    &.has-jsContent {
+        display: block;
+        height: 0;
+        overflow: hidden;
+        padding: 0;
+        visibility: hidden;
 
-    &.is-active {
-      height: auto;
-      overflow: visible;
-      padding: $tabs-content-padding;
-      visibility: visible;
-    }
-  }
-
-
-  //
-  // Product review displays in tabs
-  //
-  // Purpose: Display product reviews within tabbed content on product pages.
-  // -----------------------------------------------------------------------------
-  .productReview {
-    @include breakpoint('small') {
-      width: grid-calc(6, $total-columns);
+        &.is-active {
+            height: auto;
+            overflow: visible;
+            padding: $tabs-content-padding;
+            visibility: visible;
+        }
     }
 
-    @include breakpoint('medium') {
-      width: grid-calc(4, $total-columns);
+
+    //
+    // Product review displays in tabs
+    //
+    // Purpose: Display product reviews within tabbed content on product pages.
+    // -----------------------------------------------------------------------------
+    .productReview {
+        @include breakpoint("small") {
+            width: grid-calc(6, $total-columns);
+        }
+
+        @include breakpoint("medium") {
+            width: grid-calc(4, $total-columns);
+        }
+
+        @include breakpoint("large") {
+            width: grid-calc(6, $total-columns);
+        }
     }
 
-    @include breakpoint('large') {
-      width: grid-calc(6, $total-columns);
+    .productReviews {
+        border-top: 0;
     }
-  }
-
-  .productReviews {
-    border-top: 0;
-  }
 }

@@ -9,59 +9,59 @@
 
 
 .body {
-  margin-bottom: spacing('double') * 2;
-  margin-top: spacing('single'); // 1
+    margin-bottom: spacing("double") * 2;
+    margin-top: spacing("single"); // 1
 
-  @include breakpoint('medium') {
-    margin-top: spacing('single') + spacing('base'); // 1
-  }
+    @include breakpoint("medium") {
+        margin-top: spacing("single") + spacing("base"); // 1
+    }
 }
 
 
 .page {
-  @include grid-row(
-    $behavior: nest
-  );
+    @include grid-row(
+        $behavior: nest
+    );
 }
 
 .page-content,
 .page-content--full {
-  @include grid-column(12);
+    @include grid-column(12);
 }
 
 .page-region {
-  @include grid-column(12);
-  float: right;
-  width: 100%;
+    @include grid-column(12);
+    float: right;
+    width: 100%;
 
-  @include breakpoint('medium') {
-    width: 75%;
-  }
+    @include breakpoint("medium") {
+        width: 75%;
+    }
 }
 
 .page-content--centered {
 
-  @include breakpoint('medium') {
-    @include grid-column(
-      $columns: 8,
-      $center: true
-    );
-  }
+    @include breakpoint("medium") {
+        @include grid-column(
+            $columns: 8,
+            $center: true
+        );
+    }
 }
 
 .page-content--textCenter {
-  text-align: center;
+    text-align: center;
 }
 
 .page-sidebar {
-  @include grid-column(12);
-  position: relative;
+    @include grid-column(12);
+    position: relative;
 
-  @include breakpoint('medium') {
-    @include grid-column(3);
+    @include breakpoint("medium") {
+        @include grid-column(3);
 
-    + .page-content {
-      @include grid-column(9);
+        + .page-content {
+            @include grid-column(9);
+        }
     }
-  }
 }

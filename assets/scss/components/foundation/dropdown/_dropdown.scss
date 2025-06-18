@@ -4,146 +4,146 @@
 
 
 .dropdown {
-  left: -9999px;
-  outline: none;
-  position: absolute;
+    left: -9999px;
+    outline: none;
+    position: absolute;
 }
 
 .dropdown-menu {
-  z-index: $zIndex-lowest;
+    z-index: $zIndex-lowest;
 
-  &.is-loading .loadingOverlay {
-    background: none;
-    padding: (spacing('double') + spacing('single')) 0;
-    position: relative;
-  }
-
-  &.is-open {
-    display: block;
-  }
-
-  .button {
-    &:focus {
-      z-index: $zIndex-lowest;
+    &.is-loading .loadingOverlay {
+        background: none;
+        padding: (spacing("double") + spacing("single")) 0;
+        position: relative;
     }
-  }
+
+    &.is-open {
+        display: block;
+    }
+
+    .button {
+        &:focus {
+            z-index: $zIndex-lowest;
+        }
+    }
 }
 
 .dropdown-menu-item {
-  text-align: left;
+    text-align: left;
 
-  &:first-child {
-    > a {
-      padding-top: spacing('half');
+    &:first-child {
+        > a {
+            padding-top: spacing("half");
+        }
     }
-  }
 
-  &:last-child {
-    > a {
-      padding-bottom: spacing('base');
+    &:last-child {
+        > a {
+            padding-bottom: spacing("base");
+        }
     }
-  }
 
-  > a {
-    margin: 0;
-    padding: spacing('sixth') (spacing('half') + spacing('quarter'));
-    text-decoration: none;
-  }
+    > a {
+        margin: 0;
+        padding: spacing("sixth") (spacing("half") + spacing("quarter"));
+        text-decoration: none;
+    }
 }
 
 .form-wishlist {
-  position: relative;
+    position: relative;
 
-  @include breakpoint('small') {
-    float: left;
-    padding: 0 remCalc(10);
-    width: 50%;
-  }
-
-  @include breakpoint('medium') {
-    padding: 0;
-    width: auto;
-  }
-
-  @include breakpoint('large') {
-    display: inline-block;
-    margin-top: 1rem;
-  }
-
-  .button {
-    width: 100%;
-
-    @include breakpoint('medium') {
-      width: auto;
+    @include breakpoint("small") {
+        float: left;
+        padding: 0 remCalc(10);
+        width: 50%;
     }
 
-    @include breakpoint('large') {
-      margin-right: spacing('half');
+    @include breakpoint("medium") {
+        padding: 0;
+        width: auto;
     }
-  }
+
+    @include breakpoint("large") {
+        display: inline-block;
+        margin-top: 1rem;
+    }
+
+    .button {
+        width: 100%;
+
+        @include breakpoint("medium") {
+            width: auto;
+        }
+
+        @include breakpoint("large") {
+            margin-right: spacing("half");
+        }
+    }
 }
 
 .dropdown-menu-button {
-  width: 100%;
+    width: 100%;
 
-  &.is-open {
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-  }
+    &.is-open {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+    }
 
-  .icon {
-    float: right;
-    margin-left: 10px;
-  }
+    .icon {
+        float: right;
+        margin-left: 10px;
+    }
 
-  &:focus {
-    z-index: $zIndex-lower;
-  }
+    &:focus {
+        z-index: $zIndex-lower;
+    }
 }
 
 #wishlist-dropdown.is-open {
-  background: transparent;
-  left: auto !important;
-  max-width: none !important;
-  width: 100% !important;
+    background: transparent;
+    left: auto !important;
+    max-width: none !important;
+    width: 100% !important;
 
-  @include breakpoint('small') {
-    padding-right: 20px;
-  }
+    @include breakpoint("small") {
+        padding-right: 20px;
+    }
 
-  @include breakpoint('medium') {
-    padding-right: 0;
-  }
+    @include breakpoint("medium") {
+        padding-right: 0;
+    }
 
-  @include breakpoint('large') {
-    padding-right: 11px;
-  }
+    @include breakpoint("large") {
+        padding-right: 11px;
+    }
 
-  &:focus {
-    outline: none;
-  }
+    &:focus {
+        outline: none;
+    }
 
-  [data-wishlist] {
-    border-top: 0;
-    margin-bottom: 0;
-    width: 100%;
-  }
+    [data-wishlist] {
+        border-top: 0;
+        margin-bottom: 0;
+        width: 100%;
+    }
 
-  .button {
-    background-color: stencilColor('dropdown--wishList-backgroundColor');
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-    width: 100%;
-  }
+    .button {
+        background-color: stencilColor("dropdown--wishList-backgroundColor");
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        width: 100%;
+    }
 
-  .button--has-items {
-    font-weight: 700;
-  }
+    .button--has-items {
+        font-weight: 700;
+    }
 
-  li:not(:last-child) .button {
-    border-bottom: 0;
-    border-radius: 0;
-    border-top: 0;
-    margin-bottom: 0;
-  }
+    li:not(:last-child) .button {
+        border-bottom: 0;
+        border-radius: 0;
+        border-top: 0;
+        margin-bottom: 0;
+    }
 }

@@ -18,190 +18,190 @@
 // -----------------------------------------------------------------------------
 
 .skip-to-main-link {
-  background: $header-bg;
-  color: $color-textBase;
-  font-weight: 700;
-  left: 50%;
-  padding: 4px;
-  position: absolute;
-  transform: translate(-50%, calc(-100% - #{$header-height}));
-  transition: transform 0.3s;
-  z-index: zIndex('highest');
+    background: $header-bg;
+    color: $color-textBase;
+    font-weight: 700;
+    left: 50%;
+    padding: 4px;
+    position: absolute;
+    transform: translate(-50%, calc(-100% - #{$header-height}));
+    transition: transform 0.3s;
+    z-index: zIndex("highest");
 
-  &:focus {
-    transform: translate(-50%, 0%);
-  }
+    &:focus {
+        transform: translate(-50%, 0%);
+    }
 }
 
 .header {
-  background-color: $header-bg;
-  border-bottom: container('border');
-  height: $header-height;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: zIndex('higher');
+    background-color: $header-bg;
+    border-bottom: container("border");
+    height: $header-height;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: zIndex("higher");
 
-  @include breakpoint('medium') {
-    border-bottom: container('border');
-    display: flex;
-    flex-direction: column;
-    height: auto;
-    overflow: visible;
-    position: relative;
-  }
-
-  &.is-open {
-    height: 100%;
-
-    @include breakpoint('medium') {
-      height: auto;
+    @include breakpoint("medium") {
+        border-bottom: container("border");
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        overflow: visible;
+        position: relative;
     }
-  }
+
+    &.is-open {
+        height: 100%;
+
+        @include breakpoint("medium") {
+            height: auto;
+        }
+    }
 }
 
 .header-logo {
-  font-size: 0;   // 1
-  height: $header-height;
-  margin: 0 remCalc($header-toggle-width); // 2
-  text-align: center;
+    font-size: 0;   // 1
+    height: $header-height;
+    margin: 0 remCalc($header-toggle-width); // 2
+    text-align: center;
 
-  @include breakpoint('small') { // 4
-    margin-left: remCalc($header-toggle-width * 1.5);
-    margin-right: remCalc($header-toggle-width * 1.5);
-  }
-
-  @include breakpoint('medium') {
-    height: auto;
-    margin: (spacing('double') + spacing('base')) auto (spacing('double') + spacing('single'));
-    padding: 0;
-
-    .header.fixed & {
-      background-color: color('greys', 'lightest');
-      margin: 0;
-      padding: spacing('quarter') 0;
-      position: absolute;
-      top: 0;
-      width: 100%;
-    }
-  }
-
-  &__link {
-    @include clearfix;
-    align-items: center;
-    color: $storeName-color;
-    display: flex;
-    height: inherit;
-    justify-content: center; // 6
-    margin: 0 auto;
-    position: relative;
-    text-decoration: none;
-    width: 70%;
-    z-index: zIndex('low');
-
-    @include breakpoint('medium') {
-      background: none;
-      border-bottom: 0;
-      display: inline-flex;
-      padding: 0;
-      width: auto;
+    @include breakpoint("small") { // 4
+        margin-left: remCalc($header-toggle-width * 1.5);
+        margin-right: remCalc($header-toggle-width * 1.5);
     }
 
-    &:hover {
-      color: color('link', 'hover');
+    @include breakpoint("medium") {
+        height: auto;
+        margin: (spacing("double") + spacing("base")) auto (spacing("double") + spacing("single"));
+        padding: 0;
+
+        .header.fixed & {
+            background-color: color("greys", "lightest");
+            margin: 0;
+            padding: spacing("quarter") 0;
+            position: absolute;
+            top: 0;
+            width: 100%;
+        }
     }
 
-    &:active {
-      color: color('link', 'active');
+    &__link {
+        @include clearfix;
+        align-items: center;
+        color: $storeName-color;
+        display: flex;
+        height: inherit;
+        justify-content: center; // 6
+        margin: 0 auto;
+        position: relative;
+        text-decoration: none;
+        width: 70%;
+        z-index: zIndex("low");
+
+        @include breakpoint("medium") {
+            background: none;
+            border-bottom: 0;
+            display: inline-flex;
+            padding: 0;
+            width: auto;
+        }
+
+        &:hover {
+            color: color("link", "hover");
+        }
+
+        &:active {
+            color: color("link", "active");
+        }
     }
-  }
 }
 
 .header-logo--left {
-  text-align: left;
+    text-align: left;
 
-  @include breakpoint('medium') {
-    margin-left: remCalc(40px);
-  }
+    @include breakpoint("medium") {
+        margin-left: remCalc(40px);
+    }
 
-  .header-logo-image {
-    right: unset;
-  }
+    .header-logo-image {
+        right: unset;
+    }
 }
 
 .header-logo--right {
-  text-align: right;
+    text-align: right;
 
-  @include breakpoint('medium') {
-    margin-right: remCalc(40px);
-  }
+    @include breakpoint("medium") {
+        margin-right: remCalc(40px);
+    }
 
-  .header-logo-image {
-    left: unset;
-  }
+    .header-logo-image {
+        left: unset;
+    }
 }
 
 .header-logo-text {
-  display: block;
-  font-family: $fontFamily-hero;
-  font-size: $fontSize-logo-small;   // 1
-  font-weight: stencilFontWeight('headings-font');
-  letter-spacing: remCalc(2px);
-  margin-left: auto;
-  margin-right: auto;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  text-transform: uppercase;
-  white-space: nowrap;
+    display: block;
+    font-family: $fontFamily-hero;
+    font-size: $fontSize-logo-small;   // 1
+    font-weight: stencilFontWeight("headings-font");
+    letter-spacing: remCalc(2px);
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-transform: uppercase;
+    white-space: nowrap;
 
-  @include breakpoint('small') {
-    font-size: $fontSize-logo-medium;
-  }
-
-  @include breakpoint('medium') {
-    display: inline;
-    font-size: $fontSize-logo-large;
-    max-width: none;
-    overflow: auto;
-    padding: 0 10px;
-    white-space: normal;
-
-    .header.fixed & {
-      font-size: fontSize('larger');
+    @include breakpoint("small") {
+        font-size: $fontSize-logo-medium;
     }
-  }
+
+    @include breakpoint("medium") {
+        display: inline;
+        font-size: $fontSize-logo-large;
+        max-width: none;
+        overflow: auto;
+        padding: 0 10px;
+        white-space: normal;
+
+        .header.fixed & {
+            font-size: fontSize("larger");
+        }
+    }
 }
 
 .header-logo-image-container {
-  position: relative;
-  width: 100%;
+    position: relative;
+    width: 100%;
 
-  @include breakpoint('medium') {
-    min-height: get-height(stencilString('logo_size'));
-  }
+    @include breakpoint("medium") {
+        min-height: get-height(stencilString("logo_size"));
+    }
 }
 
 .header-logo-image-container::after {
-  content: '';
-  display: block;
+    content: "";
+    display: block;
 }
 
 .header-logo-image {
-  display: block;
-  margin: 0 auto;
-  max-height: remCalc($header-height) - $header-logo-marginVertical * 2;
+    display: block;
+    margin: 0 auto;
+    max-height: remCalc($header-height) - $header-logo-marginVertical * 2;
 
-  @include breakpoint('medium') {
-    max-height: none;
-  }
+    @include breakpoint("medium") {
+        max-height: none;
+    }
 }
 
 .header-logo-image-unknown-size { // 5
-  max-height: remCalc($header-height) - $header-logo-marginVertical * 2;
+    max-height: remCalc($header-height) - $header-logo-marginVertical * 2;
 
-  @include breakpoint('medium') {
-    max-height: none;
-  }
+    @include breakpoint("medium") {
+        max-height: none;
+    }
 }
 
 //
@@ -211,66 +211,66 @@
 // -----------------------------------------------------------------------------
 
 .mobileMenu-toggle {
-  @include square($header-toggle-width);
-  display: inline-block;
-  font-size: 0;
-  left: 0;
-  overflow: hidden;
-  padding: 0 remCalc(18);
-  position: absolute;
-  z-index: zIndex('high');
-
-  @include breakpoint('medium') {
-    display: none;
-  }
-
-  .mobileMenu-toggleIcon,
-  .mobileMenu-toggleIcon::before,
-  .mobileMenu-toggleIcon::after {
-    background: $header-font-color;
-    content: '';
-    display: block;
-    height: 2px;
+    @include square($header-toggle-width);
+    display: inline-block;
+    font-size: 0;
+    left: 0;
+    overflow: hidden;
+    padding: 0 remCalc(18);
     position: absolute;
-    transform: rotate(0deg);
-    transition: transform 100ms ease-in, top 100ms ease-in 150ms, bottom 100ms ease-in 150ms; // 1
-    width: remCalc(20);
-  }
+    z-index: zIndex("high");
 
-  .mobileMenu-toggleIcon {
-    top: remCalc(27);
-    transition: background-color 10ms ease-in 100ms;
-  }
-
-  .mobileMenu-toggleIcon::before {
-    top: -0.5rem;
-  }
-
-  .mobileMenu-toggleIcon::after {
-    bottom: -0.5rem;
-  }
-
-  &.is-open .mobileMenu-toggleIcon {
-    background-color: transparent;
-    transition-delay: 100ms;
-
-    &::before,
-    &::after {
-      background-color: $header-font-color;
-      bottom: auto;
-      top: auto;
-      transition: transform 100ms ease-in 150ms, top 100ms ease-in, bottom 100ms ease-in; // Animate lines from hamburger to 'x'
+    @include breakpoint("medium") {
+        display: none;
     }
 
-    &::before {
-      top: 0;
-      transform: rotate(45deg);
+    .mobileMenu-toggleIcon,
+    .mobileMenu-toggleIcon::before,
+    .mobileMenu-toggleIcon::after {
+        background: $header-font-color;
+        content: "";
+        display: block;
+        height: 2px;
+        position: absolute;
+        transform: rotate(0deg);
+        transition: transform 100ms ease-in, top 100ms ease-in 150ms, bottom 100ms ease-in 150ms; // 1
+        width: remCalc(20);
     }
 
-    &::after {
-      bottom: 0;
-      transform: rotate(-45deg);
+    .mobileMenu-toggleIcon {
+        top: remCalc(27);
+        transition: background-color 10ms ease-in 100ms;
     }
 
-  }
+    .mobileMenu-toggleIcon::before {
+        top: -0.5rem;
+    }
+
+    .mobileMenu-toggleIcon::after {
+        bottom: -0.5rem;
+    }
+
+    &.is-open .mobileMenu-toggleIcon {
+        background-color: transparent;
+        transition-delay: 100ms;
+
+        &::before,
+        &::after {
+            background-color: $header-font-color;
+            bottom: auto;
+            top: auto;
+            transition: transform 100ms ease-in 150ms, top 100ms ease-in, bottom 100ms ease-in; // Animate lines from hamburger to 'x'
+        }
+
+        &::before {
+            top: 0;
+            transform: rotate(45deg);
+        }
+
+        &::after {
+            bottom: 0;
+            transform: rotate(-45deg);
+        }
+
+    }
 }

@@ -6,59 +6,59 @@
 // Toggle link
 // -----------------------------------------------------------------------------
 
-$toggle-spacing: spacing('single') + spacing('half');
+$toggle-spacing: spacing("single") + spacing("half");
 
 .toggle {
-  border-top: container('border');
-  margin-bottom: $toggle-spacing;
+    border-top: container("border");
+    margin-bottom: $toggle-spacing;
 
-  &:last-of-type {
-    margin-bottom: $toggle-spacing * 2;
-  }
+    &:last-of-type {
+        margin-bottom: $toggle-spacing * 2;
+    }
 }
 
 .toggle-title {
-  margin-bottom: $toggle-spacing;
+    margin-bottom: $toggle-spacing;
 }
 
 .toggleLink {
-  color: stencilColor('color-textSecondary');
+    color: stencilColor("color-textSecondary");
 
-  &:hover {
-    color: stencilColor('color-textSecondary--hover');
-  }
+    &:hover {
+        color: stencilColor("color-textSecondary--hover");
+    }
 
-  .toggle-title & {
-    float: right;
-    line-height: 24px;
-  }
+    .toggle-title & {
+        float: right;
+        line-height: 24px;
+    }
 }
 
 .toggleLink-text {
-  font-size: fontSize('smallest');
-  font-weight: fontWeight('normal');
+    font-size: fontSize("smallest");
+    font-weight: fontWeight("normal");
 }
 
 .toggleLink-text--off {
-  display: inline-block;
+    display: inline-block;
 
-  .toggleLink.is-open & {
-    display: none;
-  }
+    .toggleLink.is-open & {
+        display: none;
+    }
 }
 
 .toggleLink-text--on {
-  display: none;
+    display: none;
 
-  .toggleLink.is-open & {
-    display: inline-block;
-  }
+    .toggleLink.is-open & {
+        display: inline-block;
+    }
 }
 
 .toggle-content {
-  display: none;
+    display: none;
 
-  &.is-open {
-    display: block;
-  }
+    &.is-open {
+        display: block;
+    }
 }

@@ -5,6 +5,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Draft
+- Add validationDictionary to search page for price range filter error messages [#2553](https://github.com/bigcommerce/cornerstone/pull/2553)
+
+## 6.16.2 (06-11-2025)
 - Patch security vulnerabilities [#2548](https://github.com/bigcommerce/cornerstone/pull/2548)
 - Update code standards based on updated linter expectancies [#2548](https://github.com/bigcommerce/cornerstone/pull/2548)
 

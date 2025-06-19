@@ -64,10 +64,10 @@
                     </ul>
                 </section>
             {{/if}}
-            {{#if order.pickup_address}}
+            {{#if order.pickup_addresses}}
             <section class="account-sidebar-block">
                 <h3 class="account-heading">{{lang 'account.orders.details.pickup'}}</h3>
-                {{#each order.pickup_address}}
+                {{#each order.pickup_addresses}}
                 <dl class="definitionList">
                     <dt class="definitionList-key">{{lang 'account.orders.details.pickup_method'}}</dt>
                     <dd class="definitionList-value">{{sanitize pickup_method_display_name}}</dd>
@@ -86,7 +86,7 @@
                     <dt class="definitionList-key">{{lang 'account.orders.details.phone'}}</dt>
                     <dd class="definitionList-value">{{{ sanitize location_phone}}}</dd>
                     {{/if}}
-                    {{#if order.pickup_address.location_email}}
+                    {{#if location_email}}
                     <dt class="definitionList-key">{{lang 'account.orders.details.email'}}</dt>
                     <dd class="definitionList-value">{{{ sanitize location_email}}}</dd>
                     {{/if}}

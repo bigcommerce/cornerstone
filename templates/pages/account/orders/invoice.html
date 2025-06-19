@@ -56,18 +56,20 @@
                     </div>
                 {{/unless}}
             {{/if}}
-            {{#if order.pickup_address}}
+            {{#if order.pickup_addresses}}
                 {{#unless order.has_multiple_shipping_addresses}}
                     <div class="ShippingAddress">
                         <h3>{{lang 'account.orders.details.pickup_details'}}</h3>
                         <ul>
-                            <li><strong>{{order.pickup_address.line1}}</strong></li>
-                            <li>{{order.pickup_address.line2}}</li>
-                            <li>{{order.pickup_address.city}}, {{order.pickup_address.state}} {{order.pickup_address.zip}}</li>
-                            <li>{{order.pickup_address.country}}</li>
+                            {{#each order.pickup_addresses}}
+                            <li><strong>{{location_line_1}}</strong></li>
+                            <li>{{location_line_2}}</li>
+                            <li>{{location_city}}, {{location_state}} {{location_zip}}</li>
+                            <li>{{location_country_name}}</li>
                             <li>&nbsp;</li>
-                            <li>{{lang 'invoice.phone' number=order.pickup_address.phone}}</li>
-                            {{#if order.pickup_address.email}}<li>{{lang 'invoice.email' email=order.pickup_address.email}}</li>{{/if}}
+                            <li>{{lang 'invoice.phone' number=location_phone}}</li>
+                            {{#if location_email}}<li>{{lang 'invoice.email' email=location_email}}</li>{{/if}}
+                            {{/each}}
                         </ul>
                     </div>
                 {{/unless}}

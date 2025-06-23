@@ -1,6 +1,4 @@
-<section class="productCarousel"
-    data-list-name="{{list}}"
-    data-slick='{
+<section class="productCarousel" data-list-name="{{list}}" data-slick='{
         "infinite": false,
         "mobileFirst": true,
         "slidesToShow": 2,
@@ -22,14 +20,14 @@
                 }
             }
         ]
-    }'
->
+    }'>
     {{#each products}}
     <div data-product-slide class="productCarousel-slide">
-        {{> components/products/card settings=../settings theme_settings=../theme_settings customer=../customer event="list" position=(add @index 1)}}
+        {{> components/products/card settings=../settings theme_settings=../theme_settings customer=../customer
+        event="list" position=(add @index 1)}}
     </div>
     {{/each}}
     {{#if products.length '>' 1}}
-        {{> components/carousel-content-announcement}}
+    {{> components/carousel-content-announcement}}
     {{/if}}
 </section>

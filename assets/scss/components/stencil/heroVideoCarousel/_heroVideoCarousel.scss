@@ -1,0 +1,101 @@
+.heroVideo {
+    width: 100%;
+    position: relative;
+    height: calc(100vh - 300px);
+    z-index: 1;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: $navPages-shadow;
+    background-color: $navPages-backgroundColor;
+    animation: grow-in 1s ease-in-out;
+    animation-delay: 0.5s;
+    animation-fill-mode: both;
+  }
+  
+  .hero-video-content-container {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    z-index: 1;
+  }
+  
+  .heroVideo-items {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+  
+  .heroVideo-item-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    transition: all 0.3s ease-in-out;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+  }
+  
+  .heroVideo-content {
+    max-width: 40%;
+    color: #fff;
+    padding: 20px 40px;
+    margin: 2rem 0 2rem 2rem;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    backdrop-filter: blur($navPages-backgroundBlur);
+    background-color: $navPages-backgroundColor-card;
+    border-radius: 10px;
+    box-shadow: $navPages-shadow;
+  
+    .button-hero-video {
+      color: #fff;
+      font-size: 1rem;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.5));
+      text-decoration: none;
+      transition: all 0.3s ease-in-out;
+      background-color: #ffffff28;
+  
+      &:hover {
+        background-color: $navPages-backgroundColor-card;
+        color: #fff;
+        transition: all 0.3s ease-in-out;
+      }
+    }
+  
+    svg {
+      width: 100%;
+      max-width: 200px;
+      height: 100%;
+    }
+  }
+  
+  .active {
+    opacity: 1;
+  }
+
+  @keyframes grow-in {
+    0% {
+        opacity: 0;
+        height: 0;
+        filter: blur(50px);
+    }
+    100% {
+        opacity: 1;
+        height: calc(100vh - 300px);
+        filter: blur(0px);
+    }
+  }
+  
+  

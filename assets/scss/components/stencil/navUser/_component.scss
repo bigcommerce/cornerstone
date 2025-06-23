@@ -2,6 +2,219 @@
 // USER NAVIGATION
 // =============================================================================
 
+.category-callouts-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+    margin-top: 30px;
+    position: relative;
+    gap: 10px;
+    animation: fade-in 1s ease-in-out;
+    animation-fill-mode: both;
+    animation-delay: 1.3s;
+}
+
+.category-callout-background {
+    border-radius: 10px;
+    opacity: 0.02;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -10;
+    background-image: url('../../../../../assets/img/patterns/bynuna_pattern_smol.png');
+    background-position: top left;
+    animation: animate-background 200s linear infinite;
+}
+
+@keyframes animate-background {
+    0% {
+        background-position: top left;
+    }
+
+    50% {
+        background-position: center;
+    }
+
+    100% {
+        background-position: top right;
+    }
+}
+
+.category-callout {
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: $navPages-backgroundColor-card;
+    backdrop-filter: blur(0px);
+    box-shadow: $navPages-shadow;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+        // Add slight Gradient to the background
+        background: linear-gradient(to bottom, rgba(255, 255, 255, 0.129), $navPages-backgroundColor-card);
+        transition: all 0.3s ease-in-out;
+        backdrop-filter: blur(15px);
+        box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.66);
+    }
+
+    &:hover .category-callout-image {
+        transform: scale(1.01) translateY(-10px);
+        transform-origin: center;
+        transform-style: preserve-3d;
+        filter: drop-shadow(2px 8px 10px rgba(0, 0, 0, 0.69));
+    }
+}
+
+.category-callout-image {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -2rem;
+    filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.3));
+    transition: all 0.3s ease-in-out;
+}
+
+.category-callout-image img {
+    width: 65%;
+
+}
+
+.category-callout-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+
+    h3 {
+        color: #fff;
+        font-size: 1rem;
+    }
+}
+
+
+// Bynuna Info card
+.bynuna-info-card {
+    // background-image: url('../../../../../assets/img/category-callouts/soldier_standing_placeholder.png');
+    // background-size: 100% 100%;
+    // background-position: top;
+    // background-repeat: no-repeat;
+    width: 60%;
+    background: linear-gradient(to bottom, $navPages-backgroundColor-card, rgb(0, 0, 0));
+    transition: all 0.3s ease-in-out;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.66);
+    position: relative;
+    overflow: hidden;
+
+    &:hover {
+        background-color: $navPages-backgroundColor-card;
+        backdrop-filter: blur(5px);
+        box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.66);
+        transition: all 0.3s ease-in-out;
+    }
+
+    .category-callout-cta-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        overflow: hidden;
+        justify-content: center;
+        align-items: center;
+        z-index: -1;
+        opacity: 0.4;
+        background-color: $navPages-backgroundColor-card;
+    }
+
+    .category-callout-cta-image img {
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        margin: 0 auto;
+        object-fit: cover;
+    }
+
+    .category-callout-actions {
+        width: 50%;
+        height: 50%;
+        z-index: 4;
+        margin: auto 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        background-color: $navPages-backgroundColor-card;
+        backdrop-filter: blur(5px);
+        box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.66);
+        border-radius: 10px;
+        opacity: 0;
+        transition: all 0.3s ease-in-out;
+        text-align: center;
+    }
+
+    .category-callout-actions h3 {
+        margin: 0;
+        text-shadow: 2px 4px 10px rgba(0, 0, 0, 0.719);
+        color: #fff;
+    }
+
+    .category-callout-actions p {
+        text-shadow: 2px 4px 10px rgba(0, 0, 0, 0.719);
+        color: #fff;
+    }
+
+    .category-callout-actions {
+        z-index: 4;
+    }
+
+    .button-cta {
+        margin-top: 1rem;
+        text-shadow: 2px 4px 10px rgba(0, 0, 0, 0.719);
+        color: #fff;
+        font-size: 1rem;
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+        filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.5));
+        text-decoration: none;
+        transition: all 0.3s ease-in-out;
+        background-color: #ffffff28;
+    }
+
+    &:hover .category-callout-actions {
+        opacity: 1;
+        transition: all 0.3s ease-in-out;
+    }
+
+    &:hover .category-callout-cta-image {
+        filter: blur(2px);
+        transition: all 0.3s ease-in-out;
+    }
+}
+
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
 
 // Component
-@import "navUser";
+@import 'navUser';

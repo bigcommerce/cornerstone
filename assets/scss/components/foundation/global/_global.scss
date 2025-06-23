@@ -7,32 +7,35 @@
 //
 // -----------------------------------------------------------------------------
 
-@if $exportCSS--global { // 1
+@if $exportCSS--global {
+  // 1
 
-    html,
-    body {
-        height: auto;
+  html,
+  body {
+    height: auto;
+    background-color: $navPages-backgroundColor;
+  }
+
+  body {
+    padding-top: $header-height; // 2
+
+    @include breakpoint('medium') {
+      padding-top: 0;
     }
+  }
 
-    body {
-        padding-top: $header-height; // 2
-        @include breakpoint("medium") {
-            padding-top: 0;
-        }
+  figure {
+    margin-bottom: $figure-marginBottom;
+    margin-top: $figure-marginTop;
+
+    >figcaption {
+      margin-bottom: $figure-figcaption-marginBottom;
     }
+  }
 
-    figure {
-        margin-bottom: $figure-marginBottom;
-        margin-top: $figure-marginTop;
-
-        > figcaption {
-            margin-bottom: $figure-figcaption-marginBottom;
-        }
-    }
-
-    figcaption {
-        color: $figcaption-color;
-        font-size: $figcaption-fontSize;
-        margin-top: $figcaption-marginTop;
-    }
+  figcaption {
+    color: $figcaption-color;
+    font-size: $figcaption-fontSize;
+    margin-top: $figcaption-marginTop;
+  }
 }

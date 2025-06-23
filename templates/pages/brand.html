@@ -15,16 +15,22 @@ brand:
 
 {{#partial "page"}}
 {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
-{{#if brand.image}}
-    <div class="brand-image-container">
-        {{> components/common/responsive-img
-            image=brand.image
-            fallback_size=theme_settings.thumb_size
-            lazyload='disabled'
-        }}
+
+<div class="brand-header-wrapper">
+    <div class="gradient-brand-layer"></div>
+    <div class="brand-image-wrapper">
+        <!-- {{#if brand.image}} -->
+            <div class="brand-image-container-custom">
+                {{> components/common/responsive-img
+                    image=brand.image
+                    fallback_size=theme_settings.thumb_size
+                    lazyload='disabled'
+                }}
+            </div>
+        {{/if}}
     </div>
-{{/if}}
-<h1 class="page-heading">{{brand.name}}</h1>
+    <h1 class="page-heading custom-brand-heading">{{brand.name}}</h1>
+</div>
 {{{region name="brand_below_header"}}}
 <div class="page">
     <aside class="page-sidebar" id="faceted-search-container">
@@ -47,3 +53,17 @@ brand:
 
 {{/partial}}
 {{> layout/base}}
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const brandImage = document.querySelector('.brand-image-container-custom img');
+
+        window.addEventListener('scroll', function() {
+            const scrollPosition = window.scrollY;
+            brandImage.style.transform = `translateY(-${scrollPosition * 0.2}px)`;
+            brandImage.style.filter = `blur(${scrollPosition * 0.03}px)`;
+            brandImage.style.opacity = `1 - ${scrollPosition * 0.001}`;
+        });
+    });
+</script>

@@ -12,6 +12,16 @@
 //
 // -----------------------------------------------------------------------------
 
+.breadcrumbs-container {
+  width: 100%;
+  max-width: 1700px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 0 auto;
+  padding-left: 40px;
+}
+
 ol.breadcrumbs {
   display: none; // 1
   font-size: 0; // 2
@@ -20,6 +30,7 @@ ol.breadcrumbs {
   @include breakpoint('small') {
     display: block; // 1
   }
+  margin-bottom: 0;
 }
 
 .breadcrumb {

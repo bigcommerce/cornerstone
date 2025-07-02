@@ -1,52 +1,86 @@
-.heroVideo {
+  .heroCarousel {
     width: 100%;
     position: relative;
-    height: calc(100vh - 300px);
     z-index: 1;
-    border-radius: 15px;
+    margin-top: 1rem;
     overflow: hidden;
-    box-shadow: $navPages-shadow;
-    background-color: $navPages-backgroundColor;
-    animation: grow-in 1s ease-in-out;
-    animation-delay: 0.5s;
-    animation-fill-mode: both;
-  }
+    border-radius: 15px;
+
+
+    .hero-carousel-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('../../../../../assets/img/patterns/bynuna_pattern_smol.png');
+      background-position: top left;
+      animation: animate-background 200s linear infinite;
+    }
+
+    .hero-carousel-container {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      gap: 1.2rem;
+      width: 100%;
   
-  .hero-video-content-container {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    z-index: 1;
+      .hero-item-carousel-item {
+        min-width: 100%;
+        height: 100%;
+        min-height: 300px;
+        max-height: 500px;
+        z-index: 1;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: $navPages-shadow;
+        animation: grow-in 1s ease-in-out;
+        animation-delay: 0.3s;
+        animation-fill-mode: both;
+        position: relative;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-shrink: 0;
+        transition: transform 1.7s ease-in-out;
+
+        .hero-item-carousel-item-image {
+          width: 100%;
+          z-index: 1; 
+          transition: opacity 0.5s ease-in-out;
+          position: absolute;
+        }
+
+        #hero-item-0 {
+          top: -80px;
+        }
+
+        #hero-item-1 {
+          top: -20px;
+        }
+
+        #hero-item-2 {
+          top: -160px;
+        }
+      }
+    }
+
+    .hero-item-content-container {
+      display: flex;
+      z-index: 4;
+      justify-content: space-between;
+      align-items: center;
+      width: 70%
+    }
   }
-  
-  .heroVideo-items {
-    width: 100%;
-    height: 100%;
-    position: relative;
-  }
-  
-  .heroVideo-item-video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 1;
-    transition: all 0.3s ease-in-out;
-    position: absolute;
-    top: 0;
-    left: 0;
-    opacity: 0;
-  }
-  
-  .heroVideo-content {
+
+  .hero-item-carousel-item-content {
     max-width: 40%;
     color: #fff;
     padding: 20px 40px;
-    margin: 2rem 0 2rem 2rem;
+    margin: 2rem 0 2rem 3rem;
     text-align: left;
     display: flex;
     flex-direction: column;
@@ -56,8 +90,37 @@
     background-color: $navPages-backgroundColor-card;
     border-radius: 10px;
     box-shadow: $navPages-shadow;
-  
-    .button-hero-video {
+
+    h3 {
+      font-size: 1.9rem;
+      font-weight: 400;
+      margin-top: 1rem;
+      color: #fff;
+      margin-top: 0;
+      padding-top: 0;
+      border-bottom: 1px solid #ffffff28;
+      padding-bottom: 0.5rem;
+      width: 100%;
+    }
+
+    h5 {
+      font-size: 0.6rem;
+      font-weight: 400;
+      margin: 0;
+      padding: 0;
+      color: #ffffffcb;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      font-size: 1rem;
+      font-weight: 400;
+      margin: 0;
+      padding: 0;
+      color: #fff;
+    }
+
+    .button-hero-carousel {
       color: #fff;
       font-size: 1rem;
       padding: 0.5rem 1rem;
@@ -66,36 +129,91 @@
       text-decoration: none;
       transition: all 0.3s ease-in-out;
       background-color: #ffffff28;
-  
+      margin-top: 1rem;
+
       &:hover {
         background-color: $navPages-backgroundColor-card;
         color: #fff;
         transition: all 0.3s ease-in-out;
       }
     }
-  
+
     svg {
       width: 100%;
       max-width: 200px;
       height: 100%;
     }
+  } 
+
+  .hero-container-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 0 1rem;
   }
-  
-  .active {
-    opacity: 1;
+
+  .hero-container-controls-item {
+    width: 25px;
+    height: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .hero-container-controls-item svg {
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur($navPages-backgroundBlur);
+    background-color: $navPages-backgroundColor-card;
+    fill: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    z-index: 1000;
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.5));
+
+    &:hover {
+      background-color: #000000bd;
+      transition: all 0.3s ease-in-out;
+    }
+  }
+
+  :first-child.hero-container-controls-item svg {
+    transform: rotate(180deg);
   }
 
   @keyframes grow-in {
-    0% {
-        opacity: 0;
-        height: 0;
-        filter: blur(50px);
+    from {
+      opacity: 0;
+      height: 0;
     }
-    100% {
-        opacity: 1;
-        height: calc(100vh - 300px);
-        filter: blur(0px);
+
+    to {
+      opacity: 1;
+      height: calc(100vh - 300px);
     }
   }
-  
-  
+
+  @keyframes animate-background {
+    0% {
+        background-position: top left;
+        opacity: 0.02;
+    }
+
+    50% {
+        background-position: center;
+        opacity: 0.02;
+    }
+
+    100% {
+        background-position: top right;
+        opacity: 0.02;
+    }
+}

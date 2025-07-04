@@ -19,6 +19,7 @@ export default class Cart extends PageManager {
             .hide(); // TODO: temporary until roper pulls in his cart components
         this.$activeCartItemId = null;
         this.$activeCartItemBtnAction = null;
+        this.$cartPrimaryCheckoutAction = $('[data-primary-checkout-now-action]');
 
         this.setApplePaySupport();
         this.bindEvents();
@@ -58,6 +59,7 @@ export default class Cart extends PageManager {
                 // if the quantity is changed "1" from "0", we have to remove the row.
                 const remove = (newQty === 0);
 
+                this.$cartPrimaryCheckoutAction.attr("href", `${this.context.urls.checkout.single_address}?version=${response.data.version}`);
                 this.refreshContent(remove);
             } else {
                 $el.val(oldQty);
@@ -98,6 +100,7 @@ export default class Cart extends PageManager {
                 // if the quantity is changed "1" from "0", we have to remove the row.
                 const remove = (newQty === 0);
 
+                this.$cartPrimaryCheckoutAction.attr("href", `${this.context.urls.checkout.single_address}?version=${response.data.version}`);
                 this.refreshContent(remove);
             } else {
                 $el.val(oldQty);
@@ -111,6 +114,7 @@ export default class Cart extends PageManager {
         this.$overlay.show();
         utils.api.cart.itemRemove(itemId, (err, response) => {
             if (response.data.status === 'succeed') {
+                this.$cartPrimaryCheckoutAction.attr("href", `${this.context.urls.checkout.single_address}?version=${response.data.version}`);
                 this.refreshContent(true);
             } else {
                 this.$overlay.hide();
@@ -241,39 +245,7 @@ export default class Cart extends PageManager {
             $(`[data-cart-itemid='${this.$activeCartItemId}']`, this.$cartContent)
                 .filter(`[data-action='${this.$activeCartItemBtnAction}']`)
                 .trigger('focus');
-
-            console.log('Calling refreshCheckoutPrerendering from refreshContent');
-            this.refreshCheckoutPrerendering();
         });
-    }
-
-    // Add this new method
-    refreshCheckoutPrerendering() {
-        console.log('Starting refreshCheckoutPrerendering...');
-
-        const speculationRules = {
-            prerender: [
-                {
-                    source: 'list',
-                    urls: ['/checkout']
-                }
-            ]
-        };
-
-        const existingScripts = document.querySelectorAll('script[type="speculationrules"]');
-
-        existingScripts.forEach((script) => {
-            script.remove();
-        });
-
-        console.log('Waiting 1 seconds before adding new speculation rule...');
-        setTimeout(() => {
-            const script = document.createElement('script');
-            script.type = 'speculationrules';
-            script.text = JSON.stringify(speculationRules);
-            document.body.appendChild(script);
-            console.log('New speculation rule script added');
-        }, 1000);
     }
 
     bindCartEvents() {
@@ -328,16 +300,6 @@ export default class Cart extends PageManager {
             // edit item in cart
             this.cartEditOptions(itemId, productId);
         });
-
-        // Add prerendering after each cart update
-        const addPrerendering = () => {
-            console.log('Calling refreshCheckoutPrerendering from cart event');
-            this.refreshCheckoutPrerendering();
-        };
-
-        $('[data-cart-update]', this.$cartContent).on('click', addPrerendering);
-        $('.cart-item-qty-input', this.$cartContent).on('change', addPrerendering);
-        $('.cart-remove', this.$cartContent).on('click', addPrerendering);
     }
 
     bindPromoCodeEvents() {
@@ -376,9 +338,9 @@ export default class Cart extends PageManager {
 
             utils.api.cart.applyCode(code, (err, response) => {
                 if (response.data.status === 'success') {
-                    this.refreshContent();
+                    // TODO Update version on checkout url
                     console.log('Calling refreshCheckoutPrerendering after applying promo code');
-                    this.refreshCheckoutPrerendering();
+                    this.refreshContent();
                 } else {
                     showAlertModal(response.data.errors.join('\n'));
                 }
@@ -419,9 +381,9 @@ export default class Cart extends PageManager {
 
             utils.api.cart.applyGiftCertificate(code, (err, resp) => {
                 if (resp.data.status === 'success') {
-                    this.refreshContent();
+                    // TODO Update version on checkout url
                     console.log('Calling refreshCheckoutPrerendering after applying gift certificate');
-                    this.refreshCheckoutPrerendering();
+                    this.refreshContent();
                 } else {
                     showAlertModal(resp.data.errors.join('\n'));
                 }

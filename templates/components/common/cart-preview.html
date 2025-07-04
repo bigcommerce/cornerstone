@@ -51,7 +51,7 @@
                 {{#if cart.show_primary_checkout_button}}
                     <div class="previewCartAction-checkout">
                         <a
-                                href="{{urls.checkout.single_address}}"
+                                href="{{urls.checkout.single_address}}?version={{cart.version}}"
                                 class="button button--small button--primary"
                                 data-primary-checkout-now-action
                         >
@@ -68,7 +68,7 @@
 
                 {{#if cart.show_multiple_address_shipping}}
                     <div class="previewCartAction-checkoutMultiple">
-                        <a href="{{urls.checkout.multiple_address}}">
+                        <a href="{{urls.checkout.multiple_address}}&version={{cart.version}}">
                             {{lang 'cart.preview.checkout_multiple'}}
                         </a>
                     </div>

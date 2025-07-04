@@ -69,7 +69,17 @@ export default function (secureBaseUrl, cartId) {
                 prerender: [
                     {
                         source: 'list',
-                        urls: ['/cart.php', '/checkout']
+                        urls: ['/cart.php'],
+                    },
+                    {
+                        where: {
+                            and: [
+                                {
+                                    href_matches: "/checkout?version=*",
+                                }
+                            ]
+                        },
+                        eagerness: "moderate"
                     }
                 ]
             };

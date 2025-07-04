@@ -519,6 +519,32 @@ export default class ProductDetails extends ProductDetailsBase {
 
             modal.updateContent(response);
 
+            // Add speculative loading after cart template is loaded
+            const speculationRules = {
+                prerender: [
+                    {
+                        source: 'list',
+                        urls: ['/cart.php'],
+                    },
+                    {
+                        where: {
+                            and: [
+                                {
+                                    href_matches: "/checkout?version=*",
+                                }
+                            ]
+                        },
+                        eagerness: "moderate"
+                    }
+                ]
+            };
+
+            const script = document.createElement('script');
+            script.type = 'speculationrules';
+            script.text = JSON.stringify(speculationRules);
+            document.body.appendChild(script);
+
+
             // Update cart counter
             const $body = $('body');
             const $cartQuantity = $('[data-cart-quantity]', modal.$content);

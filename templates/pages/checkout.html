@@ -32,6 +32,17 @@
 
 {{{ footer.scripts }}}
 
+<!-- Script to remove the version parameter from url without reloading the page -->
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+
+    if (urlParams.has('version')) {
+        const cleanUrl = window.location.pathname;
+
+        history.replaceState(null, '', cleanUrl);
+    }
+</script>
+
 {{/partial}}
 
 {{> layout/empty}}

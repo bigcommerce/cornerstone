@@ -524,14 +524,14 @@ export default class ProductDetails extends ProductDetailsBase {
                 prerender: [
                     {
                         source: 'list',
-                        urls: ['/cart.php'],
+                        urls: [this.context.urls.cart],
                     },
                     {
+                        source: 'document',
                         where: {
-                            and: [
-                                {
-                                    href_matches: "/checkout?version=*",
-                                }
+                            href_matches: [
+                                `${this.context.urls.checkout.single_address}?version=*`,
+                                `${this.context.urls.checkout.multiple_address}&version=*`,
                             ]
                         },
                         eagerness: "moderate"

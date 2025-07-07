@@ -37,9 +37,12 @@
     const urlParams = new URLSearchParams(window.location.search);
 
     if (urlParams.has('version')) {
-        const cleanUrl = window.location.pathname;
-
-        history.replaceState(null, '', cleanUrl);
+        urlParams.delete('version');
+    
+        // Rebuild the query string from any remaining parameters
+        const newQueryString = urlParams.toString();
+        const newUrl = window.location.pathname + (newQueryString ? '?' + newQueryString : '');
+        history.replaceState(null, '', newUrl);
     }
 </script>
 

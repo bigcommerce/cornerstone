@@ -49,12 +49,12 @@ cart: true
                         <script type="speculationrules">
                         {
                             "prerender": [{
+                                "source": "document",
                                 "where": {
-                                "and": [
-                                    {
-                                        "href_matches": "{{urls.checkout.single_address}}?version=*"
-                                    }
-                                ]
+                                    "href_matches": [
+                                        "{{{urls.checkout.single_address}}}?version=*",
+                                        "{{{urls.checkout.multiple_address}}}&version=*"
+                                    ]
                                 },
                                 "eagerness": "moderate"
                             }]

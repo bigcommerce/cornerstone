@@ -69,18 +69,18 @@ export default function (secureBaseUrl, cartId, context) {
                 prerender: [
                     {
                         source: 'list',
-                        urls: [`${context.urls.cart}`],
+                        urls: [context.urls.cart],
                     },
                     {
                         where: {
                             href_matches: [
                                 `${context.urls.checkout.single_address}?version=*`,
                                 `${context.urls.checkout.multiple_address}&version=*`,
-                            ]
+                            ],
                         },
-                        eagerness: "moderate"
-                    }
-                ]
+                        eagerness: 'moderate',
+                    },
+                ],
             };
 
             const script = document.createElement('script');

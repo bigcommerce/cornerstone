@@ -532,18 +532,17 @@ export default class ProductDetails extends ProductDetailsBase {
                             href_matches: [
                                 `${this.context.urls.checkout.single_address}?version=*`,
                                 `${this.context.urls.checkout.multiple_address}&version=*`,
-                            ]
+                            ],
                         },
-                        eagerness: "moderate"
-                    }
-                ]
+                        eagerness: 'moderate',
+                    },
+                ],
             };
 
             const script = document.createElement('script');
             script.type = 'speculationrules';
             script.text = JSON.stringify(speculationRules);
             document.body.appendChild(script);
-
 
             // Update cart counter
             const $body = $('body');

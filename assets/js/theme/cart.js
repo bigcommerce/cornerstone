@@ -60,9 +60,9 @@ export default class Cart extends PageManager {
                 // if the quantity is changed "1" from "0", we have to remove the row.
                 const remove = (newQty === 0);
 
-                const checkoutUrl = urlUtils.replaceParams(this.$cartPrimaryCheckoutAction.attr("href"), {'version': response.data.version});
-                this.$cartPrimaryCheckoutAction.attr("href", checkoutUrl);
-                
+                const checkoutUrl = urlUtils.replaceParams(this.$cartPrimaryCheckoutAction.attr('href'), { version: response.data.version });
+                this.$cartPrimaryCheckoutAction.attr('href', checkoutUrl);
+
                 this.refreshContent(remove);
             } else {
                 $el.val(oldQty);
@@ -102,9 +102,9 @@ export default class Cart extends PageManager {
             if (response.data.status === 'succeed') {
                 // if the quantity is changed "1" from "0", we have to remove the row.
                 const remove = (newQty === 0);
-                
-                const checkoutUrl = urlUtils.replaceParams(this.$cartPrimaryCheckoutAction.attr("href"), {'version': response.data.version});
-                this.$cartPrimaryCheckoutAction.attr("href", checkoutUrl);
+
+                const checkoutUrl = urlUtils.replaceParams(this.$cartPrimaryCheckoutAction.attr('href'), { version: response.data.version });
+                this.$cartPrimaryCheckoutAction.attr('href', checkoutUrl);
 
                 this.refreshContent(remove);
             } else {
@@ -119,8 +119,8 @@ export default class Cart extends PageManager {
         this.$overlay.show();
         utils.api.cart.itemRemove(itemId, (err, response) => {
             if (response.data.status === 'succeed') {
-                const checkoutUrl = urlUtils.replaceParams(this.$cartPrimaryCheckoutAction.attr("href"), {'version': response.data.version});
-                this.$cartPrimaryCheckoutAction.attr("href", checkoutUrl);
+                const checkoutUrl = urlUtils.replaceParams(this.$cartPrimaryCheckoutAction.attr('href'), { version: response.data.version });
+                this.$cartPrimaryCheckoutAction.attr('href', checkoutUrl);
 
                 this.refreshContent(true);
             } else {

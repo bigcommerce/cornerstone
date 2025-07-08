@@ -7,7 +7,7 @@ export const CartPreviewEvents = {
     open: 'opened.fndtn.dropdown',
 };
 
-export default function (secureBaseUrl, cartId) {
+export default function (secureBaseUrl, cartId, context) {
     const loadingClass = 'is-loading';
     const $cart = $('[data-cart-preview]');
     const $cartDropdown = $('#cart-preview-dropdown');
@@ -63,6 +63,30 @@ export default function (secureBaseUrl, cartId) {
                 .html(response);
             $cartLoading
                 .hide();
+
+            // Add speculative loading after cart template is loaded
+            const speculationRules = {
+                prerender: [
+                    {
+                        source: 'list',
+                        urls: [context.urls.cart],
+                    },
+                    {
+                        where: {
+                            href_matches: [
+                                `${context.urls.checkout.single_address}?version=*`,
+                                `${context.urls.checkout.multiple_address}&version=*`,
+                            ],
+                        },
+                        eagerness: 'moderate',
+                    },
+                ],
+            };
+
+            const script = document.createElement('script');
+            script.type = 'speculationrules';
+            script.text = JSON.stringify(speculationRules);
+            document.body.appendChild(script);
         });
     });
 

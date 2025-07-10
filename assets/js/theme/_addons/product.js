@@ -95,7 +95,8 @@ export default class Product extends PageManager {
       moreProducts: document.querySelector('#more-products'),
       moreProductsHeader: document.querySelector('#more-products-header'),
       blemForm: document.querySelector('#product-blem-form'),
-      badges: document.querySelector('#product-badges')
+      badges: document.querySelector('#product-badges'),
+      fitmentNotes: document.querySelector('#product-fitment-notes')
     };
   }
 
@@ -153,6 +154,11 @@ export default class Product extends PageManager {
       this.contentElements.productMessages.classList.add('error');
       this.contentElements.productMessages.style.visibility = 'visible';
     }
+  }
+
+  // Add fitment notes to the product page if they exist
+  initFitmentNotes() {
+    this.contentElements.fitmentNotes.innerHTML = this.endPointData.fitment_notes || '';
   }
 
   // determine which badges apply, create them, and append them to the document
@@ -484,6 +490,7 @@ export default class Product extends PageManager {
       this.name = this.endPointData.name;
       this.updateContent();
       this.initBadges();
+      this.initFitmentNotes();
       this.checkBlem();
       if (this.inventory.av > 0 || this.madeToOrder) {
         this.addUrl =

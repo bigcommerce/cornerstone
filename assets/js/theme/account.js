@@ -15,6 +15,7 @@ import { createTranslationDictionary } from './common/utils/translations-utils';
 import { creditCardType, storeInstrument, Validators as CCValidators, Formatters as CCFormatters } from './common/payment-method';
 import { showAlertModal } from './global/modal';
 import compareProducts from './global/compare-products';
+import initMapAddressInput from './common/map-address-input';
 
 export default class Account extends PageManager {
     constructor(context) {
@@ -64,6 +65,39 @@ export default class Account extends PageManager {
 
             if (this.$state.is('input')) {
                 insertStateHiddenField(this.$state);
+            }
+
+            // Initialize map for address form
+            // Ensure this runs after the Google Maps API script is potentially loaded
+            // and initMapCallback has been called, or if google.maps is already available.
+            const initializeMapForAddress = () => {
+                if ($('#address-map-canvas').length) {
+                    initMapAddressInput({
+                        mapContainerId: 'address-map-canvas',
+                        latitudeInputSelector: '[data-map-latitude]',
+                        longitudeInputSelector: '[data-map-longitude]',
+                        addressFields: {
+                            street1: '[data-map-street1]',
+                            city: '[data-map-city]',
+                            state: '[data-map-state]',
+                            zip: '[data-map-zip]',
+                            country: '[data-map-country]',
+                        },
+                        // You might want to get a default location based on store settings or user's IP later
+                        defaultCenter: { lat: 34.0522, lng: -118.2437 }, // Example: Los Angeles
+                        defaultZoom: 10,
+                    });
+                }
+            };
+
+            if (typeof window.google === 'object' && typeof window.google.maps === 'object') {
+                initializeMapForAddress();
+            } else {
+                const originalCallback = window.initMapCallback;
+                window.initMapCallback = function() {
+                    if (originalCallback) originalCallback();
+                    initializeMapForAddress();
+                };
             }
         }
 

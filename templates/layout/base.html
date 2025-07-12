@@ -92,5 +92,23 @@
         </script>
 
         {{{footer.scripts}}}
+
+    <!-- Google Maps API Script -->
+    <!-- TODO: Replace YOUR_API_KEY with your actual Google Maps API key -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?libraries=geocoding&v=weekly&callback=initMapCallback"></script>
+    <script nonce="{{nonce}}">
+        // This global callback will be triggered by the Google Maps API script.
+        // Modules that need to initialize a map can assign their init function to this,
+        // or extend it if multiple maps are needed on a page.
+        // For now, map-address-input.js will handle its own initialization logic
+        // by checking if google.maps is available or by assigning to this callback.
+        function initMapCallback() {
+            // console.log('Google Maps API loaded via callback.');
+            // The map-address-input.js module will also check for google.maps object
+            // and can define its own init function to be called here if needed.
+            // For simplicity, it currently self-initializes if google.maps is present
+            // or by wrapping/replacing this function.
+        }
+    </script>
     </body>
 </html>

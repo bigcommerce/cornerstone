@@ -1,0 +1,137 @@
+// =============================================================================
+// RTL OVERRIDES
+//
+// All RTL-specific styles should be added to this file. These styles will be
+// compiled into the main stylesheet but will only apply when the [dir="rtl"]
+// attribute is present on the <html> tag.
+// =============================================================================
+
+[dir="rtl"] {
+  //------------------------------------------------------------------------------
+  //- Basic direction and text alignment
+  //------------------------------------------------------------------------------
+  body,
+  .body {
+    direction: rtl;
+    text-align: right;
+  }
+
+  //-- Generic alignment helpers
+  .text-left { text-align: right; }
+  .text-right { text-align: left; }
+  .text-center { text-align: center; }
+
+  //-- Generic float helpers
+  .float-left { float: right; }
+  .float-right { float: left; }
+
+  //-- Generic margin/padding helpers
+  .m-left-auto {
+      margin-right: auto;
+      margin-left: 0;
+  }
+
+  .p-left-10 {
+      padding-right: 10px;
+      padding-left: 0;
+  }
+
+  //------------------------------------------------------------------------------
+  //- Header
+  //------------------------------------------------------------------------------
+  .header-logo--left {
+    text-align: right;
+
+    @include breakpoint("medium") {
+        margin-right: remCalc(40px);
+        margin-left: auto;
+    }
+  }
+
+  .header-logo--right {
+    text-align: left;
+
+    @include breakpoint("medium") {
+        margin-left: remCalc(40px);
+        margin-right: auto;
+    }
+  }
+
+  .mobileMenu-toggle {
+    right: 0;
+    left: auto;
+  }
+
+  //------------------------------------------------------------------------------
+  //- Footer
+  //------------------------------------------------------------------------------
+  .footer-info-col {
+      @include breakpoint("small") {
+          text-align: right;
+      }
+  }
+
+  .footer-info-col--right {
+    @include breakpoint("small") {
+        right: 50%;
+        left: auto;
+    }
+    @include breakpoint("medium") {
+        right: 0;
+        text-align: left;
+    }
+  }
+
+  .footer-info-list {
+      margin-right: 0;
+      margin-left: initial;
+      padding-right: 0; // Reset browser default
+  }
+
+  .footer-copyright {
+      @include breakpoint("small") {
+          text-align: right;
+      }
+  }
+
+  .footer-payment-icons {
+      margin-right: 0;
+      margin-left: initial;
+      @include breakpoint("small") {
+          justify-content: normal; // Reset from center to default (flex-start)
+      }
+  }
+
+  .footer-newsletter-summary {
+      text-align: right;
+  }
+
+  //------------------------------------------------------------------------------
+  //- Forms & Inputs
+  //------------------------------------------------------------------------------
+  .form-field {
+    text-align: right;
+  }
+
+  .form-select {
+    background-position: left center;
+    padding-left: spacing("double");
+    padding-right: spacing("single");
+  }
+
+  //------------------------------------------------------------------------------
+  //- Navigation
+  //------------------------------------------------------------------------------
+  .navPages-list,
+  .navUser-list {
+    padding-right: 0;
+  }
+
+  .navPages-action {
+    .navPages-arrow {
+      right: auto;
+      left: 0;
+      transform: rotate(180deg);
+    }
+  }
+}

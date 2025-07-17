@@ -103,7 +103,8 @@ export default class Product extends PageManager {
   onReady() {
 
     this.gallery = new CsGallery({
-        containerClass: 'product-image-gallery'
+        containerClass: 'cs-gallery-wrapper',
+        altCaption: true
     });
 
     // initialize the product rating
@@ -204,7 +205,6 @@ export default class Product extends PageManager {
 
   // display the rating value and review count
   addRating() {
-    // console.log("Add Rating");
     const stars = document.querySelector('#star-rating').children;
     const ratingInfo = document.querySelector('#rating-info');
     const starValue = Math.ceil(archetype_average_review);
@@ -221,7 +221,6 @@ export default class Product extends PageManager {
 
   // initialize the dropdowns, pre-select and set cookie when possible.
   initSelections() {
-    // console.log("Init Selections");
     if (universal_product === true) {
       if (this.initVehicle()) {
         if (option_data['All Vehicles'][0].name === '') {
@@ -297,7 +296,6 @@ export default class Product extends PageManager {
   }
 
   checkCookieVehicle() {
-    // console.log("Check Cookie Vehicle");
     this.make = getCookie('make');
     this.model = getCookie('model');
     this.gen = getCookie('year');
@@ -310,7 +308,6 @@ export default class Product extends PageManager {
   }
 
   checkParamsVehicle() {
-    // console.log("Check Params Vehicle");
     const params = getUrlParams();
 
     if (params.url_override) {
@@ -384,7 +381,6 @@ export default class Product extends PageManager {
 
   // provide an array, a target select, and a selected value to create a list of options to add to the select. 'target' is the key value from this.selectionSteps. Includes default. 'selected' can be null if no option is selected yet.
   createOptions(array, target, selected, endpoint, line) {
-    // console.log('create options target: ', array, target, selected, line);
     let defaultOption = new Option(
       this.selectionSteps[target].default,
       this.selectionSteps[target].default
@@ -437,12 +433,10 @@ export default class Product extends PageManager {
       this.addToCartButton.disabled = !isEnabled;
       if (isEnabled) {
         // if true was passed enable the button
-        // console.log("cart button enabled");
         this.addToCartButton.classList.add('enabled');
         this.addToCartButton.style.pointerEvents = 'all';
       } else {
         // if false was passed disable the button
-        // console.log("cart button disabled");
         this.addToCartButton.classList.remove('enabled');
         this.addToCartButton.href = '';
         this.addToCartButton.style.pointerEvents = 'none';
@@ -452,7 +446,6 @@ export default class Product extends PageManager {
 
   // highlights the next select that requires user input. provide the select step value from this.selectionSteps.
   highlightActiveStep(step) {
-    // console.log("Highlight Active Step: ", step);
     // evaluate each step to determine and set it's active status
     for (const select in this.selectionSteps) {
       // if the select has the next-step class, remove the class
@@ -512,7 +505,6 @@ export default class Product extends PageManager {
 
   // loads option one when appropriate
   loadOpt1() {
-    // console.log("Load Option One: ", this.gen);
     let opt1Data = option_data[this.gen];
     if (!this.aliasProduct) {
       // not an alias product
@@ -579,7 +571,7 @@ export default class Product extends PageManager {
       if (!this.aliasProduct) {
         if (opt2Data.length === 1) {
           this.opt2Index = opt2Data[0].index;
-          this.createOptions(opt2Data, 'opt2', this.opt2index);
+          this.createOptions(opt2Data, 'opt2', this.opt2Index);
           this.endPointIndex = this.opt2Index;
           this.initCartAdd(this.endPointIndex, 'opt2');
         } else {
@@ -604,7 +596,6 @@ export default class Product extends PageManager {
   }
 
   makeChange(selected) {
-    // console.log("Make Change, selected: ", selected);
     this.clearMessages();
     this.clearBlem();
     this.cartButton(false);
@@ -650,7 +641,6 @@ export default class Product extends PageManager {
   }
 
   modelChange(selected) {
-    // console.log("Model Change, selected: ", selected);
     this.clearMessages();
     this.clearBlem();
     this.cartButton(false);
@@ -682,7 +672,6 @@ export default class Product extends PageManager {
   }
 
   genChange(selected) {
-    // console.log("Gen Change, selected: ", selected);
     this.clearMessages();
     this.clearBlem();
     this.cartButton(false);
@@ -701,7 +690,6 @@ export default class Product extends PageManager {
   }
 
   opt1Change(selected) {
-    // console.log("Option One Change, selected: ", selected);
     this.clearMessages();
     this.clearBlem();
     this.cartButton(false);
@@ -722,7 +710,6 @@ export default class Product extends PageManager {
   }
 
   opt2Change(selected) {
-    // console.log("Option Two Change, selected: ", selected);
     this.clearMessages();
     this.clearBlem();
     this.cartButton(false);
@@ -739,7 +726,6 @@ export default class Product extends PageManager {
   }
 
   clearOptions(source) {
-    // console.log("Clear Options From: ", source);
     let position = this.selectionSteps[source].step;
     for (const select in this.selectionSteps) {
       if (this.selectionSteps[select].step > position) {
@@ -759,7 +745,6 @@ export default class Product extends PageManager {
   }
 
   getAliasOptions() {
-    // console.log("get alias options");
     for (const item in key_dict) {
       if (key_dict[item].alias_sku === aliasVehicle.sku) {
         this.endPointIndex = item;
@@ -784,7 +769,6 @@ export default class Product extends PageManager {
 
   // clear all of the content elements in this.contentElements
   clearContent() {
-    // console.log("clear content");
     for (const element in this.contentElements) {
       if (element !== 'moreProducts' && element !== 'moreProductsHeader')
         this.contentElements[element].innerHTML = '';
@@ -796,7 +780,6 @@ export default class Product extends PageManager {
 
   // load the images for the endpoint product
   updateGallery() {
-    // console.log("update gallery");
     // get the images for the selected product
     let imageData = this.endPointData.image_array;
     
@@ -804,6 +787,7 @@ export default class Product extends PageManager {
     let mainImage = {
       url: imageData.url,
       description: imageData.description,
+      display_description: imageData.display_description,
       url_tiny: imageData.url_tiny,
       url_standard: imageData.url_standard,
       sort_order: imageData.image_count,
@@ -815,19 +799,16 @@ export default class Product extends PageManager {
     // push the secondary images and the main image to the new image array
     this.imageArray.push(...imageData.secondary_images_list, mainImage);
     
-    // const gallery = document.createElement('div');
-    // gallery.id = 'gallery';
-    
     // establish an array to contain the slide elements
     let slides = [];
     
     for (const image of this.imageArray) {
       let slide = document.createElement('div');
       slide.classList.add('slide');
-
       let imgElement = document.createElement('img');
       imgElement.src = image.url;
       imgElement.alt = image.description;
+      image.display_description ? imgElement.setAttribute('data-caption', '') : imgElement.removeAttribute('data-caption');
       slide.append(imgElement);
       slides.push(slide);
     }
@@ -835,7 +816,8 @@ export default class Product extends PageManager {
     this.contentElements.gallerySlides.append(...slides);
     
     this.gallery = new CsGallery ({
-      containerClass: "product-image-gallery"
+      containerClass: "cs-gallery-wrapper",
+      altCaption: true
     });
   }
 
@@ -845,7 +827,6 @@ export default class Product extends PageManager {
 
   // when an endpoint is selected by the user, reload the page content to match the endpoint product
   updateContent() {
-    // console.log("update content");
     this.clearContent();
     this.updateGallery();
     this.baseSku = this.endPointData.base_sku;
@@ -927,7 +908,6 @@ export default class Product extends PageManager {
   }
 
   getVehicleProducts() {
-    // console.log("vehicle products gen value: ", this.gen);
     this.vehicleProducts.length = 0;
     this.contentElements.moreProductsHeader.innerHTML = '';
     this.contentElements.moreProducts.innerHTML = '';
@@ -993,7 +973,6 @@ export default class Product extends PageManager {
   }
 
   updateInstructions() {
-    // console.log('update instructions');
     const iframe = this.contentElements.instructions.querySelector('iframe');
     let currentSrc = '';
     let currentUrl = '';
@@ -1057,7 +1036,6 @@ export default class Product extends PageManager {
   }
 
   ratingHandler() {
-    // console.log("rating click");
     // Remove the class "is-active" from tabTitles
     const tabTitles = document.querySelectorAll('.tab');
     tabTitles.forEach((tabTitle) => {
@@ -1089,7 +1067,6 @@ export default class Product extends PageManager {
   }
 
   checkBlem() {
-    // console.log("check blem");
     this.blemData = blem_dict[this.endPointData.base_sku];
     if (this.blemData) {
       let blemInventory = global_inv[this.blemData.index];
@@ -1134,7 +1111,6 @@ export default class Product extends PageManager {
   }
 
   toggleBlem() {
-    // console.log('toggle blem');
     let blemCheckbox = document.querySelector('#blem-opt-in');
     if (blemCheckbox.checked === true) {
       this.contentElements.sku.textContent =
@@ -1172,7 +1148,6 @@ export default class Product extends PageManager {
   }
 
   blemAcceptHandler() {
-    // console.log('blem accept');
     let blemCheckbox = document.querySelector('#blem-opt-in');
     this.blemAcknowledged = true;
     blemCheckbox.removeAttribute('data-reveal-id');
@@ -1182,7 +1157,6 @@ export default class Product extends PageManager {
   }
 
   blemDeclineHandler() {
-    // console.log('blem decline');
     let blemCheckbox = document.querySelector('#blem-opt-in');
     this.blemAcknowledged = false;
     blemCheckbox.setAttribute('data-reveal-id', 'scratch-and-dent');

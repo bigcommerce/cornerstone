@@ -130,6 +130,18 @@
     z-index: 10;
 }
 
+.gallery-caption {
+    opacity: 0;
+    visibility: hidden;
+    transition: visibility 0s linear 0.5s, opacity 0.5s linear;
+}
+
+.gallery-caption.active {
+    visibility: visible;
+    opacity: 1;
+    transition-delay: 0s;
+}
+
 /* show any number of slides, just include the appropriate visible-slides class
 
 .visible-slides-X {

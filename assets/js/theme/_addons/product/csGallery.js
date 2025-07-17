@@ -6,6 +6,7 @@ export default class CsGallery {
     keyControls = true, // control the gallery with the keyboard
     type = 'image-gallery', // [image-gallery, collection] A gallery of photos, or a collection of products
     map = true, // Include a visual reference to the user's position in the gallery
+    altCaption = false // true to display the alt text as a caption
   } = {}) {
     this.containerClass = containerClass;
     this.modal = modal;
@@ -13,11 +14,13 @@ export default class CsGallery {
     this.keyControls = keyControls;
     this.type = type;
     this.map = map;
+    this.altCaption = altCaption;
     this.container = document.querySelector(`.${containerClass}`);
     this.imageContainer = this.container.querySelector('.slides-wrapper .slides');
     this.slides = this.imageContainer.querySelectorAll('.slide');
     this.mapElement = this.container.querySelector('.gallery-map');
-    this.currentSlide = 1;
+    this.captionElement = this.container.querySelector('.gallery-caption');
+    this.currentSlide = 0;
     this.moveDistance = 100;
     this.isAnimating = false;
 
@@ -69,6 +72,8 @@ export default class CsGallery {
 
     // ensure that the map is visible if the previous gallery only had one image
     this.container.querySelector('.gallery-nav').style.display = 'flex';
+
+    this.altCaption && this.updateCaption();
   }
 
   handleClick(event) {
@@ -142,16 +147,16 @@ export default class CsGallery {
   handleNavigation(direction) {
     let bump = false;
 
-    if ( direction === 'next' && this.currentSlide < this.slides.length - (this.visibleSlides - 1)) {
+    if ( direction === 'next' && this.currentSlide < this.slides.length - this.visibleSlides) {
       this.currentSlide++;
-    } else if (direction === 'previous' && this.currentSlide > 1) {
+    } else if (direction === 'previous' && this.currentSlide > 0) {
       this.currentSlide--;
     } else {
       this.bump();
       bump = true;
     }
 
-    let moveAddress = -(this.currentSlide - 1) * this.moveDistance;
+    let moveAddress = -this.currentSlide * this.moveDistance;
     if (!bump) {
       this.moveTo(moveAddress);
     }
@@ -161,7 +166,7 @@ export default class CsGallery {
         const children = this.mapElement.children;
 
         for (let i = 0; i < children.length; i++) {
-          if (i === this.currentSlide - 1) {
+          if (i === this.currentSlide) {
             children[i].classList.add('active');
           } else {
             children[i].classList.remove('active');
@@ -171,9 +176,12 @@ export default class CsGallery {
 
       if (this.type === 'collection') {
         const indicator = this.container.querySelector('.gallery-map-indicator');
-        indicator.style.transform = `translateX(calc((${this.currentSlide} - 1) * 100%))`;
+        indicator.style.transform = `translateX(calc(${this.currentSlide} * 100%))`;
       }
     }
+
+    this.altCaption && this.updateCaption();
+    
   }
 
   initModal(image) {
@@ -199,8 +207,8 @@ export default class CsGallery {
     this.isAnimating = true;
 
     const bumpDistance = 25;
-    const slideOffset = -(this.currentSlide - 1) * this.moveDistance;
-    const bumpOffset = this.currentSlide === 1 ? bumpDistance : -bumpDistance;
+    const slideOffset = -this.currentSlide * this.moveDistance;
+    const bumpOffset = this.currentSlide === 0 ? bumpDistance : -bumpDistance;
 
     this.imageContainer.style.transform = `translateX(calc(${slideOffset}% + ${bumpOffset}px))`;
 
@@ -211,6 +219,21 @@ export default class CsGallery {
     setTimeout(() => {
       this.isAnimating = false;
     }, 400);
+  }
+
+  updateCaption() {
+    const captionSlide = this.slides[this.currentSlide];
+    const captionImg = captionSlide.querySelector('img');
+    let captionText = '';
+    
+    if (captionImg.hasAttribute('data-caption')) {
+      captionText = captionImg.alt;
+      this.captionElement.textContent = captionText;
+      this.captionElement.classList.add('active')
+    } else {
+      this.captionElement.innerHTML = '';
+      this.captionElement.classList.remove('active')
+    }
   }
 
   destroy() {
@@ -240,6 +263,5 @@ export default class CsGallery {
     this.imageContainer = null;
     this.container = null;
     this.mapElement = null;
-
   }
 }

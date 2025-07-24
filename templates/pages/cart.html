@@ -4,6 +4,7 @@ cart: true
 {{inject 'cancelButtonText' (lang 'common.cancel')}}
 {{#partial "page"}}
 {{inject 'invalidEntryMessage' (lang 'cart.invalid_entry_message')}}
+{{inject 'prerenderCheckoutEnabled' cart.prerender_checkout_enabled}}
 <div class="page">
 
     <div class="page-content" data-cart>
@@ -33,33 +34,36 @@ cart: true
                     <div class="cart-actions cart-content-padding-right">
                         <a
                             class="button button--primary"
-                            href="{{urls.checkout.single_address}}?version={{cart.version}}"
+                            href="{{urls.checkout.single_address}}{{#if cart.prerender_checkout_enabled}}?version={{cart.version}}{{/if}}"
                             title="{{lang 'cart.checkout.title'}}"
                             data-primary-checkout-now-action
                         >
                             {{lang 'cart.checkout.button'}}
                         </a>
                         {{#if cart.show_multiple_address_shipping}}
-                            <a class="checkoutMultiple" href="{{urls.checkout.multiple_address}}&version={{cart.version}}">
+                            <a class="checkoutMultiple"
+                                href="{{urls.checkout.multiple_address}}{{#if cart.prerender_checkout_enabled}}&version={{cart.version}}{{/if}}">
                                 {{lang 'cart.preview.checkout_multiple'}}
                             </a>
                         {{/if}}
 
-                        <!-- Add speculation rules for prerendering -->
+                        {{#if cart.prerender_checkout_enabled}}
+                        <!-- Add speculation rules for pre-rendering -->
                         <script type="speculationrules">
-                        {
-                            "prerender": [{
-                                "source": "document",
-                                "where": {
-                                    "href_matches": [
-                                        "{{{urls.checkout.single_address}}}?version=*",
-                                        "{{{urls.checkout.multiple_address}}}&version=*"
-                                    ]
-                                },
-                                "eagerness": "moderate"
-                            }]
-                        }
+                            {
+                                "prerender": [{
+                                    "source": "document",
+                                    "where": {
+                                        "href_matches": [
+                                            "{{{urls.checkout.single_address}}}?version=*",
+                                            "{{{urls.checkout.multiple_address}}}&version=*"
+                                        ]
+                                    },
+                                    "eagerness": "moderate"
+                                }]
+                            }
                         </script>
+                        {{/if}}
                     </div>
                 {{else}}
                     <div class="cart-actions cart-content-padding-right">

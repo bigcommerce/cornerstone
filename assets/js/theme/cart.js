@@ -60,8 +60,10 @@ export default class Cart extends PageManager {
                 // if the quantity is changed "1" from "0", we have to remove the row.
                 const remove = (newQty === 0);
 
-                const checkoutUrl = urlUtils.replaceParams(this.$cartPrimaryCheckoutAction.attr('href'), { version: response.data.version });
-                this.$cartPrimaryCheckoutAction.attr('href', checkoutUrl);
+                if (this.context.prerenderCheckoutEnabled) {
+                    const checkoutUrl = urlUtils.replaceParams(this.$cartPrimaryCheckoutAction.attr('href'), { version: response.data.version });
+                    this.$cartPrimaryCheckoutAction.attr('href', checkoutUrl);
+                }
 
                 this.refreshContent(remove);
             } else {
@@ -103,8 +105,10 @@ export default class Cart extends PageManager {
                 // if the quantity is changed "1" from "0", we have to remove the row.
                 const remove = (newQty === 0);
 
-                const checkoutUrl = urlUtils.replaceParams(this.$cartPrimaryCheckoutAction.attr('href'), { version: response.data.version });
-                this.$cartPrimaryCheckoutAction.attr('href', checkoutUrl);
+                if (this.context.prerenderCheckoutEnabled) {
+                    const checkoutUrl = urlUtils.replaceParams(this.$cartPrimaryCheckoutAction.attr('href'), { version: response.data.version });
+                    this.$cartPrimaryCheckoutAction.attr('href', checkoutUrl);
+                }
 
                 this.refreshContent(remove);
             } else {
@@ -119,8 +123,10 @@ export default class Cart extends PageManager {
         this.$overlay.show();
         utils.api.cart.itemRemove(itemId, (err, response) => {
             if (response.data.status === 'succeed') {
-                const checkoutUrl = urlUtils.replaceParams(this.$cartPrimaryCheckoutAction.attr('href'), { version: response.data.version });
-                this.$cartPrimaryCheckoutAction.attr('href', checkoutUrl);
+                if (this.context.prerenderCheckoutEnabled) {
+                    const checkoutUrl = urlUtils.replaceParams(this.$cartPrimaryCheckoutAction.attr('href'), { version: response.data.version });
+                    this.$cartPrimaryCheckoutAction.attr('href', checkoutUrl);
+                }
 
                 this.refreshContent(true);
             } else {
@@ -345,8 +351,11 @@ export default class Cart extends PageManager {
 
             utils.api.cart.applyCode(code, (err, response) => {
                 if (response.data.status === 'success') {
-                    // TODO Update version on checkout url
-                    console.log('Calling refreshCheckoutPrerendering after applying promo code');
+                    if (this.context.prerenderCheckoutEnabled) {
+                        const checkoutUrl = urlUtils.replaceParams(this.$cartPrimaryCheckoutAction.attr('href'), { version: response.data.version });
+                        this.$cartPrimaryCheckoutAction.attr('href', checkoutUrl);
+                    }
+
                     this.refreshContent();
                 } else {
                     showAlertModal(response.data.errors.join('\n'));
@@ -388,8 +397,11 @@ export default class Cart extends PageManager {
 
             utils.api.cart.applyGiftCertificate(code, (err, resp) => {
                 if (resp.data.status === 'success') {
-                    // TODO Update version on checkout url
-                    console.log('Calling refreshCheckoutPrerendering after applying gift certificate');
+                    if (this.context.prerenderCheckoutEnabled) {
+                        const checkoutUrl = urlUtils.replaceParams(this.$cartPrimaryCheckoutAction.attr('href'), { version: resp.data.version });
+                        this.$cartPrimaryCheckoutAction.attr('href', checkoutUrl);
+                    }
+
                     this.refreshContent();
                 } else {
                     showAlertModal(resp.data.errors.join('\n'));

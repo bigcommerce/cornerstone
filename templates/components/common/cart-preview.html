@@ -1,4 +1,5 @@
-<div class="previewCartWrapper">
+<div class="previewCartWrapper"
+    data-checkout-prerender-enabled="{{#if cart.prerender_checkout_enabled}}true{{else}}false{{/if}}">
   <div class="previewCart">
     {{#if cart.items.length}}
         <ul class="previewCartList">
@@ -51,9 +52,9 @@
                 {{#if cart.show_primary_checkout_button}}
                     <div class="previewCartAction-checkout">
                         <a
-                                href="{{urls.checkout.single_address}}?version={{cart.version}}"
-                                class="button button--small button--primary"
-                                data-primary-checkout-now-action
+                            href="{{urls.checkout.single_address}}{{#if cart.prerender_checkout_enabled}}?version={{cart.version}}{{/if}}"
+                            class="button button--small button--primary"
+                            data-primary-checkout-now-action
                         >
                             {{lang 'cart.preview.checkout_now'}}
                         </a>
@@ -64,11 +65,12 @@
                     <a href="{{urls.cart}}" class="button button--small button--action">
                         {{lang 'cart.preview.view_cart'}}
                     </a>
+                    
                 </div>
 
                 {{#if cart.show_multiple_address_shipping}}
                     <div class="previewCartAction-checkoutMultiple">
-                        <a href="{{urls.checkout.multiple_address}}&version={{cart.version}}">
+                        <a href="{{urls.checkout.multiple_address}}{{#if cart.prerender_checkout_enabled}}&version={{cart.version}}{{/if}}">
                             {{lang 'cart.preview.checkout_multiple'}}
                         </a>
                     </div>

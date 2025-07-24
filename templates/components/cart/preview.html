@@ -6,9 +6,11 @@
 
 <div class="modal-body">
     <div class="previewCart">
-        <section class="previewCartCheckout">
+        <section class="previewCartCheckout"
+            data-checkout-prerender-enabled="{{#if cart.prerender_checkout_enabled}}true{{else}}false{{/if}}">
             {{#if cart.show_primary_checkout_button}}
-                <a href="{{urls.checkout.single_address}}?version={{cart.version}}" class="button button--primary" data-primary-checkout-now-action>
+                <a href="{{urls.checkout.single_address}}{{#if cart.prerender_checkout_enabled}}?version={{cart.version}}{{/if}}"
+                    class="button button--primary" data-primary-checkout-now-action>
                     {{lang 'cart.added_to_cart.proceed_to_checkout'}}
                 </a>
             {{/if}}
@@ -21,7 +23,7 @@
 
             {{#if cart.show_multiple_address_shipping}}
                 <div class="previewCartAction-checkoutMultiple">
-                    <a href="{{urls.checkout.multiple_address}}&version={{cart.version}}">
+                    <a href="{{urls.checkout.multiple_address}}{{#if cart.prerender_checkout_enabled}}&version={{cart.version}}{{/if}}">
                         {{lang 'cart.preview.checkout_multiple'}}
                     </a>
                 </div>

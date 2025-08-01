@@ -3,6 +3,12 @@
         {{> components/common/currency-selector}}
     {{/or}}
 
+    {{#if theme_settings.show_language_selector_mock_data}}
+        {{#if theme_settings.language_selector_mock_data.locales.length '>' 1}}
+            {{> components/common/language-selector}}
+        {{/if}}
+    {{/if}}
+
     {{#if theme_settings.show_channels}}
         {{> components/common/channel-selector}}
     {{/if}}

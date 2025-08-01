@@ -1,0 +1,63 @@
+<a class="navPages-action has-subMenu"
+   href="#"
+   data-collapsible="navPages-locale"
+   aria-controls="navPages-locale"
+   aria-expanded="false"
+   aria-label="{{lang 'common.currency' code=currency_selector.active_currency_code}}"
+>
+    {{#each locales}}
+        {{#if isDefault}}
+            <!-- {{lang 'common.locale'}}: {{name}} -->
+            {{lang 'common.locale'}}: {{code}}
+        {{/if}}
+    {{/each}}
+    <i class="icon navPages-action-moreIcon" aria-hidden="true">
+        <svg>
+            <use href="#icon-chevron-down"></use>
+        </svg>
+    </i>
+</a>
+<div class="navPage-subMenu" id="navPages-locale" aria-hidden="true" tabindex="-1">
+    <ul class="navPage-subMenu-list">
+        {{#each locales}}
+        <li class="navPage-subMenu-item">
+            <a class="navPage-subMenu-action navPages-action"
+               href="{{path}}"
+               aria-label="{{name}}"
+               data-locale-code="{{{code}}}"
+               data-warning="{{lang 'common.locale_switch_warning'}}"
+            >
+                {{#if isDefault}}
+                    <!-- <strong>{{name}}</strong> -->
+                     <strong>{{code}}</strong>
+                {{else}}
+                    <!-- {{name}} -->
+                     {{code}}
+                {{/if}}
+            </a>
+        </li>
+        {{/each}}
+
+        <!-- MOCK LOCALES -->
+        <li class="navPage-subMenu-item">
+            <a class="navPage-subMenu-action navPages-action"
+               href="{{path}}"
+               aria-label="Français"
+               data-locale-code="fr"
+               data-warning="{{lang 'common.locale_switch_warning'}}"
+            >
+                Français
+            </a>
+        </li>
+        <li class="navPage-subMenu-item">
+            <a class="navPage-subMenu-action navPages-action"
+               href="{{path}}"
+               aria-label="Español (Perú)"
+               data-locale-code="es"
+               data-warning="{{lang 'common.locale_switch_warning'}}"
+            >
+                Español (Perú)
+            </a>
+        </li>
+    </ul>
+</div>

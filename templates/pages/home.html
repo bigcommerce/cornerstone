@@ -10,6 +10,19 @@ carousel: {{theme_settings.homepage_show_carousel}}
 blog:
     recent_posts:
         limit: {{theme_settings.homepage_blog_posts_count}}
+gql: "query {
+    site {
+        settings {
+            url {
+                vanityUrl
+            }
+            locales {
+                code
+                isDefault
+            }
+        }
+    }
+}"
 ---
 {{#partial "hero"}}
     {{{region name="home_below_menu"}}}

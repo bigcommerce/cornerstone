@@ -5,6 +5,7 @@ import './common/select-option-plugin';
 import PageManager from './page-manager';
 import quickSearch from './global/quick-search';
 import currencySelector from './global/currency-selector';
+import languageSelector from './global/language-selector';
 import mobileMenuToggle from './global/mobile-menu-toggle';
 import menu from './global/menu';
 import foundation from './global/foundation';
@@ -15,10 +16,11 @@ import svgInjector from './global/svg-injector';
 
 export default class Global extends PageManager {
     onReady() {
-        const { cartId, secureBaseUrl } = this.context;
+        const { cartId, secureBaseUrl, storefrontAPIToken } = this.context;
         cartPreview(secureBaseUrl, cartId);
         quickSearch();
         currencySelector(cartId);
+        languageSelector(storefrontAPIToken);
         foundation($(document));
         quickView(this.context);
         carousel(this.context);

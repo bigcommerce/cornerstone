@@ -3,6 +3,15 @@
         {{> components/common/currency-selector}}
     {{/or}}
 
+    {{#if theme_settings.show_language_selector}}
+        {{#if gql.data.site.settings.locales.length '>' 0}}
+            {{> components/common/language-selector
+                locales=gql.data.site.settings.locales
+                storeUrl=gql.data.site.settings.url.vanityUrl
+            }}
+        {{/if}}
+    {{/if}}
+
     {{#if theme_settings.show_channels}}
         {{> components/common/channel-selector}}
     {{/if}}

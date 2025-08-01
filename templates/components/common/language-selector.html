@@ -1,0 +1,62 @@
+<ul class="navUser-section">
+    <li class="navUser-item">
+        <a class="navUser-action navUser-action--languageSelector has-dropdown"
+           href="#"
+           data-dropdown="languageSelection"
+           aria-controls="languageSelection"
+           aria-expanded="false"
+        >
+            {{#each locales}}
+                {{#if isDefault}}
+                    <!-- {{lang 'common.locale'}}: {{name}} -->
+                    {{lang 'common.locale'}}: {{code}}
+                {{/if}}
+            {{/each}}
+
+            <i class="icon" aria-hidden="true">
+                <svg>
+                    <use href="#icon-chevron-down" />
+                </svg>
+            </i>
+        </a>
+        <ul class="dropdown-menu" id="languageSelection" data-dropdown-content aria-hidden="true" tabindex="-1">
+            {{#each locales}}
+            <li class="dropdown-menu-item">
+                <a href="{{path}}"
+                   data-locale-code="{{code}}"
+                   data-warning="{{lang 'common.locale_switch_warning'}}"
+                   {{#if isDefault}}aria-current="true"{{/if}}
+                >
+                {{#if isDefault}}
+                    <!-- <strong>{{name}}</strong> -->
+                    <strong>{{code}}</strong>
+                {{else}}
+                    <!-- {{name}} -->
+                    {{code}}
+                {{/if}}
+                </a>
+            </li>
+            {{/each}}
+
+            <!-- MOCK LOCALES -->
+            <li class="dropdown-menu-item">
+                <a href="/fr"
+                   data-locale-code="fr"
+                   data-warning="{{lang 'common.locale_switch_warning'}}"
+                   aria-current="false"
+                >
+                    Français
+                </a>
+            </li>
+            <li class="dropdown-menu-item">
+                <a href="/es"
+                   data-locale-code="es"
+                   data-warning="{{lang 'common.locale_switch_warning'}}"
+                   aria-current="false"
+                >
+                    Español (Perú)
+                </a>
+            </li>
+        </ul>
+    </li>
+</ul>

@@ -68,6 +68,16 @@
                 </div>
             </li>
         {{/if}}
+        {{#if theme_settings.show_language_selector}}
+            {{#if gql.data.site.settings.locales.length '>' 0}}
+                <li class="navPages-item">
+                    {{> components/common/language-selector-mobile
+                        locales=gql.data.site.settings.locales
+                        storeUrl=gql.data.site.settings.url.vanityUrl
+                    }}
+                </li>
+            {{/if}}
+        {{/if}}
         {{#if theme_settings.show_channels}}
             <li class="navPages-item">
                 {{> components/common/channel-selector-mobile}}

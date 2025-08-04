@@ -6,6 +6,7 @@ import utils from '@bigcommerce/stencil-utils';
 import ShippingEstimator from './cart/shipping-estimator';
 import { defaultModal, showAlertModal, ModalEvents } from './global/modal';
 import CartItemDetails from './common/cart-item-details';
+import urlUtils from './common/utils/url-utils';
 
 export default class Cart extends PageManager {
     onReady() {
@@ -19,6 +20,7 @@ export default class Cart extends PageManager {
             .hide(); // TODO: temporary until roper pulls in his cart components
         this.$activeCartItemId = null;
         this.$activeCartItemBtnAction = null;
+        this.$cartPrimaryCheckoutAction = $('[data-primary-checkout-now-action]');
 
         this.setApplePaySupport();
         this.bindEvents();
@@ -57,6 +59,11 @@ export default class Cart extends PageManager {
             if (response.data.status === 'succeed') {
                 // if the quantity is changed "1" from "0", we have to remove the row.
                 const remove = (newQty === 0);
+
+                if (this.context.prerenderCheckoutEnabled) {
+                    const checkoutUrl = urlUtils.replaceParams(this.$cartPrimaryCheckoutAction.attr('href'), { version: response.data.version });
+                    this.$cartPrimaryCheckoutAction.attr('href', checkoutUrl);
+                }
 
                 this.refreshContent(remove);
             } else {
@@ -98,6 +105,11 @@ export default class Cart extends PageManager {
                 // if the quantity is changed "1" from "0", we have to remove the row.
                 const remove = (newQty === 0);
 
+                if (this.context.prerenderCheckoutEnabled) {
+                    const checkoutUrl = urlUtils.replaceParams(this.$cartPrimaryCheckoutAction.attr('href'), { version: response.data.version });
+                    this.$cartPrimaryCheckoutAction.attr('href', checkoutUrl);
+                }
+
                 this.refreshContent(remove);
             } else {
                 $el.val(oldQty);
@@ -111,6 +123,11 @@ export default class Cart extends PageManager {
         this.$overlay.show();
         utils.api.cart.itemRemove(itemId, (err, response) => {
             if (response.data.status === 'succeed') {
+                if (this.context.prerenderCheckoutEnabled) {
+                    const checkoutUrl = urlUtils.replaceParams(this.$cartPrimaryCheckoutAction.attr('href'), { version: response.data.version });
+                    this.$cartPrimaryCheckoutAction.attr('href', checkoutUrl);
+                }
+
                 this.refreshContent(true);
             } else {
                 this.$overlay.hide();
@@ -334,6 +351,11 @@ export default class Cart extends PageManager {
 
             utils.api.cart.applyCode(code, (err, response) => {
                 if (response.data.status === 'success') {
+                    if (this.context.prerenderCheckoutEnabled) {
+                        const checkoutUrl = urlUtils.replaceParams(this.$cartPrimaryCheckoutAction.attr('href'), { version: response.data.version });
+                        this.$cartPrimaryCheckoutAction.attr('href', checkoutUrl);
+                    }
+
                     this.refreshContent();
                 } else {
                     showAlertModal(response.data.errors.join('\n'));
@@ -375,6 +397,11 @@ export default class Cart extends PageManager {
 
             utils.api.cart.applyGiftCertificate(code, (err, resp) => {
                 if (resp.data.status === 'success') {
+                    if (this.context.prerenderCheckoutEnabled) {
+                        const checkoutUrl = urlUtils.replaceParams(this.$cartPrimaryCheckoutAction.attr('href'), { version: resp.data.version });
+                        this.$cartPrimaryCheckoutAction.attr('href', checkoutUrl);
+                    }
+
                     this.refreshContent();
                 } else {
                     showAlertModal(resp.data.errors.join('\n'));

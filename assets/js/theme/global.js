@@ -16,7 +16,7 @@ import svgInjector from './global/svg-injector';
 export default class Global extends PageManager {
     onReady() {
         const { cartId, secureBaseUrl } = this.context;
-        cartPreview(secureBaseUrl, cartId);
+        cartPreview(secureBaseUrl, cartId, this.context);
         quickSearch();
         currencySelector(cartId);
         foundation($(document));

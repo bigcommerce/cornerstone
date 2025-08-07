@@ -10,7 +10,6 @@ import menu from './global/menu';
 import foundation from './global/foundation';
 import quickView from './global/quick-view';
 import cartPreview from './global/cart-preview';
-import privacyCookieNotification from './global/cookieNotification';
 import carousel from './common/carousel';
 import svgInjector from './global/svg-injector';
 import './global/template-check';
@@ -26,7 +25,6 @@ export default class Global extends PageManager {
         carousel(this.context);
         menu();
         mobileMenuToggle();
-        privacyCookieNotification();
         svgInjector();
     }
 }

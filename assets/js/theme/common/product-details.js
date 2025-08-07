@@ -25,6 +25,7 @@ export default class ProductDetails extends ProductDetailsBase {
         this.swatchInitMessageStorage = {};
         this.swatchGroupIdList = $('[id^="swatchGroup"]').map((_, group) => $(group).attr('id'));
         this.storeInitMessagesForSwatches();
+        this.updateDateSelector();
 
         const $form = $('form[data-cart-item-add]', $scope);
 
@@ -590,5 +591,52 @@ export default class ProductDetails extends ProductDetailsBase {
             bubbles: true,
             detail: { productDetails },
         }));
+    }
+
+    updateDateSelector() {
+        this.$scope.each((i, scope) => {
+            function updateDays(dateOption) {
+                const monthSelector = dateOption.querySelector('select[name$="[month]"]');
+                const daySelector = dateOption.querySelector('select[name$="[day]"]');
+                const yearSelector = dateOption.querySelector('select[name$="[year]"]');
+                const month = parseInt(monthSelector.value, 10);
+                const year = parseInt(yearSelector.value, 10);
+                let daysInMonth;
+
+                if (!Number.isNaN(month) && !Number.isNaN(year)) {
+                    switch (month) {
+                    case 2:
+                        daysInMonth = (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0) ? 29 : 28;
+                        break;
+                    case 4: case 6: case 9: case 11:
+                        daysInMonth = 30;
+                        break;
+                    default:
+                        daysInMonth = 31;
+                    }
+
+                    for (let day = 29; day <= 31; day++) {
+                        const option = daySelector.querySelector(`option[value="${day}"]`);
+                        if (day <= daysInMonth && !option) {
+                            daySelector.options.add(new Option(day, day));
+                        } else if (day > daysInMonth && option) {
+                            option.remove();
+                        }
+                    }
+                }
+            }
+
+            $(scope).on('change', (e) => {
+                const dateOption = e.target && e.target.closest && e.target.closest('[data-product-attribute=date]');
+
+                if (dateOption) {
+                    updateDays(dateOption);
+                }
+            });
+
+            scope.querySelectorAll('[data-product-attribute=date]').forEach(dateOption => {
+                updateDays(dateOption);
+            });
+        });
     }
 }

@@ -1,0 +1,42 @@
+{{#if theme_settings.channels.length '>' 1}}
+<a href="#"
+   class="navPages-action has-subMenu"
+   data-collapsible="navPages-channel"
+   aria-controls="navPages-channel"
+   aria-expanded="false"
+   aria-label="
+    {{#each theme_settings.channels}}
+        {{#if is_active}}
+            {{lang 'common.channel' code=code}}
+        {{/if}}
+    {{/each}}
+   "
+>
+    {{#each theme_settings.channels}}
+        {{#if is_active}}
+            {{lang 'common.channel' code=code}}
+        {{/if}}
+    {{/each}}
+    <i class="icon navPages-action-moreIcon" aria-hidden="true">
+        <svg>
+            <use href="#icon-chevron-down"></use>
+        </svg>
+    </i>
+</a>
+<div class="navPage-subMenu" id="navPages-channel" aria-hidden="true" tabindex="-1">
+    <ul class="navPage-subMenu-list">
+        {{#each theme_settings.channels}}
+        <li class="navPage-subMenu-item">
+            <a href="{{{switch_url}}}"
+               class="navPage-subMenu-action navPages-action"
+               aria-label="{{name}}"
+               data-channel-code="{{{code}}}"
+               data-warning="{{lang 'common.channel_switch_warning'}}"
+            >
+                {{name}}
+            </a>
+        </li>
+        {{/each}}
+    </ul>
+</div>
+{{/if}}

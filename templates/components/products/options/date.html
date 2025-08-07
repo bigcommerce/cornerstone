@@ -4,6 +4,17 @@
 
         {{> components/common/requireness-msg}}
     </label>
+    <select class="form-select form-select--date" name="attribute[{{this.id}}][year]" {{#if required}}required{{/if}}>
+        <option value="">{{lang 'common.year'}}</option>
+        {{#for earliest_year latest_year}}
+            <option value="{{$index}}" {{#if ../selected_date.year '==' $index}}selected="selected"{{/if}}>
+                {{$index}}
+            </option>
+        {{/for}}
+        {{#if earliest_year '==' latest_year}}
+        <option value="{{earliest_year}}" selected="selected">{{earliest_year}}</option>
+        {{/if}}
+    </select>
     <select class="form-select form-select--date" name="attribute[{{this.id}}][month]" {{#if required}}required{{/if}}>
         <option value="">{{lang 'common.month'}}</option>
         {{#for 1 12}}
@@ -19,16 +30,5 @@
                 {{$index}}
             </option>
         {{/for}}
-    </select>
-    <select class="form-select form-select--date" name="attribute[{{this.id}}][year]" {{#if required}}required{{/if}}>
-        <option value="">{{lang 'common.year'}}</option>
-        {{#for earliest_year latest_year}}
-            <option value="{{$index}}" {{#if ../selected_date.year '==' $index}}selected="selected"{{/if}}>
-                {{$index}}
-            </option>
-        {{/for}}
-        {{#if earliest_year '==' latest_year}}
-        <option value="{{earliest_year}}" selected="selected">{{earliest_year}}</option>
-        {{/if}}
     </select>
 </div>

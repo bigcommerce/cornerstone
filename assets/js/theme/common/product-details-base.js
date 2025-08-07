@@ -15,13 +15,13 @@ const optionsTypesMap = {
     PRODUCT_LIST: 'product-list',
 };
 
-export function optionChangeDecorator(areDefaultOtionsSet) {
+export function optionChangeDecorator(areDefaultOptionsSet) {
     return (err, response) => {
         const attributesData = response.data || {};
         const attributesContent = response.content || {};
 
         this.updateProductAttributes(attributesData);
-        if (areDefaultOtionsSet) {
+        if (areDefaultOptionsSet) {
             this.updateView(attributesData, attributesContent);
         } else {
             this.updateDefaultAttributesForOOS(attributesData);
@@ -145,8 +145,14 @@ export default class ProductDetailsBase {
      */
     getViewModel($scope) {
         return {
-            $priceWithTax: $('[data-product-price-with-tax]', $scope),
-            $priceWithoutTax: $('[data-product-price-without-tax]', $scope),
+            priceWithTax: {
+                $div: $('.price--withTax', $scope),
+                $span: $('[data-product-price-with-tax]', $scope),
+            },
+            priceWithoutTax: {
+                $div: $('.price--withoutTax', $scope),
+                $span: $('[data-product-price-without-tax]', $scope),
+            },
             rrpWithTax: {
                 $div: $('.rrp-price--withTax', $scope),
                 $span: $('[data-product-rrp-with-tax]', $scope),
@@ -176,6 +182,7 @@ export default class ProductDetailsBase {
             $weight: $('.productView-info [data-product-weight]', $scope),
             $increments: $('.form-field--increments :input', $scope),
             $addToCart: $('#form-action-addToCart', $scope),
+            $addToCartForm: $('form[data-cart-item-add]', $scope),
             $wishlistVariation: $('[data-wishlist-add] [name="variation_id"]', $scope),
             stock: {
                 $container: $('.form-field--stock', $scope),
@@ -210,6 +217,8 @@ export default class ProductDetailsBase {
         viewModel.priceSaved.$div.hide();
         viewModel.priceNowLabel.$span.hide();
         viewModel.priceLabel.$span.hide();
+        viewModel.priceWithTax.$div.hide();
+        viewModel.priceWithoutTax.$div.hide();
     }
 
     /**
@@ -223,6 +232,8 @@ export default class ProductDetailsBase {
 
         if (data.price instanceof Object) {
             this.updatePriceView(viewModel, data.price);
+        } else {
+            this.clearPricingNotFound(viewModel);
         }
 
         if (data.weight instanceof Object) {
@@ -292,7 +303,8 @@ export default class ProductDetailsBase {
                 `${price.price_range.min.with_tax.formatted} - ${price.price_range.max.with_tax.formatted}`
                 : price.with_tax.formatted;
             viewModel.priceLabel.$span.show();
-            viewModel.$priceWithTax.html(updatedPrice);
+            viewModel.priceWithTax.$div.show();
+            viewModel.priceWithTax.$span.html(updatedPrice);
         }
 
         if (price.without_tax) {
@@ -300,7 +312,8 @@ export default class ProductDetailsBase {
                 `${price.price_range.min.without_tax.formatted} - ${price.price_range.max.without_tax.formatted}`
                 : price.without_tax.formatted;
             viewModel.priceLabel.$span.show();
-            viewModel.$priceWithoutTax.html(updatedPrice);
+            viewModel.priceWithoutTax.$div.show();
+            viewModel.priceWithoutTax.$span.html(updatedPrice);
         }
 
         if (price.rrp_with_tax) {
@@ -361,7 +374,10 @@ export default class ProductDetailsBase {
     }
 
     updateWalletButtonsView(data) {
-        this.toggleWalletButtonsVisibility(data.purchasable && data.instock);
+        const viewModel = this.getViewModel(this.$scope);
+        const isValidForm = viewModel.$addToCartForm[0].checkValidity();
+
+        this.toggleWalletButtonsVisibility(isValidForm && data.purchasable && data.instock);
     }
 
     toggleWalletButtonsVisibility(shouldShow) {

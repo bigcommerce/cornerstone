@@ -12,25 +12,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="google-site-verification" content="eWXRJIWsZnHtS6Mu1ABKTMwQgFeljNJL0OLo8e-SjTY" />
 
-    <script>
-        {{!--Change document class from no - js to js so we can detect this in css--}}
-        document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
-    </script>
+        <script nonce="{{nonce}}">
+            {{!-- Change document class from no-js to js so we can detect this in css --}}
+            document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+        </script>
 
-    {{> components/common/polyfill-script }}
-    <script>window.consentManagerTranslations = `{{{langJson 'consent_manager'}}}`;</script>
+        {{> components/common/polyfill-script }}
+        <script nonce="{{nonce}}">window.consentManagerTranslations = `{{{langJson 'consent_manager'}}}`;</script>
 
-    {{!-- Load Lazysizes script ASAP so images will appear --}}
-    <script>
-        {{!--Only load visible elements until the onload event fires, after which preload nearby elements. --}}
-        window.lazySizesConfig = window.lazySizesConfig || {};
-        window.lazySizesConfig.loadMode = 1;
-    </script>
-    <script async src="{{cdn 'assets/dist/theme-bundle.head_async.js' resourceHint='preload' as='script'}}"></script>
-
-    {{getFontsCollection font-display='block'}}
-
-    <script async src="{{cdn 'assets/dist/theme-bundle.font.js' resourceHint='preload' as='script'}}"></script>
+        {{!-- Load Lazysizes script ASAP so images will appear --}}
+        <script nonce="{{nonce}}">
+            {{!-- Only load visible elements until the onload event fires, after which preload nearby elements. --}}
+            window.lazySizesConfig = window.lazySizesConfig || {};
+            window.lazySizesConfig.loadMode = 1;
+        </script>
+        <script nonce="{{nonce}}" async src="{{cdn 'assets/dist/theme-bundle.head_async.js' resourceHint='preload' as='script'}}"></script>
+        
+        {{getFontsCollection font-display='block'}}
+        
+        <script nonce="{{nonce}}" async src="{{cdn 'assets/dist/theme-bundle.font.js' resourceHint='preload' as='script'}}"></script>
 
     {{{stylesheet '/assets/css/theme.css'}}}
 
@@ -52,23 +52,23 @@
 
     {{{head.scripts}}}
 
-    {{~inject 'zoomSize' theme_settings.zoom_size}}
-    {{~inject 'productSize' theme_settings.product_size}}
-    {{~inject 'genericError' (lang 'common.generic_error')}}
-    {{~inject 'urls' urls}}
-    {{~inject 'secureBaseUrl' settings.secure_base_url}}
-    {{~inject 'cartId' cart_id}}
-    {{~inject 'template' template}}
-    {{~inject 'validationDictionaryJSON' (langJson 'validation_messages')}}
-    {{~inject 'validationFallbackDictionaryJSON' (langJson 'validation_fallback_messages')}}
-    {{~inject 'validationDefaultDictionaryJSON' (langJson 'validation_default_messages')}}
-    {{~inject 'carouselArrowAndDotAriaLabel' (lang 'carousel.arrow_and_dot_aria_label')}}
-    {{~inject 'carouselActiveDotAriaLabel' (lang 'carousel.active_dot_aria_label')}}
-    {{~inject 'carouselContentAnnounceMessage' (lang 'carousel.content_announce_message')}}
-</head>
-
-<body>
-    <svg data-src="{{cdn 'img/icon-sprite.svg'}}" class="icons-svg-sprite"></svg>
+        {{~inject 'zoomSize' theme_settings.zoom_size}}
+        {{~inject 'productSize' theme_settings.product_size}}
+        {{~inject 'genericError' (lang 'common.generic_error')}}
+        {{~inject 'urls' urls}}
+        {{~inject 'secureBaseUrl' settings.secure_base_url}}
+        {{~inject 'cartId' cart_id}}
+        {{~inject 'template' template}}
+        {{~inject 'validationDictionaryJSON' (langJson 'validation_messages')}}
+        {{~inject 'validationFallbackDictionaryJSON' (langJson 'validation_fallback_messages')}}
+        {{~inject 'validationDefaultDictionaryJSON' (langJson 'validation_default_messages')}}
+        {{~inject 'carouselArrowAndDotAriaLabel' (lang 'carousel.arrow_and_dot_aria_label')}}
+        {{~inject 'carouselActiveDotAriaLabel' (lang 'carousel.active_dot_aria_label')}}
+        {{~inject 'carouselContentAnnounceMessage' (lang 'carousel.content_announce_message')}}
+        {{~inject 'giftWrappingRemoveMessage' (lang 'cart.gift_wrapping.remove_confirm')}}
+    </head>
+    <body>
+        <svg data-src="{{cdn 'img/icon-sprite.svg'}}" class="icons-svg-sprite"></svg>
 
     {{> components/common/header }}
 
@@ -81,11 +81,11 @@
 
     {{> components/common/footer }}
 
-    <script>window.__webpack_public_path__ = "{{cdn 'assets/dist/'}}";</script>
-    <script>
-        {{!--Exported in app.js--}}
-        function onThemeBundleMain() {
-            window.stencilBootstrap("{{page_type}}", {{ jsContext }}).load();
+        <script nonce="{{nonce}}">window.__webpack_public_path__ = "{{cdn 'assets/dist/'}}";</script>
+        <script nonce="{{nonce}}">
+            {{!-- Exported in app.js --}}
+            function onThemeBundleMain() {
+                window.stencilBootstrap("{{page_type}}", {{jsContext}}).load();
 
         function browserSupportsFormData() {
             return typeof FormData !== 'undefined'
@@ -105,8 +105,17 @@
         }
             }
     </script>
-    <script async defer src="{{cdn 'assets/dist/theme-bundle.main.js' resourceHint='preload' as='script'}}"
-        onload="onThemeBundleMain()"></script>
+    <script id="theme-bundle-main" nonce="{{nonce}}" async defer src="{{cdn 'assets/dist/theme-bundle.main.js' resourceHint='preload' as='script'}}"
+       ></script>
+        <script nonce="{{nonce}}">
+            const scriptElement = document.getElementById('theme-bundle-main');
+
+            if (scriptElement) {
+                addEventListener('load', onThemeBundleMain);
+            } else {
+                console.error('Could not find script element with id "theme-bundle-main"');
+            }
+        </script>
 
     {{#if page_type '===' '404'}}
     <script type="text/javascript" src="/content/cs_search.js"></script>

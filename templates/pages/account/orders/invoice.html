@@ -194,6 +194,13 @@
                         <td class="Title" colspan="{{#if ../order.has_multiple_shipping_addresses}}5{{else}}4{{/if}}">{{label}}</td>
                         <td class="Total">{{value.formatted}}</td>
                     </tr>
+                    {{#if shipping_discounts}}
+                        {{#each shipping_discounts}}
+                            <tr class="InvoiceTotalRow">
+                                <td class="Title" colspan="5">{{label}}</td>
+                            </tr>
+                        {{/each}}
+                    {{/if}}
                 {{/each}}
                 </tfoot>
             </table>

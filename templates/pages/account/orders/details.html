@@ -18,6 +18,13 @@
                     {{#if value.value}}
                         <dt class="account-orderTotal-key">{{label}}:</dt>
                         <dd class="account-orderTotal-value">{{value.formatted}}</dd>
+                        {{#if shipping_discounts}}
+                            <dl>
+                                {{#each shipping_discounts}}
+                                    <dt class="account-orderTotal-discount">{{label}}</dt>
+                                {{/each}}
+                            </dl>
+                        {{/if}}
                     {{/if}}
                 {{/each}}
             </dl>

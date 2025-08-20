@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Draft
+- Create Language Selector Component (UI implementation) [#2562](https://github.com/bigcommerce/cornerstone/pull/2562)
 - Add net-new "order.pickup_addresses" to unify objects used on Order Details and Order Invoice pages [#2557](https://github.com/bigcommerce/cornerstone/pull/2557)
 - Removed banner widget configuration and related translations [#2561](https://github.com/bigcommerce/cornerstone/pull/2561)
 - Add support for shipping discounts in "order.total_rows" for use on the Order Details and Order Invoice pages [#2568](https://github.com/bigcommerce/cornerstone/pull/2568)

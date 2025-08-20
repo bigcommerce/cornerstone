@@ -1,0 +1,34 @@
+<a class="navPages-action has-subMenu"
+   href="#"
+   data-collapsible="navPages-locale"
+   aria-controls="navPages-locale"
+   aria-expanded="false"
+   aria-label="{{lang 'common.locale' name=theme_settings.language_selector_mock_data.selected_locale_name}}"
+>
+    {{lang 'common.locale' name=theme_settings.language_selector_mock_data.selected_locale_name}}
+    <i class="icon navPages-action-moreIcon" aria-hidden="true">
+        <svg>
+            <use href="#icon-chevron-down"></use>
+        </svg>
+    </i>
+</a>
+<div class="navPage-subMenu" id="navPages-locale" aria-hidden="true" tabindex="-1">
+    <ul class="navPage-subMenu-list">
+        {{#each theme_settings.language_selector_mock_data.locales}}
+            <li class="navPage-subMenu-item">
+                <a class="navPage-subMenu-action navPages-action"
+                   href="{{path}}"
+                   data-locale-code="{{{code}}}"
+                   data-warning="{{lang 'common.locale_switch_warning'}}"
+                   aria-label="{{name}}"
+                >
+                    {{#if is_selected}}
+                        <strong>{{name}}</strong>
+                    {{else}}
+                        {{name}}
+                    {{/if}}
+                </a>
+            </li>
+        {{/each}}
+    </ul>
+</div>

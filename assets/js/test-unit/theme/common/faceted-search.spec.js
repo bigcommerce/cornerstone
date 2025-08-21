@@ -1,7 +1,7 @@
-import FacetedSearch from '../../../theme/common/faceted-search';
-import { Validators } from '../../../theme/common/utils/form-utils';
 import $ from 'jquery';
 import { hooks, api } from '@bigcommerce/stencil-utils';
+import FacetedSearch from '../../../theme/common/faceted-search';
+import { Validators } from '../../../theme/common/utils/form-utils';
 import urlUtils from '../../../theme/common/utils/url-utils';
 
 describe('FacetedSearch', () => {
@@ -37,34 +37,33 @@ describe('FacetedSearch', () => {
             },
         };
 
-        html =
-            '<div id="facetedSearch">' +
-                '<a class="facetedSearch-clearLink">Clear</a>' +
-                '<div id="facetedSearch-navList">' +
-                    '<ul class="navList" id="facet-brands" data-count="2" data-has-more-results="true">' +
-                        '<li><a href="?brand=item1">Facet Item 1</a></li>' +
-                        '<li><a href="?brand=item2">Facet Item 2</a></li>' +
-                        '<li><a href="?brand=item3">Facet Item 3</a></li>' +
-                        '<li><a href="?brand=item4">Facet Item 4</a></li>' +
-                    '</ul>' +
-                    '<form id="facet-sort">' +
-                        '<select name="sort">' +
-                            '<option value="featured">Featured</option>' +
-                            '<option value="newest">Newest</option>' +
-                        '</select>' +
-                    '</form>' +
-                    '<form id="facet-range-form">' +
-                        '<input name="min_price" value="0">' +
-                        '<input name="max_price" value="100">' +
-                    '</form>' +
-                    '<form id="facet-range-form-with-other-facets">' +
-                        '<input name="brand[]" value="item1">' +
-                        '<input name="brand[]" value="item2">' +
-                        '<input name="min_price" value="0">' +
-                        '<input name="max_price" value="50">' +
-                    '</form>' +
-                '</div>' +
-            '</div>';
+        html = '<div id="facetedSearch">'
+                + '<a class="facetedSearch-clearLink">Clear</a>'
+                + '<div id="facetedSearch-navList">'
+                    + '<ul class="navList" id="facet-brands" data-count="2" data-has-more-results="true">'
+                        + '<li><a href="?brand=item1">Facet Item 1</a></li>'
+                        + '<li><a href="?brand=item2">Facet Item 2</a></li>'
+                        + '<li><a href="?brand=item3">Facet Item 3</a></li>'
+                        + '<li><a href="?brand=item4">Facet Item 4</a></li>'
+                    + '</ul>'
+                    + '<form id="facet-sort">'
+                        + '<select name="sort">'
+                            + '<option value="featured">Featured</option>'
+                            + '<option value="newest">Newest</option>'
+                        + '</select>'
+                    + '</form>'
+                    + '<form id="facet-range-form">'
+                        + '<input name="min_price" value="0">'
+                        + '<input name="max_price" value="100">'
+                    + '</form>'
+                    + '<form id="facet-range-form-with-other-facets">'
+                        + '<input name="brand[]" value="item1">'
+                        + '<input name="brand[]" value="item2">'
+                        + '<input name="min_price" value="0">'
+                        + '<input name="max_price" value="50">'
+                    + '</form>'
+                + '</div>'
+            + '</div>';
 
         $element = $(html);
         $element.appendTo(document.body);
@@ -106,7 +105,7 @@ describe('FacetedSearch', () => {
             expect(facetedSearch.restoreCollapsedFacetItems).toHaveBeenCalled();
         });
 
-        it('should re-init price range validator', function() {
+        it('should re-init price range validator', () => {
             facetedSearch.refreshView(content);
 
             expect(Validators.setMinMaxPriceValidation).toHaveBeenCalledWith(facetedSearch.priceRangeValidator, jasmine.any(Object), options.validationErrorMessages);
@@ -125,14 +124,14 @@ describe('FacetedSearch', () => {
             content = {};
         });
 
-        it('should fetch content from remote server', function() {
+        it('should fetch content from remote server', () => {
             facetedSearch.updateView();
 
             expect(api.getPage).toHaveBeenCalledWith(url, requestOptions, expect.any(Function));
         });
 
-        it('should refresh view', function() {
-            jest.spyOn(api, 'getPage').mockImplementation(function(url, options, callback) {
+        it('should refresh view', () => {
+            jest.spyOn(api, 'getPage').mockImplementation((_url, _options, callback) => {
                 callback(null, content);
             });
 
@@ -143,7 +142,7 @@ describe('FacetedSearch', () => {
     });
 
     describe('expandFacetItems', () => {
-        it('should remove from `collapsedFacetItems`', function() {
+        it('should remove from `collapsedFacetItems`', () => {
             facetedSearch.collapsedFacetItems = ['facet-brands'];
             facetedSearch.expandFacetItems($('#facet-brands'));
 
@@ -152,7 +151,7 @@ describe('FacetedSearch', () => {
     });
 
     describe('collapseFacetItems', () => {
-        it('should add to `collapsedFacetItems`', function() {
+        it('should add to `collapsedFacetItems`', () => {
             facetedSearch.collapseFacetItems($('#facet-brands'));
 
             expect(facetedSearch.collapsedFacetItems).toContain('facet-brands');
@@ -169,14 +168,14 @@ describe('FacetedSearch', () => {
             $navList = $('#facet-brands');
         });
 
-        it('should get more facet items if they are collapsed when toggled', function() {
+        it('should get more facet items if they are collapsed when toggled', () => {
             facetedSearch.collapsedFacetItems = ['facet-brands'];
             facetedSearch.toggleFacetItems($navList);
 
             expect(facetedSearch.getMoreFacetResults).toHaveBeenCalledWith($navList);
         });
 
-        it('should collapse facet items if they are expanded', function() {
+        it('should collapse facet items if they are expanded', () => {
             facetedSearch.collapsedFacetItems = [];
             facetedSearch.toggleFacetItems($navList);
 
@@ -185,11 +184,7 @@ describe('FacetedSearch', () => {
     });
 
     describe('when location URL is changed', () => {
-        let href;
-
         beforeEach(() => {
-            href = document.location.href;
-
             jest.spyOn(facetedSearch, 'updateView').mockImplementation(() => {});
         });
 
@@ -207,7 +202,7 @@ describe('FacetedSearch', () => {
     describe('when price range form is submitted', () => {
         let event;
         let eventName;
-        let currentTarget = '#facet-range-form';
+        const currentTarget = '#facet-range-form';
 
         beforeEach(() => {
             eventName = 'facetedSearch-range-submitted';
@@ -283,7 +278,7 @@ describe('FacetedSearch', () => {
             expect(urlUtils.goToUrl).toHaveBeenCalledWith('/?sort=featured');
         });
 
-        it('should prevent default event', function() {
+        it('should prevent default event', () => {
             hooks.emit(eventName, event, currentTarget);
 
             expect(event.preventDefault).toHaveBeenCalled();
@@ -311,7 +306,7 @@ describe('FacetedSearch', () => {
             expect(urlUtils.goToUrl).toHaveBeenCalledWith('?brand=item1');
         });
 
-        it('should prevent default event', function() {
+        it('should prevent default event', () => {
             hooks.emit(eventName, event, currentTarget);
 
             expect(event.preventDefault).toHaveBeenCalled();

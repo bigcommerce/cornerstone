@@ -1,7 +1,6 @@
+import $ from 'jquery';
 import collapsibleGroupFactory from '../../../theme/common/collapsible-group';
 import { CollapsibleEvents } from '../../../theme/common/collapsible';
-import $ from 'jquery';
-
 
 describe('CollapsibleGroup', () => {
     let collapsibleGroup;
@@ -27,7 +26,7 @@ describe('CollapsibleGroup', () => {
         beforeEach(() => {
             collapsible = {
                 close: jest.fn(),
-                hasCollapsible: jest.fn()
+                hasCollapsible: jest.fn(),
             };
             childCollapsible = {};
 
@@ -51,7 +50,6 @@ describe('CollapsibleGroup', () => {
         });
     });
 
-
     describe('when a collapsible is closed', () => {
         let collapsible;
         let childCollapsible;
@@ -59,7 +57,7 @@ describe('CollapsibleGroup', () => {
         beforeEach(() => {
             collapsible = {
                 close: jest.fn(),
-                hasCollapsible: jest.fn()
+                hasCollapsible: jest.fn(),
             };
             childCollapsible = {};
 

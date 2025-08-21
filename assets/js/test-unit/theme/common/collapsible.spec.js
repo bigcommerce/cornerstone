@@ -1,5 +1,5 @@
-import collapsibleFactory, { CollapsibleEvents } from '../../../theme/common/collapsible';
 import $ from 'jquery';
+import collapsibleFactory, { CollapsibleEvents } from '../../../theme/common/collapsible';
 
 describe('Collapsible', () => {
     let collapsible;

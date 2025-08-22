@@ -107,7 +107,6 @@ export default class ProductDetailsBase {
             const $attribute = $(attribute);
             const attrId = parseInt($attribute.data('productAttributeValue'), 10);
 
-
             if (inStockIds.indexOf(attrId) !== -1) {
                 this.enableAttribute($attribute, behavior, outOfStockMessage);
             } else {
@@ -299,8 +298,8 @@ export default class ProductDetailsBase {
         this.clearPricingNotFound(viewModel);
 
         if (price.with_tax) {
-            const updatedPrice = price.price_range ?
-                `${price.price_range.min.with_tax.formatted} - ${price.price_range.max.with_tax.formatted}`
+            const updatedPrice = price.price_range
+                ? `${price.price_range.min.with_tax.formatted} - ${price.price_range.max.with_tax.formatted}`
                 : price.with_tax.formatted;
             viewModel.priceLabel.$span.show();
             viewModel.priceWithTax.$div.show();
@@ -308,8 +307,8 @@ export default class ProductDetailsBase {
         }
 
         if (price.without_tax) {
-            const updatedPrice = price.price_range ?
-                `${price.price_range.min.without_tax.formatted} - ${price.price_range.max.without_tax.formatted}`
+            const updatedPrice = price.price_range
+                ? `${price.price_range.min.without_tax.formatted} - ${price.price_range.max.without_tax.formatted}`
                 : price.without_tax.formatted;
             viewModel.priceLabel.$span.show();
             viewModel.priceWithoutTax.$div.show();

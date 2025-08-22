@@ -6,6 +6,6 @@
 
 /** @type {LH.Config} */
 module.exports = {
-	extends: 'lighthouse:default',
-	settings: {},
+    extends: 'lighthouse:default',
+    settings: {},
 };

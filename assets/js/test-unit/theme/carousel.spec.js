@@ -1,10 +1,10 @@
+import $ from 'jquery';
 import carousel from '../../theme/common/carousel';
-import $ from 'jquery'
 import 'slick-carousel';
 
 describe('carousel', () => {
-    it('should generate carousel WITH dots if carousel has more than one slide', () => {	
-		var multipleSlidesElement = $("<section class='heroCarousel' data-slick='{}'>\
+    it('should generate carousel WITH dots if carousel has more than one slide', () => {
+        const multipleSlidesElement = $("<section class='heroCarousel' data-slick='{}'>\
 			<a href=''>\
 		        <div class='heroCarousel-slide  heroCarousel-slide--first'>\
 		            <div class='heroCarousel-image-wrapper' style='height: 42.868654311039485vw'>\
@@ -24,21 +24,21 @@ describe('carousel', () => {
 		            </div>\
 		        </div>\
 		    </a>\
-		</section>")
+		</section>");
 
 	    spyOn(jQuery.fn, 'find').and.returnValue(multipleSlidesElement);
-	    var slickSpy = spyOn(multipleSlidesElement, 'slick');
+	    const slickSpy = spyOn(multipleSlidesElement, 'slick');
 	    carousel();
 	    expect(slickSpy).toHaveBeenCalledWith({
             accessibility: false,
             arrows: true,
             customPaging: expect.any(Function),
             dots: true,
-		});
+        });
     });
 
-    it('should generate carousel WITHOUT dots if carousel has one slide', () => {	
-		var multipleSlidesElement = $("<section class='heroCarousel' data-slick='{}'>\
+    it('should generate carousel WITHOUT dots if carousel has one slide', () => {
+        const multipleSlidesElement = $("<section class='heroCarousel' data-slick='{}'>\
 			<a href=''>\
 		        <div class='heroCarousel-slide  heroCarousel-slide--first'>\
 		            <div class='heroCarousel-image-wrapper' style='height: 42.868654311039485vw'>\
@@ -51,16 +51,16 @@ describe('carousel', () => {
 					</div>\
 		        </div>\
 		    </a>\
-		</section>")
+		</section>");
 
 	    spyOn(jQuery.fn, 'find').and.returnValue(multipleSlidesElement);
-	    var slickSpy = spyOn(multipleSlidesElement, 'slick');
+	    const slickSpy = spyOn(multipleSlidesElement, 'slick');
 	    carousel();
 	    expect(slickSpy).toHaveBeenCalledWith({
             accessibility: false,
             arrows: false,
             customPaging: expect.any(Function),
-            dots: false,			
-		});   
+            dots: false,
+        });
     });
 });

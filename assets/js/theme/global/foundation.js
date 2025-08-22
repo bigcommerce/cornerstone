@@ -2,6 +2,7 @@ import 'foundation-sites/js/foundation/foundation';
 import 'foundation-sites/js/foundation/foundation.dropdown';
 import 'foundation-sites/js/foundation/foundation.reveal';
 import 'foundation-sites/js/foundation/foundation.tab';
+// eslint-disable-next-line import/no-cycle
 import modalFactory from './modal';
 import revealCloseFactory from './reveal-close';
 

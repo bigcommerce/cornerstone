@@ -1,5 +1,5 @@
-import modalFactory, { ModalEvents } from '../../../theme/global/modal';
 import $ from 'jquery';
+import modalFactory, { ModalEvents } from '../../../theme/global/modal';
 import '../../../theme/global/jquery-migrate';
 
 function attachHtml(html) {
@@ -58,22 +58,22 @@ describe('Modal', () => {
 
             modal.$content.html($modalBody);
 
-            //Force heights of each element since jsdom does not provide these
+            // Force heights of each element since jsdom does not provide these
             [
-                $('body')[0]
+                $('body')[0],
             ].forEach((elm) => {
                 ['scollHeight', 'offsetHeight', 'clientHeight', 'innerHeight'].forEach((property) => {
-                    Object.defineProperty(elm, property, { configurable: true, value: 500});    
+                    Object.defineProperty(elm, property, { configurable: true, value: 500 });
                 });
             });
             [
                 window.document.documentElement,
                 $modalBody[0],
                 $modalBody.find('div')[0],
-                modal.$content[0]
+                modal.$content[0],
             ].forEach((elm) => {
                 ['scollHeight', 'offsetHeight', 'clientHeight', 'innerHeight'].forEach((property) => {
-                    Object.defineProperty(elm, property, { configurable: true, value: 700});    
+                    Object.defineProperty(elm, property, { configurable: true, value: 700 });
                 });
             });
         });

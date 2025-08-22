@@ -107,7 +107,6 @@ function buildNumberRangeValidation(validation, formFieldSelector) {
     };
 }
 
-
 function buildValidation($validateableElement, errorMessage) {
     const validation = $validateableElement.data('validation');
     const fieldValidations = [];

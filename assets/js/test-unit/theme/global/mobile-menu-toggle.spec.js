@@ -1,7 +1,6 @@
+import $ from 'jquery';
 import mobileMenuToggleFactory from '../../../theme/global/mobile-menu-toggle';
 import { CartPreviewEvents } from '../../../theme/global/cart-preview';
-import $ from 'jquery';
-
 
 describe('MobileMenuToggle', () => {
     let mobileMenuToggle;

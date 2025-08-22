@@ -105,6 +105,7 @@ function addOptions(statesArray, $selectElement, options) {
  * @param {Object} options
  * @param {Function} callback
  */
+// eslint-disable-next-line default-param-last
 export default function (stateElement, context = {}, options, callback) {
     /**
      * Backwards compatible for three parameters instead of four

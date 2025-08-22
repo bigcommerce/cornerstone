@@ -1,4 +1,4 @@
-import { CollapsibleEvents } from '../common/collapsible';
+import { CollapsibleEvents } from './collapsible';
 
 const PLUGIN_KEY = 'collapsible-group';
 

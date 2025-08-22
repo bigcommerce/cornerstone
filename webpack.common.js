@@ -1,8 +1,9 @@
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin,
-    { CleanWebpackPlugin } = require('clean-webpack-plugin'),
-    LodashPlugin = require('lodash-webpack-plugin'),
-    path = require('path'),
-    webpack = require('webpack');
+/* eslint-disable import/no-extraneous-dependencies */
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const LodashPlugin = require('lodash-webpack-plugin');
+const path = require('path');
+const webpack = require('webpack');
 
 // Common configuration, with extensions in webpack.dev.js and webpack.prod.js.
 module.exports = {
@@ -39,10 +40,10 @@ module.exports = {
                 },
             },
             {
-                test: require.resolve("jquery"),
-                loader: "expose-loader",
+                test: require.resolve('jquery'),
+                loader: 'expose-loader',
                 options: {
-                  exposes: ["$"],
+                    exposes: ['$'],
                 },
             },
         ],
@@ -75,7 +76,7 @@ module.exports = {
         }),
     ],
     resolve: {
-        fallback:  { "url": require.resolve("url/") },
+        fallback: { url: require.resolve('url/') },
         alias: {
             jquery: path.resolve(__dirname, 'node_modules/jquery/dist/jquery.min.js'),
             jstree: path.resolve(__dirname, 'node_modules/jstree/dist/jstree.min.js'),

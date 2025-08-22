@@ -2,7 +2,7 @@ import { hooks } from '@bigcommerce/stencil-utils';
 import CatalogPage from './catalog';
 import compareProducts from './global/compare-products';
 import FacetedSearch from './common/faceted-search';
-import { createTranslationDictionary } from '../theme/common/utils/translations-utils';
+import { createTranslationDictionary } from './common/utils/translations-utils';
 
 export default class Category extends CatalogPage {
     constructor(context) {

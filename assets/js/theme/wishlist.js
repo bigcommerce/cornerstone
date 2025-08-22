@@ -12,8 +12,6 @@ export default class WishList extends PageManager {
         this.options = {
             template: 'account/add-wishlist',
         };
-
-        return this;
     }
 
     /**

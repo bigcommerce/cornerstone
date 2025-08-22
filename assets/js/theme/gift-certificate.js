@@ -62,9 +62,9 @@ export default class GiftCertificate extends PageManager {
                 const amountPlaceholders = ['[MIN]', '[MAX]'];
                 let updatedErrorText = message;
                 amountPlaceholders.forEach((placeholder, i) => {
-                    updatedErrorText = updatedErrorText.includes(placeholder) ?
-                        updatedErrorText.replace(placeholder, amountRange[i]) :
-                        updatedErrorText;
+                    updatedErrorText = updatedErrorText.includes(placeholder)
+                        ? updatedErrorText.replace(placeholder, amountRange[i])
+                        : updatedErrorText;
                 });
                 return updatedErrorText;
             };

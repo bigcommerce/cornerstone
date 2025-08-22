@@ -34,9 +34,9 @@ export default function (cartId) {
                 return;
             }
 
-            const showWarning = response.discounts.some(discount => discount.discountedAmount > 0) ||
-                response.coupons.length > 0 ||
-                response.lineItems.giftCertificates.length > 0;
+            const showWarning = response.discounts.some(discount => discount.discountedAmount > 0)
+                || response.coupons.length > 0
+                || response.lineItems.giftCertificates.length > 0;
 
             if (showWarning) {
                 const text = $(event.target).data('warning');

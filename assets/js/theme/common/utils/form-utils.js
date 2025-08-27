@@ -22,7 +22,6 @@ export const createPasswordValidationErrorTextObject = (empty, confirm, mismatch
     onNotValidPasswordErrorText: invalid,
 });
 
-
 /**
  * Apply class name to an input element on its type
  * @param {object} input

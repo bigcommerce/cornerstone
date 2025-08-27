@@ -1,5 +1,9 @@
 // Mimics ProvidePlugin configuration for jQuery
-global.$ = global.jQuery = window.jQuery = require('jquery');
+const jquery = require('jquery');
+
+global.$ = jquery;
+global.jQuery = jquery;
+window.jQuery = jquery;
 
 // Foundation requires existing script tag to load properly
 document.getElementsByTagName('head')[0].appendChild(document.createElement('script'));
@@ -7,7 +11,7 @@ document.getElementsByTagName('head')[0].appendChild(document.createElement('scr
 // jQuery thinks all elements are not visible under jsdom
 // See https://github.com/jsdom/jsdom/issues/1048
 window.Element.prototype.getClientRects = function () {
-    var node = this;
+    let node = this;
     while (node) {
         if (node === document) {
             break;

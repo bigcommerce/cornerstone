@@ -1,5 +1,6 @@
-import foundation from './foundation';
 import * as focusTrap from 'focus-trap';
+// eslint-disable-next-line import/no-cycle
+import foundation from './foundation';
 
 const bodyActiveClass = 'has-activeModal';
 const loadingOverlayClass = 'loadingOverlay';

@@ -16,4 +16,3 @@ module.exports = {
         '!assets/scss/maintenance.scss',
     ],
 };
-

@@ -1,20 +1,20 @@
-import $ from 'jquery'
+import $ from 'jquery';
 import utils from '@bigcommerce/stencil-utils';
-import Cart from '../../theme/cart.js';
+import Cart from '../../theme/cart';
 
-var dataSpy;
-var UpdateSpy;
-var c = new Cart();
+let dataSpy;
+let UpdateSpy;
+const c = new Cart();
 c.context = {
-    shippingCountryErrorMessage: `The 'Country' field cannot be blank.`,
-    shippingProvinceErrorMessage: `The 'State/Province' field cannot be blank.`,
+    shippingCountryErrorMessage: 'The \'Country\' field cannot be blank.',
+    shippingProvinceErrorMessage: 'The \'State/Province\' field cannot be blank.',
 };
-beforeEach(function() {
-	UpdateSpy = spyOn(utils.api.cart, 'itemUpdate');
+beforeEach(() => {
+    UpdateSpy = spyOn(utils.api.cart, 'itemUpdate');
 
-	dataSpy = function(requestedAction = null) {
-		spyOn(jQuery.fn, 'data').and.callFake(function() {
-		    var param = arguments[0];
+    dataSpy = function (requestedAction = null) {
+        spyOn(jQuery.fn, 'data').and.callFake((...args) => {
+		    const param = args[0];
 		    switch (param) {
 		    case 'action':
 		    	return requestedAction;
@@ -31,11 +31,11 @@ beforeEach(function() {
 		    default:
 		    	return null;
 		    }
-		})
-	};
+        });
+    };
 });
 
-var $dom = $('<table class="cart" data-cart-quantity="2">\
+const $dom = $('<table class="cart" data-cart-quantity="2">\
     <thead class="cart-header">\
         <tr>\
             <th class="cart-header-item" colspan="2">Item</th>\
@@ -90,37 +90,34 @@ var $dom = $('<table class="cart" data-cart-quantity="2">\
                 </td>\
             </tr>\
     </tbody>\
-</table>')
+</table>');
 
 c.onReady();
 
 describe('cartUpdate', () => {
-    it('should INCRIMENT qty', () => {	
-		dataSpy
-		dataSpy('inc');
-		spyOn(jQuery.fn, 'val').and.returnValue(2);
-		c.cartUpdate($dom);
-		
-		expect(UpdateSpy).toHaveBeenCalledWith('11111', 3, jasmine.any(Function));  
-	});
+    it('should INCRIMENT qty', () => {
+        dataSpy('inc');
+        spyOn(jQuery.fn, 'val').and.returnValue(2);
+        c.cartUpdate($dom);
 
-    it('should DECREMENT qty', () => {	
-		dataSpy
-		dataSpy('dec');
-		spyOn(jQuery.fn, 'val').and.returnValue(2);
-		c.cartUpdate($dom);
-		
-		expect(UpdateSpy).toHaveBeenCalledWith('11111', 1, jasmine.any(Function));  
-	});
+        expect(UpdateSpy).toHaveBeenCalledWith('11111', 3, jasmine.any(Function));
+    });
+
+    it('should DECREMENT qty', () => {
+        dataSpy('dec');
+        spyOn(jQuery.fn, 'val').and.returnValue(2);
+        c.cartUpdate($dom);
+
+        expect(UpdateSpy).toHaveBeenCalledWith('11111', 1, jasmine.any(Function));
+    });
 });
 
 describe('cartUpdateQtyTextChange', () => {
-    it('should CHANGE qty completly based on the cart-item-qty-input', () => {	
-		dataSpy
-		dataSpy('manualQtyChange');
-		spyOn(jQuery.fn, 'val').and.returnValue(5, 2);
-		c.cartUpdateQtyTextChange($dom);
-		
-		expect(UpdateSpy).toHaveBeenCalledWith('11111', 5, jasmine.any(Function));  
-	});
+    it('should CHANGE qty completly based on the cart-item-qty-input', () => {
+        dataSpy('manualQtyChange');
+        spyOn(jQuery.fn, 'val').and.returnValue(5, 2);
+        c.cartUpdateQtyTextChange($dom);
+
+        expect(UpdateSpy).toHaveBeenCalledWith('11111', 5, jasmine.any(Function));
+    });
 });

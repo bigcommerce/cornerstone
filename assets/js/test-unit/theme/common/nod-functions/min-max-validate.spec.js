@@ -1,5 +1,5 @@
-import minMaxValidate from '../../../../theme/common/nod-functions/min-max-validate';
 import $ from 'jquery';
+import minMaxValidate from '../../../../theme/common/nod-functions/min-max-validate';
 
 describe('minMaxValidate', () => {
     let $max;

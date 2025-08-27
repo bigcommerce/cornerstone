@@ -9,8 +9,8 @@ import { alertModal } from '../../../theme/global/modal';
 import stateCountry from '../../../theme/common/state-country';
 
 describe('StateCountry', () => {
-    let $countryElement; let
-        $stateElement;
+    let $countryElement;
+    let $stateElement;
 
     beforeEach(() => {
         $countryElement = $(`

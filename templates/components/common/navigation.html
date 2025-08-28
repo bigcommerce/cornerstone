@@ -1,4 +1,10 @@
 <nav class="navUser">
+    {{#if theme_settings.show_language_selector_mock_data}}
+        {{#if theme_settings.language_selector_mock_data.locales.length '>' 1}}
+            {{> components/common/language-selector}}
+        {{/if}}
+    {{/if}}
+
     {{#or customer (unless settings.hide_price_from_guests)}}
         {{> components/common/currency-selector}}
     {{/or}}

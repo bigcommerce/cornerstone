@@ -81,6 +81,17 @@ This document tracks all customizations made to the BigCommerce Cornerstone them
   - `"gift_cert": "Gift Cards"`
   - `"heading": "Gift Cards"`
 
+### 10. Footer Template Customizations
+**Files:** `templates/components/common/footer.html`
+- **Duplicate info removal:** Removed duplicate store information section
+- **Clean layout:** Store info now displays only once in the footer
+
+### 11. Klaviyo Script Integration
+**Files:** `templates/layout/base.html`
+- **Klaviyo initialization:** Added Klaviyo object initialization script to base layout
+- **Global tracking:** Ensures Klaviyo tracking works across all pages
+- **Newsletter integration:** Klaviyo footer form integration preserved
+
 ## Template Customizations
 
 ### Product Card Template
@@ -123,6 +134,8 @@ This document tracks all customizations made to the BigCommerce Cornerstone them
 
 ### Template Files:
 - `templates/components/products/card.html`
+- `templates/components/common/footer.html`
+- `templates/layout/base.html`
 
 ### Language Files:
 - `lang/en.json`
@@ -144,6 +157,8 @@ After each upgrade, verify:
 - [ ] Product details date selector and cart celebration
 - [ ] NavUser section background color (#314a6d) and styling
 - [ ] Language text shows "Gift Cards" instead of "Gift Certificates"
+- [ ] Footer displays store info only once (no duplicates)
+- [ ] Klaviyo scripts are properly initialized and working
 - [ ] Theme builds successfully with `stencil bundle`
 
 ## Notes

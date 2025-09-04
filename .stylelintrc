@@ -1,11 +1,11 @@
 {
-  "extends": "stylelint-config-sass-guidelines",
+  "customSyntax": "postcss-scss",
   "plugins": [
+    "@stylistic/stylelint-plugin",
     "stylelint-scss"
   ],
   "rules": {
     "color-named": null,
-    "indentation": 4,
     "max-nesting-depth": null,
     "property-no-vendor-prefix": null,
     "selector-no-vendor-prefix": null,
@@ -17,7 +17,9 @@
     "selector-max-compound-selectors": null,
     "selector-max-id": null,
     "selector-no-qualifying-type": null,
-    "string-quotes": "double",
-    "value-no-vendor-prefix": null
+    "value-no-vendor-prefix": null,
+    "scss/no-global-function-names": null,
+    "@stylistic/indentation": 4,
+    "@stylistic/string-quotes": "double"
   }
 }

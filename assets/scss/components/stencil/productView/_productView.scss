@@ -142,23 +142,6 @@
 
 .productView-details {
     padding-bottom: spacing("single") + spacing("third");
-
-    &.productView-details--cartAction {
-        background: #fff;
-        border-top: container("border");
-        bottom: 0;
-        margin-bottom: 0;
-        padding-top: 1rem;
-        position: fixed;
-        z-index: 5;
-
-        @include breakpoint("medium") {
-            border-top: 0;
-            margin-bottom: spacing("single") + spacing("third");
-            padding-top: 0;
-            position: relative;
-        }
-    }
 }
 
 
@@ -252,59 +235,9 @@
 
 .productView-reviewLink {
     color: stencilColor("color-textSecondary");
-    color: stencilColor("color-textSecondary");
     display: inline-block;
     margin-left: spacing("quarter");
     vertical-align: middle;
-
-    // scss-lint:disable NestingDepth
-    &:hover {
-        color: stencilColor("color-textSecondary--hover");
-    }
-
-    &:hover {
-        color: stencilColor("color-textSecondary--hover");
-    }
-
-    &:hover {
-        color: stencilColor("color-textSecondary--hover");
-    }
-
-    &:hover {
-        color: stencilColor("color-textSecondary--hover");
-    }
-
-    &:hover {
-        color: stencilColor("color-textSecondary--hover");
-    }
-
-    &:hover {
-        color: stencilColor("color-textSecondary--hover");
-    }
-
-    &:hover {
-        color: stencilColor("color-textSecondary--hover");
-    }
-
-    &:hover {
-        color: stencilColor("color-textSecondary--hover");
-    }
-
-    &:hover {
-        color: stencilColor("color-textSecondary--hover");
-    }
-
-    &:hover {
-        color: stencilColor("color-textSecondary--hover");
-    }
-
-    &:hover {
-        color: stencilColor("color-textSecondary--hover");
-    }
-
-    &:hover {
-        color: stencilColor("color-textSecondary--hover");
-    }
 
     &:hover {
         color: stencilColor("color-textSecondary--hover");
@@ -455,6 +388,24 @@
             margin-top: 1rem;
             padding-right: spacing("half");
             width: 50%;
+        }
+
+        &.pre-order-buttons {
+            @include breakpoint("small") {
+                min-width: 50%;
+                width: auto;
+            }
+
+            @include breakpoint("medium") {
+                margin-right: remCalc(11px);
+                min-width: auto;
+                padding: 0;
+                width: auto;
+            }
+
+            .button {
+                padding: remCalc(13px) remCalc(24px);
+            }
         }
 
         .button {

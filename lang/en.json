@@ -1,8 +1,7 @@
 {
     "header": {
         "welcome_back": "Welcome back, {name}",
-        "skip_to_main": "Skip to main content",
-        "sign_out": "Sign Out"
+        "skip_to_main": "Skip to main content"
     },
     "footer": {
         "title": "Footer Start",
@@ -29,7 +28,7 @@
         "maintenance_message": "This store is currently unavailable due to maintenance. It should be available again shortly. We apologize for any inconvenience caused."
     },
     "brands": {
-        "no_products": "There are no products listed under this artist."
+        "no_products": "There are no products listed under this brand."
     },
     "categories": {
         "no_products": "There are no products listed under this category."
@@ -55,9 +54,9 @@
             "quantity": "Quantity",
             "total": "Total",
             "subtotal": "Subtotal",
-            "enter_code": "Coupon code / Gift card",
+            "enter_code": "Coupon code / Gift certificate",
             "gift_wrapping": "Gift wrapping",
-            "shipping": "Shipping/Delivery Options",
+            "shipping": "Shipping",
             "grand_total": "Grand total",
             "select": "Select",
             "update": "Update shipping cost"
@@ -80,6 +79,7 @@
         "remove_item": "Remove {name} from cart",
         "confirm_delete": "Are you sure you want to delete this item?",
         "coupons": {
+            "apply_coupon": "Apply coupon",
             "empty_error": "Please enter your coupon code.",
             "cancel": "Cancel",
             "add_code": "Add code",
@@ -90,6 +90,7 @@
             "remove": "Remove"
         },
         "gift_certificates": {
+            "apply_gift_certificate": "Apply gift certificate",
             "change_gift_certificate": "Change {certificate_name}",
             "add_cert_code": "Add Certificate",
             "gift_certificate": "Gift Certificate",
@@ -102,7 +103,7 @@
             "cancel": "Cancel",
             "select_a_country": "Country",
             "select_a_state": "State/province",
-            "estimate_shipping": "Estimate Delivery Options",
+            "estimate_shipping": "Estimate Shipping",
             "suburb_city": "Suburb/city",
             "zip_postal_code": "Zip/postcode",
             "free_shipping": "Free shipping",
@@ -140,8 +141,10 @@
         "store_credit": "You have <strong>{store_credit}</strong> of store credit. To use it, simply place your order and you will be able to choose store credit as the payment method when it comes time to pay for your order.",
         "store_credit_overview": "{credit} Store Credit",
         "generic_error": "Oops! Something went wrong.",
-        "currency": "Select Currency: {code}",
-        "currency_switch_promotion": "Promotions and gift certificates that don't apply to the new currency will be removed from your cart. Are you sure you want to continue?",
+        "currency": "Currency: {code}",
+        "currency_switch_promotion" : "Promotions and gift certificates that don't apply to the new currency will be removed from your cart. Are you sure you want to continue?",
+        "channel": "Store: {code}",
+        "channel_switch_warning" : "Warning text for store switching",
         "newsletter_signup": "Register for our newsletter",
         "form_submit": "Submit",
         "no_preference": "No Preference",
@@ -149,7 +152,6 @@
         "required": "Required",
         "optional": "Optional",
         "email_address": "Email Address",
-        "carousel_slide_number": "Slide number {slide_number}",
         "edit": "Edit",
         "not_applicable": "N/A",
         "no": "No",
@@ -170,7 +172,7 @@
         "account": "Account",
         "cart": "Cart",
         "search": "Search",
-        "gift_cert": "Gift Cards",
+        "gift_cert": "Gift Certificates",
         "save": "Save",
         "share": "Share",
         "delete": "Delete",
@@ -181,6 +183,7 @@
         "paginator": {
             "page_of": "Page {current} of {total}"
         },
+        "pagination": "Pagination",
         "prices_are_in": "Prices are in {CODE}",
         "previous": "Previous",
         "next": "Next",
@@ -224,8 +227,9 @@
         "no_compare": "You must select at least two products to compare"
     },
     "category": {
-        "label": "Shop by Category",
-        "shop_by_price": "Shop by Price",
+        "label": "Categories",
+        "product_label": "Filtered products",
+        "shop_by_price": "Shop By Price",
         "shop_by_price_range_aria": "Price range from {from} to {to}",
         "filter_price_range": "Price range:",
         "add_cart_announcement": "The item has been added",
@@ -237,26 +241,25 @@
         }
     },
     "brand": {
-        "label": "Artists & Makers",
-        "view_brands": "View all"
+        "label": "Brands",
+        "view_brands": "View all brands"
     },
     "gift_certificate": {
-        "breadcrumb": "Gift Cards",
-        "heading": "Gift Cards",
+        "heading": "Gift Certificates",
         "purchase": {
-            "heading": "Purchase Gift Card"
+            "heading": "Purchase Gift Certificate"
         },
         "redeem": {
-            "heading": "Redeem Gift Card",
-            "intro": "To redeem a gift card at {store_name}, follow the simple steps below.",
-            "item1": "You need your unique gift card code, which is part of the gift card that was emailed to you as an attachment. It will look something like Z50-Y6K-COS-402.",
+            "heading": "Redeem Gift Certificate",
+            "intro": "To redeem a gift certificate at {store_name}, follow the simple steps below.",
+            "item1": "You need your unique gift certificate code, which is part of the gift certificate that was emailed to you as an attachment. It will look something like Z50-Y6K-COS-402.",
             "item2": "Browse the store and add items to your cart as you normally would.",
             "item3": "Click the '<a href=\"{cart_url}\">View Cart</a>' link to view the contents of your shopping cart.",
-            "item4": "Type your gift card code in to the 'Redeem Gift Card' box and click 'Go'."
+            "item4": "Type your gift certificate code in to the 'Redeem Gift Certificate' box and click 'Go'."
         },
         "balance": {
-            "heading": "Check Gift Card Balance",
-            "intro": "You can check the balance of a gift card by typing the code in to the box below."
+            "heading": "Check Gift Certificate Balance",
+            "intro": "You can check the balance of a gift certificate by typing the code in to the box below."
         }
     },
     "create_account": {
@@ -362,10 +365,10 @@
                 "download_items": "Download Items",
                 "card_ending": "ending in {card}",
                 "shipments": {
-                    "date": "Date Shipped",
-                    "method": "Shipping Method",
-                    "link": "Tracking Link",
-                    "header": "Shipping Details"
+                  "date": "Date Shipped",
+                  "method": "Shipping Method",
+                  "link": "Tracking Link",
+                  "header": "Shipping Details"
                 },
                 "actions": "Actions",
                 "reorder": "Reorder",
@@ -401,6 +404,7 @@
             "credit_card_number": "Credit Card Number",
             "expiration": "Expiration",
             "cvv": "CVV",
+            "payment_icons_label": "Payment icons",
             "card_types": {
                 "american_express": "American Express",
                 "credit_card": "Credit Card",
@@ -414,16 +418,17 @@
                 "visa": "Visa"
             },
             "ach": "ACH",
+            "sepa_direct_debit": "SEPA Direct Debit",
             "paypal": "PayPal",
             "billing_address_labels": {
-                "address_line_1": "Address Line 1",
-                "address_line_2": "Address Line 2",
-                "suburb_city": "Suburb/City",
-                "state_province": "State/Province",
-                "choose_state": "Choose a State",
-                "country": "Country",
-                "choose_country": "Choose a Country",
-                "zip_postcode": "Zip/Postcode"
+              "address_line_1": "Address Line 1",
+              "address_line_2": "Address Line 2",
+              "suburb_city": "Suburb/City",
+              "state_province": "State/Province",
+              "choose_state": "Choose a State",
+              "country": "Country",
+              "choose_country": "Choose a Country",
+              "zip_postcode": "Zip/Postcode"
             }
         },
         "returns": {
@@ -469,7 +474,7 @@
             "update_details": "Update Details"
         },
         "recent_items": {
-            "heading": "Recently Viewed",
+            "heading" : "Recently Viewed",
             "no_items": "The items you've recently looked at on our site will appear below."
         },
         "wishlists": {
@@ -566,6 +571,7 @@
             },
             "edit": {
                 "heading": "Update Address"
+
             },
             "confirm_delete": "Are you sure you want to delete this address?",
             "submit_value": "Save Address"
@@ -600,16 +606,16 @@
                 "from_email": "Your Email",
                 "message": "Optional Message",
                 "amount": "Amount",
-                "theme": "Gift Card Theme",
+                "theme": "Gift Certificate Theme",
                 "custom_range": "(Value must be between {min} and {max})",
-                "agree": "I understand that Gift Cards expire after {days, plural, one {1 day} other {# days}}",
-                "agree2": "I agree that Gift Cards are nonrefundable",
+                "agree": "I understand that Gift Certificates expire after {days, plural, one {1 day} other {# days}}",
+                "agree2": "I agree that Gift Certificates are nonrefundable",
                 "preview": "Preview",
                 "preview_error": "There was a problem loading the preview. Please try again later.",
-                "submit_value": "Add Gift Card to Cart"
+                "submit_value": "Add Gift Certificate to Cart"
             },
             "balance": {
-                "code": "Gift Card Code",
+                "code": "Gift Certificate Code",
                 "submit_value": "Check Balance"
             }
         },
@@ -653,7 +659,7 @@
                 "line3": "Try more general keywords."
             },
             "refine": "Refine Search",
-            "brand": "Artists & Makers",
+            "brand": "Brands",
             "searchsubs": "Automatically search sub categories"
         },
         "wishlist": {
@@ -704,6 +710,7 @@
             "reviews": {
                 "rating": "The 'Rating' field cannot be blank.",
                 "title": "The 'Review Subject' field cannot be blank.",
+                "name": "The 'Name' field cannot be blank.",
                 "comment": "The 'Comments' field cannot be blank."
             }
         }
@@ -724,7 +731,7 @@
         "featured": "Featured Products",
         "file_option_set": "Currently: <a href=\"{url}\" target=\"_blank\">{name}</a>",
         "new": "New Products",
-        "warranty": "Returns & Exchanges",
+        "warranty": "Warranty Information",
         "reviews": {
             "hide": "Hide Reviews",
             "new": "Write a Review",
@@ -782,7 +789,7 @@
         "filetypes": "file types are",
         "choose_an_option": "Please choose an option",
         "select_one": "Please select one",
-        "description": "Details",
+        "description": "Description",
         "price_with_tax": "(Inc. {tax_label})",
         "price_without_tax": "(Ex. {tax_label})",
         "including_tax": "Including Tax",
@@ -836,7 +843,7 @@
     },
     "newsletter": {
         "subscribe": "Subscribe to our newsletter",
-        "subscribe_intro": "Receive updates on the latest products and promotions!",
+        "subscribe_intro": "Get the latest updates on new products and upcoming sales",
         "subscribe_submit": "Subscribe",
         "email_placeholder": "Your email address",
         "subscribed_heading": "Thanks for Subscribing!",
@@ -856,7 +863,7 @@
         "errorMessage": "There was a problem retrieving your results. Please try again in a few seconds.",
         "quick_search": {
             "input_label": "Search",
-            "input_placeholder": "Search the shop"
+            "input_placeholder": "Search the store"
         },
         "results": {
             "form_label": "Search Keyword:",
@@ -870,6 +877,7 @@
         "faceted": {
             "selected": {
                 "title": "Refine by",
+                "facet-label": "Applied filters",
                 "rating-label": "Rated {rating, plural, one {# Star} other {# Stars}} Or More",
                 "no-filters": "No filters applied",
                 "clear-all": "Clear all"
@@ -877,11 +885,14 @@
             "range": {
                 "update": "Update",
                 "min-placeholder": "Min.",
-                "max-placeholder": "Max."
+                "max-placeholder": "Max.",
+                "min-description": "Enter the minimum price to filter products by",
+                "max-description": "Enter the maximum price to filter products by"
             },
             "rating": {
                 "and-up": "& up"
             },
+            "label": "The following text field filters the results that follow as you type",
             "toggleSection": "Toggle {title} filter section",
             "clear": "Clear",
             "more": "More",
@@ -897,7 +908,7 @@
         "tabs_accesibility_hint": "Use left and right arrows to navigate between tabs."
     },
     "page_not_found": {
-        "page_heading": "Ope! Page not found.",
+        "page_heading": "404 Error - Page not found",
         "message": "Uh oh, looks like the page you are looking for has moved or no longer exists."
     },
     "server_error": {

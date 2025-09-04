@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import creditcards from 'creditcards';
 
 /**
@@ -37,7 +38,6 @@ export const storeInstrument = ({
     storeHash,
     vaultToken,
 }, {
-    /* eslint-disable */
     // Provider Info
     provider_id,
     currency_code,
@@ -61,7 +61,6 @@ export const storeInstrument = ({
     last_name,
     email,
     phone,
-    /* eslint-enable */
 }, done, fail) => {
     const expiry = expiration.split('/');
 

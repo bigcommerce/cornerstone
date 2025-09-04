@@ -1,5 +1,13 @@
 {
-    "parser": "babel-eslint",
+    "parser": "@babel/eslint-parser",
+    "parserOptions": {
+        "requireConfigFile": false,
+        "babelOptions": {
+            "presets": [
+                "@babel/preset-env"
+            ]
+        }
+    },
     "rules": {
         "indent": [
             2,
@@ -24,15 +32,39 @@
         "prefer-destructuring": 0,
         "import/no-named-as-default": 0,
         "import/no-named-as-default-member": 0,
-        "import/prefer-default-export": "off"
+        "import/prefer-default-export": "off",
+        "no-tabs": "warn",
+        "no-mixed-spaces-and-tabs": "warn",
+        "import/order": "warn"
     },
+    "overrides": [
+        {
+            "files": [
+                "**/*.spec.js"
+            ],
+            "rules": {
+                "no-multi-str": "warn"
+            }
+        },
+        {
+            "files": [
+                "assets/js/theme/*.js"
+            ],
+            "rules": {
+                "object-curly-newline": "warn",
+                "no-else-return": "warn"
+            }
+        }
+    ],
     "globals": {
         "$": true,
         "jQuery": true
     },
     "env": {
         "es6": true,
-        "browser": true
+        "browser": true,
+        "jasmine": true,
+        "jest": true
     },
     "extends": "airbnb/base"
 }

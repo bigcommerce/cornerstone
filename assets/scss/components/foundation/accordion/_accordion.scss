@@ -22,8 +22,6 @@
 
 .accordion-title {
     color: stencilColor("color-textHeading");
-    color: stencilColor("color-textHeading");
-    font-family: "Montserrat", Arial, Helvetica, sans-serif;
     font-family: "Montserrat", Arial, Helvetica, sans-serif;
     font-size: remCalc(15px);
     margin: 0;
@@ -62,6 +60,12 @@
         @include breakpoint("medium") {
             margin-top: $accordion-navList-spacing;
         }
+    }
+
+    .accordion-heading {
+        font-size: fontSize("base");
+        line-height: lineHeight("smaller");
+        margin: 0;
     }
 
     .accordion-content {

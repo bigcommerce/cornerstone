@@ -1,19 +1,35 @@
 {{#if social_media}}
     <ul class="socialLinks socialLinks--alt">
         {{#each social_media}}
-            <li class="socialLinks-item">
-                <a class="icon icon--{{display_name}}"
-                   href="{{url}}"
-                   target="_blank"
-                   rel="noopener"
-                   title="{{{capitalize display_name}}}"
-                >
-                    <span class="aria-description--hidden">{{{capitalize display_name}}}</span>
-                    <svg>
-                        <use href="#icon-{{display_name}}"/>
-                    </svg>
-                </a>
-            </li>
+            {{#if display_name '===' 'twitter'}}
+                <li class="socialLinks-item">
+                    <a class="icon icon--x"
+                    href="{{url}}"
+                    target="_blank"
+                    rel="noopener"
+                    title="X"
+                    >
+                        <span class="aria-description--hidden">X</span>
+                        <svg>
+                            <use href="#icon-x"/>
+                        </svg>
+                    </a>
+                </li>
+            {{else}}
+                <li class="socialLinks-item">
+                    <a class="icon icon--{{display_name}}"
+                    href="{{url}}"
+                    target="_blank"
+                    rel="noopener"
+                    title="{{{capitalize display_name}}}"
+                    >
+                        <span class="aria-description--hidden">{{{capitalize display_name}}}</span>
+                        <svg>
+                            <use href="#icon-{{display_name}}"/>
+                        </svg>
+                    </a>
+                </li>
+            {{/if}}
         {{/each}}
     </ul>
 {{/if}}

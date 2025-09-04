@@ -4,7 +4,12 @@
 {{#if shipping_cost}}
     <div class="cart-total-value">
         <div class="subtotal shipping-estimate-show">
-            <a href="#" class="shipping-estimate-value">{{shipping_cost.formatted}}</a>
+            <a href="#" class="shipping-estimate-value">
+                <span class="{{#if shipping_cost_discounted}}price--discounted{{/if}}">{{shipping_cost.formatted}}</span>
+                {{#if shipping_cost_discounted}}
+                    <span id="shipping-cost-discounted">{{shipping_cost_discounted.formatted}}</span>
+                {{/if}}
+            </a>
         </div>
     </div>
 {{else}}
@@ -65,7 +70,7 @@
                 <label class="form-label" for="shipping-zip">{{lang 'cart.shipping_estimator.zip_postal_code'}}</label>
             </dt>
             <dd class="estimator-form-input">
-                <input class="form-input" type="text" id="shipping-zip" name="shipping-zip" value="{{selected_zip}}" placeholder="{{lang 'cart.shipping_estimator.zip_postal_code'}}">
+                <input autocomplete="postal-code" class="form-input" type="text" id="shipping-zip" name="shipping-zip" value="{{selected_zip}}" placeholder="{{lang 'cart.shipping_estimator.zip_postal_code'}}">
             </dd>
             <button class="button button--primary button--small shipping-estimate-submit">{{lang 'cart.shipping_estimator.estimate_shipping'}}</button>
         </dl>

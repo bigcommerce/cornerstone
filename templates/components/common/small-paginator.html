@@ -1,4 +1,4 @@
-<div class="pagination">
+<div class="pagination" role="region" aria-label="{{lang 'common.pagination'}}">
     <ul class="pagination-list pagination-list--small">
         {{#if previous}}
             <li class="pagination-item pagination-item--previous">
@@ -15,9 +15,9 @@
 
         {{#if this.links.length}}
         {{#each this.links}}
-            <a class="pagination-link" href="{{this.link}}">
-                <li class="pagination-item">{{this.number}}</li>
-            </a>
+            <li class="pagination-item">
+                <a class="pagination-link" href="{{this.link}}">{{this.number}}</a>
+            </li>
         {{/each}}
         {{/if}}
 

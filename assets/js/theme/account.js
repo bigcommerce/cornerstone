@@ -411,7 +411,7 @@ export default class Account extends PageManager {
         const validationModel = validation($editAccountForm, this.context);
         const formEditSelector = 'form[data-edit-account-form]';
         const editValidator = nod({
-            submit: '${formEditSelector} input[type="submit"]',
+            submit: `${formEditSelector} input[type="submit"]`,
             delay: 900,
         });
         const emailSelector = `${formEditSelector} [data-field-type="EmailAddress"]`;
@@ -492,7 +492,7 @@ export default class Account extends PageManager {
             event.preventDefault();
             setTimeout(() => {
                 const earliestError = $('span.form-inlineMessage:first').prev('input');
-                earliestError.focus();
+                earliestError.trigger('focus');
             }, 900);
         });
     }
@@ -544,7 +544,7 @@ export default class Account extends PageManager {
 
             setTimeout(() => {
                 const earliestError = $('span.form-inlineMessage:first').prev('input');
-                earliestError.focus();
+                earliestError.trigger('focus');
             }, 900);
         });
     }

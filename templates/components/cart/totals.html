@@ -21,6 +21,18 @@
             </div>
         </li>
     {{/if}}
+    {{#if cart.fees}}
+        {{#each cart.fees}}
+            <li class="cart-total">
+                <div class="cart-total-label">
+                    <strong>{{display_name}}:</strong>
+                </div>
+                <div class="cart-total-value">
+                    <span>{{cost.formatted}}</span>
+                </div>
+            </li>
+        {{/each}}
+    {{/if}}
     {{#if cart.shipping_handling.show_estimator}}
         <li class="cart-total">
             <div class="cart-total-label">

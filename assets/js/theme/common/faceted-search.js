@@ -2,11 +2,10 @@ import { hooks, api } from '@bigcommerce/stencil-utils';
 import _ from 'lodash';
 import Url from 'url';
 import urlUtils from './utils/url-utils';
-import modalFactory, { ModalEvents } from '../global/modal';
+import modalFactory from '../global/modal';
 import collapsibleFactory from './collapsible';
 import { Validators } from './utils/form-utils';
 import nod from './nod';
-
 
 const defaultOptions = {
     accordionToggleSelector: '#facetedSearch .accordion-navigation, #facetedSearch .facetedSearch-toggle',
@@ -17,8 +16,8 @@ const defaultOptions = {
     priceRangeErrorSelector: '#facet-range-form .form-inlineMessage',
     priceRangeFieldsetSelector: '#facet-range-form .form-fieldset',
     priceRangeFormSelector: '#facet-range-form',
-    priceRangeMaxPriceSelector: '#facet-range-form [name=max_price]',
-    priceRangeMinPriceSelector: '#facet-range-form [name=min_price]',
+    priceRangeMaxPriceSelector: $('#facetedSearch').length ? '#facet-range-form [name=max_price]' : '#facet-range-form [name=price_max]',
+    priceRangeMinPriceSelector: $('#facetedSearch').length ? '#facet-range-form [name=min_price]' : '#facet-range-form [name=price_min]',
     showMoreToggleSelector: '#facetedSearch .accordion-content .toggleLink',
     facetedSearchFilterItems: '#facetedSearch-filterItems .form-input',
     modal: modalFactory('#modal')[0],
@@ -140,6 +139,16 @@ class FacetedSearch {
 
             // Refresh view with new content
             this.refreshView(content);
+
+            // Refresh range view when shop-by-price enabled
+            const urlParams = new URLSearchParams(window.location.search);
+
+            if (urlParams.has('search_query')) {
+                $('.reset-filters').show();
+            }
+
+            $('input[name="price_min"]').attr('value', urlParams.get('price_min'));
+            $('input[name="price_max"]').attr('value', urlParams.get('price_max'));
         });
     }
 
@@ -430,15 +439,8 @@ class FacetedSearch {
     }
 
     onPopState() {
-        const currentUrl = window.location.href;
-        const searchParams = new URLSearchParams(currentUrl);
-        // If searchParams does not contain a page value then modify url query string to have page=1
-        if (!searchParams.has('page')) {
-            const linkUrl = $('.pagination-link').attr('href');
-            const re = /page=[0-9]+/i;
-            const updatedLinkUrl = linkUrl.replace(re, 'page=1');
-            window.history.replaceState({}, document.title, updatedLinkUrl);
-        }
+        if (document.location.hash !== '') return;
+
         $(window).trigger('statechange');
     }
 }

@@ -1,0 +1,47 @@
+<form id="facet-range-form" class="form" method="get" data-faceted-search-range novalidate>
+    <input type="hidden" name="search_query" value="{{search_query}}">
+    {{#if this.sort}}
+        <input type="hidden" name="sort" value="{{this.sort}}">
+    {{/if}}
+    <fieldset class="form-fieldset">
+        <div class="form-minMaxRow">
+            <div class="form-field">
+                <input
+                    name="{{#if shop_by_price}}price_min{{else}}min_price{{/if}}"
+                    placeholder="{{lang 'search.faceted.range.min-placeholder'}}"
+                    min="0"
+                    class="form-input form-input--small"
+                    required
+                    type="number"
+                    value="{{min_price}}"
+                    aria-label="{{lang 'search.faceted.range.min-placeholder'}}"
+                    aria-describedby="min_price_description"
+                />
+                <span id="min_price_description" class="aria-description--hidden">{{lang 'search.faceted.range.min-description'}}</span>
+            </div>
+
+            <div class="form-field">
+                <input
+                    name="{{#if shop_by_price}}price_max{{else}}max_price{{/if}}"
+                    placeholder="{{lang 'search.faceted.range.max-placeholder'}}"
+                    min="0"
+                    class="form-input form-input--small"
+                    required
+                    type="number"
+                    value="{{max_price}}"
+                    aria-label="{{lang 'search.faceted.range.max-placeholder'}}"
+                    aria-describedby="max_price_description"
+                />
+                <span id="max_price_description" class="aria-description--hidden">{{lang 'search.faceted.range.max-description'}}</span>
+            </div>
+
+            <div class="form-field">
+                <button class="button button--small" type="submit">
+                    {{lang 'search.faceted.range.update'}}
+                </button>
+            </div>
+        </div>
+
+        <div class="form-inlineMessage" aria-live="polite" role="alert"></div>
+    </fieldset>
+</form>

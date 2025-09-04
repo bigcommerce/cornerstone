@@ -5,9 +5,9 @@ import 'foundation-sites/js/foundation/foundation.reveal';
 import ImageGallery from '../product/image-gallery';
 import modalFactory, { alertModal, showAlertModal } from '../global/modal';
 import { isEmpty, isPlainObject } from 'lodash';
-import nod from './nod';
-import { announceInputErrorMessage } from './utils/form-utils';
-import forms from './models/forms';
+import nod from '../common/nod';
+import { announceInputErrorMessage } from '../common/utils/form-utils';
+import forms from '../common/models/forms';
 import { normalizeFormData } from './utils/api';
 import { isBrowserIE, convertIntoArray } from './utils/ie-helpers';
 import bannerUtils from './utils/banner-utils';
@@ -25,7 +25,6 @@ export default class ProductDetails extends ProductDetailsBase {
         this.swatchInitMessageStorage = {};
         this.swatchGroupIdList = $('[id^="swatchGroup"]').map((_, group) => $(group).attr('id'));
         this.storeInitMessagesForSwatches();
-        this.updateDateSelector();
 
         const $form = $('form[data-cart-item-add]', $scope);
 
@@ -273,14 +272,6 @@ export default class ProductDetails extends ProductDetailsBase {
                 const $context = $form.parents('.productView').find('.productView-info');
                 modalFactory('[data-reveal]', { $context });
             }
-
-            document.dispatchEvent(new CustomEvent('onProductOptionsChanged', {
-                bubbles: true,
-                detail: {
-                    content: productAttributesData,
-                    data: productAttributesContent,
-                },
-            }));
         });
     }
 
@@ -597,50 +588,22 @@ export default class ProductDetails extends ProductDetailsBase {
         }));
     }
 
-    updateDateSelector() {
-        this.$scope.each((i, scope) => {
-            function updateDays(dateOption) {
-                const monthSelector = dateOption.querySelector('select[name$="[month]"]');
-                const daySelector = dateOption.querySelector('select[name$="[day]"]');
-                const yearSelector = dateOption.querySelector('select[name$="[year]"]');
-                const month = parseInt(monthSelector.value, 10);
-                const year = parseInt(yearSelector.value, 10);
-                let daysInMonth;
+    addToCartCelebration(el, container) {
+        try {
+            // Display celebration emoji
+            const celebrationEmoji = document.createElement('div');
+            celebrationEmoji.innerText = '🎉';
+            celebrationEmoji.className = 'celebration-emoji';
+            celebrationEmoji.style.top = `${el.offsetTop}px`;
+            celebrationEmoji.style.left = `${el.offsetLeft + (el.offsetWidth / 2)}px`;
+            container.appendChild(celebrationEmoji);
 
-                if (!Number.isNaN(month) && !Number.isNaN(year)) {
-                    switch (month) {
-                    case 2:
-                        daysInMonth = (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0) ? 29 : 28;
-                        break;
-                    case 4: case 6: case 9: case 11:
-                        daysInMonth = 30;
-                        break;
-                    default:
-                        daysInMonth = 31;
-                    }
-
-                    for (let day = 29; day <= 31; day++) {
-                        const option = daySelector.querySelector(`option[value="${day}"]`);
-                        if (day <= daysInMonth && !option) {
-                            daySelector.options.add(new Option(day, day));
-                        } else if (day > daysInMonth && option) {
-                            option.remove();
-                        }
-                    }
-                }
-            }
-
-            $(scope).on('change', (e) => {
-                const dateOption = e.target && e.target.closest && e.target.closest('[data-product-attribute=date]');
-
-                if (dateOption) {
-                    updateDays(dateOption);
-                }
-            });
-
-            scope.querySelectorAll('[data-product-attribute=date]').forEach(dateOption => {
-                updateDays(dateOption);
-            });
-        });
+            // Remove celebration emoji after a short delay (e.g., 2 seconds)
+            setTimeout(() => {
+                celebrationEmoji.remove();
+            }, 3500);
+        } catch (e) {
+            console.log(e); // eslint-disable-next-line no-console
+        }
     }
 }

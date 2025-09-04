@@ -68,12 +68,21 @@
 .navUser-section {
     @include breakpoint("medium") {
         position: relative; // 7
+
+        &.navUser-section--styled {
+            background: $navUser-backgroundColor;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            padding-left: 8px;
+            padding-right: 8px;
+        }
     }
 }
 
 .navUser-action {
     color: stencilColor("navUser-color");
-    font-weight: fontWeight("bold");
+    font-size: 14px;
+    font-weight: fontWeight("normal");
     padding: spacing("base") spacing("half");
     text-decoration: none;
     text-transform: uppercase;
@@ -94,14 +103,13 @@
     }
 
     svg {
-        fill: stencilColor("navUser-color");
-        stroke: stencilColor("navUser-color");
+        fill: stencilColor("navUser-color-hover");
+        stroke: stencilColor("navUser-color-hover");
         transition: all 0.15s ease;
     }
 }
 
-.navUser-action--currencySelector + .dropdown-menu,
-.navUser-action--channelSelector + .dropdown-menu {
+.navUser-action--currencySelector + .dropdown-menu {
     &::before {
         left: auto !important; // 6
         right: spacing("half"); // 6
@@ -165,6 +173,13 @@
 
     .navUser-action {
         color: stencilColor("navUser-color");
+        margin-top: 12px;
+        padding: 6px 0.78571rem;
+        position: relative;
+
+        @include breakpoint("medium") {
+            margin-top: 2px;
+        }
 
         &:hover,
         &.is-open {
@@ -206,7 +221,8 @@
 }
 
 .navUser-item-cartLabel {
-    display: none;
+    display: inline;
+    font-weight: fontWeight("bold");
 
     @include breakpoint("small") {
         display: inline;
@@ -318,24 +334,38 @@
 // -----------------------------------------------------------------------------
 
 .countPill {
-    background-color: stencilColor("navUser-indicator-backgroundColor");
-    border-radius: 50%;
-    color: color("whites", "bright");
+    // background-color: stencilColor("navUser-indicator-backgroundColor");
+    // border-radius: 50%;
+    color: color("whites", "lighter");
     display: none;
-    font-size: fontSize("tiny");
+    font-size: 14px;
     font-weight: fontWeight("bold");
     height: 20px; // 1
+    left: 17px;
     line-height: 20px; // 1
-    margin-left: spacing("eighth");
+    position: absolute;
+    // margin-left: spacing("eighth");
     text-align: center;
+    top: 14px;
     width: 20px; // 1
 }
 
 .countPill--positive {
-    display: inline-block;
+    display: block;
 }
 
 .countPill--alt {
     background-color: color("greys", "lighter");
     color: color("greys", "darker");
 }
+
+// .navUser-item-cartIcon {	
+//     // display: none;	
+//     position: absolute;
+//     right: 11px;	
+//     top: 6px;	
+//     z-index: -1;	
+//     &.has-items {	
+//         display: block;	
+//     }	
+// }

@@ -40,6 +40,11 @@
             opacity: 1;
         }
     }
+
+    &__link {
+        display: block;
+        position: relative;
+    }
 }
 
 .card-figure {
@@ -51,6 +56,56 @@
     &:hover {
         .card-figcaption {
             opacity: 1;
+        }
+    }
+
+    &__link {
+        display: block;
+        position: relative;
+    }
+}
+
+.card-figure {
+    margin-top: $card-figure-marginTop;
+    overflow: hidden;
+    padding: 3px;
+    position: relative;
+
+    &:hover {
+        .card-figcaption {
+            opacity: 1;
+            z-index: 10;
+        }
+    }
+
+    &__link {
+        display: block;
+        position: relative;
+    }
+}
+
+.card-figure__link {
+    display: block;
+    overflow: hidden;
+    position: relative;
+
+    .card-image-2 {
+        left: 50%;
+        opacity: 0;
+        position: absolute;
+        text-align: center;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        transition: all 0.3s ease;
+        visibility: hidden;
+        width: 100%;
+        z-index: 3;
+
+        img {
+            display: inline-block;
+            max-height: 100%;
+            vertical-align: top;
+            width: 100%;
         }
     }
 
@@ -89,6 +144,7 @@
     font-family: "object-fit: contain;";
     max-height: 100%;
     object-fit: contain;
+    transition: all 0.3s ease;
     width: 100%;
 }
 
@@ -98,6 +154,7 @@
 
     > a {
         color: $card-title-color;
+        display: block;
         display: block;
         text-decoration: $card-title-textDecoration;
 

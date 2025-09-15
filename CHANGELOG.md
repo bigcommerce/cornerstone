@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Removed banner widget configuration and related translations [#2561](https://github.com/bigcommerce/cornerstone/pull/2561)
 - Add support for shipping discounts in "order.total_rows" for use on the Order Details and Order Invoice pages [#2568](https://github.com/bigcommerce/cornerstone/pull/2568)
 - Updates eslint to v8 [#2570](https://github.com/bigcommerce/cornerstone/pull/2570)
+- Add stored by token ACH bank accounts type 'tokenized_ach', to the Payment methods page [#2572](https://github.com/bigcommerce/cornerstone/pull/2572)
 
 ## 6.16.2 (06-18-2025)
 - Restore indentation and quote rules to match BC Sass Style Guide [#2554](https://github.com/bigcommerce/cornerstone/pull/2554)

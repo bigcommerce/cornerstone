@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Draft
 
+- Update Cornerstone documentation url [#2575](https://github.com/bigcommerce/cornerstone/pull/2575)
+
 ## 6.17.0 (10-01-2025)
 - Add net-new "order.pickup_addresses" to unify objects used on Order Details and Order Invoice pages [#2557](https://github.com/bigcommerce/cornerstone/pull/2557)
 - Removed banner widget configuration and related translations [#2561](https://github.com/bigcommerce/cornerstone/pull/2561)

@@ -35,15 +35,15 @@ const handleItemKeyDown = itemCollection => e => {
     case ariaKeyCodes.LEFT:
     case ariaKeyCodes.UP: {
         const prevItemIdx = calculateTargetItemPosition(lastCollectionItemIdx, itemIdx - 1);
-        itemCollection.get(prevItemIdx).trigger('focus');
-        setCheckedRadioItem(itemCollection, itemIdx - 1);
+        itemCollection.eq(prevItemIdx).trigger('focus');
+        setCheckedRadioItem(itemCollection, prevItemIdx);
         break;
     }
     case ariaKeyCodes.RIGHT:
     case ariaKeyCodes.DOWN: {
         const nextItemIdx = calculateTargetItemPosition(lastCollectionItemIdx, itemIdx + 1);
-        itemCollection.get(nextItemIdx).trigger('focus');
-        setCheckedRadioItem(itemCollection, itemIdx + 1);
+        itemCollection.eq(nextItemIdx).trigger('focus');
+        setCheckedRadioItem(itemCollection, nextItemIdx);
         break;
     }
 

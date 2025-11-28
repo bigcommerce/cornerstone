@@ -4,6 +4,7 @@ cart: true
 {{inject 'cancelButtonText' (lang 'common.cancel')}}
 {{#partial "page"}}
 {{inject 'invalidEntryMessage' (lang 'cart.invalid_entry_message')}}
+{{inject 'multiCouponUIEnabled' cart.multi_coupon_ui_enabled}}
 <div class="page">
 
     <div class="page-content" data-cart>
@@ -20,6 +21,10 @@ cart: true
 
             <div data-cart-content class="cart-content-padding-right">
                 {{> components/cart/content}}
+            </div>
+
+            <div data-cart-coupons class="cart-content-padding-right">
+                {{> components/cart/coupons}}
             </div>
 
             <div data-cart-totals class="cart-content-padding-right">

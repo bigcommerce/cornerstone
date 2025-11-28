@@ -1,0 +1,35 @@
+<div class="cart-coupons">
+    <div class="cart-coupon-trigger">
+        <a href="#" class="cart-coupon-link" data-coupon-trigger>
+            {{lang 'cart.coupons.apply_coupon_code'}}
+        </a>
+    </div>
+
+    <div class="cart-form coupon-code-form" data-coupon-form style="display: none;">
+        <form class="form form--hiddenLabels coupon-form" action="{{urls.cart}}" method="post">
+            <input class="form-input" data-error="{{lang 'cart.coupons.empty_error'}}"  id="couponcode" type="text" name="couponcode" value="" placeholder="{{lang 'cart.coupons.coupon_code'}}">
+            <input class="button button--primary button--small" type="submit" aria-label="{{lang 'cart.coupons.apply_coupon'}}" value="{{lang 'cart.coupons.button'}}">
+            <input type="hidden" name="action" value="applycoupon">
+        </form>
+    </div>
+
+    {{#if cart.coupons.length}}
+        <div class="cart-coupon-display">
+            <ul class="cart-coupon-list">
+                {{#each cart.coupons}}
+                    <li class="cart-coupon-item">
+                        <i class="icon" aria-hidden="true"><svg><use href="#icon-promotions" /></svg></i>
+                        <span class="cart-coupon-name">{{display_name}} ({{code}})</span>
+                        <a 
+                            class="cart-coupon-remove"
+                            aria-label="{{lang 'cart.coupons.remove'}}"
+                            href="{{remove_url}}"
+                        >
+                                <i class="icon" aria-hidden="true"><svg><use href="#icon-close" /></svg></i>
+                        </a>
+                    </li>
+                {{/each}}
+            </ul>
+        </div>
+    {{/if}}
+</div>

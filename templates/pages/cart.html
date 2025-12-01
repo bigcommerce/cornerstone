@@ -23,9 +23,11 @@ cart: true
                 {{> components/cart/content}}
             </div>
 
-            <div data-cart-coupons class="cart-content-padding-right">
-                {{> components/cart/coupons}}
-            </div>
+            {{#if cart.multi_coupon_ui_enabled}}
+                <div data-cart-coupons class="cart-content-padding-right">
+                    {{> components/cart/coupons}}
+                </div>
+            {{/if}}
 
             <div data-cart-totals class="cart-content-padding-right">
                 {{> components/cart/totals}}

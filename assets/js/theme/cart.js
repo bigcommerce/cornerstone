@@ -301,19 +301,6 @@ export default class Cart extends PageManager {
         });
     }
 
-    bindCouponEvents() {
-        const $couponTrigger = $('[data-coupon-trigger]');
-        const $couponForm = $('[data-coupon-form]');
-        const $codeInput = $('[name="couponcode"]', $couponForm);
-
-        // Toggle coupon form visibility
-        $couponTrigger.on('click', (event) => {
-            event.preventDefault();
-            $couponForm.show();
-            $codeInput.trigger('focus');
-        });
-    }
-
     bindPromoCodeEvents() {
         const $couponContainer = $('.coupon-code');
         const $couponForm = $('[data-coupon-form]');

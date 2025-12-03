@@ -12,6 +12,7 @@ export default class Cart extends PageManager {
         this.$modal = null;
         this.$cartPageContent = $('[data-cart]');
         this.$cartContent = $('[data-cart-content]');
+        this.$cartCoupons = $('[data-cart-coupons]');
         this.$cartMessages = $('[data-cart-status]');
         this.$cartTotals = $('[data-cart-totals]');
         this.$cartAdditionalCheckoutBtns = $('[data-cart-additional-checkout-buttons]');
@@ -205,6 +206,7 @@ export default class Cart extends PageManager {
         const options = {
             template: {
                 content: 'cart/content',
+                coupons: 'cart/coupons',
                 totals: 'cart/totals',
                 pageTitle: 'cart/page-title',
                 statusMessages: 'cart/status-messages',
@@ -221,6 +223,7 @@ export default class Cart extends PageManager {
 
         utils.api.cart.getContent(options, (err, response) => {
             this.$cartContent.html(response.content);
+            this.$cartCoupons.html(response.coupons);
             this.$cartTotals.html(response.totals);
             this.$cartMessages.html(response.statusMessages);
             this.$cartAdditionalCheckoutBtns.html(response.additionalCheckoutButtons);
@@ -300,27 +303,38 @@ export default class Cart extends PageManager {
 
     bindPromoCodeEvents() {
         const $couponContainer = $('.coupon-code');
-        const $couponForm = $('.coupon-form');
+        const $couponForm = $('[data-coupon-form]');
         const $codeInput = $('[name="couponcode"]', $couponForm);
 
-        $('.coupon-code-add').on('click', event => {
-            event.preventDefault();
+        if (this.context.multiCouponUIEnabled) {
+            const $couponTrigger = $('[data-coupon-trigger]');
 
-            $(event.currentTarget).hide();
-            $couponContainer.show();
-            $couponContainer.attr('aria-hidden', false);
-            $('.coupon-code-cancel').show();
-            $codeInput.trigger('focus');
-        });
+            // Toggle coupon form visibility
+            $couponTrigger.on('click', (event) => {
+                event.preventDefault();
+                $couponForm.show();
+                $codeInput.trigger('focus');
+            });
+        } else {
+            $('.coupon-code-add').on('click', event => {
+                event.preventDefault();
 
-        $('.coupon-code-cancel').on('click', event => {
-            event.preventDefault();
+                $(event.currentTarget).hide();
+                $couponContainer.show();
+                $couponContainer.attr('aria-hidden', false);
+                $('.coupon-code-cancel').show();
+                $codeInput.trigger('focus');
+            });
 
-            $couponContainer.hide();
-            $couponContainer.attr('aria-hidden', true);
-            $('.coupon-code-cancel').hide();
-            $('.coupon-code-add').show();
-        });
+            $('.coupon-code-cancel').on('click', event => {
+                event.preventDefault();
+
+                $couponContainer.hide();
+                $couponContainer.attr('aria-hidden', true);
+                $('.coupon-code-cancel').hide();
+                $('.coupon-code-add').show();
+            });
+        }
 
         $couponForm.on('submit', event => {
             const code = $codeInput.val();

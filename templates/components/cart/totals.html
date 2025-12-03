@@ -63,28 +63,30 @@
             </div>
         </li>
     {{/if}}
-    {{#if cart.coupons}}
-        {{#each cart.coupons}}
+    {{#unless cart.multi_coupon_ui_enabled}}
+        {{#if cart.coupons}}
+            {{#each cart.coupons}}
+                <li class="cart-total">
+                    <div class="cart-total-label">
+                        <strong>{{lang 'cart.coupons.code_label' code=code}}</strong>
+                        <div>
+                            <a href="{{remove_url}}">{{lang 'cart.coupons.remove'}}</a>
+                        </div>
+                    </div>
+                    <div class="cart-total-value">
+                        <span>{{discount.formatted}}</span>
+                    </div>
+                </li>
+            {{/each}}
+        {{else}}
             <li class="cart-total">
                 <div class="cart-total-label">
-                    <strong>{{lang 'cart.coupons.code_label' code=code}}</strong>
-                    <div>
-                        <a href="{{remove_url}}">{{lang 'cart.coupons.remove'}}</a>
-                    </div>
+                    <strong>{{lang 'cart.coupon_code'}}:</strong>
                 </div>
-                <div class="cart-total-value">
-                    <span>{{discount.formatted}}</span>
-                </div>
+                {{> components/cart/coupon-input}}
             </li>
-        {{/each}}
-    {{else}}
-        <li class="cart-total">
-            <div class="cart-total-label">
-                <strong>{{lang 'cart.coupon_code'}}:</strong>
-            </div>
-            {{> components/cart/coupon-input}}
-        </li>
-    {{/if}}
+        {{/if}}
+    {{/unless}}
     {{#if settings.gift_certificates_enabled}}
         {{#each cart.gift_certificates}}
             <li class="cart-total">

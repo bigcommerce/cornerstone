@@ -319,6 +319,7 @@ $card-preview-zoom-bottom-offset:       6rem;
 
     @include breakpoint("small") {
         float: right;
+        clear: both;
         width: grid-calc(9, $total-columns);
     }
 
@@ -430,6 +431,95 @@ $card-preview-zoom-bottom-offset:       6rem;
     &:hover {
         color: stencilColor("color-textSecondary--hover");
     }
+}
+
+// Cart coupons section
+.cart-coupons {
+    margin-bottom: $cart-item-spacing;
+    width: 100%;
+    
+    @include breakpoint("small") {
+        float: right;
+        width: grid-calc(9, $total-columns);
+    }
+
+    @include breakpoint("medium") {
+        margin-bottom: spacing("base");
+        width: grid-calc(7, $total-columns);
+    }
+
+    @include breakpoint("large") {
+        width: grid-calc(5, $total-columns);
+    }
+}
+
+.cart-coupon-trigger {
+    margin-bottom: 1rem;
+}
+
+.cart-coupon-link {
+    color: #5B6AE0;
+    font-size: 14px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    font-weight: 400;
+    
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.coupon-code-form {
+    .form-input {
+        display: inline-block;
+        height: remCalc(32px);
+        padding: spacing("third");
+        vertical-align: top;
+        width: grid-calc(9, $total-columns);
+    }
+}
+
+.cart-coupon-display {
+    margin-top: 1.5rem;
+}
+
+.cart-coupon-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: flex-start;
+}
+
+.cart-coupon-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    border: 1px solid #E5E7EB;
+    color: stencilColor("color-textBase");
+    max-width: 100%;
+    border-radius: 3px;
+    background: #FAFAFA;
+
+    svg {
+        fill: #979797;
+    }
+
+    .cart-coupon-remove {
+        svg {
+            fill: stencilColor("color-grey")
+        }
+    }
+}
+
+.cart-coupon-name {
+    flex: 1;
+    font-weight: 400;
 }
 
 .coupon-code-cancel,

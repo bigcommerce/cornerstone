@@ -19,7 +19,15 @@
                 {{#each cart.coupons}}
                     <li class="cart-coupon-item">
                         <i class="icon" aria-hidden="true"><svg><use href="#icon-promotions" /></svg></i>
-                        <span class="cart-coupon-name">{{display_name}} ({{code}})</span>
+                        {{#if display_name}}
+                            {{#compare display_name "===" "Coupon promotion"}}
+                                <span class="cart-coupon-name">{{code}}</span>
+                            {{else}}
+                                <span class="cart-coupon-name">{{display_name}} ({{code}})</span>
+                            {{/compare}}
+                        {{else}}
+                            <span class="cart-coupon-name">{{code}}</span>
+                        {{/if}}
                         <a 
                             class="cart-coupon-remove"
                             aria-label="{{lang 'cart.coupons.remove'}}"

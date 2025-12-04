@@ -159,7 +159,7 @@
                             <svg aria-hidden="true"><use href="#icon-close"></use></svg>
                         </button>
                     {{/or}}
-                    {{#if coupons}}
+                    {{#and ../cart.multi_coupon_ui_enabled coupons}}
                         <div class="cart-item-discounts">
                             {{#each coupons}}
                                 <div class="cart-item-discount">
@@ -168,7 +168,7 @@
                                 </div>
                             {{/each}}
                         </div>
-                    {{/if}}
+                    {{/and}}
                 </td>
             </tr>
         {{/each}}

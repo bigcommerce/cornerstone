@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fix keyboard navigation on the swatch options [#2576](https://github.com/bigcommerce/cornerstone/pull/2576)
 - CHECKOUT-9688 Introduce new coupon management section on cart page [#2578](https://github.com/bigcommerce/cornerstone/pull/2578)
 - CHECKOUT-9692 show the display name and coupon code under line item [#2579](https://github.com/bigcommerce/cornerstone/pull/2579)
+- Fix Cart Page not updating when adding product via Quick View [#2581](https://github.com/bigcommerce/cornerstone/pull/2581)
 
 ## 6.17.0 (10-01-2025)
 - Add net-new "order.pickup_addresses" to unify objects used on Order Details and Order Invoice pages [#2557](https://github.com/bigcommerce/cornerstone/pull/2557)

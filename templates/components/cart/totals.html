@@ -49,7 +49,11 @@
                         <li class="cart-discount-item">
                             <div class="cart-discount-item-label">
                                 <i class="icon" aria-hidden="true"><svg><use href="#icon-promotions" /></svg></i>
-                                <span class="cart-coupon-name">{{display_name}} ({{code}})</span>
+                                {{#if display_name}}
+                                    <span class="cart-coupon-name">{{display_name}} ({{code}})</span>
+                                {{else}}
+                                    <span class="cart-coupon-name">{{code}}</span>
+                                {{/if}}
                             </div>
                             <div class="cart-discount-item-value">
                                 {{discount.formatted}}
@@ -162,16 +166,16 @@
             <div class="cart-total-label">
                 <strong>{{lang 'cart.checkout.total'}}</strong>
             </div>
-            {{#if cart.total_discount.value}}
-                <div class="cart-total-value cart-total-grandTotal">
-                    {{#or customer (unless settings.hide_price_from_guests) }}
-                        <span class="cart-total-amount">{{cart.grand_total.formatted}}</span>
+            <div class="cart-total-value cart-total-grandTotal">
+                {{#or customer (unless settings.hide_price_from_guests) }}
+                    <span class="cart-total-amount">{{cart.grand_total.formatted}}</span>
+                    {{#if cart.total_discount.value}}
                         <span class="cart-total-savings">{{lang 'cart.checkout.you_saved'}} <span class="cart-savings-amount">{{cart.total_discount.formatted}}</span> {{lang 'cart.checkout.in_total'}}</span>
-                    {{else}}
-                        {{> components/common/login-for-pricing}}
-                    {{/or}}
-                </div>
-            {{/if}}
+                    {{/if}}
+                {{else}}
+                    {{> components/common/login-for-pricing}}
+                {{/or}}
+            </div>
         {{else}}
             <div class="cart-total-label">
                 <strong>{{lang 'cart.checkout.grand_total'}}:</strong>

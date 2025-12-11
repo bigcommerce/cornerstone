@@ -16,21 +16,35 @@
             <div class="cart-total cart-total-discounts">
                 <div class="cart-total-label" data-discount-toggle>
                     <strong>{{lang 'cart.discounts'}}</strong>
-                    <i class="icon cart-discount-icon" aria-hidden="true"><svg><use href="#icon-keyboard-arrow-down" /></svg></i>
+                    <i class="icon cart-discount-icon" aria-hidden="true"><svg><use href="#icon-keyboard-arrow-up" /></svg></i>
                 </div>
                 <div class="cart-total-value" data-discount-toggle>
+                    <!-- TODO: Display total discounts when returned from CartContent. -->
                     <strong>{{cart.discount.formatted}}+discounts</strong>
                 </div>
                 <ul data-discount-details class="cart-discount-list">
                     <li class="cart-discount-item">
                         <div class="cart-discount-item-label">
                             <i class="icon" aria-hidden="true"><svg><use href="#icon-promotions" /></svg></i>
-                            <span class="cart-coupon-name">Automatic promotion</span>
+                            <span class="cart-coupon-name">{{lang 'cart.automatic_promotion'}}</span>
                         </div>
                         <div class="cart-discount-item-value">
+                            <!-- TODO: Update it to new field name once received from CartContent, since this contains both automatic and manual discount  -->
                             {{cart.discount.formatted}}
                         </div>
                     </li>
+                    <!-- TODO: Add details for manual discount once data available from CartContent -->
+                    <!-- {{#if cart.manual_discount}}
+                        <li class="cart-discount-item">
+                            <div class="cart-discount-item-label">
+                                <i class="icon" aria-hidden="true"><svg><use href="#icon-promotions" /></svg></i>
+                                <span class="cart-coupon-name">{{lang 'cart.manual_discount'}}</span>
+                            </div>
+                            <div class="cart-discount-item-value">
+                                {{cart.manual_discount.formatted}}
+                            </div>
+                        </li>
+                    {{/if}} -->
                     {{#each cart.coupons}}
                         <li class="cart-discount-item">
                             <div class="cart-discount-item-label">
@@ -148,15 +162,17 @@
             <div class="cart-total-label">
                 <strong>{{lang 'cart.checkout.total'}}</strong>
             </div>
-            <div class="cart-total-value cart-total-grandTotal">
-                {{#or customer (unless settings.hide_price_from_guests)}}
-                    <span class="cart-total-amount">{{cart.grand_total.formatted}}</span>
-                    <span class="cart-total-savings">{{lang 'cart.checkout.you_saved'}} <span class="cart-savings-amount">{{cart.total_discount.formatted}}</span> {{lang 'cart.checkout.in_total'}}</span>
-                {{else}}
-                    {{> components/common/login-for-pricing}}
-                {{/or}}
-            </div>
-            {{else}}
+            {{#if cart.total_discount.value}}
+                <div class="cart-total-value cart-total-grandTotal">
+                    {{#or customer (unless settings.hide_price_from_guests) }}
+                        <span class="cart-total-amount">{{cart.grand_total.formatted}}</span>
+                        <span class="cart-total-savings">{{lang 'cart.checkout.you_saved'}} <span class="cart-savings-amount">{{cart.total_discount.formatted}}</span> {{lang 'cart.checkout.in_total'}}</span>
+                    {{else}}
+                        {{> components/common/login-for-pricing}}
+                    {{/or}}
+                </div>
+            {{/if}}
+        {{else}}
             <div class="cart-total-label">
                 <strong>{{lang 'cart.checkout.grand_total'}}:</strong>
             </div>

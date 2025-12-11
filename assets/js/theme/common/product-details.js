@@ -3,7 +3,7 @@ import ProductDetailsBase, { optionChangeDecorator } from './product-details-bas
 import 'foundation-sites/js/foundation/foundation';
 import 'foundation-sites/js/foundation/foundation.reveal';
 import ImageGallery from '../product/image-gallery';
-import modalFactory, { alertModal, showAlertModal } from '../global/modal';
+import modalFactory, { alertModal, showAlertModal, ModalEvents } from '../global/modal';
 import { isEmpty, isPlainObject } from 'lodash';
 import nod from './nod';
 import { announceInputErrorMessage } from './utils/form-utils';
@@ -17,6 +17,7 @@ export default class ProductDetails extends ProductDetailsBase {
     constructor($scope, context, productAttributesData = {}) {
         super($scope, context);
 
+        this.isCartPage = context.template === 'pages/cart';
         this.$overlay = $('[data-cart-item-add] .loadingOverlay');
         this.imageGallery = new ImageGallery($('[data-image-gallery]', this.$scope));
         this.imageGallery.init();
@@ -542,7 +543,16 @@ export default class ProductDetails extends ProductDetailsBase {
                 onComplete(response);
             }
 
-            if ($promotionBanner.length && $backToShopppingBtn.length) {
+            if (this.isCartPage) {
+                modal.$modal.one(ModalEvents.closed, () => {
+                    // Close quick search overlay if it's open (ESC and backdrop click don't close it automatically)
+                    const $searchContainer = $('#quickSearch');
+                    if ($searchContainer.hasClass('is-open')) {
+                        $searchContainer.removeClass('is-open').attr('aria-hidden', 'true');
+                    }
+                    bannerUpdateHandler();
+                });
+            } else if ($promotionBanner.length && $backToShopppingBtn.length) {
                 $backToShopppingBtn.on('click', bannerUpdateHandler);
                 $modalCloseBtn.on('click', bannerUpdateHandler);
             }

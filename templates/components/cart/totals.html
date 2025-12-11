@@ -1,7 +1,7 @@
-<ul class="cart-totals">
+<ul class="cart-totals {{#if cart.multi_coupon_ui_enabled}}cart-total-enhanced{{/if}}">
     <li class="cart-total">
         <div class="cart-total-label">
-            <strong>{{lang 'cart.checkout.subtotal'}}:</strong>
+            <strong>{{lang 'cart.checkout.subtotal'}}{{#unless cart.multi_coupon_ui_enabled}}:{{/unless}}</strong>
         </div>
         <div class="cart-total-value">
             {{#or customer (unless settings.hide_price_from_guests)}}
@@ -11,6 +11,41 @@
             {{/or}}
         </div>
     </li>
+    {{#if cart.multi_coupon_ui_enabled}}
+        {{#or cart.coupons cart.discount }}
+            <div class="cart-total cart-total-discounts">
+                <div class="cart-total-label" data-discount-toggle>
+                    <strong>{{lang 'cart.discounts'}}</strong>
+                    <i class="icon cart-discount-icon" aria-hidden="true"><svg><use href="#icon-keyboard-arrow-down" /></svg></i>
+                </div>
+                <div class="cart-total-value" data-discount-toggle>
+                    <strong>{{cart.discount.formatted}}+discounts</strong>
+                </div>
+                <ul data-discount-details class="cart-discount-list">
+                    <li class="cart-discount-item">
+                        <div class="cart-discount-item-label">
+                            <i class="icon" aria-hidden="true"><svg><use href="#icon-promotions" /></svg></i>
+                            <span class="cart-coupon-name">Automatic promotion</span>
+                        </div>
+                        <div class="cart-discount-item-value">
+                            {{cart.discount.formatted}}
+                        </div>
+                    </li>
+                    {{#each cart.coupons}}
+                        <li class="cart-discount-item">
+                            <div class="cart-discount-item-label">
+                                <i class="icon" aria-hidden="true"><svg><use href="#icon-promotions" /></svg></i>
+                                <span class="cart-coupon-name">{{display_name}} ({{code}})</span>
+                            </div>
+                            <div class="cart-discount-item-value">
+                                {{discount.formatted}}
+                            </div>
+                        </li>
+                    {{/each}}
+                </ul>
+            </div>
+        {{/or}}
+    {{/if}}
     {{#if cart.gift_wrapping_cost.value}}
         <li class="cart-total">
             <div class="cart-total-label">
@@ -36,7 +71,7 @@
     {{#if cart.shipping_handling.show_estimator}}
         <li class="cart-total">
             <div class="cart-total-label">
-                <strong>{{lang 'cart.checkout.shipping'}}:</strong>
+                <strong>{{lang 'cart.checkout.shipping'}}{{#unless cart.multi_coupon_ui_enabled}}:{{/unless}}</strong>
             </div>
             {{> components/cart/shipping-estimator cart.shipping_handling}}
         </li>
@@ -53,17 +88,17 @@
             </li>
         {{/unless}}
     {{/each}}
-    {{#if cart.discount }}
-        <li class="cart-total">
-            <div class="cart-total-label">
-                <strong>{{lang 'cart.discount'}}:</strong>
-            </div>
-            <div class="cart-total-value">
-                {{cart.discount.formatted}}
-            </div>
-        </li>
-    {{/if}}
     {{#unless cart.multi_coupon_ui_enabled}}
+        {{#if cart.discount }}
+            <li class="cart-total">
+                <div class="cart-total-label">
+                    <strong>{{lang 'cart.discount'}}:</strong>
+                </div>
+                <div class="cart-total-value">
+                    {{cart.discount.formatted}}
+                </div>
+            </li>
+        {{/if}}
         {{#if cart.coupons}}
             {{#each cart.coupons}}
                 <li class="cart-total">
@@ -108,17 +143,31 @@
             {{> components/cart/gift-certificate-input}}
         </li>
     {{/if}}
-    <li class="cart-total">
-        <div class="cart-total-label">
-            <strong>{{lang 'cart.checkout.grand_total'}}:</strong>
-        </div>
-        <div class="cart-total-value cart-total-grandTotal">
-            {{#or customer (unless settings.hide_price_from_guests)}}
-                <span>{{cart.grand_total.formatted}}</span>
+    <li class="cart-total {{#if cart.multi_coupon_ui_enabled}}cart-total-with-savings{{/if}}">
+        {{#if cart.multi_coupon_ui_enabled}}
+            <div class="cart-total-label">
+                <strong>{{lang 'cart.checkout.total'}}</strong>
+            </div>
+            <div class="cart-total-value cart-total-grandTotal">
+                {{#or customer (unless settings.hide_price_from_guests)}}
+                    <span class="cart-total-amount">{{cart.grand_total.formatted}}</span>
+                    <span class="cart-total-savings">{{lang 'cart.checkout.you_saved'}} <span class="cart-savings-amount">{{cart.total_discount.formatted}}</span> {{lang 'cart.checkout.in_total'}}</span>
+                {{else}}
+                    {{> components/common/login-for-pricing}}
+                {{/or}}
+            </div>
             {{else}}
-                {{> components/common/login-for-pricing}}
-            {{/or}}
-        </div>
+            <div class="cart-total-label">
+                <strong>{{lang 'cart.checkout.grand_total'}}:</strong>
+            </div>
+            <div class="cart-total-value cart-total-grandTotal">
+                {{#or customer (unless settings.hide_price_from_guests)}}
+                    <span>{{cart.grand_total.formatted}}</span>
+                {{else}}
+                    {{> components/common/login-for-pricing}}
+                {{/or}}
+            </div>
+        {{/if}}
     </li>
     {{#each cart.taxes}}
         {{#if included}}

@@ -414,6 +414,84 @@ $card-preview-zoom-bottom-offset:       6rem;
     }
 }
 
+.cart-total-enhanced {
+    .cart-total {
+        border-top: none;
+    }
+
+    .cart-total-label {
+        color: stencilColor("color-textBase");
+    }
+
+    .cart-total-with-savings {
+        border-top: 1px solid stencilColor("color-greyLightest");
+        
+        .cart-total-label {
+            font-size: fontSize("larger");
+        }
+
+        .cart-total-grandTotal {
+            display: flex;
+            flex-direction: column;
+            gap: spacing("quarter");
+
+            .cart-total-amount {
+                font-size: fontSize("larger");
+            }
+
+            .cart-total-savings {
+                font-size: fontSize("smaller");
+                color: stencilColor("color-greyLight");
+                display: block;
+                margin-top: spacing("eighth");
+            }
+
+            .cart-savings-amount {
+                color: stencilColor("color-success");
+            }
+        }
+    }
+
+    .shipping-estimate-value, .shipping-estimate-show {
+        text-decoration: none;
+    }
+}
+
+// Collapsible discount section
+.cart-total-discounts {
+    cursor: pointer;
+    
+    &:hover {
+        opacity: 0.8;
+    }
+}
+
+.cart-discount-icon {
+    transition: transform 0.3s ease;
+    
+    &.is-open {
+        transform: rotate(180deg);
+    }
+
+    svg {
+        fill: stencilColor("icon-color");
+    }
+}
+
+.cart-discount-list {
+    display: flex;
+    flex-direction: column;
+    margin-left: spacing("quarter");
+    width: 100%;
+}
+
+.cart-discount-item {
+    display: flex;
+    justify-content: space-between;
+    padding: spacing("eighth") 0;
+    color: stencilColor("color-greyLight");
+}
+
 
 // Cart actions
 // -----------------------------------------------------------------------------
@@ -435,8 +513,9 @@ $card-preview-zoom-bottom-offset:       6rem;
 
 // Cart coupons section
 .cart-coupons {
-    margin-bottom: $cart-item-spacing;
     width: 100%;
+    padding-bottom: spacing("base");
+    border-bottom: 1px solid stencilColor("color-greyLightest");
     
     @include breakpoint("small") {
         float: right;
@@ -444,26 +523,30 @@ $card-preview-zoom-bottom-offset:       6rem;
     }
 
     @include breakpoint("medium") {
-        margin-bottom: spacing("base");
         width: grid-calc(7, $total-columns);
     }
 
     @include breakpoint("large") {
         width: grid-calc(5, $total-columns);
     }
-}
 
-.cart-coupon-trigger {
-    margin-bottom: 1rem;
+    .coupon-form {
+        margin-top: spacing("base");
+
+        .button {
+            background-color: container("fill", "base");
+            color: stencilColor("focusTooltip-backgroundColor");
+            font-weight: fontWeight("bold");
+        }
+    }
 }
 
 .cart-coupon-link {
-    color: #5B6AE0;
-    font-size: 14px;
+    color: #3D83F3;
     text-decoration: none;
     display: inline-flex;
     align-items: center;
-    font-weight: 400;
+    font-weight: fontWeight("normal");
     
     &:hover {
         text-decoration: underline;
@@ -481,7 +564,7 @@ $card-preview-zoom-bottom-offset:       6rem;
 }
 
 .cart-coupon-display {
-    margin-top: 1.5rem;
+    margin-top: spacing("base");
 }
 
 .cart-coupon-list {

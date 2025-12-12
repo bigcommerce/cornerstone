@@ -159,16 +159,6 @@
                             <svg aria-hidden="true"><use href="#icon-close"></use></svg>
                         </button>
                     {{/or}}
-                    {{#and ../cart.multi_coupon_ui_enabled coupons}}
-                        <div class="cart-item-discounts">
-                            {{#each coupons}}
-                                <div class="cart-item-discount">
-                                    <i class="icon" aria-hidden="true"><svg><use href="#icon-promotions" /></svg></i>
-                                    {{#if display_name}}{{display_name}}{{else}}{{code}}{{/if}} 
-                                </div>
-                            {{/each}}
-                        </div>
-                    {{/and}}
                 </td>
             </tr>
         {{/each}}

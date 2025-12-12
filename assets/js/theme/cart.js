@@ -470,6 +470,7 @@ export default class Cart extends PageManager {
         this.bindPromoCodeEvents();
         this.bindGiftWrappingEvents();
         this.bindGiftCertificateEvents();
+        this.bindDiscountToggle();
 
         // initiate shipping estimator module
         const shippingErrorMessages = {
@@ -477,5 +478,17 @@ export default class Cart extends PageManager {
             province: this.context.shippingProvinceErrorMessage,
         };
         this.shippingEstimator = new ShippingEstimator($('[data-shipping-estimator]'), shippingErrorMessages);
+    }
+
+    bindDiscountToggle() {
+        const $discountToggle = $('[data-discount-toggle]');
+        const $discountDetails = $('[data-discount-details]');
+        const $discountIcon = $('.cart-discount-icon');
+
+        $discountToggle.on('click', (event) => {
+            event.preventDefault();
+            $discountDetails.slideToggle(300);
+            $discountIcon.toggleClass('is-open');
+        });
     }
 }

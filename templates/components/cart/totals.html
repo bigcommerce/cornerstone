@@ -77,7 +77,7 @@
         {{#each cart.fees}}
             <li class="cart-total">
                 <div class="cart-total-label">
-                    <strong>{{display_name}}{{#unless cart.multi_coupon_ui_enabled}}:{{/unless}}</strong>
+                    <strong>{{display_name}}{{#unless ../cart.multi_coupon_ui_enabled}}:{{/unless}}</strong>
                 </div>
                 <div class="cart-total-value">
                     <span>{{cost.formatted}}</span>
@@ -105,7 +105,7 @@
         {{#unless included}}
             <li class="cart-total">
                 <div class="cart-total-label">
-                    <strong>{{name}}{{#unless cart.multi_coupon_ui_enabled}}:{{/unless}}/strong>
+                    <strong>{{name}}{{#unless ../cart.multi_coupon_ui_enabled}}:{{/unless}}</strong>
                 </div>
                 <div class="cart-total-value">
                     <span>{{cost.formatted}}</span>
@@ -225,7 +225,7 @@
         {{#if included}}
             <li class="cart-total">
                 <div class="cart-total-label">
-                    <strong>{{concat name (lang 'cart.included_in_total')}}{{#unless cart.multi_coupon_ui_enabled}}:{{/unless}}</strong>
+                    <strong>{{concat name (lang 'cart.included_in_total')}}{{#unless ../cart.multi_coupon_ui_enabled}}:{{/unless}}</strong>
                 </div>
                 <div class="cart-total-value">
                     <span>{{cost.formatted}}</span>

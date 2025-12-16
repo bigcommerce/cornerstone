@@ -12,39 +12,38 @@
         </div>
     </li>
     {{#if cart.multi_coupon_ui_enabled}}
-        {{#or cart.coupons cart.discount }}
+        {{#or cart.coupons cart.display_discount_total.value}}
             <div class="cart-total cart-total-discounts">
                 <div class="cart-total-label" data-discount-toggle>
                     <strong>{{lang 'cart.discounts'}}</strong>
                     <i class="icon cart-discount-icon" aria-hidden="true"><svg><use href="#icon-keyboard-arrow-up" /></svg></i>
                 </div>
                 <div class="cart-total-value" data-discount-toggle>
-                    <!-- TODO: Display total discounts when returned from CartContent. -->
-                    <strong>{{cart.discount.formatted}}+discounts</strong>
+                    <strong>{{cart.display_discount_total.formatted}}</strong>
                 </div>
                 <ul data-discount-details class="cart-discount-list">
-                    <li class="cart-discount-item">
-                        <div class="cart-discount-item-label">
-                            <i class="icon" aria-hidden="true"><svg><use href="#icon-promotions" /></svg></i>
-                            <span class="cart-coupon-name">{{lang 'cart.automatic_promotion'}}</span>
-                        </div>
-                        <div class="cart-discount-item-value">
-                            <!-- TODO: Update it to new field name once received from CartContent, since this contains both automatic and manual discount  -->
-                            {{cart.discount.formatted}}
-                        </div>
-                    </li>
-                    <!-- TODO: Add details for manual discount once data available from CartContent -->
-                    <!-- {{#if cart.manual_discount}}
+                    {{#if cart.order_based_auto_discount_total.value}}
+                        <li class="cart-discount-item">
+                            <div class="cart-discount-item-label">
+                                <i class="icon" aria-hidden="true"><svg><use href="#icon-promotions" /></svg></i>
+                                <span class="cart-coupon-name">{{lang 'cart.automatic_promotion'}}</span>
+                            </div>
+                            <div class="cart-discount-item-value">
+                                {{cart.order_based_auto_discount_total.formatted}}
+                            </div>
+                        </li>
+                    {{/if}}
+                    {{#if cart.manual_discount_total.value}}
                         <li class="cart-discount-item">
                             <div class="cart-discount-item-label">
                                 <i class="icon" aria-hidden="true"><svg><use href="#icon-promotions" /></svg></i>
                                 <span class="cart-coupon-name">{{lang 'cart.manual_discount'}}</span>
                             </div>
                             <div class="cart-discount-item-value">
-                                {{cart.manual_discount.formatted}}
+                                {{cart.manual_discount_total.formatted}}
                             </div>
                         </li>
-                    {{/if}} -->
+                    {{/if}}
                     {{#each cart.coupons}}
                         <li class="cart-discount-item">
                             <div class="cart-discount-item-label">
@@ -141,25 +140,52 @@
         {{/if}}
     {{/unless}}
     {{#if settings.gift_certificates_enabled}}
-        {{#each cart.gift_certificates}}
-            <li class="cart-total">
-                <div class="cart-total-label">
-                    <strong>{{lang 'cart.gift_certificates.code_label' code=code}}</strong>
-                    <span>
-                        {{remaining.formatted}} | <a href="{{remove_url}}">{{lang 'cart.gift_certificates.remove'}}</a>
-                    </span>
-                </div>
-                <div class="cart-total-value">
-                    {{used.formatted}}
-                </div>
-            </li>
-        {{/each}}
-        <li class="cart-total">
+        {{#unless cart.multi_coupon_ui_enabled}}
+            {{#each cart.gift_certificates}}
+                <li class="cart-total">
+                    <div class="cart-total-label">
+                        <strong>{{lang 'cart.gift_certificates.code_label' code=code}}</strong>
+                        <span>
+                            {{remaining.formatted}} | <a href="{{remove_url}}">{{lang 'cart.gift_certificates.remove'}}</a>
+                        </span>
+                    </div>
+                    <div class="cart-total-value">
+                        {{used.formatted}}
+                    </div>
+                </li>
+            {{/each}}
+        {{/unless}}
+        <li class="cart-total {{#if cart.multi_coupon_ui_enabled}}cart-total-gift-certificate{{/if}}">
             <div class="cart-total-label">
-                <strong>{{lang 'cart.gift_certificates.gift_certificate'}}:</strong>
+                <strong>{{lang 'cart.gift_certificates.gift_certificate'}}{{#unless cart.multi_coupon_ui_enabled}}:{{/unless}}</strong>
+                {{#if cart.multi_coupon_ui_enabled}}
+                    {{> components/cart/gift-certificate}}
+                {{/if}}
             </div>
+            {{#unless cart.multi_coupon_ui_enabled}}
+                {{> components/cart/gift-certificate}}
+            {{/unless}}
             {{> components/cart/gift-certificate-input}}
         </li>
+        {{#if cart.multi_coupon_ui_enabled}}
+            {{#each cart.gift_certificates}}
+                <li class="cart-total cart-total-gift-certificate-list-item">
+                    <div class="cart-total-label">
+                        <i class="icon" aria-hidden="true"><svg><use href="#icon-gifts" /></svg></i>
+                        <span>{{code}}</span>
+                        {{#if remaining.value}}
+                            <span>
+                                | {{remaining.formatted}} left
+                            </span>
+                        {{/if}}
+                        <a href="{{remove_url}}">{{lang 'cart.gift_certificates.remove'}}</a>
+                    </div>
+                    <div class="cart-total-value">
+                        {{used.formatted}}
+                    </div>
+                </li>
+            {{/each}}
+        {{/if}}
     {{/if}}
     <li class="cart-total {{#if cart.multi_coupon_ui_enabled}}cart-total-with-savings{{/if}}">
         {{#if cart.multi_coupon_ui_enabled}}
@@ -193,7 +219,7 @@
         {{#if included}}
             <li class="cart-total">
                 <div class="cart-total-label">
-                    <strong>{{concat name (lang 'cart.included_in_total')}}:</strong>
+                    <strong>{{concat name (lang 'cart.included_in_total')}}{{#unless cart.multi_coupon_ui_enabled}}:{{/unless}}</strong>
                 </div>
                 <div class="cart-total-value">
                     <span>{{cost.formatted}}</span>

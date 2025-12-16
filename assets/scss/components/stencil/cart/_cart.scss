@@ -437,7 +437,6 @@ $card-preview-zoom-bottom-offset:       6rem;
         .cart-total-grandTotal {
             display: flex;
             flex-direction: column;
-            gap: spacing("quarter");
 
             .cart-total-amount {
                 font-size: fontSize("larger");
@@ -453,6 +452,70 @@ $card-preview-zoom-bottom-offset:       6rem;
             .cart-savings-amount {
                 color: stencilColor("color-success");
             }
+        }
+    }
+
+    .cart-total-gift-certificate {
+        .cart-total-label {
+            display: flex;
+            gap: spacing("third");
+
+            a {
+                color: #3D83F3;
+                text-decoration: none;
+                font-weight: fontWeight("normal");
+                
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+
+        .cart-gift-certificate-form {
+            .button {
+                background-color: container("fill", "base");
+                color: stencilColor("focusTooltip-backgroundColor");
+                font-weight: fontWeight("bold");
+            }
+        }
+
+        
+        .gift-certificate-add, .gift-certificate-cancel {
+            color: #3D83F3;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            font-weight: fontWeight("normal");
+            
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    .cart-total-gift-certificate-list-item {
+        .cart-total-label {
+            display: flex;
+            align-items: center;
+            gap: spacing("third");
+            color: stencilColor("color-textSecondary");
+            width: auto;
+
+            a {
+                color: #3D83F3;
+                text-decoration: none;
+                font-weight: fontWeight("normal");
+                
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+
+        .cart-total-value {
+            color: stencilColor("color-textSecondary");
+            float: right;
+            width: auto;
         }
     }
 

@@ -1,4 +1,4 @@
-<div class="{{#if cart.multi_coupon_ui_enabled}}cart-gift-certificate{{else}}cart-total-value{{/if}}">
+<div class="{{#unless cart.multi_coupon_ui_enabled}}cart-total-value{{/unless}}">
     <button
         class="gift-certificate-add"
         aria-label="{{lang 'cart.gift_certificates.add_cert_code'}}"

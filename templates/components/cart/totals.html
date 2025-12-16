@@ -66,7 +66,7 @@
     {{#if cart.gift_wrapping_cost.value}}
         <li class="cart-total">
             <div class="cart-total-label">
-                <strong>{{lang 'cart.checkout.gift_wrapping'}}:</strong>
+                <strong>{{lang 'cart.checkout.gift_wrapping'}}{{#unless cart.multi_coupon_ui_enabled}}:{{/unless}}</strong>
             </div>
             <div class="cart-total-value">
                 <span>{{cart.gift_wrapping_cost.formatted}}</span>
@@ -77,7 +77,7 @@
         {{#each cart.fees}}
             <li class="cart-total">
                 <div class="cart-total-label">
-                    <strong>{{display_name}}:</strong>
+                    <strong>{{display_name}}{{#unless cart.multi_coupon_ui_enabled}}:{{/unless}}</strong>
                 </div>
                 <div class="cart-total-value">
                     <span>{{cost.formatted}}</span>
@@ -86,18 +86,26 @@
         {{/each}}
     {{/if}}
     {{#if cart.shipping_handling.show_estimator}}
-        <li class="cart-total">
+        <li class="cart-total {{#if cart.multi_coupon_ui_enabled}}cart-total-shipping-estimator{{/if}}">
             <div class="cart-total-label">
                 <strong>{{lang 'cart.checkout.shipping'}}{{#unless cart.multi_coupon_ui_enabled}}:{{/unless}}</strong>
+                {{#if cart.multi_coupon_ui_enabled}}
+                    {{> components/cart/shipping-estimator-trigger}}
+                {{/if}}
             </div>
-            {{> components/cart/shipping-estimator cart.shipping_handling}}
+            {{#unless cart.multi_coupon_ui_enabled}}
+                {{#unless cart.shipping_handling.shipping_cost}}
+                    {{> components/cart/shipping-estimator-trigger}}
+                {{/unless}}
+            {{/unless}}
+            {{> components/cart/shipping-estimator cart.shipping_handling multi_coupon_ui_enabled=cart.multi_coupon_ui_enabled}}
         </li>
     {{/if}}
     {{#each cart.taxes}}
         {{#unless included}}
             <li class="cart-total">
                 <div class="cart-total-label">
-                    <strong>{{name}}:</strong>
+                    <strong>{{name}}{{#unless cart.multi_coupon_ui_enabled}}:{{/unless}}/strong>
                 </div>
                 <div class="cart-total-value">
                     <span>{{cost.formatted}}</span>
@@ -174,9 +182,7 @@
                         <i class="icon" aria-hidden="true"><svg><use href="#icon-gifts" /></svg></i>
                         <span>{{code}}</span>
                         {{#if remaining.value}}
-                            <span>
-                                | {{remaining.formatted}} left
-                            </span>
+                            <span>| {{remaining.formatted}} left</span>
                         {{/if}}
                         <a href="{{remove_url}}">{{lang 'cart.gift_certificates.remove'}}</a>
                     </div>

@@ -455,12 +455,12 @@ $card-preview-zoom-bottom-offset:       6rem;
         }
     }
 
-    .cart-total-gift-certificate {
+    .cart-total-gift-certificate, .cart-total-shipping-estimator {
         .cart-total-label {
             display: flex;
             gap: spacing("third");
 
-            a {
+            a, button {
                 color: #3D83F3;
                 text-decoration: none;
                 font-weight: fontWeight("normal");
@@ -470,7 +470,20 @@ $card-preview-zoom-bottom-offset:       6rem;
                 }
             }
         }
+    }
 
+    .cart-total-shipping-estimator {
+        .shipping-estimate-value, .shipping-estimate-show {
+            text-decoration: none;
+            font-style: normal;
+        }
+
+        .price--discounted {
+            color: stencilColor("color-greyLight");
+        }
+    }
+
+    .cart-total-gift-certificate {
         .cart-gift-certificate-form {
             .button {
                 background-color: container("fill", "base");
@@ -522,39 +535,39 @@ $card-preview-zoom-bottom-offset:       6rem;
     .shipping-estimate-value, .shipping-estimate-show {
         text-decoration: none;
     }
-}
-
-// Collapsible discount section
-.cart-total-discounts {
-    cursor: pointer;
-}
-
-.cart-discount-icon {
-    transition: transform 0.3s ease;
     
-    &.is-open {
-        transform: rotate(180deg);
+    .cart-total-discounts {
+        .cart-total-label {
+            cursor: pointer;
+        }
+
+        .cart-discount-icon {
+            transition: transform 0.3s ease;
+            
+            &.is-open {
+                transform: rotate(180deg);
+            }
+
+            svg {
+                fill: stencilColor("color-textBase");
+            }
+        }
+
+        .cart-discount-list {
+            display: flex;
+            flex-direction: column;
+            margin-left: 0;
+            width: 100%;
+        }
+
+        .cart-discount-item {
+            display: flex;
+            justify-content: space-between;
+            padding: spacing("eighth") 0;
+            color: stencilColor("color-textSecondary");
+        }
     }
-
-    svg {
-        fill: stencilColor("color-textBase");
-    }
 }
-
-.cart-discount-list {
-    display: flex;
-    flex-direction: column;
-    margin-left: 0;
-    width: 100%;
-}
-
-.cart-discount-item {
-    display: flex;
-    justify-content: space-between;
-    padding: spacing("eighth") 0;
-    color: stencilColor("color-textSecondary");
-}
-
 
 // Cart actions
 // -----------------------------------------------------------------------------
@@ -612,6 +625,7 @@ $card-preview-zoom-bottom-offset:       6rem;
     font-weight: fontWeight("normal");
     
     &:hover {
+        color: #3D83F3;
         text-decoration: underline;
     }
 }

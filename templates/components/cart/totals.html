@@ -93,11 +93,9 @@
                     {{> components/cart/shipping-estimator-trigger}}
                 {{/if}}
             </div>
-            {{#unless cart.multi_coupon_ui_enabled}}
-                {{#unless cart.shipping_handling.shipping_cost}}
-                    {{> components/cart/shipping-estimator-trigger}}
-                {{/unless}}
-            {{/unless}}
+            {{#neither cart.multi_coupon_ui_enabled cart.shipping_handling.shipping_cost}}
+                {{> components/cart/shipping-estimator-trigger}}
+            {{/neither}}
             {{> components/cart/shipping-estimator cart.shipping_handling multi_coupon_ui_enabled=cart.multi_coupon_ui_enabled}}
         </li>
     {{/if}}

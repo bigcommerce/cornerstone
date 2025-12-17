@@ -441,7 +441,7 @@ $card-preview-zoom-bottom-offset:       6rem;
     }
 
     .cart-total-with-savings {
-        border-top: 1px solid stencilColor("color-greyLightest");
+        border-top: container("border");
         
         .cart-total-label {
             font-size: fontSize("larger");
@@ -503,7 +503,7 @@ $card-preview-zoom-bottom-offset:       6rem;
         .cart-gift-certificate-form {
             .button {
                 background-color: container("fill", "base");
-                color: stencilColor("focusTooltip-backgroundColor");
+                color: stencilColor("color-textBase");
                 font-weight: fontWeight("bold");
             }
         }
@@ -617,7 +617,7 @@ $card-preview-zoom-bottom-offset:       6rem;
 .cart-coupons {
     width: 100%;
     padding-bottom: spacing("base");
-    border-bottom: 1px solid stencilColor("color-greyLightest");
+    border-bottom: container("border");
     
     @include breakpoint("small") {
         float: right;
@@ -637,7 +637,7 @@ $card-preview-zoom-bottom-offset:       6rem;
 
         .button {
             background-color: container("fill", "base");
-            color: stencilColor("focusTooltip-backgroundColor");
+            color: stencilColor("color-textBase");
             font-weight: fontWeight("bold");
         }
     }
@@ -686,19 +686,19 @@ $card-preview-zoom-bottom-offset:       6rem;
     align-items: center;
     gap: 0.5rem;
     padding: 0.5rem;
-    border: 1px solid #E5E7EB;
-    color: stencilColor("color-textBase");
+    border: 1px solid stencilColor("color-coupon-pill-border");
+    color: stencilColor("color-coupon-pill-text");
     max-width: 100%;
     border-radius: 3px;
-    background: #FAFAFA;
+    background: stencilColor("color-coupon-pill-background");
 
     svg {
-        fill: #979797;
+        fill: stencilColor("icon-color");
     }
 
     .cart-coupon-remove {
         svg {
-            fill: stencilColor("color-grey")
+            fill: stencilColor("icon-color");
         }
     }
 }

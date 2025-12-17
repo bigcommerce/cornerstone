@@ -421,6 +421,19 @@ $card-preview-zoom-bottom-offset:       6rem;
 
     .cart-total-label {
         color: stencilColor("color-textBase");
+        text-align: left;
+        width: grid-calc(6, $total-columns);
+
+        @include breakpoint("medium") {
+            display: block;
+            padding-left: 0;
+            text-align: left;
+        }
+    }
+
+    .cart-total-value {
+        float: right;
+        font-weight: fontWeight("semibold");
     }
 
     .cart-total-label, .cart-total-value {
@@ -437,12 +450,15 @@ $card-preview-zoom-bottom-offset:       6rem;
         .cart-total-grandTotal {
             display: flex;
             flex-direction: column;
+            text-align: right;
+            font-weight: fontWeight("normal");
 
             .cart-total-amount {
                 font-size: fontSize("larger");
             }
 
             .cart-total-savings {
+                font-family: $body-font-family;
                 font-size: fontSize("smaller");
                 color: stencilColor("color-textSecondary");
                 display: block;
@@ -513,6 +529,12 @@ $card-preview-zoom-bottom-offset:       6rem;
             gap: spacing("third");
             color: stencilColor("color-textSecondary");
             width: auto;
+            max-width: 80%;
+            flex-wrap: wrap;
+
+            .icon {
+                flex-shrink: 0;
+            }
 
             a {
                 color: stencilColor("optimizedCheckout-link-color");
@@ -565,6 +587,10 @@ $card-preview-zoom-bottom-offset:       6rem;
             justify-content: space-between;
             padding: spacing("eighth") 0;
             color: stencilColor("color-textSecondary");
+
+            .cart-discount-item-label {
+                text-align: left;
+            }
         }
     }
 }

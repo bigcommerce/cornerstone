@@ -1,0 +1,23 @@
+<div class="{{#unless cart.multi_coupon_ui_enabled}}cart-total-value{{/unless}}">
+    <button
+        class="gift-certificate-add"
+        aria-label="{{lang 'cart.gift_certificates.add_cert_code'}}"
+        aria-controls="add-certificate"
+        aria-expanded="false"
+    >
+        {{#if cart.multi_coupon_ui_enabled}}
+            {{lang 'cart.gift_wrapping.add'}}
+        {{else}}
+            {{lang 'cart.gift_certificates.gift_certificate'}}
+        {{/if}}
+    </button>
+    <button
+        class="gift-certificate-cancel"
+        style="display: none;"
+        aria-label="{{lang 'cart.gift_certificates.add_cert_code'}}"
+        aria-controls="add-certificate"
+        aria-expanded="true"
+    >
+        {{lang 'cart.coupons.cancel'}}
+    </button>
+</div>

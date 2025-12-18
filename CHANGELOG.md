@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - CHECKOUT-9692 show the display name and coupon code under line item [#2579](https://github.com/bigcommerce/cornerstone/pull/2579)
 - Fix Cart Page not updating when adding product via Quick View [#2581](https://github.com/bigcommerce/cornerstone/pull/2581)
 - CHECKOUT-9690 Add new discounts section to display the order promotions and coupon discounts [#2582](https://github.com/bigcommerce/cornerstone/pull/2582)
+- CHECKOUT-9726 Seperate actionable links from price calculations and totals [#2584](https://github.com/bigcommerce/cornerstone/pull/2584)
 
 ## 6.17.0 (10-01-2025)
 - Add net-new "order.pickup_addresses" to unify objects used on Order Details and Order Invoice pages [#2557](https://github.com/bigcommerce/cornerstone/pull/2557)

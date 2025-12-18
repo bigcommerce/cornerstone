@@ -3,22 +3,23 @@
 
 {{#if shipping_cost}}
     <div class="cart-total-value">
-        <div class="subtotal shipping-estimate-show">
-            <a href="#" class="shipping-estimate-value">
-                <span class="{{#if shipping_cost_discounted}}price--discounted{{/if}}">{{shipping_cost.formatted}}</span>
-                {{#if shipping_cost_discounted}}
+        <div class="subtotal{{#unless multi_coupon_ui_enabled}} shipping-estimate-show{{/unless}}">
+            {{#if multi_coupon_ui_enabled}}
+                {{#and shipping_cost_discounted (if shipping_cost_discounted.formatted '!==' shipping_cost.formatted)}}
+                    <span class="price--discounted">{{shipping_cost.formatted}}</span>
                     <span id="shipping-cost-discounted">{{shipping_cost_discounted.formatted}}</span>
-                {{/if}}
-            </a>
+                {{else}}
+                    <span id="shipping-cost-discounted">{{shipping_cost.formatted}}</span>
+                {{/and}}
+            {{else}}
+                <a href="#" class="shipping-estimate-value">
+                    <span class="{{#if shipping_cost_discounted}}price--discounted{{/if}}">{{shipping_cost.formatted}}</span>
+                    {{#if shipping_cost_discounted}}
+                        <span id="shipping-cost-discounted">{{shipping_cost_discounted.formatted}}</span>
+                    {{/if}}
+                </a>
+            {{/if}}
         </div>
-    </div>
-{{else}}
-    <div class="cart-total-value">
-        <button data-collapsible="add-shipping" class="shipping-estimate-show" aria-labelledby="estimator-add">
-            <span class="shipping-estimate-show__btn-name">{{lang 'cart.shipping_estimator.add_info'}}</span>
-            <span id="estimator-add" class="u-hidden">{{lang 'cart.shipping_estimator.add_info'}}</span>
-            <span id="estimator-close" class="u-hidden">{{lang 'cart.shipping_estimator.cancel'}}</span>
-        </button>
     </div>
 {{/if}}
 

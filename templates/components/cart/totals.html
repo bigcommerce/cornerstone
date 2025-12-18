@@ -26,7 +26,7 @@
                         <li class="cart-discount-item">
                             <div class="cart-discount-item-label">
                                 <i class="icon" aria-hidden="true"><svg><use href="#icon-promotions" /></svg></i>
-                                <span class="cart-coupon-name">{{lang 'cart.automatic_promotion'}}</span>
+                                <span class="cart-coupon-name">{{lang 'cart.automatic_discount'}}</span>
                             </div>
                             <div class="cart-discount-item-value">
                                 {{cart.order_based_auto_discount_total.formatted}}
@@ -55,7 +55,7 @@
                                 {{/if}}
                             </div>
                             <div class="cart-discount-item-value">
-                                {{discount.formatted}}
+                                {{#if discount.value '===' 0}}-{{/if}}{{discount.formatted}}
                             </div>
                         </li>
                     {{/each}}

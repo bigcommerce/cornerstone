@@ -4,12 +4,21 @@
 {{#if shipping_cost}}
     <div class="cart-total-value">
         <div class="subtotal{{#unless multi_coupon_ui_enabled}} shipping-estimate-show{{/unless}}">
-            {{#unless multi_coupon_ui_enabled}}<a href="#" class="shipping-estimate-value">{{/unless}}
-                <span class="{{#if shipping_cost_discounted}}price--discounted{{/if}}">{{shipping_cost.formatted}}</span>
-                {{#if shipping_cost_discounted}}
+            {{#if multi_coupon_ui_enabled}}
+                {{#and shipping_cost_discounted (if shipping_cost_discounted.formatted '!==' shipping_cost.formatted)}}
+                    <span class="price--discounted">{{shipping_cost.formatted}}</span>
                     <span id="shipping-cost-discounted">{{shipping_cost_discounted.formatted}}</span>
-                {{/if}}
-            {{#unless multi_coupon_ui_enabled}}</a>{{/unless}}
+                {{else}}
+                    <span id="shipping-cost-discounted">{{shipping_cost.formatted}}</span>
+                {{/and}}
+            {{else}}
+                <a href="#" class="shipping-estimate-value">
+                    <span class="{{#if shipping_cost_discounted}}price--discounted{{/if}}">{{shipping_cost.formatted}}</span>
+                    {{#if shipping_cost_discounted}}
+                        <span id="shipping-cost-discounted">{{shipping_cost_discounted.formatted}}</span>
+                    {{/if}}
+                </a>
+            {{/if}}
         </div>
     </div>
 {{/if}}

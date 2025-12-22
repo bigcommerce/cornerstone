@@ -234,6 +234,8 @@ export default class Account extends PageManager {
         const validationModel = validation($addressForm, this.context);
         const stateSelector = 'form[data-address-form] [data-field-type="State"]';
         const $stateElement = $(stateSelector);
+        const zipSelector = 'form[data-address-form] [data-field-type="Zip"]';
+        const $zipElement = $(zipSelector);
         const addressValidator = nod({
             submit: 'form[data-address-form] input[type="submit"]',
             tap: announceInputErrorMessage,
@@ -241,10 +243,16 @@ export default class Account extends PageManager {
 
         addressValidator.add(validationModel);
 
+        if ($zipElement.length > 0) {
+            const isZipRequired = $zipElement.prop('required');
+            if (!isZipRequired && addressValidator.getStatus($zipElement) !== 'undefined') {
+                addressValidator.remove($zipElement);
+            }
+        }
+
         if ($stateElement) {
             let $last;
 
-            // Requests the states for a country with AJAX
             stateCountry($stateElement, this.context, (err, field) => {
                 if (err) {
                     throw new Error(err);
@@ -266,6 +274,8 @@ export default class Account extends PageManager {
                 } else {
                     Validators.cleanUpStateValidation(field);
                 }
+
+                Validators.handleZipValidation(addressValidator, $zipElement, this.validationDictionary.field_not_blank);
             });
         }
 

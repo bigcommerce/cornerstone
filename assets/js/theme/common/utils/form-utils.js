@@ -331,6 +331,32 @@ const Validators = {
             }
         });
     },
+
+    /**
+     * Handles zip/postal code validation based on whether it's required
+     * Removes existing validation, then adds it back if required or cleans up if not
+     * @param {Nod} validator - The nod validator instance
+     * @param {jQuery} $zipElement - The zip/postal code field element
+     * @param {string} errorText - The error message to display if validation fails
+     */
+    handleZipValidation: (validator, $zipElement, errorText) => {
+        if ($zipElement.length === 0) {
+            return;
+        }
+
+        // Remove existing validation if present
+        if (validator.getStatus($zipElement) !== 'undefined') {
+            validator.remove($zipElement);
+        }
+
+        const isZipRequired = $zipElement.prop('required');
+
+        if (isZipRequired) {
+            Validators.setStateCountryValidation(validator, $zipElement, errorText);
+        } else {
+            Validators.cleanUpStateValidation($zipElement);
+        }
+    },
 };
 
 export { Validators, insertStateHiddenField, announceInputErrorMessage };

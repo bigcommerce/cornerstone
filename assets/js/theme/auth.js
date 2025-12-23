@@ -114,6 +114,7 @@ export default class Auth extends PageManager {
             delay: 900,
         });
         const $stateElement = $('[data-field-type="State"]');
+        const $zipElement = $('[data-field-type="Zip"]');
         const emailSelector = `${this.formCreateSelector} [data-field-type='EmailAddress']`;
         const $emailElement = $(emailSelector);
         const passwordSelector = `${this.formCreateSelector} [data-field-type='Password']`;
@@ -123,10 +124,16 @@ export default class Auth extends PageManager {
 
         createAccountValidator.add(validationModel);
 
+        if ($zipElement.length > 0) {
+            const isZipRequired = $zipElement.prop('required');
+            if (!isZipRequired && createAccountValidator.getStatus($zipElement) !== undefined) {
+                createAccountValidator.remove($zipElement);
+            }
+        }
+
         if ($stateElement) {
             let $last;
 
-            // Requests the states for a country with AJAX
             stateCountry($stateElement, this.context, (err, field) => {
                 if (err) {
                     throw new Error(err);
@@ -134,7 +141,7 @@ export default class Auth extends PageManager {
 
                 const $field = $(field);
 
-                if (createAccountValidator.getStatus($stateElement) !== 'undefined') {
+                if (createAccountValidator.getStatus($stateElement) !== undefined) {
                     createAccountValidator.remove($stateElement);
                 }
 
@@ -148,6 +155,8 @@ export default class Auth extends PageManager {
                 } else {
                     Validators.cleanUpStateValidation(field);
                 }
+
+                Validators.handleZipValidation(createAccountValidator, $zipElement, this.validationDictionary.field_not_blank);
             });
         }
 

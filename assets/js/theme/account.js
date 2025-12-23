@@ -232,10 +232,8 @@ export default class Account extends PageManager {
 
     initAddressFormValidation($addressForm) {
         const validationModel = validation($addressForm, this.context);
-        const stateSelector = 'form[data-address-form] [data-field-type="State"]';
-        const $stateElement = $(stateSelector);
-        const zipSelector = 'form[data-address-form] [data-field-type="Zip"]';
-        const $zipElement = $(zipSelector);
+        const $stateElement = $('form[data-address-form] [data-field-type="State"]');
+        const $zipElement = $('form[data-address-form] [data-field-type="Zip"]');
         const addressValidator = nod({
             submit: 'form[data-address-form] input[type="submit"]',
             tap: announceInputErrorMessage,
@@ -245,7 +243,7 @@ export default class Account extends PageManager {
 
         if ($zipElement.length > 0) {
             const isZipRequired = $zipElement.prop('required');
-            if (!isZipRequired && addressValidator.getStatus($zipElement) !== 'undefined') {
+            if (!isZipRequired && addressValidator.getStatus($zipElement) !== undefined) {
                 addressValidator.remove($zipElement);
             }
         }
@@ -260,7 +258,7 @@ export default class Account extends PageManager {
 
                 const $field = $(field);
 
-                if (addressValidator.getStatus($stateElement) !== 'undefined') {
+                if (addressValidator.getStatus($stateElement) !== undefined) {
                     addressValidator.remove($stateElement);
                 }
 
@@ -346,7 +344,7 @@ export default class Account extends PageManager {
 
             const $field = $(field);
 
-            if (paymentMethodValidator.getStatus($stateElement) !== 'undefined') {
+            if (paymentMethodValidator.getStatus($stateElement) !== undefined) {
                 paymentMethodValidator.remove($stateElement);
             }
 

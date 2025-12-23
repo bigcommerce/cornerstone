@@ -345,7 +345,7 @@ const Validators = {
         }
 
         // Remove existing validation if present
-        if (validator.getStatus($zipElement) !== 'undefined') {
+        if (validator.getStatus($zipElement) !== undefined) {
             validator.remove($zipElement);
         }
 

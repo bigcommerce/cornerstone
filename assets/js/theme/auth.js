@@ -126,7 +126,7 @@ export default class Auth extends PageManager {
 
         if ($zipElement.length > 0) {
             const isZipRequired = $zipElement.prop('required');
-            if (!isZipRequired && createAccountValidator.getStatus($zipElement) !== 'undefined') {
+            if (!isZipRequired && createAccountValidator.getStatus($zipElement) !== undefined) {
                 createAccountValidator.remove($zipElement);
             }
         }
@@ -141,7 +141,7 @@ export default class Auth extends PageManager {
 
                 const $field = $(field);
 
-                if (createAccountValidator.getStatus($stateElement) !== 'undefined') {
+                if (createAccountValidator.getStatus($stateElement) !== undefined) {
                     createAccountValidator.remove($stateElement);
                 }
 

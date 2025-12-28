@@ -99,6 +99,45 @@ function addOptions(statesArray, $selectElement, options) {
 }
 
 /**
+ * Makes the zip/postal code field required and shows the required indicator
+ * @param {jQuery} $zipElement The zip/postal code field element
+ * @param {Object} context The context object containing translated strings
+ */
+function makeZipRequired($zipElement, context) {
+    $zipElement.prop('required', true);
+    if ($zipElement.prev().find('small').length === 0) {
+        $zipElement.prev().append(`<small>${context.required}</small>`);
+    } else {
+        $zipElement.prev().find('small').show();
+    }
+}
+
+/**
+ * Makes the zip/postal code field optional and hides the required indicator
+ *
+ * DOM Structure Expectation:
+ * The function assumes the following DOM structure:
+ * <label>
+ *   <span>Zip/Postal Code</span>
+ *   <small>*</small> <!-- required indicator -->
+ * </label>
+ * <input data-field-type="Zip" />
+ *
+ * @param {jQuery} $zipElement The zip/postal code field element
+ */
+function makeZipOptional($zipElement) {
+    $zipElement.prop('required', false);
+
+    const $prevElement = $zipElement.prev();
+    if ($prevElement.length > 0) {
+        const $requiredIndicator = $prevElement.find('small');
+        if ($requiredIndicator.length > 0) {
+            $requiredIndicator.hide();
+        }
+    }
+}
+
+/**
  *
  * @param {jQuery} stateElement
  * @param {Object} context
@@ -135,9 +174,13 @@ export default function (stateElement, context = {}, options, callback) {
             }
 
             const $currentInput = $('[data-field-type="State"]');
+            const $zipInput = $('[data-field-type="Zip"]');
 
-            if (!_.isEmpty(response.data.states)) {
-                // The element may have been replaced with a select, reselect it
+            const requiresState = response.data.requiresSubdivision !== undefined
+                ? response.data.requiresSubdivision
+                : !_.isEmpty(response.data.states);
+
+            if (requiresState) {
                 const $selectElement = makeStateRequired($currentInput, context);
 
                 addOptions(response.data, $selectElement, options);
@@ -146,6 +189,19 @@ export default function (stateElement, context = {}, options, callback) {
                 const newElement = makeStateOptional($currentInput, context);
 
                 callback(null, newElement);
+            }
+
+            if ($zipInput.length > 0) {
+                // Default to true when requiresPostalCodes is undefined to maintain original behavior
+                const requiresZip = response.data.requiresPostalCodes !== undefined
+                    ? response.data.requiresPostalCodes
+                    : true;
+
+                if (requiresZip) {
+                    makeZipRequired($zipInput, context);
+                } else {
+                    makeZipOptional($zipInput);
+                }
             }
         });
     });

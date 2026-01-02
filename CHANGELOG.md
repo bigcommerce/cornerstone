@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Draft
 
+## 6.18.0 (01-02-2026)
+
 - CUST-4064 Add dynamic postal code validation based on country requirements [#2585](https://github.com/bigcommerce/cornerstone/pull/2585)
 - Update Cornerstone documentation url [#2575](https://github.com/bigcommerce/cornerstone/pull/2575)
 - Fix keyboard navigation on the swatch options [#2576](https://github.com/bigcommerce/cornerstone/pull/2576)

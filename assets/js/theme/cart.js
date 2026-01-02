@@ -303,7 +303,7 @@ export default class Cart extends PageManager {
 
     bindPromoCodeEvents() {
         const $couponContainer = $('.coupon-code');
-        const $couponForm = $('[data-coupon-form]');
+        const $couponForm = this.context.multiCouponUIEnabled ? $('[data-coupon-form]') : $('.coupon-form');
         const $codeInput = $('[name="couponcode"]', $couponForm);
 
         if (this.context.multiCouponUIEnabled) {

@@ -129,7 +129,7 @@ describe('PaymentMethod', () => {
 
             it('should have valid input expiration date', () => {
                 const callback = jasmine.createSpy();
-                const validator = { add: ({ validate }) => validate(callback, '12/25') };
+                const validator = { add: ({ validate }) => validate(callback, '12/30') };
                 Validators.setExpirationValidation(validator, 'selector');
 
                 expect(callback).toHaveBeenCalledWith(true);

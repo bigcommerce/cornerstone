@@ -344,10 +344,11 @@ const Validators = {
             return;
         }
 
-        // Remove existing validation if present
-        if (validator.getStatus($zipElement) !== undefined) {
-            validator.remove($zipElement);
-        }
+        // Always try to remove existing validation first.
+        // Note: Don't use getStatus() before remove() - getStatus() can corrupt the validator's
+        // internal state by creating a checkHandler without a mediator if the element
+        // wasn't previously registered. remove() is safe to call on unregistered elements.
+        validator.remove($zipElement);
 
         const isZipRequired = $zipElement.prop('required');
 

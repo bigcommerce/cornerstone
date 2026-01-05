@@ -251,12 +251,10 @@ export default class Account extends PageManager {
         if ($stateElement) {
             let $last;
 
-            stateCountry($stateElement, this.context, (err, field) => {
+            stateCountry($stateElement, this.context, (err, field, isStateRequired) => {
                 if (err) {
                     throw new Error(err);
                 }
-
-                const $field = $(field);
 
                 if (addressValidator.getStatus($stateElement) !== undefined) {
                     addressValidator.remove($stateElement);
@@ -266,7 +264,7 @@ export default class Account extends PageManager {
                     addressValidator.remove($last);
                 }
 
-                if ($field.is('select')) {
+                if (isStateRequired) {
                     $last = field;
                     Validators.setStateCountryValidation(addressValidator, field, this.validationDictionary.field_not_blank);
                 } else {
@@ -337,12 +335,10 @@ export default class Account extends PageManager {
 
         let $last;
         // Requests the states for a country with AJAX
-        stateCountry($stateElement, this.context, (err, field) => {
+        stateCountry($stateElement, this.context, (err, field, isStateRequired) => {
             if (err) {
                 throw new Error(err);
             }
-
-            const $field = $(field);
 
             if (paymentMethodValidator.getStatus($stateElement) !== undefined) {
                 paymentMethodValidator.remove($stateElement);
@@ -352,7 +348,7 @@ export default class Account extends PageManager {
                 paymentMethodValidator.remove($last);
             }
 
-            if ($field.is('select')) {
+            if (isStateRequired) {
                 $last = field;
                 Validators.setStateCountryValidation(paymentMethodValidator, field, this.validationDictionary.field_not_blank);
             } else {

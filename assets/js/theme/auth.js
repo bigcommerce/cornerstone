@@ -134,12 +134,10 @@ export default class Auth extends PageManager {
         if ($stateElement) {
             let $last;
 
-            stateCountry($stateElement, this.context, (err, field) => {
+            stateCountry($stateElement, this.context, (err, field, isStateRequired) => {
                 if (err) {
                     throw new Error(err);
                 }
-
-                const $field = $(field);
 
                 if (createAccountValidator.getStatus($stateElement) !== undefined) {
                     createAccountValidator.remove($stateElement);
@@ -149,7 +147,7 @@ export default class Auth extends PageManager {
                     createAccountValidator.remove($last);
                 }
 
-                if ($field.is('select')) {
+                if (isStateRequired) {
                     $last = field;
                     Validators.setStateCountryValidation(createAccountValidator, field, this.validationDictionary.field_not_blank);
                 } else {

@@ -26,11 +26,9 @@ function makeStateSelectRequired(stateElement, context) {
     const attrs = getElementAttributes(stateElement);
 
     const replacementAttributes = {
-        id: attrs.id,
-        'data-label': attrs['data-label'],
+        ...attrs,
         class: 'form-select',
-        name: attrs.name,
-        'data-field-type': attrs['data-field-type'],
+        'aria-required': 'true',
     };
 
     stateElement.replaceWith($('<select></select>', replacementAttributes));
@@ -61,11 +59,9 @@ function makeStateSelectOptional(stateElement) {
     const attrs = getElementAttributes(stateElement);
 
     const replacementAttributes = {
-        id: attrs.id,
-        'data-label': attrs['data-label'],
+        ...attrs,
         class: 'form-select',
-        name: attrs.name,
-        'data-field-type': attrs['data-field-type'],
+        'aria-required': 'false',
     };
 
     stateElement.replaceWith($('<select></select>', replacementAttributes));
@@ -92,12 +88,9 @@ function makeStateTextOptional(stateElement) {
     const attrs = getElementAttributes(stateElement);
 
     const replacementAttributes = {
+        ...attrs,
         type: 'text',
-        id: attrs.id,
-        'data-label': attrs['data-label'],
         class: 'form-input',
-        name: attrs.name,
-        'data-field-type': attrs['data-field-type'],
     };
 
     stateElement.replaceWith($('<input />', replacementAttributes));
@@ -143,6 +136,10 @@ function addOptions(statesArray, $selectElement, options) {
  */
 function makeZipRequired($zipElement, context) {
     $zipElement.prop('required', true);
+    // since the attribute is set within templates/components/common/forms/*,
+    // we explicitly set aria-required to ensure assistive technologies announce this field correctly after dynamic changes
+    $zipElement.attr('aria-required', 'true');
+
     if ($zipElement.prev().find('small').length === 0) {
         $zipElement.prev().append(`<small>${context.required}</small>`);
     } else {
@@ -165,6 +162,9 @@ function makeZipRequired($zipElement, context) {
  */
 function makeZipOptional($zipElement) {
     $zipElement.prop('required', false);
+    // since the attribute is set within templates/components/common/forms/*,
+    // we explicitly set aria-required to ensure assistive technologies announce this field correctly after dynamic changes
+    $zipElement.attr('aria-required', false);
 
     const $prevElement = $zipElement.prev();
     if ($prevElement.length > 0) {

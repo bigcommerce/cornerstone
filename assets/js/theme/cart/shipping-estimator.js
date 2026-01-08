@@ -120,13 +120,8 @@ export default class ShippingEstimator {
 
             const $field = $(field);
 
-            if (this.shippingValidator.getStatus(this.$state) !== undefined) {
-                this.shippingValidator.remove(this.$state);
-            }
-
-            if ($last) {
-                this.shippingValidator.remove($last);
-            }
+            this.shippingValidator.remove(this.$state);
+            this.shippingValidator.remove($last);
 
             if (isStateRequired) {
                 $last = field;

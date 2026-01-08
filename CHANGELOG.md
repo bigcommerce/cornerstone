@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Draft
+- CUST-4078 Fix stale form validation on Estimate Shipping preventing shipping rate requests after country change [#2594](https://github.com/bigcommerce/cornerstone/pull/2594)
 
 ## 6.18.1 (01-05-2026)
 - CUST-4064 Fix state/zip validation error on country change and show state dropdown for optional-state countries [#2591](https://github.com/bigcommerce/cornerstone/pull/2591)

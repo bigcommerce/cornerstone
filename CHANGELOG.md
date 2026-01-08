@@ -5,11 +5,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Draft
+- Fixed validation removal on form fields [#2593](https://github.com/bigcommerce/cornerstone/pull/2593)
+**Note:** This version releases all changes from version 6.18.0.
 
 ## 6.18.1 (01-05-2026)
 - CUST-4064 Fix state/zip validation error on country change and show state dropdown for optional-state countries [#2591](https://github.com/bigcommerce/cornerstone/pull/2591)
-
-**Note:** This version releases all changes from version 6.18.0.
 
 ## 6.18.0 (01-02-2026)
 - CUST-4064 Add dynamic postal code validation based on country requirements [#2585](https://github.com/bigcommerce/cornerstone/pull/2585)

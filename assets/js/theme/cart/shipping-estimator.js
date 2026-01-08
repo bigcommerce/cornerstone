@@ -120,7 +120,8 @@ export default class ShippingEstimator {
 
             const $field = $(field);
 
-            if (this.shippingValidator.getStatus(this.$state) !== undefined) {
+            if (this.$state.length > 0 && this.shippingValidator !== undefined) {
+                // remove existing validation first, it can be safely called on unregistered elements
                 this.shippingValidator.remove(this.$state);
             }
 

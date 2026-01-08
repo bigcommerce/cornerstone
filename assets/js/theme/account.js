@@ -243,7 +243,7 @@ export default class Account extends PageManager {
 
         if ($zipElement.length > 0) {
             const isZipRequired = $zipElement.prop('required');
-            if (!isZipRequired && addressValidator.getStatus($zipElement) !== undefined) {
+            if (!isZipRequired) {
                 addressValidator.remove($zipElement);
             }
         }
@@ -256,9 +256,8 @@ export default class Account extends PageManager {
                     throw new Error(err);
                 }
 
-                if (addressValidator.getStatus($stateElement) !== undefined) {
-                    addressValidator.remove($stateElement);
-                }
+                // remove existing validation first, it can be safely called on unregistered elements
+                addressValidator.remove($stateElement);
 
                 if ($last) {
                     addressValidator.remove($last);
@@ -340,7 +339,7 @@ export default class Account extends PageManager {
                 throw new Error(err);
             }
 
-            if (paymentMethodValidator.getStatus($stateElement) !== undefined) {
+            if ($stateElement.length) {
                 paymentMethodValidator.remove($stateElement);
             }
 

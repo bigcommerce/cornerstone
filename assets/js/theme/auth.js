@@ -139,9 +139,8 @@ export default class Auth extends PageManager {
                     throw new Error(err);
                 }
 
-                if (createAccountValidator.getStatus($stateElement) !== undefined) {
-                    createAccountValidator.remove($stateElement);
-                }
+                // remove existing validation first, it can be safely called on unregistered elements
+                createAccountValidator.remove($stateElement);
 
                 if ($last) {
                     createAccountValidator.remove($last);

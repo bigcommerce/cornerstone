@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Draft
 
+## 6.18.3 (01-21-2026)
+- STRF-14009 Fixed an issue where bulk pricing on the Product Details Page was displayed excluding tax when store prices were configured to display including tax.
+
 ## 6.18.2 (01-08-2026)
 - Fixed validation removal on form fields [#2593](https://github.com/bigcommerce/cornerstone/pull/2593)
 **Note:** This version releases all changes from version 6.18.0.

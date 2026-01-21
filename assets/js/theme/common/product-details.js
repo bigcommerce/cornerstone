@@ -256,6 +256,7 @@ export default class ProductDetails extends ProductDetailsBase {
         const $changedOption = $(event.target);
         const $form = $changedOption.parents('form');
         const productId = $('[name="product_id"]', $form).val();
+        const isFormValid = $form[0].checkValidity();
 
         // Do not trigger an ajax request if it's a file or if the browser doesn't support FormData
         if ($changedOption.attr('type') === 'file' || window.FormData === undefined) {
@@ -265,8 +266,9 @@ export default class ProductDetails extends ProductDetailsBase {
         utils.api.productAttributes.optionChange(productId, $form.serialize(), 'products/bulk-discount-rates', (err, response) => {
             const productAttributesData = response.data || {};
             const productAttributesContent = response.content || {};
+
             this.updateProductAttributes(productAttributesData);
-            this.updateView(productAttributesData, productAttributesContent);
+            this.updateView(productAttributesData, productAttributesContent, isFormValid);
             this.updateProductDetailsData();
             bannerUtils.dispatchProductBannerEvent(productAttributesData);
 

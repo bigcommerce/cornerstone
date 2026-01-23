@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Draft
+- Fixed YouTube video playback in Safari by adding widget_referrer and origin parameters [#2598](https://github.com/bigcommerce/cornerstone/pull/2598)
 
 ## 6.18.3 (01-21-2026)
 - Fixed an issue where bulk pricing on Product Details Page do not display both prices when tax display settings is set to `both including and excluding tax`.

@@ -18,11 +18,22 @@
                 <li>
                     {{lang 'products.bulk_pricing.range' min=min max=max}}
                     {{#if type '===' 'percent'}}
-                    {{lang 'products.bulk_pricing.percent' discount=discount.formatted}}
+                        {{lang 'products.bulk_pricing.percent' discount=discount.formatted}}
                     {{else if type '===' 'fixed'}}
-                    {{lang 'products.bulk_pricing.fixed' discount=discount.formatted}}
+                        {{#if discount_inc_tax}}
+                            {{lang 'products.bulk_pricing.fixed_both.prefix'}}
+                            <br>
+                            {{discount_inc_tax.formatted}}
+                            {{lang 'products.price_with_tax' tax_label=../product.price.tax_label}}
+                            <br>
+                            {{discount.formatted}}
+                            {{lang 'products.price_without_tax' tax_label=../product.price.tax_label}}
+                            {{lang 'products.bulk_pricing.fixed_both.suffix'}}
+                        {{else}}
+                            {{lang 'products.bulk_pricing.fixed' discount=discount.formatted}}
+                        {{/if}}
                     {{else if type '===' 'price'}}
-                    {{lang 'products.bulk_pricing.price' discount=discount.formatted}}
+                        {{lang 'products.bulk_pricing.price' discount=discount.formatted}}
                     {{/if}}
                 </li>
                 {{/each}}

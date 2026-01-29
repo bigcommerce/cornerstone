@@ -346,19 +346,21 @@ export default class ProductDetailsBase {
     }
 
     /**
-     * Show an message box if a message is passed
-     * Hide the box if the message is empty
+     * Show variant-level error message box if a message is passed
+     * Hide the box if the message is empty or if product-level error message box is already present
      * @param  {String} message
      */
     showMessageBox(message) {
-        const $messageBox = $('.productAttributes-message');
+        const $variantErrorBox = $('.productAttributes-message', this.$scope);
+        const $productErrorBox = $('.alertBox--error', this.$scope).not('.productAttributes-message');
 
-        if (message) {
-            $('.alertBox-message', $messageBox).text(message);
-            $messageBox.show();
-        } else {
-            $messageBox.hide();
+        if (!message || $productErrorBox.length) {
+            $variantErrorBox.hide();
+            return;
         }
+
+        $('.alertBox-message', $variantErrorBox).text(message);
+        $variantErrorBox.show();
     }
 
     updateDefaultAttributesForOOS(data) {

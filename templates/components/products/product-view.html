@@ -247,6 +247,7 @@
                     <label class="form-label form-label--alternate">
                         {{lang 'products.current_stock'}}
                         <span data-product-stock>{{product.stock_level}}</span>
+                        {{> components/products/backorder-availability-prompt show_prompt=product.show_backorder_availability_prompt prompt=product.backorder_availability_prompt}}
                     </label>
                 </div>
                 {{> components/products/add-to-cart with_wallet_buttons=true}}

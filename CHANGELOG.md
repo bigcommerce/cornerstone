@@ -5,7 +5,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Draft
-- CUST-4055 Add backend-based static translations for account edit page form fields
+- CUST-4055 Add backend-based static translations for account edit page form fields [#2606](https://github.com/bigcommerce/cornerstone/pull/2606)
 - Out of Stock banner is duplicated and overlaps Add to cart button on PDP [#2601](https://github.com/bigcommerce/cornerstone/pull/2601)
 - Fixed YouTube video playback in Safari by adding widget_referrer and origin parameters [#2598](https://github.com/bigcommerce/cornerstone/pull/2598)
 

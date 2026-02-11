@@ -1,4 +1,7 @@
 <nav class="navUser">
+    {{!-- TODO: Temporary test markup for SD-11500 language selector JS logic - remove before merge --}}
+    {{> components/common/test-lang-selector}}
+
     {{#or customer (unless settings.hide_price_from_guests)}}
         {{> components/common/currency-selector}}
     {{/or}}

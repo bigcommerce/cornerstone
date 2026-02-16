@@ -101,6 +101,7 @@
 }
 
 .navUser-action--currencySelector + .dropdown-menu,
+.navUser-action--languageSelector + .dropdown-menu,
 .navUser-action--channelSelector + .dropdown-menu {
     &::before {
         left: auto !important; // 6
@@ -110,6 +111,10 @@
     &::after {
         left: auto !important; // 6
         right: spacing("half") + remCalc(2px); // 6
+    }
+
+    & [data-locale-code] {
+        text-transform: capitalize;
     }
 }
 

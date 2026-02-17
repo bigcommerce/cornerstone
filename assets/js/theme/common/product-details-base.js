@@ -277,20 +277,25 @@ export default class ProductDetailsBase {
         }
 
         // Update backorder availability prompt for complex products
-        if (viewModel.backorderPrompt.$container.length && this.context.showBackorderAvailabilityPrompt) {
-            if (typeof data.stock === 'number' && data.stock > 0) {
-                const promptText = this.context.backorderAvailabilityPrompt;
-                const $prompt = viewModel.backorderPrompt.$container.find('.productView-backorder-availability-prompt');
+        const $backorderPromptContainer = viewModel.backorderPrompt.$container;
 
+        if ($backorderPromptContainer.length && this.context.showBackorderAvailabilityPrompt) {
+            const $prompt = $backorderPromptContainer.find('.productView-backorder-availability-prompt');
+
+            if (typeof data.stock === 'number' && data.stock > 0) {
                 if ($prompt.length) {
                     $prompt.show();
-                } else if (promptText) {
-                    viewModel.backorderPrompt.$container.html(
-                        `<span class="productView-backorder-availability-prompt">(${promptText})</span>`,
-                    );
+                } else {
+                    const promptText = this.context.backorderAvailabilityPrompt;
+
+                    if (promptText) {
+                        $backorderPromptContainer.html(
+                            `<span class="productView-backorder-availability-prompt">(${promptText})</span>`,
+                        );
+                    }
                 }
             } else {
-                viewModel.backorderPrompt.$container.find('.productView-backorder-availability-prompt').hide();
+                $prompt.hide();
             }
         }
 

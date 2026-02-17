@@ -1,4 +1,6 @@
 {{inject 'outOfStockDefaultMessage' (lang 'products.out_of_stock_default_message')}}
+{{inject 'showBackorderAvailabilityPrompt' product.show_backorder_availability_prompt}}
+{{inject 'backorderAvailabilityPrompt' product.backorder_availability_prompt}}
 
 <div class="productView"
     data-event-type="product"
@@ -247,7 +249,9 @@
                     <label class="form-label form-label--alternate">
                         {{lang 'products.current_stock'}}
                         <span data-product-stock>{{product.stock_level}}</span>
-                        {{> components/products/backorder-availability-prompt show_prompt=product.show_backorder_availability_prompt prompt=product.backorder_availability_prompt available_to_sell=product.available_to_sell available_for_backorder=product.available_for_backorder}}
+                        <span data-backorder-prompt>
+                            {{> components/products/backorder-availability-prompt show_prompt=product.show_backorder_availability_prompt prompt=product.backorder_availability_prompt available_to_sell=product.available_to_sell available_for_backorder=product.available_for_backorder}}
+                        </span>
                     </label>
                 </div>
                 {{> components/products/add-to-cart with_wallet_buttons=true}}

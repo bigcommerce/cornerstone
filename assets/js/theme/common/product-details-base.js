@@ -199,6 +199,9 @@ export default class ProductDetailsBase {
                 $text: $('.incrementTotal', $scope),
                 $input: $('[name=qty\\[\\]]', $scope),
             },
+            backorderPrompt: {
+                $container: $('[data-backorder-prompt]', $scope),
+            },
             $bulkPricing: $('.productView-info-bulkPricing', $scope),
             $walletButtons: $('[data-add-to-cart-wallet-buttons]', $scope),
         };
@@ -271,6 +274,24 @@ export default class ProductDetailsBase {
         } else {
             viewModel.stock.$container.addClass('u-hiddenVisually');
             viewModel.stock.$input.text(data.stock);
+        }
+
+        // Update backorder availability prompt for complex products
+        if (viewModel.backorderPrompt.$container.length && this.context.showBackorderAvailabilityPrompt) {
+            if (typeof data.stock === 'number' && data.stock > 0) {
+                const promptText = this.context.backorderAvailabilityPrompt;
+                const $prompt = viewModel.backorderPrompt.$container.find('.productView-backorder-availability-prompt');
+
+                if ($prompt.length) {
+                    $prompt.show();
+                } else if (promptText) {
+                    viewModel.backorderPrompt.$container.html(
+                        `<span class="productView-backorder-availability-prompt">(${promptText})</span>`,
+                    );
+                }
+            } else {
+                viewModel.backorderPrompt.$container.find('.productView-backorder-availability-prompt').hide();
+            }
         }
 
         this.updateDefaultAttributesForOOS(data);
@@ -365,7 +386,7 @@ export default class ProductDetailsBase {
 
     updateDefaultAttributesForOOS(data) {
         const viewModel = this.getViewModel(this.$scope);
-        if (!data.purchasable || !data.instock) {
+        if (data.purchasable === false || data.instock === false) {
             viewModel.$addToCart.prop('disabled', true);
             viewModel.$increments.prop('disabled', true);
         } else {

@@ -199,7 +199,7 @@ export default class ProductDetailsBase {
                 $text: $('.incrementTotal', $scope),
                 $input: $('[name=qty\\[\\]]', $scope),
             },
-            backorderPrompt: {
+            backorderAvailabilityPrompt: {
                 $container: $('[data-backorder-prompt]', $scope),
             },
             $bulkPricing: $('.productView-info-bulkPricing', $scope),
@@ -277,7 +277,7 @@ export default class ProductDetailsBase {
         }
 
         // Update backorder availability prompt for complex products
-        const $backorderPromptContainer = viewModel.backorderPrompt.$container;
+        const $backorderPromptContainer = viewModel.backorderAvailabilityPrompt.$container;
 
         if ($backorderPromptContainer.length && this.context.showBackorderAvailabilityPrompt) {
             const $prompt = $backorderPromptContainer.find('.productView-backorder-availability-prompt');

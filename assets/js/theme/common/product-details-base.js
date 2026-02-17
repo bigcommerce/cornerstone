@@ -386,7 +386,7 @@ export default class ProductDetailsBase {
 
     updateDefaultAttributesForOOS(data) {
         const viewModel = this.getViewModel(this.$scope);
-        if (data.purchasable === false || data.instock === false) {
+        if (!data.purchasable || !data.instock) {
             viewModel.$addToCart.prop('disabled', true);
             viewModel.$increments.prop('disabled', true);
         } else {

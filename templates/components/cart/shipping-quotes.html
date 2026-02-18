@@ -21,7 +21,8 @@
                             </dt>
                             <dd class="estimator-form-input estimator-form-input--price">
                                 <label for="shipping-quote-{{type}}-{{id}}">
-                                    <b>{{cost.formatted}}</b>
+                                    <span class="{{#if cost_after_discount}}price--discounted{{/if}}"><b>{{cost.formatted}}</b></span>
+                                    {{#if cost_after_discount}} <span><b>{{cost_after_discount.formatted}}</b></span>{{/if}}
                                 </label>
                             </dd>
                         </dl>
@@ -50,7 +51,8 @@
                             </dt>
                             <dd class="estimator-form-input estimator-form-input--price">
                                 <label for="shipping-quote-{{type}}-{{id}}">
-                                    <b>{{cost.formatted}}</b>
+                                    <span class="{{#if cost_after_discount}}price--discounted{{/if}}"><b>{{cost.formatted}}</b></span>
+                                    {{#if cost_after_discount}} <span><b>{{cost_after_discount.formatted}}</b></span>{{/if}}
                                 </label>
                             </dd>
                         </dl>

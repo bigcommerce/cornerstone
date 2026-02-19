@@ -187,6 +187,7 @@ export default class ProductDetailsBase {
                 $container: $('.form-field--stock', $scope),
                 $input: $('[data-product-stock]', $scope),
             },
+            $backordered: $('[data-product-backordered]', $scope),
             sku: {
                 $label: $('dt.sku-label', $scope),
                 $value: $('[data-product-sku]', $scope),
@@ -218,6 +219,22 @@ export default class ProductDetailsBase {
         viewModel.priceLabel.$span.hide();
         viewModel.priceWithTax.$div.hide();
         viewModel.priceWithoutTax.$div.hide();
+    }
+
+    updateQtyBackorderedMessage(qty) {
+        const viewModel = this.getViewModel(this.$scope);
+
+        if (!viewModel.$backordered.length) return;
+
+        const onHand = parseInt(this.context.availableOnHand, 10) || 0;
+        const maxBackorder = parseInt(this.context.availableForBackorder, 10) || 0;
+        const backordered = Math.max(0, Math.min(qty - onHand, maxBackorder));
+
+        if (backordered > 0) {
+            viewModel.$backordered.text(`${backordered} will be backordered`).show();
+        } else {
+            viewModel.$backordered.hide();
+        }
     }
 
     /**

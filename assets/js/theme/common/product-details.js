@@ -370,6 +370,7 @@ export default class ProductDetails extends ProductDetailsBase {
             this.addToCartValidator.performCheck();
 
             this.updateProductDetailsData();
+            this.updateQtyBackorderedMessage(qty);
         });
 
         // Prevent triggering quantity change when pressing enter
@@ -383,7 +384,10 @@ export default class ProductDetails extends ProductDetailsBase {
         });
 
         this.$scope.on('keyup', '.form-input--incrementTotal', () => {
+            const viewModel = this.getViewModel(this.$scope);
+            const qty = parseInt(viewModel.quantity.$input.val(), 10) || 0;
             this.updateProductDetailsData();
+            this.updateQtyBackorderedMessage(qty);
         });
     }
 

@@ -1,4 +1,6 @@
 {{inject 'outOfStockDefaultMessage' (lang 'products.out_of_stock_default_message')}}
+{{inject 'availableOnHand' product.available_on_hand}}
+{{inject 'availableForBackorder' product.available_for_backorder}}
 
 <div class="productView"
     data-event-type="product"
@@ -249,6 +251,7 @@
                         <span data-product-stock>{{product.stock_level}}</span>
                         {{> components/products/backorder-availability-prompt show_prompt=product.show_backorder_availability_prompt prompt=product.backorder_availability_prompt available_to_sell=product.available_to_sell available_for_backorder=product.available_for_backorder}}
                     </label>
+                    <p class="form-label form-label--alternate" data-product-backordered style="display:none;"></p>
                 </div>
                 {{> components/products/add-to-cart with_wallet_buttons=true}}
             </form>

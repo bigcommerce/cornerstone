@@ -199,6 +199,9 @@ export default class ProductDetailsBase {
                 $text: $('.incrementTotal', $scope),
                 $input: $('[name=qty\\[\\]]', $scope),
             },
+            backorderAvailabilityPrompt: {
+                $container: $('[data-backorder-availability-prompt]', $scope),
+            },
             $bulkPricing: $('.productView-info-bulkPricing', $scope),
             $walletButtons: $('[data-add-to-cart-wallet-buttons]', $scope),
         };
@@ -271,6 +274,29 @@ export default class ProductDetailsBase {
         } else {
             viewModel.stock.$container.addClass('u-hiddenVisually');
             viewModel.stock.$input.text(data.stock);
+        }
+
+        // Update backorder availability prompt for complex products
+        const $backorderAvailabilityPromptContainer = viewModel.backorderAvailabilityPrompt.$container;
+
+        if ($backorderAvailabilityPromptContainer.length && this.context.showBackorderAvailabilityPrompt) {
+            const $prompt = $backorderAvailabilityPromptContainer.find('.productView-backorder-availability-prompt');
+
+            if (typeof data.stock === 'number' && data.stock > 0) {
+                if ($prompt.length) {
+                    $prompt.show();
+                } else {
+                    const promptText = this.context.backorderAvailabilityPrompt;
+
+                    if (promptText) {
+                        $backorderAvailabilityPromptContainer.html(
+                            `<span class="productView-backorder-availability-prompt">(${promptText})</span>`,
+                        );
+                    }
+                }
+            } else {
+                $prompt.hide();
+            }
         }
 
         this.updateDefaultAttributesForOOS(data);

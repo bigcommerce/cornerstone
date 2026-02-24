@@ -17,6 +17,7 @@ const optionsTypesMap = {
 
 export function optionChangeDecorator(areDefaultOptionsSet) {
     return (err, response) => {
+        if (err) return;
         const attributesData = response.data || {};
         const attributesContent = response.content || {};
 
@@ -393,7 +394,7 @@ export default class ProductDetailsBase {
 
     updateWalletButtonsView(data) {
         const viewModel = this.getViewModel(this.$scope);
-        const isValidForm = viewModel.$addToCartForm[0].checkValidity();
+        const isValidForm = viewModel.$addToCartForm?.[0]?.checkValidity() ?? true;
 
         this.toggleWalletButtonsVisibility(isValidForm && data.purchasable && data.instock);
     }

@@ -85,9 +85,11 @@
             const scriptElement = document.getElementById('theme-bundle-main');
 
             if (scriptElement) {
-                addEventListener('load', onThemeBundleMain);
-            } else {
-                console.error('Could not find script element with id "theme-bundle-main"');
+                if (typeof window.stencilBootstrap === 'function') {
+                    onThemeBundleMain();
+                } else {
+                    scriptElement.addEventListener('load', onThemeBundleMain, { once: true });
+                }
             }
         </script>
 

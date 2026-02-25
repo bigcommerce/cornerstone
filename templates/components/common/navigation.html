@@ -1,6 +1,6 @@
 <nav class="navUser">
-    {{#if theme_settings.show_language_selector_mock_data}}
-        {{#if theme_settings.language_selector_mock_data.locales.length '>' 1}}
+    {{#if language_selector}}
+        {{#if language_selector.languages.length '>' 1}}
             {{> components/common/language-selector}}
         {{/if}}
     {{/if}}

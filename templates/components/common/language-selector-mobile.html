@@ -1,11 +1,14 @@
 <a class="navPages-action has-subMenu"
    href="#"
+   data-locale-code="{{language_selector.active_language_code}}"
    data-collapsible="navPages-locale"
    aria-controls="navPages-locale"
    aria-expanded="false"
-   aria-label="{{lang 'common.locale' name=theme_settings.language_selector_mock_data.selected_locale_name}}"
+   aria-label="{{language_selector.active_language_code}}"
 >
-    {{lang 'common.locale' name=theme_settings.language_selector_mock_data.selected_locale_name}}
+    <span>
+        {{lang 'common.locale'}} <strong>{{language_selector.active_language_code}}</strong>
+    </span>
     <i class="icon navPages-action-moreIcon" aria-hidden="true">
         <svg>
             <use href="#icon-chevron-down"></use>
@@ -14,18 +17,18 @@
 </a>
 <div class="navPage-subMenu" id="navPages-locale" aria-hidden="true" tabindex="-1">
     <ul class="navPage-subMenu-list">
-        {{#each theme_settings.language_selector_mock_data.locales}}
+        {{#each language_selector.languages}}
             <li class="navPage-subMenu-item">
                 <a class="navPage-subMenu-action navPages-action"
-                   href="{{path}}"
+                   href="{{switch_url}}"
                    data-locale-code="{{{code}}}"
                    data-warning="{{lang 'common.locale_switch_warning'}}"
-                   aria-label="{{name}}"
+                   aria-label="{{code}}"
                 >
-                    {{#if is_selected}}
-                        <strong>{{name}}</strong>
+                    {{#if is_active}}
+                        <strong>{{code}}</strong>
                     {{else}}
-                        {{name}}
+                        {{code}}
                     {{/if}}
                 </a>
             </li>

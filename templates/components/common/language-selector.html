@@ -2,12 +2,13 @@
     <li class="navUser-item">
         <a class="navUser-action navUser-action--languageSelector has-dropdown"
            href="#"
+           data-locale-code="{{language_selector.active_language_code}}"
            data-dropdown="languageSelection"
            aria-controls="languageSelection"
            aria-expanded="false"
-           aria-label="{{lang 'common.locale' name=theme_settings.language_selector_mock_data.selected_locale_name}}"
+           aria-label="{{language_selector.active_language_code}}"
         >
-            {{lang 'common.locale' name=theme_settings.language_selector_mock_data.selected_locale_name}}
+            {{lang 'common.locale'}} <strong>{{language_selector.active_language_code}}</strong>
             <i class="icon" aria-hidden="true">
                 <svg>
                     <use href="#icon-chevron-down" />
@@ -15,17 +16,17 @@
             </i>
         </a>
         <ul class="dropdown-menu" id="languageSelection" data-dropdown-content aria-hidden="true" tabindex="-1">
-            {{#each theme_settings.language_selector_mock_data.locales}}
+            {{#each language_selector.languages}}
                 <li class="dropdown-menu-item">
-                    <a href="{{path}}"
+                    <a href="{{switch_url}}"
                        data-locale-code="{{code}}"
                        data-warning="{{lang 'common.locale_switch_warning'}}"
-                       aria-label="{{name}}"
+                       aria-label="{{code}}"
                     >
-                        {{#if is_selected}}
-                            <strong>{{name}}</strong>
+                        {{#if is_active}}
+                            <strong>{{code}}</strong>
                         {{else}}
-                            {{name}}
+                            {{code}}
                         {{/if}}
                     </a>
                 </li>

@@ -27,6 +27,13 @@
         {{/unless}}
     </ul>
     <ul class="navPages-list navPages-list--user">
+        {{#if language_selector}}
+            {{#if language_selector.languages.length '>' 1}}
+                <li class="navPages-item">
+                    {{> components/common/language-selector-mobile}}
+                </li>
+            {{/if}}
+        {{/if}}
         {{#if currency_selector.currencies.length '>' 1}}
             <li class="navPages-item">
                 <a class="navPages-action has-subMenu"

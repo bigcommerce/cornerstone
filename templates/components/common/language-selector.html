@@ -1,0 +1,36 @@
+<ul class="navUser-section">
+    <li class="navUser-item">
+        <a class="navUser-action navUser-action--languageSelector has-dropdown"
+           href="#"
+           data-locale-code="{{language_selector.active_language_code}}"
+           data-dropdown="languageSelection"
+           aria-controls="languageSelection"
+           aria-expanded="false"
+           aria-label="{{language_selector.active_language_code}}"
+        >
+            {{lang 'common.locale'}} <strong>{{language_selector.active_language_code}}</strong>
+            <i class="icon" aria-hidden="true">
+                <svg>
+                    <use href="#icon-chevron-down" />
+                </svg>
+            </i>
+        </a>
+        <ul class="dropdown-menu" id="languageSelection" data-dropdown-content aria-hidden="true" tabindex="-1">
+            {{#each language_selector.languages}}
+                <li class="dropdown-menu-item">
+                    <a href="{{switch_url}}"
+                       data-locale-code="{{code}}"
+                       data-warning="{{lang 'common.locale_switch_warning'}}"
+                       aria-label="{{code}}"
+                    >
+                        {{#if is_active}}
+                            <strong>{{code}}</strong>
+                        {{else}}
+                            {{code}}
+                        {{/if}}
+                    </a>
+                </li>
+            {{/each}}
+        </ul>
+    </li>
+</ul>

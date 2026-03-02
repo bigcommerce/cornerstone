@@ -3,6 +3,7 @@
 {{inject 'availableForBackorder' product.available_for_backorder}}
 {{inject 'availableToSell' product.available_to_sell}}
 {{inject 'showBackorderAvailabilityPrompt' product.show_backorder_availability_prompt}}
+{{inject 'backorderAvailabilityPrompt' product.backorder_availability_prompt}}
 {{inject 'quantityBackorderedMessage' (lang 'products.quantity_backordered' quantity='__QTY__')}}
 
 <div class="productView"
@@ -252,7 +253,11 @@
                     <label class="form-label form-label--alternate">
                         {{lang 'products.current_stock'}}
                         <span data-product-stock>{{product.stock_level}}</span>
-                        {{> components/products/backorder-availability-prompt show_prompt=product.show_backorder_availability_prompt prompt=product.backorder_availability_prompt available_to_sell=product.available_to_sell available_for_backorder=product.available_for_backorder}}
+                        {{#all product.show_backorder_availability_prompt product.available_to_sell product.available_for_backorder}}
+                            <span class="productView-backorder-availability-prompt" data-backorder-prompt>({{product.backorder_availability_prompt}})</span>
+                        {{else}}
+                            <span class="productView-backorder-availability-prompt" data-backorder-prompt style="display:none;"></span>
+                        {{/all}}
                     </label>
                     <p class="form-label form-label--alternate" data-product-backordered style="display:none;"></p>
                 </div>

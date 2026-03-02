@@ -188,6 +188,7 @@ export default class ProductDetailsBase {
                 $input: $('[data-product-stock]', $scope),
             },
             $backordered: $('[data-product-backordered]', $scope),
+            $backorderPrompt: $('[data-backorder-prompt]', $scope),
             sku: {
                 $label: $('dt.sku-label', $scope),
                 $value: $('[data-product-sku]', $scope),
@@ -221,8 +222,8 @@ export default class ProductDetailsBase {
         viewModel.priceWithoutTax.$div.hide();
     }
 
-    updateQtyBackorderedMessage(qty) {
-        const viewModel = this.getViewModel(this.$scope);
+    updateQtyBackorderedMessage(qty, passedViewModel) {
+        const viewModel = passedViewModel || this.getViewModel(this.$scope);
 
         if (!viewModel.$backordered.length) return;
 
@@ -240,6 +241,7 @@ export default class ProductDetailsBase {
         } else if (!Number.isNaN(stockFromDom)) {
             onHand = stockFromDom;
         }
+
         const availableForBackorder = parseInt(this.context.availableForBackorder, 10) || 0;
         const availableToSell = parseInt(this.context.availableToSell, 10) || 0;
         const backordered = Math.max(0, Math.min(qty - onHand, availableForBackorder));
@@ -269,6 +271,26 @@ export default class ProductDetailsBase {
         }
         if (typeof data.show_backorder_availability_prompt === 'boolean') {
             this.context.showBackorderAvailabilityPrompt = data.show_backorder_availability_prompt;
+        }
+        if (typeof data.backorder_availability_prompt === 'string') {
+            this.context.backorderAvailabilityPrompt = data.backorder_availability_prompt;
+        }
+    }
+
+    updateBackorderPrompt(passedViewModel) {
+        const viewModel = passedViewModel || this.getViewModel(this.$scope);
+
+        if (!viewModel.$backorderPrompt.length) return;
+
+        const showPrompt = this.context.showBackorderAvailabilityPrompt;
+        const availableForBackorder = parseInt(this.context.availableForBackorder, 10) || 0;
+        const availableToSell = parseInt(this.context.availableToSell, 10) || 0;
+        const promptText = this.context.backorderAvailabilityPrompt;
+
+        if (showPrompt && availableToSell > 0 && availableForBackorder > 0 && promptText) {
+            viewModel.$backorderPrompt.text(`(${promptText})`).show();
+        } else {
+            viewModel.$backorderPrompt.hide();
         }
     }
 
@@ -326,9 +348,10 @@ export default class ProductDetailsBase {
         }
 
         this.updateBackorderContext(data);
+        this.updateBackorderPrompt(viewModel);
 
         const currentQty = parseInt(viewModel.quantity.$input.val(), 10) || 0;
-        this.updateQtyBackorderedMessage(currentQty);
+        this.updateQtyBackorderedMessage(currentQty, viewModel);
 
         this.updateDefaultAttributesForOOS(data);
         this.updateWalletButtonsView(data);

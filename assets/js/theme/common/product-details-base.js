@@ -226,14 +226,49 @@ export default class ProductDetailsBase {
 
         if (!viewModel.$backordered.length) return;
 
-        const onHand = parseInt(this.context.availableOnHand, 10) || 0;
-        const maxBackorder = parseInt(this.context.availableForBackorder, 10) || 0;
-        const backordered = Math.max(0, Math.min(qty - onHand, maxBackorder));
+        if (this.context.showBackorderAvailabilityPrompt === false) {
+            viewModel.$backordered.hide();
+            return;
+        }
 
-        if (backordered > 0) {
-            viewModel.$backordered.text(`${backordered} will be backordered`).show();
+        const contextOnHand = parseInt(this.context.availableOnHand, 10);
+        const stockFromDom = parseInt(viewModel.stock.$input.text(), 10);
+        let onHand = 0;
+
+        if (!Number.isNaN(contextOnHand) && contextOnHand > 0) {
+            onHand = contextOnHand;
+        } else if (!Number.isNaN(stockFromDom)) {
+            onHand = stockFromDom;
+        }
+        const availableForBackorder = parseInt(this.context.availableForBackorder, 10) || 0;
+        const availableToSell = parseInt(this.context.availableToSell, 10) || 0;
+        const backordered = Math.max(0, Math.min(qty - onHand, availableForBackorder));
+        const withinSellLimit = availableToSell > 0 ? qty <= availableToSell : true;
+
+        if (backordered > 0 && withinSellLimit) {
+            const message = this.context.quantityBackorderedMessage
+                ? this.context.quantityBackorderedMessage.replace('__QTY__', backordered)
+                : `${backordered} will be backordered`;
+            viewModel.$backordered.text(message).show();
         } else {
             viewModel.$backordered.hide();
+        }
+    }
+
+    updateBackorderContext(data) {
+        if (typeof data.available_on_hand === 'number') {
+            this.context.availableOnHand = data.available_on_hand;
+        } else if (typeof data.stock === 'number') {
+            this.context.availableOnHand = data.stock;
+        }
+        if (typeof data.available_for_backorder === 'number') {
+            this.context.availableForBackorder = data.available_for_backorder;
+        }
+        if (typeof data.available_to_sell === 'number') {
+            this.context.availableToSell = data.available_to_sell;
+        }
+        if (typeof data.show_backorder_availability_prompt === 'boolean') {
+            this.context.showBackorderAvailabilityPrompt = data.show_backorder_availability_prompt;
         }
     }
 
@@ -289,6 +324,11 @@ export default class ProductDetailsBase {
             viewModel.stock.$container.addClass('u-hiddenVisually');
             viewModel.stock.$input.text(data.stock);
         }
+
+        this.updateBackorderContext(data);
+
+        const currentQty = parseInt(viewModel.quantity.$input.val(), 10) || 0;
+        this.updateQtyBackorderedMessage(currentQty);
 
         this.updateDefaultAttributesForOOS(data);
         this.updateWalletButtonsView(data);

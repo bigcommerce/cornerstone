@@ -379,7 +379,7 @@ export default class ProductDetails extends ProductDetailsBase {
             this.addToCartValidator.performCheck();
 
             this.updateProductDetailsData();
-            this.updateQtyBackorderedMessage(qty);
+            this.updateQtyBackorderedMessage(qty, viewModel);
         });
 
         // Prevent triggering quantity change when pressing enter
@@ -396,7 +396,7 @@ export default class ProductDetails extends ProductDetailsBase {
             const viewModel = this.getViewModel(this.$scope);
             const qty = parseInt(viewModel.quantity.$input.val(), 10) || 0;
             this.updateProductDetailsData();
-            this.updateQtyBackorderedMessage(qty);
+            this.updateQtyBackorderedMessage(qty, viewModel);
         });
     }
 

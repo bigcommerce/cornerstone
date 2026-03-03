@@ -98,6 +98,14 @@
             {{/neither}}
             {{> components/cart/shipping-estimator cart.shipping_handling multi_coupon_ui_enabled=cart.multi_coupon_ui_enabled}}
         </li>
+        <li class="cart-total">
+            <div class="cart-total-label">
+                <strong>{{lang 'cart.checkout.handling'}}:</strong>
+            </div>
+            <div class="cart-total-value">
+                <span>${{cart.shipping_handling.handling_cost}}</span>
+            </div>
+        </li>
     {{/if}}
     {{#each cart.taxes}}
         {{#unless included}}

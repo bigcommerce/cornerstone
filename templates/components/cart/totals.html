@@ -26,7 +26,12 @@
                         <li class="cart-discount-item">
                             <div class="cart-discount-item-label">
                                 <i class="icon" aria-hidden="true"><svg><use href="#icon-promotions" /></svg></i>
-                                <span class="cart-coupon-name">{{lang 'cart.automatic_discount'}}</span>
+                                <span class="cart-coupon-name">
+                                    {{lang 'cart.automatic_discount'}}
+                                    {{#if cart.order_based_auto_discount_max_limit_reached}}
+                                        <span class="cart-coupon-limit">{{lang 'cart.coupons.maximum_discount_applied'}}</span>
+                                    {{/if}}
+                                </span>
                             </div>
                             <div class="cart-discount-item-value">
                                 {{cart.order_based_auto_discount_total.formatted}}
@@ -48,11 +53,16 @@
                         <li class="cart-discount-item">
                             <div class="cart-discount-item-label">
                                 <i class="icon" aria-hidden="true"><svg><use href="#icon-promotions" /></svg></i>
-                                {{#if display_name}}
-                                    <span class="cart-coupon-name">{{display_name}} ({{code}})</span>
-                                {{else}}
-                                    <span class="cart-coupon-name">{{code}}</span>
-                                {{/if}}
+                                <span class="cart-coupon-name">
+                                    {{#if display_name}}
+                                        {{display_name}} ({{code}})
+                                    {{else}}
+                                        {{code}}
+                                    {{/if}}
+                                    {{#if has_max_limit_reached}}
+                                        <span class="cart-coupon-limit">{{lang 'cart.coupons.maximum_discount_applied'}}</span>
+                                    {{/if}}
+                                </span>
                             </div>
                             <div class="cart-discount-item-value">
                                 {{#if discount.value '===' 0}}-{{/if}}{{discount.formatted}}

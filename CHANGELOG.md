@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Draft
+- Expose shopper messaging on Cart page to show that maximum discount limit has been reached [#2620](https://github.com/bigcommerce/cornerstone/pull/2620)
 - Fix `onThemeBundleMain` binding to `window` load instead of script element, guard `optionChangeDecorator` against null response on error, and fix `updateWalletButtonsView` crash on cart edit modal [#2615](https://github.com/bigcommerce/cornerstone/pull/2615)
 - Add to Cart and quantity buttons disabled when BCData is empty [#2612](https://github.com/bigcommerce/cornerstone/pull/2612)
 - Introduce strikethrough display for discounted shipping quote prices on cart page [#2611](https://github.com/bigcommerce/cornerstone/pull/2611)

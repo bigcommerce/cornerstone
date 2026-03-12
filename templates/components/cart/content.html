@@ -153,6 +153,11 @@
                                 <p class="cart-item-backorder-message">{{stock_position.backorder_message}}</p>
                             {{/if}}
                         {{/if}}
+                        {{#if ../cart.inventory_settings.show_default_shipping_expectation_prompt}}
+                            {{#or stock_position.quantity_backordered stock_position.backorder_message}}
+                                <p class="cart-item-backorder-message">{{../cart.inventory_settings.default_shipping_expectation_prompt}}</p>
+                            {{/or}}
+                        {{/if}}
                     {{/if}}
                 </td>
 

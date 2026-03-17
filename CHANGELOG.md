@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Draft
+
+## 6.19.0 (03-17-2026)
 - Expose shopper messaging on Cart page to show that maximum discount limit has been reached [#2620](https://github.com/bigcommerce/cornerstone/pull/2620)
 - Refactor Language Selector Component to consume real data from Stencil Context [#2616](https://github.com/bigcommerce/cornerstone/pull/2616)
 - Fix `onThemeBundleMain` binding to `window` load instead of script element, guard `optionChangeDecorator` against null response on error, and fix `updateWalletButtonsView` crash on cart edit modal [#2615](https://github.com/bigcommerce/cornerstone/pull/2615)

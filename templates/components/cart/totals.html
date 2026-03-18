@@ -102,6 +102,9 @@
                 {{#if cart.multi_coupon_ui_enabled}}
                     {{> components/cart/shipping-estimator-trigger}}
                 {{/if}}
+                {{#if cart.inventory_settings.show_default_shipping_expectation_prompt}}
+                    <p class="cart-shipping-expectation-message">{{cart.inventory_settings.default_shipping_expectation_prompt}}</p>
+                {{/if}}
             </div>
             {{#neither cart.multi_coupon_ui_enabled cart.shipping_handling.shipping_cost}}
                 {{> components/cart/shipping-estimator-trigger}}

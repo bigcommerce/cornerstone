@@ -189,6 +189,8 @@ export default class ProductDetailsBase {
                 $input: $('[data-product-stock]', $scope),
             },
             $backordered: $('[data-product-backordered]', $scope),
+            $backorderedQtyMessage: $('[data-qty-backordered-message]', $scope),
+            $backorderMessage: $('[data-backorder-message]', $scope),
             $backorderPrompt: $('[data-backorder-prompt]', $scope),
             sku: {
                 $label: $('dt.sku-label', $scope),
@@ -229,7 +231,8 @@ export default class ProductDetailsBase {
         if (!viewModel.$backordered.length) return;
 
         if (this.context.showBackorderAvailabilityPrompt === false) {
-            viewModel.$backordered.hide();
+            viewModel.$backorderedQtyMessage.text('');
+            this.toggleBackorderedContainer(viewModel);
             return;
         }
 
@@ -252,7 +255,44 @@ export default class ProductDetailsBase {
             const message = this.context.quantityBackorderedMessage
                 ? this.context.quantityBackorderedMessage.replace('__QTY__', backordered)
                 : `${backordered} will be backordered`;
-            viewModel.$backordered.text(message).show();
+            viewModel.$backorderedQtyMessage.text(message);
+        } else {
+            viewModel.$backorderedQtyMessage.text('');
+        }
+
+        this.toggleBackorderedContainer(viewModel);
+    }
+
+    updateBackorderMessage(passedViewModel) {
+        const viewModel = passedViewModel || this.getViewModel(this.$scope);
+
+        if (!viewModel.$backordered.length) return;
+
+        const hasQtyMessage = viewModel.$backorderedQtyMessage.text().trim() !== '';
+
+        if (!hasQtyMessage) {
+            viewModel.$backorderMessage.text('');
+            return;
+        }
+
+        const { showBackorderMessage, backorderMessages, backorderMessageId } = this.context;
+
+        if (showBackorderMessage && backorderMessageId != null && Array.isArray(backorderMessages)) {
+            const messageObj = backorderMessages.find(m => m.id === backorderMessageId);
+            if (messageObj) {
+                viewModel.$backorderMessage.text(messageObj.message);
+                return;
+            }
+        }
+
+        viewModel.$backorderMessage.text('');
+    }
+
+    toggleBackorderedContainer(viewModel) {
+        const hasQtyMessage = viewModel.$backorderedQtyMessage.text().trim() !== '';
+
+        if (hasQtyMessage) {
+            viewModel.$backordered.show();
         } else {
             viewModel.$backordered.hide();
         }
@@ -276,6 +316,7 @@ export default class ProductDetailsBase {
         if (typeof data.backorder_availability_prompt === 'string') {
             this.context.backorderAvailabilityPrompt = data.backorder_availability_prompt;
         }
+        this.context.backorderMessageId = data.backorder_message_id ?? null;
     }
 
     updateBackorderPrompt(passedViewModel) {
@@ -353,6 +394,7 @@ export default class ProductDetailsBase {
 
         const currentQty = parseInt(viewModel.quantity.$input.val(), 10) || 0;
         this.updateQtyBackorderedMessage(currentQty, viewModel);
+        this.updateBackorderMessage(viewModel);
 
         this.updateDefaultAttributesForOOS(data);
         this.updateWalletButtonsView(data);

@@ -5,6 +5,8 @@
 {{inject 'showBackorderAvailabilityPrompt' product.show_backorder_availability_prompt}}
 {{inject 'backorderAvailabilityPrompt' product.backorder_availability_prompt}}
 {{inject 'quantityBackorderedMessage' (lang 'products.quantity_backordered' quantity='__QTY__')}}
+{{inject 'backorderMessages' backorder_messages}}
+{{inject 'showBackorderMessage' product.show_backorder_message}}
 
 <div class="productView"
     data-event-type="product"
@@ -259,7 +261,10 @@
                             <span class="productView-backorder-availability-prompt" data-backorder-prompt style="display:none;"></span>
                         {{/all}}
                     </label>
-                    <p class="form-label form-label--alternate" data-product-backordered style="display:none;"></p>
+                    <p class="form-label form-label--alternate" data-product-backordered style="display:none;">
+                        <span data-qty-backordered-message></span>
+                        <span data-backorder-message></span>
+                    </p>
                 </div>
                 {{> components/products/add-to-cart with_wallet_buttons=true}}
             </form>

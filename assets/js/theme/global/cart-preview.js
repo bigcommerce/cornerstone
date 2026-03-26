@@ -39,6 +39,7 @@ export default function (secureBaseUrl, cartId) {
     $cart.on('click', event => {
         const options = {
             template: 'common/cart-preview',
+            baseUrl: secureBaseUrl,
         };
 
         // Redirect to full cart page

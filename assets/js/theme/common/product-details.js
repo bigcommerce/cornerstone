@@ -504,6 +504,7 @@ export default class ProductDetails extends ProductDetailsBase {
                     },
                 },
             },
+            baseUrl: this.context.secureBaseUrl,
         };
 
         utils.api.cart.getContent(options, onComplete);

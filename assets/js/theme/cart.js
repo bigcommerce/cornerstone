@@ -212,6 +212,7 @@ export default class Cart extends PageManager {
                 statusMessages: 'cart/status-messages',
                 additionalCheckoutButtons: 'cart/additional-checkout-buttons',
             },
+            baseUrl: this.context.secureBaseUrl,
         };
 
         this.$overlay.show();

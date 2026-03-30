@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Draft
+- ES-6275 Hide advanced search toggle and partial on `/search.php` when `forms.search.hide_advanced_search` is set by storefront (multilingual search context) [#XXXX](https://github.com/bigcommerce/cornerstone/pull/XXXX)
 - STRF-14251 Make cart preview work with multi-lang by passing baseUrl to cart API calls [#2627](https://github.com/bigcommerce/cornerstone/pull/2627)
 
 ## 6.19.0 (03-17-2026)

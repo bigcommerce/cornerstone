@@ -39,21 +39,25 @@ product_results:
                 </a>
             </li>
             {{#unless product_results.faceted_search_enabled}}
-                <li class="navBar-item navBar-item--separate">
-                    <a class="navBar-action toggleLink" data-collapsible="advanced-search-content" href="#" aria-controls="advanced-search-content" aria-expanded="false">
-                        <span class="toggleLink-text toggleLink-text--on">
-                            {{lang 'forms.search.hide'}}
-                        </span>
-                        <span class="toggleLink-text toggleLink-text--off">
-                            {{lang 'forms.search.show'}}
-                        </span>
-                    </a>
-                </li>
+                {{#unless forms.search.hide_advanced_search}}
+                    <li class="navBar-item navBar-item--separate">
+                        <a class="navBar-action toggleLink" data-collapsible="advanced-search-content" href="#" aria-controls="advanced-search-content" aria-expanded="false">
+                            <span class="toggleLink-text toggleLink-text--on">
+                                {{lang 'forms.search.hide'}}
+                            </span>
+                            <span class="toggleLink-text toggleLink-text--off">
+                                {{lang 'forms.search.show'}}
+                            </span>
+                        </a>
+                    </li>
+                {{/unless}}
             {{/unless}}
         </ul>
     </nav>
     {{#unless product_results.faceted_search_enabled}}
-        {{>components/search/advanced-search}}
+        {{#unless forms.search.hide_advanced_search}}
+            {{>components/search/advanced-search}}
+        {{/unless}}
     {{/unless}}
 </section>
 

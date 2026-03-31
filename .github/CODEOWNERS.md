@@ -1,1 +1,0 @@
-* @bigcommerce/team-trac

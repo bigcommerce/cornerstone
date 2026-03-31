@@ -49,7 +49,7 @@ describe('StateCountry', () => {
             $modalElement.appendTo(document.body);
             modal = alertModal();
 
-            api.country.getByName.mockImplementation((countryName, callback) => {
+            api.country.getByName.mockImplementation((countryName, options, callback) => {
                 callback(new Error(`${countryName}missing`), null);
             });
             jest.spyOn(modal, 'open');
@@ -72,7 +72,7 @@ describe('StateCountry', () => {
 
     describe('on change', () => {
         beforeEach(() => {
-            api.country.getByName.mockImplementation((countryName, callback) => {
+            api.country.getByName.mockImplementation((countryName, options, callback) => {
                 let states = [];
                 switch (countryName) {
                 case '1': break;

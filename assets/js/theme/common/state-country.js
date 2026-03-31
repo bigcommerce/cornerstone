@@ -205,7 +205,7 @@ export default function (stateElement, context = {}, options, callback) {
             return;
         }
 
-        utils.api.country.getByName(countryName, (err, response) => {
+        utils.api.country.getByName(countryName, { baseUrl: context.secureBaseUrl }, (err, response) => {
             if (err) {
                 showAlertModal(context.state_error);
                 return callback(err);

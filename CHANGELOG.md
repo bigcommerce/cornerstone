@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Draft
 - Fix incorrect request URL for adding items to cart on multi-lang storefronts [#2634](https://github.com/bigcommerce/cornerstone/pull/2634)
+- Audit and fix Stencil theme remote API calls for multi-language subfolder support [#2635](https://github.com/bigcommerce/cornerstone/pull/2635)
 - Fix desktop header selectors layout for Language, Currency, and Channel [#2633](https://github.com/bigcommerce/cornerstone/pull/2633)
 - Fix incorrect request URL for getting states [#2630](https://github.com/bigcommerce/cornerstone/pull/2630)
 - Make cart preview work with multi-lang by passing baseUrl to cart API calls [#2627](https://github.com/bigcommerce/cornerstone/pull/2627)

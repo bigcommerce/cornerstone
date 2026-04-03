@@ -293,7 +293,7 @@ export default class ProductDetails extends ProductDetailsBase {
                     data: productAttributesContent,
                 },
             }));
-        });
+        }, { baseUrl: this.context.secureBaseUrl });
     }
 
     /**

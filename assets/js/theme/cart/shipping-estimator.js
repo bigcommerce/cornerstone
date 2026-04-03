@@ -6,12 +6,13 @@ import collapsibleFactory from '../common/collapsible';
 import { showAlertModal } from '../global/modal';
 
 export default class ShippingEstimator {
-    constructor($element, shippingErrorMessages) {
+    constructor($element, shippingErrorMessages, secureBaseUrl) {
         this.$element = $element;
 
         this.$state = $('[data-field-type="State"]', this.$element);
         this.isEstimatorFormOpened = false;
         this.shippingErrorMessages = shippingErrorMessages;
+        this.secureBaseUrl = secureBaseUrl;
         this.initFormValidation();
         this.bindStateCountryChange();
         this.bindEstimatorEvents();
@@ -176,6 +177,8 @@ export default class ShippingEstimator {
 
             event.preventDefault();
 
+            const requestOptions = this.secureBaseUrl ? { baseUrl: this.secureBaseUrl } : {};
+
             utils.api.cart.getShippingQuotes(params, 'cart/shipping-quotes', (err, response) => {
                 $('.shipping-quotes').html(response.content);
 
@@ -189,7 +192,7 @@ export default class ShippingEstimator {
                         window.location.reload();
                     });
                 });
-            });
+            }, requestOptions);
         });
 
         $('.shipping-estimate-show').on('click', event => {

@@ -480,7 +480,7 @@ export default class ProductDetails extends ProductDetailsBase {
                 // if no modal, redirect to the cart page
                 this.redirectTo(response.data.cart_item.cart_url || this.context.urls.cart);
             }
-        });
+        }, { baseUrl: this.context.secureBaseUrl });
 
         this.setLiveRegionAttributes($addToCartBtn.next(), 'status', 'polite');
     }

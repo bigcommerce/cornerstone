@@ -23,7 +23,7 @@ export default class CartItemDetails extends ProductDetailsBase {
         if ((isEmpty(productAttributesData) || hasDefaultOptions) && hasOptions) {
             const productId = this.context.productForChangeId;
 
-            utils.api.productAttributes.optionChange(productId, $form.serialize(), 'products/bulk-discount-rates', optionChangeCallback);
+            utils.api.productAttributes.optionChange(productId, $form.serialize(), 'products/bulk-discount-rates', optionChangeCallback, { baseUrl: this.context.secureBaseUrl });
         } else {
             this.updateProductAttributes(productAttributesData);
         }

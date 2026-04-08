@@ -167,7 +167,7 @@ export default class Cart extends PageManager {
             this.productDetails = new CartItemDetails(this.$modal, context);
 
             this.bindGiftWrappingForm();
-        });
+        }, { baseUrl: this.context.secureBaseUrl });
 
         utils.hooks.on('product-option-change', (event, currentTarget) => {
             const $form = $(currentTarget).find('form');
@@ -196,7 +196,7 @@ export default class Cart extends PageManager {
                 } else {
                     $submit.prop('disabled', false);
                 }
-            });
+            }, { baseUrl: this.context.secureBaseUrl });
         });
     }
 
@@ -405,6 +405,7 @@ export default class Cart extends PageManager {
             const itemId = $(event.currentTarget).data('itemGiftwrap');
             const options = {
                 template: 'cart/modals/gift-wrapping-form',
+                baseUrl: this.context.secureBaseUrl,
             };
 
             event.preventDefault();
@@ -478,7 +479,7 @@ export default class Cart extends PageManager {
             country: this.context.shippingCountryErrorMessage,
             province: this.context.shippingProvinceErrorMessage,
         };
-        this.shippingEstimator = new ShippingEstimator($('[data-shipping-estimator]'), shippingErrorMessages);
+        this.shippingEstimator = new ShippingEstimator($('[data-shipping-estimator]'), shippingErrorMessages, this.context.secureBaseUrl);
     }
 
     bindDiscountToggle() {

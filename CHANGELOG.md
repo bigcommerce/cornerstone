@@ -5,11 +5,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Draft
-- Fix incorrect request URL for adding items to cart on multi-lang storefronts [#2634](https://github.com/bigcommerce/cornerstone/pull/2634)
+- Update stencil-utils versionto 6.23.0 [#2638](https://github.com/bigcommerce/cornerstone/pull/2638)
 - Audit and fix Stencil theme remote API calls for multi-language subfolder support [#2635](https://github.com/bigcommerce/cornerstone/pull/2635)
+- Update stencil-utils versionto 6.22.0 [#2637](https://github.com/bigcommerce/cornerstone/pull/2637)
+- Fix incorrect request URL for adding items to cart on multi-lang storefronts [#2634](https://github.com/bigcommerce/cornerstone/pull/2634)
 - Fix desktop header selectors layout for Language, Currency, and Channel [#2633](https://github.com/bigcommerce/cornerstone/pull/2633)
+- Update stencil-utils versionto 6.21.0 [#2632](https://github.com/bigcommerce/cornerstone/pull/2632)
 - Fix incorrect request URL for getting states [#2630](https://github.com/bigcommerce/cornerstone/pull/2630)
 - Make cart preview work with multi-lang by passing baseUrl to cart API calls [#2627](https://github.com/bigcommerce/cornerstone/pull/2627)
+- Render backorder message on PDP [#2625](https://github.com/bigcommerce/cornerstone/pull/2625)
+- Move shipping expectation prompt to cart totals [#2624](https://github.com/bigcommerce/cornerstone/pull/2624)
+- Render shipping expectation prompt on cart page [#2622](https://github.com/bigcommerce/cornerstone/pull/2622)
 
 ## 6.19.0 (03-17-2026)
 - Expose shopper messaging on Cart page to show that maximum discount limit has been reached [#2620](https://github.com/bigcommerce/cornerstone/pull/2620)

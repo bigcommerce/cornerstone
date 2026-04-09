@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Draft
+
+## 6.19.1 (04-09-2026)
 - Update stencil-utils versionto 6.23.0 [#2638](https://github.com/bigcommerce/cornerstone/pull/2638)
 - Audit and fix Stencil theme remote API calls for multi-language subfolder support [#2635](https://github.com/bigcommerce/cornerstone/pull/2635)
 - Update stencil-utils versionto 6.22.0 [#2637](https://github.com/bigcommerce/cornerstone/pull/2637)

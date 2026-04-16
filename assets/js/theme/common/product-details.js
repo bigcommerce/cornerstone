@@ -588,9 +588,10 @@ export default class ProductDetails extends ProductDetailsBase {
 
     updateProductDetailsData() {
         const $form = $('form[data-cart-item-add]');
+        const $productView = $('.productView');
+        const price = Number($productView.data('product-price'));
         const formDataItems = $form.serializeArray();
-
-        const productDetails = {};
+        const productDetails = { ...(price ? { price } : {}) };
 
         for (const formDataItem of formDataItems) {
             const { name, value } = formDataItem;
@@ -614,6 +615,7 @@ export default class ProductDetails extends ProductDetailsBase {
                     : [productOption];
             }
         }
+        console.log({ productDetails });
 
         document.dispatchEvent(new CustomEvent('onProductUpdate', {
             bubbles: true,

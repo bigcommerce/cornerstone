@@ -289,8 +289,8 @@ export default class ProductDetails extends ProductDetailsBase {
             document.dispatchEvent(new CustomEvent('onProductOptionsChanged', {
                 bubbles: true,
                 detail: {
-                    content: productAttributesData,
-                    data: productAttributesContent,
+                    content: productAttributesContent,
+                    data: productAttributesData,
                 },
             }));
         }, { baseUrl: this.context.secureBaseUrl });

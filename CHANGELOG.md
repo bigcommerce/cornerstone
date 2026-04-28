@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fix duplicate `id="default_instrument"` on Update Payment Method page [#2661](https://github.com/bigcommerce/cornerstone/pull/2661)
 - Respect `available_to_sell` on PDP so the Sold Out alert is hidden and the Add to Cart button stays enabled for backorderable products, and is disabled when quantity exceeds `available_to_sell` [#2659](https://github.com/bigcommerce/cornerstone/pull/2659)
 - Updated accessibility features [2656](https://github.com/bigcommerce/cornerstone/pull/2656)
+- Adds new guest-return-portal page. [2645](https://github.com/bigcommerce/cornerstone/pull/2645)
 - Update 'Ship to' copy for multi address orders [#2655](https://github.com/bigcommerce/cornerstone/pull/2655)
 - Fixed typo in category page reset-filters live region handler [#2643](https://github.com/bigcommerce/cornerstone/pull/2643)
 - Swap content/data keys in onProductOptionsChanged event detail [#2640](https://github.com/bigcommerce/cornerstone/pull/2640)

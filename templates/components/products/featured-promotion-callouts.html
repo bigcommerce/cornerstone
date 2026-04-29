@@ -1,0 +1,23 @@
+{{!--
+    Renders "Featured Promotion" callout chips for a product.
+
+    Source: server-rendered Stencil context. The Storefront service populates
+    `product.featured_promotions` (PROMO-1488) on:
+      - the product details page object (PDP)
+      - each product card in category/brand/search listings (PLP)
+    via the GraphQL `Product.featuredPromotions` field, gated by the
+    `PROMO-1488.featured_promotions_in_graphql_enabled` LaunchDarkly flag.
+
+    When the flag is off (or no callouts apply), `featured_promotions` is
+    omitted from the Stencil context and the block below renders nothing.
+
+    Caller: pass the product's `featured_promotions` array as `callouts`,
+    e.g. `{{> components/products/featured-promotion-callouts callouts=product.featured_promotions }}`.
+--}}
+{{#if callouts.length}}
+    <ul class="featuredPromotions" aria-label="{{lang 'products.featured_promotions.aria_label'}}">
+        {{#each callouts}}
+            <li class="featuredPromotions-chip" data-promotion-id="{{id}}">{{text}}</li>
+        {{/each}}
+    </ul>
+{{/if}}

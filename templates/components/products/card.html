@@ -132,6 +132,9 @@
                 {{> components/common/login-for-pricing}}
             {{/or}}
         </div>
+        {{#if show_featured_promotions}}
+            {{> components/products/featured-promotion-callouts callouts=featured_promotions}}
+        {{/if}}
         {{{region name="product_item_below_price"}}}
         {{> components/products/bulk-discount-rates}}
     </div>

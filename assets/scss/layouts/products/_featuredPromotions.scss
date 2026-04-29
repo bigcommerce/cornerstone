@@ -1,0 +1,47 @@
+// =============================================================================
+// FEATURED PROMOTIONS (CSS)
+// =============================================================================
+//
+// Chip-style callouts rendered inside product cards, list items, and on PDP.
+//
+// Markup is server-rendered by `templates/components/products/featured-promotion-callouts.html`
+// from the `featured_promotions` array on the Stencil product context (PROMO-1488).
+// The container is only emitted when the array is non-empty, so there is no
+// `hidden`/`is-loaded` toggling here.
+
+.featuredPromotions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: spacing("eighth");
+    list-style: none;
+    margin: spacing("eighth") 0 0;
+    padding: 0;
+}
+
+.featuredPromotions-chip {
+    background: stencilColor("color_badge_product_sale_badges");
+    border-radius: 2px;
+    color: stencilColor("color_text_product_sale_badges");
+    display: inline-block;
+    font-size: rem-calc(12px);
+    font-weight: 600;
+    line-height: rem-calc(16px);
+    padding: spacing("eighth") spacing("third");
+    text-transform: uppercase;
+    transition: background-color 800ms ease;
+}
+
+.product:hover .featuredPromotions-chip {
+    background: stencilColor("color_hover_product_sale_badges");
+}
+
+.productView .featuredPromotions {
+    margin-top: spacing("half");
+
+    .featuredPromotions-chip {
+        font-size: rem-calc(13px);
+        line-height: rem-calc(18px);
+        padding: spacing("eighth") spacing("half");
+        text-transform: none;
+    }
+}

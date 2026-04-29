@@ -86,6 +86,9 @@
                 {{#or customer (unless settings.hide_price_from_guests)}}
                     {{#if price}}
                         <div class="listItem-price">{{> components/products/price price=price}}</div>
+                        {{#if show_featured_promotions}}
+                            {{> components/products/featured-promotion-callouts callouts=featured_promotions}}
+                        {{/if}}
                         {{{region name="product_item_below_price"}}}
                     {{/if}}
                 {{else}}

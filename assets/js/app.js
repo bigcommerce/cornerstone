@@ -3,6 +3,7 @@ __webpack_public_path__ = window.__webpack_public_path__; // eslint-disable-line
 import Global from './theme/global';
 
 const getAccount = () => import('./theme/account');
+const getAddReturnNew = () => import('./theme/add-return-new');
 const getLogin = () => import('./theme/auth');
 const noop = null;
 
@@ -11,7 +12,7 @@ const pageClasses = {
     account_order: getAccount,
     account_addressbook: getAccount,
     shippingaddressform: getAccount,
-    account_new_return: getAccount,
+    account_new_return: getAddReturnNew,
     'add-wishlist': () => import('./theme/wishlist'),
     account_recentitems: getAccount,
     account_downloaditem: getAccount,

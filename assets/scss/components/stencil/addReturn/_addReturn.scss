@@ -1,6 +1,10 @@
 // =============================================================================
 // ADD RETURN REQUEST (CSS)
 // =============================================================================
+//
+// Styles shared by both the legacy add-return page (.account--addReturn)
+// and the new add-return-new page (.newReturn).
+// =============================================================================
 
 
 .account--addReturn {
@@ -135,5 +139,248 @@
 
     @include breakpoint("small") {
         width: grid-calc(6, $total-columns);
+    }
+}
+
+
+// =============================================================================
+// NEW RETURN PAGE (.newReturn)
+// =============================================================================
+
+.newReturn {
+    color: color("link");
+    max-width: remCalc(1100px);
+    margin: 0 auto;
+    padding: 0 spacing("single") spacing("double");
+}
+
+.newReturn-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: spacing("eighth");
+}
+
+.newReturn-titleGroup {
+    display: flex;
+    align-items: center;
+    gap: spacing("half");
+}
+
+.newReturn-title {
+    font-size: remCalc(28px);
+    font-weight: fontWeight("bold");
+    margin: 0;
+}
+
+.newReturn-statusBadge {
+    display: inline-block;
+    padding: spacing("eighth") spacing("quarter");
+    border: remCalc(1.5px) solid color("orderStatus", "completed");
+    border-radius: remCalc(4px);
+    font-size: remCalc(11px);
+    font-weight: fontWeight("bold");
+    letter-spacing: remCalc(1px);
+    color: color("orderStatus", "completed");
+    text-transform: uppercase;
+}
+
+.newReturn-headerActions {
+    display: flex;
+    align-items: center;
+    gap: spacing("half");
+}
+
+.newReturn-btnBack {
+    padding: spacing("quarter") spacing("single") * 0.83;
+    border: remCalc(1.5px) solid color("link");
+    border-radius: remCalc(6px);
+    background: color("whites", "bright");
+    font-size: fontSize("smallest");
+    font-weight: fontWeight("medium");
+    cursor: pointer;
+    text-decoration: none;
+    color: color("link");
+}
+
+.newReturn-btnPolicy {
+    padding: spacing("quarter") spacing("single") * 0.83;
+    border: 0;
+    border-radius: remCalc(6px);
+    background: color("greys", "darkest");
+    color: color("whites", "bright");
+    font-size: fontSize("smallest");
+    font-weight: fontWeight("medium");
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.newReturn-orderDate {
+    font-size: remCalc(13px);
+    color: color("greys", "base");
+    margin: spacing("eighth") 0 spacing("single") * 0.83;
+}
+
+.newReturn-divider {
+    border: 0;
+    border-top: container("border");
+    margin: spacing("single") 0;
+}
+
+
+.newReturn-shippingGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: remCalc(32px);
+}
+
+.newReturn-shippingSection {
+
+    h4 {
+        font-size: fontSize("smallest");
+        font-weight: fontWeight("semibold");
+        color: color("link");
+        margin: 0 0 spacing("quarter");
+    }
+
+    p,
+    a {
+        font-size: remCalc(13px);
+        margin: remCalc(2px) 0;
+        text-decoration: none;
+    }
+
+    p {
+        color: color("greys", "dark");
+    }
+}
+
+
+.newReturn-orderLineItem {
+    display: flex;
+    align-items: center;
+    gap: remCalc(16px);
+    padding: remCalc(16px) 0;
+    border-bottom: container("border");
+
+    &:last-child {
+        border-bottom: 0;
+    }
+}
+
+.newReturn-orderLineItemThumbnail {
+    width: remCalc(72px);
+    height: remCalc(72px);
+    object-fit: cover;
+    border-radius: remCalc(6px);
+    flex-shrink: 0;
+    background: color("greys", "lighter");
+}
+
+.newReturn-orderLineItemThumbnail--placeholder {
+    width: remCalc(72px);
+    height: remCalc(72px);
+    border-radius: remCalc(6px);
+    flex-shrink: 0;
+    background: color("greys", "light");
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: color("greys", "medium");
+    font-size: remCalc(11px);
+}
+
+.newReturn-orderLineItemInfo {
+    flex: 1;
+    min-width: 0;
+}
+
+.newReturn-orderLineItemName {
+    font-size: remCalc(15px);
+    font-weight: fontWeight("semibold");
+    margin: 0 0 remCalc(2px);
+}
+
+.newReturn-orderLineItemVariant {
+    font-size: remCalc(13px);
+    color: color("greys", "base");
+    margin: 0 0 remCalc(2px);
+}
+
+.newReturn-orderLineItemPrice {
+    font-size: remCalc(13px);
+    color: color("greys", "dark");
+    margin: 0;
+}
+
+.newReturn-orderLineItemControls {
+    display: flex;
+    align-items: center;
+    gap: spacing("half");
+    flex-shrink: 0;
+
+    //Override layout here so the counter sits in a horizontal row
+    // without touching the shared component.
+    .form-increment {
+        display: flex;
+        align-items: center;
+
+    }
+
+    .form-input--incrementTotal {
+        height: remCalc(36px);
+        line-height: remCalc(36px);
+        vertical-align: middle;
+    }
+}
+
+.newReturn-select {
+    height: remCalc(36px);
+    padding: 0 remCalc(28px) 0 spacing("quarter") * 1.67;
+    border: remCalc(1.5px) solid color("greys", "medium");
+    border-radius: remCalc(6px);
+    font-size: remCalc(13px);
+    color: color("greys", "dark");
+    // stylelint-disable-next-line function-url-quotes
+    background: color("whites", "bright") url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23798289'/%3E%3C/svg%3E") no-repeat right spacing("quarter") * 1.67 center;
+    background-size: remCalc(10px);
+    appearance: none;
+    cursor: pointer;
+    min-width: remCalc(180px);
+
+    &:disabled {
+        background-color: color("greys", "lighter");
+        color: color("greys", "medium");
+        cursor: not-allowed;
+        border-color: color("greys", "light");
+    }
+}
+
+.newReturn-submitRow {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: spacing("half");
+}
+
+.newReturn-submitBtn {
+    width: 100%;
+    max-width: remCalc(520px);
+    padding: remCalc(14px);
+    background: color("greys", "darkest");
+    color: color("whites", "bright");
+    border: 0;
+    border-radius: remCalc(8px);
+    font-size: remCalc(15px);
+    font-weight: fontWeight("semibold");
+    cursor: pointer;
+    transition: background 0.2s;
+
+    &:hover {
+        background: color("greys", "dark");
+    }
+
+    &:disabled {
+        background: color("greys", "medium");
+        cursor: not-allowed;
     }
 }

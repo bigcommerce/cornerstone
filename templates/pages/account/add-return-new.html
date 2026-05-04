@@ -1,0 +1,44 @@
+{{#partial "page"}}
+
+{{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+{{> components/account/navigation account_page='returns'}}
+
+<main class="newReturn">
+
+    <div class="newReturn-header">
+        <div class="newReturn-titleGroup">
+            <h1 class="newReturn-title">Request Return for Order #<span id="return-new-orderId"></span></h1>
+            <span class="newReturn-statusBadge" id="return-new-statusBadge"></span>
+        </div>
+        <div class="newReturn-headerActions">
+            <a href="{{urls.account.orders.all}}" class="newReturn-btnBack">Back</a>
+            <a href="/return-policy" class="newReturn-btnPolicy">View return policy &rarr;</a>
+        </div>
+    </div>
+    <p class="newReturn-orderDate" id="return-new-datePlaced"></p>
+
+    <hr class="newReturn-divider">
+
+    <div class="newReturn-shippingGrid">
+        <div class="newReturn-shippingSection" id="return-new-shippingAddress"></div>
+        <div class="newReturn-shippingSection" id="return-new-shippingMethod"></div>
+    </div>
+
+    <hr class="newReturn-divider">
+
+    <form data-new-return-form>
+
+        <div id="return-new-itemsList"></div>
+
+        <div class="newReturn-submitRow">
+            <button class="newReturn-submitBtn" id="return-new-submitBtn" type="submit" disabled>
+                Submit Return
+            </button>
+        </div>
+
+    </form>
+
+</main>
+
+{{/partial}}
+{{> layout/base}}

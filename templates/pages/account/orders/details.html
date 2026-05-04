@@ -69,6 +69,9 @@
                         <li>{{{ sanitize order.shipping_address.city}}}, {{{ sanitize order.shipping_address.state}}} {{{ sanitize order.shipping_address.zip}}}</li>
                         <li>{{{ sanitize order.shipping_address.country}}}</li>
                     </ul>
+                    {{#if order.backorder_shipping_expectation_message}}
+                        <p class="account-order-backorder-expectation">{{order.backorder_shipping_expectation_message}}</p>
+                    {{/if}}
                 </section>
             {{/if}}
             {{#if order.pickup_addresses}}
@@ -112,6 +115,9 @@
                         <div class="account-order-address">
                             {{lang 'account.orders.details.ship_to_multi_text'}}
                         </div>
+                        {{#if order.backorder_shipping_expectation_message}}
+                            <p class="account-order-backorder-expectation">{{order.backorder_shipping_expectation_message}}</p>
+                        {{/if}}
                     </section>
                 {{/if}}
             {{/if}}

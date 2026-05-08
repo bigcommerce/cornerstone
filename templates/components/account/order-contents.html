@@ -83,14 +83,14 @@
                         </dd>
                     </dl>
                 {{/if}}
-                {{#if quantity_backordered}}
+                {{#if quantity_backordered '>' 0}}
                     {{#if (subtract quantity quantity_backordered) '>' 0}}
-                        <p class="account-product-backorder-message">{{lang 'products.quantity_on_hand' quantity=(subtract quantity quantity_backordered)}}</p>
+                        <p class="account-product-backorder-prompts">{{lang 'products.quantity_on_hand' quantity=(subtract quantity quantity_backordered)}}</p>
                     {{/if}}
-                    <p class="account-product-backorder-message">{{lang 'products.quantity_backordered' quantity=quantity_backordered}}</p>
-                {{/if}}
-                {{#if backorder_message}}
-                    <p class="account-product-backorder-message">{{backorder_message}}</p>
+                    <p class="account-product-backorder-prompts">{{lang 'products.quantity_backordered' quantity=quantity_backordered}}</p>
+                    {{#if backorder_message}}
+                        <p class="account-product-backorder-prompts">{{backorder_message}}</p>
+                    {{/if}}
                 {{/if}}
                 {{#if refunded}}
                     <p class="account-product-refundQty">{{lang 'account.orders.refunded_quantity' qty=refunded_qty}}</p>

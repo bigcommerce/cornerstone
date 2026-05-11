@@ -5,8 +5,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Draft
+- Gate account orders list "Return Items" link on returns settings (ORDERS-7704) [#2653](https://github.com/bigcommerce/cornerstone/pull/2653)
 
-- Gate account orders list "Return Items" on `settings.returns_v2_enabled` and `settings.returns_enabled`. Key `returns_v2_enabled` is provisional until [ORDERS-7767](https://bigcommercecloud.atlassian.net/browse/ORDERS-7767) ships the final Stencil `settings` field (ORDERS-7704). **TODO:** confirm settings key with backend before merge to master.
 ## 6.19.1 (04-09-2026)
 - Update stencil-utils versionto 6.23.0 [#2638](https://github.com/bigcommerce/cornerstone/pull/2638)
 - Audit and fix Stencil theme remote API calls for multi-language subfolder support [#2635](https://github.com/bigcommerce/cornerstone/pull/2635)

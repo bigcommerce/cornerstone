@@ -23,7 +23,6 @@
             <div class="account-product-body">
                 <div class="account-orderStatus">
                     <h6 class="account-orderStatus-label">{{this.status}}</h6>
-                    {{!-- TODO(ORDERS-7704 / ORDERS-7767): Confirm final `settings.*` key name with backend before merge to master — provisional `returns_v2_enabled`.--}}
                     {{#if this.return_url}}
                         {{#or ../settings.returns_v2_enabled ../settings.returns_enabled}}
                             <a class="account-orderStatus-action" href="{{this.return_url}}">

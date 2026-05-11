@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fixed typo in category page reset-filters live region handler [#2643](https://github.com/bigcommerce/cornerstone/pull/2643)
 - Swap content/data keys in onProductOptionsChanged event detail [#2640](https://github.com/bigcommerce/cornerstone/pull/2640)
 - Fix shipment info showing for cancelled orders [#2654](https://github.com/bigcommerce/cornerstone/pull/2654)
+- Render backorder prompts on My Account "Your orders" page [#2650](https://github.com/bigcommerce/cornerstone/pull/2650)
 
 ## 6.19.1 (04-09-2026)
 - Update stencil-utils versionto 6.23.0 [#2638](https://github.com/bigcommerce/cornerstone/pull/2638)

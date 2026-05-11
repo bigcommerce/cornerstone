@@ -53,7 +53,7 @@ export default class Category extends CatalogPage {
             $('input[name="price_max"]').attr('value', urlParams.get('price_max'));
         }
 
-        $('a.reset-btn').on('click', () => this.setLiveRegionsAttributes($('span.reset-message'), 'status', 'polite'));
+        $('a.reset-btn').on('click', () => this.setLiveRegionAttributes($('span.reset-message'), 'status', 'polite'));
 
         this.ariaNotifyNoProducts();
     }

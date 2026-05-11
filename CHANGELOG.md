@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Draft
 - Gate account orders list "Return Items" link on returns settings (ORDERS-7704) [#2653](https://github.com/bigcommerce/cornerstone/pull/2653)
+- Gate Order Details "Return" button on `settings.returns_v2_enabled` with `settings.returns_enabled` fallback (ORDERS-7705)
 - Fix shipment info showing for cancelled orders [#2654](https://github.com/bigcommerce/cornerstone/pull/2654)
 
 ## 6.19.1 (04-09-2026)

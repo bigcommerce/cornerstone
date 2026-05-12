@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Swap content/data keys in onProductOptionsChanged event detail [#2640](https://github.com/bigcommerce/cornerstone/pull/2640)
 - Fix shipment info showing for cancelled orders [#2654](https://github.com/bigcommerce/cornerstone/pull/2654)
 - Render backorder prompts on My Account "Your orders" page [#2650](https://github.com/bigcommerce/cornerstone/pull/2650)
+- Gate account orders list "Return Items" link on returns settings (ORDERS-7704) [#2653](https://github.com/bigcommerce/cornerstone/pull/2653)
 
 ## 6.19.1 (04-09-2026)
 - Update stencil-utils versionto 6.23.0 [#2638](https://github.com/bigcommerce/cornerstone/pull/2638)

@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Update 'Ship to' copy for multi address orders [#2655](https://github.com/bigcommerce/cornerstone/pull/2655)
 - Fixed typo in category page reset-filters live region handler [#2643](https://github.com/bigcommerce/cornerstone/pull/2643)
 - Swap content/data keys in onProductOptionsChanged event detail [#2640](https://github.com/bigcommerce/cornerstone/pull/2640)
+- Gate Order Details "Return" button on `settings.returns_v2_enabled` with `settings.returns_enabled` fallback (ORDERS-7705)
 - Fix shipment info showing for cancelled orders [#2654](https://github.com/bigcommerce/cornerstone/pull/2654)
 - Render backorder prompts on My Account "Your orders" page [#2650](https://github.com/bigcommerce/cornerstone/pull/2650)
 - Gate account orders list "Return Items" link on returns settings (ORDERS-7704) [#2653](https://github.com/bigcommerce/cornerstone/pull/2653)

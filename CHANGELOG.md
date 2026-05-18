@@ -5,7 +5,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Draft
-- BACK-633 Respect `available_to_sell` on PDP so the Sold Out alert is hidden and the Add to Cart button stays enabled for backorderable products, and is disabled when quantity exceeds `available_to_sell`
+- Respect `available_to_sell` on PDP so the Sold Out alert is hidden and the Add to Cart button stays enabled for backorderable products, and is disabled when quantity exceeds `available_to_sell` [#2659](https://github.com/bigcommerce/cornerstone/pull/2659)
 - Updated accessibility features [2656](https://github.com/bigcommerce/cornerstone/pull/2656)
 - Update 'Ship to' copy for multi address orders [#2655](https://github.com/bigcommerce/cornerstone/pull/2655)
 - Fixed typo in category page reset-filters live region handler [#2643](https://github.com/bigcommerce/cornerstone/pull/2643)

@@ -83,17 +83,17 @@ export default class ProductDetails extends ProductDetailsBase {
             this.setProductVariant();
         });
 
-        if (!$productOptionsElement.length) {
-            const simpleProductId = $('[name="product_id"]', $form).val();
-            utils.api.productAttributes.optionChange(simpleProductId, $form.serialize(), (err, response) => {
-                if (err || !response || !response.data) return;
-                this.updateBackorderContext(response.data);
-                const vm = this.getViewModel(this.$scope);
-                const qty = parseInt(vm.quantity.$input.val(), 10) || 0;
-                this.updateQtyBackorderedMessage(qty, vm);
-                this.updateBackorderMessage(vm);
-            });
-        }
+        const productId = $('[name="product_id"]', $form).val();
+        utils.api.productAttributes.optionChange(productId, $form.serialize(), (err, response) => {
+            if (err || !response || !response.data) return;
+            this.updateBackorderContext(response.data);
+            const vm = this.getViewModel(this.$scope);
+            const qty = parseInt(vm.quantity.$input.val(), 10) || 0;
+            this.updateQtyBackorderedMessage(qty, vm);
+            this.updateBackorderMessage(vm);
+            this.updateDefaultAttributesForOOS(response.data);
+            this.updateAddToCartForQty(qty, vm);
+        });
 
         $form.on('submit', event => {
             this.addToCartValidator.performCheck();
@@ -393,6 +393,7 @@ export default class ProductDetails extends ProductDetailsBase {
             this.updateProductDetailsData();
             this.updateQtyBackorderedMessage(qty, viewModel);
             this.updateBackorderMessage(viewModel);
+            this.updateAddToCartForQty(qty, viewModel);
         });
 
         // Prevent triggering quantity change when pressing enter
@@ -411,6 +412,7 @@ export default class ProductDetails extends ProductDetailsBase {
             this.updateProductDetailsData();
             this.updateQtyBackorderedMessage(qty, viewModel);
             this.updateBackorderMessage(viewModel);
+            this.updateAddToCartForQty(qty, viewModel);
         });
     }
 

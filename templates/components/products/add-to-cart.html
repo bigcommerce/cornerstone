@@ -36,11 +36,13 @@
     {{/if}}
 
     {{#if product.out_of_stock}}
-        {{#if product.out_of_stock_message}}
-            {{> components/common/alert/alert-error product.out_of_stock_message}}
-        {{else}}
-            {{> components/common/alert/alert-error (lang 'products.sold_out')}}
-        {{/if}}
+        {{#unless product.available_to_sell}}
+            {{#if product.out_of_stock_message}}
+                {{> components/common/alert/alert-error product.out_of_stock_message}}
+            {{else}}
+                {{> components/common/alert/alert-error (lang 'products.sold_out')}}
+            {{/if}}
+        {{/unless}}
     {{/if}}
 
     <div class="alertBox alertBox--error productAttributes-message" style="display:none">

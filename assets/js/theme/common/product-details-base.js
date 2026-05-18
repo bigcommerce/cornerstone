@@ -43,6 +43,10 @@ export default class ProductDetailsBase {
 
             this._makeProductVariantAccessible(value, type);
         });
+
+        if ((parseInt(this.context.availableToSell, 10) || 0) > 0) {
+            this.toggleSoldOutAlert(true);
+        }
     }
 
     _makeProductVariantAccessible(variantDomNode, variantType) {
@@ -298,6 +302,31 @@ export default class ProductDetailsBase {
         }
     }
 
+    updateAddToCartForQty(qty, passedViewModel) {
+        const viewModel = passedViewModel || this.getViewModel(this.$scope);
+        const availableToSell = parseInt(this.context.availableToSell, 10) || 0;
+
+        if (availableToSell <= 0) return;
+
+        const $variantMessage = $('#add-to-cart-wrapper .productAttributes-message', this.$scope);
+
+        if (qty > availableToSell) {
+            viewModel.$addToCart.prop('disabled', true);
+
+            const template = this.context.quantityMaxMessage || 'The maximum purchasable quantity is __QTY__';
+            const message = template.replace('__QTY__', availableToSell);
+            $('.alertBox-message', $variantMessage).text(message);
+            $variantMessage.attr('data-qty-limit', 'true').show();
+        } else if (!viewModel.$increments.prop('disabled')) {
+            viewModel.$addToCart.prop('disabled', false);
+
+            if ($variantMessage.attr('data-qty-limit') === 'true') {
+                $variantMessage.removeAttr('data-qty-limit').hide();
+                $('.alertBox-message', $variantMessage).text('');
+            }
+        }
+    }
+
     updateBackorderContext(data) {
         if (typeof data.available_on_hand === 'number') {
             this.context.availableOnHand = data.available_on_hand;
@@ -397,6 +426,7 @@ export default class ProductDetailsBase {
         this.updateBackorderMessage(viewModel);
 
         this.updateDefaultAttributesForOOS(data);
+        this.updateAddToCartForQty(currentQty, viewModel);
         this.updateWalletButtonsView(data);
 
         // If Bulk Pricing rendered HTML is available
@@ -488,20 +518,42 @@ export default class ProductDetailsBase {
 
     updateDefaultAttributesForOOS(data) {
         const viewModel = this.getViewModel(this.$scope);
-        if (!data.purchasable || !data.instock) {
+        const dataAvailableToSell = typeof data.available_to_sell === 'number'
+            ? data.available_to_sell
+            : parseInt(this.context.availableToSell, 10) || 0;
+        const canSell = data.instock || dataAvailableToSell > 0;
+        if (!data.purchasable || !canSell) {
             viewModel.$addToCart.prop('disabled', true);
             viewModel.$increments.prop('disabled', true);
         } else {
             viewModel.$addToCart.prop('disabled', false);
             viewModel.$increments.prop('disabled', false);
         }
+
+        this.toggleSoldOutAlert(canSell);
+    }
+
+    toggleSoldOutAlert(canSell) {
+        const $soldOut = $('#add-to-cart-wrapper .alertBox--error', this.$scope).not('.productAttributes-message');
+        const $variantMessage = $('#add-to-cart-wrapper .productAttributes-message', this.$scope);
+
+        if (canSell) {
+            $soldOut.hide();
+            $variantMessage.hide();
+        } else if ($soldOut.length) {
+            $soldOut.show();
+        }
     }
 
     updateWalletButtonsView(data) {
         const viewModel = this.getViewModel(this.$scope);
         const isValidForm = viewModel.$addToCartForm?.[0]?.checkValidity() ?? true;
+        const dataAvailableToSell = typeof data.available_to_sell === 'number'
+            ? data.available_to_sell
+            : parseInt(this.context.availableToSell, 10) || 0;
+        const canSell = data.instock || dataAvailableToSell > 0;
 
-        this.toggleWalletButtonsVisibility(isValidForm && data.purchasable && data.instock);
+        this.toggleWalletButtonsVisibility(isValidForm && data.purchasable && canSell);
     }
 
     toggleWalletButtonsVisibility(shouldShow) {

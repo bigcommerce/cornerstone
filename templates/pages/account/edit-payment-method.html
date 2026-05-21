@@ -41,7 +41,7 @@
                         </div>
                     {{/if}}
                     <div class="form-field">
-                        <input type="checkbox" value="default_instrument" name="default_instrument" id="default_instrument" data-label="{{lang 'forms.payment_methods.default_instrument'}}" class="form-checkbox" {{#if customer.payment_methods.selected_payment_method.default_instrument}}checked{{/if}}>
+                        <input type="checkbox" value="default_instrument" name="is_default" id="default_instrument" data-label="{{lang 'forms.payment_methods.default_instrument'}}" class="form-checkbox" {{#if is_default}}checked{{/if}}>
                         <label class="form-label" for="default_instrument">{{lang 'forms.payment_methods.default_instrument'}}</label>
                     </div>
                 </div>

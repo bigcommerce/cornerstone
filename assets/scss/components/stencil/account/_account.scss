@@ -49,6 +49,32 @@
     }
 }
 
+.account-listItem-summary {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: spacing("single");
+    justify-content: space-between;
+    margin-bottom: spacing("single");
+}
+
+.account-listItem-summary-main {
+    align-items: center;
+    display: flex;
+    flex: 1 1 auto;
+    flex-wrap: wrap;
+    gap: spacing("half");
+    min-width: 0;
+
+    .account-product-title {
+        margin: 0;
+    }
+
+    .account-orderStatus-label {
+        margin: 0;
+    }
+}
+
 .account-listShipping {
     border-bottom: container("border");
     font-weight: fontWeight("bold");
@@ -339,6 +365,21 @@
     line-height: lineHeight("smallest");
     margin: 0 0 spacing("quarter");
     padding: spacing("eighth") spacing("third");
+}
+
+.account-orderStatus-label--open {
+    background-color: color("warning", "light");
+    color: stencilColor("color-textBase");
+}
+
+.account-orderStatus-label--inProgress {
+    background-color: color("success", "light");
+    color: stencilColor("color-textBase");
+}
+
+.account-orderStatus-label--closed {
+    background-color: color("greys", "lighter");
+    color: stencilColor("color-textBase");
 }
 
 .account-orderStatus-action {

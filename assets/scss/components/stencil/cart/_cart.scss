@@ -237,8 +237,12 @@ $card-preview-zoom-bottom-offset:       6rem;
 
     .cart-item-backorder-message {
         margin-bottom: 0;
-        margin-left: spacing("single");
+        margin-left: calc(#{grid-calc(4, $total-columns)} + #{spacing("single")});
         text-align: left;
+
+        @include breakpoint("small") {
+            margin-left: spacing("single");
+        }
 
         @include breakpoint("medium") {
             margin-left: 0;
@@ -246,11 +250,19 @@ $card-preview-zoom-bottom-offset:       6rem;
     }
 
     .cart-item-option-stock {
-        margin-left: spacing("single");
+        margin-left: calc(#{grid-calc(4, $total-columns)} + #{spacing("single")});
         margin-top: spacing("half");
         text-align: left;
 
+        @include breakpoint("small") {
+            margin-left: spacing("single");
+        }
+
         @include breakpoint("medium") {
+            margin-left: 0;
+        }
+
+        .cart-item-backorder-message {
             margin-left: 0;
         }
     }

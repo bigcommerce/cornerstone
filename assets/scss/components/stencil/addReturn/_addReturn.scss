@@ -1,10 +1,6 @@
 // =============================================================================
 // ADD RETURN REQUEST (CSS)
 // =============================================================================
-//
-// Styles shared by both the legacy add-return page (.account--addReturn)
-// and the new add-return-new page (.newReturn).
-// =============================================================================
 
 
 .account--addReturn {
@@ -228,44 +224,20 @@
 }
 
 
-.newReturn-shippingGrid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: remCalc(32px);
-}
-
-.newReturn-shippingSection {
-
-    h4 {
-        font-size: fontSize("smallest");
-        font-weight: fontWeight("semibold");
-        color: color("link");
-        margin: 0 0 spacing("quarter");
-    }
-
-    p,
-    a {
-        font-size: remCalc(13px);
-        margin: remCalc(2px) 0;
-        text-decoration: none;
-    }
-
-    p {
-        color: color("greys", "dark");
-    }
-}
-
-
 .newReturn-orderLineItem {
     display: flex;
-    align-items: center;
+    align-items: flex-start; // controls column is tallest when stacked (mobile/tablet)
     gap: remCalc(16px);
     padding: remCalc(16px) 0;
-    border-bottom: container("border");
 
-    &:last-child {
-        border-bottom: 0;
+    @include breakpoint("large") {
+        align-items: center; // desktop: everything inline so vertical-center is fine
     }
+}
+
+.newReturn-orderLineItemThumbnailWrapper {
+    flex-shrink: 0;
+    line-height: 0; // collapse inline whitespace around the img
 }
 
 .newReturn-orderLineItemThumbnail {
@@ -275,19 +247,6 @@
     border-radius: remCalc(6px);
     flex-shrink: 0;
     background: color("greys", "lighter");
-}
-
-.newReturn-orderLineItemThumbnail--placeholder {
-    width: remCalc(72px);
-    height: remCalc(72px);
-    border-radius: remCalc(6px);
-    flex-shrink: 0;
-    background: color("greys", "light");
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: color("greys", "medium");
-    font-size: remCalc(11px);
 }
 
 .newReturn-orderLineItemInfo {
@@ -313,28 +272,79 @@
     margin: 0;
 }
 
+// Per-item controls cluster: stepper + resolution-select + reason-select.
+// Below large breakpoint they stack vertically (mobile + tablet); on large they
+// sit inline as in the Figma desktop frame.
 .newReturn-orderLineItemControls {
     display: flex;
-    align-items: center;
-    gap: spacing("half");
+    flex-direction: column;
+    align-items: stretch;
+    gap: spacing("quarter");
     flex-shrink: 0;
+    width: remCalc(180px);
 
-    //Override layout here so the counter sits in a horizontal row
-    // without touching the shared component.
-    .form-increment {
-        display: flex;
+    @include breakpoint("large") {
+        flex-direction: row;
         align-items: center;
-
-    }
-
-    .form-input--incrementTotal {
-        height: remCalc(36px);
-        line-height: remCalc(36px);
-        vertical-align: middle;
+        gap: spacing("half");
+        width: auto;
     }
 }
 
+.newReturn-stepper {
+    display: inline-flex;
+    align-items: center;
+    height: remCalc(36px);
+    border: remCalc(1.5px) solid color("greys", "medium");
+    border-radius: remCalc(6px);
+    overflow: hidden;
+    flex-shrink: 0;
+    align-self: flex-start; // keep compact when stacked; selects stretch instead
+
+    @include breakpoint("large") {
+        align-self: auto;
+    }
+}
+
+.newReturn-stepperBtn {
+    background: none;
+    border: none;
+    width: remCalc(32px);
+    height: 100%;
+    font-size: remCalc(18px);
+    line-height: 1;
+    cursor: pointer;
+    color: color("greys", "dark");
+    padding: 0;
+
+    &:disabled {
+        color: color("greys", "light");
+        cursor: not-allowed;
+    }
+
+    &:focus:not(:focus-visible) {
+        outline: none !important;
+    }
+
+    &:hover:not(:disabled) {
+        background-color: color("greys", "lighter");
+    }
+}
+
+.newReturn-stepperInput {
+    width: remCalc(40px);
+    height: 100%;
+    border: none;
+    text-align: center;
+    font-size: remCalc(14px);
+    padding: 0;
+    outline: none;
+    background: transparent;
+    color: color("greys", "dark");
+}
+
 .newReturn-select {
+    width: 100%; // full width when stacked under stepper on mobile/tablet
     height: remCalc(36px);
     padding: 0 remCalc(28px) 0 spacing("quarter") * 1.67;
     border: remCalc(1.5px) solid color("greys", "medium");
@@ -346,7 +356,11 @@
     background-size: remCalc(10px);
     appearance: none;
     cursor: pointer;
-    min-width: remCalc(180px);
+
+    @include breakpoint("large") {
+        width: auto;
+        min-width: remCalc(180px);
+    }
 
     &:disabled {
         background-color: color("greys", "lighter");
@@ -356,31 +370,18 @@
     }
 }
 
-.newReturn-submitRow {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: spacing("half");
-}
+// Right-aligned bottom column holding the additional-note textarea + submit button.
+// Mirrors the controls column width on tablet+; collapses to full width on mobile.
+.newReturn-footer {
+    margin-top: spacing("single");
 
-.newReturn-submitBtn {
-    width: 100%;
-    max-width: remCalc(520px);
-    padding: remCalc(14px);
-    background: color("greys", "darkest");
-    color: color("whites", "bright");
-    border: 0;
-    border-radius: remCalc(8px);
-    font-size: remCalc(15px);
-    font-weight: fontWeight("semibold");
-    cursor: pointer;
-    transition: background 0.2s;
-
-    &:hover {
-        background: color("greys", "dark");
+    @include breakpoint("medium") {
+        width: 50%;
+        margin-left: auto;
     }
 
-    &:disabled {
-        background: color("greys", "medium");
-        cursor: not-allowed;
+    .form-actions {
+        text-align: right;
     }
 }
+

@@ -1,4 +1,3 @@
-import { escape } from 'lodash';
 import PageManager from './page-manager';
 
 export default class AddReturnNew extends PageManager {
@@ -6,197 +5,31 @@ export default class AddReturnNew extends PageManager {
         const $form = $('[data-new-return-form]');
         if (!$form.length) return;
 
-        // ---------------------------------------------------------------------------
-        // Hardcoded page data which mirrors the TypeScript returns-ui interface.
-        // Replace with Stencil context when it is available.
-        // ---------------------------------------------------------------------------
-        this.pageData = {
-            order: {
-                id: '101',
-                datePlaced: new Date('2024-01-01'),
-                status: 'Completed',
-                currency: 'AUD',
-                isTaxInclusive: true,
-                shipping: {
-                    address: {
-                        fullName: 'Jane Smith',
-                        address1: '1-3 Smail Street',
-                        city: 'Ultimo',
-                        state: 'NSW',
-                        zip: '2007',
-                        country: 'Australia',
-                    },
-                    method: 'Australia Post',
-                    dateShipped: 'May 15, 2024',
-                    trackingNumber: '7E27315406641',
-                },
-                items: [
-                    {
-                        id: 'item-1',
-                        name: 'Product Name',
-                        variant: 'Blue / Black / Green',
-                        sku: 'SKU-001',
-                        quantity: 1,
-                        returnableQuantity: 1,
-                        thumbnailUrl: '',
-                        totalIncTax: 123.99,
-                        totalExTax: 110.71,
-                    },
-                    {
-                        id: 'item-2',
-                        name: 'Product Name',
-                        variant: 'Blue / Black / Green',
-                        sku: 'SKU-002',
-                        quantity: 1,
-                        returnableQuantity: 1,
-                        thumbnailUrl: '',
-                        totalIncTax: 123.99,
-                        totalExTax: 110.71,
-                    },
-                    {
-                        id: 'item-3',
-                        name: 'Product Name',
-                        variant: 'Blue / Black / Green',
-                        sku: 'SKU-003',
-                        quantity: 1,
-                        returnableQuantity: 1,
-                        thumbnailUrl: '',
-                        totalIncTax: 123.99,
-                        totalExTax: 110.71,
-                    },
-                ],
-            },
-            reasons: [
-                { id: 'reason-1', nameForMerchant: 'Damaged or defective', active: true },
-                { id: 'reason-2', nameForMerchant: 'Wrong item received', active: true },
-                { id: 'reason-3', nameForMerchant: 'Changed my mind', active: true },
-                { id: 'reason-4', nameForMerchant: 'Item not as described', active: true },
-                { id: 'reason-5', nameForMerchant: 'Arrived too late', active: true },
-            ],
-            resolutions: [
-                { resolutionType: 'Refund' },
-                { resolutionType: 'Exchange' },
-                { resolutionType: 'Store Credit' },
-            ],
-        };
-
-        this.renderHeader();
-        this.renderShippingAddress();
-        this.renderShippingMethod();
-        this.renderOrderLineItems();
+        this.bindOrderLineItemEvents();
         this.bindSubmit($form);
     }
 
-    renderHeader() {
-        const { order } = this.pageData;
-        const dateLabel = order.datePlaced.toLocaleDateString('en-AU', { year: 'numeric', month: 'long', day: 'numeric' });
-
-        document.getElementById('return-new-orderId').textContent = order.id;
-        document.getElementById('return-new-statusBadge').textContent = order.status.toUpperCase();
-        document.getElementById('return-new-datePlaced').textContent = `Order date: ${dateLabel}`;
-    }
-
-    renderShippingAddress() {
-        const { address } = this.pageData.order.shipping;
-        const shippingAddressHtml = `<h4>Shipping address</h4>
-            <p>${escape(address.fullName)}</p>
-            <p>${escape(address.address1)}</p>
-            <p>${escape(address.city)}, ${escape(address.state)} ${escape(address.zip)}</p>
-            <p>${escape(address.country)}</p>`;
-
-        document.getElementById('return-new-shippingAddress').innerHTML = shippingAddressHtml;
-    }
-
-    renderShippingMethod() {
-        const { shipping } = this.pageData.order;
-        const shippingMethodHtml = `<h4>Shipping method</h4>
-            <p>${escape(shipping.method)}</p>
-            <p>Shipped on ${escape(shipping.dateShipped)}</p>
-            <p>${escape(shipping.trackingNumber)}</p>`;
-
-        document.getElementById('return-new-shippingMethod').innerHTML = shippingMethodHtml;
-    }
-
-    renderOrderLineItems() {
-        const { order, reasons, resolutions } = this.pageData;
-
-        const resolutionOptions = [
-            '<option value="">Select a return request</option>',
-            ...resolutions.map(resolution => {
-                const optionValue = this.isCustomResolution(resolution) ? escape(resolution.id) : escape(resolution.resolutionType);
-                const optionLabel = this.isCustomResolution(resolution) ? escape(resolution.nameForMerchant) : escape(resolution.resolutionType);
-                return `<option value="${optionValue}">${optionLabel}</option>`;
-            }),
-        ].join('');
-
-        const reasonOptions = [
-            '<option value="">Select a return reason</option>',
-            ...reasons
-                .filter(reason => reason.active)
-                .map(reason => `<option value="${escape(reason.id)}">${escape(reason.nameForMerchant)}</option>`),
-        ].join('');
-
-        const orderLineItemsHtml = order.items.map(item => {
-            const price = new Intl.NumberFormat('en-AU', { style: 'currency', currency: order.currency }).format(item.totalIncTax);
-            const thumbnailHtml = item.thumbnailUrl
-                ? `<img class="newReturn-orderLineItemThumbnail" src="${escape(item.thumbnailUrl)}" alt="${escape(item.name)}">`
-                : '<div class="newReturn-orderLineItemThumbnail--placeholder">No image</div>';
-
-            return `
-                <div class="newReturn-orderLineItem" data-item-id="${escape(item.id)}">
-                    ${thumbnailHtml}
-                    <div class="newReturn-orderLineItemInfo">
-                        <p class="newReturn-orderLineItemName">${escape(item.name)}</p>
-                        <p class="newReturn-orderLineItemVariant">${escape(item.variant)}</p>
-                        <p class="newReturn-orderLineItemPrice">${price} x ${item.quantity}</p>
-                    </div>
-                    <div class="newReturn-orderLineItemControls">
-                        <div class="form-increment">
-                            <button class="button button--icon" type="button"
-                                    data-action="dec" data-item-id="${escape(item.id)}" disabled>
-                                <span class="is-srOnly">Decrease quantity</span>
-                                <i class="icon" aria-hidden="true"><svg><use href="#icon-keyboard-arrow-down"></use></svg></i>
-                            </button>
-                            <input class="form-input form-input--incrementTotal"
-                                   id="qty-${escape(item.id)}"
-                                   type="tel" value="0" min="0" max="${item.returnableQuantity}"
-                                   pattern="[0-9]*" aria-label="Quantity" readonly>
-                            <button class="button button--icon" type="button"
-                                    data-action="inc" data-item-id="${escape(item.id)}"
-                                    ${item.returnableQuantity === 0 ? 'disabled' : ''}>
-                                <span class="is-srOnly">Increase quantity</span>
-                                <i class="icon" aria-hidden="true"><svg><use href="#icon-keyboard-arrow-up"></use></svg></i>
-                            </button>
-                        </div>
-                        <select class="newReturn-select" id="resolution-${escape(item.id)}" aria-label="Resolution dropdown">
-                            ${resolutionOptions}
-                        </select>
-                        <select class="newReturn-select" id="reason-${escape(item.id)}" aria-label="Return reason">
-                            ${reasonOptions}
-                        </select>
-                    </div>
-                </div>`;
-        }).join('');
-
-        document.getElementById('return-new-itemsList').innerHTML = orderLineItemsHtml;
-        this.bindOrderLineItemEvents();
-    }
-
     bindOrderLineItemEvents() {
-        document.querySelectorAll('.form-increment .button--icon').forEach(button => {
+        document.querySelectorAll('.newReturn-stepperBtn').forEach(button => {
             button.addEventListener('click', () => {
-                const itemId = button.getAttribute('data-item-id');
+                // Derive itemId from the parent row — buttons do not carry data-item-id,
+                // so the [data-item-id] selector stays scoped to the row container only.
+                const row = button.closest('.newReturn-orderLineItem');
+                const itemId = row?.dataset?.itemId;
+                if (!itemId) return;
                 const action = button.getAttribute('data-action');
-                const item = this.pageData.order.items.find(orderLineItem => orderLineItem.id === itemId);
                 const quantityInput = document.getElementById(`qty-${itemId}`);
-                let quantity = parseInt(quantityInput.value, 10);
+                // max is set server-side to returnableQuantity → quantity fallback
+                const maxQty = parseInt(quantityInput.max, 10) || 0;
+                let quantity = parseInt(quantityInput.value, 10) || 0;
 
-                if (action === 'inc' && quantity < item.returnableQuantity) quantity++;
+                if (action === 'inc' && quantity < maxQty) quantity++;
                 else if (action === 'dec' && quantity > 0) quantity--;
 
                 quantityInput.value = quantity;
-                document.querySelector(`[data-action="dec"][data-item-id="${itemId}"]`).disabled = quantity === 0;
-                document.querySelector(`[data-action="inc"][data-item-id="${itemId}"]`).disabled = quantity >= item.returnableQuantity;
+                const stepper = button.closest('.newReturn-stepper');
+                stepper.querySelector('[data-action="dec"]').disabled = quantity === 0;
+                stepper.querySelector('[data-action="inc"]').disabled = quantity >= maxQty;
 
                 this.updateSubmitState();
             });
@@ -205,41 +38,56 @@ export default class AddReturnNew extends PageManager {
         document.querySelectorAll('.newReturn-select').forEach(selectElement => {
             selectElement.addEventListener('change', () => this.updateSubmitState());
         });
+
+        // Disable + button on load for any item where max=0 (non-returnable)
+        document.querySelectorAll('.newReturn-stepperInput').forEach(input => {
+            const maxQty = parseInt(input.max, 10) || 0;
+            const incBtn = input.closest('.newReturn-stepper')?.querySelector('[data-action="inc"]');
+            if (incBtn && maxQty === 0) incBtn.disabled = true;
+        });
     }
 
     updateSubmitState() {
-        const selectedItems = this.pageData.order.items.filter(item => parseInt(document.getElementById(`qty-${item.id}`).value, 10) > 0);
-
-        const isValid = selectedItems.length > 0 && selectedItems.every(item => (
-            document.getElementById(`resolution-${item.id}`).value
-            && document.getElementById(`reason-${item.id}`).value
-        ));
+        const selectedItems = this.getSelectedItems();
+        const isValid = selectedItems.length > 0 && selectedItems.every(itemRow => {
+            const itemId = itemRow.dataset?.itemId;
+            if (!itemId) return false;
+            const resolutionEl = document.getElementById(`resolution-${itemId}`);
+            const reasonEl = document.getElementById(`reason-${itemId}`);
+            return resolutionEl && resolutionEl.value && reasonEl && reasonEl.value;
+        });
 
         document.getElementById('return-new-submitBtn').disabled = !isValid;
+    }
+
+    // Returns only row containers (not buttons) with a non-zero quantity selected.
+    getSelectedItems() {
+        return [...document.querySelectorAll('.newReturn-orderLineItem')].filter(itemRow => {
+            const itemId = itemRow.dataset?.itemId;
+            if (!itemId) return false;
+            const qtyInput = document.getElementById(`qty-${itemId}`);
+            return qtyInput && parseInt(qtyInput.value, 10) > 0;
+        });
     }
 
     bindSubmit($form) {
         $form.on('submit', event => {
             event.preventDefault();
 
-            const selectedItems = this.pageData.order.items.filter(item => parseInt(document.getElementById(`qty-${item.id}`).value, 10) > 0);
+            const orderEntityId = parseInt(this.context.order?.id, 10);
+            const additionalNote = document.querySelector('[data-new-return-note]')?.value || '';
+            const items = this.getSelectedItems().flatMap(itemRow => {
+                const itemId = itemRow.dataset?.itemId;
+                if (!itemId) return [];
+                return [{
+                    lineItemEntityId: parseInt(itemId, 10),
+                    quantity: parseInt(document.getElementById(`qty-${itemId}`)?.value, 10),
+                    resolution: document.getElementById(`resolution-${itemId}`)?.value,
+                    reasonEntityId: document.getElementById(`reason-${itemId}`)?.value,
+                }];
+            });
 
-            const newReturn = {
-                orderId: this.pageData.order.id,
-                items: selectedItems.map(item => ({
-                    id: item.id,
-                    quantity: parseInt(document.getElementById(`qty-${item.id}`).value, 10),
-                    reasonId: document.getElementById(`reason-${item.id}`).value,
-                    resolution: document.getElementById(`resolution-${item.id}`).value,
-                })),
-            };
-
-            // TODO: wire up API call when available
-            console.log('Submitting return:', JSON.stringify(newReturn, null, 2));
+            // TODO ORDERS-7715: invoke createReturn Storefront GQL mutation.
         });
-    }
-
-    isCustomResolution(resolution) {
-        return 'id' in resolution;
     }
 }

@@ -219,12 +219,45 @@
 // Details - Product backorder message
 // -----------------------------------------------------------------------------
 
-.productView-backorder-availability-prompt {
-    margin-left: spacing("half");
+.productView-stock-message {
+    font-weight: fontWeight("bold");
 }
 
-[data-backorder-message] {
-    margin-left: spacing("half");
+.productView-backorder-availability-prompt::before {
+    content: "| ";
+}
+
+[data-qty-backordered-message]:not(:empty) {
+    font-weight: fontWeight("bold");
+}
+
+[data-backorder-message]:not(:empty)::before {
+    content: "| ";
+}
+
+.productView-picklist-backorder {
+    font-size: 1rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.productView-picklist-backorder-item {
+    color: stencilColor("form-label-font-color");
+    font-family: fontFamily("headingSans");
+    font-size: fontSize("smallest");
+    line-height: 1.8;
+    margin-top: 0;
+}
+
+.productView-picklist-backorder-name {
+    font-weight: fontWeight("bold");
+}
+
+// Unify vertical rhythm across the four stacked lines (stock, main-product
+// backordered, per-picklist bundles) so the group reads as one cluster.
+.form-field--stock .form-label--alternate {
+    margin: 0;
 }
 
 

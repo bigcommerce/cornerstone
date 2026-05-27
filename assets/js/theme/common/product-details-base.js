@@ -1,5 +1,6 @@
 import Wishlist from '../wishlist';
 import { initRadioOptions } from './aria';
+import PicklistBackorder from './picklist-backorder';
 
 const optionsTypesMap = {
     INPUT_FILE: 'input-file',
@@ -34,6 +35,7 @@ export default class ProductDetailsBase {
     constructor($scope, context) {
         this.$scope = $scope;
         this.context = context;
+        this.picklistBackorder = new PicklistBackorder($scope, this.context);
         this.initRadioAttributes();
         Wishlist.load(this.context);
         this.getTabRequests();
@@ -234,7 +236,7 @@ export default class ProductDetailsBase {
 
         if (!viewModel.$backordered.length) return;
 
-        if (this.context.showBackorderAvailabilityPrompt === false) {
+        if (this.context.showQuantityOnBackorder === false) {
             viewModel.$backorderedQtyMessage.text('');
             this.toggleBackorderedContainer(viewModel);
             return;
@@ -359,7 +361,7 @@ export default class ProductDetailsBase {
         const promptText = this.context.backorderAvailabilityPrompt;
 
         if (showPrompt && availableToSell > 0 && availableForBackorder > 0 && promptText) {
-            viewModel.$backorderPrompt.text(`(${promptText})`).show();
+            viewModel.$backorderPrompt.text(promptText).show();
         } else {
             viewModel.$backorderPrompt.hide();
         }
@@ -424,6 +426,7 @@ export default class ProductDetailsBase {
         const currentQty = parseInt(viewModel.quantity.$input.val(), 10) || 0;
         this.updateQtyBackorderedMessage(currentQty, viewModel);
         this.updateBackorderMessage(viewModel);
+        this.picklistBackorder.render(data, currentQty);
 
         this.updateDefaultAttributesForOOS(data);
         this.updateAddToCartForQty(currentQty, viewModel);

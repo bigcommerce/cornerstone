@@ -5,7 +5,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Draft
-- Fix bundled item stock section showing title with no content when there is no backorder data or all inventory display settings are disabled [#2663](https://github.com/bigcommerce/cornerstone/pull/2663)
+- Fix bundled item stock section showing title with no content when there is no backorder data or all inventory display settings are disabled [#2668](https://github.com/bigcommerce/cornerstone/pull/2668)
 - Render stock positions for bundled items (pick lists) on the cart page, (change to be left aligned with the quantity adjuster) [#2663](https://github.com/bigcommerce/cornerstone/pull/2663)
 - Fix duplicate `id="default_instrument"` on Update Payment Method page [#2661](https://github.com/bigcommerce/cornerstone/pull/2661)
 - Respect `available_to_sell` on PDP so the Sold Out alert is hidden and the Add to Cart button stays enabled for backorderable products, and is disabled when quantity exceeds `available_to_sell` [#2659](https://github.com/bigcommerce/cornerstone/pull/2659)

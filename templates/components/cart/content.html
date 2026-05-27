@@ -155,24 +155,23 @@
                         {{/if}}
                         {{#each options}}
                             {{#if linked_bundled_item}}
-                                <div class="cart-item-option-stock">
-                                    <p class="cart-item-backorder-message"><strong>{{name}}:</strong></p>
-                                    {{#if ../../cart.inventory_settings.show_quantity_on_hand}}
-                                        {{#all linked_bundled_item.stock_position.quantity_on_hand linked_bundled_item.stock_position.quantity_backordered}}
+                                {{#all ../../cart.inventory_settings.show_quantity_on_hand linked_bundled_item.stock_position.quantity_on_hand linked_bundled_item.stock_position.quantity_backordered}}{{assignVar "showOnHandQty" 1}}{{else}}{{assignVar "showOnHandQty" 0}}{{/all}}
+                                {{#all ../../cart.inventory_settings.show_quantity_on_backorder linked_bundled_item.stock_position.quantity_backordered}}{{assignVar "showBackorderedQty" 1}}{{else}}{{assignVar "showBackorderedQty" 0}}{{/all}}
+                                {{#all ../../cart.inventory_settings.show_backorder_message linked_bundled_item.stock_position.backorder_message}}{{assignVar "showBackorderMessage" 1}}{{else}}{{assignVar "showBackorderMessage" 0}}{{/all}}
+                                {{#or (getVar "showOnHandQty") (getVar "showBackorderedQty") (getVar "showBackorderMessage")}}
+                                    <div class="cart-item-option-stock">
+                                        <p class="cart-item-backorder-message"><strong>{{name}}:</strong></p>
+                                        {{#if (getVar "showOnHandQty")}}
                                             <p class="cart-item-backorder-message">{{lang 'products.quantity_on_hand' quantity=linked_bundled_item.stock_position.quantity_on_hand}}</p>
-                                        {{/all}}
-                                    {{/if}}
-                                    {{#if ../../cart.inventory_settings.show_quantity_on_backorder}}
-                                        {{#if linked_bundled_item.stock_position.quantity_backordered}}
+                                        {{/if}}
+                                        {{#if (getVar "showBackorderedQty")}}
                                             <p class="cart-item-backorder-message">{{lang 'products.quantity_backordered' quantity=linked_bundled_item.stock_position.quantity_backordered}}</p>
                                         {{/if}}
-                                    {{/if}}
-                                    {{#if ../../cart.inventory_settings.show_backorder_message}}
-                                        {{#if linked_bundled_item.stock_position.backorder_message}}
+                                        {{#if (getVar "showBackorderMessage")}}
                                             <p class="cart-item-backorder-message">{{linked_bundled_item.stock_position.backorder_message}}</p>
                                         {{/if}}
-                                    {{/if}}
-                                </div>
+                                    </div>
+                                {{/or}}
                             {{/if}}
                         {{/each}}
                     {{/if}}

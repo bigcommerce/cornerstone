@@ -139,7 +139,7 @@
                     </div>
                     {{#if stock_position}}
                         {{#if ../cart.inventory_settings.show_quantity_on_hand}}
-                            {{#all stock_position.quantity_on_hand stock_position.backorder_message}}
+                            {{#all stock_position.quantity_on_hand stock_position.quantity_backordered}}
                                 <p class="cart-item-backorder-message">{{lang 'products.quantity_on_hand' quantity=stock_position.quantity_on_hand}}</p>
                             {{/all}}
                         {{/if}}
@@ -158,7 +158,7 @@
                                 <div class="cart-item-option-stock">
                                     <p class="cart-item-backorder-message"><strong>{{name}}:</strong></p>
                                     {{#if ../../cart.inventory_settings.show_quantity_on_hand}}
-                                        {{#all linked_bundled_item.stock_position.quantity_on_hand linked_bundled_item.stock_position.backorder_message}}
+                                        {{#all linked_bundled_item.stock_position.quantity_on_hand linked_bundled_item.stock_position.quantity_backordered}}
                                             <p class="cart-item-backorder-message">{{lang 'products.quantity_on_hand' quantity=linked_bundled_item.stock_position.quantity_on_hand}}</p>
                                         {{/all}}
                                     {{/if}}

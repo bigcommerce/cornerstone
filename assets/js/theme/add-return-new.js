@@ -21,7 +21,7 @@ export default class AddReturnNew extends PageManager {
                 const quantityInput = document.getElementById(`qty-${itemId}`);
                 // max is set server-side to returnableQuantity → quantity fallback
                 const maxQty = parseInt(quantityInput.max, 10) || 0;
-                let quantity = parseInt(quantityInput.value, 10);
+                let quantity = parseInt(quantityInput.value, 10) || 0;
 
                 if (action === 'inc' && quantity < maxQty) quantity++;
                 else if (action === 'dec' && quantity > 0) quantity--;
@@ -88,7 +88,6 @@ export default class AddReturnNew extends PageManager {
             });
 
             // TODO ORDERS-7715: invoke createReturn Storefront GQL mutation.
-            console.log('createReturn payload', { orderEntityId, additionalNote, items }); // eslint-disable-line no-console
         });
     }
 }

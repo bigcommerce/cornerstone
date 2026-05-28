@@ -10,7 +10,7 @@
 
             {{#if settings.returns_v2_enabled}}
 
-                {{#if returns}}
+                {{#if returns.length}}
                     {{> components/account/returns-list-v2 returns=returns}}
                 {{else}}
                     {{> components/common/alert/alert-info (lang 'account.returns.none')}}

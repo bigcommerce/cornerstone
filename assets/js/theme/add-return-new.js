@@ -19,7 +19,6 @@ export default class AddReturnNew extends PageManager {
                 if (!itemId) return;
                 const action = button.getAttribute('data-action');
                 const quantityInput = document.getElementById(`qty-${itemId}`);
-                // max is set server-side to returnableQuantity → quantity fallback
                 const maxQty = parseInt(quantityInput.max, 10) || 0;
                 let quantity = parseInt(quantityInput.value, 10) || 0;
 
@@ -73,10 +72,22 @@ export default class AddReturnNew extends PageManager {
     bindSubmit($form) {
         $form.on('submit', event => {
             event.preventDefault();
+            // TODO ORDERS-7715: invoke createReturn Storefront GQL mutation using
+            // this.buildReturnInput() to get the payload.
+        });
+    }
 
-            const orderEntityId = parseInt(this.context.order?.id, 10);
-            const additionalNote = document.querySelector('[data-new-return-note]')?.value || '';
-            const items = this.getSelectedItems().flatMap(itemRow => {
+    /**
+     * Builds the createReturn mutation input.
+     * Called by ORDERS-7715 once the Storefront GQL mutation is wired up.
+     *
+     * @returns {{ orderEntityId: number, additionalNote: string, items: Array }}
+     */
+    buildReturnInput() {
+        return {
+            orderEntityId: parseInt(this.context.order?.id, 10),
+            additionalNote: document.querySelector('[data-new-return-note]')?.value || '',
+            items: this.getSelectedItems().flatMap(itemRow => {
                 const itemId = itemRow.dataset?.itemId;
                 if (!itemId) return [];
                 return [{
@@ -85,9 +96,7 @@ export default class AddReturnNew extends PageManager {
                     resolution: document.getElementById(`resolution-${itemId}`)?.value,
                     reasonEntityId: document.getElementById(`reason-${itemId}`)?.value,
                 }];
-            });
-
-            // TODO ORDERS-7715: invoke createReturn Storefront GQL mutation.
-        });
+            }),
+        };
     }
 }

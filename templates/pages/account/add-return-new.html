@@ -1,7 +1,7 @@
-{{~inject 'order' orders.[0]}}
+{{~inject 'order' order}}
 <main class="newReturn">
 
-    {{#with orders.[0]}}
+    {{#with order}}
 
     <div class="newReturn-header">
         <div class="newReturn-titleGroup">
@@ -39,12 +39,7 @@
                             {{#each productAttributesList}}{{name}}: {{{sanitize value}}}{{#unless @last}} &middot; {{/unless}}{{/each}}
                         </p>
                     {{/if}}
-                    {{!-- TODO ORDERS-7764: replace cross-ref with {{price.formatted}} directly on item once dedicated returns service includes item price --}}
-                    {{#each ../../forms.return.order_products}}
-                        {{#if id '==' ../id}}
-                            <p class="newReturn-orderLineItemPrice">{{price.formatted}} &times; {{../quantity}}</p>
-                        {{/if}}
-                    {{/each}}
+                    <p class="newReturn-orderLineItemPrice">{{price.formatted}} &times; {{quantity}}</p>
                 </div>
 
                 <div class="newReturn-orderLineItemControls">
@@ -52,10 +47,9 @@
                         <button class="newReturn-stepperBtn" type="button"
                                 data-action="dec" disabled
                                 aria-label="Decrease quantity">&#8722;</button>
-                        {{!-- TODO ORDERS-7764: replace max={{quantity}} with returnableQuantity once dedicated returns service provides it --}}
                         <input class="newReturn-stepperInput"
                                id="qty-{{id}}"
-                               type="tel" value="0" min="0" max="{{quantity}}"
+                               type="tel" value="0" min="0" max="{{returnableQuantity}}"
                                pattern="[0-9]*" aria-label="Quantity" readonly>
                         <button class="newReturn-stepperBtn" type="button"
                                 data-action="inc"
@@ -63,17 +57,19 @@
                     </div>
                     <select class="newReturn-select" id="resolution-{{id}}" aria-label="Resolution dropdown">
                         <option value="">Select a return request</option>
-                        <option value="Refund">Refund</option>
-                        <option value="Exchange">Exchange</option>
-                        <option value="Store Credit">Store Credit</option>
+                        {{#each ../../resolutions}}
+                            {{#if active}}
+                                <option value="{{resolutionType}}">{{label}}</option>
+                            {{/if}}
+                        {{/each}}
                     </select>
                     <select class="newReturn-select" id="reason-{{id}}" aria-label="Return reason">
                         <option value="">Select a return reason</option>
-                        <option value="reason-1">Damaged or defective</option>
-                        <option value="reason-2">Wrong item received</option>
-                        <option value="reason-3">Changed my mind</option>
-                        <option value="reason-4">Item not as described</option>
-                        <option value="reason-5">Arrived too late</option>
+                        {{#each ../../reasons}}
+                            {{#if active}}
+                                <option value="{{id}}">{{nameForMerchant}}</option>
+                            {{/if}}
+                        {{/each}}
                     </select>
                 </div>
             </div>

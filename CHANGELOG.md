@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Draft
+- Render backorder prompt for picklist products on PDP [#2662](https://github.com/bigcommerce/cornerstone/pull/2662)
 - Fix bundled item stock section showing title with no content when there is no backorder data or all inventory display settings are disabled [#2668](https://github.com/bigcommerce/cornerstone/pull/2668)
 - Render stock positions for bundled items (pick lists) on the cart page, (change to be left aligned with the quantity adjuster) [#2663](https://github.com/bigcommerce/cornerstone/pull/2663)
 - Fix duplicate `id="default_instrument"` on Update Payment Method page [#2661](https://github.com/bigcommerce/cornerstone/pull/2661)

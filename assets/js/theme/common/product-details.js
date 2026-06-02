@@ -91,6 +91,7 @@ export default class ProductDetails extends ProductDetailsBase {
             const qty = parseInt(vm.quantity.$input.val(), 10) || 0;
             this.updateQtyBackorderedMessage(qty, vm);
             this.updateBackorderMessage(vm);
+            this.picklistBackorder.render(response.data, qty);
             this.updateDefaultAttributesForOOS(response.data);
             this.updateAddToCartForQty(qty, vm);
         });
@@ -394,6 +395,7 @@ export default class ProductDetails extends ProductDetailsBase {
             this.updateQtyBackorderedMessage(qty, viewModel);
             this.updateBackorderMessage(viewModel);
             this.updateAddToCartForQty(qty, viewModel);
+            this.picklistBackorder.rerender(qty);
         });
 
         // Prevent triggering quantity change when pressing enter
@@ -413,6 +415,7 @@ export default class ProductDetails extends ProductDetailsBase {
             this.updateQtyBackorderedMessage(qty, viewModel);
             this.updateBackorderMessage(viewModel);
             this.updateAddToCartForQty(qty, viewModel);
+            this.picklistBackorder.rerender(qty);
         });
     }
 

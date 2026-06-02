@@ -1,6 +1,6 @@
 import PageManager from './page-manager';
 
-export default class AddReturnNew extends PageManager {
+export default class CreateReturn extends PageManager {
     onReady() {
         const $form = $('[data-new-return-form]');
         if (!$form.length) return;

@@ -7,14 +7,29 @@
 <main class="account account--fixed">
     <div class="account-body">
         <section class="account-content">
-            {{#if customer.returns}}
-                {{> components/account/returns-list returns=customer.returns}}
+
+            {{#if settings.returns_v2_enabled}}
+
+                {{#if returns.length}}
+                    {{> components/account/returns-list-v2 returns=returns}}
+                {{else}}
+                    {{> components/common/alert/alert-info (lang 'account.returns.none')}}
+                {{/if}}
+
             {{else}}
-                {{> components/common/alert/alert-info (lang 'account.returns.none')}}
+
+                {{#if customer.returns}}
+                    {{> components/account/returns-list returns=customer.returns}}
+                {{else}}
+                    {{> components/common/alert/alert-info (lang 'account.returns.none')}}
+                {{/if}}
+
             {{/if}}
+            
         </section>
     </div>
 </main>
 
 {{/partial}}
 {{> layout/base}}
+

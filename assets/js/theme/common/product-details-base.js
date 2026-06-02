@@ -256,10 +256,11 @@ export default class ProductDetailsBase {
         const withinSellLimit = availableToSell > 0 ? qty <= availableToSell : true;
 
         if (backordered > 0 && withinSellLimit) {
+            const qtyHtml = `<strong>${backordered}</strong>`;
             const message = this.context.quantityBackorderedMessage
-                ? this.context.quantityBackorderedMessage.replace('__QTY__', backordered)
-                : `${backordered} will be backordered`;
-            viewModel.$backorderedQtyMessage.text(message);
+                ? this.context.quantityBackorderedMessage.replace('__QTY__', qtyHtml)
+                : `${qtyHtml} will be backordered`;
+            viewModel.$backorderedQtyMessage.html(message);
         } else {
             viewModel.$backorderedQtyMessage.text('');
         }
@@ -359,7 +360,7 @@ export default class ProductDetailsBase {
         const promptText = this.context.backorderAvailabilityPrompt;
 
         if (showPrompt && availableToSell > 0 && availableForBackorder > 0 && promptText) {
-            viewModel.$backorderPrompt.text(`(${promptText})`).show();
+            viewModel.$backorderPrompt.text(promptText).show();
         } else {
             viewModel.$backorderPrompt.hide();
         }

@@ -254,10 +254,10 @@
                 </div>
                 <div class="form-field form-field--stock{{#unless product.stock_level}} u-hiddenVisually{{/unless}}">
                     <label class="form-label form-label--alternate">
-                        {{lang 'products.current_stock'}}
-                        <span data-product-stock>{{product.stock_level}}</span>
+                        <strong data-product-stock>{{product.stock_level}}</strong>
+                        {{lang 'products.in_stock'}}
                         {{#all product.show_backorder_availability_prompt product.available_to_sell product.available_for_backorder}}
-                            <span class="productView-backorder-availability-prompt" data-backorder-prompt>({{product.backorder_availability_prompt}})</span>
+                            <span class="productView-backorder-availability-prompt" data-backorder-prompt>{{product.backorder_availability_prompt}}</span>
                         {{else}}
                             <span class="productView-backorder-availability-prompt" data-backorder-prompt style="display:none;"></span>
                         {{/all}}

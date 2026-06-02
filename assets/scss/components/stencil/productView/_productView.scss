@@ -219,12 +219,16 @@
 // Details - Product backorder message
 // -----------------------------------------------------------------------------
 
-.productView-backorder-availability-prompt {
+.productView-backorder-availability-prompt,
+[data-backorder-message] {
+    border-left: 1px solid stencilColor("color-textSecondary");
+    font-weight: fontWeight("normal");
     margin-left: spacing("half");
+    padding-left: spacing("half");
 }
 
-[data-backorder-message] {
-    margin-left: spacing("half");
+.form-field--stock .form-label--alternate {
+    font-weight: fontWeight("bold");
 }
 
 

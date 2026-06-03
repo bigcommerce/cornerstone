@@ -252,10 +252,13 @@ export default class ProductDetailsBase {
             onHand = stockFromDom;
         }
 
-        const availableForBackorder = parseInt(this.context.availableForBackorder, 10) || 0;
+        const unlimited = this.context.unlimitedBackorder === true;
+        const availableForBackorder = unlimited
+            ? Infinity
+            : parseInt(this.context.availableForBackorder, 10) || 0;
         const availableToSell = parseInt(this.context.availableToSell, 10) || 0;
         const backordered = Math.max(0, Math.min(qty - onHand, availableForBackorder));
-        const withinSellLimit = availableToSell > 0 ? qty <= availableToSell : true;
+        const withinSellLimit = unlimited || (availableToSell > 0 ? qty <= availableToSell : true);
 
         if (backordered > 0 && withinSellLimit) {
             const message = this.context.quantityBackorderedMessage
@@ -306,7 +309,10 @@ export default class ProductDetailsBase {
 
     updateAddToCartForQty(qty, passedViewModel) {
         const viewModel = passedViewModel || this.getViewModel(this.$scope);
-        const availableToSell = parseInt(this.context.availableToSell, 10) || 0;
+        const unlimited = this.context.unlimitedBackorder === true;
+        const availableToSell = unlimited
+            ? Infinity
+            : parseInt(this.context.availableToSell, 10) || 0;
 
         if (availableToSell <= 0) return;
 
@@ -347,6 +353,9 @@ export default class ProductDetailsBase {
         if (typeof data.backorder_availability_prompt === 'string') {
             this.context.backorderAvailabilityPrompt = data.backorder_availability_prompt;
         }
+        if (typeof data.unlimited_backorder === 'boolean') {
+            this.context.unlimitedBackorder = data.unlimited_backorder;
+        }
         this.context.backorderMessageId = data.backorder_message_id ?? null;
     }
 
@@ -356,8 +365,13 @@ export default class ProductDetailsBase {
         if (!viewModel.$backorderPrompt.length) return;
 
         const showPrompt = this.context.showBackorderAvailabilityPrompt;
-        const availableForBackorder = parseInt(this.context.availableForBackorder, 10) || 0;
-        const availableToSell = parseInt(this.context.availableToSell, 10) || 0;
+        const unlimited = this.context.unlimitedBackorder === true;
+        const availableForBackorder = unlimited
+            ? Infinity
+            : parseInt(this.context.availableForBackorder, 10) || 0;
+        const availableToSell = unlimited
+            ? Infinity
+            : parseInt(this.context.availableToSell, 10) || 0;
         const promptText = this.context.backorderAvailabilityPrompt;
 
         if (showPrompt && availableToSell > 0 && availableForBackorder > 0 && promptText) {

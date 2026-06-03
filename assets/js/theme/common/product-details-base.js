@@ -253,11 +253,9 @@ export default class ProductDetailsBase {
         }
 
         const availableForBackorder = parseInt(this.context.availableForBackorder, 10) || 0;
-        const availableToSell = parseInt(this.context.availableToSell, 10) || 0;
         const backordered = Math.max(0, Math.min(qty - onHand, availableForBackorder));
-        const withinSellLimit = availableToSell > 0 ? qty <= availableToSell : true;
 
-        if (backordered > 0 && withinSellLimit) {
+        if (backordered > 0) {
             const message = this.context.quantityBackorderedMessage
                 ? this.context.quantityBackorderedMessage.replace('__QTY__', backordered)
                 : `${backordered} will be backordered`;

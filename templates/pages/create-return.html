@@ -11,15 +11,15 @@
             {{#if status}}<span class="newReturn-statusBadge">{{status}}</span>{{/if}}
         </div>
         <div class="newReturn-headerActions">
-            <a href="{{../urls.account.orders.all}}" class="newReturn-btnBack">{{lang 'account.orders.return.back_button'}}</a>
-            <a href="/return-policy" class="newReturn-btnPolicy">View return policy &rarr;</a>
+            <a href="{{../urls.account.orders.all}}" class="button">{{lang 'account.returns.back'}}</a>
+            <a href="/return-policy" class="button button--primary">{{lang 'account.returns.view_return_policy'}} &rarr;</a>
         </div>
     </div>
-    {{#if date}}<p class="newReturn-orderDate">{{date}}</p>{{/if}}
+    {{#if date}}<p class="newReturn-orderDate">{{lang 'account.returns.order_date'}}: {{date}}</p>{{/if}}
 
     <hr class="newReturn-divider">
 
-    <form data-new-return-form data-success-url="{{../urls.account.orders.all}}">
+    <form class="form" data-new-return-form data-success-url="{{../urls.account.orders.all}}">
 
         {{#each items}}
             <div class="newReturn-orderLineItem" data-item-id="{{id}}">
@@ -45,28 +45,23 @@
                 </div>
 
                 <div class="newReturn-orderLineItemControls">
-                    <div class="newReturn-stepper">
-                        <button class="newReturn-stepperBtn" type="button"
-                                data-action="dec" disabled
-                                aria-label="Decrease quantity">&#8722;</button>
-                        <input class="newReturn-stepperInput"
-                               id="qty-{{id}}"
-                               type="tel" value="0" min="0" max="{{returnableQuantity}}"
-                               pattern="[0-9]*" aria-label="Quantity" readonly>
-                        <button class="newReturn-stepperBtn" type="button"
-                                data-action="inc"
-                                aria-label="Increase quantity">&#43;</button>
-                    </div>
-                    <select class="newReturn-select" id="resolution-{{id}}" aria-label="Resolution dropdown">
-                        <option value="">Select a return request</option>
+                    <select class="form-select form-select--small form-select--short"
+                            id="qty-{{id}}"
+                            aria-label="{{lang 'account.orders.return.quantity'}}">
+                        {{#for 0 returnableQuantity}}
+                            <option value="{{$index}}">{{$index}}</option>
+                        {{/for}}
+                    </select>
+                    <select class="form-select form-select--small" id="resolution-{{id}}" aria-label="{{lang 'account.returns.select_resolution'}}">
+                        <option value="">{{lang 'account.returns.select_resolution'}}</option>
                         {{#each ../../resolutions}}
                             {{#if active}}
                                 <option value="{{resolutionType}}">{{label}}</option>
                             {{/if}}
                         {{/each}}
                     </select>
-                    <select class="newReturn-select" id="reason-{{id}}" aria-label="Return reason">
-                        <option value="">Select a return reason</option>
+                    <select class="form-select form-select--small" id="reason-{{id}}" aria-label="{{lang 'account.returns.select_reason'}}">
+                        <option value="">{{lang 'account.returns.select_reason'}}</option>
                         {{#each ../../reasons}}
                             {{#if active}}
                                 <option value="{{id}}">{{nameForMerchant}}</option>

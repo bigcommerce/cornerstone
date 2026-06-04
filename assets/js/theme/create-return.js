@@ -10,39 +10,9 @@ export default class CreateReturn extends PageManager {
     }
 
     bindOrderLineItemEvents() {
-        document.querySelectorAll('.newReturn-stepperBtn').forEach(button => {
-            button.addEventListener('click', () => {
-                // Derive itemId from the parent row — buttons do not carry data-item-id,
-                // so the [data-item-id] selector stays scoped to the row container only.
-                const row = button.closest('.newReturn-orderLineItem');
-                const itemId = row?.dataset?.itemId;
-                if (!itemId) return;
-                const action = button.getAttribute('data-action');
-                const quantityInput = document.getElementById(`qty-${itemId}`);
-                const maxQty = parseInt(quantityInput.max, 10) || 0;
-                let quantity = parseInt(quantityInput.value, 10) || 0;
-
-                if (action === 'inc' && quantity < maxQty) quantity++;
-                else if (action === 'dec' && quantity > 0) quantity--;
-
-                quantityInput.value = quantity;
-                const stepper = button.closest('.newReturn-stepper');
-                stepper.querySelector('[data-action="dec"]').disabled = quantity === 0;
-                stepper.querySelector('[data-action="inc"]').disabled = quantity >= maxQty;
-
-                this.updateSubmitState();
-            });
-        });
-
-        document.querySelectorAll('.newReturn-select').forEach(selectElement => {
-            selectElement.addEventListener('change', () => this.updateSubmitState());
-        });
-
-        // Disable + button on load for any item where max=0 (non-returnable)
-        document.querySelectorAll('.newReturn-stepperInput').forEach(input => {
-            const maxQty = parseInt(input.max, 10) || 0;
-            const incBtn = input.closest('.newReturn-stepper')?.querySelector('[data-action="inc"]');
-            if (incBtn && maxQty === 0) incBtn.disabled = true;
+        // All three selects per row (qty, resolution, reason) trigger a submit-state check.
+        document.querySelectorAll('.newReturn-orderLineItem select').forEach(sel => {
+            sel.addEventListener('change', () => this.updateSubmitState());
         });
     }
 

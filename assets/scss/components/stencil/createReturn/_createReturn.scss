@@ -13,6 +13,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap;
+    gap: spacing("quarter");
     margin-bottom: spacing("eighth");
 }
 
@@ -46,28 +48,11 @@
     gap: spacing("half");
 }
 
-.newReturn-btnBack {
-    padding: spacing("quarter") spacing("single") * 0.83;
-    border: remCalc(1.5px) solid color("link");
-    border-radius: remCalc(6px);
-    background: color("whites", "bright");
+// Compact buttons matching the header scale; policy link hidden on small screens.
+.newReturn-headerActions .button {
     font-size: fontSize("smallest");
-    font-weight: fontWeight("medium");
-    cursor: pointer;
-    text-decoration: none;
-    color: color("link");
-}
-
-.newReturn-btnPolicy {
-    padding: spacing("quarter") spacing("single") * 0.83;
-    border: 0;
-    border-radius: remCalc(6px);
-    background: color("greys", "darkest");
-    color: color("whites", "bright");
-    font-size: fontSize("smallest");
-    font-weight: fontWeight("medium");
-    cursor: pointer;
-    text-decoration: none;
+    padding: spacing("quarter") spacing("half");
+    margin: 0;
 }
 
 .newReturn-orderDate {
@@ -131,7 +116,7 @@
     margin: 0;
 }
 
-// Per-item controls cluster: stepper + resolution-select + reason-select.
+// Per-item controls cluster: qty-select + resolution-select + reason-select.
 // Below large breakpoint they stack vertically (mobile + tablet); on large they
 // sit inline as in the Figma desktop frame.
 .newReturn-orderLineItemControls {
@@ -150,90 +135,25 @@
     }
 }
 
-.newReturn-stepper {
-    display: inline-flex;
-    align-items: center;
-    height: remCalc(36px);
-    border: remCalc(1.5px) solid color("greys", "medium");
-    border-radius: remCalc(6px);
-    overflow: hidden;
-    flex-shrink: 0;
-    align-self: flex-start; // keep compact when stacked; selects stretch instead
+
+// Qty select: form-select--short handles its compact desktop width; we only
+// need full-width on mobile/tablet when the controls are stacked.
+.newReturn-orderLineItemControls [id^="qty-"] {
+    width: 100%;
 
     @include breakpoint("large") {
-        align-self: auto;
+        width: auto;
     }
 }
 
-.newReturn-stepperBtn {
-    background: none;
-    border: none;
-    width: remCalc(32px);
-    height: 100%;
-    font-size: remCalc(18px);
-    line-height: 1;
-    cursor: pointer;
-    color: color("greys", "dark");
-    padding: 0;
-
-    &:disabled {
-        color: color("greys", "light");
-        cursor: not-allowed;
-    }
-
-    &:focus:not(:focus-visible) {
-        outline: none !important;
-    }
-
-    &:hover:not(:disabled) {
-        background-color: color("greys", "lighter");
-    }
-}
-
-.newReturn-stepperInput {
-    width: remCalc(40px);
-    height: 100%;
-    border: none;
-    text-align: center;
-    font-size: remCalc(14px);
-    padding: 0;
-    outline: none;
-    background: transparent;
-    color: color("greys", "dark");
-
-    &:focus {
-        outline: none !important;
-    }
-
-    &:focus:not(:focus-visible) {
-        outline: none !important;
-    }
-}
-
-.newReturn-select {
-    width: 100%; // full width when stacked under stepper on mobile/tablet
-    height: remCalc(36px);
-    padding: 0 remCalc(28px) 0 spacing("quarter") * 1.67;
-    border: remCalc(1.5px) solid color("greys", "medium");
-    border-radius: remCalc(6px);
-    font-size: remCalc(13px);
-    color: color("greys", "dark");
-    // stylelint-disable-next-line function-url-quotes
-    background: color("whites", "bright") url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23798289'/%3E%3C/svg%3E") no-repeat right spacing("quarter") * 1.67 center;
-    background-size: remCalc(10px);
-    appearance: none;
-    cursor: pointer;
+// Resolution and reason selects: wide enough to show option text on desktop.
+.newReturn-orderLineItemControls [id^="resolution-"],
+.newReturn-orderLineItemControls [id^="reason-"] {
+    width: 100%;
 
     @include breakpoint("large") {
         width: auto;
         min-width: remCalc(180px);
-    }
-
-    &:disabled {
-        background-color: color("greys", "lighter");
-        color: color("greys", "medium");
-        cursor: not-allowed;
-        border-color: color("greys", "light");
     }
 }
 

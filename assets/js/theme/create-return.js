@@ -2,11 +2,11 @@ import PageManager from './page-manager';
 
 export default class CreateReturn extends PageManager {
     onReady() {
-        const $form = $('[data-new-return-form]');
-        if (!$form.length) return;
+        const form = document.querySelector('[data-new-return-form]');
+        if (!form) return;
 
         this.bindOrderLineItemEvents();
-        this.bindSubmit($form);
+        this.bindSubmit(form);
     }
 
     bindOrderLineItemEvents() {
@@ -39,8 +39,8 @@ export default class CreateReturn extends PageManager {
         });
     }
 
-    bindSubmit($form) {
-        $form.on('submit', event => {
+    bindSubmit(form) {
+        form.addEventListener('submit', event => {
             event.preventDefault();
             // TODO ORDERS-7715: invoke createReturn Storefront GQL mutation using
             // this.buildReturnInput() to get the payload.

@@ -1,0 +1,241 @@
+// =============================================================================
+// RETURN DETAILS PAGE (.returnDetails)
+// =============================================================================
+
+
+.returnDetails {
+    color: stencilColor("color-textBase");
+    max-width: remCalc(1200px);
+    margin: 0 auto;
+    padding: 0 spacing("single") spacing("double");
+}
+
+.returnDetails-titleGroup {
+    display: flex;
+    align-items: center;
+    gap: spacing("half");
+}
+
+.returnDetails-title {
+    font-family: $header-font-family;
+    font-size: $h1-font-size;
+    font-weight: $header-font-weight;
+    margin: 0;
+}
+
+.returnDetails-statusBadge {
+    display: inline-block;
+    padding: spacing("eighth") spacing("quarter");
+    border-radius: remCalc(4px);
+    font-size: remCalc(11px);
+    font-weight: fontWeight("bold");
+    letter-spacing: remCalc(1px);
+    text-transform: uppercase;
+    background-color: stencilColor("label-backgroundColor");
+    color: stencilColor("label-color");
+}
+
+.returnDetails-statusBadge--open {
+    background-color: color("warning", "light");
+    color: stencilColor("color-textBase");
+}
+
+.returnDetails-statusBadge--in_progress {
+    background-color: color("success", "light");
+    color: stencilColor("color-textBase");
+}
+
+.returnDetails-statusBadge--closed {
+    background-color: color("greys", "lighter");
+    color: stencilColor("color-textBase");
+}
+
+.returnDetails-divider {
+    border: 0;
+    border-top: container("border");
+    margin: spacing("single") 0;
+}
+
+.returnDetails-sectionHeading {
+    font-family: $header-font-family;
+    font-size: $h1-font-size;
+    font-weight: $header-font-weight;
+    margin: 0;
+    color: stencilColor("color-textBase");
+}
+
+
+// =============================================================================
+// SHIPPING — single address + method, shown above the line items
+// =============================================================================
+
+.returnDetails-shipping {
+    margin: 0 0 spacing("single");
+    display: flex;
+    flex-direction: column;
+    gap: remCalc(6px);
+}
+
+.returnDetails-shippingRow {
+    display: flex;
+    align-items: baseline;
+    gap: remCalc(8px);
+    font-size: remCalc(14px);
+}
+
+.returnDetails-shippingLabel {
+    flex-shrink: 0;
+    font-weight: fontWeight("semibold");
+    color: stencilColor("color-textSecondary");
+    margin: 0;
+}
+
+.returnDetails-shippingValue {
+    margin: 0;
+    color: stencilColor("color-textBase");
+}
+
+
+// =============================================================================
+// LAYOUT — main items column + sidebar
+// =============================================================================
+
+.returnDetails-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: spacing("single") * 2;
+
+    @include breakpoint("medium") {
+        grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    }
+}
+
+.returnDetails-main {
+    min-width: 0;
+}
+
+.returnDetails-sidebar {
+    min-width: 0;
+}
+
+
+// =============================================================================
+// ITEM LIST (flat, by line items)
+// =============================================================================
+
+.returnDetails-itemList {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.returnDetails-item {
+    display: flex;
+    align-items: flex-start;
+    gap: remCalc(16px);
+    padding: remCalc(16px) 0;
+    border-bottom: container("border");
+
+    &:last-child {
+        border-bottom: 0;
+    }
+
+    @include breakpoint("large") {
+        align-items: center;
+    }
+}
+
+.returnDetails-itemThumbnailWrapper {
+    flex-shrink: 0;
+    line-height: 0;
+}
+
+.returnDetails-itemThumbnail {
+    width: remCalc(72px);
+    height: remCalc(72px);
+    object-fit: cover;
+    border-radius: remCalc(6px);
+    background: color("greys", "lighter");
+}
+
+.returnDetails-itemInfo {
+    flex: 1;
+    min-width: 0;
+}
+
+.returnDetails-itemName {
+    font-size: remCalc(15px);
+    font-weight: fontWeight("semibold");
+    margin: 0 0 remCalc(2px);
+    color: stencilColor("color-textBase");
+}
+
+.returnDetails-itemVariant {
+    font-size: remCalc(13px);
+    color: stencilColor("color-textSecondary");
+    margin: 0 0 remCalc(2px);
+}
+
+.returnDetails-itemPrice {
+    font-size: remCalc(13px);
+    color: color("greys", "dark");
+    margin: 0;
+}
+
+// Right-aligned key/value column for Return Quantity / Request / Reason.
+.returnDetails-itemMeta {
+    flex-shrink: 0;
+    width: remCalc(240px);
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: remCalc(4px);
+}
+
+.returnDetails-itemMetaRow {
+    display: flex;
+    align-items: baseline;
+    gap: remCalc(6px);
+    font-size: remCalc(13px);
+}
+
+.returnDetails-itemMetaLabel {
+    font-weight: fontWeight("semibold");
+    color: stencilColor("color-textSecondary");
+    margin: 0;
+}
+
+.returnDetails-itemMetaValue {
+    margin: 0;
+    color: stencilColor("color-textBase");
+}
+
+
+// =============================================================================
+// SIDEBAR — Summary
+// =============================================================================
+
+.returnDetails-summaryList {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: remCalc(6px);
+}
+
+.returnDetails-summaryRow {
+    display: flex;
+    align-items: baseline;
+    gap: remCalc(6px);
+    font-size: remCalc(14px);
+}
+
+.returnDetails-summaryLabel {
+    font-weight: fontWeight("semibold");
+    color: stencilColor("color-textSecondary");
+    margin: 0;
+}
+
+.returnDetails-summaryValue {
+    margin: 0;
+    color: stencilColor("color-textBase");
+}

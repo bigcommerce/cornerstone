@@ -1,0 +1,43 @@
+{{#partial "page"}}
+
+{{!--
+    Standalone return-details page. Not yet routed — a page type still needs to be
+    mapped to this template (and `getReturnDetails` wired up in assets/js/app.js)
+    before it's reachable. For now it exists to hold the correct layout.
+
+    The JS module at assets/js/theme/return-details.js owns the mock data
+    (shaped after the returns-ui Return/Item interfaces in
+    returns-ui/src/apps/ManageReturn/Page/index.tsx) and renders into the
+    [data-*] hooks below.
+--}}
+
+{{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+{{> components/account/navigation account_page='returns'}}
+
+<main class="returnDetails" data-return-details>
+    <div class="returnDetails-layout">
+
+        <section class="returnDetails-main">
+            <div class="returnDetails-titleGroup">
+                <h1 class="returnDetails-title" data-return-title></h1>
+                <span class="returnDetails-statusBadge" data-return-status></span>
+            </div>
+
+            <hr class="returnDetails-divider">
+
+            <dl class="returnDetails-shipping" data-return-shipping></dl>
+
+            <ul class="returnDetails-itemList" data-return-items></ul>
+        </section>
+
+        <aside class="returnDetails-sidebar">
+            <h2 class="returnDetails-sectionHeading">{{lang 'account.returns.summary'}}</h2>
+            <hr class="returnDetails-divider">
+            <dl class="returnDetails-summaryList" data-return-summary></dl>
+        </aside>
+
+    </div>
+</main>
+
+{{/partial}}
+{{> layout/base}}

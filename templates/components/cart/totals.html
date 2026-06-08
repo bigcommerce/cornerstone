@@ -96,15 +96,26 @@
         {{/each}}
     {{/if}}
     {{#if cart.shipping_handling.show_estimator}}
+        {{assignVar "hasBackorderedItem" 0}}
+        {{#each cart.items}}
+            {{#if stock_position.quantity_backordered}}
+                {{assignVar "hasBackorderedItem" 1}}
+            {{/if}}
+            {{#each options}}
+                {{#if linked_bundled_item.stock_position.quantity_backordered}}
+                    {{assignVar "hasBackorderedItem" 1}}
+                {{/if}}
+            {{/each}}
+        {{/each}}
         <li class="cart-total {{#if cart.multi_coupon_ui_enabled}}cart-total-shipping-estimator{{/if}}">
             <div class="cart-total-label">
                 <strong>{{lang 'cart.checkout.shipping'}}{{#unless cart.multi_coupon_ui_enabled}}:{{/unless}}</strong>
                 {{#if cart.multi_coupon_ui_enabled}}
                     {{> components/cart/shipping-estimator-trigger}}
                 {{/if}}
-                {{#if cart.inventory_settings.show_default_shipping_expectation_prompt}}
+                {{#all cart.inventory_settings.show_default_shipping_expectation_prompt (getVar "hasBackorderedItem")}}
                     <p class="cart-shipping-expectation-message">{{cart.inventory_settings.default_shipping_expectation_prompt}}</p>
-                {{/if}}
+                {{/all}}
             </div>
             {{#neither cart.multi_coupon_ui_enabled cart.shipping_handling.shipping_cost}}
                 {{> components/cart/shipping-estimator-trigger}}

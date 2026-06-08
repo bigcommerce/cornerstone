@@ -50,11 +50,6 @@ export default class PicklistBackorder {
             if (detail.purchasable === false) return;
 
             const unlimited = detail.unlimited_backorder === true;
-            const availableToSell = parseInt(detail.available_to_sell, 10) || 0;
-            const withinSellLimit = unlimited
-                || (availableToSell > 0 ? requestedQty <= availableToSell : true);
-            if (!withinSellLimit) return;
-
             const onHand = parseInt(detail.available_on_hand, 10) || 0;
             const afb = unlimited
                 ? Infinity

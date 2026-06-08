@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Draft
 - Make the cart Shipping row label span the full width of the totals row so the shipping expectation prompt is no longer constrained to the narrow label column
+- Respect `unlimited_backorder` on PDP so the backorder quantity message and availability prompt render, and the Add to Cart quantity cap is lifted for products with unlimited backorder
 - Keep PDP "N will be backordered" message visible when the requested quantity exceeds `available_to_sell` (still clamped by `available_for_backorder`), so shoppers see why the qty was clamped alongside the "maximum purchasable quantity" error
 - Render backorder prompt for picklist products on PDP [#2662](https://github.com/bigcommerce/cornerstone/pull/2662)
 - Fix bundled item stock section showing title with no content when there is no backorder data or all inventory display settings are disabled [#2668](https://github.com/bigcommerce/cornerstone/pull/2668)

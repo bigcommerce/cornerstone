@@ -101,6 +101,11 @@
             {{#if stock_position.quantity_backordered}}
                 {{assignVar "hasBackorderedItem" 1}}
             {{/if}}
+            {{#each options}}
+                {{#if linked_bundled_item.stock_position.quantity_backordered}}
+                    {{assignVar "hasBackorderedItem" 1}}
+                {{/if}}
+            {{/each}}
         {{/each}}
         <li class="cart-total {{#if cart.multi_coupon_ui_enabled}}cart-total-shipping-estimator{{/if}}">
             <div class="cart-total-label">

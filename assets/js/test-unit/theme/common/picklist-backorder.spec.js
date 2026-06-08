@@ -445,7 +445,7 @@ describe('PicklistBackorder', () => {
             expect($list.css('display')).toBe('none');
         });
 
-        it('skips a selection when requested qty exceeds the linked product available_to_sell', () => {
+        it('still renders the backorder line when requested qty exceeds available_to_sell (clamped by available_for_backorder)', () => {
             $scope = buildScope(oneAttr('Bundle 1', 98, 'opt'));
             const renderer = new PicklistBackorder($scope, context);
 
@@ -458,7 +458,9 @@ describe('PicklistBackorder', () => {
                 })],
             }, 10);
 
-            expect($('[data-picklist-backorder-list] li', $scope).length).toBe(0);
+            const $items = $('[data-picklist-backorder-list] li', $scope);
+            expect($items.length).toBe(1);
+            expect($items.eq(0).text()).toContain('5 will be backordered');
         });
 
         it('renders the line when requested qty is within the linked product available_to_sell', () => {

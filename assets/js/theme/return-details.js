@@ -91,7 +91,14 @@ export default class ReturnDetails extends PageManager {
 
         if (titleEl) titleEl.textContent = `Return #${rma}`;
         if (statusEl) {
-            statusEl.textContent = status;
+            // Map the raw status enum to the localized label injected by the
+            // template (same labels as the returns list); fall back to the raw value.
+            const statusLabels = {
+                OPEN: this.context.returnStatusOpen,
+                IN_PROGRESS: this.context.returnStatusInProgress,
+                CLOSED: this.context.returnStatusClosed,
+            };
+            statusEl.textContent = statusLabels[status] || status;
             statusEl.classList.add(`returnDetails-statusBadge--${status.toLowerCase()}`);
         }
     }

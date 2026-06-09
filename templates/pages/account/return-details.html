@@ -11,6 +11,11 @@
     [data-*] hooks below.
 --}}
 
+{{!-- Localized status labels for the JS status badge (mirrors the returns list). --}}
+{{~inject 'returnStatusOpen' (lang 'account.returns.status.open')}}
+{{~inject 'returnStatusInProgress' (lang 'account.returns.status.in_progress')}}
+{{~inject 'returnStatusClosed' (lang 'account.returns.status.closed')}}
+
 {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
 {{> components/account/navigation account_page='returns'}}
 

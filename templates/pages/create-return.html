@@ -35,13 +35,13 @@
                 </div>
 
                 <div class="newReturn-orderLineItemInfo">
-                    <p class="newReturn-orderLineItemName">{{name}}</p>
+                    <p class="newReturn-orderLineItemName">{{name}} <span class="newReturn-orderLineItemPrice">&times; {{quantity}}</span></p>
                     {{#if productAttributesList}}
                         <p class="newReturn-orderLineItemVariant">
-                            {{#each productAttributesList}}{{name}}: {{{sanitize value}}}{{#unless @last}} &middot; {{/unless}}{{/each}}
+                            {{#each productAttributesList}}{{name}}: {{value}}{{#unless @last}} &middot; {{/unless}}{{/each}}
                         </p>
                     {{/if}}
-                    <p class="newReturn-orderLineItemPrice">{{price.formatted}} &times; {{quantity}}</p>
+                    <p class="newReturn-orderLineItemPrice">{{price.formatted}}</p>
                 </div>
 
                 <div class="newReturn-orderLineItemControls">
@@ -55,17 +55,13 @@
                     <select class="form-select form-select--small" id="resolution-{{id}}" aria-label="{{lang 'account.returns.select_resolution'}}">
                         <option value="">{{lang 'account.returns.select_resolution'}}</option>
                         {{#each ../../resolutions}}
-                            {{#if active}}
-                                <option value="{{resolutionType}}">{{label}}</option>
-                            {{/if}}
+                            <option value="{{resolutionType}}">{{label}}</option>
                         {{/each}}
                     </select>
                     <select class="form-select form-select--small" id="reason-{{id}}" aria-label="{{lang 'account.returns.select_reason'}}">
                         <option value="">{{lang 'account.returns.select_reason'}}</option>
                         {{#each ../../reasons}}
-                            {{#if active}}
-                                <option value="{{id}}">{{nameForMerchant}}</option>
-                            {{/if}}
+                            <option value="{{id}}">{{nameForShopper}}</option>
                         {{/each}}
                     </select>
                 </div>

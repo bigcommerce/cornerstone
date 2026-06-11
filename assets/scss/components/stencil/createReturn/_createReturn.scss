@@ -48,7 +48,6 @@
     gap: spacing("half");
 }
 
-// Compact buttons matching the header scale; policy link hidden on small screens.
 .newReturn-headerActions .button {
     font-size: fontSize("smallest");
     padding: spacing("quarter") spacing("half");
@@ -116,9 +115,6 @@
     margin: 0;
 }
 
-// Per-item controls cluster: qty-select + resolution-select + reason-select.
-// Below large breakpoint they stack vertically (mobile + tablet); on large they
-// sit inline as in the Figma desktop frame.
 .newReturn-orderLineItemControls {
     display: flex;
     flex-direction: column;
@@ -135,9 +131,76 @@
     }
 }
 
+.newReturn-divider--headers {
+    display: none;
 
-// Qty select: form-select--short handles its compact desktop width; we only
-// need full-width on mobile/tablet when the controls are stacked.
+    @include breakpoint("large") {
+        display: block;
+    }
+}
+
+.newReturn-columnHeaders {
+    display: none;
+
+    @include breakpoint("large") {
+        display: flex;
+        align-items: center;
+        gap: remCalc(16px);
+        font-size: remCalc(12px);
+        font-weight: fontWeight("semibold");
+        color: color("greys", "base");
+        letter-spacing: remCalc(0.5px);
+    }
+}
+
+// "Item" aligns with the thumbnail left edge, not the item name.
+.newReturn-columnHeaders-spacer {
+    display: none;
+}
+
+.newReturn-columnHeaders-item {
+    flex: 1;
+    min-width: 0;
+}
+
+.newReturn-columnHeaders-controls {
+    display: flex;
+    align-items: center;
+    gap: spacing("half");
+}
+
+// Shared widths — keeps header labels and control cells in sync.
+$newReturn-col-qty:     remCalc(120px);
+$newReturn-col-select:  remCalc(200px);
+
+.newReturn-columnHeaders-quantity {
+    width: $newReturn-col-qty;
+    flex-shrink: 0;
+}
+
+.newReturn-columnHeaders-request,
+.newReturn-columnHeaders-reason {
+    width: $newReturn-col-select;
+    flex-shrink: 0;
+}
+
+.newReturn-orderLineItemQtyWrapper {
+    display: flex;
+    align-items: center;
+    gap: spacing("quarter");
+
+    @include breakpoint("large") {
+        width: $newReturn-col-qty;
+        flex-shrink: 0;
+    }
+}
+
+.newReturn-orderLineItemMaxQty {
+    font-size: remCalc(13px);
+    color: color("greys", "base");
+    white-space: nowrap;
+}
+
 .newReturn-orderLineItemControls [id^="qty-"] {
     width: 100%;
 
@@ -146,19 +209,16 @@
     }
 }
 
-// Resolution and reason selects: wide enough to show option text on desktop.
 .newReturn-orderLineItemControls [id^="resolution-"],
 .newReturn-orderLineItemControls [id^="reason-"] {
     width: 100%;
 
     @include breakpoint("large") {
-        width: auto;
-        min-width: remCalc(180px);
+        width: $newReturn-col-select;
+        flex-shrink: 0;
     }
 }
 
-// Right-aligned bottom column holding the additional-note textarea + submit button.
-// Mirrors the controls column width on tablet+; collapses to full width on mobile.
 .newReturn-footer {
     margin-top: spacing("single");
 

@@ -21,6 +21,18 @@
 
     <form class="form" data-new-return-form data-success-url="{{../urls.account.orders.all}}">
 
+        <div class="newReturn-columnHeaders" aria-hidden="true">
+            <div class="newReturn-columnHeaders-spacer"></div>
+            <span class="newReturn-columnHeaders-item">{{lang 'account.orders.return.order_item'}}</span>
+            <div class="newReturn-columnHeaders-controls">
+                <span class="newReturn-columnHeaders-quantity">{{lang 'account.orders.return.quantity'}}</span>
+                <span class="newReturn-columnHeaders-request">{{lang 'account.returns.request'}}</span>
+                <span class="newReturn-columnHeaders-reason">{{lang 'account.returns.reason_header'}}</span>
+            </div>
+        </div>
+
+        <hr class="newReturn-divider newReturn-divider--headers">
+
         {{#each items}}
             <div class="newReturn-orderLineItem" data-item-id="{{id}}">
 
@@ -35,23 +47,28 @@
                 </div>
 
                 <div class="newReturn-orderLineItemInfo">
-                    <p class="newReturn-orderLineItemName">{{name}} <span class="newReturn-orderLineItemPrice">&times; {{quantity}}</span></p>
+                    <p class="newReturn-orderLineItemName">{{name}}</p>
                     {{#if productAttributesList}}
                         <p class="newReturn-orderLineItemVariant">
                             {{#each productAttributesList}}{{name}}: {{value}}{{#unless @last}} &middot; {{/unless}}{{/each}}
                         </p>
                     {{/if}}
-                    <p class="newReturn-orderLineItemPrice">{{price.formatted}}</p>
+                    <p class="newReturn-orderLineItemPrice">
+                        {{lang 'account.returns.qty'}} {{quantity}} &nbsp; {{lang 'account.returns.total_price'}} {{price.formatted}}
+                    </p>
                 </div>
 
                 <div class="newReturn-orderLineItemControls">
-                    <select class="form-select form-select--small form-select--short"
-                            id="qty-{{id}}"
-                            aria-label="{{lang 'account.orders.return.quantity'}}">
-                        {{#for 0 returnableQuantity}}
-                            <option value="{{$index}}">{{$index}}</option>
-                        {{/for}}
-                    </select>
+                    <div class="newReturn-orderLineItemQtyWrapper">
+                        <select class="form-select form-select--small form-select--short"
+                                id="qty-{{id}}"
+                                aria-label="{{lang 'account.orders.return.quantity'}}">
+                            {{#for 0 returnableQuantity}}
+                                <option value="{{$index}}">{{$index}}</option>
+                            {{/for}}
+                        </select>
+                        <span class="newReturn-orderLineItemMaxQty">{{lang 'account.orders.return.of_max' max=returnableQuantity}}</span>
+                    </div>
                     <select class="form-select form-select--small" id="resolution-{{id}}" aria-label="{{lang 'account.returns.select_resolution'}}">
                         <option value="">{{lang 'account.returns.select_resolution'}}</option>
                         {{#each ../../resolutions}}

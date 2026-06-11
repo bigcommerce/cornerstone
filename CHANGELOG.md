@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Draft
+- Refine backorder display on the account order details page: top-align all product row cells (checkbox, image, body) so rows stay readable with or without backorder text, remove the extra vertical gap between backorder rows, and use `#757575` for all backorder text (qty ready to ship, qty backordered, backorder message, and shipping expectation message)
 - Make the cart Shipping row label span the full width of the totals row so the shipping expectation prompt is no longer constrained to the narrow label column
 - Respect `unlimited_backorder` on PDP so the backorder quantity message and availability prompt render, and the Add to Cart quantity cap is lifted for products with unlimited backorder
 - Keep PDP "N will be backordered" message visible when the requested quantity exceeds `available_to_sell` (still clamped by `available_for_backorder`), so shoppers see why the qty was clamped alongside the "maximum purchasable quantity" error

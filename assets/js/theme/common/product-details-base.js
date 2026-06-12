@@ -23,6 +23,7 @@ export function optionChangeDecorator(areDefaultOptionsSet) {
         const attributesContent = response.content || {};
 
         this.updateProductAttributes(attributesData);
+        this.updateDisabledOptionValues(attributesData);
         if (areDefaultOptionsSet) {
             this.updateView(attributesData, attributesContent);
         } else {
@@ -118,6 +119,40 @@ export default class ProductDetailsBase {
                 this.enableAttribute($attribute, behavior, outOfStockMessage);
             } else {
                 this.disableAttribute($attribute, behavior, outOfStockMessage);
+            }
+        });
+    }
+
+    /**
+     * Hide option values that would complete a "disable and hide" rule for the current selection
+     * (CATALOG-12399). The server recomputes `disabled_option_values` on every option change, so a
+     * value belonging to a multi-attribute rule only appears once the rule's other attributes are
+     * selected ("show, then hide on selection"). The list is selection-relative, so values hidden
+     * on a previous change are re-shown when they drop out of it.
+     * @param  {Object} data Product attribute data
+     */
+    updateDisabledOptionValues(data) {
+        const disabledOptionValues = data.disabled_option_values;
+
+        if (!Array.isArray(disabledOptionValues)) {
+            return;
+        }
+
+        const disabledValueIds = new Set(
+            disabledOptionValues.map(({ value_id: valueId }) => parseInt(valueId, 10)),
+        );
+
+        $('[data-product-attribute-value]', this.$scope).each((i, attribute) => {
+            const $attribute = $(attribute);
+            const valueId = parseInt($attribute.data('productAttributeValue'), 10);
+
+            if (disabledValueIds.has(valueId)) {
+                this.disableAttribute($attribute, 'hide_option', '');
+                $attribute.data('ruleHidden', true);
+            } else if ($attribute.data('ruleHidden') === true) {
+                // Only re-show values this rule hid; leave out-of-stock hiding untouched.
+                this.enableAttribute($attribute, 'hide_option', '');
+                $attribute.data('ruleHidden', false);
             }
         });
     }

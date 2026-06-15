@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Draft
 - Add checkout style overrides for enhanced checkout theme. [#2721](https://github.com/bigcommerce/cornerstone/pull/2721)
+- Add return details page (ORDERS-7751)
 - Add new create-return page [#2669](https://github.com/bigcommerce/cornerstone/pull/2669) 
 
 ## 6.21.0 (07-21-2026)

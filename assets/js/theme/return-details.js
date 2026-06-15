@@ -1,6 +1,8 @@
 import { escape } from 'lodash';
 import PageManager from './page-manager';
 
+const dateFmt = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
 export default class ReturnDetails extends PageManager {
     onReady() {
         const root = document.querySelector('[data-return-details]');
@@ -8,75 +10,46 @@ export default class ReturnDetails extends PageManager {
 
         this.root = root;
 
-        // ---------------------------------------------------------------------------
-        // Hardcoded page data which mirrors the returns-ui Return / Item interface
-        // Replace with the relevant stencil page context when it is surfaced.
-        // ---------------------------------------------------------------------------
+        const details = this.root.dataset.returnDetails ? JSON.parse(this.root.dataset.returnDetails) : null;
+
         this.pageData = {
-            id: '101',
-            rma: '101',
-            status: 'OPEN',
-            opened: 'January 1, 2024',
-            lastUpdated: 'January 1, 2024',
-            order: {
-                id: '222',
-                currency: 'USD',
-            },
-            shipping: {
-                address: {
-                    fullName: 'John Doe',
-                    address1: '1000 San Marcos Ave',
-                    city: 'Austin',
-                    state: 'TX',
-                    zip: '78702',
-                    country: 'United States',
+            entityId: details.entityId,
+            rma: details.rma,
+            orderId: details.orderId,
+            status: details.status,
+            dateSubmitted: dateFmt.format(new Date(details.dateSubmitted)),
+            lastUpdated: dateFmt.format(new Date(details.lastUpdated)),
+            items: details.items.map(item => ({
+                entityId: item.entityId,
+                orderLineItemId: item.orderLineItemId,
+                quantity: item.quantity,
+                status: item.status,
+                reasonId: item.reasonId,
+                reasonSnapshot: item.reasonSnapshot,
+                lineItemSnapshot: {
+                    quantity: item.lineItemSnapshot.quantity,
+                    productIdentifiers: item.lineItemSnapshot.productIdentifiers,
+                    product: {
+                        sku: item.lineItemSnapshot.product.sku,
+                        displayName: item.lineItemSnapshot.product.displayName,
+                    },
                 },
-                method: 'UPS Ground',
-                trackingNumber: '1Z370170375602560',
-                dateShipped: 'May 15, 2024',
-            },
-            items: [
-                {
-                    id: 'i1',
-                    lineItemId: 'li1',
-                    name: 'Product Name',
-                    variant: 'Color: Blue · Size: Large',
-                    thumbnailUrl: 'https://via.placeholder.com/72',
-                    sku: 'SKU-001',
-                    requestedResolution: { type: 'system', label: 'Exchange' },
-                    requestedReason: 'Wrong item received',
-                    quantity: 1,
-                    formatted_price: '$123.99',
-                    status: 'open',
+                pricing: {
+                    discountedPrice: item.pricing.discountedPrice,
                 },
-                {
-                    id: 'i2',
-                    lineItemId: 'li2',
-                    name: 'Product Name',
-                    variant: 'Color: Blue · Size: Large',
-                    thumbnailUrl: 'https://via.placeholder.com/72',
-                    sku: 'SKU-002',
-                    requestedResolution: { type: 'system', label: 'Refund' },
-                    requestedReason: 'Did not like',
-                    quantity: 1,
-                    formatted_price: '$123.99',
-                    status: 'open',
+                resolution: {
+                    displayName: item.resolution.displayName,
+                    outcome: item.resolution.outcome,
+                    requested: {
+                        type: item.resolution.requested.type,
+                        label: item.resolution.requested.label,
+                    },
                 },
-                {
-                    id: 'i3',
-                    lineItemId: 'li3',
-                    name: 'Product Name',
-                    variant: 'Color: Blue · Size: Large',
-                    thumbnailUrl: 'https://via.placeholder.com/72',
-                    sku: 'SKU-003',
-                    requestedResolution: { type: 'system', label: 'Refund' },
-                    requestedReason: 'Did not like',
-                    quantity: 1,
-                    formatted_price: '$123.99',
-                    status: 'open',
-                },
-            ],
+                thumbnailUrl: item.thumbnailUrl,
+                variant: item.variant,
+            })),
         };
+
 
         this.renderHeader();
         this.renderShipping();
@@ -91,8 +64,6 @@ export default class ReturnDetails extends PageManager {
 
         if (titleEl) titleEl.textContent = `Return #${rma}`;
         if (statusEl) {
-            // Map the raw status enum to the localized label injected by the
-            // template (same labels as the returns list); fall back to the raw value.
             const statusLabels = {
                 OPEN: this.context.returnStatusOpen,
                 IN_PROGRESS: this.context.returnStatusInProgress,
@@ -107,7 +78,15 @@ export default class ReturnDetails extends PageManager {
         const container = this.root.querySelector('[data-return-shipping]');
         if (!container) return;
 
-        const { address, method, trackingNumber, dateShipped } = this.pageData.shipping;
+        // the return data does not have shipping data yet
+        if (!this.pageData.shipping) {
+            container.innerHTML = '';
+            return;
+        }
+
+        const {
+            address, method, trackingNumber, dateShipped,
+        } = this.pageData.shipping;
         const addressLine = [
             address.fullName,
             address.address1,
@@ -138,19 +117,27 @@ export default class ReturnDetails extends PageManager {
     }
 
     itemTemplate(item) {
-        const resolutionLabel = item.requestedResolution ? item.requestedResolution.label : '';
+        const product = (item.lineItemSnapshot && item.lineItemSnapshot.product) || {};
+        const name = product.displayName || '';
+        const price = (item.pricing && item.pricing.discountedPrice && item.pricing.discountedPrice.formattedV2) || '';
+        const resolutionLabel = (item.resolution && item.resolution.requested && item.resolution.requested.label) || '';
+        const reason = (item.reasonSnapshot && item.reasonSnapshot.displayName) || '';
+
+        // the return data has no thumbnail URL yet
+        const thumbnailUrl = item.thumbnailUrl || '';
+        const variant = item.variant || '';
 
         return `
-            <li class="returnDetails-item" data-item-id="${escape(item.id)}">
+            <li class="returnDetails-item" data-item-id="${escape(item.entityId)}">
                 <div class="returnDetails-itemThumbnailWrapper">
                     <img class="returnDetails-itemThumbnail"
-                         src="${escape(item.thumbnailUrl)}"
-                         alt="${escape(item.name)}">
+                         src="${escape(thumbnailUrl)}"
+                         alt="${escape(name)}">
                 </div>
                 <div class="returnDetails-itemInfo">
-                    <p class="returnDetails-itemName">${escape(item.name)}</p>
-                    ${item.variant ? `<p class="returnDetails-itemVariant">${escape(item.variant)}</p>` : ''}
-                    <p class="returnDetails-itemPrice">${escape(item.formatted_price)}</p>
+                    <p class="returnDetails-itemName">${escape(name)}</p>
+                    ${variant ? `<p class="returnDetails-itemVariant">${escape(variant)}</p>` : ''}
+                    <p class="returnDetails-itemPrice">${escape(price)}</p>
                 </div>
                 <dl class="returnDetails-itemMeta">
                     <div class="returnDetails-itemMetaRow">
@@ -163,7 +150,7 @@ export default class ReturnDetails extends PageManager {
                     </div>
                     <div class="returnDetails-itemMetaRow">
                         <dt class="returnDetails-itemMetaLabel">Reason</dt>
-                        <dd class="returnDetails-itemMetaValue">${escape(item.requestedReason)}</dd>
+                        <dd class="returnDetails-itemMetaValue">${escape(reason)}</dd>
                     </div>
                 </dl>
             </li>`;
@@ -173,11 +160,11 @@ export default class ReturnDetails extends PageManager {
         const summary = this.root.querySelector('[data-return-summary]');
         if (!summary) return;
 
-        const { opened, lastUpdated, order } = this.pageData;
+        const { dateSubmitted, lastUpdated, orderId } = this.pageData;
         const rows = [
-            { label: 'Submitted:', value: opened },
+            { label: 'Submitted:', value: dateSubmitted },
             { label: 'Last update:', value: lastUpdated },
-            { label: 'Order#:', value: order.id },
+            { label: 'Order#:', value: orderId },
         ];
 
         summary.innerHTML = rows.map(({ label, value }) => `

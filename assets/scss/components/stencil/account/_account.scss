@@ -2,6 +2,10 @@
 // ACCOUNT (CSS)
 // =============================================================================
 
+// Backorder copy colour (BACK-699). No Citadel greys token matches this value,
+// so the design-specified hex is kept as a single named local variable.
+$account-backorder-textColor: #757575;
+
 
 // Account navigation
 // -----------------------------------------------------------------------------
@@ -150,16 +154,13 @@
 }
 
 .account-product-backorder-prompts {
+    color: $account-backorder-textColor;
     font-size: fontSize("smaller");
-    margin-bottom: spacing("quarter");
-
-    &:last-of-type {
-        margin-bottom: 0;
-    }
+    margin-bottom: 0;
 }
 
 .account-order-backorder-expectation {
-    color: color("greys", "light");
+    color: $account-backorder-textColor;
     font-size: fontSize("smaller");
     margin-bottom: 0;
     margin-top: spacing("base");
@@ -225,7 +226,7 @@
     .account-product-checkItem {
         display: table-cell;
         position: relative;
-        vertical-align: middle;
+        vertical-align: top;
         width: 2rem;
 
         @include breakpoint("large") {
@@ -243,6 +244,7 @@
     .account-product-figure,
     .account-product-body {
         display: table-cell;
+        vertical-align: top;
     }
 
     .account-product-figure {
@@ -256,7 +258,6 @@
 
     .account-product-body {
         padding-left: 2rem;
-        vertical-align: middle;
 
         @include breakpoint("large") {
             padding-left: 0;

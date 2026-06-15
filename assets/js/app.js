@@ -21,6 +21,8 @@ const pageClasses = {
     account_inbox: getAccount,
     account_saved_return: getAccount,
     account_returns: getAccount,
+    account_return_detail: () => import('./theme/return-details'),
+    return_detail: getAccount,
     account_paymentmethods: getAccount,
     account_addpaymentmethod: getAccount,
     account_editpaymentmethod: getAccount,

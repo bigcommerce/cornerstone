@@ -25,20 +25,24 @@
 }
 
 .newReturn-title {
-    font-size: remCalc(28px);
+    font-size: remCalc(22px); // mobile: 6px smaller than the desktop/tablet size
     font-weight: fontWeight("bold");
     margin: 0;
+
+    @include breakpoint("medium") {
+        font-size: remCalc(28px);
+    }
 }
 
 .newReturn-statusBadge {
     display: inline-block;
-    padding: spacing("eighth") spacing("quarter");
-    border: remCalc(1.5px) solid color("orderStatus", "completed");
-    border-radius: remCalc(4px);
+    padding: spacing("eighth") spacing("half");
+    border-radius: remCalc(12px);
+    background-color: color("success", "light");
     font-size: remCalc(11px);
     font-weight: fontWeight("bold");
     letter-spacing: remCalc(1px);
-    color: color("orderStatus", "completed");
+    color: stencilColor("color-textBase");
     text-transform: uppercase;
 }
 
@@ -46,6 +50,11 @@
     display: flex;
     align-items: center;
     gap: spacing("half");
+    order: 2; // mobile: sits after the order date
+
+    @include breakpoint("medium") {
+        order: 0; // tablet/desktop: back to its natural position (above the order date)
+    }
 }
 
 .newReturn-headerActions .button {
@@ -55,9 +64,15 @@
 }
 
 .newReturn-orderDate {
+    flex-basis: 100%; // always on its own line within the header
+    order: 1; // mobile: above the action buttons
     font-size: remCalc(13px);
     color: color("greys", "base");
     margin: spacing("eighth") 0 spacing("single") * 0.83;
+
+    @include breakpoint("medium") {
+        order: 0; // tablet/desktop: below the buttons (natural DOM order)
+    }
 }
 
 .newReturn-divider {
@@ -67,15 +82,25 @@
 }
 
 
+// Shared widths — keep the desktop header labels and control cells in sync.
+$newReturn-col-qty:             remCalc(120px); // desktop quantity column (select + "of N")
+$newReturn-col-select:          remCalc(240px); // desktop resolution/reason columns — fits the placeholder text
+$newReturn-qty-width:           remCalc(80px);  // quantity <select> width — consistent across all breakpoints
+$newReturn-col-controls-tablet: remCalc(320px); // tablet controls column — wide enough for the placeholder text
+
+
 .newReturn-orderLineItem {
     display: flex;
-    align-items: flex-start; // controls column is tallest when stacked (mobile/tablet)
+    flex-wrap: wrap; // mobile: thumbnail + info on top, controls wrap to a full-width row below
+    align-items: flex-start;
     gap: remCalc(16px);
     padding: remCalc(16px) 0;
 
-    @include breakpoint("large") {
-        align-items: center; // desktop: everything inline so vertical-center is fine
+    @include breakpoint("medium") {
+        flex-wrap: nowrap; // tablet: controls sit beside the info as a stacked column
     }
+    // Stays top-aligned across breakpoints so the controls don't drift to the middle
+    // when an item has several variant/option lines.
 }
 
 .newReturn-orderLineItemThumbnailWrapper {
@@ -121,25 +146,30 @@
 
 .newReturn-orderLineItemControls {
     display: flex;
-    flex-direction: column;
-    align-items: stretch;
+    flex-wrap: wrap;
+    align-items: center;
     gap: spacing("quarter");
-    flex-shrink: 0;
-    width: remCalc(180px);
+    flex-basis: 100%;
+    width: 100%;
 
+    // tablet view
+    @include breakpoint("medium") {
+        flex-wrap: nowrap;
+        flex-direction: column;
+        align-items: stretch;
+        flex-basis: auto;
+        flex-shrink: 0;
+        width: $newReturn-col-controls-tablet;
+        padding-left: spacing("half");
+    }
+
+    // desktop view
     @include breakpoint("large") {
         flex-direction: row;
         align-items: center;
         gap: spacing("half");
         width: auto;
-    }
-}
-
-.newReturn-divider--headers {
-    display: none;
-
-    @include breakpoint("large") {
-        display: block;
+        padding-left: 0;
     }
 }
 
@@ -150,6 +180,7 @@
         display: flex;
         align-items: center;
         gap: remCalc(16px);
+        padding-bottom: remCalc(16px);
         font-size: remCalc(12px);
         font-weight: fontWeight("semibold");
         color: color("greys", "base");
@@ -173,10 +204,6 @@
     gap: spacing("half");
 }
 
-// Shared widths — keeps header labels and control cells in sync.
-$newReturn-col-qty:     remCalc(120px);
-$newReturn-col-select:  remCalc(200px);
-
 .newReturn-columnHeaders-quantity {
     width: $newReturn-col-qty;
     flex-shrink: 0;
@@ -188,14 +215,31 @@ $newReturn-col-select:  remCalc(200px);
     flex-shrink: 0;
 }
 
+.newReturn-controlLabel {
+    display: none;
+
+    @include breakpoint("medium") {
+        display: block;
+        font-size: remCalc(12px);
+        font-weight: fontWeight("semibold");
+        color: color("greys", "base");
+        letter-spacing: remCalc(0.5px);
+        margin-bottom: remCalc(-4px);
+    }
+
+    @include breakpoint("large") {
+        display: none;
+    }
+}
+
 .newReturn-orderLineItemQtyWrapper {
     display: flex;
     align-items: center;
     gap: spacing("quarter");
+    flex-shrink: 0;
 
     @include breakpoint("large") {
         width: $newReturn-col-qty;
-        flex-shrink: 0;
     }
 }
 
@@ -206,20 +250,39 @@ $newReturn-col-select:  remCalc(200px);
 }
 
 .newReturn-orderLineItemControls [id^="qty-"] {
-    width: 100%;
-
-    @include breakpoint("large") {
-        width: auto;
-    }
+    width: $newReturn-qty-width;
+    flex-shrink: 0;
 }
 
-.newReturn-orderLineItemControls [id^="resolution-"],
-.newReturn-orderLineItemControls [id^="reason-"] {
-    width: 100%;
+.newReturn-orderLineItemControls [id^="resolution-"] {
+    flex: 1 1 auto; // mobile: fill the rest of the first card row beside quantity
+    width: auto;
+    max-width: none;
+    min-width: 0;
+
+    @include breakpoint("medium") {
+        flex: 0 0 auto; // tablet: full-width within the stacked column
+        width: 100%;
+    }
 
     @include breakpoint("large") {
         width: $newReturn-col-select;
-        flex-shrink: 0;
+    }
+}
+
+.newReturn-orderLineItemControls [id^="reason-"] {
+    flex-basis: 100%; // mobile: wraps onto its own full-width row below qty + resolution
+    width: 100%;
+    max-width: none;
+
+    @include breakpoint("medium") {
+        flex-basis: auto;
+        width: 100%;
+    }
+
+    @include breakpoint("large") {
+        flex: 0 0 auto;
+        width: $newReturn-col-select;
     }
 }
 

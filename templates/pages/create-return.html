@@ -14,8 +14,8 @@
             <a href="{{../urls.account.orders.all}}" class="button">{{lang 'account.returns.back'}}</a>
             <a href="/return-policy" class="button button--primary">{{lang 'account.returns.view_return_policy'}} &rarr;</a>
         </div>
+        {{#if date}}<p class="newReturn-orderDate">{{lang 'account.returns.order_date'}}: {{date}}</p>{{/if}}
     </div>
-    {{#if date}}<p class="newReturn-orderDate">{{lang 'account.returns.order_date'}}: {{date}}</p>{{/if}}
 
     <hr class="newReturn-divider">
 
@@ -30,8 +30,6 @@
                 <span class="newReturn-columnHeaders-reason">{{lang 'account.returns.reason_header'}}</span>
             </div>
         </div>
-
-        <hr class="newReturn-divider newReturn-divider--headers">
 
         {{#each items}}
             <div class="newReturn-orderLineItem" data-item-id="{{id}}">
@@ -59,6 +57,7 @@
                 </div>
 
                 <div class="newReturn-orderLineItemControls">
+                    <label class="newReturn-controlLabel" for="qty-{{id}}">{{lang 'account.orders.return.quantity'}}</label>
                     <div class="newReturn-orderLineItemQtyWrapper">
                         <select class="form-select form-select--small form-select--short"
                                 id="qty-{{id}}"
@@ -69,12 +68,14 @@
                         </select>
                         <span class="newReturn-orderLineItemMaxQty">{{lang 'account.orders.return.of_max' max=returnableQuantity}}</span>
                     </div>
+                    <label class="newReturn-controlLabel" for="resolution-{{id}}">{{lang 'account.returns.request'}}</label>
                     <select class="form-select form-select--small" id="resolution-{{id}}" aria-label="{{lang 'account.returns.select_resolution'}}">
                         <option value="">{{lang 'account.returns.select_resolution'}}</option>
                         {{#each ../../resolutions}}
                             <option value="{{resolutionType}}">{{label}}</option>
                         {{/each}}
                     </select>
+                    <label class="newReturn-controlLabel" for="reason-{{id}}">{{lang 'account.returns.reason_header'}}</label>
                     <select class="form-select form-select--small" id="reason-{{id}}" aria-label="{{lang 'account.returns.select_reason'}}">
                         <option value="">{{lang 'account.returns.select_reason'}}</option>
                         {{#each ../../reasons}}

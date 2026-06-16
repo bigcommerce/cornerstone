@@ -142,11 +142,19 @@ export default class ProductDetailsBase {
             disabledOptionValues.map(({ value_id: valueId }) => parseInt(valueId, 10)),
         );
 
+        const hiddenSelectedAttributes = [];
+
         $('[data-product-attribute-value]', this.$scope).each((i, attribute) => {
             const $attribute = $(attribute);
             const valueId = parseInt($attribute.data('productAttributeValue'), 10);
 
             if (disabledValueIds.has(valueId)) {
+                // Remember a hidden value that is the current selection so we can move the option
+                // to a valid value afterwards (e.g. the product's default values are the forbidden
+                // combination, so the rule's last value must be hidden even though it is selected).
+                if (this.getAttributeValueInput($attribute).prop('checked')) {
+                    hiddenSelectedAttributes.push($attribute);
+                }
                 this.disableAttribute($attribute, 'hide_option', '');
                 $attribute.data('ruleHidden', true);
             } else if ($attribute.data('ruleHidden') === true) {
@@ -155,6 +163,71 @@ export default class ProductDetailsBase {
                 $attribute.data('ruleHidden', false);
             }
         });
+
+        this.reselectHiddenSelectedValues(hiddenSelectedAttributes, disabledValueIds);
+    }
+
+    /**
+     * Resolve the radio input associated with a [data-product-attribute-value] label. Radio,
+     * rectangle and swatch options render the value as a <label for="..."> whose input is a
+     * sibling, so the input is looked up by the label's `for` attribute. Returns an empty set for
+     * options without a linked input (e.g. select <option>s, which handle reselection themselves).
+     * @param  {Object} $attribute jQuery wrapped [data-product-attribute-value] element
+     * @return {Object} jQuery wrapped input, empty when there is no linked input
+     */
+    getAttributeValueInput($attribute) {
+        const inputId = $attribute.attr('for');
+
+        return inputId ? $(`#${inputId}`, this.$scope) : $();
+    }
+
+    /**
+     * When a "disable and hide" rule hides the currently selected value of an option (typically
+     * because the product's default option values are themselves the forbidden combination), move
+     * that option to its next available value and fire a single change so the server recomputes the
+     * disabled values for the corrected, valid selection. Options with no remaining available value
+     * are left untouched so the invalid combination keeps the product unpurchasable.
+     * @param {Object[]} hiddenSelectedAttributes selected value labels that were just hidden
+     * @param {Set} disabledValueIds value ids hidden for the current selection
+     */
+    reselectHiddenSelectedValues(hiddenSelectedAttributes, disabledValueIds) {
+        let $changeTrigger = null;
+
+        hiddenSelectedAttributes.forEach($hiddenAttribute => {
+            const $option = $hiddenAttribute.closest('[data-product-attribute]');
+            let $target = null;
+
+            $('[data-product-attribute-value]', $option).each((i, attribute) => {
+                const $attribute = $(attribute);
+                const valueId = parseInt($attribute.data('productAttributeValue'), 10);
+
+                if (disabledValueIds.has(valueId)) {
+                    return true;
+                }
+
+                const $input = this.getAttributeValueInput($attribute);
+                if ($input.length && !$input.prop('disabled')) {
+                    $target = $input;
+                    return false;
+                }
+
+                return true;
+            });
+
+            if (!$target) {
+                return;
+            }
+
+            this.getAttributeValueInput($hiddenAttribute)
+                .prop('checked', false)
+                .data('state', false);
+            $target.prop('checked', true).data('state', true);
+            $changeTrigger = $target;
+        });
+
+        if ($changeTrigger) {
+            $changeTrigger.trigger('change');
+        }
     }
 
     /**

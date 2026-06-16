@@ -93,6 +93,10 @@ export default class ProductDetails extends ProductDetailsBase {
             this.updateBackorderMessage(vm);
             this.picklistBackorder.render(response.data, qty);
             this.updateDefaultAttributesForOOS(response.data);
+            // Hide option values disabled by a "disable and hide" rule for the default selection
+            // (CATALOG-12399); this also corrects a default selection that is itself a forbidden
+            // combination on first load.
+            this.updateDisabledOptionValues(response.data);
             this.updateAddToCartForQty(qty, vm);
         });
 
@@ -278,6 +282,7 @@ export default class ProductDetails extends ProductDetailsBase {
             const productAttributesData = response.data || {};
             const productAttributesContent = response.content || {};
             this.updateProductAttributes(productAttributesData);
+            this.updateDisabledOptionValues(productAttributesData);
             this.updateView(productAttributesData, productAttributesContent);
             this.updateProductDetailsData();
             bannerUtils.dispatchProductBannerEvent(productAttributesData);

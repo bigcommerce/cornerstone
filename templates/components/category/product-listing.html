@@ -5,9 +5,9 @@
 
     <div data-list-name="Category: {{category.name}}" role="region" aria-label="{{lang 'category.product_label'}}">
         {{#if theme_settings.product_list_display_mode '===' 'grid'}}
-            {{> components/products/grid products=category.products show_compare=category.show_compare theme_settings=theme_settings event="list" }}
+            {{> components/products/grid products=category.products show_compare=category.show_compare theme_settings=theme_settings event="list" show_featured_promotions=true }}
         {{else}}
-            {{> components/products/list products=category.products show_compare=category.show_compare theme_settings=theme_settings event="list" }}
+            {{> components/products/list products=category.products show_compare=category.show_compare theme_settings=theme_settings event="list" show_featured_promotions=true }}
         {{/if}}
     </div>
 

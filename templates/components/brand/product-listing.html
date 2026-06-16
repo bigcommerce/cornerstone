@@ -4,9 +4,9 @@
 
 <div data-list-name="Brand: {{brand.name}}">
     {{#if theme_settings.product_list_display_mode '===' 'grid'}}
-        {{> components/products/grid products=brand.products show_compare=brand.show_compare theme_settings=theme_settings event="list"}}
+        {{> components/products/grid products=brand.products show_compare=brand.show_compare theme_settings=theme_settings event="list" show_featured_promotions=true}}
     {{else}}
-        {{> components/products/list products=brand.products show_compare=brand.show_compare theme_settings=theme_settings event="list"}}
+        {{> components/products/list products=brand.products show_compare=brand.show_compare theme_settings=theme_settings event="list" show_featured_promotions=true}}
     {{/if}}
 </div>
 

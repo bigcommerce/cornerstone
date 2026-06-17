@@ -23,7 +23,8 @@ export function optionChangeDecorator(areDefaultOptionsSet) {
         const attributesContent = response.content || {};
 
         this.updateProductAttributes(attributesData);
-        this.updateDisabledOptionValues(attributesData);
+        // CATALOG-12399 disable-and-hide option hiding is a PDP-only feature; the cart editor uses
+        // this decorator, so it is wired into product-details.js directly instead of here.
         if (areDefaultOptionsSet) {
             this.updateView(attributesData, attributesContent);
         } else {

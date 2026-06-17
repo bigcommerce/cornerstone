@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Draft
+- Show backorder prompts on the account order details page for both the parent product (under the product title) and each picklist option, mirroring the PDP backorder display
 - Refine backorder layout and colors on the account order details page [#2677](https://github.com/bigcommerce/cornerstone/pull/2677)
 - Make the cart Shipping row label span the full width of the totals row so the shipping expectation prompt is no longer constrained to the narrow label column
 - Respect `unlimited_backorder` on PDP so the backorder quantity message and availability prompt render, and the Add to Cart quantity cap is lifted for products with unlimited backorder

@@ -67,15 +67,7 @@
                 <dl class="definitionList">
                     {{#each options}}
                         <dt class="definitionList-key">{{name}}:</dt>
-                        <dd class="definitionList-value">
-                            {{> components/common/product-options}}
-                            {{#if quantity_backordered '>' 0}}
-                                <p class="account-product-backorder-prompts">{{lang 'products.quantity_backordered' quantity=quantity_backordered}}</p>
-                                {{#if backorder_message}}
-                                    <p class="account-product-backorder-prompts">{{backorder_message}}</p>
-                                {{/if}}
-                            {{/if}}
-                        </dd>
+                        <dd class="definitionList-value">{{> components/common/product-options}}</dd>
                     {{/each}}
                 </dl>
                 {{/if}}

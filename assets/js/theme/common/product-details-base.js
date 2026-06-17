@@ -293,7 +293,10 @@ export default class ProductDetailsBase {
         });
 
         if ($changeTrigger) {
-            $changeTrigger.trigger('change');
+            // Defer the change so it does not re-enter the in-flight optionChange callback that is
+            // still applying the pre-correction response. Firing it after the current call stack
+            // lets that pass finish, then this triggers a fresh fetch for the corrected selection.
+            setTimeout(() => $changeTrigger.trigger('change'), 0);
         }
     }
 

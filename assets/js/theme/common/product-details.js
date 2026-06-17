@@ -93,6 +93,9 @@ export default class ProductDetails extends ProductDetailsBase {
             this.updateBackorderMessage(vm);
             this.picklistBackorder.render(response.data, qty);
             this.updateDefaultAttributesForOOS(response.data);
+            // Apply out-of-stock hide/show from this same payload before the rule pass, so rule
+            // hiding and reselection in updateDisabledOptionValues agree with in_stock_attributes.
+            this.updateProductAttributes(response.data);
             // Hide option values disabled by a "disable and hide" rule for the default selection
             // (CATALOG-12399); this also corrects a default selection that is itself a forbidden
             // combination on first load.

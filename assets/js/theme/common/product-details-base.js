@@ -158,13 +158,34 @@ export default class ProductDetailsBase {
                 this.disableAttribute($attribute, 'hide_option', '');
                 $attribute.data('ruleHidden', true);
             } else if ($attribute.data('ruleHidden') === true) {
-                // Only re-show values this rule hid; leave out-of-stock hiding untouched.
-                this.enableAttribute($attribute, 'hide_option', '');
+                // This value was hidden by the rule and no longer is. Re-show it only if
+                // out-of-stock handling is not also hiding it, so we don't reveal a value the
+                // stock logic in updateProductAttributes() kept hidden.
                 $attribute.data('ruleHidden', false);
+                if (!this.isHiddenByStock(data, valueId)) {
+                    this.enableAttribute($attribute, 'hide_option', '');
+                }
             }
         });
 
-        this.reselectHiddenSelectedValues(hiddenSelectedAttributes, disabledValueIds);
+        this.reselectHiddenSelectedValues(hiddenSelectedAttributes, disabledValueIds, data);
+    }
+
+    /**
+     * Whether out-of-stock handling hides the given value. Only the `hide_option` behavior hides
+     * values; a value is hidden when it is absent from `in_stock_attributes`.
+     * @param  {Object} data Product attribute data
+     * @param  {number} valueId attribute value id
+     * @return {boolean}
+     */
+    isHiddenByStock(data, valueId) {
+        if (data.out_of_stock_behavior !== 'hide_option') {
+            return false;
+        }
+
+        const inStockIds = Array.isArray(data.in_stock_attributes) ? data.in_stock_attributes : [];
+
+        return !inStockIds.includes(valueId);
     }
 
     /**
@@ -189,8 +210,9 @@ export default class ProductDetailsBase {
      * are left untouched so the invalid combination keeps the product unpurchasable.
      * @param {Object[]} hiddenSelectedAttributes selected value labels that were just hidden
      * @param {Set} disabledValueIds value ids hidden for the current selection
+     * @param {Object} data Product attribute data
      */
-    reselectHiddenSelectedValues(hiddenSelectedAttributes, disabledValueIds) {
+    reselectHiddenSelectedValues(hiddenSelectedAttributes, disabledValueIds, data) {
         let $changeTrigger = null;
 
         hiddenSelectedAttributes.forEach($hiddenAttribute => {
@@ -201,7 +223,9 @@ export default class ProductDetailsBase {
                 const $attribute = $(attribute);
                 const valueId = parseInt($attribute.data('productAttributeValue'), 10);
 
-                if (disabledValueIds.has(valueId)) {
+                // Skip values the rule hides or that are out of stock, so we never move the
+                // selection onto a value that should not be selectable.
+                if (disabledValueIds.has(valueId) || this.isHiddenByStock(data, valueId)) {
                     return true;
                 }
 

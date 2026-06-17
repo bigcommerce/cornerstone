@@ -152,7 +152,8 @@ export default class ProductDetailsBase {
                 // Remember a hidden value that is the current selection so we can move the option
                 // to a valid value afterwards (e.g. the product's default values are the forbidden
                 // combination, so the rule's last value must be hidden even though it is selected).
-                if (this.getAttributeValueInput($attribute).prop('checked')) {
+                // Checked before disableAttribute() resets a select's selection below.
+                if (this.isValueSelected($attribute)) {
                     hiddenSelectedAttributes.push($attribute);
                 }
                 this.disableAttribute($attribute, 'hide_option', '');
@@ -203,6 +204,22 @@ export default class ProductDetailsBase {
     }
 
     /**
+     * Whether the given option value is currently selected. Radio/rectangle/swatch values are
+     * `<label for="...">` linked to an input; select values are `<option>` elements.
+     * @param  {Object} $attribute jQuery wrapped [data-product-attribute-value] element
+     * @return {boolean}
+     */
+    isValueSelected($attribute) {
+        const $input = this.getAttributeValueInput($attribute);
+
+        if ($input.length) {
+            return $input.prop('checked') === true;
+        }
+
+        return $attribute.is('option') && $attribute.prop('selected') === true;
+    }
+
+    /**
      * When a "disable and hide" rule hides the currently selected value of an option (typically
      * because the product's default option values are themselves the forbidden combination), move
      * that option to its next available value and fire a single change so the server recomputes the
@@ -217,7 +234,9 @@ export default class ProductDetailsBase {
 
         hiddenSelectedAttributes.forEach($hiddenAttribute => {
             const $option = $hiddenAttribute.closest('[data-product-attribute]');
-            let $target = null;
+            const isSelect = this.getAttributeType($hiddenAttribute) === 'set-select';
+            let $targetInput = null;
+            let $targetOption = null;
 
             $('[data-product-attribute-value]', $option).each((i, attribute) => {
                 const $attribute = $(attribute);
@@ -229,24 +248,48 @@ export default class ProductDetailsBase {
                     return true;
                 }
 
+                if (isSelect) {
+                    // Skip the empty/placeholder <option> so we land on a real value.
+                    if (($attribute.attr('value') ?? '') === '') {
+                        return true;
+                    }
+                    $targetOption = $attribute;
+
+                    return false;
+                }
+
                 const $input = this.getAttributeValueInput($attribute);
                 if ($input.length && !$input.prop('disabled')) {
-                    $target = $input;
+                    $targetInput = $input;
+
                     return false;
                 }
 
                 return true;
             });
 
-            if (!$target) {
+            if (isSelect) {
+                if (!$targetOption) {
+                    return;
+                }
+                // disableAttribute() already reset the hidden option; point the select at the next
+                // available value and fire change on the select so the form refreshes.
+                const $select = $targetOption.closest('select');
+                $select.val($targetOption.attr('value'));
+                $changeTrigger = $select;
+
+                return;
+            }
+
+            if (!$targetInput) {
                 return;
             }
 
             this.getAttributeValueInput($hiddenAttribute)
                 .prop('checked', false)
                 .data('state', false);
-            $target.prop('checked', true).data('state', true);
-            $changeTrigger = $target;
+            $targetInput.prop('checked', true).data('state', true);
+            $changeTrigger = $targetInput;
         });
 
         if ($changeTrigger) {

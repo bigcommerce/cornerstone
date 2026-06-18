@@ -223,9 +223,11 @@ export default class ProductDetailsBase {
     /**
      * When a "disable and hide" rule hides the currently selected value of an option (typically
      * because the product's default option values are themselves the forbidden combination), move
-     * that option to its next available value and fire a single change so the server recomputes the
-     * disabled values for the corrected, valid selection. Options with no remaining available value
-     * are left untouched so the invalid combination keeps the product unpurchasable.
+     * that option back to its default value (when that default is still available) and fire a single
+     * change so the server recomputes the disabled values for the corrected selection. We only ever
+     * auto-select the option's default value — never a non-default one — so we don't silently pick a
+     * value the shopper didn't choose. If the default is itself unavailable (hidden/out of stock),
+     * the option is left with no selection and the shopper must choose.
      * @param {Object[]} hiddenSelectedAttributes selected value labels that were just hidden
      * @param {Set} disabledValueIds value ids hidden for the current selection
      * @param {Object} data Product attribute data
@@ -254,13 +256,18 @@ export default class ProductDetailsBase {
                     if (($attribute.attr('value') ?? '') === '') {
                         return true;
                     }
+                    // Only snap to the option's default value, never a non-default one.
+                    if (!$attribute.is('[data-default]')) {
+                        return true;
+                    }
                     $targetOption = $attribute;
 
                     return false;
                 }
 
                 const $input = this.getAttributeValueInput($attribute);
-                if ($input.length && !$input.prop('disabled')) {
+                // Only snap to the option's default value, never a non-default one.
+                if ($input.length && !$input.prop('disabled') && $input.is('[data-default]')) {
                     $targetInput = $input;
 
                     return false;

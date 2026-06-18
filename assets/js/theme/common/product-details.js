@@ -100,6 +100,10 @@ export default class ProductDetails extends ProductDetailsBase {
             // (CATALOG-12399); this also corrects a default selection that is itself a forbidden
             // combination on first load.
             this.updateDisabledOptionValues(response.data);
+            // Surface the rule's "unavailable" message for the default selection: a disable rule
+            // (not hidden) that the default selection completes sets purchasing_message in this
+            // response, and the initial BCData payload does not carry it.
+            this.showMessageBox(response.data.stock_message || response.data.purchasing_message);
             this.updateAddToCartForQty(qty, vm);
         });
 

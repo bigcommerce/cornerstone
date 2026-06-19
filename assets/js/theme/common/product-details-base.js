@@ -348,11 +348,18 @@ export default class ProductDetailsBase {
     }
 
     clearQtyLimitMessage(viewModel, $variantMessage, reEnable) {
-        if (reEnable && !viewModel.$increments.prop('disabled')) {
+        const hadQtyLimit = $variantMessage.attr('data-qty-limit') === 'true';
+
+        // Re-enable when the main sell-limit is known (legacy behaviour) or when we
+        // are clearing a qty-limit message we set ourselves — otherwise a button
+        // disabled by a picklist limit would stay disabled once the qty drops back
+        // into range while the main ATS is unknown. The increments guard still keeps
+        // an out-of-stock button disabled.
+        if ((reEnable || hadQtyLimit) && !viewModel.$increments.prop('disabled')) {
             viewModel.$addToCart.prop('disabled', false);
         }
 
-        if ($variantMessage.attr('data-qty-limit') === 'true') {
+        if (hadQtyLimit) {
             $variantMessage.removeAttr('data-qty-limit').hide();
             $('.alertBox-message', $variantMessage).text('');
         }

@@ -37,10 +37,10 @@ export default class ReturnDetails extends PageManager {
                 pricing: {
                     discountedPrice: item.pricing.discountedPrice,
                 },
-                resolution: {
+                resolution: item.resolution && {
                     displayName: item.resolution.displayName,
                     outcome: item.resolution.outcome,
-                    requested: {
+                    requested: item.resolution.requested && {
                         type: item.resolution.requested.type,
                         label: item.resolution.requested.label,
                     },

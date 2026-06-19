@@ -84,8 +84,15 @@ export default class ProductDetails extends ProductDetailsBase {
         });
 
         const productId = $('[name="product_id"]', $form).val();
-        utils.api.productAttributes.optionChange(productId, $form.serialize(), (err, response) => {
+        const initialSelection = $form.serialize();
+        utils.api.productAttributes.optionChange(productId, initialSelection, (err, response) => {
             if (err || !response || !response.data) return;
+            // The synchronous init below applies rule hiding from BCData and can fire a corrective
+            // change for a default-into-conflict selection. If that already moved the selection, this
+            // response is for the stale (pre-correction) selection: discard it so it can't re-show
+            // rule-hidden values or show an unavailable message for a no-longer-selected combination.
+            // The corrective change runs its own optionChange for the corrected selection.
+            if ($form.serialize() !== initialSelection) return;
             this.updateBackorderContext(response.data);
             const vm = this.getViewModel(this.$scope);
             const qty = parseInt(vm.quantity.$input.val(), 10) || 0;
@@ -96,11 +103,9 @@ export default class ProductDetails extends ProductDetailsBase {
             // Apply out-of-stock hide/show from this same payload before the rule pass, so rule
             // hiding and reselection in updateDisabledOptionValues agree with in_stock_attributes.
             this.updateProductAttributes(response.data);
-            // Note: disabled_option_values for the default selection is applied synchronously from
-            // the initial BCData payload below, not here. Applying it from this on-load response too
-            // would race with the corrective change that sync pass can fire: if this response (for
-            // the original selection) lands after the correction fetch, it would re-apply stale
-            // disabled_option_values. So the sync init path is the single source on load.
+            // Re-apply rule hiding after the out-of-stock pass above (which re-shows in-stock values
+            // and would otherwise undo it). Safe from the stale-response race thanks to the guard.
+            this.updateDisabledOptionValues(response.data);
             // Surface the rule's "unavailable" message for the default selection: a disable rule
             // (not hidden) that the default selection completes sets purchasing_message in this
             // response, and the initial BCData payload does not carry it.

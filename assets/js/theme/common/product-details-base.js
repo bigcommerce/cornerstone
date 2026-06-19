@@ -289,13 +289,17 @@ export default class ProductDetailsBase {
                 return;
             }
 
+            // Always deselect the hidden value so a forbidden radio/swatch can't stay checked and be
+            // submitted (selects already reset to their placeholder when hidden). When there is no
+            // default to fall back to, leave the option with no selection.
+            this.getAttributeValueInput($hiddenAttribute)
+                .prop('checked', false)
+                .data('state', false);
+
             if (!$targetInput) {
                 return;
             }
 
-            this.getAttributeValueInput($hiddenAttribute)
-                .prop('checked', false)
-                .data('state', false);
             $targetInput.prop('checked', true).data('state', true);
             $changeTrigger = $targetInput;
         });

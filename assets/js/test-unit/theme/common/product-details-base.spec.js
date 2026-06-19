@@ -72,6 +72,8 @@ describe('ProductDetailsBase.reselectHiddenSelectedValues', () => {
 
         // b2 is not a default, so it must not be auto-selected.
         expect($scope.find('input[value="12"]').prop('checked')).toBe(false);
+        // The hidden value must be deselected so the forbidden value can't be submitted.
+        expect($scope.find('input[value="11"]').prop('checked')).toBe(false);
     });
 
     it('snaps back to the default value when a hidden non-default was selected and the default is available', () => {

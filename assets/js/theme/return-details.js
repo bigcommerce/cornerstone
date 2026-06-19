@@ -50,7 +50,6 @@ export default class ReturnDetails extends PageManager {
             })),
         };
 
-
         this.renderHeader();
         this.renderShipping();
         this.renderItems();
@@ -123,8 +122,10 @@ export default class ReturnDetails extends PageManager {
         const resolutionLabel = (item.resolution && item.resolution.requested && item.resolution.requested.label) || '';
         const reason = (item.reasonSnapshot && item.reasonSnapshot.displayName) || '';
 
-        // the return data has no thumbnail URL yet
-        const thumbnailUrl = item.thumbnailUrl || '';
+        // the return data has no thumbnail URL yet, so fall back to the theme's
+        // default product placeholder (injected as context.defaultImageUrl)
+        const defaultImageUrl = (this.context && this.context.defaultImageUrl) || '';
+        const thumbnailUrl = item.thumbnailUrl || defaultImageUrl;
         const variant = item.variant || '';
 
         return `
@@ -132,7 +133,8 @@ export default class ReturnDetails extends PageManager {
                 <div class="returnDetails-itemThumbnailWrapper">
                     <img class="returnDetails-itemThumbnail"
                          src="${escape(thumbnailUrl)}"
-                         alt="${escape(name)}">
+                         alt="${escape(name)}"
+                         onerror="this.onerror=null;this.src='${escape(defaultImageUrl)}'">
                 </div>
                 <div class="returnDetails-itemInfo">
                     <p class="returnDetails-itemName">${escape(name)}</p>

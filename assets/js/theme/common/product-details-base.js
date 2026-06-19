@@ -307,29 +307,54 @@ export default class ProductDetailsBase {
 
     updateAddToCartForQty(qty, passedViewModel) {
         const viewModel = passedViewModel || this.getViewModel(this.$scope);
+        const $variantMessage = $('#add-to-cart-wrapper .productAttributes-message', this.$scope);
         const unlimited = this.context.unlimitedBackorder === true;
         const availableToSell = unlimited
             ? Infinity
             : parseInt(this.context.availableToSell, 10) || 0;
 
-        if (availableToSell <= 0) return;
-
-        const $variantMessage = $('#add-to-cart-wrapper .productAttributes-message', this.$scope);
-
-        if (qty > availableToSell) {
-            viewModel.$addToCart.prop('disabled', true);
-
+        // The main product's sell-limit takes priority over any picklist limit.
+        if (availableToSell > 0 && qty > availableToSell) {
             const template = this.context.quantityMaxMessage || 'The maximum purchasable quantity is __QTY__';
-            const message = template.replace('__QTY__', availableToSell);
-            $('.alertBox-message', $variantMessage).text(message);
-            $variantMessage.attr('data-qty-limit', 'true').show();
-        } else if (!viewModel.$increments.prop('disabled')) {
-            viewModel.$addToCart.prop('disabled', false);
+            this.showQtyLimitMessage(viewModel, $variantMessage, template.replace('__QTY__', availableToSell));
+            return;
+        }
 
-            if ($variantMessage.attr('data-qty-limit') === 'true') {
-                $variantMessage.removeAttr('data-qty-limit').hide();
-                $('.alertBox-message', $variantMessage).text('');
-            }
+        // A selected picklist item may exhaust its own available-to-sell before the
+        // main product does. Surface its limit and block add-to-cart in that case.
+        const picklistLimit = this.picklistBackorder
+            && this.picklistBackorder.getSellLimitViolation(qty);
+
+        if (picklistLimit) {
+            const template = this.context.quantityMaxPicklistMessage
+                || 'The maximum purchasable quantity for __NAME__ is __QTY__';
+            const message = template
+                .replace('__NAME__', picklistLimit.name)
+                .replace('__QTY__', picklistLimit.availableToSell);
+            this.showQtyLimitMessage(viewModel, $variantMessage, message);
+            return;
+        }
+
+        // No sell-limit exceeded. Preserve the legacy behaviour of not touching the
+        // add-to-cart state when the main sell-limit is unknown (handled by OOS logic),
+        // but still clear a stale qty-limit message we may have shown previously.
+        this.clearQtyLimitMessage(viewModel, $variantMessage, availableToSell > 0);
+    }
+
+    showQtyLimitMessage(viewModel, $variantMessage, message) {
+        viewModel.$addToCart.prop('disabled', true);
+        $('.alertBox-message', $variantMessage).text(message);
+        $variantMessage.attr('data-qty-limit', 'true').show();
+    }
+
+    clearQtyLimitMessage(viewModel, $variantMessage, reEnable) {
+        if (reEnable && !viewModel.$increments.prop('disabled')) {
+            viewModel.$addToCart.prop('disabled', false);
+        }
+
+        if ($variantMessage.attr('data-qty-limit') === 'true') {
+            $variantMessage.removeAttr('data-qty-limit').hide();
+            $('.alertBox-message', $variantMessage).text('');
         }
     }
 

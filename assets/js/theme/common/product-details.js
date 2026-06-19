@@ -96,10 +96,11 @@ export default class ProductDetails extends ProductDetailsBase {
             // Apply out-of-stock hide/show from this same payload before the rule pass, so rule
             // hiding and reselection in updateDisabledOptionValues agree with in_stock_attributes.
             this.updateProductAttributes(response.data);
-            // Hide option values disabled by a "disable and hide" rule for the default selection
-            // (CATALOG-12399); this also corrects a default selection that is itself a forbidden
-            // combination on first load.
-            this.updateDisabledOptionValues(response.data);
+            // Note: disabled_option_values for the default selection is applied synchronously from
+            // the initial BCData payload below, not here. Applying it from this on-load response too
+            // would race with the corrective change that sync pass can fire: if this response (for
+            // the original selection) lands after the correction fetch, it would re-apply stale
+            // disabled_option_values. So the sync init path is the single source on load.
             // Surface the rule's "unavailable" message for the default selection: a disable rule
             // (not hidden) that the default selection completes sets purchasing_message in this
             // response, and the initial BCData payload does not carry it.

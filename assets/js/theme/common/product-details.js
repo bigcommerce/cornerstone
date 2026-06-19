@@ -121,6 +121,11 @@ export default class ProductDetails extends ProductDetailsBase {
             && typeof productAttributesData === 'object'
             && Object.keys(productAttributesData).length > 0) {
             this.updateView(productAttributesData, null);
+            // Apply "disable and hide" rule hiding from the initial BCData synchronously, so a
+            // forbidden default selection is corrected at load instead of staying visible until
+            // the async optionChange below resolves. No-op until the backend emits
+            // disabled_option_values in the initial payload (CATALOG-12399).
+            this.updateDisabledOptionValues(productAttributesData);
         } else {
             // eslint-disable-next-line no-console
             console.warn('BCData.product_attributes is empty on product initialization');

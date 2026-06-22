@@ -1,9 +1,12 @@
 {{#partial "page"}}
 
 {{~inject 'order' order}}
+{{~inject 'storefrontApiToken' settings.storefront_api.token}}
 <main class="newReturn">
 
     {{#with order}}
+
+    <div data-new-return-view>
 
     <div class="newReturn-header">
         <div class="newReturn-titleGroup">
@@ -115,6 +118,15 @@
         </div>
 
     </form>
+
+    </div>
+
+    <div class="newReturn-confirmation" data-new-return-confirmation style="display: none;">
+        <h1 class="newReturn-title">{{lang 'account.returns.from_order' id=id}} {{lang 'account.returns.submitted_successfully'}}</h1>
+        <p class="newReturn-confirmationMessage">{{lang 'account.returns.confirmation_message_primary'}}</p>
+        <p class="newReturn-confirmationMessage">{{lang 'account.returns.confirmation_message_secondary'}}</p>
+        <a href="{{../urls.account.orders.all}}" class="button button--primary">{{lang 'account.returns.take_me_back'}}</a>
+    </div>
 
     {{/with}}
 

@@ -23,8 +23,8 @@ export function optionChangeDecorator(areDefaultOptionsSet) {
         const attributesContent = response.content || {};
 
         this.updateProductAttributes(attributesData);
-        // CATALOG-12399 disable-and-hide option hiding is a PDP-only feature; the cart editor uses
-        // this decorator, so it is wired into product-details.js directly instead of here.
+        // Disable-and-hide option hiding is a PDP-only feature; the cart editor uses this decorator,
+        // so it is wired into product-details.js directly instead of here.
         if (areDefaultOptionsSet) {
             this.updateView(attributesData, attributesContent);
         } else {
@@ -125,8 +125,8 @@ export default class ProductDetailsBase {
     }
 
     /**
-     * Hide option values that would complete a "disable and hide" rule for the current selection
-     * (CATALOG-12399). The server recomputes `disabled_option_values` on every option change, so a
+     * Hide option values that would complete a "disable and hide" rule for the current selection.
+     * The server recomputes `disabled_option_values` on every option change, so a
      * value belonging to a multi-attribute rule only appears once the rule's other attributes are
      * selected ("show, then hide on selection"). The list is selection-relative, so values hidden
      * on a previous change are re-shown when they drop out of it.
@@ -277,12 +277,16 @@ export default class ProductDetailsBase {
             });
 
             if (isSelect) {
+                const $select = $hiddenAttribute.closest('select');
                 if (!$targetOption) {
+                    // No default to move to; disableAttribute() already reset the select to its
+                    // placeholder. Still fire a change so the view re-syncs to the now-empty
+                    // selection (message/cart/price) for the corrected combination.
+                    $changeTrigger = $select;
+
                     return;
                 }
-                // disableAttribute() already reset the hidden option; point the select at the next
-                // available value and fire change on the select so the form refreshes.
-                const $select = $targetOption.closest('select');
+                // Point the select at its default value and fire change so the form refreshes.
                 $select.val($targetOption.attr('value'));
                 $changeTrigger = $select;
 
@@ -290,13 +294,16 @@ export default class ProductDetailsBase {
             }
 
             // Always deselect the hidden value so a forbidden radio/swatch can't stay checked and be
-            // submitted (selects already reset to their placeholder when hidden). When there is no
-            // default to fall back to, leave the option with no selection.
-            this.getAttributeValueInput($hiddenAttribute)
-                .prop('checked', false)
-                .data('state', false);
+            // submitted (selects already reset to their placeholder when hidden).
+            const $hiddenInput = this.getAttributeValueInput($hiddenAttribute);
+            $hiddenInput.prop('checked', false).data('state', false);
 
             if (!$targetInput) {
+                // No default to fall back to; the value is deselected. Fire a change so the view
+                // re-syncs to the now-empty selection instead of leaving a stale unavailable message
+                // for the broken combination (BCData carries no purchasing_message on load).
+                $changeTrigger = $hiddenInput;
+
                 return;
             }
 

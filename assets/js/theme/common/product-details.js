@@ -130,7 +130,7 @@ export default class ProductDetails extends ProductDetailsBase {
             // Apply "disable and hide" rule hiding from the initial BCData synchronously, so a
             // forbidden default selection is corrected at load instead of staying visible until
             // the async optionChange below resolves. No-op until the backend emits
-            // disabled_option_values in the initial payload (CATALOG-12399).
+            // disabled_option_values in the initial payload.
             this.updateDisabledOptionValues(productAttributesData);
         } else {
             // eslint-disable-next-line no-console

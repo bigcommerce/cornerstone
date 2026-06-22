@@ -34,9 +34,21 @@ export default class CreateReturn extends PageManager {
         form.addEventListener('submit', async event => {
             event.preventDefault();
 
-            // TODO ORDERS-7715: handle mutation errors
-            await this.createReturn(this.buildReturnInput());
-            this.showConfirmation();
+            // Ignore clicks while a request is in flight
+            if (this.isSubmitting) return;
+            this.isSubmitting = true;
+
+            const submitBtn = document.getElementById('return-new-submitBtn');
+            if (submitBtn) submitBtn.disabled = true;
+
+            try {
+                // TODO ORDERS-7715: handle mutation errors
+                await this.createReturn(this.buildReturnInput());
+                this.showConfirmation();
+            } finally {
+                this.isSubmitting = false;
+                if (submitBtn) submitBtn.disabled = false;
+            }
         });
     }
 

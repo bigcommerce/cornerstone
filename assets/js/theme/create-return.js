@@ -40,16 +40,51 @@ export default class CreateReturn extends PageManager {
 
             const submitBtn = document.getElementById('return-new-submitBtn');
             if (submitBtn) submitBtn.disabled = true;
+            this.clearError();
 
             try {
-                // TODO ORDERS-7715: handle mutation errors
-                await this.createReturn(this.buildReturnInput());
+                const response = await this.createReturn(this.buildReturnInput());
+                const errorMessages = this.getErrorMessages(response);
+
+                if (errorMessages.length) {
+                    this.showError(errorMessages.join(' '));
+                    return;
+                }
+
                 this.showConfirmation();
+            } catch (error) {
+                this.showError(this.context.genericError);
             } finally {
                 this.isSubmitting = false;
                 if (submitBtn) submitBtn.disabled = false;
             }
         });
+    }
+
+    getErrorMessages(response) {
+        const transportErrors = Array.isArray(response?.errors) ? response.errors : [];
+        const returnErrors = Array.isArray(response?.data?.order?.return?.createReturn?.errors)
+            ? response.data.order.return.createReturn.errors
+            : [];
+
+        return transportErrors
+            .concat(returnErrors)
+            .map(error => error.message)
+            .filter(Boolean);
+    }
+
+    showError(message) {
+        const errorBox = document.getElementById('return-new-error');
+        if (!errorBox) return;
+
+        const messageEl = errorBox.querySelector('[data-return-error-message]');
+        if (messageEl) messageEl.textContent = message || '';
+        errorBox.style.display = '';
+    }
+
+    clearError() {
+        const errorBox = document.getElementById('return-new-error');
+        if (errorBox) errorBox.style.display = 'none';
     }
 
     // Storefront GraphQL `createReturn` mutation

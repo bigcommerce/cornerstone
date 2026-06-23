@@ -86,20 +86,16 @@ export default class PicklistBackorder {
             ? this.lastData.selected_picklist_options
             : [];
 
-        let violation = null;
+        return selections
+            .map(sel => {
+                const availableToSell = this.getSelectionSellLimit(sel);
+                if (availableToSell === null || requestedQty <= availableToSell) return null;
 
-        selections.some(sel => {
-            const availableToSell = this.getSelectionSellLimit(sel);
-            if (availableToSell === null || requestedQty <= availableToSell) return false;
+                const name = this.findAttributeName(sel.attribute_value_id);
 
-            const name = this.findAttributeName(sel.attribute_value_id);
-            if (!name) return false;
-
-            violation = { name, availableToSell };
-            return true;
-        });
-
-        return violation;
+                return name ? { name, availableToSell } : null;
+            })
+            .find(Boolean) || null;
     }
 
     /**

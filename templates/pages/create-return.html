@@ -22,6 +22,11 @@
 
     <hr class="newReturn-divider">
 
+    <div id="return-new-error" class="alertBox alertBox--error newReturn-error" style="display: none;" role="alert">
+        <p class="newReturn-errorHeading">{{lang 'account.returns.error_heading'}}</p>
+        <p class="alertBox-message" data-return-error-message></p>
+    </div>
+
     <form class="form" data-new-return-form data-success-url="{{../urls.account.orders.all}}">
 
         <div class="newReturn-columnHeaders" aria-hidden="true">
@@ -90,10 +95,6 @@
         {{/each}}
 
         <hr class="newReturn-divider">
-
-        <div id="return-new-error" class="alertBox alertBox--error" style="display:none" role="alert">
-            <p class="alertBox-message" data-return-error-message></p>
-        </div>
 
         <div class="newReturn-footer">
             <div class="form-field">

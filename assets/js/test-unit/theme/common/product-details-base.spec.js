@@ -1,5 +1,51 @@
 import ProductDetailsBase from '../../../theme/common/product-details-base';
 
+// Build an instance without running the (DOM/event-wiring) constructor; reselectHiddenSelectedValues
+// only needs this.$scope plus the real getAttributeType/getAttributeValueInput/isHiddenByStock.
+const makeInstance = $scope => {
+    const instance = Object.create(ProductDetailsBase.prototype);
+    instance.$scope = $scope;
+    return instance;
+};
+
+// out_of_stock_behavior !== 'hide_option' → isHiddenByStock() is always false, isolating the rule path.
+const data = { out_of_stock_behavior: 'do_nothing', in_stock_attributes: [] };
+
+const radioInput = (optionId, v) => `<input class="form-radio" type="radio" id="attribute_radio_${optionId}_${v.id}"
+        name="attribute[${optionId}]" value="${v.id}"
+        ${v.default ? 'data-default' : ''} ${v.selected ? 'checked' : ''}>
+     <label data-product-attribute-value="${v.id}" class="form-label"
+        for="attribute_radio_${optionId}_${v.id}">${v.label}</label>`;
+
+const radioOption = (optionId, values) => {
+    const $scope = $(
+        `<div><div class="form-field" data-product-attribute="set-radio">
+            ${values.map(v => radioInput(optionId, v)).join('')}
+        </div></div>`,
+    );
+    $scope.appendTo(document.body);
+    return $scope;
+};
+
+const selectOption = (values) => {
+    const opts = values
+        .map(v => `<option data-product-attribute-value="${v.id}" value="${v.id}"
+            ${v.default ? 'data-default' : ''} ${v.selected ? 'selected' : ''}>${v.label}</option>`)
+        .join('');
+    const $scope = $(
+        `<div><div class="form-field" data-product-attribute="set-select">
+            <select>
+                <option data-product-attribute-value="" value="">choose</option>
+                ${opts}
+            </select>
+        </div></div>`,
+    );
+    $scope.appendTo(document.body);
+    return $scope;
+};
+
+const labelFor = ($scope, valueId) => $scope.find(`[data-product-attribute-value="${valueId}"]`);
+
 describe('ProductDetailsBase.updateAddToCartForQty()', () => {
     let $scope;
     let instance;
@@ -17,7 +63,7 @@ describe('ProductDetailsBase.updateAddToCartForQty()', () => {
     `).appendTo(document.body);
 
     // Bypass the constructor (Wishlist.load, tab/radio wiring) and test the method directly.
-    const makeInstance = (context, picklistViolation) => {
+    const makeQtyInstance = (context, picklistViolation) => {
         const obj = Object.create(ProductDetailsBase.prototype);
         obj.$scope = $scope;
         obj.context = context;
@@ -41,7 +87,7 @@ describe('ProductDetailsBase.updateAddToCartForQty()', () => {
         $scope = buildScope();
         let violation = { name: 'Bundle 1', availableToSell: 3 };
         // Main product ATS unknown (0); only the picklist imposes a limit.
-        instance = makeInstance({ availableToSell: 0 }, violation);
+        instance = makeQtyInstance({ availableToSell: 0 }, violation);
         const vm = viewModel();
 
         // Qty above the picklist limit → blocked with the picklist message.
@@ -52,7 +98,7 @@ describe('ProductDetailsBase.updateAddToCartForQty()', () => {
 
         // Drop qty back into range → picklist limit no longer applies.
         violation = null;
-        instance = makeInstance({ availableToSell: 0 }, violation);
+        instance = makeQtyInstance({ availableToSell: 0 }, violation);
         instance.updateAddToCartForQty(2, vm);
 
         expect(vm.$addToCart.prop('disabled')).toBe(false);
@@ -63,7 +109,7 @@ describe('ProductDetailsBase.updateAddToCartForQty()', () => {
     it('keeps Add to Cart disabled when increments are disabled (out of stock)', () => {
         $scope = buildScope();
         $('.form-input--incrementTotal', $scope).prop('disabled', true);
-        instance = makeInstance({ availableToSell: 0 }, { name: 'Bundle 1', availableToSell: 3 });
+        instance = makeQtyInstance({ availableToSell: 0 }, { name: 'Bundle 1', availableToSell: 3 });
         const vm = viewModel();
 
         instance.updateAddToCartForQty(5, vm);
@@ -75,7 +121,7 @@ describe('ProductDetailsBase.updateAddToCartForQty()', () => {
 
     it('shows the main-product limit message and ignores the picklist when the main ATS is exceeded', () => {
         $scope = buildScope();
-        instance = makeInstance(
+        instance = makeQtyInstance(
             { availableToSell: 4, quantityMaxMessage: 'The maximum purchasable quantity is __QTY__' },
             { name: 'Bundle 1', availableToSell: 3 },
         );
@@ -85,5 +131,66 @@ describe('ProductDetailsBase.updateAddToCartForQty()', () => {
 
         expect(vm.$addToCart.prop('disabled')).toBe(true);
         expect($('.alertBox-message', $scope).text()).toBe('The maximum purchasable quantity is 4');
+    });
+});
+
+describe('ProductDetailsBase.reselectHiddenSelectedValues', () => {
+    let $scope;
+
+    afterEach(() => {
+        if ($scope) {
+            $scope.remove();
+            $scope = null;
+        }
+        $(document.body).empty();
+    });
+
+    it('does NOT auto-select the next value when the hidden default has no available default to fall back to', () => {
+        // Option B: b1 is the default and is selected; the rule hides b1 (default-into-conflict).
+        $scope = radioOption(5, [
+            {
+                id: 11, label: 'b1', default: true, selected: true,
+            },
+            { id: 12, label: 'b2' },
+        ]);
+        const instance = makeInstance($scope);
+        const $hidden = labelFor($scope, 11);
+
+        instance.reselectHiddenSelectedValues([$hidden], new Set([11]), data);
+
+        // b2 is not a default, so it must not be auto-selected.
+        expect($scope.find('input[value="12"]').prop('checked')).toBe(false);
+        // The hidden value must be deselected so the forbidden value can't be submitted.
+        expect($scope.find('input[value="11"]').prop('checked')).toBe(false);
+    });
+
+    it('snaps back to the default value when a hidden non-default was selected and the default is available', () => {
+        // Shopper selected b2 (non-default); the rule hides b2; default b1 is still available.
+        $scope = radioOption(5, [
+            { id: 11, label: 'b1', default: true },
+            { id: 12, label: 'b2', selected: true },
+        ]);
+        const instance = makeInstance($scope);
+        const $hidden = labelFor($scope, 12);
+
+        instance.reselectHiddenSelectedValues([$hidden], new Set([12]), data);
+
+        expect($scope.find('input[value="11"]').prop('checked')).toBe(true);
+        expect($scope.find('input[value="12"]').prop('checked')).toBe(false);
+    });
+
+    it('does NOT move a select option onto a non-default value when the default is hidden', () => {
+        $scope = selectOption([
+            {
+                id: 11, label: 'b1', default: true, selected: true,
+            },
+            { id: 12, label: 'b2' },
+        ]);
+        const instance = makeInstance($scope);
+        const $hidden = $scope.find('option[value="11"]');
+
+        instance.reselectHiddenSelectedValues([$hidden], new Set([11]), data);
+
+        expect($scope.find('select').val()).not.toBe('12');
     });
 });

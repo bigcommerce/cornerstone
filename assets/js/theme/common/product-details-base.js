@@ -23,6 +23,8 @@ export function optionChangeDecorator(areDefaultOptionsSet) {
         const attributesContent = response.content || {};
 
         this.updateProductAttributes(attributesData);
+        // Disable-and-hide option hiding is a PDP-only feature; the cart editor uses this decorator,
+        // so it is wired into product-details.js directly instead of here.
         if (areDefaultOptionsSet) {
             this.updateView(attributesData, attributesContent);
         } else {
@@ -120,6 +122,201 @@ export default class ProductDetailsBase {
                 this.disableAttribute($attribute, behavior, outOfStockMessage);
             }
         });
+    }
+
+    /**
+     * Hide option values that would complete a "disable and hide" rule for the current selection.
+     * The server recomputes `disabled_option_values` on every option change, so a
+     * value belonging to a multi-attribute rule only appears once the rule's other attributes are
+     * selected ("show, then hide on selection"). The list is selection-relative, so values hidden
+     * on a previous change are re-shown when they drop out of it.
+     * @param  {Object} data Product attribute data
+     */
+    updateDisabledOptionValues(data) {
+        const disabledOptionValues = data.disabled_option_values;
+
+        if (!Array.isArray(disabledOptionValues)) {
+            return;
+        }
+
+        const disabledValueIds = new Set(
+            disabledOptionValues.map(({ value_id: valueId }) => parseInt(valueId, 10)),
+        );
+
+        const hiddenSelectedAttributes = [];
+
+        $('[data-product-attribute-value]', this.$scope).each((i, attribute) => {
+            const $attribute = $(attribute);
+            const valueId = parseInt($attribute.data('productAttributeValue'), 10);
+
+            if (disabledValueIds.has(valueId)) {
+                // Remember a hidden value that is the current selection so we can move the option
+                // to a valid value afterwards (e.g. the product's default values are the forbidden
+                // combination, so the rule's last value must be hidden even though it is selected).
+                // Checked before disableAttribute() resets a select's selection below.
+                if (this.isValueSelected($attribute)) {
+                    hiddenSelectedAttributes.push($attribute);
+                }
+                this.disableAttribute($attribute, 'hide_option', '');
+                $attribute.data('ruleHidden', true);
+            } else if ($attribute.data('ruleHidden') === true) {
+                // This value was hidden by the rule and no longer is. Re-show it only if
+                // out-of-stock handling is not also hiding it, so we don't reveal a value the
+                // stock logic in updateProductAttributes() kept hidden.
+                $attribute.data('ruleHidden', false);
+                if (!this.isHiddenByStock(data, valueId)) {
+                    this.enableAttribute($attribute, 'hide_option', '');
+                }
+            }
+        });
+
+        this.reselectHiddenSelectedValues(hiddenSelectedAttributes, disabledValueIds, data);
+    }
+
+    /**
+     * Whether out-of-stock handling hides the given value. Only the `hide_option` behavior hides
+     * values; a value is hidden when it is absent from `in_stock_attributes`.
+     * @param  {Object} data Product attribute data
+     * @param  {number} valueId attribute value id
+     * @return {boolean}
+     */
+    isHiddenByStock(data, valueId) {
+        if (data.out_of_stock_behavior !== 'hide_option') {
+            return false;
+        }
+
+        const inStockIds = Array.isArray(data.in_stock_attributes) ? data.in_stock_attributes : [];
+
+        return !inStockIds.includes(valueId);
+    }
+
+    /**
+     * Resolve the radio input associated with a [data-product-attribute-value] label. Radio,
+     * rectangle and swatch options render the value as a <label for="..."> whose input is a
+     * sibling, so the input is looked up by the label's `for` attribute. Returns an empty set for
+     * options without a linked input (e.g. select <option>s, which handle reselection themselves).
+     * @param  {Object} $attribute jQuery wrapped [data-product-attribute-value] element
+     * @return {Object} jQuery wrapped input, empty when there is no linked input
+     */
+    getAttributeValueInput($attribute) {
+        const inputId = $attribute.attr('for');
+
+        return inputId ? $(`#${inputId}`, this.$scope) : $();
+    }
+
+    /**
+     * Whether the given option value is currently selected. Radio/rectangle/swatch values are
+     * `<label for="...">` linked to an input; select values are `<option>` elements.
+     * @param  {Object} $attribute jQuery wrapped [data-product-attribute-value] element
+     * @return {boolean}
+     */
+    isValueSelected($attribute) {
+        const $input = this.getAttributeValueInput($attribute);
+
+        if ($input.length) {
+            return $input.prop('checked') === true;
+        }
+
+        return $attribute.is('option') && $attribute.prop('selected') === true;
+    }
+
+    /**
+     * When a "disable and hide" rule hides the currently selected value of an option (typically
+     * because the product's default option values are themselves the forbidden combination), move
+     * that option back to its default value (when that default is still available) and fire a single
+     * change so the server recomputes the disabled values for the corrected selection. We only ever
+     * auto-select the option's default value — never a non-default one — so we don't silently pick a
+     * value the shopper didn't choose. If the default is itself unavailable (hidden/out of stock),
+     * the option is left with no selection and the shopper must choose.
+     * @param {Object[]} hiddenSelectedAttributes selected value labels that were just hidden
+     * @param {Set} disabledValueIds value ids hidden for the current selection
+     * @param {Object} data Product attribute data
+     */
+    reselectHiddenSelectedValues(hiddenSelectedAttributes, disabledValueIds, data) {
+        let $changeTrigger = null;
+
+        hiddenSelectedAttributes.forEach($hiddenAttribute => {
+            const $option = $hiddenAttribute.closest('[data-product-attribute]');
+            const isSelect = this.getAttributeType($hiddenAttribute) === 'set-select';
+            let $targetInput = null;
+            let $targetOption = null;
+
+            $('[data-product-attribute-value]', $option).each((i, attribute) => {
+                const $attribute = $(attribute);
+                const valueId = parseInt($attribute.data('productAttributeValue'), 10);
+
+                // Skip values the rule hides or that are out of stock, so we never move the
+                // selection onto a value that should not be selectable.
+                if (disabledValueIds.has(valueId) || this.isHiddenByStock(data, valueId)) {
+                    return true;
+                }
+
+                if (isSelect) {
+                    // Skip the empty/placeholder <option> so we land on a real value.
+                    if (($attribute.attr('value') ?? '') === '') {
+                        return true;
+                    }
+                    // Only snap to the option's default value, never a non-default one.
+                    if (!$attribute.is('[data-default]')) {
+                        return true;
+                    }
+                    $targetOption = $attribute;
+
+                    return false;
+                }
+
+                const $input = this.getAttributeValueInput($attribute);
+                // Only snap to the option's default value, never a non-default one.
+                if ($input.length && !$input.prop('disabled') && $input.is('[data-default]')) {
+                    $targetInput = $input;
+
+                    return false;
+                }
+
+                return true;
+            });
+
+            if (isSelect) {
+                const $select = $hiddenAttribute.closest('select');
+                if (!$targetOption) {
+                    // No default to move to; disableAttribute() already reset the select to its
+                    // placeholder. Still fire a change so the view re-syncs to the now-empty
+                    // selection (message/cart/price) for the corrected combination.
+                    $changeTrigger = $select;
+
+                    return;
+                }
+                // Point the select at its default value and fire change so the form refreshes.
+                $select.val($targetOption.attr('value'));
+                $changeTrigger = $select;
+
+                return;
+            }
+
+            // Always deselect the hidden value so a forbidden radio/swatch can't stay checked and be
+            // submitted (selects already reset to their placeholder when hidden).
+            const $hiddenInput = this.getAttributeValueInput($hiddenAttribute);
+            $hiddenInput.prop('checked', false).data('state', false);
+
+            if (!$targetInput) {
+                // No default to fall back to; the value is deselected. Fire a change so the view
+                // re-syncs to the now-empty selection instead of leaving a stale unavailable message
+                // for the broken combination (BCData carries no purchasing_message on load).
+                $changeTrigger = $hiddenInput;
+
+                return;
+            }
+
+            $targetInput.prop('checked', true).data('state', true);
+            $changeTrigger = $targetInput;
+        });
+
+        if ($changeTrigger) {
+            // Defer the change so it does not re-enter the in-flight optionChange callback that is
+            // still applying the pre-correction response. Firing it after the current call stack
+            // lets that pass finish, then this triggers a fresh fetch for the corrected selection.
+            setTimeout(() => $changeTrigger.trigger('change'), 0);
+        }
     }
 
     /**

@@ -155,8 +155,17 @@ $account-backorder-textColor: #757575;
 
 .account-product-backorder-prompts {
     color: $account-backorder-textColor;
-    font-size: fontSize("smaller");
+    font-size: fontSize("smallest");
     margin-bottom: 0;
+
+    + .definitionList {
+        margin-top: spacing("half");
+    }
+
+    + dt,
+    + dt + dd {
+        margin-top: spacing("half");
+    }
 }
 
 .account-order-backorder-expectation {

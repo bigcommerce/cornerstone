@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Draft
 - Validate picklist option `available_to_sell` on PDP so Add to Cart is disabled and a "maximum purchasable quantity for {picklist} is {qty}" error is shown when the requested quantity exceeds a selected picklist item's stock, even when the main product still has enough stock [#2684](https://github.com/bigcommerce/cornerstone/pull/2684)
+- Render backorder prompts for bundled picklist options on the account order details page, using `linked_bundled_item` data per option; move parent item backorder prompts above the options list; reduce backorder prompt font size and add spacing between prompts and adjacent option rows [#2687](https://github.com/bigcommerce/cornerstone/pull/2687)
 - Hide option values on the PDP that would complete a "disable and hide" rule for the current selection, and steer the shopper off a default selection that is itself a forbidden combination [#2678](https://github.com/bigcommerce/cornerstone/pull/2678)
 - Refine backorder layout and colors on the account order details page [#2677](https://github.com/bigcommerce/cornerstone/pull/2677)
 - Make the cart Shipping row label span the full width of the totals row so the shipping expectation prompt is no longer constrained to the narrow label column

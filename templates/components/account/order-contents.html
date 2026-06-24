@@ -54,11 +54,29 @@
                 {{#if brand}}
                     <h6>{{brand.name}}</h6>
                 {{/if}}
+                {{#if quantity_ready_to_ship}}
+                    <p class="account-product-backorder-prompts">{{lang 'products.quantity_on_hand' quantity=quantity_ready_to_ship}}</p>
+                {{/if}}
+                {{#if quantity_backordered}}
+                    <p class="account-product-backorder-prompts">{{lang 'products.quantity_backordered' quantity=quantity_backordered}}</p>
+                {{/if}}
+                {{#if backorder_message}}
+                    <p class="account-product-backorder-prompts">{{backorder_message}}</p>
+                {{/if}}
                 {{#if options}}
                 <dl class="definitionList">
                     {{#each options}}
                         <dt class="definitionList-key">{{name}}:</dt>
                         <dd class="definitionList-value">{{> components/common/product-options}}</dd>
+                        {{#if linked_bundled_item.quantity_ready_to_ship}}
+                            <dd class="definitionList-value account-product-backorder-prompts">{{lang 'products.quantity_on_hand' quantity=linked_bundled_item.quantity_ready_to_ship}}</dd>
+                        {{/if}}
+                        {{#if linked_bundled_item.quantity_backordered}}
+                            <dd class="definitionList-value account-product-backorder-prompts">{{lang 'products.quantity_backordered' quantity=linked_bundled_item.quantity_backordered}}</dd>
+                        {{/if}}
+                        {{#if linked_bundled_item.backorder_message}}
+                            <dd class="definitionList-value account-product-backorder-prompts">{{linked_bundled_item.backorder_message}}</dd>
+                        {{/if}}
                     {{/each}}
                 </dl>
                 {{/if}}
@@ -78,15 +96,6 @@
                             {{event_date.date}}
                         </dd>
                     </dl>
-                {{/if}}
-                {{#if quantity_backordered '>' 0}}
-                    {{#if (subtract quantity quantity_backordered) '>' 0}}
-                        <p class="account-product-backorder-prompts">{{lang 'products.quantity_on_hand' quantity=(subtract quantity quantity_backordered)}}</p>
-                    {{/if}}
-                    <p class="account-product-backorder-prompts">{{lang 'products.quantity_backordered' quantity=quantity_backordered}}</p>
-                    {{#if backorder_message}}
-                        <p class="account-product-backorder-prompts">{{backorder_message}}</p>
-                    {{/if}}
                 {{/if}}
                 {{#if refunded}}
                     <p class="account-product-refundQty">{{lang 'account.orders.refunded_quantity' qty=refunded_qty}}</p>

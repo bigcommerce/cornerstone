@@ -4,6 +4,7 @@ import Global from './theme/global';
 
 const getAccount = () => import('./theme/account');
 const getCreateReturn = () => import('./theme/create-return');
+const getReturnDetails = () => import('./theme/return-details');
 const getLogin = () => import('./theme/auth');
 const noop = null;
 
@@ -56,7 +57,11 @@ const pageClasses = {
     wishlists: () => import('./theme/wishlist'),
 };
 
-const customClasses = {};
+const customClasses = {
+    // Loads the return-details cancel handler alongside getAccount, keyed by template
+    // so it runs regardless of the page_type assigned to the return-details page.
+    'pages/account/return-details': getReturnDetails,
+};
 
 /**
  * This function gets added to the global window and then called

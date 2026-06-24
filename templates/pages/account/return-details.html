@@ -5,11 +5,17 @@
     storefront. Reached via /account.php?action=view_return&return_id={id}.
 --}}
 
+{{!-- Cancel action: token for the cancelReturn mutation + localized modal copy. --}}
+{{~inject 'storefrontApiToken' settings.storefront_api.token}}
+{{~inject 'returnCancelConfirmMessage' (lang 'account.returns.cancel_confirm_message')}}
+{{~inject 'returnCancelConfirmBody' (lang 'account.returns.cancel_confirm_body')}}
+
 {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
 {{> components/account/navigation account_page='returns'}}
 
 {{#if return_detail}}
-    <main class="returnDetails">
+    <main class="returnDetails" data-return-details>
+        <div class="returnDetails-error alertBox alertBox--error" data-return-error style="display: none;" role="alert"></div>
         <div class="returnDetails-layout">
 
             <section class="returnDetails-main">
@@ -80,6 +86,15 @@
                         <dd class="returnDetails-summaryLabel">{{lang 'account.returns.details.order_number' id=return_detail.orderId}}</dd>
                     </div>
                 </dl>
+
+                {{!-- Action section (e.g. Cancel return) — only shown for open returns. --}}
+                {{#if return_detail.status '===' 'OPEN'}}
+                    <div class="returnDetails-actions">
+                        <h2 class="returnDetails-sectionHeading">{{lang 'account.returns.actions_heading'}}</h2>
+                        <hr class="returnDetails-divider">
+                        <button type="button" class="button returnDetails-cancelBtn" data-return-cancel>{{lang 'account.returns.cancel_action'}}</button>
+                    </div>
+                {{/if}}
             </aside>
 
         </div>

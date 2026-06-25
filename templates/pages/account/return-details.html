@@ -30,27 +30,36 @@
                     {{#each return_detail.items}}
                         <li class="returnDetails-item">
                             <div class="returnDetails-itemThumbnailWrapper">
-                                {{!-- TODO(ORDERS-7890): return items have no thumbnail yet — using the store default image until real images are surfaced. --}}
-                                <img class="returnDetails-itemThumbnail"
-                                     src="{{cdn ../theme_settings.default_image_product}}"
-                                     alt="{{lineItemSnapshot.product.displayName}}">
+                                {{!-- TODO(ORDERS-7890): return items carry no image in the context yet, so
+                                      responsive-img falls back to the store default product image. Once an
+                                      `image` field is surfaced it will render automatically. --}}
+                                {{> components/common/responsive-img
+                                    image=image
+                                    default_image=../theme_settings.default_image_product
+                                    fallback_size=../theme_settings.productthumb_size
+                                    lazyload=../theme_settings.lazyload_mode
+                                    class="returnDetails-itemThumbnail"
+                                }}
                             </div>
                             <div class="returnDetails-itemInfo">
-                                <p class="returnDetails-itemName">{{lineItemSnapshot.product.displayName}}</p>
-                                <p class="returnDetails-itemPrice">{{pricing.discountedPrice.formattedV2}}</p>
+                                <p class="returnDetails-itemName">{{productName}}</p>
                             </div>
                             <dl class="returnDetails-itemMeta">
+                                <div class="returnDetails-itemMetaRow">
+                                    <dt class="returnDetails-itemMetaLabel">{{lang 'account.returns.details.sku'}}</dt>
+                                    <dd class="returnDetails-itemMetaValue">{{productSku}}</dd>
+                                </div>
                                 <div class="returnDetails-itemMetaRow">
                                     <dt class="returnDetails-itemMetaLabel">{{lang 'account.returns.details.quantity'}}</dt>
                                     <dd class="returnDetails-itemMetaValue">{{quantity}}</dd>
                                 </div>
                                 <div class="returnDetails-itemMetaRow">
-                                    <dt class="returnDetails-itemMetaLabel">{{lang 'account.returns.action'}}</dt>
-                                    <dd class="returnDetails-itemMetaValue">{{resolution.requested.label}}</dd>
+                                    <dt class="returnDetails-itemMetaLabel">{{lang 'account.returns.details.reason'}}</dt>
+                                    <dd class="returnDetails-itemMetaValue">{{reasonName}}</dd>
                                 </div>
                                 <div class="returnDetails-itemMetaRow">
-                                    <dt class="returnDetails-itemMetaLabel">{{lang 'account.returns.details.reason'}}</dt>
-                                    <dd class="returnDetails-itemMetaValue">{{reasonSnapshot.displayName}}</dd>
+                                    <dt class="returnDetails-itemMetaLabel">{{lang 'account.returns.details.item_status'}}</dt>
+                                    <dd class="returnDetails-itemMetaValue">{{status}}</dd>
                                 </div>
                             </dl>
                         </li>

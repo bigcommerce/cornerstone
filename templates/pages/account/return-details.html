@@ -1,48 +1,79 @@
 {{#partial "page"}}
 
 {{!--
-    Standalone return-details page. Not yet routed — a page type still needs to be
-    mapped to this template (and `getReturnDetails` wired up in assets/js/app.js)
-    before it's reachable. For now it exists to hold the correct layout.
-
-    The JS module at assets/js/theme/return-details.js owns the mock data
-    (shaped after the returns-ui Return/Item interfaces in
-    returns-ui/src/apps/ManageReturn/Page/index.tsx) and renders into the
-    [data-*] hooks below.
+    Return-details page. Renders the `return_detail` page context surfaced by the
+    storefront. Reached via /account.php?action=view_return&return_id={id}.
 --}}
-
-{{!-- Localized status labels for the JS status badge (mirrors the returns list). --}}
-{{~inject 'returnStatusOpen' (lang 'account.returns.status.open')}}
-{{~inject 'returnStatusInProgress' (lang 'account.returns.status.in_progress')}}
-{{~inject 'returnStatusClosed' (lang 'account.returns.status.closed')}}
-
-{{!-- Placeholder thumbnail for return items that have no image yet. --}}
-{{~inject 'defaultImageUrl' (cdn theme_settings.default_image_product)}}
 
 {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
 {{> components/account/navigation account_page='returns'}}
 
 {{#if return_detail}}
-    <main class="returnDetails" data-return-details="{{JSONstringify return_detail}}" data-order-details="{{JSONstringify order_detail}}">
+    <main class="returnDetails">
         <div class="returnDetails-layout">
 
             <section class="returnDetails-main">
                 <div class="returnDetails-titleGroup">
-                    <h1 class="returnDetails-title" data-return-title></h1>
-                    <span class="returnDetails-statusBadge" data-return-status></span>
+                    <h1 class="returnDetails-title">{{lang 'account.returns.details.return_number' id=return_detail.rma}}</h1>
+                    {{#if return_detail.status '===' 'OPEN'}}
+                        <span class="returnDetails-statusBadge returnDetails-statusBadge--open">{{lang 'account.returns.status.open'}}</span>
+                    {{else if return_detail.status '===' 'IN_PROGRESS'}}
+                        <span class="returnDetails-statusBadge returnDetails-statusBadge--in_progress">{{lang 'account.returns.status.in_progress'}}</span>
+                    {{else if return_detail.status '===' 'CLOSED'}}
+                        <span class="returnDetails-statusBadge returnDetails-statusBadge--closed">{{lang 'account.returns.status.closed'}}</span>
+                    {{/if}}
                 </div>
 
                 <hr class="returnDetails-divider">
 
-                <dl class="returnDetails-shipping" data-return-shipping></dl>
-
-                <ul class="returnDetails-itemList" data-return-items></ul>
+                <ul class="returnDetails-itemList">
+                    {{#each return_detail.items}}
+                        <li class="returnDetails-item">
+                            <div class="returnDetails-itemThumbnailWrapper">
+                                {{!-- TODO(ORDERS-XXXX): return items have no thumbnail yet — using the store default image until real images are surfaced. --}}
+                                <img class="returnDetails-itemThumbnail"
+                                     src="{{cdn ../theme_settings.default_image_product}}"
+                                     alt="{{lineItemSnapshot.product.displayName}}">
+                            </div>
+                            <div class="returnDetails-itemInfo">
+                                <p class="returnDetails-itemName">{{lineItemSnapshot.product.displayName}}</p>
+                                <p class="returnDetails-itemPrice">{{pricing.discountedPrice.formattedV2}}</p>
+                            </div>
+                            <dl class="returnDetails-itemMeta">
+                                <div class="returnDetails-itemMetaRow">
+                                    <dt class="returnDetails-itemMetaLabel">{{lang 'account.returns.details.quantity'}}</dt>
+                                    <dd class="returnDetails-itemMetaValue">{{quantity}}</dd>
+                                </div>
+                                <div class="returnDetails-itemMetaRow">
+                                    <dt class="returnDetails-itemMetaLabel">{{lang 'account.returns.action'}}</dt>
+                                    <dd class="returnDetails-itemMetaValue">{{resolution.requested.label}}</dd>
+                                </div>
+                                <div class="returnDetails-itemMetaRow">
+                                    <dt class="returnDetails-itemMetaLabel">{{lang 'account.returns.details.reason'}}</dt>
+                                    <dd class="returnDetails-itemMetaValue">{{reasonSnapshot.displayName}}</dd>
+                                </div>
+                            </dl>
+                        </li>
+                    {{/each}}
+                </ul>
             </section>
 
             <aside class="returnDetails-sidebar">
                 <h2 class="returnDetails-sectionHeading">{{lang 'account.returns.summary'}}</h2>
                 <hr class="returnDetails-divider">
-                <dl class="returnDetails-summaryList" data-return-summary></dl>
+                <dl class="returnDetails-summaryList">
+                    <div class="returnDetails-summaryRow">
+                        <dt class="returnDetails-summaryLabel">{{lang 'account.returns.details.date_submitted'}}</dt>
+                        <dd class="returnDetails-summaryValue">{{moment return_detail.dateSubmitted format="Do MMM YYYY"}}</dd>
+                    </div>
+                    <div class="returnDetails-summaryRow">
+                        <dt class="returnDetails-summaryLabel">{{lang 'account.returns.details.last_update'}}</dt>
+                        <dd class="returnDetails-summaryValue">{{#if return_detail.lastUpdated}}{{moment return_detail.lastUpdated format="Do MMM YYYY"}}{{else}}{{moment return_detail.dateSubmitted format="Do MMM YYYY"}}{{/if}}</dd>
+                    </div>
+                    <div class="returnDetails-summaryRow">
+                        <dt class="returnDetails-summaryLabel">{{lang 'account.returns.details.order_number' id=return_detail.orderId}}</dt>
+                    </div>
+                </dl>
             </aside>
 
         </div>

@@ -39,7 +39,9 @@ export default class CreateReturn extends PageManager {
             this.isSubmitting = true;
 
             const submitBtn = document.getElementById('return-new-submitBtn');
+            const overlay = document.querySelector('[data-new-return-view] .loadingOverlay');
             if (submitBtn) submitBtn.disabled = true;
+            if (overlay) overlay.style.display = 'block';
             this.clearError();
 
             try {
@@ -57,6 +59,7 @@ export default class CreateReturn extends PageManager {
             } finally {
                 this.isSubmitting = false;
                 if (submitBtn) submitBtn.disabled = false;
+                if (overlay) overlay.style.display = '';
             }
         });
     }

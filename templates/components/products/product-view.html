@@ -126,6 +126,12 @@
                 {{/or}}
             </div>
             {{{region name="product_below_price"}}}
+            {{#if theme_settings.show_featured_promotions}}
+                {{> components/products/promotion-callout
+                    promotions=product.featured_promotions
+                    mode="full"
+                }}
+            {{/if}}
             <div class="productView-rating">
                 {{#if settings.show_product_rating}}
                     {{> components/products/ratings rating=product.rating}}

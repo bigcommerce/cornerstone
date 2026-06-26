@@ -134,5 +134,12 @@
         </div>
         {{{region name="product_item_below_price"}}}
         {{> components/products/bulk-discount-rates}}
+        {{#if theme_settings.show_featured_promotions}}
+            {{> components/products/promotion-callout
+                promotions=featured_promotions
+                mode="compact"
+                productUrl=url
+            }}
+        {{/if}}
     </div>
 </article>

@@ -440,6 +440,14 @@ $card-preview-zoom-bottom-offset:       6rem;
     }
 }
 
+// Shipping expectation prompt sits on its own full-width row below Shipping
+// in both the legacy and multi-coupon (enhanced) cart layouts.
+.cart-shipping-expectation-message {
+    clear: both;
+    width: 100%;
+    margin: 0;
+}
+
 .cart-total-grandTotal {
     font-family: fontFamily("headingSans");
     font-size: fontSize("small");
@@ -528,12 +536,6 @@ $card-preview-zoom-bottom-offset:       6rem;
                 }
             }
         }
-    }
-
-    .cart-shipping-expectation-message {
-        clear: both;
-        width: 100%;
-        margin: 0;
     }
 
     .cart-total-shipping-estimator {

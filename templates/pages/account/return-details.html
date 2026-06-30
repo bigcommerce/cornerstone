@@ -35,9 +35,9 @@
                                       `image` field is surfaced it will render automatically. --}}
                                 {{> components/common/responsive-img
                                     image=image
-                                    default_image=../theme_settings.default_image_product
-                                    fallback_size=../theme_settings.productthumb_size
-                                    lazyload=../theme_settings.lazyload_mode
+                                    default_image=../../theme_settings.default_image_product
+                                    fallback_size=../../theme_settings.productthumb_size
+                                    lazyload=../../theme_settings.lazyload_mode
                                     class="returnDetails-itemThumbnail"
                                 }}
                             </div>
@@ -76,7 +76,7 @@
                         <dd class="returnDetails-summaryValue">{{#if return_detail.lastUpdated}}{{moment return_detail.lastUpdated format="Do MMM YYYY"}}{{else}}{{moment return_detail.dateSubmitted format="Do MMM YYYY"}}{{/if}}</dd>
                     </div>
                     <div class="returnDetails-summaryRow">
-                        <dt class="returnDetails-sr-only">Order#</dt>
+                        <dt class="returnDetails-sr-only">{{lang 'account.returns.details.order_number_label'}}</dt>
                         <dd class="returnDetails-summaryLabel">{{lang 'account.returns.details.order_number' id=return_detail.orderId}}</dd>
                     </div>
                 </dl>

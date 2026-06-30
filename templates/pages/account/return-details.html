@@ -57,19 +57,6 @@
                                     <dt class="returnDetails-itemMetaLabel">{{lang 'account.returns.details.reason'}}</dt>
                                     <dd class="returnDetails-itemMetaValue">{{reasonName}}</dd>
                                 </div>
-                                <div class="returnDetails-itemMetaRow">
-                                    <dt class="returnDetails-itemMetaLabel">{{lang 'account.returns.details.item_status'}}</dt>
-                                    <dd class="returnDetails-itemMetaValue">
-                                        {{~#if status '===' 'PENDING'}}{{lang 'account.returns.status.pending'}}
-                                        {{~else if status '===' 'RECEIVED'}}{{lang 'account.returns.status.received'}}
-                                        {{~else if status '===' 'AUTHORIZED'}}{{lang 'account.returns.status.authorized'}}
-                                        {{~else if status '===' 'REPAIRED'}}{{lang 'account.returns.status.repaired'}}
-                                        {{~else if status '===' 'REFUNDED'}}{{lang 'account.returns.status.refunded'}}
-                                        {{~else if status '===' 'REJECTED'}}{{lang 'account.returns.status.rejected'}}
-                                        {{~else if status '===' 'CANCELLED'}}{{lang 'account.returns.status.cancelled'}}
-                                        {{~else}}{{status}}{{~/if~}}
-                                    </dd>
-                                </div>
                             </dl>
                         </li>
                     {{/each}}
@@ -89,7 +76,7 @@
                         <dd class="returnDetails-summaryValue">{{#if return_detail.lastUpdated}}{{moment return_detail.lastUpdated format="Do MMM YYYY"}}{{else}}{{moment return_detail.dateSubmitted format="Do MMM YYYY"}}{{/if}}</dd>
                     </div>
                     <div class="returnDetails-summaryRow">
-                        <dt class="returnDetails-sr-only">Order Id</dt>
+                        <dt class="returnDetails-sr-only">Order#</dt>
                         <dd class="returnDetails-summaryLabel">{{lang 'account.returns.details.order_number' id=return_detail.orderId}}</dd>
                     </div>
                 </dl>

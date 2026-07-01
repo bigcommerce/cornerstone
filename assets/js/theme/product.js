@@ -8,6 +8,7 @@ import ProductDetails from './common/product-details';
 import videoGallery from './product/video-gallery';
 import { classifyForm } from './common/utils/form-utils';
 import modalFactory from './global/modal';
+import applyRecommendations from './product/recommendations/recommendations';
 
 export default class Product extends PageManager {
     constructor(context) {
@@ -16,6 +17,7 @@ export default class Product extends PageManager {
         this.$reviewLink = $('[data-reveal-id="modal-review-form"]');
         this.$bulkPricingLink = $('[data-reveal-id="modal-bulk-pricing"]');
         this.reviewModal = modalFactory('#modal-review-form')[0];
+        this.$relatedProductsTabContent = $('#tab-related');
     }
 
     onReady() {
@@ -59,6 +61,16 @@ export default class Product extends PageManager {
         });
 
         this.productReviewHandler();
+
+        // Start product recommendations flow
+        applyRecommendations(
+            this.$relatedProductsTabContent,
+            {
+                productId: this.context.productId,
+                themeSettings: this.context.themeSettings,
+                storefrontAPIToken: this.context.settings.storefront_api.token,
+            },
+        );
     }
 
     ariaDescribeReviewInputs($form) {

@@ -5,7 +5,7 @@
     <li class="account-listItem">
         <div class="account-listItem-summary">
             <div class="account-listItem-summary-main">
-                <h5 class="account-product-title">{{lang 'account.returns.list.return_number' id=rma}}</h5>
+                <h5 class="account-returnsList-title">{{lang 'account.returns.list.return_number' id=rma}}</h5>
                 {{#if status '===' 'OPEN'}}
                     <h6 class="account-orderStatus-label account-orderStatus-label--open">{{lang 'account.returns.status.open'}}</h6>
                 {{else if status '===' 'IN_PROGRESS'}}
@@ -17,17 +17,17 @@
             <a class="button button--small" href="/account.php?action=view_return&return_id={{id}}">{{lang 'account.returns.list.view_details'}}</a>
         </div>
 
-        <div class="account-product-details">
-            <div class="account-product-detail">
-                <h6 class="account-product-detail-heading">{{lang 'account.returns.list.return_submitted' }}</h6>
+        <div class="account-returnsList-details">
+            <div class="account-returnsList-detail">
+                <h6 class="account-returnsList-detail-heading">{{lang 'account.returns.list.return_submitted' }}</h6>
                 <span>{{moment dateSubmitted format="Do MMM YYYY"}}</span>
             </div>
-            <div class="account-product-detail">
-                <h6 class="account-product-detail-heading">{{lang 'account.returns.list.last_update' }}</h6>
+            <div class="account-returnsList-detail">
+                <h6 class="account-returnsList-detail-heading">{{lang 'account.returns.list.last_update' }}</h6>
                 <span>{{#if lastUpdated}}{{moment lastUpdated format="Do MMM YYYY"}}{{else}}{{moment dateSubmitted format="Do MMM YYYY"}}{{/if}}</span>
             </div>
-            <div class="account-product-detail">
-                <h6 class="account-product-detail-heading">{{lang 'account.returns.list.return_items' }}</h6>
+            <div class="account-returnsList-detail">
+                <h6 class="account-returnsList-detail-heading">{{lang 'account.returns.list.return_items' }}</h6>
                 <span>{{items.length}}</span>
             </div>
         </div>

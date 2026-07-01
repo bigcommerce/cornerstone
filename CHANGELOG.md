@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Draft
+- Add return details page (ORDERS-7751)
+- Add new create-return page [#2669](https://github.com/bigcommerce/cornerstone/pull/2669) 
 - Validate picklist option `available_to_sell` on PDP so Add to Cart is disabled and a "maximum purchasable quantity for {picklist} is {qty}" error is shown when the requested quantity exceeds a selected picklist item's stock, even when the main product still has enough stock [#2684](https://github.com/bigcommerce/cornerstone/pull/2684)
 - Render backorder prompts for bundled picklist options on the account order details page, using `linked_bundled_item` data per option; move parent item backorder prompts above the options list; reduce backorder prompt font size and add spacing between prompts and adjacent option rows [#2687](https://github.com/bigcommerce/cornerstone/pull/2687)
 - Hide option values on the PDP that would complete a "disable and hide" rule for the current selection, and steer the shopper off a default selection that is itself a forbidden combination [#2678](https://github.com/bigcommerce/cornerstone/pull/2678)
@@ -18,11 +20,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fix duplicate `id="default_instrument"` on Update Payment Method page [#2661](https://github.com/bigcommerce/cornerstone/pull/2661)
 - Respect `available_to_sell` on PDP so the Sold Out alert is hidden and the Add to Cart button stays enabled for backorderable products, and is disabled when quantity exceeds `available_to_sell` [#2659](https://github.com/bigcommerce/cornerstone/pull/2659)
 - Updated accessibility features [2656](https://github.com/bigcommerce/cornerstone/pull/2656)
+- Adds new guest-return-portal page. [2645](https://github.com/bigcommerce/cornerstone/pull/2645)
 - Update 'Ship to' copy for multi address orders [#2655](https://github.com/bigcommerce/cornerstone/pull/2655)
 - Fixed typo in category page reset-filters live region handler [#2643](https://github.com/bigcommerce/cornerstone/pull/2643)
 - Swap content/data keys in onProductOptionsChanged event detail [#2640](https://github.com/bigcommerce/cornerstone/pull/2640)
+- Gate Order Details "Return" button on `settings.returns_v2_enabled` with `settings.returns_enabled` fallback (ORDERS-7705)
 - Fix shipment info showing for cancelled orders [#2654](https://github.com/bigcommerce/cornerstone/pull/2654)
 - Render backorder prompts on My Account "Your orders" page [#2650](https://github.com/bigcommerce/cornerstone/pull/2650)
+- Gate account orders list "Return Items" link on returns settings (ORDERS-7704) [#2653](https://github.com/bigcommerce/cornerstone/pull/2653)
+- Added new Return list view (ORDERS-7717) [#2664] (https://github.com/bigcommerce/cornerstone/pull/2664) 
 
 ## 6.19.1 (04-09-2026)
 - Update stencil-utils versionto 6.23.0 [#2638](https://github.com/bigcommerce/cornerstone/pull/2638)

@@ -1,0 +1,138 @@
+{{#partial "page"}}
+
+{{~inject 'order' order}}
+{{~inject 'storefrontApiToken' settings.storefront_api.token}}
+<main class="newReturn">
+
+    {{#with order}}
+
+    <div data-new-return-view>
+        <div class="loadingOverlay"></div>
+
+    <div class="newReturn-header">
+        <div class="newReturn-titleGroup">
+            <h1 class="newReturn-title">{{lang 'account.returns.from_order' id=id}}</h1>
+            {{#if status}}<span class="newReturn-statusBadge">{{status}}</span>{{/if}}
+        </div>
+        <div class="newReturn-headerActions">
+            <a href="{{../urls.account.orders.all}}" class="button">{{lang 'account.returns.back'}}</a>
+            <a href="/return-policy" class="button button--primary">{{lang 'account.returns.view_return_policy'}} &rarr;</a>
+        </div>
+        {{#if date}}<p class="newReturn-orderDate">{{lang 'account.returns.order_date'}}: {{date}}</p>{{/if}}
+    </div>
+
+    <hr class="newReturn-divider">
+
+    <div id="return-new-error" class="alertBox alertBox--error newReturn-error" style="display: none;" role="alert">
+        <p class="newReturn-errorHeading">{{lang 'account.returns.error_heading'}}</p>
+        <p class="alertBox-message" data-return-error-message></p>
+    </div>
+
+    <form class="form" data-new-return-form data-success-url="{{../urls.account.orders.all}}">
+
+        <div class="newReturn-columnHeaders" aria-hidden="true">
+            <div class="newReturn-columnHeaders-spacer"></div>
+            <span class="newReturn-columnHeaders-item">{{lang 'account.orders.return.order_item'}}</span>
+            <div class="newReturn-columnHeaders-controls">
+                <span class="newReturn-columnHeaders-quantity">{{lang 'account.orders.return.quantity'}}</span>
+                <span class="newReturn-columnHeaders-request">{{lang 'account.returns.request'}}</span>
+                <span class="newReturn-columnHeaders-reason">{{lang 'account.returns.reason_header'}}</span>
+            </div>
+        </div>
+
+        {{#each items}}
+            <div class="newReturn-orderLineItem" data-item-id="{{id}}">
+
+                <div class="newReturn-orderLineItemThumbnailWrapper">
+                    {{> components/common/responsive-img
+                        image=image
+                        class="newReturn-orderLineItemThumbnail"
+                        fallback_size=../../theme_settings.productthumb_size
+                        lazyload=../../theme_settings.lazyload_mode
+                        default_image=../../theme_settings.default_image_product
+                    }}
+                </div>
+
+                <div class="newReturn-orderLineItemInfo">
+                    <p class="newReturn-orderLineItemName">{{name}}</p>
+                    {{#if productAttributesList}}
+                        <p class="newReturn-orderLineItemVariant">
+                            {{#each productAttributesList}}{{name}}: {{value}}{{#unless @last}} &middot; {{/unless}}{{/each}}
+                        </p>
+                    {{/if}}
+                    <p class="newReturn-orderLineItemPrice">
+                        {{lang 'account.returns.qty'}} {{quantity}} &nbsp; {{lang 'account.returns.total_price'}} {{price.formatted}}
+                    </p>
+                </div>
+
+                <div class="newReturn-orderLineItemControls">
+                    <label class="newReturn-controlLabel" for="qty-{{id}}">{{lang 'account.orders.return.quantity'}}</label>
+                    <div class="newReturn-orderLineItemQtyWrapper">
+                        <select class="form-select form-select--small form-select--short"
+                                id="qty-{{id}}"
+                                aria-label="{{lang 'account.orders.return.quantity'}}">
+                            {{#for 0 returnableQuantity}}
+                                <option value="{{$index}}">{{$index}}</option>
+                            {{/for}}
+                        </select>
+                        <span class="newReturn-orderLineItemMaxQty">{{lang 'account.orders.return.of_max' max=returnableQuantity}}</span>
+                    </div>
+                    <label class="newReturn-controlLabel" for="resolution-{{id}}">{{lang 'account.returns.request'}}</label>
+                    <select class="form-select form-select--small" id="resolution-{{id}}" aria-label="{{lang 'account.returns.select_resolution'}}">
+                        <option value="">{{lang 'account.returns.select_resolution'}}</option>
+                        {{#each ../../resolutions}}
+                            <option value="{{resolutionType}}">{{label}}</option>
+                        {{/each}}
+                    </select>
+                    <label class="newReturn-controlLabel" for="reason-{{id}}">{{lang 'account.returns.reason_header'}}</label>
+                    <select class="form-select form-select--small" id="reason-{{id}}" aria-label="{{lang 'account.returns.select_reason'}}">
+                        <option value="">{{lang 'account.returns.select_reason'}}</option>
+                        {{#each ../../reasons}}
+                            <option value="{{id}}">{{nameForShopper}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+            </div>
+        {{/each}}
+
+        <hr class="newReturn-divider">
+
+        <div class="newReturn-footer">
+            <div class="form-field">
+                <label for="newReturn-additionalNote" class="form-label">
+                    {{lang 'account.returns.additional_note'}}
+                </label>
+                <textarea class="form-input"
+                          id="newReturn-additionalNote"
+                          name="additional_note"
+                          rows="4"
+                          data-new-return-note
+                          placeholder="{{lang 'account.returns.additional_note_placeholder'}}"></textarea>
+            </div>
+
+            <div class="form-actions">
+                <input class="button button--primary"
+                       id="return-new-submitBtn"
+                       type="submit"
+                       value="{{lang 'account.returns.submit'}}"
+                       disabled>
+            </div>
+        </div>
+
+    </form>
+
+    </div>
+
+    <div class="newReturn-confirmation" data-new-return-confirmation style="display: none;">
+        <h1 class="newReturn-title">{{lang 'account.returns.from_order' id=id}} {{lang 'account.returns.submitted_successfully'}}</h1>
+        <p class="newReturn-confirmationMessage">{{lang 'account.returns.confirmation_message_primary'}}</p>
+        <p class="newReturn-confirmationMessage">{{lang 'account.returns.confirmation_message_secondary'}}</p>
+        <a href="{{../urls.account.orders.all}}" class="button button--primary">{{lang 'account.returns.take_me_back'}}</a>
+    </div>
+
+    {{/with}}
+
+</main>
+
+{{/partial}}
+{{> layout/base}}

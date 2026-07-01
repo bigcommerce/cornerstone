@@ -1,0 +1,336 @@
+// =============================================================================
+// CREATE RETURN PAGE (.newReturn)
+// =============================================================================
+
+.newReturn {
+    color: color("link");
+    max-width: remCalc(1100px);
+    margin: 0 auto;
+    padding: 0 spacing("single") spacing("double");
+}
+
+.newReturn-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: spacing("quarter");
+    margin-bottom: spacing("eighth");
+}
+
+.newReturn-error {
+    margin-bottom: spacing("single");
+    padding: spacing("half") spacing("single");
+    border-radius: remCalc(4px);
+    background-color: color("error", "light");
+    color: color("error");
+}
+
+.newReturn-errorHeading {
+    font-weight: fontWeight("semibold");
+    margin: 0 0 spacing("eighth");
+}
+
+.newReturn-error .alertBox-message {
+    margin: 0;
+    color: color("error");
+}
+
+.newReturn-confirmation {
+    padding: spacing("single") 0;
+}
+
+.newReturn-confirmationMessage {
+    font-size: remCalc(15px);
+    color: color("greys", "base");
+    margin: spacing("eighth") 0 0;
+
+    &:first-of-type {
+        margin-top: spacing("half");
+    }
+
+    & + .button {
+        margin-top: spacing("single");
+    }
+}
+
+.newReturn-titleGroup {
+    display: flex;
+    align-items: center;
+    gap: spacing("half");
+}
+
+.newReturn-title {
+    font-size: remCalc(22px); // mobile: 6px smaller than the desktop/tablet size
+    font-weight: fontWeight("bold");
+    margin: 0;
+
+    @include breakpoint("medium") {
+        font-size: remCalc(28px);
+    }
+}
+
+.newReturn-statusBadge {
+    display: inline-block;
+    padding: spacing("eighth") spacing("half");
+    border-radius: remCalc(12px);
+    background-color: color("success", "light");
+    font-size: remCalc(11px);
+    font-weight: fontWeight("bold");
+    letter-spacing: remCalc(1px);
+    color: stencilColor("color-textBase");
+    text-transform: uppercase;
+}
+
+.newReturn-headerActions {
+    display: flex;
+    align-items: center;
+    gap: spacing("half");
+    order: 2; // mobile: sits after the order date
+
+    @include breakpoint("medium") {
+        order: 0; // tablet/desktop: back to its natural position (above the order date)
+    }
+}
+
+.newReturn-headerActions .button {
+    font-size: fontSize("smallest");
+    padding: spacing("quarter") spacing("half");
+    margin: 0;
+}
+
+.newReturn-orderDate {
+    flex-basis: 100%; // always on its own line within the header
+    order: 1; // mobile: above the action buttons
+    font-size: remCalc(13px);
+    color: color("greys", "base");
+    margin: spacing("eighth") 0 spacing("single") * 0.83;
+
+    @include breakpoint("medium") {
+        order: 0; // tablet/desktop: below the buttons (natural DOM order)
+    }
+}
+
+.newReturn-divider {
+    border: 0;
+    border-top: container("border");
+    margin: spacing("single") 0;
+}
+
+
+// Shared widths — keep the desktop header labels and control cells in sync.
+$newReturn-col-qty:             remCalc(120px); // desktop quantity column (select + "of N")
+$newReturn-col-select:          remCalc(240px); // desktop resolution/reason columns — fits the placeholder text
+$newReturn-qty-width:           remCalc(80px);  // quantity <select> width — consistent across all breakpoints
+$newReturn-col-controls-tablet: remCalc(320px); // tablet controls column — wide enough for the placeholder text
+
+
+.newReturn-orderLineItem {
+    display: flex;
+    flex-wrap: wrap; // mobile: thumbnail + info on top, controls wrap to a full-width row below
+    align-items: flex-start;
+    gap: remCalc(16px);
+    padding: remCalc(16px) 0;
+
+    @include breakpoint("medium") {
+        flex-wrap: nowrap; // tablet: controls sit beside the info as a stacked column
+    }
+    // Stays top-aligned across breakpoints so the controls don't drift to the middle
+    // when an item has several variant/option lines.
+}
+
+.newReturn-orderLineItemThumbnailWrapper {
+    flex-shrink: 0;
+    line-height: 0; // collapse inline whitespace around the img
+    
+    img {
+        border: remCalc(1px) solid color("greys", "lightest");
+    }
+}
+
+.newReturn-orderLineItemThumbnail {
+    width: remCalc(72px);
+    height: remCalc(72px);
+    object-fit: cover;
+    border-radius: remCalc(6px);
+    flex-shrink: 0;
+    background: color("greys", "lighter");
+}
+
+.newReturn-orderLineItemInfo {
+    flex: 1;
+    min-width: 0;
+}
+
+.newReturn-orderLineItemName {
+    font-size: remCalc(15px);
+    font-weight: fontWeight("semibold");
+    margin: 0 0 remCalc(2px);
+}
+
+.newReturn-orderLineItemVariant {
+    font-size: remCalc(13px);
+    color: color("greys", "base");
+    margin: 0 0 remCalc(2px);
+}
+
+.newReturn-orderLineItemPrice {
+    font-size: remCalc(13px);
+    color: color("greys", "base");
+    margin: 0;
+}
+
+.newReturn-orderLineItemControls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: spacing("quarter");
+    flex-basis: 100%;
+    width: 100%;
+
+    // tablet view
+    @include breakpoint("medium") {
+        flex-wrap: nowrap;
+        flex-direction: column;
+        align-items: stretch;
+        flex-basis: auto;
+        flex-shrink: 0;
+        width: $newReturn-col-controls-tablet;
+        padding-left: spacing("half");
+    }
+
+    // desktop view
+    @include breakpoint("large") {
+        flex-direction: row;
+        align-items: center;
+        gap: spacing("half");
+        width: auto;
+        padding-left: 0;
+    }
+}
+
+.newReturn-columnHeaders {
+    display: none;
+
+    @include breakpoint("large") {
+        display: flex;
+        align-items: center;
+        gap: remCalc(16px);
+        padding-bottom: remCalc(16px);
+        font-size: remCalc(12px);
+        font-weight: fontWeight("semibold");
+        color: color("greys", "base");
+        letter-spacing: remCalc(0.5px);
+    }
+}
+
+// "Item" aligns with the thumbnail left edge, not the item name.
+.newReturn-columnHeaders-spacer {
+    display: none;
+}
+
+.newReturn-columnHeaders-item {
+    flex: 1;
+    min-width: 0;
+}
+
+.newReturn-columnHeaders-controls {
+    display: flex;
+    align-items: center;
+    gap: spacing("half");
+}
+
+.newReturn-columnHeaders-quantity {
+    width: $newReturn-col-qty;
+    flex-shrink: 0;
+}
+
+.newReturn-columnHeaders-request,
+.newReturn-columnHeaders-reason {
+    width: $newReturn-col-select;
+    flex-shrink: 0;
+}
+
+.newReturn-controlLabel {
+    display: none;
+
+    @include breakpoint("medium") {
+        display: block;
+        font-size: remCalc(12px);
+        font-weight: fontWeight("semibold");
+        color: color("greys", "base");
+        letter-spacing: remCalc(0.5px);
+        margin-bottom: remCalc(-4px);
+    }
+
+    @include breakpoint("large") {
+        display: none;
+    }
+}
+
+.newReturn-orderLineItemQtyWrapper {
+    display: flex;
+    align-items: center;
+    gap: spacing("quarter");
+    flex-shrink: 0;
+
+    @include breakpoint("large") {
+        width: $newReturn-col-qty;
+    }
+}
+
+.newReturn-orderLineItemMaxQty {
+    font-size: remCalc(13px);
+    color: color("greys", "base");
+    white-space: nowrap;
+}
+
+.newReturn-orderLineItemControls [id^="qty-"] {
+    width: $newReturn-qty-width;
+    flex-shrink: 0;
+}
+
+.newReturn-orderLineItemControls [id^="resolution-"] {
+    flex: 1 1 auto; // mobile: fill the rest of the first card row beside quantity
+    width: auto;
+    max-width: none;
+    min-width: 0;
+
+    @include breakpoint("medium") {
+        flex: 0 0 auto; // tablet: full-width within the stacked column
+        width: 100%;
+    }
+
+    @include breakpoint("large") {
+        width: $newReturn-col-select;
+    }
+}
+
+.newReturn-orderLineItemControls [id^="reason-"] {
+    flex-basis: 100%; // mobile: wraps onto its own full-width row below qty + resolution
+    width: 100%;
+    max-width: none;
+
+    @include breakpoint("medium") {
+        flex-basis: auto;
+        width: 100%;
+    }
+
+    @include breakpoint("large") {
+        flex: 0 0 auto;
+        width: $newReturn-col-select;
+    }
+}
+
+.newReturn-footer {
+    margin-top: spacing("single");
+
+    @include breakpoint("medium") {
+        width: 50%;
+        margin-left: auto;
+    }
+
+    .form-actions {
+        text-align: right;
+    }
+}

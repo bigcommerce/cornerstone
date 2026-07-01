@@ -540,15 +540,20 @@ $account-backorder-textColor: #757575;
 
 .account-returnsList-details {
     display: flex;
-    flex-direction: row;
-    gap: spacing("double")
+    flex-direction: column;
+    
+    @include breakpoint("medium") {
+        flex-direction: row;
+        gap: spacing("double");
+
+    }
 }
 
 .account-returnsList-detail {
     + .account-returnsList-detail {
         margin-top: spacing("base");
 
-        @include breakpoint("small") {
+        @include breakpoint("medium") {
             margin-top: 0;
         }
     }

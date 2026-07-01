@@ -1,8 +1,12 @@
-import PageManager from './page-manager';
+import Account from './account';
 import { showAlertModal } from './global/modal';
 
-export default class ReturnDetails extends PageManager {
+export default class ReturnDetails extends Account {
     onReady() {
+        // Run the shared account-page behavior (this page is mapped to this module
+        // instead of Account in app.js).
+        super.onReady();
+
         this.root = document.querySelector('[data-return-details]');
         if (!this.root) return;
 
@@ -10,9 +14,12 @@ export default class ReturnDetails extends PageManager {
         const cancelBtn = this.root.querySelector('[data-return-cancel]');
         if (!cancelBtn) return;
 
-        // The return's entity ID is the `return_id` query param the page is reached with
-        // (/account.php?action=view_return&return_id={id}).
+        // The return's ID is the `return_id` query param the page is reached with
+        // (/account.php?action=view_return&return_id={id}). It's a UUID string.
         this.returnId = new URLSearchParams(window.location.search).get('return_id');
+
+        // Without a return ID the cancel mutation can't run, so leave the button inert.
+        if (!this.returnId) return;
 
         cancelBtn.addEventListener('click', () => this.openCancelModal(cancelBtn));
     }
@@ -35,17 +42,18 @@ export default class ReturnDetails extends PageManager {
         if (this.isCancelling) return;
         this.isCancelling = true;
 
-        this.clearError();
         const cancelBtn = this.root.querySelector('[data-return-cancel]');
+        const overlay = this.root.querySelector('.loadingOverlay');
         if (cancelBtn) cancelBtn.disabled = true;
+        if (overlay) overlay.style.display = 'block';
+        this.clearError();
 
         try {
             const response = await this.cancelReturn(this.returnId);
-            const errorMessages = this.getCancelErrorMessages(response);
+            const errorMessages = this.getErrorMessages(response);
 
-            if (errorMessages.length) {
+            if (errorMessages.length > 0) {
                 this.showError(errorMessages.join(' '));
-                if (cancelBtn) cancelBtn.disabled = false;
                 return;
             }
 
@@ -53,23 +61,29 @@ export default class ReturnDetails extends PageManager {
             window.location.reload();
         } catch (error) {
             this.showError(this.context.genericError);
-            if (cancelBtn) cancelBtn.disabled = false;
         } finally {
             this.isCancelling = false;
+            if (cancelBtn) cancelBtn.disabled = false;
+            if (overlay) overlay.style.display = '';
         }
     }
 
     showError(message) {
-        const errorBox = this.root.querySelector('[data-return-error]');
+        const errorBox = document.getElementById('return-cancel-error');
         if (!errorBox) return;
 
-        errorBox.textContent = message || '';
+        const messageEl = errorBox.querySelector('[data-return-error-message]');
+        if (messageEl) messageEl.textContent = message || '';
         errorBox.style.display = '';
     }
 
     clearError() {
-        const errorBox = this.root.querySelector('[data-return-error]');
-        if (errorBox) errorBox.style.display = 'none';
+        const errorBox = document.getElementById('return-cancel-error');
+        if (!errorBox) return;
+
+        const messageEl = errorBox.querySelector('[data-return-error-message]');
+        if (messageEl) messageEl.textContent = '';
+        errorBox.style.display = 'none';
     }
 
     // Storefront GraphQL `cancelReturn` mutation. The token is injected into the
@@ -103,7 +117,7 @@ export default class ReturnDetails extends PageManager {
         }).then(response => response.json());
     }
 
-    getCancelErrorMessages(response) {
+    getErrorMessages(response) {
         const transportErrors = Array.isArray(response?.errors) ? response.errors : [];
         const cancelErrors = Array.isArray(response?.data?.order?.return?.cancelReturn?.errors)
             ? response.data.order.return.cancelReturn.errors

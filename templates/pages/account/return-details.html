@@ -15,7 +15,13 @@
 
 {{#if return_detail}}
     <main class="returnDetails" data-return-details>
-        <div class="returnDetails-error alertBox alertBox--error" data-return-error style="display: none;" role="alert"></div>
+        <div class="loadingOverlay"></div>
+
+        <div id="return-cancel-error" class="alertBox alertBox--error returnDetails-error" style="display: none;" role="alert">
+            <p class="returnDetails-errorHeading">{{lang 'account.returns.cancel_error_heading'}}</p>
+            <p class="alertBox-message" data-return-error-message></p>
+        </div>
+
         <div class="returnDetails-layout">
 
             <section class="returnDetails-main">

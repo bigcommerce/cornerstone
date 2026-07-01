@@ -22,8 +22,8 @@ const pageClasses = {
     account_inbox: getAccount,
     account_saved_return: getAccount,
     account_returns: getAccount,
-    account_return_detail: getAccount,
-    return_detail: getAccount,
+    account_return_detail: getReturnDetails,
+    return_detail: getReturnDetails,
     account_paymentmethods: getAccount,
     account_addpaymentmethod: getAccount,
     account_editpaymentmethod: getAccount,
@@ -57,11 +57,7 @@ const pageClasses = {
     wishlists: () => import('./theme/wishlist'),
 };
 
-const customClasses = {
-    // Loads the return-details cancel handler alongside getAccount, keyed by template
-    // so it runs regardless of the page_type assigned to the return-details page.
-    'pages/account/return-details': getReturnDetails,
-};
+const customClasses = {};
 
 /**
  * This function gets added to the global window and then called

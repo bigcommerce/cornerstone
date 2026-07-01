@@ -1,0 +1,52 @@
+// =============================================================================
+// RETURNS LIST PAGE
+// =============================================================================
+
+
+.account-returnsList-title {
+    margin: 0 0 spacing("eighth");
+    text-transform: inherit;
+    font-size: fontSize("smallest");
+
+    @include breakpoint("medium") {
+        font-size: fontSize("smaller");
+    }
+    
+    > a {
+        text-decoration: none;
+    }
+
+    + .definitionList {
+        margin-top: spacing("half");
+    }
+}
+
+.account-returnsList-details {
+    display: flex;
+    flex-direction: column;
+    
+    @include breakpoint("medium") {
+        flex-direction: row;
+        gap: spacing("double");
+
+    }
+}
+
+.account-returnsList-detail {
+    + .account-returnsList-detail {
+        margin-top: spacing("base");
+
+        @include breakpoint("medium") {
+            margin-top: 0;
+        }
+    }
+}
+
+.account-returnsList-detail-heading {
+    color: stencilColor("color-textSecondary");
+    font-family: fontFamily("sans");
+    font-size: fontSize("tiny");
+    margin: 0 0 spacing("quarter");
+    margin: 0 0 spacing("eighth");
+}
+

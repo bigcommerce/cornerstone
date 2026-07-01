@@ -60,7 +60,7 @@ $account-backorder-textColor: #757575;
     gap: spacing("half");
     justify-content: space-between;
     margin-bottom: spacing("half");
-    
+
     .button {
         margin: 0;
     }
@@ -511,55 +511,3 @@ $account-backorder-textColor: #757575;
 .account-downloadsItem-availability {
     color: stencilColor("color-textSecondary");
 }
-
-
-// Returns List
-// -----------------------------------------------------------------------------
-
-.account-returnsList-title {
-    margin: 0 0 spacing("eighth");
-    text-transform: inherit;
-    font-size: fontSize("smallest");
-
-    @include breakpoint("medium") {
-        font-size: fontSize("smaller");
-    }
-    
-    > a {
-        text-decoration: none;
-    }
-
-    + .definitionList {
-        margin-top: spacing("half");
-    }
-}
-
-.account-returnsList-details {
-    display: flex;
-    flex-direction: column;
-    
-    @include breakpoint("medium") {
-        flex-direction: row;
-        gap: spacing("double");
-
-    }
-}
-
-.account-returnsList-detail {
-    + .account-returnsList-detail {
-        margin-top: spacing("base");
-
-        @include breakpoint("medium") {
-            margin-top: 0;
-        }
-    }
-}
-
-.account-returnsList-detail-heading {
-    color: stencilColor("color-textSecondary");
-    font-family: fontFamily("sans");
-    font-size: fontSize("tiny");
-    margin: 0 0 spacing("quarter");
-    margin: 0 0 spacing("eighth");
-}
-

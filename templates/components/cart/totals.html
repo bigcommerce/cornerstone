@@ -113,14 +113,14 @@
                 {{#if cart.multi_coupon_ui_enabled}}
                     {{> components/cart/shipping-estimator-trigger}}
                 {{/if}}
-                {{#all cart.inventory_settings.show_default_shipping_expectation_prompt (getVar "hasBackorderedItem")}}
-                    <p class="cart-shipping-expectation-message">{{cart.inventory_settings.default_shipping_expectation_prompt}}</p>
-                {{/all}}
             </div>
             {{#neither cart.multi_coupon_ui_enabled cart.shipping_handling.shipping_cost}}
                 {{> components/cart/shipping-estimator-trigger}}
             {{/neither}}
             {{> components/cart/shipping-estimator cart.shipping_handling multi_coupon_ui_enabled=cart.multi_coupon_ui_enabled}}
+            {{#all cart.inventory_settings.show_default_shipping_expectation_prompt (getVar "hasBackorderedItem")}}
+                <p class="cart-shipping-expectation-message">{{cart.inventory_settings.default_shipping_expectation_prompt}}</p>
+            {{/all}}
         </li>
     {{/if}}
     {{#each cart.taxes}}

@@ -54,28 +54,34 @@ $account-backorder-textColor: #757575;
 }
 
 .account-listItem-summary {
-    align-items: center;
+    align-items: flex-start;
     display: flex;
     flex-wrap: wrap;
-    gap: spacing("single");
+    gap: spacing("half");
     justify-content: space-between;
-    margin-bottom: spacing("single");
+    margin-bottom: spacing("half");
+
+    .button {
+        margin: 0;
+    }
 }
 
 .account-listItem-summary-main {
-    align-items: center;
+    align-items: flex-start;
     display: flex;
     flex: 1 1 auto;
     flex-wrap: wrap;
     gap: spacing("half");
     min-width: 0;
 
-    .account-product-title {
+    .account-returnsList-title {
         margin: 0;
+        min-width: 0;
     }
 
     .account-orderStatus-label {
         margin: 0;
+        min-width: 0;
     }
 }
 
@@ -147,7 +153,7 @@ $account-backorder-textColor: #757575;
 .account-product-title {
     margin: 0 0 spacing("eighth");
     text-transform: inherit;
-
+    
     > a {
         text-decoration: none;
     }

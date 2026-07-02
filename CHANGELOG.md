@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Draft
+
+## 6.20.0 (07-02-2026)
 - Display the cart shipping expectation prompt on its own full-width row beneath the Shipping label, keeping the shipping cost on the same row as the Shipping label [#2692](https://github.com/bigcommerce/cornerstone/pull/2692)
 - Validate picklist option `available_to_sell` on PDP so Add to Cart is disabled and a "maximum purchasable quantity for {picklist} is {qty}" error is shown when the requested quantity exceeds a selected picklist item's stock, even when the main product still has enough stock [#2684](https://github.com/bigcommerce/cornerstone/pull/2684)
 - Render backorder prompts for bundled picklist options on the account order details page, using `linked_bundled_item` data per option; move parent item backorder prompts above the options list; reduce backorder prompt font size and add spacing between prompts and adjacent option rows [#2687](https://github.com/bigcommerce/cornerstone/pull/2687)

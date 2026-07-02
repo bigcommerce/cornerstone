@@ -4,6 +4,7 @@ import Global from './theme/global';
 
 const getAccount = () => import('./theme/account');
 const getCreateReturn = () => import('./theme/create-return');
+const getReturnDetails = () => import('./theme/return-details');
 const getLogin = () => import('./theme/auth');
 const noop = null;
 
@@ -21,8 +22,8 @@ const pageClasses = {
     account_inbox: getAccount,
     account_saved_return: getAccount,
     account_returns: getAccount,
-    account_return_detail: getAccount,
-    return_detail: getAccount,
+    account_return_detail: getReturnDetails,
+    return_detail: getReturnDetails,
     account_paymentmethods: getAccount,
     account_addpaymentmethod: getAccount,
     account_editpaymentmethod: getAccount,

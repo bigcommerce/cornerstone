@@ -1,8 +1,62 @@
 {{#partial "page"}}
 
-{{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+{{~inject 'storefrontApiToken' settings.storefront_api.token}}
+<div class="guest-return-portal">
+    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+    <div class="loadingOverlay"></div>
+    <h1 class="guest-return-portal-title page-heading">{{lang 'account.returns.guest.title'}}</h1>
 
-<h1> Guest Return Portal</h1>
+    <div class="link-row">
+        <a href="/return-policy" class="">
+            {{lang 'account.returns.view_return_policy'}}
+        </a>
+    </div>
+    
+    <div class="guest-return-portal-row">
+        <form class="form guest-return-portal-form" data-guest-return-portal-form>
+            <div class="form-field">
+                <label for="guest-return-email-input" class="form-label">
+                    {{lang 'account.returns.guest.email'}}
+                </label>
+                <input class="form-input"
+                    id="guest-return-email-input"
+                    type="email"
+                    placeholder="{{lang 'account.returns.guest.email_placeholder'}}"
+                    autocomplete="email"
+                />
+            </div>
+            <div class="form-field">
+                <label for="guest-return-order-input" class="form-label">
+                    {{lang 'account.returns.guest.order_id'}}
+                </label>
+                <input class="form-input"
+                    id="guest-return-order-input"
+                    placeholder="{{lang 'account.returns.guest.order_id_placeholder'}}"
+                    aria-describedby="guest-return-order-description"
+                    inputmode="numeric"
+                />
+                <span id="guest-return-order-description" class="aria-description">
+                    {{lang 'account.returns.guest.order_id_description'}}
+                </span>
+            </div>
+
+            {{inject 'genericError' (lang 'common.generic_error')}}
+            {{inject 'notFoundError' (lang 'account.returns.guest.not_found_error')}}
+            <div class="guest-return-portal-error-container">
+                {{> components/common/alert/alert-error (lang 'common.generic_error')}}
+            </div>
+    
+            <div class="form-actions">
+                <button class="button button--primary"
+                    id="return-guest-submit-btn"
+                    type="submit"
+                >
+                    {{lang 'account.returns.guest.start_the_return'}}
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
 
 {{/partial}}
 

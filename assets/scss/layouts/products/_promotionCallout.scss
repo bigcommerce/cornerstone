@@ -1,0 +1,57 @@
+// =============================================================================
+// PRODUCT Promotion Callouts (CSS)
+// =============================================================================
+
+.promotionCallout {
+    margin-top: spacing("quarter");
+}
+
+.promotionCallout-item {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: spacing("quarter");
+    padding: spacing("quarter") spacing("half");
+    background: stencilColor("color_bg_featured_promotions");
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 4px;
+}
+
+.promotionCallout-icon {
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+    stroke: stencilColor("color_text_featured_promotions");
+}
+
+.promotionCallout-text {
+    font-size: fontSize("smaller");
+    color: stencilColor("color_text_featured_promotions");
+    font-weight: fontWeight("semibold");
+    line-height: lineHeight("smallest");
+}
+
+.promotionCallout-more {
+    flex-basis: 100%;
+    font-size: fontSize("smallest");
+    color: stencilColor("color_text_featured_promotions");
+    opacity: 0.7;
+}
+
+.promotionCallout--full {
+    list-style: none;
+    margin: 0 0 spacing("half");
+    padding: 0;
+
+    .promotionCallout-item + .promotionCallout-item {
+        margin-top: spacing("quarter");
+    }
+}
+
+.card-body .promotionCallout--compact {
+    margin-top: spacing("quarter");
+}
+
+.listItem-actions .promotionCallout--compact {
+    margin-top: spacing("quarter");
+}

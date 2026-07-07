@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Draft
+- Add nonce to all script tags [#2539](https://github.com/bigcommerce/cornerstone/pull/2539)
 
 ## 6.20.0 (07-02-2026)
 - Display the cart shipping expectation prompt on its own full-width row beneath the Shipping label, keeping the shipping cost on the same row as the Shipping label [#2692](https://github.com/bigcommerce/cornerstone/pull/2692)

@@ -5,6 +5,7 @@ import Global from './theme/global';
 const getAccount = () => import('./theme/account');
 const getCreateReturn = () => import('./theme/create-return');
 const getReturnDetails = () => import('./theme/return-details');
+const getGuestReturnPortal = () => import('./theme/guest-return-portal');
 const getLogin = () => import('./theme/auth');
 const noop = null;
 
@@ -15,6 +16,7 @@ const pageClasses = {
     shippingaddressform: getAccount,
     account_new_return: getAccount,
     create_return: getCreateReturn,
+    guest_return_portal: getGuestReturnPortal,
     'add-wishlist': () => import('./theme/wishlist'),
     account_recentitems: getAccount,
     account_downloaditem: getAccount,

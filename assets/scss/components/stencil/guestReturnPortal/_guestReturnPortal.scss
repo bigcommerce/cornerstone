@@ -1,0 +1,34 @@
+
+.guest-return-portal {
+    margin: spacing("double") auto spacing("double")*2;
+    max-width: remCalc(900px);
+
+    .link-row {
+        @include grid-row();
+        display: block;
+        text-align: center;
+        a {
+            font-size: 1.25rem;
+        }
+    }
+}
+
+.guest-return-portal-error-container {
+    .alertBox {
+        display: none;
+    }
+}
+
+.guest-return-portal-row {
+    @include grid-row();
+}
+
+.guest-return-portal-form {
+    @include grid-column(12);
+
+    @include breakpoint("medium") {
+        @include grid-column($columns: 6, $offset: 3);
+
+        margin-top: spacing("double");
+    }
+}

@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Draft
+- Implement guest return portal page (ORDERS-7736) [#2696](https://github.com/bigcommerce/cornerstone/pull/2696)
 - Add mobile and tablet responsiveness for returns list page (ORDERS-7771)
 - Add return details page (ORDERS-7751)
 - Add new create-return page [#2669](https://github.com/bigcommerce/cornerstone/pull/2669) 

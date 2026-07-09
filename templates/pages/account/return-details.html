@@ -66,6 +66,18 @@
                                     <dd class="returnDetails-itemMetaValue">{{quantity}}</dd>
                                 </div>
                                 <div class="returnDetails-itemMetaRow">
+                                    <dt class="returnDetails-itemMetaLabel">{{lang 'account.returns.details.request'}}</dt>
+                                    <dd class="returnDetails-itemMetaValue">
+                                        {{#if requestedDiffersFromResolved}}
+                                            <span class="returnDetails-itemMetaValue--strikethrough">{{requestedResolutionName}}</span>
+                                            <span class="returnDetails-sr-only">{{lang 'account.returns.details.resolution_changed_to'}}</span>
+                                            <span class="returnDetails-finalResolution">{{resolvedResolutionName}} {{lang 'account.returns.details.final_resolution'}}</span>
+                                        {{else}}
+                                            {{requestedResolutionName}}
+                                        {{/if}}
+                                    </dd>
+                                </div>
+                                <div class="returnDetails-itemMetaRow">
                                     <dt class="returnDetails-itemMetaLabel">{{lang 'account.returns.details.reason'}}</dt>
                                     <dd class="returnDetails-itemMetaValue">{{reasonName}}</dd>
                                 </div>

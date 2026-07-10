@@ -25,11 +25,17 @@
 
     <div id="return-new-error" class="alertBox alertBox--error newReturn-error" style="display: none;" role="alert">
         <p class="newReturn-errorHeading">{{lang 'account.returns.error_heading'}}</p>
-        <p class="alertBox-message" data-return-error-message></p>
+        <p class="alertBox-message" data-return-error-message>
+            {{lang 'common.generic_error'}}
+            {{#if ../settings.phone_number}}
+            <p class="alertBox-message">
+                {{lang 'account.returns.contact_merchant' phone_number=../settings.phone_number }}
+            </p>
+            {{/if}}
+        </p>
     </div>
 
     <form class="form" data-new-return-form data-success-url="{{../urls.account.orders.all}}">
-
         <div class="newReturn-columnHeaders" aria-hidden="true">
             <div class="newReturn-columnHeaders-spacer"></div>
             <span class="newReturn-columnHeaders-item">{{lang 'account.orders.return.order_item'}}</span>

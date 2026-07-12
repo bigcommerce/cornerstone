@@ -49,13 +49,13 @@ export default class CreateReturn extends PageManager {
                 const errorMessages = this.getErrorMessages(response);
 
                 if (errorMessages.length) {
-                    this.showError(errorMessages.join(' '));
+                    this.showError();
                     return;
                 }
 
                 this.showConfirmation();
             } catch (error) {
-                this.showError(this.context.genericError);
+                this.showError();
             } finally {
                 this.isSubmitting = false;
                 if (submitBtn) submitBtn.disabled = false;
@@ -76,12 +76,10 @@ export default class CreateReturn extends PageManager {
             .filter(Boolean);
     }
 
-    showError(message) {
+    showError() {
         const errorBox = document.getElementById('return-new-error');
         if (!errorBox) return;
 
-        const messageEl = errorBox.querySelector('[data-return-error-message]');
-        if (messageEl) messageEl.textContent = message || '';
         errorBox.style.display = '';
     }
 

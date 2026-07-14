@@ -5,7 +5,7 @@
         <span class="promotionCallout-text">{{promotions.[0].text}}</span>
         {{#if promotions.[1]}}
         <span class="promotionCallout-more">
-            +{{subtract promotions.length 1}} {{lang 'products.featured_promotions.more_offers'}}
+            +{{subtract promotions.length 1}} {{lang 'products.featured_promotions.more_offers' count=(subtract promotions.length 1)}}
         </span>
         {{/if}}
     </div>

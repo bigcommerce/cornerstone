@@ -93,11 +93,13 @@ export default class ProductDetails extends ProductDetailsBase {
             // rule-hidden values or show an unavailable message for a no-longer-selected combination.
             // The corrective change runs its own optionChange for the corrected selection.
             if ($form.serialize() !== initialSelection) return;
+
             this.updateBackorderContext(response.data);
             const vm = this.getViewModel(this.$scope);
             const qty = parseInt(vm.quantity.$input.val(), 10) || 0;
             this.updateQtyBackorderedMessage(qty, vm);
             this.updateBackorderMessage(vm);
+            this.toggleBackorderedContainer(vm);
             this.picklistBackorder.render(response.data, qty);
             this.updateDefaultAttributesForOOS(response.data);
             // Apply out-of-stock hide/show from this same payload before the rule pass, so rule
@@ -417,6 +419,7 @@ export default class ProductDetails extends ProductDetailsBase {
             this.updateProductDetailsData();
             this.updateQtyBackorderedMessage(qty, viewModel);
             this.updateBackorderMessage(viewModel);
+            this.toggleBackorderedContainer(viewModel);
             this.updateAddToCartForQty(qty, viewModel);
             this.picklistBackorder.rerender(qty);
         });
@@ -437,6 +440,7 @@ export default class ProductDetails extends ProductDetailsBase {
             this.updateProductDetailsData();
             this.updateQtyBackorderedMessage(qty, viewModel);
             this.updateBackorderMessage(viewModel);
+            this.toggleBackorderedContainer(viewModel);
             this.updateAddToCartForQty(qty, viewModel);
             this.picklistBackorder.rerender(qty);
         });

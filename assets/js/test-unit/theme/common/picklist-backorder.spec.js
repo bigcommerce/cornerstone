@@ -424,11 +424,35 @@ describe('PicklistBackorder', () => {
             expect($('[data-picklist-backorder-list] li', $scope).length).toBe(0);
         });
 
-        it('skips the entire line when context.showQuantityOnBackorder is false', () => {
+        it('shows only the backorder message when showQuantityOnBackorder is false', () => {
             $scope = buildScope(oneAttr('Bundle 1', 98, 'opt'));
             const renderer = new PicklistBackorder(
                 $scope,
                 { ...context, showQuantityOnBackorder: false },
+            );
+
+            renderer.render({
+                selected_picklist_options: [selection()],
+                picklist_products_details: [detail({
+                    available_on_hand: 0,
+                    available_for_backorder: 10,
+                    backorder_message_id: 2,
+                })],
+            }, 5);
+
+            const $items = $('[data-picklist-backorder-list] li', $scope);
+            expect($items.length).toBe(1);
+            const text = $items.eq(0).text();
+            expect(text).toContain('Backorder message 1');
+            expect(text).not.toContain('will be backordered');
+            expect(text).not.toContain('|');
+        });
+
+        it('hides the list when showQuantityOnBackorder is false and no backorder message exists', () => {
+            $scope = buildScope(oneAttr('Bundle 1', 98, 'opt'));
+            const renderer = new PicklistBackorder(
+                $scope,
+                { ...context, showQuantityOnBackorder: false, showBackorderMessage: false },
             );
 
             renderer.render({

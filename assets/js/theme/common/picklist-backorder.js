@@ -33,10 +33,6 @@ export default class PicklistBackorder {
     }
 
     buildLines(selections, detailsByProductId, mainQty) {
-        if (this.context.showQuantityOnBackorder === false) {
-            return [];
-        }
-
         const lines = [];
         const requestedQty = parseInt(mainQty, 10) || 0;
 
@@ -143,24 +139,32 @@ export default class PicklistBackorder {
             return;
         }
 
+        const showQty = this.context.showQuantityOnBackorder !== false;
         const qtyTemplate = this.context.quantityBackorderedMessage
             || '__QTY__ will be backordered';
 
         lines.forEach(({ name, qty, productId }) => {
-            const qtyMsg = qtyTemplate.replace('__QTY__', qty);
+            const qtyMsg = showQty ? qtyTemplate.replace('__QTY__', qty) : '';
             const messageText = this.lookupBackorderMessage(productId);
-            const suffix = messageText ? ` | ${messageText}` : '';
+
+            if (!qtyMsg && !messageText) return;
+
             const $li = $('<li>', {
                 class: 'productView-picklist-backorder-item',
             });
             $('<span>', {
                 class: 'productView-picklist-backorder-name',
             }).text(`${name}:`).appendTo($li);
-            $li.append(document.createTextNode(` ${qtyMsg}${suffix}`));
+            const parts = [qtyMsg, messageText].filter(Boolean);
+            $li.append(document.createTextNode(` ${parts.join(' | ')}`));
             this.$list.append($li);
         });
 
-        this.$list.show();
+        if (this.$list.children().length) {
+            this.$list.show();
+        } else {
+            this.$list.hide();
+        }
     }
 
     lookupBackorderMessage(productId) {

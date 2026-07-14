@@ -433,12 +433,6 @@ export default class ProductDetailsBase {
 
         if (!viewModel.$backordered.length) return;
 
-        if (this.context.showQuantityOnBackorder === false) {
-            viewModel.$backorderedQtyMessage.text('');
-            this.toggleBackorderedContainer(viewModel);
-            return;
-        }
-
         const contextOnHand = parseInt(this.context.availableOnHand, 10);
         const stockFromDom = parseInt(viewModel.stock.$input.text(), 10);
         let onHand = 0;
@@ -453,18 +447,16 @@ export default class ProductDetailsBase {
         const availableForBackorder = unlimited
             ? Infinity
             : parseInt(this.context.availableForBackorder, 10) || 0;
-        const backordered = Math.max(0, Math.min(qty - onHand, availableForBackorder));
+        this.backorderedQty = Math.max(0, Math.min(qty - onHand, availableForBackorder));
 
-        if (backordered > 0) {
+        if (this.context.showQuantityOnBackorder !== false && this.backorderedQty > 0) {
             const message = this.context.quantityBackorderedMessage
-                ? this.context.quantityBackorderedMessage.replace('__QTY__', backordered)
-                : `${backordered} will be backordered`;
+                ? this.context.quantityBackorderedMessage.replace('__QTY__', this.backorderedQty)
+                : `${this.backorderedQty} will be backordered`;
             viewModel.$backorderedQtyMessage.text(message);
         } else {
             viewModel.$backorderedQtyMessage.text('');
         }
-
-        this.toggleBackorderedContainer(viewModel);
     }
 
     updateBackorderMessage(passedViewModel) {
@@ -472,9 +464,7 @@ export default class ProductDetailsBase {
 
         if (!viewModel.$backordered.length) return;
 
-        const hasQtyMessage = viewModel.$backorderedQtyMessage.text().trim() !== '';
-
-        if (!hasQtyMessage) {
+        if (!this.backorderedQty || this.backorderedQty <= 0) {
             viewModel.$backorderMessage.text('');
             return;
         }
@@ -493,9 +483,10 @@ export default class ProductDetailsBase {
     }
 
     toggleBackorderedContainer(viewModel) {
-        const hasQtyMessage = viewModel.$backorderedQtyMessage.text().trim() !== '';
+        const hasContent = viewModel.$backorderedQtyMessage.text().trim() !== ''
+            || viewModel.$backorderMessage.text().trim() !== '';
 
-        if (hasQtyMessage) {
+        if (hasContent) {
             viewModel.$backordered.show();
         } else {
             viewModel.$backordered.hide();
@@ -667,6 +658,7 @@ export default class ProductDetailsBase {
         const currentQty = parseInt(viewModel.quantity.$input.val(), 10) || 0;
         this.updateQtyBackorderedMessage(currentQty, viewModel);
         this.updateBackorderMessage(viewModel);
+        this.toggleBackorderedContainer(viewModel);
         this.picklistBackorder.render(data, currentQty);
 
         this.updateDefaultAttributesForOOS(data);

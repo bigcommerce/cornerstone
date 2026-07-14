@@ -15,6 +15,7 @@
     <div class="guest-return-portal-row">
         <form class="form guest-return-portal-form" data-guest-return-portal-form>
             <div class="form-field">
+                {{inject 'useValidEmail' (lang 'forms.validate.common.email_address')}}
                 <label for="guest-return-email-input" class="form-label">
                     {{lang 'account.returns.guest.email'}}
                 </label>
@@ -26,6 +27,7 @@
                 />
             </div>
             <div class="form-field">
+                {{inject 'invalidOrder' (lang 'account.returns.guest.invalid_order')}}
                 <label for="guest-return-order-input" class="form-label">
                     {{lang 'account.returns.guest.order_id'}}
                 </label>

@@ -12,6 +12,8 @@
                     <h6 class="account-orderStatus-label account-orderStatus-label--inProgress">{{lang 'account.returns.status.in_progress'}}</h6>
                 {{else if status '===' 'CLOSED'}}
                     <h6 class="account-orderStatus-label account-orderStatus-label--closed">{{lang 'account.returns.status.closed'}}</h6>
+                {{else if status '===' 'CANCELLED'}}
+                    <h6 class="account-orderStatus-label account-orderStatus-label--cancelled">{{lang 'account.returns.status.cancelled'}}</h6>
                {{/if}}
             </div>
             <a class="button button--small" href="/account.php?action=view_return&return_id={{id}}">{{lang 'account.returns.list.view_details'}}</a>

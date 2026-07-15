@@ -33,6 +33,8 @@
                         <span class="returnDetails-statusBadge returnDetails-statusBadge--in_progress">{{lang 'account.returns.status.in_progress'}}</span>
                     {{else if return_detail.status '===' 'CLOSED'}}
                         <span class="returnDetails-statusBadge returnDetails-statusBadge--closed">{{lang 'account.returns.status.closed'}}</span>
+                    {{else if return_detail.status '===' 'CANCELLED'}}
+                        <span class="returnDetails-statusBadge returnDetails-statusBadge--cancelled">{{lang 'account.returns.status.cancelled'}}</span>
                     {{/if}}
                 </div>
 

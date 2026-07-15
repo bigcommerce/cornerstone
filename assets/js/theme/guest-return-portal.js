@@ -1,17 +1,58 @@
 import PageManager from './page-manager';
 import NotFoundError from './not-found-error';
+import nod from './common/nod';
+import {
+    announceInputErrorMessage,
+} from './common/utils/form-utils';
+import forms from './common/models/forms';
 
 export default class GuestReturnPortal extends PageManager {
     onReady() {
         const form = document.querySelector('[data-guest-return-portal-form]');
         if (!form) return;
 
+        this.registerValidation();
         this.bindSubmit(form);
+    }
+
+    registerValidation() {
+        this.validator = nod({
+            submit: '.guest-return-portal-form button[type="submit"]',
+            tap: announceInputErrorMessage,
+        });
+
+        this.validator.add([
+            {
+                selector: '.guest-return-portal-form input#guest-return-email-input',
+                validate: (cb, val) => {
+                    const result = forms.email(val);
+
+                    cb(result);
+                },
+                errorMessage: this.context.useValidEmail,
+            },
+            {
+                selector: '.guest-return-portal-form input#guest-return-order-input',
+                validate: (cb, val) => {
+                    const result = forms.numbersOnly(val);
+
+                    cb(result);
+                },
+                errorMessage: this.context.invalidOrder,
+            },
+        ]);
     }
 
     bindSubmit(form) {
         form.addEventListener('submit', async event => {
             event.preventDefault();
+
+            this.validator.performCheck();
+
+            if (!this.validator.areAll('valid')) {
+                return;
+            }
+
             // Ignore clicks while a request is in flight
             if (this.isSubmitting) return;
             this.isSubmitting = true;

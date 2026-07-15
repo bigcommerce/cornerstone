@@ -13,7 +13,7 @@
                 {{#if returns.length}}
                     {{!-- TODO: ORDERS-7751 When a per-return details route (e.g. action=view_return&return_id=X) exists, this list should link to it. --}}
                     {{> components/account/returns-list-v2 returns=returns}}
-                    {{> components/common/cursor-paginator pagination}}
+                    {{> components/common/cursor-paginator pagination.returns}}
                 {{else}}
                     {{> components/common/alert/alert-info (lang 'account.returns.none')}}
                 {{/if}}

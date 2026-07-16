@@ -104,9 +104,16 @@
 }
 
 .returnDetails-item {
-    display: flex;
-    align-items: flex-start;
-    gap: remCalc(16px);
+    // Using grid instead of flex as it keeps the meta directly under the title instead of
+    // being pushed down by the thumbnail's height.
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-areas:
+        "thumb info"
+        "thumb meta";
+    align-items: start;
+    column-gap: remCalc(16px);
+    row-gap: remCalc(4px);
     padding: remCalc(16px) 0;
     border-bottom: container("border");
 
@@ -114,13 +121,16 @@
         border-bottom: 0;
     }
 
+    // Desktop, single row with the meta as a fixed side column.
     @include breakpoint("large") {
+        grid-template-columns: auto minmax(0, 1fr) remCalc(240px);
+        grid-template-areas: "thumb info meta";
         align-items: center;
     }
 }
 
 .returnDetails-itemThumbnailWrapper {
-    flex-shrink: 0;
+    grid-area: thumb;
     line-height: 0;
 }
 
@@ -133,7 +143,7 @@
 }
 
 .returnDetails-itemInfo {
-    flex: 1;
+    grid-area: info;
     min-width: 0;
 }
 
@@ -144,10 +154,11 @@
     color: stencilColor("color-textBase");
 }
 
-// Right-aligned key/value column for SKU / Quantity / Reason / Status.
+// Key/value column for SKU / Quantity / Reason / Status. On mobile & tablet it
+// sits in the content column directly under the name; on desktop it becomes the
+// fixed-width third column (sized by the grid template).
 .returnDetails-itemMeta {
-    flex-shrink: 0;
-    width: remCalc(240px);
+    grid-area: meta;
     margin: 0;
     display: flex;
     flex-direction: column;

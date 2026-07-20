@@ -374,6 +374,72 @@ describe('PicklistBackorder', () => {
             expect($items.eq(0).text()).not.toContain('|');
         });
 
+        it('falls back to the default message when backorder_message_id is null', () => {
+            $scope = buildScope(oneAttr('Bundle 1', 98, 'opt'));
+            const renderer = new PicklistBackorder($scope, {
+                ...context,
+                backorderMessages: [
+                    { id: 1, message: 'Ships in 2 weeks', is_default: true },
+                    { id: 2, message: 'Backorder message 1' },
+                ],
+            });
+
+            renderer.render({
+                selected_picklist_options: [selection()],
+                picklist_products_details: [detail({
+                    available_on_hand: 0,
+                    available_for_backorder: 10,
+                    backorder_message_id: null,
+                })],
+            }, 5);
+
+            const $items = $('[data-picklist-backorder-list] li', $scope);
+            expect($items.length).toBe(1);
+            expect($items.eq(0).text()).toContain('Ships in 2 weeks');
+        });
+
+        it('falls back to the default message when backorder_message_id is a dangling reference', () => {
+            $scope = buildScope(oneAttr('Bundle 1', 98, 'opt'));
+            const renderer = new PicklistBackorder($scope, {
+                ...context,
+                backorderMessages: [
+                    { id: 1, message: 'Ships in 2 weeks', is_default: true },
+                    { id: 2, message: 'Backorder message 1' },
+                ],
+            });
+
+            renderer.render({
+                selected_picklist_options: [selection()],
+                picklist_products_details: [detail({
+                    available_on_hand: 0,
+                    available_for_backorder: 10,
+                    backorder_message_id: 9999,
+                })],
+            }, 5);
+
+            const $items = $('[data-picklist-backorder-list] li', $scope);
+            expect($items.length).toBe(1);
+            expect($items.eq(0).text()).toContain('Ships in 2 weeks');
+        });
+
+        it('shows nothing when backorder_message_id is null and the default message is blank', () => {
+            $scope = buildScope(oneAttr('Bundle 1', 98, 'opt'));
+            const renderer = new PicklistBackorder($scope, context);
+
+            renderer.render({
+                selected_picklist_options: [selection()],
+                picklist_products_details: [detail({
+                    available_on_hand: 0,
+                    available_for_backorder: 10,
+                    backorder_message_id: null,
+                })],
+            }, 5);
+
+            const $items = $('[data-picklist-backorder-list] li', $scope);
+            expect($items.length).toBe(1);
+            expect($items.eq(0).text()).not.toContain('|');
+        });
+
         it('omits the message suffix when context.backorderMessages is missing', () => {
             $scope = buildScope(oneAttr('Bundle 1', 98, 'opt'));
             const renderer = new PicklistBackorder(

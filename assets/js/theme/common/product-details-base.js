@@ -1,6 +1,7 @@
 import Wishlist from '../wishlist';
 import { initRadioOptions } from './aria';
 import PicklistBackorder from './picklist-backorder';
+import { findByBackorderMessageIdOrDefault } from './utils/backorder-utils';
 
 const optionsTypesMap = {
     INPUT_FILE: 'input-file',
@@ -471,8 +472,8 @@ export default class ProductDetailsBase {
 
         const { showBackorderMessage, backorderMessages, backorderMessageId } = this.context;
 
-        if (showBackorderMessage && backorderMessageId != null && Array.isArray(backorderMessages)) {
-            const messageObj = backorderMessages.find(m => m.id === backorderMessageId);
+        if (showBackorderMessage && Array.isArray(backorderMessages)) {
+            const messageObj = findByBackorderMessageIdOrDefault(backorderMessages, backorderMessageId);
             if (messageObj) {
                 viewModel.$backorderMessage.text(messageObj.message);
                 return;

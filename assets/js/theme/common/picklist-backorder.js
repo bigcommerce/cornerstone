@@ -1,3 +1,5 @@
+import { findByBackorderMessageIdOrDefault } from './utils/backorder-utils';
+
 export default class PicklistBackorder {
     constructor($scope, context) {
         this.$scope = $scope;
@@ -172,13 +174,12 @@ export default class PicklistBackorder {
         if (!detail) return '';
 
         const messageId = detail.backorder_message_id;
-        if (messageId == null) return '';
 
         const { backorderMessages, showBackorderMessage } = this.context;
         if (!showBackorderMessage) return '';
         if (!Array.isArray(backorderMessages)) return '';
 
-        const messageObj = backorderMessages.find(m => m.id === messageId);
+        const messageObj = findByBackorderMessageIdOrDefault(backorderMessages, messageId);
         return messageObj && messageObj.message ? messageObj.message : '';
     }
 }

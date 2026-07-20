@@ -134,6 +134,124 @@ describe('ProductDetailsBase.updateAddToCartForQty()', () => {
     });
 });
 
+describe('ProductDetailsBase.updateBackorderMessage()', () => {
+    let $scope;
+
+    const backorderMessages = [
+        { id: 1, message: 'Ships in 2 weeks', is_default: true },
+        { id: 2, message: 'Custom delay notice' },
+    ];
+
+    const buildBackorderScope = () => $(`
+        <div>
+            <div data-product-backordered>
+                <span data-backorder-message></span>
+            </div>
+        </div>
+    `).appendTo(document.body);
+
+    const makeBackorderInstance = (context, backorderedQty) => {
+        const obj = Object.create(ProductDetailsBase.prototype);
+        obj.$scope = $scope;
+        obj.context = context;
+        obj.backorderedQty = backorderedQty;
+        return obj;
+    };
+
+    const backorderViewModel = () => ({
+        $backordered: $('[data-product-backordered]', $scope),
+        $backorderMessage: $('[data-backorder-message]', $scope),
+    });
+
+    afterEach(() => {
+        if ($scope) {
+            $scope.remove();
+            $scope = null;
+        }
+    });
+
+    it('shows the assigned message when backorder_message_id matches', () => {
+        $scope = buildBackorderScope();
+        const instance = makeBackorderInstance({
+            showBackorderMessage: true,
+            backorderMessages,
+            backorderMessageId: 2,
+        }, 5);
+
+        instance.updateBackorderMessage(backorderViewModel());
+
+        expect($('[data-backorder-message]', $scope).text()).toBe('Custom delay notice');
+    });
+
+    it('falls back to the default message when backorder_message_id is null', () => {
+        $scope = buildBackorderScope();
+        const instance = makeBackorderInstance({
+            showBackorderMessage: true,
+            backorderMessages,
+            backorderMessageId: null,
+        }, 5);
+
+        instance.updateBackorderMessage(backorderViewModel());
+
+        expect($('[data-backorder-message]', $scope).text()).toBe('Ships in 2 weeks');
+    });
+
+    it('falls back to the default message when backorder_message_id is a dangling reference', () => {
+        $scope = buildBackorderScope();
+        const instance = makeBackorderInstance({
+            showBackorderMessage: true,
+            backorderMessages,
+            backorderMessageId: 9999,
+        }, 5);
+
+        instance.updateBackorderMessage(backorderViewModel());
+
+        expect($('[data-backorder-message]', $scope).text()).toBe('Ships in 2 weeks');
+    });
+
+    it('shows nothing when backorder_message_id is null and the default message is blank', () => {
+        $scope = buildBackorderScope();
+        const instance = makeBackorderInstance({
+            showBackorderMessage: true,
+            backorderMessages: [
+                { id: 1, message: '', is_default: true },
+                { id: 2, message: 'Custom delay notice' },
+            ],
+            backorderMessageId: null,
+        }, 5);
+
+        instance.updateBackorderMessage(backorderViewModel());
+
+        expect($('[data-backorder-message]', $scope).text()).toBe('');
+    });
+
+    it('shows nothing when showBackorderMessage is false', () => {
+        $scope = buildBackorderScope();
+        const instance = makeBackorderInstance({
+            showBackorderMessage: false,
+            backorderMessages,
+            backorderMessageId: 2,
+        }, 5);
+
+        instance.updateBackorderMessage(backorderViewModel());
+
+        expect($('[data-backorder-message]', $scope).text()).toBe('');
+    });
+
+    it('clears the message when backorderedQty is zero', () => {
+        $scope = buildBackorderScope();
+        const instance = makeBackorderInstance({
+            showBackorderMessage: true,
+            backorderMessages,
+            backorderMessageId: 2,
+        }, 0);
+
+        instance.updateBackorderMessage(backorderViewModel());
+
+        expect($('[data-backorder-message]', $scope).text()).toBe('');
+    });
+});
+
 describe('ProductDetailsBase.reselectHiddenSelectedValues', () => {
     let $scope;
 

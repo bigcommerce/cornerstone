@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Draft
+- Fall back to the store's default backorder message on PDP when a product has no explicit message assignment or references a deleted message [#2708](https://github.com/bigcommerce/cornerstone/pull/2708)
 - Decouple "Show backorder message" from "Qty on Backorder" settings so each works independently on PDP [#2701](https://github.com/bigcommerce/cornerstone/pull/2701)
 
 ## 6.20.0 (07-02-2026)

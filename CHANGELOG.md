@@ -5,9 +5,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Draft
+- Display featured promotion callouts on product listing pages (product cards and list view) and the PDP, gated by the new `show_featured_promotions` theme setting and the `featured_promotions` context [#2695](https://github.com/bigcommerce/cornerstone/pull/2695)
+- Fix pluralization of the "more offers" label for featured promotion callouts [#2702](https://github.com/bigcommerce/cornerstone/pull/2702)
 - Show backorder prompts on the account order details page for both the parent product (under the product title) and each picklist option, mirroring the PDP backorder display [#2683](https://github.com/bigcommerce/cornerstone/pull/2683)
 - Fall back to the store's default backorder message on PDP when a product has no explicit message assignment or references a deleted message [#2708](https://github.com/bigcommerce/cornerstone/pull/2708)
 - Decouple "Show backorder message" from "Qty on Backorder" settings so each works independently on PDP [#2701](https://github.com/bigcommerce/cornerstone/pull/2701)
+- Fix shipping expectation message alignment on the cart page [#2699](https://github.com/bigcommerce/cornerstone/pull/2699)
 
 ## 6.20.0 (07-02-2026)
 - Display the cart shipping expectation prompt on its own full-width row beneath the Shipping label, keeping the shipping cost on the same row as the Shipping label [#2692](https://github.com/bigcommerce/cornerstone/pull/2692)

@@ -2,6 +2,7 @@
 
 {{~inject 'order' order}}
 {{~inject 'storefrontApiToken' settings.storefront_api.token}}
+{{~inject 'additionalNoteTooLongError' (lang 'account.returns.additional_note_too_long' maxNoteLength=1000)}}
 <main class="newReturn">
 
     {{#with order}}
@@ -104,7 +105,7 @@
         <hr class="newReturn-divider">
 
         <div class="newReturn-footer">
-            <div class="form-field">
+            <div class="form-field" data-new-return-note-field>
                 <label for="newReturn-additionalNote" class="form-label">
                     {{lang 'account.returns.additional_note'}}
                 </label>
@@ -113,7 +114,9 @@
                           name="additional_note"
                           rows="4"
                           data-new-return-note
+                          aria-describedby="newReturn-additionalNote-error"
                           placeholder="{{lang 'account.returns.additional_note_placeholder'}}"></textarea>
+                <span class="form-inlineMessage" id="newReturn-additionalNote-error" data-new-return-note-error role="alert" style="display: none;"></span>
             </div>
 
             <div class="form-actions">

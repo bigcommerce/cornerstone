@@ -1,11 +1,14 @@
 import PageManager from './page-manager';
 
+const MAX_ADDITIONAL_NOTE_LENGTH = 1000;
+
 export default class CreateReturn extends PageManager {
     onReady() {
         const form = document.querySelector('[data-new-return-form]');
         if (!form) return;
 
         this.bindOrderLineItemEvents();
+        this.bindAdditionalNoteEvents();
         this.bindSubmit(form);
     }
 
@@ -16,9 +19,19 @@ export default class CreateReturn extends PageManager {
         });
     }
 
+    bindAdditionalNoteEvents() {
+        const noteEl = document.querySelector('[data-new-return-note]');
+        if (!noteEl) return;
+
+        noteEl.addEventListener('input', () => {
+            this.renderAdditionalNoteValidation();
+            this.updateSubmitState();
+        });
+    }
+
     updateSubmitState() {
         const selectedItems = this.getSelectedItems();
-        const isValid = selectedItems.length > 0 && selectedItems.every(itemRow => {
+        const hasValidItems = selectedItems.length > 0 && selectedItems.every(itemRow => {
             const itemId = itemRow.dataset?.itemId;
             if (!itemId) return false;
             const resolutionEl = document.getElementById(`resolution-${itemId}`);
@@ -27,12 +40,16 @@ export default class CreateReturn extends PageManager {
         });
 
         const submitBtn = document.getElementById('return-new-submitBtn');
-        if (submitBtn) submitBtn.disabled = !isValid;
+        if (submitBtn) submitBtn.disabled = !(hasValidItems && this.isAdditionalNoteValid());
     }
 
     bindSubmit(form) {
         form.addEventListener('submit', async event => {
             event.preventDefault();
+
+            // Block submission when the additional note exceeds the max length.
+            this.renderAdditionalNoteValidation();
+            if (!this.isAdditionalNoteValid()) return;
 
             // Ignore clicks while a request is in flight
             if (this.isSubmitting) return;
@@ -133,7 +150,7 @@ export default class CreateReturn extends PageManager {
      * @returns {{ orderEntityId: number, items: Array }}
      */
     buildReturnInput() {
-        return {
+        const input = {
             orderEntityId: parseInt(this.context.order?.id, 10),
             items: this.getSelectedItems().flatMap(itemRow => {
                 const itemId = itemRow.dataset?.itemId;
@@ -146,6 +163,37 @@ export default class CreateReturn extends PageManager {
                 }];
             }),
         };
+
+        // Do not send the note when it is empty or a whitespace
+        const additionalNote = this.getAdditionalNote();
+        if (additionalNote) {
+            input.note = additionalNote;
+        }
+
+        return input;
+    }
+
+    // Trimmed value of the additional-note textarea (empty string when absent).
+    getAdditionalNote() {
+        const noteEl = document.querySelector('[data-new-return-note]');
+        return noteEl ? noteEl.value.trim() : '';
+    }
+
+    isAdditionalNoteValid() {
+        return this.getAdditionalNote().length <= MAX_ADDITIONAL_NOTE_LENGTH;
+    }
+
+    // Toggles the inline error state on the additional-note field.
+    renderAdditionalNoteValidation() {
+        const field = document.querySelector('[data-new-return-note-field]');
+        const errorEl = document.querySelector('[data-new-return-note-error]');
+        const isValid = this.isAdditionalNoteValid();
+
+        if (field) field.classList.toggle('form-field--error', !isValid);
+        if (errorEl) {
+            errorEl.textContent = isValid ? '' : (this.context.additionalNoteTooLongError || '');
+            errorEl.style.display = isValid ? 'none' : '';
+        }
     }
 
     // Maps a selected resolution value to a `RequestedResolutionInput`

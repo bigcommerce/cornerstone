@@ -374,6 +374,72 @@ describe('PicklistBackorder', () => {
             expect($items.eq(0).text()).not.toContain('|');
         });
 
+        it('falls back to the default message when backorder_message_id is null', () => {
+            $scope = buildScope(oneAttr('Bundle 1', 98, 'opt'));
+            const renderer = new PicklistBackorder($scope, {
+                ...context,
+                backorderMessages: [
+                    { id: 1, message: 'Ships in 2 weeks', is_default: true },
+                    { id: 2, message: 'Backorder message 1' },
+                ],
+            });
+
+            renderer.render({
+                selected_picklist_options: [selection()],
+                picklist_products_details: [detail({
+                    available_on_hand: 0,
+                    available_for_backorder: 10,
+                    backorder_message_id: null,
+                })],
+            }, 5);
+
+            const $items = $('[data-picklist-backorder-list] li', $scope);
+            expect($items.length).toBe(1);
+            expect($items.eq(0).text()).toContain('Ships in 2 weeks');
+        });
+
+        it('falls back to the default message when backorder_message_id is a dangling reference', () => {
+            $scope = buildScope(oneAttr('Bundle 1', 98, 'opt'));
+            const renderer = new PicklistBackorder($scope, {
+                ...context,
+                backorderMessages: [
+                    { id: 1, message: 'Ships in 2 weeks', is_default: true },
+                    { id: 2, message: 'Backorder message 1' },
+                ],
+            });
+
+            renderer.render({
+                selected_picklist_options: [selection()],
+                picklist_products_details: [detail({
+                    available_on_hand: 0,
+                    available_for_backorder: 10,
+                    backorder_message_id: 9999,
+                })],
+            }, 5);
+
+            const $items = $('[data-picklist-backorder-list] li', $scope);
+            expect($items.length).toBe(1);
+            expect($items.eq(0).text()).toContain('Ships in 2 weeks');
+        });
+
+        it('shows nothing when backorder_message_id is null and the default message is blank', () => {
+            $scope = buildScope(oneAttr('Bundle 1', 98, 'opt'));
+            const renderer = new PicklistBackorder($scope, context);
+
+            renderer.render({
+                selected_picklist_options: [selection()],
+                picklist_products_details: [detail({
+                    available_on_hand: 0,
+                    available_for_backorder: 10,
+                    backorder_message_id: null,
+                })],
+            }, 5);
+
+            const $items = $('[data-picklist-backorder-list] li', $scope);
+            expect($items.length).toBe(1);
+            expect($items.eq(0).text()).not.toContain('|');
+        });
+
         it('omits the message suffix when context.backorderMessages is missing', () => {
             $scope = buildScope(oneAttr('Bundle 1', 98, 'opt'));
             const renderer = new PicklistBackorder(
@@ -424,11 +490,35 @@ describe('PicklistBackorder', () => {
             expect($('[data-picklist-backorder-list] li', $scope).length).toBe(0);
         });
 
-        it('skips the entire line when context.showQuantityOnBackorder is false', () => {
+        it('shows only the backorder message when showQuantityOnBackorder is false', () => {
             $scope = buildScope(oneAttr('Bundle 1', 98, 'opt'));
             const renderer = new PicklistBackorder(
                 $scope,
                 { ...context, showQuantityOnBackorder: false },
+            );
+
+            renderer.render({
+                selected_picklist_options: [selection()],
+                picklist_products_details: [detail({
+                    available_on_hand: 0,
+                    available_for_backorder: 10,
+                    backorder_message_id: 2,
+                })],
+            }, 5);
+
+            const $items = $('[data-picklist-backorder-list] li', $scope);
+            expect($items.length).toBe(1);
+            const text = $items.eq(0).text();
+            expect(text).toContain('Backorder message 1');
+            expect(text).not.toContain('will be backordered');
+            expect(text).not.toContain('|');
+        });
+
+        it('hides the list when showQuantityOnBackorder is false and no backorder message exists', () => {
+            $scope = buildScope(oneAttr('Bundle 1', 98, 'opt'));
+            const renderer = new PicklistBackorder(
+                $scope,
+                { ...context, showQuantityOnBackorder: false, showBackorderMessage: false },
             );
 
             renderer.render({
@@ -540,6 +630,106 @@ describe('PicklistBackorder', () => {
             expect(text).toContain('5 will be backordered');
             expect(text).not.toContain('|');
             expect(text).not.toContain('Backorder message 1');
+        });
+    });
+
+    describe('getSellLimitViolation()', () => {
+        const context = { quantityBackorderedMessage: '__QTY__ will be backordered' };
+
+        const renderWith = (renderer, overrides, mainQty) => {
+            renderer.render({
+                selected_picklist_options: [selection()],
+                picklist_products_details: [detail(overrides)],
+            }, mainQty);
+        };
+
+        it('returns null when no prior render has captured data', () => {
+            $scope = buildScope(oneAttr('Bundle 1', 98, 'opt'));
+            const renderer = new PicklistBackorder($scope, context);
+
+            expect(renderer.getSellLimitViolation(10)).toBeNull();
+        });
+
+        it('returns null when requested qty is 0 or negative', () => {
+            $scope = buildScope(oneAttr('Bundle 1', 98, 'opt'));
+            const renderer = new PicklistBackorder($scope, context);
+            renderWith(renderer, { available_to_sell: 5 }, 0);
+
+            expect(renderer.getSellLimitViolation(0)).toBeNull();
+        });
+
+        it('returns name and ATS when requested qty exceeds the picklist available_to_sell', () => {
+            $scope = buildScope(oneAttr('Bundle 1', 98, 'opt'));
+            const renderer = new PicklistBackorder($scope, context);
+            renderWith(renderer, { available_to_sell: 7 }, 10);
+
+            expect(renderer.getSellLimitViolation(10)).toEqual({ name: 'Bundle 1', availableToSell: 7 });
+        });
+
+        it('returns null when requested qty is within the picklist available_to_sell', () => {
+            $scope = buildScope(oneAttr('Bundle 1', 98, 'opt'));
+            const renderer = new PicklistBackorder($scope, context);
+            renderWith(renderer, { available_to_sell: 7 }, 7);
+
+            expect(renderer.getSellLimitViolation(7)).toBeNull();
+        });
+
+        it('treats available_to_sell of 0 as "no limit set" and returns null', () => {
+            $scope = buildScope(oneAttr('Bundle 1', 98, 'opt'));
+            const renderer = new PicklistBackorder($scope, context);
+            renderWith(renderer, { available_to_sell: 0 }, 50);
+
+            expect(renderer.getSellLimitViolation(50)).toBeNull();
+        });
+
+        it('returns null for unlimited-backorder picklist items', () => {
+            $scope = buildScope(oneAttr('Bundle 1', 98, 'opt'));
+            const renderer = new PicklistBackorder($scope, context);
+            renderWith(renderer, { unlimited_backorder: true, available_to_sell: 1 }, 10);
+
+            expect(renderer.getSellLimitViolation(10)).toBeNull();
+        });
+
+        it('skips selections that do not auto-adjust inventory', () => {
+            $scope = buildScope(oneAttr('Bundle 1', 98, 'opt'));
+            const renderer = new PicklistBackorder($scope, context);
+            renderer.render({
+                selected_picklist_options: [selection({ auto_adjust_inventory_flag: false })],
+                picklist_products_details: [detail({ available_to_sell: 1 })],
+            }, 10);
+
+            expect(renderer.getSellLimitViolation(10)).toBeNull();
+        });
+
+        it('skips non-stock-tracked and non-purchasable picklist items', () => {
+            $scope = buildScope(oneAttr('Bundle 1', 98, 'opt'));
+            const notTracked = new PicklistBackorder($scope, context);
+            renderWith(notTracked, { is_stock_tracked: false, available_to_sell: 1 }, 10);
+            expect(notTracked.getSellLimitViolation(10)).toBeNull();
+
+            const notPurchasable = new PicklistBackorder($scope, context);
+            renderWith(notPurchasable, { purchasable: false, available_to_sell: 1 }, 10);
+            expect(notPurchasable.getSellLimitViolation(10)).toBeNull();
+        });
+
+        it('returns the first violating selection across multiple picklists', () => {
+            $scope = buildScope([
+                { name: 'Bundle 1', values: [{ id: 98, label: 'A' }] },
+                { name: 'Bundle 2', values: [{ id: 99, label: 'B' }] },
+            ]);
+            const renderer = new PicklistBackorder($scope, context);
+            renderer.render({
+                selected_picklist_options: [
+                    selection({ product_id: 80, attribute_value_id: 98, product_attribute_id: 113 }),
+                    selection({ product_id: 81, attribute_value_id: 99, product_attribute_id: 114 }),
+                ],
+                picklist_products_details: [
+                    detail({ product_id: 80, available_to_sell: 50 }),
+                    detail({ product_id: 81, available_to_sell: 3 }),
+                ],
+            }, 5);
+
+            expect(renderer.getSellLimitViolation(5)).toEqual({ name: 'Bundle 2', availableToSell: 3 });
         });
     });
 });

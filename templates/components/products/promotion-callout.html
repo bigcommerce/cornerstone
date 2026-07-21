@@ -1,0 +1,22 @@
+{{#if promotions.length}}
+{{#if mode '===' 'compact'}}
+<div class="promotionCallout promotionCallout--compact">
+    <div class="promotionCallout-item">
+        <span class="promotionCallout-text">{{promotions.[0].text}}</span>
+        {{#if promotions.[1]}}
+        <span class="promotionCallout-more">
+            +{{subtract promotions.length 1}} {{lang 'products.featured_promotions.more_offers' count=(subtract promotions.length 1)}}
+        </span>
+        {{/if}}
+    </div>
+</div>
+{{else}}
+<ul class="promotionCallout promotionCallout--full">
+    {{#each promotions}}
+    <li class="promotionCallout-item">
+        <span class="promotionCallout-text">{{text}}</span>
+    </li>
+    {{/each}}
+</ul>
+{{/if}}
+{{/if}}

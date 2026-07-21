@@ -1,3 +1,5 @@
+import { findByBackorderMessageIdOrDefault } from './utils/backorder-utils';
+
 export default class PicklistBackorder {
     constructor($scope, context) {
         this.$scope = $scope;
@@ -33,10 +35,6 @@ export default class PicklistBackorder {
     }
 
     buildLines(selections, detailsByProductId, mainQty) {
-        if (this.context.showQuantityOnBackorder === false) {
-            return [];
-        }
-
         const lines = [];
         const requestedQty = parseInt(mainQty, 10) || 0;
 
@@ -68,6 +66,59 @@ export default class PicklistBackorder {
         return lines;
     }
 
+    /**
+     * Find the first selected picklist item whose available-to-sell is lower than
+     * the requested quantity. Used to surface a sell-limit error and block add-to-cart
+     * even when the main product still has enough stock.
+     *
+     * @param {Number} mainQty Quantity the shopper requested for the main product
+     * @returns {{name: String, availableToSell: Number}|null}
+     */
+    getSellLimitViolation(mainQty) {
+        if (!this.lastData) return null;
+
+        const requestedQty = parseInt(mainQty, 10) || 0;
+        if (requestedQty <= 0) return null;
+
+        const selections = Array.isArray(this.lastData.selected_picklist_options)
+            ? this.lastData.selected_picklist_options
+            : [];
+
+        return selections
+            .map(sel => {
+                const availableToSell = this.getSelectionSellLimit(sel);
+                if (availableToSell === null || requestedQty <= availableToSell) return null;
+
+                const name = this.findAttributeName(sel.attribute_value_id);
+
+                return name ? { name, availableToSell } : null;
+            })
+            .find(Boolean) || null;
+    }
+
+    /**
+     * Resolve the available-to-sell limit for a single picklist selection, or null
+     * when the selection does not impose a limit (not stock-tracked, unlimited
+     * backorder, missing details, or a 0/unknown ATS).
+     *
+     * @param {Object} sel A selected picklist option
+     * @returns {Number|null}
+     */
+    getSelectionSellLimit(sel) {
+        if (!sel || sel.auto_adjust_inventory_flag !== true) return null;
+        if (typeof sel.product_id !== 'number') return null;
+
+        const detail = this.detailsByProductId.get(sel.product_id);
+        if (!detail) return null;
+        if (detail.is_stock_tracked === false) return null;
+        if (detail.purchasable === false) return null;
+        if (detail.unlimited_backorder === true) return null;
+
+        const availableToSell = parseInt(detail.available_to_sell, 10) || 0;
+        // Treat 0/unknown as "no limit set", consistent with the main-product check.
+        return availableToSell > 0 ? availableToSell : null;
+    }
+
     findAttributeName(attributeValueId) {
         if (attributeValueId === undefined || attributeValueId === null) return '';
         const $optionLabel = $(`label[data-product-attribute-value="${attributeValueId}"]`, this.$scope);
@@ -90,24 +141,32 @@ export default class PicklistBackorder {
             return;
         }
 
+        const showQty = this.context.showQuantityOnBackorder !== false;
         const qtyTemplate = this.context.quantityBackorderedMessage
             || '__QTY__ will be backordered';
 
         lines.forEach(({ name, qty, productId }) => {
-            const qtyMsg = qtyTemplate.replace('__QTY__', qty);
+            const qtyMsg = showQty ? qtyTemplate.replace('__QTY__', qty) : '';
             const messageText = this.lookupBackorderMessage(productId);
-            const suffix = messageText ? ` | ${messageText}` : '';
+
+            if (!qtyMsg && !messageText) return;
+
             const $li = $('<li>', {
                 class: 'productView-picklist-backorder-item',
             });
             $('<span>', {
                 class: 'productView-picklist-backorder-name',
             }).text(`${name}:`).appendTo($li);
-            $li.append(document.createTextNode(` ${qtyMsg}${suffix}`));
+            const parts = [qtyMsg, messageText].filter(Boolean);
+            $li.append(document.createTextNode(` ${parts.join(' | ')}`));
             this.$list.append($li);
         });
 
-        this.$list.show();
+        if (this.$list.children().length) {
+            this.$list.show();
+        } else {
+            this.$list.hide();
+        }
     }
 
     lookupBackorderMessage(productId) {
@@ -115,13 +174,12 @@ export default class PicklistBackorder {
         if (!detail) return '';
 
         const messageId = detail.backorder_message_id;
-        if (messageId == null) return '';
 
         const { backorderMessages, showBackorderMessage } = this.context;
         if (!showBackorderMessage) return '';
         if (!Array.isArray(backorderMessages)) return '';
 
-        const messageObj = backorderMessages.find(m => m.id === messageId);
+        const messageObj = findByBackorderMessageIdOrDefault(backorderMessages, messageId);
         return messageObj && messageObj.message ? messageObj.message : '';
     }
 }

@@ -8,6 +8,7 @@
 {{inject 'backorderAvailabilityPrompt' product.backorder_availability_prompt}}
 {{inject 'quantityBackorderedMessage' (lang 'products.quantity_backordered' quantity='__QTY__')}}
 {{inject 'quantityMaxMessage' (lang 'products.quantity_max' quantity='__QTY__')}}
+{{inject 'quantityMaxPicklistMessage' (lang 'products.quantity_max_picklist' name='__NAME__' quantity='__QTY__')}}
 {{inject 'backorderMessages' backorder_messages}}
 {{inject 'showBackorderMessage' product.show_backorder_message}}
 
@@ -125,6 +126,12 @@
                 {{/or}}
             </div>
             {{{region name="product_below_price"}}}
+            {{#if theme_settings.show_featured_promotions}}
+                {{> components/products/promotion-callout
+                    promotions=product.featured_promotions
+                    mode="full"
+                }}
+            {{/if}}
             <div class="productView-rating">
                 {{#if settings.show_product_rating}}
                     {{> components/products/ratings rating=product.rating}}

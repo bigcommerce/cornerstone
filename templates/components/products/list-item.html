@@ -91,6 +91,12 @@
                 {{else}}
                     {{> components/common/login-for-pricing}}
                 {{/or}}
+                {{#if theme_settings.show_featured_promotions}}
+                    {{> components/products/promotion-callout
+                        promotions=featured_promotions
+                        mode="compact"
+                    }}
+                {{/if}}
                 {{#if show_cart_action}}
                     {{#if has_options}}
                         <a href="{{url}}" data-event-type="product-click" class="button button--small" data-product-id="{{id}}">{{lang 'products.choose_options'}}</a>

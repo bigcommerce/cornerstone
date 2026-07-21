@@ -5,11 +5,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Draft
-- Show backorder prompts on the account order details page for both the parent product (under the product title) and each picklist option, mirroring the PDP backorder display
+- Show backorder prompts on the account order details page for both the parent product (under the product title) and each picklist option, mirroring the PDP backorder display [#2683](https://github.com/bigcommerce/cornerstone/pull/2683)
+- Fall back to the store's default backorder message on PDP when a product has no explicit message assignment or references a deleted message [#2708](https://github.com/bigcommerce/cornerstone/pull/2708)
+- Decouple "Show backorder message" from "Qty on Backorder" settings so each works independently on PDP [#2701](https://github.com/bigcommerce/cornerstone/pull/2701)
+
+## 6.20.0 (07-02-2026)
+- Display the cart shipping expectation prompt on its own full-width row beneath the Shipping label, keeping the shipping cost on the same row as the Shipping label [#2692](https://github.com/bigcommerce/cornerstone/pull/2692)
+- Validate picklist option `available_to_sell` on PDP so Add to Cart is disabled and a "maximum purchasable quantity for {picklist} is {qty}" error is shown when the requested quantity exceeds a selected picklist item's stock, even when the main product still has enough stock [#2684](https://github.com/bigcommerce/cornerstone/pull/2684)
+- Render backorder prompts for bundled picklist options on the account order details page, using `linked_bundled_item` data per option; move parent item backorder prompts above the options list; reduce backorder prompt font size and add spacing between prompts and adjacent option rows [#2687](https://github.com/bigcommerce/cornerstone/pull/2687)
+- Hide option values on the PDP that would complete a "disable and hide" rule for the current selection, and steer the shopper off a default selection that is itself a forbidden combination [#2678](https://github.com/bigcommerce/cornerstone/pull/2678)
 - Refine backorder layout and colors on the account order details page [#2677](https://github.com/bigcommerce/cornerstone/pull/2677)
-- Make the cart Shipping row label span the full width of the totals row so the shipping expectation prompt is no longer constrained to the narrow label column
-- Respect `unlimited_backorder` on PDP so the backorder quantity message and availability prompt render, and the Add to Cart quantity cap is lifted for products with unlimited backorder
-- Keep PDP "N will be backordered" message visible when the requested quantity exceeds `available_to_sell` (still clamped by `available_for_backorder`), so shoppers see why the qty was clamped alongside the "maximum purchasable quantity" error
+- Make the cart Shipping row label span the full width of the totals row so the shipping expectation prompt is no longer constrained to the narrow label column [#2674](https://github.com/bigcommerce/cornerstone/pull/2674)
+- Respect `unlimited_backorder` on PDP so the backorder quantity message and availability prompt render, and the Add to Cart quantity cap is lifted for products with unlimited backorder [#2671](https://github.com/bigcommerce/cornerstone/pull/2671)
+- Keep PDP "N will be backordered" message visible when the requested quantity exceeds `available_to_sell` (still clamped by `available_for_backorder`), so shoppers see why the qty was clamped alongside the "maximum purchasable quantity" error [#2672](https://github.com/bigcommerce/cornerstone/pull/2672)
 - Render backorder prompt for picklist products on PDP [#2662](https://github.com/bigcommerce/cornerstone/pull/2662)
 - Fix bundled item stock section showing title with no content when there is no backorder data or all inventory display settings are disabled [#2668](https://github.com/bigcommerce/cornerstone/pull/2668)
 - Render stock positions for bundled items (pick lists) on the cart page, (change to be left aligned with the quantity adjuster) [#2663](https://github.com/bigcommerce/cornerstone/pull/2663)

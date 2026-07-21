@@ -84,15 +84,34 @@ export default class ProductDetails extends ProductDetailsBase {
         });
 
         const productId = $('[name="product_id"]', $form).val();
-        utils.api.productAttributes.optionChange(productId, $form.serialize(), (err, response) => {
+        const initialSelection = $form.serialize();
+        utils.api.productAttributes.optionChange(productId, initialSelection, (err, response) => {
             if (err || !response || !response.data) return;
+            // The synchronous init below applies rule hiding from BCData and can fire a corrective
+            // change for a default-into-conflict selection. If that already moved the selection, this
+            // response is for the stale (pre-correction) selection: discard it so it can't re-show
+            // rule-hidden values or show an unavailable message for a no-longer-selected combination.
+            // The corrective change runs its own optionChange for the corrected selection.
+            if ($form.serialize() !== initialSelection) return;
+
             this.updateBackorderContext(response.data);
             const vm = this.getViewModel(this.$scope);
             const qty = parseInt(vm.quantity.$input.val(), 10) || 0;
             this.updateQtyBackorderedMessage(qty, vm);
             this.updateBackorderMessage(vm);
+            this.toggleBackorderedContainer(vm);
             this.picklistBackorder.render(response.data, qty);
             this.updateDefaultAttributesForOOS(response.data);
+            // Apply out-of-stock hide/show from this same payload before the rule pass, so rule
+            // hiding and reselection in updateDisabledOptionValues agree with in_stock_attributes.
+            this.updateProductAttributes(response.data);
+            // Re-apply rule hiding after the out-of-stock pass above (which re-shows in-stock values
+            // and would otherwise undo it). Safe from the stale-response race thanks to the guard.
+            this.updateDisabledOptionValues(response.data);
+            // Surface the rule's "unavailable" message for the default selection: a disable rule
+            // (not hidden) that the default selection completes sets purchasing_message in this
+            // response, and the initial BCData payload does not carry it.
+            this.showMessageBox(response.data.stock_message || response.data.purchasing_message);
             this.updateAddToCartForQty(qty, vm);
         });
 
@@ -110,6 +129,11 @@ export default class ProductDetails extends ProductDetailsBase {
             && typeof productAttributesData === 'object'
             && Object.keys(productAttributesData).length > 0) {
             this.updateView(productAttributesData, null);
+            // Apply "disable and hide" rule hiding from the initial BCData synchronously, so a
+            // forbidden default selection is corrected at load instead of staying visible until
+            // the async optionChange below resolves. No-op until the backend emits
+            // disabled_option_values in the initial payload.
+            this.updateDisabledOptionValues(productAttributesData);
         } else {
             // eslint-disable-next-line no-console
             console.warn('BCData.product_attributes is empty on product initialization');
@@ -278,6 +302,7 @@ export default class ProductDetails extends ProductDetailsBase {
             const productAttributesData = response.data || {};
             const productAttributesContent = response.content || {};
             this.updateProductAttributes(productAttributesData);
+            this.updateDisabledOptionValues(productAttributesData);
             this.updateView(productAttributesData, productAttributesContent);
             this.updateProductDetailsData();
             bannerUtils.dispatchProductBannerEvent(productAttributesData);
@@ -394,6 +419,7 @@ export default class ProductDetails extends ProductDetailsBase {
             this.updateProductDetailsData();
             this.updateQtyBackorderedMessage(qty, viewModel);
             this.updateBackorderMessage(viewModel);
+            this.toggleBackorderedContainer(viewModel);
             this.updateAddToCartForQty(qty, viewModel);
             this.picklistBackorder.rerender(qty);
         });
@@ -414,6 +440,7 @@ export default class ProductDetails extends ProductDetailsBase {
             this.updateProductDetailsData();
             this.updateQtyBackorderedMessage(qty, viewModel);
             this.updateBackorderMessage(viewModel);
+            this.toggleBackorderedContainer(viewModel);
             this.updateAddToCartForQty(qty, viewModel);
             this.picklistBackorder.rerender(qty);
         });

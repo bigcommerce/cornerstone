@@ -71,12 +71,12 @@
                                     <dt class="returnDetails-itemMetaLabel">{{lang 'account.returns.details.request'}}</dt>
                                     <dd class="returnDetails-itemMetaValue">
                                         {{~!-- Resolution label: custom resolutions show the merchant name; system ones are translated from their enum token. --~}}
-                                        {{#if requestedDiffersFromResolved}}
-                                            <span class="returnDetails-itemMetaValue--strikethrough">{{#if requestedResolutionType '===' 'CUSTOM'}}{{requestedResolutionName}}{{else}}{{lang (concat 'account.returns.details.resolution.' (toLowerCase requestedResolutionType))}}{{/if}}</span>
+                                        {{#if requested_differs_from_resolved}}
+                                            <span class="returnDetails-itemMetaValue--strikethrough">{{#if requested_resolution_type '===' 'CUSTOM'}}{{requested_resolution_name}}{{else}}{{lang (concat 'account.returns.details.resolution.' (toLowerCase requested_resolution_type))}}{{/if}}</span>
                                             <span class="returnDetails-sr-only">{{lang 'account.returns.details.resolution_changed_to'}}</span>
-                                            <span class="returnDetails-finalResolution">{{#if resolvedResolutionType '===' 'CUSTOM'}}{{resolvedResolutionName}}{{else}}{{lang (concat 'account.returns.details.resolution.' (toLowerCase resolvedResolutionType))}}{{/if}} {{lang 'account.returns.details.final_resolution'}}</span>
+                                            <span class="returnDetails-finalResolution">{{#if resolved_resolution_type '===' 'CUSTOM'}}{{resolved_resolution_name}}{{else}}{{lang (concat 'account.returns.details.resolution.' (toLowerCase resolved_resolution_type))}}{{/if}} {{lang 'account.returns.details.final_resolution'}}</span>
                                         {{else}}
-                                            {{#if requestedResolutionType '===' 'CUSTOM'}}{{requestedResolutionName}}{{else}}{{lang (concat 'account.returns.details.resolution.' (toLowerCase requestedResolutionType))}}{{/if}}
+                                            {{#if requested_resolution_type '===' 'CUSTOM'}}{{requested_resolution_name}}{{else}}{{lang (concat 'account.returns.details.resolution.' (toLowerCase requested_resolution_type))}}{{/if}}
                                         {{/if}}
                                     </dd>
                                 </div>

@@ -42,7 +42,7 @@
 
 .newReturn-confirmationMessage {
     font-size: remCalc(15px);
-    color: color("greys", "base");
+    color: color("greys", "dark");
     margin: spacing("eighth") 0 0;
 
     &:first-of-type {
@@ -58,6 +58,7 @@
     display: flex;
     align-items: center;
     gap: spacing("half");
+    order: 0; // title stays visually first though actions precede it in the DOM (reading order)
 }
 
 .newReturn-title {
@@ -86,10 +87,10 @@
     display: flex;
     align-items: center;
     gap: spacing("half");
-    order: 2; // mobile: sits after the order date
+    order: 2;
 
     @include breakpoint("medium") {
-        order: 0; // tablet/desktop: back to its natural position (above the order date)
+        order: 1;
     }
 }
 
@@ -101,13 +102,13 @@
 
 .newReturn-orderDate {
     flex-basis: 100%; // always on its own line within the header
-    order: 1; // mobile: above the action buttons
+    order: 1;
     font-size: remCalc(13px);
-    color: color("greys", "base");
+    color: color("greys", "dark");
     margin: spacing("eighth") 0 spacing("single") * 0.83;
 
     @include breakpoint("medium") {
-        order: 0; // tablet/desktop: below the buttons (natural DOM order)
+        order: 2;
     }
 }
 
@@ -170,13 +171,13 @@ $newReturn-col-controls-tablet: remCalc(320px); // tablet controls column — wi
 
 .newReturn-orderLineItemVariant {
     font-size: remCalc(13px);
-    color: color("greys", "base");
+    color: color("greys", "dark");
     margin: 0 0 remCalc(2px);
 }
 
 .newReturn-orderLineItemPrice {
     font-size: remCalc(13px);
-    color: color("greys", "base");
+    color: color("greys", "dark");
     margin: 0;
 }
 
@@ -219,7 +220,7 @@ $newReturn-col-controls-tablet: remCalc(320px); // tablet controls column — wi
         padding-bottom: remCalc(16px);
         font-size: remCalc(12px);
         font-weight: fontWeight("semibold");
-        color: color("greys", "base");
+        color: color("greys", "dark");
         letter-spacing: remCalc(0.5px);
     }
 }
@@ -258,7 +259,7 @@ $newReturn-col-controls-tablet: remCalc(320px); // tablet controls column — wi
         display: block;
         font-size: remCalc(12px);
         font-weight: fontWeight("semibold");
-        color: color("greys", "base");
+        color: color("greys", "dark");
         letter-spacing: remCalc(0.5px);
         margin-bottom: remCalc(-4px);
     }
@@ -281,7 +282,7 @@ $newReturn-col-controls-tablet: remCalc(320px); // tablet controls column — wi
 
 .newReturn-orderLineItemMaxQty {
     font-size: remCalc(13px);
-    color: color("greys", "base");
+    color: color("greys", "dark");
     white-space: nowrap;
 }
 
@@ -332,5 +333,36 @@ $newReturn-col-controls-tablet: remCalc(320px); // tablet controls column — wi
 
     .form-actions {
         text-align: right;
+    }
+}
+
+.newReturn-orderLineItems {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+// Submit stays in the tab order while invalid (aria-disabled, not the native disabled attr).
+.newReturn .button[aria-disabled="true"] {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+// WCAG 2.2 — 2.4.11 Focus Appearance for the keyboard-reachable controls.
+.newReturn {
+    a,
+    .button,
+    select,
+    textarea {
+        &:focus-visible {
+            outline: remCalc(2px) solid stencilColor("color-textBase");
+            outline-offset: remCalc(2px);
+        }
+    }
+
+    // Headings / error summary receive focus programmatically (for SR announcement) on page load, 
+    // never via Tab.
+    [tabindex="-1"]:focus {
+        outline: none;
     }
 }

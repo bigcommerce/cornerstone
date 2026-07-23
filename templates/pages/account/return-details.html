@@ -105,6 +105,15 @@
                     </div>
                 </dl>
 
+                {{!-- Additional note — only shown when the shopper left a note. --}}
+                {{#if return_detail.note}}
+                    <div class="returnDetails-note">
+                        <h2 class="returnDetails-sectionHeading">{{lang 'account.returns.additional_note'}}</h2>
+                        <hr class="returnDetails-divider">
+                        <p class="returnDetails-noteText">{{return_detail.note}}</p>
+                    </div>
+                {{/if}}
+
                 {{!-- Action section (e.g. Cancel return) — only shown for open returns. --}}
                 {{#if return_detail.status '===' 'OPEN'}}
                     <div class="returnDetails-actions">

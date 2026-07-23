@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Draft
+- Add product images to return detail page (ORDERS-7890) [#2713](https://github.com/bigcommerce/cornerstone/pull/2713)
 - Add client side validation on guest return portal (ORDERS-7736) [#2703](https://github.com/bigcommerce/cornerstone/pull/2703)
 - Update error message for create return page (ORDERS-7886) [#2698](https://github.com/bigcommerce/cornerstone/pull/2698)
 - Implement guest return portal page (ORDERS-7736) [#2696](https://github.com/bigcommerce/cornerstone/pull/2696)

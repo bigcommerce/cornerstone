@@ -42,17 +42,14 @@
 
                 <ul class="returnDetails-itemList">
                     {{#each return_detail.items}}
-                        <li class="returnDetails-item">
+                    <li class="returnDetails-item">
                             <div class="returnDetails-itemThumbnailWrapper">
-                                {{!-- TODO(ORDERS-7890): return items carry no image in the context yet, so
-                                      responsive-img falls back to the store default product image. Once an
-                                      `image` field is surfaced it will render automatically. --}}
                                 {{> components/common/responsive-img
                                     image=image
-                                    default_image=../../theme_settings.default_image_product
-                                    fallback_size=../../theme_settings.productthumb_size
-                                    lazyload=../../theme_settings.lazyload_mode
-                                    class="returnDetails-itemThumbnail"
+                                    class="newReturn-orderLineItemThumbnail"
+                                    fallback_size=../theme_settings.productthumb_size
+                                    lazyload=../theme_settings.lazyload_mode
+                                    default_image=../theme_settings.default_image_product
                                 }}
                             </div>
                             <div class="returnDetails-itemInfo">

@@ -3,11 +3,11 @@
         <li class="navBar-item {{#if account_page '===' 'orders'}}is-active{{/if}}">
             <a class="navBar-action" href="{{urls.account.orders.all}}">{{lang 'account.nav.orders'}}</a>
         </li>
-        {{#if settings.returns_enabled}}
+        {{#or settings.returns_enabled settings.returns_v2_enabled}}
             <li class="navBar-item {{#if account_page '===' 'returns'}}is-active{{/if}}">
                 <a class="navBar-action" href="{{urls.account.returns}}">{{lang 'account.nav.returns'}}</a>
             </li>
-        {{/if}}
+        {{/or}}
         <li class="navBar-item {{#if account_page '===' 'messages'}}is-active{{/if}}">
             <a class="navBar-action" href="{{urls.account.inbox}}">{{lang 'account.nav.messages' num_new_messages=customer.num_new_messages}}</a>
         </li>

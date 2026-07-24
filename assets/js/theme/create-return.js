@@ -7,9 +7,19 @@ export default class CreateReturn extends PageManager {
         const form = document.querySelector('[data-new-return-form]');
         if (!form) return;
 
+        this.focusOnLoad();
         this.bindOrderLineItemEvents();
         this.bindAdditionalNoteEvents();
         this.bindSubmit(form);
+    }
+
+    focusOnLoad() {
+        document.getElementById('newReturn-heading')?.focus();
+    }
+
+    announce(message) {
+        const liveRegion = document.querySelector('[data-new-return-status]');
+        if (liveRegion) liveRegion.textContent = message || '';
     }
 
     bindOrderLineItemEvents() {
@@ -40,7 +50,13 @@ export default class CreateReturn extends PageManager {
         });
 
         const submitBtn = document.getElementById('return-new-submitBtn');
-        if (submitBtn) submitBtn.disabled = !(hasValidItems && this.isAdditionalNoteValid());
+        if (!submitBtn) return;
+
+        // aria-disabled (not the native disabled attr) keeps the button keyboard/SR reachable while invalid.
+        // The described-by hint swaps between "what to select" and "press Enter to submit".
+        const isValid = hasValidItems && this.isAdditionalNoteValid();
+        submitBtn.setAttribute('aria-disabled', String(!isValid));
+        submitBtn.setAttribute('aria-describedby', isValid ? 'return-new-submitHint-enabled' : 'return-new-submitHint-disabled');
     }
 
     bindSubmit(form) {
@@ -51,14 +67,17 @@ export default class CreateReturn extends PageManager {
             this.renderAdditionalNoteValidation();
             if (!this.isAdditionalNoteValid()) return;
 
-            // Ignore clicks while a request is in flight
+            const submitBtn = document.getElementById('return-new-submitBtn');
+            // aria-disabled doesn't block submit/Enter the way the native attr would, so gate here.
+            if (submitBtn?.getAttribute('aria-disabled') === 'true') return;
             if (this.isSubmitting) return;
             this.isSubmitting = true;
 
-            const submitBtn = document.getElementById('return-new-submitBtn');
             const overlay = document.querySelector('[data-new-return-view] .loadingOverlay');
-            if (submitBtn) submitBtn.disabled = true;
+            if (submitBtn) submitBtn.setAttribute('aria-disabled', 'true');
             if (overlay) overlay.style.display = 'block';
+            form.setAttribute('aria-busy', 'true');
+            this.announce(this.context.submittingMessage);
             this.clearError();
 
             try {
@@ -75,8 +94,9 @@ export default class CreateReturn extends PageManager {
                 this.showError();
             } finally {
                 this.isSubmitting = false;
-                if (submitBtn) submitBtn.disabled = false;
+                this.updateSubmitState();
                 if (overlay) overlay.style.display = '';
+                form.removeAttribute('aria-busy');
             }
         });
     }
@@ -94,10 +114,15 @@ export default class CreateReturn extends PageManager {
     }
 
     showError() {
+        // The error box has role="alert" (announced on display); clear the in-flight status and
+        // move focus to the summary so keyboard users land on the error.
+        this.announce('');
+
         const errorBox = document.getElementById('return-new-error');
         if (!errorBox) return;
 
         errorBox.style.display = '';
+        errorBox.focus();
     }
 
     clearError() {
@@ -135,13 +160,15 @@ export default class CreateReturn extends PageManager {
         }).then(response => response.json());
     }
 
-    // Swaps the form view for the success confirmation view.
+    // Focus moves to the confirmation heading, which is what announces success to SR users.
     showConfirmation() {
         const formView = document.querySelector('[data-new-return-view]');
         const confirmation = document.querySelector('[data-new-return-confirmation]');
 
         if (formView) formView.style.display = 'none';
         if (confirmation) confirmation.style.display = '';
+
+        document.querySelector('[data-new-return-confirmation-heading]')?.focus();
     }
 
     /**

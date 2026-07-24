@@ -3,6 +3,7 @@
 {{~inject 'order' order}}
 {{~inject 'storefrontApiToken' settings.storefront_api.token}}
 {{~inject 'additionalNoteTooLongError' (lang 'account.returns.additional_note_too_long' maxNoteLength=1000)}}
+{{~inject 'submittingMessage' (lang 'account.returns.submitting')}}
 <main class="newReturn">
 
     {{#with order}}
@@ -11,30 +12,33 @@
         <div class="loadingOverlay"></div>
 
     <div class="newReturn-header">
-        <div class="newReturn-titleGroup">
-            <h1 class="newReturn-title">{{lang 'account.returns.from_order' id=id}}</h1>
-            {{#if status}}<span class="newReturn-statusBadge">{{status}}</span>{{/if}}
-        </div>
         <div class="newReturn-headerActions">
             <a href="{{../urls.account.orders.all}}" class="button">{{lang 'account.returns.back'}}</a>
-            <a href="/return-policy" class="button button--primary">{{lang 'account.returns.view_return_policy'}} &rarr;</a>
+            <a href="/return-policy" class="button button--primary">{{lang 'account.returns.view_return_policy'}} <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        <div class="newReturn-titleGroup">
+            <h1 class="newReturn-title" id="newReturn-heading" tabindex="-1">{{lang 'account.returns.from_order' id=id}}</h1>
+            {{#if status}}<span class="newReturn-statusBadge">{{status}}</span>{{/if}}
         </div>
         {{#if date}}<p class="newReturn-orderDate">{{lang 'account.returns.order_date'}}: {{date}}</p>{{/if}}
     </div>
 
     <hr class="newReturn-divider">
 
-    <div id="return-new-error" class="alertBox alertBox--error newReturn-error" style="display: none;" role="alert">
+    <div id="return-new-error" class="alertBox alertBox--error newReturn-error" style="display: none;" role="alert" tabindex="-1">
         <p class="newReturn-errorHeading">{{lang 'account.returns.error_heading'}}</p>
-        <p class="alertBox-message" data-return-error-message>
-            {{lang 'common.generic_error'}}
-            {{#if ../settings.phone_number}}
-            <p class="alertBox-message">
-                {{lang 'account.returns.contact_merchant' phone_number=../settings.phone_number }}
-            </p>
-            {{/if}}
+        <p class="alertBox-message" data-return-error-message>{{lang 'common.generic_error'}}</p>
+        {{#if ../settings.phone_number}}
+        <p class="alertBox-message">
+            {{lang 'account.returns.contact_merchant' phone_number=../settings.phone_number }}
         </p>
+        {{/if}}
     </div>
+
+    {{!-- Visually-hidden live region for loading / success state. `assertive` so the submitting
+          message interrupts whatever the screen reader is currently reading; `aria-atomic` so the
+          whole message is spoken as one unit (PR #2454 pattern). --}}
+    <p class="aria-description--hidden" aria-live="assertive" aria-atomic="true" data-new-return-status></p>
 
     <form class="form" data-new-return-form data-success-url="{{../urls.account.orders.all}}">
         <div class="newReturn-columnHeaders" aria-hidden="true">
@@ -47,8 +51,9 @@
             </div>
         </div>
 
+        <ul class="newReturn-orderLineItems">
         {{#each items}}
-            <div class="newReturn-orderLineItem" data-item-id="{{id}}">
+            <li class="newReturn-orderLineItem" data-item-id="{{id}}">
 
                 <div class="newReturn-orderLineItemThumbnailWrapper">
                     {{> components/common/responsive-img
@@ -61,7 +66,7 @@
                 </div>
 
                 <div class="newReturn-orderLineItemInfo">
-                    <p class="newReturn-orderLineItemName">{{name}}</p>
+                    <p class="newReturn-orderLineItemName" id="newReturn-itemName-{{id}}" role="heading" aria-level="2">{{name}}</p>
                     {{#if productAttributesList}}
                         <p class="newReturn-orderLineItemVariant">
                             {{#each productAttributesList}}{{name}}: {{value}}{{#unless @last}} &middot; {{/unless}}{{/each}}
@@ -73,34 +78,35 @@
                 </div>
 
                 <div class="newReturn-orderLineItemControls">
-                    <label class="newReturn-controlLabel" for="qty-{{id}}">{{lang 'account.orders.return.quantity'}}</label>
+                    <label class="newReturn-controlLabel" id="newReturn-qtyLabel-{{id}}" for="qty-{{id}}">{{lang 'account.orders.return.quantity'}}</label>
                     <div class="newReturn-orderLineItemQtyWrapper">
                         <select class="form-select form-select--small form-select--short"
                                 id="qty-{{id}}"
-                                aria-label="{{lang 'account.orders.return.quantity'}}">
+                                aria-labelledby="newReturn-qtyLabel-{{id}}">
                             {{#for 0 returnableQuantity}}
                                 <option value="{{$index}}">{{$index}}</option>
                             {{/for}}
                         </select>
                         <span class="newReturn-orderLineItemMaxQty">{{lang 'account.orders.return.of_max' max=returnableQuantity}}</span>
                     </div>
-                    <label class="newReturn-controlLabel" for="resolution-{{id}}">{{lang 'account.returns.request'}}</label>
-                    <select class="form-select form-select--small" id="resolution-{{id}}" aria-label="{{lang 'account.returns.select_resolution'}}">
+                    <label class="newReturn-controlLabel" id="newReturn-resolutionLabel-{{id}}" for="resolution-{{id}}">{{lang 'account.returns.request'}}</label>
+                    <select class="form-select form-select--small" id="resolution-{{id}}" aria-labelledby="newReturn-resolutionLabel-{{id}}">
                         <option value="">{{lang 'account.returns.select_resolution'}}</option>
                         {{#each ../../resolutions}}
                             <option value="{{resolutionType}}">{{label}}</option>
                         {{/each}}
                     </select>
-                    <label class="newReturn-controlLabel" for="reason-{{id}}">{{lang 'account.returns.reason_header'}}</label>
-                    <select class="form-select form-select--small" id="reason-{{id}}" aria-label="{{lang 'account.returns.select_reason'}}">
+                    <label class="newReturn-controlLabel" id="newReturn-reasonLabel-{{id}}" for="reason-{{id}}">{{lang 'account.returns.reason_header'}}</label>
+                    <select class="form-select form-select--small" id="reason-{{id}}" aria-labelledby="newReturn-reasonLabel-{{id}}">
                         <option value="">{{lang 'account.returns.select_reason'}}</option>
                         {{#each ../../reasons}}
                             <option value="{{id}}">{{nameForShopper}}</option>
                         {{/each}}
                     </select>
                 </div>
-            </div>
+            </li>
         {{/each}}
+        </ul>
 
         <hr class="newReturn-divider">
 
@@ -120,11 +126,16 @@
             </div>
 
             <div class="form-actions">
+                {{!-- Submit uses aria-disabled (not the native disabled attr) so keyboard/SR users can
+                      still reach it and hear why it's inactive; the hint swaps once it's ready. --}}
+                <p id="return-new-submitHint-disabled" class="aria-description--hidden">{{lang 'account.returns.submit_hint'}}</p>
+                <p id="return-new-submitHint-enabled" class="aria-description--hidden">{{lang 'account.returns.submit_ready'}}</p>
                 <input class="button button--primary"
                        id="return-new-submitBtn"
                        type="submit"
                        value="{{lang 'account.returns.submit'}}"
-                       disabled>
+                       aria-disabled="true"
+                       aria-describedby="return-new-submitHint-disabled">
             </div>
         </div>
 
@@ -133,7 +144,7 @@
     </div>
 
     <div class="newReturn-confirmation" data-new-return-confirmation style="display: none;">
-        <h1 class="newReturn-title">{{lang 'account.returns.from_order' id=id}} {{lang 'account.returns.submitted_successfully'}}</h1>
+        <h1 class="newReturn-title" data-new-return-confirmation-heading tabindex="-1">{{lang 'account.returns.from_order' id=id}} {{lang 'account.returns.submitted_successfully'}}</h1>
         <p class="newReturn-confirmationMessage">{{lang 'account.returns.confirmation_message_primary'}}</p>
         <p class="newReturn-confirmationMessage">{{lang 'account.returns.confirmation_message_secondary'}}</p>
         <a href="{{../urls.account.orders.all}}" class="button button--primary">{{lang 'account.returns.take_me_back'}}</a>

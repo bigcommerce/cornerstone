@@ -36,6 +36,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Gate account orders list "Return Items" link on returns settings (ORDERS-7704) [#2653](https://github.com/bigcommerce/cornerstone/pull/2653)
 - Added new Return list view (ORDERS-7717) [#2664](https://github.com/bigcommerce/cornerstone/pull/2664)
 - Added requested and resolved resolution view on return details page (ORDERS-7900) [#2697](https://github.com/bigcommerce/cornerstone/pull/2697)
+- Added accessibility features to create return page (ORDERS-7874) [#2712](https://github.com/bigcommerce/cornerstone/pull/2712)
 
 ## 6.19.1 (04-09-2026)
 - Update stencil-utils versionto 6.23.0 [#2638](https://github.com/bigcommerce/cornerstone/pull/2638)

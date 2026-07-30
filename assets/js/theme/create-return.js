@@ -7,15 +7,9 @@ export default class CreateReturn extends PageManager {
         const form = document.querySelector('[data-new-return-form]');
         if (!form) return;
 
-        this.focusOnLoad();
         this.bindOrderLineItemEvents();
         this.bindAdditionalNoteEvents();
         this.bindSubmit(form);
-    }
-
-    // Focus the page heading on load so screen-reader/keyboard users start at the page context.
-    focusOnLoad() {
-        document.getElementById('newReturn-heading')?.focus({ preventScroll: true });
     }
 
     announce(message) {
@@ -54,10 +48,15 @@ export default class CreateReturn extends PageManager {
         if (!submitBtn) return;
 
         // aria-disabled (not the native disabled attr) keeps the button keyboard/SR reachable while invalid.
-        // The described-by hint swaps between "what to select" and "press Enter to submit".
+        // Only describe why it's inactive; when valid the button label ("Submit Return") is enough on
+        // its own, so drop the description to avoid a redundant duplicate announcement.
         const isValid = hasValidItems && this.isAdditionalNoteValid();
         submitBtn.setAttribute('aria-disabled', String(!isValid));
-        submitBtn.setAttribute('aria-describedby', isValid ? 'return-new-submitHint-enabled' : 'return-new-submitHint-disabled');
+        if (isValid) {
+            submitBtn.removeAttribute('aria-describedby');
+        } else {
+            submitBtn.setAttribute('aria-describedby', 'return-new-submitHint-disabled');
+        }
     }
 
     bindSubmit(form) {
@@ -115,15 +114,14 @@ export default class CreateReturn extends PageManager {
     }
 
     showError() {
-        // The error box has role="alert" (announced on display); clear the in-flight status and
-        // move focus to the summary so keyboard users land on the error.
+        // The error box is a pre-existing role="alert" region; unhiding it announces the error
+        // without moving focus, so keyboard/SR users stay on Submit and can retry immediately.
         this.announce('');
 
         const errorBox = document.getElementById('return-new-error');
         if (!errorBox) return;
 
         errorBox.style.display = '';
-        errorBox.focus();
     }
 
     clearError() {

@@ -1,38 +1,39 @@
-<h3 class="account-heading">{{lang 'account.returns.heading' }}</h3>
-
-<ul class="account-list">
+<ul class="account-list account-returnsList">
     {{#each returns}}
     <li class="account-listItem">
         <div class="account-listItem-summary">
             <div class="account-listItem-summary-main">
-                <h5 class="account-returnsList-title">{{lang 'account.returns.list.return_number' id=rma}}</h5>
+                <h2 class="account-returnsList-title">{{lang 'account.returns.list.return_number' id=rma}}</h2>
                 {{#if status '===' 'OPEN'}}
-                    <h6 class="account-orderStatus-label account-orderStatus-label--open">{{lang 'account.returns.status.open'}}</h6>
+                    <span class="account-orderStatus-label account-orderStatus-label--open">{{lang 'account.returns.status.open'}}</span>
                 {{else if status '===' 'IN_PROGRESS'}}
-                    <h6 class="account-orderStatus-label account-orderStatus-label--inProgress">{{lang 'account.returns.status.in_progress'}}</h6>
+                    <span class="account-orderStatus-label account-orderStatus-label--inProgress">{{lang 'account.returns.status.in_progress'}}</span>
                 {{else if status '===' 'CLOSED'}}
-                    <h6 class="account-orderStatus-label account-orderStatus-label--closed">{{lang 'account.returns.status.closed'}}</h6>
+                    <span class="account-orderStatus-label account-orderStatus-label--closed">{{lang 'account.returns.status.closed'}}</span>
                 {{else if status '===' 'CANCELLED'}}
-                    <h6 class="account-orderStatus-label account-orderStatus-label--cancelled">{{lang 'account.returns.status.cancelled'}}</h6>
+                    <span class="account-orderStatus-label account-orderStatus-label--cancelled">{{lang 'account.returns.status.cancelled'}}</span>
                {{/if}}
             </div>
-            <a class="button button--small" href="/account.php?action=view_return&return_id={{id}}">{{lang 'account.returns.list.view_details'}}</a>
+            {{!-- aria-label carries the return number so the link's purpose is clear out of context;
+                  the page has many identical "View details" links. --}}
+            <a class="button button--small" href="/account.php?action=view_return&return_id={{id}}" aria-label="{{lang 'account.returns.list.view_details_for' id=rma}}">{{lang 'account.returns.list.view_details'}}</a>
         </div>
 
-        <div class="account-returnsList-details">
+        {{!-- Description list so each label is programmatically associated with its value. --}}
+        <dl class="account-returnsList-details">
             <div class="account-returnsList-detail">
-                <h6 class="account-returnsList-detail-heading">{{lang 'account.returns.list.return_submitted' }}</h6>
-                <span>{{moment dateSubmitted format="Do MMM YYYY"}}</span>
+                <dt class="account-returnsList-detail-heading">{{lang 'account.returns.list.return_submitted' }}</dt>
+                <dd class="account-returnsList-detail-value">{{moment dateSubmitted format="Do MMM YYYY"}}</dd>
             </div>
             <div class="account-returnsList-detail">
-                <h6 class="account-returnsList-detail-heading">{{lang 'account.returns.list.last_update' }}</h6>
-                <span>{{#if lastUpdated}}{{moment lastUpdated format="Do MMM YYYY"}}{{else}}{{moment dateSubmitted format="Do MMM YYYY"}}{{/if}}</span>
+                <dt class="account-returnsList-detail-heading">{{lang 'account.returns.list.last_update' }}</dt>
+                <dd class="account-returnsList-detail-value">{{#if lastUpdated}}{{moment lastUpdated format="Do MMM YYYY"}}{{else}}{{moment dateSubmitted format="Do MMM YYYY"}}{{/if}}</dd>
             </div>
             <div class="account-returnsList-detail">
-                <h6 class="account-returnsList-detail-heading">{{lang 'account.returns.list.return_items' }}</h6>
-                <span>{{items.length}}</span>
+                <dt class="account-returnsList-detail-heading">{{lang 'account.returns.list.return_items' }}</dt>
+                <dd class="account-returnsList-detail-value">{{items.length}}</dd>
             </div>
-        </div>
+        </dl>
     </li>
     {{/each}}
 </ul>

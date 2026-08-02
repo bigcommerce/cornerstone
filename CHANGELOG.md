@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Draft
+- Add accessibility to returns list page and an in-repo accessibility skill (ORDERS-7878)
+- Fix accessibility issues in create-return flow: avoid double announcements on submit errors, drop a redundant focus-on-load, and simplify the submit button's ARIA description (ORDERS-7874)
 - Add accessibility to create return page (ORDERS-7874) [#2712](https://github.com/bigcommerce/cornerstone/pull/2712)
 - Add product images to return detail page (ORDERS-7890) [#2713](https://github.com/bigcommerce/cornerstone/pull/2713)
 - Update returns navigation to support returns_v2_enabled [#2714](https://github.com/bigcommerce/cornerstone/pull/2714/changes)

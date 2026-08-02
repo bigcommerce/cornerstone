@@ -2,6 +2,16 @@
 // RETURNS LIST PAGE
 // =============================================================================
 
+.account-returnsList {
+    .account-listItem:first-child {
+        border-top: container("border");
+    }
+
+    .account-orderStatus-label {
+        font-family: $header-font-family;
+        text-transform: uppercase;
+    }
+}
 
 .account-returnsList-title {
     margin: 0 0 spacing("eighth");
@@ -24,7 +34,8 @@
 .account-returnsList-details {
     display: flex;
     flex-direction: column;
-    
+    margin: 0;
+
     @include breakpoint("medium") {
         flex-direction: row;
         gap: spacing("double");
@@ -46,6 +57,11 @@
     color: stencilColor("color-textSecondary");
     font-family: fontFamily("sans");
     font-size: fontSize("tiny");
+    text-transform: uppercase;
     margin: 0 0 spacing("eighth");
+}
+
+.account-returnsList-detail-value {
+    margin: 0;
 }
 

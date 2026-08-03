@@ -31,28 +31,29 @@
     font-weight: fontWeight("bold");
     letter-spacing: remCalc(1px);
     text-transform: uppercase;
-    background-color: stencilColor("label-backgroundColor");
-    color: stencilColor("label-color");
+    background-color: stencilColor("returnStatus-closed-backgroundColor");
+    color: stencilColor("returnStatus-closed-color");
 }
 
+// Status badges pair a background and text colour per variation
 .returnDetails-statusBadge--open {
-    background-color: color("warning", "light");
-    color: stencilColor("color-textBase");
+    background-color: stencilColor("returnStatus-open-backgroundColor");
+    color: stencilColor("returnStatus-open-color");
 }
 
 .returnDetails-statusBadge--in_progress {
-    background-color: color("success", "light");
-    color: stencilColor("color-textBase");
+    background-color: stencilColor("returnStatus-inProgress-backgroundColor");
+    color: stencilColor("returnStatus-inProgress-color");
 }
 
 .returnDetails-statusBadge--closed {
-    background-color: color("greys", "lighter");
-    color: stencilColor("color-textBase");
+    background-color: stencilColor("returnStatus-closed-backgroundColor");
+    color: stencilColor("returnStatus-closed-color");
 }
 
 .returnDetails-statusBadge--cancelled {
-    background-color: color("greys", "darker");
-    color: color("whites", "bright");
+    background-color: stencilColor("returnStatus-cancelled-backgroundColor");
+    color: stencilColor("returnStatus-cancelled-color");
 }
 
 .returnDetails-divider {
@@ -264,12 +265,11 @@
 // PAGE-LEVEL ERROR (e.g. failed cancellation)
 // =============================================================================
 
+// Colours come from the stock .alertBox--error styling
 .returnDetails-error {
     margin-bottom: spacing("single");
     padding: spacing("half") spacing("single");
     border-radius: remCalc(4px);
-    background-color: color("error", "light");
-    color: color("error");
 }
 
 .returnDetails-errorHeading {
@@ -279,5 +279,4 @@
 
 .returnDetails-error .alertBox-message {
     margin: 0;
-    color: color("error");
 }

@@ -383,24 +383,25 @@ $account-backorder-textColor: #757575;
     padding: spacing("eighth") spacing("third");
 }
 
+// Return status labels pair a background and text colour per variation
 .account-orderStatus-label--open {
-    background-color: color("warning", "light");
-    color: stencilColor("color-textBase");
+    background-color: stencilColor("returnStatus-open-backgroundColor");
+    color: stencilColor("returnStatus-open-color");
 }
 
 .account-orderStatus-label--inProgress {
-    background-color: color("success", "light");
-    color: stencilColor("color-textBase");
+    background-color: stencilColor("returnStatus-inProgress-backgroundColor");
+    color: stencilColor("returnStatus-inProgress-color");
 }
 
 .account-orderStatus-label--closed {
-    background-color: color("greys", "lighter");
-    color: stencilColor("color-textBase");
+    background-color: stencilColor("returnStatus-closed-backgroundColor");
+    color: stencilColor("returnStatus-closed-color");
 }
 
 .account-orderStatus-label--cancelled {
-    background-color: color("greys", "darker");
-    color: color("whites", "bright");
+    background-color: stencilColor("returnStatus-cancelled-backgroundColor");
+    color: stencilColor("returnStatus-cancelled-color");
 }
 
 .account-orderStatus-action {

@@ -18,12 +18,11 @@
     margin-bottom: spacing("eighth");
 }
 
+// Colours come from the stock .alertBox--error styling
 .newReturn-error {
     margin-bottom: spacing("single");
     padding: spacing("half") spacing("single");
     border-radius: remCalc(4px);
-    background-color: color("error", "light");
-    color: color("error");
 }
 
 .newReturn-errorHeading {
@@ -33,7 +32,6 @@
 
 .newReturn-error .alertBox-message {
     margin: 0;
-    color: color("error");
 }
 
 .newReturn-confirmation {
@@ -74,11 +72,11 @@
     display: inline-block;
     padding: spacing("eighth") spacing("half");
     border-radius: remCalc(12px);
-    background-color: color("success", "light");
+    background-color: stencilColor("newReturn-statusBadge-backgroundColor");
     font-size: remCalc(11px);
     font-weight: fontWeight("bold");
     letter-spacing: remCalc(1px);
-    color: stencilColor("color-textBase");
+    color: stencilColor("newReturn-statusBadge-color");
     text-transform: uppercase;
 }
 

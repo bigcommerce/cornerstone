@@ -394,10 +394,13 @@ $optimizedCheckout-input--error-boxShadow: 0 0 3px transparentize(stencilColor("
         border-color: stencilColor("optimizedCheckout-formField-borderColor");
     }
 
-    .optimizedCheckout-form-checkbox:checked + .optimizedCheckout-form-label::before,
     .optimizedCheckout-form-checklist-checkbox:checked ~ .optimizedCheckout-form-label::before {
-        background-color: stencilColor("optimizedCheckout-formField-inputControlColor");
-        border-color: stencilColor("optimizedCheckout-formField-inputControlColor");
+        background-color: stencilColor("optimizedCheckout-formChecklist-color");
+        border-color: stencilColor("optimizedCheckout-formChecklist-color");
+    }
+
+    .optimizedCheckout-form-checklist-checkbox:checked ~ .optimizedCheckout-form-label::after {
+        background-color: stencilColor("optimizedCheckout-formField-backgroundColor");
     }
 
     .optimizedCheckout-form-checklist {
@@ -406,7 +409,7 @@ $optimizedCheckout-input--error-boxShadow: 0 0 3px transparentize(stencilColor("
         }
 
         .optimizedCheckout-form-checklist-item--selected {
-            border-color: stencilColor("optimizedCheckout-formField-inputControlColor");
+            border-color: stencilColor("optimizedCheckout-formChecklist-color");
             background-color: stencilColor("optimizedCheckout-formChecklist-backgroundColorSelected");
         }
     }

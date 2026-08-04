@@ -379,3 +379,49 @@ $optimizedCheckout-input--error-boxShadow: 0 0 3px transparentize(stencilColor("
     background-color: stencilColor("optimizedCheckout-loadingToaster-backgroundColor");
     color: stencilColor("optimizedCheckout-loadingToaster-textColor");
 }
+
+
+.enhancedTheme {
+    background-color: stencilColor("optimizedCheckout-header-backgroundColor");
+
+    .optimizedCheckout-form-select,
+    .optimizedCheckout-form-input {
+        background-color: stencilColor("optimizedCheckout-formField-backgroundColor");
+    }
+
+    .form-field:not(.form-field--error) .optimizedCheckout-form-input:not(:focus),
+    .form-field:not(.form-field--error) .optimizedCheckout-form-select:not(:focus) {
+        border-color: stencilColor("optimizedCheckout-formField-borderColor");
+    }
+
+    .optimizedCheckout-form-checkbox:checked + .optimizedCheckout-form-label::before,
+    .optimizedCheckout-form-checklist-checkbox:checked ~ .optimizedCheckout-form-label::before {
+        background-color: stencilColor("optimizedCheckout-formField-inputControlColor");
+        border-color: stencilColor("optimizedCheckout-formField-inputControlColor");
+    }
+
+    .optimizedCheckout-form-checklist {
+        .optimizedCheckout-form-checklist-item {
+            border-color: stencilColor("optimizedCheckout-formChecklist-borderColor");
+        }
+
+        .optimizedCheckout-form-checklist-item--selected {
+            border-color: stencilColor("optimizedCheckout-formField-inputControlColor");
+            background-color: stencilColor("optimizedCheckout-formChecklist-backgroundColorSelected");
+        }
+    }
+
+    .optimizedCheckout-contentPrimary {
+        .optimizedCheckout-checkoutStep {
+            background-color: transparentize(stencilColor("optimizedCheckout-body-backgroundColor"), 0.5);
+
+            &.checkout-step--current {
+                background-color: stencilColor("optimizedCheckout-body-backgroundColor");
+            }
+
+            &:not(.checkout-step--current) .optimizedCheckout-buttonSecondary {
+                background-color: transparent;
+            }
+        }
+    }
+}

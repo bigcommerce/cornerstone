@@ -11,6 +11,7 @@
 {{~inject 'returnCancelConfirmBody' (lang 'account.returns.cancel_confirm_body')}}
 
 {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+<h1 class="page-heading">{{lang 'account.returns.heading'}}</h1>
 {{> components/account/navigation account_page='returns'}}
 
 {{#if return_detail}}
@@ -26,7 +27,7 @@
 
             <section class="returnDetails-main">
                 <div class="returnDetails-titleGroup">
-                    <h1 class="returnDetails-title">{{lang 'account.returns.details.return_number' id=return_detail.rma}}</h1>
+                    <h2 class="returnDetails-title">{{lang 'account.returns.details.return_number' id=return_detail.rma}}</h2>
                     {{#if return_detail.status '===' 'OPEN'}}
                         <span class="returnDetails-statusBadge returnDetails-statusBadge--open">{{lang 'account.returns.status.open'}}</span>
                     {{else if return_detail.status '===' 'IN_PROGRESS'}}
@@ -53,13 +54,9 @@
                                 }}
                             </div>
                             <div class="returnDetails-itemInfo">
-                                <p class="returnDetails-itemName">{{productName}}</p>
+                                <p class="returnDetails-itemName">{{product_name}}</p>
                             </div>
                             <dl class="returnDetails-itemMeta">
-                                <div class="returnDetails-itemMetaRow">
-                                    <dt class="returnDetails-itemMetaLabel">{{lang 'account.returns.details.sku'}}</dt>
-                                    <dd class="returnDetails-itemMetaValue">{{productSku}}</dd>
-                                </div>
                                 <div class="returnDetails-itemMetaRow">
                                     <dt class="returnDetails-itemMetaLabel">{{lang 'account.returns.details.quantity'}}</dt>
                                     <dd class="returnDetails-itemMetaValue">{{quantity}}</dd>
@@ -79,7 +76,7 @@
                                 </div>
                                 <div class="returnDetails-itemMetaRow">
                                     <dt class="returnDetails-itemMetaLabel">{{lang 'account.returns.details.reason'}}</dt>
-                                    <dd class="returnDetails-itemMetaValue">{{reasonName}}</dd>
+                                    <dd class="returnDetails-itemMetaValue">{{reason_name}}</dd>
                                 </div>
                             </dl>
                         </li>
@@ -93,15 +90,15 @@
                 <dl class="returnDetails-summaryList">
                     <div class="returnDetails-summaryRow">
                         <dt class="returnDetails-summaryLabel">{{lang 'account.returns.details.date_submitted'}}</dt>
-                        <dd class="returnDetails-summaryValue">{{moment return_detail.dateSubmitted format="Do MMM YYYY"}}</dd>
+                        <dd class="returnDetails-summaryValue">{{moment return_detail.date_submitted format="MMMM D, YYYY"}}</dd>
                     </div>
                     <div class="returnDetails-summaryRow">
                         <dt class="returnDetails-summaryLabel">{{lang 'account.returns.details.last_update'}}</dt>
-                        <dd class="returnDetails-summaryValue">{{#if return_detail.lastUpdated}}{{moment return_detail.lastUpdated format="Do MMM YYYY"}}{{else}}{{moment return_detail.dateSubmitted format="Do MMM YYYY"}}{{/if}}</dd>
+                        <dd class="returnDetails-summaryValue">{{#if return_detail.last_updated}}{{moment return_detail.last_updated format="MMMM D, YYYY"}}{{else}}{{moment return_detail.date_submitted format="MMMM D, YYYY"}}{{/if}}</dd>
                     </div>
                     <div class="returnDetails-summaryRow">
-                        <dt class="returnDetails-sr-only">{{lang 'account.returns.details.order_number_label'}}</dt>
-                        <dd class="returnDetails-summaryLabel">{{lang 'account.returns.details.order_number' id=return_detail.orderId}}</dd>
+                        <dt class="returnDetails-summaryLabel">{{lang 'account.returns.details.order_number'}}</dt>
+                        <dd class="returnDetails-summaryValue">{{return_detail.order_id}}</dd>
                     </div>
                 </dl>
 

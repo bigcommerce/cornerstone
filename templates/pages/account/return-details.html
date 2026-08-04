@@ -29,12 +29,16 @@
                 <div class="returnDetails-titleGroup">
                     <h2 class="returnDetails-title">{{lang 'account.returns.details.return_number' id=return_detail.rma}}</h2>
                     {{#if return_detail.status '===' 'OPEN'}}
+                        <span class="aria-description--hidden">{{lang 'account.returns.details.status_label'}}</span>
                         <span class="returnDetails-statusBadge returnDetails-statusBadge--open">{{lang 'account.returns.status.open'}}</span>
                     {{else if return_detail.status '===' 'IN_PROGRESS'}}
+                        <span class="aria-description--hidden">{{lang 'account.returns.details.status_label'}}</span>
                         <span class="returnDetails-statusBadge returnDetails-statusBadge--in_progress">{{lang 'account.returns.status.in_progress'}}</span>
                     {{else if return_detail.status '===' 'CLOSED'}}
+                        <span class="aria-description--hidden">{{lang 'account.returns.details.status_label'}}</span>
                         <span class="returnDetails-statusBadge returnDetails-statusBadge--closed">{{lang 'account.returns.status.closed'}}</span>
                     {{else if return_detail.status '===' 'CANCELLED'}}
+                        <span class="aria-description--hidden">{{lang 'account.returns.details.status_label'}}</span>
                         <span class="returnDetails-statusBadge returnDetails-statusBadge--cancelled">{{lang 'account.returns.status.cancelled'}}</span>
                     {{/if}}
                 </div>
@@ -67,7 +71,7 @@
                                         {{~!-- Resolution label: custom resolutions show the merchant name; system ones are translated from their enum token. --~}}
                                         {{#if requested_differs_from_resolved}}
                                             <span class="returnDetails-itemMetaValue--strikethrough">{{#if requested_resolution_type '===' 'CUSTOM'}}{{requested_resolution_name}}{{else}}{{lang (concat 'account.returns.details.resolution.' (toLowerCase requested_resolution_type))}}{{/if}}</span>
-                                            <span class="returnDetails-sr-only">{{lang 'account.returns.details.resolution_changed_to'}}</span>
+                                            <span class="aria-description--hidden">{{lang 'account.returns.details.resolution_changed_to'}}</span>
                                             <span class="returnDetails-finalResolution">{{#if resolved_resolution_type '===' 'CUSTOM'}}{{resolved_resolution_name}}{{else}}{{lang (concat 'account.returns.details.resolution.' (toLowerCase resolved_resolution_type))}}{{/if}} {{lang 'account.returns.details.final_resolution'}}</span>
                                         {{else}}
                                             {{#if requested_resolution_type '===' 'CUSTOM'}}{{requested_resolution_name}}{{else}}{{lang (concat 'account.returns.details.resolution.' (toLowerCase requested_resolution_type))}}{{/if}}

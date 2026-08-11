@@ -13,10 +13,27 @@
     }
 }
 
+// The spinner is the only motion on this page, and it conveys nothing that the
+// visually-hidden status region doesn't already announce, so stopping it costs
+// nothing for shoppers who ask for reduced motion.
+@media (prefers-reduced-motion: reduce) {
+    .guest-return-portal .loadingOverlay::before {
+        animation: none;
+    }
+}
+
 .guest-return-portal-error-container {
     .alertBox {
         display: none;
     }
+}
+
+// The order-ID hint is a persistent visible instruction, not SR-only text. Give it
+// its own line instead of running inline against the input. Colour and size are left
+// inherited so the instruction keeps the body text's contrast.
+.guest-return-portal .form-field .aria-description {
+    display: block;
+    margin-top: spacing("quarter");
 }
 
 .guest-return-portal-row {

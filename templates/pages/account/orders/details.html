@@ -185,7 +185,7 @@
                     </form>
                     {{#or settings.returns_v2_enabled settings.returns_enabled}}
                         {{#if order.is_complete}}
-                            <a href="{{order.return_url}}" class="button">{{lang 'account.orders.details.return'}}</a>
+                            <a href="{{order.return_url}}" class="button" aria-label="{{lang 'account.orders.return_items_for' number=order.id}}">{{lang 'account.orders.details.return'}}</a>
                         {{/if}}
                     {{/or}}
                 </div>

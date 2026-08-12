@@ -110,6 +110,10 @@ Design applicable requirements into the solution, then edit.
    never use color alone; pointer targets ≥24×24 CSS px unless SC 2.5.8
    exception applies. In Cornerstone, `color("greys","base")` (#999) fails for
    text — use `color("greys","dark")` (#666).
+   - **`prefers-reduced-motion` targets substantial/auto-playing motion**
+     (parallax, carousels, looping scenes). Transient loading spinners are
+     exempt (SC 2.2.2, A) and reduced-motion coverage for them is AAA — don't
+     add per-spinner overrides.
 
 7. **Translatable strings.** No hardcoded English in ARIA. Add a key to
    `lang/en.json`, reference via `{{lang '...'}}` or

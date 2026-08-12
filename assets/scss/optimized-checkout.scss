@@ -389,16 +389,6 @@ $optimizedCheckout-input--error-boxShadow: 0 0 3px transparentize(stencilColor("
 .enhancedThemeV1 {
     background-color: stencilColor("optimizedCheckout-header-backgroundColor");
 
-    .optimizedCheckout-form-select,
-    .optimizedCheckout-form-input {
-        background-color: stencilColor("optimizedCheckout-formField-backgroundColor");
-    }
-
-    .form-field:not(.form-field--error) .optimizedCheckout-form-input:not(:focus):not(:hover),
-    .form-field:not(.form-field--error) .optimizedCheckout-form-select:not(:focus):not(:hover) {
-        border-color: stencilColor("optimizedCheckout-formField-borderColor");
-    }
-
     .optimizedCheckout-form-checklist-checkbox:checked ~ .optimizedCheckout-form-label::before {
         background-color: stencilColor("optimizedCheckout-formChecklist-color");
         border-color: stencilColor("optimizedCheckout-formChecklist-color");
@@ -436,10 +426,10 @@ $optimizedCheckout-input--error-boxShadow: 0 0 3px transparentize(stencilColor("
     .optimizedCheckout-orderSummary {
         .optimizedCheckout-orderSummary-toggle {
             color: stencilColor("optimizedCheckout-link-color");
-        }
 
-        svg {
-            fill: stencilColor("optimizedCheckout-link-color");
+            svg {
+                fill: stencilColor("optimizedCheckout-link-color");
+            }
         }
     }
 }

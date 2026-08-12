@@ -1,7 +1,24 @@
 <!DOCTYPE html>
 <html class="no-js" lang="{{ locale_name }}">
     <head>
-        <title>{{ head.title }}</title>
+        {{!-- Shopper-facing returns routes are served by the storefront without a server-set head.title,
+              so fall back to a descriptive, translatable title per page (WCAG 2.4.2).
+              Only fires when head.title is empty, so titled pages are unaffected. --}}
+        <title>
+            {{~#if head.title~}}
+                {{head.title}}
+            {{~else if page_type '===' 'create_return'~}}
+                {{lang 'account.returns.titles.create'}}
+            {{~else if page_type '===' 'return_detail'~}}
+                {{lang 'account.returns.titles.detail'}}
+            {{~else if page_type '===' 'account_return_detail'~}}
+                {{lang 'account.returns.titles.detail'}}
+            {{~else if page_type '===' 'guest_return_portal'~}}
+                {{lang 'account.returns.titles.guest'}}
+            {{~else if page_type '===' 'account_returns'~}}
+                {{lang 'account.returns.titles.list'}}
+            {{~/if~}}
+        </title>
         {{{ resourceHints }}}
         {{{ head.meta_tags }}}
         {{{ head.config }}}

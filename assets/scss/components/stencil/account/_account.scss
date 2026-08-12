@@ -373,6 +373,17 @@ $account-backorder-textColor: #757575;
     }
 }
 
+// Orders list: title + status/return share a flex row so the status block reserves
+// its own space while the order link stays first in the DOM for focus order (WCAG 2.4.3).
+.account-product-heading {
+    @include breakpoint("small") {
+        align-items: flex-start;
+        display: flex;
+        gap: spacing("half");
+        justify-content: space-between;
+    }
+}
+
 .account-orderStatus-label {
     background-color: stencilColor("label-backgroundColor");
     color: stencilColor("label-color");

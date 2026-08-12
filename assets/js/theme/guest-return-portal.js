@@ -6,10 +6,11 @@ import {
 } from './common/utils/form-utils';
 import forms from './common/models/forms';
 
-// Listed in DOM order so a failed submit can focus the first field needing correction.
+// Keep in DOM order — a failed submit focuses the first invalid field.
+// Both nod and the submit handler use the same `isValid` to check a field.
 const VALIDATED_FIELDS = [
-    { input: '#guest-return-email-input', errorSpan: '#guest-return-email-error' },
-    { input: '#guest-return-order-input', errorSpan: '#guest-return-order-error' },
+    { input: '#guest-return-email-input', errorSpan: '#guest-return-email-error', isValid: val => forms.email(val) },
+    { input: '#guest-return-order-input', errorSpan: '#guest-return-order-error', isValid: val => forms.numbersOnly(val) },
 ];
 
 export default class GuestReturnPortal extends PageManager {
@@ -21,7 +22,7 @@ export default class GuestReturnPortal extends PageManager {
         this.bindSubmit(form);
     }
 
-    // Replaces stale text in the visually-hidden status region rather than appending.
+    // Replaces the message in the hidden status region that screen readers read out.
     announce(message) {
         const liveRegion = document.querySelector('[data-guest-return-status]');
         if (liveRegion) liveRegion.textContent = message || '';
@@ -39,70 +40,80 @@ export default class GuestReturnPortal extends PageManager {
         this.validator.add([
             {
                 selector: `.guest-return-portal-form input${VALIDATED_FIELDS[0].input}`,
-                validate: (cb, val) => {
-                    const result = forms.email(val);
-
-                    cb(result);
-                },
+                validate: (cb, val) => cb(VALIDATED_FIELDS[0].isValid(val)),
                 errorMessage: this.context.invalidEmail,
             },
             {
                 selector: `.guest-return-portal-form input${VALIDATED_FIELDS[1].input}`,
-                validate: (cb, val) => {
-                    const result = forms.numbersOnly(val);
-
-                    cb(result);
-                },
+                validate: (cb, val) => cb(VALIDATED_FIELDS[1].isValid(val)),
                 errorMessage: this.context.invalidOrder,
             },
         ]);
 
-        // Point nod at the template's error nodes so each message keeps the stable id its
-        // input references via aria-describedby. Left to itself nod appends an anonymous
-        // span, which nothing can point at.
+        // Have nod write errors into the template's own spans — their ids are what
+        // each input's aria-describedby points at.
         this.validator.setMessageOptions(VALIDATED_FIELDS.map(({ input, errorSpan }) => ({
             selector: `.guest-return-portal-form input${input}`,
             errorSpan,
         })));
     }
 
-    // Expose nod's result as ARIA state, so invalid fields aren't signalled by styling alone.
+    // Mirror nod's result onto aria-invalid so screen readers know the field's state.
     syncFieldValidity({ element, result }) {
         if (!element) return;
 
         element.setAttribute('aria-invalid', String(!result));
     }
 
-    focusFirstInvalidField() {
-        VALIDATED_FIELDS
-            .map(({ input }) => document.querySelector(input))
-            .find(input => input && input.getAttribute('aria-invalid') === 'true')
-            ?.focus();
+    findFirstInvalidField() {
+        return VALIDATED_FIELDS
+            .map(({ input, isValid }) => ({ element: document.querySelector(input), isValid }))
+            .find(({ element, isValid }) => element && !isValid(element.value))
+            ?.element;
+    }
+
+    // Empty the inline errors before each attempt, so a resubmit doesn't
+    // announce the same message twice.
+    resetInlineErrors() {
+        VALIDATED_FIELDS.forEach(({ errorSpan }) => {
+            const span = document.querySelector(errorSpan);
+            if (!span) return;
+
+            span.textContent = '';
+            span.style.display = 'none';
+        });
     }
 
     bindSubmit(form) {
         form.addEventListener('submit', async event => {
             event.preventDefault();
 
-            this.validator.performCheck();
+            // Start each attempt clean — errors from the last attempt no longer apply.
+            this.resetInlineErrors();
+            this.clearError();
 
-            if (!this.validator.areAll('valid')) {
-                this.focusFirstInvalidField();
+            const firstInvalidField = this.findFirstInvalidField();
+            if (firstInvalidField) {
+                // Focus the field first, then render the errors — this way the shopper
+                // hears the field, then its error, exactly once each.
+                firstInvalidField.focus();
+                this.validator.performCheck();
                 return;
             }
+
+            this.validator.performCheck();
+            if (!this.validator.areAll('valid')) return;
 
             // Ignore activations while a request is in flight
             if (this.isSubmitting) return;
             this.isSubmitting = true;
             const submitBtn = document.getElementById('return-guest-submit-btn');
             const overlay = document.querySelector('.guest-return-portal .loadingOverlay');
-            // aria-disabled instead of the native attribute: disabling the button the shopper
-            // just activated would drop focus to <body>, losing their place before the
-            // outcome is announced. Re-entry is already blocked by `isSubmitting`.
+            // aria-disabled keeps focus on the button; the native `disabled` would drop
+            // focus to the page. Repeat submits are already blocked by `isSubmitting`.
             if (submitBtn) submitBtn.setAttribute('aria-disabled', 'true');
             if (overlay) overlay.style.display = 'block';
             form.setAttribute('aria-busy', 'true');
-            this.clearError();
             this.announce(this.context.submittingMessage);
             const payload = this.buildRequestPayload();
 
@@ -126,12 +137,11 @@ export default class GuestReturnPortal extends PageManager {
                     throw new Error('Failed to start return guest session');
                 }
 
-                // Full navigation, so the browser establishes focus in the next document.
+                // Full page navigation — the browser handles focus on the next page.
                 window.location.href = `/create-return/${payload.orderEntityId}`;
             } catch (error) {
-                // Drop the in-flight message so it can't be mistaken for the current state.
-                // The failure itself is announced by the role="alert" container, which leaves
-                // focus on Submit for an immediate retry.
+                // Clear the "please wait" message; the error box announces the failure
+                // while focus stays on the button so the shopper can retry right away.
                 this.announce('');
 
                 if (error instanceof NotFoundError) {
@@ -188,13 +198,13 @@ export default class GuestReturnPortal extends PageManager {
         if (!alertBox) return;
 
         const messageElement = alertBox.querySelector('#alertBox-message-text');
+        if (messageElement) messageElement.textContent = message || '';
 
         alertBox.style.display = 'block';
-        if (messageElement) messageElement.textContent = message || '';
     }
 
-    // Hiding the box between attempts also means an identical repeat error still registers
-    // as a change in the alert region, so it is announced again.
+    // Hide the box between attempts so even a repeat of the same error
+    // counts as new content and is announced again.
     clearError() {
         const alertBox = document.querySelector('.guest-return-portal-error-container .alertBox');
         if (alertBox) alertBox.style.display = 'none';

@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Draft
+- Add a translatable page `<title>` to the create return and guest return portal pages for accessibility (WCAG 2.4.2) and SEO (ORDERS-7945)
 - Add accessibility to return detail page: status-badge screen-reader context and dialog semantics on the shared alert modal (ORDERS-7875)
 - Add accessibility to returns list page and an in-repo accessibility skill (ORDERS-7878)
 - Fix accessibility issues in create-return flow: avoid double announcements on submit errors, drop a redundant focus-on-load, and simplify the submit button's ARIA description (ORDERS-7874)

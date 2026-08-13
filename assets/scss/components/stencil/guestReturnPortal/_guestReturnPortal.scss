@@ -19,6 +19,14 @@
     }
 }
 
+// The order-ID hint is visible to everyone, not screen-reader-only text.
+// Put it on its own line under the input instead of running inline against it.
+// Colour and size are inherited so the hint keeps normal body-text contrast.
+.guest-return-portal .form-field .aria-description {
+    display: block;
+    margin-top: spacing("quarter");
+}
+
 .guest-return-portal-row {
     @include grid-row();
 }

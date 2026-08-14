@@ -33,6 +33,11 @@
                 <dt class="account-returnsList-detail-heading">{{lang 'account.returns.list.return_items' }}</dt>
                 <dd class="account-returnsList-detail-value">{{items.length}}</dd>
             </div>
+            {{> components/account/return-items-total
+                total=total_item_price
+                class_row="account-returnsList-detail"
+                class_label="account-returnsList-detail-heading"
+                class_value="account-returnsList-detail-value"}}
         </dl>
     </li>
     {{/each}}

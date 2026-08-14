@@ -104,6 +104,11 @@
                         <dt class="returnDetails-summaryLabel">{{lang 'account.returns.details.order_number'}}</dt>
                         <dd class="returnDetails-summaryValue">{{return_detail.order_id}}</dd>
                     </div>
+                    {{> components/account/return-items-total
+                        total=return_detail.total_item_price
+                        class_row="returnDetails-summaryRow"
+                        class_label="returnDetails-summaryLabel"
+                        class_value="returnDetails-summaryValue"}}
                 </dl>
 
                 {{!-- Additional note — only shown when the shopper left a note. --}}

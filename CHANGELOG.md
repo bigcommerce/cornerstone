@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Draft
+- Add accessibility to returns entry-point links on the orders list and order details pages: order-scoped `aria-label`s and correct keyboard focus order (ORDERS-7877)
+- Add accessibility to guest return portal entry form: main landmark, named form, inline error linking with `aria-invalid`, live-region lookup announcements, and focus to the first invalid field on failed submit (ORDERS-7876)
 - Add a translatable page `<title>` to the create return and guest return portal pages for accessibility (WCAG 2.4.2) and SEO (ORDERS-7945)
 - Add accessibility to return detail page: status-badge screen-reader context and dialog semantics on the shared alert modal (ORDERS-7875)
 - Add accessibility to returns list page and an in-repo accessibility skill (ORDERS-7878)

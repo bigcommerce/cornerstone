@@ -1,19 +1,13 @@
 {{!--
     Sum of a return's item prices (`total_item_price` on a return in the page context).
     Standalone component so its placement can change later without touching the host pages:
-    include it inside a <dl> and pass the money object plus the host page's row/label/value
-    classes so the row matches the surrounding list styling.
-
-    Usage:
-    {{> components/account/return-items-total
-        total=total_item_price
-        class_row="account-returnsList-detail"
-        class_label="account-returnsList-detail-heading"
-        class_value="account-returnsList-detail-value"}}
+    include it inside a <dl> and pass the money object, the host page's label key (list and
+    details keep separate keys so details labels can carry their trailing colon), and the
+    host page's row/label/value classes so the row matches the surrounding list styling.
 --}}
 {{#if total}}
     <div class="{{class_row}} returnItemsTotal">
-        <dt class="{{class_label}}">{{lang 'account.returns.items_total'}}</dt>
-        <dd class="{{class_value}}">{{#if total.formatted}}{{total.formatted}}{{else}}{{total.value}} {{total.currency}}{{/if}}</dd>
+        <dt class="{{class_label}}">{{lang label_key}}</dt>
+        <dd class="{{class_value}}">{{total.formatted}}</dd>
     </div>
 {{/if}}

@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Draft
+- Revert "Reset cart quantity to 0 if we get a 404 for the cart" [#1920](https://github.com/bigcommerce/cornerstone/pull/1920)
 
 ## 6.21.0 (07-21-2026)
 - Display featured promotion callouts on product listing pages (product cards and list view) and the PDP, gated by the new `show_featured_promotions` theme setting and the `featured_promotions` context [#2695](https://github.com/bigcommerce/cornerstone/pull/2695)

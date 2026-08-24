@@ -25,6 +25,11 @@
         {{else}}
             <p>{{{page.content}}}</p>
         {{/replace}}
+        {{#and page.show_link_to_guest_return_portal settings.returns_v2_enabled}}
+            <div class="page-content--textCenter">
+                <a class="button button--primary" href="/guest-return-portal">{{lang 'account.returns.guest.go_to_return_portal'}}</a>
+            </div>
+        {{/and}}
     </div>
 
     {{#if page.feed}}

@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Draft
+- Add "Go to return portal link" for web pages with the option enabled [#2731](https://github.com/bigcommerce/cornerstone/pull/2731)
 - Add sum of item prices ("Total") to the returns list and return details pages, and align returns terminology ("Date submitted", "Quantity", "Total")
 - Add accessibility to returns entry-point links on the orders list and order details pages: order-scoped `aria-label`s and correct keyboard focus order (ORDERS-7877)
 - Add accessibility to guest return portal entry form: main landmark, named form, inline error linking with `aria-invalid`, live-region lookup announcements, and focus to the first invalid field on failed submit (ORDERS-7876)

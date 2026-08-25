@@ -30,16 +30,16 @@
                     <h2 class="returnDetails-title">{{lang 'account.returns.details.return_number' id=return_detail.rma}}</h2>
                     {{#if return_detail.status '===' 'OPEN'}}
                         <span class="aria-description--hidden">{{lang 'account.returns.details.status_label'}}</span>
-                        <span class="returnDetails-statusBadge returnDetails-statusBadge--open">{{lang 'account.returns.status.open'}}</span>
+                        <span class="account-orderStatus-label account-orderStatus-label--open">{{lang 'account.returns.status.open'}}</span>
                     {{else if return_detail.status '===' 'IN_PROGRESS'}}
                         <span class="aria-description--hidden">{{lang 'account.returns.details.status_label'}}</span>
-                        <span class="returnDetails-statusBadge returnDetails-statusBadge--in_progress">{{lang 'account.returns.status.in_progress'}}</span>
+                        <span class="account-orderStatus-label account-orderStatus-label--inProgress">{{lang 'account.returns.status.in_progress'}}</span>
                     {{else if return_detail.status '===' 'CLOSED'}}
                         <span class="aria-description--hidden">{{lang 'account.returns.details.status_label'}}</span>
-                        <span class="returnDetails-statusBadge returnDetails-statusBadge--closed">{{lang 'account.returns.status.closed'}}</span>
+                        <span class="account-orderStatus-label account-orderStatus-label--closed">{{lang 'account.returns.status.closed'}}</span>
                     {{else if return_detail.status '===' 'CANCELLED'}}
                         <span class="aria-description--hidden">{{lang 'account.returns.details.status_label'}}</span>
-                        <span class="returnDetails-statusBadge returnDetails-statusBadge--cancelled">{{lang 'account.returns.status.cancelled'}}</span>
+                        <span class="account-orderStatus-label account-orderStatus-label--cancelled">{{lang 'account.returns.status.cancelled'}}</span>
                     {{/if}}
                 </div>
 
@@ -94,11 +94,11 @@
                 <dl class="returnDetails-summaryList">
                     <div class="returnDetails-summaryRow">
                         <dt class="returnDetails-summaryLabel">{{lang 'account.returns.details.date_submitted'}}</dt>
-                        <dd class="returnDetails-summaryValue">{{moment return_detail.date_submitted format="MMMM D, YYYY"}}</dd>
+                        <dd class="returnDetails-summaryValue">{{moment return_detail.date_submitted format="Do MMM YYYY"}}</dd>
                     </div>
                     <div class="returnDetails-summaryRow">
                         <dt class="returnDetails-summaryLabel">{{lang 'account.returns.details.last_update'}}</dt>
-                        <dd class="returnDetails-summaryValue">{{#if return_detail.last_updated}}{{moment return_detail.last_updated format="MMMM D, YYYY"}}{{else}}{{moment return_detail.date_submitted format="MMMM D, YYYY"}}{{/if}}</dd>
+                        <dd class="returnDetails-summaryValue">{{#if return_detail.last_updated}}{{moment return_detail.last_updated format="Do MMM YYYY"}}{{else}}{{moment return_detail.date_submitted format="Do MMM YYYY"}}{{/if}}</dd>
                     </div>
                     <div class="returnDetails-summaryRow">
                         <dt class="returnDetails-summaryLabel">{{lang 'account.returns.details.order_number'}}</dt>

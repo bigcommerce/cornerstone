@@ -31,7 +31,7 @@
             </div>
             <div class="account-returnsList-detail">
                 <dt class="account-returnsList-detail-heading">{{lang 'account.returns.list.return_quantity' }}</dt>
-                <dd class="account-returnsList-detail-value">{{items.length}}</dd>
+                <dd class="account-returnsList-detail-value">{{sum (pluck items 'quantity')}}</dd>
             </div>
             {{> components/account/return-items-total
                 total=total_item_price

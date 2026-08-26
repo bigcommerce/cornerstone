@@ -23,37 +23,11 @@
     margin: 0;
 }
 
-.returnDetails-statusBadge {
-    display: inline-block;
-    padding: spacing("eighth") spacing("quarter");
-    border-radius: remCalc(4px);
-    font-size: remCalc(11px);
-    font-weight: fontWeight("bold");
-    letter-spacing: remCalc(1px);
+// Status badge is shared with the returns list (.account-orderStatus-label);
+.returnDetails-titleGroup .account-orderStatus-label {
+    font-family: $header-font-family;
     text-transform: uppercase;
-    background-color: stencilColor("returnStatus-closed-backgroundColor");
-    color: stencilColor("returnStatus-closed-color");
-}
-
-// Status badges pair a background and text colour per variation
-.returnDetails-statusBadge--open {
-    background-color: stencilColor("returnStatus-open-backgroundColor");
-    color: stencilColor("returnStatus-open-color");
-}
-
-.returnDetails-statusBadge--in_progress {
-    background-color: stencilColor("returnStatus-inProgress-backgroundColor");
-    color: stencilColor("returnStatus-inProgress-color");
-}
-
-.returnDetails-statusBadge--closed {
-    background-color: stencilColor("returnStatus-closed-backgroundColor");
-    color: stencilColor("returnStatus-closed-color");
-}
-
-.returnDetails-statusBadge--cancelled {
-    background-color: stencilColor("returnStatus-cancelled-backgroundColor");
-    color: stencilColor("returnStatus-cancelled-color");
+    margin: 0;
 }
 
 .returnDetails-divider {

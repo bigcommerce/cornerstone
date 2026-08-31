@@ -65,6 +65,12 @@
                                     <dt class="returnDetails-itemMetaLabel">{{lang 'account.returns.details.quantity'}}</dt>
                                     <dd class="returnDetails-itemMetaValue">{{quantity}}</dd>
                                 </div>
+                                {{#if total}}
+                                <div class="returnDetails-itemMetaRow">
+                                    <dt class="returnDetails-itemMetaLabel">{{lang 'account.returns.details.total'}}</dt>
+                                    <dd class="returnDetails-itemMetaValue">{{total.formatted}}</dd>
+                                </div>
+                                {{/if}}
                                 <div class="returnDetails-itemMetaRow">
                                     <dt class="returnDetails-itemMetaLabel">{{lang 'account.returns.details.request'}}</dt>
                                     <dd class="returnDetails-itemMetaValue">

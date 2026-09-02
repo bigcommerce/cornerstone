@@ -502,10 +502,18 @@ export default class ProductDetailsBase {
             ? Infinity
             : parseInt(this.context.availableToSell, 10) || 0;
 
+        // If increment buttons are already disabled for a reason unrelated to quantity
+        // (e.g. out-of-stock), don't override that with a quantity limit.
+        const alreadyBlocked = viewModel.$increments.prop('disabled');
+
         // The main product's sell-limit takes priority over any picklist limit.
         if (availableToSell > 0 && qty > availableToSell) {
-            const template = this.context.quantityMaxMessage || 'The maximum purchasable quantity is __QTY__';
-            this.showQtyLimitMessage(viewModel, $variantMessage, template.replace('__QTY__', availableToSell));
+            if (alreadyBlocked) {
+                viewModel.$addToCart.prop('disabled', true);
+            } else {
+                const template = this.context.quantityMaxMessage || 'The maximum purchasable quantity is __QTY__';
+                this.showQtyLimitMessage(viewModel, $variantMessage, template.replace('__QTY__', availableToSell));
+            }
             return;
         }
 
@@ -515,12 +523,16 @@ export default class ProductDetailsBase {
             && this.picklistBackorder.getSellLimitViolation(qty);
 
         if (picklistLimit) {
-            const template = this.context.quantityMaxPicklistMessage
-                || 'The maximum purchasable quantity for __NAME__ is __QTY__';
-            const message = template
-                .replace('__NAME__', picklistLimit.name)
-                .replace('__QTY__', picklistLimit.availableToSell);
-            this.showQtyLimitMessage(viewModel, $variantMessage, message);
+            if (alreadyBlocked) {
+                viewModel.$addToCart.prop('disabled', true);
+            } else {
+                const template = this.context.quantityMaxPicklistMessage
+                    || 'The maximum purchasable quantity for __NAME__ is __QTY__';
+                const message = template
+                    .replace('__NAME__', picklistLimit.name)
+                    .replace('__QTY__', picklistLimit.availableToSell);
+                this.showQtyLimitMessage(viewModel, $variantMessage, message);
+            }
             return;
         }
 
@@ -607,8 +619,6 @@ export default class ProductDetailsBase {
     updateView(data, content = null) {
         const viewModel = this.getViewModel(this.$scope);
 
-        this.showMessageBox(data.stock_message || data.purchasing_message);
-
         if (data.price instanceof Object) {
             this.updatePriceView(viewModel, data.price);
         } else {
@@ -663,6 +673,9 @@ export default class ProductDetailsBase {
         this.picklistBackorder.render(data, currentQty);
 
         this.updateDefaultAttributesForOOS(data);
+        // Must run after the stock check above, which hides this box whenever the
+        // product is sellable - even if this option is rule-blocked.
+        this.showMessageBox(data.stock_message || data.purchasing_message);
         this.updateAddToCartForQty(currentQty, viewModel);
         this.updateWalletButtonsView(data);
 
@@ -749,6 +762,9 @@ export default class ProductDetailsBase {
             return;
         }
 
+        // Remove the "belongs to quantity limit" flag from this message box - it now
+        // shows this method's own variant-level message, not a quantity limit.
+        $variantErrorBox.removeAttr('data-qty-limit');
         $('.alertBox-message', $variantErrorBox).text(message);
         $variantErrorBox.show();
     }

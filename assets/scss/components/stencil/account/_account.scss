@@ -53,6 +53,38 @@ $account-backorder-textColor: #757575;
     }
 }
 
+.account-listItem-summary {
+    align-items: flex-start;
+    display: flex;
+    flex-wrap: wrap;
+    gap: spacing("half");
+    justify-content: space-between;
+    margin-bottom: spacing("half");
+
+    .button {
+        margin: 0;
+    }
+}
+
+.account-listItem-summary-main {
+    align-items: flex-start;
+    display: flex;
+    flex: 1 1 auto;
+    flex-wrap: wrap;
+    gap: spacing("half");
+    min-width: 0;
+
+    .account-returnsList-title {
+        margin: 0;
+        min-width: 0;
+    }
+
+    .account-orderStatus-label {
+        margin: 0;
+        min-width: 0;
+    }
+}
+
 .account-listShipping {
     border-bottom: container("border");
     font-weight: fontWeight("bold");
@@ -121,7 +153,7 @@ $account-backorder-textColor: #757575;
 .account-product-title {
     margin: 0 0 spacing("eighth");
     text-transform: inherit;
-
+    
     > a {
         text-decoration: none;
     }
@@ -341,6 +373,17 @@ $account-backorder-textColor: #757575;
     }
 }
 
+// Orders list: title + status/return share a flex row so the status block reserves
+// its own space while the order link stays first in the DOM for focus order (WCAG 2.4.3).
+.account-product-heading {
+    @include breakpoint("small") {
+        align-items: flex-start;
+        display: flex;
+        gap: spacing("half");
+        justify-content: space-between;
+    }
+}
+
 .account-orderStatus-label {
     background-color: stencilColor("label-backgroundColor");
     color: stencilColor("label-color");
@@ -349,6 +392,27 @@ $account-backorder-textColor: #757575;
     line-height: lineHeight("smallest");
     margin: 0 0 spacing("quarter");
     padding: spacing("eighth") spacing("third");
+}
+
+// Return status labels pair a background and text colour per variation
+.account-orderStatus-label--open {
+    background-color: stencilColor("returnStatus-open-backgroundColor");
+    color: stencilColor("returnStatus-open-color");
+}
+
+.account-orderStatus-label--inProgress {
+    background-color: stencilColor("returnStatus-inProgress-backgroundColor");
+    color: stencilColor("returnStatus-inProgress-color");
+}
+
+.account-orderStatus-label--closed {
+    background-color: stencilColor("returnStatus-closed-backgroundColor");
+    color: stencilColor("returnStatus-closed-color");
+}
+
+.account-orderStatus-label--cancelled {
+    background-color: stencilColor("returnStatus-cancelled-backgroundColor");
+    color: stencilColor("returnStatus-cancelled-color");
 }
 
 .account-orderStatus-action {

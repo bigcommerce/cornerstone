@@ -1,0 +1,38 @@
+{{!--
+    Cursor-based paginator. Renders prev/next controls only (no numbered page
+    links) since cursor pagination cannot jump to an arbitrary offset. Expects a
+    context object with ready-made `previous` / `next` URL strings, e.g.
+    {{> components/common/cursor-paginator pagination.returns}}. Renders nothing
+    when neither URL is present.
+--}}
+{{#or previous next}}
+<div class="pagination" role="region" aria-label="{{lang 'common.pagination'}}">
+    <ul class="pagination-list pagination-list--small">
+        {{#if previous}}
+            <li class="pagination-item pagination-item--previous">
+                <a class="pagination-link" href="{{previous}}" aria-label="{{lang 'common.previous'}}">
+                    <i class="icon" aria-hidden="true">
+                        <svg>
+                            <use href="#icon-chevron-left"></use>
+                        </svg>
+                    </i>
+                    {{lang 'common.previous'}}
+                </a>
+            </li>
+        {{/if}}
+
+        {{#if next}}
+            <li class="pagination-item pagination-item--next">
+                <a class="pagination-link" href="{{next}}" aria-label="{{lang 'common.next'}}">
+                    {{lang 'common.next'}}
+                    <i class="icon" aria-hidden="true">
+                        <svg>
+                            <use href="#icon-chevron-right"></use>
+                        </svg>
+                    </i>
+                </a>
+            </li>
+        {{/if}}
+    </ul>
+</div>
+{{/or}}

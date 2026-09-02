@@ -3,6 +3,9 @@ __webpack_public_path__ = window.__webpack_public_path__; // eslint-disable-line
 import Global from './theme/global';
 
 const getAccount = () => import('./theme/account');
+const getCreateReturn = () => import('./theme/create-return');
+const getReturnDetails = () => import('./theme/return-details');
+const getGuestReturnPortal = () => import('./theme/guest-return-portal');
 const getLogin = () => import('./theme/auth');
 const noop = null;
 
@@ -12,6 +15,8 @@ const pageClasses = {
     account_addressbook: getAccount,
     shippingaddressform: getAccount,
     account_new_return: getAccount,
+    create_return: getCreateReturn,
+    guest_return_portal: getGuestReturnPortal,
     'add-wishlist': () => import('./theme/wishlist'),
     account_recentitems: getAccount,
     account_downloaditem: getAccount,
@@ -19,6 +24,8 @@ const pageClasses = {
     account_inbox: getAccount,
     account_saved_return: getAccount,
     account_returns: getAccount,
+    account_return_detail: getReturnDetails,
+    return_detail: getReturnDetails,
     account_paymentmethods: getAccount,
     account_addpaymentmethod: getAccount,
     account_editpaymentmethod: getAccount,

@@ -1,0 +1,147 @@
+{{#partial "page"}}
+
+{{!--
+    Return-details page. Renders the `return_detail` page context surfaced by the
+    storefront. Reached via /account.php?action=view_return&return_id={id}.
+--}}
+
+{{!-- Cancel action: token for the cancelReturn mutation + localized modal copy. --}}
+{{~inject 'storefrontApiToken' settings.storefront_api.token}}
+{{~inject 'returnCancelConfirmMessage' (lang 'account.returns.cancel_confirm_message')}}
+{{~inject 'returnCancelConfirmBody' (lang 'account.returns.cancel_confirm_body')}}
+
+{{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+<h1 class="page-heading">{{lang 'account.returns.heading'}}</h1>
+{{> components/account/navigation account_page='returns'}}
+
+{{#if return_detail}}
+    <main class="returnDetails" data-return-details>
+        <div class="loadingOverlay"></div>
+
+        <div id="return-cancel-error" class="alertBox alertBox--error returnDetails-error" style="display: none;" role="alert">
+            <p class="returnDetails-errorHeading">{{lang 'account.returns.cancel_error_heading'}}</p>
+            <p class="alertBox-message" data-return-error-message></p>
+        </div>
+
+        <div class="returnDetails-layout">
+
+            <section class="returnDetails-main">
+                <div class="returnDetails-titleGroup">
+                    <h2 class="returnDetails-title">{{lang 'account.returns.details.return_number' id=return_detail.rma}}</h2>
+                    {{#if return_detail.status '===' 'OPEN'}}
+                        <span class="aria-description--hidden">{{lang 'account.returns.details.status_label'}}</span>
+                        <span class="account-orderStatus-label account-orderStatus-label--open">{{lang 'account.returns.status.open'}}</span>
+                    {{else if return_detail.status '===' 'IN_PROGRESS'}}
+                        <span class="aria-description--hidden">{{lang 'account.returns.details.status_label'}}</span>
+                        <span class="account-orderStatus-label account-orderStatus-label--inProgress">{{lang 'account.returns.status.in_progress'}}</span>
+                    {{else if return_detail.status '===' 'CLOSED'}}
+                        <span class="aria-description--hidden">{{lang 'account.returns.details.status_label'}}</span>
+                        <span class="account-orderStatus-label account-orderStatus-label--closed">{{lang 'account.returns.status.closed'}}</span>
+                    {{else if return_detail.status '===' 'CANCELLED'}}
+                        <span class="aria-description--hidden">{{lang 'account.returns.details.status_label'}}</span>
+                        <span class="account-orderStatus-label account-orderStatus-label--cancelled">{{lang 'account.returns.status.cancelled'}}</span>
+                    {{/if}}
+                </div>
+
+                <hr class="returnDetails-divider">
+
+                <ul class="returnDetails-itemList">
+                    {{#each return_detail.items}}
+                    <li class="returnDetails-item">
+                            <div class="returnDetails-itemThumbnailWrapper">
+                                {{> components/common/responsive-img
+                                    image=image
+                                    class="newReturn-orderLineItemThumbnail"
+                                    fallback_size=../theme_settings.productthumb_size
+                                    lazyload=../theme_settings.lazyload_mode
+                                    default_image=../theme_settings.default_image_product
+                                }}
+                            </div>
+                            <div class="returnDetails-itemInfo">
+                                <p class="returnDetails-itemName">{{product_name}}</p>
+                            </div>
+                            <dl class="returnDetails-itemMeta">
+                                <div class="returnDetails-itemMetaRow">
+                                    <dt class="returnDetails-itemMetaLabel">{{lang 'account.returns.details.quantity'}}</dt>
+                                    <dd class="returnDetails-itemMetaValue">{{quantity}}</dd>
+                                </div>
+                                {{#if total}}
+                                <div class="returnDetails-itemMetaRow">
+                                    <dt class="returnDetails-itemMetaLabel">{{lang 'account.returns.details.total'}}</dt>
+                                    <dd class="returnDetails-itemMetaValue">{{total.formatted}}</dd>
+                                </div>
+                                {{/if}}
+                                <div class="returnDetails-itemMetaRow">
+                                    <dt class="returnDetails-itemMetaLabel">{{lang 'account.returns.details.request'}}</dt>
+                                    <dd class="returnDetails-itemMetaValue">
+                                        {{~!-- Resolution label: custom resolutions show the merchant name; system ones are translated from their enum token. --~}}
+                                        {{#if requested_differs_from_resolved}}
+                                            <span class="returnDetails-itemMetaValue--strikethrough">{{#if requested_resolution_type '===' 'CUSTOM'}}{{requested_resolution_name}}{{else}}{{lang (concat 'account.returns.details.resolution.' (toLowerCase requested_resolution_type))}}{{/if}}</span>
+                                            <span class="aria-description--hidden">{{lang 'account.returns.details.resolution_changed_to'}}</span>
+                                            <span class="returnDetails-finalResolution">{{#if resolved_resolution_type '===' 'CUSTOM'}}{{resolved_resolution_name}}{{else}}{{lang (concat 'account.returns.details.resolution.' (toLowerCase resolved_resolution_type))}}{{/if}} {{lang 'account.returns.details.final_resolution'}}</span>
+                                        {{else}}
+                                            {{#if requested_resolution_type '===' 'CUSTOM'}}{{requested_resolution_name}}{{else}}{{lang (concat 'account.returns.details.resolution.' (toLowerCase requested_resolution_type))}}{{/if}}
+                                        {{/if}}
+                                    </dd>
+                                </div>
+                                <div class="returnDetails-itemMetaRow">
+                                    <dt class="returnDetails-itemMetaLabel">{{lang 'account.returns.details.reason'}}</dt>
+                                    <dd class="returnDetails-itemMetaValue">{{reason_name}}</dd>
+                                </div>
+                            </dl>
+                        </li>
+                    {{/each}}
+                </ul>
+            </section>
+
+            <aside class="returnDetails-sidebar">
+                <h2 class="returnDetails-sectionHeading">{{lang 'account.returns.summary'}}</h2>
+                <hr class="returnDetails-divider">
+                <dl class="returnDetails-summaryList">
+                    <div class="returnDetails-summaryRow">
+                        <dt class="returnDetails-summaryLabel">{{lang 'account.returns.details.date_submitted'}}</dt>
+                        <dd class="returnDetails-summaryValue">{{moment return_detail.date_submitted format="Do MMM YYYY"}}</dd>
+                    </div>
+                    <div class="returnDetails-summaryRow">
+                        <dt class="returnDetails-summaryLabel">{{lang 'account.returns.details.last_update'}}</dt>
+                        <dd class="returnDetails-summaryValue">{{#if return_detail.last_updated}}{{moment return_detail.last_updated format="Do MMM YYYY"}}{{else}}{{moment return_detail.date_submitted format="Do MMM YYYY"}}{{/if}}</dd>
+                    </div>
+                    <div class="returnDetails-summaryRow">
+                        <dt class="returnDetails-summaryLabel">{{lang 'account.returns.details.order_number'}}</dt>
+                        <dd class="returnDetails-summaryValue">{{return_detail.order_id}}</dd>
+                    </div>
+                    {{> components/account/return-items-total
+                        total=return_detail.total_item_price
+                        label_key="account.returns.details.items_total"
+                        class_row="returnDetails-summaryRow"
+                        class_label="returnDetails-summaryLabel"
+                        class_value="returnDetails-summaryValue"}}
+                </dl>
+
+                {{!-- Additional note — only shown when the shopper left a note. --}}
+                {{#if return_detail.note}}
+                    <div class="returnDetails-note">
+                        <h2 class="returnDetails-sectionHeading">{{lang 'account.returns.additional_note'}}</h2>
+                        <hr class="returnDetails-divider">
+                        <p class="returnDetails-noteText">{{return_detail.note}}</p>
+                    </div>
+                {{/if}}
+
+                {{!-- Action section (e.g. Cancel return) — only shown for open returns. --}}
+                {{#if return_detail.status '===' 'OPEN'}}
+                    <div class="returnDetails-actions">
+                        <h2 class="returnDetails-sectionHeading">{{lang 'account.returns.actions_heading'}}</h2>
+                        <hr class="returnDetails-divider">
+                        <button type="button" class="button returnDetails-cancelBtn" data-return-cancel>{{lang 'account.returns.cancel_action'}}</button>
+                    </div>
+                {{/if}}
+            </aside>
+
+        </div>
+    </main>
+{{else}}
+    {{> components/common/alert/alert-info (lang 'account.returns.details.not_found')}}
+{{/if}}
+
+{{/partial}}
+{{> layout/base}}

@@ -1,0 +1,45 @@
+<ul class="account-list account-returnsList">
+    {{#each returns}}
+    <li class="account-listItem">
+        <div class="account-listItem-summary">
+            <div class="account-listItem-summary-main">
+                <h2 class="account-returnsList-title">{{lang 'account.returns.list.return_number' id=rma}}</h2>
+                {{#if status '===' 'OPEN'}}
+                    <span class="account-orderStatus-label account-orderStatus-label--open">{{lang 'account.returns.status.open'}}</span>
+                {{else if status '===' 'IN_PROGRESS'}}
+                    <span class="account-orderStatus-label account-orderStatus-label--inProgress">{{lang 'account.returns.status.in_progress'}}</span>
+                {{else if status '===' 'CLOSED'}}
+                    <span class="account-orderStatus-label account-orderStatus-label--closed">{{lang 'account.returns.status.closed'}}</span>
+                {{else if status '===' 'CANCELLED'}}
+                    <span class="account-orderStatus-label account-orderStatus-label--cancelled">{{lang 'account.returns.status.cancelled'}}</span>
+               {{/if}}
+            </div>
+            {{!-- aria-label carries the return number so the link's purpose is clear out of context;
+                  the page has many identical "View details" links. --}}
+            <a class="button button--small" href="/account.php?action=view_return&return_id={{id}}" aria-label="{{lang 'account.returns.list.view_details_for' id=rma}}">{{lang 'account.returns.list.view_details'}}</a>
+        </div>
+
+        {{!-- Description list so each label is programmatically associated with its value. --}}
+        <dl class="account-returnsList-details">
+            <div class="account-returnsList-detail">
+                <dt class="account-returnsList-detail-heading">{{lang 'account.returns.list.return_submitted' }}</dt>
+                <dd class="account-returnsList-detail-value">{{moment date_submitted format="Do MMM YYYY"}}</dd>
+            </div>
+            <div class="account-returnsList-detail">
+                <dt class="account-returnsList-detail-heading">{{lang 'account.returns.list.last_update' }}</dt>
+                <dd class="account-returnsList-detail-value">{{#if last_updated}}{{moment last_updated format="Do MMM YYYY"}}{{else}}{{moment date_submitted format="Do MMM YYYY"}}{{/if}}</dd>
+            </div>
+            <div class="account-returnsList-detail">
+                <dt class="account-returnsList-detail-heading">{{lang 'account.returns.list.return_quantity' }}</dt>
+                <dd class="account-returnsList-detail-value">{{sum (pluck items 'quantity')}}</dd>
+            </div>
+            {{> components/account/return-items-total
+                total=total_item_price
+                label_key="account.returns.list.items_total"
+                class_row="account-returnsList-detail"
+                class_label="account-returnsList-detail-heading"
+                class_value="account-returnsList-detail-value"}}
+        </dl>
+    </li>
+    {{/each}}
+</ul>

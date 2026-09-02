@@ -5,6 +5,28 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Draft
+- Add "Go to return portal link" for web pages with the option enabled [#2731](https://github.com/bigcommerce/cornerstone/pull/2731)
+- Add sum of item prices ("Total") to the returns list and return details pages, and align returns terminology ("Date submitted", "Quantity", "Total")
+- Add accessibility to returns entry-point links on the orders list and order details pages: order-scoped `aria-label`s and correct keyboard focus order (ORDERS-7877)
+- Add accessibility to guest return portal entry form: main landmark, named form, inline error linking with `aria-invalid`, live-region lookup announcements, and focus to the first invalid field on failed submit (ORDERS-7876)
+- Add a translatable page `<title>` to the create return and guest return portal pages for accessibility (WCAG 2.4.2) and SEO (ORDERS-7945)
+- Add accessibility to return detail page: status-badge screen-reader context and dialog semantics on the shared alert modal (ORDERS-7875)
+- Add accessibility to returns list page and an in-repo accessibility skill (ORDERS-7878)
+- Fix accessibility issues in create-return flow: avoid double announcements on submit errors, drop a redundant focus-on-load, and simplify the submit button's ARIA description (ORDERS-7874)
+- Add accessibility to create return page (ORDERS-7874) [#2712](https://github.com/bigcommerce/cornerstone/pull/2712)
+- Add product images to return detail page (ORDERS-7890) [#2713](https://github.com/bigcommerce/cornerstone/pull/2713)
+- Update returns navigation to support returns_v2_enabled [#2714](https://github.com/bigcommerce/cornerstone/pull/2714/changes)
+- Add client side validation on guest return portal (ORDERS-7736) [#2703](https://github.com/bigcommerce/cornerstone/pull/2703)
+- Update error message for create return page (ORDERS-7886) [#2698](https://github.com/bigcommerce/cornerstone/pull/2698)
+- Implement guest return portal page (ORDERS-7736) [#2696](https://github.com/bigcommerce/cornerstone/pull/2696)
+- Add mobile and tablet responsiveness for returns list page (ORDERS-7771)
+- Add return details page (ORDERS-7751)
+- Add new create-return page [#2669](https://github.com/bigcommerce/cornerstone/pull/2669) 
+- Gate Order Details "Return" button on `settings.returns_v2_enabled` with `settings.returns_enabled` fallback (ORDERS-7705)
+- Gate account orders list "Return Items" link on returns settings (ORDERS-7704) [#2653](https://github.com/bigcommerce/cornerstone/pull/2653)
+- Added new Return list view (ORDERS-7717) [#2664](https://github.com/bigcommerce/cornerstone/pull/2664)
+- Added requested and resolved resolution view on return details page (ORDERS-7900) [#2697](https://github.com/bigcommerce/cornerstone/pull/2697)
+- Adds new guest-return-portal page. [2645](https://github.com/bigcommerce/cornerstone/pull/2645)
 - Add checkout style overrides for enhanced checkout theme. [#2721](https://github.com/bigcommerce/cornerstone/pull/2721)
 
 ## 6.21.0 (07-21-2026)

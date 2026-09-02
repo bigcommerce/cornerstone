@@ -21,20 +21,24 @@
                 {{/if}}
             </div>
             <div class="account-product-body">
-                <div class="account-orderStatus">
-                    <h6 class="account-orderStatus-label">{{this.status}}</h6>
-                    {{#if ../settings.returns_enabled}}
-                        {{#if this.return_url}}
-                            <a class="account-orderStatus-action" href="{{this.return_url}}">
-                                {{lang 'account.orders.return_items' }}
-                            </a>
-                        {{/if}}
-                    {{/if}}
-                </div>
+                {{!-- Title and status share a flex row so focus reaches the order link before the
+                      "Return Items" action (WCAG 2.4.3) while the status block still reserves space. --}}
+                <div class="account-product-heading">
+                    <h5 class="account-product-title">
+                        <a href="{{this.details_url}}">{{lang 'account.orders.list.order_number' number=this.id}}</a>
+                    </h5>
 
-                <h5 class="account-product-title">
-                    <a href="{{this.details_url}}">{{lang 'account.orders.list.order_number' number=this.id}}</a>
-                </h5>
+                    <div class="account-orderStatus">
+                        <h6 class="account-orderStatus-label">{{this.status}}</h6>
+                        {{#if this.return_url}}
+                            {{#or ../settings.returns_v2_enabled ../settings.returns_enabled}}
+                                <a class="account-orderStatus-action" href="{{this.return_url}}" aria-label="{{lang 'account.orders.return_items_for' number=this.id}}">
+                                    {{lang 'account.orders.return_items' }}
+                                </a>
+                            {{/or}}
+                        {{/if}}
+                    </div>
+                </div>
                 <p class="account-product-description">{{lang 'account.orders.list.product_details' num_products=this.total_quantity cost=this.total.formatted}}</p>
 
                 <div class="account-product-details">

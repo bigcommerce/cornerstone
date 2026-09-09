@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Draft
+- Fix pointer cursor on PDP stock/backorder message text [#2737](https://github.com/bigcommerce/cornerstone/pull/2737)
 - Show option-set rule message on rule-blocked options. [#2735](https://github.com/bigcommerce/cornerstone/pull/2735)
 - Add checkout style overrides for enhanced checkout theme. [#2721](https://github.com/bigcommerce/cornerstone/pull/2721)
 

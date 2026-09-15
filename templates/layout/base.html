@@ -58,6 +58,28 @@
 
         <script nonce="{{nonce}}">window.__webpack_public_path__ = "{{cdn 'assets/dist/'}}";</script>
         <script nonce="{{nonce}}">
+            {{!--
+              Example: narrow the shipping options offered inside the Apple Pay, Google Pay
+              and Stripe Link payment sheets on the product and cart pages. Replace the
+              predicate with your own rule, or remove this block to show every option.
+
+              The callback may be async, so it can await your own endpoint. Its second
+              argument is { methodId, gatewayId, page } if you need to vary the rule per
+              wallet or page; take a single argument if the same rule applies everywhere.
+
+              Registration order does not matter: the callback is looked up when the shopper
+              changes an address inside a sheet. If it is missing, throws, or returns a
+              non-array, the unfiltered list is used and the sheet still works.
+            --}}
+            window.BigCommerce = window.BigCommerce || {};
+            window.BigCommerce.walletButtons = window.BigCommerce.walletButtons || {};
+            window.BigCommerce.walletButtons.filterAvailableShippingOptions = function (shippingOptions) {
+                return shippingOptions.filter(function (option) {
+                    return option.type !== 'shipping_pickupinstore';
+                });
+            };
+        </script>
+        <script nonce="{{nonce}}">
             {{!-- Exported in app.js --}}
             function onThemeBundleMain() {
                 window.stencilBootstrap("{{page_type}}", {{jsContext}}).load();

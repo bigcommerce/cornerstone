@@ -118,6 +118,16 @@ export default class GuestReturnPortal extends PageManager {
             const payload = this.buildRequestPayload();
 
             try {
+                // if they are an account shopper just check if they already have access to the order first
+                if (this.context.customerId) {
+                    const orderResponse = await this.getOrder(payload.orderEntityId);
+                    if ((await orderResponse.json())?.data?.site?.order?.entityId === payload.orderEntityId) {
+                        // The customer already has access to the order lets just redirect them
+                        window.location.href = `/create-return/${payload.orderEntityId}`;
+                        return;
+                    }
+                }
+
                 const response = await this.startReturnGuestSession(payload);
                 const responseData = await response.json();
                 if (!response.ok) {
@@ -163,6 +173,27 @@ export default class GuestReturnPortal extends PageManager {
             email: document.getElementById('guest-return-email-input')?.value,
             orderEntityId: parseInt(document.getElementById('guest-return-order-input')?.value, 10),
         };
+    }
+
+    getOrder(orderId) {
+        return fetch('/graphql', {
+            method: 'POST',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${this.context.storefrontApiToken}`,
+            },
+            body: JSON.stringify({
+                query: `query GetOrder($orderId: Int!) {
+                    site {
+                        order(filter: {entityId: $orderId}) {
+                            entityId
+                        }
+                    }
+                }`,
+                variables: { orderId },
+            }),
+        });
     }
 
     startReturnGuestSession(input) {

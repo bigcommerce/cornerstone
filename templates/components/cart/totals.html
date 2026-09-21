@@ -122,6 +122,14 @@
                 <p class="cart-shipping-expectation-message">{{cart.inventory_settings.default_shipping_expectation_prompt}}</p>
             {{/all}}
         </li>
+        <li class="cart-total">
+            <div class="cart-total-label">
+                <strong>{{lang 'cart.checkout.handling'}}:</strong>
+            </div>
+            <div class="cart-total-value">
+                <span>${{cart.shipping_handling.handling_cost}}</span>
+            </div>
+        </li>
     {{/if}}
     {{#each cart.taxes}}
         {{#unless included}}

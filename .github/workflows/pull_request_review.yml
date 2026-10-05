@@ -16,7 +16,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        node: [20.x]
+        node: [24.x]
 
     runs-on: ${{ matrix.os }}
 
@@ -46,7 +46,7 @@ jobs:
           ${{ matrix.os }}-node-${{ matrix.node }}
 
     - name: Install Stencil CLI Dependency
-      run: npm install -g @bigcommerce/stencil-cli
+      run: npm install -g @bigcommerce/stencil-cli@10
 
     - name: Install Theme Dependencies
       run: npm ci

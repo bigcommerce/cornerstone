@@ -21,15 +21,15 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v2
 
     - name: Use Node.js ${{ matrix.node }}
-      uses: actions/setup-node@v4
+      uses: actions/setup-node@v2-beta
       with:
         node-version: ${{ matrix.node }}
 
     - name: npm cache
-      uses: actions/cache@v4
+      uses: actions/cache@v2
       with:
         path: ~/.npm
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
@@ -37,7 +37,7 @@ jobs:
           ${{ runner.os }}-node-
 
     - name: Install Stencil CLI Dependency
-      run: npm install -g @bigcommerce/stencil-cli@10
+      run: npm install -g @bigcommerce/stencil-cli
 
 #
 # You must configure store credentials as secrets on your GitHub repo for this job to work

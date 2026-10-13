@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Draft
+- Align create return page with the control panel: right-aligned Total column, show max quantity under the input when the full quantity can't be returned, Return reason before Preferred resolution, add a Cancel button, replace the quantity select with the +/- stepper, and disable reason and resolution until a quantity is chosen (ORDERS-8078)
 - QOL redirect for account shoppers using the guest return portal [#2741](https://github.com/bigcommerce/cornerstone/pull/2741)
 - Add "Go to return portal link" for web pages with the option enabled [#2731](https://github.com/bigcommerce/cornerstone/pull/2731)
 - Add sum of item prices ("Total") to the returns list and return details pages, and align returns terminology ("Date submitted", "Quantity", "Total")

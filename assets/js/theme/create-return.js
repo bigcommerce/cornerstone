@@ -8,6 +8,8 @@ export default class CreateReturn extends PageManager {
         if (!form) return;
 
         this.bindOrderLineItemEvents();
+        this.getLineItemRows().forEach(itemRow => this.syncRowState(itemRow.dataset.itemId));
+        this.updateSubmitState();
         this.bindAdditionalNoteEvents();
         this.bindSubmit(form);
     }
@@ -18,10 +20,97 @@ export default class CreateReturn extends PageManager {
     }
 
     bindOrderLineItemEvents() {
-        // All three selects per row (qty, resolution, reason) trigger a submit-state check.
-        document.querySelectorAll('.newReturn-orderLineItem select').forEach(sel => {
-            sel.addEventListener('change', () => this.updateSubmitState());
+        this.getLineItemRows().forEach(itemRow => {
+            const itemId = itemRow.dataset.itemId;
+            const qtyInput = document.getElementById(`qty-${itemId}`);
+            if (!itemId || !qtyInput) return;
+
+            // Reason / resolution selects trigger a submit-state check.
+            itemRow.querySelectorAll('select').forEach(sel => {
+                sel.addEventListener('change', () => this.updateSubmitState());
+            });
+
+            // Typing updates the row live, invalid inputs are rewritten on change
+            qtyInput.addEventListener('input', () => this.onQuantityChange(itemId));
+            qtyInput.addEventListener('change', () => {
+                qtyInput.value = String(this.getQuantity(itemId));
+                this.onQuantityChange(itemId);
+            });
+
+            itemRow.querySelectorAll('[data-new-return-qty-stepper] button').forEach(button => {
+                button.addEventListener('click', event => {
+                    event.preventDefault();
+                    if (button.getAttribute('aria-disabled') === 'true') return;
+
+                    this.stepQuantity(itemId, button.dataset.action === 'inc' ? 1 : -1);
+                });
+            });
+
+            // Up/Down arrows step the value
+            qtyInput.addEventListener('keydown', event => {
+                if (event.key !== 'ArrowUp' && event.key !== 'ArrowDown') return;
+
+                event.preventDefault();
+                this.stepQuantity(itemId, event.key === 'ArrowUp' ? 1 : -1);
+            });
         });
+    }
+
+    getLineItemRows() {
+        return Array.from(document.querySelectorAll('.newReturn-orderLineItem'));
+    }
+
+    // Quantity as a whole number from 0 to {max returnable}. Invalid or non numeric input is treated as 0.
+    getQuantity(itemId) {
+        const qtyInput = document.getElementById(`qty-${itemId}`);
+        if (!qtyInput) return 0;
+
+        const raw = qtyInput.value.trim();
+        if (!/^\d+$/.test(raw)) return 0;
+
+        const max = parseInt(qtyInput.dataset.quantityMax, 10) || 0;
+        return Math.min(parseInt(raw, 10), max);
+    }
+
+    // Moves the quantity by `step`, staying within 0 to {max returnable}
+    stepQuantity(itemId, step) {
+        const qtyInput = document.getElementById(`qty-${itemId}`);
+        if (!qtyInput) return;
+
+        const max = parseInt(qtyInput.dataset.quantityMax, 10) || 0;
+        const next = Math.min(max, Math.max(0, this.getQuantity(itemId) + step));
+
+        qtyInput.value = String(next);
+        this.onQuantityChange(itemId);
+    }
+
+    onQuantityChange(itemId) {
+        this.syncRowState(itemId);
+        this.updateSubmitState();
+    }
+
+    // Reason and resolution only apply once a quantity is chosen; a quantity of 0 disables them.
+    syncRowState(itemId) {
+        const qtyInput = document.getElementById(`qty-${itemId}`);
+        if (!qtyInput) return;
+
+        const quantity = this.getQuantity(itemId);
+        const max = parseInt(qtyInput.dataset.quantityMax, 10) || 0;
+
+        ['reason', 'resolution'].forEach(name => {
+            const select = document.getElementById(`${name}-${itemId}`);
+            if (!select) return;
+
+            select.disabled = quantity === 0;
+        });
+
+        qtyInput.setAttribute('aria-valuenow', String(quantity));
+
+        const stepper = qtyInput.closest('[data-new-return-qty-stepper]');
+        const decrease = stepper?.querySelector('[data-action="dec"]');
+        const increase = stepper?.querySelector('[data-action="inc"]');
+        if (decrease) decrease.setAttribute('aria-disabled', String(quantity <= 0));
+        if (increase) increase.setAttribute('aria-disabled', String(quantity >= max));
     }
 
     bindAdditionalNoteEvents() {
@@ -62,6 +151,14 @@ export default class CreateReturn extends PageManager {
     bindSubmit(form) {
         form.addEventListener('submit', async event => {
             event.preventDefault();
+
+            // Enter inside a quantity field submits without a change event, so commit typed values first.
+            this.getLineItemRows().forEach(itemRow => {
+                const qtyInput = document.getElementById(`qty-${itemRow.dataset.itemId}`);
+                if (qtyInput) qtyInput.value = String(this.getQuantity(itemRow.dataset.itemId));
+                this.syncRowState(itemRow.dataset.itemId);
+            });
+            this.updateSubmitState();
 
             // Block submission when the additional note exceeds the max length.
             this.renderAdditionalNoteValidation();
@@ -183,7 +280,7 @@ export default class CreateReturn extends PageManager {
                 if (!itemId) return [];
                 return [{
                     lineItemEntityId: parseInt(itemId, 10),
-                    quantity: parseInt(document.getElementById(`qty-${itemId}`)?.value, 10),
+                    quantity: this.getQuantity(itemId),
                     reasonEntityId: document.getElementById(`reason-${itemId}`)?.value,
                     requestedResolution: this.buildRequestedResolution(document.getElementById(`resolution-${itemId}`)?.value),
                 }];
@@ -235,11 +332,9 @@ export default class CreateReturn extends PageManager {
 
     // Returns only row containers with a non-zero quantity selected.
     getSelectedItems() {
-        return Array.from(document.querySelectorAll('.newReturn-orderLineItem')).filter(itemRow => {
+        return this.getLineItemRows().filter(itemRow => {
             const itemId = itemRow.dataset?.itemId;
-            if (!itemId) return false;
-            const qtyInput = document.getElementById(`qty-${itemId}`);
-            return qtyInput && parseInt(qtyInput.value, 10) > 0;
+            return itemId && this.getQuantity(itemId) > 0;
         });
     }
 }

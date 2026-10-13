@@ -43,10 +43,11 @@
         <div class="newReturn-columnHeaders" aria-hidden="true">
             <div class="newReturn-columnHeaders-spacer"></div>
             <span class="newReturn-columnHeaders-item">{{lang 'account.orders.return.order_item'}}</span>
+            <span class="newReturn-columnHeaders-total">{{lang 'account.returns.total_header'}}</span>
             <div class="newReturn-columnHeaders-controls">
                 <span class="newReturn-columnHeaders-quantity">{{lang 'account.orders.return.quantity'}}</span>
-                <span class="newReturn-columnHeaders-request">{{lang 'account.returns.request'}}</span>
                 <span class="newReturn-columnHeaders-reason">{{lang 'account.returns.reason_header'}}</span>
+                <span class="newReturn-columnHeaders-request">{{lang 'account.returns.request'}}</span>
             </div>
         </div>
 
@@ -72,34 +73,66 @@
                         </p>
                     {{/if}}
                     <p class="newReturn-orderLineItemPrice">
-                        {{lang 'account.returns.qty'}} {{quantity}} &nbsp; {{lang 'account.returns.total_price'}} {{price.formatted}}
+                        {{lang 'account.returns.qty'}} {{quantity}}
                     </p>
+                </div>
+
+                <div class="newReturn-orderLineItemTotal">
+                    <span class="newReturn-orderLineItemTotalLabel">{{lang 'account.returns.total_price'}}</span>
+                    {{price.formatted}}
                 </div>
 
                 <div class="newReturn-orderLineItemControls">
                     <label class="newReturn-controlLabel" id="newReturn-qtyLabel-{{id}}" for="qty-{{id}}">{{lang 'account.orders.return.quantity'}}</label>
                     <div class="newReturn-orderLineItemQtyWrapper">
-                        <select class="form-select form-select--small form-select--short"
-                                id="qty-{{id}}"
-                                aria-labelledby="newReturn-qtyLabel-{{id}} newReturn-itemName-{{id}}">
-                            {{#for 0 returnableQuantity}}
-                                <option value="{{$index}}">{{$index}}</option>
-                            {{/for}}
-                        </select>
-                        <span class="newReturn-orderLineItemMaxQty">{{lang 'account.orders.return.of_max' max=returnableQuantity}}</span>
+                        <div class="form-increment newReturn-qtyStepper" data-new-return-qty-stepper>
+                            <button type="button"
+                                    class="button button--icon"
+                                    data-action="dec"
+                                    aria-disabled="true"
+                                    aria-controls="qty-{{id}}">
+                                <span class="is-srOnly">{{lang 'products.quantity_decrease' name=name}}</span>
+                                <i class="icon" aria-hidden="true"><svg><use href="#icon-remove" /></svg></i>
+                            </button>
+                            <input class="form-input form-input--incrementTotal"
+                                   id="qty-{{id}}"
+                                   type="text"
+                                   inputmode="numeric"
+                                   pattern="[0-9]*"
+                                   autocomplete="off"
+                                   value="0"
+                                   role="spinbutton"
+                                   aria-valuemin="0"
+                                   aria-valuemax="{{returnableQuantity}}"
+                                   aria-valuenow="0"
+                                   data-quantity-min="0"
+                                   data-quantity-max="{{returnableQuantity}}"
+                                   aria-labelledby="newReturn-qtyLabel-{{id}} newReturn-itemName-{{id}}"
+                                   aria-live="polite">
+                            <button type="button"
+                                    class="button button--icon"
+                                    data-action="inc"
+                                    aria-controls="qty-{{id}}">
+                                <span class="is-srOnly">{{lang 'products.quantity_increase' name=name}}</span>
+                                <i class="icon" aria-hidden="true"><svg><use href="#icon-add" /></svg></i>
+                            </button>
+                        </div>
+                        {{#if returnableQuantity '<' quantity}}
+                            <span class="newReturn-orderLineItemMaxQty">{{lang 'account.orders.return.of_max' max=returnableQuantity}}</span>
+                        {{/if}}
                     </div>
-                    <label class="newReturn-controlLabel" id="newReturn-resolutionLabel-{{id}}" for="resolution-{{id}}">{{lang 'account.returns.request'}}</label>
-                    <select class="form-select form-select--small" id="resolution-{{id}}" aria-labelledby="newReturn-resolutionLabel-{{id}}">
-                        <option value="">{{lang 'account.returns.select_resolution'}}</option>
-                        {{#each ../../resolutions}}
-                            <option value="{{resolutionType}}">{{label}}</option>
-                        {{/each}}
-                    </select>
                     <label class="newReturn-controlLabel" id="newReturn-reasonLabel-{{id}}" for="reason-{{id}}">{{lang 'account.returns.reason_header'}}</label>
-                    <select class="form-select form-select--small" id="reason-{{id}}" aria-labelledby="newReturn-reasonLabel-{{id}}">
+                    <select class="form-select form-select--small" id="reason-{{id}}" aria-labelledby="newReturn-reasonLabel-{{id}}" disabled>
                         <option value="">{{lang 'account.returns.select_reason'}}</option>
                         {{#each ../../reasons}}
                             <option value="{{id}}">{{nameForShopper}}</option>
+                        {{/each}}
+                    </select>
+                    <label class="newReturn-controlLabel" id="newReturn-resolutionLabel-{{id}}" for="resolution-{{id}}">{{lang 'account.returns.request'}}</label>
+                    <select class="form-select form-select--small" id="resolution-{{id}}" aria-labelledby="newReturn-resolutionLabel-{{id}}" disabled>
+                        <option value="">{{lang 'account.returns.select_resolution'}}</option>
+                        {{#each ../../resolutions}}
+                            <option value="{{resolutionType}}">{{label}}</option>
                         {{/each}}
                     </select>
                 </div>
@@ -125,6 +158,7 @@
             </div>
 
             <div class="form-actions">
+                <a href="{{../urls.account.orders.all}}" class="button newReturn-cancel">{{lang 'common.cancel'}}</a>
                 {{!-- Submit uses aria-disabled (not the native disabled attr) so keyboard/SR users can
                       still reach it and hear why it's inactive. --}}
                 <p id="return-new-submitHint-disabled" class="aria-description--hidden">{{lang 'account.returns.submit_hint'}}</p>

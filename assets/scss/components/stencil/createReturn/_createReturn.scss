@@ -117,9 +117,9 @@
 
 
 // Shared widths — keep the desktop header labels and control cells in sync.
-$newReturn-col-qty:             remCalc(120px); // desktop quantity column (select + "of N")
+$newReturn-col-qty:             remCalc(120px); // desktop quantity column (select optional "Maximum" line below)
+$newReturn-col-total:           remCalc(96px);  // desktop line-total column, right-aligned
 $newReturn-col-select:          remCalc(240px); // desktop resolution/reason columns — fits the placeholder text
-$newReturn-qty-width:           remCalc(80px);  // quantity <select> width — consistent across all breakpoints
 $newReturn-col-controls-tablet: remCalc(320px); // tablet controls column — wide enough for the placeholder text
 
 
@@ -178,10 +178,32 @@ $newReturn-col-controls-tablet: remCalc(320px); // tablet controls column — wi
     margin: 0;
 }
 
+.newReturn-orderLineItemTotal {
+    flex-shrink: 0;
+    font-size: remCalc(15px);
+    font-weight: fontWeight("semibold");
+    text-align: right;
+
+    @include breakpoint("large") {
+        width: $newReturn-col-total;
+    }
+}
+
+// The "Total:" prefix only labels the value where the column headers are hidden.
+.newReturn-orderLineItemTotalLabel {
+    font-size: remCalc(13px);
+    font-weight: fontWeight("normal");
+    color: color("greys", "dark");
+
+    @include breakpoint("large") {
+        @include u-hidden("visually");
+    }
+}
+
 .newReturn-orderLineItemControls {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
+    align-items: flex-start; // top-align so the selects line up with or without the "Maximum" line under quantity
     gap: spacing("quarter");
     flex-basis: 100%;
     width: 100%;
@@ -200,7 +222,7 @@ $newReturn-col-controls-tablet: remCalc(320px); // tablet controls column — wi
     // desktop view
     @include breakpoint("large") {
         flex-direction: row;
-        align-items: center;
+        align-items: flex-start;
         gap: spacing("half");
         width: auto;
         padding-left: 0;
@@ -230,6 +252,12 @@ $newReturn-col-controls-tablet: remCalc(320px); // tablet controls column — wi
 .newReturn-columnHeaders-item {
     flex: 1;
     min-width: 0;
+}
+
+.newReturn-columnHeaders-total {
+    width: $newReturn-col-total;
+    flex-shrink: 0;
+    text-align: right;
 }
 
 .newReturn-columnHeaders-controls {
@@ -268,12 +296,52 @@ $newReturn-col-controls-tablet: remCalc(320px); // tablet controls column — wi
 
 .newReturn-orderLineItemQtyWrapper {
     display: flex;
-    align-items: center;
-    gap: spacing("quarter");
+    flex-direction: column;
+    align-items: flex-start;
+    gap: spacing("eighth");
     flex-shrink: 0;
 
     @include breakpoint("large") {
         width: $newReturn-col-qty;
+    }
+}
+
+// Quantity stepper (shared .form-increment markup), sized to match the neighbouring small selects.
+.newReturn-qtyStepper {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    height: $input-small-height;
+    border: $input-border-width $input-border-style $input-border-color;
+    border-radius: remCalc(4px);
+    background-color: stencilColor("input-bg-color");
+
+    .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: remCalc(28px); // WCAG 2.2 — 2.5.8 target size
+        min-height: remCalc(28px);
+
+        // The field's outer border is the only border; the +/- buttons are borderless within it.
+        background-color: transparent;
+        border: 0;
+        box-shadow: none;
+
+        &:hover:not([aria-disabled="true"]) {
+            background-color: color("greys", "lightest");
+        }
+
+        &[aria-disabled="true"] {
+            cursor: not-allowed;
+            opacity: 0.4;
+        }
+    }
+
+    .form-input--incrementTotal {
+        background-color: transparent;
+        width: remCalc(40px);
     }
 }
 
@@ -283,12 +351,12 @@ $newReturn-col-controls-tablet: remCalc(320px); // tablet controls column — wi
     white-space: nowrap;
 }
 
-.newReturn-orderLineItemControls [id^="qty-"] {
-    width: $newReturn-qty-width;
-    flex-shrink: 0;
+.newReturn-orderLineItemControls select:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
 }
 
-.newReturn-orderLineItemControls [id^="resolution-"] {
+.newReturn-orderLineItemControls [id^="reason-"] {
     flex: 1 1 auto; // mobile: fill the rest of the first card row beside quantity
     width: auto;
     max-width: none;
@@ -304,8 +372,8 @@ $newReturn-col-controls-tablet: remCalc(320px); // tablet controls column — wi
     }
 }
 
-.newReturn-orderLineItemControls [id^="reason-"] {
-    flex-basis: 100%; // mobile: wraps onto its own full-width row below qty + resolution
+.newReturn-orderLineItemControls [id^="resolution-"] {
+    flex-basis: 100%; // mobile: wraps onto its own full-width row below qty + reason
     width: 100%;
     max-width: none;
 
@@ -331,6 +399,10 @@ $newReturn-col-controls-tablet: remCalc(320px); // tablet controls column — wi
     .form-actions {
         text-align: right;
     }
+}
+
+.newReturn-cancel {
+    margin-right: spacing("half");
 }
 
 .newReturn-orderLineItems {

@@ -18,7 +18,7 @@
         </div>
         {{#if date}}<p class="newReturn-orderDate">{{lang 'account.returns.order_date'}}: {{date}}</p>{{/if}}
         <div class="newReturn-headerActions">
-            <a href="{{../urls.account.orders.all}}" class="button">{{lang 'account.returns.back'}}</a>
+            <a href="{{#if ../customer}}{{../urls.account.orders.all}}{{else}}/guest-return-portal{{/if}}" class="button">{{lang 'account.returns.back'}}</a>
         </div>
     </div>
 
@@ -157,7 +157,8 @@
             </div>
 
             <div class="form-actions">
-                <a href="{{../urls.account.orders.all}}" class="button newReturn-cancel">{{lang 'common.cancel'}}</a>
+                {{!-- Guests reach this page from the guest return portal and have no orders list to go back to. --}}
+                <a href="{{#if ../customer}}{{../urls.account.orders.all}}{{else}}/guest-return-portal{{/if}}" class="button newReturn-cancel">{{lang 'common.cancel'}}</a>
                 {{!-- Submit uses aria-disabled (not the native disabled attr) so keyboard/SR users can
                       still reach it and hear why it's inactive. --}}
                 <p id="return-new-submitHint-disabled" class="aria-description--hidden">{{lang 'account.returns.submit_hint'}}</p>
@@ -178,7 +179,7 @@
         <h1 class="newReturn-title" data-new-return-confirmation-heading tabindex="-1">{{lang 'account.returns.from_order' id=id}} {{lang 'account.returns.submitted_successfully'}}</h1>
         <p class="newReturn-confirmationMessage">{{lang 'account.returns.confirmation_message_primary'}}</p>
         <p class="newReturn-confirmationMessage">{{lang 'account.returns.confirmation_message_secondary'}}</p>
-        <a href="{{../urls.account.orders.all}}" class="button button--primary">{{lang 'account.returns.take_me_back'}}</a>
+        <a href="{{#if ../customer}}{{../urls.account.orders.all}}{{else}}/guest-return-portal{{/if}}" class="button button--primary">{{lang 'account.returns.take_me_back'}}</a>
     </div>
 
     {{/with}}

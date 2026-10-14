@@ -89,7 +89,7 @@
                             <button type="button"
                                     class="button button--icon"
                                     data-action="dec"
-                                    aria-disabled="true"
+                                    disabled
                                     aria-controls="qty-{{id}}">
                                 <span class="is-srOnly">{{lang 'products.quantity_decrease' name=name}}</span>
                                 <i class="icon" aria-hidden="true"><svg><use href="#icon-remove" /></svg></i>
@@ -98,7 +98,6 @@
                                    id="qty-{{id}}"
                                    type="text"
                                    inputmode="numeric"
-                                   pattern="[0-9]*"
                                    autocomplete="off"
                                    value="0"
                                    role="spinbutton"

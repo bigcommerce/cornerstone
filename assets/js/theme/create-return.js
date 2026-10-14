@@ -40,8 +40,6 @@ export default class CreateReturn extends PageManager {
             itemRow.querySelectorAll('[data-new-return-qty-stepper] button').forEach(button => {
                 button.addEventListener('click', event => {
                     event.preventDefault();
-                    if (button.getAttribute('aria-disabled') === 'true') return;
-
                     this.stepQuantity(itemId, button.dataset.action === 'inc' ? 1 : -1);
                 });
             });
@@ -89,6 +87,14 @@ export default class CreateReturn extends PageManager {
         this.updateSubmitState();
     }
 
+    // A disabled button drops out of the tab order and loses focus, so hand focus to the quantity field first.
+    setStepperButtonDisabled(button, disabled, qtyInput) {
+        if (!button) return;
+
+        if (disabled && document.activeElement === button) qtyInput.focus();
+        button.toggleAttribute('disabled', disabled);
+    }
+
     // Reason and resolution only apply once a quantity is chosen; a quantity of 0 disables them.
     syncRowState(itemId) {
         const qtyInput = document.getElementById(`qty-${itemId}`);
@@ -109,8 +115,8 @@ export default class CreateReturn extends PageManager {
         const stepper = qtyInput.closest('[data-new-return-qty-stepper]');
         const decrease = stepper?.querySelector('[data-action="dec"]');
         const increase = stepper?.querySelector('[data-action="inc"]');
-        if (decrease) decrease.setAttribute('aria-disabled', String(quantity <= 0));
-        if (increase) increase.setAttribute('aria-disabled', String(quantity >= max));
+        this.setStepperButtonDisabled(decrease, quantity <= 0, qtyInput);
+        this.setStepperButtonDisabled(increase, quantity >= max, qtyInput);
     }
 
     bindAdditionalNoteEvents() {

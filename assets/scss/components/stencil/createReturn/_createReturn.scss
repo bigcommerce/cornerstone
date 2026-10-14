@@ -329,11 +329,11 @@ $newReturn-col-controls-tablet: remCalc(320px); // tablet controls column — wi
         border: 0;
         box-shadow: none;
 
-        &:hover:not([aria-disabled="true"]) {
+        &:hover:not([disabled]) {
             background-color: color("greys", "lightest");
         }
 
-        &[aria-disabled="true"] {
+        &[disabled] {
             cursor: not-allowed;
             opacity: 0.4;
         }
@@ -421,12 +421,18 @@ $newReturn-col-controls-tablet: remCalc(320px); // tablet controls column — wi
 .newReturn {
     a,
     .button,
+    input,
     select,
     textarea {
         &:focus-visible {
             outline: remCalc(2px) solid stencilColor("color-textBase");
             outline-offset: remCalc(2px);
         }
+    }
+
+    // The stepper input is borderless inside the field's border, so draw its ring inside the box.
+    .newReturn-qtyStepper .form-input--incrementTotal:focus-visible {
+        outline-offset: remCalc(-2px);
     }
     .newReturn-title:focus {
         outline: none;

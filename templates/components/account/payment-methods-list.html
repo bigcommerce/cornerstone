@@ -28,6 +28,9 @@
                                         <img class="methodHeader-icon" src="{{cdn 'img/payment-methods/card.svg'}}" alt="{{lang 'account.payment_methods.card_types.credit_card'}}" title="{{lang 'account.payment_methods.card_types.credit_card'}}">
                                         <span class="methodHeader-brand">{{lang 'account.payment_methods.card_types.credit_card'}} {{lang 'account.payment_methods.card_ending_in' last_four=last_4}}</span>
                                     {{/if}}
+                                    {{#if wallet}}
+                                        <img class="methodHeader-walletIcon" src="{{cdn (concat (concat 'img/payment-methods/' wallet) '.svg')}}" alt="{{lang (concat 'account.payment_methods.wallet_types.' wallet)}}" title="{{lang 'account.payment_methods.card_vaulted_via_wallet' wallet=(lang (concat 'account.payment_methods.wallet_types.' wallet))}}">
+                                    {{/if}}
                                     {{!-- If credit card ENDS --}}
                                 {{/if}}
 

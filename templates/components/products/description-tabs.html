@@ -9,6 +9,15 @@
             <a class="tab-title" href="#tab-warranty">{{lang 'products.warranty'}}</a>
         </li>
     {{/if}}
+    {{#all product.attributes theme_settings.show_attributes_tabs}}
+        <li class="tab">
+            <a class="tab-title"
+               href="#tab-{{dashcase (lowercase (sanitize theme_settings.pdp-attributes-tab-label))}}"
+            >
+                {{sanitize theme_settings.pdp-attributes-tab-label}}
+            </a>
+        </li>
+    {{/all}}
     {{#all product.custom_fields theme_settings.show_custom_fields_tabs}}
         <li class="tab">
             <a class="tab-title"
@@ -35,6 +44,13 @@
             {{{product.warranty}}}
         </div>
     {{/if}}
+    {{#all product.attributes theme_settings.show_attributes_tabs}}
+      <div class="tab-content" id="tab-{{dashcase (lowercase (sanitize theme_settings.pdp-attributes-tab-label))}}">
+         <dl class="productView-info">
+            {{> components/products/attributes }}
+         </dl>
+      </div>
+    {{/all}}
     {{#all product.custom_fields theme_settings.show_custom_fields_tabs}}
       <div class="tab-content" id="tab-{{dashcase (lowercase (sanitize theme_settings.pdp-custom-fields-tab-label))}}">
          <dl class="productView-info">

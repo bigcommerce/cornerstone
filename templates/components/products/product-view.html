@@ -236,6 +236,10 @@
                     </div>
                 {{/if}}
 
+                {{#if theme_settings.show_attributes_tabs '!==' true}}
+                    {{> components/products/attributes }}
+                {{/if}}
+
                 {{#if theme_settings.show_custom_fields_tabs '!==' true}}
                     {{> components/products/custom-fields }}
                 {{/if}}

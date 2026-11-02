@@ -9,24 +9,27 @@
             <a class="tab-title" href="#tab-warranty">{{lang 'products.warranty'}}</a>
         </li>
     {{/if}}
+    {{#if theme_settings.pdp-custom-fields-tab-label}}
+        {{assignVar 'additionalInfoTabLabel' theme_settings.pdp-custom-fields-tab-label}}
+    {{else}}
+        {{assignVar 'additionalInfoTabLabel' (lang 'page_builder.pdp-custom-fields-tab-label')}}
+    {{/if}}
+    {{assignVar 'showAdditionalInfoTab' 0}}
     {{#all product.attributes theme_settings.show_attributes_tabs}}
-        <li class="tab">
-            <a class="tab-title"
-               href="#tab-{{dashcase (lowercase (sanitize theme_settings.pdp-attributes-tab-label))}}"
-            >
-                {{sanitize theme_settings.pdp-attributes-tab-label}}
-            </a>
-        </li>
+        {{assignVar 'showAdditionalInfoTab' 1}}
     {{/all}}
     {{#all product.custom_fields theme_settings.show_custom_fields_tabs}}
-        <li class="tab">
+        {{assignVar 'showAdditionalInfoTab' 1}}
+    {{/all}}
+    {{#if (getVar 'showAdditionalInfoTab')}}
+        <li class="tab {{#unless product.description}}{{#unless product.warranty}}is-active{{/unless}}{{/unless}}">
             <a class="tab-title"
-               href="#tab-{{dashcase (lowercase (sanitize theme_settings.pdp-custom-fields-tab-label))}}"
+               href="#tab-{{dashcase (lowercase (sanitize (getVar 'additionalInfoTabLabel')))}}"
             >
-                {{sanitize theme_settings.pdp-custom-fields-tab-label}}
+                {{sanitize (getVar 'additionalInfoTabLabel')}}
             </a>
         </li>
-    {{/all}}
+    {{/if}}
     {{#all settings.show_product_reviews theme_settings.show_product_reviews product.reviews.total}}
         <li class="tab">
             <a class="tab-title productView-reviewTabLink" href="#tab-reviews">{{lang 'products.reviews.header' total=product.reviews.total}}</a>
@@ -44,20 +47,18 @@
             {{{product.warranty}}}
         </div>
     {{/if}}
-    {{#all product.attributes theme_settings.show_attributes_tabs}}
-      <div class="tab-content" id="tab-{{dashcase (lowercase (sanitize theme_settings.pdp-attributes-tab-label))}}">
+    {{#if (getVar 'showAdditionalInfoTab')}}
+      <div class="tab-content {{#unless product.description}}{{#unless product.warranty}}is-active{{/unless}}{{/unless}}" id="tab-{{dashcase (lowercase (sanitize (getVar 'additionalInfoTabLabel')))}}">
          <dl class="productView-info">
-            {{> components/products/attributes }}
+            {{#if theme_settings.show_attributes_tabs}}
+                {{> components/products/attributes }}
+            {{/if}}
+            {{#if theme_settings.show_custom_fields_tabs}}
+                {{> components/products/custom-fields }}
+            {{/if}}
          </dl>
       </div>
-    {{/all}}
-    {{#all product.custom_fields theme_settings.show_custom_fields_tabs}}
-      <div class="tab-content" id="tab-{{dashcase (lowercase (sanitize theme_settings.pdp-custom-fields-tab-label))}}">
-         <dl class="productView-info">
-            {{> components/products/custom-fields }}
-         </dl>
-      </div>
-    {{/all}}
+    {{/if}}
     {{#all settings.show_product_reviews theme_settings.show_product_reviews}}
        <div class="tab-content" id="tab-reviews">
            {{> components/products/reviews reviews=product.reviews product=product urls=urls}}

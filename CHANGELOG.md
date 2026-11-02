@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Draft
 - Add support Node 24 ([#XXXX](https://github.com/bigcommerce/cornerstone/pull/XXXX))
 - Show a wallet badge (Apple Pay / Google Pay) on stored cards vaulted through a wallet on the My Account payment methods page [#2742](https://github.com/bigcommerce/cornerstone/pull/2742)
+- Add missing card brands (Bancontact, Carte Bancaire, Dankort, Maestro) with logos and payment method mappings [#2748](https://github.com/bigcommerce/cornerstone/pull/2748)
 
 ## 6.22.0 (09-21-2026)
 - Fix pointer cursor on PDP stock/backorder message text [#2737](https://github.com/bigcommerce/cornerstone/pull/2737)

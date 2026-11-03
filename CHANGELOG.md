@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Draft
+- Display product attributes on the PDP (inline, or in the Additional Information tab via the new `show_attributes_tabs` theme setting), shown before custom fields ([#2746](https://github.com/bigcommerce/cornerstone/pull/2746))
+- Fix the Additional Information tab having no title when its label setting is empty, and not opening when it is the first tab on the PDP ([#2746](https://github.com/bigcommerce/cornerstone/pull/2746))
 - Add support Node 24 ([#XXXX](https://github.com/bigcommerce/cornerstone/pull/XXXX))
 - Show a wallet badge (Apple Pay / Google Pay) on stored cards vaulted through a wallet on the My Account payment methods page [#2742](https://github.com/bigcommerce/cornerstone/pull/2742)
 - Add missing card brands (Bancontact, Carte Bancaire, Dankort, Maestro) with logos and payment method mappings [#2748](https://github.com/bigcommerce/cornerstone/pull/2748)

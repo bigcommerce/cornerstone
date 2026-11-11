@@ -31,3 +31,48 @@ export default function languageSelector() {
         }
     });
 }
+
+const updateCartLocaleMutation = `
+    mutation UpdateCartLocale($input: UpdateCartLocaleInput!) {
+        cart {
+            updateCartLocale(input: $input) {
+                cart { entityId locale }
+            }
+        }
+    }
+`;
+
+function updateCartLocale(cartId, locale, token) {
+    return fetch('/graphql', {
+        method: 'POST',
+        credentials: 'same-origin',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+        body: JSON.stringify({
+            query: updateCartLocaleMutation,
+            variables: { input: { cartEntityId: cartId, data: { locale } } },
+        }),
+    });
+}
+
+/**
+ * Updates the active cart's locale before following a language switch link
+ */
+export function cartLocaleSwitcher(cartId, token) {
+    if (!cartId) return;
+
+    $('a[data-locale-code][data-warning]').on('click', (event) => {
+        if (event.ctrlKey || event.metaKey || event.shiftKey) return;
+
+        event.preventDefault();
+
+        const { href } = event.currentTarget;
+        const locale = $(event.currentTarget).data('locale-code');
+
+        // Navigate regardless of the outcome so a failed update never blocks the switch
+        updateCartLocale(cartId, locale, token)
+            .catch(() => null)
+            .then(() => {
+                window.location.href = href;
+            });
+    });
+}
